@@ -57,10 +57,25 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
   word/answer context. Minimum context depth = longest disambiguation needed. Confirms and
   quantifies Exp 5's lever: need ≥2-char context (trigram). This is THE next build.
 
+## Exp 7 — context-depth control: how deep is enough? (decisive positive)
+- Setup: count-based n-gram control (n=2,3,4) to ISOLATE the context-depth variable (not the
+  AIF model). Greedy decode. (a) "mirro " ; (b) Q→A "name. mirro. " then "name. ".
+- Result:
+  (a) n=2 → "miro" (drops an r); n=3 (trigram, 2-char memory) → EXACT "mirro mirro";
+      n=4 → no further gain.
+  (b) n=2 → "me. me." (conflates the two m's); n=3 → "mirro. " — "name." correctly EVOKES
+      the answer "mirro"; n=4 → no further gain.
+- Implication (threshold found): TWO characters of context is the switch-on point for BOTH
+  exact word order AND question→answer at this scale. Comprehension-as-prediction
+  demonstrated: a question cue evokes the learned answer once memory ≥ the disambiguation span.
+- Caveat: count-based control, not active inference. It SETS THE TARGET the AIF context model
+  must match: a ≥2-char-context (trigram) active-inference generative model.
+
 ## Open threads for the loop to pursue
-- **(priority) Trigram / 2-char context**: state encodes last 2 chars. Predict "mirro" exactly
-  and resolve "name."→"mirro" vs "me." conflation. Needs an efficient pair-state model
-  (V*V states is heavy for per-char JAX inference — may need a leaner implementation).
-- Curriculum: teach short words first, then phrases (does staged exposure help?).
+- **(priority) AIF 2-char-context model**: reproduce Exp 7 WITHIN active inference — pair-state
+  (s = last 2 chars), deterministic A (pair→current char), learn B = trigram transitions.
+  Tractable for tiny corpora (K=V*V=784; few chars/epoch). Goal: AIF says "mirro" exact + Q→A.
+- Curriculum: teach short words first, then phrases (does staged exposure help / transfer?).
 - Grounding bridge: bind an arbitrary feedback cue to the intrinsic free-energy valence.
-- Sampling vs greedy: greedy exposes the disambiguation wall cleanly; sampling masks it.
+- Capacity vs depth: confirm within AIF that DEPTH (memory), not state count, is the lever
+  (Exp 4 showed states alone fail; Exp 5/7 show depth works).
