@@ -85,7 +85,7 @@ def build_controller_arrays():
     B = [_batch(_normalize(B_np, axis=0))]
 
     C_np = [
-        np.array([0.0, 2.0]),
+        np.array([0.0, 2.5]),
         np.array([0.0, 0.0, 0.0]),
         np.array([0.5, 0.0, -0.5]),
         np.array([0.0, -1.0, 1.0]),
