@@ -1,0 +1,22 @@
+[project]
+name = "active-loop"
+version = "0.1.0"
+description = "Autonomous active-inference research loop (M1 inner loop)"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.19.5",
+    "jax>=0.3.4",
+    "jaxlib>=0.3.4",
+    "equinox>=0.9",
+    "multimethod>=1.11",
+    "mctx>=0.0.5",
+    "networkx>=3.3",
+    "matplotlib>=3.1.3",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "eval"]
+addopts = "-q"
