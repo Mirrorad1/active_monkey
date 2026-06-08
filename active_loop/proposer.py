@@ -47,8 +47,15 @@ _CODE_FENCE = re.compile(r"```(?:python)?\n(.*?)```", re.DOTALL)
 class ClaudeCliProposer:
     """Invokes `claude -p` to propose a new version of the mutable file."""
 
-    def __init__(self, timeout_s: int = 180):
+    def __init__(
+        self,
+        timeout_s: int = 180,
+        target_file: str = MUTABLE_FILE,
+        objective: str = "lower the controller's free energy while keeping guardrails",
+    ):
         self.timeout_s = timeout_s
+        self.target_file = target_file
+        self.objective = objective
 
     def _read(self, repo: Path, rel: str) -> str:
         p = Path(repo) / rel
@@ -59,14 +66,13 @@ class ClaudeCliProposer:
         mission = self._read(repo, "MISSION.md")
         policy = self._read(repo, "policy.md")
         index = self._read(repo, "world_model/INDEX.md")
-        current = self._read(repo, MUTABLE_FILE)
+        current = self._read(repo, self.target_file)
         prompt = (
             f"{mission}\n\n## Rules of engagement\n{policy}\n\n"
             f"## What you know so far (world model)\n{index}\n\n"
-            f"## Current {MUTABLE_FILE}\n```python\n{current}\n```\n\n"
-            "Propose ONE small change to lower the controller's free energy while keeping "
-            "guardrails. Output ONLY the complete new contents of the file in a single "
-            "```python code fence — no prose, no explanation."
+            f"## Current {self.target_file}\n```python\n{current}\n```\n\n"
+            f"Propose ONE small change to {self.objective}. Output ONLY the complete new "
+            "contents of the file in a single ```python code fence — no prose, no explanation."
         )
         proc = subprocess.run(
             ["claude", "-p", prompt, "--output-format", "text"],
@@ -78,8 +84,8 @@ class ClaudeCliProposer:
         if m is None:
             raise RuntimeError("proposer returned no python code fence")
         new_src = m.group(1)
-        compile(new_src, MUTABLE_FILE, "exec")
-        (repo / MUTABLE_FILE).write_text(new_src)
+        compile(new_src, self.target_file, "exec")
+        (repo / self.target_file).write_text(new_src)
         return "claude proposal applied"
 
 
