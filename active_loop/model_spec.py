@@ -16,6 +16,15 @@ NUM_STATES = [3]
 NUM_CONTROLS = [3]  # ACT, ASK, SWITCH
 BATCH = 1
 
+# Hypothesis (iter 1): sharpening the controller's likelihood A by a small
+# precision exponent (>1) reduces the ambiguity / expected-uncertainty term of
+# the expected free energy. Per Seth, a more precise generative model yields a
+# lower-EFE perceptual hypothesis; because we sharpen columns symmetrically and
+# leave C/D untouched, the qualitative preference structure — and thus the
+# ask-rate band and success floor — should be preserved while mean chosen-action
+# free energy drops.
+A_PRECISION = 1.15
+
 
 @dataclass(frozen=True)
 class Dims:
@@ -34,6 +43,11 @@ def _batch(x: np.ndarray) -> jnp.ndarray:
 
 def _normalize(x: np.ndarray, axis: int) -> np.ndarray:
     return x / x.sum(axis=axis, keepdims=True)
+
+
+def _sharpen(x: np.ndarray, gamma: float, axis: int) -> np.ndarray:
+    """Raise to a precision exponent then renormalize along ``axis``."""
+    return _normalize(np.power(x, gamma), axis=axis)
 
 
 def build_controller_arrays():
@@ -64,7 +78,7 @@ def build_controller_arrays():
         [0.15, 0.05, 0.1],
     ])
     A_np.append(a3)
-    A = [_batch(_normalize(a, axis=0)) for a in A_np]
+    A = [_batch(_sharpen(a, A_PRECISION, axis=0)) for a in A_np]
 
     B_np = np.zeros((ns, ns, NUM_CONTROLS[0]))
     B_np[:, :, 0] = np.array([
@@ -94,7 +108,7 @@ def build_controller_arrays():
 
     D = [_batch(np.array([0.25, 0.15, 0.6]))]
 
-    pA = [_batch(_normalize(a, axis=0) * 2.0 + 0.1) for a in A_np]
+    pA = [_batch(_sharpen(a, A_PRECISION, axis=0) * 2.0 + 0.1) for a in A_np]
     pB = [_batch(_normalize(B_np, axis=0) * 2.0 + 0.1)]
 
     return A, B, C, D, pA, pB
