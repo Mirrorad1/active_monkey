@@ -66,3 +66,34 @@ class Controller:
             neg_efe=neg_efe,
             q_pi=q_pi,
         )
+
+    def learn(self, trajectory) -> None:
+        """Dirichlet-update A and B from a finished episode via pymdp's infer_parameters.
+
+        infer_parameters returns a NEW agent (equinox modules are immutable), so we
+        store it back. Signature (verified):
+            infer_parameters(beliefs_A, observations, actions, beliefs_B=None, lr_pA, lr_pB)
+        Shapes:
+            beliefs_A:    list per factor of (batch, T, num_states_f)
+            observations: list per modality of (batch, T) int indices
+            actions:      (batch, T, num_factors)
+        Passing beliefs_B=beliefs enables B learning as well.
+        """
+        T = len(trajectory.obs_seq)
+        num_factors = len(DIMS.num_states)
+        num_modalities = len(DIMS.num_obs)
+        beliefs = [
+            jnp.concatenate([trajectory.qs_seq[t][f] for t in range(T)], axis=1)
+            for f in range(num_factors)
+        ]
+        observations = [
+            jnp.array([[trajectory.obs_seq[t][m] for t in range(T)]])
+            for m in range(num_modalities)
+        ]
+        actions = jnp.concatenate([a[:, None, :] for a in trajectory.action_seq], axis=1)
+        self.agent = self.agent.infer_parameters(
+            beliefs_A=beliefs,
+            observations=observations,
+            actions=actions,
+            beliefs_B=beliefs,
+        )
