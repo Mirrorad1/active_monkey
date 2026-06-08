@@ -10,3 +10,10 @@ active_loop/proposer.py
 FROZEN
 MISSION.md
 policy.md
+data/
+eval/lang_score.py
+eval/lang_score_json.py
+active_loop/lang_model.py
+active_loop/alphabet.py
+active_loop/critic.py
+active_loop/pr_loop.py
