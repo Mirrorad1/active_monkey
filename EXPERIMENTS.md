@@ -44,8 +44,23 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
   One char of memory (bigram) → fragments; two (trigram) would resolve "mirro" exactly.
   This is the direction toward the moonshot: grow the context window of the generative model.
 
+## Exp 6 — bigram limits: repeated letters & word-context (sharpening result)
+- Setup: bigram (state = last char), greedy (most-likely-next) decode, 12 epochs.
+  (a) "mirro " repeated;  (b) Q→A "name. mirro. " then prompt "name. ".
+- Result:
+  (a) greedy from space → "mirr" then loops on r ("mirrrrrr"). Nails m-i-r-r, then can't
+      tell if the 2nd r → r or → o (in "mirro" r is followed by both, equally). 1-char
+      memory sees "just saw an r" identically in both cases.
+  (b) "name. " → "me. me." — the bigram CONFLATES the two m's (na-M-e vs M-irro); 1 char of
+      context can't distinguish "m mid-word" from "m starting the answer".
+- Implication: 1-char memory is provably insufficient for (i) repeated letters and (ii)
+  word/answer context. Minimum context depth = longest disambiguation needed. Confirms and
+  quantifies Exp 5's lever: need ≥2-char context (trigram). This is THE next build.
+
 ## Open threads for the loop to pursue
-- Trigram / 2-char context: does "mirro" become exact? do whole words stabilize?
+- **(priority) Trigram / 2-char context**: state encodes last 2 chars. Predict "mirro" exactly
+  and resolve "name."→"mirro" vs "me." conflation. Needs an efficient pair-state model
+  (V*V states is heavy for per-char JAX inference — may need a leaner implementation).
 - Curriculum: teach short words first, then phrases (does staged exposure help?).
 - Grounding bridge: bind an arbitrary feedback cue to the intrinsic free-energy valence.
-- Question→answer at bigram/trigram: can a recognizable cue reliably evoke a learned answer?
+- Sampling vs greedy: greedy exposes the disambiguation wall cleanly; sampling masks it.
