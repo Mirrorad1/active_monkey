@@ -1,0 +1,12 @@
+eval/
+active_loop/task_env.py
+active_loop/oracle.py
+active_loop/git_ops.py
+active_loop/frozen_guard.py
+active_loop/loop.py
+active_loop/world_model.py
+active_loop/report_html.py
+active_loop/proposer.py
+FROZEN
+MISSION.md
+policy.md
