@@ -3,3 +3,10 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 *.pyc
+
+# outer-loop persistent store + generated artifacts: must survive `git clean -fd`
+# on revert (git clean keeps ignored paths unless -x is passed).
+world_model/
+reports/
+REPORT.md
+NEEDS_HUMAN.md
