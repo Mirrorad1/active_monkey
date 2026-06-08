@@ -44,3 +44,14 @@ def test_reset_hard_discards_changes(tmp_path):
     git_ops.reset_hard(repo)
     assert (repo / "a.txt").read_text() == "one\n"
     assert git_ops.changed_files(repo) == []
+
+
+def test_reset_hard_scoped_preserves_root_untracked(tmp_path):
+    repo = _init_repo(tmp_path)
+    # untracked file at root survives; untracked file under active_loop/ is cleaned
+    (repo / "keep_me.txt").write_text("root\n")
+    (repo / "active_loop").mkdir()
+    (repo / "active_loop" / "junk.txt").write_text("scratch\n")
+    git_ops.reset_hard(repo)
+    assert (repo / "keep_me.txt").exists()
+    assert not (repo / "active_loop" / "junk.txt").exists()

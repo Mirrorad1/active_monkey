@@ -18,6 +18,10 @@ def _clone_repo(tmp_path: Path) -> Path:
     subprocess.run(["git", "config", "user.email", "t@t.t"], cwd=dst, check=True)
     subprocess.run(["git", "config", "user.name", "t"], cwd=dst, check=True)
     (dst / ".venv").symlink_to(REPO / ".venv")
+    # The .venv symlink is a test fixture, not loop output. Git's `.venv/`
+    # ignore pattern only matches directories, not this symlink, so exclude it
+    # explicitly to keep it out of changed_files / the scoped revert clean.
+    (dst / ".git" / "info" / "exclude").write_text(".venv\n")
     return dst
 
 
@@ -44,3 +48,6 @@ def test_run_loop_writes_artifacts_and_grows_world_model(tmp_path):
     journal = repo / "world_model" / "evidence" / "journal.jsonl"
     assert journal.exists()
     assert len(journal.read_text().splitlines()) == 2
+    tracked = subprocess.run(["git", "ls-files", "world_model"], cwd=repo,
+                             capture_output=True, text=True).stdout
+    assert "world_model/INDEX.md" in tracked  # world model is versioned in git

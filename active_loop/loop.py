@@ -64,28 +64,8 @@ def one_iteration(repo, proposer, iteration, base_metric=None):
     return IterationResult(iteration, hypothesis, False, reason, score["metric"], score)
 
 
-# Persistent store + generated artifacts the loop owns. These must survive the
-# `git clean -fd` that a revert performs (git clean keeps ignored paths). We assert
-# them via .git/info/exclude so protection holds even before .gitignore is committed.
-_PROTECTED = ("world_model/", "reports/", "REPORT.md", "NEEDS_HUMAN.md")
-
-
-def _protect_artifacts(repo: Path) -> None:
-    exclude = repo / ".git" / "info" / "exclude"
-    if not exclude.parent.exists():
-        return
-    existing = exclude.read_text() if exclude.exists() else ""
-    missing = [p for p in _PROTECTED if p not in existing.splitlines()]
-    if missing:
-        with exclude.open("a") as fh:
-            if existing and not existing.endswith("\n"):
-                fh.write("\n")
-            fh.write("\n".join(missing) + "\n")
-
-
 def run_loop(repo, proposer, iterations: int = 0, error_budget: int = 5) -> None:
     repo = Path(repo)
-    _protect_artifacts(repo)
     wm = WorldModel(repo / "world_model")
     history: list[float] = []
     consecutive_errors = 0
@@ -126,6 +106,8 @@ def run_loop(repo, proposer, iterations: int = 0, error_budget: int = 5) -> None
             f"# active-loop report\n\nlast iter: {i}\nbest metric: {best_metric:.4f}\n"
             f"last result: {result.reason} (kept={result.kept})\n"
         )
+        git_ops.commit_paths(repo, ["world_model", "reports", "REPORT.md"],
+                             f"loop: iter {i} artifacts (best={best_metric:.4f})")
 
         if consecutive_errors >= error_budget:
             (repo / "NEEDS_HUMAN.md").write_text(
@@ -133,5 +115,7 @@ def run_loop(repo, proposer, iterations: int = 0, error_budget: int = 5) -> None
                 f"broken/frozen-touching proposals.\nLast good commit: {git_ops.current_sha(repo)}\n"
                 "Suggested question: is the mutable surface or the proposer prompt mis-scoped?\n"
             )
+            git_ops.commit_paths(repo, ["NEEDS_HUMAN.md", "world_model", "reports", "REPORT.md"],
+                                 f"loop: halt at iter {i}")
             return
         i += 1

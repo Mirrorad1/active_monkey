@@ -42,7 +42,25 @@ def commit_all(repo: Path | str, message: str) -> str:
     return current_sha(repo)
 
 
+def commit_paths(repo: Path | str, paths: list[str], message: str) -> str:
+    """Stage the given existing paths and commit; tolerate 'nothing to commit'."""
+    repo_p = Path(repo)
+    existing = [p for p in paths if (repo_p / p).exists()]
+    if not existing:
+        return current_sha(repo)
+    # -f so the loop's owned artifacts are staged even if a stale .gitignore
+    # (e.g. in a freshly-cloned working tree) still lists them.
+    _run(repo, "add", "-f", *existing)
+    if not _run(repo, "diff", "--cached", "--name-only").strip():
+        return current_sha(repo)
+    _run(repo, "commit", "-m", message)
+    return current_sha(repo)
+
+
 def reset_hard(repo: Path | str) -> None:
-    """Discard all working-tree changes and untracked files, back to HEAD."""
+    """Discard tracked changes and untracked files UNDER active_loop/ back to HEAD.
+
+    The clean is scoped to active_loop/ so the loop's root-level artifacts
+    (world_model/, reports/, REPORT.md) and entry points are never wiped on a revert."""
     _run(repo, "reset", "--hard", "HEAD")
-    _run(repo, "clean", "-fd")
+    _run(repo, "clean", "-fd", "active_loop")
