@@ -1,3 +1,4 @@
 {"iter": 0, "hypothesis": "nudge first float 0.2 -> 0.3 (seed 0)", "kept": false, "reason": "no_improvement", "metric": -1.6171342978874843}
 {"iter": 1, "hypothesis": "nudge first float 0.2 -> 0.3 (seed 0)", "kept": false, "reason": "no_improvement", "metric": -1.6171342978874843}
 {"iter": 0, "hypothesis": "claude proposal applied", "kept": true, "reason": "improved", "metric": -1.9912460967898369}
+{"iter": 1, "hypothesis": "claude proposal applied", "kept": true, "reason": "improved", "metric": -2.0944328183929124}
