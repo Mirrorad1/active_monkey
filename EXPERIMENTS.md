@@ -79,3 +79,20 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Grounding bridge: bind an arbitrary feedback cue to the intrinsic free-energy valence.
 - Capacity vs depth: confirm within AIF that DEPTH (memory), not state count, is the lever
   (Exp 4 showed states alone fail; Exp 5/7 show depth works).
+
+## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
+The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
+through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
+beat; order-1 conditional entropy floor >> trigram). Frontier directions, ranked:
+1. **AIF 2-char-context (trigram) pair-state model** — reproduce Exp 7 inside active inference
+   (s=(c-1,c), K=V^2=784, frozen deterministic A, learn sparse B). [= the priority thread above]
+2. **Hierarchical words-above-characters** — a slow upper "chunk/intent" factor conditioning
+   the fast char transitions (two timescales; Friston et al. linguistic-communication model).
+   This is where word-order, Q→A, and emergent "concept/opinion" states live, and where the
+   language track (M3) and affective track (M4) unify.
+3. **Structure learning (Bayesian model reduction) instead of fixing K/order**, and re-point the
+   autopilot loop to optimize TEMPORAL DEPTH (proven lever), not K (disproven, Exp 4).
+Valence grounding (M4): research backs **valence = -dF/dt** (rate of free-energy reduction) as a
+differentiable, theory-grounded intrinsic signal. Honest ceiling: discrete AIF reaches a legible,
+emergent-state, grounded-valence context model with short Q→A — not conversational fluency alone;
+the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a richer sequence substrate.
