@@ -1,5 +1,5 @@
-# active-loop report
+# active-loop language report
 
-last iter: 1
-best metric: -2.0944
-last result: improved (kept=True)
+iter 0
+best bits/char: 4.0002
+last: improved (merged=True)
