@@ -81,3 +81,30 @@ class ClaudeCliProposer:
         compile(new_src, MUTABLE_FILE, "exec")
         (repo / MUTABLE_FILE).write_text(new_src)
         return "claude proposal applied"
+
+
+LANG_MUTABLE_FILE = "active_loop/lang_model_spec.py"
+
+
+class LangMockProposer:
+    """Deterministically bumps K (latent state count) in the language spec.
+
+    A valid, score-moving edit for offline loop tests — no LLM.
+    """
+
+    def __init__(self, seed: int = 0):
+        self.seed = seed
+
+    def propose(self, repo: Path | str) -> str:
+        import re
+        path = Path(repo) / LANG_MUTABLE_FILE
+        src = path.read_text()
+        m = re.search(r"^K\s*=\s*(\d+)", src, re.MULTILINE)
+        if m is None:
+            raise ValueError("no K assignment found in language spec")
+        old = int(m.group(1))
+        deltas = [2, 4, -2, 6, 8]
+        new = max(2, old + deltas[self.seed % len(deltas)])
+        new_src = src[: m.start()] + f"K = {new}" + src[m.end():]
+        path.write_text(new_src)
+        return f"set K {old} -> {new} (seed {self.seed})"
