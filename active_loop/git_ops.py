@@ -64,3 +64,25 @@ def reset_hard(repo: Path | str) -> None:
     (world_model/, reports/, REPORT.md) and entry points are never wiped on a revert."""
     _run(repo, "reset", "--hard", "HEAD")
     _run(repo, "clean", "-fd", "active_loop")
+
+
+def current_branch(repo: Path | str) -> str:
+    return _run(repo, "rev-parse", "--abbrev-ref", "HEAD")
+
+
+def create_branch(repo: Path | str, name: str) -> None:
+    """Create and check out a new branch from the current HEAD."""
+    _run(repo, "checkout", "-b", name)
+
+
+def checkout(repo: Path | str, name: str) -> None:
+    _run(repo, "checkout", name)
+
+
+def merge_no_ff(repo: Path | str, branch: str, message: str) -> str:
+    _run(repo, "merge", "--no-ff", "-m", message, branch)
+    return current_sha(repo)
+
+
+def delete_branch(repo: Path | str, name: str) -> None:
+    _run(repo, "branch", "-D", name)
