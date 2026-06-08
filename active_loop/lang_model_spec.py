@@ -12,7 +12,7 @@ import jax.numpy as jnp
 
 from active_loop.alphabet import V
 
-K = 12          # number of latent "meaning" states
+K = 14          # number of latent "meaning" states
 A_CONC = 0.1    # Dirichlet prior concentration for A
 B_CONC = 0.1    # Dirichlet prior concentration for B
 INIT_SEED = 0
