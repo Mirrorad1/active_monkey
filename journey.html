@@ -219,12 +219,15 @@ function TraceBlock({label, path, ghPath}){
 
 function TraceSection({trace}){
   if(!trace) return null;
+  const statusText = trace.verified==="match"
+    ? "re-run reproduces the original recorded output"
+    : "original run committed; not yet independently re-run";
   return (
     <div className="trace-section">
       <div className="trace-title">
         <span>TRACE IT</span>
         {trace.verified==="match" && <span className="verified-chip">re-verified ✓</span>}
-        <span style={{color:"var(--ink-3)",fontWeight:400,letterSpacing:".01em",fontSize:"9px",flex:1}}>all 40 scripts reproduce their original output</span>
+        <span style={{color:"var(--ink-3)",fontWeight:400,letterSpacing:".01em",fontSize:"9px",flex:1}}>{statusText}</span>
       </div>
       <TraceBlock
         label="Experiment script"
@@ -236,11 +239,13 @@ function TraceSection({trace}){
         path={trace.output}
         ghPath={trace.output}
       />
-      <TraceBlock
-        label={"Re-run 2026-06-09 (verified: output matches original)"}
-        path={trace.rerun}
-        ghPath={trace.rerun}
-      />
+      {trace.rerun && (
+        <TraceBlock
+          label={"Re-run 2026-06-09 (verified: output matches original)"}
+          path={trace.rerun}
+          ghPath={trace.rerun}
+        />
+      )}
     </div>
   );
 }

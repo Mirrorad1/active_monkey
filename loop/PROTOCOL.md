@@ -63,10 +63,19 @@ several half-experiments. Steps:
 
    **Site update (mandatory):** the same commit also updates `experiments-data.js` with
    the new curated entry — kind graded honestly (breakthrough / positive / wall /
-   partial), trace paths pointing to the committed script and output files, and the
-   `story` field if BREAKTHROUGH. The fast test suite (`uv run --python .venv pytest -q`)
-   enforces that the curated count equals the log count; a skipped site update will fail
-   CI and must be fixed before the commit lands.
+   partial), and a `trace` block with:
+   - `script`: `"experiments/expNN_<slug>.py"` — the script committed above
+   - `output`: `"experiments/outputs/expNN.txt"` — the raw output committed above
+   - `rerun` / `verified`: omit these fields for now; add them only after an actual
+     independent re-run confirms the output matches.
+
+   `experiments/recovered/` is the **sealed historical archive for Exp 1–40 only**.
+   Nothing new goes there. Future experiments (Exp 41+) use the paths above.
+
+   The `story` field is added if BREAKTHROUGH. The fast test suite
+   (`uv run --python .venv pytest -q`) enforces that the curated count equals the log
+   count and that `trace.script` / `trace.output` exist on disk; a skipped site update
+   will fail CI and must be fixed before the commit lands.
 
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
    suggest either a direction switch (other cards), a harder edge, or stopping — a
