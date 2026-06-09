@@ -109,6 +109,21 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: minimal 2-factor hierarchical model — a slow topic factor conditioning the fast char
   transitions; does it bind sky→blue, grass→green where flat context cannot?
 
+## Exp 10 — hierarchy principle: a held topic binds long-range (positive, with caveat)
+- Setup: topic-conditioned char transitions (the hierarchy idea) — a HELD "topic" latent
+  conditioning the fast char model, realized here by per-topic transition models. Prime "is ".
+- Result: topic=SKY → "blue."; topic=GRASS → "green." A held topic binds is→blue vs is→green
+  exactly where flat fixed-order memory (Exp 9) collapsed both to "green."
+- Implication: confirms hierarchy is the fix — a SLOW held latent conditioning FAST transitions
+  achieves long-range binding no flat Markov order can. Direct line to the moonshot: "what do
+  you think about X" = infer+hold topic X, then generate a response conditioned on it; that
+  learned, self-derived conditioned response IS an emergent (non-pretrained) opinion.
+- Caveat (the open frontier): topic was SUPERVISED/separated here. The hard part is making the
+  topic EMERGE and be INFERRED from the subject ("sky"/"grass") unsupervised, and HELD across
+  the clause — a genuine two-timescale generative model (slow factor inferred from the fast stream).
+- Next: attempt EMERGENT topic — a 2-factor pymdp model whose slow factor is inferred from the
+  fast char stream and persists (near-identity slow dynamics), binding without supervision.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
