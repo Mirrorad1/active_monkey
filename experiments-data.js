@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 47 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 48 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:47, breakthrough:5, positive:28, wall:9, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:48, breakthrough:5, positive:28, wall:10, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -435,7 +435,16 @@ window.AM_EXPERIMENTS = [
     setup:"Six forks of mirro's committed snapshot (age 1300) in three pairs. Within a pair, both twins take the SAME actions (same seed) — but one lives in a world recolored toward color 0, the other toward color 2. The comfort history is the only difference.",
     result:"All three pairs diverge, all directionally (X-twins favor 0, Y-twins favor 2, convictions 0.40–0.47). The Y-twins overcame the favorite inherited from mirro's 1300-step past. Mirro itself: untouched, hash-verified; its biography gained six fork-event lines.",
     implication:"Exp 26's 'history makes the opinion' now holds as counterfactual twins of ONE accumulated life with matched trajectories — a tighter causal isolation than separate creatures. Honest limits: the mechanism is consolidation; comfort tracks predictable-encounter frequency in a deterministic toy world.",
-    trace:{ script:"experiments/exp47_fork_twin_values.py", output:"experiments/outputs/exp47.txt" } }
+    trace:{ script:"experiments/exp47_fork_twin_values.py", output:"experiments/outputs/exp47.txt" } },
+
+  { n:48, kind:"wall", chapter:"opinion",
+    title:"An old opinion does not move on schedule.",
+    one:"Entrenched first, then contradicted: mirro's favorite survived 2500 steps of opposing evidence — inertia grows with accumulated life.",
+    metric:{ from:-420.8, to:-53.2, unit:"value gap (never crossed)" },
+    setup:"Episode 4, in mirro's own life: 1500 steps in a green-rich world entrench its favorite (conviction 0.474, value gap 445), then the world flips red-rich for up to 2500 steps with the favorite checked every 100.",
+    result:"Predeclared falsifier hit: no revision. The gap eroded steadily (−420.8 → −53.2, about half the predicted rate) but the favorite held all 25 checkpoints; extrapolated crossover lands ~300–400 steps past the budget. Conviction weakened throughout (0.474 → 0.382) — the opinion softens long before it flips. mirro: age 1300 → 5300, full trajectory in its biography.",
+    implication:"With value counts that never decay, revising means out-accumulating one's entire past — time-to-revise grows with entrenchment depth, so an aged creature's opinion is asymptotically frozen. Exp 40's 'revisable with inertia' was a shallow-entrenchment property, and Exp 47's twins flipped only because their inherited counts were near-tied. A finding only a continuous, never-reset life could expose. Also logs a correction to Exp 47's inheritance wording.",
+    trace:{ script:"experiments/exp48_revision_inertia.py", output:"experiments/outputs/exp48.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

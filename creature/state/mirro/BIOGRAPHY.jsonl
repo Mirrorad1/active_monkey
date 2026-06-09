@@ -14,3 +14,46 @@
 {"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_y2'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
 {"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_x3'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
 {"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_y3'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "world_change", "age_steps": 1300, "summary": "world -> green-rich (entrenchment phase, Exp 48)"}
+{"event": "live", "age_steps": 1400, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "644b3be50ec6b831af727931a97b8820b811e4935c51be194ea25f8c8e6f089d"}
+{"event": "live", "age_steps": 1500, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "cb75596451c8167c147c323a49f383be78e1d67c8f3981a3405e13206f229dd7"}
+{"event": "live", "age_steps": 1600, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "d03861f684fa94738760b58380cc8abb50c41c5d8cf553b727e3903ff309c077"}
+{"event": "live", "age_steps": 1700, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "4f644b4b9ed9903392dddb6b553f8916d02a01e25c0075e445a0ffb68e1e3793"}
+{"event": "live", "age_steps": 1800, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "af6ddb5c68f1c8ee8fbbfc41cb409bf0894c28ca8a8268bdce7fecf774902c51"}
+{"event": "live", "age_steps": 1900, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "5f03e398d59c00cdf1e908421caa81a50062d4cf4717b2461702813fc89e1777"}
+{"event": "live", "age_steps": 2000, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "5c66a5ee08bf606835d44ccb28410093d9f395920096bbf90dfc578cf5381d47"}
+{"event": "live", "age_steps": 2100, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "13dd4c2b7b36dd4c9d0dbd7dc150fc3517d1d9eacff30a998e45229077099bed"}
+{"event": "live", "age_steps": 2200, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "283fbb53fc6873d3a56d33e5e45233d471c77487a43d8b7ce6e0deb7b4348aeb"}
+{"event": "live", "age_steps": 2300, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "ee0022bd5166e2a892ddf51326971a70369cc343d681741dc04c6d77930ba7be"}
+{"event": "live", "age_steps": 2400, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "51f32c670cd1157ac10d495ea26fb736393c546e8cb0d6ad210305fee04fddc8"}
+{"event": "live", "age_steps": 2500, "summary": "lived 100 steps; map_accuracy=0.667; localize_bits=-0.000", "state_hash": "1dbfe5ee3034373433fa5fe63768563dceb0c179c817a5ecd084dd6a56bda12c"}
+{"event": "live", "age_steps": 2600, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "b57d6d7d86ea60a4c0c5a61db0136b739c047ae2cf99d664c750683e0fbbec46"}
+{"event": "live", "age_steps": 2700, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "a8b972fbfa7e6505eaaf5fb1c59319fb85181e64ea59a00249d07efb2171b464"}
+{"event": "live", "age_steps": 2800, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "3334883b85e0a04f96e72aba9e6ca15932534d3e52820f458da12a01baed394f"}
+{"event": "world_change", "age_steps": 2800, "summary": "world -> red-rich (revision phase, Exp 48)"}
+{"event": "live", "age_steps": 2900, "summary": "lived 100 steps; map_accuracy=0.111; localize_bits=-0.000", "state_hash": "9b9c01357a51f804437ca631af2cae7c1e4443cb9106a68ead3e62468b411784"}
+{"event": "live", "age_steps": 3000, "summary": "lived 100 steps; map_accuracy=0.111; localize_bits=-0.000", "state_hash": "84409a80ec21f0456db03a7faeecf626ed1f5d6b0caf074e28941ebe5be0c894"}
+{"event": "live", "age_steps": 3100, "summary": "lived 100 steps; map_accuracy=0.111; localize_bits=-0.000", "state_hash": "9e7675d65a45264c75c98c36a9baae234a315c4374d06746565555b3d7d08816"}
+{"event": "live", "age_steps": 3200, "summary": "lived 100 steps; map_accuracy=0.222; localize_bits=-0.000", "state_hash": "1ac84e890d188e1cf081538b1602844a36f57f7fba98785c74df8e570eba9c94"}
+{"event": "live", "age_steps": 3300, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "8d18bd9030ff7832c6d84a14e783342ee76951c03a0ea4da39ce2037426a87fd"}
+{"event": "live", "age_steps": 3400, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "670e2fbec376b34d2e5c72e6c744304b477f0ba5e4d5ee7263bdaa1fdd5fba8b"}
+{"event": "live", "age_steps": 3500, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "c92967d304a3441fc6e43d90e0d459b3e89b41abd70c3414db567183bbf23023"}
+{"event": "live", "age_steps": 3600, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "8b06e0c2161053fd344e3a0230e113fefc8d175baf4e47e16b22190504547869"}
+{"event": "live", "age_steps": 3700, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "6247c6c0354c9a3736074e787a480cabbf3a55188349a4d81a3de1d951cfe1ee"}
+{"event": "live", "age_steps": 3800, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "a5d88009da3fcdcc02a98fb55e8f06096d90f2a41febea675f2fb00a8f7cf478"}
+{"event": "live", "age_steps": 3900, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "c865affab09d4bce99c1bbd8a3b8e0e84cea6ed064480b9313594cdd28c2c63e"}
+{"event": "live", "age_steps": 4000, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "8d790374a964a416ec8b98f609ed2d55ffa4b9d9fa94fed067023353a4014dab"}
+{"event": "live", "age_steps": 4100, "summary": "lived 100 steps; map_accuracy=0.444; localize_bits=-0.000", "state_hash": "9a50f7b6d1014663c14e2331cc61e435a07f9b9c06c1548326f9c92d1287f8cc"}
+{"event": "live", "age_steps": 4200, "summary": "lived 100 steps; map_accuracy=0.667; localize_bits=-0.000", "state_hash": "b057aab41811dac971b92792c18ac06feeabda61e37d9c337387f83ed017e079"}
+{"event": "live", "age_steps": 4300, "summary": "lived 100 steps; map_accuracy=0.667; localize_bits=-0.000", "state_hash": "568126910f38bd4a5af7e35f59fdc1928c773311679cdd0f222d21add2ea6ce2"}
+{"event": "live", "age_steps": 4400, "summary": "lived 100 steps; map_accuracy=0.667; localize_bits=-0.000", "state_hash": "ce3f56092f8870b90c94035aac1d4396a11f065ae548b46db975546fdc5ee31b"}
+{"event": "live", "age_steps": 4500, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "233b180f7c22a5a516d4aeea6367163e0157799537b7454d7b80ab4a85679f86"}
+{"event": "live", "age_steps": 4600, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "ddb267d037ab4a721dd67b51a1c3135e37d86ad03e8bd2c8da483a79876be5e7"}
+{"event": "live", "age_steps": 4700, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "ed90c56b5a813190d89a5f314e11726c15f808a4934557a78960d15e36725e4f"}
+{"event": "live", "age_steps": 4800, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "0f6910e700a21d78b0cc4a967bdc1d878d9a057a72f3346d239aeacc5bf3f5f0"}
+{"event": "live", "age_steps": 4900, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "7112099253df5454f7942950a238b00c9f776ec44fe8ab06a1a19b3e9b3eec16"}
+{"event": "live", "age_steps": 5000, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "1326f1fd02ac85e146668e56145d34ea8e92a0c0a5c12e7fe8012227847993ac"}
+{"event": "live", "age_steps": 5100, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "22dd175d407751720c6bd366fbbcd4e9da9b5450e61e500618e42b3beefd5f6f"}
+{"event": "live", "age_steps": 5200, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "49e2eb35844a7fbd5acc6d679346ba8ff375fcfad29589f9e152bed79ea69b01"}
+{"event": "live", "age_steps": 5300, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "c03f754782dc31584413dd3db61e17f1a10284728fcbf5f0c575e0de70a1ba4e"}
+{"event": "save", "age_steps": 5300, "summary": "saved to creature/state/mirro", "state_hash": "c03f754782dc31584413dd3db61e17f1a10284728fcbf5f0c575e0de70a1ba4e"}

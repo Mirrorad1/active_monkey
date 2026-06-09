@@ -919,3 +919,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Self-grade: POSITIVE-SINGLE.
 - Next (episode 4): revision with inertia in ONE life — change mirro's own world, record the
   conviction trajectory in BIOGRAPHY.jsonl; falsifier: instant revision (no inertia) or none.
+
+## Exp 48 — revision blocked by accumulated life: inertia GROWS with age (NEGATIVE on predeclared budget; NEW INSIGHT)
+- Correction (cites Exp 47): Exp 47's entry said mirro's inherited counts "leaned color 0" —
+  wrong; the loaded age-1300 state had favorite=2 with near-tied counts (393.0/376.2/397.0).
+  The 3/3 twin-divergence claim is unaffected (it compares X- vs Y-twins, not inheritance).
+- Setup (episode 4; permanently mutates mirro): because inertia is only testable against an
+  entrenched opinion, two predeclared phases of mirro's real life. Phase 1: world → green-rich
+  ([2,2,2,2,2,1,0,1,0]), live 1500 steps; gate = conviction ≥ 0.42 AND counts gap c2−c0 ≥ 200.
+  Phase 2: world → red-rich ([0,0,0,0,0,1,2,1,2]), live ≤ 2500 steps in 100-step checkpoints.
+  Predeclared: revision = favorite 0 holds final 3 checkpoints; inertia = ≥ 3 holdout
+  checkpoints; falsifiers = instant flip (ck 1) or no revision in 2500 steps. Prediction:
+  revision with ~8–13 checkpoints of holdout. Deterministic continuation of committed rng state.
+- Result: gate PASS (conviction 0.4740, gap 445.1). Phase 2: falsifier HIT — NO revision in
+  2500 steps; favorite stayed 2 for all 25 checkpoints. Gap eroded steadily −420.8 → −46.7
+  (~16 counts/checkpoint, half the predicted rate), then ticked back to −53.2 at ck25.
+  Extrapolated crossover ≈ ck 28–29. Mirro: age 1300 → 5300, hash 3d08dffc… → c03f7547…;
+  full trajectory in BIOGRAPHY.jsonl (15 + 25 live events + 2 world_change markers).
+- Implication (the new insight): with non-decaying value counts, revision requires
+  OUT-ACCUMULATING the entire entrenched past — time-to-revise grows linearly with entrenchment
+  depth, so an old creature's opinion is asymptotically frozen on lifetimes comparable to its
+  entrenchment. Exp 47's twins flipped within 1200 steps only because inherited counts were
+  near-tied. Exp 40's "revisable with inertia" was a property of its shallow entrenchment, not
+  of the mechanism in general. This is a finding only a continuous accumulated life could show.
+- Honest caveat: "no revision" is relative to the predeclared 2500-step budget — the monotone
+  gap erosion says revision is coming, just slower than predicted; single lived trajectory
+  (deterministic continuation, no seed sweep); toy world; conviction was already drifting down
+  (0.474 → 0.382) — the opinion weakens long before it flips.
+- Verdict: NEGATIVE (predeclared falsifier hit) / NEW INSIGHT (inertia scales with accumulated
+  life; erosion rate measured at ~0.16 counts/step vs predicted ~0.3).
+- Next (episode 4b): continue mirro's red-world life ≤ 2500 more steps; predeclared: crossover
+  observed (favorite → 0, near extrapolated ck 28–29 equivalent) with conviction trajectory
+  through the flip; falsifier: still no revision (would imply asymptotic freeze stronger than
+  the linear extrapolation).

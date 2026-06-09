@@ -1,0 +1,46 @@
+BEFORE: age=1300 fav=2 conv=0.3404 counts=[393.  376.2 397. ] hash=3d08dffce3308d09
+P1 ck1: age=1400 fav=2 conv=0.3592 counts=[406.6 396.4 450.1]
+P1 ck2: age=1500 fav=2 conv=0.3764 counts=[416.7 412.6 500.5]
+P1 ck3: age=1600 fav=2 conv=0.3925 counts=[426.8 424.9 550.4]
+P1 ck4: age=1700 fav=2 conv=0.4027 counts=[439.7 440.6 593.6]
+P1 ck5: age=1800 fav=2 conv=0.4090 counts=[457.9 451.9 629.6]
+P1 ck6: age=1900 fav=2 conv=0.4208 counts=[467.  460.7 673.9]
+P1 ck7: age=2000 fav=2 conv=0.4336 counts=[475.6 469.2 723.2]
+P1 ck8: age=2100 fav=2 conv=0.4367 counts=[490.1 486.5 757.2]
+P1 ck9: age=2200 fav=2 conv=0.4452 counts=[498.6 496.1 798.3]
+P1 ck10: age=2300 fav=2 conv=0.4490 counts=[513.1 507.8 831.7]
+P1 ck11: age=2400 fav=2 conv=0.4603 counts=[519.  514.3 881.1]
+P1 ck12: age=2500 fav=2 conv=0.4637 counts=[532.8 524.8 914.6]
+P1 ck13: age=2600 fav=2 conv=0.4733 counts=[538.7 532.3 962.5]
+P1 ck14: age=2700 fav=2 conv=0.4702 counts=[560.5 546.3 982.2]
+P1 ck15: age=2800 fav=2 conv=0.4740 counts=[ 572.9  556.8 1018. ]
+entrenchment_gate=PASS (conv=0.4740, gap=445.1)
+P2 ck1: fav=2 conv=0.4667 gap_c0_minus_c2=-420.8
+P2 ck2: fav=2 conv=0.4614 gap_c0_minus_c2=-403.1
+P2 ck3: fav=2 conv=0.4570 gap_c0_minus_c2=-390.2
+P2 ck4: fav=2 conv=0.4517 gap_c0_minus_c2=-370.1
+P2 ck5: fav=2 conv=0.4480 gap_c0_minus_c2=-357.4
+P2 ck6: fav=2 conv=0.4427 gap_c0_minus_c2=-333.1
+P2 ck7: fav=2 conv=0.4362 gap_c0_minus_c2=-306.6
+P2 ck8: fav=2 conv=0.4317 gap_c0_minus_c2=-289.1
+P2 ck9: fav=2 conv=0.4278 gap_c0_minus_c2=-270.7
+P2 ck10: fav=2 conv=0.4245 gap_c0_minus_c2=-257.9
+P2 ck11: fav=2 conv=0.4201 gap_c0_minus_c2=-238.8
+P2 ck12: fav=2 conv=0.4180 gap_c0_minus_c2=-232.7
+P2 ck13: fav=2 conv=0.4157 gap_c0_minus_c2=-225.6
+P2 ck14: fav=2 conv=0.4133 gap_c0_minus_c2=-215.1
+P2 ck15: fav=2 conv=0.4083 gap_c0_minus_c2=-183.6
+P2 ck16: fav=2 conv=0.4057 gap_c0_minus_c2=-177.3
+P2 ck17: fav=2 conv=0.4017 gap_c0_minus_c2=-157.8
+P2 ck18: fav=2 conv=0.3980 gap_c0_minus_c2=-135.2
+P2 ck19: fav=2 conv=0.3952 gap_c0_minus_c2=-121.3
+P2 ck20: fav=2 conv=0.3910 gap_c0_minus_c2=-100.4
+P2 ck21: fav=2 conv=0.3881 gap_c0_minus_c2=-83.6
+P2 ck22: fav=2 conv=0.3857 gap_c0_minus_c2=-69.0
+P2 ck23: fav=2 conv=0.3833 gap_c0_minus_c2=-56.8
+P2 ck24: fav=2 conv=0.3816 gap_c0_minus_c2=-46.7
+P2 ck25: fav=2 conv=0.3822 gap_c0_minus_c2=-53.2
+AFTER:  age=5300 fav=2 conv=0.3822 counts=[1225.   841.1 1278.2] hash=c03f754782dc3158
+revised=False
+holdout_checkpoints=25
+VERDICT: falsifier HIT (no revision in 2500 steps)
