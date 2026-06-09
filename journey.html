@@ -410,8 +410,11 @@ function Journey(){
           <div className="jhead-side">
             <SyncChip status={status} count={counts.total}/>
             <div className="jplot">
-              <div className="ph"><span>Surprise · bits / char</span><span>logged readings · Exp 1 &amp; Exp 3</span></div>
-              <SurprisePlot series={AM_SURPRISE} height={104} eager={true}/>
+              <div className="ph"><span>Surprise · bits / char</span><span>two separate experiments</span></div>
+              <SurpriseSegments segments={AM_SURPRISE_SEGMENTS} height={104}/>
+              <div style={{marginTop:'8px', fontFamily:'var(--mono)', fontSize:'10px', color:'var(--ink-3)', lineHeight:1.5, borderTop:'1px dashed var(--line)', paddingTop:'7px'}}>
+                No vision, no audio — the character stream we provide is its only sense. Falling surprise is the only 'reward' it ever gets.
+              </div>
             </div>
           </div>
         </div>

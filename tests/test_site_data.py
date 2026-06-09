@@ -288,3 +288,43 @@ def test_metric_values_in_md():
         assert any(a in md for a in alternatives), (
             f"metric value {raw} not found in EXPERIMENTS.md"
         )
+
+
+def _surprise_segments_points():
+    """Return list of (exp, float) pairs from AM_SURPRISE_SEGMENTS points arrays."""
+    text = _js_text()
+    # Find the AM_SURPRISE_SEGMENTS array body
+    m = re.search(r"window\.AM_SURPRISE_SEGMENTS\s*=\s*\[", text)
+    assert m, "AM_SURPRISE_SEGMENTS not found in experiments-data.js"
+    body_start = m.end()
+    rest = text[body_start:]
+    # Find the closing ]; at start of a line
+    end_m = re.search(r"^\s*\]\s*;", rest, re.MULTILINE)
+    assert end_m, "AM_SURPRISE_SEGMENTS closing ]; not found"
+    body = rest[:end_m.start()]
+
+    results = []
+    # Find each segment object: { exp:N, ..., points:[v, v, ...], ... }
+    for seg_m in re.finditer(r"\{\s*exp\s*:\s*(\d+)", body):
+        exp_n = int(seg_m.group(1))
+        # Find the points array within the following text
+        seg_rest = body[seg_m.start():]
+        # Find points:[...] — values are floats
+        pts_m = re.search(r"points\s*:\s*\[([^\]]*)\]", seg_rest)
+        if pts_m:
+            for val_s in pts_m.group(1).split(","):
+                val_s = val_s.strip()
+                if val_s:
+                    results.append((exp_n, float(val_s)))
+    return results
+
+
+def test_surprise_segments_points_in_md():
+    """Every number in every AM_SURPRISE_SEGMENTS points array appears in EXPERIMENTS.md."""
+    md = _read("EXPERIMENTS.md")
+    for exp_n, v in _surprise_segments_points():
+        s = str(v)
+        alternatives = {s, f"{v:.2f}"}
+        assert any(a in md for a in alternatives), (
+            f"AM_SURPRISE_SEGMENTS exp:{exp_n} value {v} ({alternatives}) not found in EXPERIMENTS.md"
+        )

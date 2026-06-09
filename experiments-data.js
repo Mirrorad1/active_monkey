@@ -23,6 +23,14 @@ window.AM_TALLY = { total:40, breakthrough:5, positive:24, wall:7, partial:4, fr
    These are two separate experiments on two different corpora — NOT one continuous run. */
 window.AM_SURPRISE = [4.81, 4.00, 3.38, 1.61];
 
+/* Two separate experiments, two separate readings — never drawn as one curve. */
+window.AM_SURPRISE_SEGMENTS = [
+  { exp:1, title:"Exp 1 · can it learn at all?", points:[4.81, 4.00],
+    note:"Streamed English text — its only sense is the characters we feed it. Held-out surprise falls from the 4.81 uniform baseline to 4.00 bits/char." },
+  { exp:3, title:"Exp 3 · teach it one word", points:[3.38, 1.61],
+    note:"The stream becomes 'mirro ' repeated; surprise falls 3.38 → 1.61 as it learns the word's letters — though not yet their order (that took Exp 5–7)." }
+];
+
 window.AM_EXPERIMENTS = [
   { n:1, kind:"positive", chapter:"language",
     title:"Does the character model learn at all?",

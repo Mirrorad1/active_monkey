@@ -194,9 +194,11 @@ function Hero({tally, status}){
           <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
           <SyncChip status={status} count={tally.total}/>
           <div className="hero-plot">
-            <div className="ph"><span>Surprise · bits / char</span><span>logged readings · Exp 1 &amp; Exp 3</span></div>
-            <SurprisePlot series={AM_SURPRISE} height={132} eager={true}/>
-            <div className="pv"><span className="from">Exp 1: uniform 4.81 → learned 4.00</span><span className="to">Exp 3: 3.38→1.61 'mirro'</span></div>
+            <div className="ph"><span>Surprise · bits / char</span><span>two separate experiments</span></div>
+            <SurpriseSegments segments={AM_SURPRISE_SEGMENTS} height={132}/>
+            <div style={{marginTop:'10px', fontFamily:'var(--mono)', fontSize:'10px', color:'var(--ink-3)', lineHeight:1.55, borderTop:'1px dashed var(--line)', paddingTop:'8px'}}>
+              No vision, no audio — the character stream we provide is its only sense. Falling surprise is the only 'reward' it ever gets.
+            </div>
           </div>
         </div>
       </div>
