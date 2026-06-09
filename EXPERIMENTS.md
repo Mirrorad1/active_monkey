@@ -680,3 +680,16 @@ the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a ri
 - Result: favorite shifts 2 -> 0 with sustained new experience. Opinion REVISED, not frozen — and shows
   realistic INERTIA (needed enough new evidence to overcome the entrenched prior). Mind-like: values
   update as the world/evidence changes. Consolidation; no new insight.
+
+## Correction (2026-06-09) — experiment scripts for Exp 1–40 were not preserved
+
+Scripts for Exp 1–40 were written outside the repo — typically to `/tmp` or discarded
+at session end — and were never committed. The quantitative claims in those entries
+(place-map recovery 1.00, valence delta +1.75 bits, planning speedups ×3.2→×9.2, etc.)
+are log-only: they reflect what was observed and recorded honestly at the time, but they
+cannot currently be replicated from this repo because the scripts no longer exist.
+`converse_demo.py` (Exp 35 capstone) is the only committed runnable artifact from that
+period and still runs. Per `loop/VALIDATION.md`, corrections are new entries — past
+entries stay untouched. From Exp 41 onward, the script (`experiments/expNN_<slug>.py`)
+and raw output (`experiments/outputs/expNN.txt`) land in the repo in the same commit as
+the EXPERIMENTS.md entry; log-only claims are no longer acceptable.

@@ -21,6 +21,8 @@ several half-experiments. Steps:
 3. **Build small.** Smallest script that tests the hypothesis. Reuse verified patterns
    (Exp 21/26/30/34/35). Repo root or `PYTHONPATH=.`; run via `uv run --python .venv`.
    Fixed seed by default; if you try multiple seeds, report ALL of them.
+   Write the script at `experiments/expNN_<slug>.py` inside the repo — never `/tmp` or
+   any path outside the repo — so it is committed with the entry (see step 6).
    **Division of labor:** the main model ideates, designs, and validates; the CODING is
    dispatched to a Sonnet subagent (`Agent` tool, `model: "sonnet"`) with a tight spec —
    files, expected behavior, exact verification command. The main model reviews the
@@ -34,7 +36,11 @@ several half-experiments. Steps:
    POSITIVE / NEGATIVE / MIXED, and CONSOLIDATION / NEW INSIGHT. Negative results get
    the same care as positive ones.
 
-6. **Commit.** One commit per experiment: `expNN: <one-line honest summary>`.
+6. **Commit.** One commit per experiment containing the script
+   (`experiments/expNN_<slug>.py`), its raw output (`experiments/outputs/expNN.txt`),
+   AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
+   the same atomic commit. A log entry without committed script and output is an
+   unverified claim.
 
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
    suggest either a direction switch (other cards), a harder edge, or stopping — a

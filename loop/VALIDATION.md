@@ -34,6 +34,14 @@ A flattering false log is worthless. These rules bind every experiment entry.
 - Never edit a past entry to make it age better. Corrections are NEW entries that cite
   the old one.
 
+## Reproducibility
+- An experiment whose script and raw output are not committed in the repo fails the
+  self-audit by definition. A log-only claim is an unverified claim.
+- The script must live at `experiments/expNN_<slug>.py` and the raw output at
+  `experiments/outputs/expNN.txt`; both must be committed in the same commit as the
+  EXPERIMENTS.md entry. Anything written to `/tmp` and not moved into the repo before
+  the session ends is gone.
+
 ## Self-audit (when asked, or every ~10 experiments)
 Reread the last N entries as a hostile reviewer: would each claim survive a replication
 by someone who only has the entry text? Log discrepancies as a correction entry.
