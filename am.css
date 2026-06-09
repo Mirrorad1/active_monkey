@@ -1,9 +1,10 @@
 /* ============================================================
    active_monkey — shared styles · "Growth" lab notebook
    Palette psychology:
-     green  = breakthrough / progress / growth / "go"
-     slate  = honest wall  (reflective, never alarming — not red)
-     amber  = partial      (almost / in-between)
+     gold/amber = breakthrough (rare, stands out — a first)
+     green      = positive / progress / growth / "go"
+     slate      = honest wall  (reflective, never alarming — not red)
+     amber      = partial      (almost / in-between)
    Type: Newsreader (serif headlines) + IBM Plex Mono (labels, data, notebook body)
    ============================================================ */
 
@@ -22,8 +23,15 @@
   --accent:#2f6b4a;
   --accent-deep:#23543a;
 
-  /* signal system */
-  --win:#2f6b4a;        /* breakthrough — deep pine green */
+  /* signal system — 4 kinds */
+  --break:#b07a00;      /* breakthrough — gold/amber, rare and distinct */
+  --break-deep:#8a5f00;
+  --break-soft:#f5edcc;
+  --positive:#2f6b4a;   /* positive — calm pine green */
+  --positive-deep:#23543a;
+  --positive-soft:#dfe9df;
+  /* legacy aliases so existing --win references keep working */
+  --win:#2f6b4a;
   --win-deep:#23543a;
   --win-soft:#dfe9df;
   --wall:#5b6a7f;       /* honest wall — calm slate */
@@ -100,13 +108,40 @@ a{color:inherit;}
 /* ---------- badges ---------- */
 .badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap;}
 .badge .d{width:7px;height:7px;border-radius:50%;}
-.badge.win{background:var(--win);color:#fff;}
+.badge.breakthrough{background:var(--break);color:#fff;border:1px solid var(--break-deep);box-shadow:0 0 0 1.5px rgba(176,122,0,.18);}
+.badge.positive{background:var(--positive);color:#fff;}
+.badge.win{background:var(--win);color:#fff;}      /* legacy alias */
 .badge.wall{background:transparent;border:1px solid var(--wall);color:var(--wall);}
 .badge.partial{background:var(--partial);color:#fff;}
 .dot{width:9px;height:9px;border-radius:50%;flex:none;}
-.dot.win{background:var(--win);}
+.dot.breakthrough{background:var(--break);box-shadow:0 0 0 2px rgba(176,122,0,.25);}
+.dot.positive{background:var(--positive);}
+.dot.win{background:var(--win);}                    /* legacy alias */
 .dot.wall{background:transparent;border:1.6px solid var(--wall);}
 .dot.partial{background:var(--partial);}
+
+/* ---------- story-so-far panel (breakthrough cards only) ---------- */
+.story-panel{border-left:3px solid var(--break);background:var(--break-soft);padding:14px 18px;margin-bottom:16px;}
+.story-panel .story-kicker{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--break-deep);font-weight:600;margin-bottom:7px;}
+.story-panel p{margin:0;font-family:var(--serif);font-size:13.5px;line-height:1.6;color:var(--ink);}
+
+/* ---------- trace section ---------- */
+.trace-section{margin-top:16px;border-top:1px dashed var(--line);padding-top:14px;}
+.trace-title{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.trace-block{margin-bottom:10px;}
+.trace-block-head{display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.35);user-select:none;transition:border-color .12s,background .12s;}
+.trace-block-head:hover{border-color:var(--ink-3);background:rgba(255,255,255,.55);}
+.trace-block-head .tb-label{font-size:10.5px;color:var(--ink-2);flex:1;letter-spacing:.02em;}
+.trace-block-head .tb-gh{font-size:9.5px;color:var(--accent);text-decoration:none;letter-spacing:.02em;flex:none;}
+.trace-block-head .tb-gh:hover{text-decoration:underline;}
+.trace-block-head .tb-chev{font-size:11px;color:var(--ink-3);transition:transform .15s;flex:none;}
+.trace-block-head.open .tb-chev{transform:rotate(90deg);}
+.trace-pre-wrap{max-height:320px;overflow-y:auto;margin-top:6px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.5);}
+.trace-pre{margin:0;padding:12px 14px;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--ink);white-space:pre;overflow-x:auto;}
+.trace-loading{font-size:11px;color:var(--ink-3);padding:10px 14px;font-style:italic;}
+.trace-error{font-size:11px;color:var(--wall);padding:10px 14px;}
+.trace-error a{color:var(--accent);}
+.verified-chip{display:inline-flex;align-items:center;gap:4px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--break-soft);color:var(--break-deep);border:1px solid rgba(176,122,0,.3);font-weight:500;white-space:nowrap;}
 
 /* ---------- act tag ---------- */
 .act-tag{display:inline-flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);}
