@@ -124,6 +124,21 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: attempt EMERGENT topic — a 2-factor pymdp model whose slow factor is inferred from the
   fast char stream and persists (near-identity slow dynamics), binding without supervision.
 
+## Exp 11 — emergent-topic scaffolding: 2-factor model constructs in pymdp (progress)
+- Setup: probe whether pymdp supports the hierarchical model needed for an EMERGENT (inferred)
+  topic — factor0 = topic (slow, near-identity B so it persists), factor1 = char, with
+  B_dependencies=[[0],[1,0]] so the char transitions are CONDITIONED ON the topic. A depends
+  only on the char factor (A_dependencies=[[1]]).
+- Result: CONSTRUCTS and runs inference cleanly. Topic belief initializes [0.5, 0.5] (properly
+  uncertain), char belief 28-dim. The multi-factor topic-conditioned machinery works here.
+- Implication: the emergent-topic hierarchical model is BUILDABLE in pymdp (foundation laid) —
+  not just a theoretical construct. This is the vehicle for "infer + hold the topic from the
+  subject" that Exp 9/10 showed is required for long-range binding (and for opinions about X).
+- Next (continuing across wakes — mid-task): full 2-factor TRAINING loop on mixed clauses
+  ("sky is blue. grass is green."), then test whether the topic is INFERRED from the subject and
+  HELD to bind is->blue vs is->green WITHOUT supervision. This unsupervised mixture-learning step
+  is the genuinely hard, research-grade part; expect partial/negative results en route.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
