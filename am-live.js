@@ -67,12 +67,19 @@
       if(!/[.?!…]$/.test(title)) title += ".";
       const bullets = parseBullets(blk.slice(m[0].length));
       const get = key => { const b = bullets.find(x=>new RegExp("^"+key,"i").test(x.key)); return b?clean(b.val):""; };
-      const setup=get("Setup"), result=get("Result"), implication=get("Implication");
-      if(!setup && !result && !implication) continue; // skip malformed
+      let setup=get("Setup"), result=get("Result"), implication=get("Implication");
+      // Fallback for short / untagged entries (e.g. one-line "consolidation" notes
+      // that don't use Setup:/Result:/Implication: bullets): keep them anyway so the
+      // count stays honest, and surface their body text under "What happened".
+      const bodyText = clean(bullets.map(b=>(b.key?b.key+": ":"")+b.val).join(" "));
+      if(!setup && !result && !implication){
+        if(!bodyText) continue;     // truly empty block -> not a real experiment
+        result = bodyText;
+      }
       exps.push({
         n, title, setup, result, implication,
-        kind: classify(status,title+" "+result),
-        one: firstSentence(implication) || firstSentence(result) || title,
+        kind: classify(status,title+" "+bodyText),
+        one: firstSentence(implication) || firstSentence(result) || firstSentence(bodyText) || title,
         source:"live"
       });
     }
