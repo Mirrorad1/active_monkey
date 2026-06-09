@@ -80,3 +80,4 @@ several half-experiments. Steps:
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
    suggest either a direction switch (other cards), a harder edge, or stopping — a
    natural stop point is a finding, not a failure.
+   **Meta-check:** if this iteration surfaced a noteworthy NON-research issue (a stale doc, an unreproducible claim, a harness/site bug, an honesty slip) or a reusable insight, run `loop/META.md` before continuing — fix it AND add a durable guard (test / rule / skill) so it can't recur. Patching the instance without the guard is incomplete.

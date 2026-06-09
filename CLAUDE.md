@@ -20,3 +20,4 @@ Standing rules for ALL work here:
 - Keep everything in git; small, single-purpose commits.
 - Experiment scripts + raw outputs are committed under `experiments/` in the same commit
   as their EXPERIMENTS.md entry; never write experiment scripts to /tmp.
+- Self-healing: when you find a noteworthy non-research issue or a reusable insight, follow `loop/META.md` — fix it AND add a durable guard (a fast test, a loop-module rule, or a skill via `/claudeception`) so it can't recur. A fix without a guard is incomplete.
