@@ -536,6 +536,28 @@ Next experiments iterate these; the major conceptual results are in.
 - Next: from-scratch topology (learn B under aliasing with continuous belief, harder Exp19/20 cousin), or
   HIERARCHY (chunk/concept layer above place), or the LANGUAGE long arc (expect partial, ceiling-bound).
 
+## Exp 31 — learn A AND B from scratch: COLLAPSES (honest negative; sharpens the thesis)
+- Setup: learn BOTH the sensory map A and the connectivity B from random init, continuous belief, known
+  start. Two cases: unique sensing (place observable) and aliased. 1200-step wander.
+- Result: BOTH failed to recover topology — even UNIQUE sensing collapsed to a degenerate model (learned
+  right-step map [0,0,0,0,0] / [3,3,3,3,3] — all states map to one). Joint A+B learning from pure noise
+  lands in a degenerate fixed point.
+- Implication (sharpens the whole investigation): embodiment + grounding + continuous experience breaks
+  the symmetry ONLY WITH AN ANCHOR — one of {A,B} known/innate. Exp17 learned B with A known; Exp20/21
+  learned A with B known — all CLEAN. Learning BOTH at once from noise has no anchor -> same
+  identifiability/degenerate-optimum WALL as the symbolic Exp12-16, now embodied. Embodiment alone with
+  ZERO priors still collapses.
+- Maps to biology + open_problem.html (unifies the arc): animals don't bootstrap motor AND sensory models
+  from nothing — proprioception/vestibular self-motion (~B) is INNATE; the sensory map is learned on top.
+  Evolution supplies the anchor (the asymmetry-breaking prior). 'Fully tabula rasa (no innate anything)'
+  is bounded by the wall; 'from scratch GIVEN an innate motor sense' works (Exp20/21). This is exactly the
+  baby/innate-priors point: emergence needs grounding AND an innate anchor.
+- Honest takeaway: not a failure of the approach — the precise statement of what 'from scratch' can mean.
+  The recipe is: embodiment + grounding + continuous registered experience + ONE innate anchor.
+- Next: HIERARCHY (chunk/concept layer above place, with anchors) toward richer abstraction; or the LANGUAGE
+  long arc (ceiling-bound). Major conceptual results remain in; this closes the from-scratch-topology arc
+  with a clear boundary.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
