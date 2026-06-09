@@ -51,6 +51,24 @@
   .lens h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:14px 0 8px;letter-spacing:-.01em;}
   .lens p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55;}
 
+  /* ---------- how it works ---------- */
+  .how{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  @media(max-width:760px){.how{grid-template-columns:1fr;}}
+  .how .col{padding:24px 24px 26px;border-right:1px solid var(--line);}
+  .how .col:last-child{border-right:none;}
+  @media(max-width:760px){.how .col{border-right:none;border-bottom:1px solid var(--line);}.how .col:last-child{border-bottom:none;}}
+  .how .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;}
+  .how .col.subject .lab{color:var(--accent);}
+  .how h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:12px 0 10px;letter-spacing:-.01em;}
+  .how p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+  .how-flow{margin-top:16px;border:1px solid var(--line);background:var(--paper-2);padding:15px 20px;}
+  .how-flow .fl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}
+  .how-flow .steps{font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.95;}
+  .how-flow .steps .ar{color:var(--accent);padding:0 2px;}
+  .how-note{margin-top:16px;border:1px solid var(--ink);background:var(--paper-2);padding:20px 22px;}
+  .how-note p{margin:0;font-size:15px;line-height:1.55;color:var(--ink);}
+  .how-note b{color:var(--accent);font-weight:600;}
+
   /* ---------- the climb ---------- */
   .climb{position:relative;padding-left:34px;}
   .climb::before{content:"";position:absolute;left:9px;top:8px;bottom:34px;width:2px;background:linear-gradient(var(--accent),var(--line));}
@@ -199,6 +217,39 @@ function Lenses(){
   );
 }
 
+function HowItWorks(){
+  return (
+    <section id="how">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">How it actually works</div>
+          <h2 className="h-section">Wait, is this just an LLM?</h2>
+          <p>No. The language model here is the scientist, not the subject. It runs the lab. The thing actually learning is something much smaller and stranger.</p>
+        </Reveal>
+        <Reveal className="how" delay={60}>
+          <div className="col">
+            <div className="lab">The scaffolding</div>
+            <h3>An LLM running the lab</h3>
+            <p>An autonomous agent (yes, an LLM) does the science. It poses a hypothesis, writes the experiment, runs it, reads the result, and notes what happened. Then it goes again, on its own, without stopping. It is the researcher, not the mind being studied.</p>
+          </div>
+          <div className="col subject">
+            <div className="lab">The subject</div>
+            <h3>A mind built from math</h3>
+            <p>What it studies is a tiny active inference agent. There is no language model inside it, and nothing pretrained. It isn't even handed a dataset. Just a small generative model dropped into a world, updating itself to be less surprised by what it senses. Everything it comes to know, it built from its own experience.</p>
+          </div>
+        </Reveal>
+        <Reveal className="how-flow" delay={100}>
+          <div className="fl">each experiment, start to finish</div>
+          <div className="steps">a hypothesis <span className="ar">→</span> build the agent <span className="ar">→</span> drop it in a tiny world <span className="ar">→</span> measure its surprise <span className="ar">→</span> keep what lowers it <span className="ar">→</span> log it honestly <span className="ar">→</span> again</div>
+        </Reveal>
+        <Reveal className="how-note" delay={120}>
+          <p>So when you watch it learn, that isn't the language model talking. It is a little mind made of math, figuring out its world from nothing. The LLM just makes it possible to keep running these experiments without me babysitting every one.</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function Climb({exps}){
   return (
     <section id="climb">
@@ -311,7 +362,8 @@ function App(){
       <Hero tally={tally} status={status}/>
       <hr className="rule" style={{maxWidth:'var(--maxw)',margin:'0 auto'}}/>
       <Lenses/>
-      <div style={{background:'var(--paper-2)'}}><Climb exps={exps}/></div>
+      <div style={{background:'var(--paper-2)'}}><HowItWorks/></div>
+      <Climb exps={exps}/>
       <Takeaways/>
       <div style={{background:'var(--paper-2)'}}><Loop/></div>
       <DeepDive/>
