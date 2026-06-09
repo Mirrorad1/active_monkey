@@ -219,6 +219,29 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: alternate back to emergent topic (long arc, the open problem in open_problem.html), or fuse
   valence with the language model (does the grounded valence shape what it attends to / generates?).
 
+## Exp 16 — symmetry-breaking warm-start fails; reveals the MEAN-FIELD culprit (deep negative)
+- Setup: hand the topics a perfect asymmetric foothold — topic0's B1 := sky char-transitions,
+  topic1's B1 := grass char-transitions (fully differentiated). Emission A topic-independent;
+  mean-field posterior q(z)q(s). Test binding BEFORE and AFTER 6 unsupervised epochs.
+- Result: binding FAILED both before and after; topic belief stayed [0.5,0.5] EVEN WITH perfectly
+  differentiated transitions; output degenerate ("s is i").
+- Implication (mechanistic, deeper than "symmetry"): the topic posterior never updates even when
+  the transitions clearly distinguish the topics. Cause = the MEAN-FIELD APPROXIMATION: q(z,s)≈q(z)q(s)
+  assumes the topic and char factors are independent in the posterior, which SEVERS the cross-factor
+  message "this char-sequence implies topic0". Evidence carried by transitions cannot reach q(z) under
+  mean-field. So transition-only topic inference is blocked by the variational approximation itself,
+  not just by symmetry. (Adds to open_problem.html: a 4th obstacle — the inference factorization.)
+- Fix implied (and it mirrors biology / the baby framing): the topic must enter via EMISSION
+  (A_dependencies=[[0,1]]) so OBSERVATIONS directly update q(z) — a concept grounded in what you
+  SEE/HEAR (baby grounds "sky" by seeing blue), not in transition statistics alone. Alternatively,
+  structured (non-mean-field) inference. Emission-grounding is the tractable, biologically-aligned path.
+- Meta (user framing): babies DO solve unsupervised emergence, so this is an open ALGORITHMIC problem,
+  not impossible. The missing ingredients are exactly what our toy lacks: multimodal/observational
+  grounding (emission-level), embodiment/action (intervention), innate asymmetric priors, curriculum,
+  precision/attention, and scale. Every WORKING result here came from a foothold; babies have them all.
+- Next: topic-in-EMISSION model — A depends on topic so the subject directly, observationally
+  identifies it; does observation-driven topic inference finally bind?
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
