@@ -1,149 +1,216 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Open Problem — Emergent Latent Structure in Active Inference</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Open Problem — active_monkey</title>
+<meta name="description" content="Why a free-energy agent won't grow a concept on its own — and exactly where the mathematics stops.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
+<link rel="apple-touch-icon" href="assets/monkey-180.png">
 <script>
-  window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+  window.MathJax = { tex:{ inlineMath:[['\\(','\\)']], displayMath:[['$$','$$']] }, svg:{ fontCache:'global' }, startup:{ typeset:false } };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="am.css">
 <style>
-  :root{
-    --bg:#0e1117; --panel:#161b22; --ink:#e6edf3; --muted:#9aa7b4;
-    --accent:#8ab4f8; --good:#7ee787; --bad:#ff7b72; --line:#283039; --warn:#f0c674;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
-  .wrap{max-width:860px;margin:0 auto;padding:3.2rem 1.4rem 6rem;}
-  header{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2.2rem}
-  h1{font-size:2.0rem;line-height:1.2;margin:0 0 .5rem;letter-spacing:-.5px}
-  h1 .sub{display:block;font-size:1.02rem;color:var(--muted);font-weight:400;margin-top:.5rem}
-  h2{font-size:1.32rem;margin:2.6rem 0 .8rem;color:var(--accent);letter-spacing:-.2px}
-  h3{font-size:1.05rem;margin:1.6rem 0 .4rem;color:var(--ink)}
-  p{margin:.7rem 0}
-  .muted{color:var(--muted)}
-  .lead{font-size:1.08rem;color:#cdd6e0}
-  code{background:#1f2630;padding:.1em .4em;border-radius:5px;font-size:.92em;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-    padding:1.1rem 1.3rem;margin:1.2rem 0}
-  .card.good{border-left:3px solid var(--good)}
-  .card.bad{border-left:3px solid var(--bad)}
-  .card.warn{border-left:3px solid var(--warn)}
-  .tag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.12rem .6rem;margin-bottom:.5rem}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
-  @media(max-width:640px){.grid{grid-template-columns:1fr}}
-  .mini{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem}
-  .mini b{color:var(--accent)}
-  .num{display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;
-    border-radius:50%;background:var(--accent);color:#0e1117;font-weight:700;font-size:.95rem;margin-right:.5rem}
-  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.95rem}
-  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
-  th{color:var(--muted);font-weight:600}
-  .ok{color:var(--good)} .no{color:var(--bad)}
-  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-  a{color:var(--accent)}
-  .pill{font-size:.8rem;color:var(--muted)}
-  mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+  .op{max-width:780px;margin:0 auto;padding:0 28px;}
+  .op-head{padding:46px 0 30px;}
+  .op-head h1{font-size:clamp(30px,4.4vw,46px);margin:14px 0 0;}
+  .op-head .sub{font-family:var(--serif);font-size:19px;color:var(--ink-2);line-height:1.45;margin:16px 0 0;max-width:54ch;}
+  .op-head .note{font-size:13px;color:var(--ink-2);margin:20px 0 0;line-height:1.6;max-width:60ch;}
+  .op-head .note em{color:var(--ink);font-style:italic;}
+
+  .op-lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:8px 0 30px;letter-spacing:-.005em;}
+  .op-lead strong{font-weight:500;color:var(--accent);}
+
+  .op h2{font-family:var(--serif);font-size:27px;font-weight:500;letter-spacing:-.01em;margin:46px 0 14px;line-height:1.12;display:flex;align-items:baseline;gap:14px;}
+  .op h2 .nm{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent);flex:none;width:34px;}
+  .op h3{font-family:var(--serif);font-size:18px;font-weight:500;margin:24px 0 6px;}
+  .op p{font-size:15px;line-height:1.7;color:var(--ink);margin:12px 0;}
+  .op p .muted, .op .muted{color:var(--ink-2);}
+  .op em{font-style:italic;}
+  .op strong{font-weight:600;}
+  .op code{font-family:var(--mono);font-size:.9em;background:var(--paper-3);padding:.1em .42em;border-radius:4px;border:1px solid var(--line-soft);}
+
+  /* equation block */
+  .eq{background:rgba(255,255,255,.5);border:1px solid var(--line);border-left:none;border-right:none;padding:16px 18px;margin:20px 0;overflow-x:auto;text-align:center;}
+  mjx-container{color:var(--ink);}
+  .eqcap{font-size:12px;color:var(--ink-2);line-height:1.6;margin-top:-4px;}
+
+  /* callout */
+  .callout{border:1px solid var(--ink);background:var(--paper-2);padding:22px 24px;margin:26px 0;}
+  .callout .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;}
+  .callout p{margin:0;font-size:16px;line-height:1.55;}
+  .callout strong{color:var(--accent);}
+
+  /* observed evidence strip */
+  .obs{border-top:2px solid var(--wall);background:rgba(255,255,255,.42);padding:14px 18px;margin:16px 0 4px;}
+  .obs.good{border-top-color:var(--win);}
+  .obs .ol{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--wall);font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:7px;}
+  .obs.good .ol{color:var(--win);}
+  .obs .ol .dt{width:7px;height:7px;border-radius:50%;background:var(--wall);}
+  .obs.good .ol .dt{background:var(--win);}
+  .obs p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink);}
+  .obs code{background:var(--paper);}
+
+  /* two-way grid */
+  .twoway{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+  @media(max-width:600px){.twoway{grid-template-columns:1fr;}}
+  .tw{border:1px solid var(--line);background:rgba(255,255,255,.4);padding:14px 16px;}
+  .tw b{color:var(--accent);}
+  .tw p{margin:0;font-size:13.5px;}
+
+  /* fixes table */
+  .ftable{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;}
+  .ftable th,.ftable td{border:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.5;}
+  .ftable th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--paper-2);}
+  .ftable td:first-child{font-weight:500;width:38%;}
+  .ftable tr:last-child td:first-child{color:var(--win);}
+
+  .op-toc{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0;}
+  .op-toc a{font-size:11px;letter-spacing:.02em;color:var(--ink-2);text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:20px;transition:all .14s;}
+  .op-toc a:hover{border-color:var(--accent);color:var(--accent);}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <div class="tag">active-loop · research note</div>
-  <h1>The open problem, precisely
-    <span class="sub">Why a free-energy agent won’t grow a concept (a “topic”, a “self”, an opinion) on its own — and exactly where the mathematics stops</span>
-  </h1>
-  <p class="muted">Goal: a discrete active-inference agent that learns language and forms its own dispositions <em>from scratch</em> — never pre-trained on opinions. The experiments hit a wall whose shape is well-defined. This note states that wall in math.</p>
-</header>
+<div id="app"></div>
 
-<p class="lead">We are asking the model to discover, <strong>unsupervised</strong>, a latent variable it was never given — a “topic”/concept \(z\) — purely by minimizing free energy. That is the crux, and it is genuinely hard.</p>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="experiments-data.js"></script>
+<script src="am-live.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="am-shared.jsx"></script>
 
-<h2>The model</h2>
-<p>A hierarchical state-space (active-inference) model: a slow latent \(z\) (topic, near-identity dynamics so it persists), a fast latent \(s_t\) (character context), discrete emissions \(o_t\) (characters), with Dirichlet priors on the parameters \(A,B\):</p>
-$$p(o_{1:T}, s_{1:T}, z, A, B) \;=\; p(z)\,p(A)\,p(B)\prod_{t}\; \underbrace{p(o_t \mid s_t; A)}_{\text{emission}}\;\underbrace{p(s_t \mid s_{t-1}, z; B)}_{\text{topic-conditioned transition}}$$
+<script type="text/babel">
+const { useState, useEffect } = React;
 
-<p>We minimize variational free energy over a mean-field posterior \(q(z)\,q(s_{1:T})\,q(A)\,q(B)\):</p>
-$$F \;=\; \mathbb{E}_q\!\big[\ln q - \ln p\big] \;=\; \underbrace{-\,\mathbb{E}_q\!\big[\ln p(o\mid s,A)\big]}_{\text{inaccuracy (surprise)}} \;+\; \underbrace{\mathrm{KL}\!\big[q(z,s,A,B)\,\Vert\,p(z,s,A,B)\big]}_{\text{complexity}}.$$
-<p class="muted">This is variational EM: the <em>E-step</em> infers \(q(z),q(s)\) given \(A,B\); the <em>M-step</em> is the Dirichlet counting update of \(A,B\) given the beliefs. At the optimum the per-step free energy equals the predictive surprise \(-\ln p(o_t\mid o_{<t})\) — the “bits/char” the agent literally feels.</p>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "growth",
+  "fontPair": "editorial",
+  "gridPaper": true,
+  "motion": true
+}/*EDITMODE-END*/;
 
-<div class="card warn">
-  <div class="tag">the open problem in one sentence</div>
-  <p style="margin:.2rem 0 0"><strong>This objective has a dominant fixed point at which the latent \(z\) is useless, and nothing in the dynamics pushes the system off it.</strong> Three exact reasons, plus a separate long-range sub-problem.</p>
-</div>
+/* The article is authored as an HTML string so inline LaTeX braces (s_{1:T}, \text{…})
+   never collide with JSX expression syntax. MathJax typesets it after mount. */
+const ARTICLE = String.raw`
+  <header class="op-head op">
+    <div class="kicker slate">active_monkey · research note</div>
+    <h1 class="h-display">The open problem, precisely.</h1>
+    <p class="sub">Why a free-energy agent won't grow a concept — a "topic", a self, an opinion — on its own, and exactly where the mathematics stops.</p>
+    <p class="note">The goal: a discrete active-inference agent that learns language and forms its own dispositions <em>from scratch</em>, never pre-trained on opinions. The experiments hit a wall whose shape is well-defined. This note states that wall in math.</p>
+    <div class="op-toc">
+      <a href="#model">The model</a>
+      <a href="#o1">1 · Symmetric saddle</a>
+      <a href="#o2">2 · Non-identifiability</a>
+      <a href="#o3">3 · Chicken-and-egg</a>
+      <a href="#binding">Long-range binding</a>
+      <a href="#fixes">The fixes</a>
+    </div>
+  </header>
 
-<h2><span class="num">1</span>A symmetric saddle — no gradient to break the symmetry</h2>
-<p>If \(B\) is symmetric in \(z\) (all topics identical at initialization), then \(q(z{=}k)=1/K\) is stationary and</p>
-$$\left.\frac{\partial F}{\partial(\text{topic differentiation})}\right|_{\text{symmetric}} = 0 .$$
-<p>There is literally <strong>zero first-order force</strong> driving the topics to specialize. Worse, the entropy term \(-\,\mathbb{E}_q[\ln q(z)]\) inside \(F\) <em>actively smooths</em> any small fluctuation back toward uniform. Escaping requires a <em>second-order</em> fluctuation to be amplified, and mean-field damps exactly those.</p>
-<div class="card bad">
-  <span class="pill">observed — Exp 12</span>
-  <p style="margin:.3rem 0 0"><code>sky is → "s gree"</code> &nbsp; <code>grass is → "s gree"</code> &nbsp; topic belief stayed <code>[0.5, 0.5]</code> the entire run. The latent never differentiated.</p>
-</div>
+  <div class="op">
+    <p class="op-lead">We are asking the model to discover, <strong>unsupervised</strong>, a latent variable it was never given — a "topic" / concept \(z\) — purely by minimizing free energy. That is the crux, and it is genuinely hard.</p>
 
-<h2><span class="num">2</span>Non-identifiability — and complexity <em>prefers</em> collapse</h2>
-<p>The marginal likelihood \(p(o_{1:T}\mid A,B)\) can be explained two ways:</p>
-<div class="grid">
-  <div class="mini"><b>(a) one topic</b>, with <em>averaged</em> transitions over the mixture.</div>
-  <div class="mini"><b>(b) two topics</b>, each <em>specialized</em> to its clause type.</div>
-</div>
-<p>These are near-degenerate in accuracy — the latent partition is <strong>non-identifiable</strong> without an inductive bias. And the complexity term \(\mathrm{KL}[q\,\Vert\,p]\) <strong>rewards the simpler, topic-agnostic model</strong>: fewer effective states, lower KL. Bayesian Occam (model reduction) actively pulls toward <em>not using</em> \(z\).</p>
-<p class="muted">This is the same phenomenon as <strong>posterior collapse</strong> in VAEs: the latent goes unused because ignoring it costs ~nothing in accuracy and saves complexity.</p>
+    <h2 id="model"><span class="nm"></span>The model</h2>
+    <p>A hierarchical active-inference model: a slow latent \(z\) (topic, near-identity dynamics so it persists), a fast latent \(s_t\) (character context), discrete emissions \(o_t\), with Dirichlet priors on the parameters \(A,B\):</p>
+    <div class="eq">$$p(o_{1:T}, s_{1:T}, z, A, B) = p(z)\,p(A)\,p(B)\prod_{t} \underbrace{p(o_t \mid s_t; A)}_{\text{emission}}\;\underbrace{p(s_t \mid s_{t-1}, z; B)}_{\text{topic-conditioned transition}}$$</div>
+    <p>We minimize variational free energy over a mean-field posterior \(q(z)\,q(s_{1:T})\,q(A)\,q(B)\):</p>
+    <div class="eq">$$F = \mathbb{E}_q[\ln q - \ln p] = \underbrace{-\,\mathbb{E}_q[\ln p(o\mid s,A)]}_{\text{inaccuracy (surprise)}} + \underbrace{\mathrm{KL}[q\,\Vert\,p]}_{\text{complexity}}$$</div>
+    <p class="eqcap">At the optimum the per-step free energy equals the predictive surprise — the bits/char the agent literally feels.</p>
 
-<h2><span class="num">3</span>The EM chicken-and-egg (credit assignment)</h2>
-<p>To infer \(q(z)\) you need topic-differentiated \(B\); to learn differentiated \(B\) you need an informative \(q(z)\). Symmetric init gives no bootstrap, and variational EM only finds <strong>local</strong> optima. The “use the latent” basin and the “ignore the latent” basin are separated — and you start in the second one.</p>
-<div class="card bad">
-  <span class="pill">observed — Exp 13</span>
-  <p style="margin:.3rem 0 0">Even with the topic <em>teacher-forced during training</em>, at test the inferred topic returned to <code>[0.5,0.5]</code> and binding failed — because the emission \(A\) is topic-independent, so the subject has no <em>direct</em> evidential pathway to move \(q(z)\); the only channel is transition-mismatch, which single-step inference does not accumulate.</p>
-</div>
+    <div class="callout">
+      <div class="tag">the open problem in one sentence</div>
+      <p><strong>This objective has a dominant fixed point at which the latent \(z\) is useless — and nothing in the dynamics pushes the system off it.</strong> Three exact reasons, plus a separate long-range sub-problem.</p>
+    </div>
 
-<h2>The separate sub-problem: long-range precision (binding)</h2>
-<p>Even granting a topic, the dependency “<strong>sky</strong> … is <strong>blue</strong>” spans 5+ steps. The filtering posterior is Markov:</p>
-$$q(s_t) \;\propto\; p(o_t\mid s_t)\sum_{s_{t-1}} p(s_t\mid s_{t-1})\,q(s_{t-1}),$$
-<p>so it <strong>forgets</strong>: by “is”, every trace of “sky” has been squeezed through one belief (d-separation). Only a dedicated slow factor, <em>held with high precision</em>, survives — but learning that persistence-precision again presupposes the topic is already informative.</p>
-<div class="card bad">
-  <span class="pill">observed — Exp 9</span>
-  <p style="margin:.3rem 0 0"><code>"sky is " → "green"</code> and <code>"grass is " → "green"</code>: a fixed-order Markov model cannot bind across a span longer than its order, <em>at any state count</em> (Exp 4: more states \(K\) did not help — capacity ≠ memory).</p>
-</div>
+    <h2 id="o1"><span class="nm">1</span>A symmetric saddle — no gradient to break the symmetry</h2>
+    <p>If \(B\) is symmetric in \(z\) (all topics identical at initialization), then \(q(z{=}k)=1/K\) is stationary and the first-order force driving topics to specialize is <em>exactly zero</em>:</p>
+    <div class="eq">$$\left.\frac{\partial F}{\partial(\text{topic differentiation})}\right|_{\text{symmetric}} = 0$$</div>
+    <p>Worse, the entropy term inside \(F\) <em>actively smooths</em> any small fluctuation back toward uniform. Escaping requires a second-order fluctuation to be amplified — and mean-field damps exactly those.</p>
+    <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 12</div><p><code>sky is → "s gree"</code> &nbsp; <code>grass is → "s gree"</code> &nbsp; topic belief stayed <code>[0.5, 0.5]</code> the entire run. The latent never differentiated.</p></div>
 
-<h2>What this is called, and why it’s open</h2>
-<p>It is <strong>unsupervised structure / representation learning</strong>: discovering <em>which</em> latent variables to posit (how many, at what timescale) from data alone, by free-energy minimization. Mathematically it is the conjunction of:</p>
-<ul>
-  <li>a <strong>non-convex objective with a dominant uninformative-latent basin</strong>;</li>
-  <li><strong>non-identifiability</strong> of latents without inductive bias;</li>
-  <li>a <strong>complexity term that prefers collapsing</strong> the latent (Bayesian model reduction working against you);</li>
-  <li><strong>long-range credit assignment</strong> under Markov forgetting.</li>
-</ul>
-<p>There is <strong>no general, reliable algorithm</strong> that solves this by the free-energy principle alone, unsupervised. It is the same wall that makes from-scratch deep latent-variable learning hard everywhere.</p>
+    <h2 id="o2"><span class="nm">2</span>Non-identifiability — and complexity <em>prefers</em> collapse</h2>
+    <p>The marginal likelihood can be explained two ways, near-degenerate in accuracy:</p>
+    <div class="twoway">
+      <div class="tw"><p><b>(a) one topic</b>, with averaged transitions over the mixture.</p></div>
+      <div class="tw"><p><b>(b) two topics</b>, each specialized to its clause type.</p></div>
+    </div>
+    <p>The latent partition is <strong>non-identifiable</strong> without an inductive bias. And the complexity term \(\mathrm{KL}[q\,\Vert\,p]\) <strong>rewards the simpler, topic-agnostic model</strong>: fewer effective states, lower KL. Bayesian Occam actively pulls toward <em>not using</em> \(z\).</p>
+    <p class="muted">This is the same phenomenon as <strong>posterior collapse</strong> in variational autoencoders: the latent goes unused because ignoring it costs almost nothing in accuracy and saves complexity.</p>
 
-<h2>What actually breaks the symmetry (the fixes)</h2>
-<table>
-  <tr><th>Inductive bias</th><th>What it does mathematically</th></tr>
-  <tr><td>KL annealing / β-warmup</td><td>Down-weights the complexity term early so the latent is <em>used</em> before Occam prunes it.</td></tr>
-  <tr><td>Asymmetric init / perturbation</td><td>Seeds a fluctuation large enough to be amplified rather than smoothed.</td></tr>
-  <tr><td>Structure learning + Bayesian model reduction</td><td>Grows/prunes latents instead of fixing \(K\) — searches model space, not just parameters.</td></tr>
-  <tr><td>Precision / attention (learned precisions)</td><td>Protects the slow factor’s belief from Markov forgetting → enables long-range holding.</td></tr>
-  <tr><td><b>Grounding signal</b></td><td>Makes \(z\) <em>identifiable</em>: a cue tied to the latent gives the gradient a foothold.</td></tr>
-</table>
+    <h2 id="o3"><span class="nm">3</span>The EM chicken-and-egg</h2>
+    <p>To infer \(q(z)\) you need topic-differentiated \(B\); to learn differentiated \(B\) you need an informative \(q(z)\). Symmetric init gives no bootstrap, and variational EM only finds <strong>local</strong> optima. The "use the latent" basin and the "ignore the latent" basin are separated — and you start in the second one.</p>
+    <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 13</div><p>Even with the topic <em>teacher-forced during training</em>, at test the inferred topic returned to <code>[0.5, 0.5]</code> and binding failed — the emission \(A\) is topic-independent, so the subject has no direct evidential pathway to move \(q(z)\).</p></div>
 
-<div class="card good">
-  <span class="pill">observed — Exp 14 (the grounded path works)</span>
-  <p style="margin:.3rem 0 0">An arbitrary cue acquired valence purely by co-occurring with the agent’s own low-free-energy states — <code>P(next | …a)=3.04 bits</code> vs <code>P(next | …z)=4.79 bits</code>. No labels. Where the <em>symmetric-emergent</em> path stalls, the <em>grounded</em> path crystallizes — exactly as the math predicts.</p>
-</div>
+    <h2 id="binding"><span class="nm"></span>The separate sub-problem: long-range binding</h2>
+    <p>Even granting a topic, the dependency "<strong>sky</strong> … is <strong>blue</strong>" spans five-plus steps. The filtering posterior is Markov, so it <em>forgets</em>: by "is", every trace of "sky" has been squeezed through one belief.</p>
+    <div class="eq">$$q(s_t) \propto p(o_t\mid s_t)\sum_{s_{t-1}} p(s_t\mid s_{t-1})\,q(s_{t-1})$$</div>
+    <p>Only a dedicated slow factor, held with high precision, survives — but learning that persistence-precision again presupposes the topic is already informative.</p>
+    <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 9</div><p><code>"sky is " → "green"</code> and <code>"grass is " → "green"</code>: a fixed-order Markov model cannot bind across a span longer than its order — at <em>any</em> state count (Exp 4: more states did not help — capacity ≠ memory).</p></div>
 
-<h2>Why this is the crux of the moonshot</h2>
-<p>An “opinion” is a learned latent disposition. For one to <strong>emerge, never pre-trained</strong>, the system must perform exactly this unsupervised abstraction discovery — and the mathematics says <em>it will not crystallize from symmetry; it needs something to condense around.</em> That is not a dead end. It is a precise design constraint:</p>
-<div class="card">
-  <p style="margin:.2rem 0"><strong>The path to emergent, non-pre-trained cognition is grounding + structure-learning inductive biases — not pure self-organization from nothing.</strong> Every result that worked (depth → words &amp; Q→A, held-topic binding, self-grounded valence) came from giving the latent a foothold. Every result that stalled was the symmetric, foothold-free case.</p>
-</div>
+    <h2 id="why"><span class="nm"></span>What this is, and why it's open</h2>
+    <p>It is <strong>unsupervised structure learning</strong>: discovering <em>which</em> latent variables to posit — how many, at what timescale — from data alone, by free-energy minimization. Mathematically it is the conjunction of:</p>
+    <p class="muted" style="margin:4px 0">— a non-convex objective with a dominant uninformative-latent basin;<br>— non-identifiability of latents without inductive bias;<br>— a complexity term that prefers collapsing the latent;<br>— long-range credit assignment under Markov forgetting.</p>
+    <p>There is <strong>no general, reliable algorithm</strong> that solves this by the free-energy principle alone, unsupervised. It is the same wall that makes from-scratch deep latent-variable learning hard everywhere.</p>
 
-<footer>
-  active-loop · the empirical trail lives in <code>EXPERIMENTS.md</code>; the longer formal treatment (VFE/EFE breakdown, d-separation, Bayesian model reduction) in <code>RESEARCH.md</code>. Generated 2026-06-08.
-</footer>
-</div>
+    <h2 id="fixes"><span class="nm"></span>What actually breaks the symmetry</h2>
+    <table class="ftable"><tbody>
+      <tr><th>Inductive bias</th><th>What it does, mathematically</th></tr>
+      <tr><td>KL annealing / β-warmup</td><td>Down-weights the complexity term early, so the latent is <em>used</em> before Occam prunes it.</td></tr>
+      <tr><td>Asymmetric init / perturbation</td><td>Seeds a fluctuation large enough to be amplified rather than smoothed away.</td></tr>
+      <tr><td>Structure learning + model reduction</td><td>Grows / prunes latents instead of fixing \(K\) — searches model space, not just parameters.</td></tr>
+      <tr><td>Precision / attention</td><td>Protects the slow factor's belief from Markov forgetting → enables long-range holding.</td></tr>
+      <tr><td>Grounding signal</td><td>Makes \(z\) <em>identifiable</em>: a cue tied to the latent gives the gradient a foothold.</td></tr>
+    </tbody></table>
+    <div class="obs good"><div class="ol"><span class="dt"></span>observed — the grounded path works · Exp 14</div><p>An arbitrary cue acquired valence purely by co-occurring with the agent's own low-free-energy states — <code>P(next | …a) = 3.04 bits</code> vs <code>4.79 bits</code> for the surprising cue. No labels. Where the symmetric path stalls, the grounded path crystallizes — exactly as the math predicts.</p></div>
+
+    <h2 id="crux"><span class="nm"></span>Why this is the crux of the moonshot</h2>
+    <p>An "opinion" is a learned latent disposition. For one to <strong>emerge, never pre-trained</strong>, the system must perform exactly this unsupervised abstraction discovery — and the mathematics says it will not crystallize from symmetry; <em>it needs something to condense around</em>. That is not a dead end. It is a precise design constraint:</p>
+    <div class="callout"><p>The path to emergent, non-pre-trained cognition is <strong>grounding plus structure-learning inductive biases</strong> — not pure self-organization from nothing. Every result that worked came from giving the latent a foothold. Every result that stalled was the symmetric, foothold-free case.</p></div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 10px">
+      <a class="btn btn-primary" href="journey.html">See it play out in the journey →</a>
+      <a class="btn btn-ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/RESEARCH.md" target="_blank" rel="noopener">The formal treatment (RESEARCH.md)</a>
+    </div>
+  </div>
+`;
+
+function OpenProblem(){
+  const [t,setTweak] = useTweaks(TWEAK_DEFAULTS);
+  useEffect(()=>{ applyTweaks(t); },[t]);
+  useEffect(()=>{
+    const id = setInterval(()=>{
+      if(window.MathJax && window.MathJax.typesetPromise){
+        clearInterval(id);
+        window.MathJax.typesetPromise([document.getElementById('op-body')]);
+      }
+    },120);
+    return ()=>clearInterval(id);
+  },[]);
+
+  return (
+    <>
+      <Nav active="open"/>
+      <div id="op-body" dangerouslySetInnerHTML={{__html: ARTICLE}}></div>
+      <Footer/>
+      <TweaksPanel>
+        <TweakSection label="Palette"/>
+        <TweakRadio label="System" value={t.palette} options={["growth","compass","ember"]} onChange={v=>setTweak('palette',v)}/>
+        <TweakSection label="Type & texture"/>
+        <TweakRadio label="Fonts" value={t.fontPair} options={["editorial","grotesk"]} onChange={v=>setTweak('fontPair',v)}/>
+        <TweakToggle label="Graph paper" value={t.gridPaper} onChange={v=>setTweak('gridPaper',v)}/>
+      </TweaksPanel>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('app')).render(<OpenProblem/>);
+</script>
 </body>
 </html>

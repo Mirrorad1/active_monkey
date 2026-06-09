@@ -1,0 +1,320 @@
+/* active_monkey — the full lab notebook, structured for the redesign.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 35 experiments.
+   kind: "win" (breakthrough) | "wall" (honest negative) | "partial"
+   chapter: language | valence | embodiment | opinion | frontier
+   Each experiment: a hypothesis, the smallest test, the honest result, the implication.
+   `metric` is an optional readout (used by chips / the surprise plot). */
+
+window.AM_CHAPTERS = [
+  { id:"language",   act:"I",   label:"Language",   question:"Can it learn words?",            color:"lang" },
+  { id:"valence",    act:"II",  label:"Valence",    question:"Can it want anything?",          color:"val" },
+  { id:"embodiment", act:"III", label:"Embodiment", question:"What if it had a body?",         color:"emb" },
+  { id:"opinion",    act:"IV",  label:"Opinion",    question:"Can it form its own values?",    color:"opi" },
+  { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
+];
+
+window.AM_TALLY = { total:35, win:24, wall:7, partial:4, from:4.81, to:1.61 };
+
+/* Hero surprise series — the bits/char it feels, falling as it learns. */
+window.AM_SURPRISE = [4.81,4.55,4.00,3.38,2.70,2.42,1.95,1.61,1.40,1.30,1.18,1.10,1.04,1.00];
+
+window.AM_EXPERIMENTS = [
+  { n:1, kind:"win", chapter:"language",
+    title:"Does the character model learn at all?",
+    one:"The engine works — surprise drops as it learns.",
+    metric:{ from:4.81, to:4.00, unit:"bits/char" },
+    setup:"K=12 first-order HMM, built-in English corpus, learn the transition + emission tables.",
+    result:"Held-out surprise fell 4.81 → 4.00 bits/char. Generation shifted from random noise toward spacing, periods and letter-clusters.",
+    implication:"Free energy really does fall as it learns. Intrinsic valence — the good feeling of getting it right — is real and measurable." },
+
+  { n:2, kind:"win", chapter:"language",
+    title:"Can it choose actions that earn positive feedback?",
+    one:"Learns to seek a 'positive' outcome — but the label was injected.",
+    metric:{ from:0.90, to:1.00, unit:"hit rate" },
+    setup:"A bandit. The agent prefers a 'positive' outcome and must learn which action yields it.",
+    result:"Positive-feedback rate climbed 0.90 → 1.00 over one session.",
+    implication:"Preference + expected-free-energy + learning = it functionally learns to seek the good. Caveat: this 'positive' was hand-labeled — fixed later by grounding valence intrinsically." },
+
+  { n:3, kind:"partial", chapter:"language",
+    title:"Teach it to say 'mirro' by repetition.",
+    one:"Got the right letters — in the wrong order.",
+    metric:{ from:3.38, to:1.61, unit:"bits/char" },
+    setup:"K=12 first-order HMM, streamed 'mirro ' over and over.",
+    result:"Surprise 3.38 → 1.61. Output used mirro's letters (m,i,r,o,space) but jumbled: 'mo io riorrr'. Ingredients, not the sequence.",
+    implication:"A first-order model learns the character palette but not the ORDER. The wall is structural, not effort." },
+
+  { n:4, kind:"wall", chapter:"language",
+    title:"Does MORE memory (more states) fix word order?",
+    one:"No. Capacity was never the lever.",
+    setup:"Train 'mirro ' at K = 12, 30, 60 states.",
+    result:"No improvement at any size — all jumbled ('rrrr imls', 'rrrr imiv'). Question→answer failed entirely too.",
+    implication:"The wall is the FIRST-ORDER assumption, not capacity. More states add no memory of recent context. A key negative result that redirected everything." },
+
+  { n:5, kind:"win", chapter:"language",
+    title:"Does CONTEXT (state = last character) fix order?",
+    one:"Yes — one character of memory produces real word-fragments.",
+    setup:"A bigram model: the state IS the current character. Learn char→char transitions.",
+    result:"'mirro'→'irro' (in order); 'the cat sat on the mat' → real fragments: 'the', 'th', 'tat', 'sa', correct spacing & periods.",
+    implication:"THE lever: memory of recent context — not capacity — produces order and words. The direction toward the moonshot is to grow the context window." },
+
+  { n:6, kind:"partial", chapter:"language",
+    title:"Bigram limits: repeated letters & word context.",
+    one:"One char of memory is provably not enough.",
+    setup:"Bigram, greedy decode. (a) 'mirro ' repeated; (b) Q→A 'name. mirro.' then prompt 'name. '.",
+    result:"(a) nails 'mirr' then loops on r — can't tell if r→r or r→o. (b) 'name. ' → 'me. me.' — conflates the two m's.",
+    implication:"Minimum context depth = the longest disambiguation you need. Quantifies Exp 5's lever: you need ≥2-char context. This is the next build." },
+
+  { n:7, kind:"win", chapter:"language",
+    title:"How deep is deep enough? (context-depth control)",
+    one:"Two characters of memory flips the switch — exactly.",
+    setup:"Count-based n-gram control (n=2,3,4) to isolate the depth variable. Greedy decode.",
+    result:"n=2 → 'miro' (drops an r); n=3 → EXACT 'mirro mirro'; n=4 → no further gain. Q→A: 'name.' correctly EVOKES 'mirro' at n=3.",
+    implication:"Threshold found: two characters of context is the switch-on point for both exact word order AND question→answer. Comprehension-as-prediction, demonstrated." },
+
+  { n:8, kind:"win", chapter:"language",
+    title:"Reproduce that depth INSIDE active inference.",
+    one:"Memory-of-context works as free-energy minimization, not just counting.",
+    setup:"A pymdp agent with a pair-state s=(prev,cur), K=784. Near-deterministic emission, learned transitions. Greedy generative rollout.",
+    result:"'mirro ' → cycles '…mirro mirro…' in exact order. After 'name. ' → 'mirro.' The Q→A association is learned and recalled within the AIF model.",
+    implication:"Temporal depth works inside active inference. The emergent pair-states literally ARE 'memory of recent context'. Depth-as-lever, confirmed." },
+
+  { n:9, kind:"wall", chapter:"language",
+    title:"The long-range binding wall.",
+    one:"Flat context can't bind a subject to its predicate.",
+    setup:"Flat 2-char model trained on 'sky is blue. grass is green.' Prime 'sky is ' vs 'grass is '.",
+    result:"BOTH → 'green'. When predicting after 'is ', the deciding word (sky/grass, 5+ chars back) is outside the 2-char window — the clauses blur into one.",
+    implication:"Any fixed-order model fails once a dependency outruns its order. Long-range binding needs a slow, held 'concept/topic' latent — not just deeper flat context. This is the boundary to conversation." },
+
+  { n:10, kind:"win", chapter:"language",
+    title:"A held 'topic' binds long-range.",
+    one:"A slow latent conditioning fast transitions binds where flat memory collapsed.",
+    setup:"Topic-conditioned char transitions — a held 'topic' latent steering the fast char model. Prime 'is '.",
+    result:"topic=SKY → 'blue.'; topic=GRASS → 'green.' Exactly where Exp 9 collapsed both to 'green'.",
+    implication:"Hierarchy is the fix. 'What do you think about X?' = infer + hold topic X, then generate conditioned on it. Caveat: here the topic was supervised — making it EMERGE unsupervised is the frontier." },
+
+  { n:11, kind:"partial", chapter:"language",
+    title:"Scaffolding for an emergent (inferred) topic.",
+    one:"The two-timescale machinery builds and runs in pymdp.",
+    setup:"Probe whether pymdp supports a hierarchical model: slow topic factor + fast char factor, char transitions conditioned on topic.",
+    result:"Constructs and runs inference cleanly. Topic belief starts properly uncertain [0.5, 0.5]; char belief 28-dim.",
+    implication:"The emergent-topic model is buildable, not just theoretical — the vehicle for 'infer + hold the topic from the subject' that long-range binding requires." },
+
+  { n:12, kind:"wall", chapter:"language",
+    title:"Unsupervised topic: fails to differentiate.",
+    one:"Nothing crystallizes from perfect symmetry — the mixture local minimum.",
+    setup:"Full 2-factor training, unsupervised, on mixed 'sky is blue. grass is green.' Test binding via prime.",
+    result:"Both → 's gree'; topic belief stayed [0.5, 0.5] the entire time. The topic never differentiated.",
+    implication:"The crux of emergence: with a symmetric start and no differentiating signal, variational EM has no gradient to break symmetry — it settles on 'ignore the topic'. A concept will NOT bootstrap from nothing." },
+
+  { n:13, kind:"wall", chapter:"language",
+    title:"A semi-supervised foothold — still no test-time inference.",
+    one:"Scaffolding the topic in training doesn't make it inferable at test.",
+    setup:"Topic teacher-forced during training; at test it must be inferred from the subject alone.",
+    result:"Both 'sky is '/'grass is ' → 's is i'; inferred topic [0.5,0.5]; no binding; char output degraded.",
+    implication:"The subject chars have no direct pathway to move the topic belief — emission is topic-independent. The topic needs a direct evidential channel and a stronger char substrate." },
+
+  { n:14, kind:"win", chapter:"valence",
+    title:"An arbitrary cue acquires valence from free energy.",
+    one:"A symbol becomes 'good' just by co-occurring with low surprise. No labels.",
+    metric:{ from:4.79, to:3.04, unit:"bits after cue" },
+    setup:"Cue 'a' always precedes a predictable run (low free energy); 'z' precedes varied letters (high). The agent is NEVER told which is good.",
+    result:"Uncertainty after 'a' = 3.04 bits (confident); after 'z' = 4.79 bits (uncertain). The cue 'a' acquired positive valence purely by association.",
+    implication:"Answers 'how does it know good without language?' — valence grounds in the agent's own prediction confidence. No teacher, no labels, no pretraining. The grounding bridge works." },
+
+  { n:15, kind:"win", chapter:"valence",
+    title:"Closing the affective loop — it acts to feel good.",
+    one:"It chooses to occupy the state it can predict. Wanting, with nothing injected.",
+    metric:{ from:0.21, to:0.79, unit:"p(seek good)" },
+    setup:"A choice world: one action → a predictable scene (low free energy), the other → a surprising one. Preference is the self-evidencing prior, not an external reward.",
+    result:"q(seek-good)=0.79 vs 0.21; expected free energy favours the understood state.",
+    implication:"With Exp 14 this is a minimal affective agent: it grounds valence in its own free energy AND acts to seek it. 'Wanting to feel good' = minimizing expected free energy. No RL reward." },
+
+  { n:16, kind:"wall", chapter:"valence",
+    title:"Even a perfect foothold fails — the mean-field culprit.",
+    one:"The inference approximation itself severs the evidence the topic needs.",
+    setup:"Hand the topics a perfect asymmetric foothold (sky vs grass transitions, fully differentiated). Mean-field posterior q(z)q(s).",
+    result:"Binding failed before AND after training; topic stayed [0.5,0.5] even with perfectly distinct transitions.",
+    implication:"The mean-field assumption q(z,s)≈q(z)q(s) severs the cross-factor message 'this sequence implies topic 0'. A 4th obstacle. The fix mirrors biology: the concept must enter via what you SEE/HEAR — emission-level grounding." },
+
+  { n:17, kind:"win", chapter:"embodiment",
+    title:"Give it a body — model learning works on the first try.",
+    one:"A creature wanders a ring-world and a cognitive map appears.",
+    metric:{ from:1.00, to:0.003, unit:"model error" },
+    setup:"A creature wanders a 5-cell ring (move left/right; it senses its current cell). Starts with NO world model; learns transitions from random wandering.",
+    result:"Recovered the world's structure nearly perfectly (error 0.003); correctly predicts the next cell for each action.",
+    implication:"Embodied + grounded + unsupervised learning works cleanly — in sharp contrast to the disembodied symbolic failures. The agent ACTS and observes a correlated world, which breaks the symmetry a bare symbol stream cannot." },
+
+  { n:18, kind:"win", chapter:"embodiment",
+    title:"A sense of PLACE emerges from path integration.",
+    one:"It gets lost, then localizes from movement alone — the essence of place cells.",
+    metric:{ from:2.58, to:0.00, unit:"bits (lost→found)" },
+    setup:"An aliased world: 6 cells, only 2 colors, so a single glimpse can't localize. Known movement model; starts fully uncertain.",
+    result:"2.58 bits (lost) → 1.58 (narrowed) → 0.00 (localized) → then tracks true position as it keeps moving.",
+    implication:"A place representation — a latent that is INFERRED, not observed — emerges from embodied action under ambiguous sensing. The simplest concept, built from experience." },
+
+  { n:19, kind:"partial", chapter:"embodiment",
+    title:"Learning the map FROM SCRATCH under aliasing.",
+    one:"Partly works — and surfaces a registration confound.",
+    metric:{ from:2.58, to:1.65, unit:"bits residual" },
+    setup:"Learn the sensory map from scratch under aliasing (movement known). Wander, then test localization with the learned map.",
+    result:"Learned a degenerate alternating tuning — didn't recover the true map — yet still localized to the correct cell with 1.65 bits residual. Coarse, not clean.",
+    implication:"Resetting belief each episode let the internal place-index DRIFT out of registration with the world. Part experimental confound, part the genuine identifiability difficulty." },
+
+  { n:20, kind:"win", chapter:"embodiment",
+    title:"Place fields self-organize from scratch (milestone).",
+    one:"Keep experience continuous and the true map crystallizes — cleanly.",
+    metric:{ from:1.65, to:0.00, unit:"bits" },
+    setup:"Fix the confound: ONE continuous 700-step wander, belief carried continuously (never reset). Learn the map from scratch under aliasing.",
+    result:"Learned per-state tuning matched the TRUE colormap exactly; localization with the learned map = 0.00 bits.",
+    implication:"The recipe, confirmed: embodiment + grounding + CONTINUOUS registered experience → structure self-organizes. An animal never resets its sense of place. Existence proof in miniature." },
+
+  { n:21, kind:"win", chapter:"embodiment",
+    title:"The recipe scales to 2D.",
+    one:"Place fields self-organize in a 3×3 grid, just as cleanly.",
+    metric:{ to:0.00, unit:"bits, 2D" },
+    setup:"A 2D 3×3 grid, 4 actions with walls, 3-color aliased sensing, continuous registered belief, learn the map from scratch.",
+    result:"Learned per-cell tuning matched the true colormap exactly; localization = 0.00 bits.",
+    implication:"The embodied recipe is robust to larger scale and richer topology. The embodied arc is now solid: learn dynamics → place via path-integration → 1D fields → 2D fields." },
+
+  { n:22, kind:"wall", chapter:"embodiment",
+    title:"Fuse place + want: directed navigation FAILS.",
+    one:"Knowing where you are and wanting a goal is not enough to move.",
+    metric:{ from:9.8, to:15, unit:"steps (worse)" },
+    setup:"2D grid; the creature knows its world and has a grounded preference for 'comfort' at a distant goal. Plan 3 steps ahead.",
+    result:"Reached the goal only at the step limit, stuck near start — WORSE than a random walk (optimal=4).",
+    implication:"The goal is sparse and 4 steps away but the horizon is 3 — no policy in reach attains comfort, so expected free energy is flat in all directions. A want must produce a GRADIENT within the planning horizon." },
+
+  { n:23, kind:"win", chapter:"embodiment",
+    title:"Planning depth fixes navigation.",
+    one:"Plan far enough to feel the goal and behavior becomes optimal.",
+    metric:{ from:15, to:4, unit:"steps (optimal)" },
+    setup:"Same world & grounded goal, but planning horizon ≥ goal distance (4 and 5).",
+    result:"Reached the goal in 4 steps — optimal, clean path — vs ~9.8 for random.",
+    implication:"The failure was the horizon, not the framework. The end-to-end minimal mind now runs: self-organized place map + grounded want + planning to satisfy it. A creature that perceives, wants, and acts." },
+
+  { n:24, kind:"win", chapter:"embodiment",
+    title:"Bind an OBJECT to a PLACE from experience.",
+    one:"It learns a fact about its world by wandering.",
+    setup:"2D grid; an object sits at a hidden cell. Object-presence is a second sense whose map the agent learns from wandering.",
+    result:"Learned P(object | place) peaked exactly at the right cell — correctly bound the object to its location.",
+    implication:"Composite, relational concepts work on the embodied substrate. The seed of a proposition ('the thing is there') — the first step from atomic concepts up toward relational structure, where dispositions eventually live." },
+
+  { n:25, kind:"win", chapter:"embodiment",
+    title:"Recall + navigate: learn a fact, then ACT on it.",
+    one:"The full cognitive cycle runs end-to-end.",
+    metric:{ to:2, unit:"steps (optimal)" },
+    setup:"Phase 1: discover object@place by wandering. Phase 2: WANT the object, navigate from a far start using the learned map + planning.",
+    result:"Learned the object's location, then navigated to the remembered object in 2 steps — optimal.",
+    implication:"Perceive → learn facts → want → recall + plan + act, over a self-learned world model, all grounded and unsupervised. The substrate that scales toward knowledge and dispositions." },
+
+  { n:26, kind:"win", chapter:"opinion",
+    title:"PROTO-OPINION: a disposition forms from lived experience.",
+    one:"Two identical creatures value different things — because they lived different lives.",
+    setup:"Two architecturally identical creatures in two worlds differing only in WHICH feature is comfortable. Each forms a preference proportional to how predictable a feature was.",
+    result:"World-comfort-0 → values feature 0 [0.98,0.01,0.01]; world-comfort-2 → values feature 2. Same architecture, different history → different preference.",
+    implication:"The moonshot's core, in miniature: a disposition EMERGED from the creature's own experience, grounded in its free energy, not pretrained — and it is INDIVIDUAL. The simplest honest instance of an opinion forming on its own." },
+
+  { n:27, kind:"win", chapter:"opinion",
+    title:"A self-formed opinion DRIVES behavior.",
+    one:"Two identical creatures act differently because they value differently.",
+    setup:"The two creatures from Exp 26 carry their different self-formed preferences into the same world, same start, and navigate.",
+    result:"Creature A → the cell it values; Creature B → a different cell it values. Divergent purposeful behavior from divergent self-formed values.",
+    implication:"The self-formed opinion drives action. Their values came from their own histories, not pretraining. Perceive → learn → want → act → FORM own values → ACT on them, diverging by history." },
+
+  { n:28, kind:"win", chapter:"opinion",
+    title:"'Ask it what it thinks' (toy).",
+    one:"Same question, different honest answers — each from its own life.",
+    setup:"Two creatures raised in different worlds. Interview: 'what do you think of X?' → read out each one's self-formed value for that feature.",
+    result:"A likes red & is unsettled by green; B likes green & unsettled by red; blue unsettles both. Each answer reflects its OWN lived experience.",
+    implication:"The closest toy analog of the conversation goal — ask it what it thinks and it answers from a self-formed, individual disposition. Honest caveat: the WORDING is a hand-mapped template; the CONTENT (what it values, and why) is genuinely its own." },
+
+  { n:29, kind:"win", chapter:"opinion",
+    title:"Compositional relational thought.",
+    one:"Self-formed thoughts compose — 'what's near the thing you like?'",
+    setup:"A two-hop query: favorite → its locations → neighbors → their colors → feeling, chaining learned structure with self-formed values.",
+    result:"A: 'red at [0,5,7]; near it: blue (unsettles), green (unsettles)'. B composes a different answer. Each is the creature's own.",
+    implication:"Self-formed thoughts COMPOSE — chaining learned relations with self-formed values into richer, value-laden answers. The substrate of 'what it thinks' now supports composition." },
+
+  { n:30, kind:"win", chapter:"opinion",
+    title:"Scalable planning over the learned map.",
+    one:"Optimal navigation at every scale — at polynomial, not exponential, cost.",
+    metric:{ to:0, unit:"optimal 3×3→8×8" },
+    setup:"Value iteration over the learned movement model to build a value field to the goal; act greedily. Tested 3×3, 5×5, 8×8.",
+    result:"Optimal navigation at every scale (e.g. 8×8 in 14 steps), vs exponential policy enumeration (~268,000,000 policies for the same horizon).",
+    implication:"Scalable planning, done: the creature plans efficiently over its OWN map at polynomial cost. The last of the four long-arc engineering rungs to fall." },
+
+  { n:31, kind:"wall", chapter:"frontier",
+    title:"Learn the map AND the world's wiring from scratch.",
+    one:"With no innate anchor, it collapses — the sharpest result of all.",
+    setup:"Learn BOTH the sensory map and the movement model from random init, continuous belief. Unique-sensing and aliased cases.",
+    result:"Both failed to recover the topology — even unique sensing collapsed to a degenerate model where all states map to one. A degenerate fixed point.",
+    implication:"Embodiment breaks symmetry ONLY WITH AN ANCHOR — one of {senses, movement} innate. Animals don't bootstrap both from nothing; self-motion is innate, the sensory map is learned on top. The recipe needs one given." },
+
+  { n:32, kind:"win", chapter:"frontier",
+    title:"A 'room' concept is grounded in the learned map.",
+    one:"A higher-level abstraction is real, and recoverable, from experience.",
+    metric:{ to:1.00, unit:"room accuracy" },
+    setup:"A 2-room world (one doorway). The creature wanders and learns the connectivity, then the room concept is extracted by clustering its self-learned graph.",
+    result:"Recovered rooms match the true rooms with accuracy 1.00 (clean spectral gap). The room concept is latent in, and recoverable from, the self-learned map.",
+    implication:"Abstraction is AVAILABLE for the climb — places → rooms → … → dispositions are all abstractions over experience. Caveat: the extraction is a provided algorithm, not yet the creature's own unsupervised machinery." },
+
+  { n:33, kind:"win", chapter:"frontier",
+    title:"Hierarchical planning: abstraction is useful & scales.",
+    one:"Plan over rooms first, then within them — and the savings grow.",
+    metric:{ from:7150, to:776, unit:"updates (16 rooms)" },
+    setup:"A corridor of rooms; goal at the end. Compare flat value-iteration over all cells vs coarse-to-fine planning over rooms then within the path.",
+    result:"Updates: 4 rooms 490→152 (×3.2); 8 rooms 1846→328 (×5.6); 16 rooms 7150→776 (×9.2). The speedup grows with scale.",
+    implication:"The recovered abstraction is USEFUL: coarse-to-fine planning cost grows far slower than flat. Concept grounded & recoverable (Exp 32) AND useful (Exp 33). The hierarchy story is complete." },
+
+  { n:34, kind:"win", chapter:"frontier",
+    title:"The language bridge: ask it, in words.",
+    one:"Teach it a few words and query its self-formed values — out loud.",
+    setup:"Two creatures with self-formed color-values. Teach word↔color labels from ~8 examples, then ask in words: 'what do you like?', 'do you like green?'",
+    result:"'What do you like?' → A: 'I like red', B: 'I like green'. 'Do you like green?' → A: 'green unsettles me', B: 'I like green'. Same questions, individual answers.",
+    implication:"The realistic route to 'talk to it about what it thinks': words taught few-shot, CONTENT self-formed. Caveat: labels are taught and sentence shape is templated — emergent grammar stays ceiling-bound." },
+
+  { n:35, kind:"win", chapter:"frontier",
+    title:"Capstone: a runnable 'converse' demo.",
+    one:"Ask it anything about its world — and two creatures answer differently.",
+    setup:"One creature combining a learnable place map + colors + self-formed values + taught words. A short ask-it-anything transcript; two differently-raised creatures answer the same questions.",
+    result:"'Where are you?' → 'I'm at a green place'. 'What do you like?' → A: red, B: green. 'What is near you?' → neighbor colors + per-creature feelings. Answers compose; individual by history.",
+    implication:"The toy 'talk to it' exists as a runnable artifact. Capstone of the realistic moonshot: query the creature about its world & values; the answers are its own, diverging by experience. The literal goal — emergent grammar, fully tabula-rasa — remains the open frontier." }
+];
+
+/* Narrative beats that sit BETWEEN experiments on the timeline. */
+window.AM_BEATS = [
+  { after:16, kind:"pivot", label:"Direction pivot",
+    title:"Lower the bar: a mouse, not a human.",
+    body:"After the symbolic wall, a strategic reframe. Unsupervised structure shows up in a mouse forming PLACE CELLS — a spatial concept from embodied wandering, no labels. Same magic, tractable scale. Don't hand-carve a concept slot; build a substrate of simple units in a grounded world and let structure CONDENSE. And emergence may be unprovable in advance — you can only RUN it and watch. That justifies the loop itself." },
+  { after:34, kind:"arc", label:"Realistic moonshot reached",
+    title:"A little mind that perceives, wants, acts — and answers.",
+    body:"Perceive place → learn facts → want via grounded valence → recall + plan + act → form its own values → act on them, diverging by history → and be asked, in words, what it thinks. Every link grounded, the content never pretrained. The recipe: embodiment + grounding + continuous registered experience + one innate anchor. What remains — emergent grammar, fully tabula-rasa structure — is the documented open frontier." }
+];
+
+/* The three thinkers — one principle, three lenses. */
+window.AM_LENSES = [
+  { who:"Friston", lens:"the math", title:"It's all free energy.",
+    body:"Acting vs. asking, exploring vs. exploiting — every choice is one trade-off: reduce surprise now, or seek information to reduce it later." },
+  { who:"Seth", lens:"perception", title:"A controlled hallucination.",
+    body:"What the agent 'sees' is its own best guess, constantly tested against the evidence. Confidence is interoceptive — a feeling it can act on." },
+  { who:"Bach", lens:"architecture", title:"The world model is the self.",
+    body:"Its model of the world only ever grows and sharpens. Its preferences are its motivational core. Keep the self coherent; let it climb." }
+];
+
+/* Six takeaways. */
+window.AM_TAKEAWAYS = [
+  { n:"01", title:"Depth, not capacity.", body:"More internal states never helped it learn word order. One more character of memory flipped the switch instantly. The lever was always context depth." },
+  { n:"02", title:"Free energy is the feeling.", body:"Low surprise IS understanding. Its only reward is its own prediction success — no external score, no labels. 'Getting it' feels good from the inside." },
+  { n:"03", title:"Embodiment breaks symmetry.", body:"A bare stream of symbols can't bootstrap a concept — the math has no gradient to start. A body that ACTS in a correlated world supplies the missing push." },
+  { n:"04", title:"Nothing crystallizes from nothing.", body:"Every win came from a foothold: grounding, a body, or continuous lived experience. Pure self-organization from a symmetric start always stalled." },
+  { n:"05", title:"Wanting needs no reward.", body:"Valence grounds in the agent's OWN free energy. An arbitrary cue becomes 'good' by co-occurring with low surprise — then it acts to seek that state." },
+  { n:"06", title:"A want needs a gradient.", body:"Knowing where you are and wanting a goal isn't enough to move. Only planning far enough ahead to feel the goal turns a wish into purposeful action." }
+];
+
+/* The loop that never stops. */
+window.AM_LOOP = [
+  { n:1, title:"Experiment", body:"Form one hypothesis. Make the smallest change that tests it." },
+  { n:2, title:"Improve & test", body:"Run it against a frozen evaluator. Keep it only if free energy drops." },
+  { n:3, title:"Document & find", body:"Write the honest result — win or wall — into the append-only log." },
+  { n:4, title:"Showcase", body:"Surface the next open thread. Then begin again, forever." }
+];

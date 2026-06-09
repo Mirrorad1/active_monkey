@@ -1,595 +1,332 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>active_monkey — teaching a machine to understand the world from surprise alone</title>
-<meta name="description" content="An autonomous research log: building an active-inference agent that learns from scratch, using nothing but its own surprise. 30 experiments, honest results, one little mind that forms opinions of its own.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>active_monkey — understanding the world from surprise alone</title>
+<meta name="description" content="An autonomous research log: an active-inference agent that learns from scratch using nothing but its own surprise. 35 experiments, honest results, one little mind coming online.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
 <meta property="og:title" content="active_monkey — understanding the world from surprise alone">
-<meta property="og:description" content="An autonomous active-inference agent learns from scratch with no labels, rewards, or pretraining. 30 experiments, honest results, one little mind that forms opinions of its own.">
+<meta property="og:description" content="An autonomous active-inference agent learns from scratch with no labels, rewards, or pretraining — and forms opinions of its own.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mirrorad1.github.io/active_monkey/">
 <meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="am.css">
 <style>
-  :root{
-    --bg:#0a0c11; --bg2:#0e1118; --panel:#12161f; --panel2:#171c27;
-    --line:#222a38; --line2:#2c3645;
-    --ink:#e9eef6; --muted:#94a2b6; --faint:#647288;
-    --signal:#54e6c4; --signal-dim:#2f6f63;
-    --win:#74e6a4; --wall:#ff9d86; --partial:#f3c56b; --pivot:#b59cff;
-    --glow: 0 0 0 1px var(--line), 0 18px 50px -20px rgba(0,0,0,.7);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font:400 17px/1.6 "Hanken Grotesk",system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    overflow-x:hidden;
-  }
-  /* atmospheric background: faint grid + signal glow + grain */
-  body::before{
-    content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
-    background:
-      radial-gradient(900px 600px at 78% -8%, rgba(84,230,196,.10), transparent 60%),
-      radial-gradient(800px 700px at 8% 108%, rgba(181,156,255,.07), transparent 55%),
-      linear-gradient(180deg, var(--bg), var(--bg2));
-  }
-  body::after{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.4;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:64px 64px;
-    -webkit-mask-image:radial-gradient(110% 80% at 50% 0%, #000 0%, transparent 75%);
-            mask-image:radial-gradient(110% 80% at 50% 0%, #000 0%, transparent 75%);
-  }
-  .wrap{max-width:980px;margin:0 auto;padding:0 1.5rem}
-  a{color:var(--signal);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-
-  /* ---------- top bar ---------- */
-  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
-    background:rgba(10,12,17,.72);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;gap:1.4rem;height:60px}
-  .brand{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.96rem;
-    letter-spacing:.02em;display:flex;align-items:center;gap:.55rem;color:var(--ink)}
-  .brand .logo{width:30px;height:30px;border-radius:50%;object-fit:cover;
-    background:radial-gradient(circle at 50% 35%, rgba(84,230,196,.18), transparent 70%);
-    box-shadow:0 0 0 1px var(--line2), 0 0 14px -4px var(--signal)}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);
-    box-shadow:0 0 0 0 var(--signal);animation:pulse 2.6s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(84,230,196,.5)}70%{box-shadow:0 0 0 9px rgba(84,230,196,0)}100%{box-shadow:0 0 0 0 rgba(84,230,196,0)}}
-  nav .links{margin-left:auto;display:flex;gap:1.3rem;align-items:center;font-size:.9rem}
-  nav .links a{color:var(--muted)}
-  nav .links a:hover{color:var(--ink);text-decoration:none}
-  nav .links .gh{color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:.34rem .7rem}
-  @media(max-width:680px){nav .links a:not(.gh){display:none}}
-
   /* ---------- hero ---------- */
-  header.hero{padding:5.5rem 0 3rem;position:relative}
-  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--signal);margin-bottom:1.4rem}
-  h1{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(2.5rem,6.4vw,4.6rem);
-    line-height:1.02;letter-spacing:-.02em;margin:0 0 1.3rem;max-width:16ch}
-  h1 em{font-style:italic;color:var(--signal);font-weight:400}
-  .lede{font-size:clamp(1.05rem,2vw,1.28rem);color:#c5d0de;max-width:60ch;line-height:1.55;margin:0}
-  .lede b{color:var(--ink);font-weight:600}
+  .hero{padding:54px 0 24px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end;}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:30px;}}
+  .hero h1{font-size:clamp(34px,5vw,58px);margin:16px 0 0;}
+  .hero .lead{margin-top:22px;max-width:52ch;}
+  .hero .lead b{color:var(--ink);font-weight:500;}
+  .hero-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+  .hero-side{display:flex;flex-direction:column;gap:18px;}
+  .hero-plot{border:1px solid var(--ink);background:rgba(255,255,255,.45);padding:15px 17px 9px;}
+  .hero-plot .ph{display:flex;justify-content:space-between;align-items:baseline;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px;}
+  .hero-plot .pv{display:flex;justify-content:space-between;font-family:var(--serif);font-size:13px;margin-top:2px;}
+  .hero-plot .pv .from{color:var(--ink-2);} .hero-plot .pv .to{color:var(--accent);}
+  .hero-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);}
 
-  .statbar{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.4rem}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-    padding:.85rem 1.1rem;min-width:120px}
-  .stat .n{font-family:"Fraunces",serif;font-size:1.9rem;font-weight:600;line-height:1;display:block}
-  .stat .l{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.06em;
-    text-transform:uppercase;color:var(--muted);margin-top:.4rem;display:block}
-  .stat.win .n{color:var(--win)} .stat.wall .n{color:var(--wall)} .stat.sig .n{color:var(--signal)}
+  /* section scaffolding */
+  section{padding:46px 0;}
+  .sec-head{margin-bottom:34px;max-width:62ch;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 0;}
+  .sec-head p{margin:16px 0 0;color:var(--ink-2);font-family:var(--serif);font-size:17px;line-height:1.55;}
 
-  /* free-energy sparkline */
-  .fe{margin-top:2.6rem;background:linear-gradient(180deg,var(--panel),rgba(18,22,31,.4));
-    border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.4rem 1rem;box-shadow:var(--glow)}
-  .fe .top{display:flex;justify-content:space-between;align-items:baseline;
-    font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--muted);letter-spacing:.04em}
-  .fe .top b{color:var(--signal)}
-  .fe svg{display:block;width:100%;height:90px;margin-top:.5rem;overflow:visible}
-  .fe .axis{font-family:"IBM Plex Mono",monospace;font-size:.68rem;fill:var(--faint)}
-  .spark{fill:none;stroke:var(--signal);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3.2s 1s ease-out forwards}
-  .sparkfill{fill:url(#fg);opacity:0;animation:fadein 1.4s 3.4s ease forwards}
-  @keyframes draw{to{stroke-dashoffset:0}}
-  @keyframes fadein{to{opacity:.5}}
+  /* ---------- three lenses ---------- */
+  .lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+  @media(max-width:760px){.lenses{grid-template-columns:1fr;}}
+  .lens{padding:24px 22px 26px;border-right:1px solid var(--line);}
+  .lens:last-child{border-right:none;}
+  @media(max-width:760px){.lens{border-right:none;border-bottom:1px solid var(--line);}.lens:last-child{border-bottom:none;}}
+  .lens .who{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .lens .who span{color:var(--ink-3);font-weight:400;}
+  .lens h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:14px 0 8px;letter-spacing:-.01em;}
+  .lens p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55;}
 
-  /* ---------- generic section ---------- */
-  section{padding:3.4rem 0}
-  .kicker{font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--faint);margin-bottom:.7rem}
-  h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.7rem,3.6vw,2.5rem);
-    letter-spacing:-.01em;margin:0 0 .6rem;line-height:1.1}
-  .section-intro{color:var(--muted);max-width:62ch;font-size:1.05rem}
+  /* ---------- the climb ---------- */
+  .climb{position:relative;padding-left:34px;}
+  .climb::before{content:"";position:absolute;left:9px;top:8px;bottom:34px;width:2px;background:linear-gradient(var(--accent),var(--line));}
+  .act{position:relative;border-top:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;text-decoration:none;color:inherit;transition:background .15s;}
+  .act:hover{background:rgba(255,255,255,.4);}
+  .act::before{content:"";position:absolute;left:-29.5px;top:27px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--paper);}
+  .act .rn{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--ink);line-height:1;padding-top:2px;}
+  .act .q{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:-.01em;margin:0;line-height:1.12;}
+  .act .q em{font-style:italic;color:var(--accent);}
+  .act .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px;}
+  .act .sm{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;max-width:54ch;line-height:1.5;}
+  .act .dots{display:flex;gap:4px;margin-top:11px;flex-wrap:wrap;}
+  .act .dots i{width:8px;height:8px;border-radius:50%;display:block;}
+  .act .meta{text-align:right;font-size:11px;color:var(--ink-2);white-space:nowrap;padding-top:4px;}
+  .act .meta b{font-family:var(--serif);font-size:25px;font-weight:500;color:var(--ink);display:block;line-height:1;}
+  .act .go{font-size:11px;color:var(--accent);margin-top:10px;opacity:0;transition:opacity .15s;}
+  .act:hover .go{opacity:1;}
 
-  /* three lenses */
-  .lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
-  @media(max-width:740px){.lenses{grid-template-columns:1fr}}
-  .lens{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.3rem;
-    position:relative;overflow:hidden}
-  .lens::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--signal);opacity:.6}
-  .lens h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.2rem;margin:.1rem 0 .1rem}
-  .lens .who{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--signal);
-    letter-spacing:.05em;text-transform:uppercase}
-  .lens p{margin:.55rem 0 0;color:var(--muted);font-size:.96rem;line-height:1.55}
+  /* reveal */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+  body[data-motion="off"] .rv{opacity:1;transform:none;}
 
-  /* ---------- filter chips ---------- */
-  .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:2rem 0 .5rem;position:sticky;top:60px;
-    z-index:20;padding:.6rem 0;background:linear-gradient(180deg,var(--bg) 70%,transparent)}
-  .chip{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--muted);cursor:pointer;
-    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.42rem .9rem;
-    display:inline-flex;align-items:center;gap:.45rem;transition:.18s;user-select:none}
-  .chip:hover{border-color:var(--line2);color:var(--ink)}
-  .chip .swatch{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-  .chip[data-f="win"] .swatch{background:var(--win)}
-  .chip[data-f="wall"] .swatch{background:var(--wall)}
-  .chip[data-f="partial"] .swatch{background:var(--partial)}
-  .chip.active{color:var(--ink);border-color:var(--signal);background:rgba(84,230,196,.08)}
+  /* ---------- takeaways ---------- */
+  .takes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:820px){.takes{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.takes{grid-template-columns:1fr;}}
+  .take{background:var(--paper);padding:22px 20px 24px;}
+  .take .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;font-weight:600;}
+  .take h3{font-family:var(--serif);font-size:19px;font-weight:500;margin:12px 0 8px;letter-spacing:-.01em;}
+  .take p{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.55;}
 
-  /* ---------- timeline ---------- */
-  .arc{margin-top:2.6rem}
-  .arc-head{display:flex;align-items:baseline;gap:.9rem;padding:.2rem 0 1.1rem;
-    border-bottom:1px dashed var(--line2);margin-bottom:.3rem}
-  .arc-head .idx{font-family:"Fraunces",serif;font-size:2.2rem;font-weight:600;color:var(--signal-dim);
-    line-height:1}
-  .arc-head h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.5rem;margin:0;letter-spacing:-.01em}
-  .arc-head .span{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--faint);margin-left:auto;white-space:nowrap}
-  .arc-sub{color:var(--muted);font-size:.98rem;margin:.1rem 0 0;max-width:64ch}
+  /* ---------- the loop ---------- */
+  .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:760px){.loop{grid-template-columns:repeat(2,1fr);}}
+  .lp{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:18px 16px;position:relative;}
+  .lp .c{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+  .lp h4{font-family:var(--serif);font-size:18px;font-weight:500;margin:8px 0 7px;}
+  .lp p{margin:0;font-size:12px;color:var(--ink-2);line-height:1.5;}
+  .lp .arr{position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:14px;z-index:2;}
+  @media(max-width:760px){.lp .arr{display:none;}}
 
-  .track{position:relative;margin-top:1.4rem;padding-left:2.1rem}
-  .track::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;
-    background:linear-gradient(180deg,var(--line2),var(--line) 90%)}
-  .node{position:relative;margin:0 0 .85rem}
-  .node::before{content:"";position:absolute;left:-1.79rem;top:1.15rem;width:14px;height:14px;
-    border-radius:50%;background:var(--bg);border:2px solid var(--muted);z-index:2}
-  .node[data-o="win"]::before{border-color:var(--win);box-shadow:0 0 12px -2px var(--win)}
-  .node[data-o="wall"]::before{border-color:var(--wall)}
-  .node[data-o="partial"]::before{border-color:var(--partial)}
-
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:1.05rem 1.2rem;
-    transition:.2s transform,.2s border-color, .2s box-shadow;cursor:default}
-  .card:hover{border-color:var(--line2);transform:translateX(3px);box-shadow:var(--glow)}
-  .card .row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
-  .card .exp{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--faint)}
-  .card h4{font-family:"Fraunces",serif;font-weight:500;font-size:1.18rem;margin:.05rem 0;flex:1;min-width:60%}
-  .badge{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
-    padding:.2rem .55rem;border-radius:6px;font-weight:600;white-space:nowrap}
-  .badge.win{color:#0a1f14;background:var(--win)}
-  .badge.wall{color:#2a0f08;background:var(--wall)}
-  .badge.partial{color:#2a1e06;background:var(--partial)}
-  .card p{margin:.55rem 0 0;color:#b9c5d4;font-size:.98rem;line-height:1.55}
-  .card p .hl{color:var(--ink);font-weight:600}
-  .card .metric{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--signal);
-    background:rgba(84,230,196,.07);border:1px solid var(--signal-dim);border-radius:6px;
-    padding:.08rem .45rem;margin-top:.6rem;display:inline-block}
-
-  /* pivot banner */
-  .pivot{position:relative;margin:2.8rem 0 1rem;padding:1.4rem 1.5rem;border-radius:14px;
-    background:linear-gradient(120deg,rgba(181,156,255,.10),rgba(84,230,196,.05));
-    border:1px solid #3a3358}
-  .pivot .tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--pivot)}
-  .pivot h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.45rem;margin:.4rem 0 .5rem}
-  .pivot p{margin:0;color:#c7cfe0;max-width:70ch;line-height:1.6}
-  .pivot p b{color:#fff}
-
-  /* ---------- live feed (auto-pulled from EXPERIMENTS.md) ---------- */
-  .live-head{display:flex;align-items:center;gap:.6rem}
-  .live-dot{width:8px;height:8px;border-radius:50%;background:var(--win);
-    box-shadow:0 0 0 0 var(--win);animation:pulse 2.6s infinite}
-  .livefeed{margin-top:1.6rem;display:flex;flex-direction:column;gap:.5rem}
-  .feednote{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.04em;
-    color:var(--faint);text-transform:uppercase;margin:.5rem 0 .15rem}
-  .feedrow{display:flex;align-items:center;gap:.85rem;background:var(--panel);
-    border:1px solid var(--line);border-radius:10px;padding:.65rem .95rem;transition:.18s}
-  .feedrow:hover{border-color:var(--line2)}
-  .feedrow.new{border-color:var(--signal-dim);
-    background:linear-gradient(90deg,rgba(84,230,196,.07),var(--panel) 42%)}
-  .feedrow .exp{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--faint);white-space:nowrap}
-  .feedrow .t{flex:1;font-family:"Fraunces",serif;font-size:1.04rem;font-weight:500;min-width:0;
-    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .feedrow .badge{flex-shrink:0}
-  .badge.note{color:#0a1f14;background:var(--muted)}
-  @media(max-width:560px){.feedrow .t{white-space:normal}.feedrow .badge{display:none}}
-
-  /* ---------- insights ---------- */
-  .insights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-  @media(max-width:740px){.insights{grid-template-columns:1fr}}
-  .insight{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.35rem}
-  .insight .n{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--signal)}
-  .insight h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.28rem;margin:.5rem 0 .35rem;letter-spacing:-.01em}
-  .insight p{margin:0;color:var(--muted);font-size:.98rem;line-height:1.56}
-
-  /* open problem cta */
-  .cta{margin-top:1.4rem;background:
-      radial-gradient(120% 140% at 100% 0%, rgba(255,157,134,.10), transparent 50%),
-      var(--panel);
-    border:1px solid var(--line);border-radius:18px;padding:2rem;display:flex;gap:1.5rem;
-    align-items:center;flex-wrap:wrap;box-shadow:var(--glow)}
-  .cta .txt{flex:1;min-width:260px}
-  .cta h2{margin:0 0 .5rem}
-  .cta p{margin:0;color:var(--muted);max-width:52ch}
-  .btn{font-family:"IBM Plex Mono",monospace;font-size:.86rem;font-weight:500;color:var(--bg);
-    background:var(--signal);border-radius:10px;padding:.8rem 1.3rem;white-space:nowrap;
-    transition:.18s;display:inline-block}
-  .btn:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 12px 30px -12px var(--signal)}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line2)}
-  .btn.ghost:hover{border-color:var(--signal);box-shadow:none}
-
-  /* how it works strip */
-  .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:2rem}
-  @media(max-width:740px){.loop{grid-template-columns:1fr 1fr}}
-  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.1rem;position:relative}
-  .step .k{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--faint)}
-  .step h4{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;margin:.35rem 0 .3rem}
-  .step p{margin:0;font-size:.9rem;color:var(--muted);line-height:1.5}
-  .step .arrow{position:absolute;right:-.55rem;top:50%;transform:translateY(-50%);color:var(--signal-dim);
-    font-size:1.1rem;z-index:3}
-  @media(max-width:740px){.step .arrow{display:none}}
-
-  footer{border-top:1px solid var(--line);margin-top:4rem;padding:2.4rem 0 4rem;color:var(--faint);
-    font-size:.9rem}
-  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}
-  footer a{color:var(--muted)}
-  footer .mono{font-size:.82rem}
-
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
-    .spark{animation:none;stroke-dashoffset:0}.sparkfill{animation:none;opacity:.5}
-    .brand .dot{animation:none}
-  }
+  /* ---------- deep dive cta ---------- */
+  .dd{border:1px solid var(--ink);background:var(--paper-2);padding:34px 32px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
+  @media(max-width:720px){.dd{grid-template-columns:1fr;}}
+  .dd h2{font-family:var(--serif);font-size:27px;font-weight:500;margin:0;letter-spacing:-.01em;line-height:1.1;}
+  .dd p{margin:12px 0 0;color:var(--ink-2);font-size:14px;max-width:54ch;line-height:1.55;}
 </style>
 </head>
 <body>
+<div id="app"></div>
 
-<nav>
-  <div class="wrap">
-    <span class="brand"><img class="logo" src="assets/monkey-180.png" alt="active_monkey logo" width="30" height="30" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'"><span class="dot" style="display:none"></span>active_monkey</span>
-    <div class="links">
-      <a href="#journey">The journey</a>
-      <a href="#insights">What we learned</a>
-      <a href="open_problem.html">The open problem</a>
-      <a class="gh" href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </div>
-</nav>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="experiments-data.js"></script>
+<script src="am-live.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="am-shared.jsx"></script>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow reveal">An autonomous research log · active inference</div>
-    <h1 class="reveal">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
-    <p class="lede reveal">No labels. No rewards. No pretraining. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts</b> on them. This page tracks every experiment, win and wall.</p>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
 
-    <div class="statbar reveal">
-      <div class="stat sig"><span class="n" data-count="30">30</span><span class="l">Experiments run</span></div>
-      <div class="stat win"><span class="n" data-count="21">21</span><span class="l">Breakthroughs</span></div>
-      <div class="stat wall"><span class="n" data-count="6">6</span><span class="l">Honest walls</span></div>
-      <div class="stat"><span class="n" style="color:var(--ink)">live</span><span class="l">A mind, running</span></div>
-    </div>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "growth",
+  "fontPair": "editorial",
+  "gridPaper": true,
+  "motion": true
+}/*EDITMODE-END*/;
 
-    <div class="fe reveal">
-      <div class="top"><span>SURPRISE <span class="mono">(bits / char)</span> — the only thing it feels</span><span><b>falling as it learns ↓</b></span></div>
-      <svg viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="fg" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stop-color="var(--signal)" stop-opacity=".35"/>
-            <stop offset="1" stop-color="var(--signal)" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <text x="2" y="14" class="axis">4.81</text>
-        <text x="2" y="86" class="axis">1.61</text>
-        <path class="sparkfill" d="M0,8 C90,10 120,18 180,30 C250,44 300,40 360,52 C430,66 470,58 540,66 C620,75 680,70 760,76 C820,80 860,82 900,84 L900,90 L0,90 Z"/>
-        <path class="spark" d="M0,8 C90,10 120,18 180,30 C250,44 300,40 360,52 C430,66 470,58 540,66 C620,75 680,70 760,76 C820,80 860,82 900,84"/>
-      </svg>
-    </div>
-  </div>
-</header>
+function Reveal({children, delay=0, tag="div", className=""}){
+  const [ref,seen] = useInView();
+  const Tag = tag;
+  return <Tag ref={ref} className={"rv "+(seen?"in ":"")+className} style={{transitionDelay:(seen?delay:0)+"ms"}}>{children}</Tag>;
+}
 
-<!-- three lenses -->
-<section class="wrap" id="idea">
-  <div class="kicker reveal">The big idea</div>
-  <h2 class="reveal">One principle, three lenses.</h2>
-  <p class="section-intro reveal">The whole project rides on a single bet from theoretical neuroscience: a mind is just a thing that tries to <em>not be surprised</em>. Everything — perception, learning, wanting, acting — falls out of minimizing free energy. We borrow three thinkers to keep it honest.</p>
-  <div class="lenses">
-    <div class="lens reveal"><div class="who">Friston · the math</div><h3>It's all free energy.</h3><p>Acting vs. asking, exploring vs. exploiting — every choice is one trade-off: reduce surprise now, or seek information to reduce it later.</p></div>
-    <div class="lens reveal"><div class="who">Seth · perception</div><h3>A controlled hallucination.</h3><p>What the agent "sees" is its own best guess, constantly tested against the evidence. Confidence is interoceptive — a feeling it can act on.</p></div>
-    <div class="lens reveal"><div class="who">Bach · architecture</div><h3>The world model is the self.</h3><p>Its persistent model of the world only ever grows and sharpens. Its preferences are its motivational core. Keep the self coherent; let it climb.</p></div>
-  </div>
-</section>
-
-<!-- the journey -->
-<section class="wrap" id="journey">
-  <div class="kicker reveal">The journey · append-only, newest last</div>
-  <h2 class="reveal">30 experiments, told honestly.</h2>
-  <p class="section-intro reveal">Each experiment is one hypothesis, one smallest-possible test, and the result we actually got — including the failures, which taught the most. It reads as a climb: from a machine that can barely echo letters, to one that won't grow a concept from nothing, to a little embodied creature whose mind quietly comes online — and ends up forming opinions of its own.</p>
-
-  <div class="filters reveal" role="tablist">
-    <span class="chip active" data-f="all">● all 30</span>
-    <span class="chip" data-f="win"><span class="swatch"></span>breakthroughs</span>
-    <span class="chip" data-f="wall"><span class="swatch"></span>honest walls</span>
-    <span class="chip" data-f="partial"><span class="swatch"></span>partials</span>
-  </div>
-
-  <div id="timeline"></div>
-</section>
-
-<!-- live feed -->
-<section class="wrap" id="live">
-  <div class="kicker reveal">Live from the lab · auto-pulled from EXPERIMENTS.md</div>
-  <h2 class="reveal live-head"><span class="live-dot"></span>The loop is still running.</h2>
-  <p class="section-intro reveal">The site auto-deploys every time the agent commits an experiment. The arcs above are curated; this feed updates itself straight from the lab notebook — newest first, so progress shows up the moment it lands.</p>
-  <div id="livefeed" class="livefeed reveal"><p class="feednote">syncing with the notebook…</p></div>
-</section>
-
-<!-- insights -->
-<section class="wrap" id="insights">
-  <div class="kicker reveal">The takeaways</div>
-  <h2 class="reveal">Six things the climb taught us.</h2>
-  <div class="insights">
-    <div class="insight reveal"><div class="n">01</div><h3>Depth, not capacity.</h3><p>Adding more internal states never helped the agent learn word order. Adding <em>one more character of memory</em> flipped the switch instantly. The lever was always context depth.</p></div>
-    <div class="insight reveal"><div class="n">02</div><h3>Free energy is the feeling.</h3><p>Low surprise <em>is</em> understanding. The agent's only reward is its own prediction success — no external score, no labels. "Getting it" feels good from the inside.</p></div>
-    <div class="insight reveal"><div class="n">03</div><h3>Embodiment breaks symmetry.</h3><p>A bare stream of symbols can't bootstrap a concept — the math literally has no gradient to start. A body that <em>acts</em> in a correlated world supplies the missing push.</p></div>
-    <div class="insight reveal"><div class="n">04</div><h3>Nothing crystallizes from nothing.</h3><p>Every win came from a foothold: grounding, a body, or continuous lived experience. Pure self-organization from a symmetric start always stalled — exactly as the theory predicts.</p></div>
-    <div class="insight reveal"><div class="n">05</div><h3>Wanting needs no reward.</h3><p>Valence grounds in the agent's <em>own</em> free energy. An arbitrary cue becomes "good" just by co-occurring with low surprise — then it acts to seek that state. Desire, with nothing injected.</p></div>
-    <div class="insight reveal"><div class="n">06</div><h3>A want needs a gradient.</h3><p>Knowing where you are and wanting a goal isn't enough to move toward it. Only planning over the learned map — far enough ahead to feel the goal — turns a wish into purposeful action.</p></div>
-  </div>
-</section>
-
-<!-- how the loop works -->
-<section class="wrap" id="loop">
-  <div class="kicker reveal">Under the hood</div>
-  <h2 class="reveal">The loop that never stops.</h2>
-  <p class="section-intro reveal">It runs itself. Every cycle is the same four beats — and the world model in between only ever grows.</p>
-  <div class="loop">
-    <div class="step reveal"><div class="k">cycle · 1</div><h4>Experiment</h4><p>Form one hypothesis. Make the smallest change that tests it.</p><span class="arrow">→</span></div>
-    <div class="step reveal"><div class="k">cycle · 2</div><h4>Improve &amp; test</h4><p>Run it against a frozen evaluator. Keep it only if free energy drops.</p><span class="arrow">→</span></div>
-    <div class="step reveal"><div class="k">cycle · 3</div><h4>Document &amp; find</h4><p>Write the honest result — win or wall — into the append-only log.</p><span class="arrow">→</span></div>
-    <div class="step reveal"><div class="k">cycle · 4</div><h4>Showcase</h4><p>Surface the next open thread. Then begin again, forever.</p></div>
-  </div>
-</section>
-
-<!-- open problem CTA -->
-<section class="wrap">
-  <div class="cta reveal">
-    <div class="txt">
-      <div class="kicker">The deep dive</div>
-      <h2>Why a mind won't grow a concept on its own.</h2>
-      <p>The hardest wall, stated precisely in mathematics: where free-energy minimization stops, why an unsupervised "concept" refuses to crystallize — and the exact footholds that break the symmetry.</p>
-    </div>
-    <div style="display:flex;gap:.7rem;flex-wrap:wrap">
-      <a class="btn" href="open_problem.html">Read the open problem →</a>
-      <a class="btn ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/EXPERIMENTS.md" target="_blank" rel="noopener">Raw lab notebook</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <span class="mono">active_monkey · free energy = surprise = the reward · the trail lives in <a href="https://github.com/Mirrorad1/active_monkey/blob/main/EXPERIMENTS.md">EXPERIMENTS.md</a></span>
-    <span class="mono">a little mind, coming online — one experiment at a time</span>
-  </div>
-</footer>
-
-<script>
-const ARCS = [
-  {
-    idx:"I", title:"Learning to speak, one character at a time",
-    span:"Exp 1–8",
-    sub:"Can a free-energy agent learn structure at all? It can — and the lever turns out to be memory of recent context, not raw capacity.",
-    exps:[
-      {n:1, o:"win", t:"Does it learn at all?", d:"A character model's surprise falls <span class='hl'>4.81 → 4.00 bits</span>; output shifts from noise toward real spacing and letter-clusters. The engine works: free energy drops as it learns.", m:"4.81 → 4.00 bits/char"},
-      {n:2, o:"win", t:"Can it learn to seek good outcomes?", d:"Given a preference and the freedom to choose, it learns which action pays off — positive-feedback rate <span class='hl'>0.90 → 1.00</span>. Preference + planning = it learns to seek.", m:"0.90 → 1.00 hit-rate"},
-      {n:3, o:"partial", t:"Teach it to say “mirro”", d:"It learns the <span class='hl'>letters</span> (m, i, r, o, space) but jumbles the order: “mo io riorrr”. It has the ingredients, not the recipe."},
-      {n:4, o:"wall", t:"Does bigger memory (more states) fix the order?", d:"No improvement at <span class='hl'>any</span> size. The key finding: the wall is the <em>first-order assumption</em>, not capacity. More states ≠ more memory of context."},
-      {n:5, o:"win", t:"Does context (state = last character) fix it?", d:"Real word-fragments appear: <span class='hl'>“the”, “tat”, “sa”</span>, correct spacing and periods. Memory of recent context — not capacity — produces order and words."},
-      {n:6, o:"partial", t:"The limits of one character of memory", d:"One char can't tell repeated letters apart, nor “m mid-word” from “m starting the answer”. Provably need <span class='hl'>≥ 2 characters</span> of context."},
-      {n:7, o:"win", t:"How deep is deep enough?", d:"<span class='hl'>Two</span> characters of context is the switch-on point: exact “mirro” <em>and</em> “name.” → “mirro.”. A question evokes its learned answer — comprehension as prediction.", m:"trigram → exact recall"},
-      {n:8, o:"win", t:"Depth, now inside active inference", d:"Reproduces it all as <span class='hl'>free-energy minimization</span>, not counting: pair-states emerge that literally <em>are</em> memory of recent context. Depth-as-lever, confirmed in the real framework."},
-    ]
-  },
-  {
-    idx:"II", title:"The wall: a concept won't grow from nothing",
-    span:"Exp 9–16",
-    sub:"To bind ideas across a sentence, the agent needs a held “concept.” Forcing one in works; making one emerge unsupervised hits a deep, well-defined wall — but a different door opens: grounded wanting.",
-    exps:[
-      {n:9, o:"wall", t:"The long-range binding wall", d:"“sky is” → “green” and “grass is” → “green”. A fixed-memory model can't bind subject to predicate across a gap — at any size. This is the boundary between n-gram tricks and real language."},
-      {n:10, o:"win", t:"A held topic binds long-range", d:"Give it a slow “topic” latent and: sky → <span class='hl'>blue</span>, grass → <span class='hl'>green</span>. Hierarchy is the fix — a slow held state conditioning the fast stream does what no flat memory can."},
-      {n:11, o:"win", t:"Can the hierarchy even be built?", d:"The two-factor, topic-conditioned model <span class='hl'>constructs and runs cleanly</span> in the framework. The vehicle for an inferred concept exists — now, can the concept emerge on its own?"},
-      {n:12, o:"wall", t:"Unsupervised: does the topic differentiate?", d:"The topic belief stays <span class='hl'>[0.5, 0.5]</span> the entire run — it never specializes. The mixture local-minimum: with a symmetric start, there's no gradient to break the tie."},
-      {n:13, o:"wall", t:"A semi-supervised foothold", d:"Even scaffolding the topic <em>during training</em> doesn't produce inference at <em>test</em> time. The concept needs a <span class='hl'>direct evidential pathway</span> — through what it sees, not just transition statistics."},
-      {n:14, o:"win", t:"The grounding bridge: surprise becomes valence", d:"An arbitrary cue becomes <span class='hl'>“good”</span> purely by co-occurring with low-surprise states — no labels. Confident after “a” (3.04 bits), lost after “z” (4.79). Felt-good, grounded in its own understanding.", m:"3.04 vs 4.79 bits"},
-      {n:15, o:"win", t:"Closing the affective loop", d:"It <span class='hl'>acts</span> to seek the state it grounded as good — choosing the predictable, “understood” scene (q = 0.79). Wanting, with no reward injected: desire as a drive to persist in states it predicts.", m:"q(seek-good) = 0.79"},
-      {n:16, o:"wall", t:"Why the symmetry won't break", d:"Even with a <em>perfect</em> foothold, emergence fails — the mean-field approximation <span class='hl'>severs the message</span> from observation to concept. The fix the math demands: let the concept enter through what the agent <em>sees</em>."},
-    ]
-  },
-  {
-    idx:"III", title:"The embodied turn: a little mind comes online",
-    span:"Exp 17–25",
-    sub:"Lower the bar from “human concept” to “mouse place cell.” Give the agent a body in a small world. Suddenly structure self-organizes — and it climbs to a creature that perceives, remembers, wants, and navigates.",
-    exps:[
-      {n:17, o:"win", t:"An embodied creature learns its world", d:"Wandering a tiny world, it recovers the map of how its actions move it — <span class='hl'>error 0.003</span>, on the first try. Acting in a correlated world breaks the symmetry a symbol stream never could.", m:"map error 0.003"},
-      {n:18, o:"win", t:"Place emerges via path integration", d:"In a world where places look identical, it goes from <span class='hl'>lost (2.58 bits) → certain (0.00)</span> using only movement + ambiguous glimpses. A place-sense, built not observed: the essence of place cells."},
-      {n:19, o:"partial", t:"Place fields, learned from scratch", d:"Learning the map <em>and</em> the place-sense together only coarsely works — and surfaces a <span class='hl'>registration confound</span> (the inner sense drifts out of sync with the world). Embodiment helps; it doesn't yet fully solve."},
-      {n:20, o:"win", t:"Place fields self-organize — cleanly", d:"Keep experience <span class='hl'>continuous and registered</span> and the learned map matches the true world <em>exactly</em>, localizing to 0.00 bits. The recipe: embodiment + grounding + continuous lived experience. A milestone.", m:"learned map = true map"},
-      {n:21, o:"win", t:"The recipe scales to 2D", d:"In a 3×3 walled grid, place fields self-organize from scratch and localize perfectly. The recipe is <span class='hl'>robust</span> to bigger, richer worlds."},
-      {n:22, o:"wall", t:"Where am I + what I want ≠ action", d:"Knowing its place and wanting a goal, it still <span class='hl'>wanders worse than random</span> — the goal sits beyond its planning horizon, so desire produces no gradient. The active-inference face of sparse reward."},
-      {n:23, o:"win", t:"Planning depth turns wanting into doing", d:"Plan far enough ahead to feel the goal, and navigation becomes <span class='hl'>optimal</span> — corner to goal in 4 steps. The end-to-end minimal mind now runs: perceive + want + act, all grounded.", m:"optimal · 4 steps"},
-      {n:24, o:"win", t:"Bind an object to a place", d:"By wandering, it learns <em>where the thing is</em> — a place↔object relation self-organizing from experience. The seed of a <span class='hl'>fact</span>, a proposition: “the thing is there.”"},
-      {n:25, o:"win", t:"Recall + navigate: learn a fact, then act on it", d:"It learns where the object is, then <span class='hl'>remembers and walks to it</span> optimally. The full cognitive cycle, end to end: perceive → learn a fact → want → recall, plan, and act. All grounded; nothing pretrained.", m:"remembered · optimal path"},
-    ]
-  },
-  {
-    idx:"IV", title:"The mind forms its own mind",
-    span:"Exp 26–30",
-    sub:"The payoff. A creature that doesn't just perceive and act, but comes to value things from its own lived experience — forms an opinion no one trained into it, acts on it, answers what it thinks, and composes those thoughts.",
-    exps:[
-      {n:26, o:"win", t:"An opinion forms from a life lived", d:"Two <em>identical</em> creatures in two worlds. Each comes to value whatever its own world made predictable — <span class='hl'>C = [0.98, 0.01, 0.01]</span> vs <span class='hl'>[0.01, 0.01, 0.98]</span>. Same brain, different history → different values. A disposition, emerged — and <em>individual</em>.", m:"same brain · different values"},
-      {n:27, o:"win", t:"The opinion drives behaviour", d:"Carrying the values they each formed, the two creatures walk to <span class='hl'>different cells</span> — each toward the feature it learned to love. Divergent, purposeful action straight from divergent self-formed values.", m:"A → red · B → green"},
-      {n:28, o:"win", t:"“Ask it what it thinks”", d:"Same question, <span class='hl'>different answers</span>: one likes red and is unsettled by green; the other, the reverse. Each replies from its own lived experience. <em>(The wording is a template — but the content, what it values and why, is genuinely its own.)</em>", m:"favourites: red vs green"},
-      {n:29, o:"win", t:"Thoughts compose", d:"Chain it: “what's near the thing you like, and how do you feel about it?” It composes <span class='hl'>favourite → place → neighbours → feeling</span> into a value-laden relational answer. Self-formed thoughts compose, not just single opinions."},
-      {n:30, o:"win", t:"Planning that scales", d:"Value-propagation over the learned map plans <span class='hl'>optimally</span> on 3×3, 5×5, and 8×8 grids — at polynomial cost, where enumerating policies would need 268 <em>million</em>. The creature plans efficiently over its own world.", m:"optimal on 8×8 · 16 sweeps"},
-    ]
-  }
-];
-
-const PIVOT = {
-  after: 16,
-  tag: "Direction pivot · between Exp 16 and 17",
-  title: "Lower the bar: a mouse, not a human.",
-  body: "The same magic — structure emerging from experience with no labels — shows up in a mouse forming <b>place cells</b>: a spatial concept self-organizing from wandering. So stop hand-carving a single concept slot and hoping it fills. Give the agent a <b>body</b> in a small grounded world, many simple predictive units, and rich sensory input — then <b>run it and watch</b> structure condense. Emergence may be the kind of thing you can only prove by running it."
+/* per-act stats */
+function actStats(id, list){
+  const xs = (list||AM_EXPERIMENTS).filter(e=>e.chapter===id);
+  return { all:xs, win:xs.filter(e=>e.kind==="win").length, wall:xs.filter(e=>e.kind==="wall").length, partial:xs.filter(e=>e.kind==="partial").length };
+}
+const ACT_SUMMARY = {
+  language:"From a machine that barely echoes letters to one that won't grow a concept from nothing — and the discovery that depth, not capacity, is the lever.",
+  valence:"How a symbol becomes 'good' with no labels: valence grounds in the agent's own surprise, and it learns to act to feel understood.",
+  embodiment:"Give it a body. Place cells self-organize, it learns where it is, and it plans far enough ahead to reach what it wants.",
+  opinion:"Two identical creatures, raised in different worlds, come to value different things — and act on opinions that are entirely their own.",
+  frontier:"The honest boundary of 'from scratch', abstraction that scales, and a runnable demo where you ask it, in words, what it thinks.",
 };
 
-const tl = document.getElementById('timeline');
-ARCS.forEach(arc => {
-  const sec = document.createElement('div');
-  sec.className = 'arc';
-  sec.dataset.arc = arc.idx;
-  sec.innerHTML = `
-    <div class="arc-head reveal">
-      <span class="idx">${arc.idx}</span>
-      <div><h3>${arc.title}</h3></div>
-      <span class="span">${arc.span}</span>
-    </div>
-    <p class="arc-sub reveal">${arc.sub}</p>
-    <div class="track"></div>`;
-  const track = sec.querySelector('.track');
-  arc.exps.forEach(e => {
-    const node = document.createElement('div');
-    node.className = 'node reveal';
-    node.dataset.o = e.o;
-    const label = e.o === 'win' ? 'breakthrough' : e.o === 'wall' ? 'honest wall' : 'partial';
-    node.innerHTML = `
-      <div class="card">
-        <div class="row">
-          <span class="exp">EXP ${String(e.n).padStart(2,'0')}</span>
-          <h4>${e.t}</h4>
-          <span class="badge ${e.o}">${label}</span>
+function Hero({tally, status}){
+  const [ref,seen] = useInView({threshold:.4});
+  const total = useCountUp(tally.total, seen, 1000);
+  const wins  = useCountUp(tally.win, seen, 1200);
+  const walls = useCountUp(tally.wall, seen, 1300);
+  return (
+    <header className="hero" ref={ref}>
+      <div className="wrap hero-grid">
+        <div>
+          <div className="kicker">An autonomous research log · active inference</div>
+          <h1 className="h-display">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
+          <p className="lead">No labels. No rewards. No pretraining. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts.</b></p>
+          <div className="hero-cta">
+            <a className="btn btn-primary" href="journey.html">Follow the journey →</a>
+            <a className="btn btn-ghost" href="open_problem.html">The open problem</a>
+          </div>
+          <div className="hero-stats">
+            <div className="stat"><b className="tabnum">{total}</b><span>experiments run</span></div>
+            <div className="stat win"><b className="tabnum">{wins}</b><span>breakthroughs</span></div>
+            <div className="stat"><b className="tabnum">{walls}</b><span>honest walls</span></div>
+          </div>
         </div>
-        <p>${e.d}</p>
-        ${e.m ? `<span class="metric">${e.m}</span>` : ''}
-      </div>`;
-    track.appendChild(node);
-  });
-  tl.appendChild(sec);
-
-  // insert the pivot banner right after arc II
-  if (arc.idx === 'II') {
-    const p = document.createElement('div');
-    p.className = 'pivot reveal';
-    p.innerHTML = `<div class="tag">${PIVOT.tag}</div><h3>${PIVOT.title}</h3><p>${PIVOT.body}</p>`;
-    tl.appendChild(p);
-  }
-});
-
-// ---- filtering ----
-const chips = document.querySelectorAll('.chip');
-chips.forEach(chip => chip.addEventListener('click', () => {
-  chips.forEach(c => c.classList.remove('active'));
-  chip.classList.add('active');
-  const f = chip.dataset.f;
-  document.querySelectorAll('.node').forEach(n => {
-    n.style.display = (f === 'all' || n.dataset.o === f) ? '' : 'none';
-  });
-  // hide an arc whose nodes are all filtered out
-  document.querySelectorAll('.arc').forEach(a => {
-    const any = [...a.querySelectorAll('.node')].some(n => n.style.display !== 'none');
-    a.style.display = any ? '' : 'none';
-  });
-}));
-
-// ---- reveal on scroll ----
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// ---- count-up stats ----
-const cu = new IntersectionObserver((entries) => {
-  entries.forEach(en => {
-    if (!en.isIntersecting) return;
-    const el = en.target;
-    // re-read the target each frame so a later live update (loadLiveFeed) wins the race
-    let v = 0; const step = Math.max(1, Math.round(+el.dataset.count / 22));
-    const tick = () => { const target = +el.dataset.count; v = Math.min(target, v + step); el.textContent = v; if (v < target) requestAnimationFrame(tick); };
-    tick(); cu.unobserve(el);
-  });
-}, { threshold: 1 });
-document.querySelectorAll('.stat .n[data-count]').forEach(el => cu.observe(el));
-
-// ---- live feed: auto-pulled from EXPERIMENTS.md so new experiments show up on their own ----
-const CURATED_MAX = Math.max(...ARCS.flatMap(a => a.exps.map(e => e.n)));
-const FEED_LABEL = { win:'breakthrough', wall:'honest wall', partial:'partial', note:'result' };
-
-function outcomeOf(line){
-  const U = line.toUpperCase();
-  if (U.includes('PARTIAL')) return 'partial';
-  if (/NEGATIVE|\bFAILS?\b|COLLAPSE|\bWALL\b/.test(U)) return 'wall';
-  if (/POSITIVE|WORKS|\bCLEAN\b|MILESTONE/.test(U)) return 'win';
-  return 'note';
-}
-function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function feedRow(e){
-  return `<div class="feedrow${e.n > CURATED_MAX ? ' new' : ''}">`
-    + `<span class="exp">EXP ${String(e.n).padStart(2,'0')}</span>`
-    + `<span class="t">${esc(e.title)}</span>`
-    + `<span class="badge ${e.o}">${FEED_LABEL[e.o]}</span></div>`;
+        <div className="hero-side">
+          <SyncChip status={status} count={tally.total}/>
+          <div className="hero-plot">
+            <div className="ph"><span>Surprise · bits / char</span><span>the only thing it feels</span></div>
+            <SurprisePlot series={AM_SURPRISE} height={132} eager={true}/>
+            <div className="pv"><span className="from">4.81 — lost</span><span className="to">1.61 — understanding ↓</span></div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 
-async function loadLiveFeed(){
-  const box = document.getElementById('livefeed');
-  try {
-    const res = await fetch('EXPERIMENTS.md', { cache: 'no-store' });
-    if (!res.ok) throw new Error('fetch failed');
-    const txt = await res.text();
-    const re = /^##\s+Exp\s+(\d+)\s*[—-]\s*(.+)$/gm;
-    const byN = new Map();
-    let m;
-    while ((m = re.exec(txt))) {
-      const n = +m[1], line = m[2].trim();
-      byN.set(n, { n, o: outcomeOf(line), title: line.replace(/\s*\([^)]*\)\s*$/, '').trim() });
-    }
-    const all = [...byN.values()].sort((a, b) => a.n - b.n);
-    if (!all.length) throw new Error('no experiments parsed');
-
-    // keep the headline experiment count honest as the loop runs
-    const total = all[all.length - 1].n;
-    const sig = document.querySelector('.stat.sig .n');
-    if (sig) { sig.dataset.count = total; sig.textContent = total; }
-
-    const fresh = all.filter(e => e.n > CURATED_MAX).reverse();
-    const latest = all[all.length - 1];
-    let html = '';
-    if (fresh.length) {
-      html += `<div class="feednote">🆕 ${fresh.length} new experiment${fresh.length > 1 ? 's' : ''} since the curated arcs — added automatically</div>`;
-      html += fresh.map(feedRow).join('');
-      html += `<div class="feednote" style="margin-top:.9rem">earlier in the log</div>`;
-      html += all.slice(0, CURATED_MAX).slice(-3).reverse().map(feedRow).join('');
-    } else {
-      html += `<div class="feednote">✓ the curated arcs are current — newest in the notebook is Exp ${latest.n}</div>`;
-      html += all.slice(-5).reverse().map(feedRow).join('');
-    }
-    box.innerHTML = html;
-  } catch (err) {
-    // graceful: if the notebook can't be read (e.g. opened from file://), hide the section
-    document.getElementById('live').style.display = 'none';
-  }
+function Lenses(){
+  return (
+    <section id="idea">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">The big idea</div>
+          <h2 className="h-section">One principle, three lenses.</h2>
+          <p>The whole project rides on a single bet from theoretical neuroscience: a mind is just a thing that tries to <em>not be surprised</em>. Perception, learning, wanting, acting — all of it falls out of minimizing free energy. Three thinkers keep it honest.</p>
+        </Reveal>
+        <Reveal className="lenses" delay={80}>
+          {AM_LENSES.map((l,i)=>(
+            <div className="lens" key={i}>
+              <div className="who">{l.who} <span>· {l.lens}</span></div>
+              <h3>{l.title}</h3>
+              <p>{l.body}</p>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
 }
-loadLiveFeed();
+
+function Climb({exps}){
+  return (
+    <section id="climb">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">The climb · five acts</div>
+          <h2 className="h-section">A little mind, coming online.</h2>
+          <p>Every experiment is one hypothesis and its honest result. They read as an ascent — each act a question the agent had to answer before it could climb to the next. The log is append-only, so it keeps growing.</p>
+        </Reveal>
+        <div className="climb">
+          {AM_CHAPTERS.map((ch,i)=>{
+            const s = actStats(ch.id, exps);
+            return (
+              <Reveal key={ch.id} delay={i*60}>
+                <a className="act" href={`journey.html#act-${ch.id}`}>
+                  <div className="rn">{ch.act}</div>
+                  <div>
+                    <div className="lbl">{ch.label}</div>
+                    <p className="q">{ch.question}</p>
+                    <p className="sm">{ACT_SUMMARY[ch.id]}</p>
+                    <div className="dots">
+                      {s.all.map((e,j)=><i key={j} style={{background:e.kind==="win"?"var(--win)":e.kind==="partial"?"var(--partial)":"transparent",border:e.kind==="wall"?"1.6px solid var(--wall)":"none"}}></i>)}
+                    </div>
+                  </div>
+                  <div className="meta">
+                    <b className="tabnum">{String(s.all.length).padStart(2,"0")}</b>
+                    experiments
+                    <div className="go">explore act →</div>
+                  </div>
+                </a>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Takeaways(){
+  return (
+    <section id="learned">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">The takeaways</div>
+          <h2 className="h-section">Six things the climb taught us.</h2>
+        </Reveal>
+        <Reveal className="takes" delay={60}>
+          {AM_TAKEAWAYS.map((t,i)=>(
+            <div className="take" key={i}>
+              <div className="n">{t.n}</div>
+              <h3>{t.title}</h3>
+              <p>{t.body}</p>
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Loop(){
+  return (
+    <section id="loop">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">Under the hood</div>
+          <h2 className="h-section">The loop that never stops.</h2>
+          <p>It runs itself. Every cycle is the same four beats — and the world model in between only ever grows.</p>
+        </Reveal>
+        <Reveal className="loop" delay={60}>
+          {AM_LOOP.map((l,i)=>(
+            <div className="lp" key={i}>
+              <div className="c">cycle · {l.n}</div>
+              <h4>{l.title}</h4>
+              <p>{l.body}</p>
+              {i<AM_LOOP.length-1 && <span className="arr">→</span>}
+            </div>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function DeepDive(){
+  return (
+    <section id="dd">
+      <div className="wrap">
+        <Reveal className="dd">
+          <div>
+            <div className="kicker slate">The deep dive</div>
+            <h2 style={{marginTop:10}}>Why a mind won't grow a concept on its own.</h2>
+            <p>The hardest wall, stated precisely in mathematics: where free-energy minimization stops, why an unsupervised "concept" refuses to crystallize — and the exact footholds that break the symmetry.</p>
+          </div>
+          <a className="btn btn-primary" href="open_problem.html">Read the open problem →</a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function App(){
+  const [t,setTweak] = useTweaks(TWEAK_DEFAULTS);
+  useEffect(()=>{ applyTweaks(t); },[t]);
+  const { exps, tally, status } = useLiveExperiments();
+  return (
+    <>
+      <Nav active="home"/>
+      <Hero tally={tally} status={status}/>
+      <hr className="rule" style={{maxWidth:'var(--maxw)',margin:'0 auto'}}/>
+      <Lenses/>
+      <div style={{background:'var(--paper-2)'}}><Climb exps={exps}/></div>
+      <Takeaways/>
+      <div style={{background:'var(--paper-2)'}}><Loop/></div>
+      <DeepDive/>
+      <Footer/>
+      <TweaksPanel>
+        <TweakSection label="Palette"/>
+        <TweakRadio label="System" value={t.palette} options={["growth","compass","ember"]} onChange={v=>setTweak('palette',v)}/>
+        <TweakSection label="Type & texture"/>
+        <TweakRadio label="Fonts" value={t.fontPair} options={["editorial","grotesk"]} onChange={v=>setTweak('fontPair',v)}/>
+        <TweakToggle label="Graph paper" value={t.gridPaper} onChange={v=>setTweak('gridPaper',v)}/>
+        <TweakToggle label="Motion" value={t.motion} onChange={v=>setTweak('motion',v)}/>
+      </TweaksPanel>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('app')).render(<App/>);
 </script>
 </body>
 </html>
