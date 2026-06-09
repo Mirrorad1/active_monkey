@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:41, breakthrough:5, positive:24, wall:8, partial:4, from:4.81, to:4.00 };
+window.AM_TALLY = { total:42, breakthrough:5, positive:24, wall:8, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
