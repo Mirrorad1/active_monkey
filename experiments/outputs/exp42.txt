@@ -1,0 +1,19 @@
+=== Training 3 intent-specific agents ===
+  intent 0: trained on 'what do you like. i like red.'
+  intent 1: trained on 'do you like green. it unsettles me.'
+  intent 2: trained on 'where are you. i am at a green place.'
+
+=== Joint model: question priming ===
+  pair 0: q='what do you like.'
+    intent_mass=[1.000, 0.000, 0.000]  argmax_intent=0  correct=True
+    generated='i like red.'  target='i like red.'  exact=True
+  pair 1: q='do you like green.'
+    intent_mass=[0.000, 1.000, 0.000]  argmax_intent=1  correct=True
+    generated='it unsettles me.'  target='it unsettles me.'  exact=True
+  pair 2: q='where are you.'
+    intent_mass=[0.000, 0.000, 1.000]  argmax_intent=2  correct=True
+    generated='i are are are are are '  target='i am at a green place.'  exact=False
+
+intent_correct=3/3
+exact_count=2/3 (baseline exp41: 0/3)
+VERDICT: MIXED (intent 3/3, answers 2/3)
