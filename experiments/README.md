@@ -40,6 +40,28 @@ experiments/outputs/expNN.txt
 This file must be an unedited capture of `stdout`/`stderr` from the run that the
 EXPERIMENTS.md entry describes. It is the evidence base for the logged claim.
 
+### Verdict vocabulary
+
+When independently re-running an experiment the verdict is one of:
+
+- **MATCH** — exact numbers agree with the committed output (expected for deterministic
+  seeded scripts).
+- **PROPERTY-MATCH** — the re-run satisfies the predeclared property thresholds though
+  exact numbers differ (the *expected* verdict for stochastic experiments and for
+  persistent-creature episodes, where the creature's live history makes exact reproduction
+  undefined). Record which thresholds passed/failed.
+- **QUALITATIVE-MATCH** — direction and sign agree but numbers were not predeclared;
+  admissible only for Exp 1–40 (pre-convention) entries.
+- **MISMATCH** — output contradicts the predeclared prediction or falsifier. File a
+  correction entry citing the original.
+- **FAIL** — script errors or does not produce output. Treat as MISMATCH until resolved.
+
+**Persistent-creature re-verification unit.** For experiments that committed a
+`creature/state/<name>/` snapshot, the re-verification unit is
+**resume-from-committed-snapshot**: check out the before-hash, load the creature from
+that committed state, re-run the episode, and check property thresholds. Exact re-run of
+a lived creature's session is undefined and should not be attempted.
+
 ### How to run
 
 From the repo root:

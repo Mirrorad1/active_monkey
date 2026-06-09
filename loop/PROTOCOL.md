@@ -17,6 +17,8 @@ several half-experiments. Steps:
    - Prediction: what specific result you expect if the hypothesis is TRUE.
    - Falsifier: what result would count as the hypothesis being FALSE.
    No result may be interpreted against a prediction made after seeing it.
+   When the run is stochastic or involves the persistent creature, predictions and
+   falsifiers must be property-level with explicit thresholds (see VALIDATION.md).
 
 3. **Build small.** Smallest script that tests the hypothesis. Reuse verified patterns
    (Exp 21/26/30/34/35). Repo root or `PYTHONPATH=.`; run via `uv run --python .venv`.
@@ -60,6 +62,11 @@ several half-experiments. Steps:
    AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
    the same atomic commit. A log entry without committed script and output is an
    unverified claim.
+   - **Persistent-creature experiments ALSO** commit the updated
+     `creature/state/<name>/` snapshot (arrays.npz + manifest.json + biography) in the
+     same atomic commit. The entry records `age_steps` and `state_hash` before and after
+     the episode; this committed snapshot is the resume-from point for anyone replicating
+     the result.
 
    **Site update (mandatory):** the same commit also updates `experiments-data.js` with
    the new curated entry — kind graded honestly (breakthrough / positive / wall /

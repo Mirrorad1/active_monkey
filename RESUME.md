@@ -36,6 +36,10 @@ them** → **answers in words** what it thinks (content self-formed, labels taug
 **grammar / language-from-scratch**, and **fully tabula-rasa** structure (no innate anchor). These
 are written up in `open_problem.html`.
 
+As of Exp 41 the recipe's "continuous registered experience" is raised to the program level: a
+single persistent creature (`creature/`) accumulates across experiments instead of restarting at
+step 0.
+
 ## 3. Where we are (state as of Exp 40)
 
 - **M1–M3b built and green.** Inner controller loop, outer autopilot loop, character language
@@ -131,6 +135,7 @@ gently remind me it's a natural stopping point when insight flattens.
 | `active_loop/` | the code: controller, worker, specs, lang model, critic, loop machinery |
 | `world_model/` | persistent belief store (loop A); grows, never resets |
 | `eval/` | FROZEN scorers (never edit) |
+| `creature/` | persistent creature state — one creature's weights/belief/values/vocab + append-only biography, committed each experiment; `fork()` = counterfactual twin controls |
 
 **The designed-but-unbuilt next rung:** `docs/specs/m4-affective-dyad.md`
 — "talk to it and watch it learn to feel positive" (functional valence grounded in free energy,

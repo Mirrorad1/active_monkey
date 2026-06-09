@@ -46,6 +46,32 @@ A flattering false log is worthless. These rules bind every experiment entry.
   EXPERIMENTS.md entry. Anything written to `/tmp` and not moved into the repo before
   the session ends is gone.
 
+## Statistical reproducibility & the persistent creature (binding)
+
+- **Predeclared predictions/falsifiers for stochastic experiments must be PROPERTY-LEVEL
+  with explicit thresholds** — e.g. "map accuracy >= 8/9", "favorite stays correct in
+  >= 2 of 3 seeds". Post-hoc exact numbers are not admissible as the predeclared standard.
+  Exact-number match remains the standard ONLY for deterministic seeded scripts.
+
+- **When stochasticity matters, run >= 3 seeds and report ALL** (fractions passing, not
+  just the successful count). A single-seed result must say "single seed" explicitly in
+  the EXPERIMENTS.md entry; it cannot be promoted to a general finding without the
+  multi-seed sweep.
+
+- **Persistent-creature experiments:** commit the creature's state snapshot BEFORE and
+  AFTER the episode. The before-hash is the resumable starting point — anyone can re-run
+  the experiment from the committed state. Record `name`, `age_steps`, and `state_hash`
+  (before/after) in the EXPERIMENTS.md entry. Exact re-run does not apply to a lived
+  creature; **resume-from-snapshot** replaces it as the reproducibility unit.
+
+- **Lifelong-individual claims** ("its history made it X") require a counterfactual
+  control: a `fork()` twin run on the alternative history, or a cohort. An uncontrolled
+  biography anecdote is an anecdote — label it explicitly as such. Do not present it as
+  a finding without the control.
+
+- **The biography (BIOGRAPHY.jsonl) is append-only**, same rule as EXPERIMENTS.md.
+  Never edit past biography entries; corrections are new entries that cite the old ones.
+
 ## Self-audit (when asked, or every ~10 experiments)
 Reread the last N entries as a hostile reviewer: would each claim survive a replication
 by someone who only has the entry text? Log discrepancies as a correction entry.
