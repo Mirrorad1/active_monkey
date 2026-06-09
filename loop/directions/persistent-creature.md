@@ -19,6 +19,14 @@ life can show — interference effects, inertia trajectories, fork-vs-original d
 transfer when priors are real priors, not re-initialized ones. Those effects are
 genuinely riskable; they may not appear or may appear as walls.
 
+**Parallel track.** This direction runs ALONGSIDE the fresh-model experiment loop, not
+instead of it — other direction cards remain the default for mechanism validation with
+clean step-0 controls. The long-running life (`run_life.py`, optionally on a schedule)
+accumulates mirro's biography BETWEEN experiments. Experiments that need the lived
+creature `fork()` its latest committed snapshot, so the life feeds controlled experiments
+without being consumed by them. The daily/session runner is separate from the experiment
+runner (`run_loop.py`); neither controls the other.
+
 **Experiment ladder.**
 
 1. **Exp 41 — BIRTH.** Birth mirro in the 3×3 aliased world; live ~900 steps; commit the

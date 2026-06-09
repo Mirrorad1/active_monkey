@@ -71,6 +71,7 @@ experiments, not the autopilot. To continue the moonshot, re-issue the loop B pr
 ```bash
 cd /Users/mirro/Projects/active-loop
 uv run --python .venv python converse_demo.py        # capstone: two creatures, self-formed opinions
+uv run --python .venv python run_life.py --steps 200          # continue mirro's life (parallel track; born in Exp 45)
 uv run --python .venv pytest -q                      # fast suite (~58 tests, well under a minute)
 uv run --python .venv pytest -q -m 'slow or not slow' # full suite (~70 tests, ~4 min)
 uv run --python .venv python talk.py                 # char-level babbler REPL (honest ceiling)

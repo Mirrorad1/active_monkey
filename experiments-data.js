@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 40 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 45 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:44, breakthrough:5, positive:25, wall:9, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:45, breakthrough:5, positive:26, wall:9, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -409,7 +409,15 @@ window.AM_EXPERIMENTS = [
     setup:"Derive valence from the creature's own surprise trace (first-10% minus last-10% of each feature's encounters) instead of looking up its stored value. Predeclared: the two must agree for normally-raised creatures.",
     result:"Falsifier hit: 4/6 verdicts, both favorites wrong. Learning is a one-encounter transient (1.585 → 0.241 bits); a 100-encounter window averages it to 0.030 bits, below the 0.04–0.10-bit sampling drift of pure-noise features. The innate-prior dissociation probe came back vacuously 'confirmed' and is logged as uninterpretable.",
     implication:"Valence-of-learning is real but lives at encounter resolution — any −dF/dt readout windowed over life-fractions reads noise. And language wiring amplifies the failure honestly: the red-raised creature answered 'i like green' from the broken signal. Next: encounter-resolution operationalization with a threshold above the measured noise floor.",
-    trace:{ script:"experiments/exp44_trace_valence.py", output:"experiments/outputs/exp44.txt" } }
+    trace:{ script:"experiments/exp44_trace_valence.py", output:"experiments/outputs/exp44.txt" } },
+
+  { n:45, kind:"positive", chapter:"embodiment",
+    title:"BIRTH of mirro — persistent creature's first life.",
+    one:"mirro born, lives 900 steps, self-organizes a perfect sensory map, snapshot committed and resumable.",
+    setup:"Birth mirro in Exp 21's 3×3 aliased world (cmap=[0,1,2,1,2,0,2,0,1], seed=7). Live 900 continuous steps (belief never reset). Save to creature/state/mirro/. Predeclared thresholds: map accuracy >= 8/9; save→load state_hash identical; localization near 0 bits. Seed-robustness control: seeds 8 and 9 also live 900 steps; property >= 2/3 births reach >= 8/9.",
+    result:"age=900, map_accuracy=1.0000 (9/9), localize_bits≈0.000, favorite=color-0, conviction=0.354, state_hash=24197c338d576a8e… Seeds 8 and 9: both 9/9 (3/3 passing). Roundtrip hash: identical (PASS).",
+    implication:"The RECIPE's 'continuous registered experience' is raised to the program level. mirro has a committed snapshot (creature/state/mirro/) that is the resume-from point for future sessions. fork() + committed snapshot enables controlled counterfactual experiments against mirro's accumulated life. Mechanism = consolidation of Exp 21.",
+    trace:{ script:"experiments/exp45_birth-of-mirro.py", output:"experiments/outputs/exp45.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

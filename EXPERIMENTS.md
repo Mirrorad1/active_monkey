@@ -861,3 +861,11 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: Exp 45 predeclares the encounter-resolution operationalization (enc-1 surprise minus
   asymptote, threshold above the measured 0.10-bit noise floor); part-3 dissociation re-probed
   only if part 1 passes.
+
+## Exp 45 — BIRTH of mirro: the persistent creature's first life (POSITIVE-SINGLE; consolidation + new persistence substrate)
+- Setup: Birth mirro (3×3 world, cmap=[0,1,2,1,2,0,2,0,1], n_colors=3, seed=7). Live 900 continuous steps (no belief reset). Save to creature/state/mirro/ (arrays.npz + manifest.json + BIOGRAPHY.jsonl). Predeclared thresholds: map accuracy >= 8/9, save->load state_hash identical, localization near 0 bits. Seed-robustness control: seeds 8 and 9 also run 900 steps; property >= 2/3 births reach >= 8/9. Disposable seeds NOT saved.
+- Result: seed 7: age=900, map_accuracy=1.0000 (9/9 cells), localize_bits=~0.000, favorite=color-0, conviction=0.3537, state_hash=24197c338d576a8e... Seed robustness: seeds 8 and 9 both 9/9 (3/3 passing). Save->load roundtrip: state_hash identical (PASS). All predeclared thresholds met.
+- Implication: the RECIPE's "continuous registered experience" is now raised to the program level. One named creature (mirro) has a committed snapshot (creature/state/mirro/) that is the resume-from point for any future session. Fork() + committed snapshot = controlled counterfactual experiments against mirro's accumulated life. Mechanism = consolidation of Exp 21.
+- Honest caveat: mechanism is direct consolidation of Exp 21 (place-cell self-organization); persistence is engineering + the RECIPE taken seriously, not itself emergence. Single canonical birth; property checked across 3 seeds (all 3 passed, stronger than the predeclared >= 2/3 threshold). Snapshot committed at age 900; resumability verified by hash check, not by continuation-accuracy test (that's episode 2 of the ladder).
+- Verdict: POSITIVE-SINGLE / CONSOLIDATION (Exp 21 mechanism) + new persistence substrate. Self-grade: POSITIVE-SINGLE.
+- Next (episode 2 of the ladder): load mirro in a fresh Python process, run 300 more steps, verify map accuracy and entropy do not degrade (falsifier: < 7/9 or entropy increase > 10%).
