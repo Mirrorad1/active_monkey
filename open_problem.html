@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Open Problem — Emergent Latent Structure in Active Inference</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  :root{
+    --bg:#0e1117; --panel:#161b22; --ink:#e6edf3; --muted:#9aa7b4;
+    --accent:#8ab4f8; --good:#7ee787; --bad:#ff7b72; --line:#283039; --warn:#f0c674;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:860px;margin:0 auto;padding:3.2rem 1.4rem 6rem;}
+  header{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:2.2rem}
+  h1{font-size:2.0rem;line-height:1.2;margin:0 0 .5rem;letter-spacing:-.5px}
+  h1 .sub{display:block;font-size:1.02rem;color:var(--muted);font-weight:400;margin-top:.5rem}
+  h2{font-size:1.32rem;margin:2.6rem 0 .8rem;color:var(--accent);letter-spacing:-.2px}
+  h3{font-size:1.05rem;margin:1.6rem 0 .4rem;color:var(--ink)}
+  p{margin:.7rem 0}
+  .muted{color:var(--muted)}
+  .lead{font-size:1.08rem;color:#cdd6e0}
+  code{background:#1f2630;padding:.1em .4em;border-radius:5px;font-size:.92em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:1.1rem 1.3rem;margin:1.2rem 0}
+  .card.good{border-left:3px solid var(--good)}
+  .card.bad{border-left:3px solid var(--bad)}
+  .card.warn{border-left:3px solid var(--warn)}
+  .tag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.12rem .6rem;margin-bottom:.5rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .mini{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem}
+  .mini b{color:var(--accent)}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:1.7rem;height:1.7rem;
+    border-radius:50%;background:var(--accent);color:#0e1117;font-weight:700;font-size:.95rem;margin-right:.5rem}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.95rem}
+  th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+  th{color:var(--muted);font-weight:600}
+  .ok{color:var(--good)} .no{color:var(--bad)}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+  a{color:var(--accent)}
+  .pill{font-size:.8rem;color:var(--muted)}
+  mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="tag">active-loop · research note</div>
+  <h1>The open problem, precisely
+    <span class="sub">Why a free-energy agent won’t grow a concept (a “topic”, a “self”, an opinion) on its own — and exactly where the mathematics stops</span>
+  </h1>
+  <p class="muted">Goal: a discrete active-inference agent that learns language and forms its own dispositions <em>from scratch</em> — never pre-trained on opinions. The experiments hit a wall whose shape is well-defined. This note states that wall in math.</p>
+</header>
+
+<p class="lead">We are asking the model to discover, <strong>unsupervised</strong>, a latent variable it was never given — a “topic”/concept \(z\) — purely by minimizing free energy. That is the crux, and it is genuinely hard.</p>
+
+<h2>The model</h2>
+<p>A hierarchical state-space (active-inference) model: a slow latent \(z\) (topic, near-identity dynamics so it persists), a fast latent \(s_t\) (character context), discrete emissions \(o_t\) (characters), with Dirichlet priors on the parameters \(A,B\):</p>
+$$p(o_{1:T}, s_{1:T}, z, A, B) \;=\; p(z)\,p(A)\,p(B)\prod_{t}\; \underbrace{p(o_t \mid s_t; A)}_{\text{emission}}\;\underbrace{p(s_t \mid s_{t-1}, z; B)}_{\text{topic-conditioned transition}}$$
+
+<p>We minimize variational free energy over a mean-field posterior \(q(z)\,q(s_{1:T})\,q(A)\,q(B)\):</p>
+$$F \;=\; \mathbb{E}_q\!\big[\ln q - \ln p\big] \;=\; \underbrace{-\,\mathbb{E}_q\!\big[\ln p(o\mid s,A)\big]}_{\text{inaccuracy (surprise)}} \;+\; \underbrace{\mathrm{KL}\!\big[q(z,s,A,B)\,\Vert\,p(z,s,A,B)\big]}_{\text{complexity}}.$$
+<p class="muted">This is variational EM: the <em>E-step</em> infers \(q(z),q(s)\) given \(A,B\); the <em>M-step</em> is the Dirichlet counting update of \(A,B\) given the beliefs. At the optimum the per-step free energy equals the predictive surprise \(-\ln p(o_t\mid o_{<t})\) — the “bits/char” the agent literally feels.</p>
+
+<div class="card warn">
+  <div class="tag">the open problem in one sentence</div>
+  <p style="margin:.2rem 0 0"><strong>This objective has a dominant fixed point at which the latent \(z\) is useless, and nothing in the dynamics pushes the system off it.</strong> Three exact reasons, plus a separate long-range sub-problem.</p>
+</div>
+
+<h2><span class="num">1</span>A symmetric saddle — no gradient to break the symmetry</h2>
+<p>If \(B\) is symmetric in \(z\) (all topics identical at initialization), then \(q(z{=}k)=1/K\) is stationary and</p>
+$$\left.\frac{\partial F}{\partial(\text{topic differentiation})}\right|_{\text{symmetric}} = 0 .$$
+<p>There is literally <strong>zero first-order force</strong> driving the topics to specialize. Worse, the entropy term \(-\,\mathbb{E}_q[\ln q(z)]\) inside \(F\) <em>actively smooths</em> any small fluctuation back toward uniform. Escaping requires a <em>second-order</em> fluctuation to be amplified, and mean-field damps exactly those.</p>
+<div class="card bad">
+  <span class="pill">observed — Exp 12</span>
+  <p style="margin:.3rem 0 0"><code>sky is → "s gree"</code> &nbsp; <code>grass is → "s gree"</code> &nbsp; topic belief stayed <code>[0.5, 0.5]</code> the entire run. The latent never differentiated.</p>
+</div>
+
+<h2><span class="num">2</span>Non-identifiability — and complexity <em>prefers</em> collapse</h2>
+<p>The marginal likelihood \(p(o_{1:T}\mid A,B)\) can be explained two ways:</p>
+<div class="grid">
+  <div class="mini"><b>(a) one topic</b>, with <em>averaged</em> transitions over the mixture.</div>
+  <div class="mini"><b>(b) two topics</b>, each <em>specialized</em> to its clause type.</div>
+</div>
+<p>These are near-degenerate in accuracy — the latent partition is <strong>non-identifiable</strong> without an inductive bias. And the complexity term \(\mathrm{KL}[q\,\Vert\,p]\) <strong>rewards the simpler, topic-agnostic model</strong>: fewer effective states, lower KL. Bayesian Occam (model reduction) actively pulls toward <em>not using</em> \(z\).</p>
+<p class="muted">This is the same phenomenon as <strong>posterior collapse</strong> in VAEs: the latent goes unused because ignoring it costs ~nothing in accuracy and saves complexity.</p>
+
+<h2><span class="num">3</span>The EM chicken-and-egg (credit assignment)</h2>
+<p>To infer \(q(z)\) you need topic-differentiated \(B\); to learn differentiated \(B\) you need an informative \(q(z)\). Symmetric init gives no bootstrap, and variational EM only finds <strong>local</strong> optima. The “use the latent” basin and the “ignore the latent” basin are separated — and you start in the second one.</p>
+<div class="card bad">
+  <span class="pill">observed — Exp 13</span>
+  <p style="margin:.3rem 0 0">Even with the topic <em>teacher-forced during training</em>, at test the inferred topic returned to <code>[0.5,0.5]</code> and binding failed — because the emission \(A\) is topic-independent, so the subject has no <em>direct</em> evidential pathway to move \(q(z)\); the only channel is transition-mismatch, which single-step inference does not accumulate.</p>
+</div>
+
+<h2>The separate sub-problem: long-range precision (binding)</h2>
+<p>Even granting a topic, the dependency “<strong>sky</strong> … is <strong>blue</strong>” spans 5+ steps. The filtering posterior is Markov:</p>
+$$q(s_t) \;\propto\; p(o_t\mid s_t)\sum_{s_{t-1}} p(s_t\mid s_{t-1})\,q(s_{t-1}),$$
+<p>so it <strong>forgets</strong>: by “is”, every trace of “sky” has been squeezed through one belief (d-separation). Only a dedicated slow factor, <em>held with high precision</em>, survives — but learning that persistence-precision again presupposes the topic is already informative.</p>
+<div class="card bad">
+  <span class="pill">observed — Exp 9</span>
+  <p style="margin:.3rem 0 0"><code>"sky is " → "green"</code> and <code>"grass is " → "green"</code>: a fixed-order Markov model cannot bind across a span longer than its order, <em>at any state count</em> (Exp 4: more states \(K\) did not help — capacity ≠ memory).</p>
+</div>
+
+<h2>What this is called, and why it’s open</h2>
+<p>It is <strong>unsupervised structure / representation learning</strong>: discovering <em>which</em> latent variables to posit (how many, at what timescale) from data alone, by free-energy minimization. Mathematically it is the conjunction of:</p>
+<ul>
+  <li>a <strong>non-convex objective with a dominant uninformative-latent basin</strong>;</li>
+  <li><strong>non-identifiability</strong> of latents without inductive bias;</li>
+  <li>a <strong>complexity term that prefers collapsing</strong> the latent (Bayesian model reduction working against you);</li>
+  <li><strong>long-range credit assignment</strong> under Markov forgetting.</li>
+</ul>
+<p>There is <strong>no general, reliable algorithm</strong> that solves this by the free-energy principle alone, unsupervised. It is the same wall that makes from-scratch deep latent-variable learning hard everywhere.</p>
+
+<h2>What actually breaks the symmetry (the fixes)</h2>
+<table>
+  <tr><th>Inductive bias</th><th>What it does mathematically</th></tr>
+  <tr><td>KL annealing / β-warmup</td><td>Down-weights the complexity term early so the latent is <em>used</em> before Occam prunes it.</td></tr>
+  <tr><td>Asymmetric init / perturbation</td><td>Seeds a fluctuation large enough to be amplified rather than smoothed.</td></tr>
+  <tr><td>Structure learning + Bayesian model reduction</td><td>Grows/prunes latents instead of fixing \(K\) — searches model space, not just parameters.</td></tr>
+  <tr><td>Precision / attention (learned precisions)</td><td>Protects the slow factor’s belief from Markov forgetting → enables long-range holding.</td></tr>
+  <tr><td><b>Grounding signal</b></td><td>Makes \(z\) <em>identifiable</em>: a cue tied to the latent gives the gradient a foothold.</td></tr>
+</table>
+
+<div class="card good">
+  <span class="pill">observed — Exp 14 (the grounded path works)</span>
+  <p style="margin:.3rem 0 0">An arbitrary cue acquired valence purely by co-occurring with the agent’s own low-free-energy states — <code>P(next | …a)=3.04 bits</code> vs <code>P(next | …z)=4.79 bits</code>. No labels. Where the <em>symmetric-emergent</em> path stalls, the <em>grounded</em> path crystallizes — exactly as the math predicts.</p>
+</div>
+
+<h2>Why this is the crux of the moonshot</h2>
+<p>An “opinion” is a learned latent disposition. For one to <strong>emerge, never pre-trained</strong>, the system must perform exactly this unsupervised abstraction discovery — and the mathematics says <em>it will not crystallize from symmetry; it needs something to condense around.</em> That is not a dead end. It is a precise design constraint:</p>
+<div class="card">
+  <p style="margin:.2rem 0"><strong>The path to emergent, non-pre-trained cognition is grounding + structure-learning inductive biases — not pure self-organization from nothing.</strong> Every result that worked (depth → words &amp; Q→A, held-topic binding, self-grounded valence) came from giving the latent a foothold. Every result that stalled was the symmetric, foothold-free case.</p>
+</div>
+
+<footer>
+  active-loop · the empirical trail lives in <code>EXPERIMENTS.md</code>; the longer formal treatment (VFE/EFE breakdown, d-separation, Bayesian model reduction) in <code>RESEARCH.md</code>. Generated 2026-06-08.
+</footer>
+</div>
+</body>
+</html>
