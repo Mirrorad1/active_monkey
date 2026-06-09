@@ -1,0 +1,42 @@
+============================================================
+Exp 45 — BIRTH of mirro: the persistent creature's first life
+============================================================
+
+World: 3x3, cmap=[0, 1, 2, 1, 2, 0, 2, 0, 1], n_colors=3
+Seed: 7  |  Steps: 900
+
+--- Birth mirro (seed=7) and live 900 steps ---
+age:           900
+learned map:   [0, 1, 2, 1, 2, 0, 2, 0, 1]
+true cmap:     [0, 1, 2, 1, 2, 0, 2, 0, 1]
+map_accuracy:  1.0000  (9/9 cells)
+localize_bits: -0.0000 bits
+favorite:      color-0  conviction=0.3537
+state_hash:    24197c338d576a8ec53caba0744c49dca9ded46d0917d9e12c82e117a7fa1fc0
+
+Predeclared threshold (>= 8/9): PASS
+
+--- Seed-robustness control (seeds 8, 9) — disposable, not saved ---
+seed 8: accuracy=1.0000 (9/9)
+seed 9: accuracy=1.0000 (9/9)
+Seeds passing >= 8/9: 3/3
+Property (>= 2 of 3 reach 8/9): PASS
+
+--- Save/load roundtrip: state_hash integrity ---
+manifest state_hash:  24197c338d576a8ec53caba0744c49dc...
+reloaded state_hash:  24197c338d576a8ec53caba0744c49dc...
+roundtrip match:      PASS — identical
+
+============================================================
+SUMMARY
+============================================================
+Verdict:               POSITIVE-SINGLE
+Map accuracy (seed 7): 1.0000 (9/9)
+Threshold (>= 8/9):    PASS
+Property (>= 2/3 seeds >= 8/9): PASS (3/3 passing)
+Roundtrip hash match:  PASS
+Mechanism:             consolidation of Exp 21 (place-cell self-organization)
+New element:           program-level persistent committed resumable life + biography
+
+mirro is born. snapshot committed to creature/state/mirro/
+state_hash (short):    24197c338d576a8e
