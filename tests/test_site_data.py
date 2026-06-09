@@ -338,3 +338,25 @@ def test_surprise_segments_points_in_md():
         assert any(a in md for a in alternatives), (
             f"AM_SURPRISE_SEGMENTS exp:{exp_n} value {v} ({alternatives}) not found in EXPERIMENTS.md"
         )
+
+
+# ---------------------------------------------------------------------------
+# Asset cache-busting: all ?v=N versions must agree across the three pages.
+# Guard for the recurring stale-cache failure (a shared asset like am.css
+# changes but a page is left referencing the old ?v= → returning visitors get
+# mixed old-JS/new-HTML and the page breaks). See loop/META.md.
+# ---------------------------------------------------------------------------
+
+_PAGES = ["index.html", "journey.html", "open_problem.html"]
+
+
+def test_asset_cache_versions_are_consistent():
+    versions = {}
+    for page in _PAGES:
+        found = re.findall(r"\?v=(\d+)", _read(page))
+        for v in found:
+            versions.setdefault(int(v), []).append(page)
+    assert len(versions) <= 1, (
+        "Mixed ?v= asset versions across pages (bump them together): "
+        + "; ".join(f"v={v}: {sorted(set(p))}" for v, p in sorted(versions.items()))
+    )
