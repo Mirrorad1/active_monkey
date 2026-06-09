@@ -382,7 +382,16 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 8's pair-state AIF model (K=784, learned transitions, greedy decode) trained on 3 converse Q→A pairs. Predeclared falsifier: identical continuations, since every question ends in the same 2-char state ('.',' '). Control: single-pair training.",
     result:"Control recalls its answer exactly ('i like red.'). Multi-pair: 0/3 exact, and all three continuations are identical up to common length — question identity is erased before the answer starts. Falsifier hit by exactly the predicted mechanism.",
     implication:"The flat 2-char substrate cannot do even templated question→answer selection over the converse vocabulary. This sets the measured baseline (0/3) for the next rung: a slow, held 'intent' factor above the character stream on the same corpus. Also fixed a one-char display skip in the recovered Exp 8 generator (emit-then-advance); the Exp 8 conclusion stands.",
-    trace:{ script:"experiments/exp41_pairstate_converse.py", output:"experiments/outputs/exp41.txt" } }
+    trace:{ script:"experiments/exp41_pairstate_converse.py", output:"experiments/outputs/exp41.txt" } },
+
+  { n:42, kind:"partial", chapter:"language",
+    title:"A held 'intent' state picks the right answer — depth is the leftover wall.",
+    one:"Intent inferred from the question text 3/3; answers 0/3 → 2/3, and the last failure is within-answer depth, not binding.",
+    metric:{ from:0, to:2, unit:"of 3 Q→A exact" },
+    setup:"Joint state (intent × char-pair), K=2352; intent never transitions (held slow factor), per-intent transitions taught with provided labels. At test, intent is NOT given — ordinary state inference over the question chars must find it before generation.",
+    result:"Intent posterior lands on the right block with mass 1.000 for all three questions; two answers come out exactly. The third fails inside its own answer ('i are are…') — the pair (' ','a') has four valid continuations in that text, a 2-char-depth ambiguity unrelated to question binding.",
+    implication:"Exp 41's single failure number (0/3) splits into two separate, measured walls: cross-pair selection (fixed completely by a held intent factor, as Exp 10 predicted) and within-sequence depth (Exp 7's threshold, still open). Honest limit: intent labels were taught during training — selection among taught blocks, not the M4 spec's from-scratch intent clustering.",
+    trace:{ script:"experiments/exp42_intent_factor.py", output:"experiments/outputs/exp42.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

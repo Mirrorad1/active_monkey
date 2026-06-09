@@ -775,3 +775,32 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: NEGATIVE (predeclared falsifier hit) / CONSOLIDATION (Exp 9 mechanism, new baseline).
 - Next (ladder step 2): add a slow "intent" factor held across the clause above the pair-state
   stream, same corpus, same scoring. Success = >0/3 exact, target 3/3.
+
+## Exp 42 — held "intent" factor restores Q→A selection; residual wall is within-answer depth (MIXED)
+- Setup: joint state s=(intent,prev,cur), K=3·784=2352; B block-diagonal in intent (intent never
+  transitions — held by construction); each block = the per-intent Dirichlet-learned pair-state
+  model (intent labels PROVIDED during training, taught like word labels). At test intent is NOT
+  provided: uniform prior, ordinary state inference over the question chars, then greedy
+  generation. Same corpus and scoring as Exp 41. Predeclared: TRUE = intent argmax 3/3 AND answers
+  3/3 exact (baseline 0/3); falsifier = exact count not better than 0/3 or intent at chance.
+- Result: intent posterior correct 3/3, mass 1.000 each. Answers 2/3 exact ('i like red.',
+  'it unsettles me.'). Pair 3 fails WITHIN its answer: 'i are are are…' vs 'i am at a green
+  place.'. Verification rerun byte-identical (deterministic pipeline). Mechanism check: pair
+  (' ','a') has exactly 4 continuations {r,m,t,space} in pair-3's text — a within-sequence
+  depth-2 ambiguity (Exp 7's threshold logic), NOT a binding failure.
+- Implication: the held upper factor cleanly fixes cross-pair SELECTION (0/3 → selection correct
+  3/3; 2/3 exact strings); the residual failure is the orthogonal within-answer depth limit. The
+  two failure modes of Exp 41 are now separated and individually measured.
+- Provided vs self-formed: intent labels provided in training; held-ness provided by architecture
+  (block-diagonal B), not by learned slow dynamics; intent at test INFERRED from the utterance
+  text by state inference. Explicitly NOT the M4 milestone — docs/specs/m4-affective-dyad.md
+  requires intents CLUSTERED from scratch from unlabeled utterances; this was selection among
+  taught blocks.
+- Honest caveat: 3 pairs, taught template text, toy scale; "intent inference" here is Bayesian
+  model selection among 3 separately-taught blocks inside one joint state space — standard
+  machinery; the binding restoration itself was predictable from Exp 10 (consolidation).
+- Verdict: MIXED (intent 3/3 as predicted; answers 2/3 vs predicted 3/3) — binding restoration =
+  CONSOLIDATION of Exp 10 on this vocab; the isolated within-answer depth wall + test-time intent
+  inference measurement = the new content.
+- Next: either depth-3 within blocks (fix the residual wall: s=(intent,c-2,c-1,c)) or ladder
+  step 3 (affective coloring from −dF/dt). Step 4 (M4 milestone) needs unlabeled intent clustering.
