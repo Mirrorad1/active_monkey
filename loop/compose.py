@@ -66,6 +66,9 @@ def compose(direction: str, persona: str, idea: str | None) -> str:
         "mid-task, continue across wakes. Keep responses lightweight. When insight",
         "flattens for ~3 iterations, say so and gently suggest a direction switch or a",
         "natural stop.",
+        "loop/META.md is also BINDING: when you find a noteworthy non-research issue or a"
+        " reusable insight, institutionalize a durable guard (test / loop-module rule / skill"
+        " via /claudeception) — don't just patch the instance.",
     ]
     return "\n".join(parts)
 
