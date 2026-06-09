@@ -668,3 +668,9 @@ the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a ri
 - 4x4 world: creature learns place map from scratch (acc 1.00), has a self-valued color (green), then
   value-iterates + navigates to the nearest green place (success). Perceive(learned map)+want(value)+
   act(plan) compose in one creature. Consolidation; no new insight.
+
+## Exp 39 — noise robustness of opinion formation (consolidation POSITIVE)
+- Raise creatures where the comfortable feature is only mostly-predictable (noise 0..0.6).
+- Result: favorite stays correct across all noise; conviction (value-mass) degrades gracefully
+  0.99->0.90->0.70->0.45 as predictability drops. Robust to moderate noise; graceful, not a cliff.
+  (Clearer experience -> stronger opinion.) Consolidation; no new insight.
