@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:40, breakthrough:5, positive:24, wall:7, partial:4, from:4.81, to:4.00 };
+window.AM_TALLY = { total:41, breakthrough:5, positive:24, wall:8, partial:4, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -373,7 +373,16 @@ window.AM_EXPERIMENTS = [
     setup:"Raise a creature to value feature 2; then change the world so feature 0 becomes comfortable; continue living.",
     result:"Favorite shifts 2 → 0 with sustained new experience. Opinion revised, not frozen — and shows realistic inertia (needed enough new evidence to overcome the entrenched prior).",
     implication:"Values update as the world and evidence change — mind-like revisability with realistic inertia. Consolidation of the opinion-formation arc; no new insight beyond confirming the mechanism is dynamic rather than frozen.",
-    trace:{ script:"experiments/recovered/exp40_opinion_revisable.py", output:"experiments/recovered/outputs/exp40.txt", rerun:"experiments/recovered/outputs/exp40_rerun_2026-06-09.txt", verified:"match" } }
+    trace:{ script:"experiments/recovered/exp40_opinion_revisable.py", output:"experiments/recovered/outputs/exp40.txt", rerun:"experiments/recovered/outputs/exp40_rerun_2026-06-09.txt", verified:"match" } },
+
+  { n:41, kind:"wall", chapter:"language",
+    title:"Flat context cannot pick which answer a question deserves.",
+    one:"The Exp 9 wall, measured on the converse vocabulary: 0/3 — the baseline an intent factor must beat.",
+    metric:{ to:0, unit:"of 3 Q→A exact" },
+    setup:"Exp 8's pair-state AIF model (K=784, learned transitions, greedy decode) trained on 3 converse Q→A pairs. Predeclared falsifier: identical continuations, since every question ends in the same 2-char state ('.',' '). Control: single-pair training.",
+    result:"Control recalls its answer exactly ('i like red.'). Multi-pair: 0/3 exact, and all three continuations are identical up to common length — question identity is erased before the answer starts. Falsifier hit by exactly the predicted mechanism.",
+    implication:"The flat 2-char substrate cannot do even templated question→answer selection over the converse vocabulary. This sets the measured baseline (0/3) for the next rung: a slow, held 'intent' factor above the character stream on the same corpus. Also fixed a one-char display skip in the recovered Exp 8 generator (emit-then-advance); the Exp 8 conclusion stands.",
+    trace:{ script:"experiments/exp41_pairstate_converse.py", output:"experiments/outputs/exp41.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

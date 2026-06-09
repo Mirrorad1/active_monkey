@@ -748,3 +748,30 @@ the recovered `.py` files preserved the literal `\"`, which Python 3.12 rejects 
 - Exp 7 (n-gram depth): MATCH — n=2 'iro miro mi', n=3 'irro mirro ', Q→A n=3 'mirro. ' match.
 - Exp 34 (language bridge): MATCH — word map correct, A likes red / B likes green, surprise 1.6/0.0 bits identical.
 Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
+
+## Exp 41 — flat pair-state AIF on the converse vocabulary: cannot select among Q→A pairs (NEGATIVE, expected; baseline for the intent factor)
+- Setup: Exp 8 pair-state pattern (K=28²=784, frozen deterministic A, Dirichlet-learned B, greedy
+  decode), corpus = 3 converse Q→A pairs ("what do you like."→"i like red.";
+  "do you like green."→"it unsettles me."; "where are you."→"i am at a green place."), BLOCK×3,
+  epochs=8. Predeclared: TRUE = 3/3 exact answers from question primes; falsifier = <3/3, expected
+  mode = identical continuations (every question ends in the same pair-state ('.',' ')).
+- Control: single-pair training → exact recall 'i like red.' (mechanics validated).
+- Result: multi-pair 0/3 exact; the three continuations are IDENTICAL up to common length
+  ('i at at at…' — drifts into the " at a" attractor from answer 3). Falsifier HIT by exactly the
+  predicted mechanism. all_continuations_identical_truncated=True.
+- Implication: the flat 2-char substrate cannot do even templated Q→A selection over the converse
+  vocabulary — question identity is gone by the time the answer starts. This is the measured
+  baseline (0/3) that ladder step 2 (slow held "intent" factor, same corpus) must beat.
+- Tooling note (honest, affects Exp 8's narrative): the recovered Exp 8 generator emits from
+  position L+2 (one-char skip; visible in experiments/recovered/outputs/exp08.txt — raw says
+  'irro. mi' after "name. ", the entry's "→ 'mirro.'" was a paraphrase of shifted output). Exp 41
+  fixes the generator (emit-then-advance, amendment noted in the script docstring before the
+  verdict was read); control confirms the fix ('i like red.' exact). Past entries untouched per
+  VALIDATION.md; the Exp 8 conclusion (depth works inside AIF) stands — the artifact was a
+  constant display shift, not a learning failure.
+- Honest caveat: 3 taught pairs at toy scale; the answers are TAUGHT template text, nothing
+  self-formed in this experiment; the outcome was predictable from Exp 9 — the new content is the
+  clean control + measured baseline on this exact vocabulary, plus the generator fix.
+- Verdict: NEGATIVE (predeclared falsifier hit) / CONSOLIDATION (Exp 9 mechanism, new baseline).
+- Next (ladder step 2): add a slow "intent" factor held across the clause above the pair-state
+  stream, same corpus, same scoring. Success = >0/3 exact, target 3/3.
