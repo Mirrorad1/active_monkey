@@ -632,6 +632,16 @@ Remaining = research frontiers, not new toy concepts: emergent grammar; fully-fr
   (genuine grammar = open ceiling); place map given here (learnable per Exp21).
 - Next: scale tests (Exp36); emergent grammar / fully-tabula-rasa remain research frontiers. Consolidation.
 
+## Exp 36 — SCALE test (consolidation): recipe holds at 6x6 (POSITIVE)
+- Setup: 6x6 grid (36 cells, 4 aliased colors), learn place map from scratch, continuous belief, anchor =
+  known movement B. 2500-step wander.
+- Result: sensory-map recovery 1.00 (all 36 cells correct); localize with learned map 0.00 bits, correct.
+- Implication: the place-learning recipe scales cleanly to ~4x the cells / more colors — robustness
+  confirmed. Pure consolidation, no new insight (as expected post-arc-completion). The established recipe
+  (embodiment + grounding + continuous registered experience + ONE innate anchor) is scale-robust.
+- Remaining = research frontiers only: emergent compositional grammar, fully-from-scratch (tabula-rasa)
+  structure. Further toy experiments confirm robustness, not new firsts.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
