@@ -470,6 +470,26 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   the creature's self-formed value/belief about it; two differently-raised creatures give DIFFERENT
   answers reflecting their own experience. The closest toy analog of the moonshot's conversation goal.
 
+## Exp 28 — 'ASK IT WHAT IT THINKS' (toy): self-formed opinions, queryable (POSITIVE, w/ honest caveat)
+- Setup: two creatures raised in different worlds (Exp26 mechanism; A: 'red' comfortable, B: 'green'
+  comfortable). Interview: 'what do you think of {feature}?' -> read out each creature's self-formed
+  value/free-energy for that feature, mapped to a verbal self-report.
+- Result: same questions, DIFFERENT answers — A likes red (low surprise/comfortable) & is unsettled by
+  green; B likes green & unsettled by red; blue unsettles both. Favorites A=red, B=green. Each answer
+  reflects the creature's OWN lived experience.
+- Implication: closest toy analog of the conversation goal — you can ASK the creature what it thinks of X
+  and it answers from a SELF-FORMED, INDIVIDUAL disposition (grounded in free-energy experience, not
+  pretrained); two differently-raised creatures disagree, each authentically. The full moonshot arc, now
+  including a primitive 'ask what it thinks', runs end-to-end at toy scale.
+- HONEST CAVEAT (important): the verbal wrapper ('I like red, it feels calm') is a HAND-MAPPED template
+  translating the creature's learned value/free-energy into words — the creature did NOT generate
+  language. What is genuinely its OWN = the CONTENT (which feature it values, and why: low surprise =
+  comfort), formed by lived experience. Genuine language generation of the answer is the LONG ARC and hits
+  the unsupervised language-emergence ceiling (open_problem.html). The opinion is real and self-formed; the
+  wording is scaffolding.
+- Next (Exp29+): richer/compositional queries over a values-laden relational graph ('what about X near
+  Y?'); (long arc) ground language so the answer becomes the creature's OWN words; scale.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
