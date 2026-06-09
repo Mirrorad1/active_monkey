@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 35 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 40 experiments.
    kind: "win" (breakthrough) | "wall" (honest negative) | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -13,10 +13,13 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:35, win:24, wall:7, partial:4, from:4.81, to:1.61 };
+window.AM_TALLY = { total:40, win:29, wall:7, partial:4, from:4.81, to:4.00 };
 
-/* Hero surprise series — the bits/char it feels, falling as it learns. */
-window.AM_SURPRISE = [4.81,4.55,4.00,3.38,2.70,2.42,1.95,1.61,1.40,1.30,1.18,1.10,1.04,1.00];
+/* Hero surprise series — logged readings from EXPERIMENTS.md only.
+   Exp 1 (held-out English corpus): 4.81 → 4.00 bits/char.
+   Exp 3 ('mirro ' stream, different corpus): 3.38 → 1.61 bits/char.
+   These are two separate experiments on two different corpora — NOT one continuous run. */
+window.AM_SURPRISE = [4.81, 4.00, 3.38, 1.61];
 
 window.AM_EXPERIMENTS = [
   { n:1, kind:"win", chapter:"language",
@@ -139,7 +142,7 @@ window.AM_EXPERIMENTS = [
   { n:17, kind:"win", chapter:"embodiment",
     title:"Give it a body — model learning works on the first try.",
     one:"A creature wanders a ring-world and a cognitive map appears.",
-    metric:{ from:1.00, to:0.003, unit:"model error" },
+    metric:{ to:0.003, unit:"model error" },
     setup:"A creature wanders a 5-cell ring (move left/right; it senses its current cell). Starts with NO world model; learns transitions from random wandering.",
     result:"Recovered the world's structure nearly perfectly (error 0.003); correctly predicts the next cell for each action.",
     implication:"Embodied + grounded + unsupervised learning works cleanly — in sharp contrast to the disembodied symbolic failures. The agent ACTS and observes a correlated world, which breaks the symmetry a bare symbol stream cannot." },
@@ -163,7 +166,7 @@ window.AM_EXPERIMENTS = [
   { n:20, kind:"win", chapter:"embodiment",
     title:"Place fields self-organize from scratch (milestone).",
     one:"Keep experience continuous and the true map crystallizes — cleanly.",
-    metric:{ from:1.65, to:0.00, unit:"bits" },
+    metric:{ to:0.00, unit:"bits" },
     setup:"Fix the confound: ONE continuous 700-step wander, belief carried continuously (never reset). Learn the map from scratch under aliasing.",
     result:"Learned per-state tuning matched the TRUE colormap exactly; localization with the learned map = 0.00 bits.",
     implication:"The recipe, confirmed: embodiment + grounding + CONTINUOUS registered experience → structure self-organizes. An animal never resets its sense of place. Existence proof in miniature." },
@@ -278,7 +281,44 @@ window.AM_EXPERIMENTS = [
     one:"Ask it anything about its world — and two creatures answer differently.",
     setup:"One creature combining a learnable place map + colors + self-formed values + taught words. A short ask-it-anything transcript; two differently-raised creatures answer the same questions.",
     result:"'Where are you?' → 'I'm at a green place'. 'What do you like?' → A: red, B: green. 'What is near you?' → neighbor colors + per-creature feelings. Answers compose; individual by history.",
-    implication:"The toy 'talk to it' exists as a runnable artifact. Capstone of the realistic moonshot: query the creature about its world & values; the answers are its own, diverging by experience. The literal goal — emergent grammar, fully tabula-rasa — remains the open frontier." }
+    implication:"The toy 'talk to it' exists as a runnable artifact. Capstone of the realistic moonshot: query the creature about its world & values; the answers are its own, diverging by experience. The literal goal — emergent grammar, fully tabula-rasa — remains the open frontier." },
+
+  { n:36, kind:"win", chapter:"embodiment",
+    title:"Scale test: the recipe holds at 6×6.",
+    one:"Consolidation — the established recipe scales cleanly; no new insight.",
+    metric:{ to:1.00, unit:"map recovery" },
+    setup:"6×6 grid (36 cells, 4 aliased colors), learn place map from scratch, continuous belief, anchor = known movement B. 2500-step wander.",
+    result:"Sensory-map recovery 1.00 (all 36 cells correct); localization with the learned map 0.00 bits, correct cell.",
+    implication:"The place-learning recipe scales cleanly to ~4× the cells and more colors — robustness confirmed. Pure consolidation; the established recipe (embodiment + grounding + continuous registered experience + one innate anchor) is scale-robust. No new insight." },
+
+  { n:37, kind:"win", chapter:"frontier",
+    title:"Scale the value/converse stack to 6 concepts.",
+    one:"Consolidation — individual self-formed opinions hold at larger vocabulary; no new insight.",
+    setup:"6 concepts + 6 taught words, 3 creatures raised differently. All learn the vocab correctly; each creature's favorite matches its upbringing.",
+    result:"A→blue, B→green, C→amber: each creature's worded answer reflects its own upbringing. Individual self-formed opinions + worded answers hold at larger scale.",
+    implication:"The language-bridge + opinion stack is robust to a larger concept vocabulary and more creatures. Pure consolidation; no new insight beyond what Exp 34–35 already established." },
+
+  { n:38, kind:"win", chapter:"embodiment",
+    title:"Integrated stack in one pass.",
+    one:"Consolidation — perceive, want, and act compose cleanly in a single creature; no new insight.",
+    setup:"4×4 world: creature learns place map from scratch (movement B known), has a self-valued color (green), then value-iterates and navigates to the nearest green place.",
+    result:"Map accuracy 1.00; creature navigated successfully to the nearest green cell.",
+    implication:"Perceive (learned map) + want (self-formed value) + act (value-iteration plan) compose end-to-end in one creature. Consolidation of Exp 20/21 + Exp 26 + Exp 30; no new insight." },
+
+  { n:39, kind:"win", chapter:"opinion",
+    title:"Opinion formation is robust to noise.",
+    one:"Consolidation — conviction degrades gracefully with noise; no new insight.",
+    metric:{ from:0.99, to:0.45, unit:"conviction (value-mass)" },
+    setup:"Raise creatures where the comfortable feature is only mostly-predictable (noise 0 → 0.6). Measure favorite accuracy and conviction (value-mass on the correct feature).",
+    result:"Favorite stays correct across all noise levels; conviction degrades gracefully 0.99 → 0.90 → 0.70 → 0.45 as predictability drops. Robust to moderate noise; graceful degradation, not a cliff.",
+    implication:"Clearer experience → stronger opinion. The opinion-formation mechanism is noise-tolerant. Consolidation; no new insight — confirms the recipe is robust to imperfect worlds." },
+
+  { n:40, kind:"win", chapter:"opinion",
+    title:"Opinions are revisable by new experience.",
+    one:"Consolidation — values update as the world changes; mind-like inertia observed; no new insight.",
+    setup:"Raise a creature to value feature 2; then change the world so feature 0 becomes comfortable; continue living.",
+    result:"Favorite shifts 2 → 0 with sustained new experience. Opinion revised, not frozen — and shows realistic inertia (needed enough new evidence to overcome the entrenched prior).",
+    implication:"Values update as the world and evidence change — mind-like revisability with realistic inertia. Consolidation of the opinion-formation arc; no new insight beyond confirming the mechanism is dynamic rather than frozen." }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
