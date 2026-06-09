@@ -180,6 +180,26 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: Exp 14 — topic with EMISSION-level dependence (A_dependencies=[[0,1]]) over a pair-state
   char substrate, so the subject directly and durably identifies the topic; test unsupervised binding.
 
+## Exp 14 — valence-grounding bridge: an arbitrary cue acquires valence from free energy (POSITIVE)
+- Setup: (alternated to a positive front after Exp 11-13 emergent-topic wall.) Corpus where an
+  arbitrary cue 'a' ALWAYS precedes a predictable run ("mmmm" = low free energy / "understood")
+  and 'z' precedes VARIED letters (high free energy / "surprised"). The agent is NEVER told which
+  is good. Pair-state char model; measure next-char uncertainty (bits) after each cue with a
+  DETERMINED 2-char context (single-char prime was too noisy — both near the 4.81 uniform).
+- Result: P(next | ..a) = 3.04 bits (confident); P(next | ..z) = 4.79 bits (uncertain); delta +1.75.
+  The cue 'a' acquired POSITIVE valence (predicts a low-free-energy / understood state); 'z'
+  negative — purely by co-occurring with the agent's OWN intrinsic free-energy states, never labeled.
+- Implication (answers "how does it know positive without language?"): valence grounds in the
+  agent's own prediction confidence (free energy); an arbitrary symbol becomes felt-good by
+  associating with low-free-energy states. This is the M4 grounding bridge WORKING, and validates
+  RESEARCH.md's valence = -dF/dt. No teacher, no labels, no pretraining. This is how a "+"/tone could
+  eventually become meaningful to it — grounded on its intrinsic understanding-valence.
+- Measurement note: pair-state models must be primed with a DETERMINED context (>=2 chars); a
+  single-char prime leaves the state ambiguous and washes the signal out (3.04 vs 4.79 became
+  visible only with the 2-char prime; was +0.03 with 1-char).
+- Next: (a) close the affective loop — does the agent ACT to seek the 'a'-cue / avoid 'z' (EFE +
+  this grounded valence)? (b) alternate back to emergent topic (emission-level) as the long arc.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
