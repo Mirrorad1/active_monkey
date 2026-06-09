@@ -326,6 +326,26 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   start), or start each episode uniform and let it localize first; and/or learn B too. Does a clean place
   map then self-organize? Then scale (more cells / 2D) + aggregation, run-to-see.
 
+## Exp 20 — place fields self-organize FROM SCRATCH (clean POSITIVE; milestone)
+- Setup: fix Exp19's registration confound — ONE continuous wander (700 steps), belief carried
+  continuously (NEVER reset to a fixed start), origin aligned (state0=cell0). Learn A from scratch
+  under aliasing (movement B innate/known).
+- Result: learned per-state tuning [0,0,1,0,1,1] = TRUE cmap exactly (structural match up to
+  rotation/reflection: True); localization with the LEARNED map = 0.00 bits, correct cell. CLEAN.
+- Implication (milestone): embodied, from-scratch, UNSUPERVISED learning of the world's sensory
+  structure (place fields) WORKS cleanly once registration is maintained. Exp19's failure was the
+  confound (per-episode belief reset), NOT a fundamental wall. KEY ENABLER = CONTINUOUS REGISTERED
+  EXPERIENCE: the belief stays coupled to the world (an animal never resets its sense of place). This
+  is exactly what embodiment + continuous lived experience provides and what the symbolic experiments
+  (12-16) lacked. Existence proof in miniature, achieved: place cells = simplest concept, self-organized.
+- RECIPE CONFIRMED: embodiment + grounding + continuous registered experience -> structure self-organizes.
+- Honest caveat: movement model B was innate/known; the agent LEARNED A (the sensory map) from scratch;
+  origin alignment is just choice-of-origin (the structure itself was genuinely learned, matched up to
+  rotation/reflection). Fully learning B (world topology) from scratch is the next rung.
+- Next (Exp 21): scale — more cells / 2D grid / also learn B; does richer spatial structure self-organize?
+  Then climb toward composite concepts; later fuse valence (Exp14/15) so it ACTS on grounded preferences
+  within its self-learned world (a minimal creature that knows where it is and what it wants).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
