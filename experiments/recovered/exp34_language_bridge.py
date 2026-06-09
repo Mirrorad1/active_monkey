@@ -6,6 +6,7 @@
 #   tool_call_id : toolu_01JnH3yoWUbeWa8sJj6ngS5W
 #   description  : Exp 34: language bridge — query self-formed concepts in taught words
 #   recovered    : 2026-06-09 by recovery agent
+#   transcription fix: 2026-06-09 — restored shell-consumed \" escapes to " (python -c artifact)
 # ============================================================
 
 import numpy as np, math
@@ -40,6 +41,6 @@ print('  Q: what do you like?')
 print(f'     creature-A: {ask_favorite(vA)}')
 print(f'     creature-B: {ask_favorite(vB)}')
 print('  Q: do you like green?')
-print(f'     creature-A: {ask_about(vA,eA,\"green\")}')
-print(f'     creature-B: {ask_about(vB,eB,\"green\")}')
+print(f'     creature-A: {ask_about(vA,eA,"green")}')
+print(f'     creature-B: {ask_about(vB,eB,"green")}')
 print('  => same WORDED questions, DIFFERENT answers — content self-formed, labels taught (the bridge to talk-to-it)')

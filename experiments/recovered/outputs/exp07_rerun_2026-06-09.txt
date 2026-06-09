@@ -1,4 +1,8 @@
-  File "/Users/mirro/Projects/active-loop/experiments/recovered/exp07_ngram_context_depth.py", line 36
-    print(f'  mirro n={n}: greedy from \"m\" -> {greedy(m,\"m\",n,11)!r}')
-                                                           ^
-SyntaxError: unexpected character after line continuation character
+CONTEXT-DEPTH CONTROL (count-based n-gram):
+  mirro n=2: greedy from "m" -> 'iro miro mi'
+  mirro n=3: greedy from "m" -> 'irro mirro '
+  mirro n=4: greedy from "m" -> 'irro mirro '
+
+  Q->A  n=2: "name. " -> 'me. me.'
+  Q->A  n=3: "name. " -> 'mirro. '
+  Q->A  n=4: "name. " -> 'mirro. '

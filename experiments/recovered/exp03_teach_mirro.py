@@ -6,6 +6,7 @@
 #   tool_call_id : toolu_01Qe1p2tQy1RU3xHnoBmgFWy
 #   description  : Demonstrate: teach the model to 'say mirro' by repeated exposure, watch free energy drop
 #   recovered    : 2026-06-09 by recovery agent
+#   transcription fix: 2026-06-09 — restored shell-consumed \" escapes to " (python -c artifact)
 # ============================================================
 
 import numpy as np
@@ -15,7 +16,7 @@ target = 'mirro '
 stream = target * 40   # it 'hears' mirro over and over
 lm = LangModel(seed=1)
 print(f'teaching it to say {target.strip()!r} by repeated exposure:')
-print(f'  before any learning: surprise={lm.mean_surprise(stream):.2f} nats/char  sample={lm.generate(\"\", 6)!r}')
+print(f'  before any learning: surprise={lm.mean_surprise(stream):.2f} nats/char  sample={lm.generate("", 6)!r}')
 for ep in range(1, 13):
     lm.learn_stream(target * 8, epochs=1)
     if ep in (1, 3, 6, 9, 12):

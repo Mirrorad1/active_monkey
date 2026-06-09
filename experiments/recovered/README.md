@@ -40,16 +40,16 @@ is from the transcript `Write` tool call for completeness/provenance.
 Re-run command: `cd /Users/mirro/Projects/active-loop && PYTHONPATH=. .venv/bin/python experiments/recovered/expNN_<slug>.py`
 Re-run date: 2026-06-09. Output files: `outputs/expNN_rerun_2026-06-09.txt` (all 40).
 
-### FAIL notes
+### Transcription artifact (fixed 2026-06-09)
 
-Three scripts fail with `SyntaxError: unexpected character after line continuation character` on
-f-strings containing escaped quotes (e.g. `f'... {func(\"arg\")}'`). This is a Python 3.12
-regression: backslash escapes inside f-string expressions were already deprecated in 3.6 and
-became a hard `SyntaxError` in 3.12. The scripts reproduced fine in the original session (which
-used an older Python / ran via `python -c` heredoc where the shell consumed the backslashes).
-The recovered scripts have the literal `\"` in the source, which Python 3.12 rejects at parse
-time. No code was altered (per standing rules); the scripts are logged as FAIL.
-Affected: **Exp 3, 7, 34**.
+Three scripts (Exp 3, 7, 34) had a recovery transcription artifact: the originals ran via
+`python -c "..."` heredoc where the shell consumed backslash-escapes, so `\"` reached Python as
+`"`. The recovered `.py` files preserved the literal `\"`, which Python 3.12 rejects at parse
+time with `SyntaxError: unexpected character after line continuation character`. Fix applied
+2026-06-09: replaced every literal `\"` with `"` in the f-string expressions. No other code
+was altered. After the fix, all 3 re-run outputs match the originals exactly. A provenance note
+(`#   transcription fix: 2026-06-09 — restored shell-consumed \" escapes to " (python -c artifact)`)
+was added to each file's header comment block.
 
 ### MISMATCH note (EXPERIMENTS.md logged claim vs original output)
 
@@ -64,11 +64,11 @@ output. The re-run reproduces the original output exactly.
 |-----|--------|-------------|----------------|------|
 | 1 | exp01_aif_hmm_baseline.py | yes | MATCH | Re-run = original output exactly; EXPERIMENTS.md narrative claims "4.81→4.00" but both outputs show "4.007→3.424" (pre-existing logged-claim discrepancy, not a re-run issue) |
 | 2 | exp02_bandit_positive_feedback.py | yes | MATCH | |
-| 3 | exp03_teach_mirro.py | yes | FAIL | SyntaxError: escaped quotes in f-string (Python 3.12 regression); traceback in rerun file |
+| 3 | exp03_teach_mirro.py | yes | MATCH | Transcription artifact fixed (2026-06-09): `\"` → `"` in f-string expression; re-run output matches original exactly (surprise 3.38→1.61, all samples identical); JAX UserWarning is incidental stderr, not script output |
 | 4 | exp04_memory_order_qa.py | yes | MATCH | |
 | 5 | exp05_context_state_order.py | yes | MATCH | |
 | 6 | exp06_bigram_greedy.py | yes | MATCH | |
-| 7 | exp07_ngram_context_depth.py | yes | FAIL | SyntaxError: escaped quotes in f-string (Python 3.12 regression); traceback in rerun file |
+| 7 | exp07_ngram_context_depth.py | yes | MATCH | Transcription artifact fixed (2026-06-09): `\"` → `"` in f-string expressions; re-run output matches original exactly (n=2 'iro miro mi', n=3 'irro mirro ', Q->A n=3 'mirro. ') |
 | 8 | exp08_aif_pair_state.py | yes | MATCH | |
 | 9 | exp09_longrange_binding_flat.py | yes | MATCH | |
 | 10 | exp10_topic_conditioned_binding.py | yes | MATCH | |
@@ -95,7 +95,7 @@ output. The re-run reproduces the original output exactly.
 | 31 | exp31_learn_a_and_b_fails.py | yes | MATCH | |
 | 32 | exp32_hierarchy_room_concept.py | yes | MATCH | |
 | 33 | exp33_hierarchical_planning.py | yes | MATCH | |
-| 34 | exp34_language_bridge.py | yes | FAIL | SyntaxError: escaped quotes in f-string (Python 3.12 regression); traceback in rerun file |
+| 34 | exp34_language_bridge.py | yes | MATCH | Transcription artifact fixed (2026-06-09): `\"` → `"` in f-string expressions; re-run output matches original exactly (word map correct, A likes red / B likes green, surprise values 1.6/0.0 bits identical) |
 | 35 | exp35_converse_demo.py | yes | MATCH | |
 | 36 | exp36_scale_6x6.py | yes | MATCH | |
 | 37 | exp37_scale_6concepts.py | yes | MATCH | |
@@ -103,13 +103,10 @@ output. The re-run reproduces the original output exactly.
 | 39 | exp39_noise_robustness.py | yes | MATCH | |
 | 40 | exp40_opinion_revisable.py | yes | MATCH | |
 
-**Summary: 40/40 scripts recovered; 40/40 original outputs recovered; 37 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 3 FAIL.**
+**Summary: 40/40 scripts recovered; 40/40 original outputs recovered; 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL.**
 
-The 3 FAILs (Exp 3, 7, 34) share a single root cause: `SyntaxError` due to backslash-escaped
-quotes inside f-string expressions (`f'... {func(\"arg\")}'`), which Python 3.12 rejects as a
-hard syntax error. These scripts ran in the original session (older Python or shell-consumed
-backslashes in `python -c` heredoc). The qualitative findings of those three experiments are
-confirmed by the 37 surrounding scripts that DO reproduce.
+All 40 scripts now reproduce. Exp 3, 7, and 34 had a transcription artifact (see below) fixed
+on 2026-06-09; after the fix their re-run outputs match the originals exactly.
 
 Additionally, EXPERIMENTS.md's narrative for Exp 1 cites "4.81 → 4.00 bits/char" but both the
 original transcript output and the 2026-06-09 re-run show "4.007 → 3.424 bits/char". This is a

@@ -1,4 +1,9 @@
-  File "/Users/mirro/Projects/active-loop/experiments/recovered/exp34_language_bridge.py", line 43
-    print(f'     creature-A: {ask_about(vA,eA,\"green\")}')
-                                               ^
-SyntaxError: unexpected character after line continuation character
+Exp34 — LANGUAGE BRIDGE: query SELF-FORMED concepts in TAUGHT words
+  taught word<->color map learned (P(word|color) argmax): ['red', 'blue', 'green'] (correct=[True, True, True])
+  Q: what do you like?
+     creature-A: I like red
+     creature-B: I like green
+  Q: do you like green?
+     creature-A: green unsettles me (surprise 1.6 bits)
+     creature-B: I like green (surprise 0.0 bits)
+  => same WORDED questions, DIFFERENT answers — content self-formed, labels taught (the bridge to talk-to-it)

@@ -6,6 +6,7 @@
 #   tool_call_id : toolu_01QL95KzyWY96i5K2fA6Euc4
 #   description  : Context-depth control: n-gram bigram/trigram/4-gram on mirro and Q-to-A
 #   recovered    : 2026-06-09 by recovery agent
+#   transcription fix: 2026-06-09 — restored shell-consumed \" escapes to " (python -c artifact)
 # ============================================================
 
 import numpy as np, math
@@ -33,8 +34,8 @@ def greedy(model,prefix,n,k):
 print('CONTEXT-DEPTH CONTROL (count-based n-gram):')
 for n in (2,3,4):
     m=ngram('mirro '*30,n)
-    print(f'  mirro n={n}: greedy from \"m\" -> {greedy(m,\"m\",n,11)!r}')
+    print(f'  mirro n={n}: greedy from "m" -> {greedy(m,"m",n,11)!r}')
 print()
 for n in (2,3,4):
     m=ngram('name. mirro. '*30,n)
-    print(f'  Q->A  n={n}: \"name. \" -> {greedy(m,\"name. \",n,7)!r}')
+    print(f'  Q->A  n={n}: "name. " -> {greedy(m,"name. ",n,7)!r}')
