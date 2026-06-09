@@ -453,6 +453,23 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   self-valued features (behavior driven by a self-formed opinion). Then richer relational knowledge /
   multiple objects -> a values-laden graph (the substrate of 'what it thinks').
 
+## Exp 27 — self-formed opinion DRIVES BEHAVIOR (POSITIVE; closes proto-opinion -> action)
+- Setup: two architecturally identical creatures carrying the DIFFERENT preferences they formed in Exp26
+  (A values color 0, B values color 2). Same 2D world, same start (cell 1), navigate via planning
+  (policy_len=4); C = the self-formed value over the color observation.
+- Result: A -> cell 0 (color 0), path [1,0]; B -> cell 2 (color 2), path [1,2]. Divergent purposeful
+  behavior from divergent self-formed values.
+- Implication: the self-formed opinion DRIVES behavior. Two identical creatures act differently because
+  they VALUE differently, and those values came from their own histories (Exp26), not pretraining. The
+  full moonshot arc now runs end-to-end at toy scale: perceive (place) -> learn facts (relations) ->
+  want (grounded valence) -> recall+plan+act -> FORM own values -> ACT on own values (diverging by history).
+- Honest caveat: toy (3 colors, 3x3, B known); C set to the Exp26-learned preference. The principle —
+  self-formed values produce individual, purposeful behavior — is genuinely demonstrated; scale/richness
+  and the unsupervised-emergence ceiling (open_problem.html) remain the climb.
+- Next (Exp28): toward 'ask it what it thinks' — a minimal QUERY interface: present a feature/place, read
+  the creature's self-formed value/belief about it; two differently-raised creatures give DIFFERENT
+  answers reflecting their own experience. The closest toy analog of the moonshot's conversation goal.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
