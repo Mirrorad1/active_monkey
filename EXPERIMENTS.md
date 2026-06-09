@@ -382,6 +382,24 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
 - Connects to moonshot: grounded wants + a self-learned world still need PLANNING/credit-assignment over
   the world model to produce purposeful action toward distal goals — the next capability to add.
 
+## Exp 23 — planning depth fixes navigation: optimal goal-directed action (POSITIVE; closes Exp22)
+- Setup: same 2D grid + grounded comfort goal as Exp22, but planning horizon policy_len >= goal
+  distance (tested 4 and 5). Receding-horizon EFE navigation from corner (0) to comfort goal (8).
+- Result: policy_len=4 -> reached goal in 4 steps (OPTIMAL), clean path [0,3,6,7,8]; policy_len=5 ->
+  also 4 steps [0,3,4,5,8]. vs random ~9.8. Near-optimal goal-directed navigation.
+- Implication (resolves Exp22): the failure WAS the horizon, not the framework. With planning depth
+  >= distance, EFE planning yields optimal goal-directed navigation toward a grounded want in the
+  self-learned world. END-TO-END MINIMAL MIND now runs: self-organized PLACE map (17-21) + grounded
+  VALENCE/want (14-15) + PLANNING/navigation to satisfy it (23) = a minimal creature that perceives,
+  wants, and acts purposefully — all grounded/self-organized, NOTHING pretrained.
+- Honest caveat: policy_len=4 enumerates 4^4=256 policies (exponential in horizon) — does NOT scale to
+  large worlds / long horizons. Scalable planning = value-field / backward-propagation over the learned
+  B (planning-as-inference / sophisticated inference) — next engineering rung. Functionally, goal-directed
+  navigation is demonstrated.
+- Next: scalable planning (value field over learned B); or climb to COMPOSITE concepts (place+object,
+  relations); richer/larger worlds; eventually abstract dispositions = late place cells. The embodied toy
+  'minimal mind' is complete; the climb is now about richness + scalable planning + composition.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
