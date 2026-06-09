@@ -1,0 +1,4 @@
+positive-feedback rate, early (turns 1-10): 0.9
+positive-feedback rate, late  (turns 51-60): 1.0
+learned to seek positive: True
+Shell cwd was reset to /Users/mirro/Projects/pymdp

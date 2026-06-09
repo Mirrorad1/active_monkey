@@ -1,0 +1,4 @@
+UNSUPERVISED 2-factor result:
+  sky is   -> 's gree'  topic belief [0.5 0.5]
+  grass is -> 's gree'  topic belief [0.5 0.5]
+  bound differently? False

@@ -1,0 +1,6 @@
+CLOSING THE AFFECTIVE LOOP (agent ACTS via EFE):
+  policy posterior q(pi): seek-good=0.789  seek-bad=0.211
+  EFE: good-action=-1.820  bad-action=-0.500  (lower EFE = chosen)
+  agent chooses to SEEK the self-grounded understood state: True
+  => action to occupy low-free-energy (understood) states emerges from EFE, no labeled reward
+Shell cwd was reset to /Users/mirro/Projects/pymdp

@@ -1,0 +1,6 @@
+Exp22 — FUSE place + grounded valence (goal-directed navigation via EFE):
+  active-inference creature reached comfort goal in 15 steps; path [0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 4, 5, 8]
+  random-walk baseline: 9.8 avg steps (119/300 arrived within 15)
+  optimal (manhattan) = 4 steps. directed (EFE) vs random: 15 vs ~9.8
+  => navigates to what it wants in its own world model: False
+Shell cwd was reset to /Users/mirro/Projects/pymdp

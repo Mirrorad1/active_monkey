@@ -1,0 +1,6 @@
+Exp33 — HIERARCHICAL planning cost vs FLAT (corridor of rooms):
+  4 rooms (36 cells): flat VI state-updates=490  hierarchical=152  speedup x3.2
+  8 rooms (72 cells): flat VI state-updates=1,846  hierarchical=328  speedup x5.6
+  16 rooms (144 cells): flat VI state-updates=7,150  hierarchical=776  speedup x9.2
+  => abstraction (rooms) makes planning COARSE-TO-FINE: cost grows far slower than flat at scale
+Shell cwd was reset to /Users/mirro/Projects/pymdp

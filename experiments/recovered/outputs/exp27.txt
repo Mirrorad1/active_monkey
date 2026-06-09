@@ -1,0 +1,6 @@
+Exp27 — self-formed OPINION drives BEHAVIOR (same world, same start cell 1):
+  creature-A (values color 0): went to cell 0 (color 0); path [1, 0]
+  creature-B (values color 2): went to cell 2 (color 2); path [1, 2]
+  divergent behavior from divergent self-formed values: True
+  => two identical creatures, different lived values -> different purposeful behavior
+Shell cwd was reset to /Users/mirro/Projects/pymdp

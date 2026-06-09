@@ -1,0 +1,5 @@
+  return Agent(A=[b(A)[0]], B=[b(B0[:,:,None])[0], b(B1[...,None])[0]],
+SEMI-SUPERVISED (teacher-forced topic in training, UNSUPERVISED topic at test):
+  sky is   -> 's is i'  inferred topic [0.5 0.5]
+  grass is -> 's is i'  inferred topic [0.5 0.5]
+  bound differently? False

@@ -1,0 +1,9 @@
+=== EXPERIMENT A: does MORE MEMORY (states K) let it say mirro in order? ===
+  K= 12: it says -> ['  rrrr  imls', ' r riiiqi ir']
+  K= 30: it says -> ['  rrrr  imiv', ' r redgpe ir']
+  K= 60: it says -> ['  rrrr  imiw', ' r sccdoc ir']
+
+=== EXPERIMENT B: can it learn question -> answer (what is your name -> mirro)? ===
+  ask 'what is your name. ' -> ' .s ut. hni   soyu'
+  ask 'what is your name. ' -> ' s. aaara hrnm eu '
+Shell cwd was reset to /Users/mirro/Projects/pymdp

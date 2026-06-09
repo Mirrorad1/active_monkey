@@ -1,0 +1,5 @@
+LONG-RANGE BINDING test (flat 2-char memory):
+  prime "sky is "   -> 'reen. g'
+  prime "grass is " -> 'reen. g'
+  (if both same -> flat trigram cannot bind subject->predicate; needs hierarchy)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

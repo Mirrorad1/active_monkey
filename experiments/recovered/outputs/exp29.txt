@@ -1,0 +1,8 @@
+Exp29 — COMPOSITIONAL/relational query: "what is near the thing you like, and how do you feel about it?"
+  creature-A (likes red):
+    my favorite red is at cells [0, 5, 7]; near it I find: blue (it unsettles me), green (it unsettles me)
+  creature-B (likes green):
+    my favorite green is at cells [2, 4, 6]; near it I find: red (it unsettles me), blue (it unsettles me)
+  => a two-hop, VALUE-LADEN, RELATIONAL thought composed from learned place-map + learned values
+  (different favorites -> different composed answers; each the creature own)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

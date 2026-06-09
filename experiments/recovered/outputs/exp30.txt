@@ -1,0 +1,6 @@
+  3x3 (9 cells): value-iteration 6 sweeps -> reached goal in 4 steps (optimal 4, ok=True); policy-enumeration would need ~4^4=256 policies
+  5x5 (25 cells): value-iteration 10 sweeps -> reached goal in 8 steps (optimal 8, ok=True); policy-enumeration would need ~4^8=65,536 policies
+  8x8 (64 cells): value-iteration 16 sweeps -> reached goal in 14 steps (optimal 14, ok=True); policy-enumeration would need ~4^14=268,435,456 policies
+Exp30 — SCALABLE planning via value-propagation over the learned map:
+  => optimal navigation at POLYNOMIAL cost; scales where exponential policy enumeration cannot
+Shell cwd was reset to /Users/mirro/Projects/pymdp

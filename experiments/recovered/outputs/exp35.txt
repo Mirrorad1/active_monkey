@@ -1,0 +1,21 @@
+creature-A (raised among red):
+  you> where are you?
+  it > I'm at a green place.
+  you> what do you like?
+  it > I like red.
+  you> what is near you?
+  it > near me: red (I like it), blue (it unsettles me)
+  you> do you like green?
+  it > green: it unsettles me.
+
+creature-B (raised among green):
+  you> where are you?
+  it > I'm at a green place.
+  you> what do you like?
+  it > I like green.
+  you> what is near you?
+  it > near me: red (it unsettles me), blue (it unsettles me)
+  you> do you like green?
+  it > green: I like it.
+
+[honest: VALUES self-formed from experience; word-labels taught; sentence shape templated.]

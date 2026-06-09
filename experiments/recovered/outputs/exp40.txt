@@ -1,0 +1,5 @@
+Exp40 — are opinions REVISABLE by new experience?
+  phase1 (feature 2 comfortable): favorite = 2 (expect 2)
+  phase2 (world changed -> feature 0 comfortable): favorite = 0 (expect 0)
+  => opinion REVISED by new experience: True (not frozen; updates as the world/evidence changes)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

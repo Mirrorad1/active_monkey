@@ -693,3 +693,18 @@ period and still runs. Per `loop/VALIDATION.md`, corrections are new entries —
 entries stay untouched. From Exp 41 onward, the script (`experiments/expNN_<slug>.py`)
 and raw output (`experiments/outputs/expNN.txt`) land in the repo in the same commit as
 the EXPERIMENTS.md entry; log-only claims are no longer acceptable.
+
+## Correction follow-up (2026-06-09) — Exp 1–40 scripts recovered from session transcripts
+
+All 40 experiment scripts and their original recorded outputs have been recovered from the
+original Claude Code session transcript (session `72317201-ec87-49eb-88d2-beffa86bd7ec`,
+file `/Users/mirro/.claude/projects/-Users-mirro-Projects-pymdp/*.jsonl`). Scripts are
+committed as `experiments/recovered/expNN_<slug>.py`; original outputs are in
+`experiments/recovered/outputs/expNN.txt`. A provenance README lives at
+`experiments/recovered/README.md`. Scripts are the transcript heredoc bodies verbatim,
+with only a recovery-provenance comment header added at the top; no code was altered
+(except Exp 13, where the batch-axis sed patch applied in the original session was
+reproduced). Three experiments were re-verified by re-running the recovered script:
+Exp 17 (transition error 0.003 — MATCH), Exp 20 (tuning == true cmap, 0.00 bits — MATCH),
+Exp 21 (exact colormap, 0.00 bits — MATCH). The remaining 37 scripts are unverified
+recovered artifacts; logged outputs are original recorded results, not re-runs.

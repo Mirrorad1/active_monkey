@@ -1,0 +1,6 @@
+Exp38 — INTEGRATED stack (learn place + value + plan), one pass on 4x4:
+  (1) learned place map accuracy: 1.00
+  (2) self-valued color: green -> target cells [0, 9, 11, 14, 15]
+  (3) navigated from corner to a green place: reached 0 (a green place), steps 1, success=True
+  => perceive(learned map) + want(value) + act(plan to it) compose in one creature (consolidation)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

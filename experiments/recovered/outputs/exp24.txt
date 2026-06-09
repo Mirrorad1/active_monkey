@@ -1,0 +1,5 @@
+Exp24 — COMPOSITE concept: bind OBJECT to PLACE from experience (a learned relation/fact)
+  learned P(object=present | place), per cell: [0. 0. 0. 0. 1. 0. 0. 0. 0.]
+  creature infers object is at cell 4; true 4; correct=True
+  => a place<->object RELATION self-organized from wandering: the seed of a proposition ("the thing is there")
+Shell cwd was reset to /Users/mirro/Projects/pymdp
