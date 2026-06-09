@@ -490,6 +490,35 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
 - Next (Exp29+): richer/compositional queries over a values-laden relational graph ('what about X near
   Y?'); (long arc) ground language so the answer becomes the creature's OWN words; scale.
 
+## Exp 29 — COMPOSITIONAL relational thought (POSITIVE; thoughts compose) + arc-completeness note
+- Setup: two-hop query over learned structure + self-formed values. Grid place->color map (learnable,
+  Exp21); creatures' self-formed color-values (Exp26: A likes red, B likes green). Query: 'what is near
+  the thing you like, and how do you feel about it?' -> composes favorite -> locations -> neighbors ->
+  colors -> feeling.
+- Result: A: 'red at [0,5,7]; near it: blue (unsettles), green (unsettles)'. B: 'green at [2,4,6]; near
+  it: red (unsettles), blue (unsettles)'. Different composed answers, each the creature's own.
+- Implication: self-formed 'thoughts' COMPOSE — chaining learned relations (place-map, adjacency) with
+  self-formed values into a richer, value-laden relational answer. The substrate of 'what it thinks' now
+  supports composition, not just single-feature opinions.
+- Honest caveat: toy; place-map/colors known here (learnable per Exp21); the composition traversal and
+  verbalization are HAND-CODED scaffolding. Genuinely the creature's own = the VALUES (self-formed, Exp26)
+  + the STRUCTURE (learnable, Exp21); the query mechanism + wording are provided.
+
+## ARC-COMPLETENESS (after Exp29)
+The moonshot's conceptual arc is now demonstrated END-TO-END at toy scale, every link grounded/nothing-
+pretrained: perceive place (17-21) -> learn facts/relations (24) -> want via grounded valence (14-15) ->
+recall+plan+act (23,25) -> FORM its own values from lived experience (26) -> ACT on them, diverging by
+history (27) -> ANSWER 'what do you think of X' from a self-formed opinion (28) -> COMPOSE relational
+value-laden thoughts (29). The wall (pure disembodied symbolic emergence) is characterized in
+open_problem.html; embodiment+grounding+continuous-registered-experience is the symmetry-breaker; biology
+(babies/mice) proves it is an open ALGORITHMIC problem, not impossible.
+REMAINING = documented LONG ARCS (engineering/research scale-ups, not new concepts):
+  (1) genuine LANGUAGE generation of answers (hits the unsupervised language-emergence ceiling);
+  (2) SCALE/richness (bigger worlds, more relations, hierarchy);
+  (3) fully-from-scratch TOPOLOGY learning (B) under aliasing;
+  (4) SCALABLE planning (value-propagation, not exponential policy enumeration).
+Next experiments iterate these; the major conceptual results are in.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
