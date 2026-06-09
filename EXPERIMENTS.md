@@ -558,6 +558,23 @@ Next experiments iterate these; the major conceptual results are in.
   long arc (ceiling-bound). Major conceptual results remain in; this closes the from-scratch-topology arc
   with a clear boundary.
 
+## Exp 32 — HIERARCHY: a room concept is grounded in & recoverable from the learned map (POSITIVE+caveat)
+- Setup: 2-room world (cells 0-3 / 4-7, dense within rooms, single doorway 3<->4). Creature wanders
+  (places observable = anchor per Exp31), learns connectivity (symmetric counts -> weighted graph).
+  Extract the ROOM concept via spectral clustering (Fiedler vector) of the SELF-LEARNED graph.
+- Result: clusters [1,1,1,1,0,0,0,0] vs true rooms [0,0,0,0,1,1,1,1] -> accuracy 1.00 (up to label swap);
+  clean spectral gap lambda2=0.118. The room concept is latent in & recoverable from the self-learned map.
+- Implication: a higher-level concept (room, grouping places) is REAL and GROUNDED in the creature's
+  self-learned structure, and recoverable. Abstraction is AVAILABLE for the climb (places -> rooms -> ...
+  -> dispositions are all abstractions over experience).
+- Honest caveat (same boundary as Exp31): the EXTRACTION (spectral clustering) is a PROVIDED algorithm,
+  not the creature's OWN active-inference hierarchical machinery forming the concept unsupervised in its
+  generative model. Self-forming that slow room-latent without an anchor would hit the same
+  identifiability wall (open_problem.html). Shown: the structure EXISTS & is recoverable; unsupervised
+  self-formation by AIF alone stays bounded by the wall (needs anchor / structure-learning / BMR).
+- Next: hierarchical PLANNING using the recovered rooms (abstraction is USEFUL: coarse-to-fine, faster
+  than flat); then the LANGUAGE long arc (ceiling-bound). Conceptual space now thoroughly mapped.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
