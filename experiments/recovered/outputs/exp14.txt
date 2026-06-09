@@ -1,0 +1,6 @@
+VALENCE GROUNDING (determined context):
+  P(next | ..a) uncertainty: 3.04 bits   P(next | ..z): 4.79 bits
+  cue a predicts a lower-free-energy (more understood) state than z: True  (delta +1.75 bits)
+  interpretation: an arbitrary symbol acquired POSITIVE valence purely by co-occurring
+  with the agent low-surprise states - grounded, never labeled.
+Shell cwd was reset to /Users/mirro/Projects/pymdp

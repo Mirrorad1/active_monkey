@@ -1,0 +1,9 @@
+PLACE EMERGENCE via path integration (aliased sensing + known movement):
+  start: belief uncertainty 2.58 bits over 6 cells (lost)
+  step 1: saw color 1, belief uncertainty 1.58 bits, argmax-cell 2 (true 2)
+  step 3: saw color 1, belief uncertainty 0.00 bits, argmax-cell 4 (true 4)
+  step 5: saw color 1, belief uncertainty 0.00 bits, argmax-cell 4 (true 4)
+  step 8: saw color 1, belief uncertainty 0.00 bits, argmax-cell 5 (true 5)
+  => localized? uncertainty 0.00 bits, predicted cell 0 vs true 0, correct=True
+  a precise PLACE representation emerged from movement+ambiguous sensing (path integration)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

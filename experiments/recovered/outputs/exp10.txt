@@ -1,0 +1,6 @@
+HIERARCHY test: topic-conditioned char transitions (topic held across the clause)
+  topic=SKY,   prime "is " -> 'lue. s'
+  topic=GRASS, prime "is " -> 'reen. '
+  => a HELD topic state binds is->blue vs is->green where flat memory (Exp9) could not.
+  (topic here is supervised/separated; making it EMERGE + be inferred is the open frontier)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

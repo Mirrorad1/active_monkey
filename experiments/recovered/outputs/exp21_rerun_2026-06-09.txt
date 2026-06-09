@@ -1,0 +1,7 @@
+  ag=Agent(A=[b(A0)[0]],B=[b(Bt)[0]],D=[b(np.eye(N)[0])[0]],pA=[b(np.full((NC,N),0.1))],
+  ag2=Agent(A=[b(Alearn)[0]],B=[b(Bt)[0]],D=[b(np.ones(N)/N)[0]],num_controls=[4],policy_len=1,
+Exp21 — 2D grid (3x3), learn sensory map from scratch, continuous belief:
+  learned per-cell color tuning: [0, 1, 2, 1, 2, 0, 2, 0, 1]
+  true colormap                : [np.int64(0), np.int64(1), np.int64(2), np.int64(1), np.int64(2), np.int64(0), np.int64(2), np.int64(0), np.int64(1)]   exact-match=True
+  localize w/ LEARNED map in 2D: uncertainty 0.00 bits, cell 5 vs true 5, ok=True
+  => recipe holds in 2D: place fields self-organize at larger scale

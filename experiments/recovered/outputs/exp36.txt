@@ -1,0 +1,4 @@
+Exp36 — SCALE test 6x6 (36 cells, 4 aliased colors), learn place map from scratch:
+  learned sensory-map recovery accuracy: 1.00 of 36 cells
+  localize with learned map: uncertainty 0.00 bits, cell 21 vs true 21, ok=True
+  => recipe holds at ~4x scale

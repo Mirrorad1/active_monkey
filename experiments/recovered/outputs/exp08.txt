@@ -1,0 +1,4 @@
+AIF 2-char-context (pair-state) model, greedy:
+  taught mirro -> from "m": 'rro mirro m'
+  Q->A: after "name. " -> 'irro. mi'
+Shell cwd was reset to /Users/mirro/Projects/pymdp

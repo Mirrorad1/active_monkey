@@ -1,0 +1,5 @@
+EMBODIED model learning (a wandering creature learns its world):
+  learned-vs-true transition error: left=0.003 right=0.003 (0=perfect)
+  predicted next cell for RIGHT action: [1, 2, 3, 4, 0]   true: [1, 2, 3, 4, 0]   match=True
+  => an internal MODEL of the world structure emerged from acting, unsupervised
+Shell cwd was reset to /Users/mirro/Projects/pymdp

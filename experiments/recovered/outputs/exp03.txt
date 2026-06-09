@@ -1,0 +1,8 @@
+teaching it to say 'mirro' by repeated exposure:
+  before any learning: surprise=3.38 nats/char  sample='qm vdj'
+  after  1 exposures: surprise=2.02 nats/char  it says -> 'xrifchih..rr'
+  after  3 exposures: surprise=1.75 nats/char  it says -> ' rrrrmmmnmr.'
+  after  6 exposures: surprise=1.66 nats/char  it says -> 'rrmmoroomwi '
+  after  9 exposures: surprise=1.63 nats/char  it says -> 'oimm iroiii '
+  after 12 exposures: surprise=1.61 nats/char  it says -> 'mo io riorrr'
+Shell cwd was reset to /Users/mirro/Projects/pymdp

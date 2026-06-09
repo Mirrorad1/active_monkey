@@ -1,0 +1,4 @@
+Exp25 — RECALL + NAVIGATE. learned object location = cell 4 (true 4)
+  navigated to its remembered object: reached cell 4 in 2 steps; path [0, 3, 4]; success=True
+  => LEARN a fact (object@place) by wandering, then RECALL it to guide goal-directed action
+Shell cwd was reset to /Users/mirro/Projects/pymdp

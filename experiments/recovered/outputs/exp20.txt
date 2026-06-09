@@ -1,0 +1,5 @@
+Exp20 — CONTINUOUS belief (registration fixed):
+  learned per-state tuning: [0, 0, 1, 0, 1, 1]   true: [np.int64(0), np.int64(0), np.int64(1), np.int64(0), np.int64(1), np.int64(1)]   structural-match(up to rot/reflect): True
+  localize with LEARNED map: uncertainty 0.00 bits, cell 0 vs true 0, ok=True
+  => clean place map self-organizes when registration is maintained
+Shell cwd was reset to /Users/mirro/Projects/pymdp

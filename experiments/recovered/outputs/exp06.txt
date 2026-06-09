@@ -1,0 +1,6 @@
+Exp6a: bigram on mirro, GREEDY decode (most-likely next), more epochs:
+   from m -> 'irrrrrrrrrr'
+   from sp-> 'mirrrrrrrrr'
+Exp6b: bigram question->answer, teach "name. mirro. ", greedy:
+   after "name. " -> 'me. me. '
+Shell cwd was reset to /Users/mirro/Projects/pymdp

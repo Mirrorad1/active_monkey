@@ -1,0 +1,9 @@
+  world where feature 0 is the predictable/comfortable one:
+    experienced free energy per feature (bits): [0.   1.58 1.58]
+    LEARNED preference C (what it came to value): [0.98 0.01 0.01]  -> most-valued feature = 0
+  world where feature 2 is the predictable/comfortable one:
+    experienced free energy per feature (bits): [1.58 1.58 0.  ]
+    LEARNED preference C (what it came to value): [0.01 0.01 0.98]  -> most-valued feature = 2
+  same architecture, DIFFERENT history -> DIFFERENT learned preference: 0 vs 2, differ=True
+  => the disposition is the creature OWN, formed by its lived experience, not pretrained
+Shell cwd was reset to /Users/mirro/Projects/pymdp

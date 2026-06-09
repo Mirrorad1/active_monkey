@@ -1,0 +1,5 @@
+  ag=Agent(A=[b(A)[0]],B=[b(B0)[0]],D=[b(np.ones(N)/N)[0]],pB=pB,num_controls=[2],policy_len=1,
+EMBODIED model learning (a wandering creature learns its world):
+  learned-vs-true transition error: left=0.003 right=0.003 (0=perfect)
+  predicted next cell for RIGHT action: [1, 2, 3, 4, 0]   true: [1, 2, 3, 4, 0]   match=True
+  => an internal MODEL of the world structure emerged from acting, unsupervised

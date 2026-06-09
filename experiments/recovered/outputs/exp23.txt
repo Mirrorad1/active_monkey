@@ -1,0 +1,4 @@
+Exp23 — PLANNING DEPTH (does horizon>=distance enable navigation?) optimal=4, random~9.8
+  policy_len=4: reached goal in 4 steps  path=[0, 3, 6, 7, 8]
+  policy_len=5: reached goal in 4 steps  path=[0, 3, 4, 5, 8]
+Shell cwd was reset to /Users/mirro/Projects/pymdp

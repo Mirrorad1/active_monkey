@@ -1,0 +1,6 @@
+FROM-SCRATCH place fields (learned sensory map under aliasing):
+  learned per-state color tuning: [1, 0, 1, 0, 1, 0]
+  true ring color pattern        : [np.int64(0), np.int64(0), np.int64(1), np.int64(0), np.int64(1), np.int64(1)]   match-up-to-nothing=False
+  localize with LEARNED map: uncertainty 1.65 bits, cell 5 vs true 5, ok=True
+  => if it localizes with its OWN learned map, place fields self-organized functionally
+Shell cwd was reset to /Users/mirro/Projects/pymdp

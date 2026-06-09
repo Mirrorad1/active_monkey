@@ -1,0 +1,3 @@
+2-factor (topic+char, B1 depends on topic) CONSTRUCTED ok
+infer_states ok; topic belief [0.5 0.5] char-belief len (28,)
+Shell cwd was reset to /Users/mirro/Projects/pymdp

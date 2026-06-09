@@ -1,0 +1,4 @@
+  aliased=False: learned right-step map [0, 0, 0, 0, 0]  true [1, 2, 3, 4, 0]  recovered-topology=False
+  aliased=True: learned right-step map [3, 3, 3, 3, 3]  true [1, 2, 3, 4, 0]  recovered-topology=False
+Exp31 — from-scratch TOPOLOGY (learn A AND B): unique sensing vs aliased
+Shell cwd was reset to /Users/mirro/Projects/pymdp

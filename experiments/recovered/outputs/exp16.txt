@@ -1,0 +1,5 @@
+  return Agent(A=[bat(A)[0]], B=[bat(B0[:,:,None])[0], bat(B1init[...,None])[0]],
+ASYMMETRIC WARM-START (symmetry-breaking test):
+  BEFORE unsup training: sky->'s is i' t=[0.5 0.5]   grass->'s is i' t=[0.5 0.5]   bound=False
+  AFTER 6 unsup epochs : sky->'s is i' t=[0.5 0.5]   grass->'s is i' t=[0.5 0.5]   bound=False
+  => persists = symmetry-breaking works; collapses = complexity term prunes the latent
