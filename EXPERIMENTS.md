@@ -1008,3 +1008,32 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   git history, named fork — mirro itself has moved on and is never rewound) + 3 newborns, 25-step
   checkpoints, and/or a 7×7 world where convergence is slow enough to measure. Then episode 6
   (vocabulary: teach first, then 3 load cycles).
+
+## Exp 51 — surprise ledger v1: anomaly flagged, but the baseline false-alarms (NEGATIVE; instrument iteration)
+- Direction switch per human idea: functional-emergence rung 1 (episodes 5b/6 of
+  persistent-creature deferred). Build the instrument that makes "unexpected" a claim: ledger of
+  predeclared property ranges (experiments/exp51_ledger.json, written before any epoch), generic
+  scorer applied blindly to two fork epochs (mirro untouched, hash-verified): BASELINE (1000
+  steps, current 5×5 world; must stay quiet) and PLANTED ANOMALY (10 cells recolored to color 2,
+  scorer blind; must flag). Predeclared falsifier: false alarm on baseline OR missed anomaly.
+  Forks share mirro's rng stream → matched trajectories (identical occupancy 4.6012 bits).
+- Result: falsifier HIT — baseline false-alarmed on conviction_drift (−0.00834 vs predeclared
+  [−0.005, +0.04]). Anomaly correctly flagged 3×: map-vs-reference 0.8800 (<0.92), conviction
+  drift −0.0375, favorite flip 0→2. Occupancy entropy (4.6012 ∈ [4.40,4.644]) and localize bits
+  (0.0000) calibrated and quiet on both.
+- Diagnosis (the useful content): the drift band borrowed Exp 49's rate (+0.0014/100 steps),
+  measured in the red-rich world (5/9 color-0). Mirro's current world is near-balanced (9/8/8),
+  where favorite-0's value share (0.3814) sits ABOVE its ≈9/25-weighted equilibrium (~0.36) —
+  normal drift is therefore NEGATIVE. A conviction-drift band must be centered on the
+  world-composition equilibrium of the CURRENT world, not transplanted from another regime.
+- Implication: instrument v1 fails its negative control — exactly what the control exists to
+  catch, BEFORE the ledger could certify any "novelty". Rung 1 (and the ladder behind it) stays
+  blocked until v2 passes both controls in a fresh predeclared run.
+- Honest caveat: single control pair (one baseline seed-stream, one anomaly); the anomaly was
+  deliberately strong (10/25 cells) — detection of subtle anomalies untested; mean_localize at
+  exact 0.0 makes that band untested too.
+- Verdict: NEGATIVE (predeclared falsifier hit) / instrument iteration, mechanism diagnosed.
+- Next (Exp 52, ledger v2): recalibrate ONLY the drift band — centered on the analytic
+  equilibrium delta with a symmetric noise margin (predeclared from the diagnosis, not from the
+  failed run's exact number) — then fresh controls on NEW fork seeds, plus a second, SUBTLER
+  planted anomaly (e.g. 3 recolored cells) to probe sensitivity honestly.

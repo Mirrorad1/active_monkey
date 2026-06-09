@@ -1,0 +1,11 @@
+{
+  "predeclared": "2026-06-09, before any epoch ran (Exp 51, rung 1 of functional-emergence)",
+  "epoch_steps": 1000,
+  "properties": {
+    "occupancy_entropy_bits": {"min": 4.40, "max": 4.644},
+    "map_accuracy_vs_reference": {"min": 0.92, "max": 1.0},
+    "mean_localize_bits": {"min": 0.0, "max": 0.15},
+    "conviction_drift": {"min": -0.005, "max": 0.04},
+    "favorite_changed": {"expected": false}
+  }
+}

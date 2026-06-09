@@ -1,0 +1,30 @@
+mirro loaded: age=6700, favorite=0, conviction_share=0.3814, hash16=f3edac2a9d5d4bf0
+ref_cmap: [0, 0, 0, 1, 2, 0, 0, 1, 1, 2, 2, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+
+=== BASELINE epoch ===
+(fork in mirro's unmodified world, 1000×live(1))
+  occupancy_entropy_bits : 4.6012
+  map_accuracy_vs_ref    : 1.0000
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.00834
+  favorite_changed       : False (fav=0)
+  elapsed: 0.1s
+  baseline_flags=1 ['conviction_drift=-0.00834 outside [-0.005, 0.04]']
+
+=== ANOMALY epoch ===
+(fork in world with cells [0, 1, 5, 6, 10, 13, 16, 18, 21, 23] recolored to color 2)
+  perturbed_cmap: [2, 2, 0, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 2, 2]
+  occupancy_entropy_bits : 4.6012
+  map_accuracy_vs_ref    : 0.8800
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.03753
+  favorite_changed       : True (fav=2)
+  elapsed: 0.1s
+  anomaly_flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.03753 outside [-0.005, 0.04]', 'favorite_changed: pre=0 post=2']
+
+mirro_untouched=True (hash_before=f3edac2a9d5d4bf0, hash_after=f3edac2a9d5d4bf0)
+
+=== SUMMARY ===
+baseline_flags=1 ['conviction_drift=-0.00834 outside [-0.005, 0.04]']
+anomaly_flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.03753 outside [-0.005, 0.04]', 'favorite_changed: pre=0 post=2']
+VERDICT: falsifier HIT (false alarm on baseline: ['conviction_drift=-0.00834 outside [-0.005, 0.04]'])

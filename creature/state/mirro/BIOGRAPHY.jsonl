@@ -75,3 +75,5 @@
 {"event": "live", "age_steps": 6600, "summary": "lived 100 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "44bde71d0ee807ee856c063e5570eff88b2f40760e23a6d27ee9fa3ceea04c3d"}
 {"event": "live", "age_steps": 6700, "summary": "lived 100 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
 {"event": "save", "age_steps": 6700, "summary": "saved to creature/state/mirro", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'ledger_baseline'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'ledger_anomaly'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
