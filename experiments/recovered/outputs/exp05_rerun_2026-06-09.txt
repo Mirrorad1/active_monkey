@@ -1,0 +1,5 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp05_context_state_order.py:25: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[A[0]],B=[B[0]],D=[D[0]],pB=pB,num_controls=[1],policy_len=1,
+CONTEXT model (state=last char => memory of the previous letter):
+  taught mirro -> ['irroorr mi', 'irro mihro', 'iroror mib']
+  taught the cat sat on the mat -> 'tal.e th t cn tat.she sa'

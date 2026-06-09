@@ -1,0 +1,5 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp02_bandit_positive_feedback.py:28: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[A[0]],B=[B[0]],C=C,D=[D[0]],pB=pB,num_controls=[2],policy_len=1,
+positive-feedback rate, early (turns 1-10): 0.9
+positive-feedback rate, late  (turns 51-60): 1.0
+learned to seek positive: True

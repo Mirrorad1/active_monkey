@@ -1,0 +1,4 @@
+  File "/Users/mirro/Projects/active-loop/experiments/recovered/exp03_teach_mirro.py", line 18
+    print(f'  before any learning: surprise={lm.mean_surprise(stream):.2f} nats/char  sample={lm.generate(\"\", 6)!r}')
+                                                                                                           ^
+SyntaxError: unexpected character after line continuation character

@@ -1,0 +1,5 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp08_aif_pair_state.py:28: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[bat(A)[0]],B=[bat(B0)[0]],D=[bat(np.ones(K)/K)[0]],
+AIF 2-char-context (pair-state) model, greedy:
+  taught mirro -> from "m": 'rro mirro m'
+  Q->A: after "name. " -> 'irro. mi'

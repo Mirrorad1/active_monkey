@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp01_aif_hmm_baseline.py:32: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag = Agent(A=[A[0]], B=[B[0]], D=[D[0]], pA=pA, pB=pB, num_controls=[1],
+V= 16 alphabet=  .acdefghimnorst len text 504
+uniform baseline: 2.773 nats/char = 4.000 bits/char
+held-out surprise BEFORE learning: 2.778 nats = 4.007 bits/char
+held-out surprise AFTER 8 epochs: 2.373 nats = 3.424 bits/char
+beats uniform baseline: True; time 11.7s
