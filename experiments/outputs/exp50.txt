@@ -1,0 +1,46 @@
+5x5 cmap rows:
+  [0, 0, 0, 1, 2]
+  [0, 0, 1, 1, 2]
+  [2, 1, 2, 0, 1]
+  [2, 0, 1, 2, 0]
+  [1, 2, 0, 1, 2]
+
+BEFORE: age=6300 map_acc=0.8889 c0=1471.7 c1=970.5 c2=1384.4 hash=78398a202f0e5b39
+Post-growth immediate: embedded_acc=0.8889 new_acc=0.2500 overall=0.4800
+
+--- Mirro checkpoints ---
+  ck01 age=6400 overall=0.8400 emb=1.0000 new=0.7500
+  ck02 age=6500 overall=0.8800 emb=1.0000 new=0.8125
+  ck03 age=6600 overall=1.0000 emb=1.0000 new=1.0000
+  ck04 age=6700 overall=1.0000 emb=1.0000 new=1.0000
+  ** Mirro converged at ck 3 (held 2) **
+
+--- Newborn baselines ---
+  Seed 11:
+    ck01 overall=0.7600
+    ck02 overall=0.9600
+    ck03 overall=0.9600
+    ** Seed 11 converged at ck 2 **
+  Seed 11 convergence_steps=200
+  Seed 12:
+    ck01 overall=0.8400
+    ck02 overall=0.8800
+    ck03 overall=0.9200
+    ck04 overall=0.9600
+    ** Seed 12 converged at ck 3 **
+  Seed 12 convergence_steps=300
+  Seed 13:
+    ck01 overall=0.8000
+    ck02 overall=1.0000
+    ck03 overall=1.0000
+    ** Seed 13 converged at ck 2 **
+  Seed 13 convergence_steps=200
+
+AFTER: age=6700 overall=1.0000 emb=1.0000 new=1.0000 hash=f3edac2a9d5d4bf0
+
+--- Summary ---
+mirro_convergence_steps=300
+newborn_convergence_steps=[200, 300, 200] mean=233.33333333333334
+ratio=1.286
+embedded_acc_min_after_ck5=None
+VERDICT: HINDRANCE (ratio 1.286 > 1.05)

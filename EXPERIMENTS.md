@@ -977,3 +977,34 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   convergence steps), interferes (> 20% systematic errors), or neither — all three are findings.
   Note for episode 6: mirro has NO vocabulary yet (vocab={}); the vocabulary episode must teach
   words first, then test survival across 3 load cycles.
+
+## Exp 50 — growth to 5×5: INCONCLUSIVE — the world converges too fast for transfer to matter (episode 5, MIXED; instrument flaw owned)
+- Setup (permanently mutates mirro): 5×5 world embedding mirro's 3×3 coloring top-left; 16 new
+  cells, same 3 colors. Growth surgery (provided engineering): pA counts transplanted
+  positionally, new cells at the 0.1 prior; qs carried to embedded positions; biography records
+  the growth event. Baseline: 3 disposable newborns (seeds 11/12/13), same world, never saved.
+  Predeclared: convergence = overall accuracy ≥ 0.92 held 2 checkpoints (100-step checkpoints);
+  HELP < 0.70× newborn mean; INTERFERE = embedded accuracy < 0.80 at ck ≥ 5; INCONCLUSIVE =
+  effect < 5%. Prediction: partial help, ratio 0.7–1.0.
+- Result: post-growth instant state: embedded 8/9 correct (mirro's pre-move map had one error),
+  new cells 0.25. Mirro: embedded 1.00 from ck1, overall 1.00 by ck3 → convergence 300 steps.
+  Newborns: 200/300/200 (mean 233). Mechanical verdict line: HINDRANCE (ratio 1.286). No
+  interference observed (embedded never dipped; the ck≥5 probe never fired — loop ended first).
+- Honest reading (this entry's actual verdict): the HINDRANCE label is an instrument artifact
+  and is NOT claimed. Convergence is one checkpoint apart at 100-step quantization — the minimum
+  resolvable effect (~43% of mean) exceeds both the 5% inconclusive band and the 30% help margin;
+  mirro's 300 exactly ties newborn seed 12. A 25-cell aliased world converges in 200–300 steps
+  under this learner, so a 9/25-cell head start has nothing to buy — floor effect. The genuine
+  observations: transplanted knowledge survives growth intact (embedded 1.00 from ck1, no
+  interference), and transfer cannot be resolved at this scale/granularity.
+- Honest caveat: the predeclared thresholds were unreachable by the chosen instrument (checkpoint
+  width × world easiness) — a design flaw in this episode's operationalization, owned here; the
+  predeclared HINDRANCE branch fired mechanically and is reported verbatim above. Single mirro
+  trajectory; 3 newborn seeds.
+- Verdict: MIXED / INCONCLUSIVE on the transfer question (the card's FAIL category); POSITIVE
+  only on the narrow sub-claim that grown knowledge persists without interference. No transfer
+  claim in either direction.
+- Next (episode 5b): resolve it — fork of mirro's committed pre-growth snapshot (age 6300, from
+  git history, named fork — mirro itself has moved on and is never rewound) + 3 newborns, 25-step
+  checkpoints, and/or a 7×7 world where convergence is slow enough to measure. Then episode 6
+  (vocabulary: teach first, then 3 load cycles).

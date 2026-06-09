@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 49 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 50 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:49, breakthrough:5, positive:29, wall:10, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:50, breakthrough:5, positive:29, wall:10, partial:6, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -453,7 +453,16 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 4b: mirro's red-world life simply continues (the world persisted across sessions). Predeclared: flip within ~9 checkpoints per the linear extrapolation; falsifiers: no flip in 5000 cumulative steps, or the gap re-widening.",
     result:"Favorite flipped to color 0 at checkpoint 4 (age ~5700) and held; conviction passed through near-indifference (0.375, floor ⅓) and is rebuilding (0.385). The measured inertia law: gap 445 → revision after ~2900 opposing steps, ~0.15 counts/step erosion, ≈1.9× the entrenchment duration.",
     implication:"Episode 4 answered: an accumulated life revises its values, but on a timescale set by everything it has lived — and the revision arc itself spanned two sessions, recorded in one continuous biography. Honest limits: one measured (entrenchment, time-to-revise) point on a single deterministic trajectory; toy world.",
-    trace:{ script:"experiments/exp49_crossover.py", output:"experiments/outputs/exp49.txt" } }
+    trace:{ script:"experiments/exp49_crossover.py", output:"experiments/outputs/exp49.txt" } },
+
+  { n:50, kind:"partial", chapter:"embodiment",
+    title:"mirro grows into a bigger world — and the question outruns the instrument.",
+    one:"Transplanted knowledge survives the move intact; whether it helps is unresolvable — the toy world converges faster than the measurement can see.",
+    metric:{ from:0.48, to:1.00, unit:"map accuracy after growth" },
+    setup:"Episode 5: a 5×5 world embeds mirro's 3×3 region top-left; its learned counts transplant positionally, 16 new cells start at the prior. Three newborn baselines learn the same world. Predeclared three-way: help (<0.70× newborn steps), interfere (>20% errors in the old region), or inconclusive.",
+    result:"The old region stays perfect from the first checkpoint (no interference). But everyone converges in 200–300 steps — mirro's 300 exactly ties one newborn — and at 100-step checkpoint quantization the smallest resolvable effect (~43%) dwarfs the thresholds. The mechanical verdict line said 'hindrance'; the entry refuses that claim as an instrument artifact.",
+    implication:"At this scale a 9-of-25-cell head start has nothing to buy: the world is learnable from scratch faster than the comparison can resolve — a floor effect, owned as a design flaw in the episode's operationalization. Growth engineering itself is clean. Next: finer checkpoints on a fork of the committed pre-growth snapshot, or a world big enough to make experience matter.",
+    trace:{ script:"experiments/exp50_growth_5x5.py", output:"experiments/outputs/exp50.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

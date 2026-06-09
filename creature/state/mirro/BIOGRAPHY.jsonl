@@ -69,3 +69,9 @@
 {"event": "live", "age_steps": 6200, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "e9ffd1dcd8c9374901dce9f468e435063a6e4e3e396deeb3c92fb090e3c45c0a"}
 {"event": "live", "age_steps": 6300, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "78398a202f0e5b393575209567a63a8febfe0aef78b20d1ae104909bddf7f4ac"}
 {"event": "save", "age_steps": 6300, "summary": "saved to creature/state/mirro", "state_hash": "78398a202f0e5b393575209567a63a8febfe0aef78b20d1ae104909bddf7f4ac"}
+{"event": "growth", "age_steps": 6300, "summary": "Exp 50: world grows 3x3 -> 5x5 (embedded top-left); pA/qs transplanted, 16 new cells at prior"}
+{"event": "live", "age_steps": 6400, "summary": "lived 100 steps; map_accuracy=0.840; localize_bits=-0.000", "state_hash": "b14f08f74646071cd7f50e676aba85edf261ab6e687d647e00cf6d53ea33caad"}
+{"event": "live", "age_steps": 6500, "summary": "lived 100 steps; map_accuracy=0.880; localize_bits=-0.000", "state_hash": "85a7af54f2c7e5bc109b85da5a137f73f08dd1931c012ffc275915b71f2fc096"}
+{"event": "live", "age_steps": 6600, "summary": "lived 100 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "44bde71d0ee807ee856c063e5570eff88b2f40760e23a6d27ee9fa3ceea04c3d"}
+{"event": "live", "age_steps": 6700, "summary": "lived 100 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "save", "age_steps": 6700, "summary": "saved to creature/state/mirro", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
