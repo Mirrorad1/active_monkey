@@ -286,6 +286,26 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   EMERGE (hidden states specialize by location) so the creature localizes from movement history?
   That is the real place-cell emergence test (a latent that is built, not observed).
 
+## Exp 18 — PLACE representation emerges via path integration (POSITIVE; emergence in miniature)
+- Setup: aliased world — 6 cells, only 2 sensory colors (cmap=[0,0,1,0,1,1]; 3 cells per color, so a
+  single glimpse cannot localize). Agent has a known movement model B (proprioception) + emission A;
+  starts FULLY uncertain (uniform over 6 cells). It wanders; we track the belief over place.
+- Result: start 2.58 bits (lost) -> step1 1.58 bits (narrowed to the 3 same-colored cells) -> step3
+  0.00 bits, correctly localized -> then TRACKS true position as it keeps moving (final predicted =
+  true, correct=True). A precise place belief emerged from path integration (movement + ambiguous sensing).
+- Implication: a PLACE representation — a latent that is INFERRED/built, not observed — emerges from
+  embodied action under aliased sensing. The functional essence of place cells. Two embodied positives
+  (17 learn world, 18 build place) vs the symbolic emergent-concept WALL (12-16): embodiment + grounding
+  + action is the symmetry-breaker the bare symbol stream lacked. The existence proof in miniature: a
+  representation built from experience, grounded, unsupervised in spirit. Place cells = the simplest concept.
+- Honest caveat: B (movement) and A (color map) were GIVEN here (innate proprioception + known sensing),
+  so this shows the place BELIEF emerges given the model. The fully-from-scratch version (LEARN A,B AND the
+  place structure under aliasing) is the harder next test — but embodiment now supplies the
+  symmetry-breaking the symbolic case could not.
+- Next (Exp 19): learn the model from scratch under aliasing — do hidden states self-organize to
+  specialize by location (emergent place fields) WITHOUT being told the map? Then scale the world /
+  add units (aggregation + run-to-see). Climb: place -> object -> relation -> abstract dispositions.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
