@@ -1099,3 +1099,33 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   committed state + world; the entrenched arm's reference is its declared post-entrenchment
   state); noise margin ± (0.015 + 0.5·|center|), predeclared; same four arms. If v4 fails on a
   NEW mode, pause the ladder and consult the human in the entry.
+
+## Exp 54 — ledger v4 VALIDATED: rung 1 complete (POSITIVE; instrument certified after 3 documented failures)
+- Setup: two changes from v3, both from diagnosed causes: (1) FROZEN REFERENCES — all
+  expectations derive from the declared reference state (mirro's committed state + ITS world for
+  the three detection arms; the entrenched fork's declared post-entrenchment state for arm 4);
+  the scoring function's signature cannot receive an epoch's world — un-blinding structurally
+  impossible. (2) Gap-scaled noise margin ±(0.015+0.5·|center|), covering all prior baseline
+  readings by formula, not fitting. Four arms, fresh seeds 61–64, mirro untouched
+  (hash-verified). Falsifier: any baseline false alarm or either anomaly missed; predeclared
+  escalation to the human on a new failure mode.
+- Result: VALIDATED. Baseline 0 flags (drift −0.0161 ∈ [−0.0213, +0.0129]; favorite
+  auto-DISABLED at gap 0.0179). Strong anomaly 2 flags (map-vs-ref 0.88; drift −0.0387). Subtle
+  anomaly 2 flags (map-vs-ref 0.88; drift −0.0261) — the v3 miss, fixed by freezing. Enabled
+  arm: gap 0.1082 → favorite ENABLED, 0 flags (drift +0.0122 ∈ [+0.0001, +0.0602]).
+- Implication: the program now has a working novelty-certification instrument — quiet on normal
+  life on BOTH sides of the entrenchment condition, sensitive to planted perturbations down to a
+  documented 3-cell floor. The three design rules earned across Exp 51–53 (equilibrium-derived
+  bands; state-conditional invariants; frozen references) are embedded in code, not prose.
+  Rungs 2–6 of functional-emergence unblock.
+- Provided vs self-formed: the instrument is entirely provided harness; what it measures (drift
+  toward equilibria, entrenchment) reflects the creature's self-formed values.
+- Honest caveat: validated on one anomaly family (recoloring) and one creature/world; floor
+  documented only for that family; occupancy/localize bands never stressed (no movement
+  anomaly tested); single seed-stream per arm.
+- Verdict: POSITIVE / instrument complete. Self-grade: POSITIVE-SINGLE (an instrument, not a
+  creature capability; the lasting content is the three design rules).
+- Next (rung 2): personality battery — fixed probe set (preference, exploration disposition,
+  revision speed) at ≥3 ages of mirro and on ≥2 divergent fork-twins; personality = temporal
+  self-similarity + twin divergence; the entrenchment condition from rule 2 gates the
+  preference probe. FAIL = profiles unstable across ages or twins don't diverge.

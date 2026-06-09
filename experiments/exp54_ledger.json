@@ -1,0 +1,11 @@
+{
+  "predeclared": "2026-06-09, ledger v4 (Exp 54). Two changes from v3: (1) FROZEN REFERENCES — all expectations derive from the declared reference state only, never from the epoch under test (Exp 53 design rule #3); (2) noise margin scales with the expected-drift magnitude: +/-(0.015 + 0.5*|center|).",
+  "epoch_steps": 1000,
+  "properties": {
+    "occupancy_entropy_bits": {"min": 4.40, "max": 4.644},
+    "map_accuracy_vs_reference": {"min": 0.92, "max": 1.0},
+    "mean_localize_bits": {"min": 0.0, "max": 0.15},
+    "conviction_drift": {"formula": "center = (eq_share - cur_share) * steps/(total_counts + steps); margin = 0.015 + 0.5*abs(center); band = (center - margin, center + margin)", "noise_margin_base": 0.015, "noise_margin_scale": 0.5},
+    "favorite_changed": {"expected": false, "conditional": "scored only if pre-epoch gap_share = (counts[favorite]-counts[runner_up])/total > 0.03; else DISABLED (favorite identity is inside the epoch noise envelope, Exp 52 diagnosis)"}
+  }
+}

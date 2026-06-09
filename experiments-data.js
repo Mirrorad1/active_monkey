@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 53 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 54 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:53, breakthrough:5, positive:29, wall:13, partial:6, from:4.81, to:4.00 };
+window.AM_TALLY = { total:54, breakthrough:5, positive:30, wall:13, partial:6, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -489,7 +489,16 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v3: favorite constancy becomes state-conditional (scored only above a 0.03 entrenchment gap). Four blind fork epochs including an entrenched arm where the property correctly re-enables. Falsifier: baseline false alarm or either anomaly missed.",
     result:"The conditional rule passed all four arms (disabled at gap 0.018, enabled at 0.106, no false alarm). But the subtle anomaly was MISSED: the spec derived references from the world the fork entered with — the perturbed one — so map accuracy was scored against the anomaly itself and the drift band re-centered on the perturbed equilibrium. A self-inflicted blindness violation, diagnosed from the code.",
     implication:"Design rule #3, the deepest of the three: references must be FROZEN — expectations derive only from the committed reference state, never from the epoch under test. That is the entire difference between anomaly detection and curve-fitting. v4 rebuilds with frozen references and a gap-scaled noise margin; one more new failure mode pauses the ladder for the human.",
-    trace:{ script:"experiments/exp53_ledger_v3.py", output:"experiments/outputs/exp53.txt" } }
+    trace:{ script:"experiments/exp53_ledger_v3.py", output:"experiments/outputs/exp53.txt" } },
+
+  { n:54, kind:"positive", chapter:"frontier",
+    title:"The novelty detector finally earns its license.",
+    one:"Frozen references fix the last hole: quiet on normal life, flags both planted anomalies — three documented failures became three design rules, now embedded in code.",
+    metric:{ from:0, to:2, unit:"subtle-anomaly flags (v3 → v4)" },
+    setup:"Ledger v4: expectations derive only from the declared reference state — the scoring function structurally cannot see the epoch's world — and the noise margin scales with expected drift. Same four arms as v3, fresh seeds, with escalation to the human predeclared on any new failure mode.",
+    result:"Validated on all four arms: baseline quiet (favorite auto-disabled at gap 0.018), both anomalies flagged twice over (the 3-cell case that v3 missed now trips map-vs-reference AND drift), and the entrenched arm runs quiet with the favorite invariant actively enabled at gap 0.108. Mirro untouched throughout.",
+    implication:"The program can now certify 'unexpected' rather than vibe it: equilibrium-derived bands (Exp 51), state-conditional invariants (Exp 52), frozen references (Exp 53). Honest limits: one anomaly family, one creature, movement bands never stressed. Rungs 2–6 unblock — next, the personality battery with the entrenchment condition built in.",
+    trace:{ script:"experiments/exp54_ledger_v4.py", output:"experiments/outputs/exp54.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
