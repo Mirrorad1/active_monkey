@@ -674,3 +674,9 @@ the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a ri
 - Result: favorite stays correct across all noise; conviction (value-mass) degrades gracefully
   0.99->0.90->0.70->0.45 as predictability drops. Robust to moderate noise; graceful, not a cliff.
   (Clearer experience -> stronger opinion.) Consolidation; no new insight.
+
+## Exp 40 — opinions are revisable by new experience (consolidation POSITIVE)
+- Raise to value feature 2; then change the world so feature 0 becomes comfortable; continue living.
+- Result: favorite shifts 2 -> 0 with sustained new experience. Opinion REVISED, not frozen — and shows
+  realistic INERTIA (needed enough new evidence to overcome the entrenched prior). Mind-like: values
+  update as the world/evidence changes. Consolidation; no new insight.
