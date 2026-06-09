@@ -185,6 +185,25 @@
   .pivot p{margin:0;color:#c7cfe0;max-width:70ch;line-height:1.6}
   .pivot p b{color:#fff}
 
+  /* ---------- live feed (auto-pulled from EXPERIMENTS.md) ---------- */
+  .live-head{display:flex;align-items:center;gap:.6rem}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:var(--win);
+    box-shadow:0 0 0 0 var(--win);animation:pulse 2.6s infinite}
+  .livefeed{margin-top:1.6rem;display:flex;flex-direction:column;gap:.5rem}
+  .feednote{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.04em;
+    color:var(--faint);text-transform:uppercase;margin:.5rem 0 .15rem}
+  .feedrow{display:flex;align-items:center;gap:.85rem;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:.65rem .95rem;transition:.18s}
+  .feedrow:hover{border-color:var(--line2)}
+  .feedrow.new{border-color:var(--signal-dim);
+    background:linear-gradient(90deg,rgba(84,230,196,.07),var(--panel) 42%)}
+  .feedrow .exp{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--faint);white-space:nowrap}
+  .feedrow .t{flex:1;font-family:"Fraunces",serif;font-size:1.04rem;font-weight:500;min-width:0;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .feedrow .badge{flex-shrink:0}
+  .badge.note{color:#0a1f14;background:var(--muted)}
+  @media(max-width:560px){.feedrow .t{white-space:normal}.feedrow .badge{display:none}}
+
   /* ---------- insights ---------- */
   .insights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
   @media(max-width:740px){.insights{grid-template-columns:1fr}}
@@ -307,6 +326,14 @@
   </div>
 
   <div id="timeline"></div>
+</section>
+
+<!-- live feed -->
+<section class="wrap" id="live">
+  <div class="kicker reveal">Live from the lab · auto-pulled from EXPERIMENTS.md</div>
+  <h2 class="reveal live-head"><span class="live-dot"></span>The loop is still running.</h2>
+  <p class="section-intro reveal">The site auto-deploys every time the agent commits an experiment. The arcs above are curated; this feed updates itself straight from the lab notebook — newest first, so progress shows up the moment it lands.</p>
+  <div id="livefeed" class="livefeed reveal"><p class="feednote">syncing with the notebook…</p></div>
 </section>
 
 <!-- insights -->
@@ -495,13 +522,74 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 const cu = new IntersectionObserver((entries) => {
   entries.forEach(en => {
     if (!en.isIntersecting) return;
-    const el = en.target, target = +el.dataset.count;
-    let v = 0; const step = Math.max(1, Math.round(target / 22));
-    const tick = () => { v = Math.min(target, v + step); el.textContent = v; if (v < target) requestAnimationFrame(tick); };
+    const el = en.target;
+    // re-read the target each frame so a later live update (loadLiveFeed) wins the race
+    let v = 0; const step = Math.max(1, Math.round(+el.dataset.count / 22));
+    const tick = () => { const target = +el.dataset.count; v = Math.min(target, v + step); el.textContent = v; if (v < target) requestAnimationFrame(tick); };
     tick(); cu.unobserve(el);
   });
 }, { threshold: 1 });
 document.querySelectorAll('.stat .n[data-count]').forEach(el => cu.observe(el));
+
+// ---- live feed: auto-pulled from EXPERIMENTS.md so new experiments show up on their own ----
+const CURATED_MAX = Math.max(...ARCS.flatMap(a => a.exps.map(e => e.n)));
+const FEED_LABEL = { win:'breakthrough', wall:'honest wall', partial:'partial', note:'result' };
+
+function outcomeOf(line){
+  const U = line.toUpperCase();
+  if (U.includes('PARTIAL')) return 'partial';
+  if (/NEGATIVE|\bFAILS?\b|COLLAPSE|\bWALL\b/.test(U)) return 'wall';
+  if (/POSITIVE|WORKS|\bCLEAN\b|MILESTONE/.test(U)) return 'win';
+  return 'note';
+}
+function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function feedRow(e){
+  return `<div class="feedrow${e.n > CURATED_MAX ? ' new' : ''}">`
+    + `<span class="exp">EXP ${String(e.n).padStart(2,'0')}</span>`
+    + `<span class="t">${esc(e.title)}</span>`
+    + `<span class="badge ${e.o}">${FEED_LABEL[e.o]}</span></div>`;
+}
+
+async function loadLiveFeed(){
+  const box = document.getElementById('livefeed');
+  try {
+    const res = await fetch('EXPERIMENTS.md', { cache: 'no-store' });
+    if (!res.ok) throw new Error('fetch failed');
+    const txt = await res.text();
+    const re = /^##\s+Exp\s+(\d+)\s*[—-]\s*(.+)$/gm;
+    const byN = new Map();
+    let m;
+    while ((m = re.exec(txt))) {
+      const n = +m[1], line = m[2].trim();
+      byN.set(n, { n, o: outcomeOf(line), title: line.replace(/\s*\([^)]*\)\s*$/, '').trim() });
+    }
+    const all = [...byN.values()].sort((a, b) => a.n - b.n);
+    if (!all.length) throw new Error('no experiments parsed');
+
+    // keep the headline experiment count honest as the loop runs
+    const total = all[all.length - 1].n;
+    const sig = document.querySelector('.stat.sig .n');
+    if (sig) { sig.dataset.count = total; sig.textContent = total; }
+
+    const fresh = all.filter(e => e.n > CURATED_MAX).reverse();
+    const latest = all[all.length - 1];
+    let html = '';
+    if (fresh.length) {
+      html += `<div class="feednote">🆕 ${fresh.length} new experiment${fresh.length > 1 ? 's' : ''} since the curated arcs — added automatically</div>`;
+      html += fresh.map(feedRow).join('');
+      html += `<div class="feednote" style="margin-top:.9rem">earlier in the log</div>`;
+      html += all.slice(0, CURATED_MAX).slice(-3).reverse().map(feedRow).join('');
+    } else {
+      html += `<div class="feednote">✓ the curated arcs are current — newest in the notebook is Exp ${latest.n}</div>`;
+      html += all.slice(-5).reverse().map(feedRow).join('');
+    }
+    box.innerHTML = html;
+  } catch (err) {
+    // graceful: if the notebook can't be read (e.g. opened from file://), hide the section
+    document.getElementById('live').style.display = 'none';
+  }
+}
+loadLiveFeed();
 </script>
 </body>
 </html>
