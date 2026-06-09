@@ -51,15 +51,36 @@ novelty hunting before world enrichment is reading noise.
    tracks the drift with measurable lag. A quiet ledger across epochs is a REAL negative:
    "no novelty at this richness" — log it, don't shop for anomalies post-hoc.
 
-4. **Novelty verification cascade.** Every ledger deviation enters the cascade:
-   (a) property-level reproduction across ≥ 3 forks from the pre-epoch snapshot
+4. **Obstacle & delayed gratification (Levin transplant).** Levin's minimal-sorting result
+   (thoughtforms.life, *Algorithms Redux*): freeze an array cell the algorithm has NO coded
+   branch for, and the system still sorts around it (error tolerance) AND moves cells
+   temporarily *against* their sorted gradient to route around the block (delayed
+   gratification). mirro already does value-iteration navigation, so the transplant is
+   clean: introduce a **locked world-cell** mirro cannot enter and for which its policy has
+   no special handler (a provided perturbation — declare it). Two predeclared properties,
+   both falsifiable: (a) **error tolerance** — mirro still reaches its goal / completes its
+   task with the obstacle present (FAIL = goal unreachable or task accuracy collapses); and
+   (b) **delayed gratification** — on the path around the lock mirro takes at least one step
+   that *lowers* immediate expected value / raises immediate free energy to achieve a better
+   later state (FAIL = it never moves against the gradient, i.e. pure greedy descent, OR it
+   stalls at the obstacle). Run the deviation through rung 5's cascade before any
+   competency language — and predeclare the deflationary control Levin's critics raised:
+   confirm against-gradient routing isn't a trivial consequence of the value-iteration
+   horizon alone (compare to a greedy/1-step baseline; only a gap beyond that is the
+   finding). Both outcomes are results: against-gradient routing is a measured competency;
+   pure greedy success is "value-iteration nav already handles this, no DG needed."
+
+5. **Novelty verification cascade.** Every ledger deviation (including rung 4's) enters the
+   cascade: (a) property-level reproduction across ≥ 3 forks from the pre-epoch snapshot
    (VALIDATION.md §Statistical reproducibility); (b) deflationary sweep — bug, numerical
-   artifact, or trivial single-parameter consequence each checked and written down;
+   artifact, or trivial single-parameter consequence each checked and written down (e.g.
+   Levin's clustering plausibly falls out of per-algotype movement-bias asymmetry, not
+   proto-goals — that is the kind of boring cause that must be ruled out first);
    (c) only survivors are logged as NOVELTY-CANDIDATE in EXPERIMENTS.md, with the cascade
    record. Deviations that die in the cascade are logged as died-and-why. An epoch where
    every deviation dies is a clean negative, not a failure of the direction.
 
-5. **Interoceptive stake (bridge to M4).** Give mirro a viability variable it must
+6. **Interoceptive stake (bridge to M4).** Give mirro a viability variable it must
    predict-and-regulate (toy allostasis: e.g. energy that decays and is replenished at the
    comfort source), alongside a fork-twin control WITHOUT the interoceptive channel.
    Predeclared question: does self-related structure appear (regulation-aware policy,
@@ -78,8 +99,9 @@ novelty hunting before world enrichment is reading noise.
   inner-experience layer stays explicitly unverified in both directions (VALIDATION.md).
 
 **Stop condition.** Exhausted when: the ledger instrument exists and is validated, the
-personality battery has a verdict either way, AND ≥ 3 enriched-world epochs have run with
-every deviation cascaded — with no surviving novelty-candidate. Then write in
+personality battery has a verdict either way, the obstacle/delayed-gratification rung has a
+verdict, AND ≥ 3 enriched-world epochs have run with every deviation cascaded — with no
+surviving novelty-candidate. Then write in
 EXPERIMENTS.md: "no disciplined novelty at this world richness; next richness step would
 require <named substrate>" and either open that substrate as a new direction or stop. If
 novelty-candidates DO survive, this direction stays open as long as they keep coming —
