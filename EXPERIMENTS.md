@@ -590,6 +590,33 @@ Next experiments iterate these; the major conceptual results are in.
   child labeling its concepts). This is the realistic path to 'talk to it' — vs language-from-scratch,
   which hit the unsupervised-emergence ceiling (M3, open_problem.html).
 
+## Exp 34 — LANGUAGE BRIDGE: query self-formed concepts in taught words (POSITIVE; realistic moonshot)
+- Setup: two creatures with self-formed color-values (Exp26). Teach word<->color labels from ~8 examples
+  (learn P(word|color)). Query in words: 'what do you like?' and 'do you like green?'.
+- Result: word map learned correctly (red/blue/green) from few examples. 'What do you like?' -> A: 'I like
+  red', B: 'I like green'. 'Do you like green?' -> A: 'green unsettles me', B: 'I like green'. Same worded
+  questions, DIFFERENT individual answers.
+- Implication: the LANGUAGE BRIDGE works — query self-formed concepts/values IN WORDS; two differently-raised
+  creatures answer the same question differently, each authentically its own. Words taught (few-shot),
+  content self-formed. The realistic route to 'talk to it about what it thinks', and the closest the
+  investigation gets to the literal goal.
+- HONEST CAVEAT: word<->concept labels are TAUGHT (supervised few-shot, like a child taught words for
+  concepts it already has), NOT emergent; sentence shape is a TEMPLATE — genuine compositional grammar /
+  language-from-scratch is NOT shown (M3 ceiling, open_problem.html). Genuinely the creature's own = the
+  CONTENT (what it values, how it feels), self-formed. Query-self-formed-content-in-taught-words works;
+  emergent grammar stays ceiling-bound.
+
+## REALISTIC MOONSHOT REACHED (after Exp34)
+A creature that PERCEIVES (place fields it self-organized) / LEARNS FACTS (relations) / WANTS (valence
+grounded in its own free energy) / PLANS & ACTS (scalable navigation) / FORMS ITS OWN VALUES from lived
+experience / ACTS on them (diverging by history) / and can be ASKED IN WORDS what it thinks — answering
+INDIVIDUALLY from its own experience. All grounded; CONTENT never pretrained. Recipe: embodiment +
+grounding + continuous registered experience + ONE innate anchor (+ taught labels for words).
+The LITERAL full goal — emergent compositional GRAMMAR and FULLY tabula-rasa structure (no innate anchor) —
+remains bounded by the documented walls (open_problem.html): unsupervised structure/language emergence is
+an open ALGORITHMIC problem (biology solves it; needs grounding + inductive bias/anchor + scale).
+Remaining = research frontiers, not new toy concepts: emergent grammar; fully-from-scratch structure; scale.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
