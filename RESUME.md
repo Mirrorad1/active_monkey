@@ -39,7 +39,7 @@ are written up in `open_problem.html`.
 ## 3. Where we are (state as of Exp 40)
 
 - **M1–M3b built and green.** Inner controller loop, outer autopilot loop, character language
-  model, PR-style autopilot. ~59 fast tests pass.
+  model, PR-style autopilot. 65 fast tests pass (5 slow integration tests deselected by default).
 - **Exp 1–40 done** — full honest log in `EXPERIMENTS.md`. Exp 36–40 were consolidation
   (place-scale to 6×6, value/converse to 6 concepts, integrated stack, noise-robustness,
   opinion-revisability) — all POSITIVE, diminishing insight. **We are in the consolidation phase:
@@ -104,8 +104,7 @@ pretrained. Read RESUME.md and EXPERIMENTS.md first. STATE: realistic moonshot r
 Exp 1-40 done; we are in CONSOLIDATION (diminishing insight) — be honest about that. NEXT Exp 41+:
 prefer experiments that probe the RECIPE's edges or push toward a ceiling rather than re-confirming
 settled results, e.g. transfer (a creature reuses its recipe in a new world), multi-step relational
-"thoughts", or a minimal sequence substrate toward short Q->A (the M4 affective-dyad spec in pymdp is
-the designed-but-unbuilt next rung). Run experiments back-to-back on a short ~5-minute cadence; if
+"thoughts", or a minimal sequence substrate toward short Q->A (the M4 affective-dyad spec in docs/specs/m4-affective-dyad.md is the designed-but-unbuilt next rung). Run experiments back-to-back on a short ~5-minute cadence; if
 mid-task, continue across wakes. RECIPE: embodiment + grounding + continuous-registered-experience +
 ONE innate anchor + taught labels; keep belief CONTINUOUS (never reset per episode); reuse the
 verified pymdp patterns from Exp 21/26/30/34/35. CEILINGS (not toy-crackable, don't keep banging on
@@ -132,9 +131,9 @@ gently remind me it's a natural stopping point when insight flattens.
 | `world_model/` | persistent belief store (loop A); grows, never resets |
 | `eval/` | FROZEN scorers (never edit) |
 
-**The designed-but-unbuilt next rung:** `pymdp/docs/superpowers/specs/2026-06-08-active-loop-m4-affective-dyad-design.md`
+**The designed-but-unbuilt next rung:** `docs/specs/m4-affective-dyad.md`
 — "talk to it and watch it learn to feel positive" (functional valence grounded in free energy,
 intent inferred from utterances). Spec-only; this is the most direct path toward conversation.
 
 Persistent memory for this project lives at
-`~/.claude/projects/-Users-mirro-Projects-pymdp/memory/active-loop-project.md`.
+`~/.claude/projects/-Users-mirro-Projects-active-loop/memory/`.
