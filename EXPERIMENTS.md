@@ -804,3 +804,30 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   inference measurement = the new content.
 - Next: either depth-3 within blocks (fix the residual wall: s=(intent,c-2,c-1,c)) or ladder
   step 3 (affective coloring from −dF/dt). Step 4 (M4 milestone) needs unlabeled intent clustering.
+
+## Exp 43 — dissociation probe: intent factor binds where NO tested flat depth can (POSITIVE)
+- Setup: 2 Q→A pairs whose questions share a 13-char suffix " like green. " and differ only in
+  prefix ("do you…"→"it unsettles me."; "does anyone…"→"no one does."). Models: (1) flat depth-2
+  pymdp (Exp 41 machinery); (2) flat depth-3, identical generative math as a deterministic
+  count-chain (dense pymdp at K=28³ memory-infeasible; counts≡Dirichlet on deterministic states,
+  equivalence per Exp 8); (3) intent(2 blocks)+depth-2 (Exp 42 machinery; labels provided in
+  training, intent inferred at test). Predeclared selection metric: first-4 chars ("it u" vs
+  "no o"). Falsifier: model 3 ≤ models 1/2, or flat depth succeeding.
+- Result: model 1 selection 0/2, continuations identical. Model 2 continuations ALSO identical
+  ('it unsettles…' for both questions); its nominal "selection 1/2" is a metric artifact — one
+  fixed continuation happens to match one target; no question-dependence exists. Model 3:
+  intent 2/2 (mass 1.000), selection 2/2, exact 2/2. Prediction confirmed; no rerun (deterministic
+  pipeline, rerun stability established in Exp 42).
+- Implication: with question identity outside any tested window (shared suffix 13 ≫ depth 3),
+  flat models are question-blind by construction; the held intent state carries identity across
+  an unbounded span. Depth = bounded-span memory, intent = unbounded-span binding — the
+  two-timescale division of labor, now measured on Q→A with a matched-suffix control.
+- Provided vs self-formed: intent labels provided in training; held-ness architectural; intent
+  inferred at test from the question prefix by state inference. Answers are taught template text.
+- Honest caveat: 2 pairs, toy scale; the principle was established by Exp 9/10 — this is a
+  cleaner, controlled dissociation (matched suffix + depth-3 control + quantified selection),
+  not a new capability. Depth-3 model computed outside pymdp (memory), same math.
+- Verdict: POSITIVE / CONSOLIDATION-leaning (controlled measurement of a known principle).
+  Self-grade: POSITIVE-SINGLE.
+- Next: ladder step 3 — affective coloring: valence = −dF/dt from the creature's own free-energy
+  trace modulating the answer, checked against its self-formed value (Exp 26 machinery).

@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:42, breakthrough:5, positive:24, wall:8, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:43, breakthrough:5, positive:25, wall:8, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -391,7 +391,16 @@ window.AM_EXPERIMENTS = [
     setup:"Joint state (intent × char-pair), K=2352; intent never transitions (held slow factor), per-intent transitions taught with provided labels. At test, intent is NOT given — ordinary state inference over the question chars must find it before generation.",
     result:"Intent posterior lands on the right block with mass 1.000 for all three questions; two answers come out exactly. The third fails inside its own answer ('i are are…') — the pair (' ','a') has four valid continuations in that text, a 2-char-depth ambiguity unrelated to question binding.",
     implication:"Exp 41's single failure number (0/3) splits into two separate, measured walls: cross-pair selection (fixed completely by a held intent factor, as Exp 10 predicted) and within-sequence depth (Exp 7's threshold, still open). Honest limit: intent labels were taught during training — selection among taught blocks, not the M4 spec's from-scratch intent clustering.",
-    trace:{ script:"experiments/exp42_intent_factor.py", output:"experiments/outputs/exp42.txt" } }
+    trace:{ script:"experiments/exp42_intent_factor.py", output:"experiments/outputs/exp42.txt" } },
+
+  { n:43, kind:"positive", chapter:"language",
+    title:"Depth is bounded memory; intent is unbounded binding.",
+    one:"Two questions sharing a 13-char suffix: every flat depth answers both the same; the held intent state answers each its own — 2/2 exact.",
+    metric:{ from:0, to:2, unit:"of 2 selected (flat: 0)" },
+    setup:"Dissociation probe: 'do you like green.' vs 'does anyone like green.' — identical 13-char question endings, different answers. Flat depth-2 (pymdp), flat depth-3 (same math), and the held-intent model from Exp 42 compete on the same corpus.",
+    result:"Both flat models emit one question-independent continuation for both questions (depth-3's nominal 1/2 is a coin face landing right — the continuations are identical). The intent model infers the asker's question from its prefix (mass 1.000) and answers both exactly.",
+    implication:"With question identity outside the context window, flat models are question-blind by construction. A held slow state carries identity across an unbounded span — the two-timescale division of labor (Exp 9/10's principle), now measured head-to-head with a matched-suffix control. Honest limits: intent labels taught in training; 2 pairs at toy scale.",
+    trace:{ script:"experiments/exp43_intent_vs_depth.py", output:"experiments/outputs/exp43.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

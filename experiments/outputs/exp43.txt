@@ -1,0 +1,24 @@
+/Users/mirro/Projects/active-loop/experiments/exp43_intent_vs_depth.py:52: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[bat(A)[0]], B=[bat(B0)[0]], D=[bat(np.ones(K) / K)[0]],
+=== Model 1: flat depth-2 pymdp (BLOCK*4, epochs=8) ===
+  pair 0: generated='does anyone gree'  target='it unsettles me.'  sel4=False  exact=False
+  pair 1: generated='does anyone '  target='no one does.'  sel4=False  exact=False
+
+=== Model 2: flat depth-3 count-chain (BLOCK*4, single pass) ===
+  pair 0: generated='it unsettles any'  target='it unsettles me.'  sel4=True  exact=False
+  pair 1: generated='it unsettles'  target='no one does.'  sel4=False  exact=False
+
+=== Model 3: intent(2)+depth-2 joint (per-intent agents, INTENTS=2) ===
+  intent 0: trained on 'do you like green. it unsettles me.'
+  intent 1: trained on 'does anyone like green. no one does.'
+  pair 0: q='do you like green.'
+    intent_mass=[1.000, 0.000]  argmax=0  intent_ok=True
+    generated='it unsettles me.'  target='it unsettles me.'  sel4=True  exact=True
+  pair 1: q='does anyone like green.'
+    intent_mass=[0.000, 1.000]  argmax=1  intent_ok=True
+    generated='no one does.'  target='no one does.'  sel4=True  exact=True
+
+model1_flat_d2: selection 0/2, exact 0/2, identical_continuations=True
+model2_flat_d3: selection 1/2, exact 0/2, identical_continuations=True
+model3_intent_d2: intent 2/2, selection 2/2, exact 2/2
+VERDICT: prediction CONFIRMED (intent binds beyond any tested depth)
