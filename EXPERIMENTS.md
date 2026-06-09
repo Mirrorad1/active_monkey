@@ -658,3 +658,8 @@ Valence grounding (M4): research backs **valence = -dF/dt** (rate of free-energy
 differentiable, theory-grounded intrinsic signal. Honest ceiling: discrete AIF reaches a legible,
 emergent-state, grounded-valence context model with short Q→A — not conversational fluency alone;
 the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a richer sequence substrate.
+
+## Exp 37 — scale value/converse stack to 6 concepts (consolidation POSITIVE)
+- 6 concepts + 6 taught words, 3 creatures raised differently. All learn the vocab correctly; each
+  creature's favorite matches its upbringing (A->blue, B->green, C->amber). Individual self-formed
+  opinions + worded answers hold at larger scale. Pure consolidation; no new insight.
