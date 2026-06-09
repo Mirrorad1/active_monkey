@@ -346,6 +346,24 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   Then climb toward composite concepts; later fuse valence (Exp14/15) so it ACTS on grounded preferences
   within its self-learned world (a minimal creature that knows where it is and what it wants).
 
+## Exp 21 — recipe scales to 2D: place fields self-organize in a 3x3 grid (clean POSITIVE)
+- Setup: 2D 3x3 grid (9 cells, 4 actions up/down/left/right with wall-clamping), aliased 3-color
+  sensing (each color 3x), continuous registered belief, learn A from scratch (movement B innate).
+  900-step continuous wander.
+- Result: learned per-cell color tuning = TRUE colormap EXACTLY ([0,1,2,1,2,0,2,0,1]); localization
+  with the LEARNED map in 2D = 0.00 bits, correct cell. CLEAN.
+- Implication: the embodied recipe (embodiment + grounding + continuous registered experience) is
+  ROBUST to larger scale and richer (2D, walled) topology — place fields self-organize from scratch.
+  Embodied arc now solid: Exp17 (learn dynamics), 18 (place via path-int), 20 (1D place fields), 21
+  (2D place fields) all clean; only the confounded Exp19 was partial.
+- Honest caveat: B (movement/topology) innate/known; A (sensory map) learned from scratch; registered
+  start. The structure was genuinely learned. Learning the 2D TOPOLOGY B itself from scratch is the
+  remaining harder rung.
+- Next: (Exp22) FUSE valence — give the creature a GROUNDED preference (a place/percept it finds
+  comfortable) and let it NAVIGATE there via expected free energy in its self-learned world: a minimal
+  creature that knows WHERE IT IS (place fields) AND WHAT IT WANTS (grounded valence), nothing
+  pretrained. (Parallel) learn the topology B from scratch. Then climb toward composite/abstract concepts.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
