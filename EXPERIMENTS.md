@@ -158,6 +158,28 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
   (c) light semi-supervision to break symmetry, then test generalization;
   (d) structure learning / Bayesian model reduction (RESEARCH.md rec #3).
 
+## Exp 13 — semi-supervised foothold still fails to yield test-time inference (negative)
+- Setup: 2-factor (topic + first-order char), topic TEACHER-FORCED during training (each clause's
+  topic pinned via the prior); at test, topic uniform and must be inferred from the subject.
+  (Also fixed two bugs en route: script-on-/tmp lost the import path; teacher-forced prior dropped
+  its batch axis — note for future: forced priors must be shape (1,T), not (T,).)
+- Result: both "sky is "/"grass is " → "s is i"; inferred topic [0.5,0.5]; no binding; char output
+  degraded too.
+- Implication: scaffolding the topic in TRAINING does not by itself produce TEST-TIME inference.
+  Root causes: (1) emission A is topic-INDEPENDENT, so the subject chars have NO direct pathway to
+  move the topic belief — the only channel is transition-mismatch, which single-step FPI doesn't
+  accumulate over the subject; (2) the first-order char factor is too weak a substrate. The topic
+  needs a DIRECT evidential pathway (emission-level dependence) + a context-carrying char substrate.
+- Meta (honest): Exps 11–13 confirm the predicted wall — emergent/unsupervised concept formation in
+  this discrete framework is genuinely hard (matches RESEARCH.md's honest ceiling: from-scratch deep
+  structure learning is largely open). Productive paths: (a) make the topic GROUNDED & directly
+  inferable — A depends on topic so the subject word identifies it (this is grounding from
+  experience, NOT pretrained opinions); (b) pair-state char substrate; (c) shift focus to fronts
+  that show positive progress (valence-grounding bridge, curriculum) while keeping emergence as the
+  long research arc.
+- Next: Exp 14 — topic with EMISSION-level dependence (A_dependencies=[[0,1]]) over a pair-state
+  char substrate, so the subject directly and durably identifies the topic; test unsupervised binding.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
