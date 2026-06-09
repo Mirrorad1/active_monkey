@@ -1,0 +1,6 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp09_longrange_binding_flat.py:26: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[bat(A)[0]],B=[bat(B0)[0]],D=[bat(np.ones(K)/K)[0]],
+LONG-RANGE BINDING test (flat 2-char memory):
+  prime "sky is "   -> 'reen. g'
+  prime "grass is " -> 'reen. g'
+  (if both same -> flat trigram cannot bind subject->predicate; needs hierarchy)

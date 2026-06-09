@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp10_topic_conditioned_binding.py:26: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[bat(A)[0]],B=[bat(B0)[0]],D=[bat(np.ones(K)/K)[0]],
+HIERARCHY test: topic-conditioned char transitions (topic held across the clause)
+  topic=SKY,   prime "is " -> 'lue. s'
+  topic=GRASS, prime "is " -> 'reen. '
+  => a HELD topic state binds is->blue vs is->green where flat memory (Exp9) could not.
+  (topic here is supervised/separated; making it EMERGE + be inferred is the open frontier)
