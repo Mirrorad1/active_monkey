@@ -57,3 +57,15 @@
 {"event": "live", "age_steps": 5200, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "49e2eb35844a7fbd5acc6d679346ba8ff375fcfad29589f9e152bed79ea69b01"}
 {"event": "live", "age_steps": 5300, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "c03f754782dc31584413dd3db61e17f1a10284728fcbf5f0c575e0de70a1ba4e"}
 {"event": "save", "age_steps": 5300, "summary": "saved to creature/state/mirro", "state_hash": "c03f754782dc31584413dd3db61e17f1a10284728fcbf5f0c575e0de70a1ba4e"}
+{"event": "episode", "age_steps": 5300, "summary": "Exp 49: continue red-world life to the crossover (episode 4b)"}
+{"event": "live", "age_steps": 5400, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "64791ec2827d43b28edfcaab8ade31952dca35d7c4d66d6b60f3305095083d4e"}
+{"event": "live", "age_steps": 5500, "summary": "lived 100 steps; map_accuracy=0.778; localize_bits=-0.000", "state_hash": "d43eb91c3873ee7a40b498d8bcdee3095ed11384ee0f42505710b2658ff75b71"}
+{"event": "live", "age_steps": 5600, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "aa81fb1b9544a3f14bb38d5ffbff71ec18fd16bd08a27de94f85a270bdb28347"}
+{"event": "live", "age_steps": 5700, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "fd44ea45de91fe2fd802b11b74c82456c86695714155e80c815d46719882f5e4"}
+{"event": "live", "age_steps": 5800, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "d6f85f4ad4787bb9634a8efd02e3dd52adf45049453665d1fb626ea0df9a8e22"}
+{"event": "live", "age_steps": 5900, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "51d3ff8a14dbec04ea55b926bdf17a22ba91ab54c35cb96ced47a9e144964697"}
+{"event": "live", "age_steps": 6000, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "f802cb46a0aa52812c4dceebcfd034f7b0512a7f128a74c7660a6609271f5011"}
+{"event": "live", "age_steps": 6100, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "2d7d29adbff8047ebf3f7053ce9f76482c02940cac60ec038791be4fd18a69a5"}
+{"event": "live", "age_steps": 6200, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "e9ffd1dcd8c9374901dce9f468e435063a6e4e3e396deeb3c92fb090e3c45c0a"}
+{"event": "live", "age_steps": 6300, "summary": "lived 100 steps; map_accuracy=0.889; localize_bits=-0.000", "state_hash": "78398a202f0e5b393575209567a63a8febfe0aef78b20d1ae104909bddf7f4ac"}
+{"event": "save", "age_steps": 6300, "summary": "saved to creature/state/mirro", "state_hash": "78398a202f0e5b393575209567a63a8febfe0aef78b20d1ae104909bddf7f4ac"}

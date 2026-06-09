@@ -1,0 +1,31 @@
+BEFORE:
+  age=5300
+  favorite=2
+  conviction=0.3822
+  value_counts=[np.float64(1225.0), np.float64(841.1), np.float64(1278.2)]
+  gap_c0_minus_c2=-53.2
+  hash=c03f754782dc3158
+  world_cmap=[0, 0, 0, 0, 0, 1, 2, 1, 2]
+ck1: age=5400 fav=2 conv=0.3789 gap_c0_minus_c2=-35.8
+ck2: age=5500 fav=2 conv=0.3762 gap_c0_minus_c2=-14.7
+ck3: age=5600 fav=2 conv=0.3746 gap_c0_minus_c2=-6.6
+ck4: age=5700 fav=0 conv=0.3746 gap_c0_minus_c2=6.4
+ck5: age=5800 fav=0 conv=0.3775 gap_c0_minus_c2=24.9
+ck6: age=5900 fav=0 conv=0.3791 gap_c0_minus_c2=35.7
+ck7: age=6000 fav=0 conv=0.3819 gap_c0_minus_c2=54.7
+ck8: age=6100 fav=0 conv=0.3814 gap_c0_minus_c2=59.1
+ck9: age=6200 fav=0 conv=0.3822 gap_c0_minus_c2=65.6
+ck10: age=6300 fav=0 conv=0.3846 gap_c0_minus_c2=87.3
+
+AFTER:
+  age=6300
+  favorite=0
+  conviction=0.3846
+  value_counts=[np.float64(1471.7), np.float64(970.5), np.float64(1384.4)]
+  gap_c0_minus_c2=87.3
+  hash=78398a202f0e5b39
+
+crossover_ck=4
+revised=True
+gap_rewidened=False
+VERDICT: prediction CONFIRMED (crossover at ck 4)

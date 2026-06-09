@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 48 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 49 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:48, breakthrough:5, positive:28, wall:10, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:49, breakthrough:5, positive:29, wall:10, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -444,7 +444,16 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 4, in mirro's own life: 1500 steps in a green-rich world entrench its favorite (conviction 0.474, value gap 445), then the world flips red-rich for up to 2500 steps with the favorite checked every 100.",
     result:"Predeclared falsifier hit: no revision. The gap eroded steadily (−420.8 → −53.2, about half the predicted rate) but the favorite held all 25 checkpoints; extrapolated crossover lands ~300–400 steps past the budget. Conviction weakened throughout (0.474 → 0.382) — the opinion softens long before it flips. mirro: age 1300 → 5300, full trajectory in its biography.",
     implication:"With value counts that never decay, revising means out-accumulating one's entire past — time-to-revise grows with entrenchment depth, so an aged creature's opinion is asymptotically frozen. Exp 40's 'revisable with inertia' was a shallow-entrenchment property, and Exp 47's twins flipped only because their inherited counts were near-tied. A finding only a continuous, never-reset life could expose. Also logs a correction to Exp 47's inheritance wording.",
-    trace:{ script:"experiments/exp48_revision_inertia.py", output:"experiments/outputs/exp48.txt" } }
+    trace:{ script:"experiments/exp48_revision_inertia.py", output:"experiments/outputs/exp48.txt" } },
+
+  { n:49, kind:"positive", chapter:"opinion",
+    title:"The mind changes — through indifference, on schedule.",
+    one:"Crossover at checkpoint 4, exactly where Exp 48's linear erosion predicted: 2900 steps of opposing evidence to undo 1500 steps of entrenchment.",
+    metric:{ from:-53.2, to:87.3, unit:"value gap through the flip" },
+    setup:"Episode 4b: mirro's red-world life simply continues (the world persisted across sessions). Predeclared: flip within ~9 checkpoints per the linear extrapolation; falsifiers: no flip in 5000 cumulative steps, or the gap re-widening.",
+    result:"Favorite flipped to color 0 at checkpoint 4 (age ~5700) and held; conviction passed through near-indifference (0.375, floor ⅓) and is rebuilding (0.385). The measured inertia law: gap 445 → revision after ~2900 opposing steps, ~0.15 counts/step erosion, ≈1.9× the entrenchment duration.",
+    implication:"Episode 4 answered: an accumulated life revises its values, but on a timescale set by everything it has lived — and the revision arc itself spanned two sessions, recorded in one continuous biography. Honest limits: one measured (entrenchment, time-to-revise) point on a single deterministic trajectory; toy world.",
+    trace:{ script:"experiments/exp49_crossover.py", output:"experiments/outputs/exp49.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

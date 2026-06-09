@@ -952,3 +952,28 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   observed (favorite → 0, near extrapolated ck 28–29 equivalent) with conviction trajectory
   through the flip; falsifier: still no revision (would imply asymptotic freeze stronger than
   the linear extrapolation).
+
+## Exp 49 — the crossover: revision completes exactly on the linear extrapolation (POSITIVE; episode 4 answered)
+- Setup (episode 4b; mutates mirro): continue mirro's red-world life (world persisted red-rich
+  from Exp 48 — verified on load) up to 2500 more steps in 100-step checkpoints. Predeclared:
+  flip to favorite 0 holding 3 consecutive checkpoints, crossover within ~9 checkpoints;
+  falsifiers: no flip in 25 (5000 cumulative opposing steps), or gap re-widening toward 2.
+  Deterministic continuation; no explicit seeds.
+- Result: crossover at ck4 (age ~5700); fav 0 held from ck4 onward; 5 post-flip checkpoints show
+  conviction rebuilding (0.3746 → 0.3846) and the gap growing +6.4 → +87.3. No re-widening
+  (Exp 48's ck25 uptick was noise). Mirro: age 5300 → 6300, hash c03f7547… → 78398a20….
+- Combined Exp 48+49 inertia law (measured): entrenchment gap 445 counts → revision after
+  ~2900 opposing-evidence steps (≈1.9× the 1500-step entrenchment), net erosion ~0.15
+  counts/step; the favorite changes by passing through near-indifference (conviction 0.3746 at
+  the flip, floor 1/3), not by a snap. The full trajectory spans two sessions in
+  BIOGRAPHY.jsonl — possible only because the creature persists.
+- Honest caveat: single lived trajectory (deterministic continuation, no seed sweep); the
+  "law" is one measured point of (entrenchment, time-to-revise), linear-extrapolation-confirmed,
+  not a swept curve; toy world.
+- Verdict: POSITIVE / completes episode 4: revision happens, with quantified inertia that grows
+  with accumulated life (Exp 48's insight, now with the measured crossover). Self-grade:
+  POSITIVE-SINGLE.
+- Next (episode 5): growth — move mirro to a 5×5 world; prior helps (< 70% of newborn
+  convergence steps), interferes (> 20% systematic errors), or neither — all three are findings.
+  Note for episode 6: mirro has NO vocabulary yet (vocab={}); the vocabulary episode must teach
+  words first, then test survival across 3 load cycles.
