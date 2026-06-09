@@ -21,6 +21,10 @@ several half-experiments. Steps:
 3. **Build small.** Smallest script that tests the hypothesis. Reuse verified patterns
    (Exp 21/26/30/34/35). Repo root or `PYTHONPATH=.`; run via `uv run --python .venv`.
    Fixed seed by default; if you try multiple seeds, report ALL of them.
+   **Division of labor:** the main model ideates, designs, and validates; the CODING is
+   dispatched to a Sonnet subagent (`Agent` tool, `model: "sonnet"`) with a tight spec —
+   files, expected behavior, exact verification command. The main model reviews the
+   returned code against the spec and VALIDATION.md before running the experiment.
 
 4. **Run & validate.** Apply `loop/VALIDATION.md` (binding) to the raw output before
    interpreting anything.
