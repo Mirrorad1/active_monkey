@@ -519,6 +519,23 @@ REMAINING = documented LONG ARCS (engineering/research scale-ups, not new concep
   (4) SCALABLE planning (value-propagation, not exponential policy enumeration).
 Next experiments iterate these; the major conceptual results are in.
 
+## Exp 30 — SCALABLE planning via value-propagation over the learned map (POSITIVE; long-arc #4 done)
+- Setup: backward induction / value iteration over the (learned) movement model B to build a value field
+  to the goal; act greedily. Tested 3x3, 5x5, 8x8 grids.
+- Result: OPTIMAL navigation at every scale — 3x3: 6 sweeps -> 4 steps; 5x5: 10 sweeps -> 8 steps; 8x8:
+  16 sweeps -> 14 steps (all = optimal). vs exponential policy enumeration (4^distance = 256 / 65,536 /
+  ~268,000,000).
+- Implication: scalable planning DONE — optimal goal-directed planning over the self-learned world model
+  at POLYNOMIAL cost; scales to 64 cells (and beyond) where Exp23's exponential policy_len enumeration is
+  hopeless. Resolves Exp22 (sparse/distal goals -> flat EFE) AND Exp23 (scaling caveat). The creature
+  plans efficiently over its OWN map — the 'preference field propagated backward over learned topology'
+  the Exp22 analysis prescribed.
+- Honest framing: value iteration is classic (not novel); used here as the efficient planner over the
+  self-learned model. Long-arc status: SCALABLE PLANNING (#4) done. Remaining long arcs: genuine LANGUAGE
+  generation (#1, emergence ceiling), SCALE/richness/HIERARCHY (#2), from-scratch TOPOLOGY learning (#3).
+- Next: from-scratch topology (learn B under aliasing with continuous belief, harder Exp19/20 cousin), or
+  HIERARCHY (chunk/concept layer above place), or the LANGUAGE long arc (expect partial, ceiling-bound).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
