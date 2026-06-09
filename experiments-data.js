@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:43, breakthrough:5, positive:25, wall:8, partial:5, from:4.81, to:4.00 };
+window.AM_TALLY = { total:44, breakthrough:5, positive:25, wall:9, partial:5, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -400,7 +400,16 @@ window.AM_EXPERIMENTS = [
     setup:"Dissociation probe: 'do you like green.' vs 'does anyone like green.' — identical 13-char question endings, different answers. Flat depth-2 (pymdp), flat depth-3 (same math), and the held-intent model from Exp 42 compete on the same corpus.",
     result:"Both flat models emit one question-independent continuation for both questions (depth-3's nominal 1/2 is a coin face landing right — the continuations are identical). The intent model infers the asker's question from its prefix (mass 1.000) and answers both exactly.",
     implication:"With question identity outside the context window, flat models are question-blind by construction. A held slow state carries identity across an unbounded span — the two-timescale division of labor (Exp 9/10's principle), now measured head-to-head with a matched-suffix control. Honest limits: intent labels taught in training; 2 pairs at toy scale.",
-    trace:{ script:"experiments/exp43_intent_vs_depth.py", output:"experiments/outputs/exp43.txt" } }
+    trace:{ script:"experiments/exp43_intent_vs_depth.py", output:"experiments/outputs/exp43.txt" } },
+
+  { n:44, kind:"wall", chapter:"valence",
+    title:"Feeling-from-the-trace fails at the wrong timescale.",
+    one:"Windowed −dF/dt misses learning entirely — the creature's words then confidently report the wrong favorite.",
+    metric:{ from:1.585, to:0.030, unit:"bits of signal lost to windowing" },
+    setup:"Derive valence from the creature's own surprise trace (first-10% minus last-10% of each feature's encounters) instead of looking up its stored value. Predeclared: the two must agree for normally-raised creatures.",
+    result:"Falsifier hit: 4/6 verdicts, both favorites wrong. Learning is a one-encounter transient (1.585 → 0.241 bits); a 100-encounter window averages it to 0.030 bits, below the 0.04–0.10-bit sampling drift of pure-noise features. The innate-prior dissociation probe came back vacuously 'confirmed' and is logged as uninterpretable.",
+    implication:"Valence-of-learning is real but lives at encounter resolution — any −dF/dt readout windowed over life-fractions reads noise. And language wiring amplifies the failure honestly: the red-raised creature answered 'i like green' from the broken signal. Next: encounter-resolution operationalization with a threshold above the measured noise floor.",
+    trace:{ script:"experiments/exp44_trace_valence.py", output:"experiments/outputs/exp44.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -831,3 +831,33 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Self-grade: POSITIVE-SINGLE.
 - Next: ladder step 3 — affective coloring: valence = −dF/dt from the creature's own free-energy
   trace modulating the answer, checked against its self-formed value (Exp 26 machinery).
+
+## Exp 44 — trace valence, windowed −dF/dt operationalization: FAILS to reproduce stored values (NEGATIVE; timescale lesson)
+- Setup: Exp 26 raising (3 features, one predictable, Dirichlet learning, 4000 steps); per-feature
+  surprise trace recorded at every encounter. Predeclared valence = mean surprise over first 10%
+  of a feature's encounters minus last 10% (≥0.5 bits = "like"); compared against the stored
+  final-entropy value converse_demo looks up. Predicted agreement 6/6 + favorites for creatures
+  A (pred=red, seed 1) and B (pred=green, seed 2); falsifier = any disagreement. Part 3: innate
+  correct prior (seed 3) predicted to dissociate trace (learning) from value (knowing).
+- Result: falsifier HIT — agreements 4/6, BOTH favorites wrong (A: stored red vs trace green;
+  B: stored green vs trace blue). Predictable features show trace drop 0.029–0.030 bits (below
+  threshold); noise features show 0.041–0.100 bits of sampling drift, OUTRANKING the real signal.
+- Mechanism (verified numerically): learning is a fast transient — surprise falls 1.585→0.241
+  bits within ONE encounter, ~0.07 by encounter 5; the first-10% window (~100 encounters)
+  averages 0.030. Total integrated drop is 1.585 bits, fully present at encounter resolution and
+  destroyed by life-fraction windowing. Part 3's nominal "dissociation CONFIRMED" is therefore
+  UNINTERPRETABLE: trace drop ≈ 0 for predictable features regardless of innateness — the probe
+  cannot distinguish learning from knowing when the measure misses learning entirely.
+- Implication: −dF/dt as a valence signal is real but lives at ENCOUNTER timescale; any M4
+  valence readout must use encounter-resolution traces (e.g. first-encounter surprise minus
+  asymptote), not life-fraction windows. The worded answers driven by the broken trace were
+  confidently wrong ("i like green" from the red-raised creature) — a caution for wiring affect
+  into language: the words faithfully express whatever the valence signal says, garbage included.
+- Honest caveat: negative is about THIS operationalization, not about trace-derived valence per
+  se; single seed per creature (no shopping); toy scale; stored-value formula itself is the
+  established Exp 26 convention, not ground truth.
+- Verdict: NEGATIVE (predeclared falsifier hit) / NEW INSIGHT (timescale requirement measured;
+  noise-drift floor 0.04–0.10 bits quantified).
+- Next: Exp 45 predeclares the encounter-resolution operationalization (enc-1 surprise minus
+  asymptote, threshold above the measured 0.10-bit noise floor); part-3 dissociation re-probed
+  only if part 1 passes.
