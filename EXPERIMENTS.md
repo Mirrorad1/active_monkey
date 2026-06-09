@@ -80,6 +80,20 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Capacity vs depth: confirm within AIF that DEPTH (memory), not state count, is the lever
   (Exp 4 showed states alone fail; Exp 5/7 show depth works).
 
+## Exp 8 — AIF 2-char-context (pair-state) model: depth INSIDE active inference (positive)
+- Setup: pymdp Agent with hidden state s=(prev,cur), K=V*V=784; near-deterministic emission
+  A (state s emits char s%V); transition B structured (only (c,*) valid from (p,c)) then
+  Dirichlet-LEARNED (learn_B). Greedy generative rollout: P(next char)=A·(B·belief), then
+  condition belief on the emitted char. Reproduces Exp 7 as free-energy minimization, not counts.
+- Result: taught "mirro " → cycles "...mirro mirro..." in EXACT order (only the cold-start
+  1-char prime is ambiguous — "what preceded m?" is genuinely unknown). Q→A: after "name. "
+  → "mirro." — the question→answer association is learned and recalled WITHIN the AIF model.
+- Implication: RESEARCH rec #1 achieved. Temporal depth (2-char memory) works inside active
+  inference; the emergent PAIR-STATES are literally "memory of recent context". Depth-as-lever
+  confirmed in AIF (Exp 4 showed capacity K alone fails; Exp 8 shows learned context wins).
+- Next: hierarchical words-above-characters (rec #2) — a slow chunk/intent factor over the fast
+  char states; where word-order generalizes and emergent "concept/opinion" states could live.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
