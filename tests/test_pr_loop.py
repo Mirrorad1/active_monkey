@@ -17,6 +17,7 @@ def _clone(tmp_path):
     return dst
 
 
+@pytest.mark.slow
 def test_one_pr_iteration_merges_or_discards_clean(tmp_path):
     from active_loop.pr_loop import one_pr_iteration
     repo = _clone(tmp_path)
@@ -27,6 +28,7 @@ def test_one_pr_iteration_merges_or_discards_clean(tmp_path):
     assert r.merged in (True, False)
 
 
+@pytest.mark.slow
 def test_critic_rejection_discards_branch(tmp_path):
     from active_loop.pr_loop import one_pr_iteration
     repo = _clone(tmp_path)

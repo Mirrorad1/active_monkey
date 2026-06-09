@@ -19,5 +19,5 @@ dev = ["pytest>=8"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "eval"]
-addopts = "-q"
-markers = ["slow: long-running (real subprocess scoring)"]
+markers = ["slow: repo-cloning integration tests with nested subprocesses (deselected by default; run with -m 'slow or not slow')"]
+addopts = "-q -m 'not slow'"

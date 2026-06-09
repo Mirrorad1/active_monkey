@@ -67,7 +67,8 @@ experiments, not the autopilot. To continue the moonshot, re-issue the loop B pr
 ```bash
 cd /Users/mirro/Projects/active-loop
 uv run --python .venv python converse_demo.py        # capstone: two creatures, self-formed opinions
-uv run --python .venv pytest -q -x                   # ~59 fast tests should pass
+uv run --python .venv pytest -q                      # fast suite (~65 tests, seconds)
+uv run --python .venv pytest -q -m 'slow or not slow' # full suite incl. 5 slow integration tests (~minutes)
 uv run --python .venv python talk.py                 # char-level babbler REPL (honest ceiling)
 # autopilot (loop A), bounded so it doesn't run forever:
 uv run --python .venv python run_loop.py --iterations 1

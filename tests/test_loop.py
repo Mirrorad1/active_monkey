@@ -25,6 +25,7 @@ def _clone_repo(tmp_path: Path) -> Path:
     return dst
 
 
+@pytest.mark.slow
 def test_one_iteration_keeps_or_reverts_and_leaves_clean_tree(tmp_path):
     from active_loop.loop import one_iteration
     repo = _clone_repo(tmp_path)
