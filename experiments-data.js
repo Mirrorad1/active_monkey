@@ -458,7 +458,7 @@ window.AM_EXPERIMENTS = [
   { n:50, kind:"partial", chapter:"embodiment",
     title:"mirro grows into a bigger world — and the question outruns the instrument.",
     one:"Transplanted knowledge survives the move intact; whether it helps is unresolvable — the toy world converges faster than the measurement can see.",
-    metric:{ from:0.48, to:1.00, unit:"map accuracy after growth" },
+    metric:{ from:0.25, to:1.00, unit:"new-cell map accuracy" },
     setup:"Episode 5: a 5×5 world embeds mirro's 3×3 region top-left; its learned counts transplant positionally, 16 new cells start at the prior. Three newborn baselines learn the same world. Predeclared three-way: help (<0.70× newborn steps), interfere (>20% errors in the old region), or inconclusive.",
     result:"The old region stays perfect from the first checkpoint (no interference). But everyone converges in 200–300 steps — mirro's 300 exactly ties one newborn — and at 100-step checkpoint quantization the smallest resolvable effect (~43%) dwarfs the thresholds. The mechanical verdict line said 'hindrance'; the entry refuses that claim as an instrument artifact.",
     implication:"At this scale a 9-of-25-cell head start has nothing to buy: the world is learnable from scratch faster than the comparison can resolve — a floor effect, owned as a design flaw in the episode's operationalization. Growth engineering itself is clean. Next: finer checkpoints on a fork of the committed pre-growth snapshot, or a world big enough to make experience matter.",
