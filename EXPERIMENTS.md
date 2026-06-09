@@ -400,6 +400,21 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   relations); richer/larger worlds; eventually abstract dispositions = late place cells. The embodied toy
   'minimal mind' is complete; the climb is now about richness + scalable planning + composition.
 
+## Exp 24 — composite/relational concept: bind OBJECT to PLACE from experience (POSITIVE)
+- Setup: 2D grid; place-sense known (color emission + movement, from Exp21); an OBJECT sits at a hidden
+  cell (4). Object-presence is a 2nd observation modality whose map the agent LEARNS from wandering
+  (place tracked via the known sense; belief continuous). 900 steps.
+- Result: learned P(object present | place) = [0,0,0,0,1,0,0,0,0] -> correctly bound the object to cell 4.
+  A place<->object RELATION self-organized from experience.
+- Implication: composite/relational concepts WORK on the embodied substrate. Building on place, the
+  creature learned a FACT about its world (object@place) by wandering — the seed of a PROPOSITION
+  ("the thing is there") and the first step up from atomic concepts (place) toward relational/abstract
+  structure. This is where, eventually, dispositions/opinions live (a disposition = a learned relation
+  among percepts/values). Climb: place -> place+object relation.
+- Next: ACT on the learned fact — recall + NAVIGATE to the object (combine Exp24 relation + Exp23
+  planning = goal-directed recall); then multiple objects / relations-among-objects (a graph of facts =
+  primitive knowledge); scalable planning; eventually value/affect-laden relations = proto-opinions.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
