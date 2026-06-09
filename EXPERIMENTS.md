@@ -663,3 +663,8 @@ the credible moonshot is AIF (valence/curiosity/emergent dispositions) over a ri
 - 6 concepts + 6 taught words, 3 creatures raised differently. All learn the vocab correctly; each
   creature's favorite matches its upbringing (A->blue, B->green, C->amber). Individual self-formed
   opinions + worded answers hold at larger scale. Pure consolidation; no new insight.
+
+## Exp 38 — integrated stack in one pass (consolidation POSITIVE)
+- 4x4 world: creature learns place map from scratch (acc 1.00), has a self-valued color (green), then
+  value-iterates + navigates to the nearest green place (success). Perceive(learned map)+want(value)+
+  act(plan) compose in one creature. Consolidation; no new insight.
