@@ -1,0 +1,13 @@
+=== Part 1: Control (single pair) ===
+  generated : 'i like red.'
+  target    : 'i like red.'
+  exact=True
+
+=== Part 2: Multi-pair (3-pair BLOCK x3, epochs=8) ===
+  pair 1: generated='i at at at '  target='i like red.'  exact=False
+  pair 2: generated='i at at at at at'  target='it unsettles me.'  exact=False
+  pair 3: generated='i at at at at at at at'  target='i am at a green place.'  exact=False
+
+exact_count=0/3
+all_continuations_identical_truncated=True
+VERDICT: falsifier HIT (<3/3)
