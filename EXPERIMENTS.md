@@ -268,6 +268,24 @@ Next experiments: (Exp 17) embodied gridworld AIF agent — does it learn a usab
 structure from acting? (Exp 18+) inspect whether hidden states specialize by location (emergent
 place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse in later.
 
+## Exp 17 — EMBODIED model learning works on the first try (POSITIVE; validates the pivot)
+- Setup: a creature wanders a 5-cell ring world (actions left/right; observation = current cell =
+  grounded sensory input). Starts with NO world model (uniform B); learns transitions by Dirichlet
+  from random wandering (embodied, unsupervised). 20 episodes x 30 steps.
+- Result: recovered the world's transition structure nearly perfectly (error 0.003); correctly
+  predicts the next cell for each action ([1,2,3,4,0] = true; match=True). An internal MODEL /
+  cognitive map of the world emerged from acting.
+- Implication: embodied + grounded + unsupervised model-learning WORKS cleanly — in sharp contrast
+  to the disembodied symbolic emergent-topic failures (Exp 12-16). The decisive difference is exactly
+  the pivot/baby insight: the agent ACTS and OBSERVES a correlated world, which breaks the symmetry a
+  bare symbol stream cannot. Lower the bar (mouse), give it a body + world -> learning happens.
+- Honest caveat: cells are DIRECTLY observed here (A=identity), so structure is grounded via
+  observation, not yet emergent PLACE CELLS (which need ALIASED sensing so place must be INFERRED,
+  not seen). This is the foundation/substrate.
+- Next (Exp 18): aliased observations — multiple cells look identical; does a place representation
+  EMERGE (hidden states specialize by location) so the creature localizes from movement history?
+  That is the real place-cell emergence test (a latent that is built, not observed).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
