@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>active_monkey — teaching a machine to understand the world from surprise alone</title>
-<meta name="description" content="An autonomous research log: building an active-inference agent that learns from scratch, using nothing but its own surprise. 25 experiments, honest results, one little mind coming online.">
+<meta name="description" content="An autonomous research log: building an active-inference agent that learns from scratch, using nothing but its own surprise. 30 experiments, honest results, one little mind that forms opinions of its own.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
 <meta property="og:title" content="active_monkey — understanding the world from surprise alone">
-<meta property="og:description" content="An autonomous active-inference agent learns from scratch with no labels, rewards, or pretraining. 25 experiments, honest results, one little mind coming online.">
+<meta property="og:description" content="An autonomous active-inference agent learns from scratch with no labels, rewards, or pretraining. 30 experiments, honest results, one little mind that forms opinions of its own.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mirrorad1.github.io/active_monkey/">
 <meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
@@ -257,8 +257,8 @@
     <p class="lede reveal">No labels. No rewards. No pretraining. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts</b> on them. This page tracks every experiment, win and wall.</p>
 
     <div class="statbar reveal">
-      <div class="stat sig"><span class="n" data-count="25">25</span><span class="l">Experiments run</span></div>
-      <div class="stat win"><span class="n" data-count="16">16</span><span class="l">Breakthroughs</span></div>
+      <div class="stat sig"><span class="n" data-count="30">30</span><span class="l">Experiments run</span></div>
+      <div class="stat win"><span class="n" data-count="21">21</span><span class="l">Breakthroughs</span></div>
       <div class="stat wall"><span class="n" data-count="6">6</span><span class="l">Honest walls</span></div>
       <div class="stat"><span class="n" style="color:var(--ink)">live</span><span class="l">A mind, running</span></div>
     </div>
@@ -296,11 +296,11 @@
 <!-- the journey -->
 <section class="wrap" id="journey">
   <div class="kicker reveal">The journey · append-only, newest last</div>
-  <h2 class="reveal">25 experiments, told honestly.</h2>
-  <p class="section-intro reveal">Each experiment is one hypothesis, one smallest-possible test, and the result we actually got — including the failures, which taught the most. It reads as a climb: from a machine that can barely echo letters, to one that won't grow a concept from nothing, to a little embodied creature whose mind quietly comes online.</p>
+  <h2 class="reveal">30 experiments, told honestly.</h2>
+  <p class="section-intro reveal">Each experiment is one hypothesis, one smallest-possible test, and the result we actually got — including the failures, which taught the most. It reads as a climb: from a machine that can barely echo letters, to one that won't grow a concept from nothing, to a little embodied creature whose mind quietly comes online — and ends up forming opinions of its own.</p>
 
   <div class="filters reveal" role="tablist">
-    <span class="chip active" data-f="all">● all 25</span>
+    <span class="chip active" data-f="all">● all 30</span>
     <span class="chip" data-f="win"><span class="swatch"></span>breakthroughs</span>
     <span class="chip" data-f="wall"><span class="swatch"></span>honest walls</span>
     <span class="chip" data-f="partial"><span class="swatch"></span>partials</span>
@@ -404,6 +404,18 @@ const ARCS = [
       {n:23, o:"win", t:"Planning depth turns wanting into doing", d:"Plan far enough ahead to feel the goal, and navigation becomes <span class='hl'>optimal</span> — corner to goal in 4 steps. The end-to-end minimal mind now runs: perceive + want + act, all grounded.", m:"optimal · 4 steps"},
       {n:24, o:"win", t:"Bind an object to a place", d:"By wandering, it learns <em>where the thing is</em> — a place↔object relation self-organizing from experience. The seed of a <span class='hl'>fact</span>, a proposition: “the thing is there.”"},
       {n:25, o:"win", t:"Recall + navigate: learn a fact, then act on it", d:"It learns where the object is, then <span class='hl'>remembers and walks to it</span> optimally. The full cognitive cycle, end to end: perceive → learn a fact → want → recall, plan, and act. All grounded; nothing pretrained.", m:"remembered · optimal path"},
+    ]
+  },
+  {
+    idx:"IV", title:"The mind forms its own mind",
+    span:"Exp 26–30",
+    sub:"The payoff. A creature that doesn't just perceive and act, but comes to value things from its own lived experience — forms an opinion no one trained into it, acts on it, answers what it thinks, and composes those thoughts.",
+    exps:[
+      {n:26, o:"win", t:"An opinion forms from a life lived", d:"Two <em>identical</em> creatures in two worlds. Each comes to value whatever its own world made predictable — <span class='hl'>C = [0.98, 0.01, 0.01]</span> vs <span class='hl'>[0.01, 0.01, 0.98]</span>. Same brain, different history → different values. A disposition, emerged — and <em>individual</em>.", m:"same brain · different values"},
+      {n:27, o:"win", t:"The opinion drives behaviour", d:"Carrying the values they each formed, the two creatures walk to <span class='hl'>different cells</span> — each toward the feature it learned to love. Divergent, purposeful action straight from divergent self-formed values.", m:"A → red · B → green"},
+      {n:28, o:"win", t:"“Ask it what it thinks”", d:"Same question, <span class='hl'>different answers</span>: one likes red and is unsettled by green; the other, the reverse. Each replies from its own lived experience. <em>(The wording is a template — but the content, what it values and why, is genuinely its own.)</em>", m:"favourites: red vs green"},
+      {n:29, o:"win", t:"Thoughts compose", d:"Chain it: “what's near the thing you like, and how do you feel about it?” It composes <span class='hl'>favourite → place → neighbours → feeling</span> into a value-laden relational answer. Self-formed thoughts compose, not just single opinions."},
+      {n:30, o:"win", t:"Planning that scales", d:"Value-propagation over the learned map plans <span class='hl'>optimally</span> on 3×3, 5×5, and 8×8 grids — at polynomial cost, where enumerating policies would need 268 <em>million</em>. The creature plans efficiently over its own world.", m:"optimal on 8×8 · 16 sweeps"},
     ]
   }
 ];
