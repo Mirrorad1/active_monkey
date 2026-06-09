@@ -1,0 +1,58 @@
+mirro loaded: age=6700, favorite=0, conviction_share=0.3814, hash16=f3edac2a9d5d4bf0
+ref_cmap: [0, 0, 0, 1, 2, 0, 0, 1, 1, 2, 2, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+
+=== baseline (base_seed=51) ===
+  gap_share=0.0179 -> favorite_property=DISABLED
+  drift band: center+/-0.015 => [-0.019203, 0.010797]  (eq=0.3600, cur=0.3814)
+  occupancy_entropy_bits : 4.5648
+  map_accuracy_vs_ref    : 1.0000
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.01038
+  favorite_changed       : DISABLED
+  elapsed: 0.1s  flags=0 []
+
+=== strong_anomaly (base_seed=52) ===
+  recolored cells [0, 1, 5, 6, 10, 13, 16, 18, 21, 23] -> color 2
+  world_cmap: [2, 2, 0, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 2, 2]
+  gap_share=0.0179 -> favorite_property=DISABLED
+  drift band: center+/-0.015 => [-0.066284, -0.036284]  (eq=0.1200, cur=0.3814)
+  occupancy_entropy_bits : 4.6093
+  map_accuracy_vs_ref    : 0.8400
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.03802
+  favorite_changed       : DISABLED
+  elapsed: 0.1s  flags=1 ['map_accuracy_vs_reference=0.8400 outside [0.92, 1.0]']
+
+=== subtle_anomaly (base_seed=53) ===
+  recolored cells [3, 13, 19] -> color 2
+  world_cmap: [0, 0, 0, 2, 2, 0, 0, 1, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1, 2, 2, 1, 2, 0, 1, 2]
+  gap_share=0.0179 -> favorite_property=DISABLED
+  drift band: center+/-0.015 => [-0.034897, -0.004897]  (eq=0.2800, cur=0.3814)
+  occupancy_entropy_bits : 4.6051
+  map_accuracy_vs_ref    : 1.0000
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.01928
+  favorite_changed       : DISABLED
+  elapsed: 0.1s  flags=0 []
+
+=== enabled_side_ctrl (base_seed=54) ===
+  enriched world: c0=15/25, cmap=[0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 2]
+  entrenchment: 1500 steps ...
+  post-entrenchment: age=8200, favorite=0, gap_share=0.1064
+  gap_share=0.1064 -> favorite_property=ENABLED
+  drift band: [0.015273, 0.045273]  (eq=0.6000, cur=0.4136)
+  occupancy_entropy_bits : 4.5768
+  map_accuracy_vs_ref    : 0.9600
+  mean_localize_bits     : 0.0000
+  conviction_drift       : 0.01137
+  favorite_changed       : False (fav=0)
+  elapsed: 0.2s  flags=1 ['conviction_drift=0.01137 outside [0.015273, 0.045273]']
+
+mirro_untouched=True (hash_before=f3edac2a9d5d4bf0, hash_after=f3edac2a9d5d4bf0)
+
+=== SUMMARY ===
+  baseline: favorite_property=DISABLED flags=0 []
+  strong_anomaly: favorite_property=DISABLED flags=1 ['map_accuracy_vs_reference=0.8400 outside [0.92, 1.0]']
+  subtle_anomaly: favorite_property=DISABLED flags=0 []
+  enabled_side_ctrl: favorite_property=ENABLED flags=1 ['conviction_drift=0.01137 outside [0.015273, 0.045273]']
+VERDICT: falsifier HIT (subtle anomaly missed)

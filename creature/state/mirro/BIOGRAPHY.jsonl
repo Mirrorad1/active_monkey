@@ -81,3 +81,7 @@
 {"event": "fork", "age_steps": 6700, "summary": "forked into 'v2_strong_anomaly'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
 {"event": "fork", "age_steps": 6700, "summary": "forked into 'v2_subtle_anomaly'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
 {"event": "fork", "age_steps": 6700, "summary": "forked into 'v2_floor_probe'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'v3_baseline'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'v3_strong_anomaly'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'v3_subtle_anomaly'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}
+{"event": "fork", "age_steps": 6700, "summary": "forked into 'v3_enabled_side_ctrl'", "state_hash": "f3edac2a9d5d4bf0633b6505e50169b966f148a7353eaa4f755cdb1b8c5f6a42"}

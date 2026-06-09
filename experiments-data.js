@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 52 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 53 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:52, breakthrough:5, positive:29, wall:12, partial:6, from:4.81, to:4.00 };
+window.AM_TALLY = { total:53, breakthrough:5, positive:29, wall:13, partial:6, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -480,7 +480,16 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v2: the conviction-drift band now derives from the current world's composition equilibrium (it covers Exp 51's failed reading analytically). Four blind fork epochs: quiet baseline, 10-cell and 3-cell planted anomalies, and a 2-cell floor probe predicted to be missed.",
     result:"Both anomalies flagged (3 flags each); the floor probe was missed exactly as predicted (detection floor: 3 recolored cells). But the baseline's favorite flipped 0→2 — its ~90-count lead of ~4100 sits inside a 1000-step epoch's visit-noise envelope in the near-balanced world. Drift stayed inside the new band; the flip alone false-alarmed.",
     implication:"Second predeclared falsifier hit, second transferable design rule: ledger invariants must be conditional on state stability — assert favorite constancy only when entrenchment exceeds the epoch's noise margin. This constrains the upcoming personality battery too: probing preferences on a near-indifferent creature reads noise. v3 builds the condition in.",
-    trace:{ script:"experiments/exp52_ledger_v2.py", output:"experiments/outputs/exp52.txt" } }
+    trace:{ script:"experiments/exp52_ledger_v2.py", output:"experiments/outputs/exp52.txt" } },
+
+  { n:53, kind:"wall", chapter:"frontier",
+    title:"An expectation that adapts to the anomaly cannot detect it.",
+    one:"v3's conditional invariant worked everywhere — but the harness accidentally let the scorer's baselines follow the perturbed world, and the subtle anomaly sailed through unflagged.",
+    metric:{ from:0.88, to:1.00, unit:"map reading once un-blinded" },
+    setup:"Ledger v3: favorite constancy becomes state-conditional (scored only above a 0.03 entrenchment gap). Four blind fork epochs including an entrenched arm where the property correctly re-enables. Falsifier: baseline false alarm or either anomaly missed.",
+    result:"The conditional rule passed all four arms (disabled at gap 0.018, enabled at 0.106, no false alarm). But the subtle anomaly was MISSED: the spec derived references from the world the fork entered with — the perturbed one — so map accuracy was scored against the anomaly itself and the drift band re-centered on the perturbed equilibrium. A self-inflicted blindness violation, diagnosed from the code.",
+    implication:"Design rule #3, the deepest of the three: references must be FROZEN — expectations derive only from the committed reference state, never from the epoch under test. That is the entire difference between anomaly detection and curve-fitting. v4 rebuilds with frozen references and a gap-scaled noise margin; one more new failure mode pauses the ladder for the human.",
+    trace:{ script:"experiments/exp53_ledger_v3.py", output:"experiments/outputs/exp53.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

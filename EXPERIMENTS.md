@@ -1066,3 +1066,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next (Exp 53, ledger v3): replace favorite_changed with the conditional rule (enabled only if
   pre-epoch favorite gap-share > 0.03, predeclared); fresh controls; if v3 passes, rung 1 is
   done and rung 2 (personality battery) starts with the entrenchment condition built in.
+
+## Exp 53 — ledger v3: conditional invariant works; the harness un-blinded its own scorer (NEGATIVE; spec error owned, design rule #3)
+- Setup: v2 + ONE intended change (favorite constancy scored only when pre-epoch gap-share
+  > 0.03). Four blind fork epochs (fresh seeds, mirro untouched, hash-verified): baseline,
+  strong anomaly (10 cells), subtle anomaly (3 cells), enabled-side control (fork entrenched
+  1500 steps in a c0-rich world → gap-share 0.1064 → property ENABLED, then quiet epoch).
+  Falsifier: baseline false alarm or either anomaly missed.
+- Result: falsifier HIT — subtle anomaly MISSED (0 flags; map-vs-"reference" read 1.0000 where
+  v2 read 0.88) and the strong anomaly survived on map accuracy alone. Root cause (diagnosed
+  from the code, not the physics): the experiment spec told the scorer to derive references and
+  drift bands from the world THE CREATURE ENTERS THE EPOCH WITH — for anomaly arms that is the
+  PERTURBED world. Map accuracy was scored against the perturbed cmap (relearned cells then
+  "match"), and the drift band centered itself on the perturbed equilibrium (eq 0.28/0.12). An
+  expectation that auto-adapts to the perturbation cannot detect it. The blindness violation
+  was introduced by THIS experiment's spec, not by v2's design.
+- What did work: the conditional favorite rule behaved correctly in all four arms (DISABLED at
+  gap-share 0.018 → no Exp 52-style false alarm; ENABLED at 0.1064 post-entrenchment; favorite
+  stayed 0, no flag). Secondary observation: the enabled arm's drift (0.0114) fell just below
+  its band [0.0153, 0.0453] — the ±0.015 margin is too tight when |center| is large (model
+  error scales with the gap); noted for v4.
+- Design rules earned so far: (1) bands derive from current-world equilibria [Exp 51]; (2)
+  invariants are state-conditional on entrenchment [Exp 52]; (3) REFERENCES MUST BE FROZEN —
+  expected-property baselines derive only from the committed reference state, never from the
+  epoch under test [this exp]. Rule 3 is the difference between anomaly detection and
+  curve-fitting.
+- Honest caveat: this run does NOT test the conditional rule against a subtle anomaly under a
+  correctly-blinded scorer (that is v4); the enabled-side drift margin issue is one reading.
+- Verdict: NEGATIVE (falsifier fired; root cause = harness spec error, owned) / instrument
+  iteration 3.
+- Next (Exp 54, ledger v4): frozen references everywhere (anomaly arms scored against mirro's
+  committed state + world; the entrenched arm's reference is its declared post-entrenchment
+  state); noise margin ± (0.015 + 0.5·|center|), predeclared; same four arms. If v4 fails on a
+  NEW mode, pause the ladder and consult the human in the entry.
