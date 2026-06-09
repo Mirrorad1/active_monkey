@@ -18,3 +18,5 @@ Standing rules for ALL work here:
 - Run Python via `uv run --python .venv ...` from the repo root (shell auto-activates conda
   base and shadows the venv). Experiment scripts need repo root or `PYTHONPATH=.`.
 - Keep everything in git; small, single-purpose commits.
+- Experiment scripts + raw outputs are committed under `experiments/` in the same commit
+  as their EXPERIMENTS.md entry; never write experiment scripts to /tmp.
