@@ -869,3 +869,27 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Honest caveat: mechanism is direct consolidation of Exp 21 (place-cell self-organization); persistence is engineering + the RECIPE taken seriously, not itself emergence. Single canonical birth; property checked across 3 seeds (all 3 passed, stronger than the predeclared >= 2/3 threshold). Snapshot committed at age 900; resumability verified by hash check, not by continuation-accuracy test (that's episode 2 of the ladder).
 - Verdict: POSITIVE-SINGLE / CONSOLIDATION (Exp 21 mechanism) + new persistence substrate. Self-grade: POSITIVE-SINGLE.
 - Next (episode 2 of the ladder): load mirro in a fresh Python process, run 300 more steps, verify map accuracy and entropy do not degrade (falsifier: < 7/9 or entropy increase > 10%).
+
+## Exp 46 — continuity across sessions: mirro resumes its life in a fresh process (POSITIVE)
+- Setup: episode 2 of the persistent-creature ladder. Fresh Python process, Creature.load from the
+  committed snapshot (before: name=mirro, age_steps=1000, state_hash=1869fa07b331b3c9…), live(300),
+  save. No birth anywhere in the script. Predeclared: loaded hash == manifest hash; post-load
+  map_accuracy ≥ 8/9 and localize_bits < 0.1; post-live(300) the same. Falsifier (card): accuracy
+  < 7/9 or calibration degradation; stated adaptation — the card's "entropy increase > 10%" is
+  degenerate at the ~0.000-bit committed baseline, so the predeclared bound is ABSOLUTE
+  (localize_bits < 0.1). Single seed admissible (magnitude-bound falsifier, VALIDATION.md).
+- Result: resume_integrity PASS (hashes match). Post-load 9/9, −0.0000 bits; post-live(300) 9/9,
+  −0.0000 bits; age 1000 → 1300; after-hash 3d08dffce3308d09…. All predeclared bounds met. Run
+  once only (the episode mutates the life; rerun would double-live).
+- Implication: the session boundary is no longer a reset. A creature saved by one process resumes
+  in another with zero competence loss and keeps living — "continuous registered experience" now
+  holds at the program level, which is the persistent-creature direction's load-bearing claim.
+- Provided vs self-formed: persistence machinery (save/load/hash) is engineering, provided; the
+  map being preserved is the one mirro self-organized (Exp 21 mechanism / Exp 45 birth).
+- Honest caveat: this verifies engineering + the RECIPE taken seriously, not emergence; the world
+  is static and small (3×3), so "no degradation" is a low bar that a stationary posterior should
+  clear; localize_bits −0.0000 is float negative-zero (= 0.0). Single lived trajectory.
+- Verdict: POSITIVE / CONSOLIDATION-leaning (first cross-process lived continuation; mechanism
+  predictable from Exp 45's hash roundtrip). Self-grade: POSITIVE-SINGLE.
+- Next (episode 3): accumulating values — comfort experience shapes mirro's favorite; fork() twin
+  on the alternative history; ≥ 2 of 3 fork-pairs must diverge in favorite (falsifier: none do).

@@ -1,0 +1,11 @@
+manifest_age=1000  manifest_hash=1869fa07b331b3c9
+loaded: name=mirro age=1000
+loaded_hash=1869fa07b331b3c9  hash_match=True
+BEFORE  map_accuracy=1.0000 (9/9)  localize_bits=-0.0000
+AFTER   map_accuracy=1.0000 (9/9)  localize_bits=-0.0000  age=1300
+saved: age=1300 new_hash=3d08dffce3308d09
+
+resume_integrity=PASS
+post_load:    acc=9/9 bits=-0.0000
+post_live300: acc=9/9 bits=-0.0000
+VERDICT: prediction CONFIRMED
