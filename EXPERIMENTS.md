@@ -364,6 +364,24 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   creature that knows WHERE IT IS (place fields) AND WHAT IT WANTS (grounded valence), nothing
   pretrained. (Parallel) learn the topology B from scratch. Then climb toward composite/abstract concepts.
 
+## Exp 22 — fuse place + valence: directed navigation FAILS (honest negative; sparse/distal goal)
+- Setup: 2D 3x3 grid; creature knows its world (modality0 color for place-sense, modality1 'comfort'
+  ON only at goal cell 8; movement B known); grounded preference C for comfort. Start cell 0 (4 steps
+  from goal). policy_len=3. Navigate via EFE; compare to random walk.
+- Result: reached goal only at the 15-step limit, path stuck near start; random baseline ~9.8 steps;
+  optimal=4. The EFE creature was WORSE than random — no directed navigation.
+- Implication (honest negative): the comfort goal is SPARSE and DISTAL (4 steps) but the planning
+  horizon is only 3 -> within reach NO policy attains comfort -> EFE is flat in all directions -> no
+  gradient -> wander. This is the active-inference version of the sparse-reward / short-horizon
+  credit-assignment problem. Knowing WHERE you are + WANTING something is NOT enough to ACT: the want
+  must produce a GRADIENT within the planning horizon.
+- Fix (Exp 23): (a) longer horizon (policy_len >= grid diameter), or — better — (b) a goal-proximity
+  PREFERENCE FIELD propagated backward over the learned topology B (value-iteration / planning-as-
+  inference): the creature uses its world model to compute 'comfort is that way' from afar. This is how
+  a learned map becomes goal-directed behavior.
+- Connects to moonshot: grounded wants + a self-learned world still need PLANNING/credit-assignment over
+  the world model to produce purposeful action toward distal goals — the next capability to add.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
