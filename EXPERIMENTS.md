@@ -575,6 +575,21 @@ Next experiments iterate these; the major conceptual results are in.
 - Next: hierarchical PLANNING using the recovered rooms (abstraction is USEFUL: coarse-to-fine, faster
   than flat); then the LANGUAGE long arc (ceiling-bound). Conceptual space now thoroughly mapped.
 
+## Exp 33 — hierarchical planning: abstraction is USEFUL & scales (POSITIVE)
+- Setup: corridor of K rooms (3x3 each), goal in last. Compare FLAT value-iteration (all cells) vs
+  HIERARCHICAL coarse-to-fine (plan room sequence over the room graph, then local within-room VI only on
+  rooms in the path), using the rooms recovered in Exp32. Measure state-updates.
+- Result: flat vs hierarchical updates — 4 rooms: 490 vs 152 (x3.2); 8: 1846 vs 328 (x5.6); 16: 7150 vs
+  776 (x9.2). Speedup GROWS with scale.
+- Implication: the recovered abstraction (rooms) is USEFUL — coarse-to-fine planning cost grows far slower
+  than flat. Hierarchy story complete: concept grounded+recoverable (Exp32) AND useful (Exp33).
+- Honest framing: standard hierarchical-planning result over the SELF-LEARNED structure; decomposition
+  provided; toy scale. The benefit (abstraction cuts planning cost, and the cut scales) is genuine.
+- Next: the LANGUAGE BRIDGE (Exp34) — ground TAUGHT word-labels onto the self-formed concepts/values
+  (place/room/like), so the creature can be queried in words; CONTENT self-formed, LABELS taught (like a
+  child labeling its concepts). This is the realistic path to 'talk to it' — vs language-from-scratch,
+  which hit the unsupervised-emergence ceiling (M3, open_problem.html).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
