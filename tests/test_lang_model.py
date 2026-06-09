@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from active_loop.lang_model import LangModel
 from active_loop.alphabet import V, ALPHABET
 
@@ -14,6 +15,7 @@ def test_generate_returns_alphabet_text_of_length_n():
     assert all(c in ALPHABET for c in out)
 
 
+@pytest.mark.slow
 def test_learning_changes_A_and_lowers_training_surprise():
     lm = LangModel(seed=0)
     before = lm.mean_surprise(TRAIN)
@@ -22,6 +24,7 @@ def test_learning_changes_A_and_lowers_training_surprise():
     assert after < before
 
 
+@pytest.mark.slow
 def test_mean_surprise_beats_uniform_after_learning():
     lm = LangModel(seed=0)
     lm.learn_stream(TRAIN, epochs=6)

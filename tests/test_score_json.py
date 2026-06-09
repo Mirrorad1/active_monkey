@@ -1,8 +1,10 @@
 import json
 import subprocess
 import sys
+import pytest
 
 
+@pytest.mark.slow
 def test_score_json_entrypoint_emits_valid_report():
     proc = subprocess.run(
         ["uv", "run", "--python", ".venv", "python", "-m", "eval.score_json"],
