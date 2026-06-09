@@ -736,3 +736,15 @@ Standing conclusion: the quantitative record reproduces for 37/37 runnable scrip
 byte-for-byte output matches, ignoring JAX UserWarning preambles and the timing line in
 Exp 1). The 3 failures are a Python version artefact of transcript recovery, not scientific
 finding failures; the core results of the investigation are confirmed reproducible.
+
+## Re-verification follow-up (2026-06-09) — transcription artifact fixed in Exp 3/7/34
+
+The 3 FAILs from the 2026-06-09 re-verification shared one root cause: a recovery transcription
+artifact. The originals ran via shell `python -c "..."` where the shell consumed `\"` → `"`;
+the recovered `.py` files preserved the literal `\"`, which Python 3.12 rejects with
+`SyntaxError`. Fix applied: replaced every literal `\"` with `"` in f-string expression slots
+(no logic changed) and added a provenance note to each file's header. After the fix:
+- Exp 3 (teach mirro): MATCH — surprise 3.38 → 1.61, all samples identical to original.
+- Exp 7 (n-gram depth): MATCH — n=2 'iro miro mi', n=3 'irro mirro ', Q→A n=3 'mirro. ' match.
+- Exp 34 (language bridge): MATCH — word map correct, A likes red / B likes green, surprise 1.6/0.0 bits identical.
+Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
