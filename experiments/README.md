@@ -60,6 +60,25 @@ The `expNN:` commit MUST contain the script + output + EXPERIMENTS.md entry toge
 — all three in one atomic commit. A log entry without its script and output is an
 unverified claim (see `loop/VALIDATION.md` reproducibility rule).
 
+### Curated entry in experiments-data.js
+
+Each new experiment (Exp 41+) also adds a curated entry to `experiments-data.js` in the
+same atomic commit as the script and output files. The entry's `trace` block points to the
+files above:
+
+```js
+trace: {
+  script: "experiments/expNN_<slug>.py",
+  output: "experiments/outputs/expNN.txt",
+}
+```
+
+The fast test suite (`uv run --python .venv pytest -q`) enforces that both paths exist on
+disk. The journey page (`journey.html`) renders the script and output in-page from those
+paths, so readers can inspect the evidence without leaving the site. The `rerun` and
+`verified` fields are omitted until an independent re-run is performed; the journey page
+renders a note "original run committed; not yet independently re-run" in that case.
+
 ### Historical note
 
 Scripts for **Exp 1–40** predate this convention and were not preserved — they were
@@ -67,4 +86,6 @@ typically written to `/tmp` or discarded after the session. The quantitative cla
 in those entries are log-only and cannot currently be replicated from this repo. See
 the correction entry at the bottom of `EXPERIMENTS.md` for the full honest record.
 `converse_demo.py` (Exp 35 capstone) is the only committed runnable artifact from
-that period and still runs.
+that period and still runs. The recovered scripts for Exp 1–40 live in
+`experiments/recovered/` — that directory is a sealed historical archive; nothing new
+goes there.
