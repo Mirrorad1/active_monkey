@@ -1,0 +1,44 @@
+=== Exp 44: trace valence vs stored value ===
+
+--- creature-A (predictable=red, innate=False) ---
+feature  word   stored_val stored_verd        trace_drop trace_verd         agree
+  f=0    red         0.983 i like it               0.030 it unsettles me    False
+  f=1    blue        0.009 it unsettles me         0.048 it unsettles me    True
+  f=2    green       0.009 it unsettles me         0.096 it unsettles me    True
+  favorites: stored=red, trace=green, agree=False
+  you> do you like green.
+  it > green: it unsettles me.
+  you> what do you like.
+  it > i like green.
+
+--- creature-B (predictable=green, innate=False) ---
+feature  word   stored_val stored_verd        trace_drop trace_verd         agree
+  f=0    red         0.009 it unsettles me         0.041 it unsettles me    True
+  f=1    blue        0.009 it unsettles me         0.100 it unsettles me    True
+  f=2    green       0.983 i like it               0.029 it unsettles me    False
+  favorites: stored=green, trace=blue, agree=False
+  you> do you like green.
+  it > green: it unsettles me.
+  you> what do you like.
+  it > i like blue.
+
+=== Summary part 1+2 ===
+verdict_agreements=4/6
+favorites_agree=A:False, B:False
+VERDICT part1: falsifier HIT (verdict mismatch at ['f0(A)', 'f2(B)']; favorite mismatch A: stored=red, trace=green; favorite mismatch B: stored=green, trace=blue)
+
+--- creature-C (predictable=blue, innate=True) ---
+feature  word   stored_val stored_verd        trace_drop trace_verd         agree
+  f=0    red         0.009 it unsettles me         0.083 it unsettles me    True
+  f=1    blue        0.983 i like it               0.002 it unsettles me    False
+  f=2    green       0.009 it unsettles me         0.054 it unsettles me    True
+  favorites: stored=blue, trace=red, agree=False
+  you> do you like green.
+  it > green: it unsettles me.
+  you> what do you like.
+  it > i like red.
+
+=== Summary part 3 ===
+  feature 1 stored_verdict: i like it, trace_drop: 0.002 bits
+  dissociation_observed=True
+VERDICT part3: dissociation CONFIRMED (trace=learning, value=knowing)
