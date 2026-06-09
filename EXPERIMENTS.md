@@ -431,6 +431,28 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   knowledge). This is the direct line to 'opinions that emerge': a disposition = a learned, value-laden
   relation over self-organized concepts.
 
+## Exp 26 — PROTO-OPINION: a disposition forms from lived experience (POSITIVE; moonshot core)
+- Setup: two architecturally IDENTICAL creatures in two worlds differing only in WHICH feature is
+  predictable/comfortable (low free energy). Each learns its world model (Dirichlet transitions),
+  computes experienced free energy (predictive entropy) per feature under its OWN learned model, and
+  forms a preference C proportional to exp(-FE) — i.e. comes to VALUE the low-free-energy/comfortable
+  features (valence grounding from Exp14: low free energy = good).
+- Result: world-comfortable-feature-0 -> learned C = [0.98,0.01,0.01] (values 0); world-comfortable-2 ->
+  C = [0.01,0.01,0.98] (values 2). SAME architecture, DIFFERENT history -> DIFFERENT learned preference.
+- Implication (the moonshot's core, in miniature): a preference/DISPOSITION EMERGED from the creature's
+  own experience, grounded in its free energy, NOT pretrained — and it is INDIVIDUAL (history-dependent).
+  Two identical creatures value different things solely because they lived different lives. The simplest
+  honest instance of 'an opinion that forms on its own'. Full conceptual arc now end-to-end: perceive
+  (place) -> learn facts (relations) -> want (valence) -> recall+plan+act -> FORM ITS OWN VALUES.
+- Honest caveat: this step is a numpy demonstration of preference-formation-from-experienced-free-energy
+  (grounded in the pymdp valence result Exp14); toy (3 features, simple worlds). The PRINCIPLE — a
+  disposition shaped by individual lived experience, not built in — is genuinely shown; richness/scale is
+  the ongoing climb (and the unsupervised-emergence ceiling in open_problem.html still bounds how far
+  pure self-organization goes without grounding).
+- Next (Exp27): ACT on the self-formed preference — two differently-raised creatures navigate to DIFFERENT
+  self-valued features (behavior driven by a self-formed opinion). Then richer relational knowledge /
+  multiple objects -> a values-laden graph (the substrate of 'what it thinks').
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
