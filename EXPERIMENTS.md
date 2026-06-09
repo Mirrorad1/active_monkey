@@ -139,6 +139,25 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
   HELD to bind is->blue vs is->green WITHOUT supervision. This unsupervised mixture-learning step
   is the genuinely hard, research-grade part; expect partial/negative results en route.
 
+## Exp 12 — unsupervised emergent topic: FAILS to differentiate (honest negative; key insight)
+- Setup: full 2-factor training (topic 2-state + char), B_dependencies=[[0],[1,0]] (char trans
+  conditioned on topic), asymmetric B1 init, switchable B0. Trained UNSUPERVISED on mixed
+  "sky is blue. grass is green."; tested binding via prime "sky is " vs "grass is ".
+- Result: both → "s gree" (identical); topic belief stayed [0.5, 0.5] the ENTIRE time. Topic
+  never differentiated → no binding (collapses to the flat-model failure of Exp 9).
+- Implication (the crux of emergence): this is the mixture-learning LOCAL MINIMUM. Because the
+  emission A does NOT depend on topic and the topic-conditioned transitions start symmetric,
+  variational EM has no gradient to break symmetry — it settles on "ignore the topic". A latent
+  concept needs SOME differentiating signal to crystallize; it will NOT bootstrap from pure
+  symmetry. Directly relevant to the moonshot: "opinions/concepts that emerge unsupervised"
+  cannot come from nothing — there must be a foothold (a cue, asymmetric grounding, curriculum,
+  or structure-learning move) for a latent to attach to.
+- Next moves to give the topic a foothold (try in coming cycles):
+  (a) let emission depend on topic too (A_dependencies=[[0,1]]) so the SUBJECT chars inform topic;
+  (b) reset/loosen topic at clause boundaries (period) so it re-infers per clause;
+  (c) light semi-supervision to break symmetry, then test generalization;
+  (d) structure learning / Bayesian model reduction (RESEARCH.md rec #3).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
