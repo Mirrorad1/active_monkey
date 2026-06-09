@@ -36,11 +36,37 @@ several half-experiments. Steps:
    POSITIVE / NEGATIVE / MIXED, and CONSOLIDATION / NEW INSIGHT. Negative results get
    the same care as positive ones.
 
+   **Self-grade (mandatory for every POSITIVE entry):** declare BREAKTHROUGH or
+   POSITIVE-SINGLE.
+
+   - **BREAKTHROUGH** = first demonstration of a capability the system did not have
+     before, OR a result that materially redirected the research program. Use sparingly.
+     Warning: confirmations, extensions, scale tests, and "the thing we built works"
+     default to POSITIVE-SINGLE. Over-grading destroys the signal — if everything is a
+     breakthrough, nothing is.
+   - **POSITIVE-SINGLE** = a positive result that advances the work, but is not the
+     first of its kind and is broadly consistent with predictions from prior experiments.
+
+   **When BREAKTHROUGH:** the iteration is NOT complete until a "Story so far" synthesis
+   is written. It must be 4–8 sentences covering: (a) what was being worked toward at
+   this point in the arc, (b) what just emerged and precisely why it is new (what the
+   system could not do before), and (c) the honest caveat — what is still provided,
+   templated, or approximate. Write it for a reader who has read nothing else. This
+   synthesis is placed BOTH in the EXPERIMENTS.md entry AND in the new curated entry's
+   `story` field in `experiments-data.js`.
+
 6. **Commit.** One commit per experiment containing the script
    (`experiments/expNN_<slug>.py`), its raw output (`experiments/outputs/expNN.txt`),
    AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
    the same atomic commit. A log entry without committed script and output is an
    unverified claim.
+
+   **Site update (mandatory):** the same commit also updates `experiments-data.js` with
+   the new curated entry — kind graded honestly (breakthrough / positive / wall /
+   partial), trace paths pointing to the committed script and output files, and the
+   `story` field if BREAKTHROUGH. The fast test suite (`uv run --python .venv pytest -q`)
+   enforces that the curated count equals the log count; a skipped site update will fail
+   CI and must be fixed before the commit lands.
 
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
    suggest either a direction switch (other cards), a harder edge, or stopping — a

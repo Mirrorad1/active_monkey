@@ -145,10 +145,18 @@ function Reveal({children, delay=0, tag="div", className=""}){
   return <Tag ref={ref} className={"rv "+(seen?"in ":"")+className} style={{transitionDelay:(seen?delay:0)+"ms"}}>{children}</Tag>;
 }
 
-/* per-act stats */
+/* per-act stats — 4-kind taxonomy */
 function actStats(id, list){
   const xs = (list||AM_EXPERIMENTS).filter(e=>e.chapter===id);
-  return { all:xs, win:xs.filter(e=>e.kind==="win").length, wall:xs.filter(e=>e.kind==="wall").length, partial:xs.filter(e=>e.kind==="partial").length };
+  return {
+    all:xs,
+    breakthrough:xs.filter(e=>e.kind==="breakthrough").length,
+    positive:xs.filter(e=>e.kind==="positive"||e.kind==="win").length,
+    wall:xs.filter(e=>e.kind==="wall").length,
+    partial:xs.filter(e=>e.kind==="partial").length,
+    // legacy alias
+    win:xs.filter(e=>e.kind==="positive"||e.kind==="win"||e.kind==="breakthrough").length
+  };
 }
 const ACT_SUMMARY = {
   language:"From a machine that barely echoes letters to one that won't grow a concept from nothing — and the discovery that depth, not capacity, is the lever.",
@@ -160,9 +168,10 @@ const ACT_SUMMARY = {
 
 function Hero({tally, status}){
   const [ref,seen] = useInView({threshold:.4});
-  const total = useCountUp(tally.total, seen, 1000);
-  const wins  = useCountUp(tally.win, seen, 1200);
-  const walls = useCountUp(tally.wall, seen, 1300);
+  const total      = useCountUp(tally.total, seen, 1000);
+  const breaks     = useCountUp(tally.breakthrough||0, seen, 1200);
+  const positives  = useCountUp(tally.positive||tally.win||0, seen, 1300);
+  const walls      = useCountUp(tally.wall, seen, 1400);
   return (
     <header className="hero" ref={ref}>
       <div className="wrap hero-grid">
@@ -176,7 +185,8 @@ function Hero({tally, status}){
           </div>
           <div className="hero-stats">
             <div className="stat"><b className="tabnum">{total}</b><span>experiments run</span></div>
-            <div className="stat win"><b className="tabnum">{wins}</b><span>breakthroughs</span></div>
+            <div className="stat" style={{color:"var(--break)"}}><b className="tabnum" style={{color:"var(--break)"}}>{breaks}</b><span>breakthroughs</span></div>
+            <div className="stat win"><b className="tabnum">{positives}</b><span>positives</span></div>
             <div className="stat"><b className="tabnum">{walls}</b><span>honest walls</span></div>
           </div>
         </div>
@@ -184,9 +194,11 @@ function Hero({tally, status}){
           <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
           <SyncChip status={status} count={tally.total}/>
           <div className="hero-plot">
-            <div className="ph"><span>Surprise · bits / char</span><span>logged readings · Exp 1 &amp; Exp 3</span></div>
-            <SurprisePlot series={AM_SURPRISE} height={132} eager={true}/>
-            <div className="pv"><span className="from">Exp 1: 4.81→4.00 held-out</span><span className="to">Exp 3: 3.38→1.61 'mirro'</span></div>
+            <div className="ph"><span>Surprise · bits / char</span><span>two separate experiments</span></div>
+            <SurpriseSegments segments={AM_SURPRISE_SEGMENTS} height={132}/>
+            <div style={{marginTop:'10px', fontFamily:'var(--mono)', fontSize:'10px', color:'var(--ink-3)', lineHeight:1.55, borderTop:'1px dashed var(--line)', paddingTop:'8px'}}>
+              No vision, no audio — the character stream we provide is its only sense. Falling surprise is the only 'reward' it ever gets.
+            </div>
           </div>
         </div>
       </div>
@@ -271,7 +283,15 @@ function Climb({exps}){
                     <p className="q">{ch.question}</p>
                     <p className="sm">{ACT_SUMMARY[ch.id]}</p>
                     <div className="dots">
-                      {s.all.map((e,j)=><i key={j} style={{background:e.kind==="win"?"var(--win)":e.kind==="partial"?"var(--partial)":"transparent",border:e.kind==="wall"?"1.6px solid var(--wall)":"none"}}></i>)}
+                      {s.all.map((e,j)=>{
+                        const k = e.kind;
+                        let bg = "transparent", border = "none";
+                        if(k==="breakthrough") { bg="var(--break)"; }
+                        else if(k==="positive"||k==="win") { bg="var(--positive)"; }
+                        else if(k==="partial") { bg="var(--partial)"; }
+                        else if(k==="wall") { border="1.6px solid var(--wall)"; }
+                        return <i key={j} style={{background:bg,border}}></i>;
+                      })}
                     </div>
                   </div>
                   <div className="meta">

@@ -1,14 +1,18 @@
 /* active_monkey — live loader.
    The lab notebook (EXPERIMENTS.md) is append-only and never stops growing.
    This module fetches the raw markdown from GitHub at load time, parses every
-   "## Exp N — title" block, auto-classifies win/wall/partial, and MERGES with the
+   "## Exp N — title" block, auto-classifies positive/wall/partial, and MERGES with the
    curated snapshot in experiments-data.js (curated entries keep their polished
    one-liners / metrics / chapter; newly-appended experiments flow in automatically).
    If the fetch is blocked (offline / sandbox), it silently falls back to the snapshot.
 
+   Taxonomy: "breakthrough" | "positive" | "wall" | "partial"
+   NOTE: classify() NEVER returns "breakthrough" — that label is curated-only, by design.
+   Only the lead reviewer (via experiments-data.js) assigns a breakthrough.
+
    API (plain JS, on window):
      AM_syncLive() -> Promise<{ experiments, tally, live:boolean, count:number, error?:string }>
-     AM_tally(list) -> { total, win, wall, partial, from, to }
+     AM_tally(list) -> { total, breakthrough, positive, wall, partial, from, to }
 */
 (function(){
   const RAW_URL = "https://raw.githubusercontent.com/Mirrorad1/active_monkey/main/EXPERIMENTS.md";
@@ -46,10 +50,11 @@
     });
   }
   function classify(status, title){
+    // NOTE: never returns "breakthrough" — that is a curated-only label (see module header).
     const s = (status+" "+title).toLowerCase();
     if(/\bnegative\b|\bfails?\b|collapse|culprit|\bwall\b|stalls?/.test(s)) return "wall";
     if(/\bpartial\b|progress|scaffolding|sharpening|confound|limits?\b/.test(s)) return "partial";
-    if(/\bpositive\b|milestone|decisive|\bclean\b|capstone|\bworks?\b/.test(s)) return "win";
+    if(/\bpositive\b|milestone|decisive|\bclean\b|capstone|\bworks?\b/.test(s)) return "positive";
     return "partial";
   }
   function parse(md){
@@ -96,7 +101,8 @@
     const base = window.AM_TALLY || {from:4.81,to:4.00};
     return {
       total:list.length,
-      win:list.filter(e=>e.kind==="win").length,
+      breakthrough:list.filter(e=>e.kind==="breakthrough").length,
+      positive:list.filter(e=>e.kind==="positive").length,
       wall:list.filter(e=>e.kind==="wall").length,
       partial:list.filter(e=>e.kind==="partial").length,
       from:base.from, to:base.to

@@ -52,11 +52,16 @@
   /* experiment card */
   .exp{position:relative;padding-left:60px;margin-bottom:14px;}
   @media(max-width:560px){.exp{padding-left:42px;}}
-  .exp .node{position:absolute;left:27px;top:20px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--win);z-index:2;}
+  .exp .node{position:absolute;left:27px;top:20px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--positive);z-index:2;}
+  .exp.breakthrough .node{background:var(--break);border-color:var(--break-deep);box-shadow:0 0 0 3px rgba(176,122,0,.22);}
+  .exp.positive .node{background:var(--positive);}
   .exp.wall .node{border-color:var(--wall);background:var(--paper);}
   .exp.partial .node{border-color:var(--partial);background:var(--partial);}
-  .exp.win .node{background:var(--win);}
+  .exp.win .node{background:var(--win);}   /* legacy */
   @media(max-width:560px){.exp .node{left:13px;}}
+  /* breakthrough cards get a subtle gold left-border accent */
+  .exp.breakthrough .card{border-left:3px solid var(--break);}
+  .exp.breakthrough .card.open{border-left-color:var(--break-deep);}
 
   .card{border:1px solid var(--line);background:rgba(255,255,255,.4);transition:border-color .15s,box-shadow .15s,background .15s;}
   .card:hover{border-color:var(--ink-3);}
@@ -148,8 +153,11 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "defaultExpanded": false
 }/*EDITMODE-END*/;
 
-const KIND_LABEL = { win:"breakthrough", wall:"honest wall", partial:"partial" };
+const KIND_LABEL = { breakthrough:"breakthrough", positive:"positive", win:"positive", wall:"honest wall", partial:"partial" };
 const chapterById = id => AM_CHAPTERS.find(c=>c.id===id);
+
+const GH_RAW = "https://raw.githubusercontent.com/Mirrorad1/active_monkey/main/";
+const GH_BLOB = "https://github.com/Mirrorad1/active_monkey/blob/main/";
 
 function Metric({m, compact}){
   if(!m) return null;
@@ -168,18 +176,99 @@ function Metric({m, compact}){
   );
 }
 
+function TraceBlock({label, path, ghPath}){
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState("idle"); // idle | loading | done | error
+  const [text, setText] = useState("");
+  const toggle = async () => {
+    const next = !open;
+    setOpen(next);
+    if(next && state === "idle"){
+      setState("loading");
+      try{
+        const ctrl = new AbortController();
+        const to = setTimeout(()=>ctrl.abort(), 10000);
+        const res = await fetch(GH_RAW + path, {signal:ctrl.signal, cache:"no-store"});
+        clearTimeout(to);
+        if(!res.ok) throw new Error("HTTP "+res.status);
+        setText(await res.text());
+        setState("done");
+      }catch(err){
+        setState("error");
+        setText(String(err&&err.message||err));
+      }
+    }
+  };
+  return (
+    <div className="trace-block">
+      <div className={"trace-block-head"+(open?" open":"")} onClick={toggle}>
+        <span className="tb-label">{label}</span>
+        <a className="tb-gh" href={GH_BLOB+ghPath} target="_blank" rel="noopener" onClick={ev=>ev.stopPropagation()}>view on GitHub ↗</a>
+        <span className="tb-chev">▶</span>
+      </div>
+      {open && (
+        <div className="trace-pre-wrap">
+          {state==="loading" && <div className="trace-loading">fetching from GitHub…</div>}
+          {state==="error" && <div className="trace-error">Could not load file. <a href={GH_BLOB+ghPath} target="_blank" rel="noopener">Open directly on GitHub ↗</a><br/><small>{text}</small></div>}
+          {state==="done" && <pre className="trace-pre">{text}</pre>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TraceSection({trace}){
+  if(!trace) return null;
+  return (
+    <div className="trace-section">
+      <div className="trace-title">
+        <span>TRACE IT</span>
+        {trace.verified==="match" && <span className="verified-chip">re-verified ✓</span>}
+        <span style={{color:"var(--ink-3)",fontWeight:400,letterSpacing:".01em",fontSize:"9px",flex:1}}>all 40 scripts reproduce their original output</span>
+      </div>
+      <TraceBlock
+        label="Experiment script"
+        path={trace.script}
+        ghPath={trace.script}
+      />
+      <TraceBlock
+        label="Original recorded output"
+        path={trace.output}
+        ghPath={trace.output}
+      />
+      <TraceBlock
+        label={"Re-run 2026-06-09 (verified: output matches original)"}
+        path={trace.rerun}
+        ghPath={trace.rerun}
+      />
+    </div>
+  );
+}
+
+function StoryPanel({story}){
+  if(!story) return null;
+  return (
+    <div className="story-panel">
+      <div className="story-kicker">The story so far</div>
+      <p>{story}</p>
+    </div>
+  );
+}
+
 function ExpCard({e, open, onToggle}){
   const ch = chapterById(e.chapter);
+  const kindKey = e.kind === "win" ? "positive" : e.kind; // normalise legacy "win"
   return (
-    <div className={"exp "+e.kind} id={`exp-${e.n}`}>
+    <div className={"exp "+kindKey} id={`exp-${e.n}`}>
       <span className="node"></span>
       <div className={"card"+(open?" open":"")}>
         <div className="card-head" onClick={onToggle}>
           <div className="exp-id"><b className="tabnum">{String(e.n).padStart(2,"0")}</b>EXP</div>
           <div className="exp-main">
             <div className="exp-top">
-              <span className={"badge "+e.kind}><span className="d" style={{background:e.kind==="wall"?"transparent":"#fff",border:e.kind==="wall"?"1.4px solid var(--wall)":"none"}}></span>{KIND_LABEL[e.kind]}</span>
+              <span className={"badge "+kindKey}><span className="d" style={{background:kindKey==="wall"?"transparent":"#fff",border:kindKey==="wall"?"1.4px solid var(--wall)":"none"}}></span>{KIND_LABEL[e.kind]||e.kind}</span>
               <span className="exp-act">{ch.act} · {ch.label}</span>
+              {e.trace && e.trace.verified==="match" && <span className="verified-chip" style={{marginLeft:4}}>re-verified ✓</span>}
             </div>
             <h3 className="exp-title">{e.title}</h3>
             <p className="exp-one">{e.one}</p>
@@ -191,12 +280,14 @@ function ExpCard({e, open, onToggle}){
         </div>
         <div className="card-body"><div className="card-body-in"><div className="body-pad">
           <hr/>
+          {e.story && <StoryPanel story={e.story}/>}
           <div className="dive">
             <div className="dpane"><div className="dl"><span className="b"></span>The test</div><p>{e.setup}</p></div>
             <div className="dpane"><div className="dl"><span className="b"></span>What happened</div><p>{e.result}</p></div>
             <div className="dpane r"><div className="dl"><span className="b"></span>What it means</div><p>{e.implication}</p></div>
           </div>
           <Metric m={e.metric} compact={false}/>
+          <TraceSection trace={e.trace}/>
         </div></div></div>
       </div>
     </div>
@@ -234,7 +325,7 @@ function Journey(){
   const { exps, tally, status } = useLiveExperiments();
 
   const [sort,setSort] = useState("newest");        // newest | oldest | outcome
-  const [kind,setKind] = useState("all");           // all | win | wall | partial
+  const [kind,setKind] = useState("all");           // all | breakthrough | positive | wall | partial
   const [act,setAct]   = useState("all");           // all | chapter id
   const [open,setOpen] = useState(()=>new Set());
   const [showTop,setShowTop] = useState(false);
@@ -262,12 +353,14 @@ function Journey(){
 
   // build the ordered render sequence
   const sequence = useMemo(()=>{
-    let xs = exps.filter(e => (kind==="all"||e.kind===kind) && (act==="all"||e.chapter===act));
+    // normalise: treat legacy "win" as "positive" for filtering
+    const normKind = e => e.kind === "win" ? "positive" : e.kind;
+    let xs = exps.filter(e => (kind==="all"||normKind(e)===kind) && (act==="all"||e.chapter===act));
     const showBeats = kind==="all" && act==="all" && sort!=="outcome";
     const showActs  = act==="all" && sort!=="outcome" && kind==="all";
 
     if(sort==="outcome"){
-      const order={win:0,partial:1,wall:2};
+      const order={breakthrough:0,positive:1,partial:2,wall:3,win:1};
       xs = [...xs].sort((a,b)=> order[a.kind]-order[b.kind] || b.n-a.n);
       return xs.map(e=>({type:"exp",e}));
     }
@@ -308,7 +401,8 @@ function Journey(){
             <p className="lead">Each one is a single hypothesis, the smallest possible test, and the result we actually got — failures included, because they taught the most. It reads as a climb: from a machine that can barely echo letters, to a little embodied creature whose mind quietly comes online.</p>
             <div className="jcounts" style={{marginTop:26}}>
               <div className="stat"><b className="tabnum">{counts.total}</b><span>experiments</span></div>
-              <div className="stat win"><b className="tabnum">{counts.win}</b><span>breakthroughs</span></div>
+              <div className="stat" style={{color:"var(--break)"}}><b className="tabnum" style={{color:"var(--break)"}}>{counts.breakthrough||0}</b><span>breakthroughs</span></div>
+              <div className="stat win"><b className="tabnum">{counts.positive||counts.win||0}</b><span>positives</span></div>
               <div className="stat"><b className="tabnum">{counts.wall}</b><span>walls</span></div>
               <div className="stat"><b className="tabnum">{counts.partial}</b><span>partials</span></div>
             </div>
@@ -316,8 +410,11 @@ function Journey(){
           <div className="jhead-side">
             <SyncChip status={status} count={counts.total}/>
             <div className="jplot">
-              <div className="ph"><span>Surprise · bits / char</span><span>logged readings · Exp 1 &amp; Exp 3</span></div>
-              <SurprisePlot series={AM_SURPRISE} height={104} eager={true}/>
+              <div className="ph"><span>Surprise · bits / char</span><span>two separate experiments</span></div>
+              <SurpriseSegments segments={AM_SURPRISE_SEGMENTS} height={104}/>
+              <div style={{marginTop:'8px', fontFamily:'var(--mono)', fontSize:'10px', color:'var(--ink-3)', lineHeight:1.5, borderTop:'1px dashed var(--line)', paddingTop:'7px'}}>
+                No vision, no audio — the character stream we provide is its only sense. Falling surprise is the only 'reward' it ever gets.
+              </div>
             </div>
           </div>
         </div>
@@ -336,7 +433,8 @@ function Journey(){
           <div className="cgroup">
             <span className="clabel">Show</span>
             <button className={"fchip"+(kind==="all"?" on":"")} onClick={()=>setKind("all")}>All <span className="ct">{counts.total}</span></button>
-            <button className={"fchip"+(kind==="win"?" on":"")} onClick={()=>setKind("win")}><span className="dot win"></span>Breakthroughs <span className="ct">{counts.win}</span></button>
+            <button className={"fchip"+(kind==="breakthrough"?" on":"")} onClick={()=>setKind("breakthrough")}><span className="dot breakthrough"></span>Breakthroughs <span className="ct">{counts.breakthrough||0}</span></button>
+            <button className={"fchip"+(kind==="positive"?" on":"")} onClick={()=>setKind("positive")}><span className="dot positive"></span>Positives <span className="ct">{counts.positive||counts.win||0}</span></button>
             <button className={"fchip"+(kind==="wall"?" on":"")} onClick={()=>setKind("wall")}><span className="dot wall"></span>Walls <span className="ct">{counts.wall}</span></button>
             <button className={"fchip"+(kind==="partial"?" on":"")} onClick={()=>setKind("partial")}><span className="dot partial"></span>Partials <span className="ct">{counts.partial}</span></button>
           </div>

@@ -24,6 +24,10 @@ A flattering false log is worthless. These rules bind every experiment entry.
   structure) must not be framed as cracking them. Partial ≠ solved.
 - **Toy honesty.** State the scale. Don't extrapolate toy success to claims about
   scaled behavior without running the scale test.
+- **BREAKTHROUGH is a claim that must survive the hostile-reviewer test:** what could
+  the system demonstrably do for the first time here? If the answer is "the same as
+  before, but bigger / cleaner / again", it is a POSITIVE-SINGLE. Apply this test
+  before writing BREAKTHROUGH in any entry or curated record.
 
 ## Language rules for EXPERIMENTS.md entries
 - Verdict tags are mandatory: POSITIVE / NEGATIVE / MIXED + CONSOLIDATION / NEW INSIGHT.
