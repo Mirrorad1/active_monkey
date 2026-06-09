@@ -200,6 +200,25 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: (a) close the affective loop — does the agent ACT to seek the 'a'-cue / avoid 'z' (EFE +
   this grounded valence)? (b) alternate back to emergent topic (emission-level) as the long arc.
 
+## Exp 15 — closing the affective loop: the agent ACTS to seek its grounded-good state (POSITIVE)
+- Setup: choice world — action0 -> a predictable/"understood" scene (peaked emission = low free
+  energy), action1 -> a surprising scene (uniform emission = high free energy). Preference C is the
+  SELF-EVIDENCING prior (prefer the predictable/comfort outcome the agent learned to expect — the
+  principled AIF grounding of valence, NOT an external labeled reward). Compute EFE + policy posterior.
+- Result: q(pi) seek-good = 0.79 vs seek-bad = 0.21; EFE good = -1.82 (lower) vs bad = -0.50.
+  The agent chooses to occupy the low-free-energy / understood state.
+- Implication: closes the affective loop. "Wanting to feel good" = acting to minimize expected free
+  energy toward states the agent can predict. Together with Exp 14 (cue -> valence grounding) this is
+  a minimal AFFECTIVE AGENT: it grounds valence in its OWN free energy AND acts to seek it — no RL
+  reward, no labeled opinions, no pretraining of what is "good".
+- Honest note: a preference C was specified, but as the self-evidencing prior (prefer
+  predictable/characteristic states), which is how valence is grounded in active inference. This is
+  the difference between "preference emerges from the agent's drive to persist" vs "reward injected".
+- Connects to the moonshot: the "feel positive and seek it" you described, demonstrated — the wanting
+  emerges from EFE + self-evidencing, it is not pre-trained in.
+- Next: alternate back to emergent topic (long arc, the open problem in open_problem.html), or fuse
+  valence with the language model (does the grounded valence shape what it attends to / generates?).
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
