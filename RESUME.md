@@ -1,0 +1,119 @@
+# RESUME — bootstrap a fresh session and continue this work
+
+**What this file is:** the single source of truth to pick this project back up. Drop it (or its
+contents) into a new Claude session and it will know the premise, where we are, and exactly how to
+continue. Read top to bottom once; everything else is a pointer from here.
+
+---
+
+## 1. The premise (what we're actually trying to do)
+
+Build an **active-inference agent you can talk to that formed its own opinions from lived
+experience — never pretrained on having opinions or on what to think.** The honest, FEP-native
+framing locked in across this project:
+
+- **Free energy is the reward.** Low surprise = "understanding"; the agent minimizes free energy.
+- **Hidden states = meaning.** Valence = −free energy (a thing "feels good" when its consequences
+  are predictable). These are functional, not claims of sentience.
+- The moonshot is reached **at toy scale** and walls off at a documented research frontier (below).
+
+## 2. The one durable finding
+
+Unsupervised emergence of latent structure from a **disembodied symbol stream collapses**
+(symmetric saddle / posterior collapse / non-identifiability / mean-field severs cross-factor
+inference). What breaks the symmetry is the **RECIPE**:
+
+> **embodiment + grounding + continuous *registered* experience (belief never reset) + ONE innate
+> anchor** (give either the sensory map `A` *or* the motor model `B`; learning BOTH from pure noise
+> collapses — Exp 31) + **taught labels** for the few-shot word←→concept mapping.
+
+On that recipe the full chain works: a creature **perceives** (place fields self-organize) →
+**learns** facts → **wants** (grounded valence) → **plans + acts** (value-iteration nav) → **forms
+its own values** (same architecture + different history ⇒ different opinion, Exp 26) → **acts on
+them** → **answers in words** what it thinks (content self-formed, labels taught, Exp 28/34/35).
+
+**Honest ceilings (NOT toy-crackable, genuine research frontiers):** emergent compositional
+**grammar / language-from-scratch**, and **fully tabula-rasa** structure (no innate anchor). These
+are written up in `open_problem.html`.
+
+## 3. Where we are (state as of Exp 40)
+
+- **M1–M3b built and green.** Inner controller loop, outer autopilot loop, character language
+  model, PR-style autopilot. ~59 fast tests pass.
+- **Exp 1–40 done** — full honest log in `EXPERIMENTS.md`. Exp 36–40 were consolidation
+  (place-scale to 6×6, value/converse to 6 concepts, integrated stack, noise-robustness,
+  opinion-revisability) — all POSITIVE, diminishing insight. **We are in the consolidation phase:
+  each new experiment confirms more than it discovers.** Be honest about that with the user.
+- **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
+  differently. Verified runnable (see §5).
+
+## 4. The two loops (IMPORTANT — don't confuse them)
+
+This repo contains **two different "loops."** "Continue the moonshot" means loop B.
+
+| | **A. Code-mutating autopilot** | **B. Claude-driven experiment loop** |
+|---|---|---|
+| What it is | `run_loop.py` / `run_pr_loop.py` machinery | Claude (you) writing & running experiment scripts |
+| What it optimizes | the free-energy / bits-char **metric**, by editing `model_spec.py` / `lang_model_spec.py` | the **moonshot question**, by designing Exp 41, 42, … |
+| Governed by | `MISSION.md` + `policy.md` (FROZEN trust boundary) | the `/loop` prompt in §6 |
+| Output | kept/reverted diffs, `world_model/` grows | new entries appended to `EXPERIMENTS.md` |
+| Human role | guardrail-only | guardrail-only; gently reminded it's a natural stop point |
+
+Both keep everything in git. The moonshot exploration (Exp 1–40) is **loop B** — Claude proposing
+experiments, not the autopilot. To continue the moonshot, re-issue the loop B prompt below.
+
+## 5. Re-run what exists (smoke test the world before extending it)
+
+```bash
+cd /Users/mirro/Projects/active-loop
+uv run --python .venv python converse_demo.py        # capstone: two creatures, self-formed opinions
+uv run --python .venv pytest -q -x                   # ~59 fast tests should pass
+uv run --python .venv python talk.py                 # char-level babbler REPL (honest ceiling)
+# autopilot (loop A), bounded so it doesn't run forever:
+uv run --python .venv python run_loop.py --iterations 1
+```
+
+Always use `uv run --python .venv` — the shell auto-activates conda base and shadows the venv.
+Run experiment scripts from the repo root (or `PYTHONPATH=.`) so imports resolve.
+
+## 6. Continue the moonshot — paste this verbatim into a fresh session
+
+```
+/loop Keep running the moonshot active-inference experiments until I stop you. GOAL: an agent I can
+eventually talk to and ask what it thinks, with its opinions self-formed from experience, never
+pretrained. Read RESUME.md and EXPERIMENTS.md first. STATE: realistic moonshot reached at toy scale;
+Exp 1-40 done; we are in CONSOLIDATION (diminishing insight) — be honest about that. NEXT Exp 41+:
+prefer experiments that probe the RECIPE's edges or push toward a ceiling rather than re-confirming
+settled results, e.g. transfer (a creature reuses its recipe in a new world), multi-step relational
+"thoughts", or a minimal sequence substrate toward short Q->A (the M4 affective-dyad spec in pymdp is
+the designed-but-unbuilt next rung). Run experiments back-to-back on a short ~5-minute cadence; if
+mid-task, continue across wakes. RECIPE: embodiment + grounding + continuous-registered-experience +
+ONE innate anchor + taught labels; keep belief CONTINUOUS (never reset per episode); reuse the
+verified pymdp patterns from Exp 21/26/30/34/35. CEILINGS (not toy-crackable, don't keep banging on
+them): emergent grammar, fully tabula-rasa structure (open_problem.html). DISCIPLINE: one
+hypothesis-driven experiment per iteration; append a brief honest entry to EXPERIMENTS.md each time
+(mark consolidation vs. new insight); scripts in repo or PYTHONPATH=.; keep responses lightweight;
+gently remind me it's a natural stopping point when insight flattens.
+```
+
+## 7. Map of everything
+
+| File | What it is |
+|---|---|
+| `RESUME.md` | this bootstrap (you are here) |
+| `EXPERIMENTS.md` | append-only honest log, Exp 1–40 — the central artifact |
+| `RESEARCH.md` | parallel math / frontier analysis |
+| `open_problem.html` | the actual open problem written up (restyled "active_monkey" page — intentional, don't revert) |
+| `converse_demo.py` | the capstone "talk to it" demo |
+| `MISSION.md` / `policy.md` | governing docs for loop A (the code-mutating autopilot) |
+| `talk.py` | char-model REPL babbler |
+| `active_loop/` | the code: controller, worker, specs, lang model, critic, loop machinery |
+| `world_model/` | persistent belief store (loop A); grows, never resets |
+| `eval/` | FROZEN scorers (never edit) |
+
+**The designed-but-unbuilt next rung:** `pymdp/docs/superpowers/specs/2026-06-08-active-loop-m4-affective-dyad-design.md`
+— "talk to it and watch it learn to feel positive" (functional valence grounded in free energy,
+intent inferred from utterances). Spec-only; this is the most direct path toward conversation.
+
+Persistent memory for this project lives at
+`~/.claude/projects/-Users-mirro-Projects-pymdp/memory/active-loop-project.md`.
