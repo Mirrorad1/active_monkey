@@ -1,3 +1,4 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp17_embodied_gridworld.py:24: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
   ag=Agent(A=[b(A)[0]],B=[b(B0)[0]],D=[b(np.ones(N)/N)[0]],pB=pB,num_controls=[2],policy_len=1,
 EMBODIED model learning (a wandering creature learns its world):
   learned-vs-true transition error: left=0.003 right=0.003 (0=perfect)

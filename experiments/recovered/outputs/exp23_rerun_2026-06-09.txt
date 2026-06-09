@@ -1,0 +1,5 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp23_navigation_horizon.py:35: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(Acol)[0],b(Acom)[0]],B=[b(Bt)[0]],C=C,D=[b(np.eye(N)[0])[0]],
+Exp23 — PLANNING DEPTH (does horizon>=distance enable navigation?) optimal=4, random~9.8
+  policy_len=4: reached goal in 4 steps  path=[0, 3, 6, 7, 8]
+  policy_len=5: reached goal in 4 steps  path=[0, 3, 4, 5, 8]

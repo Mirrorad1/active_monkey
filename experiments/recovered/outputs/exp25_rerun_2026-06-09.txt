@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp25_recall_navigate.py:32: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  agL=Agent(A=[b(Acol)[0],b(Aobj0)[0]],B=[b(Bt)[0]],D=[b(np.eye(N)[0])[0]],
+/Users/mirro/Projects/active-loop/experiments/recovered/exp25_recall_navigate.py:48: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  agN=Agent(A=[b(Acol)[0],b(Aobj)[0]],B=[b(Bt)[0]],C=C,D=[b(np.eye(N)[0])[0]],num_controls=[4],policy_len=4,
+Exp25 — RECALL + NAVIGATE. learned object location = cell 4 (true 4)
+  navigated to its remembered object: reached cell 4 in 2 steps; path [0, 3, 4]; success=True
+  => LEARN a fact (object@place) by wandering, then RECALL it to guide goal-directed action

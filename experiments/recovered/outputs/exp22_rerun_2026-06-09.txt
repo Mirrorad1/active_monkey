@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp22_fuse_place_valence.py:33: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(Acol)[0],b(Acom)[0]],B=[b(Bt)[0]],C=C,D=[b(np.eye(N)[0])[0]],
+Exp22 — FUSE place + grounded valence (goal-directed navigation via EFE):
+  active-inference creature reached comfort goal in 15 steps; path [0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 4, 5, 8]
+  random-walk baseline: 9.8 avg steps (119/300 arrived within 15)
+  optimal (manhattan) = 4 steps. directed (EFE) vs random: 15 vs ~9.8
+  => navigates to what it wants in its own world model: False

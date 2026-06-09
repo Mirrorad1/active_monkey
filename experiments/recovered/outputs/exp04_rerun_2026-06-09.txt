@@ -1,0 +1,10 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp04_memory_order_qa.py:23: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[A[0]],B=[B[0]],D=[D[0]],pA=pA,pB=pB,num_controls=[1],policy_len=1,
+=== EXPERIMENT A: does MORE MEMORY (states K) let it say mirro in order? ===
+  K= 12: it says -> ['  rrrr  imls', ' r riiiqi ir']
+  K= 30: it says -> ['  rrrr  imiv', ' r redgpe ir']
+  K= 60: it says -> ['  rrrr  imiw', ' r sccdoc ir']
+
+=== EXPERIMENT B: can it learn question -> answer (what is your name -> mirro)? ===
+  ask 'what is your name. ' -> ' .s ut. hni   soyu'
+  ask 'what is your name. ' -> ' s. aaara hrnm eu '

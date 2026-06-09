@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp14_valence_grounding.py:27: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  return Agent(A=[bat(A)[0]],B=[bat(B0)[0]],D=[bat(np.ones(K)/K)[0]],pB=[bat(np.full((K,K,1),0.05))],
+VALENCE GROUNDING (determined context):
+  P(next | ..a) uncertainty: 3.04 bits   P(next | ..z): 4.79 bits
+  cue a predicts a lower-free-energy (more understood) state than z: True  (delta +1.75 bits)
+  interpretation: an arbitrary symbol acquired POSITIVE valence purely by co-occurring
+  with the agent low-surprise states - grounded, never labeled.

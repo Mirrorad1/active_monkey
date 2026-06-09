@@ -1,0 +1,12 @@
+Exp28 — ASK IT WHAT IT THINKS (toy): two creatures, different upbringings, same questions
+  Q: what do you think of red?
+     creature-A: I like red — it feels familiar and calm (low surprise 0.0 bits)
+     creature-B: red unsettles me — it is unpredictable (surprise 1.6 bits)
+  Q: what do you think of blue?
+     creature-A: blue unsettles me — it is unpredictable (surprise 1.6 bits)
+     creature-B: blue unsettles me — it is unpredictable (surprise 1.6 bits)
+  Q: what do you think of green?
+     creature-A: green unsettles me — it is unpredictable (surprise 1.6 bits)
+     creature-B: I like green — it feels familiar and calm (low surprise 0.0 bits)
+  favorite — A: red   B: green   (different, each from its own life)
+  => the ANSWER is the creature own, formed by lived experience, not pretrained

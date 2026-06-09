@@ -1,0 +1,4 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp11_twofactor_scaffold.py:25: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(A)[0]],
+2-factor (topic+char, B1 depends on topic) CONSTRUCTED ok
+infer_states ok; topic belief [0.5 0.5] char-belief len (28,)
