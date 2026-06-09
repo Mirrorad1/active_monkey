@@ -169,7 +169,7 @@ function Hero({tally, status}){
         <div>
           <div className="kicker">An autonomous research log · active inference</div>
           <h1 className="h-display">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
-          <p className="lead">No labels. No rewards. No pretraining. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts.</b></p>
+          <p className="lead">No rewards. Nothing pretrained. Word-labels only ever taught — every value and concept self-formed. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts.</b></p>
           <div className="hero-cta">
             <a className="btn btn-primary" href="journey.html">Follow the journey →</a>
             <a className="btn btn-ghost" href="open_problem.html">The open problem</a>
@@ -184,9 +184,9 @@ function Hero({tally, status}){
           <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
           <SyncChip status={status} count={tally.total}/>
           <div className="hero-plot">
-            <div className="ph"><span>Surprise · bits / char</span><span>the only thing it feels</span></div>
+            <div className="ph"><span>Surprise · bits / char</span><span>logged readings · Exp 1 &amp; Exp 3</span></div>
             <SurprisePlot series={AM_SURPRISE} height={132} eager={true}/>
-            <div className="pv"><span className="from">4.81 — lost</span><span className="to">1.61 — understanding ↓</span></div>
+            <div className="pv"><span className="from">Exp 1: 4.81→4.00 held-out</span><span className="to">Exp 3: 3.38→1.61 'mirro'</span></div>
           </div>
         </div>
       </div>
@@ -235,7 +235,7 @@ function HowItWorks(){
           <div className="col subject">
             <div className="lab">The subject</div>
             <h3>A mind built from math</h3>
-            <p>What it studies is a tiny active inference agent. There is no language model inside it, and nothing pretrained. It isn't even handed a dataset. Just a small generative model dropped into a world, updating itself to be less surprised by what it senses. Everything it comes to know, it built from its own experience.</p>
+            <p>What it studies is a tiny active inference agent. There is no language model inside it, and nothing pretrained. The embodied creature gets no dataset — just a small generative model dropped into a world, updating itself to be less surprised by what it senses. (The early language experiments streamed a small text corpus as sensory input; the embodied creature that followed does not.) Everything it comes to know, it built from its own experience.</p>
           </div>
         </Reveal>
         <Reveal className="how-flow" delay={100}>

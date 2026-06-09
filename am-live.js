@@ -12,7 +12,6 @@
 */
 (function(){
   const RAW_URL = "https://raw.githubusercontent.com/Mirrorad1/active_monkey/main/EXPERIMENTS.md";
-  const KNOWN_MAX = 35; // anything beyond this is treated as a freshly-appended experiment
 
   function clean(s){
     return (s||"")
@@ -51,7 +50,7 @@
     if(/\bnegative\b|\bfails?\b|collapse|culprit|\bwall\b|stalls?/.test(s)) return "wall";
     if(/\bpartial\b|progress|scaffolding|sharpening|confound|limits?\b/.test(s)) return "partial";
     if(/\bpositive\b|milestone|decisive|\bclean\b|capstone|\bworks?\b/.test(s)) return "win";
-    return "win";
+    return "partial";
   }
   function parse(md){
     const blocks = md.split(/\n(?=##\s)/);
@@ -94,7 +93,7 @@
     return out;
   }
   function tally(list){
-    const base = window.AM_TALLY || {from:4.81,to:1.61};
+    const base = window.AM_TALLY || {from:4.81,to:4.00};
     return {
       total:list.length,
       win:list.filter(e=>e.kind==="win").length,
