@@ -1,0 +1,16 @@
+fork-source: name=mirro age=1300 hash=3d08dffce3308d09
+fork() note: twin._state_dir set to None by source; live() on forks will not write to creature/state/mirro/
+pair 1: X favorite=0 conviction=0.399 | Y favorite=2 conviction=0.434 | diverged=True
+  X value_counts%: c0=39.9 c1=28.6 c2=31.5
+  Y value_counts%: c0=28.4 c1=28.2 c2=43.4
+pair 2: X favorite=0 conviction=0.438 | Y favorite=2 conviction=0.461 | diverged=True
+  X value_counts%: c0=43.8 c1=27.2 c2=29.0
+  Y value_counts%: c0=26.9 c1=27.0 c2=46.1
+pair 3: X favorite=0 conviction=0.447 | Y favorite=2 conviction=0.468 | diverged=True
+  X value_counts%: c0=44.7 c1=26.7 c2=28.6
+  Y value_counts%: c0=26.4 c1=26.7 c2=46.8
+mirro_untouched=True  (before=3d08dffce3308d09 after=3d08dffce3308d09)
+
+pairs_diverged=3/3
+directional_match=3/3  (X fav==0 AND Y fav==2)
+VERDICT: prediction CONFIRMED (3/3 diverged, threshold >=2)

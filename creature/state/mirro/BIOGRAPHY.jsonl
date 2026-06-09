@@ -8,3 +8,9 @@
 {"event": "save", "age_steps": 1000, "summary": "saved to /Users/mirro/Projects/active-loop/.claude/worktrees/agent-a12846f050aa085d9/creature/state/mirro", "state_hash": "1869fa07b331b3c9764e477d2b59fdf4812fa1568c87884517602b7e7612baa9"}
 {"event": "live", "age_steps": 1300, "summary": "lived 300 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
 {"event": "save", "age_steps": 1300, "summary": "saved to creature/state/mirro", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_x1'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_y1'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_x2'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_y2'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_x3'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
+{"event": "fork", "age_steps": 1300, "summary": "forked into 'fork_y3'", "state_hash": "3d08dffce3308d09f57b734299c4cca1fce8ca84e8ada540e894264323849daa"}
