@@ -11,9 +11,6 @@ from active_loop.frozen_guard import is_frozen_touched
 from active_loop.world_model import WorldModel
 from active_loop.report_html import render_report
 
-TRUNK = "master"
-
-
 @dataclass
 class PRResult:
     iteration: int
@@ -48,6 +45,7 @@ def _tests_pass(repo: Path) -> bool:
 
 def one_pr_iteration(repo, proposer, critic, iteration, base_bits=None) -> PRResult:
     repo = Path(repo)
+    trunk = git_ops.current_branch(repo)  # whatever the repo's trunk is named (main/master)
     if base_bits is None:
         bs = _score(repo)
         base_bits = bs["bits_per_char"] if bs else float("inf")
@@ -58,7 +56,7 @@ def one_pr_iteration(repo, proposer, critic, iteration, base_bits=None) -> PRRes
 
     def _discard(reason, bits=None, crit=""):
         git_ops.reset_hard(repo)
-        git_ops.checkout(repo, TRUNK)
+        git_ops.checkout(repo, trunk)
         git_ops.delete_branch(repo, branch)
         return PRResult(iteration, hyp, False, reason, bits, crit)
 
@@ -70,7 +68,7 @@ def one_pr_iteration(repo, proposer, critic, iteration, base_bits=None) -> PRRes
     if not _tests_pass(repo):
         return _discard("tests_failed")
 
-    diff = subprocess.run(["git", "diff", f"{TRUNK}...{branch}"], cwd=str(repo),
+    diff = subprocess.run(["git", "diff", f"{trunk}...{branch}"], cwd=str(repo),
                           capture_output=True, text=True).stdout
     verdict = critic.review(diff, repo)
     if not verdict.approved:
@@ -81,7 +79,7 @@ def one_pr_iteration(repo, proposer, critic, iteration, base_bits=None) -> PRRes
         return _discard("broken", crit=verdict.reason)
     improved = score["bits_per_char"] < base_bits
     if improved and score["verdict"]:
-        git_ops.checkout(repo, TRUNK)
+        git_ops.checkout(repo, trunk)
         git_ops.merge_no_ff(repo, branch, f"merge iter {iteration} ({hyp}) bits={score['bits_per_char']:.4f}")
         git_ops.delete_branch(repo, branch)
         return PRResult(iteration, hyp, True, "improved", score["bits_per_char"], verdict.reason)

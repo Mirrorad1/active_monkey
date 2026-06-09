@@ -20,8 +20,9 @@ def _clone(tmp_path):
 def test_one_pr_iteration_merges_or_discards_clean(tmp_path):
     from active_loop.pr_loop import one_pr_iteration
     repo = _clone(tmp_path)
+    trunk = git_ops.current_branch(repo)
     r = one_pr_iteration(repo, LangMockProposer(seed=0), MockCritic(approve=True), iteration=0)
-    assert git_ops.current_branch(repo) == "master"
+    assert git_ops.current_branch(repo) == trunk
     assert git_ops.changed_files(repo) == []
     assert r.merged in (True, False)
 
