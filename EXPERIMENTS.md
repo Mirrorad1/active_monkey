@@ -1037,3 +1037,32 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   equilibrium delta with a symmetric noise margin (predeclared from the diagnosis, not from the
   failed run's exact number) — then fresh controls on NEW fork seeds, plus a second, SUBTLER
   planted anomaly (e.g. 3 recolored cells) to probe sensitivity honestly.
+
+## Exp 52 — ledger v2: drift band fixed and validated; baseline favorite FLIPS — invariants must be state-conditional (NEGATIVE; second instrument iteration)
+- Setup: one change from v1 — conviction-drift band DERIVED before any epoch from the current
+  world's composition equilibrium (center = (eq_share − cur_share)·steps/(total_counts+steps),
+  ±0.015 noise margin; printed: [−0.0192, +0.0108], covers Exp 51's −0.00834 reading ✓). Four
+  fork epochs, fresh per-step action streams, scorer blind, mirro untouched (hash-verified):
+  baseline (quiet expected), strong anomaly (10 recolored cells), subtle (3 cells), floor probe
+  (2 cells, predicted miss). Falsifier: baseline false alarm or strong/subtle missed.
+- Result: falsifier HIT, new mode — baseline favorite FLIPPED 0→2 (drift −0.0188, INSIDE the
+  new band; the recalibrated drift property behaved exactly as designed). Strong anomaly: 3
+  flags ✓. Subtle: 3 flags ✓ (map-vs-ref 0.88). Floor probe: 0 flags as predicted — detection
+  floor documented at 3 recolored cells (2 cells = 0.96 ≥ 0.92 band edge).
+- Diagnosis (a finding about the creature, not just the instrument): mirro's favorite-count gap
+  (~90 of ~4100 counts) is inside the visit-noise envelope of a 1000-step epoch in the
+  near-balanced 9/8/8 world. At near-indifference conviction, favorite IDENTITY is noise —
+  "favorite unchanged" is not a valid quiet-world invariant for a weakly-entrenched creature.
+  Ledger invariants must be CONDITIONAL on state stability: assert favorite constancy only when
+  the entrenchment gap exceeds the epoch's noise margin (predeclared threshold), else disable
+  the property. This directly constrains rung 2's personality battery: a "preference" probe on a
+  near-indifferent creature reads noise (echoes Exp 48/49: opinions move through indifference).
+- Honest caveat: single baseline stream (the flip is one draw from the noise envelope, which is
+  the point); floor measured only on the recoloring anomaly family; drift-band fix is validated
+  only in the sense of covering one prior reading + one new baseline.
+- Verdict: NEGATIVE (predeclared falsifier hit) / instrument iteration 2; two transferable
+  design rules so far: (1) bands derive from current-world equilibria, (2) invariants are
+  state-conditional on entrenchment.
+- Next (Exp 53, ledger v3): replace favorite_changed with the conditional rule (enabled only if
+  pre-epoch favorite gap-share > 0.03, predeclared); fresh controls; if v3 passes, rung 1 is
+  done and rung 2 (personality battery) starts with the entrenchment condition built in.

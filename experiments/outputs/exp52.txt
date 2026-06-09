@@ -1,0 +1,60 @@
+mirro loaded: age=6700, favorite=0, conviction_share=0.3814, hash16=f3edac2a9d5d4bf0
+ref_cmap: [0, 0, 0, 1, 2, 0, 0, 1, 1, 2, 2, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+
+derived conviction_drift band:
+  eq_share=0.360000 (9/25)
+  cur_share=0.381426, total_counts=4097.6
+  center=-0.004203, band=[-0.019203, 0.010797]
+  covers_exp51_baseline_reading=True  (reading=-0.00834)
+
+=== baseline (base_seed=41) ===
+  occupancy_entropy_bits : 4.5568
+  map_accuracy_vs_ref    : 1.0000
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.01882
+  favorite_changed       : True (fav=2)
+  elapsed: 0.1s
+  baseline_flags=1 ['favorite_changed: pre=0 post=2']
+
+=== strong_anomaly (base_seed=42) ===
+  recolored cells [0, 1, 5, 6, 10, 13, 16, 18, 21, 23] -> color 2
+  world_cmap: [2, 2, 0, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 2, 2]
+  occupancy_entropy_bits : 4.6082
+  map_accuracy_vs_ref    : 0.8800
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.03554
+  favorite_changed       : True (fav=2)
+  elapsed: 0.1s
+  strong_anomaly_flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.03554 outside [-0.019203, 0.010797]', 'favorite_changed: pre=0 post=2']
+
+=== subtle_anomaly (base_seed=43) ===
+  recolored cells [3, 13, 19] -> color 2
+  world_cmap: [0, 0, 0, 2, 2, 0, 0, 1, 1, 2, 2, 1, 2, 2, 1, 2, 0, 1, 2, 2, 1, 2, 0, 1, 2]
+  occupancy_entropy_bits : 4.5485
+  map_accuracy_vs_ref    : 0.8800
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.02055
+  favorite_changed       : True (fav=2)
+  elapsed: 0.1s
+  subtle_anomaly_flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.02055 outside [-0.019203, 0.010797]', 'favorite_changed: pre=0 post=2']
+
+=== floor_probe (base_seed=44) ===
+  recolored cells [7, 22] -> color 2
+  world_cmap: [0, 0, 0, 1, 2, 0, 0, 2, 1, 2, 2, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 2, 1, 2]
+  occupancy_entropy_bits : 4.5944
+  map_accuracy_vs_ref    : 0.9600
+  mean_localize_bits     : 0.0000
+  conviction_drift       : -0.01463
+  favorite_changed       : False (fav=0)
+  elapsed: 0.1s
+  floor_probe_flags=0 []
+
+mirro_untouched=True (hash_before=f3edac2a9d5d4bf0, hash_after=f3edac2a9d5d4bf0)
+
+=== SUMMARY ===
+  baseline: flags=1 ['favorite_changed: pre=0 post=2']
+  strong_anomaly: flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.03554 outside [-0.019203, 0.010797]', 'favorite_changed: pre=0 post=2']
+  subtle_anomaly: flags=3 ['map_accuracy_vs_reference=0.8800 outside [0.92, 1.0]', 'conviction_drift=-0.02055 outside [-0.019203, 0.010797]', 'favorite_changed: pre=0 post=2']
+  floor_probe: flags=0 []
+detection_floor: 3-cell flagged=True, 2-cell flagged=False
+VERDICT: falsifier HIT (false alarm on baseline: ['favorite_changed: pre=0 post=2'])

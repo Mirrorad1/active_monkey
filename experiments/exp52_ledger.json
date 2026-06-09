@@ -1,0 +1,11 @@
+{
+  "predeclared": "2026-06-09, ledger v2 (Exp 52). One change from v1: conviction_drift band is derived from the current world's composition equilibrium (Exp 51 diagnosis), not borrowed from another regime.",
+  "epoch_steps": 1000,
+  "properties": {
+    "occupancy_entropy_bits": {"min": 4.40, "max": 4.644},
+    "map_accuracy_vs_reference": {"min": 0.92, "max": 1.0},
+    "mean_localize_bits": {"min": 0.0, "max": 0.15},
+    "conviction_drift": {"formula": "center = (eq_share - cur_share) * steps/(total_counts + steps); band = center +/- 0.015", "noise_margin": 0.015},
+    "favorite_changed": {"expected": false}
+  }
+}

@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 51 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 52 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:51, breakthrough:5, positive:29, wall:11, partial:6, from:4.81, to:4.00 };
+window.AM_TALLY = { total:52, breakthrough:5, positive:29, wall:12, partial:6, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -471,7 +471,16 @@ window.AM_EXPERIMENTS = [
     setup:"Functional-emergence rung 1: a surprise ledger — predeclared property ranges committed before any epoch, a blind scorer, and two fork epochs of mirro: an unmodified world (must stay quiet) and a secretly recolored one (must be flagged).",
     result:"The anomaly side worked (reference-map mismatch 0.88, conviction drift −0.0375, favorite flip). The baseline false-alarmed on conviction drift (−0.0083 vs a band of [−0.005, +0.04]) — the band was borrowed from Exp 49's red-rich world, but in mirro's near-balanced world the favorite's share drifts naturally downward toward its equilibrium.",
     implication:"Predeclared falsifier hit, and that is the discipline working: the negative control caught the miscalibration before the ledger could bless any 'novelty'. The fix is principled (center the drift band on the current world's composition equilibrium), and v2 must pass fresh controls — plus a subtler anomaly — before the rest of the ladder unblocks.",
-    trace:{ script:"experiments/exp51_surprise_ledger.py", output:"experiments/outputs/exp51.txt" } }
+    trace:{ script:"experiments/exp51_surprise_ledger.py", output:"experiments/outputs/exp51.txt" } },
+
+  { n:52, kind:"wall", chapter:"frontier",
+    title:"A weakly-held favorite is noise — and the detector must know it.",
+    one:"v2's recalibrated band worked; the baseline still false-alarmed, because mirro's favorite flipped on its own — at near-indifference, favorite identity is not a stable invariant.",
+    metric:{ from:3, to:3, unit:"cells: detection floor (2-cell missed)" },
+    setup:"Ledger v2: the conviction-drift band now derives from the current world's composition equilibrium (it covers Exp 51's failed reading analytically). Four blind fork epochs: quiet baseline, 10-cell and 3-cell planted anomalies, and a 2-cell floor probe predicted to be missed.",
+    result:"Both anomalies flagged (3 flags each); the floor probe was missed exactly as predicted (detection floor: 3 recolored cells). But the baseline's favorite flipped 0→2 — its ~90-count lead of ~4100 sits inside a 1000-step epoch's visit-noise envelope in the near-balanced world. Drift stayed inside the new band; the flip alone false-alarmed.",
+    implication:"Second predeclared falsifier hit, second transferable design rule: ledger invariants must be conditional on state stability — assert favorite constancy only when entrenchment exceeds the epoch's noise margin. This constrains the upcoming personality battery too: probing preferences on a near-indifferent creature reads noise. v3 builds the condition in.",
+    trace:{ script:"experiments/exp52_ledger_v2.py", output:"experiments/outputs/exp52.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
