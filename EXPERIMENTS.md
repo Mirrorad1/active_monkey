@@ -617,6 +617,21 @@ remains bounded by the documented walls (open_problem.html): unsupervised struct
 an open ALGORITHMIC problem (biology solves it; needs grounding + inductive bias/anchor + scale).
 Remaining = research frontiers, not new toy concepts: emergent grammar; fully-from-scratch structure; scale.
 
+## Exp 35 — CAPSTONE 'converse' demo (POSITIVE; runnable artifact converse_demo.py)
+- Setup: one creature combining self-learnable place map (given here for compactness, learnable Exp21) +
+  colors + self-formed values (Exp26) + taught words (Exp34). Short ask-it-anything transcript; two
+  differently-raised creatures answer the SAME questions.
+- Result: coherent 'talk to it' transcript. 'where are you?' -> 'I'm at a green place' (correct);
+  'what do you like?' -> A: red, B: green (individual); 'what is near you?' -> neighbor colors + per-creature
+  feelings; 'do you like green?' -> A: unsettles, B: likes. Answers COMPOSE from self-learned structure +
+  self-formed values; individual by history.
+- Implication: the toy 'talk to it' exists as a RUNNABLE ARTIFACT (converse_demo.py) — query the creature
+  about its world/values, answers are its OWN, two creatures differ by experience. Capstone of the
+  realistic moonshot.
+- Honest caveat (in the demo banner): VALUES self-formed; word-labels TAUGHT; sentence shape TEMPLATED
+  (genuine grammar = open ceiling); place map given here (learnable per Exp21).
+- Next: scale tests (Exp36); emergent grammar / fully-tabula-rasa remain research frontiers. Consolidation.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
