@@ -42,12 +42,15 @@ def test_one_iteration_keeps_or_reverts_and_leaves_clean_tree(tmp_path):
 def test_run_loop_writes_artifacts_and_grows_world_model(tmp_path):
     from active_loop.loop import run_loop
     repo = _clone_repo(tmp_path)
+    journal = repo / "world_model" / "evidence" / "journal.jsonl"
+    # the world model only ever grows; the clone may carry committed journal
+    # lines from real loop runs, so assert growth, not an absolute count
+    before = len(journal.read_text().splitlines()) if journal.exists() else 0
     run_loop(repo, proposer=MockProposer(seed=0), iterations=2)
     assert (repo / "reports" / "index.html").exists()
     assert (repo / "world_model" / "INDEX.md").exists()
-    journal = repo / "world_model" / "evidence" / "journal.jsonl"
     assert journal.exists()
-    assert len(journal.read_text().splitlines()) == 2
+    assert len(journal.read_text().splitlines()) == before + 2
     tracked = subprocess.run(["git", "ls-files", "world_model"], cwd=repo,
                              capture_output=True, text=True).stdout
     assert "world_model/INDEX.md" in tracked  # world model is versioned in git
