@@ -415,6 +415,22 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   planning = goal-directed recall); then multiple objects / relations-among-objects (a graph of facts =
   primitive knowledge); scalable planning; eventually value/affect-laden relations = proto-opinions.
 
+## Exp 25 — recall + navigate: learn a fact, then ACT on it (POSITIVE; full cognitive cycle)
+- Setup: Phase1 discover object@place by wandering (learn A_object) = Exp24. Phase2 WANT the object
+  (C prefers object-present), navigate from a far start using the LEARNED object map + planning (policy_len=4).
+- Result: Phase1 learned object location = cell 4 (correct). Phase2 navigated to the remembered object in
+  2 steps (OPTIMAL, distance 2), path [0,3,4], success=True.
+- Implication: the creature LEARNED a fact by wandering, then RECALLED it to guide optimal goal-directed
+  action. The full cognitive cycle now runs end-to-end: perceive (place) -> learn facts (object@place) ->
+  want (grounded valence) -> recall + plan + act (navigate to a remembered goal). Memory + recall +
+  purposeful behavior over a SELF-LEARNED world model, all grounded/unsupervised. This is the substrate
+  that scales toward knowledge and dispositions; 'what it thinks' = queries over such self-learned structure.
+- Next (Exp26): PROTO-OPINION — the creature LEARNS to prefer a feature/place through grounded experience
+  (a learned disposition that forms from its history, not pretrained: e.g. a feature that co-occurs with
+  low free energy / comfort becomes preferred). And/or multiple objects -> a GRAPH of facts (primitive
+  knowledge). This is the direct line to 'opinions that emerge': a disposition = a learned, value-laden
+  relation over self-organized concepts.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
