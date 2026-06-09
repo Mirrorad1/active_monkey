@@ -306,6 +306,26 @@ place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse i
   specialize by location (emergent place fields) WITHOUT being told the map? Then scale the world /
   add units (aggregation + run-to-see). Climb: place -> object -> relation -> abstract dispositions.
 
+## Exp 19 — from-scratch place fields under aliasing: PARTIAL + a named confound (honest)
+- Setup: learn the sensory map A from scratch under aliasing (movement B innate/known; A unknown,
+  ~uniform init). Wander 25x30 steps, Dirichlet-learn A. Then (i) read per-state color tuning, (ii)
+  functional test: localize from uniform start using the LEARNED map.
+- Result: learned tuning [1,0,1,0,1,0] (degenerate alternating) != true [0,0,1,0,1,1] — did NOT recover
+  the map. Yet localization with the learned map reached the correct cell (5=5) with 1.65 bits residual
+  (vs Exp 18's 0 bits using the TRUE map). So: coarse/partial place inference, not clean self-organization.
+- Confound identified (honest): per episode I reset the belief to onehot(start-state 0) while true
+  position kept wandering across episodes -> the agent's internal place-index DRIFTED out of registration
+  with the world, corrupting A-learning. This misalignment is itself a facet of the unsupervised
+  structure problem (permutation/registration ambiguity). So part of the failure is experimental, part is
+  the genuine difficulty.
+- Implication: even EMBODIED, learning the map FROM SCRATCH under aliasing is materially harder than
+  localizing with a known map (Exp 18). Embodiment made it PARTIALLY work (coarse localization) where the
+  symbolic case fully collapsed — but it did not cleanly self-organize. Embodiment helps, doesn't fully
+  solve unsupervised structure; residual difficulty = registration/alignment + the same identifiability wall.
+- Next (Exp 20): fix the confound — keep belief CONTINUOUS across episodes (no per-episode reset to a fixed
+  start), or start each episode uniform and let it localize first; and/or learn B too. Does a clean place
+  map then self-organize? Then scale (more cells / 2D) + aggregation, run-to-see.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
