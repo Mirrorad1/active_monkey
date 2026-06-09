@@ -242,6 +242,32 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: topic-in-EMISSION model — A depends on topic so the subject directly, observationally
   identifies it; does observation-driven topic inference finally bind?
 
+## DIRECTION PIVOT (strategic, user-driven) — bottom-up, embodied, mouse-level, run-to-see
+Reframe of the whole emergent-concept thread, three moves:
+1. **Lower the bar: mouse, not human.** The phenomenon (unsupervised structure from experience)
+   shows up in a mouse forming PLACE CELLS — a spatial concept emerging from embodied wandering,
+   no labels. Same magic, tractable scale. "Opinions are late, abstract place cells." Active
+   inference already models foraging/T-maze/place-coding (pymdp has gridworld/T-maze envs).
+2. **Emergence-from-aggregation, not top-down design.** We kept HAND-CARVING one concept slot
+   ("be a topic, please") — no room for emergence. Brains: concepts SELF-ORGANIZE from many simple
+   predictive units (Anderson, "More Is Different"). Build a substrate of many simple units + rich
+   grounded input; let structure CONDENSE; don't carve the slot in advance.
+3. **Computational irreducibility (halting analogy).** Emergence may be unprovable in advance — you
+   can only RUN it and watch. So: (a) "mathematically open" != "won't happen"; (b) small negatives
+   don't prove impossibility (maybe not enough substrate/scale/time); (c) this JUSTIFIES the
+   experimental loop as the correct method — build-and-watch is what the problem demands.
+Honest caveat: aggregation != guaranteed useful emergence (most aggregates = noise). Brains get GOOD
+emergence from grounded embodiment + architecture + evolutionary selection; may need scale/time beyond
+a laptop. Necessary direction, not automatically sufficient.
+NEW PRIMARY THREAD: embodied mouse-level agent in a small grounded world (gridworld w/ sensory cues),
+many simple predictive units / large state space, sensorimotor grounding (symmetry broken by the
+world), then RUN and watch for emergent structure (place-cell-like location latents). If a location
+concept self-organizes from embodied active inference -> the existence proof in miniature; then climb
+place -> object -> relation -> (eventually) abstract dispositions/opinions.
+Next experiments: (Exp 17) embodied gridworld AIF agent — does it learn a usable model / latent
+structure from acting? (Exp 18+) inspect whether hidden states specialize by location (emergent
+place fields). Keep affective loop (Exp14/15) as the valence substrate to fuse in later.
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
