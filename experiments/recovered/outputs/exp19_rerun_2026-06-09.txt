@@ -1,0 +1,9 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp19_learn_sensory_map_aliased.py:21: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(A0)[0]],B=[b(Bt)[0]],D=[b(np.eye(N)[0])[0]],pA=[b(np.full((2,N),0.1))],
+/Users/mirro/Projects/active-loop/experiments/recovered/exp19_learn_sensory_map_aliased.py:44: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag2=Agent(A=[b(nrm(Alearn,0))[0]],B=[b(Bt)[0]],D=[b(np.ones(N)/N)[0]],num_controls=[2],policy_len=1,
+FROM-SCRATCH place fields (learned sensory map under aliasing):
+  learned per-state color tuning: [1, 0, 1, 0, 1, 0]
+  true ring color pattern        : [np.int64(0), np.int64(0), np.int64(1), np.int64(0), np.int64(1), np.int64(1)]   match-up-to-nothing=False
+  localize with LEARNED map: uncertainty 1.65 bits, cell 5 vs true 5, ok=True
+  => if it localizes with its OWN learned map, place fields self-organized functionally

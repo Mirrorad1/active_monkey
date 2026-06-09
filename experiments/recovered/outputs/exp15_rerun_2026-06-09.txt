@@ -1,0 +1,7 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp15_affective_loop_efe.py:28: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(A)[0]],B=[b(B)[0]],C=C,D=D,num_controls=[2],policy_len=1,
+CLOSING THE AFFECTIVE LOOP (agent ACTS via EFE):
+  policy posterior q(pi): seek-good=0.789  seek-bad=0.211
+  EFE: good-action=-1.820  bad-action=-0.500  (lower EFE = chosen)
+  agent chooses to SEEK the self-grounded understood state: True
+  => action to occupy low-free-energy (understood) states emerges from EFE, no labeled reward

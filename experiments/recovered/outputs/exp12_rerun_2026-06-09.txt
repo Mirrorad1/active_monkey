@@ -1,2 +1,6 @@
 /Users/mirro/Projects/active-loop/experiments/recovered/exp12_unsupervised_topic_fails.py:25: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
   return Agent(A=[b(A)[0]], B=[b(B0[:,:,None])[0], b(B1[...,None])[0]],
+UNSUPERVISED 2-factor result:
+  sky is   -> 's gree'  topic belief [0.5 0.5]
+  grass is -> 's gree'  topic belief [0.5 0.5]
+  bound differently? False

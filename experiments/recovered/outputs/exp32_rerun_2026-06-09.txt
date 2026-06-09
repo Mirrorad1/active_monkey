@@ -1,0 +1,5 @@
+Exp32 — HIERARCHY: does a ROOM concept self-organize from the learned place map?
+  learned cluster assignment: [1, 1, 1, 1, 0, 0, 0, 0]
+  true rooms                : [0, 0, 0, 0, 1, 1, 1, 1]   recovery accuracy=1.00 (up to label swap)
+  spectral gap (room structure strength): lambda2=0.118
+  => a higher-level ROOM concept is LATENT IN and RECOVERABLE FROM the self-learned structure

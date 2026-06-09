@@ -1,0 +1,6 @@
+Exp39 — NOISE robustness of opinion formation (favorite should stay = the predictable feature):
+  noise=0.0: favorite feature = 2 (true 2, correct=True); value-mass on it 0.99
+  noise=0.2: favorite feature = 2 (true 2, correct=True); value-mass on it 0.90
+  noise=0.4: favorite feature = 2 (true 2, correct=True); value-mass on it 0.70
+  noise=0.6: favorite feature = 2 (true 2, correct=True); value-mass on it 0.45
+  => opinion formation is robust to moderate noise; degrades only as the feature stops being predictable

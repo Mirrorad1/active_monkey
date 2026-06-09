@@ -1,0 +1,4 @@
+  File "/Users/mirro/Projects/active-loop/experiments/recovered/exp34_language_bridge.py", line 43
+    print(f'     creature-A: {ask_about(vA,eA,\"green\")}')
+                                               ^
+SyntaxError: unexpected character after line continuation character

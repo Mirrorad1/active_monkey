@@ -1,0 +1,5 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp31_learn_a_and_b_fails.py:26: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(A0)[0]],B=[b(B0)[0]],D=[b(np.eye(N)[0])[0]],
+  aliased=False: learned right-step map [0, 0, 0, 0, 0]  true [1, 2, 3, 4, 0]  recovered-topology=False
+  aliased=True: learned right-step map [3, 3, 3, 3, 3]  true [1, 2, 3, 4, 0]  recovered-topology=False
+Exp31 — from-scratch TOPOLOGY (learn A AND B): unique sensing vs aliased

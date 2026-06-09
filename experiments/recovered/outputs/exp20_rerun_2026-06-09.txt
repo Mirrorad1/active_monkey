@@ -1,4 +1,6 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp20_place_fields_continuous.py:21: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
   ag=Agent(A=[b(A0)[0]],B=[b(Bt)[0]],D=[b(np.eye(N)[0])[0]],pA=[b(np.full((2,N),0.1))],
+/Users/mirro/Projects/active-loop/experiments/recovered/exp20_place_fields_continuous.py:45: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
   ag2=Agent(A=[b(Alearn)[0]],B=[b(Bt)[0]],D=[b(np.ones(N)/N)[0]],num_controls=[2],policy_len=1,
 Exp20 — CONTINUOUS belief (registration fixed):
   learned per-state tuning: [0, 0, 1, 0, 1, 1]   true: [np.int64(0), np.int64(0), np.int64(1), np.int64(0), np.int64(1), np.int64(1)]   structural-match(up to rot/reflect): True

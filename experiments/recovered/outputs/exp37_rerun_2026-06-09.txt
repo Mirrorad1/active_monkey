@@ -1,0 +1,6 @@
+Exp37 — SCALE value/converse stack (6 concepts, 6 taught words):
+  taught 6-word vocab learned correctly for all creatures: True
+  creature-A (raised among blue): "what do you like?" -> I like blue   (matches upbringing: True)
+  creature-B (raised among green): "what do you like?" -> I like green   (matches upbringing: True)
+  creature-C (raised among amber): "what do you like?" -> I like amber   (matches upbringing: True)
+  => individual self-formed opinions + worded answers HOLD at larger scale (consolidation)

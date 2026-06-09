@@ -1,0 +1,8 @@
+/Users/mirro/Projects/active-loop/experiments/recovered/exp36_scale_6x6.py:32: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag=Agent(A=[b(A0)[0]],B=[b(Bt)[0]],D=[b(np.eye(N)[0])[0]],pA=[b(np.full((NC,N),0.1))[0]],
+/Users/mirro/Projects/active-loop/experiments/recovered/exp36_scale_6x6.py:47: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  ag2=Agent(A=[b(Al)[0]],B=[b(Bt)[0]],D=[b(np.ones(N)/N)[0]],num_controls=[4],policy_len=1,
+Exp36 — SCALE test 6x6 (36 cells, 4 aliased colors), learn place map from scratch:
+  learned sensory-map recovery accuracy: 1.00 of 36 cells
+  localize with learned map: uncertainty 0.00 bits, cell 21 vs true 21, ok=True
+  => recipe holds at ~4x scale

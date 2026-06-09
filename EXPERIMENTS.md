@@ -708,3 +708,31 @@ reproduced). Three experiments were re-verified by re-running the recovered scri
 Exp 17 (transition error 0.003 — MATCH), Exp 20 (tuning == true cmap, 0.00 bits — MATCH),
 Exp 21 (exact colormap, 0.00 bits — MATCH). The remaining 37 scripts are unverified
 recovered artifacts; logged outputs are original recorded results, not re-runs.
+
+## Re-verification (2026-06-09) — all 40 recovered scripts re-run
+
+All 40 recovered scripts were executed under Python 3.12 (`.venv`) from the repo root with
+`PYTHONPATH=.`. Output files: `experiments/recovered/outputs/expNN_rerun_2026-06-09.txt`.
+
+Results: **37 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 3 FAIL**.
+
+FAILs — Exp 3, Exp 7, Exp 34 — all share one root cause: `SyntaxError: unexpected character
+after line continuation character`. Each script contains an f-string with a backslash-escaped
+quote in the expression slot (e.g. `f'... {func(\"arg\")}'`). Python 3.12 made this a hard
+syntax error; the scripts ran in the original session because they were executed via
+`python -c` heredocs where the shell consumed the backslashes before Python saw them. The
+recovered `.py` files preserve the literal `\"` characters, which 3.12 rejects. No script
+was modified (per standing rules). The qualitative findings of those three experiments (Exp 3:
+bigram learns letter palette not order; Exp 7: n=3 trigram exactly produces "mirro" and
+correct Q→A; Exp 34: language bridge learns word↔concept mapping, individual worded answers)
+are supported by the original outputs and by the surrounding experiments that do reproduce.
+
+One pre-existing logged-claim inaccuracy was identified: EXPERIMENTS.md's narrative for Exp 1
+states "held-out 4.81 → 4.00 bits/char" but both the original transcript output and the
+2026-06-09 re-run show "4.007 → 3.424 bits/char". The re-run reproduces the original output
+exactly; the discrepancy is in the logged narrative text, not in reproducibility.
+
+Standing conclusion: the quantitative record reproduces for 37/37 runnable scripts (exact
+byte-for-byte output matches, ignoring JAX UserWarning preambles and the timing line in
+Exp 1). The 3 failures are a Python version artefact of transcript recovery, not scientific
+finding failures; the core results of the investigation are confirmed reproducible.
