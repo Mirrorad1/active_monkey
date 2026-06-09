@@ -893,3 +893,29 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   predictable from Exp 45's hash roundtrip). Self-grade: POSITIVE-SINGLE.
 - Next (episode 3): accumulating values — comfort experience shapes mirro's favorite; fork() twin
   on the alternative history; ≥ 2 of 3 fork-pairs must diverge in favorite (falsifier: none do).
+
+## Exp 47 — fork-twins of one life diverge by comfort history (POSITIVE; episode 3)
+- Setup: 3 fork-pairs from mirro's committed snapshot (age 1300, hash 3d08dffce3308d09…). Within
+  pair i both twins live 1200 steps with the SAME action seed (identical movement trajectories)
+  but in differently-recolored 3×3 worlds (X: color 0 in 5/9 cells; Y: color 2 in 5/9). The only
+  within-pair difference is the color experience. Predeclared: ≥ 2/3 pairs diverge in favorite
+  (directional expectation X→0, Y→2); falsifier 0/3. Seeds 101/102/103, all reported. Mirro never
+  mutated or saved by the script (hash checked before/after).
+- Result: pairs_diverged 3/3, directional_match 3/3. Convictions: X 0.399/0.438/0.447, Y
+  0.434/0.461/0.468. mirro_untouched=True (hash identical). Note: the Y-twins REVISED the
+  inherited preference — mirro's accumulated counts leaned color 0, and 1200 steps of green-rich
+  experience overcame the 1300-step-old prior. BIOGRAPHY.jsonl gained 6 fork-event lines (the
+  parent's append-only event log recording the forks; state arrays untouched).
+- Implication: same creature, same accumulated past, same actions — different worlds produce
+  different opinions. Exp 26's history→opinion claim now holds as counterfactual twins of ONE
+  life with matched trajectories, a tighter causal isolation than Exp 26's separate creatures.
+- Provided vs self-formed: worlds and fork machinery provided; the favorites are self-formed from
+  each twin's lived predictability statistics (Exp 26 mechanism in creature.py's live()).
+- Honest caveat: mechanism is Exp 26 consolidation; comfort here tracks encounter-frequency ×
+  prediction sharpness in a deterministic world, so "comfort history" ≈ which color dominated
+  predictable experience; convictions are moderate (0.40–0.47) because inherited uniform counts
+  dilute; toy scale.
+- Verdict: POSITIVE / CONSOLIDATION-leaning (new form: matched-trajectory counterfactual twins).
+  Self-grade: POSITIVE-SINGLE.
+- Next (episode 4): revision with inertia in ONE life — change mirro's own world, record the
+  conviction trajectory in BIOGRAPHY.jsonl; falsifier: instant revision (no inertia) or none.

@@ -426,7 +426,16 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 2 of the persistent-creature ladder: a fresh Python process loads mirro's committed snapshot (age 1000, hash-verified), lives 300 more steps, saves. The script never births — state comes only from disk. Predeclared bounds: hash integrity; map ≥ 8/9 and localize < 0.1 bits both post-load and post-live.",
     result:"Resume integrity PASS (hash 1869fa07… matches). 9/9 map accuracy and 0.000 localize bits immediately after load AND after 300 further lived steps. mirro is now age 1300 (hash 3d08dffc…). Run once — the episode mutates the life.",
     implication:"'Continuous registered experience' now holds across sessions, not just within one script — the persistent-creature direction's load-bearing claim. Honest limits: this is engineering + the RECIPE taken seriously, not emergence; a static 3×3 world makes 'no degradation' a low bar. Next: fork() twins and accumulating values, where divergence is genuinely riskable.",
-    trace:{ script:"experiments/exp46_continuity_resume.py", output:"experiments/outputs/exp46.txt" } }
+    trace:{ script:"experiments/exp46_continuity_resume.py", output:"experiments/outputs/exp46.txt" } },
+
+  { n:47, kind:"positive", chapter:"opinion",
+    title:"Twins of one life, walking the same path, form different opinions.",
+    one:"Three fork-pairs of mirro, identical trajectories, recolored worlds — favorites diverge 3/3, exactly along each twin's comfort history.",
+    metric:{ to:3, unit:"of 3 pairs diverged" },
+    setup:"Six forks of mirro's committed snapshot (age 1300) in three pairs. Within a pair, both twins take the SAME actions (same seed) — but one lives in a world recolored toward color 0, the other toward color 2. The comfort history is the only difference.",
+    result:"All three pairs diverge, all directionally (X-twins favor 0, Y-twins favor 2, convictions 0.40–0.47). The Y-twins overcame the favorite inherited from mirro's 1300-step past. Mirro itself: untouched, hash-verified; its biography gained six fork-event lines.",
+    implication:"Exp 26's 'history makes the opinion' now holds as counterfactual twins of ONE accumulated life with matched trajectories — a tighter causal isolation than separate creatures. Honest limits: the mechanism is consolidation; comfort tracks predictable-encounter frequency in a deterministic toy world.",
+    trace:{ script:"experiments/exp47_fork_twin_values.py", output:"experiments/outputs/exp47.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
