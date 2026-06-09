@@ -55,7 +55,7 @@ This repo contains **two different "loops."** "Continue the moonshot" means loop
 |---|---|---|
 | What it is | `run_loop.py` / `run_pr_loop.py` machinery | Claude (you) writing & running experiment scripts |
 | What it optimizes | the free-energy / bits-char **metric**, by editing `model_spec.py` / `lang_model_spec.py` | the **moonshot question**, by designing Exp 41, 42, … |
-| Governed by | `MISSION.md` + `policy.md` (FROZEN trust boundary) | the `/loop` prompt in §6 |
+| Governed by | `MISSION.md` + `policy.md` (FROZEN trust boundary) | `loop/` modules (PROTOCOL + VALIDATION) via the `/loop` prompt in §6 |
 | Output | kept/reverted diffs, `world_model/` grows | new entries appended to `EXPERIMENTS.md` |
 | Human role | guardrail-only | guardrail-only; gently reminded it's a natural stop point |
 
@@ -76,7 +76,25 @@ uv run --python .venv python run_loop.py --iterations 1
 Always use `uv run --python .venv` — the shell auto-activates conda base and shadows the venv.
 Run experiment scripts from the repo root (or `PYTHONPATH=.`) so imports resolve.
 
-## 6. Continue the moonshot — paste this verbatim into a fresh session
+## 6. Continue the moonshot — compose the prompt, or paste the verbatim fallback
+
+**Preferred (modular):** generate the `/loop` prompt from the pluggable modules in `loop/`
+(premise + direction + persona + optional one-off idea):
+
+```bash
+uv run --python .venv python loop/compose.py --list                      # see modules
+uv run --python .venv python loop/compose.py --direction transfer --persona default
+uv run --python .venv python loop/compose.py --direction red-team --persona skeptic \
+    --idea "anything you want this run to prioritize"
+```
+
+Paste its output into a fresh session. Steering happens by swapping cards
+(`loop/directions/`, `loop/personas/`) or dropping bullets into `loop/IDEAS.md` — the loop
+reads that inbox at the start of every iteration. `loop/PROTOCOL.md` is the per-iteration
+procedure; `loop/VALIDATION.md` is the binding honesty contract (predeclared falsifiers,
+negatives logged as negatives, provided-vs-self-formed named, no seed-shopping).
+
+**Fallback (verbatim, pre-modular — still works):**
 
 ```
 /loop Keep running the moonshot active-inference experiments until I stop you. GOAL: an agent I can
@@ -101,6 +119,8 @@ gently remind me it's a natural stopping point when insight flattens.
 | File | What it is |
 |---|---|
 | `RESUME.md` | this bootstrap (you are here) |
+| `CLAUDE.md` | auto-loaded session bootstrap — points every fresh session at this file |
+| `loop/` | modular prompt OS for loop B: PREMISE / PROTOCOL / VALIDATION (honesty contract), direction & persona cards, `IDEAS.md` human inbox, `compose.py` prompt builder |
 | `EXPERIMENTS.md` | append-only honest log, Exp 1–40 — the central artifact |
 | `RESEARCH.md` | parallel math / frontier analysis |
 | `open_problem.html` | the actual open problem written up (restyled "active_monkey" page — intentional, don't revert) |
