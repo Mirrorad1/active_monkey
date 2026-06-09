@@ -94,6 +94,21 @@ Honest framing: free energy = the reward (low surprise = "understanding"); hidde
 - Next: hierarchical words-above-characters (rec #2) — a slow chunk/intent factor over the fast
   char states; where word-order generalizes and emergent "concept/opinion" states could live.
 
+## Exp 9 — long-range binding wall (honest negative; motivates hierarchy)
+- Setup: flat AIF 2-char pair-state model trained on "sky is blue. grass is green. ";
+  prime "sky is " vs "grass is ", greedy.
+- Result: BOTH → "green" (identical). The flat model CANNOT bind subject→predicate — when
+  predicting after "is ", the discriminating word (sky/grass, 5+ chars back) is outside the
+  2-char window, so the two clauses blur into one.
+- Implication (the real wall): any FIXED-order Markov model fails once a dependency spans more
+  than its order. Long-range binding — subject→predicate, question→specific-answer,
+  topic→opinion — REQUIRES a slow hierarchical "concept/topic" latent, NOT just deeper flat
+  context. This is the boundary between toy n-gram behavior and conversation, and the precise
+  formal motivation for rec #2 (hierarchy). "What do you think about X?" needs exactly this:
+  a held topic-state conditioning the response — the seat of an emergent, non-pretrained opinion.
+- Next: minimal 2-factor hierarchical model — a slow topic factor conditioning the fast char
+  transitions; does it bind sky→blue, grass→green where flat context cannot?
+
 ## Roadmap from RESEARCH.md (parallel math/frontier track — see RESEARCH.md)
 The math formalizes WHY depth is the lever (first-order d-separation squeezes all history
 through one belief; repeated-letter ambiguity is an exact 1-bit floor a 1-char model cannot
