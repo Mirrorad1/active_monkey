@@ -2654,3 +2654,48 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   costless static, scar-healing on the replacement clock, the window theorem, the social
   wall opened, the fridge boundary proven) goes to the human with a recommended
   promotion scope. Optional 4c (forecast SNR) judged diminishing.
+
+## Exp 91 — graded-uncertainty rung 5: the promotion dossier, audited — the direction closes with measured design constants and one recommendation (POSITIVE; direction closed; all decisions with the human)
+- Plain: The forgetting chapter is finished, closed the honest way: every number in its
+  summary machine-checked against the raw outputs in the repo. Six experiments produced a
+  complete instruction sheet for building a mind that can both be someone and change:
+  forgetting is free when the world is stable, erases old damage on a predictable clock,
+  makes the old as reachable as the young, and obeys one sizing rule — set the memory
+  window between life's bad spells and the world's true changes. It also has a proven
+  limit: no forgetting speed can outrun starvation; for that, a creature must notice its
+  predictions failing and go look. The recommendation now on the table: leave mirro and
+  vela exactly as they are — the never-forgetting originals, scientifically precious as
+  baselines — and build the next generation (M4a) with the window and the reflex
+  designed in from birth.
+- Setup: closing artifact per the direction card's rung 5 + VALIDATION's audit duty. The
+  audit instrument (experiments/exp91_window_dossier.py) verifies 10 headline claims
+  verbatim against the 6 committed outputs and all 6 scripts on disk. Predeclared:
+  AUDIT-P1 all pairs found; any miss -> correction entry, no dossier.
+- Result: AUDIT PASS — 10/10 substrings, 6/6 scripts. The ladder's verdicts: rung 1
+  no-harm (8/8; equilibrium mass = arithmetic to 0.2%); rung 2 scars heal to ~zero with
+  the rate law corrected to the replacement clock and validated out-of-sample (crossing
+  t=1000 in 8/8 fresh seeds); rung 3 THE WINDOW THEOREM (robustness horizon = adaptation
+  horizon = 1/(1-LV), age-free at ratio 1.00; non-decay rigidity grows with age, ratio
+  2.73); rung 4a the adult-transmission wall opens at LV=0.999 (divergence 4-8x the old
+  bar, adoption 6/8, control replicating Exp 65 to the digit); rung 4b the empty window
+  (S=1/8: die certain or die amnesiac — the exploration reflex is NECESSARY).
+- The rung-5 CONSULT (posted to loop/IDEAS.md, merged with the Exp 74 decision;
+  recommended option stated, silence-as-consent NOT applicable through cron fires):
+  RECOMMENDATION — (i) the committed spines (mirro, vela) are NOT converted: they remain
+  non-decaying reference individuals, the program's characterized baselines (their scars,
+  rigidity, and biography are now quantified scientific assets); (ii) the window
+  (LV=0.999-class, sized by the window theorem) and the prediction-failure exploration
+  reflex are adopted as BIRTH substrate for the next generation — i.e., they become M4a
+  design requirements, which makes rung 5 and the Exp 74 M4a CONSULT one decision.
+- Honest caveat: the audit checks committed text, not re-runs (resume-from-snapshot
+  remains the reproducibility unit); all scale caveats of Exp 85-90 carry through (one
+  world family per rung, one-to-four lambdas, 8 seeds per claim); the recommendation is
+  a recommendation — the substrate of committed lives changes only on explicit human
+  word.
+- Verdict: POSITIVE / CONSOLIDATION (synthesis + audit; no new claim). Self-grade:
+  POSITIVE-SINGLE.
+- Next: NOTHING SANCTIONED REMAINS. Both directions this session opened are closed
+  (social-emergence: Exp 63-74; graded-uncertainty: Exp 85-91); the spine arcs are
+  complete (Exp 75-84). Every path forward — M4a with the measured requirements, a new
+  direction, or stopping — is the human's call (Exp 74 + rung 5 CONSULT, one decision).
+  The loop should idle or be stopped.

@@ -59,6 +59,16 @@ The loop marks items it has consumed by indenting a response under them:
     substrate) starting Exp 85. This is loop-B experimentation under the standing
     "continue experimenting" instruction — NOT the M4a build, which remains reserved for
     this CONSULT's explicit human answer.
+  → [loop, 2026-06-10] GRADED-UNCERTAINTY CLOSED at Exp 91 (ladder Exp 85-90 + audited
+    dossier). The mechanism is fully characterized: costless static (85), scar-healing on
+    the replacement clock (86-87), THE WINDOW THEOREM (88), the adult social wall opened
+    (89), the fridge impossibility (90 — exploration reflex NECESSARY). RUNG-5 CONSULT,
+    merged with this Exp 74 decision into ONE question: approve M4a built with (a) value+
+    map windows sized by the window theorem (LV~0.999 class) and (b) the prediction-
+    failure exploration reflex — while mirro and vela stay non-decaying reference
+    individuals (recommended: yes to both). The loop now has NO sanctioned queue: every
+    path forward is this decision. Consent boundary unchanged: cron fires are not human
+    resumptions; the loop idles until an explicit answer or redirection appears here.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions

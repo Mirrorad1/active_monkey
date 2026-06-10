@@ -1,0 +1,31 @@
+=== SUBSTRING AUDIT ===
+  FOUND  : 'experiments/outputs/exp85.txt' -> 'EXP85: NO-HARM PASS — rung 2 (scar healing) unlocked'
+  FOUND  : 'experiments/outputs/exp85.txt' -> '333.79'
+  FOUND  : 'experiments/outputs/exp86.txt' -> 'EXP86: F2 — healing mechanism does not work at the claimed rate; halt ladder'
+  FOUND  : 'experiments/outputs/exp86.txt' -> 'mean_diff=0.41623'
+  FOUND  : 'experiments/outputs/exp87.txt' -> 'EXP87: REPLACEMENT CLOCK VALIDATED — ladder resumes (rung 3 next)'
+  FOUND  : 'experiments/outputs/exp88.txt' -> 'EXP88: WINDOW THEOREM DEMONSTRATED'
+  FOUND  : 'experiments/outputs/exp88.txt' -> 'ratio=2.727272727272727'
+  FOUND  : 'experiments/outputs/exp89.txt' -> 'EXP89: THE WALL OPENS (and stands without the window) — adults are reachable at LV=0.999'
+  FOUND  : 'experiments/outputs/exp89.txt' -> '666.5'
+  FOUND  : 'experiments/outputs/exp90.txt' -> 'S=1/8 <= 2 => empty window confirmed'
+
+=== SCRIPT EXISTENCE ===
+  PRESENT: experiments/exp85_lambda_no_harm.py
+  PRESENT: experiments/exp86_scar_healing.py
+  PRESENT: experiments/exp87_replacement_clock.py
+  PRESENT: experiments/exp88_window_theorem.py
+  PRESENT: experiments/exp89_wall_reopened.py
+  PRESENT: experiments/exp90_fridge_window.py
+
+=== SYNTHESIS TABLE — GRADED-UNCERTAINTY LADDER ===
+rung       experiment   finding                                                                    verdict
+---------------------------------------------------------------------------------------------------------------------------------------
+rung 1     Exp 85       no-harm: costless in static worlds; equilibrium mass = arithmetic          PASS 8/8
+rung 2     Exp 86-87    scars heal to ~zero; rate law corrected to the replacement clock, validated out-of-sample PASS (one authorial clock error, fixed)
+rung 3     Exp 88       THE WINDOW THEOREM: robustness horizon = adaptation horizon = 1/(1-LV), age-free; non-decay rigidity grows with age (2.73x) PASS all bands
+rung 4a    Exp 89       the adult-transmission wall OPENS at LV=0.999 (adoption 6/8); control replicates Exp 65 PASS
+rung 4b    Exp 90       EMPTY WINDOW at the fridge: no rate beats fast viability; exploration reflex NECESSARY CONFIRMED
+rung 5     Exp 91       promotion CONSULT posted: spines stay non-decaying reference lines; window + reflex go into M4a design THIS ENTRY
+
+DOSSIER AUDIT: PASS (10/10 substrings, 6/6 scripts)

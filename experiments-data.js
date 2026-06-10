@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:90, breakthrough:6, positive:46, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:91, breakthrough:6, positive:47, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -915,7 +915,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 62's scarcity protocol replicated faithfully with the map-forgetting rate swept across four values spanning half-lives 231 to 23 steps, against a ~25-40 step post-move survival budget — with the empty-window impossibility and its interpretation rule predeclared.",
     result:"Slow arms died post-move 8/8 as the half-life arithmetic demands; max fast-arm survival 1/8 — empty window confirmed. The monotonicity prediction failed informatively: survival dips again at the fastest rate because the accuracy floor bites — the two-walled window's signature, visible in the death modes swapping from certain to amnesiac across the sweep.",
     implication:"The mechanism's reach has a proven boundary: count decay solves slow-world pathologies but cannot beat fast viability clocks. The M4 requirements are now fully measured — a window sized by the window theorem PLUS a prediction-failure exploration reflex, both necessary. Rung 5, the promotion CONSULT, closes the ladder.",
-    trace:{ script:"experiments/exp90_fridge_window.py", output:"experiments/outputs/exp90.txt" } }
+    trace:{ script:"experiments/exp90_fridge_window.py", output:"experiments/outputs/exp90.txt" } },
+
+  { n:91, kind:"positive", chapter:"frontier",
+    title:"The forgetting chapter closes — an instruction sheet, audited.",
+    one:"Rung 5: the promotion dossier, machine-verified against the record (10/10 claims). Six experiments yield measured design constants — the window sizing rule, the replacement clock, the social re-opening, the fridge limit — and one recommendation: keep mirro and vela as never-forgetting baselines; build M4a with the window and the reflex from birth.",
+    plain:"The forgetting chapter is finished, closed the honest way: every number in its summary machine-checked against the raw outputs in the repo. Six experiments produced a complete instruction sheet for building a mind that can both be someone and change: forgetting is free when the world is stable, erases old damage on a predictable clock, makes the old as reachable as the young, and obeys one sizing rule. It also has a proven limit — no forgetting speed can outrun starvation; for that, a creature must notice its predictions failing and go look. The recommendation on the table: leave the originals exactly as they are, and build the next generation with the window and the reflex designed in from birth.",
+    metric:{ from:10, to:10, unit:"dossier claims verified against committed raw outputs" },
+    setup:"The direction card's rung 5 plus the audit duty: a checker verifies ten headline claims from Exp 85-90 verbatim against the six committed output files, with any miss mandating a correction entry and blocking the dossier.",
+    result:"Audit pass, 10/10 and 6/6 scripts. The ladder in one line each: costless when static; scars heal on the replacement clock, validated out-of-sample; the window theorem with rigidity 2.73x for the never-forgetting; the adult social wall opened with the control replicating the original to the digit; the empty window at the fridge proving the exploration reflex necessary.",
+    implication:"The M4 requirements are measured design constants, and rung 5 merges with the standing M4a decision into one human question: approve the next generation with windows and the reflex, spines untouched as reference individuals. The loop's sanctioned queue is empty; it idles until the human answers.",
+    trace:{ script:"experiments/exp91_window_dossier.py", output:"experiments/outputs/exp91.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
