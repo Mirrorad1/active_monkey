@@ -3632,3 +3632,48 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   build; the hypothesis verdict carries no grade.
 - Next: merge to main (the directive's final step); structure learning then awaits a
   world worth growing for — natural candidates queued in the implication above.
+
+## Exp 133 — continuous-substrate rung 1: precision accumulation localizes the continuous posterior; the tabular twin is marginally faster early, characterizably (POSITIVE; 8/8 on every conjunct)
+- Plain: The new chapter's opening question: if the agent's idea of where it is becomes a
+  point in continuous space instead of one of six labeled boxes, does closed-form Bayes
+  still find the right place from a stream of words? It does — in every run the belief
+  lands within a few hundredths of the true spot and uncertainty shrinks exactly as the
+  math says, while the six-box twin on the identical words is only thousandths of a nat
+  faster early, an edge fully explained by its hypothesis space containing exactly the
+  right six answers.
+- Setup (predeclared in the script docstring before running): 6 word-Gaussians at hexagon
+  vertices (radius 1, Sigma_k = 0.35^2 I), concept = word-0 center s* = (1,0); prior
+  N(0, 4I); T = 200 train + 200 held-out words; seeds 0..7. Declared modeling choice
+  (fixed for the ladder): agent likelihood = UNNORMALIZED Gaussian footprint (the
+  conjugacy-buying approximation) vs normalized-mixture generator; predicted analytic
+  centroid bias ~0.017. Anchor GIVEN to both agents (rung 1 does not learn emissions);
+  tabular twin gets the true table A[k,c]. Core math landed in active_loop/continuous.py
+  (natural-parameter GaussianBelief, gaussian_product, NIW with nu0 >= d+2 enforced,
+  predictive_word_logprobs) + 6 durable guards in tests/test_continuous.py, per the
+  ratified build constraints. P1: final ||mu_post - s*|| < 0.1 in >= 7/8. P2: tr(Sigma)
+  non-increasing every step in 8/8 AND final < 1% of prior trace. P3: mean held-out NLL
+  over first 50 steps, continuous <= tabular + 0.10 nats in >= 6/8.
+- Result: POSITIVE on every conjunct, 8/8 each. Final localization error 0.0088-0.0401
+  (median 0.0219, bracketing the predicted 0.017 bias); tr(Sigma) 8.0 -> 0.001225
+  (deterministic given equal Sigma_k — a coherence check that passed); contraction
+  violated nowhere. Twin race: continuous early-NLL worse by +0.0033 to +0.0262 nats in
+  8/8 seeds — tabular IS consistently faster early, but the regime is characterizable
+  (the twin's 6-atom hypothesis space contains the exact answer; the continuous agent
+  pays <= 0.03 nats for carrying an uncountable one), far inside the 0.10 band. Full
+  fast suite 97 green (91 + 6 new). Raw rows: experiments/outputs/exp133_rows.json.
+- Process note: the coder subagent's verdict line dropped P2's second conjunct (the
+  Exp 72 trap); caught in the PROTOCOL step-3 review against the docstring, fixed,
+  re-run bit-identical. The existing guard worked; no new guard needed.
+- Implication: the continuous substrate's inference rung is sound at toy scale — rung 2
+  (interpolation to unseen blends, where the unimodal approximation should start paying)
+  is now the live question, with the 0.03-nat well-specified-twin edge as the baseline.
+- Honest caveat: anchor GIVEN (provided, not self-formed) to BOTH agents; one geometry
+  only (d=2, one sigma, one radius — no sweep); the true state IS a point, so the
+  continuous model is also near-perfectly specified here; the footprint/mixture mismatch
+  was only mildly stressed (neighbor leakage ~3%); per the scope guard, no
+  closed-form-vs-amortized claim until rung 6.
+- Verdict: POSITIVE / CONSOLIDATION-grade instrument validation (textbook math confirmed
+  working; the one new datum is the characterized early tabular edge). Self-grade:
+  POSITIVE-SINGLE.
+- Next: rung 2 — 4 concepts at unit-square corners, blended streams, the
+  (separation, Sigma) sweep for the interpolation/snap boundary.

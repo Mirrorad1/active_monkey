@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:132, breakthrough:6, positive:81, wall:21, partial:24, from:4.81, to:4.00 };
+window.AM_TALLY = { total:133, breakthrough:6, positive:82, wall:21, partial:24, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1335,7 +1335,17 @@ window.AM_EXPERIMENTS = [
     setup:"Phase 1 in the creature itself (surprise window, ceiling conjunction, replay buffer), verified bit-invariant over 750 seeded steps; Phases 2-3 flag-gated scaffolds (replay scoring with the active-data caveat, closed-form Dirichlet BMR with both canonical tests, spawn/split/merge, strict-decrease selection); the math spec in docs/specs; and the directive's hypothesis run with a positive-control arm so the test means something either way.",
     result:"Instrument 8/8 on noise; hypothesis 0/8 on the standard world — the counter-prediction exact; 91 tests green; maps stay perfect even under 30 percent observation noise.",
     implication:"The program can now detect structural inadequacy and score model changes — and honestly reports that nothing here yet demands them. The named path to a positive: worlds with hidden context, where the detector's firing becomes Phase 3's spawn trigger.",
-    trace:{ script:"experiments/exp132_surprise_ceiling.py", output:"experiments/outputs/exp132.txt" } }
+    trace:{ script:"experiments/exp132_surprise_ceiling.py", output:"experiments/outputs/exp132.txt" } },
+
+  { n:133, kind:"positive", chapter:"frontier",
+    title:"The mind leaves its boxes: a continuous belief finds the point.",
+    one:"Continuous-substrate rung 1: closed-form precision accumulation on s in R^2 localizes at the true concept in 8/8 seeds (final error 0.009-0.040, bracketing the predicted 0.017 footprint bias), uncertainty contracts 8.0 to 0.0012, and the exactly-specified tabular twin's early edge is only 0.003-0.026 nats — every predeclared conjunct passes.",
+    plain:"The new chapter's opening question: if the agent's idea of where it is becomes a point in continuous space instead of one of six labeled boxes, does closed-form Bayes still find the right place from a stream of words? It does — in every run the belief lands within a few hundredths of the true spot and uncertainty shrinks exactly as the math says, while the six-box twin on the identical words is only thousandths of a nat faster early, an edge fully explained by its hypothesis space containing exactly the right six answers.",
+    metric:{ from:8.0, to:0.0012, unit:"tr(Sigma), prior to posterior after 200 words (8/8 seeds pass all conjuncts)" },
+    setup:"Six word-Gaussians on a hexagon as the innate anchor (given, not learned), one concept's word stream, broad prior; the same stream fed to a tabular twin holding the true emission table. Declared up front: the agent uses the unnormalized Gaussian footprint (the conjugacy-buying approximation) while the generator uses the normalized mixture — the bias that mismatch causes was predicted analytically (about 0.017) before running. Core math in active_loop/continuous.py with six durable unit tests.",
+    result:"P1 localization 8/8 (errors 0.009-0.040), P2 contraction 8/8 on both conjuncts, P3 twin race 8/8 within the 0.10-nat band — tabular consistently but characterizably faster early (its six atoms contain the exact answer). 97 fast tests green.",
+    implication:"The continuous substrate's inference rung is sound at toy scale. Rung 2 — blended streams between concepts, where the single-Gaussian approximation should start paying — is the live question.",
+    trace:{ script:"experiments/exp133_cont_convergence.py", output:"experiments/outputs/exp133.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
