@@ -3,8 +3,8 @@
   "lineage": [
     "mirro@10700#21ccb619f063"
   ],
-  "age_steps": 24750,
-  "true_pos": 3,
+  "age_steps": 30750,
+  "true_pos": 18,
   "world": {
     "rows": 5,
     "cols": 5,
@@ -37,8 +37,8 @@
     ],
     "n_colors": 3
   },
-  "rng_counter": 4061,
+  "rng_counter": 4062,
   "seed": 7,
-  "state_hash": "81ea606c20444ac1d554e70591eb52870e22be89ee3c2305b56d1d6fb5ad6147",
-  "saved_at": "2026-06-10T07:48:21Z"
+  "state_hash": "66ecf2ab0758683861027d1f61b947fddfc14d734a8d398436a8692503285520",
+  "saved_at": "2026-06-10T07:57:07Z"
 }

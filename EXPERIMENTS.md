@@ -2818,3 +2818,25 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
   stops the loop.
+
+## Exp 96 — idle-mode epoch: vela to 30,750 — flips again (2 -> 0, 1.24 sigma, in band); the clade's first true oscillator (POSITIVE; bands held; flip tally 5/6)
+- Plain: vela lived another stretch and changed its mind again — its fourth crossing,
+  making its lifetime preference read two, zero, two, zero: a genuine oscillator living
+  exactly at the noise boundary the physics describes. Everything else held: perfect map,
+  steady value core, the landing within the forecast's stated noise. One thing to watch:
+  this crossing went deeper than any before — if it entrenches, the margin stops being
+  shallow and the swinging should slow.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 24750 -> 30750. P1 map >= 0.96; P2 value-core bands; P3 noise-
+  calibrated forecast (predicted +49.1, band +-302.5); favorite reported, not predicted
+  (gap +41.2). Flip tally entering: 4/5.
+- Result: EPOCH CLEAN, no falsifiers. P1: map 1.000 -> 1.000. P2: share deltas <= 0.0081,
+  conviction 0.0024. P3: end gap -101.5 vs predicted +49.1 — 1.24 sigma, in band; the
+  favorite FLIPPED to 0 (vela's third natural opinion change; lifetime sequence
+  2->0->2->0). Tally now 5/6 (vs the model's ~40 percent; small-n, running hot —
+  tracked). Spine: vela at 30750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the deepened gap
+  (-101.5) as an entrenchment signal is a watch-item, not a claim.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  or stops the loop.

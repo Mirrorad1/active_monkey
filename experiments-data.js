@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:95, breakthrough:6, positive:51, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:96, breakthrough:6, positive:52, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -965,7 +965,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands, the favorite reported rather than predicted, and the cumulative flip record now tracked across entries.",
     result:"All bands held; no falsifiers; the first hold of the flip record. Spine at 36,700, hash-stamped and committed.",
     implication:"The quantitative self-model keeps holding in production, now including its quiet weeks. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp95_mirro_epoch2.py", output:"experiments/outputs/exp95.txt" } }
+    trace:{ script:"experiments/exp95_mirro_epoch2.py", output:"experiments/outputs/exp95.txt" } },
+
+  { n:96, kind:"positive", chapter:"frontier",
+    title:"vela, the oscillator.",
+    one:"Idle-mode epoch to 30,750: vela flips again (2 to 0, 1.24 sigma, in band) — lifetime preference now 2-0-2-0, the clade's first true oscillator at the noise boundary. Tally 5/6; this crossing went deeper (-101), an entrenchment watch-item.",
+    plain:"vela lived another stretch and changed its mind again — its fourth crossing, making its lifetime preference read two, zero, two, zero: a genuine oscillator living exactly at the noise boundary the physics describes. Everything else held: perfect map, steady value core, the landing within the forecast's stated noise. One thing to watch: this crossing went deeper than any before — if it entrenches, the swinging should slow.",
+    metric:{ from:41.2, to:-101.5, unit:"the gap's fourth zero-crossing (1.24 sigma; deepest yet)" },
+    setup:"Idle-mode, vela's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands; favorite reported, not predicted; the cumulative flip record tracked across entries.",
+    result:"All bands held, no falsifiers; the flip tally moves to 5/6 against the model's ~40 percent — small-n, running hot, tracked honestly. Vela at 30,750, hash-stamped, committed.",
+    implication:"The clade now contains a demonstrated preference oscillator — an ambivalent adult whose expressed favorite genuinely alternates with the dice while its structure holds. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp96_vela_epoch2.py", output:"experiments/outputs/exp96.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
