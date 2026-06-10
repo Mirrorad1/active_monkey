@@ -1,0 +1,63 @@
+Exp 87 — the replacement clock, out-of-sample: the corrected scar-healing rate law.
+
+World A (mirro's committed cmap layout):
+  rows=5  cols=5  n_colors=3
+  cmap grid:
+    0 1 0 1 0
+    1 0 1 0 1
+    2 2 2 1 0
+    2 2 2 0 1
+    2 2 2 1 0
+
+World B (cmap permuted 0->1->2->0 from A — every cell changes color):
+  rows=5  cols=5  n_colors=3
+  cmap grid:
+    1 2 1 2 1
+    2 1 2 1 2
+    0 0 0 2 1
+    0 0 0 1 2
+    0 0 0 2 1
+
+  IMPLANT_A=1500  IMPLANT_B=1500  HEAL=3000  SAMPLE=250  LAMBDA=0.997  FLOOR=0.01  START=12
+  Birth seeds: [800, 801, 802, 803, 804, 805, 806, 807]
+
+--- SEED 0 FULL TRAJECTORY (S0 + 12 x 250-step samples) ---
+  S0 = 0.495806
+   step      S_lam
+    250   0.439922
+    500   0.362919
+    750   0.258738
+   1000   0.172300
+   1250   0.095377
+   1500   0.048528
+   1750   0.025366
+   2000   0.012203
+   2250   0.006682
+   2500   0.003414
+   2750   0.002087
+   3000   0.001591
+
+--- PER-SEED TABLE ---
+  seed        S0  S_lam_250  crossing_t  S_lam_end
+  ------------------------------------------------
+   800   0.49581    0.43992        1000    0.00159
+   801   0.49469    0.43919        1000    0.00181
+   802   0.49135    0.43637        1000    0.00165
+   803   0.49456    0.44101        1000    0.00159
+   804   0.50192    0.44322        1000    0.00162
+   805   0.49456    0.43961        1000    0.00203
+   806   0.49153    0.43609        1000    0.00167
+   807   0.49911    0.44615        1000    0.00158
+
+--- PROPERTY CHECKS ---
+  PASS  P1 (S(250) in [0.4, 0.5]): 8/8 seeds (need 6): PASS
+
+  PASS  P2 (crossing_t in [750, 1500]): 8/8 seeds (need 6): PASS
+
+  PASS  P3 (S(3000) <= 0.05): 8/8 seeds (need 6): PASS
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — S(250) in [0.4, 0.5] in 8/8 seeds; P2 PASS — crossing_t in [750, 1500] in 8/8 seeds).
+  P3 holds (S(3000) <= 0.05 in 8/8 seeds — end-state replication confirmed).
+
+EXP87: REPLACEMENT CLOCK VALIDATED — ladder resumes (rung 3 next)

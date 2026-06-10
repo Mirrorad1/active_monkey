@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:86, breakthrough:6, positive:43, wall:18, partial:19, from:4.81, to:4.00 };
+window.AM_TALLY = { total:87, breakthrough:6, positive:44, wall:18, partial:19, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -875,7 +875,17 @@ window.AM_EXPERIMENTS = [
     setup:"A maximal scar implanted identically into both arms (1500 steps in one world, 1500 in its color-permuted twin, then bit-identical deepcopies); 3000 healing steps with the scar fraction sampled every 250. Predeclared: the control follows pure dilution; the forgetting arm halves its scar within the 231-step mass half-life and ends below 0.05; gates recover.",
     result:"Dilution law confirmed to three decimals (8/8); end-state healing emphatic (8/8); gate recovery the largest effect of the chapter (+0.42, 8/8) — but the 250-step half-life check failed 0/8, because the ratio's denominator decays too: the scar fraction falls on the replacement timescale (~1100 steps), matching the corrected arithmetic to within observation.",
     implication:"The mechanism heals as the right arithmetic says; the predeclaration measured with the wrong clock. Per the falsifier the ladder halts until the replacement-clock rate law passes out-of-sample — the corrected predictions are stated and Exp 87 tests them on fresh seeds. The fourth authorial error of the session caught by its own predeclared structure.",
-    trace:{ script:"experiments/exp86_scar_healing.py", output:"experiments/outputs/exp86.txt" } }
+    trace:{ script:"experiments/exp86_scar_healing.py", output:"experiments/outputs/exp86.txt" } },
+
+  { n:87, kind:"positive", chapter:"frontier",
+    title:"Two clocks, both arithmetic — the healing law holds.",
+    one:"Out-of-sample validation of the corrected rate law: the visible scar halves at t=1000 in 8/8 fresh seeds (the replacement clock), S(250) inside the stated band, end-state healing replicated. Rung 2 complete; the identity-vs-adaptability question (rung 3) unlocks.",
+    plain:"The corrected speed law passed on runs it had never seen: the visible scar halves at almost exactly one thousand steps in every single fresh run — the moment fresh experience overtakes the decayed past — and vanishes by three thousand. The forgetting mechanism now has a complete, twice-tested description: memories fade on one clock, the visible damage they did fades on a slower one, and both clocks are plain arithmetic.",
+    metric:{ from:1000, to:1000, unit:"scar half-crossing step, all 8 fresh seeds (band 750-1500)" },
+    setup:"Exp 86's implant protocol verbatim on eight never-run seeds, with the replacement-clock bands stated in Exp 86's entry before this run: early ratio, half-crossing window, and end-state healing — and a single falsifier that keeps the ladder halted if the corrected law fails too.",
+    result:"All three properties pass 8/8 with the crossing dead-center: the rate law's corrected form is validated, not fitted. The rung-2 halt lifts.",
+    implication:"Count decay at the in-window lambda is now fully characterized: costless when the world is stable, scar-erasing on a ~1000-step replacement clock when it is not. Rung 3 asks the direction's hard question: the same decay erodes the value mass that makes a creature an individual — is there a lambda where healing and identity coexist, or is the dilemma provable?",
+    trace:{ script:"experiments/exp87_replacement_clock.py", output:"experiments/outputs/exp87.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

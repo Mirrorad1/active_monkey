@@ -2490,3 +2490,35 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: Exp 87 re-poses the rate claim with the replacement arithmetic on fresh seeds
   (predicted: S(250) in [0.40, 0.50]; S0/2-crossing in [750, 1500] steps); the ladder
   resumes only if it passes.
+
+## Exp 87 — the replacement clock validated out-of-sample: rung 2 complete, the healing rate law has its true form (POSITIVE; halt lifted, rung 3 unlocked)
+- Plain: The corrected speed law passed on runs it had never seen: the visible scar
+  halves at almost exactly one thousand steps in every single fresh run — the moment
+  fresh experience overtakes the decayed past — and vanishes by three thousand. The
+  forgetting mechanism now has a complete, twice-tested description: memories fade on
+  one clock, the visible damage they did fades on a slower one, and both clocks are
+  plain arithmetic.
+- Setup (predeclared in the script docstring before running; the corrected bands were
+  stated in Exp 86's entry before this run): Exp 86's implant verbatim (S0 ~ 0.49),
+  3000-step lambda healing, fresh seeds 800-807, no control arm (the dilution law
+  settled 8/8 in Exp 86). P1 S(250) in [0.40, 0.50]; P2 first S <= S0/2 crossing in
+  [750, 1500]; P3 S(3000) <= 0.05 — each >= 6/8. F1 = P1 or P2 fails -> the rate law has
+  no validated form; ladder stays halted.
+- Result: ALL PASS 8/8. S(250) = 0.436-0.446; crossing at t = 1000 in 8/8 seeds (the
+  replacement arithmetic's center); S(3000) = 0.0016-0.0020 (end-state replication).
+  No falsifier fired; the rung-2 halt lifts.
+- Implication: rung 2 closes with the mechanism fully characterized — count decay at
+  lambda = 0.997 heals maximal scars to ~zero in ~3000 steps with the scar fraction
+  halving at ~1000 (replacement clock) while costing nothing in static competence
+  (Exp 85). Rung 3 — the direction's heart — now asks the hard question: the same decay
+  that erases scars also erodes the value mass that makes a creature an individual;
+  is there a lambda where healing and identity coexist, or is it a proven dilemma?
+- Honest caveat: the corrected bands were derived from Exp 86's trajectories and pass
+  here on fresh seeds — proper out-of-sample, but same world pair, same implant
+  protocol, same lambda; the crossing's tightness (1000 in 8/8) partly reflects the
+  250-step sampling grid. One mechanism variant throughout.
+- Verdict: POSITIVE / CONSOLIDATION (the corrected model confirmed as predeclared).
+  Self-grade: POSITIVE-SINGLE.
+- Next: rung 3 — the identity-vs-adaptability tradeoff curve: value-core stability
+  (Exp 75's bands) and opinion persistence under lambda, against the healing benefit,
+  across the in-window lambda range.
