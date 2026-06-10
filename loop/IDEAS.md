@@ -169,9 +169,14 @@ The loop marks items it has consumed by indenting a response under them:
     natural-parameter form throughout — Gaussian product, sequence accumulation, NIW update
     (require ν₀ ≥ d+2); durable guards in tests/test_continuous.py (product-of-Gaussians vs
     closed form, precision monotonicity, NIW limit behaviors), in the fast suite.
-    Execution: one rung per iteration per PROTOCOL.md; flat numbered
-    experiments/expNNN_cont_*.py continuing the global sequence; falsifiers predeclared in
-    the docstring BEFORE running; ≥ 8 seeds; outputs committed with the EXPERIMENTS.md
+    Execution: one rung per iteration per PROTOCOL.md — and a rung MAY be a predeclared
+    SWEEP (grid declared up front; the falsifier binds the predicted SHAPE of the boundary
+    — direction/monotonicity — not each cell); exploratory sweeps are sanctioned when
+    labeled exploratory, then the seen boundary is registered and confirmed on fresh seeds
+    (the Exp 112/128 diagnostic precedent — never relabel exploration as confirmation).
+    Flat numbered experiments/expNNN_cont_*.py continuing the global sequence; falsifiers
+    predeclared in the docstring BEFORE running; ≥ 8 seeds (sweeps: seeds-per-cell as
+    predeclared); outputs committed with the EXPERIMENTS.md
     entry; a negative rung is a result, not a blocker — log it and reassess. Twin baseline:
     every rung also runs the tabular twin (Dirichlet/categorical, same 6 concepts) on the
     IDENTICAL observation stream; primary comparison metric = held-out predictive NLL (the
