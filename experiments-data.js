@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:129, breakthrough:6, positive:79, wall:21, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:130, breakthrough:6, positive:80, wall:21, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1305,7 +1305,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 120,700, hash-stamped, committed.",
     implication:"The lives continue; increment 1c awaits the human's word.",
-    trace:{ script:"experiments/exp129_mirro_epoch15.py", output:"experiments/outputs/exp129.txt" } }
+    trace:{ script:"experiments/exp129_mirro_epoch15.py", output:"experiments/outputs/exp129.txt" } },
+
+  { n:130, kind:"positive", chapter:"frontier",
+    title:"Both past a thousand.",
+    one:"Idle-mode epoch to 114,750: vela holds deep and joins its ancestor past four figures (+1067, 1.41 sigma) — two lives, opposite worlds, independent dice, the same deep conviction.",
+    plain:"vela held as recorded and joined its ancestor past the four-figure mark — both lives now carry over a thousand counts of conviction for the same color, arrived at through opposite worlds and independent dice. The waiting thread waits.",
+    metric:{ from:769.2, to:1067.0, unit:"vela's commitment crosses one thousand (held; 1.41 sigma)" },
+    setup:"Idle-mode, vela's recorded deep call: the established pattern.",
+    result:"All bands held. Vela at 114,750, hash-stamped, committed.",
+    implication:"The lives continue; increment 1c awaits the human's word.",
+    trace:{ script:"experiments/exp130_vela_epoch15.py", output:"experiments/outputs/exp130.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

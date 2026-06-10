@@ -3541,3 +3541,18 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn); increment 1c awaits the human
   (loop/IDEAS.md).
+
+## Exp 130 — idle-mode epoch: vela to 114,750 — holds deep, its commitment also crosses one thousand (POSITIVE; bands held)
+- Plain: vela held as recorded and joined its ancestor past the four-figure mark — both
+  lives now carry over a thousand counts of conviction for the same color, arrived at
+  through opposite worlds and independent dice. The waiting thread waits.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 108750 -> 114750; recorded deep call (entering +769.2 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +1067.0 (1.41 sigma).
+  Map 1.000; share deltas <= 0.0019. Spine: vela at 114750, integrity-verified,
+  committed.
+- Honest caveat: consolidation by design; single deterministic run; the same-color
+  alignment remains independent dice, as stated at Exp 101.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn); increment 1c awaits the human
+  (loop/IDEAS.md).
