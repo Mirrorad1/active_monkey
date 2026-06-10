@@ -1,0 +1,42 @@
+Exp 68 — rung 4 part 1: the comfort-source instrument and the mutually-blind null.
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 favorite=2 shares=[0.3623 0.2737 0.3641]
+
+favorite color: 2  SOURCE_CELL=10  (row=2, col=0)
+
+BFS distance field to SOURCE_CELL (5x5 grid):
+    2  3  4  5  6
+    1  2  3  4  5
+    0  1  2  3  4
+    1  2  3  4  5
+    2  3  4  5  6
+
+--- RUNS ---
+seed   occ_A   occ_B  co_occ   ratio   comf_A   comf_B  id1_ok
+----------------------------------------------------------------------
+   0   0.842   0.752   0.635   1.004   1047.5    869.5       Y
+   1   0.808   0.766   0.623   1.005    993.5    910.5       Y
+   2   0.826   0.334   0.280   1.016   1371.0    388.0       Y
+   3   0.837   0.606   0.505   0.996   1169.0    707.0       Y
+   4   0.829   0.615   0.513   1.008   1144.0    716.0       Y
+
+--- DIAGNOSTICS: END MAP ACCURACIES ---
+seed  map_acc_A  map_acc_B
+------------------------------
+   0      0.680      0.680
+   1      0.680      0.680
+   2      0.680      0.680
+   3      0.680      0.680
+   4      0.680      0.680
+
+--- PROPERTY CHECKS ---
+
+PASS  P1-seeking-works-occ>=0.20-both->=4/5-seeds: seeds_passing=5/5  threshold>=4  [s0:A=0.842,B=0.752->OK; s1:A=0.808,B=0.766->OK; s2:A=0.826,B=0.334->OK; s3:A=0.837,B=0.606->OK; s4:A=0.829,B=0.615->OK]
+PASS  P2-blind-null-R-in-[0.75,1.33]->=4/5-seeds: seeds_passing=5/5  threshold>=4  [s0:R=1.004->OK; s1:R=1.005->OK; s2:R=1.016->OK; s3:R=0.996->OK; s4:R=1.008->OK]
+PASS  ID1-comfort-ledger-exact-all-10: all_10_ledgers=OK  [s0:OK; s1:OK; s2:OK; s3:OK; s4:OK]
+
+--- FALSIFIER MAP ---
+INSTRUMENT VALIDATED: part 2 (sensing+learning coupling) may proceed against this baseline.
+  No falsifiers fired.
+
+EXP68: PASS

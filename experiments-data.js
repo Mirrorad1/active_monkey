@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:67, breakthrough:6, positive:34, wall:15, partial:12, from:4.81, to:4.00 };
+window.AM_TALLY = { total:68, breakthrough:6, positive:35, wall:15, partial:12, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -685,7 +685,17 @@ window.AM_EXPERIMENTS = [
     setup:"Receiver age swept 0/400/800/1600/3200/6400 settle steps x 4 seeds; same emitter, channel, and dose as Exp 65/66; the 800 bin is an exact internal replication of Exp 66. Predeclared: young beats old AND zero installs at the oldest age; monotone fractions; and a proportional-growth count criterion (install iff projected own-evidence gap < measured social dose) at 75%+ accuracy.",
     result:"Mixed, no falsifiers fired. Fractions 1.000/1.000/0.667/0.667/0.333/0.333 — monotone, young 0.909 vs old 0.333. The hard-cutoff conjunct failed: one 6400-step receiver installed — its own history left it nearly ambivalent (gap 133 counts of 6,081), and the predeclared model called it correctly. Model accuracy 85% (17/20); the misses cluster at the boundary and at low mass. The 800-bin replication matched Exp 66 exactly.",
     implication:"Persuadability is ambivalence-gated, not age-gated: social influence installs iff the receiver's projected own-evidence gap is smaller than the delivered dose; age only correlates because the gap grows with lived experience. For M4: openness to social input is set per-question by how settled one's own evidence is. Honest scope: one channel, one dose, 20 valid runs, provided wiring throughout; the author's own cutoff prediction is logged as falsified.",
-    trace:{ script:"experiments/exp67_sensitive_period.py", output:"experiments/outputs/exp67.txt" } }
+    trace:{ script:"experiments/exp67_sensitive_period.py", output:"experiments/outputs/exp67.txt" } },
+
+  { n:68, kind:"positive", chapter:"frontier",
+    title:"The measuring stick for taking turns.",
+    one:"Rung 4 part 1: belief-driven seeking of a shared comfort source works (occupancy up to 0.84), the depletion ledger is exact, and the mutually-blind pair sits at independence ratio 1.00 — the clean null that any coordination claim must beat.",
+    plain:"Before asking whether two creatures sharing one favorite spot learn to take turns, we built the measuring stick: a way for a creature to seek the spot it values, a rule that comfort is halved when both crowd it, and the statistical baseline for two creatures who cannot sense each other at all. The seeking works, the bookkeeping is exact, and the blind pair shows precisely zero coordination — the clean zero that part 2 must beat.",
+    metric:{ from:0.996, to:1.016, unit:"blind-pair independence ratio across 5 seeds (null = 1)" },
+    setup:"Two twin forks of mirro seek the first cell of their shared favorite color under a provided epsilon-greedy shortest-path policy that navigates from belief, not ground truth; comfort halves when both crowd the source; the pair is mutually blind. Predeclared: occupancy at least 5x random, independence ratio within [0.75, 1.33], comfort ledger exact.",
+    result:"All pass, no falsifiers. Occupancies 0.33-0.84; the blind null is far tighter than predicted — co-occupancy equals the independence product to about 1% in every seed. Two prediction errors logged honestly: the source landed on an edge cell, making wall-pressing a de-facto stay action (occupancy beat the predicted band), and one twin's occupancy swings across seeds because it navigates from an imperfect inherited map.",
+    implication:"Rung 4's coordination question is now well-posed: part 2 adds a single inter-agent mechanism and asks whether the ratio departs from 1.00 +- 0.02 — with any deviation entering the reproduction-and-deflation cascade before the word coordination is used. Caveats: zero emergence content here; all mechanics provided; the depletion ledger currently feeds nothing back.",
+    trace:{ script:"experiments/exp68_comfort_baseline.py", output:"experiments/outputs/exp68.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

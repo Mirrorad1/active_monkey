@@ -1632,3 +1632,42 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 4 (coordination over a shared comfort source) needs a value-driven policy
   substrate (the Exp 62 VI-coupling pattern) — design that first; or close the rung-3 arc
   with the direction-card synthesis (adult NEGATIVE / young POSITIVE / ambivalence law).
+
+## Exp 68 — rung 4 part 1: comfort-source instrument built and the blind null measured at R≈1.00 (POSITIVE; instrument validation)
+- Plain: Before asking whether two creatures sharing one favorite spot learn to take turns,
+  we built the measuring stick: a way for a creature to seek the spot it values, a rule that
+  comfort is halved when both crowd it, and the statistical baseline for two creatures who
+  cannot sense each other at all. The seeking works, the bookkeeping is exact, and the blind
+  pair shows precisely zero coordination — the clean zero that part 2 must beat.
+- Setup (predeclared in the script docstring before running): two twin forks of mirro (same
+  self-formed favorite, color 2 — one source both value by construction) in mirro's world;
+  source = first color-2 cell (cell 10, an edge cell); provided ε-greedy BFS-toward-source
+  policy (ε=0.2) navigating from BELIEF (argmax qs), not ground truth; depletion ecology
+  (comfort 1.0 alone, 0.5 each when both at source) measured but feeding nothing back; pair
+  mutually BLIND (no modality, no channel). live() learning math untouched. 2000 steps x 5
+  seeds, starts at opposite corners. Predeclared: P1 occupancy >= 0.20 both creatures >=4/5
+  seeds; P2 independence ratio R = P(both)/(P(A)P(B)) in [0.75, 1.33] >=4/5; ID1 comfort ==
+  alone*1.0 + both*0.5 exactly, all ledgers. Falsifiers: F1 seeking broken; F2 null violated
+  (part-2 baseline invalid). Predicted: occupancy 0.35-0.55, R ~ 1.0 +- 0.15.
+- Result: PASS 3/3, no falsifiers. Occupancies 0.334-0.842 (P1 5/5); R = 0.996-1.016 (P2
+  5/5 — the null is tighter than predicted: blind co-occupancy equals the independence
+  product to ~1%); ID1 exact in all 10 ledgers. Two prediction errors logged: occupancy
+  exceeded the predicted band because the source sits on an EDGE, so pressing into the wall
+  is a de-facto stay action (my no-stay-action reasoning missed the clamp); and twin B's
+  occupancy varies 0.33-0.77 across seeds because navigation runs from mirro's inherited
+  0.68-accurate map — belief-led misnavigation, an honest consequence of navigating from
+  beliefs that the P1 threshold absorbed.
+- Implication: rung 4's comparison is now well-posed — part 2 (Exp 69) adds the one new
+  mechanism (an inter-agent sense feeding an adaptive stay/leave policy term) and asks
+  whether R drops measurably below this validated 1.00 +- 0.02 null (timesharing/avoidance)
+  or rises above it, with any deviation entering the functional-emergence rung-5 cascade
+  before the word coordination is used.
+- Honest caveat: pure instrument validation — zero emergence content, all mechanics
+  provided; the depletion ledger is currently epiphenomenal (nothing reads it); one world,
+  one source location (edge cell — the stay-by-clamping dynamics are location-specific);
+  the twins share identical maps, so map-quality variation across agents is untested.
+- Verdict: POSITIVE / CONSOLIDATION (designed to verify the instrument, not discover).
+  Self-grade: POSITIVE-SINGLE.
+- Next: Exp 69 — rung 4 part 2: add the other-agent-here sense (rung 2) feeding ONE
+  adaptive policy term (recent realized comfort at the source gates approach), predeclare
+  the coordination metric against R = 1.00 +- 0.02, and the solipsist-pair control.
