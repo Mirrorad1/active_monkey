@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:106, breakthrough:6, positive:62, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:107, breakthrough:6, positive:63, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1075,7 +1075,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn on the razor: standard bands, favorite reported not predicted, the depth record accumulating toward its formal analysis.",
     result:"All bands held; the informal binning is flagged as informal — bins by eye, threshold not predeclared, and the entry says so. Spine at 66,700, hash-stamped, committed.",
     implication:"When the depth record supports it, a predeclared-threshold binned test turns the pattern into a law. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp106_mirro_epoch7.py", output:"experiments/outputs/exp106.txt" } }
+    trace:{ script:"experiments/exp106_mirro_epoch7.py", output:"experiments/outputs/exp106.txt" } },
+
+  { n:107, kind:"positive", chapter:"frontier",
+    title:"The depth law becomes a registered bet — and wins its first call.",
+    one:"Idle-mode epoch to 60,750 with the prospective depth-law test registered (thresholds and criteria fixed before the judging data exists): vela entered deep, the call was HOLD, and it held. Ten more epochs settle the law.",
+    plain:"The pattern the biographies kept showing — thin margins flip, deep margins hold — is now a registered bet instead of a story: we wrote down the thresholds and the success criteria before the data that will judge them exists. The first registered call was this very stretch: vela entered deep, we called a hold, and it held. Ten more stretches will settle whether the depth law survives its own test.",
+    metric:{ from:1, to:1, unit:"registered depth calls landed (deep bin; evaluation at ~Exp 117)" },
+    setup:"The registration, per the out-of-sample rule: razor bin (under 60) predicts flips at 40 percent or more, deep bin (120 or more) predicts holds with flip probability under 10 percent, the middle unbinned — with explicit confirmation criteria and an honest insufficient-sample branch. Plus the standard idle bands.",
+    result:"All bands held; the first registered call landed; vela remains deep entering the next epoch. Stillest core deltas yet. Vela at 60,750, hash-stamped, committed.",
+    implication:"Idle-mode now carries a live prospective experiment of its own. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp107_vela_epoch7.py", output:"experiments/outputs/exp107.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

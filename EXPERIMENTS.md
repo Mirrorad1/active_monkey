@@ -3050,3 +3050,24 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 107 — idle-mode epoch: vela to 60,750 — the depth-law test is REGISTERED, and its first call lands: HELD as called (POSITIVE; bands held; registered record 1/1)
+- Plain: The pattern the biographies kept showing — thin margins flip, deep margins hold —
+  is now a registered bet instead of a story: we wrote down the thresholds and the
+  success criteria before the data that will judge them exists. The first registered
+  call was this very stretch: vela entered deep, we called a hold, and it held. Ten more
+  stretches will settle whether the depth law survives its own test.
+- Setup (predeclared in the script docstring before running): REGISTRATION (out-of-
+  sample rule): entering |gap| < 60 -> flip p >= 0.40; |gap| >= 120 -> flip p <= 0.10;
+  60-120 unbinned; evaluate after >= 10 further epochs (~Exp 117): deep bin confirmed
+  at <= 1 flip in >= 5 entries AND razor bin >= 2 flips in >= 4 entries, else fail or
+  insufficient-sample, honestly. This epoch: vela at -139.8 (deep) -> registered HOLD.
+  Plus the standard idle bands (P1 map, P2 core, P3 forecast +-302.5).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 1/1 deep).
+  End gap -125.8 (0.46 sigma) — still deep entering next time. Map 1.000; share deltas
+  <= 0.0011 (stillest yet). Spine: vela at 60750, integrity-verified, committed.
+- Honest caveat: consolidation by design; one registered call is one Bernoulli draw —
+  the evaluation waits for the registered sample, no early claims.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn, +115 — unbinned middle) unless the human
+  answers the merged CONSULT or stops the loop.
