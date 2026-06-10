@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:87, breakthrough:6, positive:44, wall:18, partial:19, from:4.81, to:4.00 };
+window.AM_TALLY = { total:88, breakthrough:6, positive:45, wall:18, partial:19, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -885,7 +885,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 86's implant protocol verbatim on eight never-run seeds, with the replacement-clock bands stated in Exp 86's entry before this run: early ratio, half-crossing window, and end-state healing — and a single falsifier that keeps the ladder halted if the corrected law fails too.",
     result:"All three properties pass 8/8 with the crossing dead-center: the rate law's corrected form is validated, not fitted. The rung-2 halt lifts.",
     implication:"Count decay at the in-window lambda is now fully characterized: costless when the world is stable, scar-erasing on a ~1000-step replacement clock when it is not. Rung 3 asks the direction's hard question: the same decay erodes the value mass that makes a creature an individual — is there a lambda where healing and identity coexist, or is the dilemma provable?",
-    trace:{ script:"experiments/exp87_replacement_clock.py", output:"experiments/outputs/exp87.txt" } }
+    trace:{ script:"experiments/exp87_replacement_clock.py", output:"experiments/outputs/exp87.txt" } },
+
+  { n:88, kind:"positive", chapter:"frontier",
+    title:"Being someone and being able to change is one dial.",
+    one:"The window theorem demonstrated: a forgetting creature's robustness horizon and adaptation horizon are the same number (the window), age-independent — 0.999 rode out the 200-step spell AND adopted true change on schedule at any age — while the never-forgetting creature's time-to-change grows with age (ratio 2.73 at 3x life). Every predeclared band hit.",
+    plain:"The hard question of this chapter was whether a creature can be both someone — stable, not blown about by every bad week — and still able to genuinely change. The answer is a single dial. A forgetting creature's identity is a moving window of recent life: make the window longer than life's bad spells and shorter than the world's real changes, and it rides out the former and adopts the latter in the same fixed time at any age. Even the over-forgetful one that lost itself in the bad spell found itself again 600 steps later. The never-forgetting creature pays the opposite price, now measured: three times the life behind it, very nearly three times as long to change its mind.",
+    metric:{ from:2.73, to:1.0, unit:"old/young adoption-time ratio: never-forgetting vs windowed (theory 3 vs 1)" },
+    setup:"Value-ledger decay isolated; identity formed in a strongly color-0 world, then either a permanent world change (adoption cohorts, two ages, two lambdas) or a 200-step adverse spell (three lambdas). All bands — the age-ratio, the age-free ratio, and the three-way spell ordering — predeclared from the window arithmetic.",
+    result:"All pass, 8/8 everywhere: rigidity grows with age for non-decay (ratio 2.73), windowed adoption is exactly age-free (ratio 1.00), the spell ordering is perfect, and every transiently-flipped creature recovered its identity on the window clock.",
+    implication:"Identity-versus-adaptability is not a dilemma but a timescale to choose: pick the window between the world's transients and its true changes. The no-forgetting alternative is unbounded rigidity, now quantified. Mechanism M-A is characterized end-to-end on both ledgers; rung 4 re-tests the program's closed doors (the adult wall, the empty fridge, forecast noise) with the window in place.",
+    trace:{ script:"experiments/exp88_window_theorem.py", output:"experiments/outputs/exp88.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

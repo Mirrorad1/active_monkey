@@ -2522,3 +2522,48 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 3 — the identity-vs-adaptability tradeoff curve: value-core stability
   (Exp 75's bands) and opinion persistence under lambda, against the healing benefit,
   across the in-window lambda range.
+
+## Exp 88 — rung 3: the window theorem — robustness and adaptability are one number, and without forgetting rigidity grows without bound (POSITIVE; the direction's central result)
+- Plain: The hard question of this chapter was whether a creature can be both someone —
+  stable, not blown about by every bad week — and still able to genuinely change. The
+  answer is a single dial. A forgetting creature's identity is a moving window of recent
+  life: make the window longer than life's bad spells and shorter than the world's real
+  changes, and it rides out the former and adopts the latter in the same fixed time at
+  any age — the window held its self through a 200-step bad spell, adopted a truly
+  changed world on schedule, and even the over-forgetful one that lost itself in the
+  spell found itself again 600 steps later. The never-forgetting creature pays the
+  opposite price, now measured: three times the life behind it, very nearly three times
+  as long to change its mind — rigidity that grows forever.
+- Setup (predeclared in the script docstring before running): mechanism isolated to the
+  VALUE ledger (value_counts *= LV per step, no floor; pA untouched — the map side was
+  Exp 85-87). Identity world W (color 0 on 13 checkerboard cells; rate gap ~0.27/step);
+  change world all-2. ADOPTION cohorts: (LV 1.0, 0.999) x (young 6000, old 18000) x 8
+  seeds (900-907) — permanent switch, time-to-favorite-2, cap 6000. SPELL cohorts
+  (young): LV 1.0/0.999/0.997 — 200-step all-2 spell then 600 home. P1 non-decay
+  old/young adoption ratio in [2.2, 3.8] (gap ~ age predicts ~3); P2 LV=0.999 ratio in
+  [0.7, 1.4]; P3 spell ordering 0.997 flips / 0.999 holds / 1.0 holds, each >= 6/8.
+  F1/F2/F3 halt rung 3.
+- Result: ALL PASS, no falsifiers. P1: ratio 2.73 (rigidity grows with age — the
+  unbounded-cost side measured). P2: ratio 1.00 (window adoption age-free). P3: 8/8 on
+  all three arms — and ALL spell arms (including the flipped 0.997) ended back at
+  favorite 0: transient identity damage heals on the window clock. G-checks: identity
+  formed (favorite 0) in every formation run.
+- Implication (rung 3's answer, the card's heart): the identity-vs-adaptability tradeoff
+  is not a dilemma to escape but a TIMESCALE to choose — robustness horizon and
+  adaptation horizon are the same number (the window 1/(1-LV)), set independently of
+  age; a usable LV exists whenever the world's transients are shorter than its true
+  changes. The no-forgetting alternative is now quantified as unbounded rigidity
+  (adoption cost proportional to age). Together with Exp 85-87 (map side: costless when
+  static, scar-erasing on the replacement clock), mechanism M-A is characterized end to
+  end on both ledgers. This is the number-backed form of every "needs a forgetting term"
+  motivation since Exp 48.
+- Honest caveat: one world pair, one spell length/one change type, medians over 8 seeds
+  with a 50-step sampling grid; identity formation ran WITH decay active (the decayed
+  arms' identities are windowed from birth — declared); the theorem language describes
+  this mechanism's arithmetic demonstrated at these scales, not a general impossibility
+  result. All mechanics provided.
+- Verdict: POSITIVE / NEW INSIGHT (the direction's central quantitative result; all
+  bands predeclared and hit). Self-grade: POSITIVE-SINGLE.
+- Next: rung 4 — re-test the program's closed doors with LV=0.999 (the adult-transmission
+  wall of Exp 65; the empty-fridge death of Exp 62; forecast SNR of Exp 83), thresholds
+  lifted from the original entries; then rung 5 = the promotion CONSULT.

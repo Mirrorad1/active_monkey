@@ -1,0 +1,153 @@
+Exp 88 — graded-uncertainty rung 3: the window theorem.
+
+Worlds:
+  W  (identity world):
+    0 1 0 2 0
+    1 0 2 0 1
+    0 2 0 1 0
+    2 0 1 0 2
+    0 1 0 2 0
+  ALL2 (change world):
+    2 2 2 2 2
+    2 2 2 2 2
+    2 2 2 2 2
+    2 2 2 2 2
+    2 2 2 2 2
+  W color counts: {0: 13, 1: 6, 2: 6}
+
+====================================================================
+ADOPTION COHORTS
+====================================================================
+
+-- arm: age=young (6000 steps)  LV=1.0 --
+  seed 900: G-check OK  adopt@2100
+  seed 901: G-check OK  adopt@2200
+  seed 902: G-check OK  adopt@2200
+  seed 903: G-check OK  adopt@2250
+  seed 904: G-check OK  adopt@2200
+  seed 905: G-check OK  adopt@2050
+  seed 906: G-check OK  adopt@2100
+  seed 907: G-check OK  adopt@2200
+
+-- arm: age=young (6000 steps)  LV=0.999 --
+  seed 900: G-check OK  adopt@300
+  seed 901: G-check OK  adopt@300
+  seed 902: G-check OK  adopt@300
+  seed 903: G-check OK  adopt@300
+  seed 904: G-check OK  adopt@300
+  seed 905: G-check OK  adopt@300
+  seed 906: G-check OK  adopt@300
+  seed 907: G-check OK  adopt@300
+
+-- arm: age=old (18000 steps)  LV=1.0 --
+  seed 900: G-check OK  adopt@6000 [CENSORED]
+  seed 901: G-check OK  adopt@6000 [CENSORED]
+  seed 902: G-check OK  adopt@6000 [CENSORED]
+  seed 903: G-check OK  adopt@6000 [CENSORED]
+  seed 904: G-check OK  adopt@6000 [CENSORED]
+  seed 905: G-check OK  adopt@6000 [CENSORED]
+  seed 906: G-check OK  adopt@6000 [CENSORED]
+  seed 907: G-check OK  adopt@6000 [CENSORED]
+
+-- arm: age=old (18000 steps)  LV=0.999 --
+  seed 900: G-check OK  adopt@300
+  seed 901: G-check OK  adopt@250
+  seed 902: G-check OK  adopt@300
+  seed 903: G-check OK  adopt@300
+  seed 904: G-check OK  adopt@300
+  seed 905: G-check OK  adopt@300
+  seed 906: G-check OK  adopt@300
+  seed 907: G-check OK  adopt@300
+
+--- ADOPTION TABLE ---
+   seed   young/1.0   young/0.999     old/1.0     old/0.999
+  --------------------------------------------------------
+    900        2100           300       6000*           300
+    901        2200           300       6000*           250
+    902        2200           300       6000*           300
+    903        2250           300       6000*           300
+    904        2200           300       6000*           300
+    905        2050           300       6000*           300
+    906        2100           300       6000*           300
+    907        2200           300       6000*           300
+  (* = censored at cap)
+
+Medians (censored seeds counted at cap):
+  young / LV=1.000 : 2200.0  (n=8, censored=0)
+  young / LV=0.999 : 300.0  (n=8, censored=0)
+  old   / LV=1.000 : 6000.0  (n=8, censored=8)
+  old   / LV=0.999 : 300.0  (n=8, censored=0)
+
+Age ratios:
+  P1 (LV=1.000): old/young = 2.727272727272727
+  P2 (LV=0.999): old/young = 1.0
+
+====================================================================
+SPELL COHORTS  (young identity only)
+====================================================================
+
+-- arm: LV=1.0 --
+  seed 900: G-check OK  spell=held  fav_end=0
+  seed 901: G-check OK  spell=held  fav_end=0
+  seed 902: G-check OK  spell=held  fav_end=0
+  seed 903: G-check OK  spell=held  fav_end=0
+  seed 904: G-check OK  spell=held  fav_end=0
+  seed 905: G-check OK  spell=held  fav_end=0
+  seed 906: G-check OK  spell=held  fav_end=0
+  seed 907: G-check OK  spell=held  fav_end=0
+
+-- arm: LV=0.999 --
+  seed 900: G-check OK  spell=held  fav_end=0
+  seed 901: G-check OK  spell=held  fav_end=0
+  seed 902: G-check OK  spell=held  fav_end=0
+  seed 903: G-check OK  spell=held  fav_end=0
+  seed 904: G-check OK  spell=held  fav_end=0
+  seed 905: G-check OK  spell=held  fav_end=0
+  seed 906: G-check OK  spell=held  fav_end=0
+  seed 907: G-check OK  spell=held  fav_end=0
+
+-- arm: LV=0.997 --
+  seed 900: G-check OK  spell=FLIPPED  fav_end=0
+  seed 901: G-check OK  spell=FLIPPED  fav_end=0
+  seed 902: G-check OK  spell=FLIPPED  fav_end=0
+  seed 903: G-check OK  spell=FLIPPED  fav_end=0
+  seed 904: G-check OK  spell=FLIPPED  fav_end=0
+  seed 905: G-check OK  spell=FLIPPED  fav_end=0
+  seed 906: G-check OK  spell=FLIPPED  fav_end=0
+  seed 907: G-check OK  spell=FLIPPED  fav_end=0
+
+--- SPELL TABLE ---
+   seed   LV=1.0 flip   LV=0.999 flip   LV=0.997 flip   end fav 1.0   end fav .999   end fav .997
+  ------------------------------------------------------------------------------------------
+    900          hold            hold            FLIP             0              0              0
+    901          hold            hold            FLIP             0              0              0
+    902          hold            hold            FLIP             0              0              0
+    903          hold            hold            FLIP             0              0              0
+    904          hold            hold            FLIP             0              0              0
+    905          hold            hold            FLIP             0              0              0
+    906          hold            hold            FLIP             0              0              0
+    907          hold            hold            FLIP             0              0              0
+
+  LV=1.0: flipped 0/8 valid seeds during spell
+  LV=0.999: flipped 0/8 valid seeds during spell
+  LV=0.997: flipped 8/8 valid seeds during spell
+  LV=1.0: recovered to fav=0 end of post-spell in 8/8 valid seeds
+  LV=0.999: recovered to fav=0 end of post-spell in 8/8 valid seeds
+  LV=0.997: recovered to fav=0 end of post-spell in 8/8 valid seeds
+
+--- PROPERTY CHECKS ---
+  PASS  P1 (rigidity grows with age, LV=1.0): ratio=2.727272727272727 in [2.2, 3.8]: PASS
+
+  PASS  P2 (window adoption is age-free, LV=0.999): ratio=1.0 in [0.7, 1.4]: PASS
+
+  PASS  P3a (LV=0.997 flips >= 6/8): 8/8: PASS
+  PASS  P3b (LV=0.999 does NOT flip >= 6/8): 8/8 held: PASS
+  PASS  P3c (LV=1.0 does NOT flip >= 6/8): 8/8 held: PASS
+  PASS  P3 (robustness ordering, all three): PASS
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — rigidity grows with age for LV=1.0; old/young ratio=2.727272727272727 in [2.2, 3.8]).
+  F2 did not fire (P2 PASS — window adoption is age-free for LV=0.999; old/young ratio=1.0 in [0.7, 1.4]).
+  F3 did not fire (P3 PASS — robustness ordering correct: LV=0.997 flips 8/8, LV=0.999 holds 8/8, LV=1.0 holds 8/8).
+
+EXP88: WINDOW THEOREM DEMONSTRATED
