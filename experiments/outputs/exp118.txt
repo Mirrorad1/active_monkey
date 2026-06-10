@@ -1,0 +1,71 @@
+Exp 118 — idle-mode life epoch (mirro age 90700 -> 96700)
+
+  hash_before = 9811912eeda7
+
+--- START PROFILE (age 90700) ---
+  share0            : 0.339363
+  share1            : 0.311878
+  share2            : 0.348759
+  conviction        : 0.348759
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 601.067170
+  total_mass        : 63973.493270
+
+  R(0)            : 0.272746
+  R(1)            : 0.259692
+  R(2)            : 0.288148
+
+  predicted_end_gap = +601.0672 + (0.288148 - 0.272746) * 6000 = +693.4817
+  P3 band (2.5-sigma = 302.5): [+390.9817, +995.9817]
+
+--- END PROFILE (age 96700) ---
+  share0            : 0.339365
+  share1            : 0.313147
+  share2            : 0.347488
+  conviction        : 0.347488
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 560.057871
+  total_mass        : 68954.199536
+
+  R(0)            : 0.274667
+  R(1)            : 0.261962
+  R(2)            : 0.290779
+
+[Exp 118] spine=mirro continuous-life checkpoint
+  before: age=90700 state_hash=9811912eeda7
+  after : age=96700 state_hash=e5f2637c14f6
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : +693.4817
+  actual_end_gap    : +560.0579
+  error (actual-predicted) : -133.4239
+  |error| / sigma   : 1.103
+
+--- DELTA TABLE ---
+  component               before       after       delta  band                        ok?
+  --------------------------------------------------------------------------------------
+  share0                0.339363    0.339365   +0.000002  < 0.04                      PASS
+  share1                0.311878    0.313147   +0.001269  < 0.04                      PASS
+  share2                0.348759    0.347488   -0.001271  < 0.04                      PASS
+  conviction            0.348759    0.347488   -0.001271  < 0.04                      PASS
+  map_acc               1.000000    1.000000   +0.000000  >= 0.96 (post)              PASS
+
+  favorite: 2 -> 2  (RECORDED depth call: HOLD — deep bin |gap| >= 120)
+  P4 recorded-call outcome: HELD as called (recorded; razor books open per Exp 117)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-map-accuracy-96700: map_acc_at_96700=1.000000  threshold=0.96  ok=True
+  PASS  P2-share-stability: share0:|delta|=0.000002 (ok); share1:|delta|=0.001269 (ok); share2:|delta|=0.001271 (ok)
+  PASS  P2-conviction-stability: |delta_conviction|=0.001271  threshold=0.04
+  PASS  P3-noise-calibrated-forecast: end_gap=+560.0579  predicted=+693.4817  band=[+390.9817, +995.9817]  |error|/sigma=1.103  in_band=True
+  PASS  SPINE-age-96700-delta-6000: reload.age=96700  ep.age_after=96700  ep.age_before=90700  delta=6000  expected_after=96700
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP118: EPOCH CLEAN (bands held)

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:117, breakthrough:6, positive:70, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:118, breakthrough:6, positive:71, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1185,7 +1185,17 @@ window.AM_EXPERIMENTS = [
     setup:"An audit instrument verifies all nine post-registration epoch records verbatim against the committed outputs, then scores the two registered bins exactly as written, with the insufficient-sample branch available and the Exp 112 ensemble measurement cited but never substituted.",
     result:"Nine of nine records verified; deep confirmed-at-limit; razor declared insufficient with its books open under the same registered numbers; the unbinned middle reported unscored. The deep states' self-perpetuation (which starved the razor bin) is noted as informative but unregistered.",
     implication:"The idle-mode's embedded prospective experiment closes its first cycle the way registered science should — partial, fragile, and explicit about both. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp117_depth_law_eval.py", output:"experiments/outputs/exp117.txt" } }
+    trace:{ script:"experiments/exp117_depth_law_eval.py", output:"experiments/outputs/exp117.txt" } },
+
+  { n:118, kind:"positive", chapter:"frontier",
+    title:"Approaching one hundred thousand steps.",
+    one:"Idle-mode epoch to 96,700: mirro holds deep as recorded, easing to +560 (1.10 sigma) — a quiet stretch nearing the hundred-thousand-step mark of a life that began with uniform beliefs and no preferences at all.",
+    plain:"mirro held its favorite as recorded and its conviction eased slightly from the peak — a quiet stretch approaching the hundred-thousand-step mark of a life that began at zero with uniform beliefs and no preferences at all.",
+    metric:{ from:601.1, to:560.1, unit:"the commitment eases (held; 1.10 sigma)" },
+    setup:"Idle-mode, mirro's turn: the established pattern with the razor books open per the evaluation.",
+    result:"All bands held. Spine at 96,700, hash-stamped, committed.",
+    implication:"The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp118_mirro_epoch12.py", output:"experiments/outputs/exp118.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

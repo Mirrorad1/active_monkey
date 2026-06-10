@@ -3296,3 +3296,17 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   INSUFFICIENT). Self-grade: n/a.
 - Next: idle-mode continues (mirro's turn, +601 deep) with the razor side's books open
   — unless the human answers the merged CONSULT or stops the loop.
+
+## Exp 118 — idle-mode epoch: mirro to 96,700 — holds deep; the commitment eases to +560 (POSITIVE; bands held)
+- Plain: mirro held its favorite as recorded and its conviction eased slightly from the
+  peak — a quiet stretch approaching the hundred-thousand-step mark of a life that began
+  at zero with uniform beliefs and no preferences at all.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 90700 -> 96700; recorded deep call (entering +601.1 -> HOLD; razor
+  books open per Exp 117).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +560.1 (1.10 sigma).
+  Map 1.000; share deltas <= 0.0013. Spine: 96700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
+  or stops the loop.
