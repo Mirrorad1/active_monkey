@@ -1,0 +1,25 @@
+========================================================================
+Exp 133 — continuous-substrate rung 1: convergence to a point
+========================================================================
+
+Seed  FinalLocErr  FinalTrSigma  ContEarlyNLL  TabEarlyNLL   Gap(C-T)  P2Viol
+------------------------------------------------------------------------
+   0     0.030535      0.001225      0.199866     0.196574  +0.003292      no
+   1     0.021932      0.001225      0.108163     0.094888  +0.013275      no
+   2     0.040071      0.001225      0.146300     0.135562  +0.010738      no
+   3     0.008792      0.001225      0.106905     0.094888  +0.012017      no
+   4     0.021932      0.001225      0.162057     0.135826  +0.026232      no
+   5     0.018131      0.001225      0.163637     0.155899  +0.007738      no
+   6     0.021932      0.001225      0.112799     0.094888  +0.017911      no
+   7     0.017451      0.001225      0.162471     0.155899  +0.006571      no
+
+Prior tr(Sigma) = 8.0000
+
+P1 localization  (final err < 0.1): 8/8 seeds  (need >= 7 for PASS)
+P2 contraction   (no violation in all steps): 8/8 seeds  (need 8/8 for PASS)
+P2 sanity        (final tr < 1% prior tr):    8/8 seeds  (need 8/8 for PASS — second P2 conjunct)
+P3 twin race     (gap <= +0.1 nats early): 8/8 seeds  (need >= 6 for PASS)
+
+VERDICT: POSITIVE — all P1/P2/P3 conditions satisfied (both P2 conjuncts)
+
+Rows written to: /Users/mirro/Projects/active-loop/experiments/outputs/exp133_rows.json

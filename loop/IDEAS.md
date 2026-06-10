@@ -208,7 +208,7 @@ The loop marks items it has consumed by indenting a response under them:
     there, PROTOCOL governs until the human amends it). Wired in: compose.py DISCIPLINE
     block, PROTOCOL step 2 (design-time pass) and step 5 (evaluation pass + the
     Implication line now names the generalizability tier claimed), loop/README.md table,
-    RESUME.md map. Lands in PR #23 with the rest of the steering stack.
+    RESUME.md map. Lands in PR #24 (the steering stack itself merged in PR #23).
 
 (empty — drop ideas above this line's section freely)
 
