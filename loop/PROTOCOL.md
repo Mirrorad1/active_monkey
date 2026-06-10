@@ -70,11 +70,23 @@ several half-experiments. Steps:
    AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
    the same atomic commit. A log entry without committed script and output is an
    unverified claim.
-   - **Persistent-creature experiments ALSO** commit the updated
-     `creature/state/<name>/` snapshot (arrays.npz + manifest.json + biography) in the
-     same atomic commit. The entry records `age_steps` and `state_hash` before and after
-     the episode; this committed snapshot is the resume-from point for anyone replicating
-     the result.
+   - **Persistent-creature experiments (Exp 58+) advance ONE continuous spine** (`mirro`
+     by default). They do NOT re-birth or branch the spine: wrap the episode in
+     `active_loop.checkpoint.mirro_episode("Exp NN")`, which loads the committed snapshot,
+     records a checkpoint BEFORE (age + state_hash), and on clean exit saves the spine
+     and records a checkpoint AFTER. The entry quotes that before/after block
+     (`ep.report()`). Commit the updated `creature/state/mirro/` snapshot (arrays.npz +
+     manifest.json + biography) in the same atomic commit — it is the resume-from point.
+     **Forks stay the scientific control, but only as SIDE-controls:** branch them with
+     `ep.fork_control(name)` from the spine's pre-experiment state and save them under a
+     non-spine path; a fork never replaces the spine. A branch raised long enough is a peer
+     species — promote it to its own committed line (`twin.save(creature/state/<name>/)`);
+     mirro is then the **root ancestor** of a clade (the long arc:
+     `loop/directions/social-emergence.md`). The continuity guard
+     (`tests/test_creature_continuity.py`) fails CI on a SILENT reset of an established line —
+     so the life is never-reset by default. The escape hatch (anti-lock-in): recover from a
+     bad epoch by `git checkout` of a prior committed snapshot, and an intentional restart is
+     allowed only when logged as an explicit `rebirth` biography event.
 
    **Site update (mandatory):** the same commit also updates `experiments-data.js` with
    the new curated entry — kind graded honestly (breakthrough / positive / wall /

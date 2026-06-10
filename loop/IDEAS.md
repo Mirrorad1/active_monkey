@@ -16,6 +16,20 @@ The loop marks items it has consumed by indenting a response under them:
   fix: autosync excludes the loop's working set, or PROTOCOL documents the split as the norm.
   GitHub-issue creation was permission-denied from the loop, so logging here instead.
 
+- [from human, 2026-06-10] The persistent creature is a **clade**, not a single sacred spine.
+  mirro is the **root ancestor / trunk** that keeps accumulating; a "different history" is a
+  **branch** (its own committed line under `creature/state/<name>/`), and a branch lived long
+  enough in a different world is functionally a **different species**. A branch can be
+  promoted to a peer spine. The committed snapshot of an ancestor is **frozen in git** and
+  revisitable (`git checkout` = re-fork the exact same brain) — so we can return to a common
+  ancestor on purpose. The arc: freeze a common ancestor → let descendants speciate → reunite
+  them through an **M4-style channel** (`docs/specs/m4-affective-dyad.md`: intent inferred
+  from utterances, valence grounded in free energy) → look for **social emergence**
+  (coordination, social transmission of value, dialects). Honesty: creatures are currently
+  solipsistic (no representation of another agent), so interaction needs new *provided*
+  substrate; emergent *grammar* between them stays the documented ceiling (`open_problem.html`).
+  → captured as a direction card: `loop/directions/social-emergence.md`.
+
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions
   correct (Exp 58 test 1). The forgetting counterfactual failed, but diagnostically on my
