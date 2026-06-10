@@ -1,0 +1,93 @@
+Exp 66 — young-receiver test: does value-mass inertia explain Exp 65's negative?
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 favorite=2 value_shares=[0.3623 0.2737 0.3641]
+
+--- PHASE 1: EMITTER SPECIATION ---
+emitter before speciation: favorite=2 value_shares=[0.3623 0.2737 0.3641]
+emitter after  speciation: favorite=1 value_shares=[0.3163 0.3659 0.3179]
+
+PHASE-1 REPRODUCTION OK: emitter favorite == 1
+
+Cue color (emitter favorite): 1
+
+--- PHASE 2: JUNIOR SETTLING + DYAD RUNS ---
+
+seed   events  mean_gate_w  jr_mass  share_sev[cue]  share_on[cue]  divergence   ratio  fav_sev  fav_on  em_fav_end  modal_cue
+------------------------------------------------------------------------------------------------------------------------
+
+  [seed=0] junior post-settle: favorite=2 shares=[0.2734 0.2816 0.4451] mass=595.7 map_acc=1.000
+   0      357       0.9045    595.7          0.2881         0.3722      0.0841    5.25        2       2           1          1
+
+  [seed=1] junior post-settle: favorite=2 shares=[0.3051 0.3067 0.3881] mass=622.5 map_acc=1.000
+   1      350       0.9333    622.5          0.3103         0.3904      0.0801    5.31        2       1           1          1
+
+  [seed=2] junior post-settle: favorite=0 shares=[0.3649 0.3232 0.312 ] mass=647.6 map_acc=1.000
+   2      278       0.9518    647.6          0.3132         0.3777      0.0644    5.24        2       1           1          1
+
+  [seed=3] junior post-settle: favorite=1 shares=[0.3389 0.3634 0.2977] mass=616.5 map_acc=1.000
+  [seed=3] G1 INVALID — emitter favorite (1) == junior pre-dyad favorite (1); seed excluded
+
+  [seed=4] junior post-settle: favorite=2 shares=[0.3202 0.2967 0.3831] mass=647.8 map_acc=1.000
+   4      306       0.9572    647.8          0.3013         0.3730      0.0717    5.39        2       1           1          1
+
+--- VALIDITY GATE G1 ---
+  seed=0: VALID (emitter_fav=1 != junior_pre_fav=2)
+  seed=1: VALID (emitter_fav=1 != junior_pre_fav=2)
+  seed=2: VALID (emitter_fav=1 != junior_pre_fav=0)
+  seed=3: INVALID [emitter_fav==junior_fav==1]
+  seed=4: VALID (emitter_fav=1 != junior_pre_fav=2)
+  G1 PASS: 4 valid seeds >= 4 required
+
+--- VALIDITY GATE G2 ---
+  seed=0: events=357  [OK]
+  seed=1: events=350  [OK]
+  seed=2: events=278  [OK]
+  seed=4: events=306  [OK]
+  G2 PASS: all valid seeds >= 50 events
+
+--- PROPERTY CHECKS ---
+
+P1 per-seed ratios (divergence / adult_div):
+  seed=0: divergence=0.0841  adult_div=0.0160  ratio=5.25x
+  seed=1: divergence=0.0801  adult_div=0.0151  ratio=5.31x
+  seed=2: divergence=0.0644  adult_div=0.0123  ratio=5.24x
+  seed=4: divergence=0.0717  adult_div=0.0133  ratio=5.39x
+
+P3 per-seed favorite pairs (fav_sev, fav_on):
+  seed=0: fav_sev=2  fav_on=2  cue_color=1
+  seed=1: fav_sev=2  fav_on=1  cue_color=1
+  seed=2: fav_sev=2  fav_on=1  cue_color=1
+  seed=4: fav_sev=2  fav_on=1  cue_color=1
+
+PASS  P1-inertia-ratio>=3x-in-4/valid: passes=4/4 (need >=4)  [s0:div=0.0841,ratio=5.25(ok); s1:div=0.0801,ratio=5.31(ok); s2:div=0.0644,ratio=5.24(ok); s4:div=0.0717,ratio=5.39(ok)]
+PASS  P2-sign-divergence>0-in-all-valid: passes=4/4  [s0:0.0841(ok); s1:0.0801(ok); s2:0.0644(ok); s4:0.0717(ok)]
+PASS  P3-installation-fav_on==cue-AND-fav_sev!=cue-in-3/valid: passes=3/4 (need >=3)  [s0:fav_on=2,fav_sev=2(FAIL); s1:fav_on=1,fav_sev=2(ok); s2:fav_on=1,fav_sev=2(ok); s4:fav_on=1,fav_sev=2(ok)]
+
+--- FALSIFIER MAP ---
+ALL PASS: inertia law confirmed AND favorite installed
+  No falsifiers fired.
+
+--- DIAGNOSTICS: JUNIOR POST-SETTLE PROFILES ---
+
+seed  jr_fav_pre  jr_mass  map_acc                   jr_shares_pre
+----------------------------------------------------------------------
+   0           2    595.7    (see pre-dyad printout above)
+   1           2    622.5    (see pre-dyad printout above)
+   2           0    647.6    (see pre-dyad printout above)
+   3   (INVALID — excluded)
+   4           2    647.8    (see pre-dyad printout above)
+
+--- CUE COLOR DISTRIBUTION PER VALID SEED ---
+  seed=0: color1:357(100.0%)  (total=357)
+  seed=1: color1:350(100.0%)  (total=350)
+  seed=2: color1:278(100.0%)  (total=278)
+  seed=4: color1:306(100.0%)  (total=306)
+
+--- VALUE SHARES ALL COLORS (end of dyad, valid seeds) ---
+  seed  sev[0]  on[0]  sev[1]  on[1]  sev[2]  on[2]
+   0   0.2835  0.2500  0.2881  0.3722  0.4284  0.3778
+   1   0.2867  0.2534  0.3103  0.3904  0.4030  0.3562
+   2   0.3234  0.2931  0.3132  0.3777  0.3633  0.3293
+   4   0.3202  0.2873  0.3013  0.3730  0.3785  0.3397
+
+EXP66: PASS

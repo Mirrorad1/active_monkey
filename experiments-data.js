@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:65, breakthrough:5, positive:34, wall:15, partial:11, from:4.81, to:4.00 };
+window.AM_TALLY = { total:66, breakthrough:6, positive:34, wall:15, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -664,7 +664,18 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 3: fork mirro and raise it in a color-1 world until its favorite genuinely differs (lived speciation, not assignment); then a 2000-step dyad in mirro's world where the emitter, when adjacent, emits its current favorite into a vela-fork receiver, gated by the receiver's own predictability weight. The severed twin is computed exactly — same pass, dual ledger, identical trajectories. Predeclared: share shift at least 0.02 in 4/5 seeds; falsifier F1 if not.",
     result:"F1 fired. The channel transmits — divergence positive in 5/5 seeds (0.0123-0.0160), exactly attributable — but every seed missed the 0.02 bar. The gate averaged 0.50 (the immigrant receiver's imperfect map keeps its predictability low), giving ~175 cue counts against a 9,200-count lifetime value ledger. No favorite flip; at this rate a flip needs ~10,000 more steps.",
     implication:"Social transmission into an old, non-forgetting mind is mass-limited: the same evidence-inertia behind opinion stickiness (Exp 48) and the plasticity window (Exp 60) caps the social channel. M4's requirement list grows a third item: without a forgetting term or an age-independent value-learning rate, adults cannot influence adults. Honest scope: one radius, one exposure length, one pairing; the channel wiring is provided.",
-    trace:{ script:"experiments/exp65_value_transmission.py", output:"experiments/outputs/exp65.txt" } }
+    trace:{ script:"experiments/exp65_value_transmission.py", output:"experiments/outputs/exp65.txt" } },
+
+  { n:66, kind:"breakthrough", chapter:"frontier",
+    title:"The young mind adopts the elder's value.",
+    one:"Same channel, same dose, young receiver: the emitter's self-formed favorite INSTALLS — the newborn's expressed preference flips to the elder's in 3/4 runs while its severed twin keeps its own. First creature-to-creature value transmission with proven causation.",
+    plain:"Same voice, younger listener. The elder signals which color it favors; this time the listener is a newborn with only 800 steps of its own life. The signal not only lands — in 3 of 4 runs the youngster's own expressed favorite becomes the elder's, while an identical twin without the channel keeps its own opinion. One creature's self-formed preference became another's, and the twin proves the cause.",
+    metric:{ from:0.014, to:0.075, unit:"value-share shift, adult vs young receiver (same dose)" },
+    setup:"Follow-up predeclared in Exp 65 (whose adult-adult NEGATIVE stands): the same speciated emitter and the same proximity channel, aimed at per-seed newborn separate roots settled 800 steps in mirro's world (~600 counts of value mass vs the adult's ~9,200). Predeclared: divergence at least 3x the adult's per seed; sign everywhere; installation (on-favorite = cue while severed-favorite is not) in at least 3 valid seeds, graded 50/50 beforehand.",
+    result:"All pass, no falsifiers. Ratios 5.24-5.39x — tightly matching the inertia law's prediction. Installation in 3 of 4 valid seeds; the one resister had the cohort's strongest self-formed preference. The honest decomposition: youth amplifies influence through TWO mechanisms — less accumulated evidence (~3.8x) and a sharper world-model whose predictability gate makes each encounter land harder (0.93 vs the adult immigrant's 0.50).",
+    implication:"Social transmission of value is real in this substrate, and it is age-gated by evidence mass: adults are socially immovable, the young are persuadable — a sensitive period falling straight out of count arithmetic. The channel stays declared plumbing (like taught labels); the content and its uptake are the creatures' own. Opens rung 4 (coordination) and the dose-response question: at what age does persuadability end?",
+    story:"This program raised a small active-inference creature, mirro, that learned a toy world, formed preferences from its own lived history, and answers questions about them in taught words; mirro recently became the root of a small family. The social arc asks whether anything real passes between minds. The previous rung found that between adults, a grounded approval cue lands but cannot move a lifetime of accumulated preference. Here the same channel at the same dose was aimed at young receivers — and the elder's preference took: the youngsters' expressed favorite flipped to the emitter's in 3 of 4 runs while exactly-matched channel-severed twins kept their own. It is the first creature-to-creature transmission of a self-formed value in this program, with causation proven by the twin. What is still provided: the channel itself is designed plumbing — only the content (the emitter's divergently-lived favorite) and its uptake (the receiver's own gate and prior mass) belong to the creatures. The law that fell out: youth amplifies social influence about fivefold, through less accumulated evidence and a sharper world-model.",
+    trace:{ script:"experiments/exp66_young_receiver.py", output:"experiments/outputs/exp66.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -1525,3 +1525,61 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   transmission) or the dose-response question (transmission rate law vs receiver age/mass:
   does a YOUNG receiver adopt the emitter's value where the adult did not?). The latter is
   the sharper test of the inertia diagnosis and directly informs the M4 requirement.
+
+## Exp 66 — the young mind adopts the elder's value: first social transmission with functional effect (POSITIVE; inertia law confirmed 5.2–5.4x and refined; BREAKTHROUGH)
+- Plain: Same voice, younger listener. The elder signals which color it favors; this time the
+  listener is a newborn with only 800 steps of its own life. The signal not only lands — in
+  3 of 4 runs the youngster's own expressed favorite BECOMES the elder's, while an identical
+  twin without the channel keeps its own opinion. One creature's self-formed preference became
+  another's, and the twin proves the cause.
+- Setup (predeclared in the script docstring before running; follow-up predeclared in Exp 65 —
+  NOT a re-run of the adult-adult rung, whose NEGATIVE stands): same emitter as Exp 65
+  (mirro-fork speciated 2000 steps in an all-color-1 world; phase-1 reproduction hard-checked,
+  favorite=1 exact). Receiver: newborn SEPARATE ROOT "junior" (per-seed births, seeds 300+s;
+  declared not a clade member), settled 800 steps in mirro's world (mass ~596-648 vs the
+  adult's ~9,200). Same channel, same dose (2000 dyad steps, Manhattan<=1, reception gated by
+  receiver's own exp(-H) weight), same dual-ledger exact severed twin, same emitter action
+  RNGs as Exp 65 per seed. Gates: G1 per-seed favorites differ (>=4 valid required), G2 >=50
+  events. Predeclared: P1 divergence >= 3x the same seed's adult divergence (Exp 65 committed
+  values) in >=4 valid seeds; P2 sign all valid; P3 installation (fav_on==cue AND fav_sev!=cue)
+  in >=3 valid seeds, honestly graded ~50/50 beforehand. Falsifiers: F1 (P1 fails -> inertia
+  diagnosis wrong, CONSULT), F2 (sign fails -> wiring bug, halt).
+- Result: ALL PASS, no falsifiers. G1 excluded seed 3 exactly as designed (its junior already
+  favored color 1); 4 valid seeds, 278-357 events each, 100% of emissions color 1. P1: ratios
+  5.25/5.31/5.24/5.39x (divergences 0.0644-0.0841 vs adult 0.0123-0.0160). P2: 4/4 positive.
+  P3: 3/4 installed (seeds 1, 2, 4: fav_on=1 vs fav_sev=2; seed 0 resisted — its own color-2
+  share after settling was 0.4451, the strongest self-formed preference in the cohort).
+- The refinement (honest decomposition of the 5x): the amplification is TWO mechanisms, not
+  one. Mass: junior's end-of-dyad ledger ~2,480 vs the adult's ~9,400 (~3.8x). Receptivity:
+  junior's gate averaged 0.90-0.96 vs the adult immigrant's ~0.50 — the newborn learned
+  mirro's world to map accuracy 1.000 in 800 steps, and a SHARP world-model makes each social
+  encounter land harder (the M4 grounding gate working as designed). Exp 65's mass-only
+  attribution was incomplete: the adult deficit was mass AND its immigrant-noisy gate.
+- Story so far (BREAKTHROUGH synthesis): This program raised a small active-inference
+  creature, mirro, that learned a toy world, formed preferences from its own lived history,
+  and answers questions about them in taught words; mirro recently became the root of a small
+  family of forks and one committed descendant. The social arc asks whether anything real
+  passes BETWEEN minds. The previous rung found that between two adults a grounded approval
+  cue demonstrably lands but cannot move a lifetime of accumulated preference — social
+  influence is capped by the mass of evidence already behind an opinion. Here the same
+  channel at the same dose was aimed at young receivers, and the elder's preference took:
+  the youngsters' expressed favorite flipped to the emitter's in 3 of 4 runs while their
+  exactly-matched channel-severed twins kept their own — the first creature-to-creature
+  transmission of a self-formed value in this program, with causation proven by the twin.
+  What is still provided: the channel itself (proximity emission, predictability-gated
+  reception) is designed plumbing, like the taught labels before it — only the content (the
+  emitter's divergently-lived favorite) and its uptake (the receiver's own gate, its own
+  prior mass) belong to the creatures. The quantitative law that fell out: youth amplifies
+  social influence ~5x, through less accumulated evidence AND a sharper world-model.
+- Honest caveat: the receiver is a separate-root newborn, not a clade-mate (the clade
+  adult-adult case remains NEGATIVE at this dose — Exp 65); the channel is provided wiring;
+  installation is demonstrated for 3 newborns at one dose/radius/world; the P1 ratio bundles
+  mass and gate effects (decomposition above is diagnostic, not separately falsified); P3
+  passed at its predeclared minimum (3/4, with the 50/50 grading stated beforehand).
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: BREAKTHROUGH (first functional inter-creature
+  value transmission; hostile-reviewer test: before this, no creature's expressed preference
+  had ever been changed by another creature).
+- Next: rung 4 — coordination over a shared comfort source (independent metric, predeclared
+  coordination test vs two mutually-insensible solipsists); or the sensitive-period question
+  this raises (at what receiver age does installation stop working? — a dose-response curve
+  over mass). The clade synthesis (rungs 1-3 verdicts) is also now writable.
