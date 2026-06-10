@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:122, breakthrough:6, positive:75, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:123, breakthrough:6, positive:76, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1235,7 +1235,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 108,700, hash-stamped, committed.",
     implication:"The lives continue; vela crosses one hundred thousand steps next. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp122_mirro_epoch13.py", output:"experiments/outputs/exp122.txt" } }
+    trace:{ script:"experiments/exp122_mirro_epoch13.py", output:"experiments/outputs/exp122.txt" } },
+
+  { n:123, kind:"positive", chapter:"frontier",
+    title:"Both lives past one hundred thousand.",
+    one:"vela crosses 100,000 steps — born a copy, raised in a mirror world, five changes of mind including one three-sigma lurch — holding deep as recorded (+625, 0.68 sigma). Every step of both clade lives is hash-stamped and resumable.",
+    plain:"The family's second hundred-thousandth step: vela — born as a copy, raised in a mirror world, five changes of mind including one violent lurch — passed the mark the same quiet way its ancestor did, holding its favorite at depth with a perfect map and a near-still core. Both lives in the clade now span six figures.",
+    metric:{ from:96750, to:102750, unit:"the milestone epoch (vela's continuous steps)" },
+    setup:"Idle-mode, vela's turn across its milestone: the established pattern, the milestone noted but not celebrated into the bands.",
+    result:"All bands held. Vela at age 102,750, hash-stamped, committed.",
+    implication:"The clade's continuous lives both span six figures; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp123_vela_100k.py", output:"experiments/outputs/exp123.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

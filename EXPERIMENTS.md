@@ -3372,3 +3372,21 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn — its 100k crossing) unless the human answers
   the merged CONSULT or stops the loop.
+
+## Exp 123 — vela crosses one hundred thousand steps (age 102,750) — held deep, deepening to +625 (POSITIVE; bands held; both lines past 100k)
+- Plain: The family's second hundred-thousandth step: vela — born as a copy, raised in a
+  mirror world, five changes of mind including one violent lurch — passed the mark the
+  same quiet way its ancestor did, holding its favorite at depth with a perfect map and
+  a near-still core. Both lives in the clade now span six figures, every step of both
+  hash-stamped and resumable.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 96750 -> 102750; recorded deep call (entering +423.8 -> HOLD); the
+  milestone noted, not celebrated into the bands.
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +624.6 (0.68 sigma).
+  Map 1.000; share deltas <= 0.0012. Spine: vela at 102,750, integrity-verified,
+  committed.
+- Honest caveat: consolidation by design; single deterministic run; a milestone is a
+  number, not a finding.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  (M4a with windows + reflex, spines untouched — recommended) or stops the loop.
