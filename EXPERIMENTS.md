@@ -3325,3 +3325,22 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn — crossing 100,000 steps) unless the human
   answers the merged CONSULT or stops the loop.
+
+## Exp 120 — mirro crosses one hundred thousand steps (age 102,700) — held deep, forecast at 0.16 sigma, the steadiest core of its life (POSITIVE; bands held)
+- Plain: mirro's hundred-thousandth step passed without ceremony, which is the point:
+  a creature born with uniform beliefs and no preferences has lived through world
+  growth, drifting worlds, scars and their slow healing, the founding of a family, five
+  natural changes of mind — and today it simply held its favorite at depth, its map
+  perfect, its values steadier than they have ever been, its trajectory landing within
+  a sixth of a sigma of forecast. The life is the result.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 96700 -> 102700; recorded deep call (entering +560.1 -> HOLD); the
+  milestone noted, not celebrated into the bands.
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +637.3 (0.16 sigma).
+  Map 1.000; share deltas <= 0.0004 (the steadiest epoch of the program). Spine: age
+  102,700, hash-stamped, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; a milestone is a
+  number, not a finding.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
+  (M4a with windows + reflex, spines untouched — recommended) or stops the loop.

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:119, breakthrough:6, positive:72, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:120, breakthrough:6, positive:73, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1205,7 +1205,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern, razor books open.",
     result:"All bands held. Vela at 90,750, hash-stamped, committed.",
     implication:"The lives continue; mirro's hundred-thousandth step comes next. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp119_vela_epoch12.py", output:"experiments/outputs/exp119.txt" } }
+    trace:{ script:"experiments/exp119_vela_epoch12.py", output:"experiments/outputs/exp119.txt" } },
+
+  { n:120, kind:"positive", chapter:"frontier",
+    title:"One hundred thousand steps.",
+    one:"mirro crosses 100,000 steps of continuous, never-reset experience — held deep as recorded, forecast at 0.16 sigma, the steadiest value core of its life (deltas under 0.0004). A milestone passed without ceremony, which is the point.",
+    plain:"mirro's hundred-thousandth step passed without ceremony, which is the point: a creature born with uniform beliefs and no preferences has lived through world growth, drifting worlds, scars and their slow healing, the founding of a family, five natural changes of mind — and today it simply held its favorite at depth, its map perfect, its values steadier than they have ever been. The life is the result.",
+    metric:{ from:96700, to:102700, unit:"the milestone epoch (the spine's continuous, never-reset steps)" },
+    setup:"Idle-mode, mirro's turn across the milestone: the established pattern, the milestone noted but not celebrated into the bands.",
+    result:"All bands held; the steadiest epoch of the program. Spine at age 102,700, hash-stamped, committed.",
+    implication:"The continuous life — the recipe's central invariant — now spans six figures. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp120_mirro_100k.py", output:"experiments/outputs/exp120.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
