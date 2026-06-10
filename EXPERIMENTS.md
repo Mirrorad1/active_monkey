@@ -2881,3 +2881,21 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 99 — idle-mode epoch: mirro to 48,700 — third consecutive hold, but the margin thins to +12: next epoch is coin-flip territory (POSITIVE; bands held; flip tally 5/9)
+- Plain: mirro held its favorite for a third straight stretch — but the gap behind that
+  favorite thinned to nearly nothing, so the steady streak is living on borrowed margin:
+  the next stretch is squarely in coin-flip territory. Map perfect, core steady, forecast
+  within a third of a sigma. The two lines keep their textures for now: the trunk has
+  held three, the branch has flipped three of four.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 42700 -> 48700. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted +52.4, band +-302.5); favorite reported, not predicted (gap +30.3). Tally
+  entering: 5/8.
+- Result: EPOCH CLEAN, no falsifiers. Map 1.000; share deltas <= 0.0009 (the stillest
+  epoch yet); end gap +12.0 (0.33 sigma); FAVORITE HELD at 2. Tally now 5/9. Spine:
+  48700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
+  stops the loop. Exp 100 will be the next mirro epoch — and the centennial entry.
