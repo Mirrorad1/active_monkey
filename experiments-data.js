@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:112, breakthrough:6, positive:66, wall:18, partial:22, from:4.81, to:4.00 };
+window.AM_TALLY = { total:113, breakthrough:6, positive:67, wall:18, partial:22, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1135,7 +1135,17 @@ window.AM_EXPERIMENTS = [
     setup:"The falsifier-mandated diagnosis: the pre-lurch state git-recovered, twenty counterfactual epochs, with a three-branch sigma prediction, the lived-draw ordinariness test, the bias test, and the flip fraction recorded for the registered evaluation.",
     result:"Borderline sigma branch as predeclared (171, inside the prediction band); lived draw ordinary at 1.89 sigma; law unbiased; no falsifiers. The registered test's deep criterion sits at half the measured rate, inside its wide n=20 confidence interval — judged at ~Exp 117 as registered.",
     implication:"State-dependent error bars join the noise model; the idle bands stay as registered with tails read against this entry; and the program demonstrates the discipline's answer to a tempting sin — measuring that your registered number looks wrong and refusing to quietly fix it. Idle-mode resumes.",
-    trace:{ script:"experiments/exp112_deep_sigma.py", output:"experiments/outputs/exp112.txt" } }
+    trace:{ script:"experiments/exp112_deep_sigma.py", output:"experiments/outputs/exp112.txt" } },
+
+  { n:113, kind:"positive", chapter:"frontier",
+    title:"The stillest stretch of either life.",
+    one:"Registered deep call #5: HELD as called (4/5 with the tolerance spent); mirro's commitment reaches +534 and its value core moved by less than two parts in ten thousand — the most settled mind of the program.",
+    plain:"mirro held again, deeper still — its conviction now stands at over five hundred, the value core moved by less than two parts in ten thousand, and the registered depth test is four for five with the one tolerated miss already spent. The trunk is, by every measure we keep, the most settled mind of the program.",
+    metric:{ from:497.5, to:533.7, unit:"the commitment deepens (held as called; 0.37 sigma)" },
+    setup:"Idle-mode, mirro's registered deep call, with the forecast band carried as registered and deep tails read against Exp 112's state-dependent sigma finding.",
+    result:"All bands held; the deep bin now has its five entries — the razor bin has none since registration, and the evaluation will say so honestly if the lines stay deep. Spine at 84,700, hash-stamped, committed.",
+    implication:"The registered evaluation approaches with its sample shape visible in advance. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp113_mirro_epoch10.py", output:"experiments/outputs/exp113.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

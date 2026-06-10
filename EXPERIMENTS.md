@@ -3193,3 +3193,24 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   normalized; the deep flip rate measured). Self-grade: n/a (MIXED).
 - Next: idle-mode resumes (mirro's turn, +497 deep -> registered HOLD call) unless the
   human answers the merged CONSULT or stops the loop.
+
+## Exp 113 — idle-mode epoch: mirro to 84,700 — registered deep call #5: HELD as called; the commitment reaches +534 (POSITIVE; bands held; registered record 4/5)
+- Plain: mirro held again, deeper still — its conviction now stands at over five hundred,
+  the value core moved by less than two parts in ten thousand (the stillest stretch of
+  either life), and the registered depth test is four for five with the one tolerated
+  miss already spent. The trunk is, by every measure we keep, the most settled mind of
+  the program.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 78700 -> 84700; registered deep call (entering +497.5 -> HOLD); P3
+  carries the registered shallow-state band with deep tails read against Exp 112. Tally
+  and registered record entering: 3/4 deep.
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 4/5 deep).
+  End gap +533.7 (0.37 sigma). Map 1.000; share deltas <= 0.0002. Spine: 84700,
+  integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the registered
+  evaluation (~Exp 117) needs >= 5 deep entries (have 5) and >= 4 razor entries (have 0
+  since registration) — the razor side will need both lines to relax first, and the
+  evaluation will declare insufficient-razor-sample honestly if they have not.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn, +193 unbinned-to-deep boundary) unless the
+  human answers the merged CONSULT or stops the loop.
