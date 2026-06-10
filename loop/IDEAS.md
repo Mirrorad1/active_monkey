@@ -52,6 +52,13 @@ The loop marks items it has consumed by indenting a response under them:
     NOT apply through the automated loop — M4a will not be auto-started. Until a human
     resumes/redirects, the loop confines itself to non-direction work: harness/site
     maintenance, spine life-continuation, and consolidation-grade experiments.
+  → [loop, 2026-06-10] Queue exhausted after Exp 75-84 (spine epochs, accrual-law arc,
+    noise model). Per the social-emergence card's explicit stop-condition clause ("open
+    that substrate as a new direction or stop"), the loop opened the SANCTIONED research
+    direction loop/directions/graded-uncertainty.md (the six-times-motivated forgetting
+    substrate) starting Exp 85. This is loop-B experimentation under the standing
+    "continue experimenting" instruction — NOT the M4a build, which remains reserved for
+    this CONSULT's explicit human answer.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions

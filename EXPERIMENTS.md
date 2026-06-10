@@ -2410,3 +2410,42 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the arc is closed in full. The queue is EMPTY — no further non-direction work
   meets the bar. Standing decision: the Exp 74 CONSULT (M4a recommended). The loop should
   idle or be stopped until the human chooses.
+
+## Exp 85 — graded-uncertainty rung 1: count decay is costless in a static world (POSITIVE; new direction opened per the social-emergence card's closing clause; rung 2 unlocked)
+- Plain: A new chapter, on the single most-demanded fix this program keeps discovering it
+  needs: the ability to forget. Step one is proving forgetting is safe where there is
+  nothing to forget — a creature whose memory gently fades learned a stable world exactly
+  as well as one that keeps everything (perfect maps in both), while carrying 9x less
+  accumulated weight, precisely the amount the arithmetic predicts. Forgetting costs
+  nothing when the world stands still; whether it heals what never-forgetting broke is
+  the next question.
+- Setup (predeclared in the script docstring before running; direction opened in
+  loop/directions/graded-uncertainty.md under the social-emergence card's explicit
+  "open that substrate as a new direction or stop" clause — the M4a build stays reserved
+  for the Exp 74 CONSULT): mechanism M-A = per-step pA *= 0.997 (floor 0.01; Exp 60's
+  in-window lambda), in the experiment stepper only — the creature class untouched, the
+  spines untouched. Fresh births in mirro's (static) world layout, 8 seeds (600-607,
+  the Exp 79 effect-size rule), 3000 steps, matched trajectories (decay consumes no rng).
+  P1 map parity |diff| <= 0.08 in >=6/8 AND mean lambda-arm accuracy >= 0.85; P2 both
+  arms localize <= 0.1 bits in >=6/8; P3 lambda-arm total pA mass in [250, 420]
+  (equilibrium 1/(1-lambda) = 333). F1 = competence cost -> calibration rung first;
+  F2 = mass off -> arithmetic/implementation wrong.
+- Result: PASS 8/8 on all three. Both arms map accuracy 1.0000 every seed (|diff| =
+  0.0000); localization -0.0000 bits everywhere; lambda-arm mass 333.79 vs theory 333
+  (0.2% — the implementation is exactly the arithmetic). Control mass 3007.9 — the
+  decaying creature holds 9x less evidence weight at identical competence.
+- Implication: rung 1's gate is clean — in-window count decay sacrifices nothing in
+  stationary worlds while capping accumulated mass at a fixed equilibrium. Everything
+  the program attributes to unbounded mass (scars, freezing, social immovability,
+  saturating drift) now has a mechanism whose null cost is established; rung 2 (implant
+  a drift-style scar, predeclare its decay half-life, verify the control stays scarred)
+  tests the healing claim directly.
+- Honest caveat: static world, fresh creatures, one lambda, one floor, 3000 steps —
+  no-harm is established exactly there; aliased-block localization under decay (soft
+  counts spread thinner at equilibrium) showed no cost here but mirro's world has only
+  a 3x3 block; deeper aliasing untested. The mechanism is provided, like every anchor.
+- Verdict: POSITIVE / CONSOLIDATION (a designed gate passing as designed; the direction
+  opening is the news). Self-grade: POSITIVE-SINGLE.
+- Next: rung 2 — scar healing with a predeclared half-life (the arithmetic: a scar of
+  mass m decays to m*lambda^t; half-life ln(2)/ln(1/0.997) ~ 231 steps — sharp,
+  falsifiable numbers), control must stay scarred per Exp 78.

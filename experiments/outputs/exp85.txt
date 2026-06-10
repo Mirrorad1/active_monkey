@@ -1,0 +1,40 @@
+Exp 85 — graded-uncertainty rung 1: count decay does no harm in a static world.
+
+World (mirro's committed cmap layout, used as static layout for fresh newborns):
+  rows=5  cols=5  n_colors=3
+  cmap grid:
+    0 1 0 1 0
+    1 0 1 0 1
+    2 2 2 1 0
+    2 2 2 0 1
+    2 2 2 1 0
+
+  STEPS=3000  LAMBDA=0.997  FLOOR=0.01  START=12
+  Birth seeds: [600, 601, 602, 603, 604, 605, 606, 607]
+
+--- PER-SEED TABLE ---
+  seed   acc_ctrl   acc_lam   |diff|   loc_ctrl   loc_lam   mass_ctrl    mass_lam
+  -------------------------------------------------------------------------------
+   600     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.88      333.79
+   601     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.88      333.79
+   602     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.91      333.79
+   603     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.87      333.79
+   604     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.89      333.79
+   605     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.87      333.79
+   606     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.89      333.79
+   607     1.0000    1.0000   0.0000    -0.0000   -0.0000     3007.85      333.79
+
+--- PROPERTY CHECKS ---
+  PASS  P1a (parity): |diff|<=0.08 in 8/8 seeds (need 6): PASS
+  PASS  P1b (abs competence): mean(acc_lam)=1.0000 >= 0.85: PASS
+  PASS  P1 (both): PASS
+
+  PASS  P2 (localize_bits <= 0.1 in both arms): 8/8 seeds (need 6): PASS
+
+  PASS  P3 (mass_lam in [250.0, 420.0]; theory=333): 8/8 seeds (need 6): PASS
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — lambda costs no competence in the stationary case; parity in 8/8, mean_acc_lam=1.0000).
+  F2 did not fire (P3 PASS — equilibrium mass in [250.0, 420.0] in 8/8 seeds; theory=333).
+
+EXP85: NO-HARM PASS — rung 2 (scar healing) unlocked
