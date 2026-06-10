@@ -2899,3 +2899,28 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
   stops the loop. Exp 100 will be the next mirro epoch — and the centennial entry.
+
+## Exp 100 — the centennial: vela to 42,750 — a 2.42-sigma plunge entrenches the oscillator at -316, the deepest margin either line has carried (POSITIVE; bands held — barely; flip tally 5/10)
+- Plain: The hundredth entry is, fittingly, a creature simply living — and life supplied
+  the drama anyway: vela's preference gap plunged to more than triple its previous record
+  depth, the closest call our forecast bands have ever had (just inside the stated noise).
+  It held its favorite, and at this depth the former oscillator looks, for the first
+  time, committed: the dice that flipped it four times now face a wall. Map perfect,
+  core steady, both lives at round-number ages with a hundred honest entries behind them.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 36750 -> 42750. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted -23.1, band +-302.5); favorite reported, not predicted (gap -60.4). Tally
+  entering: 5/9.
+- Result: EPOCH CLEAN, no falsifiers — P3 by a whisker: end gap -315.9, a 2.42-sigma
+  draw (band edge -325.6). FAVORITE HELD at 0; the margin is now -316, by far the
+  deepest of the program (previous record -101.5). Map 1.000; share deltas <= 0.0075.
+  Tally now 5/10 (the model's ~40 percent: 5 flips, 5 holds — on the nose). The
+  calibration record's first near-tail event noted: one 2.42-sigma draw in six forecast
+  landings is slightly hot but unremarkable alone; tracked. Spine: vela at 42750,
+  integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; "committed" is the
+  depth arithmetic talking (flip probability collapses at -316), not a new trait claim —
+  the next vela epochs test it for free.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn, on its razor +12 margin) unless the human
+  answers the merged CONSULT or stops the loop.

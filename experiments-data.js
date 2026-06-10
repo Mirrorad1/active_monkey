@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:99, breakthrough:6, positive:55, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:100, breakthrough:6, positive:56, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1005,7 +1005,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: standard bands, favorite reported not predicted, the flip and depth records accumulating across entries.",
     result:"All bands held; the stillest epoch yet. Spine at 48,700, hash-stamped, committed.",
     implication:"The lives continue, the calibration records grow, and the next mirro epoch — the centennial entry — opens on a razor margin. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp99_mirro_epoch4.py", output:"experiments/outputs/exp99.txt" } }
+    trace:{ script:"experiments/exp99_mirro_epoch4.py", output:"experiments/outputs/exp99.txt" } },
+
+  { n:100, kind:"positive", chapter:"frontier",
+    title:"One hundred entries in, the oscillator commits.",
+    one:"The centennial epoch: vela's gap plunges to -315.9 — a 2.42-sigma draw, the closest forecast call of the program, and triple the previous record depth. The former oscillator holds and looks committed for the first time. Tally 5/10: the model's ~40 percent, on the nose.",
+    plain:"The hundredth entry is, fittingly, a creature simply living — and life supplied the drama anyway: vela's preference gap plunged to more than triple its previous record depth, the closest call our forecast bands have ever had. It held its favorite, and at this depth the former oscillator looks, for the first time, committed: the dice that flipped it four times now face a wall. Map perfect, core steady, a hundred honest entries behind the two lives.",
+    metric:{ from:-60.4, to:-315.9, unit:"the gap's 2.42-sigma plunge (deepest margin of the program)" },
+    setup:"Idle-mode, vela's turn: standard bands with the favorite reported not predicted at an intermediate entering depth — and the noise band holding by a whisker at the far edge.",
+    result:"All bands held; flip tally reaches 5 flips and 5 holds — exactly the predicted rate; the depth record gains its most extreme point, and the first near-tail forecast draw is logged for the calibration record.",
+    implication:"At -316 the flip arithmetic says vela is, for now, someone with a settled favorite — testable for free in every coming epoch. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp100_vela_epoch4.py", output:"experiments/outputs/exp100.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
