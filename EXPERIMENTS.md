@@ -4,6 +4,14 @@ Autonomous research log toward the moonshot (an active-inference agent that lear
 language from scratch). Each entry: a teaching experiment, what was tried, the honest
 result, and what it implies. Append-only; newest at the bottom.
 
+Entry format (Exp 58+): lead with a **Plain:** line — one or two jargon-free sentences
+saying what we're *really* testing and what it means, simply, for a reader who knows none
+of the machinery — then the in-depth `Setup / Result / Implication / Caveat / Next`. The
+Plain line is the simple, broad-base reference; it mirrors the `plain` field each entry
+carries in `experiments-data.js` (the journey renders it above the technical setup).
+Earlier entries (Exp 1–57) predate this convention and are not rewritten (append-only);
+their plain-language versions live in `experiments-data.js`.
+
 Honest framing: free energy = the reward (low surprise = "understanding"); hidden states
 = meaning; intrinsic valence (prediction success) is primary, approval is grounded on top.
 

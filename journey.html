@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="am.css?v=4">
+<link rel="stylesheet" href="am.css?v=5">
 <style>
   /* ---------- header ---------- */
   .jhead{padding:42px 0 28px;}
@@ -102,6 +102,11 @@
   .dpane.r .dl .b{background:var(--accent);}
   .dpane p{margin:0;font-size:12.5px;line-height:1.55;color:var(--ink);}
   .dpane.r p{color:var(--ink);}
+  /* plain-language lead: the layman "what are we really testing", above the technical setup */
+  .dpane .plain{font-size:13px;line-height:1.5;color:var(--ink);margin:0 0 11px;}
+  .dpane .plain-tag{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+  .dpane .setup-tech{font-size:11.5px;line-height:1.5;color:var(--ink-2);}
+  .dpane .plain + .setup-tech{padding-top:11px;border-top:1px dashed var(--line);}
   .bigmetric{display:flex;align-items:baseline;gap:12px;margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);}
   .bigmetric .bm{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--accent);line-height:1;}
   .bigmetric .bmu{font-size:11px;color:var(--ink-2);letter-spacing:.04em;}
@@ -137,10 +142,10 @@
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="experiments-data.js?v=4"></script>
-<script src="am-live.js?v=4"></script>
-<script type="text/babel" src="tweaks-panel.jsx?v=4"></script>
-<script type="text/babel" src="am-shared.jsx?v=4"></script>
+<script src="experiments-data.js?v=5"></script>
+<script src="am-live.js?v=5"></script>
+<script type="text/babel" src="tweaks-panel.jsx?v=5"></script>
+<script type="text/babel" src="am-shared.jsx?v=5"></script>
 
 <script type="text/babel">
 const { useState, useEffect, useRef, useMemo } = React;
@@ -287,7 +292,7 @@ function ExpCard({e, open, onToggle}){
           <hr/>
           {e.story && <StoryPanel story={e.story}/>}
           <div className="dive">
-            <div className="dpane"><div className="dl"><span className="b"></span>The test</div><p>{e.setup}</p></div>
+            <div className="dpane"><div className="dl"><span className="b"></span>The test</div>{e.plain && <p className="plain"><span className="plain-tag">In plain terms</span>{e.plain}</p>}<p className="setup-tech">{e.setup}</p></div>
             <div className="dpane"><div className="dl"><span className="b"></span>What happened</div><p>{e.result}</p></div>
             <div className="dpane r"><div className="dl"><span className="b"></span>What it means</div><p>{e.implication}</p></div>
           </div>

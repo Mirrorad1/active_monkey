@@ -34,9 +34,17 @@ several half-experiments. Steps:
    interpreting anything.
 
 5. **Log.** Append one honest entry to `EXPERIMENTS.md` in the established format
-   (Setup / Result / Implication / Honest caveat / Next), explicitly tagged:
+   (Plain / Setup / Result / Implication / Honest caveat / Next), explicitly tagged:
    POSITIVE / NEGATIVE / MIXED, and CONSOLIDATION / NEW INSIGHT. Negative results get
    the same care as positive ones.
+
+   **Plain (mandatory, first line of every entry):** one or two jargon-free sentences —
+   what we're *really* testing and what the result means, said simply, for a reader who
+   knows none of the machinery. The in-depth Setup stays exactly as before; the Plain line
+   sits above it as the simple, broad-base reference. This is the same text that becomes
+   the entry's `plain` field in `experiments-data.js` (rendered above the technical setup
+   in the journey). No double-quotes inside it (the site stores it as a JS double-quoted
+   string).
 
    **Self-grade (mandatory for every POSITIVE entry):** declare BREAKTHROUGH or
    POSITIVE-SINGLE.
@@ -70,7 +78,8 @@ several half-experiments. Steps:
 
    **Site update (mandatory):** the same commit also updates `experiments-data.js` with
    the new curated entry — kind graded honestly (breakthrough / positive / wall /
-   partial), and a `trace` block with:
+   partial), a `plain` field (the layman's "in plain terms" from step 5, required on
+   every entry), and a `trace` block with:
    - `script`: `"experiments/expNN_<slug>.py"` — the script committed above
    - `output`: `"experiments/outputs/expNN.txt"` — the raw output committed above
    - `rerun` / `verified`: omit these fields for now; add them only after an actual
@@ -81,7 +90,8 @@ several half-experiments. Steps:
 
    The `story` field is added if BREAKTHROUGH. The fast test suite
    (`uv run --python .venv pytest -q`) enforces that the curated count equals the log
-   count and that `trace.script` / `trace.output` exist on disk; a skipped site update
+   count, that every entry carries a non-empty `plain` field, and that
+   `trace.script` / `trace.output` exist on disk; a skipped site update
    will fail CI and must be fixed before the commit lands.
 
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
