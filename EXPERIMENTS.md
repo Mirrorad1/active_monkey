@@ -3014,3 +3014,18 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 105 — idle-mode epoch: vela to 54,750 — holds and re-deepens to -140 (0.97 sigma): the breath swings back down (POSITIVE; bands held; flip tally 6/14)
+- Plain: vela held its favorite and its margin swung back down toward depth — the
+  breathing continues, this time inhaling. Nothing else moved: perfect map, the stillest
+  core deltas yet on this line, the landing within one sigma of forecast.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 48750 -> 54750. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted -22.4, band +-302.5); favorite reported (gap -84.9). Tally entering: 6/13.
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE HELD at 0; end gap -139.8 (0.97 sigma);
+  map 1.000; share deltas <= 0.0023. Tally now 6/14. Spine: vela at 54750, integrity-
+  verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn, on its -23 razor) unless the human answers
+  the merged CONSULT or stops the loop.

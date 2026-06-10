@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:104, breakthrough:6, positive:60, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:105, breakthrough:6, positive:61, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1055,7 +1055,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn at intermediate depth: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
     result:"All bands held; both lines now at shallow gaps after their deep excursions — two independent realizations of the same physics, stated as description not coupling. Spine at 60,700, hash-stamped, committed.",
     implication:"The records grow; both lines re-enter flip territory together. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp104_mirro_epoch6.py", output:"experiments/outputs/exp104.txt" } }
+    trace:{ script:"experiments/exp104_mirro_epoch6.py", output:"experiments/outputs/exp104.txt" } },
+
+  { n:105, kind:"positive", chapter:"frontier",
+    title:"The breath swings back down.",
+    one:"Idle-mode epoch to 54,750: vela holds and re-deepens to -140 (0.97 sigma, in band) — the conviction-breathing continues, this time inhaling. Stillest core deltas yet on this line. Tally 6/14.",
+    plain:"vela held its favorite and its margin swung back down toward depth — the breathing continues, this time inhaling. Nothing else moved: perfect map, the stillest core deltas yet on this line, the landing within one sigma of forecast.",
+    metric:{ from:-84.9, to:-139.8, unit:"the margin re-deepens (held; 0.97 sigma)" },
+    setup:"Idle-mode, vela's turn at shallow-intermediate depth: standard bands, favorite reported not predicted, the records accumulating.",
+    result:"All bands held. Vela at 54,750, hash-stamped, committed.",
+    implication:"The lives continue; mirro's -23 razor is next. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp105_vela_epoch6.py", output:"experiments/outputs/exp105.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
