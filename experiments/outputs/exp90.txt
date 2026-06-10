@@ -1,0 +1,80 @@
+Exp 90 — graded-uncertainty rung 4b: empty fridge meets window arithmetic
+Budget=2000  settle=800  n_seeds=8  energy_thresh=0.5  energy_decay=0.02
+food_pre=cell0  food_post=cell24  food_move_step=1000
+LAMBDAS=[0.997, 0.99, 0.98, 0.97]
+
+Half-life reference: t_half = ln2 / ln(1/lambda)
+  lambda=0.997: t_half=230.7 steps
+  lambda=0.99: t_half=69.0 steps
+  lambda=0.98: t_half=34.3 steps
+  lambda=0.97: t_half=22.8 steps
+
+lambda=0.997  seed=0  birth=1000  survived=False  death_step=1048  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=1  birth=1001  survived=False  death_step=1075  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=2  birth=1002  survived=False  death_step=1049  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=3  birth=1003  survived=False  death_step=1048  death_pos=2  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.997  seed=4  birth=1004  survived=False  death_step=1022  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=5  birth=1005  survived=False  death_step=1063  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=6  birth=1006  survived=False  death_step=1063  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+lambda=0.997  seed=7  birth=1007  survived=False  death_step=1026  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[0]
+  -> lambda=0.997: survived 0/8  post_move_deaths=8/8  died_at_old_food=7/8
+
+lambda=0.99  seed=0  birth=1100  survived=False  death_step=1050  death_pos=18  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.99  seed=1  birth=1101  survived=False  death_step=1049  death_pos=21  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.99  seed=2  birth=1102  survived=False  death_step=1029  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[]
+lambda=0.99  seed=3  birth=1103  survived=False  death_step=1049  death_pos=13  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.99  seed=4  birth=1104  survived=False  death_step=1037  death_pos=1  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.99  seed=5  birth=1105  survived=False  death_step=1050  death_pos=8  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.99  seed=6  birth=1106  survived=False  death_step=1033  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[]
+lambda=0.99  seed=7  birth=1107  survived=False  death_step=1043  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[]
+  -> lambda=0.99: survived 0/8  post_move_deaths=8/8  died_at_old_food=3/8
+
+lambda=0.98  seed=0  birth=1200  survived=True  death_step=-  death_pos=-  died_post_move=False  death_at_old_food=False  believed_food_end=[24]
+lambda=0.98  seed=1  birth=1201  survived=False  death_step=1038  death_pos=0  died_post_move=True  death_at_old_food=True  believed_food_end=[]
+lambda=0.98  seed=2  birth=1202  survived=False  death_step=1050  death_pos=10  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.98  seed=3  birth=1203  survived=False  death_step=1049  death_pos=11  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.98  seed=4  birth=1204  survived=False  death_step=1047  death_pos=1  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.98  seed=5  birth=1205  survived=False  death_step=1037  death_pos=2  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.98  seed=6  birth=1206  survived=False  death_step=1029  death_pos=15  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.98  seed=7  birth=1207  survived=False  death_step=1032  death_pos=15  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+  -> lambda=0.98: survived 1/8  post_move_deaths=7/8  died_at_old_food=1/8
+
+lambda=0.97  seed=0  birth=1300  survived=False  death_step=1023  death_pos=15  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=1  birth=1301  survived=False  death_step=50  death_pos=24  died_post_move=False  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=2  birth=1302  survived=False  death_step=1047  death_pos=23  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=3  birth=1303  survived=False  death_step=1034  death_pos=18  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=4  birth=1304  survived=False  death_step=1035  death_pos=4  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=5  birth=1305  survived=False  death_step=50  death_pos=17  died_post_move=False  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=6  birth=1306  survived=False  death_step=1050  death_pos=12  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+lambda=0.97  seed=7  birth=1307  survived=False  death_step=1021  death_pos=7  died_post_move=True  death_at_old_food=False  believed_food_end=[]
+  -> lambda=0.97: survived 0/8  post_move_deaths=6/8  died_at_old_food=0/8
+
+--- SUMMARY TABLE ---
+   lambda  survived  post_move_deaths   at_old_food
+  --------------------------------------------------
+    0.997      0/8           8/8             7/8
+     0.99      0/8           8/8             3/8
+     0.98      1/8           7/8             1/8
+     0.97      0/8           6/8             0/8
+
+--- PREDECLARED CHECKS ---
+  P1a (lambda=0.997 post-move deaths >= 6/8): 8/8  PASS
+  P1b (lambda=0.99  post-move deaths >= 6/8): 8/8   PASS
+  P1 overall: PASS
+
+  P2 (survival non-decreasing as lambda decreases): [0, 0, 1, 0]  FAIL
+
+  P3 (the window question): S=1/8 <= 2 => empty window confirmed
+    surv(0.98)=1/8  surv(0.97)=0/8  S=1/8
+
+  Dose curve (lambda -> survival count):
+    lambda=0.997  t_half= 230.7  survived=0/8
+    lambda=0.99  t_half=  69.0  survived=0/8
+    lambda=0.98  t_half=  34.3  survived=1/8
+    lambda=0.97  t_half=  22.8  survived=0/8
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — slow-decay arms both died post-move >= 6/8; half-life arithmetic consistent with fridge data).
+  F2 FIRED: P2 failed — survival [0, 0, 1, 0] is NOT monotone in decay speed; the window story is incomplete; diagnose.
+
+EXP90: FALSIFIER(S) FIRED — F2(survival not monotone) (S=1/8)

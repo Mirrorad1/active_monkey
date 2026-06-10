@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:89, breakthrough:6, positive:46, wall:18, partial:19, from:4.81, to:4.00 };
+window.AM_TALLY = { total:90, breakthrough:6, positive:46, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -905,7 +905,17 @@ window.AM_EXPERIMENTS = [
     setup:"The Exp 65-era adult recovered from git history, split into windowed and frozen arms with byte-identical positions, pre-equilibrated, then run through Exp 65's exact channel and dose on eight fresh seeds against the original 0.02 threshold — with the frozen arm as a paired replication of the original wall.",
     result:"All pass: windowed divergence 0.076-0.092 (8/8), frozen 0.011-0.014 (8/8 — the original wall to the digit), adult adoption 6/8 with severed twins never adopting. The window arithmetic's predicted equilibrium mass (667) appeared exactly.",
     implication:"Receiver mass is the wall, and the window removes it: adults become socially reachable at better-than-young rates while the window theorem prices the lability honestly. The M4 requirement is now a measured design statement. Remaining: the promotion CONSULT (rung 5) — the mechanism's evidence base is arguably complete.",
-    trace:{ script:"experiments/exp89_wall_reopened.py", output:"experiments/outputs/exp89.txt" } }
+    trace:{ script:"experiments/exp89_wall_reopened.py", output:"experiments/outputs/exp89.txt" } },
+
+  { n:90, kind:"partial", chapter:"frontier",
+    title:"Die certain or die amnesiac — no forgetting rate saves the fridge.",
+    one:"Rung 4b confirms the empty window (S=1/8 across four lambdas): slow forgetters die at the old food cell believing in it (7/8), fast forgetters die wandering with EMPTY belief slots (0/8 at the fridge) — the viability clock and the accuracy floor exclude each other, promoting Exp 62's exploration override to NECESSARY.",
+    plain:"We asked whether any forgetting speed could have saved the creatures that starved at the empty fridge. The answer is no, and the reason is a squeeze: forget slowly and you die where the food used to be, still believing in it; forget fast enough to update in time and you can no longer hold a map at all — those creatures died wandering, their belief slots literally empty. One lone survivor sat at the unstable point between the two failure modes. Forgetting fixes memory's past; only curiosity can fix its present.",
+    metric:{ from:7, to:0, unit:"deaths AT the old food cell: slowest vs fastest forgetting (the mode swap)" },
+    setup:"Exp 62's scarcity protocol replicated faithfully with the map-forgetting rate swept across four values spanning half-lives 231 to 23 steps, against a ~25-40 step post-move survival budget — with the empty-window impossibility and its interpretation rule predeclared.",
+    result:"Slow arms died post-move 8/8 as the half-life arithmetic demands; max fast-arm survival 1/8 — empty window confirmed. The monotonicity prediction failed informatively: survival dips again at the fastest rate because the accuracy floor bites — the two-walled window's signature, visible in the death modes swapping from certain to amnesiac across the sweep.",
+    implication:"The mechanism's reach has a proven boundary: count decay solves slow-world pathologies but cannot beat fast viability clocks. The M4 requirements are now fully measured — a window sized by the window theorem PLUS a prediction-failure exploration reflex, both necessary. Rung 5, the promotion CONSULT, closes the ladder.",
+    trace:{ script:"experiments/exp90_fridge_window.py", output:"experiments/outputs/exp90.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

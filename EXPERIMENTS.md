@@ -2609,3 +2609,48 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 4b/4c (empty-fridge survival, Exp 62; forecast SNR, Exp 83 — optional
   scope) or proceed to rung 5: the promotion CONSULT, for which the evidence base
   (Exp 85-89) is arguably already sufficient.
+
+## Exp 90 — rung 4b: the empty window confirmed — no forgetting rate can beat the fridge; too slow dies certain, too fast dies amnesiac (MIXED; exploration override promoted to NECESSARY)
+- Plain: We asked whether any forgetting speed could have saved the creatures that starved
+  at the empty fridge. The answer is no, and the reason is a squeeze: forget slowly and
+  you die where the food used to be, still believing in it; forget fast enough to update
+  in time and you can no longer hold a map at all — those creatures died wandering, some
+  having never located food in the first place, their belief slots literally empty. One
+  lone survivor sat at the unstable point between the two failure modes. So the second
+  fix Exp 62 named — when your prediction keeps failing, go LOOK — is not an optimization;
+  it is necessary. Forgetting fixes memory's past; only curiosity can fix its present.
+- Setup (predeclared in the script docstring before running): Exp 62's IN-DECAY protocol
+  replicated faithfully (5x5 world, one food cell, E decay 0.02/step, trigger 0.5, food
+  cell 0 -> 24 at step 1000, 2000 budget, 800 settling, VI-toward-believed-food), map
+  decay swept over lambda in {0.997, 0.99, 0.98, 0.97} (t_half 231/69/34/23 vs a ~25-40
+  step post-move budget), 8 fresh seeds per arm. P1 slow arms die post-move >= 6/8;
+  P2 survival monotone in decay speed; P3 interpretation rule: S = max survival of the
+  fast arms — >= 6/8 window exists / <= 2/8 empty window / 3-5 borderline.
+- Result: P1 PASS (8/8 and 8/8 post-move deaths). P3: S = 1/8 -> EMPTY WINDOW CONFIRMED.
+  P2 FAIL (F2): survival [0, 0, 1, 0] across the sweep — non-monotone at the fast end.
+  The death-mode data explains it and completes the picture: at 0.997 the deaths are
+  CERTAIN (7/8 at the old food cell, stale belief intact); at 0.97 they are AMNESIAC
+  (0/8 at the old food; believed-food sets EMPTY at death; 2/8 starved within ~50 steps
+  of the hunt phase, never having held a food belief) — the two failure modes swap
+  across the sweep, which is exactly the two-walled window (viability clock vs accuracy
+  floor, Exp 60) that the impossibility argument predicted. My P2 was the sloppy piece:
+  it predicted monotone survival while my own P3 argument required the fast wall that
+  breaks monotonicity. The lone 0.98 survivor sits at the unstable optimum between walls.
+- Implication: the mechanism's reach has a PROVEN boundary — count decay solves the
+  slow-world pathologies (scars, social walls, rigidity: Exp 86-89) but cannot solve
+  fast-viability problems, because the unlearning clock cannot be made faster than the
+  accuracy floor allows. Exp 62's failure-driven exploration override is therefore
+  NECESSARY in any M4 substrate, alongside (not instead of) the window. The M4
+  requirements list is now fully measured: a value/map window (with the window theorem's
+  sizing rule) PLUS a prediction-failure exploration reflex.
+- Honest caveat: one ecology (Exp 62's exact scarcity), 8 seeds/arm, four lambdas; the
+  "unstable optimum" reading of 0.98's single survivor is interpretation (n=1); my P2
+  prediction contradicted my own P3 arithmetic and fired F2 — the monotonicity band was
+  authored carelessly, logged as such (fifth authorial reversal of the run).
+- Verdict: MIXED / NEW INSIGHT (the empty-window impossibility confirmed at S=1/8;
+  P2's failure diagnosed as the floor wall — the window theory's own second wall).
+  Self-grade: n/a (MIXED).
+- Next: rung 5 — the promotion CONSULT: the mechanism's complete dossier (Exp 85-90:
+  costless static, scar-healing on the replacement clock, the window theorem, the social
+  wall opened, the fridge boundary proven) goes to the human with a recommended
+  promotion scope. Optional 4c (forecast SNR) judged diminishing.
