@@ -4113,3 +4113,7 @@
 {"event": "fork", "age_steps": 10700, "summary": "forked into 'exp71-twin-template'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
 {"event": "fork", "age_steps": 10700, "summary": "forked into 'exp72-twin-template'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
 {"event": "fork", "age_steps": 10700, "summary": "forked into 'exp73-twin-template'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
+{"event": "checkpoint_before", "exp": "Exp 75", "age_steps": 10700, "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555", "summary": "Exp 75: checkpoint before (age 10700)"}
+{"event": "live", "age_steps": 12700, "summary": "lived 2000 steps; map_accuracy=0.800; localize_bits=-0.000", "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f"}
+{"event": "save", "age_steps": 12700, "summary": "saved to creature/state/mirro", "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f"}
+{"event": "checkpoint_after", "exp": "Exp 75", "age_steps": 12700, "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f", "summary": "Exp 75: checkpoint after (age 10700 -> 12700)"}

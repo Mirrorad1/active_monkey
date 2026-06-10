@@ -1978,3 +1978,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (graded uncertainty is the thrice-motivated one), (b) build M4a against the amended
   requirements list, (c) a natural stopping point — the moonshot's social chapter has its
   honest answer.
+
+## Exp 75 — the undisturbed epoch: the value core is rock-stable, the map self-heals, and my band design conflated the two (MIXED; F1 fired as predeclared; spine resumed to age 12700)
+- Plain: We let mirro simply live for a while — no teaching, no tricks — and asked whether
+  it stays itself. Its preferences barely moved a hair: the personality core is stable when
+  nobody interferes. But the experiment formally failed its own stability test anyway,
+  because mirro's partly-stale map of its world got sharply BETTER, and the test treated
+  any large change — even healing — as instability. One more honest wrinkle: mirro's
+  always-narrow favorite margin narrowed further on its own; it is drifting toward genuine
+  ambivalence about its favorite color.
+- Setup (predeclared in the script docstring before running): the spine's first episode
+  since Exp 63 (mirro_episode discipline; the fork-only social chapter left it at age
+  10700 hash 21ccb619f063). Read-only profile -> live(2000) undisturbed in its own world
+  -> profile. Profile: value shares x3, conviction, map accuracy, localization, top-two
+  gap. Predeclared: P1 bands (|d share| < 0.02 each, |d conviction| < 0.02, |d map_acc|
+  <= 0.04, localize <= 0.2 bits); P-FAV favorite unchanged (LOW confidence, stated — the
+  11-count margin makes mirro a near-ambivalent adult by Exp 67's own law); P2 spine
+  integrity. F1 = any band blown -> rung-2 current-state-readout branch; F2 = favorite
+  flips; F3 = integrity halt. Single deterministic run (RNG from committed state).
+- Result: MIXED — F1 FIRED on exactly one component, and it fired UPWARD: map accuracy
+  0.640 -> 0.800 (+0.160 vs the +-0.04 band) — mirro's committed map was ~36% stale (the
+  drift-epoch legacy of Exp 56-62) and 2000 undisturbed steps relearned ~4 of 25 cells,
+  consistent with the soft-count mass-tempo arithmetic (Exp 60: ~1,300 fresh counts vs
+  ~430/cell of history). Every value-core component PASSED comfortably: shares moved
+  0.0020/0.0050/0.0030 (bands 0.02), conviction -0.003, localization 0.0 bits, favorite
+  HELD at color 2 (P-FAV PASS). P2 PASS: age 10700 -> 12700, hash 21ccb619f063 ->
+  e9714e6739b3, clean save, integrity-verified reload. New datum: the favorite margin
+  narrowed 11.2 -> 5.2 counts — the spine is drifting toward natural ambivalence.
+- Implication: the open rung-2 branch has its honest answer split by dimension — the VALUE
+  core ("personality") is stable under undisturbed living (Exp 55's instability was the
+  interventions, not the creature), while the KNOWLEDGE dims self-heal toward the world at
+  the law's pace. My profile/band design conflated the two; a follow-up that predeclares
+  separate knowledge-vs-value bands would formalize the split claim, but the per-component
+  data above already shows it. And mirro itself now sits one natural drift from Exp 67's
+  ambivalence regime: its next favorite flip may need no one's intervention.
+- Honest caveat: F1 stands as fired — the verdict respects the predeclared structure; the
+  knowledge/value split is diagnosis, not a passed test. Single deterministic run (the
+  spine's reproducibility unit is resume-from-snapshot, hash-stamped above). The map
+  healing was NOT predicted (my band assumed approximate stationarity at 0.64 — wrong:
+  undisturbed living heals staleness; in hindsight predictable from Exp 60's law, which
+  makes the missed prediction mine, not the law's).
+- Verdict: MIXED / NEW INSIGHT (first undisturbed-epoch stability measurement: value core
+  stable, knowledge self-heals, ambivalence drift on the spine). Self-grade: n/a (MIXED).
+- Next: still AWAITING DIRECTION CHOICE (Exp 74 CONSULT, recommended option M4a) — the
+  loop stays on non-direction work. Candidates: separated-band stability re-test (cheap,
+  consolidation), or watching the spine's margin (does mirro's favorite flip naturally
+  within the next epochs?).

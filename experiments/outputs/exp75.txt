@@ -1,0 +1,58 @@
+Exp 75 — the undisturbed epoch
+
+--- PRE-EPOCH PROFILE (committed state) ---
+  share0            : 0.362261
+  share1            : 0.273665
+  share2            : 0.364074
+  conviction        : 0.364074
+  map_acc           : 0.640000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_counts        : 11.220914
+  total_mass        : 6189.158774
+
+--- POST-EPOCH PROFILE ---
+  share0            : 0.360308
+  share1            : 0.278653
+  share2            : 0.361038
+  conviction        : 0.361038
+  map_acc           : 0.800000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_counts        : 5.249906
+  total_mass        : 7191.858103
+
+[Exp 75] spine=mirro continuous-life checkpoint
+  before: age=10700 state_hash=21ccb619f063
+  after : age=12700 state_hash=e9714e6739b3
+  delta : +2000 steps
+
+[Exp 75] spine=mirro continuous-life checkpoint
+  before: age=10700 state_hash=21ccb619f063
+  after : age=12700 state_hash=e9714e6739b3
+  delta : +2000 steps
+
+--- DELTA TABLE ---
+  component               before       after       delta  band                      ok?
+  ------------------------------------------------------------------------------------
+  share0                0.362261    0.360308   -0.001953  < 0.02                    PASS
+  share1                0.273665    0.278653   +0.004988  < 0.02                    PASS
+  share2                0.364074    0.361038   -0.003036  < 0.02                    PASS
+  conviction            0.364074    0.361038   -0.003036  < 0.02                    PASS
+  map_acc               0.640000    0.800000   +0.160000  <= 0.04                   FAIL
+  localize_bits        -0.000000   -0.000000   +0.000000  <= 0.2 (post abs)         PASS
+
+  favorite                     2           2         n/a  == 2 (low conf)           PASS
+
+--- PROPERTY CHECKS ---
+  PASS  P1-share-stability: share0:|delta|=0.001953 (ok); share1:|delta|=0.004988 (ok); share2:|delta|=0.003036 (ok)
+  PASS  P1-conviction-stability: |delta_conviction|=0.003036
+  FAIL  P1-map-accuracy-stability: |delta_map_acc|=0.160000
+  PASS  P1-localize-bits-after: localize_bits_after=-0.000000
+  PASS  P-FAV-favorite-unchanged: pre_fav=2 post_fav=2
+  PASS  P2-spine-integrity: reload.age=12700  ep.age_after=12700  ep.age_before=10700  delta=2000
+
+--- FALSIFIER MAP ---
+  F1 FIRED: profile is NOT stable under undisturbed living — rung-2 current-state readout branch.
+
+EXP75: UNSTABLE (F1 branch)

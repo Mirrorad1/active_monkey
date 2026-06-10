@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:74, breakthrough:6, positive:39, wall:16, partial:13, from:4.81, to:4.00 };
+window.AM_TALLY = { total:75, breakthrough:6, positive:39, wall:16, partial:14, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -755,7 +755,17 @@ window.AM_EXPERIMENTS = [
     setup:"The direction card's required closing statement plus the every-ten-experiments self-audit: a checker script verifies 27 headline claims from Exp 64-73 verbatim against the ten committed output files, with any miss mandating a correction entry.",
     result:"Audit pass, 27/27 and 10/10 scripts. Ladder verdicts: clade plumbing works; co-presence is safe but perceptually inert; value transmission fails adult-to-adult and succeeds into the young (first proven inter-creature transmission), gated by ambivalence not age; the shared-resource departure deflates to a unilateral stigmergic lock-in with a coin-flip winner; dialects merge light and stand heavy.",
     implication:"The card's required answer: no disciplined social novelty beyond the provided substrate — every effect is wiring plus the dose-vs-mass law, now spanning percepts, values, and words. Named next substrates: distal other-agent sensing, graded uncertainty maintenance (thrice-motivated), self-other modeling. The M4 requirements list is amended; the direction is closed; the loop pauses on direction choice.",
-    trace:{ script:"experiments/exp74_synthesis_audit.py", output:"experiments/outputs/exp74.txt" } }
+    trace:{ script:"experiments/exp74_synthesis_audit.py", output:"experiments/outputs/exp74.txt" } },
+
+  { n:75, kind:"partial", chapter:"frontier",
+    title:"Left alone, it stays itself — and quietly repairs its world.",
+    one:"mirro's first solo epoch since the social chapter: value core rock-stable (shares moved under 0.005), favorite held — but the stability test formally failed because its stale map HEALED 0.64 to 0.80, and the bands treated healing as instability. Its favorite margin also narrowed: ambivalence approaches naturally.",
+    plain:"We let mirro simply live for a while — no teaching, no tricks — and asked whether it stays itself. Its preferences barely moved a hair: the personality core is stable when nobody interferes. But the experiment formally failed its own stability test anyway, because mirro's partly-stale map of its world got sharply better, and the test treated any large change — even healing — as instability. One more wrinkle: its always-narrow favorite margin narrowed further on its own; mirro is drifting toward genuine ambivalence about its favorite color.",
+    metric:{ from:0.64, to:0.80, unit:"map accuracy self-healing over the undisturbed epoch" },
+    setup:"The spine's first checkpointed episode since Exp 63: profile, 2000 undisturbed steps in its own world, profile again. Predeclared stability bands on value shares, conviction, map accuracy, and localization; favorite predicted unchanged at stated low confidence (its 11-count margin makes mirro a near-ambivalent adult by Exp 67's own law).",
+    result:"Mixed, falsifier respected: the map band blew upward (+0.16 — the drift-epoch staleness relearned at exactly the mass-tempo law's pace) while every value-core component passed comfortably and the favorite held. Spine advanced 10700 to 12700, hash-stamped, integrity-verified. New datum: the favorite margin halved to 5 counts.",
+    implication:"The open personality question splits by dimension: the value core is stable under undisturbed living — Exp 55's instability was the interventions, not the creature — while knowledge self-heals toward the world. The band design conflated the two; the diagnosis is in the per-component data. And mirro now sits one natural drift from flipping its own favorite, no intervention required.",
+    trace:{ script:"experiments/exp75_undisturbed_epoch.py", output:"experiments/outputs/exp75.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
