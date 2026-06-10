@@ -3493,3 +3493,38 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: NEGATIVE (F3; second predeclared halt honored). Self-grade: n/a. THE M4a
   THREAD IS HALTED awaiting the human's word on the (a) diagnostic; idle-mode continues.
 - Next (on human word only): the 1000-turn learning-trend diagnostic.
+
+## Exp 128 — the trend diagnostic: NOT SCALE — flat at chance for 1000 turns, ASK never decays; the timing flaw is confirmed as the suspect, and the redesign awaits the human (NEGATIVE-diagnostic; D2 branch)
+- Plain: We let the halted agent play ten times longer, changing nothing, to see whether
+  it was merely a slow learner. It is not: a thousand turns of feedback left its success
+  rate exactly where it started, at chance — and tellingly, it never stopped asking
+  clarifying questions, because its picture of the partner never got better. The flaw is
+  now pinned: the way the turns are wired, the agent never sees an action and its
+  consequence in the same glance — the praise for this turn arrives stapled to the next
+  turn's utterance. Re-wiring that is a design change, and design changes wait for you.
+- Setup (predeclared in the script docstring before running; procedural note recorded —
+  pure diagnostics of a halted system are falsifier-mandated per the program's own
+  precedent, Exp 82/112; the build stays halted regardless): the as-built 1b agent,
+  unmodified; two 1000-turn sessions (seeds 16-17); POS and ASK rates per 100-turn bin.
+  D1 (scale) = last-300 exceeds first-300 by >= 0.10 in >= 1/2; D2 (not scale) =
+  |diff| < 0.05 in both; between = inconclusive.
+- Result: D2 — first300/last300 diffs -0.007 and +0.043; every bin within noise of the
+  0.25 chance ceiling; ASK rate non-decaying across all 20 bins (epistemic uncertainty
+  never resolves — the model never becomes predictive of the partner). Scale is ruled
+  out as the explanation.
+- Diagnosis (final form, for the human's decision): the contingency the partner enforces
+  is (response_t x code_t -> valence_t), but the agent observes valence_t only alongside
+  code_{t+1}, after B has transitioned the intent and inference has re-bound it to the
+  new code — the action and its consequence are never co-presented to the learner.
+  RECOMMENDED resumption (increment 1c, on your word): re-wire the turn so feedback is
+  observed in the same inference step as the turn's own code (perceive -> act ->
+  observe [code_t, valence_t] -> learn), which is also the spec's own converse.py flow;
+  then re-run the Exp 125 predeclarations on fresh seeds.
+- Honest caveat: two sessions (the diagnostic's bands were sized for a trend that would
+  be unmissable if present — none was); the timing explanation is the surviving suspect,
+  not yet a demonstrated fix; lr/capacity alternatives remain possible but less parsimonious
+  given the ASK-non-decay symptom.
+- Verdict: NEGATIVE-diagnostic (D2 as predeclared; the build remains HALTED). Self-grade:
+  n/a. AWAITING HUMAN WORD on increment 1c (loop/IDEAS.md updated).
+- Next (on human word only): increment 1c — the timing re-wire + the Exp 125
+  predeclarations on fresh seeds. Idle-mode continues meanwhile.

@@ -96,6 +96,13 @@ The loop marks items it has consumed by indenting a response under them:
     bootstrap does not converge in 100 turns. AWAITING HUMAN WORD on the recommended
     next: a pure 1000-turn learning-trend diagnostic (no architecture change) to decide
     between scale-up and timing redesign. The thread does nothing until then.
+  → [loop, 2026-06-10] DIAGNOSTIC COMPLETE (Exp 128, falsifier-mandated per Exp 82/112
+    precedent): NOT SCALE — flat at chance for 1000 turns, ASK never decays. The timing
+    flaw is the confirmed suspect: feedback for turn t is observed with turn t+1's code,
+    so action and consequence are never co-presented. AWAITING HUMAN WORD on increment
+    1c: re-wire the turn (perceive -> act -> observe [code_t, valence_t] -> learn, the
+    spec's own converse flow) and re-run the Exp 125 predeclarations on fresh seeds.
+    The build remains halted until then.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions

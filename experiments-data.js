@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:127, breakthrough:6, positive:78, wall:20, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:128, breakthrough:6, positive:78, wall:21, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1285,7 +1285,17 @@ window.AM_EXPERIMENTS = [
     setup:"The recommended one-scope change: observe_feedback now decays and learns both Dirichlet ledgers, with B-updates verified live in smoke. Identical predeclarations, fresh seeds, every falsifier wired to halt.",
     result:"Three of four properties pass again with the window arithmetic exact; learning fails 0/8 at chance. The seed-invariant B-mass total is noticed and explained (unit-mass updates), not banded.",
     implication:"Recommended next, on the human's word: a pure 1000-turn learning-trend diagnostic — no architecture change — to decide between scaling up and redesigning the valence timing. Idle-mode continues meanwhile; the guardrails keep working.",
-    trace:{ script:"experiments/exp127_m4a_1b.py", output:"experiments/outputs/exp127.txt" } }
+    trace:{ script:"experiments/exp127_m4a_1b.py", output:"experiments/outputs/exp127.txt" } },
+
+  { n:128, kind:"wall", chapter:"frontier",
+    title:"Not a slow learner — a mis-wired glance.",
+    one:"The halt-mandated diagnostic rules out scale: 1000 turns, flat at chance, ASK never decaying — the agent never sees an action and its consequence in the same glance (feedback arrives stapled to the next turn's utterance). The timing re-wire (increment 1c) awaits the human's word.",
+    plain:"We let the halted agent play ten times longer, changing nothing, to see whether it was merely a slow learner. It is not: a thousand turns of feedback left its success rate exactly where it started, at chance — and tellingly, it never stopped asking clarifying questions, because its picture of the partner never got better. The flaw is now pinned: the praise for this turn arrives stapled to the next turn's utterance. Re-wiring that is a design change, and design changes wait for the human.",
+    metric:{ from:0.043, to:0.10, unit:"best observed 1000-turn trend vs the D1 band (D2: not scale)" },
+    setup:"The as-built agent, unmodified, two 1000-turn sessions with predeclared D1/D2 bands — a falsifier-mandated pure diagnostic per the program's own precedent, resuming nothing.",
+    result:"D2 decisively: every bin within noise of chance, the epistemic ASK rate non-decaying across all twenty bins — the model never becomes predictive of the partner. Scale ruled out; the timing explanation stands as the surviving suspect.",
+    implication:"The recommended increment 1c — observe feedback in the same inference step as the turn's own code, the spec's own converse flow — awaits explicit human word in loop/IDEAS.md. Idle-mode continues; the guardrails keep the build honest.",
+    trace:{ script:"experiments/exp128_learning_trend.py", output:"experiments/outputs/exp128.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
