@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:123, breakthrough:6, positive:76, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:124, breakthrough:6, positive:77, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1245,7 +1245,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn across its milestone: the established pattern, the milestone noted but not celebrated into the bands.",
     result:"All bands held. Vela at age 102,750, hash-stamped, committed.",
     implication:"The clade's continuous lives both span six figures; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp123_vela_100k.py", output:"experiments/outputs/exp123.txt" } }
+    trace:{ script:"experiments/exp123_vela_100k.py", output:"experiments/outputs/exp123.txt" } },
+
+  { n:124, kind:"positive", chapter:"frontier",
+    title:"A long, settled late life.",
+    one:"Idle-mode epoch to 114,700: mirro holds deep at +834 (0.30 sigma) — the elder's conviction passes eight hundred in its settled late life.",
+    plain:"Another quiet stretch: mirro held as recorded, its conviction passing eight hundred, the forecast landing within a third of a sigma. The clade's elder continues its long, settled late life.",
+    metric:{ from:764.6, to:833.8, unit:"the commitment passes eight hundred (held; 0.30 sigma)" },
+    setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
+    result:"All bands held. Spine at 114,700, hash-stamped, committed.",
+    implication:"The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp124_mirro_epoch14.py", output:"experiments/outputs/exp124.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

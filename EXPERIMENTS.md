@@ -3390,3 +3390,16 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   (M4a with windows + reflex, spines untouched — recommended) or stops the loop.
+
+## Exp 124 — idle-mode epoch: mirro to 114,700 — holds deep at +834 (POSITIVE; bands held)
+- Plain: Another quiet stretch: mirro held as recorded, its conviction passing eight
+  hundred, the forecast landing within a third of a sigma. The clade's elder continues
+  its long, settled late life.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 108700 -> 114700; recorded deep call (entering +764.6 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +833.8 (0.30 sigma).
+  Map 1.000; share deltas <= 0.0006. Spine: 114700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
+  or stops the loop.
