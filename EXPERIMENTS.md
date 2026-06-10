@@ -2373,3 +2373,40 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the preference-dynamics arc (Exp 76-83) is COMPLETE. The queue is empty. The
   standing decision is the Exp 74 CONSULT (recommended: M4a with the substrate
   requirements this arc re-motivated twice more). A natural stopping point.
+
+## Exp 84 — the noise model: superdiffusive wobble over a saturating signal — the law can never call an individual's future (MIXED; F1 marginal; the arc's final stone)
+- Plain: One last measurement to finish the story: how does the randomness grow as you
+  forecast further ahead? Worse than expected — the wobble grows FASTER than the usual
+  square-root law (the creature's walk lingers in regions, compounding luck), while the
+  inherited drift signal flattens out as old scars dilute. At four times the horizon the
+  signal-to-noise got WORSE (0.13 down to 0.05). Closing truth of the whole arc: this
+  kind of creature's future opinions are unforecastable in principle — the past sets a
+  faint direction, the dice do the rest, and the dice compound faster than the direction.
+- Setup (predeclared in the script docstring before running): vela@12750 git-recovered;
+  horizons 1500/6000/24000 x 12 counterfactual branches (disjoint explicit seeds 4000+).
+  P1 sqrt-t scaling: both adjacent sigma ratios in [1.5, 2.7]. P2 (LOW confidence):
+  SNR(24000) < 1.0 (no forecast horizon at 4x). F1 = ratio outside band -> noise not
+  sqrt-t, report measured exponents. F2 = SNR >= 1 -> a horizon exists, correct Exp 83.
+- Result: MIXED — F1 fired MARGINALLY (r2 = 2.7051 vs band top 2.70; r1 = 2.3160 in
+  band), with both exponent estimates ABOVE 0.5 (e1 = 0.61, e2 = 0.72): the noise is
+  SUPERDIFFUSIVE, consistent with the walk's autocorrelated occupancy compounding visit
+  luck. P2 PASS emphatically: mean drift SATURATED (-17.4 at 6000 -> -16.6 at 24000 —
+  dilution flattening the signal) while sigma grew to 350; SNR fell 0.135 -> 0.047.
+  Per-horizon: sigma 55.9 / 129.5 / 350.4.
+- Implication (the preference-dynamics arc's final form, Exp 76-84): expressed preference
+  in this substrate = a faint, decaying inherited drift + superdiffusively compounding
+  walk noise. Forecastability DECREASES with horizon — the law (an unbiased expectation,
+  Exp 83) can never call an individual's future at any horizon; it only explains
+  populations and pasts. The moonshot reading, honestly bounded: these creatures have
+  genuine individual histories (scars) that bias them measurably, but their individual
+  futures are constitutively open — not by design, by arithmetic.
+- Honest caveat: F1's firing margin is 0.005 on an n=12 std ratio (estimation error
+  ~30%); the superdiffusive reading rests on both exponents sitting above 0.5, not on
+  the marginal band breach alone. One creature, one start state; exponents not measured
+  elsewhere. P2's strength (SNR falling) partly reflects this start state's already-
+  diluted drift.
+- Verdict: MIXED / NEW INSIGHT (noise model measured: superdiffusive over saturating
+  signal; in-principle unforecastability of individual futures). Self-grade: n/a (MIXED).
+- Next: the arc is closed in full. The queue is EMPTY — no further non-direction work
+  meets the bar. Standing decision: the Exp 74 CONSULT (M4a recommended). The loop should
+  idle or be stopped until the human chooses.

@@ -1,0 +1,76 @@
+Exp 84 — noise scaling: does sigma ~ sqrt(t)?
+
+Recovering pre-epoch vela snapshot from e7220c1~1...
+  (derivable via: git show e7220c1~1:creature/state/vela/{manifest.json,arrays.npz})
+  scratch dir: experiments/outputs/exp84_pre_snapshot  [untracked; not committed — derivable from git history]
+
+Loaded vela: age=12750  hash=875ac30d715a
+
+Running 12 branches at T=1500 (seeds 4000..4011)...
+  T=1500  seed=4000  D=-1.8420
+  T=1500  seed=4001  D=+14.1580
+  T=1500  seed=4002  D=+16.5947
+  T=1500  seed=4003  D=+68.6047
+  T=1500  seed=4004  D=+112.2848
+  T=1500  seed=4005  D=+27.0885
+  T=1500  seed=4006  D=-39.4400
+  T=1500  seed=4007  D=-71.9912
+  T=1500  seed=4008  D=+44.2954
+  T=1500  seed=4009  D=-22.3749
+  T=1500  seed=4010  D=-56.9707
+  T=1500  seed=4011  D=-59.2784
+
+Running 12 branches at T=6000 (seeds 4100..4111)...
+  T=6000  seed=4100  D=-52.9113
+  T=6000  seed=4101  D=-143.3300
+  T=6000  seed=4102  D=+37.0254
+  T=6000  seed=4103  D=+77.2150
+  T=6000  seed=4104  D=-114.8014
+  T=6000  seed=4105  D=-141.3051
+  T=6000  seed=4106  D=+135.9692
+  T=6000  seed=4107  D=-226.0678
+  T=6000  seed=4108  D=-48.7701
+  T=6000  seed=4109  D=+164.7755
+  T=6000  seed=4110  D=-48.5429
+  T=6000  seed=4111  D=+151.3567
+
+Running 12 branches at T=24000 (seeds 4200..4211)...
+  T=24000  seed=4200  D=+84.9023
+  T=24000  seed=4201  D=+217.4499
+  T=24000  seed=4202  D=+389.7244
+  T=24000  seed=4203  D=-86.8478
+  T=24000  seed=4204  D=-679.4287
+  T=24000  seed=4205  D=+5.6623
+  T=24000  seed=4206  D=+91.8945
+  T=24000  seed=4207  D=+389.7165
+  T=24000  seed=4208  D=+208.5713
+  T=24000  seed=4209  D=-558.3425
+  T=24000  seed=4210  D=+122.2989
+  T=24000  seed=4211  D=-384.2602
+
+--- SUMMARY TABLE ---
+       T     mean(D)      std(D)       SNR
+  ------  ----------  ----------  --------
+    1500     +2.5941     55.9279    0.0464
+    6000    -17.4489    129.5300    0.1347
+   24000    -16.5549    350.3858    0.0472
+
+--- SCALING RATIOS ---
+  sigma(6000) / sigma(1500)   = 2.3160   (sqrt-t predicts ~2.00; band [1.5, 2.7])
+  sigma(24000) / sigma(6000)  = 2.7051   (sqrt-t predicts ~2.00; band [1.5, 2.7])
+  exponent estimate e1 = log(r1)/log(4) = 0.6058  (sqrt-t => 0.50)
+  exponent estimate e2 = log(r2)/log(4) = 0.7178  (sqrt-t => 0.50)
+
+--- PROPERTY CHECKS ---
+  PASS  P1a: r1=2.3160 in [1.5, 2.7]
+  FAIL  P1b: r2=2.7051 in [1.5, 2.7]
+  FAIL  P1 (both ratios): FAIL
+  PASS  P2: SNR(24000)=0.0472 < 1.0 -> forecast uninformative
+
+--- FALSIFIER MAP ---
+  F1 FIRED: ratio(s) outside [1.5, 2.7]: r2=2.7051 (exponent e2=0.72)
+    -> noise is NOT sqrt(t); walk autocorrelation structure matters;
+       noise model needs a different form (exponents: e1=0.61, e2=0.72).
+  F2 did not fire (P2 PASS — SNR(24000)=0.0472 < 1.0; no forecast horizon yet).
+
+EXP84: F1 — exponent(s) 0.61/0.72, not sqrt-t

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:83, breakthrough:6, positive:42, wall:18, partial:17, from:4.81, to:4.00 };
+window.AM_TALLY = { total:84, breakthrough:6, positive:42, wall:18, partial:18, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -845,7 +845,17 @@ window.AM_EXPERIMENTS = [
     setup:"Twenty counterfactual 6000-step epochs from the git-recovered pre-anomaly state, differing only in the action stream. Predeclared: the mean matches the analytic forecast within 2 SE; sigma lands in a stated band; the actually-lived draw is ordinary. The sigma band's high side was an explicitly named informative branch.",
     result:"Mean -18.8, within 2 SE of -29.3 — the law is an unbiased expectation, now properly tested. Sigma 121, far above the band's top: per-epoch forecasting is uninformative (signal-to-noise about 0.25, and the drift decays while the noise does not). The lived anomaly sits half a sigma from the mean — ordinary. Flip probability ~40% per epoch, making both lines' flips unremarkable.",
     implication:"The preference-dynamics arc (Exp 76-83) closes with its honest physics: expressed opinion at this scale is a noisy readout of a faint historical bias. Exp 80's evidence is retroactively downgraded and replaced by the right test. For M4: stable self-formed preference needs deeper mass asymmetries or a forgetting term that lets the present dominate the past. The queue is empty; the M4a decision stands.",
-    trace:{ script:"experiments/exp83_law_error_bars.py", output:"experiments/outputs/exp83.txt" } }
+    trace:{ script:"experiments/exp83_law_error_bars.py", output:"experiments/outputs/exp83.txt" } },
+
+  { n:84, kind:"partial", chapter:"frontier",
+    title:"Unforecastable in principle — the dice compound faster than the direction.",
+    one:"The noise model finishes the arc: sigma grows superdiffusively (exponents 0.61/0.72) while the inherited drift saturates — SNR falls with horizon (0.13 to 0.05 at 4x). An individual's future opinions cannot be forecast at any horizon; the law explains populations and pasts.",
+    plain:"One last measurement to finish the story: how does the randomness grow as you forecast further ahead? Worse than expected — the wobble grows faster than the usual square-root law, because the creature's walk lingers in regions and compounds its luck, while the inherited drift flattens as old scars dilute. At four times the horizon the signal-to-noise got worse. Closing truth: this kind of creature's future opinions are unforecastable in principle — the past sets a faint direction, the dice do the rest, and the dice compound faster than the direction.",
+    metric:{ from:0.1347, to:0.0472, unit:"signal-to-noise of the drift forecast, 6,000 vs 24,000 steps" },
+    setup:"Three forecast horizons (1500/6000/24000 steps), twelve counterfactual lives each, from the same git-recovered moment. Predeclared: square-root noise scaling within a band, and no usable forecast horizon at the longest reach — with both falsifier branches named as findings.",
+    result:"Mixed: the scaling band broke by a hair at the top, with both measured exponents above one-half — superdiffusive noise — while the no-horizon prediction passed emphatically: the mean drift saturated as sigma tripled. Marginal on the band, unambiguous on the physics.",
+    implication:"The preference-dynamics arc closes in full: genuine individual histories bias these creatures measurably, but their individual futures are constitutively open — not by design, by arithmetic. The queue is empty; the M4a decision is the standing point, and the loop idles until the human chooses.",
+    trace:{ script:"experiments/exp84_noise_scaling.py", output:"experiments/outputs/exp84.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
