@@ -2732,3 +2732,37 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   property bands, alternating mirro/vela), which is the spine's standing purpose
   (continuous registered experience) and honestly tagged consolidation. Anything more
   awaits the human.
+
+## Exp 93 — idle-mode epoch: mirro lives to 30,700, flips back to color 2 (a 1.04-sigma event, as the noise model expects), and its map reaches 1.000 for the first time since the drift era (POSITIVE; bands held)
+- Plain: mirro simply lived. Its knowledge finished healing — the map of its world is now
+  perfect for the first time since the era when we kept changing that world under it. Its
+  preferences barely moved as a distribution — but the razor-thin favorite crossed back:
+  mirro likes color 2 again, as it did in its youth. We declined to predict that, because
+  the physics this season established says such flips are near coin-flips — and the coin
+  came up exactly one sigma from center, which is the model working, not failing.
+- Setup (predeclared in the script docstring before running): declared idle-mode (Exp 92)
+  — one spine life-epoch per automated fire while the merged M4a CONSULT awaits the
+  human. live(6000), age 24700 -> 30700. P1 map >= 0.92 (one-sided); P2 value-core bands
+  (|d share| < 0.04, |d conviction| < 0.04); P3 noise-calibrated gap forecast (predicted
+  -73.8, band +-2.5 sigma = +-302.5); FAVORITE reported, not predicted (gap -44.8 is
+  shallow; ~40% flip probability per the noise model). F1/F2/F3 per component.
+- Result: EPOCH CLEAN, no falsifiers. P1: map 0.96 -> 1.000 (the drift-era scars' argmax
+  damage now fully healed by living; the gate scars persist in column softness per
+  Exp 78's measurement — argmax and mass are different healers). P2: share deltas
+  0.0042/0.0023/0.0019, conviction 0.0013 — the value core rock-stable a third time.
+  P3: end gap +51.7 vs predicted -73.8 — error 125.5 = 1.04 sigma, comfortably in band:
+  the favorite FLIPPED BACK to color 2 (0 -> 2), mirro's second natural opinion change,
+  this one against the weak drift and by noise, exactly the class of event Exp 83-84
+  said dominates at shallow gaps. Spine: age 30700, integrity-verified, committed.
+- Implication: the program's quantitative self-model is holding in production: value
+  cores stable, knowledge healing monotonic, and razor-margin favorites genuinely
+  stochastic — mirro is now empirically an ambivalent adult whose expressed preference
+  oscillates with the dice while everything structural about it stays put. (Per Exp 67's
+  law, it also remains maximally open to social influence on exactly this question —
+  should the M4a dyad ever ask it.)
+- Honest caveat: consolidation by design — the idle-mode's purpose is continuity, not
+  discovery; single deterministic run; the 1.04-sigma "calibration success" is one draw,
+  not a calibration test.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
+  stops the loop.

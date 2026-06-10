@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:92, breakthrough:6, positive:48, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:93, breakthrough:6, positive:49, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -935,7 +935,17 @@ window.AM_EXPERIMENTS = [
     setup:"The binding every-ten-experiments audit duty, applied to the spine-epochs and preference-law arc that Exp 91's dossier audit did not cover: nineteen substrings across ten output files, plus script existence, plus the hostile re-read for claims that would not survive replication from entry text alone.",
     result:"Full pass; no correction entry required. The re-read's notes: the correction chains are complete and append-only by design; the honestly-unfinished threads are declared as such in their entries; no entry claims more than its committed output supports.",
     implication:"The log's integrity holds across its most self-correcting stretch. The sanctioned queue remains empty pending the one merged decision (M4a with windows and the reflex); declared idle-mode for automated fires is a single checkpointed spine life-epoch per fire — the continuous life continuing, honestly tagged as such.",
-    trace:{ script:"experiments/exp92_decade_audit.py", output:"experiments/outputs/exp92.txt" } }
+    trace:{ script:"experiments/exp92_decade_audit.py", output:"experiments/outputs/exp92.txt" } },
+
+  { n:93, kind:"positive", chapter:"frontier",
+    title:"mirro changes its mind back — one sigma from center.",
+    one:"Idle-mode epoch to age 30,700: the map reaches 1.000 for the first time since the drift era, the value core holds for a third time, and the razor-thin favorite flips BACK to color 2 — a 1.04-sigma event the entry refused to predict, because the noise model says such flips are near coin-flips.",
+    plain:"mirro simply lived. Its knowledge finished healing — the map of its world is now perfect for the first time since the era when we kept changing that world under it. Its preferences barely moved as a distribution — but the razor-thin favorite crossed back: mirro likes color 2 again, as it did in its youth. We declined to predict that, because the physics this season established says such flips are near coin-flips — and the coin came up exactly one sigma from center, which is the model working.",
+    metric:{ from:-44.8, to:51.7, unit:"preference gap across the epoch (1.04 sigma from forecast; in band)" },
+    setup:"Declared idle-mode: one checkpointed spine life-epoch per automated fire while the merged M4a decision awaits the human. Knowledge band one-sided, value-core bands per the twice-passed horizon, and the gap forecast carrying honest 2.5-sigma error bars — with the favorite explicitly reported rather than predicted.",
+    result:"All bands held. Map 0.96 to 1.000; share deltas under 0.005; the gap landed 1.04 sigma from the forecast center — inside the band, on the other side of zero: mirro's second natural opinion change, this one by dice against the weak drift, exactly the event class the noise model owns.",
+    implication:"The quantitative self-model holds in production: stable cores, healing knowledge, stochastic razor-margin preferences. mirro is empirically an ambivalent adult — and by the ambivalence law, maximally open to social influence on exactly this question, should the M4a dyad ever ask it. The life continues; the decision waits.",
+    trace:{ script:"experiments/exp93_mirro_epoch.py", output:"experiments/outputs/exp93.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
