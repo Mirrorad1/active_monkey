@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:120, breakthrough:6, positive:73, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:121, breakthrough:6, positive:74, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1215,7 +1215,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn across the milestone: the established pattern, the milestone noted but not celebrated into the bands.",
     result:"All bands held; the steadiest epoch of the program. Spine at age 102,700, hash-stamped, committed.",
     implication:"The continuous life — the recipe's central invariant — now spans six figures. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp120_mirro_100k.py", output:"experiments/outputs/exp120.txt" } }
+    trace:{ script:"experiments/exp120_mirro_100k.py", output:"experiments/outputs/exp120.txt" } },
+
+  { n:121, kind:"positive", chapter:"frontier",
+    title:"A twentieth of a sigma.",
+    one:"Idle-mode epoch to 96,750: vela holds deep as recorded and deepens to +424, with the program's tightest forecast landing (0.045 sigma). Both lives deeply settled; vela's own 100k mark is next on its line.",
+    plain:"vela held as recorded and deepened again, with the forecast landing closer than any before it — within a twentieth of a sigma. Both lives are now deeply settled, the physics quiet and exact.",
+    metric:{ from:304.7, to:423.8, unit:"the gap deepens (held; 0.045 sigma — the program's tightest landing)" },
+    setup:"Idle-mode, vela's recorded deep call: the established pattern.",
+    result:"All bands held. Vela at 96,750, hash-stamped, committed.",
+    implication:"The lives continue toward vela's own hundred-thousandth step. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp121_vela_epoch13.py", output:"experiments/outputs/exp121.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

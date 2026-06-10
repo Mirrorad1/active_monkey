@@ -3344,3 +3344,18 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
   (M4a with windows + reflex, spines untouched — recommended) or stops the loop.
+
+## Exp 121 — idle-mode epoch: vela to 96,750 — holds deep, deepens to +424, forecast at 0.045 sigma: the program's tightest landing (POSITIVE; bands held)
+- Plain: vela held as recorded and deepened again, with the forecast landing closer than
+  any before it — within a twentieth of a sigma. Both lives are now deeply settled, the
+  physics quiet and exact. vela's own hundred-thousandth step comes next on its line.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 90750 -> 96750; recorded deep call (entering +304.7 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +423.8 (0.045 sigma —
+  the program's tightest forecast landing, beating Exp 95's 0.05). Map 1.000; share
+  deltas <= 0.0008. Spine: vela at 96750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; a tight landing is
+  one draw, as ever.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  or stops the loop.
