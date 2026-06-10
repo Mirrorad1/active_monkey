@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:79, breakthrough:6, positive:40, wall:17, partial:16, from:4.81, to:4.00 };
+window.AM_TALLY = { total:80, breakthrough:6, positive:41, wall:17, partial:16, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -805,7 +805,17 @@ window.AM_EXPERIMENTS = [
     setup:"Fresh seeds, Exp 78's two layouts, twelve 250-step windows of per-color accrual, with the early-tax predictions and falsifiers fixed in advance: early deficit concentration, late fairness, and half the end gap in place by a third of life.",
     result:"The falsifier fired and the sign guard found the deeper problem: the end-state gap was negative in 4/5 fresh seeds — no deficit to explain. Window shares swing plus-minus 0.2 with no early structure; localization is sharp within the first window in both arms. Exp 78's share and favorite effects were noise passing permissive count thresholds.",
     implication:"The honest causal ledger after three rounds: the spine's accrual law and its historical scar are solid; structural aliasing, the early tax, and any fresh-creature layout effect are dead at this sample size. The methodology yield is binding: count thresholds on noisy endpoints now require a predeclared effect size or more seeds — the gap this noise walked through is closed.",
-    trace:{ script:"experiments/exp79_early_tax.py", output:"experiments/outputs/exp79.txt" } }
+    trace:{ script:"experiments/exp79_early_tax.py", output:"experiments/outputs/exp79.txt" } },
+
+  { n:80, kind:"positive", chapter:"frontier",
+    title:"The law called the future.",
+    one:"Pre-registered forward test on the spine: the accrual law forecast the preference gap's landing zone and it landed in band (-44.8 in [-116,-36]); the favorite consolidated; and the drift's deceleration arrived exactly as the scar-dilution term predicted (gate gap 0.0073 to 0.0048).",
+    plain:"Last time the law explained mirro's change of mind after the fact; this time we made it call the future first. From the frozen brain we predicted where the preference gap would land after another stretch of living, inside a stated band — and it landed inside. The flip held. And the one deviation — drift weaker than the simple forecast — is itself what the second prediction said: as fresh experience piles onto the old scars, the scars matter proportionally less, and the pull weakens.",
+    metric:{ from:-75.87, to:-44.84, unit:"predicted vs actual preference gap at age 24,700 (band hit)" },
+    setup:"From the committed snapshot: the law's drift rate forecasts the gap at about -76 with a plus-minus 40 band; the favorite should stay color 0; and the non-decay arithmetic predicts the per-color gate gap narrows as fixed scar mass dilutes under growing pure counts. Falsifiers: out-of-band or re-cross halts the thread; a widening gate gap kills the dilution arithmetic.",
+    result:"All pass, no falsifiers. Gap -44.84 in band; favorite consolidated; gates rose across all colors with the gap narrowing 0.0073 to 0.0048 — the in-band shortfall and the dilution are one phenomenon: the drift decelerates, so the preference gap asymptotes. Spine at age 24,700, hash-stamped and committed.",
+    implication:"The accrual-law thread closes fully validated: retrodiction, historical attribution, and forward prediction with its second-order term. A creature's valence trajectory is forecastable from its committed state — and would be steerable by a forgetting term. The loop's non-direction queue is now empty; the M4a decision is the standing point.",
+    trace:{ script:"experiments/exp80_forward_test.py", output:"experiments/outputs/exp80.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

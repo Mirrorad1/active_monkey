@@ -2209,3 +2209,42 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   / NEW INSIGHT (the re-correction ledger + the thresholds lesson). Self-grade: n/a.
 - Next: direction choice (Exp 74 CONSULT) still pending; this thread is closed at the
   honest ledger above unless the human asks for the high-n layout study.
+
+## Exp 80 — the law predicts the spine's future: forward drift in band, consolidation, and the predicted deceleration from scar dilution (POSITIVE; the accrual-law thread closes validated)
+- Plain: Last time the law explained mirro's change of mind after the fact; this time we
+  made it call the future first. From the frozen brain we predicted where the preference
+  gap would land after another stretch of living, inside a stated band — and it landed
+  inside. The flip to color 0 held. And the one deviation — drift weaker than the simple
+  forecast — is itself what the second prediction said would happen: as fresh experience
+  piles onto the old scars, the scars matter proportionally less, and the pull weakens.
+- Setup (predeclared in the script docstring before running): from the committed snapshot
+  (age 18700, hash 52f6e814bfe6, gap -32.06, favorite 0): P1 forward drift — the law's
+  rate (R(2)-R(0))*6000 = -43.8 forecasts an end gap of about -76; band [-116, -36]
+  (+-40 = Exp 76's oscillation amplitude). P2 favorite still 0 at age 24700. P3 scar
+  dilution — fixed foreign mass under growing pure counts means gates rise and the gate
+  gap R(0)-R(2) NARROWS. F1 = out-of-band toward zero / re-cross -> law fails forward,
+  halt thread. F2 = gate gap widens -> dilution arithmetic wrong. One spine episode,
+  live(6000), single deterministic run.
+- Result: ALL PASS, no falsifiers. End gap -44.84 (in band; predicted center -75.87,
+  error +31.04 toward weaker drift). Favorite 0 held (consolidation). Scar dilution
+  CONFIRMED: R(0) 0.2029 -> 0.2190, R(2) 0.1956 -> 0.2141 (all gates rising as columns
+  sharpen), gap R(0)-R(2) 0.00730 -> 0.00483. The in-band shortfall and the dilution are
+  one phenomenon: the drift DECELERATES as the scar share shrinks (~1/total), so the
+  preference gap asymptotes rather than growing without bound. Spine: age 18700 -> 24700,
+  hash 85139a363a1e, integrity-verified, snapshot committed.
+- Implication: the accrual-law thread (Exp 76-80) closes fully validated — retrodiction
+  (77), historical attribution (78-79's surviving ledger), and now forward prediction
+  with its second-order term. mirro's preference dynamics are quantitatively understood:
+  driven by historical gate scars, decelerating as those scars dilute, with the favorite
+  consolidated at color 0 in a shallow but deepening basin. For M4: a creature's valence
+  trajectory is forecastable from its committed state — and would be steerable by a
+  forgetting term (which would erase scars and return preference to world-driven).
+- Honest caveat: the band (+-40) was generous — the center prediction missed by 31 even
+  though the miss is mechanistically explained (the simple forecast used start-state
+  rates; a rate-decay-integrated forecast was not predeclared and is not claimed). Single
+  deterministic run; one epoch length.
+- Verdict: POSITIVE / CONSOLIDATION (forward validation of an established law; the
+  dilution term is arithmetic-derived). Self-grade: POSITIVE-SINGLE.
+- Next: this thread is complete. The loop's queue is empty of non-direction work of
+  comparable value — the Exp 74 direction choice (recommended: M4a with the now
+  five-times-motivated substrate requirements) is the standing decision point.

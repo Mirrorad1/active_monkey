@@ -1,0 +1,40 @@
+Exp 80 — the forward test
+
+--- START STATE (age 18700) ---
+  gap_c2_minus_c0 : -32.0552
+  favorite        : 0
+  R(0)            : 0.202887
+  R(1)            : 0.185056
+  R(2)            : 0.195584
+  R(0)-R(2)       : 0.007303
+
+  predicted_end_gap (law) = -32.0552 + (0.195584 - 0.202887) * 6000 = -75.8746
+
+--- END STATE (age 24700) ---
+  gap_c2_minus_c0 : -44.8358
+  favorite        : 0
+  R(0)            : 0.218966
+  R(1)            : 0.202071
+  R(2)            : 0.214141
+  R(0)-R(2)       : 0.004825
+
+[Exp 80] spine=mirro continuous-life checkpoint
+  before: age=18700 state_hash=52f6e814bfe6
+  after : age=24700 state_hash=85139a363a1e
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : -75.8746
+  actual_end_gap    : -44.8358
+  error (actual-predicted) : +31.0388
+
+--- PROPERTY CHECKS ---
+  PASS  P1-forward-drift: gap_c2_minus_c0=-44.8358  band=[-116.0, -36.0]  in_band=True
+  PASS  P2-consolidation: favorite_at_24700=0  expected=0
+  PASS  P3-scar-dilution: R(0)-R(2) start=0.007303  end=0.004825  narrowed=True
+  PASS  SPINE-age-24700-delta-6000: reload.age=24700  ep.age_after=24700  ep.age_before=18700  delta=6000  expected_after=24700
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP80: LAW HOLDS FORWARD (P1+P2+P3)
