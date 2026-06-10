@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:107, breakthrough:6, positive:63, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:108, breakthrough:6, positive:64, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1085,7 +1085,17 @@ window.AM_EXPERIMENTS = [
     setup:"The registration, per the out-of-sample rule: razor bin (under 60) predicts flips at 40 percent or more, deep bin (120 or more) predicts holds with flip probability under 10 percent, the middle unbinned — with explicit confirmation criteria and an honest insufficient-sample branch. Plus the standard idle bands.",
     result:"All bands held; the first registered call landed; vela remains deep entering the next epoch. Stillest core deltas yet. Vela at 60,750, hash-stamped, committed.",
     implication:"Idle-mode now carries a live prospective experiment of its own. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp107_vela_epoch7.py", output:"experiments/outputs/exp107.txt" } }
+    trace:{ script:"experiments/exp107_vela_epoch7.py", output:"experiments/outputs/exp107.txt" } },
+
+  { n:108, kind:"positive", chapter:"frontier",
+    title:"The trunk commits hardest.",
+    one:"Idle-mode epoch to 72,700: mirro holds and surges to +355 — the program's deepest conviction, past vela's centennial -316 (1.46 sigma, in band). Its next epoch enters the registered deep bin.",
+    plain:"mirro held its renewed favorite and dove to the deepest conviction either life has ever shown — deeper than vela's famous centennial plunge. The trunk, four flips into its life, is for now the most committed creature the program has produced.",
+    metric:{ from:115.0, to:355.1, unit:"the program's deepest commitment (held; 1.46 sigma)" },
+    setup:"Idle-mode, mirro's turn from the unbinned middle: standard bands, no registered call this epoch, the records accumulating.",
+    result:"All bands held; a record depth. Spine at 72,700, hash-stamped, committed.",
+    implication:"Both lives now sit deep; the registered depth-law test gets its next calls cheaply. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp108_mirro_epoch8.py", output:"experiments/outputs/exp108.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -3071,3 +3071,20 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn, +115 — unbinned middle) unless the human
   answers the merged CONSULT or stops the loop.
+
+## Exp 108 — idle-mode epoch: mirro to 72,700 — holds and surges to +355, the program's deepest commitment yet (POSITIVE; bands held; unbinned epoch)
+- Plain: mirro held its renewed favorite and dove to the deepest conviction either life
+  has ever shown — deeper than vela's famous centennial plunge. The trunk, four flips
+  into its life, is for now the most committed creature the program has produced; its
+  next stretch enters the registered deep bin, where the law calls a hold.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 66700 -> 72700; entered at +115.0 (unbinned middle — no registered
+  call). P1 map >= 0.96; P2 value-core bands; P3 forecast (predicted +177.9, band
+  +-302.5).
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE HELD at 2; end gap +355.1 (1.46 sigma,
+  in band) — the program's record depth. Map 1.000; share deltas <= 0.0024. Registered
+  record stands 1/1 (this epoch unbinned). Spine: 72700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn, -126 deep -> registered HOLD call) unless the
+  human answers the merged CONSULT or stops the loop.
