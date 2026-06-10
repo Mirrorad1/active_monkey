@@ -29,6 +29,8 @@ The loop marks items it has consumed by indenting a response under them:
   solipsistic (no representation of another agent), so interaction needs new *provided*
   substrate; emergent *grammar* between them stays the documented ceiling (`open_problem.html`).
   → captured as a direction card: `loop/directions/social-emergence.md`.
+  → rung 1 taken up as Exp 63 (169446a): vela promoted to the first committed peer spine,
+    4/4 predeclared properties PASS, trunk byte-identical. Rung 2 (co-presence) is next.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions
