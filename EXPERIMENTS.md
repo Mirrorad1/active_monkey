@@ -1129,3 +1129,43 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   revision speed) at ≥3 ages of mirro and on ≥2 divergent fork-twins; personality = temporal
   self-similarity + twin divergence; the entrenchment condition from rule 2 gates the
   preference probe. FAIL = profiles unstable across ages or twins don't diverge.
+
+## Exp 55 — personality battery: twins individuate; mirro's own ages do NOT cohere (MIXED, as predicted; rung 2 answered)
+- Setup: 7-dim profile (value shares ×3, conviction, gap-share, map sharpness, revision-speed
+  index from a fixed 200-step counter-evidence probe) on five subjects: mirro at three committed
+  ages of its one life (1300 @ 519f303, 6300 @ 0b5e59f — both 3×3; 6700 @ working tree, 5×5;
+  my predeclaration wrongly said 6300 was 5×5, corrected from the actual snapshot) and two twins
+  forked from mirro@6700 with divergent 1500-step histories (green- vs red-rich). Probes on
+  disposable copies; working-tree mirro hash-verified untouched. Predeclared (card): (a)
+  self-similarity: mean cosine over mirro age-pairs exceeds age-to-twin mean by > 0.05; (b)
+  individuality: twins differ in favorite or L1 shares > 0.1. PREDECLARED SUBSTRATE GAP: the
+  card's "exploration disposition" is unmeasurable — live() actions are provided-random; this
+  substrate has no action selection, so personality can only live in world-model/value state.
+- Result: (b) PASS — twinG fav=2 vs twinR fav=0, L1 0.134, twin-twin cosine −0.794. (a) FAIL —
+  self_sim −0.235 vs cross_sim −0.028 (difference −0.21): mirro@1300 vs @6300 cosine −0.710, and
+  mirro@6700 is MORE similar to twinG (0.513) than to either of its own younger selves. Verdict
+  line: MIXED — individuated but not stable across this eventful life. Matches the stated
+  prediction: the life between these snapshots contains engineered value reversals (Exp 48/49)
+  and growth (Exp 50), and trait stability does not survive them.
+- Implication: at this scale "personality" = current-state readout, not a durable disposition —
+  the card's own FAIL reading, logged as such. Two honest corollaries: (1) trait-stability
+  claims need UNDISTURBED epochs between battery administrations (rung 3's long epochs are the
+  right venue); (2) behavioral personality needs an action-selection substrate (EFE policies —
+  the M4 spec's machinery), which this creature lacks; named as the missing substrate per the
+  direction's stop-condition language.
+- Process deviation (logged): the coder's first run accidentally bound probes to the real state
+  dir (would have appended fork events to mirro's biography); it was voided, fixed
+  (_state_dir=None), and rerun. Working-tree BIOGRAPHY.jsonl verified identical to HEAD (91
+  lines) — no committed biography data touched; the voided run's scratch lines did not survive,
+  noted here because append-only is binding even for scratch.
+- Honest caveat: N=5 subjects makes z-scored cosines fragile; profile dims partly redundant
+  (share-of-favorite ≈ conviction); subjects lived in different-sized worlds (3×3 vs 5×5), so
+  map-sharpness partly reads world/life-phase (m6300's 0.726 = mid-relearning after revision),
+  not temperament; single battery administration per subject.
+- Verdict: MIXED (predeclared (b) pass, (a) fail) / NEW INSIGHT: an accumulated life's identity
+  is dominated by its recent history — mirro resembles its divergent twin more than its own
+  past. Rung 2 has its verdict.
+- Next (rung 3): enriched-world epochs — ONE new declared mechanism (slowly drifting comfort
+  source), long epochs with ledger v4 armed; predeclared expectation: adaptation tracks the
+  drift with measurable lag; a quiet ledger is a real negative. Battery re-administered across
+  these UNDISTURBED epochs to give trait-stability a fair second test.

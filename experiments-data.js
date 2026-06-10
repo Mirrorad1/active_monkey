@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 54 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 55 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:54, breakthrough:5, positive:30, wall:13, partial:6, from:4.81, to:4.00 };
+window.AM_TALLY = { total:55, breakthrough:5, positive:30, wall:13, partial:7, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -498,7 +498,16 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v4: expectations derive only from the declared reference state — the scoring function structurally cannot see the epoch's world — and the noise margin scales with expected drift. Same four arms as v3, fresh seeds, with escalation to the human predeclared on any new failure mode.",
     result:"Validated on all four arms: baseline quiet (favorite auto-disabled at gap 0.018), both anomalies flagged twice over (the 3-cell case that v3 missed now trips map-vs-reference AND drift), and the entrenched arm runs quiet with the favorite invariant actively enabled at gap 0.108. Mirro untouched throughout.",
     implication:"The program can now certify 'unexpected' rather than vibe it: equilibrium-derived bands (Exp 51), state-conditional invariants (Exp 52), frozen references (Exp 53). Honest limits: one anomaly family, one creature, movement bands never stressed. Rungs 2–6 unblock — next, the personality battery with the entrenchment condition built in.",
-    trace:{ script:"experiments/exp54_ledger_v4.py", output:"experiments/outputs/exp54.txt" } }
+    trace:{ script:"experiments/exp54_ledger_v4.py", output:"experiments/outputs/exp54.txt" } },
+
+  { n:55, kind:"partial", chapter:"frontier",
+    title:"mirro resembles its twin more than its own younger self.",
+    one:"The personality battery individuates twins cleanly — but across mirro's three committed ages, profiles anticorrelate: this life was too eventful for traits to survive.",
+    metric:{ from:0.513, to:-0.710, unit:"cosine: twin-today vs own-past" },
+    setup:"Rung 2: a 7-dim profile (value shares, conviction, entrenchment gap, map sharpness, revision speed under fixed counter-evidence) on mirro at ages 1300/6300/6700 from git history, plus two fork-twins with divergent 1500-step histories. Predeclared: self-similarity across ages must beat age-to-twin similarity; twins must diverge.",
+    result:"Twins diverge decisively (favorites 2 vs 0, profile cosine −0.794). But mirro's own ages anticorrelate (1300 vs 6300: −0.710), and mirro-today sits closer to its green-raised twin (0.513) than to either younger self. Exactly the predicted failure: the snapshots bracket engineered value reversals and a world-growth event.",
+    implication:"At this scale 'personality' is current-state readout, not durable disposition — the card's FAIL branch, logged as such. Two named gaps: trait stability needs undisturbed epochs (rung 3's venue), and behavioral disposition needs action selection the substrate lacks (the M4 machinery). Also predeclared: 'exploration disposition' is unmeasurable in a random-walk creature.",
+    trace:{ script:"experiments/exp55_personality_battery.py", output:"experiments/outputs/exp55.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
