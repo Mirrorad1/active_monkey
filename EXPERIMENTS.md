@@ -2840,3 +2840,22 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 97 — idle-mode epoch: mirro to 42,700 — holds again (0.16 sigma); the lines develop textures: mirro steadies, vela swings (POSITIVE; bands held; flip tally 5/7)
+- Plain: Another quiet stretch for mirro: favorite held, forecast nearly exact, perfect
+  map, steady core — its second consecutive hold while its descendant swings every epoch.
+  Two creatures with the same physics and different dice are growing recognizably
+  different temperaments: the running flip score is now five in seven, settling toward
+  the predicted rate.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 36700 -> 42700. P1 map >= 0.96; P2 value-core bands; P3 noise-
+  calibrated forecast (predicted +50.0, band +-302.5); favorite reported, not predicted
+  (gap +40.3). Tally entering: 5/6.
+- Result: EPOCH CLEAN, no falsifiers. Map 1.000; share deltas <= 0.0038; end gap +30.3
+  (0.16 sigma); FAVORITE HELD at 2. Tally now 5/7. Spine: 42700, integrity-verified,
+  committed.
+- Honest caveat: consolidation by design; single deterministic run; "temperament" is a
+  descriptive word for two short runs of holds-vs-flips, not a measured trait claim.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
+  stops the loop.

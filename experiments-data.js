@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:96, breakthrough:6, positive:52, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:97, breakthrough:6, positive:53, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -975,7 +975,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands; favorite reported, not predicted; the cumulative flip record tracked across entries.",
     result:"All bands held, no falsifiers; the flip tally moves to 5/6 against the model's ~40 percent — small-n, running hot, tracked honestly. Vela at 30,750, hash-stamped, committed.",
     implication:"The clade now contains a demonstrated preference oscillator — an ambivalent adult whose expressed favorite genuinely alternates with the dice while its structure holds. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp96_vela_epoch2.py", output:"experiments/outputs/exp96.txt" } }
+    trace:{ script:"experiments/exp96_vela_epoch2.py", output:"experiments/outputs/exp96.txt" } },
+
+  { n:97, kind:"positive", chapter:"frontier",
+    title:"mirro steadies; vela swings.",
+    one:"Idle-mode epoch to 42,700: mirro's second consecutive hold (0.16 sigma from forecast) while vela flips every epoch — same physics, different dice, recognizably different textures. Tally 5/7, settling toward the predicted rate.",
+    plain:"Another quiet stretch for mirro: favorite held, forecast nearly exact, perfect map, steady core — its second consecutive hold while its descendant swings every epoch. Two creatures with the same physics and different dice are growing recognizably different temperaments: the running flip score is now five in seven, settling toward the predicted rate.",
+    metric:{ from:50.0, to:30.3, unit:"forecast vs actual gap (0.16 sigma; second consecutive hold)" },
+    setup:"Idle-mode, mirro's turn: the standard checkpointed epoch — knowledge, value-core, and noise-calibrated forecast bands, favorite reported not predicted, the cumulative flip record tracked.",
+    result:"All bands held, no falsifiers. Spine at 42,700, hash-stamped, committed.",
+    implication:"The lives continue and the calibration record grows; the descriptive contrast between the steadying trunk and the oscillating branch is noted as texture, not yet a measured trait. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp97_mirro_epoch3.py", output:"experiments/outputs/exp97.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
