@@ -1815,3 +1815,61 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   intrinsic-ness question; then the social-emergence synthesis — rungs 1-4 all have honest
   verdicts (1: infrastructure ✓; 2: co-presence safe/inert; 3: adult-NEGATIVE,
   young-POSITIVE, ambivalence law; 4: departure = unilateral stigmergic lock-in).
+
+## Exp 72 — the kidnapped twin: certainty freezes self-location, walls heal it, and exclusion survives full symmetry with a coin-flip winner (MIXED; two mechanism predictions confirmed, two falsified, script verdict corrected at validation)
+- Plain: A copied creature inherits its parent's certainty about where it is standing — and
+  certainty, in this substrate, cannot be argued with: we confirmed that no amount of
+  looking around moves a fully-certain belief; it only re-syncs with reality by bumping
+  into walls, which luckily takes seconds. So a displaced twin starts lost but recovers
+  fast, and my story that the loser of the shared-spot contest was lost-and-camping was
+  wrong — the race is decided in the first moments, then the back-off habit locks it in
+  forever. Best of all: with every unfairness removed — equal distances, equal knowledge —
+  one creature still ends up owning the spot in 7 of 8 runs. But WHICH one is a coin flip:
+  my closer-one-wins prediction was wrong too.
+- Setup (predeclared in the script docstring before running): premise verified in the
+  committed state (mirro qs delta at cell 0, max 1.0). Part A: kidnapped twin (true 24,
+  believed 0), random walk, 5 seeds — P3 belief == dead-reckoned image at every step
+  (support theorem; F1 halt), P1 belief-truth offset hits 0 within 500 steps (wall
+  re-sync; F2 halt). Part B: same kidnap under seeking — P2 phantom-camping >= 25% of
+  steps in >=4/5 (F3 reported). Part D: belief-equalized contest — equidistant starts,
+  800-step random settle, G-SYNC gate (both offsets 0 at contest start, input-based),
+  8 fresh seeds (21-28), Exp 70 classification; INTRINSIC-EARNED iff EXCLUSION >= 4 valid
+  AND winner == closer-at-contest-start in >= 75% of unequal-distance exclusion seeds.
+  Predicted: P3 0 violations; P1 sync 50-300 steps; P2 30-70% camping; P4 intrinsic-earned.
+- Result: P3 PASS 5/5, 0 violations in 10,000 step-checks — observation NEVER moves a
+  delta belief (the kidnapped-robot failure, exactly as diagnosed). P1 PASS 5/5 and faster
+  than predicted: sync in 16-29 steps, 0 regrowths (offsets cannot grow; walls only heal).
+  P2 FAIL 0/5 (F3 FIRED): camping 6-22% — the kidnap penalty is a TRANSIENT, not
+  persistent phantom-camping; my Part-B story dies, and with it the explanation that
+  Exp 69-71's losers were lost — they lost the opening race, then the retreat lock-in
+  made it permanent. P4: G-SYNC 8/8 (settling equalizes belief, as Part A predicts);
+  EXCLUSION 7/8 under full symmetry — but winner == closer in only 3/6 (50%): the
+  predeclared conjunction FAILS its second half. SCRIPT CORRECTION (validation catch):
+  the script printed INTRINSIC-EARNED because its branch logic dropped the winner
+  conjunct; by the predeclared rule the P4 outcome is split — intrinsic-ness component
+  PASS, winner-mechanism component FAIL. Winners: B 6/8, A 2/8 (coin-flip-compatible);
+  seed 23's CLOSER creature lost.
+- Implication (three findings, one theme): (1) The certainty pathology, third appearance —
+  this substrate cannot unlearn certainty: converged maps freeze (Exp 56-60), settled
+  values gate persuasion (Exp 65-67), and now delta self-location is observation-proof,
+  healed only by wall-clamp events (the motor anchor doing the work perception cannot).
+  Any M4-bound substrate needs graded uncertainty maintenance (a floor on belief entropy
+  or an observation-noise term), now for the third independent reason. (2) The exclusion
+  lock-in is INTRINSIC: it self-organizes from fully symmetric initial conditions, with
+  the symmetry broken stochastically — not by distance, belief, or identity. Exp 71's
+  deflated name (stigmergic unilateral-retreat lock-in) stands, now with honest symmetry.
+  (3) Both of my mechanism predictions about WHO loses were wrong (camping, proximity) —
+  the early race is decided by epsilon-step noise amplified by positive feedback.
+- Honest caveat: the script's aggregate verdict line overstates per its own docstring; the
+  correction above applies the predeclared rule to the committed raw output (all per-seed
+  data in experiments/outputs/exp72.txt) — the script is committed as-run, not edited
+  post-hoc. One parameterization throughout; camping threshold (25%) was my guess and its
+  failure is informative, not catastrophic; P4's winner sub-check had only 6 unequal-
+  distance exclusion seeds (small n).
+- Verdict: MIXED / NEW INSIGHT (P3+P1 confirmed: support theorem + wall healing; P2
+  falsified: transient not persistent; P4 split: intrinsic-ness earned, winner-mechanism
+  falsified). Self-grade: n/a (MIXED).
+- Next: the social-emergence synthesis — rungs 1-4 all have honest verdicts and the
+  cascade is closed (exclusion: intrinsic, stochastic, unilateral, stigmergic). Or open
+  the named substrate gap (distal other-agent sensing / graded uncertainty) as a new
+  direction card.

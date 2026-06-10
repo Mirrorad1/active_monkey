@@ -1,0 +1,92 @@
+Exp 72 — the kidnapped twin: belief-equalized contest and rung-5 cascade.
+
+mirro: id=4328312368  name='mirro'  age=10700  hash=21ccb619f063  favorite=2  shares=[0.3623 0.2737 0.3641]
+
+favorite color: 2  SOURCE_CELL=10  (row=2, col=0)
+
+BFS distance field to SOURCE_CELL (grid):
+    2  3  4  5  6
+    1  2  3  4  5
+    0  1  2  3  4
+    1  2  3  4  5
+    2  3  4  5  6
+
+Equidistant-start assertion: dist[EQ_A=0]=2  dist[EQ_B=20]=2
+  -> PASS (both distance 2)
+
+Delta-belief premise: argmax(mirro.qs)=0  max(mirro.qs)=1.0
+  -> PASS (delta at cell 0, max=1.0)
+
+======================================================================
+PART A — Kidnapped twin under RANDOM walk (P3 & P1)
+  KIDNAP_POS=24  AB_SEEDS=[0, 1, 2, 3, 4]
+======================================================================
+
+seed  violations  first_sync  regrowths
+---------------------------------------------
+   0           0          19          0
+   1           0          29          0
+   2           0          17          0
+   3           0          16          0
+   4           0          21          0
+
+P3 (0 violations all 5 seeds): total_violations=0  -> PASS
+P1 (first_sync <= 500 in >=4/5): seeds_passing=5/5  -> PASS
+P1 regrowth events (predicted 0): total_regrowths=0
+
+======================================================================
+PART B — Kidnapped twin under FIXED always-approach policy (P2)
+  KIDNAP_POS=24  AB_SEEDS=[0, 1, 2, 3, 4]
+======================================================================
+
+seed  camping_frac  P2_seed?
+-----------------------------------
+   0        0.1155        no
+   1        0.1475        no
+   2        0.2150        no
+   3        0.0595        no
+   4        0.0900        no
+
+P2 (camping_frac >= 0.25 in >=4/5): seeds_passing=0/5  -> FAIL
+F3 FIRED — phantom-camping story in doubt (exclusion-asymmetry mechanism explanation is uncertain); continuing to Part D.
+
+======================================================================
+PART D — Belief-equalized contest (P4)
+  EQ_A=0 (dist=2)  EQ_B=20 (dist=2)
+  D_SEEDS=[21, 22, 23, 24, 25, 26, 27, 28]  SETTLE=800
+======================================================================
+
+seed    sA    sB   dA   dB  offA  offB   sync   occ_A   occ_B    asym       R         class  winner  closer
+-------------------------------------------------------------------------------------------------------------------
+  21    14    11    4    1     0     0   SYNC   0.292   0.705   0.414   0.626   TIMESHARING       B       B
+  22     7    13    3    3     0     0   SYNC   0.162   0.811   0.668   0.984     EXCLUSION       B     TIE
+  23    15    20    1    2     0     0   SYNC   0.155   0.839   0.687   0.989     EXCLUSION       B       A
+  24     8     0    4    2     0     0   SYNC   0.171   0.817   0.654   0.935     EXCLUSION       B       B
+  25     8     3    4    5     0     0   SYNC   0.829   0.166   0.666   0.963     EXCLUSION       A       A
+  26     8     7    4    3     0     0   SYNC   0.158   0.825   0.679   0.993     EXCLUSION       B       B
+  27    21     0    3    2     0     0   SYNC   0.846   0.169   0.667   0.948     EXCLUSION       A       B
+  28     1     9    3    5     0     0   SYNC   0.155   0.822   0.683   0.993     EXCLUSION       B       A
+
+G-SYNC: valid=8/8  excluded=0/8  valid_seeds=[21, 22, 23, 24, 25, 26, 27, 28]  excluded_seeds=[]
+P4 EXCLUSION count among valid seeds: 7/8
+P4 winner-sub-check: unequal-dist EXCLUSION seeds=6  winner==closer=3  fraction=0.5
+P4 branch: INTRINSIC-EARNED
+
+======================================================================
+--- PROPERTY CHECKS ---
+
+PASS  A-P3: total_violations=0 (all 5 seeds)
+PASS  A-P1: seeds_synced_within_500=5/5 >= 4; regrowths=0 (predicted 0)
+FAIL  B-P2: seeds_passing=0/5 <4 FAIL — F3 FIRED
+PASS  D-G-SYNC: valid=8/8 >= 6 (informational)
+PASS  D-P4-branch: branch=INTRINSIC-EARNED  EXCLUSION=7/8  winner_closer_frac=0.500
+
+======================================================================
+--- FALSIFIER MAP ---
+
+  F1 (A-P3): CLEAR — any dead-reckoning violation -> Exp 71 diagnosis wrong -> HALT
+  F2 (A-P1): CLEAR — re-sync failure -> loser-occupancy story wrong -> HALT
+  F3 (B-P2): FIRED — phantom-camping story in doubt (reported; Part D continues)
+
+======================================================================
+EXP72: INTRINSIC-EARNED — cascade closed

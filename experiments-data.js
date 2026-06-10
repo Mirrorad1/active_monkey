@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:71, breakthrough:6, positive:37, wall:16, partial:12, from:4.81, to:4.00 };
+window.AM_TALLY = { total:72, breakthrough:6, positive:37, wall:16, partial:13, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -725,7 +725,17 @@ window.AM_EXPERIMENTS = [
     setup:"Three predeclared legs on fresh seeds: solo runs first (the comfort gate must stay idle without contest), an equidistant-start reproduction with a winner-balance diagnostic, and the key deflation — one fixed agent versus one adaptive agent. Wording rules for every branch combination were fixed before running.",
     result:"Instrument clean (8/8 solo). Equidistant geometry still yields exclusion 7/8 — but the same twin won 7/7 (p~0.008 under symmetry), and the cause was verified in the committed state: mirro's place belief is a delta at cell 0, inherited by both forks; the twin placed elsewhere starts misnavigating from a false belief. Deflation succeeded 8/8: one adaptive agent reproduces the whole regime.",
     implication:"Rung 4's honest name: a stigmergic unilateral-retreat lock-in — a positive-feedback loop through the shared resource needing only one adapting mind. Dominance and coordination remain unearned. The belief-inheritance asymmetry retroactively explains three experiments' winner records and queues one final leg: a belief-equalized reproduction with a pre-contest settling phase.",
-    trace:{ script:"experiments/exp71_exclusion_cascade.py", output:"experiments/outputs/exp71.txt" } }
+    trace:{ script:"experiments/exp71_exclusion_cascade.py", output:"experiments/outputs/exp71.txt" } },
+
+  { n:72, kind:"partial", chapter:"frontier",
+    title:"Certainty cannot be argued with — only walls heal it.",
+    one:"Kidnapped-twin mechanics verified: a delta belief never moves under observation (0 violations in 10,000 checks), wall-clamping re-syncs it in 16-29 steps, phantom-camping was wrong (transient), and exclusion survives FULL symmetry 7/8 — with a coin-flip winner that falsifies the proximity story.",
+    plain:"A copied creature inherits its parent's certainty about where it is standing — and certainty, in this substrate, cannot be argued with: no amount of looking around moves a fully-certain belief; it only re-syncs with reality by bumping into walls, which luckily takes seconds. So a displaced twin starts lost but recovers fast. And with every unfairness removed — equal distances, equal knowledge — one creature still ends up owning the shared spot in 7 of 8 runs. But which one is a coin flip: the closer-one-wins story died too.",
+    metric:{ from:7, to:8, unit:"exclusion under fully symmetric starts (winner = coin flip)" },
+    setup:"Four predeclared parts: the support theorem (belief must equal its dead-reckoned path at every step), wall re-sync within 500 steps, phantom-camping at least 25% under seeking, and the belief-equalized contest — equidistant starts plus an 800-step settling phase gated on both creatures being truly re-localized.",
+    result:"Support theorem: 0 violations in 10,000 step-checks. Wall healing: 16-29 steps, offsets never regrow. Camping: FAILED at 6-22% — the kidnap penalty is transient; losers lose the opening race, then the retreat habit locks it in. Equalized contest: exclusion 7/8, but winner-equals-closer only 50% — the script's verdict line dropped that predeclared conjunct and was corrected at validation against the committed raw output.",
+    implication:"The certainty pathology's third appearance: this substrate cannot unlearn certainty — frozen maps, gated persuasion, and now observation-proof self-location healed only by the motor anchor. Graded uncertainty maintenance joins the M4 requirements for a third independent reason. And the exclusion lock-in is genuinely intrinsic: it self-organizes from symmetric starts, symmetry broken by noise — keeping Exp 71's deflated name, with both of the author's who-loses mechanisms falsified.",
+    trace:{ script:"experiments/exp72_kidnapped_twin.py", output:"experiments/outputs/exp72.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
