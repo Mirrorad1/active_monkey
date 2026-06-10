@@ -194,6 +194,22 @@ The loop marks items it has consumed by indenting a response under them:
     contact; M4a stays halted at 1c; until rung 6 (the amortized control) runs, every
     claim is bounded to continuous-vs-tabular — no closed-form-vs-amortized conclusions.
 
+- [from human, 2026-06-10] META-METHODOLOGY supplied: a standing reference of design-time
+  criteria (mechanism vs outcome, specific null, confound list, strongest-comparison,
+  degrees of freedom, bridge question), run-time discipline (shape-not-point predictions,
+  sweep legitimacy, two-phase exploration, seed discipline, log-everything), result
+  evaluation (so-what, confound audit, boundary conditions, effect size, surprise audit,
+  falsifier honesty), generalizability tiers (analytic > functional-form > parameter-level
+  > failure-mode > benchmark transfer), recognizing-the-profound heuristics, and
+  bridge-to-scale rules. Goal: findings that generalize beyond the repo and can speak to
+  live debates (AXIOM vs Dreamer, FEP falsifiability, scaling).
+  → captured verbatim as `loop/METHODOLOGY.md` (ADVISORY layer; VALIDATION stays binding;
+    the two deltas — seed floor, commit-before-run vs the atomicity norm — are annotated
+    there, PROTOCOL governs until the human amends it). Wired in: compose.py DISCIPLINE
+    block, PROTOCOL step 2 (design-time pass) and step 5 (evaluation pass + the
+    Implication line now names the generalizability tier claimed), loop/README.md table,
+    RESUME.md map. Lands in PR #23 with the rest of the steering stack.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

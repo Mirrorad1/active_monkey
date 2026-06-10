@@ -19,6 +19,9 @@ several half-experiments. Steps:
    No result may be interpreted against a prediction made after seeing it.
    When the run is stochastic or involves the persistent creature, predictions and
    falsifiers must be property-level with explicit thresholds (see VALIDATION.md).
+   Design-time pass (advisory, `loop/METHODOLOGY.md` Part 1): mechanism vs outcome,
+   specific null, confound list, strongest-version comparison, one independent variable
+   (or a declared sweep with a shape-level falsifier), and name the bridge domain.
 
 3. **Build small.** Smallest script that tests the hypothesis. Reuse verified patterns
    (Exp 21/26/30/34/35). Repo root or `PYTHONPATH=.`; run via `uv run --python .venv`.
@@ -43,6 +46,10 @@ several half-experiments. Steps:
    (Plain / Setup / Result / Implication / Honest caveat / Next), explicitly tagged:
    POSITIVE / NEGATIVE / MIXED, and CONSOLIDATION / NEW INSIGHT. Negative results get
    the same care as positive ones.
+   Evaluation pass before grading (advisory, `loop/METHODOLOGY.md` Parts 3–4): confound
+   audit against the predeclared list, boundary conditions (where the effect STOPS),
+   effect size not just significance, surprise audit; the Implication line names the
+   generalizability tier claimed (analytic / functional-form / parameter-level / none).
 
    **Plain (mandatory, first line of every entry):** one or two jargon-free sentences —
    what we're *really* testing and what the result means, said simply, for a reader who
