@@ -75,7 +75,11 @@ def compose(direction: str, persona: str, idea: str | None) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--direction", default="transfer", help="direction card name")
+    ap.add_argument(
+        "--direction",
+        default="continuous-substrate",  # current human steer (see loop/IDEAS.md 2026-06-10)
+        help="direction card name",
+    )
     ap.add_argument("--persona", default="default", help="persona card name")
     ap.add_argument("--idea", default=None, help="one-off human idea to inject")
     ap.add_argument("--list", action="store_true", help="list available modules")

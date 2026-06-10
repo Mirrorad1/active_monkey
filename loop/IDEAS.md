@@ -142,6 +142,58 @@ The loop marks items it has consumed by indenting a response under them:
   → taken up immediately: branch structure-learning; Phase 1 + scaffolds + spec + the
     ceiling experiment (Exp 132); merged to main when green.
 
+- [from human, 2026-06-10] STEER: open the **continuous-substrate** direction — "Problem 2"
+  of the frontier map: replace the enumerated state `s ∈ {1..N}` with a continuous latent
+  `s ∈ ℝᵈ`, inference by closed-form conjugate updates (precision accumulation), online and
+  gradient-free, evaluated against a minimal amortized (ELBO/encoder) baseline. The human
+  supplied the full research program — math, five tests (convergence, interpolation, the
+  Exp 31 rematch, dimensionality scaling, non-stationary tracking), metrics, and honest
+  gaps — captured verbatim at `docs/research/problem2-continuous-substrate.md`.
+  → captured as direction card `loop/directions/continuous-substrate.md`; compose.py's
+    default `--direction` now points at it; RESUME.md §6 example updated to match.
+  → scope note: this steer does NOT answer the pending M4a increment-1c question (Exp 128) —
+    that consult stays open awaiting its own explicit word, and the M4a build stays halted.
+    mirro/vela spines are untouched by this direction; idle-mode epochs may interleave as
+    before. The loop remains PAUSED (Exp 131) until re-invoked; on resumption this card is
+    the sanctioned queue.
+  → [merge note, 2026-06-10] this steer (PR #23) landed in parallel with the
+    structure-learning directive above; no contradiction on merge: that directive's written
+    scope (Phase 1 live + flag-gated Phase 2-3 scaffolds + Exp 132, "then merge to main")
+    is COMPLETE and on main, so this card is the open queue on resumption. ACTIVATING
+    structure-learning Phases 2-3 (BMR/expansion live on a creature) remains a separate
+    human decision — if both threads are wanted, the human orders them here.
+  → [human, 2026-06-10] BUILD CONSTRAINTS ratified for executing the ladder (supplements —
+    never forks — the card + docs/research/problem2-continuous-substrate.md, which remain
+    the source of truth; do not restate the spec elsewhere). Core math:
+    active_loop/continuous.py, pure numpy (scipy gammaln/Cholesky ok), precision/
+    natural-parameter form throughout — Gaussian product, sequence accumulation, NIW update
+    (require ν₀ ≥ d+2); durable guards in tests/test_continuous.py (product-of-Gaussians vs
+    closed form, precision monotonicity, NIW limit behaviors), in the fast suite.
+    Execution: one rung per iteration per PROTOCOL.md — and a rung MAY be a predeclared
+    SWEEP (grid declared up front; the falsifier binds the predicted SHAPE of the boundary
+    — direction/monotonicity — not each cell); exploratory sweeps are sanctioned when
+    labeled exploratory, then the seen boundary is registered and confirmed on fresh seeds
+    (the Exp 112/128 diagnostic precedent — never relabel exploration as confirmation).
+    Flat numbered experiments/expNNN_cont_*.py continuing the global sequence; falsifiers
+    predeclared in the docstring BEFORE running; ≥ 8 seeds (sweeps: seeds-per-cell as
+    predeclared); outputs committed with the EXPERIMENTS.md
+    entry; a negative rung is a result, not a blocker — log it and reassess. Twin baseline:
+    every rung also runs the tabular twin (Dirichlet/categorical, same 6 concepts) on the
+    IDENTICAL observation stream; primary comparison metric = held-out predictive NLL (the
+    only metric defined for both); localization error / posterior entropy / collapse index
+    logged per-agent as diagnostics; JSON rows {exp, rung, agent, seed, step, metric,
+    value, params}. Declared modeling choices (state them in rung 1's predeclaration):
+    emission likelihood is the UNNORMALIZED Gaussian footprint (the conjugacy-buying
+    approximation) while the data generator uses the normalized mixture — the mismatch is
+    part of what's measured; NIW learning uses posterior moment-matching, not point states
+    (or declare the alternative once and keep it fixed). Rung 4 confound control: scale
+    footprints so pairwise Mahalanobis separation is constant across d, and report it.
+    Rung 5 cross-link (predeclare): does the Exp 88 window law (forgetting rate between
+    accuracy floor and tempo ceiling) hold for NIW precision decay? — predeclare the band;
+    if it holds, that is a substrate-independent law. Scope guards: no creature/spine
+    contact; M4a stays halted at 1c; until rung 6 (the amortized control) runs, every
+    claim is bounded to continuous-vs-tabular — no closed-form-vs-amortized conclusions.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

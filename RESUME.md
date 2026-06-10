@@ -89,6 +89,7 @@ Run experiment scripts from the repo root (or `PYTHONPATH=.`) so imports resolve
 
 ```bash
 uv run --python .venv python loop/compose.py --list                      # see modules
+uv run --python .venv python loop/compose.py   # default = current steer: continuous-substrate (Problem 2, docs/research/problem2-continuous-substrate.md)
 uv run --python .venv python loop/compose.py --direction transfer --persona default
 uv run --python .venv python loop/compose.py --direction red-team --persona skeptic \
     --idea "anything you want this run to prioritize"
