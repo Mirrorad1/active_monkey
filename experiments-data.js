@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:131, breakthrough:6, positive:81, wall:21, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:132, breakthrough:6, positive:81, wall:21, partial:24, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1325,7 +1325,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn — the final epoch before a human-requested pause, with the pause state recorded in the entry for trivial resumption.",
     result:"All bands held. Spine at 126,700, hash-stamped, committed. The cron is deleted; idle-mode suspended; the M4a question (increment 1c) stands in loop/IDEAS.md.",
     implication:"Everything resumes from committed state: the spines from their snapshots, idle-mode from vela's turn, and the talk-to-it chapter from one explicit human word.",
-    trace:{ script:"experiments/exp131_mirro_epoch16.py", output:"experiments/outputs/exp131.txt" } }
+    trace:{ script:"experiments/exp131_mirro_epoch16.py", output:"experiments/outputs/exp131.txt" } },
+
+  { n:132, kind:"partial", chapter:"frontier",
+    title:"A detector for too-small minds — and a world too simple to need one.",
+    one:"The structure-learning chapter opens: a behavior-invariant surprise-ceiling detector (bit-identical seeded runs), flag-gated BMR/expansion scaffolds with pinned-sign unit tests — validated 8/8 on irreducible noise (0.69-0.94 vs analytic 0.82 nats) while the standard world stays correctly silent at 0/8, exactly as counter-predicted.",
+    plain:"The new chapter the human directed: machinery for a creature to notice when its own model of the world is structurally too small, and scaffolds for shrinking and growing that model with proper Bayesian scoring. Phase 1 is live and provably changes nothing about behavior. The opening question — does the standard life hit an irreducible-surprise ceiling? — came back no: in a learnable world surprise falls a hundred-fold to near zero, while in a control world with genuinely irreducible noise the detector fires every run, within a few percent of the analytic level. The current world is too simple to need a bigger mind; the machinery now waits for worlds that are not.",
+    metric:{ from:0.82, to:0.94, unit:"analytic vs max observed irreducible surprise, noise control (8/8 fired; std 0/8)" },
+    setup:"Phase 1 in the creature itself (surprise window, ceiling conjunction, replay buffer), verified bit-invariant over 750 seeded steps; Phases 2-3 flag-gated scaffolds (replay scoring with the active-data caveat, closed-form Dirichlet BMR with both canonical tests, spawn/split/merge, strict-decrease selection); the math spec in docs/specs; and the directive's hypothesis run with a positive-control arm so the test means something either way.",
+    result:"Instrument 8/8 on noise; hypothesis 0/8 on the standard world — the counter-prediction exact; 91 tests green; maps stay perfect even under 30 percent observation noise.",
+    implication:"The program can now detect structural inadequacy and score model changes — and honestly reports that nothing here yet demands them. The named path to a positive: worlds with hidden context, where the detector's firing becomes Phase 3's spawn trigger.",
+    trace:{ script:"experiments/exp132_surprise_ceiling.py", output:"experiments/outputs/exp132.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

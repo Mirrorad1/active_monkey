@@ -122,6 +122,26 @@ The loop marks items it has consumed by indenting a response under them:
     the guardrails now codified in loop/VALIDATION.md (recommended option only, verdict stays
     falsifier-bound, a failed test halts for me). Exp 60's clean kill confirms the pattern.
 
+- [from human, 2026-06-10] STRUCTURE LEARNING, three phases — the new directive
+  (supersedes the loop's queue; M4a stays halted at 1c meanwhile). Move from parameter
+  learning over a fixed state space toward endogenous model expansion (BMR/expansion,
+  free-energy-scored). Phase 1 NOW: per-step surprise -ln p(o_t) per modality; rolling
+  window (default 200) with mean/slope/ceiling flag (high mean AND ~zero slope AND
+  Dirichlet still updating = irreducible surprise = structural inadequacy); metrics into
+  the reporting pipeline; replay buffer of (o_t, a_t) to disk. Phase 2 SCAFFOLD
+  (flag-gated): candidate_score (re-run inference over logged history, accumulated F;
+  same-history comparison only; active-data bias documented), closed-form Dirichlet BMR
+  via gammaln with the two predeclared unit tests, prune_pass (rank, never auto-apply).
+  Phase 3 SCAFFOLD (flag-gated): spawn rule (K consecutive ceiling steps -> provisional
+  state seeded at the offending observation), dumb local mutation ops
+  (add/split/merge), selection by strict F decrease on replay; log every dead end.
+  Constraints: repo conventions, FROZEN untouched, Phase 1 behavior-invariant (seeded
+  diff verified), discrete pymdp/Dirichlet terms, scipy gammaln ok, docs/specs math
+  entry, and a run-it-now experiment: does a standard life run hit a measurable
+  surprise ceiling? Record honestly, win or dead end. Then merge to main.
+  → taken up immediately: branch structure-learning; Phase 1 + scaffolds + spec + the
+    ceiling experiment (Exp 132); merged to main when green.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

@@ -17,6 +17,18 @@ Key invariants:
 - All randomness is derived from (manifest seed, rng_counter) so a resumed life is
   deterministic given the committed state, while successive ``live()`` calls differ.
 - Biography (``BIOGRAPHY.jsonl``) is append-only — the honest log of a life.
+
+Phase 1 instrumentation (structure-learning)
+--------------------------------------------
+``_surprise_window`` (deque, NOT hashed, NOT saved): rolling window of per-step surprise
+values ``-ln(p(o_t))``.  Used by ``surprise_metrics()`` to detect learning plateaus
+(surprise ceiling).
+
+``_replay`` (list of (obs, action) tuples, NOT hashed, NOT saved): in-memory buffer
+accumulated during ``live()``.  Flushed to ``<state_dir>/replay.bin`` by ``save_replay()``
+which is called automatically by ``save()``.
+
+replay.bin format: flat uint8 pairs [obs, action]*N.  obs < n_colors (< 256), action < 4.
 """
 from __future__ import annotations
 
@@ -25,11 +37,26 @@ import hashlib
 import json
 import math
 import time
+from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
 import numpy as np
+
+# ---------------------------------------------------------------------------
+# Surprise-ceiling instrumentation constants (Phase 1)
+# ---------------------------------------------------------------------------
+
+#: Rolling window size for surprise tracking.
+SURPRISE_WINDOW: int = 200
+
+#: Ceiling detection: mean surprise above this value (nats) triggers ceiling flag.
+#: 0.7 nats ≈ half of ln(3)=1.099 (uniform surprise over 3 colors).
+CEILING_MEAN_THRESH: float = 0.7
+
+#: Ceiling detection: absolute slope below this value (nats/step) triggers ceiling flag.
+CEILING_SLOPE_THRESH: float = 5e-4
 
 
 # ---------------------------------------------------------------------------
@@ -125,6 +152,11 @@ class Creature:
     rng_counter : int — monotone counter for deterministic seed derivation.
     _seed : int — the birth seed (manifest seed).
     _state_dir : Path | None — bound when loaded/saved.
+
+    Phase 1 instrumentation (NOT hashed, NOT saved in arrays.npz):
+    _surprise_window : deque — rolling window of per-step surprise values (nats).
+    _replay : list — in-memory (obs, action) pairs; flushed to replay.bin by save().
+    _ceiling_events : list — dicts recording detected surprise-ceiling events.
     """
 
     def __init__(
@@ -141,6 +173,8 @@ class Creature:
         rng_counter: int,
         _seed: int,
         _state_dir: Optional[Path] = None,
+        *,
+        surprise_window: Optional[int] = None,
     ):
         self.name = name
         self.world = world
@@ -155,12 +189,25 @@ class Creature:
         self._seed = int(_seed)
         self._state_dir = _state_dir
 
+        # --- Phase 1 instrumentation (NOT hashed, NOT saved in arrays.npz) ---
+        _win = SURPRISE_WINDOW if surprise_window is None else int(surprise_window)
+        self._surprise_window: deque = deque(maxlen=_win)
+        self._replay: list = []          # (obs, action) tuples
+        self._ceiling_events: list = []  # dicts recording detected ceiling events
+
     # ------------------------------------------------------------------
     # Construction
     # ------------------------------------------------------------------
 
     @classmethod
-    def birth(cls, name: str, world: World, seed: int = 0) -> "Creature":
+    def birth(
+        cls,
+        name: str,
+        world: World,
+        seed: int = 0,
+        *,
+        surprise_window: Optional[int] = None,
+    ) -> "Creature":
         """Create a fresh creature with uniform priors.  Belief is never reset after this."""
         rng = np.random.default_rng(seed)
         n_cells = world.n_cells
@@ -181,6 +228,7 @@ class Creature:
             lineage=[],
             rng_counter=0,
             _seed=seed,
+            surprise_window=surprise_window,
         )
 
     # ------------------------------------------------------------------
@@ -260,6 +308,15 @@ class Creature:
 
             # --- belief update: qs ∝ likelihood(obs) * prior(qs) ---
             likelihood = A_hat[obs, :]  # shape (n_cells,)
+
+            # --- Phase 1: surprise instrumentation (reads pre-update qs) ---
+            # p(o_t) = likelihood @ prior_qs  (using self.qs before reassignment)
+            # surprise_t = -ln(p(o_t)); eps guards against zero probability
+            eps = 1e-300
+            p_o = float(likelihood @ self.qs)
+            surprise_t = -math.log(p_o + eps)
+            self._surprise_window.append(surprise_t)
+
             qs_updated = likelihood * self.qs
             denom = qs_updated.sum()
             if denom > 0:
@@ -282,6 +339,10 @@ class Creature:
 
             # --- choose action, move ---
             action = int(rng.integers(0, n_actions))
+
+            # --- Phase 1: replay buffer (obs, action) accumulated after action chosen ---
+            self._replay.append((obs, action))
+
             self.true_pos = self.world.move(self.true_pos, action)
 
             # --- advance belief through movement model (innate B) ---
@@ -290,12 +351,44 @@ class Creature:
         self.age_steps += steps
         self.rng_counter += 1
 
+        # --- Phase 1: ceiling detection (once per live() call, not per step) ---
+        # Evaluate whether surprise has plateaued at a high floor (learning stalled).
+        # Note: under count-decay variants, learning_active would test actual delta_pA;
+        # here pA always accumulates so learning is always nominally active.
+        ceiling_flag = False
+        mean_s: Optional[float] = None
+        slope: Optional[float] = None
+        if len(self._surprise_window) == self._surprise_window.maxlen:
+            win_arr = np.array(self._surprise_window)
+            mean_s = float(win_arr.mean())
+            slope = float(np.polyfit(np.arange(len(win_arr)), win_arr, 1)[0])
+            learning_active = True  # pA always accumulates in this variant
+            ceiling_flag = (
+                learning_active
+                and mean_s > CEILING_MEAN_THRESH
+                and abs(slope) < CEILING_SLOPE_THRESH
+            )
+            if ceiling_flag:
+                self._ceiling_events.append(
+                    dict(age=self.age_steps, mean=mean_s, slope=slope)
+                )
+
         # Append biography event if state directory is bound
+        if mean_s is not None:
+            summary = (
+                f"lived {steps} steps; map_accuracy={self.map_accuracy():.3f}; "
+                f"localize_bits={self.localize_bits():.3f}; "
+                f"surprise_mean={mean_s:.3f} slope={slope:+.5f} ceiling={ceiling_flag}"
+            )
+        else:
+            summary = (
+                f"lived {steps} steps; map_accuracy={self.map_accuracy():.3f}; "
+                f"localize_bits={self.localize_bits():.3f}"
+            )
         self._bio_append({
             "event": "live",
             "age_steps": self.age_steps,
-            "summary": f"lived {steps} steps; map_accuracy={self.map_accuracy():.3f}; "
-                       f"localize_bits={self.localize_bits():.3f}",
+            "summary": summary,
             "state_hash": self._state_hash(),
         })
 
@@ -323,6 +416,62 @@ class Creature:
         """Shannon entropy of current place belief qs, in bits.  0 = perfectly localised."""
         p = self.qs / (self.qs.sum() + 1e-300)
         return float(-np.sum(p * np.log2(p + 1e-300)))
+
+    def surprise_metrics(self) -> dict:
+        """Return surprise-ceiling metrics computed from the current rolling window.
+
+        Returns a dict with keys:
+          mean       : float | None — mean surprise (nats) over the window, or None if
+                       the window is not yet full.
+          slope      : float | None — least-squares nats/step slope, or None if not full.
+          ceiling_flag : bool — True iff window is full AND mean > CEILING_MEAN_THRESH
+                         AND |slope| < CEILING_SLOPE_THRESH.
+          window_len : int — current number of entries in the window.
+          events     : list — copy of self._ceiling_events detected so far.
+        """
+        wlen = len(self._surprise_window)
+        if wlen < self._surprise_window.maxlen:
+            return dict(mean=None, slope=None, ceiling_flag=False,
+                        window_len=wlen, events=list(self._ceiling_events))
+        win_arr = np.array(self._surprise_window)
+        mean_s = float(win_arr.mean())
+        slope = float(np.polyfit(np.arange(wlen), win_arr, 1)[0])
+        ceiling_flag = (
+            mean_s > CEILING_MEAN_THRESH
+            and abs(slope) < CEILING_SLOPE_THRESH
+        )
+        return dict(mean=mean_s, slope=slope, ceiling_flag=ceiling_flag,
+                    window_len=wlen, events=list(self._ceiling_events))
+
+    def save_replay(self, dir_path=None) -> Optional[Path]:
+        """Flush the in-memory replay buffer to ``<dir_path>/replay.bin``.
+
+        Appends flat uint8 pairs [obs, action]*N to any existing file, then clears
+        ``self._replay``.
+
+        Format: raw bytes, each step = 2 uint8s: [obs, action].
+        obs < n_colors (< 256); action < 4.
+
+        Parameters
+        ----------
+        dir_path : path-like | None — directory to write into.  If None, falls back
+            to ``self._state_dir``.  If both are None, returns None without writing.
+
+        Returns
+        -------
+        Path to the replay file, or None if no directory is bound.
+        """
+        target = Path(dir_path) if dir_path is not None else self._state_dir
+        if target is None:
+            return None
+        if not self._replay:
+            return target / "replay.bin"
+        replay_arr = np.array(self._replay, dtype=np.uint8)
+        replay_path = target / "replay.bin"
+        with replay_path.open("ab") as fh:
+            fh.write(replay_arr.tobytes())
+        self._replay = []
+        return replay_path
 
     # ------------------------------------------------------------------
     # Values & language
@@ -465,6 +614,9 @@ class Creature:
             "summary": f"saved to {dir_path}",
             "state_hash": hash_,
         })
+
+        # Phase 1: flush replay buffer (appends to existing replay.bin if present)
+        self.save_replay(dir_path)
 
     @classmethod
     def load(cls, dir_path) -> "Creature":
