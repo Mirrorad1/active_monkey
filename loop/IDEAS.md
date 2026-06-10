@@ -39,8 +39,16 @@ The loop marks items it has consumed by indenting a response under them:
     this substrate; named next substrates: distal other-agent sensing, graded uncertainty
     maintenance (motivated 3x: Exp 60/62/72), self-other modeling. AWAITING DIRECTION
     CHOICE: (a) new card from the substrate gaps, (b) build M4a against the amended
-    requirements, (c) stop here. The loop will idle on consolidation-grade work until
-    redirected.
+    requirements, (c) stop here. RECOMMENDED OPTION (bounded CONSULT per VALIDATION.md):
+    (b) build M4a (the affective dyad, docs/specs/m4-affective-dyad.md) with the four
+    discovered substrate requirements incorporated: forgetting term (Exp 60),
+    failure-driven exploration override (Exp 62), age/mass-aware social learning rate
+    (Exp 65-67), graded uncertainty maintenance (Exp 72) — it is the spec'd path toward
+    "talk to it", and this chapter's laws exist precisely to inform it. IMPORTANT
+    (consent boundary): cron fires are not human resumptions, so silence-as-consent does
+    NOT apply through the automated loop — M4a will not be auto-started. Until a human
+    resumes/redirects, the loop confines itself to non-direction work: harness/site
+    maintenance, spine life-continuation, and consolidation-grade experiments.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions
