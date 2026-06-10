@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:69, breakthrough:6, positive:35, wall:16, partial:12, from:4.81, to:4.00 };
+window.AM_TALLY = { total:70, breakthrough:6, positive:36, wall:16, partial:12, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -705,7 +705,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 68's instrument plus one mechanism: an experienced-comfort EMA gates approach (crowding halves comfort; low estimate means wander; estimates recover while away). Coupling declared as resource-mediated stigmergy. Gates: fixed-arm null sanity, and G3 — every adaptive run must show both creatures' gates tripping.",
     result:"Fixed-arm null replicated (R 0.992-1.010). G3 failed as predeclared and the run stopped before any verdict. Diagnostic only (gate-invalid data): four of five seeds show an exclusion regime — one creature holds the source at 0.83 occupancy and never feels crowded while the other collapses to 0.14; one seed shows alternation with R = 0.53. The gate error: validity should check the mechanism's INPUT (crowding happened, abundantly) — requiring the monopolist's own gate to trip makes a social outcome a validity condition.",
     implication:"Instrument iteration, the discipline working: no rung-4 verdict claimed from invalid runs. Exp 70 is predeclared with the input-based gate and the two observed regimes as named, metric-defined outcomes (exclusion vs timesharing) plus the null branch — and any winning pattern still enters the reproduction cascade before words like dominance or coordination are used.",
-    trace:{ script:"experiments/exp69_depletion_coupling.py", output:"experiments/outputs/exp69.txt" } }
+    trace:{ script:"experiments/exp69_depletion_coupling.py", output:"experiments/outputs/exp69.txt" } },
+
+  { n:70, kind:"positive", chapter:"frontier",
+    title:"One owns the spring; the other gives up.",
+    one:"Out-of-sample on 8 fresh seeds: twins coupled only through a shared depletable source depart from independence — modal regime an exclusion-like lock-in (5/8, closer starter wins 5/5), with alternation in 2/8. Dominance language embargoed pending the reproduction cascade.",
+    plain:"With the measuring stick fixed, we asked the question properly on fresh runs the classifier had never seen: when both creatures feel the crowding at their shared favorite spot and back off when it feels bad, do they stop acting like strangers? They do — but not by taking turns. In most runs one creature ends up owning the spot while the other mostly gives up: the owner rarely feels crowded, so it never learns to leave, while the latecomer almost always does. Whether this deserves a word like dominance must survive the reproduction-and-deflation gauntlet first.",
+    metric:{ from:5, to:8, unit:"seeds classifying EXCLUSION out of 8 fresh (2 timesharing, 1 borderline)" },
+    setup:"Identical mechanism to Exp 69; the circularity trap declared and avoided — regime definitions were fixed from Exp 69's invalid runs and tested out-of-sample on eight never-run seeds, with the input-based validity gate from the new VALIDATION rule. Predeclared classification table, unique-modal requirement, first-arriver prediction, and an unclassifiable-regimes falsifier.",
+    result:"Departure confirmed: 5 EXCLUSION, 2 TIMESHARING, 1 OTHER (exclusion-like, missing the predeclared R band by 0.006 — counted against the prediction as declared). The closer starter won every exclusion seed. The signature is self-reinforcing: the winner spends ~0% of steps with its comfort gate closed, the loser 47-79% — alone-comfort keeps the owner naive while crowding teaches the latecomer to stay away.",
+    implication:"Rung 4 has its answer: resource-mediated coupling alone bends twin behavior off independence, mostly into asymmetric lock-in. The cascade now decides what it may be called: equidistant starts (the first-arriver confound is provably load-bearing), one-adaptive deflation, separate-world deflation. All mechanics provided; no dominance or coordination claim is made yet.",
+    trace:{ script:"experiments/exp70_regime_classification.py", output:"experiments/outputs/exp70.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

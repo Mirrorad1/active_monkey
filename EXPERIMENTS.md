@@ -1715,3 +1715,54 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   noise of 1, asymmetry < 0.5) = rung 4 NEGATIVE. >=4/5 seeds must classify into exactly
   one named pattern; the modal pattern is the result and enters the rung-5 cascade before
   any coordination/dominance language.
+
+## Exp 70 — rung 4 answered out-of-sample: resource-mediated coupling produces an exclusion-like departure from independence (POSITIVE; cascade queued before any dominance language)
+- Plain: With the measuring stick fixed, we asked the question properly on fresh runs the
+  classifier had never seen: when both creatures feel the crowding at their shared favorite
+  spot and back off when it feels bad, do they stop acting like strangers? They do — but not
+  by taking turns. In most runs one creature ends up owning the spot while the other mostly
+  gives up: the owner rarely feels crowded (so never learns to leave) while the latecomer
+  almost always does. Whether this deserves a word like dominance must survive the
+  reproduction-and-deflation gauntlet first.
+- Setup (predeclared in the script docstring before running): identical mechanism to Exp 69
+  (comfort-gated approach; EMA alpha=0.1 init 1.0, THRESH 0.75, away-recovery lambda=0.01,
+  eps=0.2; depletion 1.0/0.5; stigmergic coupling only). The circularity trap declared and
+  avoided: Exp 69's seeds would reproduce identical trajectories, so the regime definitions
+  (fixed FROM that data) are tested OUT-OF-SAMPLE on 8 fresh seeds (5-12). Gates: G1 null
+  sanity >=7/8; G3' input-based per the new VALIDATION rule (>=20 crowded steps per run).
+  Classification: EXCLUSION (asym>0.5, R in [0.9,1.1]) / TIMESHARING (R<0.9, asym<0.5) /
+  NULL (R in [0.9,1.1], asym<=0.5) / OTHER. Verdict requires >=6/8 named with unique modal;
+  modal NULL = rung 4 NEGATIVE. P-MECH: if modal EXCLUSION, the closer starter (A, BFS
+  dist 2 vs 6) wins >=80% of exclusion seeds. F1 = >=3/8 OTHER. Predicted: modal EXCLUSION
+  ~6/8, 1-2 TIMESHARING, P-MECH holds.
+- Result: DEPARTURE (EXCLUSION). G1 8/8 (R_fixed 0.992-1.011 — the Exp 68 null again);
+  G3' 8/8 (crowded steps 196-258). Classes: 5 EXCLUSION, 2 TIMESHARING (seeds 8, 12), 1
+  OTHER (seed 10: asym 0.653 but R=0.894 — exclusion-like, missing the predeclared R band
+  by 0.006; counted OTHER as declared). C1 PASS (7/8 named, modal unique). C2/P-MECH PASS
+  5/5 — the closer starter won every exclusion seed. The mechanism's signature is in the
+  gate fractions: the winner spends 0.000-0.011 of steps gate-closed, the loser 0.47-0.79 —
+  a self-reinforcing loop (first arriver mostly experiences alone-comfort, so never learns
+  to leave; the latecomer mostly experiences crowding, so mostly stays away, which keeps
+  the winner uncrowded). In the TIMESHARING seeds the roles partially mix (seed 8: B holds
+  the source, A gate-closed 60%, R=0.571).
+- Implication: rung 4's question has its answer at this substrate — two clade-twins coupled
+  ONLY through a shared depletable resource depart measurably from independent behavior,
+  modal regime an asymmetric exclusion-like lock-in, with the contested resource sometimes
+  yielding alternation instead. Per the direction card this deviation now ENTERS THE RUNG-5
+  CASCADE before any dominance/coordination vocabulary: (i) reproductions across start
+  geometries — especially EQUIDISTANT starts, removing the first-arriver confound that
+  P-MECH shows is currently load-bearing; (ii) deflationary controls — one-adaptive-with-
+  one-fixed (is mutual adaptation needed at all?) and two adaptives in separate worlds
+  (gate dynamics without contest).
+- Honest caveat: prediction slightly over-counted exclusion (5/8 vs predicted ~6/8; the
+  near-band OTHER run honestly absorbed one). The departure is statistical over 8 seeds at
+  one parameterization (alpha/THRESH/lambda all provided constants); the asymmetry is
+  currently explained by start positions (P-MECH 5/5), so "exclusion" may reduce to
+  first-arriver-advantage + positive feedback — exactly what the cascade's equidistant
+  reproduction must decide. All mechanics provided; the creatures contribute beliefs, maps,
+  and their own comfort-estimate trajectories. No dominance/coordination claim is made.
+- Verdict: POSITIVE / NEW INSIGHT (rung 4: departure from independence, out-of-sample).
+  Self-grade: POSITIVE-SINGLE.
+- Next: the rung-5 cascade for the exclusion departure — equidistant-start reproduction,
+  one-adaptive deflation, separate-worlds deflation; then the social-emergence synthesis
+  (rungs 1-4 all have verdicts once the cascade lands).
