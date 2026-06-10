@@ -26,6 +26,10 @@ The loop marks items it has consumed by indenting a response under them:
   accuracy floor and tempo ceiling") — my recommendation; (b) accept the law now on test-1
   evidence; (c) keep the candidate alive as unexplained. The loop proceeds with rung 4 (Levin
   obstacle) meanwhile.
+  → taken up as Exp 60 (option a): the human resumed the loop twice with this question posted
+    and no redirection; treated as standing authorization for the recommended option. The
+    verdict stays falsifier-bound; if the corrected counterfactual fails, the thread halts for
+    explicit human input.
 
 (empty — drop ideas above this line's section freely)
 

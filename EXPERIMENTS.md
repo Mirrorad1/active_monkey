@@ -1303,3 +1303,37 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   above. Self-grade: POSITIVE-SINGLE.
 - Next: rung 6 (interoceptive stake) and the pending Exp 58 consult (corrected forgetting
   counterfactual) are the open threads; ledger rung 3 epoch 2 can also resume.
+
+## Exp 60 — cascade closed: the plasticity-window law (POSITIVE; candidate dies as lawful; first full cascade lifecycle complete)
+- Authorization: Exp 58's consult taken up as option (a) — the human resumed the loop twice with
+  the question posted and no redirection; disposition recorded in loop/IDEAS.md; verdict stayed
+  falsifier-bound.
+- Setup: two corrected decay arms bracket the predicted window, same drift schedule, fresh
+  births (seeds 95/96), decay pA×λ per step (floor 0.01), settling 1000: ARM-IN λ=0.997
+  (predicted: tracks, ≥6/8) and ARM-HIGH λ=0.9999 (predicted: frozen, ≤2/8); Exp 58's λ=0.9 arm
+  stands as the below-floor reference. Predeclared: both correct → candidate DIES as lawful;
+  ARM-IN fails → survives, thread halts for human. Mirro untouched.
+- Result: ARM-IN recovered 8/8 (lags 200–425, end accuracies 0.96–1.00) — the law's signature
+  prediction, genuine tracking. ARM-HIGH recovered 2/8 — and both its "recoveries" (seg0, seg4)
+  are the corner-(0,0) segments matching its settling world: coincidence with its prior, zero
+  adaptation. Both predeclared thresholds hit → candidate DIES.
+- THE LAW (the durable finding, consolidating Exp 48 + 56 + 57 + 58): with accumulating
+  evidence, adaptation requires FORGETTING — a creature tracks a changing world only while its
+  accumulated evidence mass sits in a window between an accuracy floor (enough counts to hold a
+  sharp model; λ=0.9's mass ~1 fails below it) and a tempo ceiling (drift period × visit rate;
+  non-decay and λ=0.9999 exceed it). The same non-decay mechanism produces opinion inertia
+  (Exp 48: 2900 steps to undo 1500 of entrenchment) and perceptual freezing (Exp 56/57). Direct
+  substrate consequence: mirro's current learning rule CANNOT do lifelong adaptation in
+  non-stationary worlds; any M4-bound substrate needs a forgetting term.
+- Cascade lifecycle (process result): deviation (56) → reproduction 3/3 + deflationary rounds
+  (57, 58) → killed-as-lawful with the mechanism quantified (60). The discipline produced a law,
+  not a vibe — and killed its own "novelty" honestly.
+- Honest caveat: the window's NUMERIC bounds are uncalibrated — measured masses (ARM-IN ~4.2,
+  ARM-HIGH ~12.8 post-settling) disagree with my analytic estimates (14, ~hundreds); only the
+  ordering/bracketing is established, on one schedule speed, one seed per arm. The law is about
+  THIS learning rule (non-decaying soft counts); generality beyond it is unclaimed.
+- Verdict: POSITIVE / cascade closed, NOVELTY-CANDIDATE resolved as lawful consequence.
+  Self-grade: POSITIVE-SINGLE (the components accreted across 48/56–58; this is the closing
+  counterfactual, not a first).
+- Next: rung 6 (interoceptive stake — now informed by the law: the regulated variable's
+  dynamics must sit inside the creature's plasticity window) or rung 3 epoch 2.

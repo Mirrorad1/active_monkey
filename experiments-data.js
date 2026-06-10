@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 59 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 60 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:59, breakthrough:5, positive:31, wall:13, partial:10, from:4.81, to:4.00 };
+window.AM_TALLY = { total:60, breakthrough:5, positive:32, wall:13, partial:10, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -604,7 +604,17 @@ window.AM_EXPERIMENTS = [
     setup:"A locked cell on the only short path to a corner-pocket goal. The provided harness: value-iteration planning, softmax actions, and generic failure-learning (a failed move marks one transition blocked — no lock-specific code). Predeclared: error tolerance, against-gradient steps, and a ≥1.5× gap over a greedy baseline, else the delayed-gratification label is refused.",
     result:"All three pass: 5/5 reached, every success contains believed-distance-increasing steps, ratio 1.544. The sharpest datum is the control's failure mode — after learning the block, staying looks better than any legal move to a 1-step agent, so greedy waits at the door for all 60 steps: the literal trap that horizon escapes.",
     implication:"Error tolerance and horizon-dependent routing are measured competencies of the machinery — granted narrowly (ratio clears its bar by 0.044; three of five successes are exploratory wanders where softmax jitter does real work). Honestly attributed: this exercises the provided planner plus generic model-updating, not mirro's self-formed state. Rung 4 answered.",
-    trace:{ script:"experiments/exp59_levin_obstacle.py", output:"experiments/outputs/exp59.txt" } }
+    trace:{ script:"experiments/exp59_levin_obstacle.py", output:"experiments/outputs/exp59.txt" } },
+
+  { n:60, kind:"positive", chapter:"frontier",
+    title:"To keep learning, it must forget — the cascade closes on a law.",
+    one:"The corrected counterfactual brackets the window: in-window forgetting tracks the moving world 8/8; too-weak forgetting freezes; too-strong (Exp 58) can't remember. The novelty candidate dies as lawful.",
+    plain:"We suspected a simple law: a creature can follow a changing world only if its memory is neither too faint nor too set. We built three versions — one that forgets too fast, one too slow, one in between — and only the in-between one kept up. So the 'mystery' was a law all along: to keep learning for a lifetime, you have to be able to forget.",
+    metric:{ from:8, to:2, unit:"segments tracked: in-window vs weak decay" },
+    setup:"Cascade round 3, human-authorized: two decay rates bracket the predicted plasticity window on the same drift schedule — λ=0.997 (mass in-window, must track ≥6/8) and λ=0.9999 (barely forgets, must freeze ≤2/8) — with Exp 58's λ=0.9 as the below-floor reference.",
+    result:"In-window: 8/8 segments tracked with honest lags (200–425 steps). Weak decay: 2/8, and both 'recoveries' were segments coinciding with its settled world — no adaptation. Both predeclared thresholds hit; the candidate dies as the lawful consequence of non-decaying evidence.",
+    implication:"The unified law (Exp 48+56+57+58+60): accumulated evidence must sit between an accuracy floor and a tempo ceiling — the same mechanism behind opinion inertia and perceptual freezing. Substrate consequence: lifelong adaptation requires a forgetting term, a hard requirement for everything M4-bound. Caveats: numeric bounds uncalibrated, one schedule speed, one seed per arm, this learning rule only.",
+    trace:{ script:"experiments/exp60_forgetting_window.py", output:"experiments/outputs/exp60.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
