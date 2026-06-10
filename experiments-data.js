@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:88, breakthrough:6, positive:45, wall:18, partial:19, from:4.81, to:4.00 };
+window.AM_TALLY = { total:89, breakthrough:6, positive:46, wall:18, partial:19, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -895,7 +895,17 @@ window.AM_EXPERIMENTS = [
     setup:"Value-ledger decay isolated; identity formed in a strongly color-0 world, then either a permanent world change (adoption cohorts, two ages, two lambdas) or a 200-step adverse spell (three lambdas). All bands — the age-ratio, the age-free ratio, and the three-way spell ordering — predeclared from the window arithmetic.",
     result:"All pass, 8/8 everywhere: rigidity grows with age for non-decay (ratio 2.73), windowed adoption is exactly age-free (ratio 1.00), the spell ordering is perfect, and every transiently-flipped creature recovered its identity on the window clock.",
     implication:"Identity-versus-adaptability is not a dilemma but a timescale to choose: pick the window between the world's transients and its true changes. The no-forgetting alternative is unbounded rigidity, now quantified. Mechanism M-A is characterized end-to-end on both ledgers; rung 4 re-tests the program's closed doors (the adult wall, the empty fridge, forecast noise) with the window in place.",
-    trace:{ script:"experiments/exp88_window_theorem.py", output:"experiments/outputs/exp88.txt" } }
+    trace:{ script:"experiments/exp88_window_theorem.py", output:"experiments/outputs/exp88.txt" } },
+
+  { n:89, kind:"positive", chapter:"frontier",
+    title:"The adult wall falls to the window.",
+    one:"Rung 4a: the same adult, channel, and dose that bounced off a frozen ledger (Exp 65) moves a windowed one 4-8x past the original bar (8/8) — and the adult ADOPTS the speaker's favorite in 6/8, while the frozen-ledger twin replicates the old wall to the digit. Receiver mass WAS the wall.",
+    plain:"The social wall this program hit a chapter ago — adults cannot be moved by a peer's signals because a lifetime of evidence outweighs any conversation — falls when the adult can forget. The same adult, the same channel, the same dose: with a gently fading value ledger, the signal's effect is four to eight times the old bar in every run, and in six of eight the adult actually adopts the speaker's favorite — something no adult ever did with a frozen ledger, and which the frozen twin, run in parallel, still cannot do.",
+    metric:{ from:666.5, to:9304, unit:"receiver value mass: windowed vs frozen (same creature, same life)" },
+    setup:"The Exp 65-era adult recovered from git history, split into windowed and frozen arms with byte-identical positions, pre-equilibrated, then run through Exp 65's exact channel and dose on eight fresh seeds against the original 0.02 threshold — with the frozen arm as a paired replication of the original wall.",
+    result:"All pass: windowed divergence 0.076-0.092 (8/8), frozen 0.011-0.014 (8/8 — the original wall to the digit), adult adoption 6/8 with severed twins never adopting. The window arithmetic's predicted equilibrium mass (667) appeared exactly.",
+    implication:"Receiver mass is the wall, and the window removes it: adults become socially reachable at better-than-young rates while the window theorem prices the lability honestly. The M4 requirement is now a measured design statement. Remaining: the promotion CONSULT (rung 5) — the mechanism's evidence base is arguably complete.",
+    trace:{ script:"experiments/exp89_wall_reopened.py", output:"experiments/outputs/exp89.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

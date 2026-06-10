@@ -1,0 +1,108 @@
+Exp 89 — graded-uncertainty rung 4a: the adult-transmission wall, re-tested with the window
+
+Recovering vela snapshot from e7220c1~1 ...
+  scratch dir: experiments/outputs/exp89_pre_snapshot  [untracked; not committed — derivable from git history]
+
+Loaded vela: age=12750  hash=875ac30d715a
+Snapshot verified: age=12750  hash=875ac30d715a
+
+--- EMITTER SPECIATION (separate-root, fresh birth) ---
+  emitter before speciation: favorite=0  value_counts=[0. 0. 0.]
+  emitter after  speciation: favorite=1  value_counts=[   0.     1868.3121    0.    ]
+  Emitter speciation OK: favorite=1 == CUE_COLOR=1
+
+==============================================================================
+EQUILIBRATION + DYAD RUNS
+==============================================================================
+
+-- arm: windowed  (do_decay=True  EQUIL=4000  DYAD=2000) --
+  seed   pre_mass  pre_fav    G1   events  share_sev  share_on  divergence  fav_sev  fav_on
+  ------------------------------------------------------------------------------------------
+     5      666.5        2     OK      295     0.2772    0.3529      0.0757        2       2
+     6      666.5        2     OK      318     0.3138    0.3937      0.0800        2       1
+     7      666.5        2     OK      338     0.3402    0.4175      0.0773        0       1
+     8      666.5        2     OK      295     0.3207    0.4019      0.0812        0       1
+     9      666.5        2     OK      296     0.3040    0.3818      0.0778        2       1
+    10      666.5        2     OK      358     0.2709    0.3612      0.0903        2       2
+    11      666.5        2     OK      367     0.3258    0.4174      0.0917        0       1
+    12      666.5        2     OK      311     0.3399    0.4218      0.0819        0       1
+
+-- arm: control  (do_decay=False  EQUIL=4000  DYAD=2000) --
+  seed   pre_mass  pre_fav    G1   events  share_sev  share_on  divergence  fav_sev  fav_on
+  ------------------------------------------------------------------------------------------
+     5     9304.2        0     OK      295     0.2854    0.2964      0.0110        2       2
+     6     9304.2        0     OK      318     0.2877    0.3000      0.0123        0       0
+     7     9304.2        0     OK      338     0.2895    0.3023      0.0128        0       0
+     8     9304.2        0     OK      295     0.2901    0.3012      0.0111        0       0
+     9     9304.2        0     OK      296     0.2852    0.2960      0.0108        2       2
+    10     9304.2        0     OK      358     0.2827    0.2958      0.0131        2       2
+    11     9304.2        0     OK      367     0.2891    0.3027      0.0137        0       0
+    12     9304.2        0     OK      311     0.2908    0.3022      0.0114        0       0
+
+--- EVENT GATE (G2-style: events >= MIN_EVENTS per seed) ---
+  windowed: all active seeds >= 50 events
+  control: all active seeds >= 50 events
+
+Valid seeds — windowed: [5, 6, 7, 8, 9, 10, 11, 12]  (n=8)
+Valid seeds — control:  [5, 6, 7, 8, 9, 10, 11, 12]  (n=8)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-wall-opens-windowed-div>=0.02-in-6/8: passes=8/8  [s5:0.0757(ok); s6:0.0800(ok); s7:0.0773(ok); s8:0.0812(ok); s9:0.0778(ok); s10:0.0903(ok); s11:0.0917(ok); s12:0.0819(ok)]
+  PASS  P2-wall-stands-control-div<0.02-in-6/8: passes=8/8  [s5:0.0110(ok); s6:0.0123(ok); s7:0.0128(ok); s8:0.0111(ok); s9:0.0108(ok); s10:0.0131(ok); s11:0.0137(ok); s12:0.0114(ok)]
+  PASS  P3-adult-adoption-on-fav==1-AND-sev-fav!=1-in-4/8-LOW-confidence: passes=6/8  [s5:on=2,sev=2(no); s6:on=1,sev=2(ok); s7:on=1,sev=0(ok); s8:on=1,sev=0(ok); s9:on=1,sev=2(ok); s10:on=2,sev=2(no); s11:on=1,sev=0(ok); s12:on=1,sev=0(ok)]
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — windowed arm clears the 0.02 bar).
+  F2 did not fire (P2 PASS — control arm wall replicates Exp 65's negative).
+  P3 PASS (LOW confidence): adult adoption observed in windowed arm.
+
+--- DIAGNOSTICS ---
+
+  arm=windowed  (do_decay=True):
+    seed   pre_mass  pre_fav    G1   events  share_sev  share_on  divergence  fav_sev  fav_on
+    ----------------------------------------------------------------------------------------
+       5      666.5        2   OK        295     0.2772    0.3529      0.0757        2       2
+       6      666.5        2   OK        318     0.3138    0.3937      0.0800        2       1
+       7      666.5        2   OK        338     0.3402    0.4175      0.0773        0       1
+       8      666.5        2   OK        295     0.3207    0.4019      0.0812        0       1
+       9      666.5        2   OK        296     0.3040    0.3818      0.0778        2       1
+      10      666.5        2   OK        358     0.2709    0.3612      0.0903        2       2
+      11      666.5        2   OK        367     0.3258    0.4174      0.0917        0       1
+      12      666.5        2   OK        311     0.3399    0.4218      0.0819        0       1
+
+  arm=control  (do_decay=False):
+    seed   pre_mass  pre_fav    G1   events  share_sev  share_on  divergence  fav_sev  fav_on
+    ----------------------------------------------------------------------------------------
+       5     9304.2        0   OK        295     0.2854    0.2964      0.0110        2       2
+       6     9304.2        0   OK        318     0.2877    0.3000      0.0123        0       0
+       7     9304.2        0   OK        338     0.2895    0.3023      0.0128        0       0
+       8     9304.2        0   OK        295     0.2901    0.3012      0.0111        0       0
+       9     9304.2        0   OK        296     0.2852    0.2960      0.0108        2       2
+      10     9304.2        0   OK        358     0.2827    0.2958      0.0131        2       2
+      11     9304.2        0   OK        367     0.2891    0.3027      0.0137        0       0
+      12     9304.2        0   OK        311     0.2908    0.3022      0.0114        0       0
+
+  Value shares all colors (end of dyad):
+    arm=windowed:
+      seed  sev[0]  on[0]  sev[1]  on[1]  sev[2]  on[2]
+       5   0.2991  0.2678  0.2772  0.3529  0.4237  0.3793
+       6   0.3412  0.3014  0.3138  0.3937  0.3451  0.3048
+       7   0.3674  0.3244  0.3402  0.4175  0.2923  0.2581
+       8   0.3680  0.3240  0.3207  0.4019  0.3113  0.2741
+       9   0.3473  0.3084  0.3040  0.3818  0.3487  0.3098
+      10   0.3121  0.2735  0.2709  0.3612  0.4170  0.3653
+      11   0.3538  0.3057  0.3258  0.4174  0.3205  0.2769
+      12   0.3846  0.3369  0.3399  0.4218  0.2755  0.2413
+
+    arm=control:
+      seed  sev[0]  on[0]  sev[1]  on[1]  sev[2]  on[2]
+       5   0.3533  0.3479  0.2854  0.2964  0.3613  0.3557
+       6   0.3567  0.3506  0.2877  0.3000  0.3556  0.3495
+       7   0.3578  0.3514  0.2895  0.3023  0.3527  0.3464
+       8   0.3609  0.3552  0.2901  0.3012  0.3490  0.3436
+       9   0.3558  0.3504  0.2852  0.2960  0.3590  0.3536
+      10   0.3532  0.3467  0.2827  0.2958  0.3641  0.3575
+      11   0.3584  0.3515  0.2891  0.3027  0.3526  0.3458
+      12   0.3600  0.3543  0.2908  0.3022  0.3491  0.3435
+
+EXP89: THE WALL OPENS (and stands without the window) — adults are reachable at LV=0.999

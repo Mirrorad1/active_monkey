@@ -2567,3 +2567,45 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 4 — re-test the program's closed doors with LV=0.999 (the adult-transmission
   wall of Exp 65; the empty-fridge death of Exp 62; forecast SNR of Exp 83), thresholds
   lifted from the original entries; then rung 5 = the promotion CONSULT.
+
+## Exp 89 — rung 4a: the adult-transmission wall opens at LV=0.999 — and stands in the paired control (POSITIVE; the first closed door re-opened, with adult adoption 6/8)
+- Plain: The social wall this program hit a chapter ago — adults cannot be moved by a
+  peer's signals because a lifetime of evidence outweighs any conversation — falls when
+  the adult can forget. The same adult, the same channel, the same dose: with a gently
+  fading value ledger (steady weight ~667 instead of ~9,300), the signal's effect is four
+  to eight times the old bar in every run, and in six of eight the adult actually adopts
+  the speaker's favorite — something no adult ever did with a frozen ledger, and which
+  the frozen-ledger twin, run in parallel, still cannot do (its results replicate the
+  original wall almost exactly).
+- Setup (predeclared in the script docstring before running): receiver = the Exp 65-era
+  adult (vela@12750, git-recovered for exactness), deepcopied into windowed (LV=0.999 on
+  value ledgers only; pA untouched) and control arms, each pre-equilibrated 4000 steps
+  (positions byte-identical across arms — decay consumes no rng); emitter substitution
+  declared (fresh speciated root, favorite 1 hard-checked; only receiver-side mass
+  arithmetic is under test); Exp 65's channel, dose, dual ledger (exact under decay by
+  linearity — severed and cue-extra decay independently); 8 fresh dyad seeds (5-12),
+  the ORIGINAL 0.02 threshold. G1 favorite != cue per arm/seed; events >= 50. P1 windowed
+  divergence >= 0.02 in >= 6/8; P2 control < 0.02 in >= 6/8; P3 (LOW confidence) adult
+  adoption (fav_on == 1, fav_sev != 1) in >= 4/8. F1 window doesn't open the door;
+  F2 wall fails to replicate.
+- Result: ALL PASS, no falsifiers. Windowed: pre-dyad mass 666.5 (the window arithmetic's
+  ~600-700), divergence 0.076-0.092 in 8/8 — 4-8x the bar. Control: mass 9304, divergence
+  0.0108-0.0137 in 8/8 — Exp 65's wall replicated almost to the digit (original:
+  0.0123-0.0160). P3: 6/8 adult adoption (the severed twin never adopts; the ON-ledger
+  favorite becomes the cue color). Events 295-367 per dyad.
+- Implication: receiver mass IS the wall — remove its unbounded growth and the same
+  grounded channel that bounced off an adult moves it; with the window, adults are
+  socially reachable at better-than-young rates (6/8 vs Exp 66's 3/4 young). Rung 4a
+  closes POSITIVE. The M4 requirement is now a measured design statement: a social agent
+  needs a value window, and LV=0.999 simultaneously satisfies the window theorem's
+  robustness side (Exp 88) and the social-reachability side (here).
+- Honest caveat: emitter substituted (declared); one LV, one dose, one receiver state;
+  the windowed adult's "adoption" is adoption of a ~667-mass windowed identity — by
+  construction more labile than a frozen one (that lability is the mechanism's point,
+  priced by Exp 88's theorem, but it must not be oversold as the old kind of conviction).
+  pA decay was off — combined-ledger behavior untested.
+- Verdict: POSITIVE / NEW INSIGHT (the first closed door re-opened; paired replication
+  of the original wall). Self-grade: POSITIVE-SINGLE.
+- Next: rung 4b/4c (empty-fridge survival, Exp 62; forecast SNR, Exp 83 — optional
+  scope) or proceed to rung 5: the promotion CONSULT, for which the evidence base
+  (Exp 85-89) is arguably already sufficient.
