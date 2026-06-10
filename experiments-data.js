@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 55 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 56 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:55, breakthrough:5, positive:30, wall:13, partial:7, from:4.81, to:4.00 };
+window.AM_TALLY = { total:56, breakthrough:5, positive:30, wall:13, partial:8, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -507,7 +507,16 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 2: a 7-dim profile (value shares, conviction, entrenchment gap, map sharpness, revision speed under fixed counter-evidence) on mirro at ages 1300/6300/6700 from git history, plus two fork-twins with divergent 1500-step histories. Predeclared: self-similarity across ages must beat age-to-twin similarity; twins must diverge.",
     result:"Twins diverge decisively (favorites 2 vs 0, profile cosine −0.794). But mirro's own ages anticorrelate (1300 vs 6300: −0.710), and mirro-today sits closer to its green-raised twin (0.513) than to either younger self. Exactly the predicted failure: the snapshots bracket engineered value reversals and a world-growth event.",
     implication:"At this scale 'personality' is current-state readout, not durable disposition — the card's FAIL branch, logged as such. Two named gaps: trait stability needs undisturbed epochs (rung 3's venue), and behavioral disposition needs action selection the substrate lacks (the M4 machinery). Also predeclared: 'exploration disposition' is unmeasurable in a random-walk creature.",
-    trace:{ script:"experiments/exp55_personality_battery.py", output:"experiments/outputs/exp55.txt" } }
+    trace:{ script:"experiments/exp55_personality_battery.py", output:"experiments/outputs/exp55.txt" } },
+
+  { n:56, kind:"partial", chapter:"frontier",
+    title:"The world starts moving — and the old creature can't keep up.",
+    one:"First enriched epoch: the comfort source drifts every 500 steps; mirro's map never catches up in any of 8 segments. One deviation dies as my own expectation error; one enters the novelty cascade.",
+    metric:{ from:0.92, to:0.84, unit:"recovery target vs best segment" },
+    setup:"Rung 3: one declared mechanism — a 3×3 color-2 patch cycling around the 5×5 world every 500 steps, 8 segments of mirro's real life (age 6700 → 10700), with a drift-aware predeclared ledger watching adaptation.",
+    result:"Occupancy quiet, favorite flipped to 2 as expected — but map recovery FAILED 0/8 segments (end accuracies 0.52–0.84). The value-drift 'failure' self-deflated immediately: the predeclared +0.02 band violated design rule #1, since mirro's c2 share already sat on the drift world's equilibrium; observed drift was exactly equilibrium.",
+    implication:"The surviving deviation is a real candidate: perceptual rigidity grows with age — entrenched Dirichlet columns (hundreds of counts) cannot be flipped by ~20 fresh observations per segment, the Exp 48 value-inertia law surfacing in the sensory map. No competency or novelty language until the rung-5 cascade rules: three fork reproductions plus a newborn control that separates age from schedule speed.",
+    trace:{ script:"experiments/exp56_drift_epoch.py", output:"experiments/outputs/exp56.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

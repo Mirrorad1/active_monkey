@@ -1,0 +1,11 @@
+{
+  "predeclared": "2026-06-09, drift-aware ledger for Exp 56 (rung 3, enriched epoch). References frozen to mirro's pre-epoch committed state plus the DECLARED world schedule (the drift is protocol, not anomaly). Adaptation expectations predeclared; anything else is a deviation.",
+  "epoch": "8 segments x 500 steps; 3x3 color-2 patch, corner cycle [(0,0),(0,2),(2,2),(2,0)] repeating, moves at each segment boundary; background fixed 0/1 pattern",
+  "properties": {
+    "segment_end_map_vs_current": {"min": 0.92, "max": 1.0},
+    "recovery_lag_steps": {"min": 0, "max": 450},
+    "occupancy_entropy_bits_per_segment": {"min": 4.40, "max": 4.644},
+    "c2_share_total_drift": {"min": 0.02, "max": 0.30},
+    "favorite_at_epoch_end": {"expected": 2, "note": "moderate confidence; failure = value-lag finding, not mechanism falsifier"}
+  }
+}

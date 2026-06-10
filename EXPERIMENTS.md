@@ -1169,3 +1169,35 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   source), long epochs with ledger v4 armed; predeclared expectation: adaptation tracks the
   drift with measurable lag; a quiet ledger is a real negative. Battery re-administered across
   these UNDISTURBED epochs to give trait-stability a fair second test.
+
+## Exp 56 — drifting comfort source: TWO ledger deviations; one dies at once, one enters the cascade (MIXED; rung 3 epoch 1)
+- Setup (mutates mirro; real epoch, age 6700 → 10700): ONE declared mechanism — a 3×3 color-2
+  patch whose corner cycles [(0,0),(0,2),(2,2),(2,0)] every 500 steps, 8 segments, fixed 0/1
+  background. Drift-aware ledger predeclared (exp56_ledger.json): E1 map-vs-current recovers to
+  ≥0.92 by each segment end (lag ≤ 450); E2 occupancy in [4.40,4.644]; E3 c2 value share rises
+  >+0.02; E4 favorite→2 at end (report-only). Deterministic continuation; biography records all
+  segments. Hash f3edac2a… → 21ccb619….
+- Result: E2 PASS 8/8 (4.486–4.582). E4: favorite=2 at end (as expected, from a near-tie gap).
+  E1 FAIL 0/8 — accuracy never re-reached 0.92 in ANY segment (ends 0.52–0.84, peak 0.84).
+  E3 FAIL nominally — c2 share +0.0005 vs the predeclared +0.02.
+- Cascade disposition (rung 5 discipline):
+  • E3 DIES IMMEDIATELY (deflationary sweep, cause = expectation error): the drift world's c2
+    equilibrium share is 9/25 = 0.360 and mirro's c2 share was already 0.3635 — the
+    rule-#1-derived expectation is ≈ −0.002 drift; observed +0.0005 is ON equilibrium. The +0.02
+    band violated my own design rule #1 (bands from current-world equilibria); owned. Not a
+    creature deviation.
+  • E1 is a REAL deviation → enters the cascade next iteration as candidate "perceptual
+    rigidity grows with age": mirro's pA columns hold O(100s) of entrenched counts; ~20 fresh
+    observations per segment cannot flip an argmax — the Exp 48 inertia law surfacing in the
+    SENSORY MAP (Exp 50's fast relearn was on near-empty transplanted columns, not entrenched
+    ones). Cascade plan: (a) ≥3 fork reproductions from the committed pre-epoch snapshot;
+    (b) deflationary controls — a NEWBORN on the same schedule (if it tracks with short lags,
+    the failure is age/entrenchment, not schedule speed) + analytic counts-to-flip check.
+- Honest caveat: single epoch, single schedule speed; E1's "candidate" label is provisional —
+  no competency/novelty language until the cascade rules; the favorite flip (E4) is from a
+  near-indifference gap and carries no weight.
+- Verdict: MIXED / rung-3 epoch 1 complete: not the quiet "real negative" — the ledger flagged,
+  the cascade engaged. One expectation error owned (E3), one candidate queued (E1).
+- Next (rung 5 cascade on E1): 3 pre-epoch forks × same schedule (reproduction), newborn
+  control, counts-to-flip analysis. Verdict either kills E1 as a trivial consequence of
+  non-decaying counts or logs the first NOVELTY-CANDIDATE.

@@ -1,0 +1,16 @@
+BEFORE: age=6700 favorite=0 shares=[0.3814,0.2550,0.3635] hash16=f3edac2a9d5d4bf0 cmap=[0, 0, 0, 1, 2, 0, 0, 1, 1, 2, 2, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+seg0 corner=(0, 0) lag=>500 FAIL end_acc=0.6400 occ_ent=4.4863 c2_share=0.3567 fav=0
+seg1 corner=(0, 2) lag=>500 FAIL end_acc=0.8400 occ_ent=4.5580 c2_share=0.3541 fav=0
+seg2 corner=(2, 2) lag=>500 FAIL end_acc=0.6800 occ_ent=4.5397 c2_share=0.3604 fav=0
+seg3 corner=(2, 0) lag=>500 FAIL end_acc=0.5200 occ_ent=4.5773 c2_share=0.3608 fav=0
+seg4 corner=(0, 0) lag=>500 FAIL end_acc=0.7200 occ_ent=4.5016 c2_share=0.3623 fav=0
+seg5 corner=(0, 2) lag=>500 FAIL end_acc=0.6800 occ_ent=4.5768 c2_share=0.3604 fav=0
+seg6 corner=(2, 2) lag=>500 FAIL end_acc=0.6400 occ_ent=4.5223 c2_share=0.3600 fav=0
+seg7 corner=(2, 0) lag=>500 FAIL end_acc=0.6400 occ_ent=4.5817 c2_share=0.3641 fav=2
+AFTER:  age=10700 favorite=2 shares=[0.3623,0.2737,0.3641] hash16=21ccb619f063778f
+
+E1 segment_recovery: 0/8 segments recovered (lags=[None, None, None, None, None, None, None, None]) FAIL
+E2 occupancy: 8/8 in band [4.4863, 4.5580, 4.5397, 4.5773, 4.5016, 4.5768, 4.5223, 4.5817] PASS
+E3 c2_share drift: pre=0.3635 post=0.3641 delta=+0.0005 FAIL
+E4 favorite_end=2 (expected 2, report only)
+VERDICT: DEVIATION(S): ['E1(recovery)', 'E3(c2_drift)'] -> enters the novelty cascade (rung 5) next iteration
