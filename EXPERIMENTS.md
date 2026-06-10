@@ -1234,3 +1234,34 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   confirmed, the candidate DIES as the lawful mass-tempo consequence of non-decaying counts (the
   Exp 48 law, fully generalized); if the low-mass newborn also freezes, the candidate survives
   round 2 with the mechanism genuinely unexplained.
+
+## Exp 58 — kill test: the law predicts 23/24 outcomes; the forgetting counterfactual fails on MY parameter (MIXED; consulting human per predeclaration)
+- Correction (owned, cites Exp 57's Next): "low-mass newborn recovers ≥6/8" mis-translated the
+  law — counts accumulate DURING the schedule, so every non-decaying creature crosses the
+  threshold within ~1–2 segments. Corrected predeclared test: per-outcome prediction —
+  recovery at segment k iff R_k = (changed-cells' outgoing-color mass)/20 < 1.
+- Setup: (1) mass-swept cohort (settling 50/250/1000, seeds 91/92/93), R_k computed from each
+  creature's own pA before each segment; PASS ≥ 80% outcome match over 24 cells. (2) forgetting
+  counterfactual (settling 1000, seed 94, pA×0.9 per step + 0.01 floor, declared); law predicts
+  it tracks (≥6/8). Predeclared: both pass → candidate dies as lawful; either fails → survives
+  round 2, cascade exhausted, consult human. Mirro untouched (all subjects fresh births).
+- Result: (1) PASS, 23/24 = 0.958 — R<1 ⟺ recovery held everywhere except one cell (settle1000
+  seg4: R=1.68 predicted frozen, recovered at lag 25). (2) FAIL — the decay variant recovered
+  1/8 DESPITE R≈0: diagnosis (from the numbers, post-hoc and named as such): λ=0.9 PER STEP
+  decays a count to 0.9²⁵≈0.07 between successive visits (~25 steps apart) — steady-state mass
+  ~1, map near-uniform; it failed because it could not REMEMBER 500 steps of world, not because
+  it could not forget. My spec computed λ as if per-visit; the intended mass≈10–14 needs
+  λ≈0.997/step. Third instance this run of a test parameter, not the phenomenon, deciding an
+  outcome (Exp 51 band, Exp 57 b2 design, this).
+- The (post-hoc) unified law now covers ALL observations including the failed counterfactual:
+  tracking a drifting world needs accumulated mass in a WINDOW — enough to be accurate
+  (≳ a floor), less than the tempo bound (≲ P×visit-rate ≈ 20). λ=0.9 puts mass ~1, below the
+  floor; non-decaying counts exceed the ceiling within one segment of life. But the window
+  claim is post-hoc until the corrected counterfactual runs.
+- Verdict: MIXED — per the predeclared escalation, the NOVELTY-CANDIDATE survives round 2
+  mechanically and the human is consulted (question posted to loop/IDEAS.md): accept the law on
+  test-1 evidence + run the corrected λ≈0.997 counterfactual as Exp 59, or treat the candidate
+  as alive? The loop proceeds to the independent rung 4 (Levin obstacle) meanwhile.
+- Honest caveat: rule-match scored on 24 cells from 3 subjects on ONE schedule speed; the
+  single mismatch (settle1000 seg4) is unexplained — noted, not excused; the forgetting arm is
+  uninformative as run.

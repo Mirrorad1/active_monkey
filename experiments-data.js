@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 57 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 58 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:57, breakthrough:5, positive:30, wall:13, partial:9, from:4.81, to:4.00 };
+window.AM_TALLY = { total:58, breakthrough:5, positive:30, wall:13, partial:10, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -525,7 +525,16 @@ window.AM_EXPERIMENTS = [
     setup:"Rung-5 cascade on Exp 56's deviation: three pre-epoch forks rerun the drift schedule (reproduction), counts-to-flip analytics, and a newborn control predeclared to show early recovery and late rigidity if aging is the cause.",
     result:"3/3 forks fail 8/8 segments. Mean column mass 268 vs ~20 observations per segment (13.4×). The newborn — only ~40 counts per cell — also froze 6/8, and its two 'recoveries' were the segments whose world matched what it settled in: coincidence with its prior, not adaptation. The age framing is dead.",
     implication:"Sharpened (post-hoc, named as such): with non-decaying soft counts, a map is write-once relative to world tempo — tracking drift of period P needs mass < P × visit rate, and even 1000 steps of life crosses it. Survives round 1 per predeclared rules; round 2's kill test is a low-mass newborn (250-step settling) plus a mass-swept cohort across the predicted ~20-count threshold.",
-    trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } }
+    trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } },
+
+  { n:58, kind:"partial", chapter:"frontier",
+    title:"The law predicts 23 of 24 outcomes — and the counterfactual trips over my decimal.",
+    one:"Per-outcome rule R<1 ⟺ recovery holds at 95.8% across a mass-swept cohort; the forgetting variant failed because λ=0.9 per step erased memory itself. Human consulted per predeclaration.",
+    metric:{ from:23, to:24, unit:"outcomes predicted correctly" },
+    setup:"Cascade round 2, corrected kill test: newborns settled 50/250/1000 steps run the drift schedule while the script predicts each segment's outcome from the creature's own count mass (R = outgoing-color mass / 20). Counterfactual: a forgetting creature (pA×0.9/step, declared) that the law says should track.",
+    result:"Rule-match 23/24 — recovery is determined by whether entrenched mass exceeds the per-segment evidence budget, almost without exception. The decay arm recovered 1/8 despite R≈0: at λ=0.9 per step a count retains 7% between visits, so the map held ~1 count and went near-uniform — it couldn't remember, not couldn't forget. My per-visit/per-step confusion; intended mass needs λ≈0.997.",
+    implication:"The (post-hoc) unified law now explains everything seen, including the failed arm: tracking a drifting world needs mass in a WINDOW — above an accuracy floor, below the tempo ceiling. Per the predeclared escalation the candidate survives mechanically and the human decides: corrected counterfactual (Exp 59, recommended), accept on test-1 evidence, or keep it alive as unexplained. Rung 4 proceeds meanwhile.",
+    trace:{ script:"experiments/exp58_mass_tempo_law.py", output:"experiments/outputs/exp58.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
