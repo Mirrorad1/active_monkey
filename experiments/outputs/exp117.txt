@@ -1,0 +1,19 @@
+=== RECORD VERIFICATION (committed outputs) ===
+  FOUND  : 'experiments/outputs/exp107.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp108.txt' -> 'unbinned middle, start gap +115.0'
+  FOUND  : 'experiments/outputs/exp109.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp110.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp111.txt' -> 'P4 registered-call outcome: FLIPPED against the call'
+  FOUND  : 'experiments/outputs/exp113.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp114.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp115.txt' -> 'P4 registered-call outcome: HELD as called'
+  FOUND  : 'experiments/outputs/exp116.txt' -> 'unbinned middle, start gap +94.6'
+
+=== SCORE (as registered, Exp 107) ===
+  deep bin  (|gap| >= 120, flip-p <= 0.10): 7 entries, 1 flip(s)
+  razor bin (|gap| <  60, flip-p >= 0.40): 0 entries, 0 flip(s)
+  unbinned middle (60-120, not scored)    : 2 entries
+
+Exp 112 ensemble context: deep flip rate measured 0.20 (n=20, CI ~0.08-0.42) at one deep state — the registered 0.10 criterion passed at its limit and may be optimistic; cited, not amended.
+
+EXP117: PARTIAL — deep bin CONFIRMED AS REGISTERED (at its limit: 1/7 vs <= 1 tolerated); razor bin INSUFFICIENT SAMPLE (0/4 required) — the razor side stays OPEN under the same registered numbers; a second evaluation fires if/when >= 4 razor entries accumulate.

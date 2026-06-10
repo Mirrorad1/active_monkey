@@ -3261,3 +3261,38 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: Exp 117 — the registered depth-law evaluation, scored as written (deep bin vs
   the <= 1-flip criterion; razor bin insufficient-sample branch).
+
+## Exp 117 — the registered depth-law evaluation: PARTIAL — deep bin confirmed as registered, at its limit; razor bin insufficient-sample, declared honestly (MIXED; the registration's own branches, scored as written)
+- Plain: The bet we registered ten stretches ago came due, and we scored it exactly as
+  written. Half the law passed: deep commitments held in six of seven stretches — inside
+  the registered tolerance, with no room to spare, and with our own later measurement on
+  record saying the tolerance may have been optimistic. The other half could not be
+  scored at all: both creatures stayed too committed to ever produce a thin-margin
+  stretch, so the flips-at-razors prediction sits unjudged with its books still open.
+  No number was quietly adjusted at any point.
+- Setup: the Exp 107 registration scored by an audit instrument
+  (experiments/exp117_depth_law_eval.py) that verifies all 9 post-registration epoch
+  records verbatim against the committed outputs before scoring: deep bin <= 1 flip in
+  >= 5 entries AND razor bin >= 2 flips in >= 4 entries -> confirmed; else fail or
+  insufficient-sample, honestly.
+- Result: 9/9 records verified. Deep bin: 7 entries, 1 flip (Exp 111's lurch) ->
+  CONFIRMED AS REGISTERED at its limit (1 <= 1). Razor bin: 0 entries -> INSUFFICIENT
+  SAMPLE (0/4 required) -> that half stays OPEN under the same registered numbers; a
+  second evaluation fires if/when >= 4 razor entries accumulate. Unbinned middle: 2
+  entries, not scored. Exp 112's ensemble context cited as registered-not-amended: the
+  measured deep flip rate (0.20, n=20, wide CI) suggests the 0.10 criterion was
+  optimistic — the deep-bin pass is honest and fragile, and says so.
+- Implication: the idle-mode's embedded prospective experiment concludes its first
+  cycle exactly the way registered science should — a partial confirmation with its
+  fragility on the record, an unjudgeable half declared rather than fudged, and the
+  improved estimate (0.20) standing beside the registered number (0.10) without
+  replacing it. The depth direction is real (6/7 deep holds, and every pre-registration
+  razor flipped); its quantitative form awaits more data.
+- Honest caveat: 7 deep entries from 2 creatures' partially-overlapping dynamics are not
+  independent draws; the razor-bin absence is itself informative (deep states
+  self-perpetuate via the gate-drift compounding seen in Exp 110-115) but was not a
+  registered prediction.
+- Verdict: MIXED / the registration's own branches (deep CONFIRMED-at-limit, razor
+  INSUFFICIENT). Self-grade: n/a.
+- Next: idle-mode continues (mirro's turn, +601 deep) with the razor side's books open
+  — unless the human answers the merged CONSULT or stops the loop.

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:116, breakthrough:6, positive:70, wall:18, partial:22, from:4.81, to:4.00 };
+window.AM_TALLY = { total:117, breakthrough:6, positive:70, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1175,7 +1175,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn in the unbinned middle: standard bands, no registered call, the evaluation queued.",
     result:"All bands held. Vela at 84,750, hash-stamped, committed.",
     implication:"Exp 117 scores the registration as written. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp116_vela_epoch11.py", output:"experiments/outputs/exp116.txt" } }
+    trace:{ script:"experiments/exp116_vela_epoch11.py", output:"experiments/outputs/exp116.txt" } },
+
+  { n:117, kind:"partial", chapter:"frontier",
+    title:"The bet comes due — half confirmed, half unjudgeable, nothing fudged.",
+    one:"The registered depth-law evaluation, scored as written: deep bin CONFIRMED at its limit (1 flip in 7 vs 1 tolerated, with the later-measured 0.20 rate cited beside the registered 0.10), razor bin INSUFFICIENT SAMPLE (0 entries — both lives stayed too committed to produce one). The razor books stay open.",
+    plain:"The bet we registered ten stretches ago came due, and we scored it exactly as written. Half the law passed: deep commitments held in six of seven stretches — inside the registered tolerance with no room to spare, and with our own later measurement on record saying the tolerance may have been optimistic. The other half could not be scored at all: both creatures stayed too committed to ever produce a thin-margin stretch. No number was quietly adjusted at any point.",
+    metric:{ from:1, to:7, unit:"deep-bin flips tolerated vs entries (confirmed at the limit)" },
+    setup:"An audit instrument verifies all nine post-registration epoch records verbatim against the committed outputs, then scores the two registered bins exactly as written, with the insufficient-sample branch available and the Exp 112 ensemble measurement cited but never substituted.",
+    result:"Nine of nine records verified; deep confirmed-at-limit; razor declared insufficient with its books open under the same registered numbers; the unbinned middle reported unscored. The deep states' self-perpetuation (which starved the razor bin) is noted as informative but unregistered.",
+    implication:"The idle-mode's embedded prospective experiment closes its first cycle the way registered science should — partial, fragile, and explicit about both. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp117_depth_law_eval.py", output:"experiments/outputs/exp117.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
