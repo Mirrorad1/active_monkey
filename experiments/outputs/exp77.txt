@@ -1,0 +1,43 @@
+Loaded: name='mirro'  age=18700  hash=52f6e814bfe6
+
+--- GATE MAP w(s) = exp(-H(A_hat[:,s])) ---
+  0.612  0.354  0.517  0.769  0.800
+  0.361  0.541  0.507  0.680  0.731
+  0.598  0.396  0.472  0.596  0.640
+  0.597  0.538  0.633  0.684  0.636
+  0.506  0.545  0.604  0.672  0.597
+
+--- COLOR MAP cmap[s] ---
+  0  1  0  1  0
+  1  0  1  0  1
+  2  2  2  1  0
+  2  2  2  0  1
+  2  2  2  1  0
+
+--- PER-COLOR ACCRUAL RATES ---
+   color  n_cells   mean_gate        R(c)    R(c)*2000
+  ----------------------------------------------------
+       0        8    0.634022    0.202887     405.7743
+       1        8    0.578299    0.185056     370.1112
+       2        9    0.543289    0.195584     391.1678
+
+--- BEHAVIORAL VALIDATION (fork, 2000 steps) ---
+   color     accrued   predicted     rel_err     ok
+  ----------------------------------------------
+       0    427.5887    405.7743      0.0538    YES
+       1    406.4848    370.1112      0.0983    YES
+       2    353.7937    391.1678      0.0955    YES
+
+--- MAGNITUDE CHECK (P3) ---
+  predicted_c2c0_drift = (R(2)-R(0))*6000 = (0.195584-0.202887)*6000 = -43.8195
+  observed_c2c0_delta  = -37.3051  (Exp 76 committed)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-R0-gt-R2: R(0)=0.202887  R(2)=0.195584  R(0)>R(2)=True
+  PASS  P2-behavioral-validation: max_rel_err=0.0983 (color 1); per-color=[0.0538, 0.0983, 0.0955]
+  PASS  P3-magnitude: ratio=predicted/observed=-43.8195/-37.3051=1.1746; pass=[0.5, 2.0]=True
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP77: H1 CONFIRMED (gate asymmetry is the accrual law)

@@ -4132,3 +4132,4 @@
 {"event": "live", "age_steps": 18700, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163"}
 {"event": "save", "age_steps": 18700, "summary": "saved to creature/state/mirro", "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163"}
 {"event": "checkpoint_after", "exp": "Exp 76", "age_steps": 18700, "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163", "summary": "Exp 76: checkpoint after (age 12700 -> 18700)"}
+{"event": "fork", "age_steps": 18700, "summary": "forked into 'exp77-probe'", "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163"}

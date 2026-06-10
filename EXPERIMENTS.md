@@ -2068,3 +2068,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the accrual-law diagnosis (per-color mean gate weight measured directly — does
   exp(-H) asymmetry explain c0's advantage?), or watch for a re-cross (is the spine now
   an oscillating ambivalent?). Direction choice (Exp 74 CONSULT) still pending.
+
+## Exp 77 — accrual law confirmed: the favorite tracks legibility, not abundance — aliasing-softened gates explain the natural flip end-to-end (POSITIVE; Exp 76's open question closed)
+- Plain: Why did mirro come to prefer the rarer color? Because liking, in this creature, is
+  built on predictability — and the common color is paradoxically harder to be sure about:
+  its nine cells form one big look-alike block where the creature is never quite certain
+  which cell it is in, so those moments feel less placeable. The rare color sits in
+  distinctive spots that snap the world into focus. Measured cell by cell, predicted from
+  the frozen brain, and verified by a living fork: the numbers match the flip we watched.
+- Setup (predeclared in the script docstring before running): H1 (gate asymmetry) made
+  analytic — with localization at ~0 bits, per-color accrual rate R(c) = (1/25) * sum of
+  exp(-H(A_hat[:,s])) over cells of color c, computed READ-ONLY from the committed
+  snapshot (age 18700, hash 52f6e814bfe6). P1: R(0) > R(2). P2: a fork living 2000 steps
+  accrues per-color mass within +-10% of R(c)*2000. P3: predicted drift (R(2)-R(0))*6000
+  matches Exp 76's observed -37.3 within a factor of 2. F1 H1 dead; F2 analytic rate not
+  operative; F3 magnitude unexplained. Spine read-only (fork side-control only).
+- Result: ALL PASS, no falsifiers. P1: R(0)=0.2029 > R(2)=0.1956 — color 0's mean gate
+  0.634 vs color 2's 0.543 overcomes 8-vs-9 cells. P2: behavioral relative errors
+  5.4%/9.8%/9.6% (colors 0/1/2). P3: predicted -43.8 vs observed -37.3, ratio 1.17.
+  Diagnostic (where the asymmetry lives): the cmap shows color 2's nine cells as one
+  contiguous bottom-left 3x3-plus block; the gate map shows exactly that block soft
+  (0.40-0.63) while color-0 cells in distinctive positions run sharp (up to 0.80). The
+  reading: ALIASING — within a same-color block the likelihood cannot separate neighboring
+  cells, historical soft counts smear across the block, columns stay soft, and the common
+  color is experienced LESS confidently per visit. Note the map is 0.96 argmax-accurate
+  and the gates STILL favor color 0 — the asymmetry is structural (aliasing), not
+  transient staleness.
+- Implication: in this substrate, self-formed preference tracks EPISTEMIC LEGIBILITY, not
+  abundance — the Exp 26 predictability-grounded valence, followed to its conclusion: the
+  creature likes the experiences that make its world placeable, and a too-common,
+  spatially-clumped color is epistemically murky. The natural flip (Exp 76) is now
+  explained end-to-end: analytic rate asymmetry -> drift -> zero-crossing, magnitude
+  within 17%. This also sharpens the accrual law for any M4 design: valence accrues per
+  (color) at rate = visit share x mean gate, and the gate term can invert abundance
+  rankings.
+- Honest caveat: the aliasing reading rests on the visual block structure plus the
+  argmax-accurate-yet-soft-gated coexistence — a targeted aliasing experiment (same color
+  counts, scattered vs clumped layouts, fresh creatures) would isolate it cleanly and was
+  NOT run; staleness contribution not separately quantified. P2's tolerance (10%) absorbed
+  map-sharpening drift over the probe epoch. Single fork, single deterministic run each.
+- Verdict: POSITIVE / NEW INSIGHT (the accrual law with its gate term, confirmed
+  analytically + behaviorally; legibility-over-abundance as the preference driver).
+  Self-grade: POSITIVE-SINGLE.
+- Next: the clean aliasing isolation (clumped vs scattered, fresh creatures) if the law
+  needs further grounding; otherwise direction choice still pending (Exp 74 CONSULT —
+  recommended M4a, which this law now also informs: legibility-driven valence is a design
+  lever).

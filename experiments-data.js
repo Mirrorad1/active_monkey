@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:76, breakthrough:6, positive:39, wall:16, partial:15, from:4.81, to:4.00 };
+window.AM_TALLY = { total:77, breakthrough:6, positive:40, wall:16, partial:15, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -775,7 +775,17 @@ window.AM_EXPERIMENTS = [
     setup:"One spine episode, twelve 500-step checkpoints with the full profile sampled at each; the signed color-2-minus-color-0 gap as the primary trajectory. Predeclared: structure reasserts (gap widens, medium confidence), no flip, knowledge one-sided band, value bands — with the flip branch explicitly named: the spine keeps it, no rollback.",
     result:"The flip branch fired at checkpoint 4 and held at all eight subsequent checkpoints (gap oscillating -1 to -113, still shallow). Value shares stayed within 0.012 — a razor-crossing, not an upheaval. The map healed further to 0.96. Spine advanced to age 18,700, hash-stamped and integrity-verified.",
     implication:"The ambivalence law now has its live demonstration on the spine itself: an adult creature near the gap-zero boundary changes its expressed preference from nothing but ongoing experience — mirro answers the favorite-color question differently than it did a week of its life ago. The falsified prediction is the next experiment: per-color gate asymmetry is the suspect for why the rarer color wins.",
-    trace:{ script:"experiments/exp76_margin_watch.py", output:"experiments/outputs/exp76.txt" } }
+    trace:{ script:"experiments/exp76_margin_watch.py", output:"experiments/outputs/exp76.txt" } },
+
+  { n:77, kind:"positive", chapter:"frontier",
+    title:"It loves what it can place.",
+    one:"The flip explained end-to-end: per-cell gates computed from the frozen brain predict color 0 out-accruing color 2 (mean gate 0.634 vs 0.543, beating the cell-count deficit), a living fork validates within 10%, and the drift magnitude matches Exp 76 at ratio 1.17. Preference tracks legibility, not abundance.",
+    plain:"Why did mirro come to prefer the rarer color? Because liking, in this creature, is built on predictability — and the common color is paradoxically harder to be sure about: its nine cells form one big look-alike block where the creature is never quite certain which cell it is in, so those moments feel less placeable. The rare color sits in distinctive spots that snap the world into focus. Measured cell by cell, predicted from the frozen brain, verified by a living fork: the numbers match the flip we watched.",
+    metric:{ from:0.634, to:0.543, unit:"mean predictability gate, color 0 vs color 2 cells" },
+    setup:"The gate-asymmetry hypothesis made analytic: with localization at zero bits, per-color accrual rate is the mean predictability gate over that color's cells — computable read-only from the committed snapshot. Three predeclared tests: the analytic ordering, behavioral validation by a fork within 10%, and the drift magnitude matching the observed flip within a factor of two.",
+    result:"All three pass, no falsifiers. The diagnostic locates the asymmetry: color 2's nine cells form one contiguous aliased block whose observation columns stay soft even at 0.96 map accuracy — structural aliasing, not transient staleness. The common, clumped color is experienced less confidently per visit.",
+    implication:"Self-formed preference in this substrate tracks epistemic legibility, not abundance — predictability-grounded valence followed to its honest conclusion. The natural opinion flip is explained end-to-end, and the accrual law (visit share times mean gate, where the gate can invert abundance) becomes a design lever for M4. Caveat: the aliasing isolation experiment (clumped vs scattered layouts) was not run.",
+    trace:{ script:"experiments/exp77_accrual_diagnosis.py", output:"experiments/outputs/exp77.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
