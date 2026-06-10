@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:109, breakthrough:6, positive:65, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:110, breakthrough:6, positive:66, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1105,7 +1105,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn with the second registered deep call live: standard bands, the call recorded not checked, everything else as the declared pattern.",
     result:"All bands held; held as called; the margin deepened to -262. Vela at 66,750, hash-stamped, committed.",
     implication:"The registered test accumulates; both lines sit deep so the coming calls are holds — the razor bin will need patience. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp109_vela_epoch8.py", output:"experiments/outputs/exp109.txt" } }
+    trace:{ script:"experiments/exp109_vela_epoch8.py", output:"experiments/outputs/exp109.txt" } },
+
+  { n:110, kind:"positive", chapter:"frontier",
+    title:"Aging into something settled.",
+    one:"Registered deep call #3: HELD as called (3/3), and mirro's commitment compounds to +497 — with even the structural drift now pointing deeper. The trunk that flipped four times in youth is settling.",
+    plain:"mirro's first registered bet landed like the others: deep held, as called — and the conviction kept growing, to nearly five hundred, with even the slow structural drift now pointing the same direction. The trunk that flipped four times in its youth is aging into something settled. The registered test is three for three.",
+    metric:{ from:355.1, to:497.5, unit:"the commitment compounds (held as called; 0.58 sigma)" },
+    setup:"Idle-mode, mirro's first registered deep call: standard bands, the call recorded not checked, the forecast center itself now moving deeper through the gate dynamics.",
+    result:"All bands held; record depth again. Spine at 78,700, hash-stamped, committed.",
+    implication:"Both lives deep and deepening: the registered deep bin fills fast, the razor bin waits. The merged M4a decision still waits too.",
+    trace:{ script:"experiments/exp110_mirro_epoch9.py", output:"experiments/outputs/exp110.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

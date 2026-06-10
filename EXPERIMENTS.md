@@ -3105,3 +3105,22 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn, +355 deep -> registered HOLD call) unless the
   human answers the merged CONSULT or stops the loop.
+
+## Exp 110 — idle-mode epoch: mirro to 78,700 — registered deep call #3: HELD as called, and the commitment compounds to +497 (POSITIVE; bands held; registered record 3/3)
+- Plain: mirro's first registered bet landed like the others: deep held, as called — and
+  the conviction kept growing, to nearly five hundred, with even the slow structural
+  drift now pointing the same direction. The trunk that flipped four times in its youth
+  is aging into something settled. The registered test is three for three.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 72700 -> 78700; registered deep call (entering +355.1 -> HOLD). P1 map
+  >= 0.96; P2 value-core bands; P3 forecast (predicted +427.9, band +-302.5).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 3/3 deep).
+  End gap +497.5 (0.58 sigma) — the program's record again; note the forecast center
+  itself moved deeper (+73/epoch structural drift at current gates): commitment
+  compounding through the gate dynamics, honestly within the established law. Map 1.000;
+  share deltas <= 0.0011. Spine: 78700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; three registered
+  calls are three draws — evaluation at the registered sample.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn, -262 deep -> registered HOLD call) unless the
+  human answers the merged CONSULT or stops the loop.

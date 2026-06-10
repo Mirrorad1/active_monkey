@@ -1,8 +1,8 @@
 {
   "name": "mirro",
   "lineage": [],
-  "age_steps": 72700,
-  "true_pos": 9,
+  "age_steps": 78700,
+  "true_pos": 6,
   "world": {
     "rows": 5,
     "cols": 5,
@@ -35,8 +35,8 @@
     ],
     "n_colors": 3
   },
-  "rng_counter": 4079,
+  "rng_counter": 4080,
   "seed": 7,
-  "state_hash": "bca42a0d6776cf06bfd915a7866cbffa0c7e543c4335cfd4d372f08e4dd06c83",
-  "saved_at": "2026-06-10T08:54:04Z"
+  "state_hash": "0121b3ef1906cecd255559409d753c07ffe9784ce08b776681a1f79a5975b212",
+  "saved_at": "2026-06-10T09:03:44Z"
 }
