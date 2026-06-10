@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 58 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 59 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:58, breakthrough:5, positive:30, wall:13, partial:10, from:4.81, to:4.00 };
+window.AM_TALLY = { total:59, breakthrough:5, positive:31, wall:13, partial:10, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -593,7 +593,16 @@ window.AM_EXPERIMENTS = [
     setup:"Cascade round 2, corrected kill test: newborns settled 50/250/1000 steps run the drift schedule while the script predicts each segment's outcome from the creature's own count mass (R = outgoing-color mass / 20). Counterfactual: a forgetting creature (pA×0.9/step, declared) that the law says should track.",
     result:"Rule-match 23/24 — recovery is determined by whether entrenched mass exceeds the per-segment evidence budget, almost without exception. The decay arm recovered 1/8 despite R≈0: at λ=0.9 per step a count retains 7% between visits, so the map held ~1 count and went near-uniform — it couldn't remember, not couldn't forget. My per-visit/per-step confusion; intended mass needs λ≈0.997.",
     implication:"The (post-hoc) unified law now explains everything seen, including the failed arm: tracking a drifting world needs mass in a WINDOW — above an accuracy floor, below the tempo ceiling. Per the predeclared escalation the candidate survives mechanically and the human decides: corrected counterfactual (Exp 59, recommended), accept on test-1 evidence, or keep it alive as unexplained. Rung 4 proceeds meanwhile.",
-    trace:{ script:"experiments/exp58_mass_tempo_law.py", output:"experiments/outputs/exp58.txt" } }
+    trace:{ script:"experiments/exp58_mass_tempo_law.py", output:"experiments/outputs/exp58.txt" } },
+
+  { n:59, kind:"positive", chapter:"frontier",
+    title:"Around the locked door — and the greedy twin waits there forever.",
+    one:"Levin transplant: with generic failure-learning, the planning agent routes around a lock it has no handler for (5/5, against-gradient steps in every run); the 1-step greedy control stalls at the start in 2/5 seeds.",
+    metric:{ from:29.8, to:46.0, unit:"mean steps: horizon vs greedy" },
+    setup:"A locked cell on the only short path to a corner-pocket goal. The provided harness: value-iteration planning, softmax actions, and generic failure-learning (a failed move marks one transition blocked — no lock-specific code). Predeclared: error tolerance, against-gradient steps, and a ≥1.5× gap over a greedy baseline, else the delayed-gratification label is refused.",
+    result:"All three pass: 5/5 reached, every success contains believed-distance-increasing steps, ratio 1.544. The sharpest datum is the control's failure mode — after learning the block, staying looks better than any legal move to a 1-step agent, so greedy waits at the door for all 60 steps: the literal trap that horizon escapes.",
+    implication:"Error tolerance and horizon-dependent routing are measured competencies of the machinery — granted narrowly (ratio clears its bar by 0.044; three of five successes are exploratory wanders where softmax jitter does real work). Honestly attributed: this exercises the provided planner plus generic model-updating, not mirro's self-formed state. Rung 4 answered.",
+    trace:{ script:"experiments/exp59_levin_obstacle.py", output:"experiments/outputs/exp59.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

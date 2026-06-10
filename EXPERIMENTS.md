@@ -1273,3 +1273,33 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Honest caveat: rule-match scored on 24 cells from 3 subjects on ONE schedule speed; the
   single mismatch (settle1000 seg4) is unexplained — noted, not excused; the forgetting arm is
   uninformative as run.
+
+## Exp 59 — Levin obstacle transplant: error tolerance + against-gradient routing, with the greedy trap on display (POSITIVE; rung 4 answered)
+- Setup (provided-ness declared: the ENTIRE navigation harness is provided — VI planning over
+  the 5×5 grid, task-assigned goal reward at cell 0, innate movement, softmax τ=0.3, and
+  GENERIC failure-learning where a failed move marks that one transition blocked; no
+  lock-specific handler). Subject: disposable fork of mirro@10700; mirro untouched. Geometry:
+  start (0,2), goal (0,0), locked (0,1) — corner pocket, only detour strictly longer (4 vs 2);
+  against-gradient = a step increasing believed-unlocked grid distance. Conditions: A = full VI
+  replanned each step; B = 1-step greedy lookahead, same softmax/failure-learning (the
+  predeclared Levin-critics horizon control). 5 seeds each, 60-step budget. Predeclared:
+  (a) A reaches ≥4/5; (b) ≥4/5 of A's successes contain ≥1 against-gradient step; (c) mean
+  steps(B) ≥ 1.5× mean steps(A), else the DG label is refused.
+- Result: (a) 5/5. (b) 5/5 (ag-steps 1–19). (c) ratio 1.544 (A mean 29.8, B mean 46.0,
+  unreached counted as 60) — passes the predeclared 1.5 bar. Verdict line: DG DEMONSTRATED.
+  The qualitatively strongest datum is B's failure mode: in 2/5 seeds the greedy agent stalled
+  AT THE START for all 60 steps — after learning the block, staying (believed distance 2) beats
+  every legal move (distance 3): the literal greedy trap that horizon escapes.
+- Honest caveats (load-bearing): the ratio clears its bar by 0.044 with n=5 — marginal; 3/5 of
+  A's successes are long exploratory wanders (39–47 steps for a 4-step detour, ag-steps up to
+  19) — softmax jitter does real work far from the goal where Q-differences are tiny, so
+  "purposeful detour" describes only the cleaner 2/5 runs (8 and 13 steps); and this is a
+  competency of the PROVIDED machinery + generic failure-learning, not of mirro's self-formed
+  state (its map/values were not exercised — goal was task-assigned). Per the card, both
+  outcomes were results; this one is the measured-competency branch with the deflationary
+  control passed, narrowly.
+- Verdict: POSITIVE / rung 4 answered: error tolerance robust (5/5), against-gradient routing
+  present and horizon-dependent (greedy stalls or lags), DG label granted within the caveats
+  above. Self-grade: POSITIVE-SINGLE.
+- Next: rung 6 (interoceptive stake) and the pending Exp 58 consult (corrected forgetting
+  counterfactual) are the open threads; ledger rung 3 epoch 2 can also resume.
