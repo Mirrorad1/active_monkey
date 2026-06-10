@@ -1,0 +1,27 @@
+  running seed 8 ...
+/Users/mirro/Projects/active-loop/active_loop/affect_agent.py:39: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  self.agent = Agent(
+/Users/mirro/Projects/active-loop/active_loop/affect_agent.py:127: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
+  tmp = Agent(
+  running seed 9 ...
+  running seed 10 ...
+  running seed 11 ...
+  running seed 12 ...
+  running seed 13 ...
+  running seed 14 ...
+  running seed 15 ...
+
+seed  H-drop%  ask10  pos_h1  pos_h2  improv    pA0_sum    exp_sum    pB0_sum
+-----------------------------------------------------------------------------
+   8    1.000      2   0.220   0.100  -0.120    100.999    100.999    119.636
+   9    1.000      0   0.260   0.200  -0.060    100.999    100.999    119.636
+  10    1.000      1   0.280   0.200  -0.080    100.999    100.999    119.636
+  11    1.000      2   0.200   0.180  -0.020    100.999    100.999    119.636
+  12    1.000      3   0.100   0.220   0.120    100.999    100.999    119.636
+  13    1.000      2   0.160   0.160   0.000    100.999    100.999    119.636
+  14    1.000      1   0.220   0.180  -0.040    100.999    100.999    119.636
+  15    1.000      1   0.220   0.160  -0.060    100.999    100.999    119.636
+
+P1 PASS: 8/8 seeds entropy-drop fraction >= 0.5
+P2 PASS: ASK >= 2 times in first 10 turns in 4/8 seeds
+M4a THREAD HALTED — F3: POS-rate improvement >= 0.15 in only 0/8 seeds (need 6). Core loop does not learn.

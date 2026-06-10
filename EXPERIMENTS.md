@@ -3456,3 +3456,40 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn); the M4a thread awaits the human (Exp 125
   halt — recommended resumption 1b in loop/IDEAS.md).
+
+## Exp 127 — M4a increment 1b: B-learning enabled, still no learning — the thread halts a SECOND time, and the diagnosis deepens (NEGATIVE; M4a HALTED again for the human)
+- Plain: You said continue; we enabled the missing learning channel exactly as
+  recommended and re-ran the same test on fresh seeds. The agent still never learns to
+  earn approval — its success rate stays at chance for a hundred turns even though every
+  part of its machinery now demonstrably works: it infers, it asks, it forgets on
+  schedule, and its response-consequence model is visibly accumulating experience. So
+  the problem is no longer a missing part; it is that the whole — learning what you mean
+  AND what actions please you, simultaneously, from scratch, in a hundred turns — does
+  not converge at this scale or timing. The thread stops again and brings you two
+  specific suspects rather than a guess.
+- Setup (predeclared in the script docstring before running; resumption authorization —
+  the human's "continue" on the recommended option — recorded in loop/IDEAS.md):
+  observe_feedback now decays and learns BOTH ledgers (pB via infer_parameters with
+  belief-pair histories, lr_pB=1.0; verified firing in smoke: B-mass accumulates from
+  turn 1). Identical predeclarations to Exp 125, fresh seeds 8-15, every falsifier
+  wired to HALT.
+- Result: P1 PASS 8/8; P2 PASS (ASK alive); P4 EXACT again (100.999 = 100.999, 8/8;
+  pB diagnostic: total B-mass identical across seeds at 119.636 — expected, since each
+  update adds unit mass and only its distribution differs). P3 FAIL 0/8 (improvements
+  -0.12 to +0.12, chance level). F3 FIRED -> M4a THREAD HALTED, second time.
+- Diagnosis (deepened, for the human): the credit-assignment loop is structurally
+  complete (EFE over 1-step policies sees B -> qs' -> A[1] -> expected valence) but does
+  not converge in 100 turns. Suspect (a) SCALE: the joint A+B bootstrap from weak priors
+  with U=6 -> K=4 aliasing plausibly needs several hundred turns — the cheapest, most
+  informative next step is a PURE DIAGNOSTIC: one 1000-turn session per arm, measuring
+  whether any learning trend exists at all (no architecture change, no resumption claim).
+  Suspect (b) TIMING: feedback for turn t is observed alongside turn t+1's code, landing
+  credit on the post-transition intent — consistent with the spec's design but worth
+  scrutiny if (a) shows no trend. RECOMMENDED next (on your word): the (a) diagnostic;
+  it decides between scale-up and redesign before any further build.
+- Honest caveat: the seed-invariant pB total is consistent with unit-mass updates but
+  was not predicted in advance (noticed, explained, not banded); the lr_pB=1.0 choice is
+  the library default, untested against alternatives.
+- Verdict: NEGATIVE (F3; second predeclared halt honored). Self-grade: n/a. THE M4a
+  THREAD IS HALTED awaiting the human's word on the (a) diagnostic; idle-mode continues.
+- Next (on human word only): the 1000-turn learning-trend diagnostic.

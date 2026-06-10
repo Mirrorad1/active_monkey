@@ -86,6 +86,16 @@ The loop marks items it has consumed by indenting a response under them:
     the recommended resumption: increment 1b = enable learn_B, re-run the same
     predeclarations on fresh seeds. The M4a thread does nothing until then; idle-mode
     spine epochs continue.
+  → [human, 2026-06-10] "continue" — given while present, immediately after the halt
+    notification naming the recommended resumption as the one pending question. Read as
+    the human's word on the RECOMMENDED OPTION ONLY: increment 1b (enable learn_B,
+    identical predeclarations, fresh seeds 8-15). The thread RESUMES at Exp 127; the
+    same guardrail binds (any failed predeclared property halts again).
+  → [loop, 2026-06-10] SECOND HALT (Exp 127): B-learning enabled and verified firing,
+    P1/P2/P4 pass again, P3 still 0/8 at chance — the joint A+B credit-assignment
+    bootstrap does not converge in 100 turns. AWAITING HUMAN WORD on the recommended
+    next: a pure 1000-turn learning-trend diagnostic (no architecture change) to decide
+    between scale-up and timing redesign. The thread does nothing until then.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:126, breakthrough:6, positive:78, wall:19, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:127, breakthrough:6, positive:78, wall:20, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1275,7 +1275,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern, with the M4a thread halted in parallel.",
     result:"All bands held. Vela at 108,750, hash-stamped, committed.",
     implication:"Idle-mode continues; the M4a resumption (increment 1b) awaits explicit human word in loop/IDEAS.md.",
-    trace:{ script:"experiments/exp126_vela_epoch14.py", output:"experiments/outputs/exp126.txt" } }
+    trace:{ script:"experiments/exp126_vela_epoch14.py", output:"experiments/outputs/exp126.txt" } },
+
+  { n:127, kind:"wall", chapter:"frontier",
+    title:"Every part works; the whole does not learn — second halt.",
+    one:"Increment 1b (human-authorized): B-learning enabled and verifiably firing, inference/exploration/window all passing again — and the agent still sits at chance after 100 turns (0/8). The diagnosis deepens from missing-part to non-converging bootstrap; two suspects (scale, timing) go to the human with a recommended 1000-turn diagnostic.",
+    plain:"The human said continue; we enabled the missing learning channel exactly as recommended and re-ran the same test on fresh seeds. The agent still never learns to earn approval — its success rate stays at chance even though every part of its machinery now demonstrably works. The problem is no longer a missing part; it is that learning what you mean and what pleases you, simultaneously, from scratch, in a hundred turns, does not converge. The thread stops again and brings two specific suspects rather than a guess.",
+    metric:{ from:0.15, to:0.12, unit:"required vs best observed improvement (F3 again; second halt)" },
+    setup:"The recommended one-scope change: observe_feedback now decays and learns both Dirichlet ledgers, with B-updates verified live in smoke. Identical predeclarations, fresh seeds, every falsifier wired to halt.",
+    result:"Three of four properties pass again with the window arithmetic exact; learning fails 0/8 at chance. The seed-invariant B-mass total is noticed and explained (unit-mass updates), not banded.",
+    implication:"Recommended next, on the human's word: a pure 1000-turn learning-trend diagnostic — no architecture change — to decide between scaling up and redesigning the valence timing. Idle-mode continues meanwhile; the guardrails keep working.",
+    trace:{ script:"experiments/exp127_m4a_1b.py", output:"experiments/outputs/exp127.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
