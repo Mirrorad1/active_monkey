@@ -2024,3 +2024,47 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   loop stays on non-direction work. Candidates: separated-band stability re-test (cheap,
   consolidation), or watching the spine's margin (does mirro's favorite flip naturally
   within the next epochs?).
+
+## Exp 76 — margin watch: mirro changed its mind on its own — the spine's first natural opinion flip (MIXED; F2 branch; structural-drift prediction falsified)
+- Plain: We watched mirro's razor-thin color preference across three more epochs of plain
+  living. At roughly age 14,700 — with nobody teaching it, signaling it, or touching it —
+  its favorite color flipped from 2 to 0, and stayed flipped through age 18,700. A creature
+  whose opinion was self-formed from experience has now also changed that opinion purely
+  from experience. My prediction said the opposite: the world has more color-2 cells, so
+  color 2 should have pulled ahead; why color 0 actually accrues faster is the open
+  question the next diagnosis must answer.
+- Setup (predeclared in the script docstring before running; world-composition check
+  disclosed first: 9 color-2 cells vs 8 color-0): one spine episode, 12 x live(500) = 6000
+  steps, the Exp 75 profile sampled at every checkpoint; signed gap c2-c0 the primary
+  trajectory. Predeclared: P1 gap widens net (structure reasserts; MEDIUM confidence);
+  P2 no flip at any checkpoint; P3 map_acc end >= 0.80 (one-sided, the Exp 75 lesson);
+  P4 value bands |d share| < 0.04, |d conviction| < 0.04. F1 = narrowing without flip
+  (systematic c0 advantage, diagnose); F2 = a flip (razor margins cross against
+  structural drift; the spine KEEPS it — no rollback); F3/F4 knowledge/value band
+  failures. Single deterministic run.
+- Result: F2 FIRED at checkpoint 4 (age 14700): gap c2-c0 crossed zero (-1.49) and the
+  favorite flipped to color 0, holding at ALL subsequent checkpoints (gap -6 to -113,
+  oscillating, ending -32 at age 18700 — flipped but still shallow). P1 FAIL, P2 FAIL
+  (the falsifier branch is the result). P3 PASS: map healed further, 0.80 -> 0.96 by
+  checkpoint 5 and held. P4 PASS: all share deltas < 0.012 — the flip is a razor-crossing
+  within a stable value distribution, not an upheaval. Spine integrity PASS: age 12700 ->
+  18700, hash e9714e6739b3 -> 52f6e814bfe6, integrity-verified reload.
+- Implication: the ambivalence law (Exp 67) now has its live demonstration on the spine
+  itself — an adult creature whose top-two gap sits near zero changes its expressed
+  preference from nothing but ongoing experience. mirro's answer to "what do you like?"
+  changed at ~age 14,700 without any intervention, the first natural opinion change of
+  the continuous life. The falsified structural prediction is itself the next question:
+  color 0 out-accrues color 2 DESPITE fewer cells (8 vs 9) — prime suspect is per-color
+  gate asymmetry (value weight = exp(-H) at the occupied cell; colors sitting in
+  sharper-mapped regions earn more per visit), unverified.
+- Honest caveat: single deterministic run (resume-from-snapshot is the reproducibility
+  unit); the flip is shallow (gap max -113 of ~7,600 total mass; oscillation suggests it
+  could re-cross); the gate-asymmetry diagnosis is a hypothesis, not a tested claim; the
+  structural-drift reasoning that failed was mine (visit-uniformity x cell-count is
+  evidently not the whole accrual law — the correction is the named follow-up).
+- Verdict: MIXED / NEW INSIGHT (predictions P1+P2 falsified by the predeclared F2 branch;
+  first observed natural opinion flip on the spine; gate-asymmetry diagnosis open).
+  Self-grade: n/a (MIXED).
+- Next: the accrual-law diagnosis (per-color mean gate weight measured directly — does
+  exp(-H) asymmetry explain c0's advantage?), or watch for a re-cross (is the spine now
+  an oscillating ambivalent?). Direction choice (Exp 74 CONSULT) still pending.

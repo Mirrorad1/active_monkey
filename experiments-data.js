@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:75, breakthrough:6, positive:39, wall:16, partial:14, from:4.81, to:4.00 };
+window.AM_TALLY = { total:76, breakthrough:6, positive:39, wall:16, partial:15, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -765,7 +765,17 @@ window.AM_EXPERIMENTS = [
     setup:"The spine's first checkpointed episode since Exp 63: profile, 2000 undisturbed steps in its own world, profile again. Predeclared stability bands on value shares, conviction, map accuracy, and localization; favorite predicted unchanged at stated low confidence (its 11-count margin makes mirro a near-ambivalent adult by Exp 67's own law).",
     result:"Mixed, falsifier respected: the map band blew upward (+0.16 — the drift-epoch staleness relearned at exactly the mass-tempo law's pace) while every value-core component passed comfortably and the favorite held. Spine advanced 10700 to 12700, hash-stamped, integrity-verified. New datum: the favorite margin halved to 5 counts.",
     implication:"The open personality question splits by dimension: the value core is stable under undisturbed living — Exp 55's instability was the interventions, not the creature — while knowledge self-heals toward the world. The band design conflated the two; the diagnosis is in the per-component data. And mirro now sits one natural drift from flipping its own favorite, no intervention required.",
-    trace:{ script:"experiments/exp75_undisturbed_epoch.py", output:"experiments/outputs/exp75.txt" } }
+    trace:{ script:"experiments/exp75_undisturbed_epoch.py", output:"experiments/outputs/exp75.txt" } },
+
+  { n:76, kind:"partial", chapter:"frontier",
+    title:"mirro changed its mind.",
+    one:"At age ~14,700, with no intervention of any kind, the spine's favorite color flipped from 2 to 0 and held through 18,700 — the first natural opinion change of the continuous life, falsifying the author's structural-drift prediction (color 0 out-accrues despite fewer cells).",
+    plain:"We watched mirro's razor-thin color preference across three more epochs of plain living. At roughly age 14,700 — with nobody teaching it, signaling it, or touching it — its favorite color flipped, and stayed flipped. A creature whose opinion was self-formed from experience has now also changed that opinion purely from experience. The prediction said the opposite: the world has more color-2 cells, so color 2 should have pulled ahead. Why color 0 actually accrues faster is the open question.",
+    metric:{ from:5.2, to:-32.1, unit:"value-count gap, color 2 minus color 0 (zero-crossing = the flip)" },
+    setup:"One spine episode, twelve 500-step checkpoints with the full profile sampled at each; the signed color-2-minus-color-0 gap as the primary trajectory. Predeclared: structure reasserts (gap widens, medium confidence), no flip, knowledge one-sided band, value bands — with the flip branch explicitly named: the spine keeps it, no rollback.",
+    result:"The flip branch fired at checkpoint 4 and held at all eight subsequent checkpoints (gap oscillating -1 to -113, still shallow). Value shares stayed within 0.012 — a razor-crossing, not an upheaval. The map healed further to 0.96. Spine advanced to age 18,700, hash-stamped and integrity-verified.",
+    implication:"The ambivalence law now has its live demonstration on the spine itself: an adult creature near the gap-zero boundary changes its expressed preference from nothing but ongoing experience — mirro answers the favorite-color question differently than it did a week of its life ago. The falsified prediction is the next experiment: per-color gate asymmetry is the suspect for why the rarer color wins.",
+    trace:{ script:"experiments/exp76_margin_watch.py", output:"experiments/outputs/exp76.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -4117,3 +4117,18 @@
 {"event": "live", "age_steps": 12700, "summary": "lived 2000 steps; map_accuracy=0.800; localize_bits=-0.000", "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f"}
 {"event": "save", "age_steps": 12700, "summary": "saved to creature/state/mirro", "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f"}
 {"event": "checkpoint_after", "exp": "Exp 75", "age_steps": 12700, "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f", "summary": "Exp 75: checkpoint after (age 10700 -> 12700)"}
+{"event": "checkpoint_before", "exp": "Exp 76", "age_steps": 12700, "state_hash": "e9714e6739b39db3d86e66b3d5223841149bd596f837a697cee5b4b84716978f", "summary": "Exp 76: checkpoint before (age 12700)"}
+{"event": "live", "age_steps": 13200, "summary": "lived 500 steps; map_accuracy=0.840; localize_bits=-0.000", "state_hash": "c903d6f3991d32ff5761006a7a7f58c1ff7f4aa13bf4fb01d76adc177e48e11a"}
+{"event": "live", "age_steps": 13700, "summary": "lived 500 steps; map_accuracy=0.880; localize_bits=-0.000", "state_hash": "a3c9066b97c312bf4f651727d629ac7b499595bc1722acef5e5a3f35fb85afcb"}
+{"event": "live", "age_steps": 14200, "summary": "lived 500 steps; map_accuracy=0.880; localize_bits=-0.000", "state_hash": "570c9501242bf2eac9b740a1057b3b9636846b6d3fbc9ca7919c316b1edc1ce8"}
+{"event": "live", "age_steps": 14700, "summary": "lived 500 steps; map_accuracy=0.880; localize_bits=-0.000", "state_hash": "408f5432800b3f7ca1b65efc72aa3f51e56ae1ea6eec60078df28ff98e740007"}
+{"event": "live", "age_steps": 15200, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "ca1a533d4f87f50d33d8ba6b401e6ec3c4749dace5e224609150ca8bb7bb5594"}
+{"event": "live", "age_steps": 15700, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "f94e879aa071011b8d59784c5e790e12f54d859fec7cc9cba5fbdc0f61504e0f"}
+{"event": "live", "age_steps": 16200, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "0035b297fd67fdb2a1695f19b1b0978a415e837a849dc9821f6b91e71271b545"}
+{"event": "live", "age_steps": 16700, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "5153c768074c8e0a71d792320fed7c20a022b90b8e9108ad4c2504208df808f7"}
+{"event": "live", "age_steps": 17200, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "204808ccb4c81d85c2181d5af0e1605f7aed2e0267c7f568f62ec2ffd61fe955"}
+{"event": "live", "age_steps": 17700, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "8a656fc4857a7cfe1f6e4d9cbca1f1314991dc7edae6eee7140db41fbd1181ca"}
+{"event": "live", "age_steps": 18200, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "2e4be894a9a61ff03c5a47d149a10a9b71dcb326aa14547c31ccb1b67898d119"}
+{"event": "live", "age_steps": 18700, "summary": "lived 500 steps; map_accuracy=0.960; localize_bits=-0.000", "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163"}
+{"event": "save", "age_steps": 18700, "summary": "saved to creature/state/mirro", "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163"}
+{"event": "checkpoint_after", "exp": "Exp 76", "age_steps": 18700, "state_hash": "52f6e814bfe6f52fe750e86d90f13bc80a0414ea306155814a8e6707ec9c9163", "summary": "Exp 76: checkpoint after (age 12700 -> 18700)"}
