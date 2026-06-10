@@ -1,0 +1,27 @@
+
+ARM-STD  (3000 steps, 6 chunks of 500, start cell 12)
+  seed  final_mean  final_slope  n_ceiling  map_acc
+  3100      0.0065    -0.000032          0    1.000
+  3101      0.0059    -0.000005          0    1.000
+  3102      0.0025    +0.000001          0    1.000
+  3103      0.0041    -0.000005          0    1.000
+  3104      0.0041    +0.000005          0    1.000
+  3105      0.0045    +0.000028          0    1.000
+  3106      0.0051    +0.000002          0    1.000
+  3107      0.0036    +0.000001          0    1.000
+
+ARM-NOISE  (3000 steps, 6 chunks of 500, start cell 12)
+  seed  final_mean  final_slope  n_ceiling  map_acc
+  3100      0.9415    +0.000093          3    1.000
+  3101      0.6858    +0.000513          3    1.000
+  3102      0.8076    +0.000711          2    1.000
+  3103      0.8525    -0.001150          2    1.000
+  3104      0.7576    -0.001365          2    1.000
+  3105      0.7454    -0.000109          3    1.000
+  3106      0.8861    +0.000579          2    1.000
+  3107      0.7803    -0.000505          3    1.000
+
+P1 (instrument validation): ARM-NOISE fires in 8/8 seeds (need >= 6/8): PASS
+P2 (directive's hypothesis): ARM-STD fires in 0/8 seeds (CONFIRMED iff >= 4/8; loop's counter-prediction: 0/8)
+
+EXP132: HYPOTHESIS NOT CONFIRMED (std fires 0/8; counter-prediction exact) — instrument validated 8/8 on noise

@@ -122,6 +122,26 @@ The loop marks items it has consumed by indenting a response under them:
     the guardrails now codified in loop/VALIDATION.md (recommended option only, verdict stays
     falsifier-bound, a failed test halts for me). Exp 60's clean kill confirms the pattern.
 
+- [from human, 2026-06-10] STRUCTURE LEARNING, three phases — the new directive
+  (supersedes the loop's queue; M4a stays halted at 1c meanwhile). Move from parameter
+  learning over a fixed state space toward endogenous model expansion (BMR/expansion,
+  free-energy-scored). Phase 1 NOW: per-step surprise -ln p(o_t) per modality; rolling
+  window (default 200) with mean/slope/ceiling flag (high mean AND ~zero slope AND
+  Dirichlet still updating = irreducible surprise = structural inadequacy); metrics into
+  the reporting pipeline; replay buffer of (o_t, a_t) to disk. Phase 2 SCAFFOLD
+  (flag-gated): candidate_score (re-run inference over logged history, accumulated F;
+  same-history comparison only; active-data bias documented), closed-form Dirichlet BMR
+  via gammaln with the two predeclared unit tests, prune_pass (rank, never auto-apply).
+  Phase 3 SCAFFOLD (flag-gated): spawn rule (K consecutive ceiling steps -> provisional
+  state seeded at the offending observation), dumb local mutation ops
+  (add/split/merge), selection by strict F decrease on replay; log every dead end.
+  Constraints: repo conventions, FROZEN untouched, Phase 1 behavior-invariant (seeded
+  diff verified), discrete pymdp/Dirichlet terms, scipy gammaln ok, docs/specs math
+  entry, and a run-it-now experiment: does a standard life run hit a measurable
+  surprise ceiling? Record honestly, win or dead end. Then merge to main.
+  → taken up immediately: branch structure-learning; Phase 1 + scaffolds + spec + the
+    ceiling experiment (Exp 132); merged to main when green.
+
 - [from human, 2026-06-10] STEER: open the **continuous-substrate** direction — "Problem 2"
   of the frontier map: replace the enumerated state `s ∈ {1..N}` with a continuous latent
   `s ∈ ℝᵈ`, inference by closed-form conjugate updates (precision accumulation), online and
@@ -136,6 +156,12 @@ The loop marks items it has consumed by indenting a response under them:
     mirro/vela spines are untouched by this direction; idle-mode epochs may interleave as
     before. The loop remains PAUSED (Exp 131) until re-invoked; on resumption this card is
     the sanctioned queue.
+  → [merge note, 2026-06-10] this steer (PR #23) landed in parallel with the
+    structure-learning directive above; no contradiction on merge: that directive's written
+    scope (Phase 1 live + flag-gated Phase 2-3 scaffolds + Exp 132, "then merge to main")
+    is COMPLETE and on main, so this card is the open queue on resumption. ACTIVATING
+    structure-learning Phases 2-3 (BMR/expansion live on a creature) remains a separate
+    human decision — if both threads are wanted, the human orders them here.
 
 (empty — drop ideas above this line's section freely)
 

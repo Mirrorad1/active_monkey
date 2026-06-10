@@ -3580,3 +3580,55 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: PAUSED. Resume by re-running /loop (or answering increment 1c in
   loop/IDEAS.md first).
+
+## Exp 132 — structure learning opens: the ceiling detector is built, behavior-invariant, and validated — and the standard world has no ceiling (MIXED; hypothesis not confirmed 0/8, counter-prediction exact; instrument 8/8)
+- Plain: The new chapter the human directed: machinery for a creature to notice when its
+  own model of the world is structurally too small (not just under-trained), and scaffolds
+  for shrinking and growing that model with proper Bayesian scoring. Phase 1 is live and
+  provably changes nothing about behavior — the instrumented creature's life is
+  bit-identical to the old code's. The opening experiment then asked the directive's
+  question: does the standard life hit an irreducible-surprise ceiling? It does not — in
+  a learnable, deterministic world, surprise falls a hundred-fold to near zero and the
+  detector stays correctly silent, while in a control world with genuinely irreducible
+  noise it fires in every run, within a few percent of the analytically-predicted level.
+  Honest reading: the current world is too simple to need a bigger mind; the machinery
+  now waits for worlds that are not.
+- Setup (the human's directive, 2026-06-10, recorded in loop/IDEAS.md): Phase 1
+  implemented in creature.py — per-step surprise -ln p(o_t) from existing quantities, a
+  200-step rolling window with mean/slope, the ceiling conjunction (mean > 0.7 nats AND
+  |slope| < 5e-4 AND learning active), biography-integrated reporting, and a replay
+  buffer (uint8 (obs, action) pairs appended to creature/state/<name>/replay.bin on
+  save). BEHAVIOR-INVARIANCE VERIFIED: 750 seeded steps under old-vs-new code produce
+  identical state hashes (77408b4e...), with instrumentation fully active. Phases 2-3
+  scaffolded flag-gated in active_loop/structure.py (candidate_score with the
+  active-data-bias caveat; closed-form Dirichlet BMR via gammaln, sign convention
+  pinned, both canonical unit tests passing — unused-state pruning favored, used-state
+  pruning rejected; prune_pass as pure report; spawn/split/merge operators;
+  strict-decrease selection) — nothing wired into default runs. Math spec:
+  docs/specs/structure-learning.md. Exp 132 predeclared: P1 noise-control arm (p_true
+  0.7; analytic irreducible surprise ~0.82 nats) must fire >= 6/8; P2 the directive's
+  hypothesis confirmed iff the standard arm fires >= 4/8 (loop's counter-prediction:
+  0/8). 8 fresh seeds per arm, 3000 steps.
+- Result: P1 PASS 8/8 (final means 0.69-0.94 nats bracketing the analytic 0.82;
+  2-3 ceiling events per run; maps still perfect — localization survives 30% observation
+  noise). P2: NOT CONFIRMED, 0/8 — the counter-prediction exact (standard-arm final
+  means 0.0025-0.0065 nats, ~150x below threshold; slopes ~0 at the floor, correctly
+  not flagged since the mean condition guards the conjunction). Full suite 91 tests
+  green, including the four new Phase-1 tests and five BMR tests.
+- Implication: the program now possesses a calibrated structural-inadequacy detector and
+  the scored shrink/grow toolkit the directive specified — and an honest baseline fact:
+  this world does not demand structure learning. The named path to a positive: worlds
+  with hidden context (drift regimes, relational structure, the M4 dyad's intent space)
+  where irreducible surprise is real; the detector's firing there becomes the trigger
+  for Phase 3's spawn-and-select loop, exactly as the spec's spawn rule prescribes.
+- Honest caveat: one modality/one factor is this substrate's entire structure ("at least
+  one modality" = the only one); the ceiling thresholds (0.7 nats, 5e-4/step) are
+  designed constants validated at exactly one noise level; replay history carries the
+  active-data bias (documented in the spec and in candidate_score's docstring);
+  Phases 2-3 are scaffolds with unit tests, not yet exercised end-to-end on a real
+  expansion.
+- Verdict: MIXED (the directive's hypothesis NEGATIVE as the loop predicted; the
+  instrument and toolkit POSITIVE, validated). Self-grade: POSITIVE-SINGLE for the
+  build; the hypothesis verdict carries no grade.
+- Next: merge to main (the directive's final step); structure learning then awaits a
+  world worth growing for — natural candidates queued in the implication above.
