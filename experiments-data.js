@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:113, breakthrough:6, positive:67, wall:18, partial:22, from:4.81, to:4.00 };
+window.AM_TALLY = { total:114, breakthrough:6, positive:68, wall:18, partial:22, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1145,7 +1145,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's registered deep call, with the forecast band carried as registered and deep tails read against Exp 112's state-dependent sigma finding.",
     result:"All bands held; the deep bin now has its five entries — the razor bin has none since registration, and the evaluation will say so honestly if the lines stay deep. Spine at 84,700, hash-stamped, committed.",
     implication:"The registered evaluation approaches with its sample shape visible in advance. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp113_mirro_epoch10.py", output:"experiments/outputs/exp113.txt" } }
+    trace:{ script:"experiments/exp113_mirro_epoch10.py", output:"experiments/outputs/exp113.txt" } },
+
+  { n:114, kind:"positive", chapter:"frontier",
+    title:"Held as called, relaxing as it goes.",
+    one:"Registered deep call #6: HELD (5/6) — vela keeps its post-lurch favorite while the conviction relaxes by two-thirds to +95, exiting the deep bin. The evaluation entry is one vela-epoch away.",
+    plain:"vela kept its new post-lurch favorite as the law called, while the conviction behind it relaxed by two-thirds — back toward the unbinned middle. The registered test stands at five of six with the deep sample overfull and the razor sample still empty; the evaluation entry is one vela-epoch away.",
+    metric:{ from:192.6, to:94.6, unit:"the post-lurch commitment relaxes (held as called; 1.61 sigma)" },
+    setup:"Idle-mode, vela's registered deep call on the color-2 side of its lurch: standard bands, deep tails read against the state-dependent sigma finding.",
+    result:"All bands held. Vela at 78,750, hash-stamped, committed.",
+    implication:"The registered evaluation approaches with a deep-heavy sample; the razor side will be declared insufficient honestly. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp114_vela_epoch10.py", output:"experiments/outputs/exp114.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

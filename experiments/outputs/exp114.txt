@@ -1,0 +1,71 @@
+Exp 114 — idle-mode life epoch (vela age 72750 -> 78750)
+
+  hash_before = 55aa4c90e0d6
+
+--- START PROFILE (age 72750) ---
+  share0            : 0.342446
+  share1            : 0.311163
+  share2            : 0.346391
+  conviction        : 0.346391
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 192.614419
+  total_mass        : 48824.732160
+
+  R(0)            : 0.260728
+  R(1)            : 0.250518
+  R(2)            : 0.276933
+
+  predicted_end_gap = +192.6144 + (0.276933 - 0.260728) * 6000 = +289.8486
+  P3 band (2.5-sigma = 302.5): [-12.6514, +592.3486]
+
+--- END PROFILE (age 78750) ---
+  share0            : 0.342391
+  share1            : 0.313453
+  share2            : 0.344156
+  conviction        : 0.344156
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 94.584293
+  total_mass        : 53600.149522
+
+  R(0)            : 0.263509
+  R(1)            : 0.253729
+  R(2)            : 0.280496
+
+[Exp 114] spine=vela continuous-life checkpoint
+  before: age=72750 state_hash=55aa4c90e0d6
+  after : age=78750 state_hash=0b43a4a9bb65
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : +289.8486
+  actual_end_gap    : +94.5843
+  error (actual-predicted) : -195.2643
+  |error| / sigma   : 1.614
+
+--- DELTA TABLE ---
+  component               before       after       delta  band                                ok?
+  ----------------------------------------------------------------------------------------------
+  share0                0.342446    0.342391   -0.000055  < 0.04                              PASS
+  share1                0.311163    0.313453   +0.002290  < 0.04                              PASS
+  share2                0.346391    0.344156   -0.002235  < 0.04                              PASS
+  conviction            0.346391    0.344156   -0.002235  < 0.04                              PASS
+  map_acc               1.000000    1.000000   +0.000000  >= 0.96 (absolute one-sided)        PASS
+
+  favorite: 2 -> 2  (REGISTERED depth call: HOLD — deep bin |gap| >= 120)
+  P4 registered-call outcome: HELD as called (recorded for the Exp ~117 evaluation)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-map-accuracy-78750: map_acc_at_78750=1.000000  threshold=0.960000 (absolute one-sided)  ok=True
+  PASS  P2-share-stability: share0:|delta|=0.000055 (ok); share1:|delta|=0.002290 (ok); share2:|delta|=0.002235 (ok)
+  PASS  P2-conviction-stability: |delta_conviction|=0.002235  threshold=0.04
+  PASS  P3-noise-calibrated-forecast: end_gap=+94.5843  predicted=+289.8486  band=[-12.6514, +592.3486]  |error|/sigma=1.614  in_band=True
+  PASS  SPINE-age-78750-delta-6000: reload.age=78750  ep.age_after=78750  ep.age_before=72750  delta=6000  expected_after=78750
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP114: EPOCH CLEAN (bands held)

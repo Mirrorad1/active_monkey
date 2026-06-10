@@ -3214,3 +3214,21 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn, +193 unbinned-to-deep boundary) unless the
   human answers the merged CONSULT or stops the loop.
+
+## Exp 114 — idle-mode epoch: vela to 78,750 — registered deep call #6: HELD as called; the post-lurch commitment relaxes to +95 (POSITIVE; bands held; registered record 5/6)
+- Plain: vela kept its new post-lurch favorite as the law called, while the conviction
+  behind it relaxed by two-thirds — back toward the unbinned middle. The registered test
+  stands at five of six with the deep sample now overfull and the razor sample still
+  empty; the evaluation entry is one vela-epoch away.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 72750 -> 78750; registered deep call (entering +192.6 -> HOLD); the
+  registered band with deep tails read against Exp 112.
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 5/6 deep).
+  End gap +94.6 (1.61 sigma, in band) — vela exits the deep bin into the unbinned
+  middle. Map 1.000; share deltas <= 0.0023. Spine: vela at 78750, integrity-verified,
+  committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn, +534 deep -> registered HOLD call; then the
+  Exp ~117 registered evaluation) unless the human answers the merged CONSULT or stops
+  the loop.
