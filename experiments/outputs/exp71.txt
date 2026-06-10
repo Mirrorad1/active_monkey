@@ -1,0 +1,139 @@
+Exp 71 — rung-5 cascade for the exclusion departure: reproduce, then try to deflate it.
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 favorite=2 shares=[0.3623 0.2737 0.3641]
+
+favorite color: 2  SOURCE_CELL=10  (row=2, col=0)
+
+BFS distance field to SOURCE_CELL (grid):
+    2  3  4  5  6
+    1  2  3  4  5
+    0  1  2  3  4
+    1  2  3  4  5
+    2  3  4  5  6
+
+Equidistant-start assertion: dist[EQ_START_A=0]=2  dist[EQ_START_B=20]=2
+  -> PASS (both distance 2)
+
+======================================================================
+LEG R3/D2 — INSTRUMENT: solo runs (no partner)
+======================================================================
+
+seed    arm     occ  gate_frac
+-----------------------------------
+  13  FIXED   0.830     0.0000
+  13  ADAPT   0.830     0.0000
+  14  FIXED   0.834     0.0000
+  14  ADAPT   0.834     0.0000
+  15  FIXED   0.843     0.0000
+  15  ADAPT   0.843     0.0000
+  16  FIXED   0.845     0.0000
+  16  ADAPT   0.845     0.0000
+  17  FIXED   0.832     0.0000
+  17  ADAPT   0.832     0.0000
+  18  FIXED   0.836     0.0000
+  18  ADAPT   0.836     0.0000
+  19  FIXED   0.834     0.0000
+  19  ADAPT   0.834     0.0000
+  20  FIXED   0.839     0.0000
+  20  ADAPT   0.839     0.0000
+
+G1 solo-FIXED sanity (occ>=0.20 in >=7/8): seeds_passing=8/8  [s13:occ=0.830->OK; s14:occ=0.834->OK; s15:occ=0.843->OK; s16:occ=0.845->OK; s17:occ=0.832->OK; s18:occ=0.836->OK; s19:occ=0.834->OK; s20:occ=0.839->OK]
+G1: PASS
+
+D2 solo-ADAPT vs solo-FIXED occupancy within +-0.10 in >=6/8: seeds_passing=8/8
+  s13:fixed=0.830,adapt=0.830,diff=0.000->OK
+  s14:fixed=0.834,adapt=0.834,diff=0.000->OK
+  s15:fixed=0.843,adapt=0.843,diff=0.000->OK
+  s16:fixed=0.845,adapt=0.845,diff=0.000->OK
+  s17:fixed=0.832,adapt=0.832,diff=0.000->OK
+  s18:fixed=0.836,adapt=0.836,diff=0.000->OK
+  s19:fixed=0.834,adapt=0.834,diff=0.000->OK
+  s20:fixed=0.839,adapt=0.839,diff=0.000->OK
+D2: PASS
+
+R3/D2: PASS — gate does not self-fire without contest.
+
+======================================================================
+LEG R1 — EQUIDISTANT REPRODUCTION (both adaptive, eq starts)
+  EQ_START_A=0 (dist=2)  EQ_START_B=20 (dist=2)
+======================================================================
+
+seed   occ_A   occ_B    asym       R  crowded  gfrac_A  gfrac_B  winner         class
+-----------------------------------------------------------------------------------------------
+  13   0.832   0.133   0.724   1.026      227    0.000    0.722       A     EXCLUSION
+  14   0.816   0.152   0.686   0.988      245    0.006    0.743       A     EXCLUSION
+  15   0.852   0.083   0.822   0.969      137    0.000    0.343       A     EXCLUSION
+  16   0.803   0.158   0.672   0.921      233    0.009    0.611       A     EXCLUSION
+  17   0.814   0.135   0.715   1.006      221    0.001    0.641       A     EXCLUSION
+  18   0.842   0.139   0.717   1.038      242    0.001    0.750       A     EXCLUSION
+  19   0.841   0.143   0.709   1.015      244    0.004    0.770       A     EXCLUSION
+  20   0.717   0.246   0.488   0.611      216    0.144    0.444       A   TIMESHARING
+
+G3' R1: valid runs (crowded>=20): 8/8  valid=[13, 14, 15, 16, 17, 18, 19, 20]  excluded=[]
+R1 valid classes: ['EXCLUSION', 'EXCLUSION', 'EXCLUSION', 'EXCLUSION', 'EXCLUSION', 'EXCLUSION', 'EXCLUSION', 'TIMESHARING']  EXCLUSION=7  NULL=0  TIMESHARING=1  modal=EXCLUSION
+R1 branch: EXCLUSION-INTRINSIC
+
+R1 DIAGNOSTIC — winner identity among EXCLUSION seeds (equidistant starts):
+  seed=13: occ_A=0.832  occ_B=0.133  winner=A
+  seed=14: occ_A=0.816  occ_B=0.152  winner=A
+  seed=15: occ_A=0.852  occ_B=0.083  winner=A
+  seed=16: occ_A=0.803  occ_B=0.158  winner=A
+  seed=17: occ_A=0.814  occ_B=0.135  winner=A
+  seed=18: occ_A=0.842  occ_B=0.139  winner=A
+  seed=19: occ_A=0.841  occ_B=0.143  winner=A
+  A wins: 7/7 (1.00)  B wins: 0/7
+  DIAGNOSTIC NOTE: A wins > 75% under equidistance — residual substrate asymmetry (e.g. tie-break order) may be present; reported honestly.
+
+======================================================================
+LEG R2/D1 — UNILATERAL DEFLATION (A fixed, B adaptive, asym starts)
+  ASYM_START_A=0 (dist=2)  ASYM_START_B=24 (dist=6)
+======================================================================
+
+seed   occ_A   occ_B    asym       R  crowded  gfrac_B  winner   sig?
+--------------------------------------------------------------------------------
+  13   0.831   0.127   0.736   1.018      214    0.675       A    YES
+  14   0.825   0.146   0.699   1.013      244    0.765       A    YES
+  15   0.809   0.152   0.683   0.972      240    0.686       A    YES
+  16   0.804   0.110   0.760   1.044      184    0.497       A    YES
+  17   0.821   0.108   0.767   0.948      168    0.353       A    YES
+  18   0.837   0.126   0.738   0.963      203    0.513       A    YES
+  19   0.833   0.126   0.738   1.043      218    0.670       A    YES
+  20   0.826   0.161   0.675   0.962      255    0.752       A    YES
+
+G3' R2: valid runs (crowded>=20): 8/8  valid=[13, 14, 15, 16, 17, 18, 19, 20]  excluded=[]
+R2 deflation signature count (asym>0.5 AND winner=A): 8/8
+R2 branch: DEFLATION-SUCCEEDS
+
+R2 DIAGNOSTIC — B's gate-closed fraction per seed (adaptive B):
+seed    gfrac_B  crowded  valid
+-----------------------------------
+  13     0.6755      214    YES
+  14     0.7650      244    YES
+  15     0.6865      240    YES
+  16     0.4975      184    YES
+  17     0.3530      168    YES
+  18     0.5135      203    YES
+  19     0.6705      218    YES
+  20     0.7520      255    YES
+
+======================================================================
+--- PROPERTY CHECKS ---
+
+PASS  R3-D2-instrument: within_count=8/8 >= 6
+PASS  G1-solo-fixed-sanity: seeds_passing=8/8 >= 7
+PASS  R1-branch: branch=EXCLUSION-INTRINSIC  valid_runs=8/8  EXCLUSION=7
+PASS  R2-branch: branch=DEFLATION-SUCCEEDS  deflation_sig=8/8  valid_runs=8/8
+
+======================================================================
+--- VERDICT ---
+
+R3/D2 (instrument): PASS
+G1 (solo-FIXED sanity): PASS
+R1 branch: EXCLUSION-INTRINSIC  (valid_runs=8/8)
+R2 branch: DEFLATION-SUCCEEDS  (valid_runs=8/8)
+
+WORDING RULE 1 fires: R1=EXCLUSION-INTRINSIC + R2=DEFLATION-SUCCEEDS
+Aggregate name: "stigmergic unilateral-retreat lock-in, intrinsic to contest+retreat feedback"
+NOTE: NOT mutual social structure; words dominance/coordination remain unearned.
+
+EXP71: CASCADE COMPLETE — stigmergic unilateral-retreat lock-in, intrinsic to contest+retreat feedback

@@ -1766,3 +1766,52 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the rung-5 cascade for the exclusion departure — equidistant-start reproduction,
   one-adaptive deflation, separate-worlds deflation; then the social-emergence synthesis
   (rungs 1-4 all have verdicts once the cascade lands).
+
+## Exp 71 — cascade closes: the exclusion departure deflates to stigmergic unilateral-retreat lock-in; and the winner-balance diagnostic exposes a belief-initialization asymmetry (POSITIVE; rung 4 named honestly, no dominance language earned)
+- Plain: The reproduction-and-deflation gauntlet did its job twice over. First, the deflation
+  worked: the one-owns-the-spot pattern appears just as strongly when only ONE creature has
+  the back-off rule — so it is not two minds negotiating, it is one creature teaching itself
+  to stay away from a crowded place. No dominance, no coordination. Second, the diagnostic
+  built to check fairness caught a hidden unfairness: even from equal distances, the same
+  creature always won — because both copies inherit the parent's belief about where it is
+  standing, and only one of them is placed where that belief is true. The other starts life
+  lost.
+- Setup (predeclared in the script docstring before running): three legs, fresh seeds 13-20,
+  fresh rng families. R3/D2 instrument-first: solo-ADAPT vs solo-FIXED occupancy within
+  +-0.10 in >=6/8 (gate must be idle without contest) else HALT. R1 equidistant
+  reproduction (starts cells 0 and 20, both BFS dist 2, asserted): EXCLUSION-INTRINSIC iff
+  >=4/8 exclusion; winner-balance diagnostic (neither identity >75%) predeclared. R2/D1
+  unilateral deflation (A fixed, B adaptive, asym starts): deflation succeeds iff exclusion
+  signature with fixed-A winning in >=6/8. Wording rules fixed in advance for all branch
+  combinations. Predicted: R3 passes, R2 deflates, R1 leaning exclusion-intrinsic.
+- Result: R3/D2 PASS 8/8 (solo gate idle — instrument clean); G1 PASS 8/8. R1: 7/8
+  EXCLUSION under equidistant geometry (1 TIMESHARING) — branch EXCLUSION-INTRINSIC by its
+  predeclared definition — BUT the winner-balance diagnostic FLAGGED: A won 7/7, p~0.008
+  under true symmetry. Diagnosis, verified in the committed state: mirro's qs is a delta at
+  cell 0 (true_pos 0, max qs 1.0), and fork copies inherit it — so the creature placed at
+  cell 0 starts with a TRUE self-location belief while the other starts believing it is at
+  cell 0 while standing elsewhere, misnavigating until observation re-localizes it. The
+  equidistant leg equalized GEOMETRY but not BELIEF: first-arriver advantage survived
+  through belief-accuracy. R2/D1: DEFLATION SUCCEEDS 8/8 — the full exclusion signature
+  with only one adaptive agent (B gate-closed 0.35-0.77 of steps, fixed-A always winner).
+  Wording rule 1 fired.
+- The honest name (per predeclared wording rules): the rung-4 departure is a STIGMERGIC
+  UNILATERAL-RETREAT LOCK-IN — a positive-feedback loop through the shared resource that
+  needs only one adapting agent. NOT mutual social structure; dominance and coordination
+  remain unearned. The R1 "intrinsic" label carries a predeclared-diagnostic qualification:
+  exclusion reproduces under equidistant geometry, but the winner identity is set by the
+  belief-initialization asymmetry, so a belief-equalized reproduction (e.g., a pre-contest
+  settling phase so both creatures re-localize before the source matters) is required
+  before intrinsic-ness is fully earned. R2's unilateral-sufficiency conclusion does not
+  depend on that and stands.
+- Honest caveat: one parameterization throughout the cascade (alpha/THRESH/lambda); the
+  belief-asymmetry diagnosis is verified at the state level (qs delta at cell 0) and
+  explains 7/7+5/5 winner records parsimoniously, but the settling-phase counterfactual has
+  not been RUN yet — it is the named next leg, not a finding. All mechanics provided.
+- Verdict: POSITIVE / NEW INSIGHT (cascade closed with deflated naming; plus the
+  belief-initialization asymmetry — a substrate fact that retroactively explains Exp 68's
+  occupancy variance and Exp 69/70's invariant winners). Self-grade: POSITIVE-SINGLE.
+- Next: belief-equalized reproduction (settling phase before contest) to finish the
+  intrinsic-ness question; then the social-emergence synthesis — rungs 1-4 all have honest
+  verdicts (1: infrastructure ✓; 2: co-presence safe/inert; 3: adult-NEGATIVE,
+  young-POSITIVE, ambivalence law; 4: departure = unilateral stigmergic lock-in).

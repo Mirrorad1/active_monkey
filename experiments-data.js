@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:70, breakthrough:6, positive:36, wall:16, partial:12, from:4.81, to:4.00 };
+window.AM_TALLY = { total:71, breakthrough:6, positive:37, wall:16, partial:12, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -715,7 +715,17 @@ window.AM_EXPERIMENTS = [
     setup:"Identical mechanism to Exp 69; the circularity trap declared and avoided — regime definitions were fixed from Exp 69's invalid runs and tested out-of-sample on eight never-run seeds, with the input-based validity gate from the new VALIDATION rule. Predeclared classification table, unique-modal requirement, first-arriver prediction, and an unclassifiable-regimes falsifier.",
     result:"Departure confirmed: 5 EXCLUSION, 2 TIMESHARING, 1 OTHER (exclusion-like, missing the predeclared R band by 0.006 — counted against the prediction as declared). The closer starter won every exclusion seed. The signature is self-reinforcing: the winner spends ~0% of steps with its comfort gate closed, the loser 47-79% — alone-comfort keeps the owner naive while crowding teaches the latecomer to stay away.",
     implication:"Rung 4 has its answer: resource-mediated coupling alone bends twin behavior off independence, mostly into asymmetric lock-in. The cascade now decides what it may be called: equidistant starts (the first-arriver confound is provably load-bearing), one-adaptive deflation, separate-world deflation. All mechanics provided; no dominance or coordination claim is made yet.",
-    trace:{ script:"experiments/exp70_regime_classification.py", output:"experiments/outputs/exp70.txt" } }
+    trace:{ script:"experiments/exp70_regime_classification.py", output:"experiments/outputs/exp70.txt" } },
+
+  { n:71, kind:"positive", chapter:"frontier",
+    title:"Not dominance — one creature teaching itself to stay away.",
+    one:"The cascade deflates the exclusion regime: one adaptive agent reproduces it 8/8 (unilateral stigmergic lock-in, no mutual structure) — and the fairness diagnostic catches a hidden asymmetry: forks inherit the parent's self-location belief, so one twin starts life lost.",
+    plain:"The reproduction-and-deflation gauntlet did its job twice over. The one-owns-the-spot pattern appears just as strongly when only ONE creature has the back-off rule — so it is not two minds negotiating; it is one creature teaching itself to stay away from a crowded place. No dominance, no coordination. And the diagnostic built to check fairness caught a hidden unfairness: even from equal distances the same twin always won, because both copies inherit the parent's belief about where it is standing — and only one is placed where that belief is true. The other starts life lost.",
+    metric:{ from:8, to:8, unit:"unilateral-deflation runs reproducing the full exclusion signature" },
+    setup:"Three predeclared legs on fresh seeds: solo runs first (the comfort gate must stay idle without contest), an equidistant-start reproduction with a winner-balance diagnostic, and the key deflation — one fixed agent versus one adaptive agent. Wording rules for every branch combination were fixed before running.",
+    result:"Instrument clean (8/8 solo). Equidistant geometry still yields exclusion 7/8 — but the same twin won 7/7 (p~0.008 under symmetry), and the cause was verified in the committed state: mirro's place belief is a delta at cell 0, inherited by both forks; the twin placed elsewhere starts misnavigating from a false belief. Deflation succeeded 8/8: one adaptive agent reproduces the whole regime.",
+    implication:"Rung 4's honest name: a stigmergic unilateral-retreat lock-in — a positive-feedback loop through the shared resource needing only one adapting mind. Dominance and coordination remain unearned. The belief-inheritance asymmetry retroactively explains three experiments' winner records and queues one final leg: a belief-equalized reproduction with a pre-contest settling phase.",
+    trace:{ script:"experiments/exp71_exclusion_cascade.py", output:"experiments/outputs/exp71.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
