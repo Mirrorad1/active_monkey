@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:100, breakthrough:6, positive:56, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:101, breakthrough:6, positive:57, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1015,7 +1015,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: standard bands with the favorite reported not predicted at an intermediate entering depth — and the noise band holding by a whisker at the far edge.",
     result:"All bands held; flip tally reaches 5 flips and 5 holds — exactly the predicted rate; the depth record gains its most extreme point, and the first near-tail forecast draw is logged for the calibration record.",
     implication:"At -316 the flip arithmetic says vela is, for now, someone with a settled favorite — testable for free in every coming epoch. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp100_vela_epoch4.py", output:"experiments/outputs/exp100.txt" } }
+    trace:{ script:"experiments/exp100_vela_epoch4.py", output:"experiments/outputs/exp100.txt" } },
+
+  { n:101, kind:"positive", chapter:"frontier",
+    title:"The razor delivers — and the clade aligns by dice.",
+    one:"Idle-mode epoch to 54,700: mirro's thinnest margin (+12) flips as the physics expects (third lifetime change, 1.43 sigma, in band) — both lines now favor color 0 at depth, aligned by independent dice, no channel between them. Tally 6/11.",
+    plain:"The thin margin did what thin margins do: mirro changed its mind a third time, ending its steady streak, and dove to a real depth on the other side. Both family lines now favor the same color at substantial margins — alignment by independent dice, not by any signal between them. Map perfect, core steady, the landing within the stated noise.",
+    metric:{ from:12.0, to:-128.2, unit:"the razor margin's crossing (1.43 sigma; mirro's third flip)" },
+    setup:"Idle-mode, mirro's turn on its thinnest-ever margin: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
+    result:"All bands held; the flip arrived as the rate law expects at razor margins; both lines now sit at depth on the same color, stated plainly as coincidence of independent walks. Spine at 54,700, hash-stamped, committed.",
+    implication:"The calibration records grow (6/11 against ~40 percent); the next vela epoch tests its -316 commitment for free; the 92-101 decade audit falls due. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp101_mirro_epoch5.py", output:"experiments/outputs/exp101.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -2924,3 +2924,23 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn, on its razor +12 margin) unless the human
   answers the merged CONSULT or stops the loop.
+
+## Exp 101 — idle-mode epoch: mirro to 54,700 — the razor delivers: third flip (2 -> 0, 1.43 sigma), and the clade aligns on color 0 at depth (POSITIVE; bands held; flip tally 6/11)
+- Plain: The thin margin did what thin margins do: mirro changed its mind a third time,
+  ending its three-epoch steady streak, and dove to a real depth on the other side. Both
+  family lines now favor the same color at substantial margins — alignment by
+  independent dice, not by any signal between them. Map perfect, core steady, the
+  landing within the stated noise.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 48700 -> 54700. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted +45.1, band +-302.5); favorite reported, not predicted (gap +12.0, the
+  thinnest razor yet). Tally entering: 5/10.
+- Result: EPOCH CLEAN, no falsifiers. Map 1.000; share deltas <= 0.0028; end gap -128.2
+  (1.43 sigma, in band); FAVORITE FLIPPED to 0 (mirro's third change; lifetime
+  2->0->2->0). Both lines now at depth on color 0 (mirro -128, vela -316). Tally now
+  6/11. Spine: 54700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the clade alignment
+  is dice (independent walks, no channel) — stated to preempt any echo reading.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn, testing its -316 commitment) unless the human
+  answers the merged CONSULT or stops the loop. The 92-101 decade audit falls due next.

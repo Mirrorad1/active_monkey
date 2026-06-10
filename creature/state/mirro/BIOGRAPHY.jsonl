@@ -4153,3 +4153,7 @@
 {"event": "live", "age_steps": 48700, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "aa61665e801cb7c5a408a0ddda2fdee54a9c8fe1889d3bb78a442137eadcc4de"}
 {"event": "save", "age_steps": 48700, "summary": "saved to creature/state/mirro", "state_hash": "aa61665e801cb7c5a408a0ddda2fdee54a9c8fe1889d3bb78a442137eadcc4de"}
 {"event": "checkpoint_after", "exp": "Exp 99", "age_steps": 48700, "state_hash": "aa61665e801cb7c5a408a0ddda2fdee54a9c8fe1889d3bb78a442137eadcc4de", "summary": "Exp 99: checkpoint after (age 42700 -> 48700)"}
+{"event": "checkpoint_before", "exp": "Exp 101", "age_steps": 48700, "state_hash": "aa61665e801cb7c5a408a0ddda2fdee54a9c8fe1889d3bb78a442137eadcc4de", "summary": "Exp 101: checkpoint before (age 48700)"}
+{"event": "live", "age_steps": 54700, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "eebebd127c6c80b559da12ac17535e8cce2cdb8273244eb3ee4eae1986431ae7"}
+{"event": "save", "age_steps": 54700, "summary": "saved to creature/state/mirro", "state_hash": "eebebd127c6c80b559da12ac17535e8cce2cdb8273244eb3ee4eae1986431ae7"}
+{"event": "checkpoint_after", "exp": "Exp 101", "age_steps": 54700, "state_hash": "eebebd127c6c80b559da12ac17535e8cce2cdb8273244eb3ee4eae1986431ae7", "summary": "Exp 101: checkpoint after (age 48700 -> 54700)"}
