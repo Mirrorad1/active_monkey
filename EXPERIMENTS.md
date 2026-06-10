@@ -1201,3 +1201,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next (rung 5 cascade on E1): 3 pre-epoch forks × same schedule (reproduction), newborn
   control, counts-to-flip analysis. Verdict either kills E1 as a trivial consequence of
   non-decaying counts or logs the first NOVELTY-CANDIDATE.
+
+## Exp 57 — cascade round 1: candidate survives by killing its own framing (MIXED; first NOVELTY-CANDIDATE, provisionally)
+- Setup: rung-5 cascade on Exp 56's E1 ("perceptual rigidity grows with age"). (a) Reproduction:
+  3 forks of the pre-epoch snapshot (age 6700, hash f3edac2a — at commit db35582; my spec said
+  0467c26, corrected by the coder and hash-verified), identical schedule, fresh seeds 81/82/83.
+  (b1) counts-to-flip analytics. (b2) newborn control (seed 85, 1000-step settling) with
+  predeclared early-recovery/late-rigidity gradient (Spearman ρ > 0.6, ≥2 early recoveries).
+  Predeclared: dies if (a)+(b1)+(b2) all confirm the count mechanism; survives if (a) holds but
+  (b) fails to explain. Mirro untouched entirely (no fork of the live creature).
+- Result: (a) REPRODUCED — 3/3 forks fail 8/8 segments. (b1) CONFIRMS — mean column mass 268.3
+  (min 1.3, max 767.3) vs ~20 observations/segment = 13.4×. (b2) DOES NOT CONFIRM the age
+  framing: the newborn (mass ≈ 40/cell post-settling) ALSO froze, 6/8 failures, ρ = 0.378, and
+  its only two "recoveries" (seg0, seg4, lag 25) are the corner-(0,0) segments — the world it
+  SETTLED in, i.e., zero adaptation, just coincidence with its prior. Predeclared verdict line:
+  NOVELTY-CANDIDATE survives (b2 failed to explain).
+- Sharpened hypothesis (post-hoc, named as such, NOT a verdict): rigidity is not aging — with
+  non-decaying soft counts, a map is WRITE-ONCE RELATIVE TO WORLD TEMPO. Tracking a drift of
+  period P requires accumulated mass < P × visit-rate (≈20 here); even 1000 steps of life
+  crosses that. The newborn's mass (40) > 20 explains its freeze under the same law that
+  explains mirro's (268 ≫ 20). This unifies b1 and b2 and predicts the decisive kill test.
+- Honest caveat: the candidate's survival is per the predeclared rules — the b2 test was
+  mis-designed (it assumed settling leaves mass below threshold; it doesn't), so survival
+  reflects MY test design as much as the phenomenon; the sharpened mass-tempo law is post-hoc
+  until Exp 58 predeclares and runs it. Single schedule speed throughout.
+- Verdict: MIXED / cascade round 1 complete: reproduction robust, age-framing dead,
+  NOVELTY-CANDIDATE ("write-once maps relative to world tempo") provisionally alive pending one
+  decisive deflationary test.
+- Next (Exp 58, cascade round 2 — the kill test): predeclared — a low-mass newborn (250-step
+  settling, mass ≈ 10 < 20) on the same schedule should recover in ≥ 6/8 segments; a mass-swept
+  cohort (settling 250/500/1000/2000) should show recovery rate falling as mass crosses ~20. If
+  confirmed, the candidate DIES as the lawful mass-tempo consequence of non-decaying counts (the
+  Exp 48 law, fully generalized); if the low-mass newborn also freezes, the candidate survives
+  round 2 with the mechanism genuinely unexplained.

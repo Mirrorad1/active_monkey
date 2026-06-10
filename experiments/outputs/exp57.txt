@@ -1,0 +1,55 @@
+=== EXP 57: RIGIDITY CASCADE ===
+subject0: age=6700 hash16=f3edac2a9d5d4bf0
+pA_column_masses: mean=268.31 min=1.30 max=767.30
+flip_threshold: ~20 visits/segment (500 steps / 25 cells); mass_vs_threshold ratio=13.4x
+
+=== (a) REPRODUCTION ===
+  fork_81 seg0 lag=501 end_acc=0.5200 FAIL
+  fork_81 seg1 lag=501 end_acc=0.6000 FAIL
+  fork_81 seg2 lag=501 end_acc=0.7600 FAIL
+  fork_81 seg3 lag=501 end_acc=0.5200 FAIL
+  fork_81 seg4 lag=501 end_acc=0.7200 FAIL
+  fork_81 seg5 lag=501 end_acc=0.6800 FAIL
+  fork_81 seg6 lag=501 end_acc=0.6400 FAIL
+  fork_81 seg7 lag=501 end_acc=0.5600 FAIL
+  fork_81 segments_failed=8/8
+  fork_82 seg0 lag=501 end_acc=0.6400 FAIL
+  fork_82 seg1 lag=501 end_acc=0.7200 FAIL
+  fork_82 seg2 lag=501 end_acc=0.6800 FAIL
+  fork_82 seg3 lag=501 end_acc=0.6400 FAIL
+  fork_82 seg4 lag=501 end_acc=0.7200 FAIL
+  fork_82 seg5 lag=501 end_acc=0.6000 FAIL
+  fork_82 seg6 lag=501 end_acc=0.6000 FAIL
+  fork_82 seg7 lag=501 end_acc=0.6400 FAIL
+  fork_82 segments_failed=8/8
+  fork_83 seg0 lag=501 end_acc=0.6400 FAIL
+  fork_83 seg1 lag=501 end_acc=0.7600 FAIL
+  fork_83 seg2 lag=501 end_acc=0.6400 FAIL
+  fork_83 seg3 lag=501 end_acc=0.6800 FAIL
+  fork_83 seg4 lag=501 end_acc=0.7200 FAIL
+  fork_83 seg5 lag=501 end_acc=0.6400 FAIL
+  fork_83 seg6 lag=501 end_acc=0.6000 FAIL
+  fork_83 seg7 lag=501 end_acc=0.6400 FAIL
+  fork_83 segments_failed=8/8
+REPRODUCTION: REPRODUCED (failed_segs per fork: [8, 8, 8])
+
+=== (b2) NEWBORN CONTROL ===
+newborn post-settling: age=1000 map_acc=1.0000
+  newborn seg0 lag=25 end_acc=1.0000
+  newborn seg1 lag=501 end_acc=0.5200
+  newborn seg2 lag=501 end_acc=0.3600
+  newborn seg3 lag=501 end_acc=0.5200
+  newborn seg4 lag=25 end_acc=1.0000
+  newborn seg5 lag=501 end_acc=0.5200
+  newborn seg6 lag=501 end_acc=0.4400
+  newborn seg7 lag=501 end_acc=0.6800
+newborn_early_recoveries=1 (segments 0-3 with lag<=450)
+spearman_rho=0.3780
+
+=== SUMMARY ===
+(a) reproduction: 3/3 forks failed >=7/8 -> REPRODUCED
+(b1) counts: mean_column_mass=268.31 vs ~20 visits/segment -> CONFIRMS
+(b2) newborn: rho=0.3780, early_recoveries=1 -> DOES NOT CONFIRM (rho>0.6=no, >=2 early=no)
+VERDICT: NOVELTY-CANDIDATE survives (mechanism checks failed to explain): ['b2(newborn)']
+
+runtime=1.1s

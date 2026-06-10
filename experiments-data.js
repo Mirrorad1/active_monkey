@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 56 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 57 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -15,7 +15,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:56, breakthrough:5, positive:30, wall:13, partial:8, from:4.81, to:4.00 };
+window.AM_TALLY = { total:57, breakthrough:5, positive:30, wall:13, partial:9, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -516,7 +516,16 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 3: one declared mechanism — a 3×3 color-2 patch cycling around the 5×5 world every 500 steps, 8 segments of mirro's real life (age 6700 → 10700), with a drift-aware predeclared ledger watching adaptation.",
     result:"Occupancy quiet, favorite flipped to 2 as expected — but map recovery FAILED 0/8 segments (end accuracies 0.52–0.84). The value-drift 'failure' self-deflated immediately: the predeclared +0.02 band violated design rule #1, since mirro's c2 share already sat on the drift world's equilibrium; observed drift was exactly equilibrium.",
     implication:"The surviving deviation is a real candidate: perceptual rigidity grows with age — entrenched Dirichlet columns (hundreds of counts) cannot be flipped by ~20 fresh observations per segment, the Exp 48 value-inertia law surfacing in the sensory map. No competency or novelty language until the rung-5 cascade rules: three fork reproductions plus a newborn control that separates age from schedule speed.",
-    trace:{ script:"experiments/exp56_drift_epoch.py", output:"experiments/outputs/exp56.txt" } }
+    trace:{ script:"experiments/exp56_drift_epoch.py", output:"experiments/outputs/exp56.txt" } },
+
+  { n:57, kind:"partial", chapter:"frontier",
+    title:"The candidate survives — by killing its own story.",
+    one:"Reproduction 3/3; counts confirm; but the newborn control froze too — rigidity isn't age, it's accumulated mass versus world tempo. First provisional NOVELTY-CANDIDATE.",
+    metric:{ from:268.3, to:20, unit:"column mass vs per-segment evidence" },
+    setup:"Rung-5 cascade on Exp 56's deviation: three pre-epoch forks rerun the drift schedule (reproduction), counts-to-flip analytics, and a newborn control predeclared to show early recovery and late rigidity if aging is the cause.",
+    result:"3/3 forks fail 8/8 segments. Mean column mass 268 vs ~20 observations per segment (13.4×). The newborn — only ~40 counts per cell — also froze 6/8, and its two 'recoveries' were the segments whose world matched what it settled in: coincidence with its prior, not adaptation. The age framing is dead.",
+    implication:"Sharpened (post-hoc, named as such): with non-decaying soft counts, a map is write-once relative to world tempo — tracking drift of period P needs mass < P × visit rate, and even 1000 steps of life crosses it. Survives round 1 per predeclared rules; round 2's kill test is a low-mass newborn (250-step settling) plus a mass-swept cohort across the predicted ~20-count threshold.",
+    trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
