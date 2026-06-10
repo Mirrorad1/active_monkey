@@ -15,6 +15,9 @@ The loop marks items it has consumed by indenting a response under them:
   structurally unenforceable while autosync stages `experiments/` + `EXPERIMENTS.md`. Proposed
   fix: autosync excludes the loop's working set, or PROTOCOL documents the split as the norm.
   GitHub-issue creation was permission-denied from the loop, so logging here instead.
+  → resolved 2026-06-10: PROTOCOL.md step 6 now documents the atomicity norm (write +
+    commit within one turn; proven across Exp 64-81, zero splits). Autosync unchanged —
+    it remains the safety net for non-experiment work.
 
 - [from human, 2026-06-10] The persistent creature is a **clade**, not a single sacred spine.
   mirro is the **root ancestor / trunk** that keeps accumulating; a "different history" is a

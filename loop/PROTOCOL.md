@@ -71,7 +71,12 @@ several half-experiments. Steps:
    synthesis is placed BOTH in the EXPERIMENTS.md entry AND in the new curated entry's
    `story` field in `experiments-data.js`.
 
-6. **Commit.** One commit per experiment containing the script
+6. **Commit.** One commit per experiment containing the script.
+   **Atomicity norm (resolves the Exp 41/42 autosync split):** write script + raw output +
+   EXPERIMENTS.md entry + experiments-data.js AND commit them within ONE turn — the Stop-
+   hook autosync fires between turns and will sweep a half-finished working set into an
+   `auto-sync:` commit. Exp 64-81 all committed atomically this way; treat it as binding.
+   One commit per experiment containing the script
    (`experiments/expNN_<slug>.py`), its raw output (`experiments/outputs/expNN.txt`),
    AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
    the same atomic commit. A log entry without committed script and output is an
