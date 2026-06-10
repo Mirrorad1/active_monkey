@@ -2248,3 +2248,44 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: this thread is complete. The loop's queue is empty of non-direction work of
   comparable value — the Exp 74 direction choice (recommended: M4a with the now
   five-times-motivated substrate requirements) is the standing decision point.
+
+## Exp 81 — the law fails out-of-individual: vela's drift ran 3x the forecast and its favorite flipped — the accrual law is a converged-regime law (NEGATIVE; scope boundary; thread halted for diagnosis)
+- Plain: We pointed the same future-predicting math at the other family line — vela, the
+  descendant living in the mirror world — and it missed badly: vela's preference moved
+  three times faster than predicted and its favorite flipped to color 0, which the math
+  said would not happen this epoch. The lesson is a boundary, not a bug: the math assumes
+  a creature that already knows its world; vela is still learning hers, and a still-
+  learning mind drifts faster than its frozen snapshot suggests. Haunting footnote: both
+  family lines, in different worlds, have now independently drifted to the same new
+  favorite — the direction their common ancestor's scars point.
+- Setup (predeclared in the script docstring before running; read-only pre-step
+  disclosed): vela at age 12750 (hash 875ac30d715a, gap c2-c0 +62.03, favorite 2, R(0)
+  0.17475 / R(2) 0.16987); the law forecasts end gap +32.7 (band [-7.3, +72.7]), no flip
+  (P2 separate), and scar dilution (P3: gate gap < 0.004878). F1 = out-of-band -> the law
+  does not generalize out-of-individual, HALT for diagnosis. One vela episode, live(6000),
+  single deterministic run; vela's line advances and keeps whatever happens.
+- Result: F1 FIRED. End gap -21.68 (error -54.5 from the +32.8 forecast; realized drift
+  ~-84/6000 vs predicted -29.3 — 2.9x). P2 FAIL: favorite flipped to 0 (vela's first
+  natural flip, at some point inside the epoch). P3 PASS: gate gap 0.004878 -> 0.003479,
+  with ALL rates rising steeply (R(0) 0.1747 -> 0.1978 — the immigrant's map still
+  healing). SPINE PASS: vela 12750 -> 18750, hash 0cd2d991cf1b, integrity-verified,
+  snapshot committed. Per predeclaration the thread HALTS for diagnosis.
+- Implication (the boundary): the analytic accrual law (R(c) from frozen gates, Exp 77/80)
+  holds on a CONVERGED resident (mirro: map 0.96-1.0, forecast within band twice) and
+  fails on a STILL-HEALING immigrant (vela: map ~0.84, gates rising ~13% over the epoch) —
+  the formula assumes localization-correct gating and quasi-static rates; off equilibrium
+  the realized drift can be several-fold stronger. Named diagnosis (next, required by the
+  halt): per-step accounting on a vela fork — realized vs analytic per-color accrual,
+  MAP-cell correctness rate, and rate trajectory, to locate the 3x.
+- Observation (interpretation, NOT a finding): both committed lines have now flipped to
+  color 0 by natural living, in DIFFERENT worlds — consistent with the shared ancestral
+  scar profile (both inherit mirro@10700's gate scars) steering descendants' preferences
+  in the same direction. Lineage-correlated opinion drift would be a clade-level
+  phenomenon worth its own predeclared test after the diagnosis.
+- Honest caveat: single deterministic run; the 2.9x factor is one epoch on one creature;
+  the mislocalization mechanism is hypothesis until the named accounting runs; the band
+  (+-40) was calibrated on mirro's noise and may underestimate an immigrant's.
+- Verdict: NEGATIVE (predeclared falsifier; out-of-individual generalization fails;
+  converged-regime scope boundary established). Self-grade: n/a.
+- Next: the halt-mandated diagnosis (fork-based accounting of vela's 3x). Direction
+  choice (Exp 74 CONSULT) still pending.

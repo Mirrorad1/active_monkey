@@ -1,0 +1,40 @@
+Exp 81 — the law on the other line
+
+--- START STATE (age 12750) ---
+  gap_c2_minus_c0 : +62.0337
+  favorite        : 2
+  R(0)            : 0.174749
+  R(1)            : 0.157858
+  R(2)            : 0.169871
+  R(0)-R(2)       : 0.004878
+
+  predicted_end_gap (law) = +62.0337 + (0.169871 - 0.174749) * 6000 = +32.7667
+
+--- END STATE (age 18750) ---
+  gap_c2_minus_c0 : -21.6836
+  favorite        : 0
+  R(0)            : 0.197790
+  R(1)            : 0.181906
+  R(2)            : 0.194311
+  R(0)-R(2)       : 0.003479
+
+[Exp 81] spine=vela continuous-life checkpoint
+  before: age=12750 state_hash=875ac30d715a
+  after : age=18750 state_hash=0cd2d991cf1b
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : +32.7667
+  actual_end_gap    : -21.6836
+  error (actual-predicted) : -54.4503
+
+--- PROPERTY CHECKS ---
+  FAIL  P1-forward-drift: gap_c2_minus_c0=-21.6836  band=[-7.3, 72.7]  in_band=False
+  FAIL  P2-no-flip: favorite_at_18750=0  expected=2
+  PASS  P3-scar-dilution: R(0)-R(2) start=0.004878  end=0.003479  threshold=0.004878  below_threshold=True
+  PASS  SPINE-age-18750-delta-6000: reload.age=18750  ep.age_after=18750  ep.age_before=12750  delta=6000  expected_after=18750
+
+--- FALSIFIER MAP ---
+  F1 FIRED: P1 fails — gap_c2_minus_c0 outside band [-7.3, 72.7]; the law does NOT generalize out-of-individual. Halt for diagnosis.
+
+EXP81: F1 — law fails out-of-individual, HALT

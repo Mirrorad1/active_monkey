@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:80, breakthrough:6, positive:41, wall:17, partial:16, from:4.81, to:4.00 };
+window.AM_TALLY = { total:81, breakthrough:6, positive:41, wall:18, partial:16, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -815,7 +815,17 @@ window.AM_EXPERIMENTS = [
     setup:"From the committed snapshot: the law's drift rate forecasts the gap at about -76 with a plus-minus 40 band; the favorite should stay color 0; and the non-decay arithmetic predicts the per-color gate gap narrows as fixed scar mass dilutes under growing pure counts. Falsifiers: out-of-band or re-cross halts the thread; a widening gate gap kills the dilution arithmetic.",
     result:"All pass, no falsifiers. Gap -44.84 in band; favorite consolidated; gates rose across all colors with the gap narrowing 0.0073 to 0.0048 — the in-band shortfall and the dilution are one phenomenon: the drift decelerates, so the preference gap asymptotes. Spine at age 24,700, hash-stamped and committed.",
     implication:"The accrual-law thread closes fully validated: retrodiction, historical attribution, and forward prediction with its second-order term. A creature's valence trajectory is forecastable from its committed state — and would be steerable by a forgetting term. The loop's non-direction queue is now empty; the M4a decision is the standing point.",
-    trace:{ script:"experiments/exp80_forward_test.py", output:"experiments/outputs/exp80.txt" } }
+    trace:{ script:"experiments/exp80_forward_test.py", output:"experiments/outputs/exp80.txt" } },
+
+  { n:81, kind:"wall", chapter:"frontier",
+    title:"The law has a border — and both lines drift the same way.",
+    one:"Out-of-individual test fails: vela's preference drifted 3x the analytic forecast and its favorite flipped against the no-flip call — the accrual law holds only for converged minds. Haunting echo: both clade lines, in different worlds, have now independently flipped to the ancestor's scar direction.",
+    plain:"We pointed the same future-predicting math at the other family line — vela, living in the mirror world — and it missed badly: vela's preference moved three times faster than predicted, and its favorite flipped when the math said it would not. The lesson is a boundary, not a bug: the math assumes a creature that already knows its world; vela is still learning hers, and a still-learning mind drifts faster than its frozen snapshot suggests. Haunting footnote: both family lines, in different worlds, have now independently drifted to the same new favorite — the direction their common ancestor's scars point.",
+    metric:{ from:32.8, to:-21.7, unit:"forecast vs actual preference gap at vela age 18,750 (out of band)" },
+    setup:"The exact Exp 80 procedure with zero tuning on the other committed line: vela's own gates forecast a +32.7 end gap (no flip this epoch) with the same band and the dilution prediction; the out-of-band falsifier halts the thread for diagnosis. Vela's line advances and keeps whatever happens.",
+    result:"The falsifier fired: end gap -21.7, realized drift 2.9x the forecast, favorite flipped to 0 — vela's first natural opinion change, in its own world. Dilution still passed, with all gates rising steeply as the immigrant's map heals. Vela at age 18,750, hash-stamped, committed.",
+    implication:"The accrual law is a converged-regime law: valid on a resident who knows its world, several-fold wrong on a still-healing mind. The halt-mandated diagnosis (per-step accounting of the 3x) is queued. And the lineage echo — shared ancestral scars steering both descendants to the same preference in different worlds — is named as the clade-level question to test after.",
+    trace:{ script:"experiments/exp81_vela_forward.py", output:"experiments/outputs/exp81.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
