@@ -1,0 +1,53 @@
+Exp 82 — exact accounting of vela's 3x drift anomaly
+
+Recovering pre-epoch vela snapshot from e7220c1~1...
+  (derivable via: git show e7220c1~1:creature/state/vela/{manifest.json,arrays.npz})
+  scratch dir: experiments/outputs/exp82_pre_snapshot  [untracked; not committed — derivable from git history]
+
+Loaded vela: age=12750  hash=875ac30d715a
+
+--- FROZEN GATES (age 12750) ---
+  R_frozen(0)       = 0.174749
+  R_frozen(1)       = 0.157858
+  R_frozen(2)       = 0.169871
+  R(2)-R(0)         = -0.004878
+  D_frozen_analytic = -29.2669  [Exp 81 forecast]
+
+--- P0 VALIDITY GATE ---
+  replayed end-state hash : 0cd2d991cf1b
+  expected end-state hash : 0cd2d991cf1b
+  D_realized (replayed)   : -83.7172
+  D_realized (expected)   : -83.7173
+  |diff|                  : 0.000050
+
+P0 PASS — replay exact: hash matches and D_realized within 0.01
+
+--- DRIFT DECOMPOSITION ---
+  D_frozen_analytic  = -29.2669  [Exp 81 forecast: frozen gates, uniform visits]
+  Delta_visit        = -55.1787  [frozen gates, actual visits vs uniform]
+  Delta_rate         = +0.7283  [gate evolution during epoch (healing)]
+  Delta_misloc       = +0.0000  [MAP cell != true cell misattribution]
+  ─────────────────────────────────────────────
+  Sum of four terms  = -83.7172
+  D_realized         = -83.7172  [what live() actually accumulated]
+  residual           = +0.000000  [should be ~0 by construction]
+
+--- PROPERTY CHECKS ---
+  PASS  P0-replay-exact: hash=0cd2d991cf1b D_diff=0.000050
+  PASS  P1-identity-closes: residual=+0.000000  threshold=0.01*|D_realized|=0.837172  closes=YES
+  PASS  P2-diagnosis: dominant=Delta_visit  value=-55.1787  prediction(Delta_rate)=WRONG
+
+--- SUPPORTING DIAGNOSTICS ---
+  MAP-cell correctness rate over epoch: 1.0000 (6000/6000 steps)
+
+  (R0-R2) on current A_hat trajectory during epoch:
+    step     0: R0-R2 = 0.004878
+    step  2000: R0-R2 = 0.007069
+    step  4000: R0-R2 = 0.004996
+    step  6000: R0-R2 = 0.003479
+
+--- FALSIFIER MAP ---
+  F0 did not fire (P0 PASS — replay exact).
+  P1 PASS — identity closes within 1% of |D_realized|.
+
+EXP82: DIAGNOSIS — dominant term = Delta_visit (-55.2 of -83.7); prediction wrong

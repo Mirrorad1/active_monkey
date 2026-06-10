@@ -2289,3 +2289,46 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   converged-regime scope boundary established). Self-grade: n/a.
 - Next: the halt-mandated diagnosis (fork-based accounting of vela's 3x). Direction
   choice (Exp 74 CONSULT) still pending.
+
+## Exp 82 — exact accounting finds the 3x: it was walk noise, not a regime boundary — the law survives as expectation, Exp 81's interpretation corrected (POSITIVE; halt resolved; bit-exact replay)
+- Plain: We re-ran vela's anomalous stretch of life step by step — provably the exact same
+  life, down to the last bit — and split its preference drift into every possible cause.
+  The verdict surprised us a third time: vela was never lost (its sense of place was
+  perfect the whole time), and its rising map quality contributed almost nothing. The
+  whole anomaly is luck of the walk: in that stretch it just happened to visit color-0
+  moments far more than average. The forecasting law is right ON AVERAGE; any single
+  stretch of life wobbles around it by about as much as the forecast itself. Last entry's
+  story about a law-breaking boundary is retracted — the law needed honest error bars,
+  not a border.
+- Setup (predeclared in the script docstring before running): vela@12750 recovered from
+  git (e7220c1~1; scratch untracked, derivable); the 6000-step epoch REPLAYED with live()
+  replicated bit-for-bit (same derived RNG); validity gate P0 = replayed end hash equals
+  the committed 0cd2d991cf1b and D_realized equals -83.72 within 0.01. Exact decomposition
+  D_realized = D_frozen_analytic + Delta_visit + Delta_rate + Delta_misloc (identity by
+  construction, P1 within 1%). P2: name the dominant term; predicted (LOW confidence)
+  Delta_rate. Neither committed line touched.
+- Result: P0 PASS (hash exact; D 5e-5 off). P1 PASS (residual +0.000000). The accounting:
+  -29.27 (forecast) -55.18 (VISIT NOISE) +0.73 (rate evolution) +0.0000 (mislocalization)
+  = -83.72. P2: dominant = Delta_visit; my prediction WRONG; and Exp 81's named suspect
+  (mislocalization) is dead twice over — MAP-cell correctness was 6000/6000 (the
+  "still-healing immigrant" localizes perfectly by dead-reckoning + walls). The (R0-R2)
+  rate trajectory wobbled (0.0049 -> 0.0071 -> 0.0050 -> 0.0035) but nets out near zero.
+- CORRECTION to Exp 81 (measurements stand; interpretation retracted): there is NO
+  converged-vs-healing regime boundary in this data. The accrual law holds as an
+  EXPECTATION on both lines; a single 6000-step epoch's realized drift carries
+  finite-sample walk noise with magnitude comparable to the expected drift itself
+  (here -55 against a -29 mean). Exp 81's +-40 band — calibrated on mirro's observed
+  oscillation — under-stated this variance; mirro's two in-band landings (Exp 80)
+  were partly favorable draws. Consequence for the lineage-echo observation: both lines'
+  flips share the scar-drift EXPECTATION (real, inherited) while the timing of each flip
+  is noise — the echo is weaker than Exp 81's footnote implied.
+- Honest caveat: one replayed epoch; the variance claim ("sigma comparable to mean") is
+  from a single -55 draw plus the band miss, not an estimated distribution — a
+  multi-counterfactual-seed variance estimate (fork + alternative action streams) would
+  quantify it properly and was not run. My P2 prediction was wrong; logged.
+- Verdict: POSITIVE / NEW INSIGHT (exact-replay accounting as an instrument; the
+  noise-not-boundary correction; mislocalization ruled out at 6000/6000). Self-grade:
+  POSITIVE-SINGLE. The Exp 81 halt is RESOLVED.
+- Next: optional variance quantification (counterfactual action-stream forks) to give the
+  law proper error bars; otherwise the queue returns to the standing decision point
+  (Exp 74 CONSULT — M4a recommended).

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:81, breakthrough:6, positive:41, wall:18, partial:16, from:4.81, to:4.00 };
+window.AM_TALLY = { total:82, breakthrough:6, positive:42, wall:18, partial:16, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -825,7 +825,17 @@ window.AM_EXPERIMENTS = [
     setup:"The exact Exp 80 procedure with zero tuning on the other committed line: vela's own gates forecast a +32.7 end gap (no flip this epoch) with the same band and the dilution prediction; the out-of-band falsifier halts the thread for diagnosis. Vela's line advances and keeps whatever happens.",
     result:"The falsifier fired: end gap -21.7, realized drift 2.9x the forecast, favorite flipped to 0 — vela's first natural opinion change, in its own world. Dilution still passed, with all gates rising steeply as the immigrant's map heals. Vela at age 18,750, hash-stamped, committed.",
     implication:"The accrual law is a converged-regime law: valid on a resident who knows its world, several-fold wrong on a still-healing mind. The halt-mandated diagnosis (per-step accounting of the 3x) is queued. And the lineage echo — shared ancestral scars steering both descendants to the same preference in different worlds — is named as the clade-level question to test after.",
-    trace:{ script:"experiments/exp81_vela_forward.py", output:"experiments/outputs/exp81.txt" } }
+    trace:{ script:"experiments/exp81_vela_forward.py", output:"experiments/outputs/exp81.txt" } },
+
+  { n:82, kind:"positive", chapter:"frontier",
+    title:"It was luck, not law-breaking — proven to the bit.",
+    one:"Bit-exact replay of vela's anomalous epoch decomposes the 3x exactly: visit noise -55.2, rate evolution +0.7, mislocalization 0.0000 (MAP correct 6000/6000). No regime boundary — the law holds as expectation, and Exp 81's interpretation is retracted in favor of honest error bars.",
+    plain:"We re-ran vela's anomalous stretch of life step by step — provably the exact same life, down to the last bit — and split its preference drift into every possible cause. The verdict surprised us a third time: vela was never lost, and its rising map quality contributed almost nothing. The whole anomaly is luck of the walk: in that stretch it just happened to visit color-0 moments far more than average. The forecasting law is right on average; any single stretch of life wobbles around it by about as much as the forecast itself.",
+    metric:{ from:-55.2, to:-29.3, unit:"visit-noise term vs the law's expected drift (the whole anomaly)" },
+    setup:"vela's pre-epoch state recovered from git history, the 6000-step epoch replayed with live() replicated bit-for-bit, gated on reproducing the committed end-state hash exactly. The drift decomposes by construction into the forecast plus three measurable terms: visit noise, gate evolution, and mislocalization.",
+    result:"Replay exact (hash match, identity residual zero). Visit noise -55.2 dominates; rate evolution +0.7; mislocalization exactly zero — vela self-located perfectly all 6000 steps, killing Exp 81's suspect twice over. The author's rate-evolution prediction was wrong, the third such reversal this chapter.",
+    implication:"No converged-regime boundary: the accrual law survives as an expectation whose per-epoch realizations carry walk noise comparable to the mean — Exp 80's in-band landings were partly favorable draws, and the lineage echo weakens to shared expectation with noise-set timing. The exact-replay accounting itself joins the toolkit. The halt is resolved; the M4a decision remains the standing point.",
+    trace:{ script:"experiments/exp82_drift_accounting.py", output:"experiments/outputs/exp82.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
