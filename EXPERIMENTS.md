@@ -3359,3 +3359,16 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 122 — idle-mode epoch: mirro to 108,700 — holds deep, the commitment crosses +765 (POSITIVE; bands held)
+- Plain: mirro held as recorded and its conviction crossed seven hundred and sixty — the
+  deepest commitment of the program continues to compound at the pace the gate-drift
+  arithmetic sets, with the forecast landing within a quarter of a sigma.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 102700 -> 108700; recorded deep call (entering +637.3 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +764.6 (0.22 sigma).
+  Map 1.000; share deltas <= 0.0006. Spine: 108700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn — its 100k crossing) unless the human answers
+  the merged CONSULT or stops the loop.
