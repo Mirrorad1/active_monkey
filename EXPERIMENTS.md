@@ -1873,3 +1873,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   cascade is closed (exclusion: intrinsic, stochastic, unilateral, stigmergic). Or open
   the named substrate gap (distal other-agent sensing / graded uncertainty) as a new
   direction card.
+
+## Exp 73 — rung 5: dialect convergence is mass-gated — light vocabularies merge, heavy ones become stable dialects that partially understand each other (POSITIVE; the inertia law's third domain)
+- Plain: Two creatures were taught the same three words with clashing meanings, then lived
+  together, naming what they saw whenever they met on the same square. Lightly-taught
+  vocabularies merged into one shared usage within a single cohabitation. Heavily-taught
+  ones never gave up a single word — but each quietly accumulated the other's usage
+  underneath its own, like neighbors who keep their dialects yet come to understand each
+  other. The same law that froze old maps and old opinions decides whether language merges.
+- Setup (predeclared in the script docstring before running): P taught the identity
+  word->color map, Q the shifted map (argmax dialect distance 1.0 by construction; both
+  dialects TAUGHT, declared — this rung tests map dynamics under coupling, not self-formed
+  content). Channel (provided): at every same-cell event (exact shared referent), each
+  speaks its current best word for the observed color and the other Dirichlet-learns
+  heard-word->color, gated by its own predictability weight (M4 grounding). Severed control
+  is ANALYTIC: live() never touches vocab, so uncoupled vocab is frozen at the taught state.
+  Arms LIGHT (n=8/word) vs HEAVY (n=40/word); dose arithmetic stated: ~24 gated counts per
+  pairing — above 8, below 40. 2000 steps x 5 seeds, matched trajectories across arms.
+  CEILING declared: no grammar/compositionality claims. G1 >=40 same-cell events.
+  Predeclared: P1 cosine rises vs frozen in >=4/5 per arm; P2 LIGHT argmax distance < 1.0
+  AND HEAVY == 1.0, each >=4/5. F1 channel transmits nothing; F2 HEAVY converges (inertia
+  law fails to extend to vocab).
+- Result: PASS 4/4 properties, 5/5 seeds each (G1: 70-97 events). LIGHT: cosine 0.0248 ->
+  0.990-0.9997; distance 1.0 -> 0.0 in 4/5 (0.333 in seed 1) — merger, with seed 0's
+  merged map landing on P's identity dialect (which dialect wins was NOT predeclared;
+  reported as observation, varies with event statistics). HEAVY: distance 1.0 in 5/5 —
+  zero argmax flips — while cosine rose 0.0050 -> 0.516-0.697: the partner's usage
+  accumulates as secondary mass under the intact dialect (partial mutual comprehension
+  without conversion). The dose landed where the arithmetic said: between 8 and 40.
+- Implication: rung 5's verdict — under a grounded symmetric channel, TAUGHT-label maps
+  converge or persist according to the same dose-vs-accumulated-mass arithmetic as values
+  (Exp 65-67) and percepts (Exp 56-60): the inertia law's third domain. The sociolinguistic
+  reading at toy scale, honestly bounded: young/light communities merge usage; entrenched
+  communities form stable dialects with asymmetric comprehension mass. The grammar ceiling
+  stands untouched.
+- Honest caveat: both dialects and all teaching are provided; the channel is provided
+  wiring; convergence target (whose dialect wins) unpredeclared and unexplained; one dose
+  (cohabitation length), one vocabulary size, 3 words / 3 colors; the kidnapped-start
+  transient (Exp 72) affects early gate weights negligibly but was not controlled out.
+- Verdict: POSITIVE / NEW INSIGHT (the law generalizes to a third representational
+  domain; predicted by arithmetic, confirmed at stake). Self-grade: POSITIVE-SINGLE.
+- Next: the social-emergence SYNTHESIS — the direction's stop condition is met: rung 1
+  (clade plumbing ✓), rung 2 (co-presence safe/inert), rung 3 (adult NEGATIVE / young
+  POSITIVE / ambivalence-gated), rung 4 (departure = stigmergic unilateral-retreat
+  lock-in, intrinsic, cascaded), rung 5 (mass-gated convergence / stable dialects). Write
+  the card's closing artifact, then open the named substrate gaps (distal other-agent
+  sensing; graded uncertainty maintenance) as a new direction or stop.

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:72, breakthrough:6, positive:37, wall:16, partial:13, from:4.81, to:4.00 };
+window.AM_TALLY = { total:73, breakthrough:6, positive:38, wall:16, partial:13, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -735,7 +735,17 @@ window.AM_EXPERIMENTS = [
     setup:"Four predeclared parts: the support theorem (belief must equal its dead-reckoned path at every step), wall re-sync within 500 steps, phantom-camping at least 25% under seeking, and the belief-equalized contest — equidistant starts plus an 800-step settling phase gated on both creatures being truly re-localized.",
     result:"Support theorem: 0 violations in 10,000 step-checks. Wall healing: 16-29 steps, offsets never regrow. Camping: FAILED at 6-22% — the kidnap penalty is transient; losers lose the opening race, then the retreat habit locks it in. Equalized contest: exclusion 7/8, but winner-equals-closer only 50% — the script's verdict line dropped that predeclared conjunct and was corrected at validation against the committed raw output.",
     implication:"The certainty pathology's third appearance: this substrate cannot unlearn certainty — frozen maps, gated persuasion, and now observation-proof self-location healed only by the motor anchor. Graded uncertainty maintenance joins the M4 requirements for a third independent reason. And the exclusion lock-in is genuinely intrinsic: it self-organizes from symmetric starts, symmetry broken by noise — keeping Exp 71's deflated name, with both of the author's who-loses mechanisms falsified.",
-    trace:{ script:"experiments/exp72_kidnapped_twin.py", output:"experiments/outputs/exp72.txt" } }
+    trace:{ script:"experiments/exp72_kidnapped_twin.py", output:"experiments/outputs/exp72.txt" } },
+
+  { n:73, kind:"positive", chapter:"frontier",
+    title:"Light dialects merge; heavy dialects learn to understand each other.",
+    one:"Rung 5: under a grounded word channel, lightly-taught vocabularies merge to one usage (distance 1.0 to 0.0) while heavily-taught ones keep every word yet accumulate the partner's usage underneath — the inertia law's third domain, landing exactly where the dose arithmetic predicted.",
+    plain:"Two creatures were taught the same three words with clashing meanings, then lived together, naming what they saw whenever they met on the same square. Lightly-taught vocabularies merged into one shared usage within a single cohabitation. Heavily-taught ones never gave up a single word — but each quietly accumulated the other's usage underneath its own, like neighbors who keep their dialects yet come to understand each other. The same law that froze old maps and old opinions decides whether language merges.",
+    metric:{ from:1.0, to:0.0, unit:"light-arm dialect distance (heavy arm: stays 1.0, 5/5)" },
+    setup:"P taught the identity word-color map, Q the shifted one; at every same-cell meeting each speaks its best word for the color both are seeing and the other learns it, gated by its own predictability. The severed control is analytic — vocab is frozen without the channel. Light (n=8) vs heavy (n=40) teaching, with the dose (~24 gated counts) predeclared to land between them.",
+    result:"All four predeclared properties pass 5/5. Light: cosine 0.02 to 0.99+, full argmax merger in 4/5 seeds. Heavy: zero argmax flips in 5/5 while cosine rises to 0.52-0.70 — stable dialects with partial mutual comprehension encoded as secondary mass. Which dialect wins the merger was not predeclared and varies; reported as observation.",
+    implication:"Taught-label maps obey the same dose-versus-accumulated-mass arithmetic as percepts and values — the inertia law's third representational domain. At toy scale: young communities merge usage, entrenched ones form stable dialects. The grammar ceiling stands untouched, and the social-emergence ladder now has verdicts on every rung — the synthesis is next.",
+    trace:{ script:"experiments/exp73_dialect_coupling.py", output:"experiments/outputs/exp73.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

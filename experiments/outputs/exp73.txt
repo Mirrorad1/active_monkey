@@ -1,0 +1,40 @@
+mirro: name='mirro' age=10700 hash=21ccb619f063 true_pos=0 world=5x5 n_colors=3
+template vocab (should be empty): {}
+
+arm    seed  events  cos_before  cos_after  dist_before  dist_after
+----------------------------------------------------------------------
+LIGHT  0       73    0.0248    0.9997       1.0000       0.0000
+LIGHT  1       75    0.0248    0.9900       1.0000       0.3333
+LIGHT  2       70    0.0248    0.9960       1.0000       0.0000
+LIGHT  3       70    0.0248    0.9990       1.0000       0.0000
+LIGHT  4       97    0.0248    0.9996       1.0000       0.0000
+HEAVY  0       73    0.0050    0.5461       1.0000       1.0000
+HEAVY  1       75    0.0050    0.5598       1.0000       1.0000
+HEAVY  2       70    0.0050    0.5157       1.0000       1.0000
+HEAVY  3       70    0.0050    0.5387       1.0000       1.0000
+HEAVY  4       97    0.0050    0.6973       1.0000       1.0000
+
+--- DIAGNOSTIC: per-word argmax (seed 0) ---
+
+  LIGHT seed=0:
+  word    P argmax  Q argmax   match
+  w0             0         0     YES
+  w1             1         1     YES
+  w2             2         2     YES
+  spoken pairs: {('w2', 'w1'): 15, ('w1', 'w0'): 18, ('w0', 'w2'): 16, ('w1', 'w1'): 5, ('w2', 'w2'): 17, ('w0', 'w0'): 2}
+
+  HEAVY seed=0:
+  word    P argmax  Q argmax   match
+  w0             0         1      no
+  w1             1         2      no
+  w2             2         0      no
+  spoken pairs: {('w2', 'w1'): 32, ('w1', 'w0'): 23, ('w0', 'w2'): 18}
+
+--- PROPERTY CHECKS ---
+PASS  P1-LIGHT: passes=5/5  [s0:before=0.0248,after=0.9997,ok; s1:before=0.0248,after=0.9900,ok; s2:before=0.0248,after=0.9960,ok; s3:before=0.0248,after=0.9990,ok; s4:before=0.0248,after=0.9996,ok]
+PASS  P1-HEAVY: passes=5/5  [s0:before=0.0050,after=0.5461,ok; s1:before=0.0050,after=0.5598,ok; s2:before=0.0050,after=0.5157,ok; s3:before=0.0050,after=0.5387,ok; s4:before=0.0050,after=0.6973,ok]
+PASS  P2-LIGHT: passes=5/5  [s0:dist_after=0.0000,ok; s1:dist_after=0.3333,ok; s2:dist_after=0.0000,ok; s3:dist_after=0.0000,ok; s4:dist_after=0.0000,ok]
+PASS  P2-HEAVY: passes=5/5  [s0:dist_after=1.0000,ok; s1:dist_after=1.0000,ok; s2:dist_after=1.0000,ok; s3:dist_after=1.0000,ok; s4:dist_after=1.0000,ok]
+
+RUNG 5: CONVERGENCE IS MASS-GATED — light dialects merge, heavy dialects stand (stable dialects under coupling at heavy mass)
+EXP73: PASS
