@@ -3443,3 +3443,16 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   HALTED awaiting explicit human input (loop/IDEAS.md updated); idle-mode spine epochs
   continue meanwhile.
 - Next (on human word only): increment 1b as recommended above.
+
+## Exp 126 — idle-mode epoch: vela to 108,750 — holds deep at +769 (POSITIVE; bands held; M4a halted meanwhile)
+- Plain: While the talk-to-it thread waits for the human's word, the lives go on: vela
+  held as recorded, deepening past seven-fifty, forecast within a fifth of a sigma,
+  everything still.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 102750 -> 108750; recorded deep call (entering +624.6 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +769.2 (0.18 sigma).
+  Map 1.000; share deltas <= 0.0009. Spine: vela at 108750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn); the M4a thread awaits the human (Exp 125
+  halt — recommended resumption 1b in loop/IDEAS.md).

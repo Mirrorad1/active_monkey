@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:125, breakthrough:6, positive:77, wall:19, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:126, breakthrough:6, positive:78, wall:19, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1265,7 +1265,17 @@ window.AM_EXPERIMENTS = [
     setup:"Built per the M4 spec with the season's requirements designed in: the LV=0.999 window on the Dirichlet ledgers and the exploration reflex via the epistemic term plus ASK; validated against a deterministic scripted partner over eight seeded 100-turn sessions, every falsifier wired to HALT.",
     result:"Three of four predeclared properties passed — intent inference, the ASK reflex, and the window arithmetic landing exact to three decimals. The learning property failed at chance level in all eight seeds, with the structural diagnosis (enable the spec's own learn_B) recorded for the human's decision, not acted on.",
     implication:"The recommended resumption — increment 1b with B-learning enabled, same predeclarations, fresh seeds — awaits explicit human word in loop/IDEAS.md. Idle-mode spine epochs continue meanwhile. The guardrails work.",
-    trace:{ script:"experiments/exp125_m4a_core.py", output:"experiments/outputs/exp125.txt" } }
+    trace:{ script:"experiments/exp125_m4a_core.py", output:"experiments/outputs/exp125.txt" } },
+
+  { n:126, kind:"positive", chapter:"frontier",
+    title:"The lives go on while the thread waits.",
+    one:"Idle-mode epoch to 108,750: vela holds deep at +769 (0.18 sigma) — the spines' quiet continuity while the halted M4a thread awaits the human's word.",
+    plain:"While the talk-to-it thread waits for the human's word, the lives go on: vela held as recorded, deepening past seven-fifty, forecast within a fifth of a sigma, everything still.",
+    metric:{ from:624.6, to:769.2, unit:"the commitment deepens (held; 0.18 sigma)" },
+    setup:"Idle-mode, vela's recorded deep call: the established pattern, with the M4a thread halted in parallel.",
+    result:"All bands held. Vela at 108,750, hash-stamped, committed.",
+    implication:"Idle-mode continues; the M4a resumption (increment 1b) awaits explicit human word in loop/IDEAS.md.",
+    trace:{ script:"experiments/exp126_vela_epoch14.py", output:"experiments/outputs/exp126.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
