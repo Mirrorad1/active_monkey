@@ -122,6 +122,21 @@ The loop marks items it has consumed by indenting a response under them:
     the guardrails now codified in loop/VALIDATION.md (recommended option only, verdict stays
     falsifier-bound, a failed test halts for me). Exp 60's clean kill confirms the pattern.
 
+- [from human, 2026-06-10] STEER: open the **continuous-substrate** direction — "Problem 2"
+  of the frontier map: replace the enumerated state `s ∈ {1..N}` with a continuous latent
+  `s ∈ ℝᵈ`, inference by closed-form conjugate updates (precision accumulation), online and
+  gradient-free, evaluated against a minimal amortized (ELBO/encoder) baseline. The human
+  supplied the full research program — math, five tests (convergence, interpolation, the
+  Exp 31 rematch, dimensionality scaling, non-stationary tracking), metrics, and honest
+  gaps — captured verbatim at `docs/research/problem2-continuous-substrate.md`.
+  → captured as direction card `loop/directions/continuous-substrate.md`; compose.py's
+    default `--direction` now points at it; RESUME.md §6 example updated to match.
+  → scope note: this steer does NOT answer the pending M4a increment-1c question (Exp 128) —
+    that consult stays open awaiting its own explicit word, and the M4a build stays halted.
+    mirro/vela spines are untouched by this direction; idle-mode epochs may interleave as
+    before. The loop remains PAUSED (Exp 131) until re-invoked; on resumption this card is
+    the sanctioned queue.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
