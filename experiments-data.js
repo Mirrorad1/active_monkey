@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:103, breakthrough:6, positive:59, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:104, breakthrough:6, positive:60, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1045,7 +1045,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn, with the commitment test live: at -316 a flip requires a ~2.6-sigma adverse draw, so a hold was called near-certain — stated, not banded — with the standard knowledge, core, and forecast bands.",
     result:"Held as called; the gap rebounded sharply in band; all bands held; the tally's denominator now mixes depths, flagged for the eventual binned analysis. Vela at 48,750, hash-stamped, committed.",
     implication:"One more clean datum for the depth law from both sides: holds at depth, relaxation toward the boundary. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp103_vela_epoch5.py", output:"experiments/outputs/exp103.txt" } }
+    trace:{ script:"experiments/exp103_vela_epoch5.py", output:"experiments/outputs/exp103.txt" } },
+
+  { n:104, kind:"positive", chapter:"frontier",
+    title:"Both lines breathe in step.",
+    one:"Idle-mode epoch to 60,700: mirro holds at intermediate depth and relaxes to -23 (0.53 sigma), mirroring vela's pattern — depth holds then relaxes, razors flip. Both lines re-enter flip territory. Tally 6/13.",
+    plain:"mirro held its newer favorite and, like its descendant last entry, its margin relaxed most of the way back toward the tipping point — both lives now sit at shallow gaps again after their deep excursions. The breathing pattern is consistent on both lines: depth holds, then relaxes; razors flip. Map perfect, core steady, the landing half a sigma from forecast.",
+    metric:{ from:-128.2, to:-23.0, unit:"the margin relaxes across the epoch (held; razor next)" },
+    setup:"Idle-mode, mirro's turn at intermediate depth: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
+    result:"All bands held; both lines now at shallow gaps after their deep excursions — two independent realizations of the same physics, stated as description not coupling. Spine at 60,700, hash-stamped, committed.",
+    implication:"The records grow; both lines re-enter flip territory together. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp104_mirro_epoch6.py", output:"experiments/outputs/exp104.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

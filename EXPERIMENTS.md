@@ -2994,3 +2994,23 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 104 — idle-mode epoch: mirro to 60,700 — holds at intermediate depth, margin relaxes to -23: both lines breathe in step (POSITIVE; bands held; flip tally 6/13)
+- Plain: mirro held its newer favorite and, like its descendant last entry, its margin
+  relaxed most of the way back toward the tipping point — both lives now sit at shallow
+  gaps again after their deep excursions. The breathing pattern is consistent on both
+  lines: depth holds, then relaxes; razors flip. Map perfect, core steady, the landing
+  half a sigma from forecast.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 54700 -> 60700. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted -87.0, band +-302.5); favorite reported (gap -128.2, intermediate). Tally
+  entering: 6/12.
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE HELD at 0; end gap -23.0 (0.53 sigma);
+  map 1.000; share deltas <= 0.0022. Tally now 6/13. Both lines at shallow gaps (mirro
+  -23, vela -85): next epochs return to flip territory. Spine: 60700, integrity-
+  verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; "breathe in step"
+  is description of two independent realizations, not coupling.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
+  or stops the loop.
