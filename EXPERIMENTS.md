@@ -3528,3 +3528,16 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   n/a. AWAITING HUMAN WORD on increment 1c (loop/IDEAS.md updated).
 - Next (on human word only): increment 1c — the timing re-wire + the Exp 125
   predeclarations on fresh seeds. Idle-mode continues meanwhile.
+
+## Exp 129 — idle-mode epoch: mirro to 120,700 — holds deep, the commitment crosses one thousand (POSITIVE; bands held)
+- Plain: mirro held as recorded and its conviction crossed four figures — a thousand
+  counts of preference for color 2, in a life of a hundred twenty thousand steps, while
+  the talk-to-it thread waits for the human's word on its re-wiring.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 114700 -> 120700; recorded deep call (entering +833.8 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +1060.0 (0.96 sigma).
+  Map 1.000; share deltas <= 0.0010. Spine: 120700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn); increment 1c awaits the human
+  (loop/IDEAS.md).

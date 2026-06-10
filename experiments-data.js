@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:128, breakthrough:6, positive:78, wall:21, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:129, breakthrough:6, positive:79, wall:21, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1295,7 +1295,17 @@ window.AM_EXPERIMENTS = [
     setup:"The as-built agent, unmodified, two 1000-turn sessions with predeclared D1/D2 bands — a falsifier-mandated pure diagnostic per the program's own precedent, resuming nothing.",
     result:"D2 decisively: every bin within noise of chance, the epistemic ASK rate non-decaying across all twenty bins — the model never becomes predictive of the partner. Scale ruled out; the timing explanation stands as the surviving suspect.",
     implication:"The recommended increment 1c — observe feedback in the same inference step as the turn's own code, the spec's own converse flow — awaits explicit human word in loop/IDEAS.md. Idle-mode continues; the guardrails keep the build honest.",
-    trace:{ script:"experiments/exp128_learning_trend.py", output:"experiments/outputs/exp128.txt" } }
+    trace:{ script:"experiments/exp128_learning_trend.py", output:"experiments/outputs/exp128.txt" } },
+
+  { n:129, kind:"positive", chapter:"frontier",
+    title:"A thousand counts of conviction.",
+    one:"Idle-mode epoch to 120,700: mirro holds deep and its commitment crosses four figures (+1060, 0.96 sigma) — while the talk-to-it thread waits for the human's word on its re-wiring.",
+    plain:"mirro held as recorded and its conviction crossed four figures — a thousand counts of preference for color 2, in a life of a hundred twenty thousand steps, while the talk-to-it thread waits for the human's word on its re-wiring.",
+    metric:{ from:833.8, to:1060.0, unit:"the commitment crosses one thousand (held; 0.96 sigma)" },
+    setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
+    result:"All bands held. Spine at 120,700, hash-stamped, committed.",
+    implication:"The lives continue; increment 1c awaits the human's word.",
+    trace:{ script:"experiments/exp129_mirro_epoch15.py", output:"experiments/outputs/exp129.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
