@@ -47,3 +47,7 @@
 {"event": "live", "age_steps": 78750, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "0b43a4a9bb6504fe05be48a54cf8e79310fbf29de02786fa8699c3cac8acea4f"}
 {"event": "save", "age_steps": 78750, "summary": "saved to creature/state/vela", "state_hash": "0b43a4a9bb6504fe05be48a54cf8e79310fbf29de02786fa8699c3cac8acea4f"}
 {"event": "checkpoint_after", "exp": "Exp 114", "age_steps": 78750, "state_hash": "0b43a4a9bb6504fe05be48a54cf8e79310fbf29de02786fa8699c3cac8acea4f", "summary": "Exp 114: checkpoint after (age 72750 -> 78750)"}
+{"event": "checkpoint_before", "exp": "Exp 116", "age_steps": 78750, "state_hash": "0b43a4a9bb6504fe05be48a54cf8e79310fbf29de02786fa8699c3cac8acea4f", "summary": "Exp 116: checkpoint before (age 78750)"}
+{"event": "live", "age_steps": 84750, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "c8915244cbde32833a687beb0a87ce360f2018fa71b0fc412b61ddf759bff87f"}
+{"event": "save", "age_steps": 84750, "summary": "saved to creature/state/vela", "state_hash": "c8915244cbde32833a687beb0a87ce360f2018fa71b0fc412b61ddf759bff87f"}
+{"event": "checkpoint_after", "exp": "Exp 116", "age_steps": 84750, "state_hash": "c8915244cbde32833a687beb0a87ce360f2018fa71b0fc412b61ddf759bff87f", "summary": "Exp 116: checkpoint after (age 78750 -> 84750)"}

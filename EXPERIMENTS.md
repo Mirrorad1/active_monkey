@@ -3246,3 +3246,18 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: vela's epoch, then the Exp ~117 registered evaluation — unless the human answers
   the merged CONSULT or stops the loop.
+
+## Exp 116 — idle-mode epoch: vela to 84,750 — holds in the unbinned middle and re-deepens to +241 (POSITIVE; bands held; evaluation due next)
+- Plain: A quiet stretch for vela: favorite held, conviction re-deepened toward the
+  committed zone, forecast within half a sigma. The registered depth test's books are
+  now closed — seven deep calls made, six held, one lurch — and the next entry is the
+  evaluation, scored exactly as the registration was written.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 78750 -> 84750; unbinned middle (entering +94.6 — no registered call).
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE HELD at 2; end gap +241.0 (0.37 sigma).
+  Map 1.000; share deltas <= 0.0016. Registered record final: 6/7 deep, 0 razor entries
+  since registration. Spine: vela at 84750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: Exp 117 — the registered depth-law evaluation, scored as written (deep bin vs
+  the <= 1-flip criterion; razor bin insufficient-sample branch).

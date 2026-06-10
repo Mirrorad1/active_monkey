@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:115, breakthrough:6, positive:69, wall:18, partial:22, from:4.81, to:4.00 };
+window.AM_TALLY = { total:116, breakthrough:6, positive:70, wall:18, partial:22, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1165,7 +1165,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's registered deep call: the established pattern, nothing varied.",
     result:"All bands held. Spine at 90,700, hash-stamped, committed.",
     implication:"One epoch to the registered evaluation. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp115_mirro_epoch11.py", output:"experiments/outputs/exp115.txt" } }
+    trace:{ script:"experiments/exp115_mirro_epoch11.py", output:"experiments/outputs/exp115.txt" } },
+
+  { n:116, kind:"positive", chapter:"frontier",
+    title:"The books close on the registered test.",
+    one:"Idle-mode epoch to 84,750: vela holds in the unbinned middle and re-deepens to +241 (0.37 sigma). The registered record is final — 6/7 deep, 0 razor — and the evaluation is next, scored exactly as written.",
+    plain:"A quiet stretch for vela: favorite held, conviction re-deepened toward the committed zone, forecast within half a sigma. The registered depth test's books are now closed — seven deep calls made, six held, one lurch — and the next entry is the evaluation, scored exactly as the registration was written.",
+    metric:{ from:94.6, to:241.0, unit:"the conviction re-deepens (held; 0.37 sigma)" },
+    setup:"Idle-mode, vela's turn in the unbinned middle: standard bands, no registered call, the evaluation queued.",
+    result:"All bands held. Vela at 84,750, hash-stamped, committed.",
+    implication:"Exp 117 scores the registration as written. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp116_vela_epoch11.py", output:"experiments/outputs/exp116.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
