@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:118, breakthrough:6, positive:71, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:119, breakthrough:6, positive:72, wall:18, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1195,7 +1195,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the established pattern with the razor books open per the evaluation.",
     result:"All bands held. Spine at 96,700, hash-stamped, committed.",
     implication:"The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp118_mirro_epoch12.py", output:"experiments/outputs/exp118.txt" } }
+    trace:{ script:"experiments/exp118_mirro_epoch12.py", output:"experiments/outputs/exp118.txt" } },
+
+  { n:119, kind:"positive", chapter:"frontier",
+    title:"Firmly committed, separately.",
+    one:"Idle-mode epoch to 90,750: vela holds as recorded and deepens to +305, its strongest color-2 conviction — both lives now firmly aligned through entirely separate dice. Next: mirro crosses one hundred thousand steps.",
+    plain:"vela held its post-lurch favorite as recorded and deepened to its strongest color-2 conviction yet — both lives are now firmly committed to the same color through entirely separate dice. A quiet stretch, forecast within half a sigma.",
+    metric:{ from:241.0, to:304.7, unit:"vela's strongest color-2 conviction (held; 0.37 sigma)" },
+    setup:"Idle-mode, vela's recorded deep call: the established pattern, razor books open.",
+    result:"All bands held. Vela at 90,750, hash-stamped, committed.",
+    implication:"The lives continue; mirro's hundred-thousandth step comes next. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp119_vela_epoch12.py", output:"experiments/outputs/exp119.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

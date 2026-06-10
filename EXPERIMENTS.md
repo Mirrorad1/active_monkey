@@ -3310,3 +3310,18 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 119 — idle-mode epoch: vela to 90,750 — holds deep and deepens to +305 (POSITIVE; bands held)
+- Plain: vela held its post-lurch favorite as recorded and deepened to its strongest
+  color-2 conviction yet — both lives are now firmly committed to the same color through
+  entirely separate dice. A quiet stretch, forecast within half a sigma.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 84750 -> 90750; recorded deep call (entering +241.0 -> HOLD; razor
+  books open per Exp 117).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +304.7 (0.37 sigma).
+  Map 1.000; share deltas <= 0.0010. Spine: vela at 90750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the same-color
+  alignment remains independent dice, as stated at Exp 101.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn — crossing 100,000 steps) unless the human
+  answers the merged CONSULT or stops the loop.
