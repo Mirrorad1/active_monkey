@@ -26,6 +26,12 @@ SPINE = ROOT / "creature" / "state" / "mirro"
 # (e.g. a future episode wiping an aged spine back toward 0) is still caught.
 BIRTH_PHASE_STEPS = 1000
 
+# The sanctioned escape hatch (anti-lock-in): an INTENTIONAL restart is allowed, but only
+# when logged as an explicit biography event so it is distinguishable from silent
+# corruption. Recovery from a bad epoch is normally `git checkout` of a prior committed
+# snapshot (each checkpoint is a restore point); a true in-place restart writes one of these.
+RESET_EVENTS = {"rebirth", "reset", "restart"}
+
 
 def _manifest():
     return json.loads((SPINE / "manifest.json").read_text(encoding="utf-8"))
@@ -54,37 +60,49 @@ def test_spine_snapshot_present():
 
 
 def test_age_never_goes_backwards():
-    """Past the birth phase, biography age_steps is monotonic — the life is never reset.
+    """The established spine's age never resets SILENTLY — only via a logged restart.
 
-    Anchors on the first event where the accumulated life exceeds BIRTH_PHASE_STEPS, then
-    requires age to be non-decreasing forever after. This tolerates the Exp 45 birth-control
-    artifact while still catching any genuine reset of an established life.
+    Walks the biography in order. An age decrease is a violation UNLESS it is excused by
+    one of two sanctioned cases:
+      - the birth phase: both the from- and to-age sit at/below BIRTH_PHASE_STEPS (the
+        Exp 45 re-birth-control artifact);
+      - an explicit restart: a RESET_EVENTS biography event immediately precedes the drop.
+    Any other backstep — e.g. an aged spine silently wiped toward 0 — fails. This protects
+    the trunk from corruption without locking out an intentional, logged restart.
     """
-    ages = _ages()
-    assert ages, "no age_steps events in biography"
+    violations = []
+    last_age = None
+    reset_pending = False
+    for e in _biography():
+        if e.get("event") in RESET_EVENTS:
+            reset_pending = True
+            continue
+        if "age_steps" not in e:
+            continue
+        a = e["age_steps"]
+        if last_age is not None and a < last_age:
+            in_birth_phase = last_age <= BIRTH_PHASE_STEPS and a <= BIRTH_PHASE_STEPS
+            if not (reset_pending or in_birth_phase):
+                violations.append((last_age, a))
+        last_age = a
+        reset_pending = False  # consumed by the next age observation
 
-    anchor = next((i for i, a in enumerate(ages) if a > BIRTH_PHASE_STEPS), None)
-    assert anchor is not None, (
-        f"spine never accumulated past the birth phase ({BIRTH_PHASE_STEPS} steps)"
-    )
-
-    backsteps = [
-        (i, ages[i - 1], ages[i])
-        for i in range(anchor + 1, len(ages))
-        if ages[i] < ages[i - 1]
-    ]
-    assert not backsteps, (
-        "established spine age went backwards (a reset/rewind) at indices: "
-        + repr(backsteps)
+    assert not violations, (
+        "established spine age went backwards SILENTLY (a reset/rewind without a logged "
+        f"{sorted(RESET_EVENTS)} event): " + repr(violations)
     )
 
 
 def test_manifest_matches_biography_head():
-    """The committed manifest age == the latest age in the biography (no stale snapshot)."""
+    """The committed manifest age == the LATEST age in the biography (no stale snapshot).
+
+    Uses the last age event rather than the maximum so a sanctioned, logged restart (which
+    lowers the current age) is not mistaken for a stale snapshot.
+    """
     manifest_age = _manifest()["age_steps"]
     ages = _ages()
-    assert manifest_age == max(ages), (
-        f"manifest age_steps={manifest_age} but biography head={max(ages)} — "
+    assert manifest_age == ages[-1], (
+        f"manifest age_steps={manifest_age} but biography head={ages[-1]} — "
         f"the committed snapshot is not the latest point of the life"
     )
 

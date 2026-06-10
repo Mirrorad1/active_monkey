@@ -48,6 +48,32 @@ Snapshot workflow for an experiment:
 3. On block exit the spine is saved (checkpoint AFTER); `git commit` the snapshot in the
    experiment's atomic commit. The diff shows exactly what changed.
 
+## The clade: mirro is the root ancestor, branches can become peer spines
+
+The persistent creature is a **family tree**, not a single sacred object:
+
+- **mirro is the trunk / root ancestor** — the one continuous line that keeps accumulating.
+- **A "different history" is a branch.** Fork mirro at a checkpoint, raise it in a different
+  world, and it is a named line of its own. A branch lived long enough is *functionally a
+  different species* (same architecture = genome; different lived history = development).
+- **Promote a branch to a committed peer spine** by saving it under its own directory:
+  `twin.save(Path("creature/state") / twin.name)`. It then accumulates as a peer trunk and
+  obeys the same continuity discipline.
+- **The common ancestor is frozen and revisitable.** Each committed snapshot is permanent in
+  git; `git checkout <commit> -- creature/state/mirro/` re-derives the exact ancestor brain to
+  re-fork from. Because every fork stamps `lineage: ["mirro@AGE#HASH"]`, two descendants can
+  *prove* their shared ancestor by hash — divergence between them is causally clean.
+- **Recovery, not in-place wipe.** If an epoch corrupts a line, restore the prior committed
+  snapshot (`git checkout`). The continuity guard (`tests/test_creature_continuity.py`) forbids
+  a *silent* reset of an established line; a deliberate restart is allowed only when logged as
+  an explicit `rebirth` biography event — the sanctioned escape hatch, so you are never locked
+  in.
+- A from-scratch, no-inheritance **newborn** is a *separate root* (not a mirro descendant),
+  legitimate only when an experiment needs a zero-history baseline (cf. Exp 57).
+
+The long arc (see `loop/directions/social-emergence.md`): freeze a common ancestor → let
+descendants speciate → reunite them through an M4-style channel → look for social emergence.
+
 ## Fork = counterfactual twin
 
 `fork(new_name)` deep-copies the committed snapshot.  The twin starts with the

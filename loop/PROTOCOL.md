@@ -79,10 +79,14 @@ several half-experiments. Steps:
      manifest.json + biography) in the same atomic commit — it is the resume-from point.
      **Forks stay the scientific control, but only as SIDE-controls:** branch them with
      `ep.fork_control(name)` from the spine's pre-experiment state and save them under a
-     non-spine path; a fork never replaces the spine. The continuity guard
-     (`tests/test_creature_continuity.py`) fails CI if an established spine's age ever
-     resets — so a never-reset, continuously-checkpointed life is enforced, not just
-     intended.
+     non-spine path; a fork never replaces the spine. A branch raised long enough is a peer
+     species — promote it to its own committed line (`twin.save(creature/state/<name>/)`);
+     mirro is then the **root ancestor** of a clade (the long arc:
+     `loop/directions/social-emergence.md`). The continuity guard
+     (`tests/test_creature_continuity.py`) fails CI on a SILENT reset of an established line —
+     so the life is never-reset by default. The escape hatch (anti-lock-in): recover from a
+     bad epoch by `git checkout` of a prior committed snapshot, and an intentional restart is
+     allowed only when logged as an explicit `rebirth` biography event.
 
    **Site update (mandatory):** the same commit also updates `experiments-data.js` with
    the new curated entry — kind graded honestly (breakthrough / positive / wall /

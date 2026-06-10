@@ -25,6 +25,14 @@ Forks remain the scientific control, but only as SIDE-controls: `ep.fork_control
 branches from the spine's pre-experiment state and is saved elsewhere (or not at all).
 A fork never becomes the spine, so the spine's continuity is preserved.
 
+Clade model: the spine is the ROOT ANCESTOR / trunk. A branch lived long enough in a
+different world is, functionally, a different species; promote it to a committed peer line
+with `twin.save(Path("creature/state") / twin.name)`. Every committed checkpoint is also a
+restore point — recover from a bad epoch with `git checkout <commit> -- creature/state/mirro/`
+rather than wiping in place. The continuity guard (`tests/test_creature_continuity.py`)
+forbids only a SILENT trunk reset; a deliberate restart is allowed when logged as an explicit
+`rebirth` biography event.
+
 If the body raises, the spine is left untouched (no half-mutated state is saved), so a
 failed experiment cannot corrupt the continuous life.
 """
