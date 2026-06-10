@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 60 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 61 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:60, breakthrough:5, positive:32, wall:13, partial:10, from:4.81, to:4.00 };
+window.AM_TALLY = { total:61, breakthrough:5, positive:32, wall:14, partial:10, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -614,7 +614,17 @@ window.AM_EXPERIMENTS = [
     setup:"Cascade round 3, human-authorized: two decay rates bracket the predicted plasticity window on the same drift schedule — λ=0.997 (mass in-window, must track ≥6/8) and λ=0.9999 (barely forgets, must freeze ≤2/8) — with Exp 58's λ=0.9 as the below-floor reference.",
     result:"In-window: 8/8 segments tracked with honest lags (200–425 steps). Weak decay: 2/8, and both 'recoveries' were segments coinciding with its settled world — no adaptation. Both predeclared thresholds hit; the candidate dies as the lawful consequence of non-decaying evidence.",
     implication:"The unified law (Exp 48+56+57+58+60): accumulated evidence must sit between an accuracy floor and a tempo ceiling — the same mechanism behind opinion inertia and perceptual freezing. Substrate consequence: lifelong adaptation requires a forgetting term, a hard requirement for everything M4-bound. Caveats: numeric bounds uncalibrated, one schedule speed, one seed per arm, this learning rule only.",
-    trace:{ script:"experiments/exp60_forgetting_window.py", output:"experiments/outputs/exp60.txt" } }
+    trace:{ script:"experiments/exp60_forgetting_window.py", output:"experiments/outputs/exp60.txt" } },
+
+  { n:61, kind:"wall", chapter:"frontier",
+    title:"Hunger that never bites teaches nothing.",
+    one:"The survival test came back 19/20 alive in every arm — food was so abundant the energy variable never engaged, so neither the stale-map prediction nor the interoception question was actually tested.",
+    plain:"We gave the creature a stomach: energy that drains and refills at food, plus the urge to seek food when low. But the world had so much food that nobody ever got hungry — frozen maps, no maps, no stomach-sense at all: everyone lived. A test where nothing is at stake can't tell you anything. Next: make food scarce.",
+    metric:{ from:0.90, to:0.4, unit:"mean energy vs the trigger threshold" },
+    setup:"Rung 6: toy allostasis — energy decays, refills on the food patch, and a provided policy switch seeks believed food when energy is low. Four arms (interoception × map forgetting) in the drifting world, with the plasticity law predicting frozen-map starvation after the food moves.",
+    result:"Both falsifiers fired: the frozen-map agent survived 5/5 and interoception gave no advantage — because mean energy sat at ~0.91 everywhere. Nine food cells in twenty-five with 100-step autonomy means a random walk never starves; the low-energy switch almost never engaged and the stale map was never consulted.",
+    implication:"A deflationary negative in the Exp 50 family: the instrument failed to make the question binding. Stake v2 is predeclared — one food cell, half the autonomy, higher trigger — where random foraging starves, believed-food maps become load-bearing, and the empty-fridge prediction gets a real test.",
+    trace:{ script:"experiments/exp61_interoceptive_stake.py", output:"experiments/outputs/exp61.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

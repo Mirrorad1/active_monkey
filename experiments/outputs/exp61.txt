@@ -1,0 +1,37 @@
+Exp 61 — interoceptive stake (rung 6 survival test)
+Budget=2000 settle=1000 seeds=[0, 1, 2, 3, 4] energy_thresh=0.4
+
+arm=IN-DECAY seed=0 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=IN-DECAY seed=1 survived=True steps=2000 death_pos=- mean_E=0.93
+arm=IN-DECAY seed=2 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=IN-DECAY seed=3 survived=True steps=2000 death_pos=- mean_E=0.92
+arm=IN-DECAY seed=4 survived=True steps=2000 death_pos=- mean_E=0.90
+  -> IN-DECAY: survived 5/5, median steps 2000
+
+arm=IN-FROZEN seed=0 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=IN-FROZEN seed=1 survived=True steps=2000 death_pos=- mean_E=0.93
+arm=IN-FROZEN seed=2 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=IN-FROZEN seed=3 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=IN-FROZEN seed=4 survived=True steps=2000 death_pos=- mean_E=0.90
+  -> IN-FROZEN: survived 5/5, median steps 2000
+
+arm=NO-DECAY seed=0 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=NO-DECAY seed=1 survived=True steps=2000 death_pos=- mean_E=0.92
+arm=NO-DECAY seed=2 survived=True steps=2000 death_pos=- mean_E=0.90
+arm=NO-DECAY seed=3 survived=False steps=735 death_pos=24 mean_E=0.87
+arm=NO-DECAY seed=4 survived=True steps=2000 death_pos=- mean_E=0.90
+  -> NO-DECAY: survived 4/5, median steps 2000
+
+arm=NO-FROZEN seed=0 survived=True steps=2000 death_pos=- mean_E=0.91
+arm=NO-FROZEN seed=1 survived=True steps=2000 death_pos=- mean_E=0.92
+arm=NO-FROZEN seed=2 survived=True steps=2000 death_pos=- mean_E=0.90
+arm=NO-FROZEN seed=3 survived=False steps=735 death_pos=24 mean_E=0.87
+arm=NO-FROZEN seed=4 survived=True steps=2000 death_pos=- mean_E=0.90
+  -> NO-FROZEN: survived 4/5, median steps 2000
+
+--- SUMMARY ---
+(i) IN-DECAY survived 5/5  PASS
+(ii) IN-FROZEN post-move deaths (step>500): 0/5  (FAIL)  mean_dist_to_old_patch=nan [total died=0/5]
+(iii) IN-DECAY median=2000 > NO-DECAY median=2000 AND > NO-FROZEN median=2000  FAIL
+
+VERDICT: falsifier HIT: ['(ii) IN-FROZEN post-move starvation', '(iii) IN-DECAY median > NO arms']

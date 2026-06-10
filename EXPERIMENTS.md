@@ -1337,3 +1337,31 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   counterfactual, not a first).
 - Next: rung 6 (interoceptive stake — now informed by the law: the regulated variable's
   dynamics must sit inside the creature's plasticity window) or rung 3 epoch 2.
+
+## Exp 61 — interoceptive stake v1: both falsifiers hit — the ecology never made the stake binding (NEGATIVE; instrument iteration)
+- Setup: toy allostasis (all provided, declared): E decays 0.01/step (100-step autonomy), refills
+  on real food (the 9-cell color-2 patch), policy switch at E<0.4 → VI toward nearest BELIEVED
+  food, else explore; patch moves every 500 steps; 2000-step budget. 2×2 arms (intero on/off ×
+  map decay λ=0.997 / non-decay) × 5 seeds, fresh births with 1000-step settling. Predeclared:
+  (i) IN-DECAY survives ≥4/5; (ii) IN-FROZEN starves after the first patch move ≥4/5 (the
+  plasticity law's survival consequence); (iii) intero outlives no-intero. Falsifiers: IN-FROZEN
+  survives ≥3/5, or no interoceptive advantage. Mirro untouched.
+- Result: falsifiers (ii) and (iii) BOTH hit — 19/20 runs survived the full budget (IN-FROZEN
+  5/5; the only death: seed 3's identical trajectory in both NO arms, step 735, corner cell).
+  (i) passed trivially.
+- Diagnosis (the useful content): mean E = 0.90–0.93 in EVERY arm — the viability variable never
+  became binding. Food density (9/25 cells) × autonomy (100 steps) makes starvation nearly
+  impossible for a random walk, so the E<0.4 switch almost never engaged and the stale map was
+  never consulted. IN-FROZEN's survival says nothing about stale maps; the "no interoceptive
+  advantage" is real at THIS food density but deflationary — the ecology regulates for everyone.
+  Exp 50's floor effect in a new costume: the instrument did not put the question at stake.
+- Honest caveat: this is NOT a clean rung-6 FAIL verdict (the card's "no measurable difference"
+  branch) — the regulation machinery was idle, so the twins were never actually compared; one
+  ecology, 5 seeds, harness-provided policy coupling throughout.
+- Verdict: NEGATIVE (predeclared falsifiers hit) / instrument iteration: the stake needs
+  scarcity. Self-grade: n/a.
+- Next (Exp 62, stake v2 — predeclared harsher ecology): ONE food cell (4%), E decay 0.02
+  (50-step autonomy), threshold 0.5. Expected separations become genuine: random exploration
+  starves (hitting time of one cell >> autonomy), the believed-food map becomes load-bearing,
+  and IN-FROZEN should starve at the empty fridge when the food cell moves. Same falsifier
+  structure; if the arms STILL do not separate, rung 6 gets its honest FAIL.
