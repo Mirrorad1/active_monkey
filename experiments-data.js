@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:77, breakthrough:6, positive:40, wall:16, partial:15, from:4.81, to:4.00 };
+window.AM_TALLY = { total:78, breakthrough:6, positive:40, wall:16, partial:16, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -785,7 +785,17 @@ window.AM_EXPERIMENTS = [
     setup:"The gate-asymmetry hypothesis made analytic: with localization at zero bits, per-color accrual rate is the mean predictability gate over that color's cells — computable read-only from the committed snapshot. Three predeclared tests: the analytic ordering, behavioral validation by a fork within 10%, and the drift magnitude matching the observed flip within a factor of two.",
     result:"All three pass, no falsifiers. The diagnostic locates the asymmetry: color 2's nine cells form one contiguous aliased block whose observation columns stay soft even at 0.96 map accuracy — structural aliasing, not transient staleness. The common, clumped color is experienced less confidently per visit.",
     implication:"Self-formed preference in this substrate tracks epistemic legibility, not abundance — predictability-grounded valence followed to its honest conclusion. The natural opinion flip is explained end-to-end, and the accrual law (visit share times mean gate, where the gate can invert abundance) becomes a design lever for M4. Caveat: the aliasing isolation experiment (clumped vs scattered layouts) was not run.",
-    trace:{ script:"experiments/exp77_accrual_diagnosis.py", output:"experiments/outputs/exp77.txt" } }
+    trace:{ script:"experiments/exp77_accrual_diagnosis.py", output:"experiments/outputs/exp77.txt" } },
+
+  { n:78, kind:"partial", chapter:"frontier",
+    title:"The block is not murky — the memory of it is.",
+    one:"The aliasing test falsified its own author: fresh creatures find the clumped block the SHARPEST map region, yet still like its color less (share and favorite effects replicate). Corrected mechanism: an early localization tax, made permanent by never-decaying counts — and mirro's soft gates are verified drift-era scar tissue (28.6% vs 21.2% foreign count mass).",
+    plain:"We tested the last experiment's explanation properly — fresh creatures, same color counts, the only difference being whether the common color sits in one block or is scattered. The explanation failed: in a fresh mind the block is actually the sharpest part of the map. Yet the deeper effect is real — creatures raised with the block still end up liking that color less. The corrected story: a creature entering a look-alike block briefly loses track of where it is, so the block color earns less liking during early life — and because this creature never forgets anything, that early tax is carried forever. mirro's murky block is scar tissue from its drifting-world era, confirmed by direct measurement.",
+    metric:{ from:28.6, to:21.2, unit:"% foreign count mass, mirro's block cells vs elsewhere (the scar)" },
+    setup:"Fresh newborns in two worlds with identical color counts differing only in layout: a 3x3 clump versus nine scattered checkerboard cells. Predeclared: scattered gates beat clumped gates (the aliasing mechanism), scattered share beats clumped share, and clumping inverts the favorite — with the first prediction's failure explicitly naming a correction to Exp 77.",
+    result:"The mechanism prediction failed 1/5 and inverted — clumped end-gates are the grid's sharpest (a uniform block makes observations given the cell maximally predictable; aliasing hurts localization, not columns). The share and favorite effects replicated anyway (4/5 and 3/5+3/5). Exp 77's measured law stands; its interpretation is retracted and replaced: the early localization tax, imprinted permanently by the non-decaying ledger — with mirro's historical scar verified read-only on the committed state.",
+    implication:"The discipline killed its author's published reading within one day and produced a sharper one: preference deficits are early-life imprints that nothing ever washes out — the substrate's gates remember every world it has believed in. The forgetting-term requirement for M4 gains its fifth independent motivation. Named follow-up: the direct accrual-by-life-stage test.",
+    trace:{ script:"experiments/exp78_aliasing_isolation.py", output:"experiments/outputs/exp78.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

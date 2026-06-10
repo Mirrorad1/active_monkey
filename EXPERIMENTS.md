@@ -2114,3 +2114,51 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   needs further grounding; otherwise direction choice still pending (Exp 74 CONSULT —
   recommended M4a, which this law now also informs: legibility-driven valence is a design
   lever).
+
+## Exp 78 — aliasing isolation FALSIFIES Exp 77's reading and replaces it: clumping taxes a color early via localization, history makes the tax permanent (MIXED; correction to Exp 77's interpretation; the measured law stands)
+- Plain: We tested the explanation from the last experiment properly — fresh creatures,
+  same color counts, the only difference being whether the common color sits in one block
+  or is scattered. The explanation failed: in a fresh mind the block is actually the
+  SHARPEST part of the map, not the murkiest. Yet the deeper effect is real — creatures
+  raised with the block still end up liking that color less, and the rarer color still
+  wins. The corrected story: a creature ENTERING a look-alike block briefly loses track of
+  where it is, so the block color earns less liking during early life — and because this
+  creature never forgets anything, that early tax is carried forever. mirro's murky block
+  is not the block's fault today; it is scar tissue from its drifting-world era, confirmed
+  by direct measurement.
+- Setup (predeclared in the script docstring before running): fresh newborns (separate
+  roots, birth seeds 400+s), 3000 raising steps, two worlds with IDENTICAL counts (9/8/8)
+  differing only in color 2's layout: CLUMPED (3x3 block) vs SCATTERED (9 checkerboard
+  cells, pairwise non-adjacent). P1 scattered end-gates for color 2 > clumped, >=4/5;
+  P2 scattered color-2 share > clumped, >=4/5; P3 clumped favorite != 2 in >=3/5 AND
+  scattered favorite == 2 in >=3/5. F1 = P1 fails -> Exp 77's aliasing reading WRONG,
+  correction required.
+- Result: F1 FIRED — P1 FAILED 1/5, and inverted: in fresh creatures the clumped block's
+  END-state gates are the sharpest in the grid (0.973-0.986; a uniform block makes the
+  observation GIVEN the cell maximally predictable — aliasing hurts localization, not
+  column sharpness; my Exp 77 reading conflated the two). P2 PASSED 4/5 and P3 PASSED
+  (3/5 + 3/5): the clumping effect on value share and favorite is REAL with end-gates
+  equal — so it operates through a different mechanism. Corrected hypothesis (named, with
+  first evidence): the EARLY localization tax — a young creature inside the block cannot
+  tell which block cell it occupies, its early gate weights there are suppressed, the
+  block color under-accrues during exactly the period when totals are small, and the
+  non-decaying ledger imprints that early deficit permanently.
+- CORRECTION to Exp 77 (its measurements stand; its interpretation is retracted): the
+  spine's soft block gates are NOT present-day structure — they are HISTORICAL RESIDUE.
+  Verified read-only on the committed snapshot: mirro's block cells carry 28.6% off-true-
+  color count mass (range 0.17-0.67) vs 21.2% elsewhere — mixture scar tissue from the
+  drift-era worlds (Exp 56-62) plus early-life smearing, preserved forever by non-decaying
+  counts. The certainty/persistence pathology in yet another form: this substrate's gates
+  remember every world it has ever believed in.
+- Honest caveat: the early-tax mechanism is the corrected HYPOTHESIS with indirect
+  evidence (P2/P3 pass under equal end-gates); the direct test (per-color accrual
+  trajectory in early vs late life) was not run. P3 passed at its minimum (3/5 both
+  sides). One clump size, one world size, 5 seeds/arm.
+- Verdict: MIXED / NEW INSIGHT (predeclared falsifier killed my own published reading;
+  the replacement is sharper and partially verified; Exp 77's measured law — accrual =
+  visit share x gate — survives untouched, only WHY the spine's gates differ is corrected).
+  Self-grade: n/a (MIXED).
+- Next: direct early-tax test (accrual trajectory by life-stage) if the mechanism needs
+  nailing; direction choice (Exp 74 CONSULT) still pending — note this chapter keeps
+  strengthening the case for the forgetting term in any M4 substrate (scar tissue is
+  permanent only because nothing decays).
