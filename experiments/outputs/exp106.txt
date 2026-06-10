@@ -1,0 +1,70 @@
+Exp 106 — idle-mode life epoch (mirro age 60700 -> 66700)
+
+  hash_before = 8307f1926b94
+
+--- START PROFILE (age 60700) ---
+  share0            : 0.344652
+  share1            : 0.311272
+  share2            : 0.344076
+  conviction        : 0.344652
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 0
+  gap_c2c0          : -23.013698
+  total_mass        : 39946.322248
+
+  R(0)            : 0.259499
+  R(1)            : 0.244747
+  R(2)            : 0.268209
+
+  predicted_end_gap = -23.0137 + (0.268209 - 0.259499) * 6000 = +29.2497
+  P3 band (2.5-sigma = 302.5): [-273.2503, +331.7497]
+
+--- END PROFILE (age 66700) ---
+  share0            : 0.343566
+  share1            : 0.310290
+  share2            : 0.346144
+  conviction        : 0.346144
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 115.014226
+  total_mass        : 44604.763298
+
+  R(0)            : 0.262854
+  R(1)            : 0.248377
+  R(2)            : 0.273343
+
+[Exp 106] spine=mirro continuous-life checkpoint
+  before: age=60700 state_hash=8307f1926b94
+  after : age=66700 state_hash=dbc43c0c9c83
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : +29.2497
+  actual_end_gap    : +115.0142
+  error (actual-predicted) : +85.7646
+  |error| / sigma   : 0.709
+
+--- DELTA TABLE ---
+  component               before       after       delta  band                        ok?
+  --------------------------------------------------------------------------------------
+  share0                0.344652    0.343566   -0.001086  < 0.04                      PASS
+  share1                0.311272    0.310290   -0.000982  < 0.04                      PASS
+  share2                0.344076    0.346144   +0.002068  < 0.04                      PASS
+  conviction            0.344652    0.346144   +0.001492  < 0.04                      PASS
+  map_acc               1.000000    1.000000   +0.000000  >= 0.96 (post)              PASS
+
+  favorite: 0 -> 2  (reported, not predicted — razor start gap -23.0)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-map-accuracy-66700: map_acc_at_66700=1.000000  threshold=0.96  ok=True
+  PASS  P2-share-stability: share0:|delta|=0.001086 (ok); share1:|delta|=0.000982 (ok); share2:|delta|=0.002068 (ok)
+  PASS  P2-conviction-stability: |delta_conviction|=0.001492  threshold=0.04
+  PASS  P3-noise-calibrated-forecast: end_gap=+115.0142  predicted=+29.2497  band=[-273.2503, +331.7497]  |error|/sigma=0.709  in_band=True
+  PASS  SPINE-age-66700-delta-6000: reload.age=66700  ep.age_after=66700  ep.age_before=60700  delta=6000  expected_after=66700
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP106: EPOCH CLEAN (bands held)

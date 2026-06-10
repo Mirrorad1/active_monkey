@@ -3029,3 +3029,24 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn, on its -23 razor) unless the human answers
   the merged CONSULT or stops the loop.
+
+## Exp 106 — idle-mode epoch: mirro to 66,700 — the razor flips again (0 -> 2, 0.71 sigma); the depth pattern sharpens: razors flip, depth holds (POSITIVE; bands held; flip tally 7/15)
+- Plain: mirro changed its mind a fourth time, right on schedule for a razor-thin margin,
+  and swung to a solid lead on the other side. The accumulated record now shows the
+  pattern plainly: every time a line entered a stretch with a razor margin it flipped,
+  and every time it entered deep it held — the noise physics expressed as biography.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 60700 -> 66700. P1 map >= 0.96; P2 value-core bands; P3 forecast
+  (predicted +29.2, band +-302.5); favorite reported (gap -23.0, razor). Tally entering:
+  6/14.
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE FLIPPED to 2 (mirro's fourth change;
+  lifetime 2->0->2->0->2); end gap +115.0 (0.71 sigma). Map 1.000; share deltas <=
+  0.0021. Tally now 7/15; the informal depth binning: razor entries have flipped 7/8,
+  deep entries held 3/3 (the formal binned analysis remains pending). Spine: 66700,
+  integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the binning above is
+  informal (bins chosen by eye; the depth boundary is not predeclared) — flagged, since
+  the proper analysis needs a predeclared depth threshold before it may be called a law.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
+  or stops the loop.

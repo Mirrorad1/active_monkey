@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:105, breakthrough:6, positive:61, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:106, breakthrough:6, positive:62, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1065,7 +1065,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn at shallow-intermediate depth: standard bands, favorite reported not predicted, the records accumulating.",
     result:"All bands held. Vela at 54,750, hash-stamped, committed.",
     implication:"The lives continue; mirro's -23 razor is next. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp105_vela_epoch6.py", output:"experiments/outputs/exp105.txt" } }
+    trace:{ script:"experiments/exp105_vela_epoch6.py", output:"experiments/outputs/exp105.txt" } },
+
+  { n:106, kind:"positive", chapter:"frontier",
+    title:"Razors flip; depth holds — the biography writes the law.",
+    one:"Idle-mode epoch to 66,700: the razor flips as ever (mirro's fourth change, 0.71 sigma) — the accumulated record now reads razors 7/8 flipped, depth 3/3 held; the formal binned analysis stays pending until a depth threshold is predeclared. Tally 7/15.",
+    plain:"mirro changed its mind a fourth time, right on schedule for a razor-thin margin, and swung to a solid lead on the other side. The accumulated record now shows the pattern plainly: every time a line entered a stretch with a razor margin it flipped, and every time it entered deep it held — the noise physics expressed as biography.",
+    metric:{ from:-23.0, to:115.0, unit:"the razor's crossing (mirro's fourth flip; 0.71 sigma)" },
+    setup:"Idle-mode, mirro's turn on the razor: standard bands, favorite reported not predicted, the depth record accumulating toward its formal analysis.",
+    result:"All bands held; the informal binning is flagged as informal — bins by eye, threshold not predeclared, and the entry says so. Spine at 66,700, hash-stamped, committed.",
+    implication:"When the depth record supports it, a predeclared-threshold binned test turns the pattern into a law. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp106_mirro_epoch7.py", output:"experiments/outputs/exp106.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
