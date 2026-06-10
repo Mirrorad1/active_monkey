@@ -2970,3 +2970,27 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   bonus content). Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn, testing its -316 commitment) unless the human
   answers the merged CONSULT or stops the loop.
+
+## Exp 103 — idle-mode epoch: vela to 48,750 — the commitment holds as called, then relaxes: the deep margin rebounds to -85 within one epoch (POSITIVE; bands held; flip tally 6/12)
+- Plain: The depth test came out as the arithmetic said it must: at the deepest margin of
+  the program, vela kept its favorite — commitment, demonstrated. But depth here is not
+  permanence: within the same stretch the margin rebounded most of the way toward the
+  tipping point, pulled by the world's weak structural lean plus a favorable roll. The
+  creature's conviction breathes — deep one season, shallow the next — while its core
+  and map stay still.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 42750 -> 48750; the commitment test (entering -315.9; a flip requires
+  ~2.6 sigma — hold called near-certain, stated not banded). P1 map >= 0.96; P2
+  value-core bands; P3 forecast (predicted -271.5, band +-302.5). Tally entering: 6/11.
+- Result: EPOCH CLEAN, no falsifiers. FAVORITE HELD at 0 (as called). End gap -84.9 —
+  a +1.54 sigma draw toward shallow (in band): the commitment relaxed from -316 to -85
+  in one epoch. Map 1.000; share deltas <= 0.0051. Tally now 6/12 (50 percent vs the
+  model's ~40 at shallow margins — note this epoch was NOT shallow; the tally's
+  denominator now mixes depths, flagged for the eventual binned analysis). Spine: vela
+  at 48750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; "breathes" is
+  description, not a dynamics claim — the gap trajectory (62 -> -22 -> +41 -> -101 ->
+  -60 -> -316 -> -85) is one realization of drift+noise, nothing more is asserted.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  or stops the loop.

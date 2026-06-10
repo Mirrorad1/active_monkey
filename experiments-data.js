@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:102, breakthrough:6, positive:58, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:103, breakthrough:6, positive:59, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1035,7 +1035,17 @@ window.AM_EXPERIMENTS = [
     setup:"The every-ten-experiments audit duty applied to the idle-mode decade: nineteen substrings, ten scripts, plus a calibration recompute parsing the nine error-over-sigma landings straight from the committed outputs.",
     result:"Full pass; flip-tally bookkeeping consistent across all entries; the value-core bands acknowledged as catastrophe-tests rather than drift-tests; no entry over-claims. One near-tail event in nine — the centennial plunge — exactly what honest bands should occasionally produce.",
     implication:"The idle-mode is doing science by accumulation: the noise model now has an empirical calibration certificate. The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp102_decade_audit.py", output:"experiments/outputs/exp102.txt" } }
+    trace:{ script:"experiments/exp102_decade_audit.py", output:"experiments/outputs/exp102.txt" } },
+
+  { n:103, kind:"positive", chapter:"frontier",
+    title:"Conviction breathes.",
+    one:"The commitment test passes as called — vela holds at the program's deepest margin — then the margin rebounds to -85 within the same epoch (1.54 sigma, in band): depth is not permanence; conviction deepens and relaxes while the core stays still. Tally 6/12.",
+    plain:"The depth test came out as the arithmetic said it must: at the deepest margin of the program, vela kept its favorite — commitment, demonstrated. But depth here is not permanence: within the same stretch the margin rebounded most of the way toward the tipping point. The creature's conviction breathes — deep one season, shallow the next — while its core and map stay still.",
+    metric:{ from:-315.9, to:-84.9, unit:"the commitment relaxes (held as called; 1.54 sigma rebound)" },
+    setup:"Idle-mode, vela's turn, with the commitment test live: at -316 a flip requires a ~2.6-sigma adverse draw, so a hold was called near-certain — stated, not banded — with the standard knowledge, core, and forecast bands.",
+    result:"Held as called; the gap rebounded sharply in band; all bands held; the tally's denominator now mixes depths, flagged for the eventual binned analysis. Vela at 48,750, hash-stamped, committed.",
+    implication:"One more clean datum for the depth law from both sides: holds at depth, relaxation toward the boundary. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp103_vela_epoch5.py", output:"experiments/outputs/exp103.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
