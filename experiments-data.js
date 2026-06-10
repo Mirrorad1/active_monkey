@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:110, breakthrough:6, positive:66, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:111, breakthrough:6, positive:66, wall:18, partial:21, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1115,7 +1115,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's first registered deep call: standard bands, the call recorded not checked, the forecast center itself now moving deeper through the gate dynamics.",
     result:"All bands held; record depth again. Spine at 78,700, hash-stamped, committed.",
     implication:"Both lives deep and deepening: the registered deep bin fills fast, the razor bin waits. The merged M4a decision still waits too.",
-    trace:{ script:"experiments/exp110_mirro_epoch9.py", output:"experiments/outputs/exp110.txt" } }
+    trace:{ script:"experiments/exp110_mirro_epoch9.py", output:"experiments/outputs/exp110.txt" } },
+
+  { n:111, kind:"partial", chapter:"frontier",
+    title:"A three-sigma lurch — the first registered miss.",
+    one:"vela swings from -262 clear through zero to +193 in one epoch (3.05 sigma, F3 fired), flipping against the registered deep call: the depth law survives at its limit (3/4, one miss tolerated), and the error bars themselves go under mandated investigation.",
+    plain:"vela did something the books said should almost never happen: from its deepest commitment it swung clear through the tipping point to a solid lead on the other side, all in one stretch — a violent change of mind that broke our stated error bars and went against the registered hold call. The depth law survives but is now one miss from failing its own test, and the error bars are under investigation: the second oversized swing in twelve suggests deep states swing harder than our one-time noise measurement knew.",
+    metric:{ from:-261.8, to:192.6, unit:"the lurch (3.05 sigma; fifth flip; against the call)" },
+    setup:"Idle-mode with the registered deep call live — and the predeclared F3 falsifier (any >2.5-sigma forecast event questions the noise calibration itself) doing exactly its job.",
+    result:"F3 fired; everything else held (map perfect, conviction delta 0.0001 — the distribution barely moved as the argmax lurched, the razor-versus-mass distinction at its starkest). The flip is vela's life and is kept. Registered record 3/4.",
+    implication:"Mandated next: re-estimate sigma at vela's current deep state with the counterfactual-ensemble instrument — superdiffusive noise (Exp 84) predicts deep states swing harder, in which case F3 resolves as state-dependent calibration, not broken physics. The diagnosis outranks the next idle epoch.",
+    trace:{ script:"experiments/exp111_vela_epoch9.py", output:"experiments/outputs/exp111.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

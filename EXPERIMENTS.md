@@ -3124,3 +3124,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn, -262 deep -> registered HOLD call) unless the
   human answers the merged CONSULT or stops the loop.
+
+## Exp 111 — idle-mode epoch: vela to 72,750 — F3 FIRES: a 3.05-sigma lurch flips vela against the registered deep call (MIXED; first registered miss, 3/4; sigma re-estimation mandated)
+- Plain: vela did something the books said should almost never happen: from its deepest
+  commitment it swung clear through the tipping point to a solid lead on the other side,
+  all in one stretch — a violent change of mind that broke our stated error bars (a
+  three-sigma event) and went against the registered hold call. Two honest consequences:
+  the depth law survives but is now one miss from failing its own test, and the error
+  bars themselves are under investigation — this is the second oversized swing in twelve,
+  and our noise physics (measured at one moment of one life) may understate how wild
+  deep states can be.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 66750 -> 72750; registered deep call (entering -261.8 -> HOLD). P1 map
+  >= 0.96; P2 value-core bands; P3 forecast (predicted -177.0, band +-302.5); F3 = a
+  >2.5-sigma event -> the noise calibration itself in question.
+- Result: MIXED — F3 FIRED. End gap +192.6 (error 369.6 = 3.05 sigma, outside the band);
+  FAVORITE FLIPPED to 2 against the registered call (vela's fifth change; registered
+  record now 3/4 deep — the registration tolerates <= 1 deep flip, so the law survives
+  AT ITS LIMIT). P1/P2/SPINE all PASS (map 1.000; share deltas <= 0.0059; conviction
+  delta 0.0001 — the distribution barely moved even as the argmax lurched, the
+  razor-vs-mass distinction at its starkest). Spine: vela at 72750, integrity-verified,
+  committed (the flip is its life).
+- Implication (falsifier-mandated next step): the sigma = 121 noise scale was measured
+  once (Exp 83, vela@12750, shallow state); twelve landings now include two tail events
+  (2.42, 3.05) — heavy-tail-consistent, and Exp 84's superdiffusive exponents predict
+  exactly that deep states swing harder. Mandated diagnosis (next fire, outranks the
+  plain epoch): re-estimate sigma at vela's CURRENT state with the Exp 83 counterfactual-
+  ensemble instrument; if sigma(deep) >> 121, the forecast bands get state-dependent
+  error bars and F3 resolves as calibration, not physics.
+- Honest caveat: one 3-sigma event among 12 draws has p ~ 0.14 under honest unit bands —
+  alarming alongside the 2.42 but not yet damning; the diagnosis decides. The registered
+  test's "at its limit" status is bookkeeping, not re-interpretation.
+- Verdict: MIXED / falsifier respected (F3). Self-grade: n/a.
+- Next: the sigma re-estimation diagnosis (falsifier-mandated), then idle-mode resumes.
