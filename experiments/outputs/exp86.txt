@@ -1,0 +1,66 @@
+Exp 86 — graded-uncertainty rung 2: implanted scars heal at the predicted half-life.
+
+World A (mirro's committed cmap layout):
+  rows=5  cols=5  n_colors=3
+  cmap grid:
+    0 1 0 1 0
+    1 0 1 0 1
+    2 2 2 1 0
+    2 2 2 0 1
+    2 2 2 1 0
+
+World B (cmap permuted 0->1->2->0 from A — every cell changes color):
+  rows=5  cols=5  n_colors=3
+  cmap grid:
+    1 2 1 2 1
+    2 1 2 1 2
+    0 0 0 2 1
+    0 0 0 1 2
+    0 0 0 2 1
+
+  IMPLANT_A=1500  IMPLANT_B=1500  HEAL=3000  SAMPLE=250  LAMBDA=0.997  FLOOR=0.01  START=12
+  Birth seeds: [700, 701, 702, 703, 704, 705, 706, 707]
+
+--- SEED 0 FULL TRAJECTORY (S0 + 12 x 250-step samples) ---
+  S0 = 0.493514
+   step     S_ctrl      S_lam
+    250   0.455844   0.439979
+    500   0.422303   0.356045
+    750   0.393635   0.258886
+   1000   0.370526   0.176103
+   1250   0.349548   0.099484
+   1500   0.330848   0.059268
+   1750   0.313510   0.025081
+   2000   0.298807   0.013798
+   2250   0.284851   0.006780
+   2500   0.270548   0.003411
+   2750   0.258108   0.002051
+   3000   0.247931   0.001836
+
+--- PER-SEED TABLE ---
+  seed        S0  S_ctrl_end  ratio_ctrl  S_lam_250  S_lam_end  gate_ctrl   gate_lam  gate_diff
+  ---------------------------------------------------------------------------------------------
+   700   0.49351     0.24793     0.50238    0.43998    0.00184    0.57040    0.98560    0.41520
+   701   0.49722     0.24922     0.50123    0.44116    0.00164    0.56894    0.98687    0.41793
+   702   0.49115     0.24567     0.50020    0.43805    0.00174    0.57418    0.98624    0.41206
+   703   0.50010     0.25075     0.50140    0.44637    0.00173    0.56941    0.98630    0.41690
+   704   0.49898     0.25058     0.50218    0.44400    0.00174    0.57028    0.98627    0.41599
+   705   0.49642     0.24840     0.50038    0.44557    0.00161    0.57106    0.98706    0.41600
+   706   0.49986     0.25029     0.50073    0.44696    0.00173    0.56830    0.98632    0.41802
+   707   0.49399     0.24829     0.50263    0.44097    0.00198    0.56701    0.98478    0.41777
+
+--- PROPERTY CHECKS ---
+  PASS  P1 (ratio_ctrl in [0.35, 0.65]): 8/8 seeds (need 6): PASS
+
+  FAIL  P2a (S_lam(250) <= S0/2 — half-life ~231 < 250): 0/8 seeds (need 6): FAIL
+  PASS  P2b (S_lam(end) <= 0.05): 8/8 seeds (need 6): PASS
+  FAIL  P2 (both): 0/8 seeds (need 6): FAIL
+
+  PASS  P3 (gate_lam >= gate_ctrl + 0.05; mean_diff=0.41623): 8/8 seeds (need 6): PASS
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — dilution model holds; ratio_ctrl in [0.35, 0.65] in 8/8 seeds).
+  F2 FIRED: P2 failed (half-life crossing 0/8, end<=0.05 8/8, combined 0/8 seeds) -> the mechanism does NOT heal at the claimed rate (or at all) — the direction's central premise fails at rung 2; halt the ladder for diagnosis.
+  F3 did not fire (P3 PASS — gate recovers with scar healing; gate_diff >= 0.05 in 8/8 seeds, mean_diff=0.41623).
+
+EXP86: F2 — healing mechanism does not work at the claimed rate; halt ladder

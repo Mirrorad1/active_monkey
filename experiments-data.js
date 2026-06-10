@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:85, breakthrough:6, positive:43, wall:18, partial:18, from:4.81, to:4.00 };
+window.AM_TALLY = { total:86, breakthrough:6, positive:43, wall:18, partial:19, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -865,7 +865,17 @@ window.AM_EXPERIMENTS = [
     setup:"Mechanism M-A: per-step count decay at Exp 60's in-window lambda, implemented in the experiment stepper only — spines untouched, creature class untouched. Eight matched-trajectory seed pairs in a static world, with effect-size parity bands, localization bounds, and the equilibrium-mass arithmetic as predeclared gates.",
     result:"All three properties pass 8/8: perfect map parity, zero-bit localization in both arms, and the mass equilibrium within 0.2 percent of theory. The rung-1 gate could not be cleaner.",
     implication:"Everything this program attributes to unbounded evidence mass — scars, freezing, social immovability, saturating drift — now has a candidate mechanism whose null cost is established. Rung 2 tests healing directly, with a predeclared scar half-life of ~231 steps. The direction was opened under the social-emergence card's own closing clause; the M4a build decision stays with the human.",
-    trace:{ script:"experiments/exp85_lambda_no_harm.py", output:"experiments/outputs/exp85.txt" } }
+    trace:{ script:"experiments/exp85_lambda_no_harm.py", output:"experiments/outputs/exp85.txt" } },
+
+  { n:86, kind:"partial", chapter:"frontier",
+    title:"The scars heal — on the replacement clock, not the decay clock.",
+    one:"Implanted scars vanish under forgetting (0.49 to 0.002, 8/8) and ruined gates fully recover (0.57 to 0.99) while controls keep half their scar exactly per dilution — but the predeclared half-life applied mass-decay physics to a ratio metric, F2 fired, and the ladder halts until the corrected rate law passes on fresh seeds.",
+    plain:"The healing claim came true in substance: implanted scars vanished almost entirely under forgetting, and the map sharpness the scar had destroyed came all the way back, while the never-forgetting control kept half its scar exactly as the slow-dilution law predicts. But the speed prediction was wrong, and the error was ours: foreign memory mass does halve every ~231 steps — the visible scar, measured as a fraction, halves only as fast as fresh experience replaces the old, about four times slower. Right physics, wrong quantity.",
+    metric:{ from:0.49, to:0.002, unit:"scar fraction under forgetting, 3000 steps (control: 0.25)" },
+    setup:"A maximal scar implanted identically into both arms (1500 steps in one world, 1500 in its color-permuted twin, then bit-identical deepcopies); 3000 healing steps with the scar fraction sampled every 250. Predeclared: the control follows pure dilution; the forgetting arm halves its scar within the 231-step mass half-life and ends below 0.05; gates recover.",
+    result:"Dilution law confirmed to three decimals (8/8); end-state healing emphatic (8/8); gate recovery the largest effect of the chapter (+0.42, 8/8) — but the 250-step half-life check failed 0/8, because the ratio's denominator decays too: the scar fraction falls on the replacement timescale (~1100 steps), matching the corrected arithmetic to within observation.",
+    implication:"The mechanism heals as the right arithmetic says; the predeclaration measured with the wrong clock. Per the falsifier the ladder halts until the replacement-clock rate law passes out-of-sample — the corrected predictions are stated and Exp 87 tests them on fresh seeds. The fourth authorial error of the session caught by its own predeclared structure.",
+    trace:{ script:"experiments/exp86_scar_healing.py", output:"experiments/outputs/exp86.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

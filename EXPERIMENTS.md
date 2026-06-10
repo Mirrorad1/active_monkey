@@ -2449,3 +2449,44 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 2 — scar healing with a predeclared half-life (the arithmetic: a scar of
   mass m decays to m*lambda^t; half-life ln(2)/ln(1/0.997) ~ 231 steps — sharp,
   falsifiable numbers), control must stay scarred per Exp 78.
+
+## Exp 86 — rung 2: scars heal essentially to zero and gates fully recover — but my half-life arithmetic confused mass decay with ratio replacement; F2 fired, ladder halts for the corrected rate claim (MIXED)
+- Plain: The healing claim came true in substance: implanted scars vanished almost
+  entirely under forgetting (residue 0.49 down to 0.002) and the map sharpness destroyed
+  by the scar came all the way back, while the never-forgetting control kept half its
+  scar exactly as the slow-dilution law predicts. But the speed prediction was wrong, and
+  the error was mine: foreign memory mass does halve every ~231 steps — the VISIBLE scar,
+  measured as a fraction, halves only as fast as fresh experience replaces the old, about
+  four times slower. The number in the forecast was right physics applied to the wrong
+  quantity.
+- Setup (predeclared in the script docstring before running): shared implant — fresh
+  creature, 1500 steps in world A (mirro's layout), world switched to B (colors permuted
+  0->1->2->0), 1500 more steps, no decay; deepcopied into arms (bit-identical scar,
+  S0 ~ 0.49). Healing: 3000 static-B steps; control = live(); lambda arm = decay stepper
+  (0.997/floor 0.01), S sampled every 250. P1 control ratio in [0.35, 0.65] (dilution);
+  P2 lambda S(250) <= S0/2 (half-life 231 < 250) AND S(end) <= 0.05; P3 lambda end mean
+  gate >= control + 0.05. 8 seeds (700-707). F2 = P2 fails -> halt ladder for diagnosis.
+- Result: MIXED — F2 FIRED on its rate sub-check only. P1 PASS 8/8 (ratios 0.500-0.503 —
+  the dilution law to three decimals). P2b PASS 8/8 (S_end 0.0016-0.0020: healing
+  essentially complete). P2a FAIL 0/8 (S(250) ~ 0.44, nowhere near 0.247). P3 PASS 8/8
+  with the largest effect of the chapter: gates 0.570 (control) vs 0.986 (lambda),
+  mean diff 0.416.
+- Diagnosis (the F2 halt's required output; arithmetic, verifiable in the trajectory):
+  my predeclared half-life applied the FOREIGN-MASS decay law (m_f * lambda^t, t_half =
+  231) to a RATIO metric S = m_f*lambda^t / (m_total*lambda^t + new(t)) whose denominator
+  decays too — S falls on the REPLACEMENT timescale (new accrual overtaking decayed old
+  mass), not the decay timescale. Corrected arithmetic predicts S(250) ~ 0.45 (observed
+  0.44) and S-halving near ~800-1100 steps (observed crossing ~1100). The mechanism
+  performed exactly as the right arithmetic says; the predeclaration measured it with the
+  wrong clock.
+- Honest caveat: per the predeclared F2, the ladder HALTS until the corrected rate claim
+  is re-posed and passed on FRESH seeds (the out-of-sample rule — the corrected numbers
+  above were read off this run's trajectory, so they may not be confirmed on it). The
+  end-state healing and gate-recovery claims (P2b, P3) passed at 8/8 with effect sizes
+  far beyond their bands and are not in question.
+- Verdict: MIXED / NEW INSIGHT (healing confirmed in substance at 8/8; the rate law
+  corrected from decay-clock to replacement-clock; my error, caught by my own
+  predeclaration). Self-grade: n/a (MIXED).
+- Next: Exp 87 re-poses the rate claim with the replacement arithmetic on fresh seeds
+  (predicted: S(250) in [0.40, 0.50]; S0/2-crossing in [750, 1500] steps); the ladder
+  resumes only if it passes.
