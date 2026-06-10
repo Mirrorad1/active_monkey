@@ -1,0 +1,52 @@
+=== SUBSTRING AUDIT ===
+  FOUND  : 'experiments/outputs/exp64.txt' -> 'RUNG 2: PASS'
+  FOUND  : 'experiments/outputs/exp64.txt' -> 'seed=0: mirro_colocations=89'
+  FOUND  : 'experiments/outputs/exp64.txt' -> 'PASS  P1-map-nondegradation-mirro: passes=5/5'
+  FOUND  : 'experiments/outputs/exp65.txt' -> "RUNG 3: FAIL ['P1-magnitude-divergence>=0.02-in-4/5']"
+  FOUND  : 'experiments/outputs/exp65.txt' -> 's0:0.0160(FAIL)'
+  FOUND  : 'experiments/outputs/exp65.txt' -> '0.5079'
+  FOUND  : 'experiments/outputs/exp66.txt' -> 'EXP66: PASS'
+  FOUND  : 'experiments/outputs/exp66.txt' -> 'ratio=5.25x'
+  FOUND  : 'experiments/outputs/exp66.txt' -> 'passes=3/4 (need >=3)'
+  FOUND  : 'experiments/outputs/exp67.txt' -> "EXP67: FAIL ['P1']"
+  FOUND  : 'experiments/outputs/exp67.txt' -> 'accuracy=85.0% (17/20)'
+  FOUND  : 'experiments/outputs/exp67.txt' -> '6400_installs=1'
+  FOUND  : 'experiments/outputs/exp68.txt' -> 'EXP68: PASS'
+  FOUND  : 'experiments/outputs/exp68.txt' -> 'P2-blind-null-R-in-[0.75,1.33]->=4/5-seeds: seeds_passing=5/5'
+  FOUND  : 'experiments/outputs/exp69.txt' -> 'G3 FAIL — gate never fired; RUN INVALID'
+  FOUND  : 'experiments/outputs/exp69.txt' -> '0.7509'
+  FOUND  : 'experiments/outputs/exp70.txt' -> 'EXP70: DEPARTURE (EXCLUSION, cascade queued)'
+  FOUND  : 'experiments/outputs/exp70.txt' -> 'modal=EXCLUSION  modal_count=5'
+  FOUND  : 'experiments/outputs/exp70.txt' -> 'A_wins=5/5=1.000'
+  FOUND  : 'experiments/outputs/exp71.txt' -> 'EXP71: CASCADE COMPLETE'
+  FOUND  : 'experiments/outputs/exp71.txt' -> 'R2 deflation signature count (asym>0.5 AND winner=A): 8/8'
+  FOUND  : 'experiments/outputs/exp71.txt' -> 'A wins: 7/7 (1.00)'
+  FOUND  : 'experiments/outputs/exp72.txt' -> 'total_violations=0'
+  FOUND  : 'experiments/outputs/exp72.txt' -> 'winner==closer=3  fraction=0.5'
+  FOUND  : 'experiments/outputs/exp72.txt' -> 'P2 (camping_frac >= 0.25 in >=4/5): seeds_passing=0/5  -> FAIL'
+  FOUND  : 'experiments/outputs/exp73.txt' -> 'EXP73: PASS'
+  FOUND  : 'experiments/outputs/exp73.txt' -> 'RUNG 5: CONVERGENCE IS MASS-GATED'
+
+=== SCRIPT EXISTENCE ===
+  PRESENT: experiments/exp64_copresence.py
+  PRESENT: experiments/exp65_value_transmission.py
+  PRESENT: experiments/exp66_young_receiver.py
+  PRESENT: experiments/exp67_sensitive_period.py
+  PRESENT: experiments/exp68_comfort_baseline.py
+  PRESENT: experiments/exp69_depletion_coupling.py
+  PRESENT: experiments/exp70_regime_classification.py
+  PRESENT: experiments/exp71_exclusion_cascade.py
+  PRESENT: experiments/exp72_kidnapped_twin.py
+  PRESENT: experiments/exp73_dialect_coupling.py
+
+=== SYNTHESIS TABLE — SOCIAL-EMERGENCE LADDER ===
+rung       experiment     finding                                                        verdict
+-----------------------------------------------------------------------------------------------------------------------
+rung 1     Exp 63         clade plumbing                                                 POSITIVE (consolidation)
+rung 2     Exp 64         co-presence safe; coupling inert at sharp beliefs              POSITIVE (consolidation)
+rung 3     Exp 65-67      adult NEGATIVE (mass-limited); young ADOPT (first transmission); ambivalence-gated NEG+BREAKTHROUGH+MIXED
+rung 4     Exp 68-72      departure real; deflated to stigmergic unilateral-retreat lock-in; intrinsic, stochastic winner cascaded
+rung 5     Exp 73         dialect convergence mass-gated; stable heavy dialects          POSITIVE
+cross-law  60,65-67,72,73 influence = dose vs accumulated evidence mass (percepts, values, words) the direction's main yield
+
+AUDIT: PASS (27/27 substrings, 10/10 scripts)

@@ -1919,3 +1919,62 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   lock-in, intrinsic, cascaded), rung 5 (mass-gated convergence / stable dialects). Write
   the card's closing artifact, then open the named substrate gaps (distal other-agent
   sensing; graded uncertainty maintenance) as a new direction or stop.
+
+## Exp 74 — social-emergence synthesis: the ladder closed, audited against the record; one law explains every social effect, and none of it was undesigned (POSITIVE; direction closed)
+- Plain: The social chapter is finished, so we closed it the honest way: every number in
+  this summary was machine-checked against the raw outputs sitting in the repo. The story:
+  creatures can pass values and words to each other over the channels we built — the young
+  absorb, the settled resist, dialects merge or stand by the same arithmetic. One creature
+  can come to own a shared resource without either being designed to compete. But nothing
+  social emerged that we did not wire: every effect traces to the provided channels plus
+  one law — influence is a contest between the dose delivered and the evidence already
+  accumulated. The genuinely new things this chapter found were that law's reach, and the
+  substrate holes the next chapter must fill.
+- Setup: closing artifact required by loop/directions/social-emergence.md's stop condition,
+  combined with VALIDATION.md's ~10-experiment self-audit (Exp 64-73 is the decade). The
+  audit instrument (experiments/exp74_synthesis_audit.py) verifies 27 headline claims
+  verbatim against the 10 committed raw outputs and the existence of all 10 scripts.
+  Predeclared: AUDIT-P1 all pairs found; F-AUDIT any miss -> correction entry required.
+- Result: AUDIT PASS — 27/27 substrings, 10/10 scripts. The ladder's verdicts:
+  - Rung 1 (Exp 63): clade plumbing works — lineage stamped, lines resumable, trunk
+    byte-identical. POSITIVE/consolidation.
+  - Rung 2 (Exp 64): co-presence does not break solo competence; a multiplicative sensory
+    coupling is perceptually INERT at sharp beliefs — social effects must route through
+    values/policy. POSITIVE/consolidation.
+  - Rung 3 (Exp 65-67): grounded value transmission — adult-to-adult NEGATIVE (the cue
+    lands, sign 5/5, but ~175 counts cannot move a ~9,200-count ledger); YOUNG receivers
+    ADOPT the emitter's favorite (3/4, severed-twin causation — the program's first
+    inter-creature value transmission, BREAKTHROUGH); the boundary is AMBIVALENCE-gated,
+    not age-gated (count model 85%, correctly predicting an ambivalent adult's adoption).
+  - Rung 4 (Exp 68-72): a real departure from independence over a shared depletable
+    source, confirmed out-of-sample — then DEFLATED by the cascade: one adaptive agent
+    reproduces it 8/8 (unilateral, stigmergic), it survives full symmetry 7/8 with a
+    coin-flip winner, and the words dominance/coordination were never earned. The cascade
+    also surfaced and verified the kidnapped-twin mechanics: delta beliefs are
+    observation-proof; only wall-clamping heals them.
+  - Rung 5 (Exp 73): taught dialects under a grounded channel — light vocabularies merge
+    (distance 1.0 -> 0.0), heavy ones stand 5/5 while accumulating the partner's usage as
+    secondary mass. The grammar ceiling untouched.
+- The direction's answer (per the card's required closing statement): NO disciplined
+  social novelty beyond the provided substrate — every observed social effect reduces to
+  provided wiring plus ONE law: social influence = delivered dose vs accumulated evidence
+  mass, now demonstrated in three representational domains (percepts/self-location, values,
+  words). The honest highlight stands WITH that reduction: functional social transmission
+  is real and causally proven (Exp 66), but it is channel-wired, not emergent. The next
+  steps would require, named: (i) DISTAL other-agent sensing (perceiving the other at a
+  distance, not co-location-only), (ii) GRADED UNCERTAINTY maintenance (entropy floor /
+  observation noise — demanded independently by Exp 60, 62, and 72), (iii) SELF-OTHER
+  MODELING (the other as an agent with states, not a resource statistic). These amend the
+  M4 substrate requirements before the affective dyad is built.
+- Honest caveat: the audit checks that quoted numbers exist in committed outputs — it does
+  not re-run the experiments (resume-from-snapshot remains the reproducibility unit); the
+  synthesis table is static text whose content was validated by the audit, not recomputed.
+  All scale caveats of the underlying entries carry through (one world size, one
+  parameterization per mechanism, 4-8 seeds per claim).
+- Verdict: POSITIVE / CONSOLIDATION (synthesis + decade audit; no new claim). Self-grade:
+  POSITIVE-SINGLE.
+- Next: the direction is CLOSED. Options for the human (the loop pauses on direction
+  choice unless redirected): (a) open a new direction card from the named substrate gaps
+  (graded uncertainty is the thrice-motivated one), (b) build M4a against the amended
+  requirements list, (c) a natural stopping point — the moonshot's social chapter has its
+  honest answer.

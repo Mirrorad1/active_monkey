@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:73, breakthrough:6, positive:38, wall:16, partial:13, from:4.81, to:4.00 };
+window.AM_TALLY = { total:74, breakthrough:6, positive:39, wall:16, partial:13, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -745,7 +745,17 @@ window.AM_EXPERIMENTS = [
     setup:"P taught the identity word-color map, Q the shifted one; at every same-cell meeting each speaks its best word for the color both are seeing and the other learns it, gated by its own predictability. The severed control is analytic — vocab is frozen without the channel. Light (n=8) vs heavy (n=40) teaching, with the dose (~24 gated counts) predeclared to land between them.",
     result:"All four predeclared properties pass 5/5. Light: cosine 0.02 to 0.99+, full argmax merger in 4/5 seeds. Heavy: zero argmax flips in 5/5 while cosine rises to 0.52-0.70 — stable dialects with partial mutual comprehension encoded as secondary mass. Which dialect wins the merger was not predeclared and varies; reported as observation.",
     implication:"Taught-label maps obey the same dose-versus-accumulated-mass arithmetic as percepts and values — the inertia law's third representational domain. At toy scale: young communities merge usage, entrenched ones form stable dialects. The grammar ceiling stands untouched, and the social-emergence ladder now has verdicts on every rung — the synthesis is next.",
-    trace:{ script:"experiments/exp73_dialect_coupling.py", output:"experiments/outputs/exp73.txt" } }
+    trace:{ script:"experiments/exp73_dialect_coupling.py", output:"experiments/outputs/exp73.txt" } },
+
+  { n:74, kind:"positive", chapter:"frontier",
+    title:"The social chapter closes — audited, one law, no magic.",
+    one:"The ladder's synthesis, machine-checked against the raw record (27/27 claims verified): values and words pass between creatures over built channels, ownership self-organizes — but nothing social emerged undesigned. One law spans it all: influence = dose vs accumulated evidence mass.",
+    plain:"The social chapter is finished, so we closed it the honest way: every number in the summary was machine-checked against the raw outputs in the repo. The story: creatures can pass values and words to each other over the channels we built — the young absorb, the settled resist, dialects merge or stand by the same arithmetic, and one creature can come to own a shared resource without either being designed to compete. But nothing social emerged that we did not wire. The genuinely new things were that law's reach, and the substrate holes the next chapter must fill.",
+    metric:{ from:27, to:27, unit:"headline claims verified against committed raw outputs" },
+    setup:"The direction card's required closing statement plus the every-ten-experiments self-audit: a checker script verifies 27 headline claims from Exp 64-73 verbatim against the ten committed output files, with any miss mandating a correction entry.",
+    result:"Audit pass, 27/27 and 10/10 scripts. Ladder verdicts: clade plumbing works; co-presence is safe but perceptually inert; value transmission fails adult-to-adult and succeeds into the young (first proven inter-creature transmission), gated by ambivalence not age; the shared-resource departure deflates to a unilateral stigmergic lock-in with a coin-flip winner; dialects merge light and stand heavy.",
+    implication:"The card's required answer: no disciplined social novelty beyond the provided substrate — every effect is wiring plus the dose-vs-mass law, now spanning percepts, values, and words. Named next substrates: distal other-agent sensing, graded uncertainty maintenance (thrice-motivated), self-other modeling. The M4 requirements list is amended; the direction is closed; the loop pauses on direction choice.",
+    trace:{ script:"experiments/exp74_synthesis_audit.py", output:"experiments/outputs/exp74.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

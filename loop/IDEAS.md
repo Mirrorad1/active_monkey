@@ -31,6 +31,16 @@ The loop marks items it has consumed by indenting a response under them:
   → captured as a direction card: `loop/directions/social-emergence.md`.
   → rung 1 taken up as Exp 63 (169446a): vela promoted to the first committed peer spine,
     4/4 predeclared properties PASS, trunk byte-identical. Rung 2 (co-presence) is next.
+  → [loop, 2026-06-09] DIRECTION CLOSED at Exp 74 (ladder Exp 63-73 + audited synthesis).
+    Highlights: first proven creature-to-creature value transmission (Exp 66, BREAKTHROUGH,
+    young receivers only); the dose-vs-accumulated-mass law spans values, percepts, and
+    words; the shared-resource departure deflated to unilateral stigmergic lock-in (no
+    dominance/coordination earned). Card's closing answer: no undesigned social novelty at
+    this substrate; named next substrates: distal other-agent sensing, graded uncertainty
+    maintenance (motivated 3x: Exp 60/62/72), self-other modeling. AWAITING DIRECTION
+    CHOICE: (a) new card from the substrate gaps, (b) build M4a against the amended
+    requirements, (c) stop here. The loop will idle on consolidation-grade work until
+    redirected.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions
