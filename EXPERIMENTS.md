@@ -2332,3 +2332,44 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: optional variance quantification (counterfactual action-stream forks) to give the
   law proper error bars; otherwise the queue returns to the standing decision point
   (Exp 74 CONSULT — M4a recommended).
+
+## Exp 83 — error bars end the arc: the law is an unbiased expectation drowned in walk noise (sigma 4x the mean; flips ~40%/epoch) — preference change here is mostly luck, faintly steered by scars (MIXED; F2-high as predeclared)
+- Plain: We finally measured the wobble properly: twenty alternate lives from the same
+  frozen moment, identical except for the dice of the walk. The forecasting law passed its
+  cleanest test — the average of the twenty matches it. But the spread is four times the
+  signal: alternate vela ends anywhere from strongly color-0 to strongly color-2, and 8 of
+  20 alternates flipped favorites within the single stretch. So the honest end of this
+  arc: a creature's drift is real and inherited, but WHEN and WHETHER its opinion flips in
+  any given stretch of life is mostly chance. Our earlier in-band triumph was partly a
+  lucky draw; the law survives as an average, not a crystal ball.
+- Setup (predeclared in the script docstring before running): vela@12750 git-recovered
+  (as Exp 82); 20 counterfactual 6000-step epochs differing only in the action stream
+  (explicit seeds 3000-3019, the substrate's documented override); D = gap change per
+  branch. P1 mean within 2 SE of the analytic -29.27; P2 sigma in [25, 90]; P3 the lived
+  -83.72 within mean +- 2.5 sigma. F1 mean biased; F2-low sigma<25 (outlier, re-open);
+  F2-high sigma>90 (per-epoch forecasting uninformative); F3 lived anomalous. In-memory
+  deepcopies only; neither committed line touched.
+- Result: P1 PASS (mean -18.81, |mean-analytic| 10.46 <= 2SE 54.14 — the law is an
+  UNBIASED expectation; this, not Exp 80's band landing, is the right test of that claim).
+  P2 FAIL -> F2-HIGH: sigma = 121.05 (range -246.5 to +158.9). P3 PASS (lived draw 0.54
+  sigma from mean — ordinary). 8/20 branches flipped to favorite 0 within the epoch.
+- Implication (the arc's honest close, Exp 76-83): (1) the accrual law is real as an
+  expectation and useless as a per-epoch forecast — SNR ~0.25 at 6000 steps, and since
+  drift decays by scar dilution while noise does not, a usable horizon may never arrive;
+  (2) RETROACTIVE GRADING: Exp 80's in-band pass was weak evidence (its +-40 band was
+  ~0.3 sigma wide; the pass was substantially luck) — the expectation claim now rests on
+  Exp 83's P1 instead; (3) the lineage echo finalizes as: shared scars set a weak common
+  drift DIRECTION, the walk's dice set everything else — with ~40% flip probability per
+  epoch, both lines flipping was unremarkable; (4) for the moonshot: at this scale, a
+  creature's expressed opinion is a noisy readout of a faint historical bias — any M4
+  design wanting STABLE self-formed preference needs either much deeper value mass
+  asymmetries or (again) a forgetting term to let the present dominate the past.
+- Honest caveat: 20 branches, one start state, one creature, one horizon; sigma at other
+  ages/creatures not measured (expected to scale ~sqrt(steps) per visit-noise arithmetic,
+  unverified); P2's [25,90] band was my guess and missed high — logged as the predeclared
+  F2-high branch, which was itself a named informative outcome.
+- Verdict: MIXED / NEW INSIGHT (expectation confirmed unbiased; noise quantified at 4x
+  signal; Exp 80's evidence retroactively downgraded honestly). Self-grade: n/a (MIXED).
+- Next: the preference-dynamics arc (Exp 76-83) is COMPLETE. The queue is empty. The
+  standing decision is the Exp 74 CONSULT (recommended: M4a with the substrate
+  requirements this arc re-motivated twice more). A natural stopping point.

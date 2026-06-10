@@ -1,0 +1,75 @@
+Exp 83 — error bars for the accrual law
+
+Recovering pre-epoch vela snapshot from e7220c1~1...
+  (derivable via: git show e7220c1~1:creature/state/vela/{manifest.json,arrays.npz})
+  scratch dir: experiments/outputs/exp83_pre_snapshot  [untracked; not committed — derivable from git history]
+
+Loaded vela: age=12750  hash=875ac30d715a
+
+Running 20 counterfactual branches (seeds 3000..3019, 6000 steps each)...
+
+  seed=3000  D=+120.3589  end_favorite=2
+  seed=3001  D=-43.9144  end_favorite=2
+  seed=3002  D=-109.6609  end_favorite=0
+  seed=3003  D=-52.5280  end_favorite=2
+  seed=3004  D=+156.3919  end_favorite=2
+  seed=3005  D=-29.8909  end_favorite=2
+  seed=3006  D=+46.9798  end_favorite=2
+  seed=3007  D=-129.0548  end_favorite=0
+  seed=3008  D=+3.9403  end_favorite=2
+  seed=3009  D=+47.1954  end_favorite=2
+  seed=3010  D=-136.2790  end_favorite=0
+  seed=3011  D=+39.8883  end_favorite=2
+  seed=3012  D=-125.4364  end_favorite=0
+  seed=3013  D=-155.9228  end_favorite=0
+  seed=3014  D=+158.8778  end_favorite=2
+  seed=3015  D=-63.1875  end_favorite=0
+  seed=3016  D=+124.7828  end_favorite=2
+  seed=3017  D=-135.8108  end_favorite=0
+  seed=3018  D=+153.6163  end_favorite=2
+  seed=3019  D=-246.5124  end_favorite=0
+
+--- STATISTICS ---
+  N                  = 20
+  mean(D)            = -18.8083
+  std(D) [ddof=1]    = 121.0496
+  SE = std/sqrt(N)   = 27.0675
+  analytic forecast  = -29.2669
+  |mean - analytic|  = 10.4586  (2*SE = 54.1350)
+  lived draw D       = -83.7173
+  |lived - mean|     = 64.9090  (2.5*std = 302.6240)
+  branches flipped to favorite=0: 8/20
+
+--- SORTED D VALUES (text histogram) ---
+   -246.51 |
+   -155.92 |#########
+   -136.28 |###########
+   -135.81 |###########
+   -129.05 |############
+   -125.44 |############
+   -109.66 |##############
+    -63.19 |##################
+    -52.53 |###################
+    -43.91 |####################
+    -29.89 |#####################
+     +3.94 |#########################
+    +39.89 |############################
+    +46.98 |#############################
+    +47.20 |#############################
+   +120.36 |####################################
+   +124.78 |#####################################
+   +153.62 |#######################################
+   +156.39 |########################################
+   +158.88 |########################################
+
+--- PROPERTY CHECKS ---
+  PASS  P1: |mean-analytic|=10.4586 <= 2*SE=54.1350 -> PASS
+  FAIL  P2: std=121.0496 in [25, 90] -> FAIL
+  PASS  P3: |lived-mean|=64.9090 <= 2.5*std=302.6240 -> PASS
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P1 PASS — mean within 2 SE of analytic).
+  F2 FIRED (high): std=121.05 > 90 -> per-epoch forecasting uninformative at this horizon; law expectation-only at much longer horizons.
+  F3 did not fire (P3 PASS — lived draw is an ordinary draw from the counterfactual ensemble).
+
+EXP83: FALSIFIER(S) FIRED — F2-high(std=121.0 > 90, law expectation-only at longer horizons)

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:82, breakthrough:6, positive:42, wall:18, partial:16, from:4.81, to:4.00 };
+window.AM_TALLY = { total:83, breakthrough:6, positive:42, wall:18, partial:17, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -835,7 +835,17 @@ window.AM_EXPERIMENTS = [
     setup:"vela's pre-epoch state recovered from git history, the 6000-step epoch replayed with live() replicated bit-for-bit, gated on reproducing the committed end-state hash exactly. The drift decomposes by construction into the forecast plus three measurable terms: visit noise, gate evolution, and mislocalization.",
     result:"Replay exact (hash match, identity residual zero). Visit noise -55.2 dominates; rate evolution +0.7; mislocalization exactly zero — vela self-located perfectly all 6000 steps, killing Exp 81's suspect twice over. The author's rate-evolution prediction was wrong, the third such reversal this chapter.",
     implication:"No converged-regime boundary: the accrual law survives as an expectation whose per-epoch realizations carry walk noise comparable to the mean — Exp 80's in-band landings were partly favorable draws, and the lineage echo weakens to shared expectation with noise-set timing. The exact-replay accounting itself joins the toolkit. The halt is resolved; the M4a decision remains the standing point.",
-    trace:{ script:"experiments/exp82_drift_accounting.py", output:"experiments/outputs/exp82.txt" } }
+    trace:{ script:"experiments/exp82_drift_accounting.py", output:"experiments/outputs/exp82.txt" } },
+
+  { n:83, kind:"partial", chapter:"frontier",
+    title:"Twenty alternate velas: opinion change is mostly luck.",
+    one:"The proper error bars: across 20 counterfactual lives the law's forecast is an unbiased mean (P1) — but sigma is 4x the signal (121 vs -29), 8/20 alternates flipped favorites, and Exp 80's in-band triumph is retroactively downgraded to a lucky draw. The arc closes: drift is inherited, timing is dice.",
+    plain:"We finally measured the wobble properly: twenty alternate lives from the same frozen moment, identical except for the dice of the walk. The forecasting law passed its cleanest test — the average of the twenty matches it. But the spread is four times the signal: alternate vela ends anywhere from strongly one color to strongly the other, and eight of twenty flipped favorites within the single stretch. A creature's drift is real and inherited, but when and whether its opinion flips is mostly chance. The law survives as an average, not a crystal ball.",
+    metric:{ from:121.0, to:-29.3, unit:"sigma of per-epoch drift vs the law's expected drift" },
+    setup:"Twenty counterfactual 6000-step epochs from the git-recovered pre-anomaly state, differing only in the action stream. Predeclared: the mean matches the analytic forecast within 2 SE; sigma lands in a stated band; the actually-lived draw is ordinary. The sigma band's high side was an explicitly named informative branch.",
+    result:"Mean -18.8, within 2 SE of -29.3 — the law is an unbiased expectation, now properly tested. Sigma 121, far above the band's top: per-epoch forecasting is uninformative (signal-to-noise about 0.25, and the drift decays while the noise does not). The lived anomaly sits half a sigma from the mean — ordinary. Flip probability ~40% per epoch, making both lines' flips unremarkable.",
+    implication:"The preference-dynamics arc (Exp 76-83) closes with its honest physics: expressed opinion at this scale is a noisy readout of a faint historical bias. Exp 80's evidence is retroactively downgraded and replaced by the right test. For M4: stable self-formed preference needs deeper mass asymmetries or a forgetting term that lets the present dominate the past. The queue is empty; the M4a decision stands.",
+    trace:{ script:"experiments/exp83_law_error_bars.py", output:"experiments/outputs/exp83.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
