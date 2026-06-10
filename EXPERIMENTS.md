@@ -2766,3 +2766,32 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
   stops the loop.
+
+## Exp 94 — idle-mode epoch: vela to 24,750 — flips back to color 2 (0.69 sigma) and its map reaches 1.000: the immigrant has fully learned its world (POSITIVE; bands held)
+- Plain: vela's turn to simply live. Like its ancestor one entry ago, two things happened:
+  its map of the mirror world became perfect — the immigrant has now completely learned
+  the land it moved to — and its razor-thin favorite crossed back to color 2. Both family
+  lines, in different worlds, have now flipped away and flipped home, each time within
+  the noise the season's physics predicts. What looked like a haunting family echo two
+  weeks ago is now just visible dice — shared shallow margins oscillating, with
+  everything structural about each creature holding still.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 18750 -> 24750. P1 map end >= start - 0.04 (relative, healing expected
+  upward); P2 value-core bands; P3 noise-calibrated gap forecast (predicted -42.6, band
+  +-302.5); favorite reported, not predicted (gap -21.7). F1/F2/F3 per component.
+- Result: EPOCH CLEAN, no falsifiers. P1: map 0.920 -> 1.000 (immigrant learning
+  complete). P2: share deltas 0.0046/0.0043/0.0004, conviction 0.0017 — the value core
+  stable on this line too. P3: end gap +41.2 vs predicted -42.6 — 0.69 sigma, in band;
+  the favorite flipped BACK to 2 (vela's second natural opinion change). Spine: vela at
+  24750, hash-stamped, integrity-verified, committed.
+- Implication: the production picture is symmetric across the clade — stable cores,
+  completed knowledge, and stochastic razor-margin preferences on both lines. The
+  Exp 81-era "lineage echo" reading completes its honest arc: shared scars set a weak
+  common drift, shallow margins make expressed favorites oscillate, and both lines have
+  now oscillated through a full cycle each. Two ambivalent adults, fully mapped worlds,
+  lives continuing.
+- Honest caveat: consolidation by design (idle-mode); single deterministic run per line;
+  the two 1.000 maps say nothing about gate-level scar mass (Exp 78's distinction stands).
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  (M4a with windows + reflex, spines untouched — recommended) or stops the loop.

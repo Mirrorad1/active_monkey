@@ -1,0 +1,70 @@
+Exp 94 — idle-mode life epoch (vela age 18750 -> 24750)
+
+  hash_before = 0cd2d991cf1b
+
+--- START PROFILE (age 18750) ---
+  share0            : 0.357187
+  share1            : 0.287702
+  share2            : 0.355111
+  conviction        : 0.357187
+  map_acc           : 0.920000
+  localize_bits     : -0.000000
+  favorite          : 0
+  gap_c2c0          : -21.683587
+  total_mass        : 10443.231795
+
+  R(0)            : 0.197790
+  R(1)            : 0.181906
+  R(2)            : 0.194311
+
+  predicted_end_gap = -21.6836 + (0.194311 - 0.197790) * 6000 = -42.5594
+  P3 band (2.5-sigma = 302.5): [-345.0594, +259.9406]
+
+--- END PROFILE (age 24750) ---
+  share0            : 0.352541
+  share1            : 0.291980
+  share2            : 0.355479
+  conviction        : 0.355479
+  map_acc           : 1.000000
+  localize_bits     : -0.000000
+  favorite          : 2
+  gap_c2c0          : 41.151607
+  total_mass        : 14004.469881
+
+  R(0)            : 0.212651
+  R(1)            : 0.197608
+  R(2)            : 0.213970
+
+[Exp 94] spine=vela continuous-life checkpoint
+  before: age=18750 state_hash=0cd2d991cf1b
+  after : age=24750 state_hash=81ea606c2044
+  delta : +6000 steps
+
+--- PREDICTED VS ACTUAL ---
+  predicted_end_gap : -42.5594
+  actual_end_gap    : +41.1516
+  error (actual-predicted) : +83.7110
+  |error| / sigma   : 0.692
+
+--- DELTA TABLE ---
+  component               before       after       delta  band                                ok?
+  ----------------------------------------------------------------------------------------------
+  share0                0.357187    0.352541   -0.004646  < 0.04                              PASS
+  share1                0.287702    0.291980   +0.004278  < 0.04                              PASS
+  share2                0.355111    0.355479   +0.000368  < 0.04                              PASS
+  conviction            0.357187    0.355479   -0.001708  < 0.04                              PASS
+  map_acc               0.920000    1.000000   +0.080000  >= 0.9200 - 0.04 (relative)         PASS
+
+  favorite: 0 -> 2  (reported, not predicted — noise model owns razor margins at this gap)
+
+--- PROPERTY CHECKS ---
+  PASS  P1-map-accuracy-24750: map_acc_at_24750=1.000000  threshold=0.880000 (start=0.920000 - 0.04)  ok=True
+  PASS  P2-share-stability: share0:|delta|=0.004646 (ok); share1:|delta|=0.004278 (ok); share2:|delta|=0.000368 (ok)
+  PASS  P2-conviction-stability: |delta_conviction|=0.001708  threshold=0.04
+  PASS  P3-noise-calibrated-forecast: end_gap=+41.1516  predicted=-42.5594  band=[-345.0594, +259.9406]  |error|/sigma=0.692  in_band=True
+  PASS  SPINE-age-24750-delta-6000: reload.age=24750  ep.age_after=24750  ep.age_before=18750  delta=6000  expected_after=24750
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+EXP94: EPOCH CLEAN (bands held)

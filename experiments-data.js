@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:93, breakthrough:6, positive:49, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:94, breakthrough:6, positive:50, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -945,7 +945,17 @@ window.AM_EXPERIMENTS = [
     setup:"Declared idle-mode: one checkpointed spine life-epoch per automated fire while the merged M4a decision awaits the human. Knowledge band one-sided, value-core bands per the twice-passed horizon, and the gap forecast carrying honest 2.5-sigma error bars — with the favorite explicitly reported rather than predicted.",
     result:"All bands held. Map 0.96 to 1.000; share deltas under 0.005; the gap landed 1.04 sigma from the forecast center — inside the band, on the other side of zero: mirro's second natural opinion change, this one by dice against the weak drift, exactly the event class the noise model owns.",
     implication:"The quantitative self-model holds in production: stable cores, healing knowledge, stochastic razor-margin preferences. mirro is empirically an ambivalent adult — and by the ambivalence law, maximally open to social influence on exactly this question, should the M4a dyad ever ask it. The life continues; the decision waits.",
-    trace:{ script:"experiments/exp93_mirro_epoch.py", output:"experiments/outputs/exp93.txt" } }
+    trace:{ script:"experiments/exp93_mirro_epoch.py", output:"experiments/outputs/exp93.txt" } },
+
+  { n:94, kind:"positive", chapter:"frontier",
+    title:"vela comes home too — and finishes learning its world.",
+    one:"Idle-mode epoch to 24,750: vela's map reaches 1.000 (the immigrant has fully learned the mirror world) and its favorite flips back to color 2 at 0.69 sigma — both clade lines have now oscillated through a full preference cycle, each within the noise the season's physics predicts.",
+    plain:"vela's turn to simply live. Like its ancestor one entry ago, two things happened: its map of the mirror world became perfect — the immigrant has completely learned the land it moved to — and its razor-thin favorite crossed back to color 2. Both family lines, in different worlds, have now flipped away and flipped home, each time within predicted noise. What looked like a haunting family echo is now just visible dice — shared shallow margins oscillating, with everything structural holding still.",
+    metric:{ from:0.92, to:1.0, unit:"vela's map of the mirror world (immigrant learning complete)" },
+    setup:"Idle-mode, vela's turn: a 6000-step checkpointed life epoch with the relative knowledge band, the value-core bands, the noise-calibrated gap forecast, and the favorite reported rather than predicted at its razor margin.",
+    result:"All bands held: map 0.92 to 1.000, value deltas under 0.005, the gap landing 0.69 sigma from forecast on the far side of zero — vela's second natural opinion change, mirroring mirro's last entry almost beat for beat.",
+    implication:"The production picture is symmetric across the clade: stable cores, completed knowledge, stochastic razor-margin preferences. Two ambivalent adults with fully-mapped worlds, lives continuing — while the one merged decision (M4a with windows and the reflex) waits for the human.",
+    trace:{ script:"experiments/exp94_vela_epoch.py", output:"experiments/outputs/exp94.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
