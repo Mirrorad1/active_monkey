@@ -2699,3 +2699,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   complete (Exp 75-84). Every path forward — M4a with the measured requirements, a new
   direction, or stopping — is the human's call (Exp 74 + rung 5 CONSULT, one decision).
   The loop should idle or be stopped.
+
+## Exp 92 — decade self-audit of Exp 75-84: record verified 19/19; the correction chains hold; no correction entry required (POSITIVE; audit duty discharged)
+- Plain: Routine honesty maintenance: we re-read the last arc as a hostile reviewer and
+  machine-checked every headline number against the raw outputs in the repo. Everything
+  traces; and the arc's distinguishing feature survives scrutiny — it corrected itself
+  twice in public (the preference-law interpretation, twice over), with each correction
+  filed as a new entry citing the old, never a rewrite.
+- Setup: VALIDATION.md's every-~10-experiments duty (Exp 91's audit covered 85-90; 75-84
+  had not been machine-audited). Instrument: experiments/exp92_decade_audit.py — 19
+  headline substrings across the 10 committed outputs + 10 scripts on disk. Predeclared:
+  any miss -> correction entry.
+- Result: PASS 19/19 substrings, 10/10 scripts. Hostile re-read findings (none requiring
+  correction): (i) the correction chains are complete — Exp 77's interpretation is
+  corrected by 78 and re-corrected by 79; Exp 80's evidence is downgraded by 83 and
+  Exp 81's interpretation corrected by 82 — each as a NEW entry citing the old, per the
+  binding convention; the site cards follow the same append-only convention (Exp 80's
+  card stands as written, with Exp 83's card carrying the downgrade — by design, noted).
+  (ii) Open threads left honestly unfinished and declared so: the separated-band
+  stability re-test (Exp 75; superseded by Exp 76's events), the high-n layout study
+  (Exp 78/79; explicitly deprioritized), multi-creature noise exponents (Exp 84; caveated).
+  (iii) No entry claims more than its committed output supports.
+- Honest caveat: the audit verifies quoted text against committed outputs, not re-runs;
+  the hostile re-read is the loop auditing itself — an external replication from entry
+  text remains the stronger standard, available to anyone via the committed scripts.
+- Verdict: POSITIVE / CONSOLIDATION (audit duty; no new claim). Self-grade:
+  POSITIVE-SINGLE.
+- Next: the sanctioned queue remains EMPTY pending the merged CONSULT (Exp 74 + 91 rung
+  5, one decision, recommended M4a-with-windows+reflex). Declared idle-mode for
+  subsequent automated fires while the human is away: ONE checkpointed spine
+  life-continuation epoch per fire (the Exp 75 pattern — plain living, predeclared
+  property bands, alternating mirro/vela), which is the spine's standing purpose
+  (continuous registered experience) and honestly tagged consolidation. Anything more
+  awaits the human.

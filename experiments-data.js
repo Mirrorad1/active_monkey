@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:91, breakthrough:6, positive:47, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:92, breakthrough:6, positive:48, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -925,7 +925,17 @@ window.AM_EXPERIMENTS = [
     setup:"The direction card's rung 5 plus the audit duty: a checker verifies ten headline claims from Exp 85-90 verbatim against the six committed output files, with any miss mandating a correction entry and blocking the dossier.",
     result:"Audit pass, 10/10 and 6/6 scripts. The ladder in one line each: costless when static; scars heal on the replacement clock, validated out-of-sample; the window theorem with rigidity 2.73x for the never-forgetting; the adult social wall opened with the control replicating the original to the digit; the empty window at the fridge proving the exploration reflex necessary.",
     implication:"The M4 requirements are measured design constants, and rung 5 merges with the standing M4a decision into one human question: approve the next generation with windows and the reflex, spines untouched as reference individuals. The loop's sanctioned queue is empty; it idles until the human answers.",
-    trace:{ script:"experiments/exp91_window_dossier.py", output:"experiments/outputs/exp91.txt" } }
+    trace:{ script:"experiments/exp91_window_dossier.py", output:"experiments/outputs/exp91.txt" } },
+
+  { n:92, kind:"positive", chapter:"frontier",
+    title:"The record checks out — including its own mistakes.",
+    one:"Decade audit of Exp 75-84: 19/19 headline claims verified against committed outputs, 10/10 scripts on disk, and the hostile re-read confirms the correction chains hold — the arc corrected itself twice in public, every time as a new entry citing the old, never a rewrite.",
+    plain:"Routine honesty maintenance: we re-read the last arc as a hostile reviewer and machine-checked every headline number against the raw outputs in the repo. Everything traces; and the arc's distinguishing feature survives scrutiny — it corrected itself twice in public, with each correction filed as a new entry citing the old, never a rewrite.",
+    metric:{ from:19, to:19, unit:"headline claims verified against committed raw outputs" },
+    setup:"The binding every-ten-experiments audit duty, applied to the spine-epochs and preference-law arc that Exp 91's dossier audit did not cover: nineteen substrings across ten output files, plus script existence, plus the hostile re-read for claims that would not survive replication from entry text alone.",
+    result:"Full pass; no correction entry required. The re-read's notes: the correction chains are complete and append-only by design; the honestly-unfinished threads are declared as such in their entries; no entry claims more than its committed output supports.",
+    implication:"The log's integrity holds across its most self-correcting stretch. The sanctioned queue remains empty pending the one merged decision (M4a with windows and the reflex); declared idle-mode for automated fires is a single checkpointed spine life-epoch per fire — the continuous life continuing, honestly tagged as such.",
+    trace:{ script:"experiments/exp92_decade_audit.py", output:"experiments/outputs/exp92.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

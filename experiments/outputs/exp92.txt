@@ -1,0 +1,48 @@
+=== SUBSTRING AUDIT ===
+  FOUND  : 'experiments/outputs/exp75.txt' -> 'EXP75: UNSTABLE (F1 branch)'
+  FOUND  : 'experiments/outputs/exp75.txt' -> '0.160000'
+  FOUND  : 'experiments/outputs/exp76.txt' -> 'EXP76: F2 — NATURAL FLIP at checkpoint 4'
+  FOUND  : 'experiments/outputs/exp76.txt' -> '-32.0552'
+  FOUND  : 'experiments/outputs/exp77.txt' -> 'EXP77: H1 CONFIRMED (gate asymmetry is the accrual law)'
+  FOUND  : 'experiments/outputs/exp77.txt' -> 'ratio=predicted/observed=-43.8195/-37.3051=1.1746'
+  FOUND  : 'experiments/outputs/exp78.txt' -> 'EXP78: F1 — aliasing reading WRONG (correction required)'
+  FOUND  : 'experiments/outputs/exp79.txt' -> 'EXP79: F1 — mechanism wrong (re-correction needed)'
+  FOUND  : 'experiments/outputs/exp79.txt' -> 'P3 INVALID'
+  FOUND  : 'experiments/outputs/exp80.txt' -> 'EXP80: LAW HOLDS FORWARD (P1+P2+P3)'
+  FOUND  : 'experiments/outputs/exp80.txt' -> '-44.8358'
+  FOUND  : 'experiments/outputs/exp81.txt' -> 'EXP81: F1 — law fails out-of-individual, HALT'
+  FOUND  : 'experiments/outputs/exp81.txt' -> '-21.6836'
+  FOUND  : 'experiments/outputs/exp82.txt' -> 'EXP82: DIAGNOSIS — dominant term = Delta_visit (-55.2 of -83.7); prediction wrong'
+  FOUND  : 'experiments/outputs/exp82.txt' -> '1.0000 (6000/6000 steps)'
+  FOUND  : 'experiments/outputs/exp83.txt' -> 'std(D) [ddof=1]    = 121.0496'
+  FOUND  : 'experiments/outputs/exp83.txt' -> 'branches flipped to favorite=0: 8/20'
+  FOUND  : 'experiments/outputs/exp84.txt' -> 'EXP84: F1 — exponent(s) 0.61/0.72, not sqrt-t'
+  FOUND  : 'experiments/outputs/exp84.txt' -> '0.0472'
+
+=== SCRIPT EXISTENCE ===
+  PRESENT: experiments/exp75_undisturbed_epoch.py
+  PRESENT: experiments/exp76_margin_watch.py
+  PRESENT: experiments/exp77_accrual_diagnosis.py
+  PRESENT: experiments/exp78_aliasing_isolation.py
+  PRESENT: experiments/exp79_early_tax.py
+  PRESENT: experiments/exp80_forward_test.py
+  PRESENT: experiments/exp81_vela_forward.py
+  PRESENT: experiments/exp82_drift_accounting.py
+  PRESENT: experiments/exp83_law_error_bars.py
+  PRESENT: experiments/exp84_noise_scaling.py
+
+=== ARC TABLE — EXP 75-84 (SPINE EPOCHS / ACCRUAL-LAW / NOISE MODEL) ===
+exp  finding                                                                    verdict
+------------------------------------------------------------------------------------------------------
+75   value core stable, map self-heals, band design error                       MIXED
+76   the spine's first natural opinion flip                                     MIXED-F2
+77   accrual law confirmed (interpretation later corrected by 78-79)            POSITIVE+corrected
+78   aliasing reading falsified; scar verified; (its own effect un-replicated by 79) MIXED+corrected
+79   re-correction: layout effect was noise; effect-size rule added             NEGATIVE
+80   law holds forward (evidence later downgraded by 83)                        POSITIVE+downgraded
+81   law fails out-of-individual (interpretation corrected by 82)               NEGATIVE+corrected
+82   bit-exact replay: it was walk noise                                        POSITIVE
+83   sigma 4x mean; flips ~40%/epoch                                            MIXED
+84   superdiffusive noise over saturating signal                                MIXED
+
+DECADE AUDIT: PASS (19/19 substrings, 10/10 scripts)
