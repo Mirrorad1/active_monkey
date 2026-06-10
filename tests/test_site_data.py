@@ -231,6 +231,34 @@ def test_all_kinds_valid():
     )
 
 
+def _entry_plain_fields():
+    """Return list of (n, plain_text) for every AM_EXPERIMENTS entry.
+
+    plain is the layman's "in plain terms" — what we're really testing, no jargon —
+    rendered above the technical setup in the journey. Required on every entry.
+    """
+    results = []
+    for n, blk in _split_entries():
+        m = re.search(r'plain\s*:\s*"((?:[^"\\]|\\.)*)"', blk, re.DOTALL)
+        results.append((n, m.group(1) if m else None))
+    return results
+
+
+def test_all_entries_have_plain():
+    """Every AM_EXPERIMENTS entry has a non-empty, substantive `plain` field.
+
+    Guards the convention (loop/PROTOCOL.md step 5/6): every experiment carries a
+    plain-language "what are we really testing" line alongside the in-depth setup.
+    """
+    missing = []
+    for n, plain in _entry_plain_fields():
+        if plain is None:
+            missing.append(f"Exp {n}: no `plain` field")
+        elif len(plain.strip()) < 20:
+            missing.append(f"Exp {n}: `plain` too short ({len(plain.strip())} chars): {plain!r}")
+    assert not missing, "Entries missing a plain-language field:\n" + "\n".join(missing)
+
+
 def test_breakthrough_entries_have_story():
     """Every kind:'breakthrough' entry has a non-empty story field (> 200 chars)."""
     stories = _breakthrough_stories()
