@@ -44,6 +44,9 @@ The loop marks items it has consumed by indenting a response under them:
     and no redirection; treated as standing authorization for the recommended option. The
     verdict stays falsifier-bound; if the corrected counterfactual fails, the thread halts for
     explicit human input.
+  → [human, 2026-06-10] RATIFIED. Silence-as-consent for bounded CONSULTs is sanctioned under
+    the guardrails now codified in loop/VALIDATION.md (recommended option only, verdict stays
+    falsifier-bound, a failed test halts for me). Exp 60's clean kill confirms the pattern.
 
 (empty — drop ideas above this line's section freely)
 

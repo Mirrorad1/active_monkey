@@ -72,6 +72,23 @@ A flattering false log is worthless. These rules bind every experiment entry.
 - **The biography (BIOGRAPHY.jsonl) is append-only**, same rule as EXPERIMENTS.md.
   Never edit past biography entries; corrections are new entries that cite the old ones.
 
+## Human consults & escalation (ratified 2026-06-10)
+
+When a thread reaches a genuine decision point, the loop may post a **CONSULT** to
+`loop/IDEAS.md` stating: the evidence, the options, a clearly-recommended option, and the
+predeclared falsifier that still binds. The human has **ratified silence-as-consent** for
+these, under strict guardrails:
+
+- The loop may proceed on its **stated recommended option** if the human resumes the loop
+  without redirection. Silence counts as approval ONLY for that recommended option — never
+  for a different branch, and never for anything not framed as a bounded CONSULT.
+- The verdict must stay **falsifier-bound**: if the predeclared test then fails, the thread
+  **HALTS for explicit human input** — it may not reinterpret the failure and continue.
+- The disposition is recorded under the CONSULT bullet in `IDEAS.md` ("→ taken up as Exp NN
+  (option X): treated as standing authorization …"). Never silently.
+- Precedent: Exp 58 consult → Exp 60 (option a), which then killed the candidate as lawful
+  on its predeclared falsifier. That is the sanctioned pattern.
+
 ## Self-audit (when asked, or every ~10 experiments)
 Reread the last N entries as a hostile reviewer: would each claim survive a replication
 by someone who only has the entry text? Log discrepancies as a correction entry.
