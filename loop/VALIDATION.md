@@ -70,6 +70,12 @@ A flattering false log is worthless. These rules bind every experiment entry.
   (before/after) in the EXPERIMENTS.md entry. Exact re-run does not apply to a lived
   creature; **resume-from-snapshot** replaces it as the reproducibility unit.
 
+- **Patterns noticed post-hoc must be tested on FRESH seeds** (added after Exp 70): under
+  this repo's deterministic rng scheme, re-running the same seeds reproduces byte-identical
+  trajectories — "predeclaring" a regime seen in run data and re-testing on those seeds is
+  circular by construction. Fix the classification from the old data (disclosed), then
+  test out-of-sample on seeds never run.
+
 - **Lifelong-individual claims** ("its history made it X") require a counterfactual
   control: a `fork()` twin run on the alternative history, or a cohort. An uncontrolled
   biography anecdote is an anecdote — label it explicitly as such. Do not present it as
