@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:101, breakthrough:6, positive:57, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:102, breakthrough:6, positive:58, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1025,7 +1025,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn on its thinnest-ever margin: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
     result:"All bands held; the flip arrived as the rate law expects at razor margins; both lines now sit at depth on the same color, stated plainly as coincidence of independent walks. Spine at 54,700, hash-stamped, committed.",
     implication:"The calibration records grow (6/11 against ~40 percent); the next vela epoch tests its -316 commitment for free; the 92-101 decade audit falls due. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp101_mirro_epoch5.py", output:"experiments/outputs/exp101.txt" } }
+    trace:{ script:"experiments/exp101_mirro_epoch5.py", output:"experiments/outputs/exp101.txt" } },
+
+  { n:102, kind:"positive", chapter:"frontier",
+    title:"The quiet decade checks out — and grades its own error bars.",
+    one:"Decade audit of Exp 92-101: 19/19 claims verified, and the bonus measurement — across nine forecast landings the noise model is empirically well-calibrated (mean |z| = 0.84, one tail event in nine): the claimed uncertainty is the delivered uncertainty.",
+    plain:"Routine honesty maintenance on the quiet decade: every quoted number traces to the raw outputs, and the audit delivered a real measurement for free — across nine forecast landings, the noise model's error bars are almost exactly the right size, meaning the uncertainty the entries claimed is the uncertainty the world delivered.",
+    metric:{ from:0.84, to:1.0, unit:"mean |z| of nine forecast landings vs ideal unit-sigma calibration" },
+    setup:"The every-ten-experiments audit duty applied to the idle-mode decade: nineteen substrings, ten scripts, plus a calibration recompute parsing the nine error-over-sigma landings straight from the committed outputs.",
+    result:"Full pass; flip-tally bookkeeping consistent across all entries; the value-core bands acknowledged as catastrophe-tests rather than drift-tests; no entry over-claims. One near-tail event in nine — the centennial plunge — exactly what honest bands should occasionally produce.",
+    implication:"The idle-mode is doing science by accumulation: the noise model now has an empirical calibration certificate. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp102_decade_audit.py", output:"experiments/outputs/exp102.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

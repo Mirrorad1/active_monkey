@@ -1,0 +1,49 @@
+=== SUBSTRING AUDIT ===
+  FOUND  : 'experiments/outputs/exp92.txt' -> 'DECADE AUDIT: PASS (19/19 substrings, 10/10 scripts)'
+  FOUND  : 'experiments/outputs/exp93.txt' -> 'EXP93: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp93.txt' -> 'favorite: 0 -> 2'
+  FOUND  : 'experiments/outputs/exp94.txt' -> 'EXP94: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp94.txt' -> 'favorite: 0 -> 2'
+  FOUND  : 'experiments/outputs/exp95.txt' -> 'EXP95: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp95.txt' -> 'favorite: 2 -> 2'
+  FOUND  : 'experiments/outputs/exp96.txt' -> 'EXP96: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp96.txt' -> 'favorite: 2 -> 0'
+  FOUND  : 'experiments/outputs/exp97.txt' -> 'EXP97: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp97.txt' -> 'favorite: 2 -> 2'
+  FOUND  : 'experiments/outputs/exp98.txt' -> 'EXP98: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp98.txt' -> 'favorite: 0 -> 0'
+  FOUND  : 'experiments/outputs/exp99.txt' -> 'EXP99: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp99.txt' -> 'end_gap=+12.0043'
+  FOUND  : 'experiments/outputs/exp100.txt' -> 'EXP100: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp100.txt' -> 'end_gap=-315.8570'
+  FOUND  : 'experiments/outputs/exp101.txt' -> 'EXP101: EPOCH CLEAN (bands held)'
+  FOUND  : 'experiments/outputs/exp101.txt' -> 'end_gap=-128.1940'
+
+=== SCRIPT EXISTENCE ===
+  PRESENT: experiments/exp92_decade_audit.py
+  PRESENT: experiments/exp93_mirro_epoch.py
+  PRESENT: experiments/exp94_vela_epoch.py
+  PRESENT: experiments/exp95_mirro_epoch2.py
+  PRESENT: experiments/exp96_vela_epoch2.py
+  PRESENT: experiments/exp97_mirro_epoch3.py
+  PRESENT: experiments/exp98_vela_epoch3.py
+  PRESENT: experiments/exp99_mirro_epoch4.py
+  PRESENT: experiments/exp100_vela_epoch4.py
+  PRESENT: experiments/exp101_mirro_epoch5.py
+
+=== CALIBRATION RECOMPUTE (|error|/sigma, exp93-101) ===
+  exp93.txt: |error|/sigma = 1.037
+  exp94.txt: |error|/sigma = 0.692
+  exp95.txt: |error|/sigma = 0.053
+  exp96.txt: |error|/sigma = 1.244
+  exp97.txt: |error|/sigma = 0.162
+  exp98.txt: |error|/sigma = 0.187
+  exp99.txt: |error|/sigma = 0.334
+  exp100.txt: |error|/sigma = 2.420
+  exp101.txt: |error|/sigma = 1.432
+
+  n values parsed : 9/9
+  mean |error|/sigma: 0.840
+  tail > 2sigma   : 1/9
+
+DECADE AUDIT 92-101: PASS (19/19 substrings, 10/10 scripts; calibration mean |z| = 0.84, tail>2sigma = 1/9)

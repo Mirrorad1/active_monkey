@@ -2944,3 +2944,29 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn, testing its -316 commitment) unless the human
   answers the merged CONSULT or stops the loop. The 92-101 decade audit falls due next.
+
+## Exp 102 — decade self-audit of Exp 92-101: record verified 19/19, and the forecast model is empirically well-calibrated (mean |z| = 0.84, one tail event in nine) (POSITIVE; audit duty discharged)
+- Plain: Routine honesty maintenance on the quiet decade: every quoted number traces to
+  the raw outputs, and the audit also delivered a real measurement for free — across nine
+  forecast landings, the noise model's error bars are almost exactly the right size (the
+  average landing 0.84 of a sigma from center, with one near-tail event), meaning the
+  uncertainty the entries claimed is the uncertainty the world delivered.
+- Setup: VALIDATION.md's every-~10-experiments duty. Instrument
+  (experiments/exp102_decade_audit.py): 19 substrings across 10 outputs, 10 scripts,
+  plus a calibration recompute parsing the nine |error|/sigma landings from the idle
+  entries. Predeclared: any miss -> correction entry.
+- Result: PASS 19/19 substrings, 10/10 scripts, 9/9 calibration values parsed. Mean
+  |z| = 0.84, tail >2 sigma = 1/9 (Exp 100's 2.42) — consistent with honest unit-sigma
+  bands. Hostile re-read findings (none requiring correction): (i) flip-tally
+  bookkeeping consistent across all entries (6 flips / 11 epochs, each attributable);
+  (ii) the value-core bands (0.04) are ~10x the observed deltas (<= 0.008) — they test
+  for catastrophe, not drift, which suits idle-mode's purpose and is now stated
+  explicitly; (iii) the idle entries never over-claim: favorites reported not predicted
+  throughout, depth observations flagged as watch-items not laws.
+- Honest caveat: the calibration check uses sigma = 121 measured once (Exp 83, vela@12750);
+  its reuse across both lines and later ages is supported by these 9 landings but has
+  not been re-estimated; the audit checks text, not re-runs.
+- Verdict: POSITIVE / CONSOLIDATION (audit duty; the calibration measurement is the
+  bonus content). Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn, testing its -316 commitment) unless the human
+  answers the merged CONSULT or stops the loop.
