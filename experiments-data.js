@@ -588,6 +588,7 @@ window.AM_EXPERIMENTS = [
 
   { n:58, kind:"partial", chapter:"frontier",
     title:"The law predicts 23 of 24 outcomes — and the counterfactual trips over my decimal.",
+    plain:"If 'set in its ways' is really just arithmetic — too much stored evidence versus a fast-changing world — we should be able to predict exactly which creatures keep up. We could: 23 of 24 calls correct. The cure (forgetting) misfired only because we made it forget far too hard.",
     one:"Per-outcome rule R<1 ⟺ recovery holds at 95.8% across a mass-swept cohort; the forgetting variant failed because λ=0.9 per step erased memory itself. Human consulted per predeclaration.",
     metric:{ from:23, to:24, unit:"outcomes predicted correctly" },
     setup:"Cascade round 2, corrected kill test: newborns settled 50/250/1000 steps run the drift schedule while the script predicts each segment's outcome from the creature's own count mass (R = outgoing-color mass / 20). Counterfactual: a forgetting creature (pA×0.9/step, declared) that the law says should track.",
@@ -597,6 +598,7 @@ window.AM_EXPERIMENTS = [
 
   { n:59, kind:"positive", chapter:"frontier",
     title:"Around the locked door — and the greedy twin waits there forever.",
+    plain:"Lock a door on the shortest path to a goal the navigator was never warned about. Can it notice, back up, and go the long way around? Yes — while a short-sighted version of the same navigator just stands at the locked door, because every step away from the goal looks worse to it.",
     one:"Levin transplant: with generic failure-learning, the planning agent routes around a lock it has no handler for (5/5, against-gradient steps in every run); the 1-step greedy control stalls at the start in 2/5 seeds.",
     metric:{ from:29.8, to:46.0, unit:"mean steps: horizon vs greedy" },
     setup:"A locked cell on the only short path to a corner-pocket goal. The provided harness: value-iteration planning, softmax actions, and generic failure-learning (a failed move marks one transition blocked — no lock-specific code). Predeclared: error tolerance, against-gradient steps, and a ≥1.5× gap over a greedy baseline, else the delayed-gratification label is refused.",
