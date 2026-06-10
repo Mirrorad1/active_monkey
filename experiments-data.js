@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:64, breakthrough:5, positive:34, wall:14, partial:11, from:4.81, to:4.00 };
+window.AM_TALLY = { total:65, breakthrough:5, positive:34, wall:15, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -654,7 +654,17 @@ window.AM_EXPERIMENTS = [
     setup:"Social-emergence rung 2: forks of the two committed lines in mirro's world, each given a binary other-agent-here sense whose learned likelihood multiplies into place inference. Matched-trajectory control: identical action sequences in solo and co arms, so any metric difference is the modality alone. 2000 steps, 5 seeds, plus a validity gate requiring the sense to actually fire.",
     result:"Gate passed (67-92 co-locations per run); all four predeclared properties pass 5/5 seeds — co-presence equals solo to four decimals on every metric. The reason is the finding: both creatures hold near-certain place beliefs, so the extra likelihood changes nothing. The predicted corner-bias structure in the learned sense is absent — correctly: the clamped random walk's occupancy is provably uniform, and the learned grid is sampling noise around 1/25.",
     implication:"The minimal multi-agent substrate is safe — and perceptually inert at sharp beliefs. If social coupling is to do anything here, it must enter through values and policy rather than place inference — exactly where rung 3's communication channel attaches. Caveats: untested during high-uncertainty phases; every mechanism provided; no emergence claimed.",
-    trace:{ script:"experiments/exp64_copresence.py", output:"experiments/outputs/exp64.txt" } }
+    trace:{ script:"experiments/exp64_copresence.py", output:"experiments/outputs/exp64.txt" } },
+
+  { n:65, kind:"wall", chapter:"frontier",
+    title:"The signal lands, but the old mind will not move.",
+    one:"First social value transmission: a speciated emitter signals its favorite to a vela-fork over a grounded proximity channel — sign confirmed 5/5 seeds, magnitude below the predeclared bar: value-mass inertia caps social influence.",
+    plain:"We gave one creature a voice: near its clade-mate it signals which color it favors, and the listener's liking of that color gets a nudge — but only when the listener itself is in a confident state, so the approval is grounded rather than injected. The signal demonstrably lands in every seed. But the listener is old, and a lifetime of its own experience outweighs a few hundred nudges: its opinion barely moves. Social influence lost to the inertia of an already-formed mind.",
+    metric:{ from:0.02, to:0.014, unit:"predeclared divergence bar vs best observed" },
+    setup:"Rung 3: fork mirro and raise it in a color-1 world until its favorite genuinely differs (lived speciation, not assignment); then a 2000-step dyad in mirro's world where the emitter, when adjacent, emits its current favorite into a vela-fork receiver, gated by the receiver's own predictability weight. The severed twin is computed exactly — same pass, dual ledger, identical trajectories. Predeclared: share shift at least 0.02 in 4/5 seeds; falsifier F1 if not.",
+    result:"F1 fired. The channel transmits — divergence positive in 5/5 seeds (0.0123-0.0160), exactly attributable — but every seed missed the 0.02 bar. The gate averaged 0.50 (the immigrant receiver's imperfect map keeps its predictability low), giving ~175 cue counts against a 9,200-count lifetime value ledger. No favorite flip; at this rate a flip needs ~10,000 more steps.",
+    implication:"Social transmission into an old, non-forgetting mind is mass-limited: the same evidence-inertia behind opinion stickiness (Exp 48) and the plasticity window (Exp 60) caps the social channel. M4's requirement list grows a third item: without a forgetting term or an age-independent value-learning rate, adults cannot influence adults. Honest scope: one radius, one exposure length, one pairing; the channel wiring is provided.",
+    trace:{ script:"experiments/exp65_value_transmission.py", output:"experiments/outputs/exp65.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

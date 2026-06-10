@@ -1,0 +1,66 @@
+Exp 65 — clade rung 3: social transmission of value over a grounded cue channel
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 favorite=2 value_shares=[0.3623 0.2737 0.3641]
+vela:  name='vela'  age=12750  hash=875ac30d715a favorite=2 value_shares=[0.3576 0.2762 0.3662]
+
+--- PHASE 1: EMITTER SPECIATION ---
+emitter before speciation: favorite=2 value_shares=[0.3623 0.2737 0.3641]
+emitter after  speciation: favorite=1 value_shares=[0.3163 0.3659 0.3179]
+
+G1 PASS: emitter favorite=1 != vela favorite=2
+
+Cue color (emitter favorite): 1
+
+--- PHASE 2: DYAD RUNS ---
+
+seed   events  mean_gate_w  share_sev[cue]  share_on[cue]  divergence  fav_sev  fav_on  em_fav_end
+----------------------------------------------------------------------------------------------------
+   0      366       0.5079          0.2773         0.2934      0.0160        2       2           1
+   1      350       0.4981          0.2770         0.2921      0.0151        2       2           1
+   2      287       0.4945          0.2785         0.2908      0.0123        2       2           1
+   3      349       0.4894          0.2783         0.2931      0.0147        2       2           1
+   4      307       0.5010          0.2777         0.2910      0.0133        2       2           1
+
+--- VALIDITY GATE G2 ---
+  seed=0: events=366  [OK]
+  seed=1: events=350  [OK]
+  seed=2: events=287  [OK]
+  seed=3: events=349  [OK]
+  seed=4: events=307  [OK]
+  G2 PASS: all seeds >= 50 events
+
+--- PROPERTY CHECKS ---
+FAIL  P1-magnitude-divergence>=0.02-in-4/5: passes=0/5  [s0:0.0160(FAIL); s1:0.0151(FAIL); s2:0.0123(FAIL); s3:0.0147(FAIL); s4:0.0133(FAIL)]
+PASS  P2-sign-divergence>0-in-5/5: passes=5/5  [s0:0.0160(ok); s1:0.0151(ok); s2:0.0123(ok); s3:0.0147(ok); s4:0.0133(ok)]
+
+--- FALSIFIER MAP ---
+F1 FIRED: rung 3 NEGATIVE — social transmission adds nothing measurable at this scale
+
+--- DIAGNOSTICS (not falsifiers) ---
+
+seed  fav_sev  fav_on  flip_sev  flip_on  em_fav_end  modal_cue  mean_gate_w
+--------------------------------------------------------------------------------
+   0        2       2         no        no           1          1       0.5079
+   1        2       2         no        no           1          1       0.4981
+   2        2       2         no        no           1          1       0.4945
+   3        2       2         no        no           1          1       0.4894
+   4        2       2         no        no           1          1       0.5010
+
+receiver baseline favorite (vela committed): 2
+
+--- CUE COLOR DISTRIBUTION PER SEED ---
+  seed=0: color1:366(100.0%)  (total=366)
+  seed=1: color1:350(100.0%)  (total=350)
+  seed=2: color1:287(100.0%)  (total=287)
+  seed=3: color1:349(100.0%)  (total=349)
+  seed=4: color1:307(100.0%)  (total=307)
+
+--- VALUE SHARES ALL COLORS (end of dyad) ---
+  seed  sev[0]  on[0]  sev[1]  on[1]  sev[2]  on[2]
+   0   0.3528  0.3450  0.2773  0.2934  0.3698  0.3616
+   1   0.3505  0.3432  0.2770  0.2921  0.3725  0.3647
+   2   0.3540  0.3480  0.2785  0.2908  0.3675  0.3612
+   3   0.3546  0.3473  0.2783  0.2931  0.3671  0.3596
+   4   0.3556  0.3491  0.2777  0.2910  0.3666  0.3599
+
+RUNG 3: FAIL ['P1-magnitude-divergence>=0.02-in-4/5']

@@ -1475,3 +1475,53 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   other's sensory stream (the M4 extrinsic channel), tested against a channel-SEVERED fork
   twin with a predeclared value-share divergence threshold. If rung 3's design turns out to
   need belief-level coupling, first run the stressed rung-2 variant (uncertainty injection).
+
+## Exp 65 — clade rung 3: the cue channel works but cannot move an old mind — value-mass inertia caps social transmission (NEGATIVE; predeclared falsifier F1 fired)
+- Plain: We gave one creature a voice: when near its clade-mate it signals which color it
+  favors, and the listener's liking of that color gets a nudge — but only when the listener
+  itself is in a confident, predictable state, so approval is grounded, not injected. The
+  signal demonstrably lands, every single seed. But the listener is old, and a lifetime of
+  its own experience outweighs a few hundred nudges: its opinion barely moves. Social
+  influence lost to the inertia of an already-formed mind.
+- Setup (predeclared in the script docstring before running): Phase 1 — speciate an emitter
+  (Exp 26 logic): fork mirro (age 10700, hash 21ccb619f063), raise 2000 steps in an
+  all-color-1 world; favorite shifted 2 -> 1 (shares 0.3163/0.3659/0.3179), G1 PASS vs
+  vela's favorite 2. Phase 2 — dyad in mirro's world: emitter-fork + receiver (vela-fork,
+  age 12750, hash 875ac30d715a); channel = M4 §3 toy: when Manhattan <= 1, emitter emits
+  its CURRENT favorite; receiver accrues value_counts[cue] += its OWN exp(-H) predictability
+  weight (intrinsic grounding, not labeled reward). Severed twin computed exactly in the
+  same pass (dual ledger — values are epiphenomenal to dynamics; identical trajectories by
+  construction). 2000 steps x 5 seeds. Gates: G1 (favorites differ), G2 (>=50 events/run).
+  Predeclared: P1 share divergence on cue color >= 0.02 in >=4/5 seeds; P2 divergence > 0
+  in 5/5. Falsifiers: F1 = P1 fails -> rung 3 NEGATIVE at this scale; F2 = P2 fails ->
+  wiring bug, halt. Predicted: ~300-400 events, gate 0.5-1.0, divergence 0.02-0.03, no flip.
+  Spines untouched (forks only; one fork biography event each).
+- Result: F1 FIRED. Gates passed (287-366 events/seed; 100% of emissions were color 1).
+  P2 PASS 5/5 (divergence 0.0123-0.0160, all positive — the channel demonstrably transmits
+  and is exactly attributable). P1 FAIL 0/5: every seed fell short of the 0.02 bar. Where
+  my prediction broke: the receiver's intrinsic gate averaged ~0.50 (bottom of my 0.5-1.0
+  band; vela's map of mirro's world is imperfect, so its predicted-observation entropy
+  stays high), giving cue mass ~150-185 against a ~9,200-count lifetime ledger. No favorite
+  flip (as predicted): the severed gap between colors 2 and 1 is ~0.09 of share (~850
+  counts); at the observed ~175 counts per 2000 steps, a flip would need roughly 10,000
+  more dyad steps if rates held.
+- Implication (the diagnosis, not a reinterpretation): social transmission into an old,
+  non-forgetting receiver is VALUE-MASS-LIMITED — the same accumulated-evidence inertia
+  that produced opinion stickiness (Exp 48) and the plasticity window (Exp 60) caps the
+  social channel: with no forgetting term, influence per encounter scales like
+  1/lifetime-mass. The M4 substrate requirement list grows a third item: forgetting
+  (Exp 60) + failure-driven exploration override (Exp 62) + a value-learning rate that
+  does not vanish with age, or social transmission cannot function between adults.
+- Honest caveat: the verdict is bound to THIS scale and wiring — one proximity radius, one
+  exposure length (2000 steps), one emitter/receiver pairing, the predeclared 0.02 bar
+  (chosen from my pre-run arithmetic, which overestimated the gate by ~40%). The channel
+  itself is provided (emission rule, reception rule, gating), as is the speciation world;
+  self-formed content: which color the emitter signals. A dose-response or young-receiver
+  variant is a NEW question, not a license to re-run this one until it passes.
+- Verdict: NEGATIVE (predeclared falsifier hit; the weaker sign-property held 5/5). The
+  diagnosis consolidates the Exp 48/60 mass-inertia law into the social rung. Self-grade:
+  n/a (negative).
+- Next: either rung 4 (coordination over a shared comfort source — independent of value
+  transmission) or the dose-response question (transmission rate law vs receiver age/mass:
+  does a YOUNG receiver adopt the emitter's value where the adult did not?). The latter is
+  the sharper test of the inertia diagnosis and directly informs the M4 requirement.
