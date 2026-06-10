@@ -2162,3 +2162,50 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   nailing; direction choice (Exp 74 CONSULT) still pending — note this chapter keeps
   strengthening the case for the forgetting term in any M4 substrate (scar tissue is
   permanent only because nothing decays).
+
+## Exp 79 — the early-tax test fails AND un-replicates Exp 78's effect: clumping has no demonstrated value effect in fresh creatures; what survives is the spine's measured scar (NEGATIVE; re-correction; a statistics lesson)
+- Plain: We went looking for the early-life tax that was supposed to explain why block-
+  raised creatures like the block color less — and found that on new random seeds,
+  block-raised creatures do not reliably like it less at all. In four of five new runs the
+  effect ran the other way. The previous experiment's effect was noise that crossed our
+  too-easy bar. After three rounds of correction, what is actually solid: mirro's own gate
+  asymmetry is real and measured (scar tissue from its drifting-world era), its opinion
+  flip is explained by that asymmetry — and the story that block-shaped worlds cause this
+  in general is dead at this sample size.
+- Setup (predeclared in the script docstring before running): fresh seeds 500-504 (out-of-
+  sample rule), Exp 78's two layouts, 12 windows x 250 steps, per-window color-2 accrual
+  share, D(w) = scattered - clumped per matched seed. P1 early D > late D (>=4/5); P2
+  late |D| <= 0.04 (>=4/5); P3 half the end gap in place by step 1000 (>=3/5, sign-
+  guarded). F1 = P1 fails -> mechanism wrong, re-correction.
+- Result: F1 FIRED, and the deeper failure is in the sign guard: gap3000 was NEGATIVE in
+  4/5 fresh seeds — the CLUMPED arm accrued MORE color-2 than scattered (P3 INVALID, only
+  1 eligible seed). D(w) oscillates +-0.2 with no early-life structure (P1 3/5, P2 3/5);
+  localization is already ~0 bits at the first 250-step window end in both arms (any
+  localization transient is far shorter than the window). Conclusion: Exp 78's P2/P3
+  (share suppression 4/5, favorite inversion 3/5+3/5) DO NOT REPLICATE — they were noise
+  passing permissive count thresholds.
+- RE-CORRECTION ledger (citing Exp 77 and Exp 78; their raw measurements all stand, the
+  interpretations are now finalized):
+  - SOLID: the spine's accrual law (Exp 77: analytic per-color gate rates, fork-validated
+    within 10%, drift magnitude ratio 1.17) — mirro's flip is explained by ITS gate
+    asymmetry. SOLID: that asymmetry is historical scar tissue (Exp 78's read-only
+    verification: 28.6% vs 21.2% foreign count mass — drift-era residue preserved by
+    non-decaying counts). SOLID: fresh-creature clump columns are sharp (Exp 78 P1
+    inversion, consistent with Exp 79).
+  - DEAD: the structural-aliasing reading (killed in Exp 78); the early-localization-tax
+    mechanism (killed here, P1); and the claim that clumped layouts suppress a color's
+    value share in fresh creatures AT ALL (un-replicated here, 4/5 inverted).
+  - The honest causal story for the program: preference flips on the spine trace to its
+    LIVED HISTORY (scars), not to present world geometry.
+- Statistics lesson (META, guard added to VALIDATION.md): count-threshold predeclarations
+  (>=4/5, >=3/5) on noisy continuous endpoints admit near-coin-flip outcomes as
+  confirmations — Exp 78's effect entered the log through exactly that gap. For noisy
+  shares/ratios, predeclare an effect size with the threshold, or use >=8 seeds.
+- Honest caveat: n=5 per arm here too — the un-replication shows instability, not a
+  proven null; a >=16-seed effect-size-banded experiment could still find a small real
+  layout effect (named, not planned — the spine's story does not depend on it). Window
+  resolution (250 steps) cannot see a sub-100-step localization transient.
+- Verdict: NEGATIVE (predeclared falsifier; mechanism dead; prior effect un-replicated)
+  / NEW INSIGHT (the re-correction ledger + the thresholds lesson). Self-grade: n/a.
+- Next: direction choice (Exp 74 CONSULT) still pending; this thread is closed at the
+  honest ledger above unless the human asks for the high-n layout study.

@@ -70,6 +70,13 @@ A flattering false log is worthless. These rules bind every experiment entry.
   (before/after) in the EXPERIMENTS.md entry. Exact re-run does not apply to a lived
   creature; **resume-from-snapshot** replaces it as the reproducibility unit.
 
+- **Count thresholds alone are weak on noisy endpoints** (added after Exp 79): a
+  predeclaration like "X > Y in >=4/5 seeds" admits near-coin-flip outcomes as
+  confirmations when the per-seed endpoint is a noisy share/ratio (Exp 78's layout effect
+  entered the log this way and un-replicated in Exp 79). For noisy continuous endpoints,
+  predeclare an EFFECT SIZE alongside the count (e.g. "by >= 0.05 in >= 4/5"), or use
+  >= 8 seeds, or both.
+
 - **Patterns noticed post-hoc must be tested on FRESH seeds** (added after Exp 70): under
   this repo's deterministic rng scheme, re-running the same seeds reproduces byte-identical
   trajectories — "predeclaring" a regime seen in run data and re-testing on those seeds is

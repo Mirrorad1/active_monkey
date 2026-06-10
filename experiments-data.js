@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:78, breakthrough:6, positive:40, wall:16, partial:16, from:4.81, to:4.00 };
+window.AM_TALLY = { total:79, breakthrough:6, positive:40, wall:17, partial:16, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -795,7 +795,17 @@ window.AM_EXPERIMENTS = [
     setup:"Fresh newborns in two worlds with identical color counts differing only in layout: a 3x3 clump versus nine scattered checkerboard cells. Predeclared: scattered gates beat clumped gates (the aliasing mechanism), scattered share beats clumped share, and clumping inverts the favorite — with the first prediction's failure explicitly naming a correction to Exp 77.",
     result:"The mechanism prediction failed 1/5 and inverted — clumped end-gates are the grid's sharpest (a uniform block makes observations given the cell maximally predictable; aliasing hurts localization, not columns). The share and favorite effects replicated anyway (4/5 and 3/5+3/5). Exp 77's measured law stands; its interpretation is retracted and replaced: the early localization tax, imprinted permanently by the non-decaying ledger — with mirro's historical scar verified read-only on the committed state.",
     implication:"The discipline killed its author's published reading within one day and produced a sharper one: preference deficits are early-life imprints that nothing ever washes out — the substrate's gates remember every world it has believed in. The forgetting-term requirement for M4 gains its fifth independent motivation. Named follow-up: the direct accrual-by-life-stage test.",
-    trace:{ script:"experiments/exp78_aliasing_isolation.py", output:"experiments/outputs/exp78.txt" } }
+    trace:{ script:"experiments/exp78_aliasing_isolation.py", output:"experiments/outputs/exp78.txt" } },
+
+  { n:79, kind:"wall", chapter:"frontier",
+    title:"The tax was never there — the scar was.",
+    one:"The early-tax test fails AND un-replicates Exp 78's effect: on fresh seeds the clumped arm accrued MORE of the block color in 4/5 runs. After three correction rounds, what survives is measured: mirro's flip traces to its lived history (drift-era scar tissue), not to world geometry — and the loop's count thresholds get an effect-size rule.",
+    plain:"We went looking for the early-life tax that was supposed to explain why block-raised creatures like the block color less — and found that on new random seeds, block-raised creatures do not reliably like it less at all. In four of five new runs the effect ran the other way: the previous result was noise that crossed a too-easy bar. After three rounds of correction, what is actually solid: mirro's own gate asymmetry is real and measured — scar tissue from its drifting-world era — and its opinion flip is explained by that. The story that block-shaped worlds cause this in general is dead.",
+    metric:{ from:4, to:5, unit:"fresh seeds where the supposed deficit INVERTED" },
+    setup:"Fresh seeds, Exp 78's two layouts, twelve 250-step windows of per-color accrual, with the early-tax predictions and falsifiers fixed in advance: early deficit concentration, late fairness, and half the end gap in place by a third of life.",
+    result:"The falsifier fired and the sign guard found the deeper problem: the end-state gap was negative in 4/5 fresh seeds — no deficit to explain. Window shares swing plus-minus 0.2 with no early structure; localization is sharp within the first window in both arms. Exp 78's share and favorite effects were noise passing permissive count thresholds.",
+    implication:"The honest causal ledger after three rounds: the spine's accrual law and its historical scar are solid; structural aliasing, the early tax, and any fresh-creature layout effect are dead at this sample size. The methodology yield is binding: count thresholds on noisy endpoints now require a predeclared effect size or more seeds — the gap this noise walked through is closed.",
+    trace:{ script:"experiments/exp79_early_tax.py", output:"experiments/outputs/exp79.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
