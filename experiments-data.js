@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:66, breakthrough:6, positive:34, wall:15, partial:11, from:4.81, to:4.00 };
+window.AM_TALLY = { total:67, breakthrough:6, positive:34, wall:15, partial:12, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -675,7 +675,17 @@ window.AM_EXPERIMENTS = [
     result:"All pass, no falsifiers. Ratios 5.24-5.39x — tightly matching the inertia law's prediction. Installation in 3 of 4 valid seeds; the one resister had the cohort's strongest self-formed preference. The honest decomposition: youth amplifies influence through TWO mechanisms — less accumulated evidence (~3.8x) and a sharper world-model whose predictability gate makes each encounter land harder (0.93 vs the adult immigrant's 0.50).",
     implication:"Social transmission of value is real in this substrate, and it is age-gated by evidence mass: adults are socially immovable, the young are persuadable — a sensitive period falling straight out of count arithmetic. The channel stays declared plumbing (like taught labels); the content and its uptake are the creatures' own. Opens rung 4 (coordination) and the dose-response question: at what age does persuadability end?",
     story:"This program raised a small active-inference creature, mirro, that learned a toy world, formed preferences from its own lived history, and answers questions about them in taught words; mirro recently became the root of a small family. The social arc asks whether anything real passes between minds. The previous rung found that between adults, a grounded approval cue lands but cannot move a lifetime of accumulated preference. Here the same channel at the same dose was aimed at young receivers — and the elder's preference took: the youngsters' expressed favorite flipped to the emitter's in 3 of 4 runs while exactly-matched channel-severed twins kept their own. It is the first creature-to-creature transmission of a self-formed value in this program, with causation proven by the twin. What is still provided: the channel itself is designed plumbing — only the content (the emitter's divergently-lived favorite) and its uptake (the receiver's own gate and prior mass) belong to the creatures. The law that fell out: youth amplifies social influence about fivefold, through less accumulated evidence and a sharper world-model.",
-    trace:{ script:"experiments/exp66_young_receiver.py", output:"experiments/outputs/exp66.txt" } }
+    trace:{ script:"experiments/exp66_young_receiver.py", output:"experiments/outputs/exp66.txt" } },
+
+  { n:67, kind:"partial", chapter:"frontier",
+    title:"A torn mind is persuadable at any age.",
+    one:"Age sweep of receivers: influence fades monotonically with age (1.0 down to 0.33) — but one old, ambivalent receiver installed anyway, and the predeclared count model predicted that surprise while the author's hard age-cutoff did not.",
+    plain:"We asked at what age a creature stops being persuadable, sweeping listeners from newborn to old. Influence does fade with age exactly as the inertia law says — but one old listener adopted the elder's favorite anyway. Its own life had left it torn between colors, and a torn mind is persuadable at any age. The simple counting model we wrote down before running predicted even that surprise; our age-cutoff story did not survive contact with it.",
+    metric:{ from:1.0, to:0.33, unit:"install fraction, newborn vs 6400-step receivers" },
+    setup:"Receiver age swept 0/400/800/1600/3200/6400 settle steps x 4 seeds; same emitter, channel, and dose as Exp 65/66; the 800 bin is an exact internal replication of Exp 66. Predeclared: young beats old AND zero installs at the oldest age; monotone fractions; and a proportional-growth count criterion (install iff projected own-evidence gap < measured social dose) at 75%+ accuracy.",
+    result:"Mixed, no falsifiers fired. Fractions 1.000/1.000/0.667/0.667/0.333/0.333 — monotone, young 0.909 vs old 0.333. The hard-cutoff conjunct failed: one 6400-step receiver installed — its own history left it nearly ambivalent (gap 133 counts of 6,081), and the predeclared model called it correctly. Model accuracy 85% (17/20); the misses cluster at the boundary and at low mass. The 800-bin replication matched Exp 66 exactly.",
+    implication:"Persuadability is ambivalence-gated, not age-gated: social influence installs iff the receiver's projected own-evidence gap is smaller than the delivered dose; age only correlates because the gap grows with lived experience. For M4: openness to social input is set per-question by how settled one's own evidence is. Honest scope: one channel, one dose, 20 valid runs, provided wiring throughout; the author's own cutoff prediction is logged as falsified.",
+    trace:{ script:"experiments/exp67_sensitive_period.py", output:"experiments/outputs/exp67.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

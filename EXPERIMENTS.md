@@ -1583,3 +1583,52 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   coordination test vs two mutually-insensible solipsists); or the sensitive-period question
   this raises (at what receiver age does installation stop working? — a dose-response curve
   over mass). The clade synthesis (rungs 1-3 verdicts) is also now writable.
+
+## Exp 67 — the sensitive period is real but not absolute: ambivalence, not age, gates persuadability (MIXED; predicted hard cutoff falsified, count model outpredicted its author)
+- Plain: We asked at what age a creature stops being persuadable, sweeping listeners from
+  newborn to old. Influence does fade with age exactly as the inertia law says — but one old
+  listener adopted the elder's favorite anyway. Its own life had left it torn between colors,
+  and a torn mind is persuadable at any age. The simple counting model we wrote down before
+  running predicted even that surprise; our age-cutoff story did not survive contact with it.
+- Setup (predeclared in the script docstring before running): receiver age sweep — settle
+  steps 0/400/800/1600/3200/6400 x 4 seeds (births keyed by seed only, so bins differ only
+  by settle length; the 800 bin = exact internal replication of Exp 66); same emitter
+  (phase-1 reproduction hard-checked, favorite=1), same channel, same 2000-step dyad dose,
+  dual-ledger severed twins. Predeclared: P1 pooled young (<=800) install fraction > pooled
+  old (>=3200) AND zero installs at 6400; P2 per-bin fractions non-increasing with age;
+  P3 the proportional-growth count criterion [install iff gap_pre x (mass_end_sev/mass_pre)
+  < measured cue mass; retrodicts Exp 66 4/4] matches outcomes in >=75% of valid runs.
+  Falsifiers: F1 no sensitive period (old >= youngest while youngest installs); F2 model
+  accuracy < 50%. Predicted: boundary between 1600 and 3200; P3 ~80%.
+- Result: MIXED — P1 FAIL on its second conjunct only, P2 PASS, P3 PASS, no falsifiers
+  fired. Gates: 20/24 runs G1-valid (excluded juniors already favored color 1 — including
+  6400-s3, whose 6,000-step life converged on the cue color by itself), all bins valid,
+  events 278-368. Install fractions by age: 1.000/1.000/0.667/0.667/0.333/0.333 — monotone
+  (P2), young 0.909 vs old 0.333 (P1's first conjunct holds decisively). The falsifying
+  datum: 6400-s2 INSTALLED — its pre-dyad gap was 133 counts of 6,081 mass (its own history
+  left it nearly ambivalent: shares 0.3288/0.3246/0.3465), projected gap 176 < cue mass 283,
+  and the predeclared model PREDICTED the install (match=Y). P3 accuracy 85% (17/20);
+  the 3 misses cluster at the boundary and at low mass (age-400 s0/s1 installed though
+  predicted not — the stationary-shares projection is weakest when shares are still moving).
+  Replication: 800-bin divergences 0.0841/0.0801/0.0644 and favorite pairs match Exp 66
+  exactly; seed 3 G1-invalid in both.
+- Implication (the refinement): persuadability is AMBIVALENCE-gated, not age-gated. The
+  operative law is dose-vs-gap arithmetic — social influence installs iff the receiver's
+  projected own-evidence gap is smaller than the delivered social dose. Age predicts
+  resistance only because the gap typically grows with lived mass; an adult whose own
+  evidence is balanced on some question remains persuadable on exactly that question.
+  For M4: an agent's openness to social input is set per-question by how settled its own
+  evidence is — a more interesting (and more plausible) social substrate than a global
+  sensitive period.
+- Honest caveat: my OWN predeclared hard-cutoff prediction (zero installs at 6400) was
+  falsified — logged as such, not reframed; the entry's "law" is the predeclared P3 model,
+  which passed, not a post-hoc fit. One channel, one dose, one world; 20 valid runs;
+  installs counted at one readout (argmax favorite at dyad end); the model's 3 misses show
+  its stationary-shares assumption degrades off-boundary regimes it wasn't built for.
+  All channel machinery remains provided wiring.
+- Verdict: MIXED / NEW INSIGHT (gradient + monotonicity confirmed; hard age cutoff
+  falsified; the predeclared count model adequate at 85% and correctly predicted the
+  counterintuitive adult install). Self-grade: n/a (MIXED).
+- Next: rung 4 (coordination over a shared comfort source) needs a value-driven policy
+  substrate (the Exp 62 VI-coupling pattern) — design that first; or close the rung-3 arc
+  with the direction-card synthesis (adult NEGATIVE / young POSITIVE / ambivalence law).

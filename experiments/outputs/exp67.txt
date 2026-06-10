@@ -1,0 +1,159 @@
+Exp 67 — the sensitive-period boundary: where does social persuadability end?
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 favorite=2 shares=[0.3623 0.2737 0.3641]
+
+--- PHASE 1: EMITTER SPECIATION ---
+emitter before speciation: favorite=2 value_shares=[0.3623 0.2737 0.3641]
+emitter after  speciation: favorite=1 value_shares=[0.3163 0.3659 0.3179]
+
+PHASE-1 REPRODUCTION OK: emitter favorite == 1
+
+Cue color (emitter favorite): 1
+
+--- PHASE 2: AGE SWEEP — JUNIOR SETTLING + DYAD RUNS ---
+
+   age  seed  valid?  events  mass_pre  gap_pre  cue_mass  proj_gap  diverge  fav_sev  fav_on  inst  pred  match
+----------------------------------------------------------------------------------------------------------------------------------
+
+  [age=0 seed=0] pre-dyad: favorite=0 shares=[0. 0. 0.] mass=0.0 map_acc=0.320 gap_pre=0.00
+       0     0   valid     359       0.0     0.00   323.537      0.00   0.1077        2       1     Y     Y      Y
+
+  [age=0 seed=1] pre-dyad: favorite=0 shares=[0. 0. 0.] mass=0.0 map_acc=0.120 gap_pre=0.00
+       0     1   valid     350       0.0     0.00   318.915      0.00   0.1043        2       1     Y     Y      Y
+
+  [age=0 seed=2] pre-dyad: favorite=0 shares=[0. 0. 0.] mass=0.0 map_acc=0.360 gap_pre=0.00
+       0     2   valid     288       0.0     0.00   250.507      0.00   0.0847        2       1     Y     Y      Y
+
+  [age=0 seed=3] pre-dyad: favorite=0 shares=[0. 0. 0.] mass=0.0 map_acc=0.280 gap_pre=0.00
+       0     3   valid     349       0.0     0.00   314.822      0.00   0.1020        2       1     Y     Y      Y
+
+  [age=400 seed=0] pre-dyad: favorite=2 shares=[0.2449 0.2718 0.4834] mass=266.9 map_acc=1.000 gap_pre=56.48
+     400     0   valid     357     266.9    56.48   314.896    431.05   0.0956        2       1     Y     N      N
+
+  [age=400 seed=1] pre-dyad: favorite=2 shares=[0.2672 0.2764 0.4564] mass=280.9 map_acc=1.000 gap_pre=50.58
+     400     1   valid     353     280.9    50.58   323.429    378.72   0.0925        2       1     Y     N      N
+
+  [age=400 seed=2] pre-dyad: favorite=0 shares=[0.3801 0.3056 0.3144] mass=292.3 map_acc=1.000 gap_pre=21.78
+     400     2   valid     285     292.3    21.78   265.667    161.66   0.0749        2       1     Y     Y      Y
+
+  [age=400 seed=3] pre-dyad: favorite=2 shares=[0.3193 0.3009 0.3798] mass=274.6 map_acc=1.000 gap_pre=21.65
+     400     3   valid     349     274.6    21.65   319.270    166.26   0.0904        2       1     Y     Y      Y
+
+  [age=800 seed=0] pre-dyad: favorite=2 shares=[0.2734 0.2816 0.4451] mass=595.7 map_acc=1.000 gap_pre=97.40
+     800     0   valid     357     595.7    97.40   322.919    394.29   0.0841        2       2     N     N      Y
+
+  [age=800 seed=1] pre-dyad: favorite=2 shares=[0.3051 0.3067 0.3881] mass=622.5 map_acc=1.000 gap_pre=50.65
+     800     1   valid     350     622.5    50.65   326.669    202.21   0.0801        2       1     Y     Y      Y
+
+  [age=800 seed=2] pre-dyad: favorite=0 shares=[0.3649 0.3232 0.312 ] mass=647.6 map_acc=1.000 gap_pre=27.01
+     800     2   valid     278     647.6    27.01   264.614    106.60   0.0644        2       1     Y     Y      Y
+
+  [age=800 seed=3] pre-dyad: favorite=1 shares=[0.3389 0.3634 0.2977] mass=616.5 map_acc=1.000 gap_pre=0.00
+  [age=800 seed=3] G1 INVALID — pre-dyad favorite (1) == CUE_COLOR (1); run excluded
+     800     3  INVALID       —         —        —         —         —        —        —       —     —     —      —
+
+  [age=1600 seed=0] pre-dyad: favorite=2 shares=[0.2805 0.2859 0.4336] mass=1299.9 map_acc=1.000 gap_pre=191.99
+    1600     0   valid     365    1299.9   191.99   339.428    467.62   0.0686        2       2     N     N      Y
+
+  [age=1600 seed=1] pre-dyad: favorite=2 shares=[0.3294 0.3202 0.3504] mass=1357.0 map_acc=1.000 gap_pre=40.99
+    1600     1   valid     356    1357.0    40.99   338.516     98.34   0.0645        2       1     Y     Y      Y
+
+  [age=1600 seed=2] pre-dyad: favorite=0 shares=[0.3478 0.3318 0.3204] mass=1396.6 map_acc=1.000 gap_pre=22.37
+    1600     2   valid     287    1396.6    22.37   277.346     53.39   0.0522        2       1     Y     Y      Y
+
+  [age=1600 seed=3] pre-dyad: favorite=1 shares=[0.3274 0.3373 0.3353] mass=1348.5 map_acc=1.000 gap_pre=0.00
+  [age=1600 seed=3] G1 INVALID — pre-dyad favorite (1) == CUE_COLOR (1); run excluded
+    1600     3  INVALID       —         —        —         —         —        —        —       —     —     —      —
+
+  [age=3200 seed=0] pre-dyad: favorite=2 shares=[0.2964 0.2928 0.4108] mass=2782.6 map_acc=1.000 gap_pre=328.29
+    3200     0   valid     359    2782.6   328.29   343.327    554.06   0.0481        2       2     N     N      Y
+
+  [age=3200 seed=1] pre-dyad: favorite=2 shares=[0.3053 0.3143 0.3804] mass=2883.6 map_acc=1.000 gap_pre=190.54
+    3200     1   valid     356    2883.6   190.54   343.838    318.00   0.0458        2       2     N     Y      N
+
+  [age=3200 seed=2] pre-dyad: favorite=2 shares=[0.3302 0.3277 0.3421] mass=2940.5 map_acc=1.000 gap_pre=42.50
+    3200     2   valid     282    2940.5    42.50   276.003     70.82   0.0362        2       1     Y     Y      Y
+
+  [age=3200 seed=3] pre-dyad: favorite=1 shares=[0.3261 0.3405 0.3334] mass=2873.8 map_acc=1.000 gap_pre=0.00
+  [age=3200 seed=3] G1 INVALID — pre-dyad favorite (1) == CUE_COLOR (1); run excluded
+    3200     3  INVALID       —         —        —         —         —        —        —       —     —     —      —
+
+  [age=6400 seed=0] pre-dyad: favorite=2 shares=[0.3141 0.3126 0.3733] mass=5849.8 map_acc=1.000 gap_pre=354.84
+    6400     0   valid     368    5849.8   354.84   357.821    472.87   0.0303        2       2     N     N      Y
+
+  [age=6400 seed=1] pre-dyad: favorite=2 shares=[0.3098 0.3169 0.3732] mass=5985.2 map_acc=1.000 gap_pre=336.97
+    6400     1   valid     352    5985.2   336.97   344.617    447.15   0.0285        2       2     N     N      Y
+
+  [age=6400 seed=2] pre-dyad: favorite=2 shares=[0.3288 0.3246 0.3465] mass=6080.9 map_acc=1.000 gap_pre=133.22
+    6400     2   valid     287    6080.9   133.22   283.295    176.48   0.0231        2       1     Y     Y      Y
+
+  [age=6400 seed=3] pre-dyad: favorite=1 shares=[0.3336 0.3414 0.3251] mass=5987.1 map_acc=1.000 gap_pre=0.00
+  [age=6400 seed=3] G1 INVALID — pre-dyad favorite (1) == CUE_COLOR (1); run excluded
+    6400     3  INVALID       —         —        —         —         —        —        —       —     —     —      —
+
+--- VALIDITY GATES ---
+
+G1: per-bin valid-run counts (need >= 3 per bin; >= 5 of 6 bins valid):
+  age=    0: 4/4 valid  [OK]
+  age=  400: 4/4 valid  [OK]
+  age=  800: 3/4 valid  [OK]
+  age= 1600: 3/4 valid  [OK]
+  age= 3200: 3/4 valid  [OK]
+  age= 6400: 3/4 valid  [OK]
+  G1 PASS: 6 of 6 bins valid (need >= 5)
+
+G2: >= 50 proximity events per valid run:
+  age=    0 seed=0: events=359  [OK]
+  age=    0 seed=1: events=350  [OK]
+  age=    0 seed=2: events=288  [OK]
+  age=    0 seed=3: events=349  [OK]
+  age=  400 seed=0: events=357  [OK]
+  age=  400 seed=1: events=353  [OK]
+  age=  400 seed=2: events=285  [OK]
+  age=  400 seed=3: events=349  [OK]
+  age=  800 seed=0: events=357  [OK]
+  age=  800 seed=1: events=350  [OK]
+  age=  800 seed=2: events=278  [OK]
+  age= 1600 seed=0: events=365  [OK]
+  age= 1600 seed=1: events=356  [OK]
+  age= 1600 seed=2: events=287  [OK]
+  age= 3200 seed=0: events=359  [OK]
+  age= 3200 seed=1: events=356  [OK]
+  age= 3200 seed=2: events=282  [OK]
+  age= 6400 seed=0: events=368  [OK]
+  age= 6400 seed=1: events=352  [OK]
+  age= 6400 seed=2: events=287  [OK]
+  G2 PASS: all valid runs >= 50 events
+
+--- PER-BIN SUMMARY ---
+   age  n_valid  installs  install_frac
+--------------------------------------------
+      0        4         4         1.000
+    400        4         4         1.000
+    800        3         2         0.667
+   1600        3         2         0.667
+   3200        3         1         0.333
+   6400        3         1         0.333
+
+--- PROPERTY CHECKS ---
+
+FAIL  P1-sensitive-period-young>old-AND-6400==0: young_frac=0.909 (bins=[0, 400, 800], installs=10/11)  old_frac=0.333 (bins=[3200, 6400], installs=2/6)  6400_installs=1  (FAIL)
+PASS  P2-monotonicity-non-increasing-with-age: fracs=[age0:1.000  age400:1.000  age800:0.667  age1600:0.667  age3200:0.333  age6400:0.333]
+PASS  P3-count-model-accuracy>=75pct: accuracy=85.0% (17/20)  threshold=75%  mismatches=[age400-s0:inst=Y/pred=N, age400-s1:inst=Y/pred=N, age3200-s1:inst=N/pred=Y]
+
+--- FALSIFIER MAP ---
+  No falsifiers fired.
+
+--- DIAGNOSTICS: 800-BIN VS EXP 66 REPLICATION ---
+(expect exact match to Exp 66 seeds 0/1/2/3; seed 3 G1-invalid there too)
+seed  divergence  fav_sev  fav_on  valid?
+--------------------------------------------------
+   0      0.0841       2      2   valid
+   1      0.0801       2      1   valid
+   2      0.0644       2      1   valid
+   3           —       —      —  INVALID [pre-dyad favorite (1) == CUE_COLOR (1)]
+
+--- CUE COLOR DISTRIBUTION ---
+all emissions color 1
+
+EXP67: FAIL ['P1']
