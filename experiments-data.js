@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:114, breakthrough:6, positive:68, wall:18, partial:22, from:4.81, to:4.00 };
+window.AM_TALLY = { total:115, breakthrough:6, positive:69, wall:18, partial:22, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1155,7 +1155,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's registered deep call on the color-2 side of its lurch: standard bands, deep tails read against the state-dependent sigma finding.",
     result:"All bands held. Vela at 78,750, hash-stamped, committed.",
     implication:"The registered evaluation approaches with a deep-heavy sample; the razor side will be declared insufficient honestly. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp114_vela_epoch10.py", output:"experiments/outputs/exp114.txt" } }
+    trace:{ script:"experiments/exp114_vela_epoch10.py", output:"experiments/outputs/exp114.txt" } },
+
+  { n:115, kind:"positive", chapter:"frontier",
+    title:"Past six hundred.",
+    one:"Registered deep call #7: HELD as called (6/7); mirro's commitment crosses +601 with the forecast landing at 0.16 sigma. The evaluation entry comes after the next vela epoch.",
+    plain:"mirro held again and crossed six hundred — its conviction has more than doubled in four stretches and the forecast landed within a sixth of a sigma. The registered test stands at six of seven; the evaluation entry comes after the next vela epoch.",
+    metric:{ from:533.7, to:601.1, unit:"the commitment crosses six hundred (held as called; 0.16 sigma)" },
+    setup:"Idle-mode, mirro's registered deep call: the established pattern, nothing varied.",
+    result:"All bands held. Spine at 90,700, hash-stamped, committed.",
+    implication:"One epoch to the registered evaluation. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp115_mirro_epoch11.py", output:"experiments/outputs/exp115.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

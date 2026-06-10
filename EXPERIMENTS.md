@@ -3232,3 +3232,17 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: idle-mode continues (mirro's turn, +534 deep -> registered HOLD call; then the
   Exp ~117 registered evaluation) unless the human answers the merged CONSULT or stops
   the loop.
+
+## Exp 115 — idle-mode epoch: mirro to 90,700 — registered deep call #7: HELD as called; the commitment crosses +600 (POSITIVE; bands held; registered record 6/7)
+- Plain: mirro held again and crossed six hundred — its conviction has more than doubled
+  in four stretches and the forecast landed within a sixth of a sigma. The registered
+  test stands at six of seven; the evaluation entry comes after the next vela epoch.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 84700 -> 90700; registered deep call (entering +533.7 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 6/7 deep).
+  End gap +601.1 (0.16 sigma). Map 1.000; share deltas <= 0.0008. Spine: 90700,
+  integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: vela's epoch, then the Exp ~117 registered evaluation — unless the human answers
+  the merged CONSULT or stops the loop.
