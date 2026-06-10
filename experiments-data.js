@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 57 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 62 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:57, breakthrough:5, positive:30, wall:13, partial:9, from:4.81, to:4.00 };
+window.AM_TALLY = { total:62, breakthrough:5, positive:32, wall:14, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -584,7 +584,57 @@ window.AM_EXPERIMENTS = [
     setup:"Rung-5 cascade on Exp 56's deviation: three pre-epoch forks rerun the drift schedule (reproduction), counts-to-flip analytics, and a newborn control predeclared to show early recovery and late rigidity if aging is the cause.",
     result:"3/3 forks fail 8/8 segments. Mean column mass 268 vs ~20 observations per segment (13.4×). The newborn — only ~40 counts per cell — also froze 6/8, and its two 'recoveries' were the segments whose world matched what it settled in: coincidence with its prior, not adaptation. The age framing is dead.",
     implication:"Sharpened (post-hoc, named as such): with non-decaying soft counts, a map is write-once relative to world tempo — tracking drift of period P needs mass < P × visit rate, and even 1000 steps of life crosses it. Survives round 1 per predeclared rules; round 2's kill test is a low-mass newborn (250-step settling) plus a mass-swept cohort across the predicted ~20-count threshold.",
-    trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } }
+    trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } },
+
+  { n:58, kind:"partial", chapter:"frontier",
+    title:"The law predicts 23 of 24 outcomes — and the counterfactual trips over my decimal.",
+    plain:"If 'set in its ways' is really just arithmetic — too much stored evidence versus a fast-changing world — we should be able to predict exactly which creatures keep up. We could: 23 of 24 calls correct. The cure (forgetting) misfired only because we made it forget far too hard.",
+    one:"Per-outcome rule R<1 ⟺ recovery holds at 95.8% across a mass-swept cohort; the forgetting variant failed because λ=0.9 per step erased memory itself. Human consulted per predeclaration.",
+    metric:{ from:23, to:24, unit:"outcomes predicted correctly" },
+    setup:"Cascade round 2, corrected kill test: newborns settled 50/250/1000 steps run the drift schedule while the script predicts each segment's outcome from the creature's own count mass (R = outgoing-color mass / 20). Counterfactual: a forgetting creature (pA×0.9/step, declared) that the law says should track.",
+    result:"Rule-match 23/24 — recovery is determined by whether entrenched mass exceeds the per-segment evidence budget, almost without exception. The decay arm recovered 1/8 despite R≈0: at λ=0.9 per step a count retains 7% between visits, so the map held ~1 count and went near-uniform — it couldn't remember, not couldn't forget. My per-visit/per-step confusion; intended mass needs λ≈0.997.",
+    implication:"The (post-hoc) unified law now explains everything seen, including the failed arm: tracking a drifting world needs mass in a WINDOW — above an accuracy floor, below the tempo ceiling. Per the predeclared escalation the candidate survives mechanically and the human decides: corrected counterfactual (Exp 59, recommended), accept on test-1 evidence, or keep it alive as unexplained. Rung 4 proceeds meanwhile.",
+    trace:{ script:"experiments/exp58_mass_tempo_law.py", output:"experiments/outputs/exp58.txt" } },
+
+  { n:59, kind:"positive", chapter:"frontier",
+    title:"Around the locked door — and the greedy twin waits there forever.",
+    plain:"Lock a door on the shortest path to a goal the navigator was never warned about. Can it notice, back up, and go the long way around? Yes — while a short-sighted version of the same navigator just stands at the locked door, because every step away from the goal looks worse to it.",
+    one:"Levin transplant: with generic failure-learning, the planning agent routes around a lock it has no handler for (5/5, against-gradient steps in every run); the 1-step greedy control stalls at the start in 2/5 seeds.",
+    metric:{ from:29.8, to:46.0, unit:"mean steps: horizon vs greedy" },
+    setup:"A locked cell on the only short path to a corner-pocket goal. The provided harness: value-iteration planning, softmax actions, and generic failure-learning (a failed move marks one transition blocked — no lock-specific code). Predeclared: error tolerance, against-gradient steps, and a ≥1.5× gap over a greedy baseline, else the delayed-gratification label is refused.",
+    result:"All three pass: 5/5 reached, every success contains believed-distance-increasing steps, ratio 1.544. The sharpest datum is the control's failure mode — after learning the block, staying looks better than any legal move to a 1-step agent, so greedy waits at the door for all 60 steps: the literal trap that horizon escapes.",
+    implication:"Error tolerance and horizon-dependent routing are measured competencies of the machinery — granted narrowly (ratio clears its bar by 0.044; three of five successes are exploratory wanders where softmax jitter does real work). Honestly attributed: this exercises the provided planner plus generic model-updating, not mirro's self-formed state. Rung 4 answered.",
+    trace:{ script:"experiments/exp59_levin_obstacle.py", output:"experiments/outputs/exp59.txt" } },
+
+  { n:60, kind:"positive", chapter:"frontier",
+    title:"To keep learning, it must forget — the cascade closes on a law.",
+    one:"The corrected counterfactual brackets the window: in-window forgetting tracks the moving world 8/8; too-weak forgetting freezes; too-strong (Exp 58) can't remember. The novelty candidate dies as lawful.",
+    plain:"We suspected a simple law: a creature can follow a changing world only if its memory is neither too faint nor too set. We built three versions — one that forgets too fast, one too slow, one in between — and only the in-between one kept up. So the 'mystery' was a law all along: to keep learning for a lifetime, you have to be able to forget.",
+    metric:{ from:8, to:2, unit:"segments tracked: in-window vs weak decay" },
+    setup:"Cascade round 3, human-authorized: two decay rates bracket the predicted plasticity window on the same drift schedule — λ=0.997 (mass in-window, must track ≥6/8) and λ=0.9999 (barely forgets, must freeze ≤2/8) — with Exp 58's λ=0.9 as the below-floor reference.",
+    result:"In-window: 8/8 segments tracked with honest lags (200–425 steps). Weak decay: 2/8, and both 'recoveries' were segments coinciding with its settled world — no adaptation. Both predeclared thresholds hit; the candidate dies as the lawful consequence of non-decaying evidence.",
+    implication:"The unified law (Exp 48+56+57+58+60): accumulated evidence must sit between an accuracy floor and a tempo ceiling — the same mechanism behind opinion inertia and perceptual freezing. Substrate consequence: lifelong adaptation requires a forgetting term, a hard requirement for everything M4-bound. Caveats: numeric bounds uncalibrated, one schedule speed, one seed per arm, this learning rule only.",
+    trace:{ script:"experiments/exp60_forgetting_window.py", output:"experiments/outputs/exp60.txt" } },
+
+  { n:61, kind:"wall", chapter:"frontier",
+    title:"Hunger that never bites teaches nothing.",
+    one:"The survival test came back 19/20 alive in every arm — food was so abundant the energy variable never engaged, so neither the stale-map prediction nor the interoception question was actually tested.",
+    plain:"We gave the creature a stomach: energy that drains and refills at food, plus the urge to seek food when low. But the world had so much food that nobody ever got hungry — frozen maps, no maps, no stomach-sense at all: everyone lived. A test where nothing is at stake can't tell you anything. Next: make food scarce.",
+    metric:{ from:0.90, to:0.4, unit:"mean energy vs the trigger threshold" },
+    setup:"Rung 6: toy allostasis — energy decays, refills on the food patch, and a provided policy switch seeks believed food when energy is low. Four arms (interoception × map forgetting) in the drifting world, with the plasticity law predicting frozen-map starvation after the food moves.",
+    result:"Both falsifiers fired: the frozen-map agent survived 5/5 and interoception gave no advantage — because mean energy sat at ~0.91 everywhere. Nine food cells in twenty-five with 100-step autonomy means a random walk never starves; the low-energy switch almost never engaged and the stale map was never consulted.",
+    implication:"A deflationary negative in the Exp 50 family: the instrument failed to make the question binding. Stake v2 is predeclared — one food cell, half the autonomy, higher trigger — where random foraging starves, believed-food maps become load-bearing, and the empty-fridge prediction gets a real test.",
+    trace:{ script:"experiments/exp61_interoceptive_stake.py", output:"experiments/outputs/exp61.txt" } },
+
+  { n:62, kind:"partial", chapter:"frontier",
+    title:"Hungry and certain, it starves at the empty fridge.",
+    one:"Under real scarcity the stomach-sense buys 20× survival — but when the food moves, BOTH map types die at the old spot: starvation outruns unlearning.",
+    plain:"With food scarce, having a stomach-sense kept creatures alive twenty times longer than wandering blind — the inner signal finally mattered. But when the food moved, every creature marched to where food used to be and starved there, even the one whose memory could fade. Forgetting wasn't fast enough to outrun hunger — and certainty kept it standing at the empty fridge instead of searching.",
+    metric:{ from:1034, to:50, unit:"median survival: intero vs blind" },
+    setup:"Stake v2: one food cell, 50-step autonomy, hunger-triggered goal seeking; the food relocates once at step 1000. Four arms crossing interoception with map forgetting, with the empty-fridge death predicted for frozen maps.",
+    result:"Interoception: median 1034 vs 50 steps — the rung-6 twin difference, finally measurable. Frozen maps died 5/5 standing on the old food cell as predicted. The surprise: the forgetting map died identically — ~40 steps after the move, before decay could erase the stale belief, with the planner pinning the hungry agent to its remembered food.",
+    implication:"A timescale hierarchy above the plasticity window: unlearning must beat the viability clock, not just the world clock — and goal-pinned certainty needs a failure-driven exploration override. Two concrete substrate requirements for M4, found by a creature dying in a toy world. Caveats: provided policies, one scarcity level, one move event.",
+    trace:{ script:"experiments/exp62_stake_scarcity.py", output:"experiments/outputs/exp62.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

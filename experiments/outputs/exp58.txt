@@ -1,0 +1,51 @@
+============================================================
+TEST 1: Mass-swept cohort
+============================================================
+settle50 seg0 R=0.00 predicted=rec actual=rec match=True lag=200
+settle50 seg1 R=1.02 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg2 R=2.05 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg3 R=1.85 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg4 R=1.99 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg5 R=2.87 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg6 R=3.85 predicted=frozen actual=frozen match=True lag=>500
+settle50 seg7 R=4.09 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg0 R=0.00 predicted=rec actual=rec match=True lag=25
+settle250 seg1 R=1.48 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg2 R=1.90 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg3 R=2.28 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg4 R=2.03 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg5 R=3.30 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg6 R=4.01 predicted=frozen actual=frozen match=True lag=>500
+settle250 seg7 R=4.33 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg0 R=0.00 predicted=rec actual=rec match=True lag=25
+settle1000 seg1 R=2.83 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg2 R=3.34 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg3 R=3.13 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg4 R=1.68 predicted=frozen actual=rec match=False lag=25
+settle1000 seg5 R=4.69 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg6 R=5.40 predicted=frozen actual=frozen match=True lag=>500
+settle1000 seg7 R=5.36 predicted=frozen actual=frozen match=True lag=>500
+
+rule_match=23/24 (0.958) -> PASS
+
+============================================================
+TEST 2: Forgetting counterfactual (decay=0.9/step)
+============================================================
+decay seg0 R=0.00 actual=frozen lag=>500
+decay seg1 R=0.01 actual=frozen lag=>500
+decay seg2 R=0.03 actual=frozen lag=>500
+decay seg3 R=0.01 actual=frozen lag=500
+decay seg4 R=0.01 actual=rec lag=425
+decay seg5 R=0.02 actual=frozen lag=>500
+decay seg6 R=0.00 actual=frozen lag=>500
+decay seg7 R=0.03 actual=frozen lag=>500
+
+forgetting variant recovered 1/8 -> FAIL
+
+============================================================
+SUMMARY
+============================================================
+(1) rule_match=23/24 (0.958) -> PASS
+(2) forgetting variant recovered 1/8 -> FAIL
+
+VERDICT: candidate SURVIVES round 2 ((2) forgetting variant failed) — cascade exhausted, consulting human

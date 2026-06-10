@@ -1,0 +1,35 @@
+============================================================
+ARM: ARM-IN  lambda=0.997  birth_seed=95  base=195
+============================================================
+ARM-IN post-settling: map_accuracy=1.0000  mean_pA_mass=4.2184
+ARM-IN seg0 lag=25 end_acc=1.0000
+ARM-IN seg1 lag=425 end_acc=0.9600
+ARM-IN seg2 lag=200 end_acc=0.9600
+ARM-IN seg3 lag=300 end_acc=1.0000
+ARM-IN seg4 lag=325 end_acc=1.0000
+ARM-IN seg5 lag=300 end_acc=0.9600
+ARM-IN seg6 lag=300 end_acc=1.0000
+ARM-IN seg7 lag=275 end_acc=1.0000
+ARM-IN recovered 8/8
+
+============================================================
+ARM: ARM-HIGH  lambda=0.9999  birth_seed=96  base=196
+============================================================
+ARM-HIGH post-settling: map_accuracy=1.0000  mean_pA_mass=12.7826
+ARM-HIGH seg0 lag=25 end_acc=1.0000
+ARM-HIGH seg1 lag=>500 end_acc=0.5200
+ARM-HIGH seg2 lag=>500 end_acc=0.4400
+ARM-HIGH seg3 lag=>500 end_acc=0.6800
+ARM-HIGH seg4 lag=200 end_acc=0.9200
+ARM-HIGH seg5 lag=>500 end_acc=0.6400
+ARM-HIGH seg6 lag=>500 end_acc=0.5600
+ARM-HIGH seg7 lag=>500 end_acc=0.6800
+ARM-HIGH recovered 2/8
+
+============================================================
+SUMMARY
+============================================================
+ARM-IN  recovered 8/8  (predicted >= 6) -> PASS
+ARM-HIGH recovered 2/8  (predicted <= 2) -> PASS
+
+VERDICT: candidate DIES — plasticity-window law confirmed (in-window decay tracks; weak decay freezes; Exp 58's strong decay sat below the floor)
