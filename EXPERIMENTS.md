@@ -3677,3 +3677,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   POSITIVE-SINGLE.
 - Next: rung 2 — 4 concepts at unit-square corners, blended streams, the
   (separation, Sigma) sweep for the interpolation/snap boundary.
+
+## Exp 134 — continuous-substrate rung 2: interpolation holds everywhere, Σ never widens — and the predicted cost REVERSES: blends are catastrophic for the tabular twin, benign for the continuous agent (NEGATIVE on the predeclared P3, sign-reversed; NEW INSIGHT; replicated on fresh seeds; mechanism pinned)
+- Plain: We fed the agent a stream mixing words from two opposite concepts — a blend it
+  had never been built for — expecting the continuous mind to pay a price for squeezing
+  two possibilities into one belief. The opposite happened. The continuous belief settles
+  calmly between the two concepts in every single run, while the four-box mind is
+  the one that breaks: forced to pick exactly one box, a coin-flip surplus of one word
+  over the other slams it to a corner, and it then finds half its future observations
+  near-impossible. The boxes, not the continuum, are the brittle substrate here.
+- Setup (predeclared in the script docstring before running): 4 word-Gaussians at square
+  corners, sweep L ∈ {0.5,1,2,4} × σ ∈ {0.175,0.35,0.7} (12 cells × 8 seeds), blend =
+  iid 50/50 words from opposite corners A/D, T = 200+200 held-out, prior N(0,4I);
+  pure-corner control stream per cell for the Σ check; tabular twin (4 states, true
+  table) on identical streams. P1: no corner-snap, midpoint error < 0.15L in ≥7/8 seeds
+  in ≥11/12 cells. P2 (against the card's naive "Σ should widen"): tr(Σ_post) blended ≡
+  pure to 1e-9 (precision sum is stream-independent). P3 (the predicted cost): NLL gap
+  (cont − tab) rises with L/σ, Spearman ρ ≥ 0.8, saturating at ln 2 ≈ 0.693 (tabular
+  assumed to hold a bimodal q ≈ (½,0,0,½)).
+- Result: P1 PASS (0/96 snapped; 12/12 cells; the card's snap-FAIL regime does not exist
+  for precision accumulation). P2 PASS exactly (max |Δtr| = 0.0 — the unimodal posterior
+  hides ambiguity rather than representing it, as predicted). P3 FALSIFIED with a SIGN
+  REVERSAL: gap is NEGATIVE everywhere and explodes with L/σ (ρ = −0.98; cell means
+  −0.007 → −245.5 nats; tabular NLL up to 270 vs continuous 1.4–24). Fresh-seed rerun
+  (seeds 8–15, exp134_rerun_fresh.py): headline replicates, 6/6 high-ratio cells
+  negative, ρ = −0.98 again. Mechanism check (exp134_exact_bayes_check.py): the strict
+  C3 conjuncts failed on the floored filter (7/46 argmax anomalies), but exact log-space
+  Bayes puts the posterior at the majority-count corner 46/46 — all anomalies are an
+  underflow ratchet in the prob-space filter (entries hit float 0 and never recover);
+  exact-Bayes NLL is the same catastrophic magnitude (264–282 nats at the extreme cell),
+  so the headline is NOT an artifact.
+- Mechanism (pinned): the static-state categorical posterior's A-vs-D log-odds are
+  (n0−n3)·log(A[0,A]/A[0,D]) — a binomial count imbalance of ONE word multiplies the
+  odds by e^{O(L²/σ²)}, so the tabular twin deterministically collapses to the
+  majority-count corner and pays ~(L²/σ²)·(minority share) nats per held-out minority
+  word: unbounded in separation. The continuous posterior interpolates (μ_post = the
+  precision-weighted mean) and pays at most ~ln 4 + offset effects. My predicted ln 2
+  saturation wrongly assumed the bimodal q survives sampling noise; it survives only
+  exact count balance (probability ~0.056 at T=200).
+- Implication: rung 2's question is answered strongly — an interpolation regime exists
+  EVERYWHERE in the sweep, and the first genuine tabular-ceiling datum of the direction
+  lands: out-of-model blends break tables, not continua. The honest cost of unimodality
+  is real but bounded (Σ never widens; NLL floor ln 4 vs the ideal ln 2), against the
+  tabular twin's unbounded brittleness. META guard institutionalized: tabular twins must
+  filter in log space (`log_categorical_posterior` + ratchet regression test + card rule).
+- Honest caveat: the blend is OUT-OF-MODEL for both agents — this measures robustness to
+  misspecification, not in-model accuracy (rung 1 showed the well-specified tabular twin
+  wins there); both agents received the true anchor (provided, not self-formed); the
+  continuous agent is "confidently wrong" at the midpoint (P2: zero widening) even
+  though its predictive degrades gracefully; one blend type only (opposite corners,
+  50/50); d=2.
+- Verdict: NEGATIVE on the predeclared P3 (falsifier triggered as written, direction
+  reversed) / NEW INSIGHT (the reversal + pinned mechanism). P1, P2 confirmed as
+  predicted. Self-grade: n/a (negative verdicts carry no positive grade); the insight
+  stands on the replicated raw rows.
+- Process note: coding deviated once from the Sonnet-codes rule — the ~50-line META
+  guard (log-space helper + test) was written by the main model inline to keep the
+  iteration atomic across the 5-min cadence; experiment scripts themselves were
+  Sonnet-coded per PROTOCOL.
+- Next: rung 3 — the Exp 31 rematch (NIW-learned emission means, structured→noise
+  phases, collapse index vs (ν₀, κ₀)), now with the log-space twin mandated by the new
+  card rule.

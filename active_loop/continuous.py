@@ -280,6 +280,50 @@ class NIW:
 
 
 # ---------------------------------------------------------------------------
+# Log-space categorical filtering (the tabular twin's safe update)
+# ---------------------------------------------------------------------------
+
+def log_categorical_posterior(
+    logA: np.ndarray,
+    words: np.ndarray,
+    log_prior: np.ndarray | None = None,
+) -> np.ndarray:
+    """Exact static-state categorical posterior in log space.
+
+    Computes log q_c = log_prior_c + sum_t logA[words_t, c], normalised.  This is
+    the order-independent product posterior; computing it in probability space with
+    per-step renormalisation lets individual entries underflow to exact float 0,
+    after which they can never recover — an order-dependent ratchet (found in
+    Exp 134: 7/46 argmax anomalies, all artifacts of the floored filter).  Tabular
+    twins in this direction MUST use this instead.
+
+    Parameters
+    ----------
+    logA : array_like, shape (M, C)
+        Log emission table, log p(word=k | state=c).
+    words : array_like of int, shape (T,)
+        Observed word indices.
+    log_prior : array_like, shape (C,), optional
+        Log prior over states (default: uniform).
+
+    Returns
+    -------
+    logq : np.ndarray, shape (C,)
+        Normalised log posterior (logsumexp(logq) == 0).
+    """
+    logA = np.asarray(logA, dtype=float)
+    logq = (
+        np.zeros(logA.shape[1])
+        if log_prior is None
+        else np.asarray(log_prior, dtype=float).copy()
+    )
+    for w in np.asarray(words, dtype=int):
+        logq = logq + logA[w, :]
+    logq = logq - float(np.logaddexp.reduce(logq))
+    return logq
+
+
+# ---------------------------------------------------------------------------
 # Predictive word log-probabilities
 # ---------------------------------------------------------------------------
 

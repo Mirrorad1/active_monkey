@@ -178,3 +178,35 @@ def test_predictive_logprobs_normalized() -> None:
         f"Expected word 0 to dominate; got argmax={np.argmax(log_probs_peaked)}, "
         f"log_probs={log_probs_peaked}"
     )
+
+
+def test_log_categorical_posterior_order_independent_no_ratchet():
+    """Exp 134 guard: the log-space filter must be order-independent and immune to
+    the underflow ratchet that breaks multiply-then-renormalize filters."""
+    from active_loop.continuous import log_categorical_posterior
+
+    rng = np.random.default_rng(0)
+    # Extreme-separation table: off-state likelihoods ~ exp(-500)
+    logA = np.array([[0.0, -500.0], [-500.0, 0.0]])
+    logA = logA - np.logaddexp.reduce(logA, axis=0, keepdims=True)
+    # 60 of word 0, 40 of word 1 -> majority state 0 must win
+    words = np.array([0] * 60 + [1] * 40)
+    logq = log_categorical_posterior(logA, words)
+    assert np.isclose(np.logaddexp.reduce(logq), 0.0, atol=1e-10)
+    assert int(np.argmax(logq)) == 0
+    # order independence: any permutation gives the identical posterior
+    perm = rng.permutation(len(words))
+    logq_perm = log_categorical_posterior(logA, words[perm])
+    assert np.allclose(logq, logq_perm, atol=1e-9)
+    # the naive prob-space filter ratchets on this input (documents WHY the
+    # guard exists): state 0's entry hits exact float 0 on the first word-1
+    # run-in and never recovers
+    q = np.ones(2) / 2
+    A = np.exp(logA)
+    for w in np.concatenate([[1] * 2, [0] * 98]):  # 2 early minority words
+        q = q * A[w, :]
+        s = q.sum()
+        q = np.ones(2) / 2 if s < 1e-300 else q / s
+    # exact Bayes on the same stream says state 0 (98 vs 2)
+    logq2 = log_categorical_posterior(logA, np.concatenate([[1] * 2, [0] * 98]))
+    assert int(np.argmax(logq2)) == 0

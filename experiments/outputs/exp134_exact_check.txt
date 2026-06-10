@@ -1,0 +1,13 @@
+   L   sig seed n0-n3 maj exact impl    nll_ex    nll_im
+ 2.0 0.175    8    +4   0     0    3     64.65     65.96  <-- impl artifact
+ 4.0 0.175   12    +4   0     0    3    276.90    245.55  <-- impl artifact
+ 4.0 0.175   14   -12   3     3    0    282.12    240.33  <-- impl artifact
+ 4.0 0.175   15   +14   0     0    3    263.84    258.61  <-- impl artifact
+ 4.0  0.35    9    +2   0     0    3     65.31     65.31  <-- impl artifact
+ 4.0  0.35   11   +24   0     0    1     53.55     65.31  <-- impl artifact
+ 4.0  0.35   15    -2   3     3    1     73.80     65.31  <-- impl artifact
+
+ties skipped (n0 == n3): 2
+exact log-space argmax != majority: 0/46
+floored-filter argmax != majority:  7/46
+VERDICT: artifact hypothesis CONFIRMED (exact Bayes deterministic at the majority corner; all anomalies belong to the floored filter)

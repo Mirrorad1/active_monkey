@@ -1,0 +1,46 @@
+============================================================================================
+Exp 134 — Cell Table (12 cells, 8 seeds each)
+============================================================================================
+    L   sigma   L/sig   snap/8   mid<0.15/8   max_tr_diff   cont_NLL   tab_NLL       gap
+--------------------------------------------------------------------------------------------
+ 0.50   0.175    2.86        0            8     0.000e+00     1.3964    3.9825   -2.5861
+ 0.50   0.350    1.43        0            8     0.000e+00     1.3895    1.6245   -0.2350
+ 0.50   0.700    0.71        0            8     0.000e+00     1.3864    1.3933   -0.0069
+ 1.00   0.175    5.71        0            8     0.000e+00     1.7338   16.6531  -14.9193
+ 1.00   0.350    2.86        0            8     0.000e+00     1.4119    3.9876   -2.5757
+ 1.00   0.700    1.43        0            8     0.000e+00     1.3871    1.6157   -0.2286
+ 2.00   0.175   11.43        0            8     0.000e+00     3.4544   63.4288  -59.9744
+ 2.00   0.350    5.71        0            8     0.000e+00     1.7839   16.0408  -14.2570
+ 2.00   0.700    2.86        0            8     0.000e+00     1.4165    4.1109   -2.6943
+ 4.00   0.175   22.86        0            8     0.000e+00    24.1975  269.7143  -245.5168
+ 4.00   0.350   11.43        0            7     0.000e+00     4.5243   64.0816  -59.5573
+ 4.00   0.700    5.71        0            8     0.000e+00     1.6011   16.0000  -14.3989
+============================================================================================
+
+--- P1: Interpolation / No-Snap ---
+  Total snapped runs (96 total): 0  => p1a=PASS
+  Cells with snap_count >= 2: 0  (falsifier: any => NEGATIVE)
+  Cells with midpoint_err_norm < 0.15 in >=7/8 seeds: 12/12  => p1c=PASS
+  P1 overall: PASS
+
+--- P2: No-Widening (Structural) ---
+  Max |tr_blend - tr_pure| across all 96 pairs: 0.000000e+00
+  Threshold: 1e-9  => P2=PASS
+
+--- P3: Cost Boundary Shape ---
+  Spearman rho(log(L/sigma), cell_mean_gap) = -0.9824  (need >= 0.8)  => p3a=FAIL
+  Gap at max L/sigma (ratio=22.86): -245.5168  ln2=0.6931  |diff|=246.2099  (need within 0.15)  => p3b=FAIL
+  Gap at min L/sigma (ratio=0.71): -0.0069  (need < 0.10)  => p3c=PASS
+  P3 overall: FAIL
+
+--- Falsifier Evaluation ---
+  Snap falsifier (any cell >= 2/8 snapped):    clear
+  P2 falsifier (tr_diff >= 1e-9 anywhere):     clear
+  P3 falsifier (shape fails):                  TRIGGERED
+
+============================================================================================
+VERDICT: NEGATIVE
+  Triggered falsifiers: P3 falsifier (rho=-0.9824<0.8; gap_max=-245.5168 not within 0.15 of ln2)
+============================================================================================
+ln2 reference = 0.693147
+JSON rows written to: experiments/outputs/exp134_rows.json

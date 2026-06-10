@@ -38,3 +38,10 @@ d-scaling curve) AND the amortized comparison is logged (either verdict) — or 
 stuck on numerics (covariance conditioning, not the question) → log the wall and consult.
 This direction touches neither the halted M4a thread (increment 1c awaits its own human
 word) nor mirro's/vela's spines.
+
+**Build rules (loop-added, META guards).**
+- [Exp 134] Tabular twins MUST filter in log space via
+  `active_loop.continuous.log_categorical_posterior` — multiply-then-renormalize
+  filters underflow-ratchet at large separation (entries hit exact float 0 and never
+  recover, making the filter order-dependent; 7/46 argmax anomalies, all artifacts).
+  Guard test: tests/test_continuous.py::test_log_categorical_posterior_order_independent_no_ratchet.

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:133, breakthrough:6, positive:82, wall:21, partial:24, from:4.81, to:4.00 };
+window.AM_TALLY = { total:134, breakthrough:6, positive:82, wall:21, partial:25, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1345,7 +1345,17 @@ window.AM_EXPERIMENTS = [
     setup:"Six word-Gaussians on a hexagon as the innate anchor (given, not learned), one concept's word stream, broad prior; the same stream fed to a tabular twin holding the true emission table. Declared up front: the agent uses the unnormalized Gaussian footprint (the conjugacy-buying approximation) while the generator uses the normalized mixture — the bias that mismatch causes was predicted analytically (about 0.017) before running. Core math in active_loop/continuous.py with six durable unit tests.",
     result:"P1 localization 8/8 (errors 0.009-0.040), P2 contraction 8/8 on both conjuncts, P3 twin race 8/8 within the 0.10-nat band — tabular consistently but characterizably faster early (its six atoms contain the exact answer). 97 fast tests green.",
     implication:"The continuous substrate's inference rung is sound at toy scale. Rung 2 — blended streams between concepts, where the single-Gaussian approximation should start paying — is the live question.",
-    trace:{ script:"experiments/exp133_cont_convergence.py", output:"experiments/outputs/exp133.txt" } }
+    trace:{ script:"experiments/exp133_cont_convergence.py", output:"experiments/outputs/exp133.txt" } },
+
+  { n:134, kind:"partial", chapter:"frontier",
+    title:"The blend test backfires — on the boxes.",
+    one:"Rung 2, predeclared P3 falsified with a SIGN REVERSAL: the continuous posterior interpolates in 96/96 runs (zero corner-snaps, Sigma bit-identically never widens), but the predicted ln-2 cost vs the tabular twin inverts — exact-Bayes tables collapse to the majority-count corner 46/46 and pay up to 282 nats on blends while the continuous agent pays at most ~24; replicated on fresh seeds (rho -0.98 both seed sets).",
+    plain:"We fed the agent a stream mixing words from two opposite concepts — a blend it was never built for — expecting the continuous mind to pay for squeezing two possibilities into one belief. The opposite happened. The continuous belief settles calmly between the two concepts in every single run, while the four-box mind is the one that breaks: forced to pick exactly one box, a coin-flip surplus of one word over the other slams it to a corner, where half its future observations look near-impossible. The boxes, not the continuum, are the brittle substrate here.",
+    metric:{ from:0.69, to:-245.5, unit:"predicted vs observed NLL gap at extreme separation, nats (cont minus tab)" },
+    setup:"Four word-Gaussians at square corners, a 12-cell (separation x footprint-width) sweep with 8 seeds per cell, 50/50 blended streams from opposite corners, pure-corner controls, and the tabular twin on identical streams. Predeclared: no snap, no Sigma widening, and a cost gap rising to ln 2 — the third falsified by reversal. A fresh-seed rerun and an exact log-space recomputation pinned the mechanism and separated one implementation artifact (an underflow ratchet in probability-space filtering, now guarded by a core helper plus regression test) from the real effect.",
+    result:"P1 interpolation 12/12 cells and 0/96 snaps; P2 max trace difference exactly 0.0; P3 falsifier triggered with rho -0.98 in the opposite direction — count imbalance of a single word multiplies the tabular odds by e^(L^2/sigma^2), collapsing it to one corner with unbounded cost, verified 46/46 in exact log-space Bayes.",
+    implication:"The direction's first genuine tabular-ceiling datum: out-of-model blends break tables, not continua. The unimodal cost is real but bounded (uncertainty never widens; floor ln 4 vs ideal ln 2); the tabular cost is unbounded in separation. Rung 3, the Exp 31 collapse rematch, is next.",
+    trace:{ script:"experiments/exp134_cont_interpolation.py", output:"experiments/outputs/exp134.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

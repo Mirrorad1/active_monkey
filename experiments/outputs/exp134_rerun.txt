@@ -1,0 +1,54 @@
+================================================================================================
+Exp 134 RERUN — Cell Table (12 cells, 8 seeds 8..15)
+================================================================================================
+    L   sigma   L/sig   snaps/8   max_tr_diff   cont_NLL    tab_NLL        gap
+------------------------------------------------------------------------------------------------
+ 0.50   0.175    2.86         0     0.000e+00     1.4063     4.0964    -2.6901
+ 0.50   0.350    1.43         0     0.000e+00     1.3861     1.6063    -0.2202
+ 0.50   0.700    0.71         0     0.000e+00     1.3863     1.3989    -0.0126
+ 1.00   0.175    5.71         0     0.000e+00     1.6124    16.2857   -14.6733
+ 1.00   0.350    2.86         0     0.000e+00     1.4027     4.0343    -2.6316
+ 1.00   0.700    1.43         0     0.000e+00     1.3962     1.6629    -0.2667
+ 2.00   0.175   11.43         0     0.000e+00     6.5765    65.0612   -58.4848
+ 2.00   0.350    5.71         0     0.000e+00     1.5900    15.8776   -14.2876
+ 2.00   0.700    2.86         0     0.000e+00     1.3956     3.9731    -2.5775
+ 4.00   0.175   22.86         0     0.000e+00     9.9121   250.1224  -240.2104
+ 4.00   0.350   11.43         0     0.000e+00     4.3112    66.3678   -62.0566
+ 4.00   0.700    5.71         0     0.000e+00     1.5449    15.3691   -13.8242
+================================================================================================
+
+--- C1: No-snap + tr structural check ---
+  Total snapped runs (96 total): 0  => snap=PASS
+  Max |tr_blend - tr_pure| across all runs: 0.000000e+00  (need < 1e-9) => tr=PASS
+  C1 overall: PASS
+
+--- C2: Reversed sign (cont BEATS tabular at large L/sigma) ---
+  Cells with L/sigma >= 2.86: 6
+    L=1.00 sigma=0.175 ratio=5.71  gap=-14.6733  [neg]
+    L=2.00 sigma=0.175 ratio=11.43  gap=-58.4848  [neg]
+    L=2.00 sigma=0.350 ratio=5.71  gap=-14.2876  [neg]
+    L=4.00 sigma=0.175 ratio=22.86  gap=-240.2104  [neg]
+    L=4.00 sigma=0.350 ratio=11.43  gap=-62.0566  [neg]
+    L=4.00 sigma=0.700 ratio=5.71  gap=-13.8242  [neg]
+  All high-ratio gaps negative: 6/6  => c2a=PASS
+  Spearman rho(log(L/sigma), gap) = -0.9824  (need <= -0.8)  => c2b=PASS
+  C2 overall: PASS
+
+--- C3: Mechanism check (argmax + imbalance correlation) ---
+  Cells with L/sigma >= 5.71: 6
+    L=1.00 sigma=0.175 ratio=5.71  Pearson(|n0-n3|, tab_NLL) = +0.5964
+    L=2.00 sigma=0.175 ratio=11.43  Pearson(|n0-n3|, tab_NLL) = -0.0562
+    L=2.00 sigma=0.350 ratio=5.71  Pearson(|n0-n3|, tab_NLL) = +0.3638
+    L=4.00 sigma=0.175 ratio=22.86  Pearson(|n0-n3|, tab_NLL) = +0.5209
+    L=4.00 sigma=0.350 ratio=11.43  Pearson(|n0-n3|, tab_NLL) = +0.6368
+    L=4.00 sigma=0.700 ratio=5.71  Pearson(|n0-n3|, tab_NLL) = +0.3793
+  Argmax == majority corner: 39/46 runs  (skipped n0==n3: 2)  => c3a=FAIL
+  All per-cell Pearson(|n0-n3|, tab_NLL) > 0: NO  => c3b=FAIL
+  C3 overall: FAIL
+
+================================================================================================
+VERDICT: NOT-CONFIRMED
+  Failing conjuncts: C3(argmax_hits=39/46; not all Pearson>0)
+================================================================================================
+ln2 reference = 0.693147
+Seeds used: 8..15
