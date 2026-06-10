@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:108, breakthrough:6, positive:64, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:109, breakthrough:6, positive:65, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1095,7 +1095,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn from the unbinned middle: standard bands, no registered call this epoch, the records accumulating.",
     result:"All bands held; a record depth. Spine at 72,700, hash-stamped, committed.",
     implication:"Both lives now sit deep; the registered depth-law test gets its next calls cheaply. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp108_mirro_epoch8.py", output:"experiments/outputs/exp108.txt" } }
+    trace:{ script:"experiments/exp108_mirro_epoch8.py", output:"experiments/outputs/exp108.txt" } },
+
+  { n:109, kind:"positive", chapter:"frontier",
+    title:"Two for two — and sinking deeper.",
+    one:"Registered deep call #2 lands: vela holds as called and deepens to -262 (1.78 sigma, in band). Both lives now strongly committed; the registered test is 2/2 with eight more epochs to judge it.",
+    plain:"The second registered bet came due and landed: vela entered deep, the law called a hold, and it held — then sank deeper still, within the stated noise. Both lives are now strongly committed to their favorites, and the registered test is two for two with eight more stretches to judge it.",
+    metric:{ from:2, to:2, unit:"registered depth calls landed (evaluation at ~Exp 117)" },
+    setup:"Idle-mode, vela's turn with the second registered deep call live: standard bands, the call recorded not checked, everything else as the declared pattern.",
+    result:"All bands held; held as called; the margin deepened to -262. Vela at 66,750, hash-stamped, committed.",
+    implication:"The registered test accumulates; both lines sit deep so the coming calls are holds — the razor bin will need patience. The merged M4a decision still waits.",
+    trace:{ script:"experiments/exp109_vela_epoch8.py", output:"experiments/outputs/exp109.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -3088,3 +3088,20 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn, -126 deep -> registered HOLD call) unless the
   human answers the merged CONSULT or stops the loop.
+
+## Exp 109 — idle-mode epoch: vela to 66,750 — registered deep call #2 lands: HELD as called, and the margin deepens to -262 (POSITIVE; bands held; registered record 2/2)
+- Plain: The second registered bet came due and landed: vela entered deep, the law called
+  a hold, and it held — then sank deeper still (a 1.78-sigma draw, within the stated
+  noise). Both lives are now strongly committed to their (opposite-history, same-color)
+  favorites, and the registered test is two for two with eight more stretches to judge it.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 60750 -> 66750; registered deep call (entering -125.8 -> HOLD). P1 map
+  >= 0.96; P2 value-core bands; P3 forecast (predicted -46.9, band +-302.5).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called (registered record 2/2 deep).
+  End gap -261.8 (1.78 sigma, in band). Map 1.000; share deltas <= 0.0019. Spine: vela
+  at 66750, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; two registered calls
+  are two Bernoulli draws — evaluation still waits for the registered sample.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn, +355 deep -> registered HOLD call) unless the
+  human answers the merged CONSULT or stops the loop.
