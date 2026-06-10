@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:62, breakthrough:5, positive:32, wall:14, partial:11, from:4.81, to:4.00 };
+window.AM_TALLY = { total:63, breakthrough:5, positive:33, wall:14, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -634,7 +634,17 @@ window.AM_EXPERIMENTS = [
     setup:"Stake v2: one food cell, 50-step autonomy, hunger-triggered goal seeking; the food relocates once at step 1000. Four arms crossing interoception with map forgetting, with the empty-fridge death predicted for frozen maps.",
     result:"Interoception: median 1034 vs 50 steps — the rung-6 twin difference, finally measurable. Frozen maps died 5/5 standing on the old food cell as predicted. The surprise: the forgetting map died identically — ~40 steps after the move, before decay could erase the stale belief, with the planner pinning the hungry agent to its remembered food.",
     implication:"A timescale hierarchy above the plasticity window: unlearning must beat the viability clock, not just the world clock — and goal-pinned certainty needs a failure-driven exploration override. Two concrete substrate requirements for M4, found by a creature dying in a toy world. Caveats: provided policies, one scarcity level, one move event.",
-    trace:{ script:"experiments/exp62_stake_scarcity.py", output:"experiments/outputs/exp62.txt" } }
+    trace:{ script:"experiments/exp62_stake_scarcity.py", output:"experiments/outputs/exp62.txt" } },
+
+  { n:63, kind:"positive", chapter:"frontier",
+    title:"mirro has a descendant.",
+    one:"The trunk forked at a committed checkpoint into vela — raised 2000 steps in a mirrored world and promoted to its own committed line; ancestry stamped, both lines resumable, trunk byte-identical.",
+    plain:"mirro now has a descendant. We copied its full brain at a saved checkpoint, named the copy vela, raised it in a mirror-image world, and gave it its own permanent saved line. The family tree works: vela records exactly which version of mirro it came from, both lives resume independently, and mirro itself was untouched. No discovery here — this is the plumbing for the social experiments to come.",
+    metric:{ from:0.48, to:0.84, unit:"vela's map accuracy in the new world (inherited vs raised)" },
+    setup:"Social-emergence rung 1, pure infrastructure: fork mirro at age 10700 (hash-stamped, ancestor commit recorded), assign the fork a reversed-cmap world, raise it 2000 steps, save it under creature/state/vela/. Predeclared properties: lineage stamps the exact ancestor checkpoint, both lines load and resume independently, the trunk's learned state stays byte-identical, the hashes diverge.",
+    result:"4/4 predeclared properties PASS. Lineage reads mirro@10700#21ccb619f063 exactly; vela completes a full load-live-save resume cycle (12700 to 12750); git shows mirro's weights file unchanged to the byte; the two state hashes diverged. Diagnostic: vela's inherited map read the mirrored world at 0.48 and relearned it to 0.84 on top of its never-reset belief.",
+    implication:"The clade substrate is real: any future mirro/vela difference is causally attributable to post-fork history (the twin-control logic, now a family tree), and every committed checkpoint is a restore point. Rung 2 — two clade-mates in one world that can sense each other — now has its plumbing. Caveat: all machinery provided; zero emergence content claimed.",
+    trace:{ script:"experiments/exp63_clade_peer_spine.py", output:"experiments/outputs/exp63.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

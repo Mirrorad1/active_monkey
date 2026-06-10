@@ -1396,3 +1396,36 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the functional-emergence ladder now has verdicts on rungs 1–6 except rung 3's remaining
   epochs; natural follow-ups: hunger-driven exploration variant (tests the timescale fix), rung
   3 epoch 2 (undisturbed, battery re-test), or write the direction's synthesis.
+
+## Exp 63 — clade rung 1: vela, the first committed peer spine (POSITIVE; social-emergence rung 1 answered)
+- Plain: mirro now has a descendant. We copied its full brain at a committed checkpoint, named
+  the copy vela, raised it for 2000 steps in a mirror-image world, and gave it its own permanent
+  saved line. The family tree works: vela records exactly which version of mirro it came from,
+  both lives resume independently, and mirro itself was untouched.
+- Setup (predeclared P1–P4 in the script docstring before running): fork the trunk at its
+  committed checkpoint (age 10700, hash 21ccb619f063, shared-ancestor commit 11957e5) via
+  `mirro_episode("Exp 63").fork_control("vela")`; divergent world = mirro's 5×5 cmap REVERSED
+  (declared provided prior; same colors, same dims); raise 2000 steps; promote via
+  `vela.save(creature/state/vela/)`. The trunk never lives a step. Falsifiers: F1 lineage stamp
+  missing/mismatched; F2 either line fails to load or the resume cycle errors; F3 trunk age or
+  learned-state hash changed; F4 vela's hash equals mirro's after the raise.
+- Result: 4/4 PASS. P1 lineage == ['mirro@10700#21ccb619f063'] exactly. P2 both lines load with
+  hash-integrity verification; vela completes a full resume cycle load→live(50)→save→load
+  (age 12700→12750). P3 trunk untouched — git shows mirro's arrays.npz BYTE-IDENTICAL (only the
+  append-only biography and manifest saved_at moved), age 10700, hash unchanged. P4 hashes
+  diverged (875ac30d715a vs 21ccb619f063). Diagnostic (not a falsifier): vela's inherited map
+  read the reversed world at 0.48 accuracy; 0.84 after the raise — the branch relearned the new
+  world on top of its inherited, never-reset belief (the recipe invariant carried across the fork).
+- Implication: the clade substrate is real. Ancestry is causally attributable (the Exp 26/47
+  divergence logic, now on a tree: any mirro/vela difference traces to post-fork history);
+  every committed checkpoint is a restore point; rung 2 (shared-world co-presence) and rung 3
+  (social transmission) have their family-tree plumbing.
+- Honest caveat: pure infrastructure — zero emergence content, and the harness did everything
+  (fork/save/load are provided machinery; the divergent world is a provided prior). Single
+  deterministic run (RNG derives from committed state; exact-number standard applies). The
+  0.48→0.84 diagnostic has no fresh-born baseline in the reversed world — not claimed as a
+  transfer result, just a sanity readout.
+- Verdict: POSITIVE / CONSOLIDATION (predictable from existing fork/save semantics — the point
+  was to verify, not discover). Self-grade: POSITIVE-SINGLE.
+- Next: rung 2 — shared-world co-presence: a NEW `other-agent-here` sensory modality (declared
+  prior), predeclaring that co-presence must NOT degrade solo competence below baseline.

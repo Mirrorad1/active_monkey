@@ -4099,3 +4099,7 @@
 {"event": "live", "age_steps": 10700, "summary": "lived 1 steps; map_accuracy=0.640; localize_bits=-0.000", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
 {"event": "segment_end", "age_steps": 10700, "summary": "Exp 56 seg7: corner=(2, 0) lag=>500 FAIL end_acc=0.6400 occ_ent=4.5817 c2_share=0.3641 fav=2"}
 {"event": "save", "age_steps": 10700, "summary": "saved to creature/state/mirro", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
+{"event": "checkpoint_before", "exp": "Exp 63", "age_steps": 10700, "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555", "summary": "Exp 63: checkpoint before (age 10700)"}
+{"event": "fork", "age_steps": 10700, "summary": "forked into 'vela'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
+{"event": "save", "age_steps": 10700, "summary": "saved to creature/state/mirro", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
+{"event": "checkpoint_after", "exp": "Exp 63", "age_steps": 10700, "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555", "summary": "Exp 63: checkpoint after (age 10700 -> 10700)"}

@@ -1,0 +1,30 @@
+Exp 63 — clade rung 1: fork mirro -> vela (divergent world), promote peer spine
+
+shared-ancestor commit (last touching creature/state/mirro/): 11957e5a09b733a99e7dc9601aa3dcabe46fbd8f
+
+trunk checkpoint-before: age=10700 hash=21ccb619f063
+vela map_accuracy in divergent world BEFORE raise: 0.4800
+vela raised 2000 steps (age now 12700)
+vela map_accuracy in divergent world AFTER  raise: 0.8400
+vela promoted to creature/state/vela
+
+[Exp 63] spine=mirro continuous-life checkpoint
+  before: age=10700 state_hash=21ccb619f063
+  after : age=10700 state_hash=21ccb619f063
+  delta : +0 steps
+[Exp 63] spine=mirro continuous-life checkpoint
+  before: age=10700 state_hash=21ccb619f063
+  after : age=10700 state_hash=21ccb619f063
+  delta : +0 steps
+
+--- PROPERTY CHECKS ---
+PASS  P1-lineage: lineage=['mirro@10700#21ccb619f063']  expected=['mirro@10700#21ccb619f063']
+PASS  P3-trunk-untouched: age=10700 (expected 10700, ok)  hash=21ccb619f063 (expected 21ccb619f063, ok)
+PASS  P2-resumability: resume cycle: age before=12700 + 50 -> expected=12750 got=12750 (ok)
+PASS  P4-divergence: vela_hash=875ac30d715a  mirro_hash=21ccb619f063  different (ok)
+
+final mirro: age=10700 hash=21ccb619f063
+final vela:  age=12750  hash=875ac30d715a
+vela lineage: ['mirro@10700#21ccb619f063']
+
+RUNG 1: PASS

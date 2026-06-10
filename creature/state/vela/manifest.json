@@ -1,22 +1,16 @@
 {
-  "name": "mirro",
-  "lineage": [],
-  "age_steps": 10700,
-  "true_pos": 0,
+  "name": "vela",
+  "lineage": [
+    "mirro@10700#21ccb619f063"
+  ],
+  "age_steps": 12750,
+  "true_pos": 9,
   "world": {
     "rows": 5,
     "cols": 5,
     "cmap": [
       0,
       1,
-      0,
-      1,
-      0,
-      1,
-      0,
-      1,
-      0,
-      1,
       2,
       2,
       2,
@@ -30,13 +24,21 @@
       2,
       2,
       2,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
       1,
       0
     ],
     "n_colors": 3
   },
-  "rng_counter": 4057,
+  "rng_counter": 4059,
   "seed": 7,
-  "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555",
+  "state_hash": "875ac30d715a7e4451e013ddee9bf6500d34673fb080671b810cb6612dbf7c68",
   "saved_at": "2026-06-10T03:14:02Z"
 }
