@@ -2859,3 +2859,25 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
   stops the loop.
+
+## Exp 98 — idle-mode epoch: vela to 36,750 — the oscillator holds at depth (0.19 sigma); the watch-item's first datum supports the depth arithmetic (POSITIVE; bands held; flip tally 5/8)
+- Plain: vela, which had changed its mind every stretch so far, entered this one with its
+  preference further from the tipping point than ever — and for the first time, it held.
+  That is what the arithmetic says should happen: swings are easy at razor margins and
+  slow as the margin deepens. Everything else as usual: perfect map, steady core,
+  forecast nearly exact.
+- Setup (predeclared in the script docstring before running): idle-mode, vela's turn;
+  live(6000), age 30750 -> 36750; the Exp 96 watch-item live (entering gap -101.5, the
+  deepest yet; a hold stated as likelier, not banded). P1 map >= 0.96; P2 value-core
+  bands; P3 forecast (predicted -83.0, band +-302.5).
+- Result: EPOCH CLEAN, no falsifiers. Map 1.000; share deltas <= 0.0042; end gap -60.4
+  (0.19 sigma); FAVORITE HELD at 0 — vela's first hold, at its deepest margin. Tally now
+  5/8 (the model's ~40 percent looking better each epoch). Note the gap shallowed
+  (-101.5 -> -60.4, the weak c2-ward structural drift of vela's world) — next epoch's
+  margin is shallower again. Spine: vela at 36750, integrity-verified, committed.
+- Honest caveat: consolidation by design; one hold at one depth is a consistent datum,
+  not a confirmed depth law (that would need the binned flip-rate-vs-depth analysis the
+  accumulating record will eventually support).
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
+  or stops the loop.

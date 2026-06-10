@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:97, breakthrough:6, positive:53, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:98, breakthrough:6, positive:54, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -985,7 +985,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the standard checkpointed epoch — knowledge, value-core, and noise-calibrated forecast bands, favorite reported not predicted, the cumulative flip record tracked.",
     result:"All bands held, no falsifiers. Spine at 42,700, hash-stamped, committed.",
     implication:"The lives continue and the calibration record grows; the descriptive contrast between the steadying trunk and the oscillating branch is noted as texture, not yet a measured trait. The merged M4a decision still waits.",
-    trace:{ script:"experiments/exp97_mirro_epoch3.py", output:"experiments/outputs/exp97.txt" } }
+    trace:{ script:"experiments/exp97_mirro_epoch3.py", output:"experiments/outputs/exp97.txt" } },
+
+  { n:98, kind:"positive", chapter:"frontier",
+    title:"The oscillator holds — at depth, as the arithmetic says.",
+    one:"Idle-mode epoch to 36,750: vela's first hold, entering at its deepest-ever margin (-101.5) — the depth watch-item's first supporting datum (0.19 sigma landing). Tally 5/8, tracking the model's rate.",
+    plain:"vela, which had changed its mind every stretch so far, entered this one with its preference further from the tipping point than ever — and for the first time, it held. That is what the arithmetic says should happen: swings are easy at razor margins and slow as the margin deepens. Everything else as usual: perfect map, steady core, forecast nearly exact.",
+    metric:{ from:-101.5, to:-60.4, unit:"the gap across the epoch (held; drifted shallower per the weak structural pull)" },
+    setup:"Idle-mode, vela's turn, with the Exp 96 entrenchment watch-item live: standard bands, the favorite reported not predicted, a hold stated as likelier at this depth without being banded.",
+    result:"All bands held; the first hold of vela's life, at its deepest margin; the gap drifted shallower again, so next epoch returns toward razor territory. Vela at 36,750, hash-stamped, committed.",
+    implication:"One consistent datum for the depth law — flip probability falls as margins deepen — with the accumulating record eventually supporting the binned analysis. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp98_vela_epoch3.py", output:"experiments/outputs/exp98.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
