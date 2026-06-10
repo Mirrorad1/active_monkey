@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:111, breakthrough:6, positive:66, wall:18, partial:21, from:4.81, to:4.00 };
+window.AM_TALLY = { total:112, breakthrough:6, positive:66, wall:18, partial:22, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1125,7 +1125,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode with the registered deep call live — and the predeclared F3 falsifier (any >2.5-sigma forecast event questions the noise calibration itself) doing exactly its job.",
     result:"F3 fired; everything else held (map perfect, conviction delta 0.0001 — the distribution barely moved as the argmax lurched, the razor-versus-mass distinction at its starkest). The flip is vela's life and is kept. Registered record 3/4.",
     implication:"Mandated next: re-estimate sigma at vela's current deep state with the counterfactual-ensemble instrument — superdiffusive noise (Exp 84) predicts deep states swing harder, in which case F3 resolves as state-dependent calibration, not broken physics. The diagnosis outranks the next idle epoch.",
-    trace:{ script:"experiments/exp111_vela_epoch9.py", output:"experiments/outputs/exp111.txt" } }
+    trace:{ script:"experiments/exp111_vela_epoch9.py", output:"experiments/outputs/exp111.txt" } },
+
+  { n:112, kind:"partial", chapter:"frontier",
+    title:"The lurch was ordinary — and my registered number was not.",
+    one:"Twenty alternate lurchs: in its own ensemble the 3-sigma event is a z=1.89 commonplace (deep sigma 171 vs shallow 121 — state-dependent noise), the law stays unbiased — and the measured deep flip rate (4/20 = 0.20) is double the registered criterion, pre-announcing the registered test's likely failure as written.",
+    plain:"We re-ran twenty alternate versions of the stretch where vela lurched. Reassuring: in its own ensemble the lurch is an unremarkable swing — our alarm came from error bars measured in a calmer state of a younger life; deep states genuinely swing wider. Humbling: the same ensemble measured how often a deeply-committed creature flips in one stretch — one in five — twice the rate written into the registered depth test. The registration stands and will be judged as written; if it fails, this measurement already says why.",
+    metric:{ from:0.20, to:0.10, unit:"measured deep flip rate vs the registered criterion (pre-announced)" },
+    setup:"The falsifier-mandated diagnosis: the pre-lurch state git-recovered, twenty counterfactual epochs, with a three-branch sigma prediction, the lived-draw ordinariness test, the bias test, and the flip fraction recorded for the registered evaluation.",
+    result:"Borderline sigma branch as predeclared (171, inside the prediction band); lived draw ordinary at 1.89 sigma; law unbiased; no falsifiers. The registered test's deep criterion sits at half the measured rate, inside its wide n=20 confidence interval — judged at ~Exp 117 as registered.",
+    implication:"State-dependent error bars join the noise model; the idle bands stay as registered with tails read against this entry; and the program demonstrates the discipline's answer to a tempting sin — measuring that your registered number looks wrong and refusing to quietly fix it. Idle-mode resumes.",
+    trace:{ script:"experiments/exp112_deep_sigma.py", output:"experiments/outputs/exp112.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

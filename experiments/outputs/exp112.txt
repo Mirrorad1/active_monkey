@@ -1,0 +1,84 @@
+Exp 112 — the F3 diagnosis: sigma at the deep state
+
+Recovering pre-lurch vela snapshot from 25786b0~1...
+  (derivable via: git show 25786b0~1:creature/state/vela/{manifest.json,arrays.npz})
+  scratch dir: experiments/outputs/exp112_pre_snapshot  [untracked; not committed — derivable from git history]
+
+Loaded vela: age=66750  hash=eaa2ff77dc1d
+  start gap = -261.8498  start favorite = 0
+
+--- ANALYTIC FORECAST (frozen gates at age 66750) ---
+  R(0) = 0.257888   R(1) = 0.247183   R(2) = 0.272032
+  D_analytic = (R(2)-R(0)) * 6000 = +84.8634
+
+Running 20 counterfactual branches (seeds 5000..5019, 6000 steps each)...
+
+  seed=5000  D=+137.5429  end_favorite=0  flipped=False
+  seed=5001  D=+539.8205  end_favorite=2  flipped=True
+  seed=5002  D=+395.4374  end_favorite=2  flipped=True
+  seed=5003  D=+110.1158  end_favorite=0  flipped=False
+  seed=5004  D=+233.9511  end_favorite=0  flipped=False
+  seed=5005  D=-21.3701  end_favorite=0  flipped=False
+  seed=5006  D=+138.6876  end_favorite=0  flipped=False
+  seed=5007  D=+132.1876  end_favorite=0  flipped=False
+  seed=5008  D=+50.2945  end_favorite=0  flipped=False
+  seed=5009  D=+310.4689  end_favorite=2  flipped=True
+  seed=5010  D=+178.5815  end_favorite=0  flipped=False
+  seed=5011  D=+286.6250  end_favorite=2  flipped=True
+  seed=5012  D=-71.8467  end_favorite=0  flipped=False
+  seed=5013  D=-71.6427  end_favorite=0  flipped=False
+  seed=5014  D=+1.9387  end_favorite=0  flipped=False
+  seed=5015  D=+241.6190  end_favorite=0  flipped=False
+  seed=5016  D=-48.7861  end_favorite=0  flipped=False
+  seed=5017  D=-117.3715  end_favorite=0  flipped=False
+  seed=5018  D=+172.0566  end_favorite=0  flipped=False
+  seed=5019  D=+8.1561  end_favorite=0  flipped=False
+
+--- STATISTICS ---
+  N                    = 20
+  mean(D)              = +130.3233
+  sigma_deep [ddof=1]  = 171.4497
+  SE = std/sqrt(N)     = 38.3373
+  sigma_shallow        = 121.0000  (Exp 83, vela@12750)
+  ratio deep/shallow   = 1.4169
+  D_analytic           = +84.8634
+  |mean - analytic|    = 45.4599  (2*SE = 76.6746)
+  lived draw D         = +454.4642
+  |lived - mean|       = 324.1409  (2.5*sigma = 428.6242)
+  z of lived draw      = 1.8906
+  RECORDED flip fraction (favorite 0 -> 2 from gap -261.8): 4/20 = 0.20
+
+--- SORTED D VALUES (text histogram) ---
+   -117.37 |
+    -71.85 |###
+    -71.64 |###
+    -48.79 |####
+    -21.37 |######
+     +1.94 |#######
+     +8.16 |########
+    +50.29 |##########
+   +110.12 |##############
+   +132.19 |###############
+   +137.54 |################
+   +138.69 |################
+   +172.06 |##################
+   +178.58 |##################
+   +233.95 |#####################
+   +241.62 |######################
+   +286.62 |#########################
+   +310.47 |##########################
+   +395.44 |###############################
+   +539.82 |########################################
+
+--- PROPERTY CHECKS ---
+  P1: sigma_deep=171.4497 in (150, 180) -> BORDERLINE, reported
+      predicted band [150, 350]: INSIDE (sigma_deep=171.4497)
+  PASS  P2: |lived-mean|=324.1409 <= 2.5*sigma=428.6242 -> PASS
+  PASS  P3: |mean-analytic|=45.4599 <= 2*SE=76.6746 -> PASS
+  RECORDED: flip fraction 4/20 = 0.20 (deep-bin flip probability; feeds the registered test's evaluation)
+
+--- FALSIFIER MAP ---
+  F1 did not fire (P2 PASS — lived draw ordinary in its own ensemble, z=1.89).
+  F2 did not fire (P3 PASS — law unbiased at this state).
+
+EXP112: BORDERLINE — sigma_deep=171 in (150, 180); partial widening over shallow 121; lived draw z=1.89; judgment deferred to the entry

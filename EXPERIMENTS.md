@@ -3157,3 +3157,39 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   test's "at its limit" status is bookkeeping, not re-interpretation.
 - Verdict: MIXED / falsifier respected (F3). Self-grade: n/a.
 - Next: the sigma re-estimation diagnosis (falsifier-mandated), then idle-mode resumes.
+
+## Exp 112 — the F3 diagnosis: the lurch was ordinary (z=1.89 with state-appropriate error bars), sigma is state-dependent (171 vs 121, borderline branch), and the deep flip rate measures at 0.20 — double my registered number (MIXED; F3 resolved as calibration; the registered test's likely failure pre-announced)
+- Plain: We re-ran twenty alternate versions of the stretch where vela lurched, and the
+  verdict is reassuring and humbling at once. Reassuring: in its own ensemble the lurch
+  is an unremarkable two-sigma-ish swing — our alarm came from using error bars measured
+  in a calmer state of a younger life; deep states genuinely swing wider. Humbling: the
+  same ensemble directly measured how often a deeply-committed creature flips in one
+  stretch — one time in five — which is twice the rate I wrote into the registered depth
+  test. The registration stands as written and will be judged as written; if it fails,
+  this measurement already says why: my number was wrong, not the idea that depth
+  protects.
+- Setup (predeclared in the script docstring before running): vela@66750 git-recovered
+  (the pre-lurch state); 20 counterfactual 6000-step epochs (seeds 5000-5019). P1
+  three-branch on sigma_deep (>=180 calibration / <=150 anomalous / 150-180 borderline;
+  predicted [150, 350]); P2 lived draw within 2.5 sigma_deep of the ensemble mean; P3
+  law unbiased (mean within 2 SE of analytic). RECORDED: the ensemble flip fraction.
+  F1 = lived draw outlier in own ensemble; F2 = law biased.
+- Result: MIXED per P1's own branches — sigma_deep = 171.4 (BORDERLINE, inside the
+  prediction band; +42% over shallow). P2 PASS: |lived - mean| = 324.1 = 1.89 sigma —
+  ordinary. P3 PASS: unbiased (45.5 <= 76.7). RECORDED: flip fraction 4/20 = 0.20 from
+  a -262 start — DOUBLE the registered deep-bin criterion (<= 0.10). No falsifiers fired.
+- Implication: (i) F3 resolves substantially as CALIBRATION — forecast bands need
+  state-dependent sigma (the superdiffusion physics of Exp 84 reaching the bands);
+  idle-mode epochs will continue carrying the fixed +-302.5 band AS REGISTERED, with
+  tail events interpreted against this entry. (ii) The registered depth test now has a
+  pre-announced likely failure mode: the deep-bin flip-p criterion (0.10) sits at half
+  the measured rate (0.20); the evaluation (~Exp 117) will score it as written and cite
+  this measurement either way — the discipline's answer to the temptation of quietly
+  fixing a registered number after seeing trouble.
+- Honest caveat: sigma_deep from n=20 (SE ~ 27); the 0.20 flip rate is 4 Bernoulli
+  successes (95% CI roughly 0.08-0.42 — wide, and the registered 0.10 is inside it);
+  one state, one creature, one horizon.
+- Verdict: MIXED / NEW INSIGHT (state-dependent noise partially confirmed; the lurch
+  normalized; the deep flip rate measured). Self-grade: n/a (MIXED).
+- Next: idle-mode resumes (mirro's turn, +497 deep -> registered HOLD call) unless the
+  human answers the merged CONSULT or stops the loop.
