@@ -3556,3 +3556,27 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn); increment 1c awaits the human
   (loop/IDEAS.md).
+
+## Exp 131 — idle-mode epoch: mirro to 126,700 — holds deep at +1217; THE LOOP PAUSES on the human's word (POSITIVE; bands held; pause state recorded)
+- Plain: One last quiet stretch before the pause the human asked for: mirro held as
+  recorded, conviction past twelve hundred, every band clean. The loop now stops. The
+  state it leaves behind: two committed lives past a hundred thousand steps each, both
+  deeply settled; a registered depth law half-confirmed with its razor books open; and
+  the talk-to-it thread halted at a fully-diagnosed timing flaw, its one-line question
+  (increment 1c) waiting in loop/IDEAS.md.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn —
+  the final epoch before a human-requested pause; live(6000), age 120700 -> 126700;
+  recorded deep call (entering +1060.0 -> HOLD).
+- Result: EPOCH CLEAN, no falsifiers. P4: HELD as called. End gap +1217.2 (0.35 sigma).
+  Map 1.000; share deltas <= 0.0005. Spine: 126700, integrity-verified, committed.
+- PAUSE STATE (for resumption): the session cron is deleted; idle-mode is suspended.
+  Open items, in priority order: (1) M4a increment 1c — the timing re-wire (perceive ->
+  act -> observe [code_t, valence_t] -> learn) + the Exp 125 predeclarations on fresh
+  seeds; diagnosis complete at Exp 128; needs explicit human word. (2) The registered
+  depth test's razor books (Exp 117) remain open. (3) Idle-mode resumes with vela's
+  turn whenever the loop restarts. Everything is committed and published through this
+  entry; both spines resume from their hash-stamped snapshots.
+- Honest caveat: consolidation by design; single deterministic run.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: PAUSED. Resume by re-running /loop (or answering increment 1c in
+  loop/IDEAS.md first).
