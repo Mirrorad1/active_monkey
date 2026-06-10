@@ -29,7 +29,13 @@ A flattering false log is worthless. These rules bind every experiment entry.
   before, but bigger / cleaner / again", it is a POSITIVE-SINGLE. Apply this test
   before writing BREAKTHROUGH in any entry or curated record.
 
-## Language rules for EXPERIMENTS.md entries
+## Validity gates (added after Exp 69's self-invalidation)
+- A validity gate must test the instrument's INPUT (did the stimulus/condition occur:
+  events happened, the channel fired, scarcity bound), never the mechanism's OUTPUT or any
+  agent's response to it. An output-conditioned gate smuggles a particular result into
+  "validity" and can invalidate exactly the runs where the interesting regime appears
+  (Exp 69: requiring the monopolist's own gate to trip). Corollary: avoid raw
+  threshold-state checks for engagement (Exp 69's 0.0009 near-miss) — count events.
 - Verdict tags are mandatory: POSITIVE / NEGATIVE / MIXED + CONSOLIDATION / NEW INSIGHT.
 - Ban unfalsifiable glow-words ("remarkably", "impressively", "emergent" without a
   measured criterion). Numbers over adjectives.
