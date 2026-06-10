@@ -1671,3 +1671,47 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: Exp 69 — rung 4 part 2: add the other-agent-here sense (rung 2) feeding ONE
   adaptive policy term (recent realized comfort at the source gates approach), predeclare
   the coordination metric against R = 1.00 +- 0.02, and the solipsist-pair control.
+
+## Exp 69 — rung 4 part 2 attempt: run INVALID by its own gate — the gate measured the mechanism's output, not its input (NEGATIVE-instrument; no rung-4 verdict)
+- Plain: We gave both creatures the new rule — if the favorite spot keeps feeling crowded,
+  stop going for a while — and asked whether the pair drifts away from acting like two
+  strangers. The experiment disqualified itself before answering: our own validity check
+  demanded that BOTH creatures' stop-rule trip at least once, and in one run one creature
+  missed that bar by less than a thousandth. The deeper problem: in most runs one creature
+  simply owned the spot and the other gave up — the owner never felt crowded, so demanding
+  its rule trip was demanding a particular outcome, not checking the instrument.
+- Setup (predeclared in the script docstring before running): Exp 68's instrument + ONE new
+  mechanism: comfort-gated approach (EMA alpha=0.1 of comfort experienced at the source,
+  init 1.0; below THRESH=0.75 the creature wanders instead of seeking; away-steps relax the
+  estimate toward 1.0 at lambda=0.01). Coupling channel declared as RESOURCE-MEDIATED
+  (stigmergy): a dedicated other-here sense adds nothing because it fires only on
+  co-location, which IS the depletion event. Arms ADAPT vs FIXED, 2000 steps x 5 seeds,
+  paired rngs. Gates: G1 fixed-arm null sanity (R in [0.75,1.33] >=4/5); G3 mechanism
+  engaged = EVERY adapt run has BOTH creatures' min comfort-estimate below THRESH.
+  P1 departure |R-1| > 0.10 consistent-sign >=4/5; F1 = no departure -> rung 4 NEGATIVE.
+- Result: G1 PASS (fixed R = 0.992-1.010, replicating Exp 68's null). G3 FAIL -> RUN
+  INVALID, predeclared, no verdict: seed 4 creature A min_est = 0.7509 vs the 0.75 bar
+  (0 closures). The verdict machinery stopped before P1 as designed.
+- Diagnosis (instrument, not findings — all numbers from gate-invalid runs, quoted as
+  diagnostic only): the dynamics split into two regimes the design did not anticipate. In
+  4/5 seeds: EXCLUSION — the closer-starting creature holds occupancy ~0.82-0.83 (its
+  estimate rarely dips: 0-3 closures) while the other collapses to ~0.13-0.16 with 70-100
+  closures; R stays ~0.94-1.01 because co-occupancy falls with the loser's occupancy. In
+  1/5 seeds: ALTERNATION-like — occupancies 0.41/0.57 and R = 0.531. G3's error: validity
+  should check the mechanism's INPUT (crowding experienced: 38-100 closure-events' worth in
+  every run) — demanding the monopolist's own gate trip makes a particular social outcome a
+  validity requirement. Also the 0.0009 near-miss shows raw threshold-state checks are
+  fragile.
+- Honest caveat: by predeclaration this run answers nothing about rung 4; the
+  exclusion/alternation descriptions above are motivation for Exp 70's predeclared
+  patterns, not results. The near-miss invalidation is the discipline working, not bad
+  luck to be waved off.
+- Verdict: NEGATIVE (validity gate failed) / instrument iteration. No rung-4 verdict.
+  Self-grade: n/a.
+- Next (Exp 70, predeclared): same mechanism, gate fixed to the INPUT (G3' = >=20 crowded
+  steps per adapt run, pair-level); predeclare the two observed regimes as named outcomes
+  with metrics — EXCLUSION (occupancy asymmetry |oA-oB|/(oA+oB) > 0.5 with R in [0.9,1.1])
+  vs TIMESHARING (R < 0.9 with asymmetry < 0.5) — plus the null branch (neither, R within
+  noise of 1, asymmetry < 0.5) = rung 4 NEGATIVE. >=4/5 seeds must classify into exactly
+  one named pattern; the modal pattern is the result and enters the rung-5 cascade before
+  any coordination/dominance language.

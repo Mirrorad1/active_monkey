@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:68, breakthrough:6, positive:35, wall:15, partial:12, from:4.81, to:4.00 };
+window.AM_TALLY = { total:69, breakthrough:6, positive:35, wall:16, partial:12, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -695,7 +695,17 @@ window.AM_EXPERIMENTS = [
     setup:"Two twin forks of mirro seek the first cell of their shared favorite color under a provided epsilon-greedy shortest-path policy that navigates from belief, not ground truth; comfort halves when both crowd the source; the pair is mutually blind. Predeclared: occupancy at least 5x random, independence ratio within [0.75, 1.33], comfort ledger exact.",
     result:"All pass, no falsifiers. Occupancies 0.33-0.84; the blind null is far tighter than predicted — co-occupancy equals the independence product to about 1% in every seed. Two prediction errors logged honestly: the source landed on an edge cell, making wall-pressing a de-facto stay action (occupancy beat the predicted band), and one twin's occupancy swings across seeds because it navigates from an imperfect inherited map.",
     implication:"Rung 4's coordination question is now well-posed: part 2 adds a single inter-agent mechanism and asks whether the ratio departs from 1.00 +- 0.02 — with any deviation entering the reproduction-and-deflation cascade before the word coordination is used. Caveats: zero emergence content here; all mechanics provided; the depletion ledger currently feeds nothing back.",
-    trace:{ script:"experiments/exp68_comfort_baseline.py", output:"experiments/outputs/exp68.txt" } }
+    trace:{ script:"experiments/exp68_comfort_baseline.py", output:"experiments/outputs/exp68.txt" } },
+
+  { n:69, kind:"wall", chapter:"frontier",
+    title:"The experiment disqualified itself — by a thousandth.",
+    one:"Comfort-gated approach was added and the run was INVALIDATED by its own validity gate: one creature's estimate missed the trip-bar by 0.0009 — because it had quietly monopolized the source and never felt crowded. The gate checked the mechanism's output where it should have checked its input.",
+    plain:"We gave both creatures a new rule — if the favorite spot keeps feeling crowded, stop going for a while — and asked whether the pair stops acting like two strangers. The experiment disqualified itself before answering: our validity check demanded both creatures' stop-rule trip at least once, and in one run a creature missed that bar by less than a thousandth. The deeper problem: in most runs one creature simply owned the spot and the other gave up. The owner never felt crowded — so demanding its rule trip was demanding a particular outcome, not checking the instrument.",
+    metric:{ from:0.75, to:0.7509, unit:"gate threshold vs the near-miss minimum estimate" },
+    setup:"Exp 68's instrument plus one mechanism: an experienced-comfort EMA gates approach (crowding halves comfort; low estimate means wander; estimates recover while away). Coupling declared as resource-mediated stigmergy. Gates: fixed-arm null sanity, and G3 — every adaptive run must show both creatures' gates tripping.",
+    result:"Fixed-arm null replicated (R 0.992-1.010). G3 failed as predeclared and the run stopped before any verdict. Diagnostic only (gate-invalid data): four of five seeds show an exclusion regime — one creature holds the source at 0.83 occupancy and never feels crowded while the other collapses to 0.14; one seed shows alternation with R = 0.53. The gate error: validity should check the mechanism's INPUT (crowding happened, abundantly) — requiring the monopolist's own gate to trip makes a social outcome a validity condition.",
+    implication:"Instrument iteration, the discipline working: no rung-4 verdict claimed from invalid runs. Exp 70 is predeclared with the input-based gate and the two observed regimes as named, metric-defined outcomes (exclusion vs timesharing) plus the null branch — and any winning pattern still enters the reproduction cascade before words like dominance or coordination are used.",
+    trace:{ script:"experiments/exp69_depletion_coupling.py", output:"experiments/outputs/exp69.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
