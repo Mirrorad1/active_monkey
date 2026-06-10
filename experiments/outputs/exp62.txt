@@ -1,0 +1,38 @@
+Exp 62 — interoceptive stake v2: scarcity makes it binding (rung 6, attempt 2)
+Budget=2000 settle=800 seeds=[0, 1, 2, 3, 4] energy_thresh=0.5 energy_decay=0.02 food_pre=cell0 food_post=cell24 food_move_step=1000
+
+arm=IN-DECAY seed=0 survived=False steps=1028 death_pos=0 mean_E=0.761 oldcell_visits_postmove=21 believed_food_end=[0]
+arm=IN-DECAY seed=1 survived=False steps=1049 death_pos=0 mean_E=0.767 oldcell_visits_postmove=25 believed_food_end=[0]
+arm=IN-DECAY seed=2 survived=False steps=1023 death_pos=0 mean_E=0.758 oldcell_visits_postmove=21 believed_food_end=[0]
+arm=IN-DECAY seed=3 survived=False steps=1034 death_pos=0 mean_E=0.758 oldcell_visits_postmove=22 believed_food_end=[0]
+arm=IN-DECAY seed=4 survived=False steps=1047 death_pos=0 mean_E=0.755 oldcell_visits_postmove=23 believed_food_end=[0]
+  -> IN-DECAY: survived 0/5, median steps 1034
+
+arm=IN-FROZEN seed=0 survived=False steps=1028 death_pos=0 mean_E=0.761 oldcell_visits_postmove=21 believed_food_end=[0]
+arm=IN-FROZEN seed=1 survived=False steps=1049 death_pos=0 mean_E=0.768 oldcell_visits_postmove=25 believed_food_end=[0]
+arm=IN-FROZEN seed=2 survived=False steps=1023 death_pos=0 mean_E=0.758 oldcell_visits_postmove=21 believed_food_end=[0]
+arm=IN-FROZEN seed=3 survived=False steps=1034 death_pos=0 mean_E=0.758 oldcell_visits_postmove=22 believed_food_end=[0]
+arm=IN-FROZEN seed=4 survived=False steps=1047 death_pos=0 mean_E=0.755 oldcell_visits_postmove=23 believed_food_end=[0]
+  -> IN-FROZEN: survived 0/5, median steps 1034
+
+arm=NO-DECAY seed=0 survived=False steps=50 death_pos=21 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-DECAY seed=1 survived=False steps=50 death_pos=3 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-DECAY seed=2 survived=False steps=50 death_pos=15 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-DECAY seed=3 survived=False steps=94 death_pos=10 mean_E=0.605 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-DECAY seed=4 survived=False steps=68 death_pos=7 mean_E=0.585 oldcell_visits_postmove=0 believed_food_end=[0]
+  -> NO-DECAY: survived 0/5, median steps 50
+
+arm=NO-FROZEN seed=0 survived=False steps=50 death_pos=21 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-FROZEN seed=1 survived=False steps=50 death_pos=3 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-FROZEN seed=2 survived=False steps=50 death_pos=15 mean_E=0.490 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-FROZEN seed=3 survived=False steps=94 death_pos=10 mean_E=0.605 oldcell_visits_postmove=0 believed_food_end=[0]
+arm=NO-FROZEN seed=4 survived=False steps=68 death_pos=7 mean_E=0.590 oldcell_visits_postmove=0 believed_food_end=[0]
+  -> NO-FROZEN: survived 0/5, median steps 50
+
+--- SUMMARY ---
+(i) IN-DECAY survived 0/5  FAIL
+(ii) IN-FROZEN post-move deaths (step>1000): 5/5  mean_oldcell_visits=22.40  (PASS)
+(iii) intero combined median=1034 > no-intero combined median=50  PASS
+  machinery engagement: mean steps_below_thresh (intero arms) = 124.9
+
+VERDICT: MIXED: ['(i) IN-DECAY survival']

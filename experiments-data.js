@@ -1,5 +1,5 @@
 /* active_monkey — the full lab notebook, structured for the redesign.
-   Source of truth: EXPERIMENTS.md (append-only; newest last) — 61 experiments.
+   Source of truth: EXPERIMENTS.md (append-only; newest last) — 62 experiments.
    kind: "breakthrough" | "positive" | "wall" | "partial"
    chapter: language | valence | embodiment | opinion | frontier
    Each experiment: a hypothesis, the smallest test, the honest result, the implication.
@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:61, breakthrough:5, positive:32, wall:14, partial:10, from:4.81, to:4.00 };
+window.AM_TALLY = { total:62, breakthrough:5, positive:32, wall:14, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -624,7 +624,17 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 6: toy allostasis — energy decays, refills on the food patch, and a provided policy switch seeks believed food when energy is low. Four arms (interoception × map forgetting) in the drifting world, with the plasticity law predicting frozen-map starvation after the food moves.",
     result:"Both falsifiers fired: the frozen-map agent survived 5/5 and interoception gave no advantage — because mean energy sat at ~0.91 everywhere. Nine food cells in twenty-five with 100-step autonomy means a random walk never starves; the low-energy switch almost never engaged and the stale map was never consulted.",
     implication:"A deflationary negative in the Exp 50 family: the instrument failed to make the question binding. Stake v2 is predeclared — one food cell, half the autonomy, higher trigger — where random foraging starves, believed-food maps become load-bearing, and the empty-fridge prediction gets a real test.",
-    trace:{ script:"experiments/exp61_interoceptive_stake.py", output:"experiments/outputs/exp61.txt" } }
+    trace:{ script:"experiments/exp61_interoceptive_stake.py", output:"experiments/outputs/exp61.txt" } },
+
+  { n:62, kind:"partial", chapter:"frontier",
+    title:"Hungry and certain, it starves at the empty fridge.",
+    one:"Under real scarcity the stomach-sense buys 20× survival — but when the food moves, BOTH map types die at the old spot: starvation outruns unlearning.",
+    plain:"With food scarce, having a stomach-sense kept creatures alive twenty times longer than wandering blind — the inner signal finally mattered. But when the food moved, every creature marched to where food used to be and starved there, even the one whose memory could fade. Forgetting wasn't fast enough to outrun hunger — and certainty kept it standing at the empty fridge instead of searching.",
+    metric:{ from:1034, to:50, unit:"median survival: intero vs blind" },
+    setup:"Stake v2: one food cell, 50-step autonomy, hunger-triggered goal seeking; the food relocates once at step 1000. Four arms crossing interoception with map forgetting, with the empty-fridge death predicted for frozen maps.",
+    result:"Interoception: median 1034 vs 50 steps — the rung-6 twin difference, finally measurable. Frozen maps died 5/5 standing on the old food cell as predicted. The surprise: the forgetting map died identically — ~40 steps after the move, before decay could erase the stale belief, with the planner pinning the hungry agent to its remembered food.",
+    implication:"A timescale hierarchy above the plasticity window: unlearning must beat the viability clock, not just the world clock — and goal-pinned certainty needs a failure-driven exploration override. Two concrete substrate requirements for M4, found by a creature dying in a toy world. Caveats: provided policies, one scarcity level, one move event.",
+    trace:{ script:"experiments/exp62_stake_scarcity.py", output:"experiments/outputs/exp62.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

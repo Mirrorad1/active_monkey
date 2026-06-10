@@ -1365,3 +1365,34 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   starves (hitting time of one cell >> autonomy), the believed-food map becomes load-bearing,
   and IN-FROZEN should starve at the empty fridge when the food cell moves. Same falsifier
   structure; if the arms STILL do not separate, rung 6 gets its honest FAIL.
+
+## Exp 62 — scarcity binds the stake: interoception buys 20×, and "hungry and certain" dies certain (MIXED; rung 6 answered + a new timescale finding)
+- Setup (predeclared in Exp 61, one stated refinement: single food move for a clean before/after):
+  ONE food cell (cell 0), E decay 0.02/step (50-step autonomy), trigger 0.5; food relocates to
+  cell 24 at step 1000; 2000-step budget; 2×2 arms (intero × map-decay λ=0.997/frozen) × 5
+  seeds, 800-step settling. Diagnostics: post-move visits to the old food cell; believed-food
+  set at death. Mirro untouched.
+- Result: (iii) PASS decisively — intero median survival 1034 vs no-intero 50 (20×), machinery
+  engaged (mean 124.9 steps below threshold): rung 6's twin comparison finally ran, and the
+  interoceptive channel + provided coupling is a massive survival advantage under scarcity.
+  (ii) PASS exactly — IN-FROZEN died 5/5 post-move AT the old food cell (death_pos=0, ~22
+  revisits): the empty-fridge prediction, literally. (i) FAIL, informatively — IN-DECAY behaved
+  IDENTICALLY to IN-FROZEN (same deaths at cell 0, believed_food_end=[0] in all 10 intero runs):
+  death came ~30–50 steps post-move, before in-window decay could unlearn the stale belief.
+- The new finding (timescale hierarchy): the plasticity window (Exp 60) is necessary but NOT
+  sufficient for survival — unlearning must also be fast relative to the VIABILITY clock, not
+  just the world clock. And the provided policy compounds it: VI pins the hungry agent to its
+  remembered food (pure exploitation of a stale belief), so it starves while standing at the
+  empty fridge. The missing mechanism is failure-driven exploration — when prediction repeatedly
+  fails at the believed goal, override the pin. Direct M4 design constraint, alongside Exp 60's
+  forgetting term.
+- Honest caveat: the (iii) advantage is between PROVIDED policies (the coupling is harness, not
+  learned); single move event, one scarcity level, 5 seeds; IN-DECAY's failure is one
+  autonomy/decay setting — a slower viability clock or faster decay would shift it (untested).
+- Verdict: MIXED / rung 6 answered POSITIVE for the channel (measurable, large twin difference);
+  empty-fridge consequence of the rigidity law CONFIRMED 5/5; predicted IN-DECAY survival
+  FAILED, yielding the timescale-hierarchy finding. Self-grade for the (iii)+(ii) positives:
+  POSITIVE-SINGLE.
+- Next: the functional-emergence ladder now has verdicts on rungs 1–6 except rung 3's remaining
+  epochs; natural follow-ups: hunger-driven exploration variant (tests the timescale fix), rung
+  3 epoch 2 (undisturbed, battery re-test), or write the direction's synthesis.
