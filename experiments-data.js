@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:124, breakthrough:6, positive:77, wall:18, partial:23, from:4.81, to:4.00 };
+window.AM_TALLY = { total:125, breakthrough:6, positive:77, wall:19, partial:23, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1255,7 +1255,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 114,700, hash-stamped, committed.",
     implication:"The lives continue; the merged M4a decision still waits.",
-    trace:{ script:"experiments/exp124_mirro_epoch14.py", output:"experiments/outputs/exp124.txt" } }
+    trace:{ script:"experiments/exp124_mirro_epoch14.py", output:"experiments/outputs/exp124.txt" } },
+
+  { n:125, kind:"wall", chapter:"frontier",
+    title:"The talk-to-it chapter opens — and halts on its own guardrail.",
+    one:"M4a increment 1, human-authorized: inference works (8/8), the exploration reflex is alive, the forgetting window is wired to exact arithmetic (100.999 = 100.999) — but the agent never learned to earn approval (0/8), because deferring B-learning severed the only response-to-valence pathway. Per the ratified guardrail, the thread HALTS for the human.",
+    plain:"The talk-to-it chapter opened under the human's authorization and immediately proved why the guardrails exist. The new affective agent infers intent from utterances, asks questions when uncertain, and forgets on exactly the prescribed clock — but it never learned to earn approval, and the autopsy is clean: to keep the first increment small we deferred learning the response-consequence model, and in this architecture that model is the only road from what the agent does to how the feedback feels. The failure was built into the scope decision. Per the rule the human ratified, the thread now stops and waits rather than fixing itself.",
+    metric:{ from:0.15, to:0.08, unit:"required vs best observed learning improvement (F3; thread halted)" },
+    setup:"Built per the M4 spec with the season's requirements designed in: the LV=0.999 window on the Dirichlet ledgers and the exploration reflex via the epistemic term plus ASK; validated against a deterministic scripted partner over eight seeded 100-turn sessions, every falsifier wired to HALT.",
+    result:"Three of four predeclared properties passed — intent inference, the ASK reflex, and the window arithmetic landing exact to three decimals. The learning property failed at chance level in all eight seeds, with the structural diagnosis (enable the spec's own learn_B) recorded for the human's decision, not acted on.",
+    implication:"The recommended resumption — increment 1b with B-learning enabled, same predeclarations, fresh seeds — awaits explicit human word in loop/IDEAS.md. Idle-mode spine epochs continue meanwhile. The guardrails work.",
+    trace:{ script:"experiments/exp125_m4a_core.py", output:"experiments/outputs/exp125.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

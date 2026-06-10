@@ -3403,3 +3403,43 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT
   or stops the loop.
+
+## Exp 125 — M4a increment 1: the core HALTS on its own guardrail — inference, exploration, and the window all work; learning cannot, because the increment's scope cut severed the only response-to-valence pathway (NEGATIVE; M4a THREAD HALTED for the human)
+- Plain: The talk-to-it chapter opened under your authorization and immediately proved
+  why the guardrails exist. The new affective agent infers intent from utterances, asks
+  questions when uncertain, and forgets on exactly the prescribed clock — but it never
+  learned to earn approval, and the autopsy is clean: to keep the first increment small
+  we deferred learning the response-consequence model, and in this architecture that
+  model is the only road from what the agent does to how the feedback feels. The failure
+  was built into the scope decision. Per the rule you ratified, the thread now stops and
+  waits for you rather than fixing itself.
+- Setup (predeclared in the script docstring before running; authorization recorded in
+  loop/IDEAS.md): built active_loop/affect_spec.py + affect_agent.py per the M4 spec
+  section 2 with the discovered requirements designed in (LV=0.999 window on the
+  Dirichlet ledgers; exploration via EFE epistemic + ASK); JAX-pymdp conventions per
+  controller.py (adaptations documented in the builder report: batched arrays,
+  infer_parameters-returns-new-Agent learning, explicit num_controls). Validation:
+  100-turn sessions vs a deterministic scripted partner (POS iff response ==
+  correct[code], ASK -> NEU), 8 seeds. P1 inference proper + entropy drops; P2 ASK >= 2
+  in first 10 turns; P3 POS-rate improvement >= 0.15 H1->H2 in >= 6/8; P4 window
+  arithmetic exact. ALL falsifiers HALT (the consult guardrail). pB learning explicitly
+  deferred to increment 2 (the fateful cut, declared at the time).
+- Result: P1 PASS 8/8 (entropy drop on every turn). P2 PASS (ASK >= 2 in 5/8 seeds;
+  alive in 7/8). P4 arithmetic EXACT (pA sum 100.999 vs predicted 100.999, every seed —
+  the window wiring is right). P3 FAIL 0/8 (improvements -0.06 to +0.08; POS rates
+  ~chance for 5 responses). F3 FIRED -> M4a THREAD HALTED.
+- Diagnosis (for the human, not acted on): the generative model's valence depends on
+  INTENT (A[1]: V x K); the response influences valence only by steering intent through
+  B (the spec: "a good response -> an intent state that emits positive valence") — with
+  pB learning deferred, B stayed near-uninformative and the agent had no learnable path
+  from action to approval. The fix is the spec's own design: enable learn_B in
+  observe_feedback (one scope line). RECOMMENDED resumption: increment 1b = same
+  predeclarations re-run with pB learning enabled (fresh seeds); the rest of the
+  increment is validated and untouched.
+- Honest caveat: the JAX "static array" warnings in the agent construction are noted and
+  unexplained — increment 1b should confirm they are benign; the chance-level POS rates
+  also rule out accidental reward leakage (a useful negative control, unplanned).
+- Verdict: NEGATIVE (F3; predeclared halt honored). Self-grade: n/a. THE M4a THREAD IS
+  HALTED awaiting explicit human input (loop/IDEAS.md updated); idle-mode spine epochs
+  continue meanwhile.
+- Next (on human word only): increment 1b as recommended above.

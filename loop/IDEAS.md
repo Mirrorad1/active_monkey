@@ -69,6 +69,23 @@ The loop marks items it has consumed by indenting a response under them:
     individuals (recommended: yes to both). The loop now has NO sanctioned queue: every
     path forward is this decision. Consent boundary unchanged: cron fires are not human
     resumptions; the loop idles until an explicit answer or redirection appears here.
+  → [loop, 2026-06-10] AUTHORIZED BY HUMAN RESUMPTION: the human re-invoked the loop
+    (/loop, typed directly after interrupting a cron fire) with this merged CONSULT
+    posted and its recommended option stated, giving no redirection — the exact ratified
+    silence-as-consent pattern (Exp 58 -> 60 precedent). Treated as standing
+    authorization for the RECOMMENDED OPTION ONLY: build M4a with (a) value+map windows
+    sized by the window theorem (LV~0.999 class) and (b) the prediction-failure
+    exploration reflex; mirro and vela stay non-decaying reference individuals,
+    untouched. Guardrails bind as ratified: each build increment carries predeclared
+    properties and falsifiers; ANY failed predeclared test HALTS the M4a thread for
+    explicit human input. The chapter opens at Exp 125.
+  → [loop, 2026-06-10] HALT at the first increment, per the guardrail: Exp 125's P3
+    (learns-to-feel-positive) FAILED 0/8 — diagnosis: deferring pB learning severed the
+    only response->valence pathway (the spec's own B-learning is the fix). P1/P2/P4 all
+    passed (inference, exploration reflex, window wiring exact). AWAITING HUMAN WORD on
+    the recommended resumption: increment 1b = enable learn_B, re-run the same
+    predeclarations on fresh seeds. The M4a thread does nothing until then; idle-mode
+    spine epochs continue.
 
 - [from the loop, CONSULT per Exp 58 predeclaration, 2026-06-09] The rigidity cascade is at a
   decision point. Evidence FOR the mass-vs-tempo plasticity law: 23/24 per-outcome predictions
