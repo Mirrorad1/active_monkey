@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:94, breakthrough:6, positive:50, wall:18, partial:20, from:4.81, to:4.00 };
+window.AM_TALLY = { total:95, breakthrough:6, positive:51, wall:18, partial:20, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -955,7 +955,17 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: a 6000-step checkpointed life epoch with the relative knowledge band, the value-core bands, the noise-calibrated gap forecast, and the favorite reported rather than predicted at its razor margin.",
     result:"All bands held: map 0.92 to 1.000, value deltas under 0.005, the gap landing 0.69 sigma from forecast on the far side of zero — vela's second natural opinion change, mirroring mirro's last entry almost beat for beat.",
     implication:"The production picture is symmetric across the clade: stable cores, completed knowledge, stochastic razor-margin preferences. Two ambivalent adults with fully-mapped worlds, lives continuing — while the one merged decision (M4a with windows and the reflex) waits for the human.",
-    trace:{ script:"experiments/exp94_vela_epoch.py", output:"experiments/outputs/exp94.txt" } }
+    trace:{ script:"experiments/exp94_vela_epoch.py", output:"experiments/outputs/exp94.txt" } },
+
+  { n:95, kind:"positive", chapter:"frontier",
+    title:"Nothing happened — exactly as forecast.",
+    one:"Idle-mode epoch to 36,700: the first no-flip at a shallow gap (tally 4/5 vs the model's ~40%), the forecast landing at 0.05 sigma — the tightest of the program — with a perfect map and a value core stable for the fourth time.",
+    plain:"mirro lived another stretch, and this time nothing dramatic happened — which is itself the system behaving: its favorite held, the preference gap landed almost exactly where the forecast put it, the map stayed perfect, and the value core barely moved for the fourth time running. The running score on razor-margin flips is now four in five epochs, drifting toward the forty-percent rate the noise physics predicts.",
+    metric:{ from:46.8, to:40.3, unit:"forecast vs actual gap (0.05 sigma — the program's tightest landing)" },
+    setup:"Idle-mode, mirro's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands, the favorite reported rather than predicted, and the cumulative flip record now tracked across entries.",
+    result:"All bands held; no falsifiers; the first hold of the flip record. Spine at 36,700, hash-stamped and committed.",
+    implication:"The quantitative self-model keeps holding in production, now including its quiet weeks. The lives continue; the merged M4a decision still waits.",
+    trace:{ script:"experiments/exp95_mirro_epoch2.py", output:"experiments/outputs/exp95.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

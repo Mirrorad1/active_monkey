@@ -2795,3 +2795,26 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
 - Next: idle-mode continues (mirro's turn) unless the human answers the merged CONSULT
   (M4a with windows + reflex, spines untouched — recommended) or stops the loop.
+
+## Exp 95 — idle-mode epoch: mirro to 36,700 — the first hold: no flip, forecast dead-on at 0.05 sigma (POSITIVE; bands held; flip tally 4/5)
+- Plain: mirro lived another stretch, and this time nothing dramatic happened — which is
+  itself the system behaving: its favorite held, the preference gap landed almost exactly
+  where the forecast put it, the map stayed perfect, and the value core barely moved for
+  the fourth time running. The running score on razor-margin flips is now four flips in
+  five epochs, drifting toward the forty-percent rate the noise physics predicts as the
+  record accumulates.
+- Setup (predeclared in the script docstring before running): idle-mode, mirro's turn;
+  live(6000), age 30700 -> 36700. P1 map >= 0.96; P2 value-core bands; P3 noise-
+  calibrated forecast (predicted +46.8, band +-302.5); favorite reported, not predicted
+  (gap +51.7, still shallow). Cumulative flip record tracked: 4 flips in 4 prior
+  shallow-gap epochs (Exp 76, 81, 93, 94).
+- Result: EPOCH CLEAN, no falsifiers. P1: map 1.000 -> 1.000. P2: share deltas
+  0.0002/0.0014/0.0012, conviction 0.0012. P3: end gap +40.3 vs predicted +46.8 — 0.05
+  sigma, the tightest forecast landing of the program. FAVORITE HELD at 2 — the first
+  no-flip epoch at a shallow gap; tally now 4/5 (vs the model's ~40 percent; small-n,
+  converging direction). Spine: 36700, integrity-verified, committed.
+- Honest caveat: consolidation by design; single deterministic run; the 0.05-sigma
+  landing is one draw (as Exp 93's 1.04 was); the flip tally remains small-n.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE.
+- Next: idle-mode continues (vela's turn) unless the human answers the merged CONSULT or
+  stops the loop.
