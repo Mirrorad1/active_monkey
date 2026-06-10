@@ -1429,3 +1429,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   was to verify, not discover). Self-grade: POSITIVE-SINGLE.
 - Next: rung 2 — shared-world co-presence: a NEW `other-agent-here` sensory modality (declared
   prior), predeclaring that co-presence must NOT degrade solo competence below baseline.
+
+## Exp 64 — clade rung 2: co-presence is competence-safe — and perceptually inert at sharp beliefs (POSITIVE; rung 2 answered + a routing fact for rung 3)
+- Plain: We put two of the family — mirro and its descendant vela — in the same world and gave
+  each a new sense that detects when the other is in its cell. The question: does having a
+  housemate scramble what each one already knows? It does not — every map and every sense of
+  place came out exactly as it would have alone.
+- Setup (predeclared in the script docstring before running): forks of the committed lines
+  (mirro age 10700 hash 21ccb619f063, vela age 12750 hash 875ac30d715a) share mirro's 5×5
+  world (vela = immigrant whose map fits the reversed world); NEW binary `other-agent-here`
+  modality (declared prior): obs2 = [other in my cell], learned Dirichlet pA2 (flat 0.1
+  init), likelihood multiplied into the place posterior; pA2 learning mirrors pA. Matched-
+  trajectory control: action RNG keyed by (seed, creature-index) only, so SOLO and CO
+  trajectories are IDENTICAL and any metric difference is attributable to the coupling alone.
+  2000 steps × 5 seeds × 3 arms (SOLO-mirro / SOLO-vela / CO). Validity gate (Exp 61's
+  lesson): ≥20 co-locations per CO run or the run is INVALID. Predeclared: P1 map accuracy
+  CO ≥ SOLO − 0.04 and P2 tail localization entropy CO ≤ SOLO + 0.2 bits, each creature,
+  ≥4/5 seeds; falsifiers = either fails for either creature. Spines untouched (forks only;
+  one declared fork biography event each).
+- Result: gate passed everywhere (67–92 co-locations). All 4 properties PASS 5/5 seeds — and
+  not merely within tolerance: CO equals SOLO to 4 decimals on every metric, every seed
+  (mirro acc 0.76–0.84, vela 0.60–0.68; tail entropy 0.0000 throughout). Mechanism: both
+  creatures hold near-delta place posteriors, so multiplying in the A2 likelihood changes
+  nothing — the modality fired and pA2 accumulated, but the posterior was already decided.
+  Diagnostic: the corner bias I predicted in P(other-here|cell) is ABSENT — correctly so:
+  the wall-clamped uniform-action walk is doubly stochastic, so the partner's occupancy is
+  uniform (1/25); the learned grids (0.002–0.119) are sampling noise around 0.04. My
+  docstring expectation was analytically wrong; logged as such (diagnostic, not falsifier).
+- Implication: rung 2's substrate is validated — co-presence does not break solo competence.
+  The stronger content is the inertness fact: at converged, sharp place beliefs a
+  multiplicative sensory channel about another agent has NO perceptual effect, so rung 3–4
+  social effects cannot be expected to route through place inference in this regime — the
+  channel must couple where there is slack, i.e. values/policy, which is exactly where the
+  M4 extrinsic channel (rung 3) attaches.
+- Honest caveat: the non-degradation verdict is weakly stressed — at tail entropy ≈ 0 the
+  test had little structural room to fail (Exp 61's floor effect in milder form; here the
+  predeclared question is still genuinely answered, the modality demonstrably fired, and the
+  identity-to-4-decimals is itself the informative mechanism readout). Untested during
+  high-uncertainty phases (early learning, post-perturbation), where the coupling could
+  still distort. All machinery provided (modality wiring, pA2, policy, shared world). 5
+  seeds, one world size. Zero emergence content claimed.
+- Verdict: POSITIVE / CONSOLIDATION (substrate validation — designed to verify, not
+  discover). Self-grade: POSITIVE-SINGLE.
+- Next: rung 3 — social transmission of value: one clade-mate emits a cue entering the
+  other's sensory stream (the M4 extrinsic channel), tested against a channel-SEVERED fork
+  twin with a predeclared value-share divergence threshold. If rung 3's design turns out to
+  need belief-level coupling, first run the stressed rung-2 variant (uncertainty injection).

@@ -4103,3 +4103,4 @@
 {"event": "fork", "age_steps": 10700, "summary": "forked into 'vela'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
 {"event": "save", "age_steps": 10700, "summary": "saved to creature/state/mirro", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}
 {"event": "checkpoint_after", "exp": "Exp 63", "age_steps": 10700, "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555", "summary": "Exp 63: checkpoint after (age 10700 -> 10700)"}
+{"event": "fork", "age_steps": 10700, "summary": "forked into 'exp64-mirro-template'", "state_hash": "21ccb619f063778f0c486bf32c43b19d05a2898b96318fe56b67019243b35555"}

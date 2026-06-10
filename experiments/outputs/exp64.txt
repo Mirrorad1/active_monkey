@@ -1,0 +1,61 @@
+Exp 64 — clade rung 2: shared-world co-presence
+
+mirro: name='mirro' age=10700 hash=21ccb619f063 true_pos=0
+vela:  name='vela'  age=12750  hash=875ac30d715a true_pos=9
+
+seed  arm          creature   map_acc  tail_ent_bits  colocations
+--------------------------------------------------------------------
+  0   SOLO-mirro   exp64-mirro-template 0.8400   0.0000  -
+  0   SOLO-vela    exp64-vela-template 0.6800   0.0000  -
+  0   CO           exp64-mirro-template 0.8400   0.0000  89
+  0   CO           exp64-vela-template 0.6800   0.0000  89
+  1   SOLO-mirro   exp64-mirro-template 0.8000   0.0000  -
+  1   SOLO-vela    exp64-vela-template 0.6800   0.0000  -
+  1   CO           exp64-mirro-template 0.8000   0.0000  70
+  1   CO           exp64-vela-template 0.6800   0.0000  70
+  2   SOLO-mirro   exp64-mirro-template 0.8400   0.0000  -
+  2   SOLO-vela    exp64-vela-template 0.6000   0.0000  -
+  2   CO           exp64-mirro-template 0.8400   0.0000  80
+  2   CO           exp64-vela-template 0.6000   0.0000  80
+  3   SOLO-mirro   exp64-mirro-template 0.8400   0.0000  -
+  3   SOLO-vela    exp64-vela-template 0.6000   0.0000  -
+  3   CO           exp64-mirro-template 0.8400   0.0000  92
+  3   CO           exp64-vela-template 0.6000   0.0000  92
+  4   SOLO-mirro   exp64-mirro-template 0.7600   0.0000  -
+  4   SOLO-vela    exp64-vela-template 0.6400   0.0000  -
+  4   CO           exp64-mirro-template 0.7600   0.0000  67
+  4   CO           exp64-vela-template 0.6400   0.0000  67
+
+--- VALIDITY GATE ---
+  seed=0: mirro_colocations=89  vela_colocations=89  [OK]
+  seed=1: mirro_colocations=70  vela_colocations=70  [OK]
+  seed=2: mirro_colocations=80  vela_colocations=80  [OK]
+  seed=3: mirro_colocations=92  vela_colocations=92  [OK]
+  seed=4: mirro_colocations=67  vela_colocations=67  [OK]
+  Gate: PASS (all seeds >=20 co-locations)
+
+--- PROPERTY CHECKS ---
+PASS  P1-map-nondegradation-mirro: passes=5/5  [s0:solo=0.8400,co=0.8400,ok; s1:solo=0.8000,co=0.8000,ok; s2:solo=0.8400,co=0.8400,ok; s3:solo=0.8400,co=0.8400,ok; s4:solo=0.7600,co=0.7600,ok]
+PASS  P1-map-nondegradation-vela: passes=5/5  [s0:solo=0.6800,co=0.6800,ok; s1:solo=0.6800,co=0.6800,ok; s2:solo=0.6000,co=0.6000,ok; s3:solo=0.6000,co=0.6000,ok; s4:solo=0.6400,co=0.6400,ok]
+PASS  P2-localization-nondegradation-mirro: passes=5/5  [s0:solo=0.0000,co=0.0000,ok; s1:solo=0.0000,co=0.0000,ok; s2:solo=0.0000,co=0.0000,ok; s3:solo=0.0000,co=0.0000,ok; s4:solo=0.0000,co=0.0000,ok]
+PASS  P2-localization-nondegradation-vela: passes=5/5  [s0:solo=0.0000,co=0.0000,ok; s1:solo=0.0000,co=0.0000,ok; s2:solo=0.0000,co=0.0000,ok; s3:solo=0.0000,co=0.0000,ok; s4:solo=0.0000,co=0.0000,ok]
+
+--- DIAGNOSTIC (not a falsifier): learned P(other-here | cell), seed=0 CO ---
+
+  mirro: P(other-here | cell) as 5x5 grid:
+    0.071  0.063  0.025  0.066  0.013
+    0.050  0.026  0.045  0.013  0.040
+    0.045  0.085  0.058  0.047  0.059
+    0.075  0.048  0.066  0.053  0.017
+    0.057  0.013  0.036  0.033  0.002
+  mirro: mean P(other-here) — corners=0.036  center=0.058
+
+  vela: P(other-here | cell) as 5x5 grid:
+    0.055  0.075  0.027  0.119  0.025
+    0.028  0.022  0.050  0.017  0.054
+    0.026  0.081  0.071  0.047  0.051
+    0.048  0.039  0.070  0.063  0.024
+    0.045  0.015  0.047  0.038  0.003
+  vela: mean P(other-here) — corners=0.032  center=0.071
+
+RUNG 2: PASS

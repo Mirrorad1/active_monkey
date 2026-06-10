@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:63, breakthrough:5, positive:33, wall:14, partial:11, from:4.81, to:4.00 };
+window.AM_TALLY = { total:64, breakthrough:5, positive:34, wall:14, partial:11, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -644,7 +644,17 @@ window.AM_EXPERIMENTS = [
     setup:"Social-emergence rung 1, pure infrastructure: fork mirro at age 10700 (hash-stamped, ancestor commit recorded), assign the fork a reversed-cmap world, raise it 2000 steps, save it under creature/state/vela/. Predeclared properties: lineage stamps the exact ancestor checkpoint, both lines load and resume independently, the trunk's learned state stays byte-identical, the hashes diverge.",
     result:"4/4 predeclared properties PASS. Lineage reads mirro@10700#21ccb619f063 exactly; vela completes a full load-live-save resume cycle (12700 to 12750); git shows mirro's weights file unchanged to the byte; the two state hashes diverged. Diagnostic: vela's inherited map read the mirrored world at 0.48 and relearned it to 0.84 on top of its never-reset belief.",
     implication:"The clade substrate is real: any future mirro/vela difference is causally attributable to post-fork history (the twin-control logic, now a family tree), and every committed checkpoint is a restore point. Rung 2 — two clade-mates in one world that can sense each other — now has its plumbing. Caveat: all machinery provided; zero emergence content claimed.",
-    trace:{ script:"experiments/exp63_clade_peer_spine.py", output:"experiments/outputs/exp63.txt" } }
+    trace:{ script:"experiments/exp63_clade_peer_spine.py", output:"experiments/outputs/exp63.txt" } },
+
+  { n:64, kind:"positive", chapter:"frontier",
+    title:"Two in one world — nobody loses themselves.",
+    one:"mirro-fork and vela-fork share a grid with a new senses-the-other modality: solo competence untouched to 4 decimals — because sharp beliefs render the new sense perceptually inert.",
+    plain:"We put two of the family — mirro and its descendant vela — in the same world and gave each a new sense that detects when the other is in its cell. The question: does having a housemate scramble what each one already knows? It does not — every map and every sense of place came out exactly as it would have alone.",
+    metric:{ from:0.84, to:0.84, unit:"mirro map accuracy, alone vs together (seed 0)" },
+    setup:"Social-emergence rung 2: forks of the two committed lines in mirro's world, each given a binary other-agent-here sense whose learned likelihood multiplies into place inference. Matched-trajectory control: identical action sequences in solo and co arms, so any metric difference is the modality alone. 2000 steps, 5 seeds, plus a validity gate requiring the sense to actually fire.",
+    result:"Gate passed (67-92 co-locations per run); all four predeclared properties pass 5/5 seeds — co-presence equals solo to four decimals on every metric. The reason is the finding: both creatures hold near-certain place beliefs, so the extra likelihood changes nothing. The predicted corner-bias structure in the learned sense is absent — correctly: the clamped random walk's occupancy is provably uniform, and the learned grid is sampling noise around 1/25.",
+    implication:"The minimal multi-agent substrate is safe — and perceptually inert at sharp beliefs. If social coupling is to do anything here, it must enter through values and policy rather than place inference — exactly where rung 3's communication channel attaches. Caveats: untested during high-uncertainty phases; every mechanism provided; no emergence claimed.",
+    trace:{ script:"experiments/exp64_copresence.py", output:"experiments/outputs/exp64.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
