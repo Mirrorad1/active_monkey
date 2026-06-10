@@ -17,10 +17,36 @@ creature's belief (`qs`) and learned sensory map (`pA`) must persist.  Committin
 `arrays.npz` + `manifest.json` IS the "weights recording".  Any empirical claim
 ("after 900 steps the creature prefers red") is resumable from that snapshot.
 
+## The spine: one continuous life, checkpointed before & after (Exp 58+)
+
+`mirro` is the **spine** — the single continuous creature that every persistent
+experiment from Exp 58 on advances. An experiment never re-births or rewinds the spine;
+it loads the committed snapshot, lives, and saves back, so the world-model accumulates as
+one never-reset life. Use the helper so this is uniform and guaranteed:
+
+```python
+from active_loop.checkpoint import mirro_episode
+
+with mirro_episode("Exp 58") as ep:
+    ep.creature.live(500)            # advance the one continuous life
+    twin = ep.fork_control("exp58-twinA")   # SIDE-control only — never the spine
+    twin.live(500)
+# on exit: spine saved (AFTER checkpoint); ep.report() prints before/after age + hash
+```
+
+`mirro_episode` records a checkpoint BEFORE (age + `state_hash`, a `checkpoint_before`
+biography event) and, on clean exit, an AFTER checkpoint. If the body raises, the spine
+is left untouched — a failed run can't corrupt the life. Paste `ep.report()` into the
+EXPERIMENTS.md entry. **Forks remain the scientific control, but only as side-controls**
+branched via `ep.fork_control(...)` and saved under a non-spine path. The continuity guard
+`tests/test_creature_continuity.py` fails CI if an established spine's age ever resets.
+
 Snapshot workflow for an experiment:
-1. `creature.save("creature/state/<name>")` + `git commit` before the experiment.
-2. Run the experiment (multiple `live()` calls, possibly `teach_word()`).
-3. `creature.save(...)` + `git commit` after.  The diff shows exactly what changed.
+1. `with mirro_episode("Exp NN") as ep:` — loads the spine + checkpoints BEFORE.
+2. Run the experiment on `ep.creature` (`live()` calls, possibly `teach_word()`);
+   branch any controls with `ep.fork_control(...)`.
+3. On block exit the spine is saved (checkpoint AFTER); `git commit` the snapshot in the
+   experiment's atomic commit. The diff shows exactly what changed.
 
 ## Fork = counterfactual twin
 
