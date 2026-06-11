@@ -53,3 +53,10 @@ Ground rules for this file:
   the pipe's last command, so a red suite sails through. Check the printed
   pass/fail line BEFORE the commit lands, and re-run any generator the failure names
   (site_data --lab-status, gen_directions_index) after card/site edits. [PROTOCOL step 6]
+- **L12 (Exp 176/177 iterations, 2026-06-11).** `experiments-data.js` is REWRITTEN by
+  `python -m active_loop.site_data` (caveat regeneration), so any read of it from a
+  previous iteration is stale and the next Edit fails with "modified since read" —
+  in a shared checkout this looks like (but is not) the parallel-session race. Rule:
+  re-Read the generated region (tail entry + AM_TALLY line) at the START of each
+  iteration's site-entry edit, and always edit-then-generate within one iteration,
+  never generate-then-edit-later. Same applies to lab-status.js and DIRECTIONS.md.
