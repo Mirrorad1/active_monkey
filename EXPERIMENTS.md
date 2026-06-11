@@ -5191,3 +5191,65 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   not in the valid regimes (card threshold: lower trust in the broken regime across
   ≥ 3 forks; falsifier: no metacognitive sensitivity over N2, meta-d′ over N2's
   diagnoses ≤ 0).
+
+## Exp 163 — RUNG 2 PASSES: the third-order monitor loses trust in N2 exactly where N2 is broken — forecast-scoring of the diagnoses' own implicit claims separates the broken regime (trust 0.69) from every valid one (1.00, zero violations), while the Brier-style alternative fails to separate at all (POSITIVE; N3 has metacognitive sensitivity OVER N2, and the monitor's design space just got a measured boundary)
+
+- Plain: the creature's self-monitoring makes implicit promises — "all is well" promises
+  that mistakes stay rare; "the world is just noisy" promises that the error level is
+  permanent. We gave the system a third-order watcher that does nothing but check those
+  promises against what actually happens next, using only the creature's own records.
+  In the trick world from the last experiment, the promises break on schedule and the
+  watcher's trust in the self-monitoring drops by a third; in every honest world, every
+  promise holds and trust stays perfect. A plausible alternative watcher — one that
+  scores the confidence sense statistically instead of scoring the promises — turned
+  out to confuse "this world is hard" with "my self-monitoring is broken," and failed.
+- Question: does a third-order monitor tracking realized-vs-predicted usefulness of
+  N2's diagnoses (the card's rung 2) lose trust in N2 in R-SLOW (broken, Exp 162) but
+  not in the valid regimes (Exp 159 set)?
+- Setup (predeclared in the script docstring before running; FRESH seeds 66–73, 4
+  regimes per fork): monitor form provided — OK forecasts next-100 error < 0.15; NOISE
+  forecasts |next-100 error − window error| < 0.3; STRUCTURAL excluded (declared);
+  trust = 1 − violation rate, internal signals only. P1: trust(R-SLOW) strict minimum
+  per fork in ≥7/8 (F1: pooled R-SLOW ≥ min valid pooled, OR strict-min in < 3 forks —
+  the card's floor). P2: pooled gap ≥ 0.15 (F2: ≤ 0.02). RUNG 2 PASSES iff P1∧P2.
+  PC1 ≥25 scored labels/cell; PC2 drift < 0.05; PC3 R-SLOW pure-B error ≥ 0.5.
+- Result: POSITIVE — trust(R-SLOW) = 0.6897 (20/29 forecasts held; OK-label violation
+  rate 0.333, NOISE-label 0.286 — both promise types break at phase boundaries, nearly
+  equally) vs 1.0000 in all 24 valid-regime cells (0 violations in 38 scored labels,
+  every fork); strict minimum 8/8; pooled gap 0.3103. Preconditions green (min scored
+  29; max drift 0.0241; pure-B error 1.0). Ungated: the channel-Brier trust variant
+  does NOT separate — R-SLOW +0.025 vs R-PLACE +0.038 vs R-CTRL −0.016 — its sign
+  tracks world difficulty (baseline Brier), not N2 brokenness.
+- Verifier: agree (blinded, conjunct-by-conjunct, derived POSITIVE independently);
+  flagged (i) the valid-regime CEILING — zero violations everywhere means the gap is
+  direction-confirming but says nothing about sensitivity to partial degradation;
+  (ii) R-SLOW geometry determinism — all 8 forks return byte-identical monitor scores
+  (29 scored, 9 violations), so the fork criterion is trivially satisfied, not
+  statistically replicated; (iii) the STRUCTURAL exclusion (9 labels/fork) could
+  inflate trust if those labels' forecasts also break.
+- Implication (generalizability tier: functional-form for the monitor design; the
+  numbers are parameter-level to this geometry): N3's required property exists —
+  metacognitive sensitivity over N2, built from N2's own outputs plus the lived
+  stream, no generator access. The design boundary is the real new datum: score the
+  DIAGNOSES' OWN FORECASTS, not the channel's statistics — the Brier variant conflates
+  regime difficulty with diagnostic brokenness and ranks a valid regime above the
+  broken one. Rung 3 (the load-bearing test) is now armed: same snapshot, three
+  agents — (a) N1+N2, (b) +N3 acting on this trust signal (rewriting θ_N2's window
+  when trust drops), (c) N2 oracle-retuned offline — N3 must recover ≥60% of (a)'s
+  gap AND beat one fixed retune across ≥2 distinct failure regimes (the leakage
+  clause: an unseen instance of the window-blind-spot class).
+- Honest caveat: monitor form, thresholds (0.15/0.3), and the STRUCTURAL exclusion are
+  PROVIDED design choices; the valid-regime ceiling and R-SLOW's geometry determinism
+  (verifier flags i–ii) mean this experiment confirms direction at this world
+  richness, not graded sensitivity — partial-degradation regimes are untested; the
+  trust signal was computed post-hoc over recorded internal arrays (equivalent to
+  online computation, but not yet wired into a live controller — that is rung 3's
+  job); the broken regime is the same hand-built R-SLOW as Exp 162 (leakage clause
+  binds at rung 3).
+- Verdict: POSITIVE / NEW INSIGHT (the forecast-vs-Brier design boundary). Self-grade:
+  POSITIVE-SINGLE.
+- Next: rung 3, the load-bearing test — fork-triplet comparison (N2-only vs N2+N3 vs
+  oracle-retuned N2) with N3's control surface = rewriting the classifier window when
+  trust drops, scored on diagnostic recovery across R-SLOW AND an unseen instance of
+  the failure class (different H), against the card's two falsifiers (must beat (a);
+  must not reduce to (c)).

@@ -169,4 +169,13 @@ Leakage clause armed for rung 3: N3 must generalize to unseen instances (other
 period/window ratios), and N3 gets the DIAL, not the answer (W′=800 used oracle knowledge
 of H).
 
-**STATUS.** state: active (rung 2) · latest: Exp 162 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161), window-blind-spot regime R-SLOW (Exp 162) · why: rung 1 gate passed — N2 has a constructible, sustained, dial-pinned failure regime; N3 now has something real to control · next-falsifiable: rung 2 — the third-order monitor (realized-vs-predicted usefulness of acting on N2's diagnosis): N3-trust lower in R-SLOW than in valid regimes across ≥ 3 forks; falsifier: meta-d′ over N2's diagnoses ≤ 0 (no metacognitive sensitivity over N2)
+**RUNG 2 PASSED (Exp 163, POSITIVE).** The forecast-scoring trust monitor (OK promises
+next-100 error < 0.15; NOISE promises the level persists; STRUCTURAL excluded by
+declaration) separates cleanly: trust 0.6897 in R-SLOW (OK violations 0.333, NOISE 0.286 —
+both promise types break at phase boundaries) vs 1.0000 in all 24 valid cells; strict
+minimum 8/8; gap 0.3103. Design boundary measured: the Brier-style channel-trust variant
+FAILS (its sign tracks world difficulty, not brokenness — ranks R-PLACE above R-SLOW).
+Verifier bounds logged: valid-regime ceiling (direction, not graded sensitivity); R-SLOW
+geometry determinism (8 forks = one schedule).
+
+**STATUS.** state: active (rung 3) · latest: Exp 163 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161), window-blind-spot regime R-SLOW (Exp 162), forecast-scoring trust monitor (Exp 163 — score the diagnoses' forecasts, not the channel's statistics) · why: N3 has measured metacognitive sensitivity over N2; the load-bearing control test remains · next-falsifiable: rung 3 — same-snapshot triplet (a) N1+N2, (b) N2+N3 acting (rewrite the classifier window when trust drops), (c) N2 oracle-retuned offline; N3 must recover ≥ 60% of (a)'s diagnostic gap AND not reduce to one fixed retune across ≥ 2 distinct failure-class instances (unseen H per the leakage clause); falsifiers: (i) N3 fails to beat (a); (ii) one offline retune matches N3

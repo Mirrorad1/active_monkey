@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "exp163",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_trust_drops_in_broken": {
+      "pass": true,
+      "reason": "trust(R-SLOW) strict minimum in 8/8 forks (need >=7); pooled trust(R-SLOW)=0.6897; F1a(pooled_rslow>=min_valid)=False; F1b(strict_min<3)=False"
+    },
+    "P2_gap_magnitude": {
+      "pass": true,
+      "reason": "pooled gap = min_valid_trust - trust(R-SLOW) = 0.3103 (need >=0.15); min_valid_pooled=1.0000; F2(gap<=0.02)=False"
+    }
+  },
+  "notes": "N3 rung 2: third-order trust monitor. N3 monitor scores N2's implicit forecasts (OK => 'errors stay rare'; NOISE => 'error level persists') against realized outcomes from the creature's own correctness stream. STRUCTURAL excluded (weaker-typed forecast). Tested over 4 regimes: R-SLOW (broken, Exp 162 window-blind-spot), R-CTRL / R-NOISE / R-PLACE (valid, Exp 159 set). POSITIVE: RUNG 2 PASSES \u2014 N3 detects N2's miscalibration. NEGATIVE: RUNG 2: candidate monitor FAILED."
+}

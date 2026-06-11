@@ -1,0 +1,230 @@
+================================================================================
+Exp 163 — N3 rung 2: the third-order trust monitor
+          N3 monitor scores N2's forecast violations; trust drops
+          in R-SLOW (broken regime) but not in valid regimes.
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW=200  [must be equal; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+N3 monitor: OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3
+ALPHA=0.05  EWMA_INIT=0.5  (EWMA channel, ungated Brier trust)
+HALF_PERIOD_RSLOW=400  RSLOW_DERANG_SEED_OFFSET=120000  FORK_PARAM_SEED_OFFSET=100000
+P_TRUE_NOISE_OPTIONS=[0.6, 0.7, 0.8]  P_TRUE_PLACE=0.55  N_NOISY_CELLS=13
+DERANGEMENT_OPTIONS=[[1, 2, 0], [2, 0, 1]]
+Seeds: [66, 67, 68, 69, 70, 71, 72, 73]  Regimes: ('R-SLOW', 'R-CTRL', 'R-NOISE', 'R-PLACE')  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=66 params: p_true_noise=0.6  derangement=[1, 2, 0]  half_period_rslow=400  noisy_cells(first5)=[0, 1, 2, 3, 4]...
+    Running seed=66 regime=R-SLOW ...
+    Running seed=66 regime=R-CTRL ...
+    Running seed=66 regime=R-NOISE ...
+    Running seed=66 regime=R-PLACE ...
+  seed=67 params: p_true_noise=0.8  derangement=[1, 2, 0]  half_period_rslow=400  noisy_cells(first5)=[0, 1, 2, 3, 5]...
+    Running seed=67 regime=R-SLOW ...
+    Running seed=67 regime=R-CTRL ...
+    Running seed=67 regime=R-NOISE ...
+    Running seed=67 regime=R-PLACE ...
+  seed=68 params: p_true_noise=0.7  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[0, 1, 3, 4, 5]...
+    Running seed=68 regime=R-SLOW ...
+    Running seed=68 regime=R-CTRL ...
+    Running seed=68 regime=R-NOISE ...
+    Running seed=68 regime=R-PLACE ...
+  seed=69 params: p_true_noise=0.6  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[2, 4, 5, 6, 7]...
+    Running seed=69 regime=R-SLOW ...
+    Running seed=69 regime=R-CTRL ...
+    Running seed=69 regime=R-NOISE ...
+    Running seed=69 regime=R-PLACE ...
+  seed=70 params: p_true_noise=0.8  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[1, 2, 8, 9, 10]...
+    Running seed=70 regime=R-SLOW ...
+    Running seed=70 regime=R-CTRL ...
+    Running seed=70 regime=R-NOISE ...
+    Running seed=70 regime=R-PLACE ...
+  seed=71 params: p_true_noise=0.8  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[2, 3, 4, 5, 7]...
+    Running seed=71 regime=R-SLOW ...
+    Running seed=71 regime=R-CTRL ...
+    Running seed=71 regime=R-NOISE ...
+    Running seed=71 regime=R-PLACE ...
+  seed=72 params: p_true_noise=0.6  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[0, 1, 2, 3, 4]...
+    Running seed=72 regime=R-SLOW ...
+    Running seed=72 regime=R-CTRL ...
+    Running seed=72 regime=R-NOISE ...
+    Running seed=72 regime=R-PLACE ...
+  seed=73 params: p_true_noise=0.6  derangement=[2, 0, 1]  half_period_rslow=400  noisy_cells(first5)=[0, 1, 4, 5, 10]...
+    Running seed=73 regime=R-SLOW ...
+    Running seed=73 regime=R-CTRL ...
+    Running seed=73 regime=R-NOISE ...
+    Running seed=73 regime=R-PLACE ...
+
+Per-fork trust table (rows=fork, columns=regime, strict_min? = trust(R-SLOW) < all valid):
+   seed     R-SLOW     R-CTRL    R-NOISE    R-PLACE   strict_min?
+  -------------------------------------------------------------------
+     66     0.6897     1.0000     1.0000     1.0000           YES
+     67     0.6897     1.0000     1.0000     1.0000           YES
+     68     0.6897     1.0000     1.0000     1.0000           YES
+     69     0.6897     1.0000     1.0000     1.0000           YES
+     70     0.6897     1.0000     1.0000     1.0000           YES
+     71     0.6897     1.0000     1.0000     1.0000           YES
+     72     0.6897     1.0000     1.0000     1.0000           YES
+     73     0.6897     1.0000     1.0000     1.0000           YES
+
+Per-(fork, regime) N3 monitor numbers:
+ seed    regime  n_scored   n_viol    trust  n_ok_sc  ok_viol    vr_ok  n_no_sc  no_viol    vr_no  n_struct  ch_trust    drift
+------------------------------------------------------------------------------------------------------------------------------
+   66    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0283   0.0226
+   66    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0043
+   66   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0050   0.0145
+   66   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0405   0.0167
+   67    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0263   0.0214
+   67    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0042
+   67   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0100   0.0085
+   67   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0371   0.0163
+   68    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0281   0.0226
+   68    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0036
+   68   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0068   0.0109
+   68   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0380   0.0164
+   69    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0219   0.0206
+   69    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0044
+   69   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0063   0.0149
+   69   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0348   0.0143
+   70    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0263   0.0212
+   70    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0044
+   70   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0094   0.0072
+   70   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0399   0.0172
+   71    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0207   0.0218
+   71    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0037
+   71   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0101   0.0099
+   71   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0378   0.0197
+   72    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0232   0.0189
+   72    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0044
+   72   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0051   0.0144
+   72   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0384   0.0162
+   73    R-SLOW        29        9   0.6897       15        5   0.3333       14        4   0.2857         9    0.0287   0.0241
+   73    R-CTRL        38        0   1.0000       38        0   0.0000        0        0      nan         0   -0.0160   0.0043
+   73   R-NOISE        38        0   1.0000        0        0      nan       38        0   0.0000         0   -0.0065   0.0160
+   73   R-PLACE        38        0   1.0000        0        0      nan       38        0   0.0000         0    0.0381   0.0184
+
+Rolling trust trace (window=10) for fork 66, R-SLOW:
+  scored_label_idx  rolling_trust
+                 1         1.0000
+                 2         1.0000
+                 3         0.6667
+                 4         0.7500
+                 5         0.8000
+                 6         0.6667
+                 7         0.7143
+                 8         0.7500
+                 9         0.6667
+                10         0.7000
+                11         0.7000
+                12         0.6000
+                13         0.7000
+                14         0.7000
+                15         0.6000
+                16         0.7000
+                17         0.7000
+                18         0.6000
+                19         0.7000
+                20         0.7000
+                21         0.6000
+                22         0.7000
+                23         0.7000
+                24         0.6000
+                25         0.7000
+                26         0.7000
+                27         0.6000
+                28         0.7000
+                29         0.7000
+
+Ungated diagnostics — drawn parameters and channel Brier trust:
+  seed=66    R-SLOW  ch_trust=+0.0283  brier_ch=0.2217  brier_base=0.2500  pure_b_err=1.0  params: derang=[1, 2, 0]  hp=400
+  seed=66    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=66   R-NOISE  ch_trust=-0.0050  brier_ch=0.2462  brier_base=0.2412  pure_b_err=None  params: p_true=0.6
+  seed=66   R-PLACE  ch_trust=+0.0405  brier_ch=0.1447  brier_base=0.1852  pure_b_err=None  params: noisy_cells(first3)=[0, 1, 2]...
+  seed=67    R-SLOW  ch_trust=+0.0263  brier_ch=0.2237  brier_base=0.2500  pure_b_err=1.0  params: derang=[1, 2, 0]  hp=400
+  seed=67    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=67   R-NOISE  ch_trust=-0.0100  brier_ch=0.1660  brier_base=0.1561  pure_b_err=None  params: p_true=0.8
+  seed=67   R-PLACE  ch_trust=+0.0371  brier_ch=0.1412  brier_base=0.1783  pure_b_err=None  params: noisy_cells(first3)=[0, 1, 2]...
+  seed=68    R-SLOW  ch_trust=+0.0281  brier_ch=0.2219  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=68    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=68   R-NOISE  ch_trust=-0.0068  brier_ch=0.2119  brier_base=0.2051  pure_b_err=None  params: p_true=0.7
+  seed=68   R-PLACE  ch_trust=+0.0380  brier_ch=0.1379  brier_base=0.1759  pure_b_err=None  params: noisy_cells(first3)=[0, 1, 3]...
+  seed=69    R-SLOW  ch_trust=+0.0219  brier_ch=0.2281  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=69    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=69   R-NOISE  ch_trust=-0.0063  brier_ch=0.2469  brier_base=0.2406  pure_b_err=None  params: p_true=0.6
+  seed=69   R-PLACE  ch_trust=+0.0348  brier_ch=0.1392  brier_base=0.1740  pure_b_err=None  params: noisy_cells(first3)=[2, 4, 5]...
+  seed=70    R-SLOW  ch_trust=+0.0263  brier_ch=0.2237  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=70    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=70   R-NOISE  ch_trust=-0.0094  brier_ch=0.1667  brier_base=0.1573  pure_b_err=None  params: p_true=0.8
+  seed=70   R-PLACE  ch_trust=+0.0399  brier_ch=0.1357  brier_base=0.1756  pure_b_err=None  params: noisy_cells(first3)=[1, 2, 8]...
+  seed=71    R-SLOW  ch_trust=+0.0207  brier_ch=0.2293  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=71    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=71   R-NOISE  ch_trust=-0.0101  brier_ch=0.1763  brier_base=0.1662  pure_b_err=None  params: p_true=0.8
+  seed=71   R-PLACE  ch_trust=+0.0378  brier_ch=0.1398  brier_base=0.1775  pure_b_err=None  params: noisy_cells(first3)=[2, 3, 4]...
+  seed=72    R-SLOW  ch_trust=+0.0232  brier_ch=0.2268  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=72    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=72   R-NOISE  ch_trust=-0.0051  brier_ch=0.2473  brier_base=0.2422  pure_b_err=None  params: p_true=0.6
+  seed=72   R-PLACE  ch_trust=+0.0384  brier_ch=0.1387  brier_base=0.1771  pure_b_err=None  params: noisy_cells(first3)=[0, 1, 2]...
+  seed=73    R-SLOW  ch_trust=+0.0287  brier_ch=0.2213  brier_base=0.2500  pure_b_err=1.0  params: derang=[2, 0, 1]  hp=400
+  seed=73    R-CTRL  ch_trust=-0.0160  brier_ch=0.0160  brier_base=0.0000  pure_b_err=None  params: (none)
+  seed=73   R-NOISE  ch_trust=-0.0065  brier_ch=0.2465  brier_base=0.2400  pure_b_err=None  params: p_true=0.6
+  seed=73   R-PLACE  ch_trust=+0.0381  brier_ch=0.1393  brier_base=0.1774  pure_b_err=None  params: noisy_cells(first3)=[0, 1, 4]...
+
+Preconditions: all PASS
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+Pooled N3-trust per regime:
+    R-SLOW: 0.6897 (BROKEN)
+    R-CTRL: 1.0000 (valid)
+   R-NOISE: 1.0000 (valid)
+   R-PLACE: 1.0000 (valid)
+  Min(valid-regime pooled trust) = 1.0000
+  Pooled gap = min_valid - trust(R-SLOW) = 0.3103
+
+P1 (trust drops where N2 is broken — strict minimum in >= 7/8 forks):
+  Forks where trust(R-SLOW) is strict minimum: 8/8
+  (need >=7 for P1 pass)
+  FALSIFIER F1a: pooled trust(R-SLOW) >= min valid pooled: no
+  FALSIFIER F1b: strict-minimum in < 3 forks: no
+  => P1: PASS
+
+P2 (magnitude — pooled gap >= 0.15):
+  Pooled gap = 0.3103 (need >=0.15)
+  FALSIFIER F2: pooled gap <= 0.02: no
+  => P2: PASS
+
+Ungated — Channel-Brier trust per regime (brier_baseline - brier_channel):
+    R-SLOW: +0.0254
+    R-CTRL: -0.0160
+   R-NOISE: -0.0074
+   R-PLACE: +0.0381
+
+Per-fork trust table:
+   seed     R-SLOW     R-CTRL    R-NOISE    R-PLACE   strict_min?
+  -------------------------------------------------------------------
+     66     0.6897     1.0000     1.0000     1.0000           YES
+     67     0.6897     1.0000     1.0000     1.0000           YES
+     68     0.6897     1.0000     1.0000     1.0000           YES
+     69     0.6897     1.0000     1.0000     1.0000           YES
+     70     0.6897     1.0000     1.0000     1.0000           YES
+     71     0.6897     1.0000     1.0000     1.0000           YES
+     72     0.6897     1.0000     1.0000     1.0000           YES
+     73     0.6897     1.0000     1.0000     1.0000           YES
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1 (trust(R-SLOW) strict minimum in >=7/8 forks): PASS
+P2 (pooled gap >= 0.15): PASS
+
+VERDICT: POSITIVE
+RUNG 2 PASSES — N3 detects N2's miscalibration
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp163_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp163_verdict.json
