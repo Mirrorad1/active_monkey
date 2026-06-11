@@ -339,6 +339,11 @@ The loop marks items it has consumed by indenting a response under them:
     seeds 16-23, same twin-relative bar (>= twin - 0.10, floor 0.55). If the faithful
     rule still gaps > 0.10, that is a genuine substrate limit to document, not chase.
     Awaiting word.
+  → [human, 2026-06-10] "m4c" — explicit word. Exp 149 runs the faithful-port
+    ablation: valence weight = exp(-H(color predictive at the posterior MEAN point,
+    Sigma_eval = 0.01 I)) — the tabular rule's true analog (it scores at argmax(qs));
+    fresh seeds 16-23; same twin-relative bar (>= twin - 0.10, floor 0.55). A
+    remaining gap > 0.10 becomes the documented substrate limit.
 
 (empty — drop ideas above this line's section freely)
 
