@@ -77,10 +77,12 @@
   @media(max-width:560px){.exp-title{font-size:16px;}}
   .exp-one{font-size:12.5px;color:var(--ink-2);margin:0;line-height:1.45;}
   .exp-right{display:flex;align-items:center;gap:14px;}
-  .metric{text-align:right;white-space:nowrap;}
-  .metric .mv{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.1;}
+  /* cap the metric column: a long unit caption must wrap inside its own box,
+     never widen the grid's auto column and crush the 1fr title (Exp 151 bug) */
+  .metric{text-align:right;max-width:210px;}
+  .metric .mv{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.1;white-space:nowrap;}
   .metric .mv .ar{color:var(--accent);}
-  .metric .mu{font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);}
+  .metric .mu{font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
   @media(max-width:680px){.metric{display:none;}}
   .chev{width:24px;height:24px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--ink-2);font-size:13px;flex:none;transition:transform .2s,border-color .15s,background .15s;}
   .card:hover .chev{border-color:var(--ink-3);}

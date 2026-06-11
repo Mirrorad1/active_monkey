@@ -328,6 +328,29 @@ def test_metric_values_in_md():
         )
 
 
+def test_metric_units_are_captions_not_sentences():
+    """Every metric unit string is a short caption (<= 80 chars).
+
+    Guard for the Exp 151 layout bug: the journey card header puts the metric in
+    a nowrap-ish auto grid column; a sentence-length unit ("colors mapped of
+    sixteen at first save (loc 0.12 cells; ...)") ballooned that column and
+    crushed the title into a one-word-per-line strip. The CSS now clamps the
+    metric box, but the unit is a caption by design — detail belongs in the
+    entry's `one`/`result` text, not the unit.
+    """
+    offenders = []
+    for n, blk in _split_entries():
+        metric_m = re.search(r"metric\s*:\s*\{([^}]*)\}", blk)
+        if not metric_m:
+            continue
+        unit_m = re.search(r'unit\s*:\s*"((?:[^"\\]|\\.)*)"', metric_m.group(1))
+        if unit_m and len(unit_m.group(1)) > 80:
+            offenders.append(f"Exp {n}: unit is {len(unit_m.group(1))} chars: {unit_m.group(1)!r}")
+    assert not offenders, (
+        "Metric units must stay caption-length (<= 80 chars):\n" + "\n".join(offenders)
+    )
+
+
 def _surprise_segments_points():
     """Return list of (exp, float) pairs from AM_SURPRISE_SEGMENTS points arrays."""
     text = _js_text()
