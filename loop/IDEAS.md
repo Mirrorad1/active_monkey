@@ -303,6 +303,10 @@ The loop marks items it has consumed by indenting a response under them:
     batch-jump (fit all K components at once on replay, probate the complete cover as
     one move); (b) background-floor (permanent low-weight broad component — additions
     provably cannot create holes). The thread does nothing until an answer appears.
+  → [human, 2026-06-10] "continue with m4" — explicit word. The growth question is
+    PARKED as the documented wall (batch-jump and background-floor remain its named
+    untried cracks, available on a future word); the migration RESUMES at M4
+    (want + act, Exp 147). The M3 prediction limitation rides along, documented.
 
 (empty — drop ideas above this line's section freely)
 

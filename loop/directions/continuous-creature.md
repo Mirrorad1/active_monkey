@@ -79,6 +79,7 @@ throughout).**
   PARKED per the predeclared flattening rule, with two named untried cracks
   (batch-jump complete-cover probation; background-floor no-hole mixtures).
   The migration continues at M4 on the human's word.
+  **PARK RATIFIED ("continue with m4", 2026-06-10) — M4 is the active rung.**
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence
