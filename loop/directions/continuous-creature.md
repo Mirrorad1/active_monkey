@@ -113,3 +113,5 @@ human word, per the guardrail. Insight flattening across ~3 rungs → say so and
 nira is committed; the two walls (growth valley, valence range) are documented with
 named cracks/limits. Closing synthesis: docs/research/continuous-creature-migration.md.
 Closure consult in loop/IDEAS.md; this card re-opens only on an explicit choice there.
+
+**STATUS.** state: halted · latest: Exp 153 · depends-on: continuous-substrate · reusable: continuous.py, NIW inference patterns · why: growth thread halted awaiting Exp 154 consult; ladder itself complete at Exp 151 · next-falsifiable: Exp 154 re-test the unnormalized-footprint dilution hypothesis with normalized-density convention

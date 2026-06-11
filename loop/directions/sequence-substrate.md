@@ -23,3 +23,5 @@ it without banging on the emergent-grammar ceiling.
 **Stop condition.** M4 milestone 1 done (either verdict), or two iterations stuck on
 pymdp mechanics rather than the question — then log the engineering wall and consult
 the human via the EXPERIMENTS.md entry.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: persistent-creature, relational-thoughts · reusable: minimal sequence substrate, intent inference, affective-coloring mechanisms · why: minimal M4 affective-dyad prerequisite; builds grounded Q→A beyond templates without claiming emergent grammar · next-falsifiable: Rung 1 AIF pair-state (trigram) model: reproduce taught Q→A inside active inference proper; FAIL = pair-state model can't reproduce what template already does

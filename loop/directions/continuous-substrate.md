@@ -55,3 +55,5 @@ word) nor mirro's/vela's spines.
 phase picture exists and the amortized comparison is logged). Closure CONSULT with the
 six-rung verdict and next-step options posted in loop/IDEAS.md; this card re-opens only
 on an explicit human choice there.
+
+**STATUS.** state: closed-positive · latest: Exp 138–140 · depends-on: TBD-human · reusable: active_loop/continuous.py, NIW conjugate inference, log-space filtering guards · why: phase picture and amortized comparison logged; continuous substrate removes tabular ceiling · next-falsifiable: TBD-human

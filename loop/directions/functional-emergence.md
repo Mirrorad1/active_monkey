@@ -106,3 +106,5 @@ EXPERIMENTS.md: "no disciplined novelty at this world richness; next richness st
 require <named substrate>" and either open that substrate as a new direction or stop. If
 novelty-candidates DO survive, this direction stays open as long as they keep coming —
 that's the program working, not a loop to escape.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: persistent-creature · reusable: surprise-ledger instrument, novelty-verification cascade, fork-only controls · why: successor to persistent-creature; probes unexpected behavior from continuous life in enriched worlds · next-falsifiable: build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control

@@ -21,3 +21,5 @@ documenting next to the grammar wall.
 
 **Stop condition.** Depth limit located and characterized, or chaining shown to need a
 provided algorithm (then say so plainly — provided vs. self-formed — and stop).
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: persistent-creature · reusable: multi-step relational inference, chaining-depth probes, counterfactual disambiguation · why: minimal form of inference-as-thinking beyond single-hop relations; probes whether RECIPE provides machinery for chaining · next-falsifiable: Rung 1 two-hop spatial: creature learns "object at place P" and "P is in room R"; query "which room is the object in?" without co-observing object+room; FAIL = answer at chance

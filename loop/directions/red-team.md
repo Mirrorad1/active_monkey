@@ -21,3 +21,5 @@ is NEW INSIGHT by definition.
 
 **Stop condition.** All four passes done. Every survived claim gets noted as
 "red-teamed, survived"; every kill gets a correction entry citing the original.
+
+**STATUS.** state: active · latest: TBD-human · depends-on: TBD-human · reusable: hostile-replication patterns, baseline audits, seed-sweep protocols · why: standing directive; killing our own claims is new insight; log's credibility depends on honesty · next-falsifiable: pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)

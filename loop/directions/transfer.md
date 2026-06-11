@@ -22,3 +22,5 @@ a NEW negative finding, not consolidation.
 
 **Stop condition.** All four answered (any verdict), or two consecutive experiments
 blocked by the same missing substrate — then log the wall and switch direction.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: persistent-creature · reusable: transfer-learning probes, value-reuse tests, partial-overlap calibration · why: reuse is difference between "learning procedure" and "mind with knowledge"; tests whether RECIPE produces reusable structure · next-falsifiable: Rung 1 same world, new geometry: creature with learned 4x4 map dropped into different 4x4 layout; FAIL = no difference vs fresh creature

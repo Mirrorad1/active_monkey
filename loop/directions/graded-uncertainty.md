@@ -61,3 +61,5 @@ individuality-vs-adaptability dilemma made quantitative).
 **Stop condition.** Rungs 1–4 verdicts either way (with rung 3's tradeoff curve measured),
 plus the promotion CONSULT posted (or the no-usable-λ finding logged). Then this card
 closes into the M4 requirements list with numbers instead of motivations.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: social-emergence, persistent-creature · reusable: count-decay forgetting, belief-tempering mechanisms, tradeoff-curve measurement · why: most-motivated substrate change; opened by social-emergence stop condition; M4's first listed requirement · next-falsifiable: Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands

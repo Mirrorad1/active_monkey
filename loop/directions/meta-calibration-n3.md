@@ -90,3 +90,5 @@ regime-adaptive control surface over N2 that is not offline-retunable (hypothesi
 the ladder may proceed toward N4/N5/N6), or no N2-failure regime is constructible / N3 collapses
 to N2 or to config (hypothesis REJECTED at this world richness — log the wall, name the missing
 world-richness, do not climb to N4+ on an unsupported N3). Either verdict is a clean result.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests · why: next rung on self-modeling ladder; prerequisite is working internal N2; probes whether higher-order models control what lower orders cannot · next-falsifiable: Rung 1 gate: construct a regime (deceptive world or expansion-trap) where N2 fails systematically and measurably degrades the N2-only agent

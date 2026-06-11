@@ -87,3 +87,5 @@ surviving social novelty-candidate(s) with their cascade record, or "no discipli
 novelty at this substrate; the next step would require <named substrate>" — and open that
 substrate as a new direction or stop. Surviving candidates keep this direction open; that is
 the program working, not a loop to escape.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: persistent-creature, functional-emergence · reusable: clade infrastructure, shared-world/multi-agent substrates, social-transmission metrics, coordination probes · why: first test of RECIPE on multi-agent emergent behavior; extends persistent-creature to family tree; opens graded-uncertainty as next direction per stop condition · next-falsifiable: Rung 1 clade infrastructure: fork mirro into second committed line, verify lineage records shared-ancestor hash, both independently resumable, trunk byte-identical

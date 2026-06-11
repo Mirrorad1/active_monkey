@@ -80,3 +80,5 @@ runner (`run_loop.py`); neither controls the other.
 requires a substrate mirro does not have (log the wall, name the missing substrate, and
 open a new direction). If episodes 1–3 all fail, audit whether the persistence engineering
 is working before continuing — a broken save/load is not a research finding.
+
+**STATUS.** state: exploratory · latest: TBD-human · depends-on: TBD-human · reusable: creature persistence API (birth/save/load/fork/live), continuity guard, atomic snapshot commits · why: foundational for all multi-experiment creatures; raises RECIPE's "continuous registered experience" from session-level to program-level; enables experiments on properties only continuous life can reveal · next-falsifiable: Exp 41 BIRTH: map accuracy >= 8/9 cells correctly represented in committed belief
