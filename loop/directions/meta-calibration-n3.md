@@ -195,4 +195,16 @@ No-harm clean 8/8 (zero changes in FR2/CTRL). Laws: monitor coverage must be TOT
 partial improvement silences the controller; dial-search under evidence reset needs horizon
 ≥ dial-distance × transition-period.
 
-**STATUS.** state: active (rung 3, attempt 3) · latest: Exp 165 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), dial-disjointness (164), false-peace + escalation-latency laws (165) · why: the controller's evidence plumbing, not the information, is what failed — c₈₀₀/c₁₆₀₀ prove the signal is present · next-falsifiable: Exp 166 — total-coverage monitor (STRUCTURAL scored: holds iff next-100 error ≥ 0.05; zero false-fire in valid regimes by Exp 163's committed data), 12000-step sessions, gated scores on the final 4000 (steady state, fair to stationary constants), same P1/P1b/P2; a third failure makes rung 3 a documented wall → consult
+**RUNG 3: DOCUMENTED WALL (Exp 164–166, per the predeclared third-failure clause).**
+The promise-checking controller class cannot hold the dial on STRUCTURAL diagnoses: OK and
+NOISE are stationary claims checkable at a fixed horizon; STRUCTURAL is regime-conditional —
+at a wrong dial its evidence hides in the unscored class (FALSE PEACE, Exp 165), at the
+right dial its honest quiet phases score as violations (FALSE WAR, Exp 166: perpetual
+200→400→800→1600→200 cycling, 8/8; wrong-direction escalation in the burst world). Five
+laws: dial-disjointness (164), escalation latency (165), false peace (165), false war
+(166), horizon-relative drift bounds (166). Rungs 1–2 STAND. Named untried crack:
+lock-on-label-consistency (dial freezes when the label distribution collapses to one
+class — a regime statistic, the minimal "N1 inside N3"). CONSULT in loop/IDEAS.md;
+recommended (silence-actionable): the chapter synthesis first.
+
+**STATUS.** state: halted (rung-3 wall, consult open) · latest: Exp 166 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166) · why: rungs 1–2 passed; rung 3 walled for the promise-checking class — N3 needs regime structure of its own · next-falsifiable: per the human's word — (a) lock-on-label-consistency design, or (b) chapter synthesis (recommended), or (c) stop

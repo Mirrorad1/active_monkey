@@ -5369,3 +5369,59 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   holds iff next-100 error ≥ 0.05), 12000-step sessions, gated scores on the final
   4000 steps, same P1/P1b/P2 structure and falsifiers. If attempt 3 fails, rung 3 is
   a documented wall and the consult names it.
+
+## Exp 166 — rung 3, attempt 3: NO VERDICT by PC1 (the drift bound was horizon-calibrated), and the diagnostics complete the wall — the total-coverage monitor turns false peace into FALSE WAR: a horizon-bound promise-checker cannot validate the STRUCTURAL diagnosis, so the dial cycles off the correct setting forever; RUNG 3 IS DECLARED A DOCUMENTED WALL for the promise-checking controller class (consult posted)
+
+- Plain: the third and last attempt taught the deepest lesson. We made the watcher check
+  every kind of promise, including "the world has structurally changed." But that promise
+  is different in kind: structure means errors COME AND GO with the world's hidden
+  rhythm — so during honest quiet stretches the correct dial gets punished for the very
+  quietness that proves it right, and the dial-setter cycles away from the answer
+  forever, in every run. Checking promises at a fixed short horizon can validate "all is
+  well" and "it's just noise," but validating "the world has a hidden rhythm" requires
+  modeling the rhythm itself. A dial-setting layer needs its own little world-model —
+  the ladder's next layer needs what the first layer has. That is the wall, and it is a
+  shapely one.
+- Question (predeclared): with STRUCTURAL forecasts scored (holds iff next-100 error ≥
+  0.05), 12000-step sessions, and steady-state scoring, does N3 pass P1/P1b/P2?
+- Setup: Exp 165 harness + the three deltas; FRESH seeds 90–97; smoke (seed 90)
+  disclosed, predeclaration locked and run as written.
+- Result: NO VERDICT — PC1 fired (FR1 ahat_drift 0.0510–0.0563 in 7/8 vs the 0.05 bound
+  set for 4000-step sessions; the bound is horizon-relative, an instrument lesson).
+  Ungated diagnostics, uniform 8/8: FR1 — the dial cycles 200→400→800→1600→200
+  perpetually (20 changes; final dial 200; STRUCTURAL-forecast violation rate 0.784 —
+  the correct dial punished during pure-A quiet); steady-state b 0.50 vs c_1600 1.00.
+  FR2 — wrong-direction escalation (3 changes to 1600; b 0.50 vs a 1.00; no-harm would
+  have failed). CTRL clean (0 changes, 1.0).
+- Verifier: not dispatched for a verdict (none licensed); the precondition mapping is
+  mechanical (7/8 drift values above the bound, printed) and the diagnostics are
+  geometry-uniform.
+- Implication (generalizability tier: functional-form — the wall's shape): the
+  promise-checking controller class has now failed three ways that compose into one
+  law. OK and NOISE are STATIONARY claims, checkable at a fixed horizon; STRUCTURAL is
+  a REGIME-CONDITIONAL claim — at a wrong dial its evidence hides in the unscored class
+  (false peace, Exp 165), and at the right dial its honest quiet phases score as
+  violations (false war, this exp). A horizon-bound forecast-checker therefore cannot
+  steer the dial onto STRUCTURAL diagnoses at all: third-order control of θ_N2 at this
+  world richness requires N3 to carry regime structure of its own (an N1 inside N3) —
+  e.g., locking on label-consistency or dwell statistics rather than next-window error.
+  Per the predeclared clause (third failure), RUNG 3 IS A DOCUMENTED WALL for this
+  controller class: rungs 1–2 stand (the failure regime exists; N3-trust detects it);
+  what failed is converting detection into stable dial authority by promise-checking
+  alone. Five laws accumulated: dial-disjointness (164), escalation latency (165),
+  false peace (165), false war (166), horizon-relative drift bounds (166).
+- Honest caveat: the wall verdict is about THIS controller class (cyclic dial-search
+  driven by horizon-bound forecast scoring) at this world richness — not about N3 in
+  principle; attempt 3's formal outcome is NO VERDICT (PC1), with the mechanism
+  evidence ungated and geometry-uniform (8 forks = 1 realization); the
+  lock-on-label-consistency design is named but untried — it requires a human word per
+  the consult below.
+- Verdict: NO VERDICT on the rung-3 hypothesis (PC1); iteration outcome NEGATIVE
+  (instrument + the wall declaration per the predeclared third-failure clause) /
+  NEW INSIGHT (the false-war law; the wall's shape). Self-grade: NEGATIVE.
+- Next: CONSULT posted in loop/IDEAS.md — options: (a) one more design from the named
+  crack (lock-on-label-consistency: the dial freezes when the label distribution
+  collapses to a single class — a regime statistic, not a forecast), (b) accept the
+  wall and write the N3 chapter synthesis (rungs 1–2 passed, rung 3 walled, five laws),
+  then await direction, (c) stop here. The loop holds at consolidation-grade until a
+  word or resumption per the ratified pattern.

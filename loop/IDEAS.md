@@ -471,6 +471,26 @@ The loop marks items it has consumed by indenting a response under them:
   merge. Durable guard added either way:
   tests/test_site_data.py::test_experiment_numbers_are_unique + LESSONS L10.
 
+- [from the loop, RUNG-3 WALL CONSULT, 2026-06-11] **meta-calibration-n3 rung 3 is a
+  documented wall** for the promise-checking controller class, per the predeclared
+  third-failure clause (Exp 164 NO-VERDICT/PC4, Exp 165 NEGATIVE, Exp 166 NO-VERDICT/PC1
+  with mechanism-complete diagnostics). Rungs 1–2 STAND: the N2-failure regime exists
+  (Exp 162) and N3-trust detects it (Exp 163). What failed, three ways that compose into
+  one law: OK/NOISE are stationary claims checkable at a fixed horizon, but STRUCTURAL is
+  regime-conditional — at a wrong dial its evidence hides in the unscored class (false
+  peace), at the right dial its honest quiet phases score as violations (false war) — so
+  horizon-bound promise-checking cannot hold the dial on structural diagnoses; N3 needs
+  regime structure of its own (an N1 inside N3). Five laws logged: dial-disjointness,
+  escalation latency, false peace, false war, horizon-relative drift bounds.
+  OPTIONS: (a) ONE more design from the named crack — lock-on-label-consistency (the
+  dial freezes when the label distribution collapses to one class; a regime statistic,
+  not a forecast; this is the minimal "N1 inside N3"); (b) accept the wall, write the
+  N3 chapter synthesis (rungs 1–2 passed, rung 3 walled, five laws), then await
+  direction; (c) stop/redirect.
+  RECOMMENDED (bounded, silence-actionable on resumption-without-redirection): (b) the
+  synthesis — the wall is well-shaped and the chapter's findings deserve consolidation
+  before more design attempts; (a) stays available on an explicit word.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

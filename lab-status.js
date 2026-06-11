@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 165, title: "rung 3, attempt 2 FAILS with the mechanism fully pinned: the escalator fires once and stalls — each dial change resets its evidence, and the partially-better dial routes transition windows into the one label class the monitor does not score, silencing distrust while the dial is still wrong", tag: "NEGATIVE" },
-  tally: { total: 165, positive: 102, negative: 37, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 166, title: "rung 3, attempt 3: NO VERDICT by PC1 (the drift bound was horizon-calibrated), and the diagnostics complete the wall — the total-coverage monitor turns false peace into FALSE WAR: a horizon-bound promise-checker cannot validate the STRUCTURAL diagnosis, so the dial cycles off the correct setting forever; RUNG 3 IS DECLARED A DOCUMENTED WALL for the promise-checking controller class", tag: "NEGATIVE" },
+  tally: { total: 166, positive: 102, negative: 38, mixed: 22, breakthroughs: 3 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (rung 3, attempt 3)", latest: "Exp 165", next: "Exp 166 — total-coverage monitor (STRUCTURAL scored: holds iff next-100 error ≥ 0.05; zero false-fire in valid regimes by Exp 163's committed data), 12000-step sessions, gated scores on the final 4000 (steady state, fair to stationary constants), same P1/P1b/P2; a third failure makes rung 3 a documented wall → consult" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
+    { name: "meta-calibration-n3", state: "halted (rung-3 wall, consult open)", latest: "Exp 166", next: "per the human's word — (a) lock-on-label-consistency design, or (b) chapter synthesis (recommended), or (c) stop" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
     { name: "graded-uncertainty", state: "exploratory", latest: "TBD-human", next: "Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands" },
