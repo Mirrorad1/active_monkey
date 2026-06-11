@@ -126,7 +126,7 @@ gently remind me it's a natural stopping point when insight flattens.
 |---|---|
 | `RESUME.md` | this bootstrap (you are here) |
 | `CLAUDE.md` | auto-loaded session bootstrap — points every fresh session at this file |
-| `loop/` | modular prompt OS for loop B: PREMISE / PROTOCOL / VALIDATION (honesty contract), `LESSONS.md` distilled rules card, `check_iteration.py` mechanical rubric, direction & persona cards, `IDEAS.md` human inbox, `compose.py` prompt builder + META.md (meta-improvement) |
+| `loop/` | modular prompt OS for loop B: PREMISE / PROTOCOL / VALIDATION (honesty contract) / METHODOLOGY (advisory design-and-evaluation heuristics), `LESSONS.md` distilled rules card, `check_iteration.py` mechanical rubric, direction & persona cards, `IDEAS.md` human inbox, `compose.py` prompt builder + META.md (meta-improvement) |
 | `loop/META.md` | the meta-improvement loop — when you find a noteworthy fixable issue or reusable insight, fix it AND add a durable guard (test/rule/skill) so it can't recur (self-healing) |
 | `EXPERIMENTS.md` | append-only honest log, Exp 1–40 — the central artifact |
 | `RESEARCH.md` | parallel math / frontier analysis |

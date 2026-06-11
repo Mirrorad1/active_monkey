@@ -14,6 +14,7 @@ and (3) stay honest by construction.
 | `VALIDATION.md` | the brutal-honesty rules. Binding. Every experiment entry must satisfy it. |
 | `LESSONS.md` | distilled rules card — one line per incident-derived rule; consulted at iteration start. |
 | `check_iteration.py` | mechanical rubric: runnable checks of entry format + committed artifacts, pre-commit. |
+| `METHODOLOGY.md` | advisory heuristics: design-time questions, run-time discipline, result evaluation, generalizability tiers, bridging to scale. Consulted at PROTOCOL steps 2 and 5; VALIDATION wins where they differ. |
 | `IDEAS.md` | human inbox. The loop reads it every iteration; humans drop ideas/redirections here. |
 | `directions/` | pluggable research directions (what to work on). One card per direction. |
 | `personas/` | pluggable working styles (how to approach it). One card per persona. |
