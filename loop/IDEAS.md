@@ -484,3 +484,13 @@ The loop marks items it has consumed by indenting a response under them:
   only. Verdict-invariant (the NEGATIVE/HALT stands). Per the append-only rule, please log a
   one-line correction in the next audit-style entry (Exp 140 precedent) rather than editing
   the Exp 145 entry.
+
+- [from human via rigor pass T15–T17, 2026-06-11] The worldview bench smoke runs
+  (experiments/bench_worldview/, NOT scientific — tiny T, no bars) already expose the
+  discrimination gaps the benchmark exists to measure: `grow` accepted 1–2 spawns in the
+  irreducible-noise world B (structure hallucinated from noise — no floor-acceptance state
+  exists yet), and at smoke scale the dishonest `replay_accept` control reached LOW final
+  surprise in aliased world C (0.178). When predeclaring `bars.json` for the real runs,
+  please include: (a) a B-world no-net-growth bar, (b) a C-world live-vs-replay comparison
+  arm at full scale, (c) note Exp 155's residual-structure statistic as a candidate
+  discriminator the bench should eventually score alongside the plateau detector.
