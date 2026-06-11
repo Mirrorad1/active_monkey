@@ -51,6 +51,33 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
+### 3b. Where we are NOW (folded 2026-06-11, state as of Exp 173)
+
+- **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
+  not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
+  picture + amortized comparison in `docs/research/problem2-phase-picture.md`.
+- **Continuous-creature migration (Exp 141–151, complete):** nira born — the first committed
+  continuous-substrate spine (M4 valence-range limit documented; M5 words/converse parity).
+- **THE GROWTH WALL FELL (Exp 152–154, BREAKTHROUGH):** detector→grow→quiet end-to-end, 24/24,
+  once evaluation switched to normalized densities — the five-design wall belonged to the
+  capped-footprint evaluation convention, not to online structure growth.
+- **The N2/N3 meta-calibration chapter (Exp 155–168):** the N2 prereq was built (per-place
+  expected-uncertainty channel + OK/NOISE/STRUCTURAL classifier) and re-confirmed under
+  randomization; N3 rungs 1–3 PASSED (the window-blind-spot regime; the forecast-scoring
+  trust monitor; the lock-on-label-consistency controller — first conversion of metacognitive
+  distrust into stable, regime-adaptive parameter authority, after a documented five-law
+  wall); rung 4 found the ratchet law. **The N3 hypothesis (agency over metacognition) is
+  SUPPORTED at toy richness.** Full synthesis: `docs/research/n3-meta-calibration-chapter.md`.
+- **The K-endogenization coda (Exp 169–173, closed):** the human's three claim tiers graded —
+  the provided lock horizon works; it CAN be self-derived at zero cost (vacuously, by
+  constant-convergence); self-REGULATION is rejected at its own gate (THE UNIVERSAL-CONSTANT
+  LAW: regulation is only necessary where no feasible constant covers all regimes — not
+  constructible on this body). Chapter doc §11.
+- **OPEN at a direction choice (loop/IDEAS.md, each needs an explicit word):** N4 (identity);
+  M4a increment 1c (the "talk to it" path, halted since Exp 128); nira's normalized-predictive
+  switch (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
+- Suite ~217 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.
