@@ -608,6 +608,20 @@ The loop marks items it has consumed by indenting a response under them:
     fold-in the loop HOLDS for the direction choice among: N4 (identity), M4a
     increment 1c ("talk to it"), nira's normalized switch, the cloud-branch merge —
     each needs its own explicit word; none is silence-actionable.
+  → [human, 2026-06-11] "Synthesize first. Pursue cracks only if a crack introduces
+    genuinely new regime geometry that destroys the universal-constant assumption.
+    Otherwise treat this as a completed chapter and move up the ladder."
+    CONSUMED: synthesis was already complete (chapter §11 + RESUME §3b). Crack
+    evaluation against the criterion: the only candidate geometry (bounded-dwell
+    honest diagnoses + slow broken cycling, forcing K<5 and K>14 simultaneously)
+    DISSOLVES under the program's own taxonomy — label-visible fast alternation
+    between valid regimes IS hidden-context structure (Exp 162's definition), so
+    STRUCTURAL is the correct diagnosis there and the large dial reads it correctly;
+    fast change is either noise (any K fine) or structure (large K fine). No crack
+    qualifies. THE K CHAPTER IS COMPLETED; the ladder moves up: N4 (identity /
+    policy-continuity, per docs/specs/n-order-self-modeling.md — Exp 55's baseline:
+    mirro currently has NO N4, ages anti-correlate −0.71). First iteration per the
+    card-first convention: loop/directions/identity-n4.md committed for review.
 
 (empty — drop ideas above this line's section freely)
 
