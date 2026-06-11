@@ -222,6 +222,21 @@ The loop marks items it has consumed by indenting a response under them:
     docs/research/problem2-phase-picture.md (the synthesis, claims bounded, open edges
     named). The loop now HOLDS — subsequent cron fires idle with a reminder until a
     choice (a)-(d) appears here. Nothing self-starts.
+  → [loop, 2026-06-10] HUMAN RESUMPTION received (the /loop command re-issued verbatim,
+    no redirection) — per the ratified pattern this authorizes only the previously
+    stated recommendation (hold at consolidation-grade). Executed: Exp 140, the
+    chapter self-audit (6/7 entries fully reproducible; Exp 136's wall-clock citation
+    corrected, zero verdict impact; re-run re-quote rule added to PROTOCOL). The
+    consolidation queue is now genuinely EMPTY.
+    NEW RECOMMENDED OPTION (bounded CONSULT, effective for the NEXT resumption):
+    option (c) — open Problem 2b (continuous OBSERVATIONS), the supplied program's own
+    named next increment and the most direct continuation of the standing Problem-2
+    steer. First iteration would be a direction card draft (rung ladder + falsifiers,
+    same build discipline as 133-139) committed for review, not an experiment.
+    Options (a) substrate migration and (b) M4a increment 1c remain available but
+    require an explicit word here — (b) by its own standing fence. (d) stop remains
+    available by saying so. If this recommendation is wrong, one line here redirects
+    it.
 
 (empty — drop ideas above this line's section freely)
 
