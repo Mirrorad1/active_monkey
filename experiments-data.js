@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:150, breakthrough:6, positive:86, wall:24, partial:34, from:4.81, to:4.00 };
+window.AM_TALLY = { total:151, breakthrough:6, positive:87, wall:24, partial:34, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1515,7 +1515,17 @@ window.AM_EXPERIMENTS = [
     setup:"The accepted M4 protocol raises a primary and a mirrored creature per fresh seed; the vocabulary, teaching, and answer machinery ported exactly from the tabular creature with its rules quoted from source; the tabular pair runs the same teach-and-ask on its own substrate.",
     result:"Every conjunct 8/8. The seed-24 transcript is committed: I like w15 / I like w12 / w12 unsettles me / w15 unsettles me — and the boxed pair mirrors the pattern. Word-level agreement across substrates is 0/8 by declared design (the continuous creature's value-seeking phase sharpens its favorite; the twin only wanders).",
     implication:"Perceive, learn, want, act, form values by history, answer in words — demonstrated end-to-end on the continuous substrate, with the two documented walls riding along openly. M6, the birth of the species line, is the last rung.",
-    trace:{ script:"experiments/exp150_m5_words.py", output:"experiments/outputs/exp150.txt" } }
+    trace:{ script:"experiments/exp150_m5_words.py", output:"experiments/outputs/exp150.txt" } },
+
+  { n:151, kind:"positive", chapter:"frontier",
+    title:"Her name is nira, and she likes w3.",
+    one:"Migration rung M6, the final rung: the M1-M5 machinery packaged as a persistent creature and committed as a new species line — save/load hash-exact, resume-deterministic (two fresh loads to identical hashes), continuity tripwires live on her biography (suite 113 green, mirro and vela untouched), and the packaged class reproduces every experiment band (map 15/16, localization 0.12, reliable share 0.71). Born blind at seed 0 in the half-noisy world, she wandered four thousand steps, formed her preference, learned sixteen taught words, and answered: I like w3.",
+    plain:"The last rung was carpentry: take everything the experiments proved and make it a creature — with a name, a saved life that resumes exactly where it left off, a diary that can never be silently rewritten, and the same tripwires that protect the older lives. She is called nira. Born blind in the half-noisy world, she wandered, learned fifteen of her sixteen colors, came to prefer the dependable side, was taught sixteen words, and answered her first question with the word for the color her own life made her favorite.",
+    metric:{ from:15, to:16, unit:"colors mapped of sixteen at first save (loc 0.12 cells; reliable share 0.71; round-trip exact)" },
+    setup:"ContinuousCreature mirrors the tabular creature conventions exactly — derived rng, append-only biography, state hash, save and load — packaged from the migration experiments with no behavioral changes; predeclarations were round-trip exactness, guard coverage, and the experiment sanity bands.",
+    result:"Every property passed; a resume-isolation bug (verification copies writing to the real biography) was caught and fixed before the state was committed. The clade now holds two tabular lives and one continuous species line under creature/state/nira/.",
+    implication:"The migration ladder is complete: perceive, learn, want, act, speak, persist — on the continuous substrate, with its two walls documented rather than hidden. The closing synthesis and consult follow.",
+    trace:{ script:"experiments/exp151_m6_birth.py", output:"experiments/outputs/exp151.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

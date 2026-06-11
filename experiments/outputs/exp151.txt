@@ -1,0 +1,72 @@
+========================================================================
+Exp 151 — continuous-creature rung M6: the birth of nira
+========================================================================
+
+Birthing nira (seed=0, noisy_half='left', noise_p=0.6) ...
+  Born: ContinuousCreature(name='nira', age=0, map_formed=0/16, noisy_half='left')
+
+Living 4000 steps (uniform-random wander) ...
+  After live(4000): ContinuousCreature(name='nira', age=4000, map_formed=15/16, noisy_half='left')
+  map_formed_count = 15/16
+  localization_error = 0.1229
+  reliable_share = 0.7084
+  favorite color = 3  (in reliable half: True)
+
+Teaching 16 words (w0..w15, n=8 each) ...
+  Vocab size: 16 words
+
+========================================================================
+NIRA'S FIRST WORDS
+========================================================================
+
+  Q: What do you like?
+  A: "I like w3"
+
+  Q: Do you like w3? (own favorite)
+  A: "I like w3"
+
+  Q: Do you like w0? (noisy-half color 0)
+  A: "I like w0"
+
+Saving to /Users/mirro/Projects/active-loop/creature/state/nira ...
+  Saved. state_hash = f97a858fb998722f9ae1...
+
+------------------------------------------------------------------------
+P1: round-trip + resume determinism check
+  Reload hash match: True  (saved=f97a858fb998722f... loaded=f97a858fb998722f...)
+  Resume determinism (100 steps, seed=42): True  (a=bb6ace34f44efdca... b=bb6ace34f44efdca...)
+  P1 RESULT: PASS
+
+------------------------------------------------------------------------
+P2: guard coverage (nira continuity test + full suite)
+  The orchestrator should run pytest after this script completes.
+  Expected: nira continuity tests now RUN (not skip); full suite green.
+  Command: uv run --python .venv pytest 2>&1 | tail -1
+  Expected: 111 passed (108 original + 2 new unit tests + 1 nira guard), 0 skipped on nira
+
+------------------------------------------------------------------------
+P3: first-life sanity bands
+  map_formed_count >= 14/16: True  (got 15)
+  localization_error <= 0.5: True  (got 0.1229)
+  reliable_share > 0.55 AND fav in reliable half: True  (share=0.7084, fav=3, in_reliable=True)
+  answer_what_do_you_like names favorite word 'w3': True  (answer='I like w3')
+  P3 RESULT: PASS
+
+========================================================================
+PREDECLARED CHECK VALUES
+========================================================================
+  P1 round-trip hash match:    True
+  P1 resume determinism:       True
+  P1 COMBINED:                 True
+
+  P3 map_formed >= 14/16:      True  (15/16)
+  P3 loc_err <= 0.5:           True  (0.1229)
+  P3 rel_share > 0.55 + fav:   True  (share=0.7084, fav_in_reliable=True)
+  P3 word answer correct:      True  ('I like w3')
+  P3 COMBINED:                 True
+
+  P2: see pytest output (run after this script).
+
+========================================================================
+VERDICT: POSITIVE — all predeclared engineering properties satisfied.
+========================================================================

@@ -1,0 +1,35 @@
+{
+  "name": "nira",
+  "lineage": [],
+  "age_steps": 4000,
+  "true_pos": 14,
+  "rng_counter": 1,
+  "seed": 0,
+  "noisy_half": "left",
+  "noise_p": 0.6,
+  "world": {
+    "rows": 4,
+    "cols": 4,
+    "n_colors": 16,
+    "cmap": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "state_hash": "f97a858fb998722f9ae15d69de949e25407bbee01928938df831b30ed5db2819",
+  "saved_at": "2026-06-11T04:10:18Z"
+}

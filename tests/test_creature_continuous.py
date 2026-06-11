@@ -318,3 +318,74 @@ def test_clamped_moments_shrinks_variance_at_wall() -> None:
         f"Expected variance to shrink at wall (wall information gained): "
         f"post_var_x={post_var_x:.6f} should be < pre_var_x={pre_var_x:.6f}"
     )
+
+
+# ---------------------------------------------------------------------------
+# ContinuousCreature tests
+# ---------------------------------------------------------------------------
+
+import tempfile
+from active_loop.creature_continuous import ContinuousCreature
+
+
+def test_continuous_creature_roundtrip() -> None:
+    """birth -> live(200, seed=5) -> save -> load -> state_hash identical;
+    two fresh loads each living 50 further steps with the same explicit seed
+    produce identical hashes (resume determinism)."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        state_dir = tmpdir + "/nira_test"
+
+        # Birth and live
+        c = ContinuousCreature.birth("nira_test", seed=42)
+        c.live(200, seed=5)
+        hash_before = c.state_hash()
+
+        # Save and reload
+        c.save(state_dir)
+        c2 = ContinuousCreature.load(state_dir)
+        assert c2.state_hash() == hash_before, (
+            f"Round-trip hash mismatch: before={hash_before[:12]} "
+            f"loaded={c2.state_hash()[:12]}"
+        )
+
+        # Resume determinism: two fresh loads, same explicit seed -> same hash
+        c3 = ContinuousCreature.load(state_dir)
+        c4 = ContinuousCreature.load(state_dir)
+        c3.live(50, seed=9)
+        c4.live(50, seed=9)
+        assert c3.state_hash() == c4.state_hash(), (
+            "Resume nondeterminism: two fresh loads with same seed produced "
+            f"different hashes after live(50): {c3.state_hash()[:12]} vs {c4.state_hash()[:12]}"
+        )
+
+
+def test_continuous_creature_biography_appends() -> None:
+    """live() called twice -> biography has 2 live events with increasing ages."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        state_dir = tmpdir + "/bio_test"
+
+        c = ContinuousCreature.birth("bio_test", seed=7)
+        # Bind a state dir so biography is written
+        import pathlib
+        pathlib.Path(state_dir).mkdir(parents=True, exist_ok=True)
+        c._state_dir = pathlib.Path(state_dir)
+
+        c.live(100)
+        age1 = c.age_steps
+        c.live(50)
+        age2 = c.age_steps
+
+        # Read biography
+        import json
+        bio_path = pathlib.Path(state_dir) / "BIOGRAPHY.jsonl"
+        events = [json.loads(line) for line in bio_path.read_text().splitlines() if line.strip()]
+        live_events = [e for e in events if e.get("event") == "live"]
+
+        assert len(live_events) == 2, f"Expected 2 live events, got {len(live_events)}"
+        assert live_events[0]["age_steps"] == age1, (
+            f"First live event age {live_events[0]['age_steps']} != {age1}"
+        )
+        assert live_events[1]["age_steps"] == age2, (
+            f"Second live event age {live_events[1]['age_steps']} != {age2}"
+        )
+        assert age2 > age1, f"Age did not increase: {age1} -> {age2}"

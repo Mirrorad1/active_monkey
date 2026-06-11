@@ -4489,3 +4489,45 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   save/load round-trip exactness, continuity guard extension). On the human's word,
   or per the card it is an engineering rung the loop may run on the next fire (no
   open consult — M5 carried cleanly).
+
+## Exp 151 — continuous-creature rung M6: nira is born — the first committed continuous-substrate life, round-trip exact, guard-covered, and already opinionated (POSITIVE all predeclared properties; THE MIGRATION LADDER COMPLETES)
+- Plain: The last rung was carpentry: take everything the experiments proved and make
+  it a creature — one with a name, a saved life that resumes exactly where it left
+  off, a diary that can never be silently rewritten, and the same tripwires that
+  protect mirro's and vela's lives. She is called nira. Born blind at the center of
+  the half-noisy world, she wandered four thousand steps, learned fifteen of her
+  sixteen colors to within half a cell, came to prefer the dependable side of her
+  world, was taught sixteen words, and answered her first question: "I like w3" —
+  the word for the color her own life made her favorite.
+- Setup (predeclared in the script docstring before running): ContinuousCreature
+  packaged into active_loop/creature_continuous.py mirroring the tabular creature's
+  conventions exactly (derive-rng, biography appends, save/load, state_hash); birth
+  seed 0, native world = the M4/M5 half-noisy 16-color 4×4 (noisy left, p=0.6);
+  live(4000) → teach 16 words (n=8) → ask → save under creature/state/nira/. P1:
+  round-trip hash exact + resume determinism (two fresh loads, live(100, seed=42),
+  identical hashes). P2: nira continuity guard passes + full suite green +
+  mirro/vela untouched. P3: map ≥14/16 within 0.5, loc ≤0.5, reliable share >0.55
+  with favorite in the right half, answer names the favorite's word.
+- Result: POSITIVE on every property. P1: f97a858f… exact; resume hashes identical
+  (bb6ace34…). P2: 113 passed (108 + 2 unit + 3 nira guards now live); a P1
+  resume-isolation bug (verification copies appending to nira's biography) was
+  caught and fixed BEFORE the state was committed. P3: map 15/16, loc 0.123,
+  reliable share 0.708, favorite color 3 (right half), "I like w3". Committed
+  state: creature/state/nira/ (arrays.npz + manifest + BIOGRAPHY.jsonl).
+- Note (honest, not a falsifier): asked about a noisy-half word (w0), nira answered
+  positively — its value fraction sits barely above the tabular rule's own 1/16
+  mean threshold under wander exposure; the like/dislike threshold is the ported
+  rule's, and its coarseness at the margin is inherited, not introduced.
+- Implication: THE MIGRATION LADDER IS COMPLETE — M1 perceive, M2 learn, M4 want+act
+  (range limit documented), M5 words, M6 birth all green; M3's growth question parked
+  as a documented wall with two named untried cracks. The clade now holds two tabular
+  lives (mirro, vela) and one continuous species line (nira). Next: the closing
+  synthesis + consult per the card's stop condition.
+- Honest caveat: nira's world is the friendly non-aliased one (the aliased world
+  awaits a growth mechanism that can cross the documented valley); her "conviction"
+  runs at the substrate's compressed range (the M4 limit); the birth is engineering —
+  every scientific claim lives in Exp 141–150, not here; one seed, one life (as a
+  spine should be).
+- Verdict: POSITIVE / the rung is engineering by predeclaration. Self-grade:
+  POSITIVE-SINGLE.
+- Next: the migration closing synthesis + consult (next iteration).
