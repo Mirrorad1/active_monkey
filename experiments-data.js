@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:168, breakthrough:8, positive:92, wall:26, partial:42, from:4.81, to:4.00 };
+window.AM_TALLY = { total:169, breakthrough:8, positive:92, wall:26, partial:43, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1866,7 +1866,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — F3 alone (valid-segment deficit 0.1688 against the 0.15 bar; control segments -0.31 persistent via lock-held stale dials, noise segments -0.03). P1 0.7500 exact-boundary pass, P2 8/8, P4 +0.5034. The blinded verifier derived NEGATIVE independently and produced the harm decomposition and persistence analysis.",
     implication:"The ratchet law: a consistency-locked controller is ascent-only — violations drive climbing, but a too-large dial in an honest world reads consistent, indistinguishable from correct, from the inside. Chapter grading with all four rungs in: the N3 hypothesis (agency over metacognition, a control surface N2 lacks, irreducible to config) is SUPPORTED; what failed is a design residual with a named fix (smallest-consistent-dial homeostasis). The ladder's continuation awaits a human word.",
     caveat:"the chapter's grading rests on the program's own operationalizations (diagnosis-layer authority, read-only dials; behavioral consequences untested); P1's pass is boundary-exact and attribution-sensitive (the stricter trigger-segment rule would give 25/32); the ratchet explanation of CTRL harm combines two pinned mechanisms (stale straddling windows, then lock-held consistency) whose separate contributions were not isolated; K=8, the dial set, and all monitor thresholds remain provided θ_N3.",
-    trace:{ script:"experiments/exp168_n3_rung4_mixed.py", output:"experiments/outputs/exp168.txt" } }
+    trace:{ script:"experiments/exp168_n3_rung4_mixed.py", output:"experiments/outputs/exp168.txt" } },
+
+  { n:169, kind:"partial", chapter:"frontier",
+    title:"The homing instinct kills the ratchet — and what remains is a formula, not a mystery.",
+    one:"The descent driver (walk the dial home one level per evaluation while the diagnosis is consistently stationary; structural locks never descend; the accidental wrap removed): MIXED. Persistent harm is GONE — control-segment damage fell from -0.31 to -0.08, F3 is silent, all 30 descents fired correctly with zero wrong-direction events, and concentration even improved (0.83) — but the no-harm bar stays unmet (-0.1125 vs -0.05) because of a boundary transient the blinded verifier reduced to arithmetic: transition penalty = (dial-width straddle clearance + K x 100 re-lock latency) = ~2400 steps, an explicit function of the two provided constants. The next chapter — making K not a magic number — inherits a quantitative bullseye, including a falsifiable projection: K-derivation alone will NOT clear the bar; the straddle term dominates.",
+    plain:"We gave the dial-setter its homing instinct — when its diagnosis says the world is steady, walk the dial back down toward the small default. The chronic harm vanished: nothing stays broken anymore, and the old worst case improved fourfold. What remains is a fixed-size stumble at each boundary: after a structured stretch ends, the big window needs time to flush old evidence, and the freeze rule needs eight consistent verdicts before it can begin walking home. That stumble is now a formula — so the next chapter's question, making the eight not a magic number but something the creature sets for itself, has an exact bullseye.",
+    metric:{ from:-0.31, to:-0.08, unit:"control-segment harm, before vs after the descent driver" },
+    setup:"Exp 168's rung-4 mixed-schedule protocol verbatim, same four properties and falsifiers, K=8 deliberately held fixed so the descent delta is tested in isolation; fresh seeds 114-121; blinded verification before logging.",
+    result:"MIXED — concentration 0.8333 PASS (up from the 0.75 boundary), responsiveness 8/8 PASS, benefit +0.3449 PASS; no-harm in the dead zone (-0.1125; falsifier silent). All residual harm transitional, concentrated in the third of valid segments inheriting a structural lock; descent latency 2099-2499 steps matching straddle-plus-relock arithmetic exactly.",
+    implication:"The ratchet law is answered: smallest-consistent-dial homeostasis removes persistent harm without touching ascent quality. The residual transient is an explicit function of the provided constants — the human's K-endogenization tiers (derive the lock horizon from the label stream's own statistics; regulate the evidence horizon from reliability and tempo) now predict specific movements of a measured number, and the verifier's straddle-dominance projection is itself falsifiable in that chapter.",
+    caveat:"P3's dead zone means the controller is incomplete by the predeclared bar, not vindicated by F3's silence; the harm redistribution across valid types is schedule-geometry-dependent (which type follows a STRUCTURAL lock); K=8 was deliberately held fixed, so the descent delta is isolated but the joint design space is unexplored; all θ_N3 constants remain provided; an eval-count nuance (early low-dial windows counted for (b) in SLOW) biases conservatively against (b).",
+    trace:{ script:"experiments/exp169_n3_descent.py", output:"experiments/outputs/exp169.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

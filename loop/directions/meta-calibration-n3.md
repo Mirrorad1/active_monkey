@@ -230,4 +230,12 @@ controller's ratchet (no graceful descent) is the named, measured residual with 
 (smallest-consistent-dial homeostasis). The ladder may proceed toward N4+ per the card's
 stop condition — on an explicit human word.
 
-**STATUS.** state: closed-positive (ratchet residual documented) · latest: Exp 168 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), lock controller (167), ratchet law (168) · why: rungs 1–4 all have verdicts; hypothesis supported with one named design residual · next-falsifiable: per a human word — descent-driver design (smallest-consistent-dial homeostasis), or N4 (identity), or elsewhere
+**DESCENT DRIVER (Exp 169, MIXED — ratchet answered, transient remains as a formula).**
+Smallest-consistent-dial homeostasis removes ALL persistent harm (CTRL −0.31 → −0.0812; F3
+silent; 30 descents, 0 mis-descents, 0 wraps; concentration improved to 0.8333) but P3 stays
+in the dead zone (−0.1125): the boundary transient ≈ (W_max/EVAL + K) × EVAL ≈ 2400 steps —
+an explicit function of the provided constants. Verifier's falsifiable projection for the
+next chapter: K-derivation alone recovers only ~0.033 of the 0.0625 gap; the straddle term
+dominates.
+
+**STATUS.** state: active (K-endogenization, per the human's standing word) · latest: Exp 169 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), lock controller (167), ratchet law (168), descent driver + transition-penalty formula (169) · why: the human's tiers — (A) derive the lock horizon from the label stream's own statistics, (B) regulate the evidence horizon online from reliability/tempo — now target a measured number · next-falsifiable: Exp 170 = tier A with the predeclared projection-test (K-derived-from-run-lengths must NOT clear P3 alone if the straddle-dominance claim holds; either outcome is a result)

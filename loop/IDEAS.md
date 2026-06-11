@@ -520,6 +520,18 @@ The loop marks items it has consumed by indenting a response under them:
     "talk to it"; nira normalized switch; cloud-branch merge); (d) stop/redirect.
     RECOMMENDED (bounded, silence-actionable): none self-starts; the loop holds at
     consolidation-grade until a word.
+  → [human, 2026-06-11] WORD received: "After your next experiment I would suggest
+    seeing if we can make K not a magic constant" — with three claim tiers: (current)
+    N3 works with a provided K=8 lock horizon; (stronger) N3 learns/derives how much
+    diagnostic consistency it needs before freezing N2's policy; (even stronger) N3
+    regulates its own evidence horizon based on the reliability and tempo of the
+    metacognitive label stream. CONSUMED as: Exp 169 = the pending next experiment
+    (option (a), the descent driver — smallest-consistent-dial homeostasis, completing
+    the controller and the rung-4 retest), THEN the K-endogenization ladder opens at
+    Exp 170+ with the human's tiers as the rungs: rung A = K derived from the label
+    stream's own statistics (e.g., from its run-length distribution under valid
+    regimes); rung B = K regulated online from reliability/tempo of the label stream.
+    Guardrails unchanged: predeclared falsifiers; failures halt with the result.
 
 (empty — drop ideas above this line's section freely)
 

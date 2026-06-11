@@ -5562,3 +5562,58 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   named next crack (descent driver: smallest-consistent-dial homeostasis) and the
   ladder's next rungs (N4+) await an explicit human word. The loop holds at
   consolidation-grade.
+
+## Exp 169 — the descent driver kills the ratchet but lands MIXED: harm is no longer persistent anywhere (CTRL −0.31 → −0.08; F3 silent) yet the boundary transient keeps P3 in the dead zone — and the verifier reduced the residual to arithmetic: transition penalty ≈ (W_max/100 + K) × 100 steps, an explicit function of the PROVIDED evidence horizon (MIXED; the K-endogenization chapter inherits a quantitative target)
+
+- Plain: we gave the dial-setter its homing instinct — when its diagnosis says the world
+  is steady, walk the dial back down toward the small default. The chronic harm
+  vanished: nothing stays broken anymore, and the old worst case improved fourfold. What
+  remains is a fixed-size stumble at each boundary: after a structured stretch ends, the
+  big window needs time to flush old evidence, and the freeze rule needs eight
+  consistent verdicts before it can begin walking home. That stumble is now a formula —
+  so the next chapter's question, making the eight not a magic number but something the
+  creature sets for itself, has an exact bullseye.
+- Question (predeclared): does the smallest-consistent-dial homeostasis (descend one
+  level per eval while locked on a non-STRUCTURAL class at W > 200; STRUCTURAL locks
+  never descend; ascent saturates at 1600, wrap removed) pass Exp 168's rung-4 bars?
+- Setup: Exp 168 protocol verbatim (mixed shuffled 24000-step sessions, same P1–P4 and
+  falsifiers, K=8 kept PROVIDED so the descent delta is tested in isolation); FRESH
+  seeds 114–121.
+- Result: MIXED — P1 PASS (concentration 30/36 = 0.8333, up from 0.75), P2 PASS 8/8,
+  P4 PASS (+0.3449), P3 in the dead zone: pooled valid margin −0.1125 (needs ≥ −0.05;
+  F3 fires only > 0.15 — silent). The harm decomposition (verifier): ALL residual harm
+  is transitional, none persistent — CTRL −0.0812 (was −0.31), NOISE −0.1438, PLACE
+  −0.1125, concentrated in the ~1/3 of valid segments that inherit a STRUCTURAL lock;
+  once the dial reaches 200, correctness returns to (a)'s level. Descent latency
+  2099–2499 steps, matching the formula: ~1200 straddle clearance (W_max-window flushes
+  old regime) + ~800 re-lock (K=8 × 100) + 300 walk-down. 30 descent events, zero
+  wraps, zero mis-descents from STRUCTURAL locks. Wrong-direction risk absent.
+- Verifier: agree (blinded, conjunct-by-conjunct, MIXED from first principles; pooled
+  numbers recomputed exactly); produced the latency arithmetic and the projection that
+  K=4 alone would recover only ~0.033 of the 0.0625 P3 gap — clearing P3 needs the
+  straddle term addressed too (post-boundary-only label runs, or a tempo-regulated
+  horizon); flagged that first-SLOW segments are structurally "accumulation" (ascent
+  needs ~6000 steps > one segment) with recognition arriving from the second onward.
+- Implication (generalizability tier: functional-form): the ratchet law is ANSWERED —
+  homeostasis toward the smallest consistent dial removes persistent harm without
+  touching ascent quality (concentration improved). The residual transient is now an
+  explicit function of the two provided constants: penalty ≈ (W_max/EVAL + K) × EVAL.
+  This is the quantitative bullseye for the human's K-endogenization ladder (standing
+  word): tier A (derive K from the label stream's own statistics) and tier B (regulate
+  the evidence horizon online from reliability and tempo) are no longer abstract —
+  they predict specific P3 movements, and the verifier's projection (K-only fixes are
+  insufficient; the straddle term dominates) is itself a falsifiable claim for that
+  chapter.
+- Honest caveat: P3's dead zone means the controller is incomplete by the predeclared
+  bar, not vindicated by F3's silence; the harm redistribution across valid types is
+  schedule-geometry-dependent (which type follows a STRUCTURAL lock); K=8 was
+  deliberately held fixed, so the descent delta is isolated but the joint design space
+  is unexplored; all θ_N3 constants remain provided; an eval-count nuance (early
+  low-dial windows counted for (b) in SLOW) biases conservatively against (b).
+- Verdict: MIXED / NEW INSIGHT (the transition-penalty formula; the ratchet answered).
+  Self-grade: MIXED.
+- Next: per the human's standing word, the K-endogenization ladder opens — Exp 170 =
+  tier A: derive the lock horizon from the label stream's own run-length statistics
+  under valid regimes (no magic 8), with the verifier's projection as a predeclared
+  falsifiable: K-derivation alone must NOT clear P3 (if it does, the straddle-dominance
+  claim dies — either way a result); tier B (tempo-regulated horizon) follows.

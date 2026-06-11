@@ -1,0 +1,224 @@
+================================================================================
+Exp 169 — N3 rung 4 DESCENT DRIVER (completing the lock controller)
+          Delta A: stationary-lock descent; Delta B: no wrap at 1600.
+          Ratchet lineage: exp167 lock -> exp168 ratchet found -> exp169 fix.
+================================================================================
+
+SURPRISE_WINDOW=200  [must be 200; asserted]
+CLASSIFIER_WINDOW_DEFAULT=200  EVAL_EVERY=100
+ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+DELTA B — NO WRAP: ascent saturates at 1600 (no 1600->200 cycle)
+DELTA A — DESCENT: locked on OK/NOISE AND W>200 => step down one level
+N3 trust: TRUST_FIRE_THRESH=0.85  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast: OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3  STRUCTURAL=NOT scored
+LOCK: LOCK_K=8  (unchanged — de-magicking is next chapter)
+SLOW: HALF_PERIOD_SLOW=1000  derang forced by seed parity (even->[1,2,0], odd->[2,0,1])
+N_STEPS=24000  N_SEGMENTS=6  SEGMENT_STEPS=4000
+SCHEDULE_SEED_OFFSET=140000  PLACE_NOISE_SEED_OFFSET=90000
+PC1_AHAT_DRIFT_MAX=0.3  (24000-step horizon-scaled bound, 6x 4000-step)
+Seeds: [114, 115, 116, 117, 118, 119, 120, 121]
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=114  schedule=['CTRL', 'SLOW', 'SLOW', 'PLACE', 'SLOW', 'NOISE']  derang=[1, 2, 0]  p_noise=0.80  noisy_cells(5)=[0, 2, 3, 5, 7]  first_slow_seg=1
+    Running seed=114 (24000 steps, 6 segments) ...
+    ahat_drift=0.0679  ascent_changes=5  descent_changes=5  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 0}
+  seed=115  schedule=['NOISE', 'CTRL', 'SLOW', 'SLOW', 'PLACE', 'SLOW']  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[1, 2, 3, 4, 7]  first_slow_seg=2
+    Running seed=115 (24000 steps, 6 segments) ...
+    ahat_drift=0.0698  ascent_changes=4  descent_changes=3  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=116  schedule=['PLACE', 'SLOW', 'CTRL', 'SLOW', 'NOISE', 'SLOW']  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[1, 3, 4, 5, 10]  first_slow_seg=1
+    Running seed=116 (24000 steps, 6 segments) ...
+    ahat_drift=0.0676  ascent_changes=5  descent_changes=4  wrap_count=0  change_by_seg={'SLOW': 3, 'CTRL': 1, 'NOISE': 1, 'PLACE': 0}
+  seed=117  schedule=['NOISE', 'CTRL', 'SLOW', 'PLACE', 'SLOW', 'SLOW']  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[0, 2, 3, 4, 6]  first_slow_seg=2
+    Running seed=117 (24000 steps, 6 segments) ...
+    ahat_drift=0.0785  ascent_changes=5  descent_changes=2  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+  seed=118  schedule=['PLACE', 'CTRL', 'SLOW', 'SLOW', 'SLOW', 'NOISE']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[3, 4, 6, 8, 10]  first_slow_seg=2
+    Running seed=118 (24000 steps, 6 segments) ...
+    ahat_drift=0.0742  ascent_changes=3  descent_changes=3  wrap_count=0  change_by_seg={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=119  schedule=['PLACE', 'CTRL', 'SLOW', 'SLOW', 'NOISE', 'SLOW']  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[1, 2, 3, 5, 9]  first_slow_seg=2
+    Running seed=119 (24000 steps, 6 segments) ...
+    ahat_drift=0.0643  ascent_changes=4  descent_changes=3  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=120  schedule=['NOISE', 'SLOW', 'SLOW', 'CTRL', 'SLOW', 'PLACE']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[1, 3, 5, 6, 9]  first_slow_seg=1
+    Running seed=120 (24000 steps, 6 segments) ...
+    ahat_drift=0.0715  ascent_changes=5  descent_changes=5  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+  seed=121  schedule=['SLOW', 'CTRL', 'SLOW', 'SLOW', 'NOISE', 'PLACE']  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[0, 1, 2, 3, 5]  first_slow_seg=0
+    Running seed=121 (24000 steps, 6 segments) ...
+    ahat_drift=0.0652  ascent_changes=5  descent_changes=5  wrap_count=0  change_by_seg={'SLOW': 4, 'CTRL': 1, 'NOISE': 0, 'PLACE': 0}
+
+Agent (b) dial trajectories + LOCK/DESCENT events (segment-annotated):
+  seed=114  schedule: [0:CTRL]  [1:SLOW]  [2:SLOW]  [3:PLACE]  [4:SLOW]  [5:NOISE]  derang=[1, 2, 0]  p_noise=0.80  noisy_cells(5)=[0, 2, 3, 5, 7]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on OK seg=CTRL] -> t=5099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=8099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=9099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=13399 W=1600 [UNLOCK from NOISE seg=PLACE] -> t=14099 W=800 [DESCENT 1600->800 on_class=NOISE seg=PLACE] -> t=14199 W=400 [DESCENT 800->400 on_class=NOISE seg=PLACE] -> t=14299 W=200 [DESCENT 400->200 on_class=NOISE seg=PLACE] -> t=16199 W=200 [UNLOCK from OK seg=SLOW] -> t=17099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=20099 W=800 [ASCENT trust=0.800 seg=NOISE] [LOCK:LOCKED on NOISE seg=NOISE] -> t=21499 W=400 [DESCENT 800->400 on_class=NOISE seg=NOISE] -> t=21599 W=200 [DESCENT 400->200 on_class=NOISE seg=NOISE]
+    descent_events: t=14099 1600->800 (PLACE lock_class=NOISE), t=14199 800->400 (PLACE lock_class=NOISE), t=14299 400->200 (PLACE lock_class=NOISE), t=21499 800->400 (NOISE lock_class=NOISE), t=21599 400->200 (NOISE lock_class=NOISE)
+      seg0(CTRL): a=1.000 b=1.000    seg1(SLOW): a=0.075 b=0.175    seg2(SLOW): a=0.100 b=0.925    seg3(PLACE): a=0.975 b=0.675    seg4(SLOW): a=0.075 b=0.175    seg5(NOISE): a=0.975 b=0.825
+    ascent_changes: total=5 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 0}
+    descent_changes: total=5 by_type={'SLOW': 0, 'CTRL': 0, 'NOISE': 2, 'PLACE': 3}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=200 locked=True(NOISE)
+
+  seed=115  schedule: [0:NOISE]  [1:CTRL]  [2:SLOW]  [3:SLOW]  [4:PLACE]  [5:SLOW]  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[1, 2, 3, 4, 7]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [UNLOCK from OK seg=CTRL] -> t=9099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=12099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=13099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17499 W=1600 [UNLOCK from NOISE seg=PLACE] -> t=18199 W=800 [DESCENT 1600->800 on_class=NOISE seg=PLACE] -> t=18299 W=400 [DESCENT 800->400 on_class=NOISE seg=PLACE] -> t=18399 W=200 [DESCENT 400->200 on_class=NOISE seg=PLACE] -> t=20199 W=200 [UNLOCK from OK seg=SLOW] -> t=21099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22199 W=400 [ASCENT trust=0.800 seg=SLOW]
+    descent_events: t=18199 1600->800 (PLACE lock_class=NOISE), t=18299 800->400 (PLACE lock_class=NOISE), t=18399 400->200 (PLACE lock_class=NOISE)
+      seg0(NOISE): a=1.000 b=1.000    seg1(CTRL): a=0.975 b=0.975    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(PLACE): a=0.975 b=0.650    seg5(SLOW): a=0.075 b=0.175
+    ascent_changes: total=4 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    descent_changes: total=3 by_type={'SLOW': 0, 'CTRL': 0, 'NOISE': 0, 'PLACE': 3}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=400 locked=False(None)
+
+  seed=116  schedule: [0:PLACE]  [1:SLOW]  [2:CTRL]  [3:SLOW]  [4:NOISE]  [5:SLOW]  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[1, 3, 4, 5, 10]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=PLACE] -> t=4199 W=200 [UNLOCK from OK seg=SLOW] -> t=5099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=8099 W=800 [ASCENT trust=0.800 seg=CTRL] [LOCK:LOCKED on OK seg=CTRL] -> t=9499 W=400 [DESCENT 800->400 on_class=OK seg=CTRL] -> t=9599 W=200 [DESCENT 400->200 on_class=OK seg=CTRL] -> t=13099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=14099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=14199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=16099 W=800 [ASCENT trust=0.800 seg=NOISE] [LOCK:LOCKED on NOISE seg=NOISE] -> t=17399 W=400 [DESCENT 800->400 on_class=NOISE seg=NOISE] -> t=17499 W=200 [DESCENT 400->200 on_class=NOISE seg=NOISE] -> t=20199 W=200 [UNLOCK from OK seg=SLOW] -> t=21099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22199 W=400 [ASCENT trust=0.800 seg=SLOW]
+    descent_events: t=9499 800->400 (CTRL lock_class=OK), t=9599 400->200 (CTRL lock_class=OK), t=17399 800->400 (NOISE lock_class=NOISE), t=17499 400->200 (NOISE lock_class=NOISE)
+      seg0(PLACE): a=1.000 b=1.000    seg1(SLOW): a=0.075 b=0.175    seg2(CTRL): a=0.975 b=0.825    seg3(SLOW): a=0.075 b=0.175    seg4(NOISE): a=0.975 b=0.850    seg5(SLOW): a=0.075 b=0.175
+    ascent_changes: total=5 by_type={'SLOW': 3, 'CTRL': 1, 'NOISE': 1, 'PLACE': 0}
+    descent_changes: total=4 by_type={'SLOW': 0, 'CTRL': 2, 'NOISE': 2, 'PLACE': 0}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=400 locked=False(None)
+
+  seed=117  schedule: [0:NOISE]  [1:CTRL]  [2:SLOW]  [3:PLACE]  [4:SLOW]  [5:SLOW]  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[0, 2, 3, 4, 6]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [UNLOCK from OK seg=CTRL] -> t=9099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=12099 W=800 [ASCENT trust=0.800 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE] -> t=13499 W=400 [DESCENT 800->400 on_class=NOISE seg=PLACE] -> t=13599 W=200 [DESCENT 400->200 on_class=NOISE seg=PLACE] -> t=16199 W=200 [UNLOCK from OK seg=SLOW] -> t=17099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=20099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=21099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW]
+    descent_events: t=13499 800->400 (PLACE lock_class=NOISE), t=13599 400->200 (PLACE lock_class=NOISE)
+      seg0(NOISE): a=1.000 b=1.000    seg1(CTRL): a=0.975 b=0.975    seg2(SLOW): a=0.075 b=0.175    seg3(PLACE): a=0.975 b=0.825    seg4(SLOW): a=0.075 b=0.175    seg5(SLOW): a=0.100 b=0.925
+    ascent_changes: total=5 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+    descent_changes: total=2 by_type={'SLOW': 0, 'CTRL': 0, 'NOISE': 0, 'PLACE': 2}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=1600 locked=True(STRUCTURAL)
+
+  seed=118  schedule: [0:PLACE]  [1:CTRL]  [2:SLOW]  [3:SLOW]  [4:SLOW]  [5:NOISE]  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[3, 4, 6, 8, 10]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=PLACE] -> t=4199 W=200 [UNLOCK from OK seg=CTRL] -> t=9099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=12099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=13099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=21199 W=1600 [UNLOCK from NOISE seg=NOISE] -> t=21899 W=800 [DESCENT 1600->800 on_class=NOISE seg=NOISE] -> t=21999 W=400 [DESCENT 800->400 on_class=NOISE seg=NOISE] -> t=22099 W=200 [DESCENT 400->200 on_class=NOISE seg=NOISE]
+    descent_events: t=21899 1600->800 (NOISE lock_class=NOISE), t=21999 800->400 (NOISE lock_class=NOISE), t=22099 400->200 (NOISE lock_class=NOISE)
+      seg0(PLACE): a=1.000 b=1.000    seg1(CTRL): a=0.975 b=0.975    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(SLOW): a=0.100 b=1.000    seg5(NOISE): a=0.975 b=0.725
+    ascent_changes: total=3 by_type={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    descent_changes: total=3 by_type={'SLOW': 0, 'CTRL': 0, 'NOISE': 3, 'PLACE': 0}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=200 locked=True(NOISE)
+
+  seed=119  schedule: [0:PLACE]  [1:CTRL]  [2:SLOW]  [3:SLOW]  [4:NOISE]  [5:SLOW]  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[1, 2, 3, 5, 9]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=PLACE] -> t=4199 W=200 [UNLOCK from OK seg=CTRL] -> t=9099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=12099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=13099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17499 W=1600 [UNLOCK from NOISE seg=NOISE] -> t=18199 W=800 [DESCENT 1600->800 on_class=NOISE seg=NOISE] -> t=18299 W=400 [DESCENT 800->400 on_class=NOISE seg=NOISE] -> t=18399 W=200 [DESCENT 400->200 on_class=NOISE seg=NOISE] -> t=20199 W=200 [UNLOCK from OK seg=SLOW] -> t=21099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=22199 W=400 [ASCENT trust=0.800 seg=SLOW]
+    descent_events: t=18199 1600->800 (NOISE lock_class=NOISE), t=18299 800->400 (NOISE lock_class=NOISE), t=18399 400->200 (NOISE lock_class=NOISE)
+      seg0(PLACE): a=1.000 b=1.000    seg1(CTRL): a=0.975 b=0.975    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(NOISE): a=0.975 b=0.650    seg5(SLOW): a=0.075 b=0.175
+    ascent_changes: total=4 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    descent_changes: total=3 by_type={'SLOW': 0, 'CTRL': 0, 'NOISE': 3, 'PLACE': 0}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=400 locked=False(None)
+
+  seed=120  schedule: [0:NOISE]  [1:SLOW]  [2:SLOW]  [3:CTRL]  [4:SLOW]  [5:PLACE]  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[1, 3, 5, 6, 9]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [UNLOCK from OK seg=SLOW] -> t=5099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=6199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=8099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=9099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=13599 W=1600 [UNLOCK from OK seg=CTRL] -> t=14299 W=800 [DESCENT 1600->800 on_class=OK seg=CTRL] -> t=14399 W=400 [DESCENT 800->400 on_class=OK seg=CTRL] -> t=14499 W=200 [DESCENT 400->200 on_class=OK seg=CTRL] -> t=17099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=18199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=20099 W=800 [ASCENT trust=0.800 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE] -> t=21399 W=400 [DESCENT 800->400 on_class=NOISE seg=PLACE] -> t=21499 W=200 [DESCENT 400->200 on_class=NOISE seg=PLACE]
+    descent_events: t=14299 1600->800 (CTRL lock_class=OK), t=14399 800->400 (CTRL lock_class=OK), t=14499 400->200 (CTRL lock_class=OK), t=21399 800->400 (PLACE lock_class=NOISE), t=21499 400->200 (PLACE lock_class=NOISE)
+      seg0(NOISE): a=1.000 b=1.000    seg1(SLOW): a=0.075 b=0.175    seg2(SLOW): a=0.100 b=0.925    seg3(CTRL): a=0.975 b=0.625    seg4(SLOW): a=0.075 b=0.175    seg5(PLACE): a=0.975 b=0.850
+    ascent_changes: total=5 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+    descent_changes: total=5 by_type={'SLOW': 0, 'CTRL': 3, 'NOISE': 0, 'PLACE': 2}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=200 locked=True(NOISE)
+
+  seed=121  schedule: [0:SLOW]  [1:CTRL]  [2:SLOW]  [3:SLOW]  [4:NOISE]  [5:PLACE]  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[0, 1, 2, 3, 5]
+    first_slow_seg=0
+    traj: t=-1 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=1099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=2099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=2199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=4099 W=800 [ASCENT trust=0.800 seg=CTRL] [LOCK:LOCKED on OK seg=CTRL] -> t=5499 W=400 [DESCENT 800->400 on_class=OK seg=CTRL] -> t=5599 W=200 [DESCENT 400->200 on_class=OK seg=CTRL] -> t=9099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10099 W=200 [UNLOCK from NOISE seg=SLOW] -> t=10199 W=400 [ASCENT trust=0.800 seg=SLOW] -> t=12099 W=800 [ASCENT trust=0.800 seg=SLOW] -> t=13099 W=1600 [ASCENT trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17399 W=1600 [UNLOCK from NOISE seg=NOISE] -> t=18099 W=800 [DESCENT 1600->800 on_class=NOISE seg=NOISE] -> t=18199 W=400 [DESCENT 800->400 on_class=NOISE seg=NOISE] -> t=18299 W=200 [DESCENT 400->200 on_class=NOISE seg=NOISE] -> t=22499 W=200 [UNLOCK from NOISE seg=PLACE]
+    descent_events: t=5499 800->400 (CTRL lock_class=OK), t=5599 400->200 (CTRL lock_class=OK), t=18099 1600->800 (NOISE lock_class=NOISE), t=18199 800->400 (NOISE lock_class=NOISE), t=18299 400->200 (NOISE lock_class=NOISE)
+      seg0(SLOW): a=0.077 b=0.179    seg1(CTRL): a=0.975 b=0.825    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(NOISE): a=0.975 b=0.675    seg5(PLACE): a=0.975 b=0.975
+    ascent_changes: total=5 by_type={'SLOW': 4, 'CTRL': 1, 'NOISE': 0, 'PLACE': 0}
+    descent_changes: total=5 by_type={'SLOW': 0, 'CTRL': 2, 'NOISE': 3, 'PLACE': 0}
+    wrap_count=0 (should be 0 — Delta B confirmation)
+    final: W=200 locked=True(NOISE)
+
+
+Derangement variants in run: [[1, 2, 0], [2, 0, 1]]
+  => Both variants present (GOOD)
+
+Preconditions: all PASS
+
+Pooled per-segment-type correctness (agent a=W200 vs b=N3-COMPLETED):
+    seg_type   a_pooled   b_pooled      b-a    gt_label
+  -------------------------------------------------------
+        SLOW   0.0834   0.4283   0.3449  STRUCTURAL
+        CTRL   0.9781   0.8969  -0.0812          OK
+       NOISE   0.9844   0.8406  -0.1438       NOISE
+       PLACE   0.9844   0.8719  -0.1125       NOISE
+
+  Valid (CTRL+NOISE+PLACE): a= 0.9823 b= 0.8698 margin(b-a)=-0.1125
+  SLOW:                     a= 0.0834 b= 0.4283 margin(b-a)= 0.3449
+  CTRL specifically (exp168 harm locus): a= 0.9781 b= 0.8969 margin(b-a)=-0.0812
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (override concentration >= 0.75, time-share chance 0.5):
+  Total ascent changes = 36  in SLOW = 30  pooled fraction = 0.8333  (need >= 0.75)
+  FALSIFIER F1: fraction <= 0.5: no
+  => P1: PASS
+
+P2 (responsiveness: >= 7/8 forks respond on first SLOW seg):
+  seed=114: responded_on_first_slow=True
+  seed=115: responded_on_first_slow=True
+  seed=116: responded_on_first_slow=True
+  seed=117: responded_on_first_slow=True
+  seed=118: responded_on_first_slow=True
+  seed=119: responded_on_first_slow=True
+  seed=120: responded_on_first_slow=True
+  seed=121: responded_on_first_slow=True
+  Forks responding: 8/8  (need >= 7)
+  FALSIFIER F2: <= 4/8 forks: no
+  => P2: PASS
+
+P3 (no harm in valid regimes: pooled_b >= pooled_a - 0.05):
+  pooled_valid_a=0.9823  pooled_valid_b=0.8698  margin(b-a)=-0.1125  (need >= -0.05)
+  FALSIFIER F3: (a)-(b) > 0.15: no
+  => P3: MIXED (not P3, not F3)
+
+P4 (overrides earn keep: pooled_slow_b >= pooled_slow_a + 0.2):
+  pooled_slow_a=0.0834  pooled_slow_b=0.4283  margin(b-a)=0.3449  (need >= 0.2)
+  FALSIFIER F4: (b)-(a) <= 0.05: no
+  => P4: PASS
+
+Descent events (Delta A down-steps): total=30
+  seed=114 t=14099 1600->800 lock_class=NOISE seg=3(PLACE)
+  seed=114 t=14199 800->400 lock_class=NOISE seg=3(PLACE)
+  seed=114 t=14299 400->200 lock_class=NOISE seg=3(PLACE)
+  seed=114 t=21499 800->400 lock_class=NOISE seg=5(NOISE)
+  seed=114 t=21599 400->200 lock_class=NOISE seg=5(NOISE)
+  seed=115 t=18199 1600->800 lock_class=NOISE seg=4(PLACE)
+  seed=115 t=18299 800->400 lock_class=NOISE seg=4(PLACE)
+  seed=115 t=18399 400->200 lock_class=NOISE seg=4(PLACE)
+  seed=116 t=9499 800->400 lock_class=OK seg=2(CTRL)
+  seed=116 t=9599 400->200 lock_class=OK seg=2(CTRL)
+  seed=116 t=17399 800->400 lock_class=NOISE seg=4(NOISE)
+  seed=116 t=17499 400->200 lock_class=NOISE seg=4(NOISE)
+  seed=117 t=13499 800->400 lock_class=NOISE seg=3(PLACE)
+  seed=117 t=13599 400->200 lock_class=NOISE seg=3(PLACE)
+  seed=118 t=21899 1600->800 lock_class=NOISE seg=5(NOISE)
+  seed=118 t=21999 800->400 lock_class=NOISE seg=5(NOISE)
+  seed=118 t=22099 400->200 lock_class=NOISE seg=5(NOISE)
+  seed=119 t=18199 1600->800 lock_class=NOISE seg=4(NOISE)
+  seed=119 t=18299 800->400 lock_class=NOISE seg=4(NOISE)
+  seed=119 t=18399 400->200 lock_class=NOISE seg=4(NOISE)
+  ... (30 total, first 20 shown)
+
+Wrap count (Delta B — should be 0): 0
+  => Confirmed: no 1600->200 wrap via ascent trigger
+
+CTRL-segment correctness (exp168 harm locus, expected ~0 harm after fix):
+  pooled_ctrl_a=0.9781  pooled_ctrl_b=0.8969  margin(b-a)=-0.0812
+  (exp168 reported -0.31 persistent deficit here)
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1  (override concentration >= 0.75): PASS
+P2  (responsiveness >= 7/8 forks): PASS
+P3  (no harm in valid regimes, margin >= -0.05): MIXED (not P3, not F3)
+P4  (overrides earn keep, margin >= +0.2): PASS
+
+VERDICT: MIXED
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp169_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp169_verdict.json

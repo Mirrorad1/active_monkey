@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp169",
+  "verdict": "MIXED",
+  "halted": false,
+  "arms": {
+    "P1_override_concentration": {
+      "pass": true,
+      "reason": "pooled fraction of ascent changes in SLOW = 0.8333 (need >= 0.75); total_ascent=36 slow_ascent=30; F1 fired=False"
+    },
+    "P2_responsiveness": {
+      "pass": true,
+      "reason": "8/8 forks responded on first SLOW segment (need >= 7); F2 fired=False"
+    },
+    "P3_no_harm_valid": {
+      "pass": false,
+      "reason": "pooled_valid_a=0.9823 pooled_valid_b=0.8698 margin(b-a)=-0.1125 (need >= -0.05); ctrl_margin=-0.0812 (exp168 harm locus); F3 fired=False"
+    },
+    "P4_overrides_earn_keep": {
+      "pass": true,
+      "reason": "pooled_slow_a=0.0834 pooled_slow_b=0.4283 margin(b-a)=0.3449 (need >= +0.2); F4 fired=False"
+    }
+  },
+  "notes": "N3 rung 4 DESCENT DRIVER: completed lock controller (Delta A + Delta B). Delta A: step dial down when locked on stationary class (OK/NOISE) and W>200; Delta B: ascent saturates at 1600 (no wrap). Seeds 114-121 (exp168 used 106-113). Exp 168 ratchet: CTRL harm -0.31; F3 fired. POSITIVE: RUNG 4 PASSES WITH CONTROLLER-COMPLETE \u2014 chapter verdict upgrades to SUPPORTED-WITH-CONTROLLER-COMPLETE. NEGATIVE: descent design fails; halt for a word. n_descent_events=30; wrap_count=0 (should be 0); ctrl_margin=-0.0812 (was -0.31 in exp168)."
+}
