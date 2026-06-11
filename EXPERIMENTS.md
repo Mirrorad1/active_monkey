@@ -6276,3 +6276,70 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   test); deliverables: recovery (restore-and-hold the pre-burst favorite) AND
   sustained-evidence revision within tolerance of (a); plus the verifier's
   v-dynamics control-validity check. FRESH seeds 210+.
+
+## Exp 181 — N4 rung 3 attempt 1 (the commitment controller, pre-registered): NEGATIVE by F5 — NO arm defends the identity: the N4 write-gate leaks through monitor absorption (0/8) and EVERY fixed constant from 0.3 to 0.01 also recovers 0/8 while revision degrades 200→1694 — a DEGENERATE recovery/revision frontier: gating the write channel buys no identity protection at ANY gain (NEGATIVE; the wrong-control-surface law; thread HALTS for a word, consult posted)
+
+- Plain: we gave the creature its first lever — when the mirror says "I am not who
+  I predicted," write new experience into your values more slowly. The lever moves
+  (it engaged at every captivity onset, blind-verified) and costs little on the
+  other side (the creature still adopts a genuinely changed world almost as fast
+  as a creature with no lever at all). But it defends nothing: the mirror that
+  detects the kidnapping also gets USED to the kidnapping within a few hundred
+  steps, the grip relaxes mid-burst, and most of the rewriting slips through. And
+  the brute-force alternative — write slowly all the time — fails for the opposite
+  reason: a creature that barely writes barely maintains, and by the second
+  captivity its protected past has decayed beneath the trickle of its present.
+  Slowing the pen cannot save the author. Whatever defends a self must act on a
+  different surface — freeze the whole value dynamics, or pull actively back
+  toward who you were — and that choice now needs a word.
+- Question (pre-registered, commit 3a8bce0 BEFORE any data): does g_t =
+  min(1,(m̄/m)²) gating the value-update INCREMENT give recovery (P5: pre-burst
+  favorite expressed at bend+1500..2000, ≥2/3 bursts, ≥7/8 forks, with the
+  baseline deficit ≤2/8) while preserving revision (P6: Phase-R latency ≤
+  baseline+3000, ≥6/8) and beating every fixed constant (P7, the universal-
+  constant kill test)? F5: N4 recovery ≤4/8.
+- Setup: 7 same-snapshot arms (baseline / N4 / c∈{0.3,0.1,0.05,0.02,0.01}) ×
+  2 phases (whipsaw verbatim from Exp 176/180; revision = permanent relocation
+  from step 6000) × FRESH seeds 210–217 = 112 sessions; smoke (seed 210, all
+  arms) disclosed; ONE post-smoke instrument fix declared (phase_r_latency
+  returned absolute t, card defines t−6000; offset-invariant for P6; fixed
+  before the full run).
+- Result: NEGATIVE (no-resistance), F5. Gates PC1/PC2′/PC3 all PASS (PC2′
+  7–8/8 per window — fourth clean block). P5: baseline 0/8 (deficit confirmed),
+  N4 0/8 (23/24 bursts unrecovered; the one recovery, seed 215 burst 0, had the
+  lowest leak 256), every constant 0/8 — c0.02/c0.01 recover burst 0 in 8/8 forks
+  then lose bursts 1–2 in all. P6 PASS: N4 latencies 93–693 vs baseline 68–228
+  (Δ 25–465, tolerance 3000), 0 rigidity. P7 vacuously PASS. Leaked writing
+  (N4): 256–498 per burst of ~680 unresisted. Frontier: c 0.3→0.01 gives
+  p5_forks ≡ 0 while median revision latency 200→1694.
+- Verifier: blinded subagent CONFIRMED NEGATIVE adversarially with explicit
+  false-negative analysis — recovery indexing clean; pre_fav captured pre-burst;
+  the controller DID engage (g drops to 0.22 at the first in-burst snapshot);
+  the one-snapshot onset lag (first 100 burst steps at quiet g≈1) does NOT
+  alone explain the failure — the post-detection g (0.22–0.55, rising with
+  absorption) is the leak; the low-constant failure is substantive starvation
+  (equilibrium mass g/(1−λ): ~33 at c=0.01 vs ~1165 protected — recency rules
+  later bursts); within-arm discrimination intact (lower leak ↔ the one
+  recovery). One cosmetic gap flagged (the onset-g diagnostic omits snapshot 59).
+- Implication (THE WRONG-CONTROL-SURFACE LAW, this body): identity defense
+  cannot be bought on the write channel — adaptive gating leaks through the
+  monitor's own absorption (the rung-2 D5 signature turned enemy), and constant
+  gating starves the very mass it protects; the recovery/revision frontier of
+  write-gating is DEGENERATE (all cost, no defense). What remains for a real N4
+  control surface: (i) freeze-gate BOTH channels (suspend the whole v dynamics —
+  preserves ordering AND mass) with the monitor's reference FROZEN during
+  resistance (so absorption cannot reopen the gate) and a concession horizon for
+  sustained evidence; or (ii) an anchor (regularize v toward a stored reference —
+  active restoration). Both add a constant (the horizon / the anchor gain) —
+  the universal-constant sweep stays mandatory.
+- Honest caveat: the verdict kills THIS controller form, not the layer — but the
+  central hypothesis is now 0-for-1 at its load-bearing rung and the burden grows;
+  the onset lag (a design choice: EVAL=100) contributed a bounded ~85-unit
+  exposure; the revision regime is diet-driven captivity, not free-roam evidence;
+  P7's pass is vacuous (nothing passed P5); all controller constants PROVIDED.
+- Verdict: NEGATIVE / NEW INSIGHT (the degenerate frontier + the two failure
+  mechanisms: absorption leak and maintenance starvation). Self-grade: NEGATIVE.
+- Next: HALTED — a predeclared falsifier fired; consult posted in loop/IDEAS.md
+  (options: freeze-gate attempt 2 with frozen-reference commitment + concession
+  horizon in the sweep — recommended; anchor-regularization form; accept the
+  rung-3 negative as the chapter verdict; other). The thread resumes on a word.

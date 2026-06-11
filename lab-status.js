@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 180, title: "N4 RUNG 2 PASSES (attempt 4, POSITIVE, blind-verified): the per-burst-matched control certifies and every conjunct lands — the identity monitor DETECTS and SPECIFIES identity displacement: sensitivity 8/8 (median AUROC 0.894), specificity 8/8 pairs (Δ 0.536–0.719, the scramble inversion now LICENSED at 0.262), argmax-independence, adaptation 24/24", tag: "POSITIVE" },
-  tally: { total: 180, positive: 105, negative: 46, mixed: 25, breakthroughs: 4 },
+  latest_exp: { n: 181, title: "N4 rung 3 attempt 1 (the commitment controller, pre-registered): NEGATIVE by F5 — NO arm defends the identity: the N4 write-gate leaks through monitor absorption (0/8) and EVERY fixed constant from 0.3 to 0.01 also recovers 0/8 while revision degrades 200→1694 — a DEGENERATE recovery/revision frontier: gating the write channel buys no identity protection at ANY gain", tag: "NEGATIVE" },
+  tally: { total: 181, positive: 105, negative: 47, mixed: 25, breakthroughs: 4 },
   directions: [
-    { name: "identity-n4", state: "active (rung 3 — pre-registered, build next)", latest: "Exp 180", next: "Exp 181 as pre-registered above (seeds 210-217, smoke 210)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
+    { name: "identity-n4", state: "halted (rung 3 attempt 1 NEGATIVE at F5; consult in loop/IDEAS.md awaits a word)", latest: "Exp 181", next: "TBD-human (consult options: freeze-gate + frozen-reference + concession horizon — recommended; anchor regularization; accept the rung-3 negative as chapter verdict)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

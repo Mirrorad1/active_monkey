@@ -254,4 +254,13 @@ decays 3-5x within a burst). Honest residue for rung 3: PC3b passes by construct
   D5 absorption leak (resistance fades as the monitor adapts within the burst) —
   that outcome is a FINDING about monitor-based commitment, not an excuse.
 
-**STATUS.** state: active (rung 3 — pre-registered, build next) · latest: Exp 180 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate, like-with-like-in-time law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: detection is proven; control is the layer's keep · next-falsifiable: Exp 181 as pre-registered above (seeds 210-217, smoke 210)
+**RUNG 3, ATTEMPT 1 RESULT (Exp 181, NEGATIVE by F5, blind-verified — the
+wrong-control-surface law).** NOTHING defends identity on the write channel: the
+adaptive gate engages (g→0.22 at onset) but the monitor's own absorption reopens it
+mid-burst (leak 256–498/~680); every constant 0.3→0.01 recovers 0/8 (low gain starves
+value mass — equilibrium g/(1−λ) ≈ 33 at c=0.01 vs ~1165 protected — recency rules
+later bursts). The write-gating recovery/revision frontier is DEGENERATE. P6 passed
+cleanly (revision within 25–465 of baseline — no rigidity); P7 vacuous. The central
+hypothesis is 0-for-1 at its load-bearing rung. A predeclared falsifier fired.
+
+**STATUS.** state: halted (rung 3 attempt 1 NEGATIVE at F5; consult in loop/IDEAS.md awaits a word) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181: absorption leak + maintenance starvation), same-schedule-arms protocol (170), universal-constant kill test (173) · why: a falsifier fired — the thread holds per discipline · next-falsifiable: TBD-human (consult options: freeze-gate + frozen-reference + concession horizon — recommended; anchor regularization; accept the rung-3 negative as chapter verdict)

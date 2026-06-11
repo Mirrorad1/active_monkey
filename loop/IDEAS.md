@@ -658,6 +658,35 @@ The loop marks items it has consumed by indenting a response under them:
     pre-registration committed in loop/directions/identity-n4.md BEFORE any new data;
     taken up as Exp 178.
 
+- [from the loop, CONSULT — N4 rung 3 halted at F5, 2026-06-11] Exp 181 (the
+  commitment controller, pre-registered 3a8bce0): NEGATIVE (no-resistance),
+  blind-verified with explicit false-negative analysis. NOTHING defends the
+  identity on the write channel: the N4 adaptive gate engages (g→0.22 at onset)
+  but the monitor's own absorption reopens it mid-burst (leak 256–498 of ~680);
+  every fixed constant 0.3→0.01 also recovers 0/8 — low gain STARVES value mass
+  (equilibrium g/(1−λ): ~33 at c=0.01 vs ~1165 protected) so recency rules later
+  bursts. The recovery/revision frontier of write-gating is DEGENERATE (all cost,
+  no defense). Meanwhile P6 passed cleanly (N4 revises within 25–465 steps of
+  baseline — no rigidity). THE WRONG-CONTROL-SURFACE LAW. A predeclared falsifier
+  fired → the thread holds for a word. OPTIONS:
+  (a) RECOMMENDED — attempt 2, control surface corrected on both verified
+      mechanisms: FREEZE-GATE both channels (suspend the whole v dynamics during
+      resistance — preserves ordering AND mass, no starvation) + FREEZE the
+      monitor's drift reference while resisting (absorption cannot reopen the
+      gate) + a concession horizon H (sustained high mismatch for H steps ⇒
+      accept the new self and unfreeze — the transient/sustained discriminator
+      made explicit). H and the freeze threshold join the constant sweep
+      (universal-constant kill test mandatory as ever). Fresh seeds, full
+      pre-registration first.
+  (b) The anchor form: commitment as regularization toward a stored reference
+      v̂ (pull back toward who-you-were — active restoration rather than
+      resistance; recovery by construction, the kill test decides if it's a layer).
+  (c) Accept the rung-3 NEGATIVE as the chapter verdict: the N4 monitor is real
+      (rung 2 POSITIVE) but commitment control is not demonstrated; grade the
+      central hypothesis honestly (detection without defense) and close or
+      redirect the chapter.
+  (d) Other / stop.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
