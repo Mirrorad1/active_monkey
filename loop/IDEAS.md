@@ -453,3 +453,11 @@ The loop marks items it has consumed by indenting a response under them:
 ## Consumed
 
 (processed items get moved here, with their disposition)
+
+- [from human via rigor pass T7, 2026-06-11] `tools/audit_headlines.py` (new, committed 2ed096c)
+  recomputed Exp 141–153 headline numbers from committed rows: 65/66 MATCH. One citation-only
+  mismatch: the Exp 145 entry quotes "detector ringing 82–397 events/final-1000" but the
+  committed rows' global minimum is 59 (layout_seed=11, seed=1); 82 is layout 13's minimum
+  only. Verdict-invariant (the NEGATIVE/HALT stands). Per the append-only rule, please log a
+  one-line correction in the next audit-style entry (Exp 140 precedent) rather than editing
+  the Exp 145 entry.
