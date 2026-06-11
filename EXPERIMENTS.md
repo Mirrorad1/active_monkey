@@ -4009,3 +4009,40 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / CONSOLIDATION (audit; one citation correction, zero verdict
   changes). Self-grade: POSITIVE-SINGLE.
 - Next: the closure consult still awaits the human's choice (a–d); the loop holds.
+
+## Exp 141 — continuous-creature rung M1: the continuous place belief perceives the creature's world — localization exact, calibration full, clamp cost 0.06–0.09 nats (POSITIVE all conjuncts; the migration advances)
+- Plain: First rung of the substrate migration the human ordered: can the new continuous
+  belief machinery live in the creature's actual grid world — walls and all — and keep
+  knowing where it is? Yes, cleanly: with the world's colors unambiguous and the motor
+  model known, the belief tracks the true position essentially exactly, its stated
+  uncertainty always contains the truth (even when shoved into walls for thirty steps
+  straight), and the price of the Gaussian shortcut is under a tenth of a nat against
+  the exact box-world reference. The interesting rungs are ahead; this one proves the
+  machinery and prices the wall approximation.
+- Setup (predeclared in the script docstring before running): 4×4 grid in ℝ², 16
+  distinct colors (NON-aliased arm), emissions N(center, 0.35²I) (adjacent Mahalanobis
+  2.86), known Δ(a), TRUE position wall-clamped as World.move; DECLARED approximation:
+  belief predict clamps the mean + Q=0.05²I process noise; exact log-space tabular twin
+  on identical streams; wander T=300 ×8 seeds + deterministic wall-stress T=120 (30
+  consecutive pushes per wall). New additive module active_loop/creature_continuous.py
+  (ContinuousPlace: clamped predict, conjugate update, χ² coverage) + 4 durable tests.
+  P1: final loc ≤0.35 in ≥7/8, twin MAP ≥95%. P2: 95%-ellipse coverage ≥85% wander /
+  ≥75% wall-stress, mean never exits arena by >0.5. P3: NLL gap ≤0.5 nats.
+- Result: POSITIVE 8/8 on every conjunct. Localization error ~0 at the printed
+  precision (final-50 median 0.0000); coverage 1.000 in BOTH arms; mean escape 0
+  (structural); NLL gap 0.083–0.091 wander, 0.064 wall-stress — the measured clamp +
+  footprint cost, an order under the band; twin MAP-correct 100%. Suite 105 green
+  (101 + 4 new).
+- Implication: the migration's inference floor is sound — M2 (NIW-learned emissions in
+  the creature's world) is next, then the centerpiece M3 aliasing wall where the
+  Exp 132 detector and the spawn toolkit get their first live test.
+- Honest caveat: this is the EASY case by design (non-aliased, exact world knowledge —
+  machinery verification + clamp pricing, consolidation-flavored); the wall-stress arm
+  pins both truth and belief at the wall, so the genuinely non-Gaussian straddle regime
+  was only mildly exercised (coverage 1.000 suggests the approximation is conservative
+  at this noise scale, not that it cannot fail); the wall-stress arm is deterministic
+  (identical across seeds, as flagged); world fixed across seeds, streams vary.
+- Verdict: POSITIVE / CONSOLIDATION-grade machinery validation (the new datum is the
+  measured clamp cost). Self-grade: POSITIVE-SINGLE.
+- Next: rung M2 — NIW-learned emission means in the creature's world under the motor
+  anchor (the Exp 135 pattern in situ), non-aliased.

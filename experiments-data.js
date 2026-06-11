@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:140, breakthrough:6, positive:84, wall:21, partial:29, from:4.81, to:4.00 };
+window.AM_TALLY = { total:141, breakthrough:6, positive:85, wall:21, partial:29, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1415,7 +1415,17 @@ window.AM_EXPERIMENTS = [
     setup:"A committed audit script re-checks every headline number in the seven chapter entries as verbatim substrings of their committed outputs, with the known discrepancies themselves asserted so the audit is reproducible.",
     result:"All checked citations found in 10/10 output files; the two stale Exp 136 citations confirmed absent from the committed post-patch output; the Exp 138 training-cost figure clarified as per-encoder. No verdict in the chapter is affected.",
     implication:"The chapter's evidence base survives a hostile-reviewer pass and the found failure mode (quoting a superseded run after a patch) is institutionalized away in PROTOCOL. The closure consult remains the open decision.",
-    trace:{ script:"experiments/exp140_chapter_audit.py", output:"experiments/outputs/exp140.txt" } }
+    trace:{ script:"experiments/exp140_chapter_audit.py", output:"experiments/outputs/exp140.txt" } },
+
+  { n:141, kind:"positive", chapter:"frontier",
+    title:"The new mind steps into the old world — and knows exactly where it is.",
+    one:"Migration rung M1: a Gaussian place belief with the known motor anchor lives in the creature's clamped grid world — localization error ~0 in 8/8 seeds, 95-percent-ellipse coverage 1.000 even under thirty consecutive wall shoves, posterior never escapes the arena, and the whole Gaussian shortcut costs 0.083-0.091 nats against the exact tabular reference. All predeclared conjuncts pass; the migration advances to learned maps.",
+    plain:"First rung of the substrate migration: can the new continuous belief machinery live in the creature's actual grid world — walls and all — and keep knowing where it is? Yes, cleanly: with the colors unambiguous and the motor model known, the belief tracks the true position essentially exactly, its stated uncertainty always contains the truth even when shoved into walls for thirty steps straight, and the price of the Gaussian shortcut is under a tenth of a nat. The interesting rungs are ahead; this one proves the machinery and prices the wall approximation.",
+    metric:{ from:0.5, to:0.091, unit:"declared NLL band vs measured clamp+footprint cost, nats" },
+    setup:"The creature's 4x4 grid embedded in the plane, sixteen unambiguous colors, known emission Gaussians and known wall-clamped dynamics; the declared approximation (clamp the belief mean, add small process noise) priced against the exact log-space tabular twin on identical streams, with a deterministic wall-stress arm. New additive module with four durable tests; the tabular creature untouched.",
+    result:"8/8 seeds on every conjunct: localization at printed-precision zero, coverage 1.000 both arms, zero arena escapes, NLL gap 0.083-0.091 wander and 0.064 wall-stress, twin MAP-correct 100 percent. Suite 105 green.",
+    implication:"The migration's inference floor is sound. Next: learned emission maps in the creature's world, then the centerpiece — the aliasing wall, where the surprise-ceiling detector and the structure-growing toolkit face their first live world.",
+    trace:{ script:"experiments/exp141_m1_perceive.py", output:"experiments/outputs/exp141.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
