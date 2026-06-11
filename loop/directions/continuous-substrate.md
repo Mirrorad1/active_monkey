@@ -50,3 +50,8 @@ word) nor mirro's/vela's spines.
   loses to a plain EMA by up to 6x under sustained drift and distorts the forgetting-
   window optimum (mechanism pinned, bit-identical replication). Decay counts, not
   location. Guard test: tests/test_continuous.py::test_niw_decay_keep_mean.
+
+**STATUS: CLOSED 2026-06-10 — stop condition met at Exp 138** (ladder Exp 133–138; the
+phase picture exists and the amortized comparison is logged). Closure CONSULT with the
+six-rung verdict and next-step options posted in loop/IDEAS.md; this card re-opens only
+on an explicit human choice there.

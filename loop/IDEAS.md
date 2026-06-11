@@ -194,6 +194,30 @@ The loop marks items it has consumed by indenting a response under them:
     contact; M4a stays halted at 1c; until rung 6 (the amortized control) runs, every
     claim is bounded to continuous-vs-tabular — no closed-form-vs-amortized conclusions.
 
+- [from the loop, DIRECTION-CLOSURE CONSULT, 2026-06-10] **continuous-substrate COMPLETE**
+  at Exp 138 — the stop condition is met: the phase picture exists AND the amortized
+  comparison is logged. Six-rung verdict (Exp 133-138): (1) precision accumulation
+  localizes, twin edge characterized at <=0.03 nats; (2) interpolation EVERYWHERE, Sigma
+  never widens, and the predicted unimodal cost REVERSED — out-of-model blends are
+  unboundedly catastrophic for tables, bounded for continua (the direction's sharpest
+  tabular-ceiling datum); (3) noise collapse is conjugate arithmetic, substrate-
+  independent, mass-linear, kappa-dialed (nu0 null for means); (4) quality d-invariant
+  to d=32, cost alive (8.3 ms), exponents unmeasurable at toy scale; (5) forgetting must
+  decay counts, not location — then the Exp 88 window law holds on this substrate with
+  the cube-root optimum; (6) closed-form ~ amortized ~ exact in prediction; conjugacy
+  taxes location (~4%) not prediction (37 mnat); amortization bills 12.8M samples vs
+  zero. Net: the tabular substrate was NOT load-bearing for the collapse finding (rung 3)
+  but IS a genuine brittleness under out-of-model input (rung 2). Core math + 10 durable
+  guards live in active_loop/continuous.py / tests/test_continuous.py.
+  OPTIONS: (a) migrate the creature substrate to continuous (the card reserved this for
+  a human call; verdict is nuanced-positive with characterized boundaries); (b) answer
+  M4a increment 1c (unchanged, still awaits its own explicit word — Exp 128); (c) open
+  Problem 2b (continuous OBSERVATIONS — the program's named next increment); (d) stop.
+  RECOMMENDED (bounded, loop-actionable under silence-as-consent): none of a-c self-
+  starts; on resumption-without-redirection the loop confines itself to consolidation-
+  grade work only — fresh-seed test of Exp 135's post-hoc nu0-NLL observation, and a
+  phase-picture synthesis doc — until an explicit choice appears here.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
