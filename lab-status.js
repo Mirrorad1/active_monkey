@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 169, title: "the descent driver kills the ratchet but lands MIXED: harm is no longer persistent anywhere (CTRL −0.31 → −0.08; F3 silent) yet the boundary transient keeps P3 in the dead zone — and the verifier reduced the residual to arithmetic: transition penalty ≈ (W_max/100 + K) × 100 steps, an explicit function of the PROVIDED evidence horizon", tag: "MIXED" },
-  tally: { total: 169, positive: 103, negative: 39, mixed: 23, breakthroughs: 4 },
+  latest_exp: { n: 170, title: "K-endogenization tier A FAILS informatively: a single pooled statistic of the label stream cannot be the lock horizon — run lengths are REGIME-CONDITIONAL, so the global P95 collapses to a two-regime failure (premature K=3, then the K=16 ceiling forever), costing concentration exactly past the falsifier line", tag: "NEGATIVE" },
+  tally: { total: 170, positive: 103, negative: 40, mixed: 23, breakthroughs: 4 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (K-endogenization, per the human's standing word)", latest: "Exp 169", next: "Exp 170 = tier A with the predeclared projection-test (K-derived-from-run-lengths must NOT clear P3 alone if the straddle-dominance claim holds; either outcome is a result)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
+    { name: "meta-calibration-n3", state: "halted (tier A negative; tier B awaits a word)", latest: "Exp 170", next: "tier B on a word; the straddle term (twice-confirmed dominant P3 component) is the separate named target after it" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
     { name: "graded-uncertainty", state: "exploratory", latest: "TBD-human", next: "Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands" },

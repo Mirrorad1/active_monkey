@@ -5617,3 +5617,65 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   under valid regimes (no magic 8), with the verifier's projection as a predeclared
   falsifiable: K-derivation alone must NOT clear P3 (if it does, the straddle-dominance
   claim dies — either way a result); tier B (tempo-regulated horizon) follows.
+
+## Exp 170 — K-endogenization tier A FAILS informatively: a single pooled statistic of the label stream cannot be the lock horizon — run lengths are REGIME-CONDITIONAL, so the global P95 collapses to a two-regime failure (premature K=3, then the K=16 ceiling forever), costing concentration exactly past the falsifier line (NEGATIVE by F5; the straddle projection holds AGAIN; the failure's shape is the human's tier B, verbatim — halted for a word)
+
+- Plain: we tried the simplest honest way to stop eight from being a magic number: let
+  the dial-setter watch how long its own verdicts tend to run before changing, and
+  demand just a bit more than that before freezing. It failed in an instructive way.
+  The verdict stream has two kinds of runs living in one history — short flickers while
+  a wrong dial cycles, and long plateaus when a right dial settles — and one pooled
+  threshold can't serve both: it starts too eager, then one long plateau teaches it to
+  be maximally suspicious forever. The needed horizon depends on WHICH kind of run
+  you're in — which is precisely the stronger thing asked for: regulate the horizon by
+  the stream's reliability and tempo, not by one number squeezed from its whole past.
+- Question (predeclared; tier A of the standing word): does K(t) = clamp(P95(completed
+  run lengths)+1, 3, 16), self-derived online from the label stream (runs complete on
+  class change; dial-change-interrupted runs discarded; K=3 with no history), match or
+  beat the K=8 reference profile (Exp 169) at no cost — P5 each pooled metric within
+  0.05 of (0.8333, 8/8, −0.1125, +0.3449) or better; F5 any metric worse by > 0.10;
+  F_HARM valid deficit > 0.15; gates P1/P2/P4 retained; P3 reported-not-gating
+  (declared); P6 = the straddle projection, ungated?
+- Setup: Exp 169 protocol verbatim, FRESH seeds 122–129; smoke (seed 122) disclosed.
+- Result: NEGATIVE — F5 fired on concentration alone: 0.7250 vs ref 0.8333 (deficit
+  0.1083 > 0.10); broken margin 0.2514 vs 0.3449 (deficit 0.0935 — soft-fail, under
+  the trigger); responsiveness 8/8 and valid margin −0.1094 within tolerance; F_HARM
+  silent; P2/P4 PASS; P1 itself MIXED at 0.7250 (one ascent short of 30/40). K(t)
+  settled at the 16 CEILING in 8/8 forks (5 forks 3→16 in one jump off a 34–76-eval
+  STRUCTURAL plateau; 3 forks 3→10→16): the completed-run distribution is bimodal
+  (1–9 vs 29–76) and the global P95 is outlier-dominated. Mechanism of the
+  concentration loss (verifier): early K=3 locks prematurely everywhere; late K=16
+  permits long valid-segment accumulations that fire descents attributed to valid
+  segments. P6: the projection HELD (valid −0.1094 < −0.05 — K-only changes cannot
+  clear the bar; second consecutive confirmation).
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles; all
+  pooled numbers recomputed exactly); flagged MATERIAL CONFOUND — the cross-experiment
+  P5 comparison rides on schedule composition (exp170's seeds have 5 adjacent SLOW
+  pairs; successful detections occur ONLY on second members of adjacent pairs; the
+  broken-margin deficit may be partly seed-set geometry, inseparable from K effects in
+  this design); flagged the unlogged discard count and the P95 interpolation method as
+  audit gaps.
+- Implication (generalizability tier: functional-form — the conditioning lesson): the
+  lock horizon cannot be a global statistic of the diagnosis stream because run length
+  is regime-conditional — plateaus at a right dial are evidence FOR locking while the
+  pooled percentile reads them as reasons for suspicion. Endogenizing K requires
+  CONDITIONING: per-class or recency-weighted run statistics — i.e., a horizon
+  regulated by the reliability and TEMPO of the label stream, which is the human's
+  tier B verbatim; tier A's failure derives tier B's design rather than merely
+  motivating it. Design fix for the confound (binding on the next attempt): the
+  reference controller runs as an ARM in the SAME experiment on the SAME schedules —
+  within-run comparison, never cross-seed-set.
+- Honest caveat: F5 fired by 0.008 over its line on one metric — a marginal kill, and
+  the adjacency confound cuts both ways (it contaminates the soft-failed broken margin
+  more than the fired concentration metric, which is schedule-normalized by
+  construction but still attribution-sensitive at boundaries); the clamp [3,16] and
+  P95 are themselves provided policy; per the standing word's guardrail the thread
+  HALTS here for a word rather than self-starting tier B.
+- Verdict: NEGATIVE / NEW INSIGHT (the conditioning lesson; the two-regime collapse;
+  the projection's second confirmation). Self-grade: NEGATIVE.
+- Next: HALTED per the K-word's guardrail. Recommended resumption (one word
+  proceeds): tier B = the tempo-regulated horizon — K from recency-weighted,
+  class-conditioned run statistics (e.g., forgetting-windowed run lengths of the
+  CYCLING class only), tested with the K=8 reference as a same-schedule arm; the
+  straddle term (the dominant P3 component, twice confirmed) remains a separate,
+  named target.

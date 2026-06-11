@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "experiment": "exp170",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_override_concentration": {
+      "pass": false,
+      "reason": "pooled fraction of ascent changes in SLOW = 0.7250 (need >= 0.75); total_ascent=40 slow_ascent=29; F1 fired=False"
+    },
+    "P2_responsiveness": {
+      "pass": true,
+      "reason": "8/8 forks responded on first SLOW segment (need >= 7); F2 fired=False"
+    },
+    "P3_no_harm_valid_REPORTED_ONLY": {
+      "pass": false,
+      "reason": "REPORTED ONLY \u2014 does not gate this verdict. pooled_valid_a=0.9833 pooled_valid_b=0.8740 margin(b-a)=-0.1094 (need >= -0.05 for P3); ctrl_margin=-0.0750 (exp168 harm locus); F_HARM fired=False (gates verdict)"
+    },
+    "P4_overrides_earn_keep": {
+      "pass": true,
+      "reason": "pooled_slow_a=0.0804 pooled_slow_b=0.3318 margin(b-a)=0.2514 (need >= +0.2); F4 fired=False"
+    },
+    "P5_tier_A_k_endogenization": {
+      "pass": false,
+      "reason": "Derived K within 0.05 of exp169 K=8 reference on all 4 metrics (or better). conc=0.7250 (ref=0.8333); resp=8 (ref=8.0); valid_margin=-0.1094 (ref=-0.1125); broken_margin=0.2514 (ref=0.3449); F5 fired=True"
+    },
+    "P6_projection_ungated": {
+      "pass": false,
+      "reason": "UNGATED verifier projection: P3 remains < -0.05. p3_margin=-0.1094; projection_holds=True; projection_refuted=False"
+    }
+  },
+  "notes": "N3 K-endogenization tier A: derived K replaces constant K=8. K(t) = clamp(ceil(P95 completed-run-lengths)+1, 3, 16); no completed runs => K=3. Seeds 122-129 (exp169 used 114-121). P3 REPORTED ONLY (rung 4 graded at exp169); F_HARM gates instead. P5 (tier-A): derived K within 0.05 of exp169 committed refs on all 4 metrics. POSITIVE: TIER A SUPPORTED. NEGATIVE: falsifier fired; derived K fails. n_descent_events=34; wrap_count=0 (should be 0); ctrl_margin=-0.0750 (was -0.31 in exp168, ~0 in exp169)."
+}

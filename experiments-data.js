@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:169, breakthrough:8, positive:92, wall:26, partial:43, from:4.81, to:4.00 };
+window.AM_TALLY = { total:170, breakthrough:8, positive:92, wall:26, partial:44, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1877,7 +1877,18 @@ window.AM_EXPERIMENTS = [
     result:"MIXED — concentration 0.8333 PASS (up from the 0.75 boundary), responsiveness 8/8 PASS, benefit +0.3449 PASS; no-harm in the dead zone (-0.1125; falsifier silent). All residual harm transitional, concentrated in the third of valid segments inheriting a structural lock; descent latency 2099-2499 steps matching straddle-plus-relock arithmetic exactly.",
     implication:"The ratchet law is answered: smallest-consistent-dial homeostasis removes persistent harm without touching ascent quality. The residual transient is an explicit function of the provided constants — the human's K-endogenization tiers (derive the lock horizon from the label stream's own statistics; regulate the evidence horizon from reliability and tempo) now predict specific movements of a measured number, and the verifier's straddle-dominance projection is itself falsifiable in that chapter.",
     caveat:"P3's dead zone means the controller is incomplete by the predeclared bar, not vindicated by F3's silence; the harm redistribution across valid types is schedule-geometry-dependent (which type follows a STRUCTURAL lock); K=8 was deliberately held fixed, so the descent delta is isolated but the joint design space is unexplored; all θ_N3 constants remain provided; an eval-count nuance (early low-dial windows counted for (b) in SLOW) biases conservatively against (b).",
-    trace:{ script:"experiments/exp169_n3_descent.py", output:"experiments/outputs/exp169.txt" } }
+    trace:{ script:"experiments/exp169_n3_descent.py", output:"experiments/outputs/exp169.txt" } },
+
+  { n:170, kind:"partial", chapter:"frontier",
+    title:"One number from the whole past cannot replace the magic eight — the failure derives the next design.",
+    one:"K-endogenization tier A, NEGATIVE by F5 on concentration alone (0.7250 vs the 0.8333 reference, deficit 0.1083 just over the 0.10 line): deriving the lock horizon as a global P95 of the creature's own completed label-run lengths collapses to a two-regime failure — premature K=3 before any run completes, then the K=16 ceiling forever after one long STRUCTURAL plateau (the run distribution is bimodal, 1-9 vs 29-76 evals, and a pooled percentile is outlier-dominated). The straddle-dominance projection held a second time (valid margin -0.1094). The verifier flagged a material schedule-adjacency confound in the cross-experiment comparison — fixed bindingly for the next attempt: the reference runs as a same-schedule arm.",
+    plain:"We tried the simplest honest way to stop eight from being a magic number: let the dial-setter watch how long its own verdicts tend to run before changing, and demand just a bit more than that before freezing. It failed instructively. The verdict stream has two kinds of runs in one history — short flickers while a wrong dial cycles, and long plateaus when a right dial settles — and one pooled threshold cannot serve both: it starts too eager, then one long plateau teaches it to be maximally suspicious forever. The needed horizon depends on which kind of run you are in — which is precisely the stronger thing asked for: regulate the horizon by the stream's reliability and tempo, not by one number squeezed from its whole past.",
+    metric:{ from:3, to:16, unit:"derived K: premature floor, then permanent ceiling, 8/8 forks" },
+    setup:"Exp 169's mixed-schedule protocol verbatim with K replaced by clamp(P95(completed run lengths)+1, 3, 16), self-derived online; the tier-A claim gated as P5 (each pooled metric within 0.05 of the committed K=8 reference or better; falsifier at 0.10 worse); ratchet guard F_HARM; the straddle projection P6 predeclared falsifiable and ungated; fresh seeds 122-129; blinded verification before logging.",
+    result:"NEGATIVE — F5 on concentration only; broken margin soft-failed (deficit 0.0935, under the trigger, and contaminated by the adjacency confound); responsiveness and valid margin within tolerance; F_HARM silent; P6 held (second consecutive confirmation that K-changes alone cannot clear the no-harm bar). Halted for a word per the standing guardrail.",
+    implication:"The conditioning lesson: run length is regime-conditional — plateaus at a right dial are evidence FOR locking, but a pooled percentile reads them as grounds for suspicion. Endogenizing K requires class-conditioned, recency-weighted statistics — a horizon regulated by the reliability and tempo of the label stream, the human's tier B verbatim: tier A's failure derives tier B's design. The recommended resumption is tier B with the K=8 reference as a same-schedule arm.",
+    caveat:"F5 fired by 0.008 over its line on one metric — a marginal kill, and the adjacency confound cuts both ways (it contaminates the soft-failed broken margin more than the fired concentration metric, which is schedule-normalized by construction but still attribution-sensitive at boundaries); the clamp [3,16] and P95 are themselves provided policy; per the standing word's guardrail the thread HALTS here for a word rather than self-starting tier B.",
+    trace:{ script:"experiments/exp170_k_derived.py", output:"experiments/outputs/exp170.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

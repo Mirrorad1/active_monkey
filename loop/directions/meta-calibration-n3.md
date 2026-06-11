@@ -238,4 +238,13 @@ an explicit function of the provided constants. Verifier's falsifiable projectio
 next chapter: K-derivation alone recovers only ~0.033 of the 0.0625 gap; the straddle term
 dominates.
 
-**STATUS.** state: active (K-endogenization, per the human's standing word) · latest: Exp 169 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), lock controller (167), ratchet law (168), descent driver + transition-penalty formula (169) · why: the human's tiers — (A) derive the lock horizon from the label stream's own statistics, (B) regulate the evidence horizon online from reliability/tempo — now target a measured number · next-falsifiable: Exp 170 = tier A with the predeclared projection-test (K-derived-from-run-lengths must NOT clear P3 alone if the straddle-dominance claim holds; either outcome is a result)
+**TIER A (Exp 170, NEGATIVE by F5 — the conditioning lesson; HALTED for a word).** The
+global P95-of-run-lengths derivation collapses to a two-regime failure: premature K=3, then
+the K=16 ceiling forever (the run distribution is bimodal, 1–9 vs 29–76 evals; a pooled
+percentile is outlier-dominated). Concentration 0.7250 vs ref 0.8333 (F5 by 0.008 over the
+line); straddle projection HELD a second time. Lesson: run length is REGIME-CONDITIONAL —
+plateaus at a right dial are evidence FOR locking; a pooled statistic reads them as grounds
+for suspicion. Tier A's failure DERIVES tier B. Binding design fix: the reference controller
+runs as a same-schedule ARM (the verifier's adjacency-confound flag).
+
+**STATUS.** state: halted (tier A negative; tier B awaits a word) · latest: Exp 170 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, separators and laws (155–166), lock controller (167), ratchet law (168), descent driver + transition-penalty formula (169), conditioning lesson + two-regime collapse (170) · why: per the K-word's guardrail a falsifier-fired attempt halts; tier B (recency-weighted, class-conditioned horizon — regulate by reliability and tempo) is the recommended resumption, with the K=8 reference as a same-schedule arm · next-falsifiable: tier B on a word; the straddle term (twice-confirmed dominant P3 component) is the separate named target after it

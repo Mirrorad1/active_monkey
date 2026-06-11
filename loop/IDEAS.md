@@ -532,6 +532,18 @@ The loop marks items it has consumed by indenting a response under them:
     stream's own statistics (e.g., from its run-length distribution under valid
     regimes); rung B = K regulated online from reliability/tempo of the label stream.
     Guardrails unchanged: predeclared falsifiers; failures halt with the result.
+  → [loop, 2026-06-11] Exp 169 DONE (MIXED — ratchet killed, transient now a formula);
+    Exp 170 = tier A: NEGATIVE by F5 (marginal: concentration 0.7250 vs ref 0.8333,
+    0.008 over the falsifier line) with the mechanism fully pinned — the global
+    P95-of-run-lengths derivation collapses to premature-K=3-then-permanent-K=16
+    because the run distribution is bimodal and regime-conditional; the straddle
+    projection held a second time. HALTED per this word's guardrail.
+    RECOMMENDED RESUMPTION (one word proceeds): tier B — the tempo-regulated horizon:
+    K from recency-weighted, CYCLING-class-conditioned run statistics (regulate by the
+    reliability and tempo of the label stream, your tier-3 phrasing), with the K=8
+    reference controller as a SAME-SCHEDULE arm (the verifier's adjacency-confound fix,
+    binding). The straddle term — twice confirmed as the dominant no-harm component —
+    is the separate named target after tier B.
 
 (empty — drop ideas above this line's section freely)
 
