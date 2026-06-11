@@ -4046,3 +4046,50 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   measured clamp cost). Self-grade: POSITIVE-SINGLE.
 - Next: rung M2 — NIW-learned emission means in the creature's world under the motor
   anchor (the Exp 135 pattern in situ), non-aliased.
+
+## Exp 142 — continuous-creature rung M2: the emission map bootstraps from nothing but the motor anchor (8/8, both clamp variants) — and the wall-information account is demoted from existential to a measured 1.4× precision effect (MIXED: P1/P2 pass, P3 between bands; the migration advances)
+- Plain: Can the continuous creature learn what its world looks like, starting blind —
+  no map, no position, only its sense of its own movements? Yes: all sixteen colors of
+  the world settle into their right places in every run, and the creature ends up
+  knowing where it is to within a twentieth of a cell. The prediction that got it
+  wrong: I claimed the walls were the ONLY thing breaking the deadlock between map and
+  position. They are not — the predicted path of movement does most of that work — but
+  handling walls properly does buy a measured forty percent better map, in every seed.
+- Setup (predeclared in the script docstring before running): 4×4 world, 16 distinct
+  colors, NO provided position anchor (broad prior at arena center), T=3000, seeds
+  0–7; three agents on identical streams: tabular twin (the creature's own equations),
+  moment-matched clamp (NEW: analytic truncated-Gaussian predict, per-axis, diagonal Σ
+  — recovers wall information; +3 durable tests incl. Monte-Carlo validation), naive
+  clamp (M1's). NIW per color (κ₀=1, ν₀=4), moment-matched updates from the place
+  posterior; declared choice (named at run time): E[Σ_k] projected to diagonal for the
+  place update, both arms equally, consistent with the per-axis approximation. P1 twin
+  map_accuracy ≥14/16 in ≥7/8. P2 moment-matched forms ≥14/16 colors within 0.5 AND
+  median loc ≤0.5, ≥6/8. P3 naive error ≥1.5× moment-matched; falsifier-NEGATIVE only
+  if P2 fails ≥3/8 (halt) or naive within 1.2× (account wrong).
+- Result: MIXED as the three-way rule counts it. P1: 8/8 at map_accuracy 1.0000.
+  P2: 8/8 — moment-matched 16/16 colors formed every seed, mean map error 0.054–0.066,
+  final-500 median localization 0.039–0.053. P3 between bands: naive ALSO formed 16/16
+  every seed; error ratio cell-mean 1.390 (per-seed 1.08–1.60, naive worse in 8/8) —
+  above the account-wrong line (1.2) but under the predicted 1.5. No falsifier; no
+  halt. Suite 108 green (105 + 3).
+- Mechanism (revised honestly): translation symmetry is broken WITHOUT wall-variance
+  information — the dead-reckoned mean path (anchored by the center prior and clamped
+  within the arena) differentiates per-color observed positions from step one, and the
+  emission↔place positive feedback does the rest; proper wall moment-matching adds a
+  consistent ~1.4× map-precision gain, not existence. The "walls are the only
+  symmetry-breaker" claim from the M2 predeclaration is refuted as stated.
+- Implication: the RECIPE's learn-the-map link holds on the continuous substrate with
+  the motor anchor alone — no provided position posterior (stronger than Exp 135's
+  anchored protocol). M3, the aliasing wall, is next: one Gaussian per color meets a
+  world where colors repeat, the Exp 132 detector should fire its first live positive,
+  and the spawn toolkit gets its trial.
+- Honest caveat: non-aliased and small (4×4, 16/16 identifiable — the EASY map);
+  diagonal-Σ family throughout (declared); the 1.39× wall effect is one geometry and
+  one noise scale; both continuous arms share the diagonal-projection choice so its
+  cost is uncontrolled here; T=3000 single dose (no learning-curve comparison vs the
+  twin was predeclared, so none is claimed).
+- Verdict: MIXED (P3 between bands — the asymmetry real but below prediction) / the
+  P2 bootstrap is the NEW-INSIGHT-grade datum (map learning without a provided
+  anchor on the continuous substrate). Self-grade: n/a (MIXED).
+- Next: rung M3 — the aliasing wall (the centerpiece: detector + spawn toolkit, halt
+  guardrails armed on both failure modes).

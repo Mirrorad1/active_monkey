@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:141, breakthrough:6, positive:85, wall:21, partial:29, from:4.81, to:4.00 };
+window.AM_TALLY = { total:142, breakthrough:6, positive:85, wall:21, partial:30, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1425,7 +1425,17 @@ window.AM_EXPERIMENTS = [
     setup:"The creature's 4x4 grid embedded in the plane, sixteen unambiguous colors, known emission Gaussians and known wall-clamped dynamics; the declared approximation (clamp the belief mean, add small process noise) priced against the exact log-space tabular twin on identical streams, with a deterministic wall-stress arm. New additive module with four durable tests; the tabular creature untouched.",
     result:"8/8 seeds on every conjunct: localization at printed-precision zero, coverage 1.000 both arms, zero arena escapes, NLL gap 0.083-0.091 wander and 0.064 wall-stress, twin MAP-correct 100 percent. Suite 105 green.",
     implication:"The migration's inference floor is sound. Next: learned emission maps in the creature's world, then the centerpiece — the aliasing wall, where the surprise-ceiling detector and the structure-growing toolkit face their first live world.",
-    trace:{ script:"experiments/exp141_m1_perceive.py", output:"experiments/outputs/exp141.txt" } }
+    trace:{ script:"experiments/exp141_m1_perceive.py", output:"experiments/outputs/exp141.txt" } },
+
+  { n:142, kind:"partial", chapter:"frontier",
+    title:"Blind from birth, the map still forms — and the walls confess their real worth.",
+    one:"Migration rung M2: with no provided position anchor — broad prior, motor model only — the continuous creature learns all 16/16 emission Gaussians to within 0.06 cells and localizes to 0.04, in 8/8 seeds. The predeclared wall-information account lands between bands: the naive clamp also bootstraps fully, just 1.390x worse (1.08-1.60, worse in every seed) — walls buy measured precision, not existence. MIXED; the migration advances on P2.",
+    plain:"Can the continuous creature learn what its world looks like starting blind — no map, no position, only its sense of its own movements? Yes: all sixteen colors settle into their right places in every run, and the creature ends up knowing where it is to within a twentieth of a cell. The prediction that got it wrong: walls were claimed to be the only thing breaking the deadlock between map and position. They are not — the predicted path of movement does most of that work — but handling walls properly buys a measured forty percent better map, in every seed.",
+    metric:{ from:1.5, to:1.390, unit:"predicted vs measured wall-information ratio (naive over moment-matched map error)" },
+    setup:"Three agents on identical streams in the 4x4 world: the tabular twin running the creature's own equations, a new moment-matched clamped predict (analytic truncated-Gaussian moments, Monte-Carlo-validated tests), and the naive mean-clamp — all learning sixteen per-color emission Gaussians by moment-matched NIW from a broad center prior, no position given.",
+    result:"Twin sanity 8/8 at accuracy 1.0; moment-matched bootstrap 8/8 (16/16 colors, map error 0.054-0.066, localization 0.039-0.053); naive also 16/16 with error ratio 1.390 — between the account-wrong line (1.2) and the prediction (1.5). No falsifier, no halt. Suite 108 green.",
+    implication:"The RECIPE's learn-the-map link holds on the continuous substrate with the motor anchor alone — stronger than the anchored Exp 135 protocol. Next is the centerpiece: the aliasing wall, where one Gaussian per color meets a world where colors repeat.",
+    trace:{ script:"experiments/exp142_m2_learn_map.py", output:"experiments/outputs/exp142.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

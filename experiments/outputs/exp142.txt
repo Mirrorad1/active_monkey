@@ -1,0 +1,52 @@
+================================================================================
+Exp 142 — continuous-creature rung M2: NIW emission map learning
+================================================================================
+
+Seed  TabMapAcc  MM_Formed  MM_MapErr  MM_LocMed  Na_Formed  Na_MapErr  ErrRatio
+--------------------------------------------------------------------------------
+   0     1.0000         16     0.0570     0.0466         16     0.0717     1.257
+   1     1.0000         16     0.0640     0.0454         16     0.0842     1.316
+   2     1.0000         16     0.0588     0.0435         16     0.0909     1.545
+   3     1.0000         16     0.0610     0.0481         16     0.0975     1.598
+   4     1.0000         16     0.0569     0.0421         16     0.0616     1.083
+   5     1.0000         16     0.0655     0.0533         16     0.0998     1.522
+   6     1.0000         16     0.0541     0.0389         16     0.0757     1.400
+   7     1.0000         16     0.0538     0.0428         16     0.0738     1.371
+
+================================================================================
+TALLIES
+================================================================================
+
+P1 twin sanity:
+  Seeds with tabular map_accuracy >= 14/16: 8/8  (need >= 7/8)  PASS
+    seed=0: map_accuracy=1.0000  (pass)
+    seed=1: map_accuracy=1.0000  (pass)
+    seed=2: map_accuracy=1.0000  (pass)
+    seed=3: map_accuracy=1.0000  (pass)
+    seed=4: map_accuracy=1.0000  (pass)
+    seed=5: map_accuracy=1.0000  (pass)
+    seed=6: map_accuracy=1.0000  (pass)
+    seed=7: map_accuracy=1.0000  (pass)
+
+P2 bootstrap (moment-matched):
+  Seeds with map_formed >= 14 AND final_loc_med <= 0.5: 8/8  (need >= 6/8)  PASS
+    seed=0: map_formed=16/16  final_loc_med=0.0466  (pass)
+    seed=1: map_formed=16/16  final_loc_med=0.0454  (pass)
+    seed=2: map_formed=16/16  final_loc_med=0.0435  (pass)
+    seed=3: map_formed=16/16  final_loc_med=0.0481  (pass)
+    seed=4: map_formed=16/16  final_loc_med=0.0421  (pass)
+    seed=5: map_formed=16/16  final_loc_med=0.0533  (pass)
+    seed=6: map_formed=16/16  final_loc_med=0.0389  (pass)
+    seed=7: map_formed=16/16  final_loc_med=0.0428  (pass)
+
+P3 wall-information asymmetry:
+  Mean map error — moment-matched: 0.0589  naive: 0.0819
+  Ratio naive/mm: 1.390  (need >= 1.5x for PASS; within 1.2x is finding)  FAIL (between 1.2x and 1.5x)
+
+================================================================================
+VERDICT: MIXED
+P1+P2 carry; P3 partial miss: ratio 1.390 (1.2x <= ratio < 1.5x).
+Wall-information asymmetry weaker than predicted.
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp142_rows.json
