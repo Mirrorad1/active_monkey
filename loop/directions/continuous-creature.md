@@ -67,6 +67,11 @@ throughout).**
   live observed surprise drops >= 0.1 nats over 400 probation steps vs its pre-spawn
   window; revert restores the color's snapshot). FAIL = the surprise arm fails again
   (>= 3/8 seeds in >= 2/3 layouts) — HALT with both designs logged.
+  **STATUS: HALTED at Exp 145 (second halt).** The probation test is honest (70-86%
+  sustained benefit among keeps) — the MOVE is wrong: a fitness valley separates 1
+  component from K (single additions help 1/4 and hurt 3/4 of a color's
+  observations; the trap weakens once >=2 components exist). Consult recommends
+  M3d = the SPLIT operator under the validated live-probation test.
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

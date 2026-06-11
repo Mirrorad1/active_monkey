@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:144, breakthrough:6, positive:85, wall:22, partial:31, from:4.81, to:4.00 };
+window.AM_TALLY = { total:145, breakthrough:6, positive:85, wall:23, partial:31, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1455,7 +1455,17 @@ window.AM_EXPERIMENTS = [
     setup:"Three aliased layouts times eight seeds; Exp 143's machinery plus candidate burn-in (ten EM iterations on the color's replay pairs before the strict-decrease vote) and per-color covariance instrumentation. The halt falsifier was predeclared: if the surprise arm fails in most seeds in two of three layouts, the toolkit cannot feed the alarm it answers.",
     result:"Halt arm fired in all three layouts. Diagnosis from the committed tables: worst-color scheduling starves the other colors, and frozen-replay strict-decrease accepts spawns that hurt live inference — the documented active-data bias is load-bearing. Localization stayed perfect (0.04-0.05, 24/24); the structure is reachable (kept components settle on individual cells).",
     implication:"The migration waits for the human's word. The recommended resumption is one bounded increment: per-color alarms, round-robin scheduling, and live-probation acceptance — keep a spawn only if its color's live surprise actually drops. The covariance self-regulation measurement stands on its own as the rung's insight.",
-    trace:{ script:"experiments/exp144_m3b_spawn_burnin.py", output:"experiments/outputs/exp144.txt" } }
+    trace:{ script:"experiments/exp144_m3b_spawn_burnin.py", output:"experiments/outputs/exp144.txt" } },
+
+  { n:145, kind:"wall", chapter:"frontier",
+    title:"The honest judge and the wrong move: growth walks into a valley and turns back.",
+    one:"Migration rung M3c, second HALT — and the mechanism pinned: live-probation acceptance is provably honest (70-86 percent of kept spawns show sustained benefit; the old replay vote disagreed with it 57-69 percent of the time), yet it correctly rejects nearly everything (4-30 kept of ~160 attempts) because every single addition genuinely hurts during its own trial — post-install surprise surges 0.9-1.6 to 1.5-5.0 nats. A fitness valley separates one component from K; greedy addition cannot cross it under any honest short-horizon test.",
+    plain:"The approved fix worked exactly as designed — and that is how we finally saw the real problem. The new acceptance test judges each addition by whether the creature's lived surprise actually drops, and it is provably honest: the few additions it kept genuinely helped. But it rejected almost everything, correctly, because every single addition genuinely hurt during its trial: a new narrow piece steals belief-weight from the broad piece covering all four locations of a color, improving one and worsening three. Between one piece and the right four lies a valley — and one-step growth, judged honestly, walks in and turns back every time. The toolkit's unused operator — split, which divides a piece while keeping its coverage — is the move designed not to have this trap.",
+    metric:{ from:0.9, to:5.0, unit:"pre-spawn vs worst probation surprise, nats — the valley, measured live" },
+    setup:"Exp 144's three worlds and machinery with the two diagnosed flaws fixed: per-color alarms with round-robin growth, and live-probation acceptance with snapshot revert, the replay vote demoted to a printed diagnostic. The halt falsifier was predeclared as the same surprise bar failing again.",
+    result:"Halt arm fired in all three layouts (0/8 on every P1 arm); probation honesty PASSED (75/86/70 percent sustained); localization untouched (24/24 at 0.03-0.05); the 1-to-2-component step is where the trap is worst — the one color that reached multiple components kept growing.",
+    implication:"Two failed designs triangulate one conclusion from opposite sides: a dishonest test, then an honest test rejecting a structurally bad move. The consult recommends M3d — the split operator, which inherits coverage and steps across the valley — under the now-validated probation test; a third failure would make this a documented wall, parked, with the migration continuing at M4.",
+    trace:{ script:"experiments/exp145_m3c_live_probation.py", output:"experiments/outputs/exp145.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

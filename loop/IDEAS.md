@@ -269,6 +269,21 @@ The loop marks items it has consumed by indenting a response under them:
     observed-surprise drops >= 0.1 nats over a 400-step probation vs its pre-spawn
     window; revert restores the color's mixture snapshot). Same guardrail: a second
     failure of the surprise arm HALTS again with both designs logged.
+  → [loop, 2026-06-10] SECOND MIGRATION HALT (Exp 145): the surprise arm failed again,
+    3/3 layouts — but the rung found its mechanism. The live-probation test is HONEST
+    (70-86% of kept spawns show sustained benefit; the demoted replay vote disagreed
+    with it 57-69% of the time — Exp 144's lie confirmed). What fails is the MOVE:
+    post-install surprise SURGES (0.9-1.6 -> 1.5-5.0 nats) because a single new
+    component steals predictive weight from the broad one covering all four cells —
+    helps 1/4, hurts 3/4. A fitness valley separates 1 component from K; greedy
+    addition under ANY honest short-horizon test cannot cross it (the trap weakens
+    once >=2 exist). RECOMMENDED RESUMPTION: M3d = the toolkit's SPLIT operator
+    (divide the broad component along its leading eigendirection, children inherit
+    mass and coverage — steps ACROSS the valley, not into it) under the SAME
+    validated probation test. Alternatives: batch-jump growth (spawn K at once via
+    k-means on replay), skip to M4 (localization intact), stop. FLATTENING NOTE: a
+    third failure would make this a documented wall (greedy online structure growth)
+    — the loop would then recommend parking it and continuing at M4. Awaiting word.
 
 (empty — drop ideas above this line's section freely)
 

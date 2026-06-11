@@ -4192,3 +4192,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (conjugate covariance learning as automatic reliability weighting, quantified).
   Self-grade: n/a. THE MIGRATION THREAD IS HALTED awaiting explicit human word.
 - Next: nothing on this thread until the consult is answered; the loop holds.
+
+## Exp 145 — continuous-creature rung M3c: SECOND MIGRATION HALT — the probation test is honest and the growth move is wrong: a fitness valley separates one component from many, and greedy addition cannot cross it (NEGATIVE/HALT; the valley mechanism pinned; probation honesty validated 70–86%)
+- Plain: The human-approved fix worked exactly as designed — and that is how we finally
+  saw the real problem. The new acceptance test judges each addition by whether the
+  creature's actual lived surprise drops, and that test is provably honest: the few
+  additions it kept genuinely helped, lastingly. But it rejected almost everything,
+  correctly, because every single addition genuinely HURT during its own trial: a new
+  narrow piece steals belief-weight from the broad piece that was covering all four
+  locations of a color, improving one location and worsening three. Between
+  one-piece-per-color and the right four, there is a valley — and one-step-at-a-time
+  growth, judged honestly, walks into it and turns back every time. The toolkit's
+  unused second operator — SPLIT, which divides a piece while keeping its coverage —
+  is the move designed not to have this trap.
+- Setup (predeclared in the script docstring before running): Exp 144's worlds and
+  machinery; growth changed to per-color alarms + round-robin scheduling +
+  live-probation acceptance (provisional install after burn-in; keep iff the color's
+  live observed surprise drops ≥0.1 nats over 400 steps vs its pre-spawn window;
+  revert restores the color's snapshot; the replay vote demoted to a printed
+  diagnostic). Phase 2 T=8000. P1: the M3b bar (drop ≥0.4 nats + detector quiet +
+  components ≥3 for ≥3/4 colors, ≥6/8 seeds/layout, 3 layouts). P2: ≥70% of kept
+  spawns show sustained benefit. P3: localization ≤0.5. HALT = P1's surprise arm
+  fails again ≥3/8 in ≥2/3 layouts.
+- Result: NEGATIVE — THE HALT ARM FIRED AGAIN (3/3 layouts; 0/8 on every P1 arm;
+  drops −0.48…+0.01; detector ringing 82–397 events/final-1000; kept 4/160, 7/160,
+  30/159 per layout). P2 PASS (75% / 86% / 70% sustained benefit — the probation test
+  is honest). P3 PASS (loc 0.03–0.05, 24/24). The demoted replay vote disagreed with
+  the live decision 57–69% of the time (Exp 144's diagnosis confirmed: it lied), and
+  the probation surprise data pins the deeper mechanism: post-install surprise SURGES
+  (pre-spawn 0.9–1.6 → probation 1.5–5.0 nats) — a single added component re-allocates
+  predictive weight away from the broad covering component, helping ~1/4 of that
+  color's observations and hurting ~3/4. Layout 3's one multi-component color (up to
+  5 kept) shows the trap weakens once ≥2 components exist — the valley is at 1→2.
+  Suite 108 green.
+- Insight (the rung's finding, NEW): GREEDY SINGLE-ADDITION GROWTH IS STRUCTURALLY
+  ANTI-PRODUCTIVE between a unimodal model and the multimodal truth: every honest
+  short-horizon acceptance test (replayed OR lived) must reject the intermediate
+  states, because they are genuinely worse. The Exp 132 toolkit's spawn(ADD) operator
+  cannot cross this valley; its SPLIT operator (divide the broad component along its
+  leading eigendirection, children inheriting mass and coverage) is the move designed
+  to step ACROSS rather than INTO the valley — coverage is preserved at every step.
+  Two failed designs now triangulate the same conclusion from different sides
+  (dishonest test + honest move-rejection).
+- RECOMMENDED RESUMPTION (consult posted; the thread waits): M3d = the SPLIT operator
+  under the SAME live-probation acceptance Exp 145 just validated as honest. One
+  increment, both prior designs logged. Alternatives: batch-jump growth (spawn K
+  components at once seeded by k-means on the color's replay pairs — crosses the
+  valley by leaping), skip to M4 with the alarm ringing, or stop. HONESTY NOTE per
+  the card's flattening clause: this is the second consecutive halt on this rung; if
+  M3d also fails, the loop will recommend parking the growth question as a
+  characterized open problem (greedy online structure growth) and continuing the
+  migration at M4 — three mechanistically-distinct failures would make this a
+  documented wall, not a puzzle to keep banging.
+- Honest caveat: the valley account rests on the probation-surge numbers and the 1→2
+  vs ≥2 contrast (consistent but not a controlled sweep); the 0.1-nat keep margin and
+  400-step window are designed constants (a too-strict margin could mimic
+  over-rejection — though the SURGE direction rules out marginal cases); split was
+  not yet tried (that is M3d, not a claim).
+- Verdict: NEGATIVE (the predeclared HALT arm, second design) / NEW INSIGHT (the
+  growth valley; probation honesty). Self-grade: n/a. THE MIGRATION IS HALTED
+  awaiting explicit human word.
+- Next: nothing on this thread until the consult is answered.

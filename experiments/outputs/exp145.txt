@@ -1,0 +1,740 @@
+================================================================================
+Exp 145 — continuous-creature rung M3c: live-probation growth
+================================================================================
+
+
+================================================================================
+LAYOUT 1  (rng(7))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 1, 2, 0]
+    row 1: [2, 3, 0, 1]
+    row 2: [0, 3, 0, 3]
+    row 3: [3, 2, 1, 2]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells and centers:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   SustB%  TwinF500
+----------------------------------------------------------------------------------------------------
+   0   1.2625   1.3226  -0.060      340  [1, 2, 1, 1]     1    19  0.0493     100%    1.0000
+   1   1.2340   1.3181  -0.084      289  [2, 1, 1, 1]     1    19  0.0512       0%    1.0000
+   2   1.2696   1.3383  -0.069      397  [1, 1, 1, 1]     0    20  0.0478      N/A    1.0000
+   3   1.2854   1.3662  -0.081      346  [1, 1, 1, 1]     0    20  0.0530      N/A    1.0000
+   4   1.3267   1.3209   0.006      321  [1, 1, 1, 1]     0    20  0.0546      N/A    1.0000
+   5   1.2073   1.3007  -0.093      348  [2, 1, 1, 1]     1    19  0.0480     100%    1.0000
+   6   1.2196   1.5187  -0.299      171  [2, 1, 1, 1]     1    19  0.0429     100%    1.0000
+   7   1.2663   1.3525  -0.086      170  [1, 1, 1, 1]     0    20  0.0470      N/A    1.0000
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 1):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                     3             1
+    Live=REVERT                 109            47
+    Total decided: 160
+    Agree: 50  Disagree: 110  Agreement rate: 31.2%
+
+  Per-spawn detail (Layout 1):
+    seed=0 spawn#1: color=0  pre=1.5671  prob=2.5229  delta=-0.9557  REVT  RV-K  (nll_old=1.2016 nll_new=1.1866)
+    seed=0 spawn#2: color=1  pre=0.8705  prob=1.8540  delta=-0.9834  REVT  RV-K  (nll_old=1.2415 nll_new=1.1995)
+    seed=0 spawn#3: color=2  pre=0.8296  prob=1.2127  delta=-0.3831  REVT  RV-K  (nll_old=1.2338 nll_new=1.2019)
+    seed=0 spawn#4: color=3  pre=1.5491  prob=2.6944  delta=-1.1453  REVT  RV-R  (nll_old=1.2879 nll_new=1.2987)
+    seed=0 spawn#5: color=0  pre=1.3292  prob=2.3455  delta=-1.0164  REVT  RV-K  (nll_old=1.2956 nll_new=1.2855)
+    seed=0 spawn#6: color=1  pre=0.8900  prob=2.6548  delta=-1.7648  REVT  RV-K  (nll_old=1.2410 nll_new=1.1817)
+    seed=0 spawn#7: color=2  pre=0.7649  prob=1.0339  delta=-0.2690  REVT  RV-K  (nll_old=1.2504 nll_new=1.2004)
+    seed=0 spawn#8: color=3  pre=1.5763  prob=1.6230  delta=-0.0467  REVT  RV-R  (nll_old=1.2346 nll_new=1.2717)
+    seed=0 spawn#9: color=0  pre=1.5952  prob=2.1846  delta=-0.5893  REVT  RV-K  (nll_old=1.2765 nll_new=1.2426)
+    seed=0 spawn#10: color=1  pre=1.0102  prob=2.0453  delta=-1.0351  REVT  RV-K  (nll_old=1.2847 nll_new=1.2154)
+    seed=0 spawn#11: color=2  pre=0.7722  prob=1.2823  delta=-0.5101  REVT  RV-K  (nll_old=1.2823 nll_new=1.2215)
+    seed=0 spawn#12: color=3  pre=1.2598  prob=2.2325  delta=-0.9727  REVT  RV-R  (nll_old=1.2597 nll_new=1.2765)
+    seed=0 spawn#13: color=0  pre=1.4465  prob=1.4181  delta=+0.0284  REVT  RV-R  (nll_old=1.2264 nll_new=1.2330)
+    seed=0 spawn#14: color=1  pre=1.0208  prob=1.0285  delta=-0.0077  REVT  RV-K  (nll_old=1.2838 nll_new=1.2590)
+    seed=0 spawn#15: color=2  pre=0.9947  prob=1.2325  delta=-0.2378  REVT  RV-K  (nll_old=1.1935 nll_new=1.1290)
+    seed=0 spawn#16: color=3  pre=1.2265  prob=3.4178  delta=-2.1913  REVT  RV-R  (nll_old=1.2326 nll_new=1.2404)
+    seed=0 spawn#17: color=0  pre=1.2944  prob=1.5424  delta=-0.2481  REVT  RV-R  (nll_old=1.3110 nll_new=1.3369)
+    seed=0 spawn#18: color=1  pre=1.1835  prob=1.0640  delta=+0.1195  KEPT  RV-K  (nll_old=1.2392 nll_new=1.2232)
+    seed=0 spawn#19: color=2  pre=1.0362  prob=1.2399  delta=-0.2037  REVT  RV-K  (nll_old=1.2069 nll_new=1.1168)
+    seed=0 spawn#20: color=3  pre=1.4951  prob=2.9475  delta=  N/A  REVT  RV-K  (nll_old=1.2607 nll_new=1.2548)
+    seed=1 spawn#1: color=0  pre=1.3645  prob=1.5403  delta=-0.1758  REVT  RV-R  (nll_old=1.2360 nll_new=1.2529)
+    seed=1 spawn#2: color=1  pre=1.1812  prob=1.1332  delta=+0.0480  REVT  RV-K  (nll_old=1.2426 nll_new=1.2346)
+    seed=1 spawn#3: color=2  pre=1.1075  prob=1.1009  delta=+0.0066  REVT  RV-K  (nll_old=1.2453 nll_new=1.2024)
+    seed=1 spawn#4: color=3  pre=1.3034  prob=1.8864  delta=-0.5831  REVT  RV-K  (nll_old=1.2247 nll_new=1.2205)
+    seed=1 spawn#5: color=0  pre=1.3962  prob=2.8326  delta=-1.4364  REVT  RV-K  (nll_old=1.2242 nll_new=1.2079)
+    seed=1 spawn#6: color=1  pre=0.8890  prob=0.9442  delta=-0.0552  REVT  RV-R  (nll_old=1.2287 nll_new=1.2299)
+    seed=1 spawn#7: color=2  pre=1.2570  prob=1.3418  delta=-0.0848  REVT  RV-K  (nll_old=1.2614 nll_new=1.1727)
+    seed=1 spawn#8: color=3  pre=1.3319  prob=2.7248  delta=-1.3929  REVT  RV-R  (nll_old=1.2071 nll_new=1.2491)
+    seed=1 spawn#9: color=0  pre=1.4118  prob=1.5137  delta=-0.1019  REVT  RV-R  (nll_old=1.2346 nll_new=1.2446)
+    seed=1 spawn#10: color=1  pre=0.8954  prob=2.1326  delta=-1.2372  REVT  RV-K  (nll_old=1.2999 nll_new=1.1892)
+    seed=1 spawn#11: color=2  pre=0.8772  prob=1.2160  delta=-0.3388  REVT  RV-K  (nll_old=1.2308 nll_new=1.1917)
+    seed=1 spawn#12: color=3  pre=1.4887  prob=1.6230  delta=-0.1343  REVT  RV-R  (nll_old=1.2737 nll_new=1.3007)
+    seed=1 spawn#13: color=0  pre=1.5838  prob=2.1307  delta=-0.5469  REVT  RV-K  (nll_old=1.2630 nll_new=1.2191)
+    seed=1 spawn#14: color=1  pre=0.8855  prob=2.4278  delta=-1.5423  REVT  RV-K  (nll_old=1.2409 nll_new=1.1828)
+    seed=1 spawn#15: color=2  pre=0.8995  prob=1.0690  delta=-0.1695  REVT  RV-R  (nll_old=1.2621 nll_new=1.2705)
+    seed=1 spawn#16: color=3  pre=1.3331  prob=1.9561  delta=-0.6230  REVT  RV-R  (nll_old=1.2383 nll_new=1.2792)
+    seed=1 spawn#17: color=0  pre=1.4449  prob=1.2484  delta=+0.1965  KEPT  RV-K  (nll_old=1.2925 nll_new=1.2851)
+    seed=1 spawn#18: color=1  pre=1.1060  prob=1.4845  delta=-0.3785  REVT  RV-K  (nll_old=1.2401 nll_new=1.2302)
+    seed=1 spawn#19: color=2  pre=1.0321  prob=1.1890  delta=-0.1569  REVT  RV-K  (nll_old=1.2774 nll_new=1.2096)
+    seed=1 spawn#20: color=3  pre=1.4842  prob=1.7980  delta=  N/A  REVT  RV-R  (nll_old=1.2479 nll_new=1.2901)
+    seed=2 spawn#1: color=0  pre=1.4599  prob=2.3802  delta=-0.9203  REVT  RV-R  (nll_old=1.2808 nll_new=1.2955)
+    seed=2 spawn#2: color=1  pre=0.7677  prob=1.1498  delta=-0.3820  REVT  RV-K  (nll_old=1.2502 nll_new=1.2182)
+    seed=2 spawn#3: color=2  pre=1.0252  prob=1.2495  delta=-0.2243  REVT  RV-K  (nll_old=1.2726 nll_new=1.1683)
+    seed=2 spawn#4: color=3  pre=1.3349  prob=1.6412  delta=-0.3062  REVT  RV-R  (nll_old=1.2342 nll_new=1.2988)
+    seed=2 spawn#5: color=0  pre=1.4766  prob=1.4040  delta=+0.0727  REVT  RV-R  (nll_old=1.2759 nll_new=1.2815)
+    seed=2 spawn#6: color=1  pre=1.1114  prob=1.2273  delta=-0.1158  REVT  RV-K  (nll_old=1.2520 nll_new=1.2413)
+    seed=2 spawn#7: color=2  pre=0.9748  prob=1.2631  delta=-0.2883  REVT  RV-K  (nll_old=1.2548 nll_new=1.2189)
+    seed=2 spawn#8: color=3  pre=1.2087  prob=1.9446  delta=-0.7359  REVT  RV-R  (nll_old=1.2478 nll_new=1.2654)
+    seed=2 spawn#9: color=0  pre=1.4685  prob=3.2299  delta=-1.7613  REVT  RV-K  (nll_old=1.2062 nll_new=1.1519)
+    seed=2 spawn#10: color=1  pre=0.9355  prob=2.1627  delta=-1.2272  REVT  RV-K  (nll_old=1.2608 nll_new=1.1917)
+    seed=2 spawn#11: color=2  pre=0.8711  prob=1.2631  delta=-0.3920  REVT  RV-K  (nll_old=1.2451 nll_new=1.2120)
+    seed=2 spawn#12: color=3  pre=1.4052  prob=1.9881  delta=-0.5829  REVT  RV-K  (nll_old=1.2323 nll_new=1.2171)
+    seed=2 spawn#13: color=0  pre=1.3768  prob=1.8898  delta=-0.5129  REVT  RV-K  (nll_old=1.2564 nll_new=1.2481)
+    seed=2 spawn#14: color=1  pre=0.8557  prob=3.0938  delta=-2.2380  REVT  RV-K  (nll_old=1.2364 nll_new=1.1654)
+    seed=2 spawn#15: color=2  pre=0.7666  prob=0.9420  delta=-0.1754  REVT  RV-K  (nll_old=1.2687 nll_new=1.2115)
+    seed=2 spawn#16: color=3  pre=1.4123  prob=1.5971  delta=-0.1849  REVT  RV-R  (nll_old=1.2677 nll_new=1.3164)
+    seed=2 spawn#17: color=0  pre=1.5465  prob=2.8942  delta=-1.3476  REVT  RV-K  (nll_old=1.2254 nll_new=1.1819)
+    seed=2 spawn#18: color=1  pre=0.9005  prob=2.2274  delta=-1.3270  REVT  RV-K  (nll_old=1.2813 nll_new=1.2065)
+    seed=2 spawn#19: color=2  pre=0.8171  prob=1.1585  delta=-0.3414  REVT  RV-K  (nll_old=1.2597 nll_new=1.2461)
+    seed=2 spawn#20: color=3  pre=1.4556  prob=1.9297  delta=  N/A  REVT  RV-K  (nll_old=1.2729 nll_new=1.2704)
+    seed=3 spawn#1: color=0  pre=1.4571  prob=2.5165  delta=-1.0594  REVT  RV-K  (nll_old=1.1998 nll_new=1.1650)
+    seed=3 spawn#2: color=1  pre=0.8154  prob=1.4290  delta=-0.6136  REVT  RV-K  (nll_old=1.2677 nll_new=1.2413)
+    seed=3 spawn#3: color=2  pre=0.9021  prob=1.0497  delta=-0.1476  REVT  RV-K  (nll_old=1.2556 nll_new=1.2075)
+    seed=3 spawn#4: color=3  pre=1.4893  prob=1.6189  delta=-0.1296  REVT  RV-R  (nll_old=1.2263 nll_new=1.2380)
+    seed=3 spawn#5: color=0  pre=1.4648  prob=2.1477  delta=-0.6829  REVT  RV-K  (nll_old=1.2705 nll_new=1.2519)
+    seed=3 spawn#6: color=1  pre=0.9680  prob=1.1387  delta=-0.1707  REVT  RV-K  (nll_old=1.3006 nll_new=1.2425)
+    seed=3 spawn#7: color=2  pre=1.0233  prob=0.9894  delta=+0.0339  REVT  RV-K  (nll_old=1.2438 nll_new=1.2072)
+    seed=3 spawn#8: color=3  pre=1.3831  prob=2.0791  delta=-0.6960  REVT  RV-R  (nll_old=1.2812 nll_new=1.3113)
+    seed=3 spawn#9: color=0  pre=1.5046  prob=2.6629  delta=-1.1583  REVT  RV-K  (nll_old=1.2633 nll_new=1.2135)
+    seed=3 spawn#10: color=1  pre=0.8394  prob=3.1028  delta=-2.2634  REVT  RV-K  (nll_old=1.1949 nll_new=1.1314)
+    seed=3 spawn#11: color=3  pre=1.3309  prob=2.8892  delta=-1.5583  REVT  RV-K  (nll_old=1.2704 nll_new=1.2546)
+    seed=3 spawn#12: color=2  pre=0.9151  prob=1.4372  delta=-0.5221  REVT  RV-K  (nll_old=1.2637 nll_new=1.2268)
+    seed=3 spawn#13: color=0  pre=1.4557  prob=2.7158  delta=-1.2600  REVT  RV-K  (nll_old=1.2265 nll_new=1.1847)
+    seed=3 spawn#14: color=1  pre=0.9123  prob=1.7389  delta=-0.8267  REVT  RV-K  (nll_old=1.2191 nll_new=1.1219)
+    seed=3 spawn#15: color=3  pre=1.5073  prob=1.6920  delta=-0.1847  REVT  RV-R  (nll_old=1.2102 nll_new=1.2742)
+    seed=3 spawn#16: color=2  pre=1.1063  prob=1.2713  delta=-0.1650  REVT  RV-K  (nll_old=1.2678 nll_new=1.1902)
+    seed=3 spawn#17: color=0  pre=1.3641  prob=1.5433  delta=-0.1792  REVT  RV-R  (nll_old=1.2734 nll_new=1.2949)
+    seed=3 spawn#18: color=1  pre=1.2168  prob=1.2237  delta=-0.0069  REVT  RV-K  (nll_old=1.2462 nll_new=1.2260)
+    seed=3 spawn#19: color=3  pre=1.5153  prob=1.5573  delta=-0.0421  REVT  RV-K  (nll_old=1.2873 nll_new=1.2865)
+    seed=3 spawn#20: color=2  pre=0.9897  prob=3.5640  delta=  N/A  REVT  RV-K  (nll_old=1.2205 nll_new=1.1467)
+    seed=4 spawn#1: color=0  pre=1.5408  prob=2.5720  delta=-1.0313  REVT  RV-K  (nll_old=1.2642 nll_new=1.2484)
+    seed=4 spawn#2: color=1  pre=0.8109  prob=1.9310  delta=-1.1201  REVT  RV-K  (nll_old=1.2834 nll_new=1.2366)
+    seed=4 spawn#3: color=2  pre=0.8124  prob=2.4630  delta=-1.6505  REVT  RV-K  (nll_old=1.2594 nll_new=1.1655)
+    seed=4 spawn#4: color=3  pre=1.2577  prob=1.8846  delta=-0.6269  REVT  RV-R  (nll_old=1.2496 nll_new=1.2942)
+    seed=4 spawn#5: color=0  pre=1.4681  prob=2.2787  delta=-0.8106  REVT  RV-R  (nll_old=1.2526 nll_new=1.2545)
+    seed=4 spawn#6: color=1  pre=1.0389  prob=2.5844  delta=-1.5455  REVT  RV-K  (nll_old=1.2698 nll_new=1.1934)
+    seed=4 spawn#7: color=2  pre=0.6953  prob=1.5731  delta=-0.8778  REVT  RV-R  (nll_old=1.2358 nll_new=1.2393)
+    seed=4 spawn#8: color=3  pre=1.3861  prob=1.6205  delta=-0.2343  REVT  RV-R  (nll_old=1.2727 nll_new=1.3145)
+    seed=4 spawn#9: color=0  pre=1.5273  prob=2.5322  delta=-1.0049  REVT  RV-K  (nll_old=1.2527 nll_new=1.2120)
+    seed=4 spawn#10: color=1  pre=0.8788  prob=2.2480  delta=-1.3692  REVT  RV-K  (nll_old=1.2562 nll_new=1.1880)
+    seed=4 spawn#11: color=2  pre=0.8772  prob=1.2004  delta=-0.3233  REVT  RV-K  (nll_old=1.3042 nll_new=1.2445)
+    seed=4 spawn#12: color=3  pre=1.2861  prob=1.7771  delta=-0.4910  REVT  RV-R  (nll_old=1.2605 nll_new=1.3134)
+    seed=4 spawn#13: color=0  pre=1.5095  prob=1.4549  delta=+0.0545  REVT  RV-R  (nll_old=1.2617 nll_new=1.2700)
+    seed=4 spawn#14: color=1  pre=1.0029  prob=1.1614  delta=-0.1585  REVT  RV-K  (nll_old=1.2698 nll_new=1.2330)
+    seed=4 spawn#15: color=2  pre=0.9774  prob=1.1905  delta=-0.2131  REVT  RV-K  (nll_old=1.2860 nll_new=1.2335)
+    seed=4 spawn#16: color=3  pre=1.3093  prob=1.8150  delta=-0.5058  REVT  RV-R  (nll_old=1.2617 nll_new=1.2666)
+    seed=4 spawn#17: color=0  pre=1.4560  prob=2.0751  delta=-0.6190  REVT  RV-R  (nll_old=1.2651 nll_new=1.2700)
+    seed=4 spawn#18: color=1  pre=0.8058  prob=1.4909  delta=-0.6851  REVT  RV-K  (nll_old=1.2419 nll_new=1.1744)
+    seed=4 spawn#19: color=2  pre=1.0529  prob=1.0663  delta=-0.0133  REVT  RV-K  (nll_old=1.2837 nll_new=1.2306)
+    seed=4 spawn#20: color=3  pre=1.5460  prob=2.3292  delta=  N/A  REVT  RV-R  (nll_old=1.2852 nll_new=1.2988)
+    seed=5 spawn#1: color=0  pre=1.6312  prob=1.6229  delta=+0.0083  REVT  RV-R  (nll_old=1.1990 nll_new=1.2218)
+    seed=5 spawn#2: color=1  pre=1.0408  prob=1.5006  delta=-0.4599  REVT  RV-K  (nll_old=1.2333 nll_new=1.1866)
+    seed=5 spawn#3: color=2  pre=0.8936  prob=1.1308  delta=-0.2372  REVT  RV-K  (nll_old=1.1841 nll_new=1.1308)
+    seed=5 spawn#4: color=3  pre=1.4254  prob=2.2623  delta=-0.8369  REVT  RV-R  (nll_old=1.2150 nll_new=1.2290)
+    seed=5 spawn#5: color=0  pre=1.4633  prob=1.2272  delta=+0.2360  KEPT  RV-K  (nll_old=1.2609 nll_new=1.2551)
+    seed=5 spawn#6: color=1  pre=1.0458  prob=2.2833  delta=-1.2375  REVT  RV-K  (nll_old=1.2021 nll_new=1.1807)
+    seed=5 spawn#7: color=2  pre=0.8115  prob=1.2510  delta=-0.4395  REVT  RV-K  (nll_old=1.2176 nll_new=1.1854)
+    seed=5 spawn#8: color=3  pre=1.4528  prob=1.9063  delta=-0.4535  REVT  RV-K  (nll_old=1.2835 nll_new=1.2768)
+    seed=5 spawn#9: color=0  pre=1.3648  prob=5.1685  delta=-3.8036  REVT  RV-R  (nll_old=1.2826 nll_new=1.3064)
+    seed=5 spawn#10: color=1  pre=0.9219  prob=1.6297  delta=-0.7078  REVT  RV-K  (nll_old=1.2595 nll_new=1.1681)
+    seed=5 spawn#11: color=2  pre=0.8988  prob=1.3508  delta=-0.4520  REVT  RV-K  (nll_old=1.2189 nll_new=1.1925)
+    seed=5 spawn#12: color=3  pre=1.3920  prob=2.8479  delta=-1.4559  REVT  RV-K  (nll_old=1.2330 nll_new=1.2218)
+    seed=5 spawn#13: color=0  pre=1.2507  prob=1.3347  delta=-0.0841  REVT  RV-R  (nll_old=1.2991 nll_new=1.3251)
+    seed=5 spawn#14: color=1  pre=1.1788  prob=1.7071  delta=-0.5283  REVT  RV-K  (nll_old=1.2356 nll_new=1.1418)
+    seed=5 spawn#15: color=2  pre=0.8002  prob=1.2193  delta=-0.4192  REVT  RV-K  (nll_old=1.1552 nll_new=1.1208)
+    seed=5 spawn#16: color=3  pre=1.4392  prob=1.8181  delta=-0.3790  REVT  RV-K  (nll_old=1.2407 nll_new=1.2382)
+    seed=5 spawn#17: color=0  pre=1.4432  prob=2.8847  delta=-1.4415  REVT  RV-R  (nll_old=1.2017 nll_new=1.2067)
+    seed=5 spawn#18: color=1  pre=0.8478  prob=1.9754  delta=-1.1276  REVT  RV-K  (nll_old=1.2610 nll_new=1.2087)
+    seed=5 spawn#19: color=2  pre=0.9462  prob=1.2425  delta=-0.2963  REVT  RV-K  (nll_old=1.2194 nll_new=1.2081)
+    seed=5 spawn#20: color=3  pre=1.4452  prob=1.9858  delta=  N/A  REVT  RV-R  (nll_old=1.2594 nll_new=1.2790)
+    seed=6 spawn#1: color=0  pre=1.5556  prob=2.4791  delta=-0.9235  REVT  RV-K  (nll_old=1.2124 nll_new=1.1919)
+    seed=6 spawn#2: color=1  pre=0.6726  prob=1.3763  delta=-0.7037  REVT  RV-K  (nll_old=1.2093 nll_new=1.2029)
+    seed=6 spawn#3: color=2  pre=1.0573  prob=1.2188  delta=-0.1615  REVT  RV-K  (nll_old=1.3225 nll_new=1.2849)
+    seed=6 spawn#4: color=3  pre=1.5148  prob=2.2275  delta=-0.7127  REVT  RV-R  (nll_old=1.2946 nll_new=1.2957)
+    seed=6 spawn#5: color=0  pre=1.3099  prob=2.0868  delta=-0.7769  REVT  RV-K  (nll_old=1.2436 nll_new=1.2300)
+    seed=6 spawn#6: color=1  pre=0.8349  prob=1.3419  delta=-0.5070  REVT  RV-K  (nll_old=1.2489 nll_new=1.2188)
+    seed=6 spawn#7: color=2  pre=0.9131  prob=1.4188  delta=-0.5057  REVT  RV-K  (nll_old=1.2408 nll_new=1.2252)
+    seed=6 spawn#8: color=3  pre=1.3477  prob=1.8340  delta=-0.4863  REVT  RV-R  (nll_old=1.2468 nll_new=1.2977)
+    seed=6 spawn#9: color=0  pre=1.4858  prob=2.0675  delta=-0.5817  REVT  RV-K  (nll_old=1.2654 nll_new=1.2013)
+    seed=6 spawn#10: color=2  pre=0.9490  prob=1.3572  delta=-0.4082  REVT  RV-K  (nll_old=1.1978 nll_new=1.1896)
+    seed=6 spawn#11: color=1  pre=0.8967  prob=1.3199  delta=-0.4232  REVT  RV-K  (nll_old=1.2500 nll_new=1.1332)
+    seed=6 spawn#12: color=3  pre=1.5099  prob=1.7421  delta=-0.2321  REVT  RV-R  (nll_old=1.2034 nll_new=1.2309)
+    seed=6 spawn#13: color=0  pre=1.4867  prob=1.2946  delta=+0.1920  KEPT  RV-R  (nll_old=1.2754 nll_new=1.2781)
+    seed=6 spawn#14: color=2  pre=1.0318  prob=1.1850  delta=-0.1532  REVT  RV-K  (nll_old=1.2413 nll_new=1.2213)
+    seed=6 spawn#15: color=1  pre=1.0920  prob=1.4835  delta=-0.3916  REVT  RV-K  (nll_old=1.2600 nll_new=1.1556)
+    seed=6 spawn#16: color=3  pre=1.4730  prob=1.5907  delta=-0.1177  REVT  RV-R  (nll_old=1.2150 nll_new=1.2321)
+    seed=6 spawn#17: color=0  pre=1.4548  prob=1.7979  delta=-0.3431  REVT  RV-R  (nll_old=1.2903 nll_new=1.3083)
+    seed=6 spawn#18: color=2  pre=0.9437  prob=3.2153  delta=-2.2716  REVT  RV-K  (nll_old=1.2535 nll_new=1.1729)
+    seed=6 spawn#19: color=1  pre=1.0260  prob=2.3846  delta=-1.3586  REVT  RV-K  (nll_old=1.3154 nll_new=1.1759)
+    seed=6 spawn#20: color=3  pre=1.1885  prob=1.7482  delta=  N/A  REVT  RV-K  (nll_old=1.2524 nll_new=1.2412)
+    seed=7 spawn#1: color=0  pre=1.5355  prob=2.9015  delta=-1.3660  REVT  RV-K  (nll_old=1.2115 nll_new=1.1499)
+    seed=7 spawn#2: color=1  pre=1.0688  prob=2.1426  delta=-1.0738  REVT  RV-K  (nll_old=1.2613 nll_new=1.1907)
+    seed=7 spawn#3: color=2  pre=0.7372  prob=1.1405  delta=-0.4033  REVT  RV-K  (nll_old=1.3052 nll_new=1.1975)
+    seed=7 spawn#4: color=3  pre=1.3442  prob=1.8021  delta=-0.4579  REVT  RV-K  (nll_old=1.2541 nll_new=1.2310)
+    seed=7 spawn#5: color=0  pre=1.4696  prob=2.4236  delta=-0.9540  REVT  RV-K  (nll_old=1.1754 nll_new=1.1146)
+    seed=7 spawn#6: color=1  pre=1.1045  prob=2.6679  delta=-1.5634  REVT  RV-K  (nll_old=1.3133 nll_new=1.2424)
+    seed=7 spawn#7: color=2  pre=0.7393  prob=1.1684  delta=-0.4290  REVT  RV-K  (nll_old=1.1518 nll_new=1.0887)
+    seed=7 spawn#8: color=3  pre=1.3919  prob=1.8307  delta=-0.4388  REVT  RV-K  (nll_old=1.2185 nll_new=1.2000)
+    seed=7 spawn#9: color=0  pre=1.4413  prob=1.4681  delta=-0.0268  REVT  RV-K  (nll_old=1.2798 nll_new=1.2773)
+    seed=7 spawn#10: color=1  pre=1.0120  prob=1.7926  delta=-0.7806  REVT  RV-K  (nll_old=1.2014 nll_new=1.1174)
+    seed=7 spawn#11: color=2  pre=0.9096  prob=3.1853  delta=-2.2757  REVT  RV-K  (nll_old=1.2370 nll_new=1.1853)
+    seed=7 spawn#12: color=3  pre=1.0818  prob=2.0437  delta=-0.9619  REVT  RV-R  (nll_old=1.2849 nll_new=1.3281)
+    seed=7 spawn#13: color=0  pre=1.3668  prob=2.6070  delta=-1.2402  REVT  RV-R  (nll_old=1.2366 nll_new=1.2782)
+    seed=7 spawn#14: color=1  pre=0.9451  prob=2.4061  delta=-1.4609  REVT  RV-K  (nll_old=1.2395 nll_new=1.1669)
+    seed=7 spawn#15: color=2  pre=0.7538  prob=1.1654  delta=-0.4116  REVT  RV-K  (nll_old=1.2444 nll_new=1.1824)
+    seed=7 spawn#16: color=3  pre=1.3419  prob=1.8036  delta=-0.4618  REVT  RV-R  (nll_old=1.2106 nll_new=1.2479)
+    seed=7 spawn#17: color=0  pre=1.4609  prob=2.3641  delta=-0.9032  REVT  RV-K  (nll_old=1.2595 nll_new=1.2453)
+    seed=7 spawn#18: color=1  pre=0.7566  prob=1.9843  delta=-1.2277  REVT  RV-K  (nll_old=1.2530 nll_new=1.2019)
+    seed=7 spawn#19: color=2  pre=0.8826  prob=0.9335  delta=-0.0509  REVT  RV-K  (nll_old=1.2360 nll_new=1.2310)
+    seed=7 spawn#20: color=3  pre=1.4316  prob=2.0799  delta=  N/A  REVT  RV-R  (nll_old=1.2872 nll_new=1.3517)
+
+  TALLIES — Layout 1
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 1: FAIL
+    seed=0: plateau=1.2625  final=1.3226  drop=-0.060  finCeil=340  comps=[1, 2, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=1.2340  final=1.3181  drop=-0.084  finCeil=289  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.2696  final=1.3383  drop=-0.069  finCeil=397  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.2854  final=1.3662  drop=-0.081  finCeil=346  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.3267  final=1.3209  drop=0.006  finCeil=321  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.2073  final=1.3007  drop=-0.093  finCeil=348  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=1.2196  final=1.5187  drop=-0.299  finCeil=171  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.2663  final=1.3525  drop=-0.086  finCeil=170  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 probation honesty (>= 70% kept show sustained benefit):
+    Kept spawns: 4  Sustained: 3  Fraction: 75.0%  
+    P2 layout 1: PASS
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0493  pass
+    seed=1: loc_med=0.0512  pass
+    seed=2: loc_med=0.0478  pass
+    seed=3: loc_med=0.0530  pass
+    seed=4: loc_med=0.0546  pass
+    seed=5: loc_med=0.0480  pass
+    seed=6: loc_med=0.0429  pass
+    seed=7: loc_med=0.0470  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 2  (rng(11))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [3, 1, 0, 2]
+    row 1: [2, 1, 1, 3]
+    row 2: [0, 1, 3, 2]
+    row 3: [0, 0, 3, 2]
+  CMAP array: [3, 1, 0, 2, 2, 1, 1, 3, 0, 1, 3, 2, 0, 0, 3, 2]
+
+  Color -> cells and centers:
+    color 0: cells [2, 8, 12, 13]  centers [[2.0, 0.0], [0.0, 2.0], [0.0, 3.0], [1.0, 3.0]]
+    color 1: cells [1, 5, 6, 9]  centers [[1.0, 0.0], [1.0, 1.0], [2.0, 1.0], [1.0, 2.0]]
+    color 2: cells [3, 4, 11, 15]  centers [[3.0, 0.0], [0.0, 1.0], [3.0, 2.0], [3.0, 3.0]]
+    color 3: cells [0, 7, 10, 14]  centers [[0.0, 0.0], [3.0, 1.0], [2.0, 2.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   SustB%  TwinF500
+----------------------------------------------------------------------------------------------------
+   0   1.1522   1.2003  -0.048      155  [1, 1, 1, 1]     0    20  0.0484      N/A    1.0000
+   1   0.9112   1.3778  -0.467       59  [3, 1, 1, 1]     2    18  0.0439     100%    1.0000
+   2   1.0443   1.3027  -0.258      238  [2, 1, 1, 1]     1    19  0.0483     100%    1.0000
+   3   1.1428   1.6254  -0.483      137  [2, 1, 1, 1]     1    19  0.0457     100%    1.0000
+   4   1.0438   1.3282  -0.284      175  [2, 1, 2, 1]     2    18  0.0463      50%    1.0000
+   5   1.1306   1.5271  -0.396      103  [2, 1, 1, 1]     1    19  0.0430     100%    1.0000
+   6   0.9249   1.1477  -0.223      276  [1, 1, 1, 1]     0    20  0.0457      N/A    1.0000
+   7   1.0870   1.2611  -0.174      175  [1, 1, 1, 1]     0    20  0.0482      N/A    1.0000
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 2):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                     5             2
+    Live=REVERT                  89            64
+    Total decided: 160
+    Agree: 69  Disagree: 91  Agreement rate: 43.1%
+
+  Per-spawn detail (Layout 2):
+    seed=0 spawn#1: color=0  pre=1.2635  prob=1.2154  delta=+0.0482  REVT  RV-K  (nll_old=1.1589 nll_new=1.1157)
+    seed=0 spawn#2: color=1  pre=1.8318  prob=2.0414  delta=-0.2096  REVT  RV-R  (nll_old=1.1940 nll_new=1.2811)
+    seed=0 spawn#3: color=2  pre=0.7470  prob=2.3162  delta=-1.5692  REVT  RV-K  (nll_old=1.1664 nll_new=0.9535)
+    seed=0 spawn#4: color=0  pre=0.6727  prob=2.2517  delta=-1.5790  REVT  RV-K  (nll_old=1.1478 nll_new=1.0437)
+    seed=0 spawn#5: color=3  pre=0.8137  prob=2.0572  delta=-1.2435  REVT  RV-K  (nll_old=1.1258 nll_new=1.0049)
+    seed=0 spawn#6: color=1  pre=1.5010  prob=2.0238  delta=-0.5228  REVT  RV-R  (nll_old=1.1928 nll_new=1.2774)
+    seed=0 spawn#7: color=2  pre=0.7836  prob=0.7476  delta=+0.0360  REVT  RV-K  (nll_old=1.2159 nll_new=1.1380)
+    seed=0 spawn#8: color=0  pre=1.3270  prob=1.3414  delta=-0.0144  REVT  RV-K  (nll_old=1.1525 nll_new=1.0226)
+    seed=0 spawn#9: color=3  pre=0.8430  prob=1.1615  delta=-0.3185  REVT  RV-K  (nll_old=1.1190 nll_new=1.0687)
+    seed=0 spawn#10: color=1  pre=1.7880  prob=2.1523  delta=-0.3643  REVT  RV-R  (nll_old=1.1418 nll_new=1.2203)
+    seed=0 spawn#11: color=2  pre=0.7656  prob=1.4824  delta=-0.7168  REVT  RV-K  (nll_old=1.0988 nll_new=0.9273)
+    seed=0 spawn#12: color=0  pre=0.7154  prob=0.9141  delta=-0.1987  REVT  RV-R  (nll_old=1.1423 nll_new=1.1425)
+    seed=0 spawn#13: color=3  pre=0.9024  prob=3.8649  delta=-2.9625  REVT  RV-K  (nll_old=1.1361 nll_new=0.9411)
+    seed=0 spawn#14: color=1  pre=1.4258  prob=1.7148  delta=-0.2890  REVT  RV-R  (nll_old=1.1471 nll_new=1.1575)
+    seed=0 spawn#15: color=0  pre=1.0285  prob=2.4001  delta=-1.3716  REVT  RV-K  (nll_old=1.1347 nll_new=1.0367)
+    seed=0 spawn#16: color=3  pre=0.8152  prob=1.8004  delta=-0.9852  REVT  RV-K  (nll_old=1.0759 nll_new=1.0305)
+    seed=0 spawn#17: color=1  pre=1.8016  prob=2.5398  delta=-0.7382  REVT  RV-R  (nll_old=1.1093 nll_new=1.1609)
+    seed=0 spawn#18: color=2  pre=0.8345  prob=3.0570  delta=-2.2225  REVT  RV-K  (nll_old=1.0882 nll_new=0.9078)
+    seed=0 spawn#19: color=1  pre=1.6597  prob=1.6894  delta=-0.0298  REVT  RV-R  (nll_old=1.0849 nll_new=1.0960)
+    seed=0 spawn#20: color=0  pre=0.8903  prob=0.8942  delta=  N/A  REVT  RV-R  (nll_old=1.1520 nll_new=1.1559)
+    seed=1 spawn#1: color=0  pre=1.2086  prob=0.4483  delta=+0.7603  KEPT  RV-K  (nll_old=0.9593 nll_new=0.9156)
+    seed=1 spawn#2: color=1  pre=1.4950  prob=2.4470  delta=-0.9520  REVT  RV-R  (nll_old=1.1678 nll_new=1.2106)
+    seed=1 spawn#3: color=2  pre=0.8463  prob=1.5037  delta=-0.6574  REVT  RV-K  (nll_old=1.1845 nll_new=1.0297)
+    seed=1 spawn#4: color=3  pre=1.0704  prob=1.1815  delta=-0.1110  REVT  RV-K  (nll_old=0.9640 nll_new=0.9107)
+    seed=1 spawn#5: color=0  pre=0.8400  prob=0.6710  delta=+0.1690  KEPT  RV-K  (nll_old=1.0988 nll_new=1.0944)
+    seed=1 spawn#6: color=1  pre=1.6254  prob=2.3841  delta=-0.7588  REVT  RV-R  (nll_old=1.0812 nll_new=1.1261)
+    seed=1 spawn#7: color=2  pre=0.9390  prob=1.2941  delta=-0.3551  REVT  RV-K  (nll_old=1.2618 nll_new=1.0452)
+    seed=1 spawn#8: color=3  pre=0.9783  prob=1.2456  delta=-0.2673  REVT  RV-K  (nll_old=1.0382 nll_new=0.9943)
+    seed=1 spawn#9: color=0  pre=0.5731  prob=2.5018  delta=-1.9287  REVT  RV-K  (nll_old=0.9918 nll_new=0.8844)
+    seed=1 spawn#10: color=1  pre=1.3627  prob=1.8134  delta=-0.4507  REVT  RV-R  (nll_old=1.1117 nll_new=1.2159)
+    seed=1 spawn#11: color=2  pre=0.7221  prob=1.7518  delta=-1.0296  REVT  RV-K  (nll_old=1.0560 nll_new=0.8951)
+    seed=1 spawn#12: color=1  pre=1.3847  prob=1.9854  delta=-0.6007  REVT  RV-R  (nll_old=1.1622 nll_new=1.2809)
+    seed=1 spawn#13: color=3  pre=1.0749  prob=1.1336  delta=-0.0587  REVT  RV-K  (nll_old=1.1024 nll_new=1.1009)
+    seed=1 spawn#14: color=0  pre=0.9751  prob=2.9729  delta=-1.9979  REVT  RV-K  (nll_old=1.0835 nll_new=0.9697)
+    seed=1 spawn#15: color=1  pre=1.4463  prob=1.9818  delta=-0.5355  REVT  RV-R  (nll_old=1.1559 nll_new=1.2361)
+    seed=1 spawn#16: color=2  pre=0.6721  prob=0.8942  delta=-0.2220  REVT  RV-K  (nll_old=1.0308 nll_new=0.9636)
+    seed=1 spawn#17: color=3  pre=1.0477  prob=2.1953  delta=-1.1476  REVT  RV-K  (nll_old=1.1662 nll_new=1.0220)
+    seed=1 spawn#18: color=0  pre=0.7811  prob=3.1267  delta=-2.3456  REVT  RV-K  (nll_old=1.1554 nll_new=1.0446)
+    seed=1 spawn#19: color=1  pre=1.4030  prob=2.7564  delta=-1.3534  REVT  RV-R  (nll_old=1.0365 nll_new=1.0990)
+    seed=1 spawn#20: color=2  pre=0.7676  prob=2.9921  delta=  N/A  REVT  RV-K  (nll_old=1.1368 nll_new=0.9490)
+    seed=2 spawn#1: color=0  pre=1.5100  prob=1.5390  delta=-0.0291  REVT  RV-K  (nll_old=1.0590 nll_new=0.9570)
+    seed=2 spawn#2: color=1  pre=1.4513  prob=3.5134  delta=-2.0621  REVT  RV-R  (nll_old=1.1433 nll_new=1.2225)
+    seed=2 spawn#3: color=3  pre=0.9503  prob=1.4541  delta=-0.5038  REVT  RV-R  (nll_old=1.0849 nll_new=1.0949)
+    seed=2 spawn#4: color=1  pre=1.6227  prob=2.7178  delta=-1.0950  REVT  RV-R  (nll_old=1.1372 nll_new=1.1898)
+    seed=2 spawn#5: color=3  pre=0.9380  prob=1.8244  delta=-0.8865  REVT  RV-K  (nll_old=0.9583 nll_new=0.9118)
+    seed=2 spawn#6: color=0  pre=0.8370  prob=1.9734  delta=-1.1364  REVT  RV-K  (nll_old=1.1735 nll_new=0.9982)
+    seed=2 spawn#7: color=1  pre=1.3875  prob=2.7308  delta=-1.3432  REVT  RV-R  (nll_old=1.1023 nll_new=1.1683)
+    seed=2 spawn#8: color=2  pre=0.6895  prob=0.8435  delta=-0.1540  REVT  RV-K  (nll_old=1.1050 nll_new=1.0286)
+    seed=2 spawn#9: color=3  pre=1.0779  prob=1.8310  delta=-0.7531  REVT  RV-K  (nll_old=1.1349 nll_new=0.9856)
+    seed=2 spawn#10: color=0  pre=0.6359  prob=1.0710  delta=-0.4350  REVT  RV-R  (nll_old=1.0083 nll_new=1.0250)
+    seed=2 spawn#11: color=1  pre=1.6965  prob=2.9054  delta=-1.2089  REVT  RV-R  (nll_old=1.1356 nll_new=1.2163)
+    seed=2 spawn#12: color=3  pre=1.0476  prob=1.1301  delta=-0.0825  REVT  RV-K  (nll_old=1.0903 nll_new=1.0672)
+    seed=2 spawn#13: color=2  pre=0.6867  prob=0.8733  delta=-0.1865  REVT  RV-K  (nll_old=1.1811 nll_new=1.0944)
+    seed=2 spawn#14: color=0  pre=0.8876  prob=0.7411  delta=+0.1465  KEPT  RV-R  (nll_old=1.1431 nll_new=1.1460)
+    seed=2 spawn#15: color=1  pre=1.7679  prob=1.9067  delta=-0.1388  REVT  RV-R  (nll_old=0.9775 nll_new=1.0551)
+    seed=2 spawn#16: color=3  pre=1.0246  prob=2.0510  delta=-1.0264  REVT  RV-K  (nll_old=1.0743 nll_new=0.9700)
+    seed=2 spawn#17: color=2  pre=0.6868  prob=3.0949  delta=-2.4081  REVT  RV-K  (nll_old=1.1331 nll_new=0.8984)
+    seed=2 spawn#18: color=0  pre=0.6720  prob=3.9762  delta=-3.3043  REVT  RV-K  (nll_old=1.0999 nll_new=1.0043)
+    seed=2 spawn#19: color=1  pre=1.3357  prob=1.8596  delta=-0.5239  REVT  RV-R  (nll_old=1.0655 nll_new=1.1500)
+    seed=2 spawn#20: color=3  pre=1.0515  prob=1.2038  delta=  N/A  REVT  RV-R  (nll_old=1.0267 nll_new=1.0293)
+    seed=3 spawn#1: color=0  pre=0.7599  prob=1.0065  delta=-0.2466  REVT  RV-K  (nll_old=1.0827 nll_new=1.0747)
+    seed=3 spawn#2: color=1  pre=1.7415  prob=2.2237  delta=-0.4823  REVT  RV-R  (nll_old=1.2341 nll_new=1.3045)
+    seed=3 spawn#3: color=2  pre=0.8208  prob=0.8309  delta=-0.0101  REVT  RV-K  (nll_old=1.0434 nll_new=0.9603)
+    seed=3 spawn#4: color=3  pre=0.9575  prob=1.0761  delta=-0.1185  REVT  RV-K  (nll_old=1.2023 nll_new=1.1595)
+    seed=3 spawn#5: color=0  pre=0.9821  prob=1.4471  delta=-0.4650  REVT  RV-K  (nll_old=1.1265 nll_new=1.0237)
+    seed=3 spawn#6: color=1  pre=1.5456  prob=1.6401  delta=-0.0944  REVT  RV-R  (nll_old=1.1129 nll_new=1.1164)
+    seed=3 spawn#7: color=2  pre=0.8206  prob=0.7427  delta=+0.0779  REVT  RV-K  (nll_old=1.1753 nll_new=0.9411)
+    seed=3 spawn#8: color=1  pre=1.5027  prob=2.3939  delta=-0.8912  REVT  RV-R  (nll_old=1.1075 nll_new=1.1610)
+    seed=3 spawn#9: color=3  pre=0.9749  prob=1.0166  delta=-0.0417  REVT  RV-K  (nll_old=1.1021 nll_new=1.0962)
+    seed=3 spawn#10: color=0  pre=1.1527  prob=0.9776  delta=+0.1752  KEPT  RV-K  (nll_old=1.0658 nll_new=1.0409)
+    seed=3 spawn#11: color=1  pre=1.8652  prob=2.8502  delta=-0.9849  REVT  RV-R  (nll_old=1.0652 nll_new=1.1389)
+    seed=3 spawn#12: color=2  pre=0.7715  prob=1.9222  delta=-1.1507  REVT  RV-K  (nll_old=1.0960 nll_new=0.9653)
+    seed=3 spawn#13: color=3  pre=1.0021  prob=2.4125  delta=-1.4104  REVT  RV-K  (nll_old=1.2167 nll_new=1.0604)
+    seed=3 spawn#14: color=0  pre=0.6247  prob=3.8743  delta=-3.2496  REVT  RV-K  (nll_old=1.1403 nll_new=1.0225)
+    seed=3 spawn#15: color=1  pre=1.3935  prob=2.8314  delta=-1.4379  REVT  RV-R  (nll_old=1.3379 nll_new=1.4447)
+    seed=3 spawn#16: color=2  pre=1.1255  prob=1.8157  delta=-0.6902  REVT  RV-K  (nll_old=1.2305 nll_new=0.9941)
+    seed=3 spawn#17: color=3  pre=0.6875  prob=1.4499  delta=-0.7624  REVT  RV-K  (nll_old=1.1891 nll_new=1.1411)
+    seed=3 spawn#18: color=1  pre=1.8486  prob=2.9723  delta=-1.1237  REVT  RV-R  (nll_old=1.0668 nll_new=1.1135)
+    seed=3 spawn#19: color=0  pre=1.0744  prob=4.0173  delta=-2.9428  REVT  RV-K  (nll_old=1.1098 nll_new=1.0473)
+    seed=3 spawn#20: color=1  pre=1.4697  prob=3.2037  delta=  N/A  REVT  RV-R  (nll_old=1.0701 nll_new=1.1119)
+    seed=4 spawn#1: color=0  pre=0.9007  prob=0.8629  delta=+0.0378  REVT  RV-R  (nll_old=1.1107 nll_new=1.1304)
+    seed=4 spawn#2: color=1  pre=1.7617  prob=2.1881  delta=-0.4265  REVT  RV-R  (nll_old=1.1709 nll_new=1.2194)
+    seed=4 spawn#3: color=2  pre=0.7931  prob=1.0820  delta=-0.2889  REVT  RV-K  (nll_old=1.0874 nll_new=0.9502)
+    seed=4 spawn#4: color=3  pre=0.9265  prob=1.7776  delta=-0.8511  REVT  RV-K  (nll_old=1.1663 nll_new=1.0347)
+    seed=4 spawn#5: color=1  pre=1.4641  prob=1.6645  delta=-0.2004  REVT  RV-R  (nll_old=1.1044 nll_new=1.1143)
+    seed=4 spawn#6: color=0  pre=0.7987  prob=0.7543  delta=+0.0444  REVT  RV-R  (nll_old=0.9845 nll_new=0.9857)
+    seed=4 spawn#7: color=2  pre=0.6978  prob=0.9944  delta=-0.2967  REVT  RV-K  (nll_old=1.0189 nll_new=0.9666)
+    seed=4 spawn#8: color=3  pre=0.9503  prob=1.2329  delta=-0.2826  REVT  RV-K  (nll_old=1.0273 nll_new=0.9817)
+    seed=4 spawn#9: color=1  pre=1.5038  prob=2.7402  delta=-1.2364  REVT  RV-R  (nll_old=1.0692 nll_new=1.1285)
+    seed=4 spawn#10: color=3  pre=1.0060  prob=1.8047  delta=-0.7987  REVT  RV-K  (nll_old=1.0815 nll_new=1.0080)
+    seed=4 spawn#11: color=1  pre=1.4244  prob=1.8585  delta=-0.4341  REVT  RV-R  (nll_old=1.1217 nll_new=1.2087)
+    seed=4 spawn#12: color=0  pre=0.8451  prob=0.6658  delta=+0.1793  KEPT  RV-K  (nll_old=1.1413 nll_new=1.1065)
+    seed=4 spawn#13: color=2  pre=0.8275  prob=1.6226  delta=-0.7952  REVT  RV-K  (nll_old=1.0065 nll_new=0.8250)
+    seed=4 spawn#14: color=3  pre=0.7762  prob=1.9072  delta=-1.1310  REVT  RV-K  (nll_old=1.1510 nll_new=1.0168)
+    seed=4 spawn#15: color=1  pre=1.4665  prob=4.1102  delta=-2.6438  REVT  RV-R  (nll_old=1.0883 nll_new=1.1566)
+    seed=4 spawn#16: color=0  pre=0.7462  prob=3.2039  delta=-2.4577  REVT  RV-K  (nll_old=1.0728 nll_new=1.0033)
+    seed=4 spawn#17: color=3  pre=0.8339  prob=1.1141  delta=-0.2802  REVT  RV-K  (nll_old=1.1002 nll_new=1.0402)
+    seed=4 spawn#18: color=2  pre=0.8373  prob=0.7156  delta=+0.1217  KEPT  RV-K  (nll_old=1.1478 nll_new=1.0563)
+    seed=4 spawn#19: color=1  pre=1.7522  prob=3.2982  delta=-1.5460  REVT  RV-R  (nll_old=1.1255 nll_new=1.1707)
+    seed=4 spawn#20: color=0  pre=1.0959  prob=4.1019  delta=  N/A  REVT  RV-K  (nll_old=1.0375 nll_new=0.9328)
+    seed=5 spawn#1: color=0  pre=0.9777  prob=0.9882  delta=-0.0106  REVT  RV-R  (nll_old=1.1866 nll_new=1.1938)
+    seed=5 spawn#2: color=1  pre=1.8043  prob=1.9482  delta=-0.1439  REVT  RV-R  (nll_old=1.1893 nll_new=1.2673)
+    seed=5 spawn#3: color=2  pre=0.8048  prob=1.2062  delta=-0.4015  REVT  RV-K  (nll_old=1.1531 nll_new=0.9878)
+    seed=5 spawn#4: color=3  pre=0.7013  prob=2.5802  delta=-1.8790  REVT  RV-K  (nll_old=1.1292 nll_new=1.0802)
+    seed=5 spawn#5: color=1  pre=1.7276  prob=1.7560  delta=-0.0283  REVT  RV-R  (nll_old=1.0654 nll_new=1.0754)
+    seed=5 spawn#6: color=0  pre=1.2113  prob=0.8465  delta=+0.3647  KEPT  RV-R  (nll_old=1.1551 nll_new=1.1567)
+    seed=5 spawn#7: color=2  pre=0.9314  prob=1.9762  delta=-1.0449  REVT  RV-K  (nll_old=1.1744 nll_new=1.0027)
+    seed=5 spawn#8: color=3  pre=0.7234  prob=1.5863  delta=-0.8630  REVT  RV-K  (nll_old=1.0733 nll_new=0.9945)
+    seed=5 spawn#9: color=1  pre=1.7580  prob=2.0920  delta=-0.3341  REVT  RV-R  (nll_old=1.1380 nll_new=1.2179)
+    seed=5 spawn#10: color=0  pre=0.7258  prob=1.5960  delta=-0.8702  REVT  RV-R  (nll_old=1.0653 nll_new=1.0756)
+    seed=5 spawn#11: color=2  pre=0.8280  prob=0.7498  delta=+0.0783  REVT  RV-R  (nll_old=1.2076 nll_new=1.2119)
+    seed=5 spawn#12: color=3  pre=1.0313  prob=2.4633  delta=-1.4321  REVT  RV-K  (nll_old=1.1641 nll_new=1.1504)
+    seed=5 spawn#13: color=1  pre=1.7727  prob=2.0852  delta=-0.3124  REVT  RV-R  (nll_old=1.1097 nll_new=1.2044)
+    seed=5 spawn#14: color=0  pre=0.7823  prob=3.4949  delta=-2.7126  REVT  RV-K  (nll_old=1.0421 nll_new=1.0309)
+    seed=5 spawn#15: color=1  pre=1.4598  prob=3.1729  delta=-1.7131  REVT  RV-R  (nll_old=1.0919 nll_new=1.1466)
+    seed=5 spawn#16: color=3  pre=0.9474  prob=1.1920  delta=-0.2446  REVT  RV-K  (nll_old=1.0414 nll_new=0.9882)
+    seed=5 spawn#17: color=2  pre=0.6748  prob=0.9132  delta=-0.2383  REVT  RV-K  (nll_old=1.0463 nll_new=0.9991)
+    seed=5 spawn#18: color=0  pre=1.1897  prob=3.6294  delta=-2.4397  REVT  RV-K  (nll_old=1.1944 nll_new=1.0690)
+    seed=5 spawn#19: color=1  pre=1.5029  prob=2.9467  delta=-1.4438  REVT  RV-R  (nll_old=1.2051 nll_new=1.2557)
+    seed=5 spawn#20: color=3  pre=0.9452  prob=1.6071  delta=  N/A  REVT  RV-K  (nll_old=1.1030 nll_new=0.9899)
+    seed=6 spawn#1: color=1  pre=1.5023  prob=1.8456  delta=-0.3433  REVT  RV-R  (nll_old=1.0372 nll_new=1.1386)
+    seed=6 spawn#2: color=0  pre=1.1542  prob=1.5295  delta=-0.3753  REVT  RV-K  (nll_old=1.1231 nll_new=1.0114)
+    seed=6 spawn#3: color=3  pre=0.7653  prob=1.2259  delta=-0.4605  REVT  RV-K  (nll_old=1.1179 nll_new=1.0654)
+    seed=6 spawn#4: color=1  pre=1.5047  prob=1.6386  delta=-0.1339  REVT  RV-R  (nll_old=1.2267 nll_new=1.2415)
+    seed=6 spawn#5: color=2  pre=0.7708  prob=1.3348  delta=-0.5640  REVT  RV-K  (nll_old=1.2363 nll_new=0.9864)
+    seed=6 spawn#6: color=0  pre=1.2757  prob=1.3750  delta=-0.0993  REVT  RV-K  (nll_old=1.1249 nll_new=0.9380)
+    seed=6 spawn#7: color=3  pre=0.7570  prob=1.7576  delta=-1.0006  REVT  RV-K  (nll_old=1.0044 nll_new=0.9002)
+    seed=6 spawn#8: color=1  pre=1.3272  prob=1.5029  delta=-0.1757  REVT  RV-R  (nll_old=1.1005 nll_new=1.1125)
+    seed=6 spawn#9: color=2  pre=0.8278  prob=0.9433  delta=-0.1155  REVT  RV-K  (nll_old=1.2401 nll_new=1.1290)
+    seed=6 spawn#10: color=3  pre=0.9061  prob=1.0733  delta=-0.1671  REVT  RV-R  (nll_old=1.0792 nll_new=1.1180)
+    seed=6 spawn#11: color=0  pre=1.7702  prob=2.4710  delta=-0.7007  REVT  RV-K  (nll_old=1.2992 nll_new=1.0622)
+    seed=6 spawn#12: color=1  pre=1.4434  prob=3.0533  delta=-1.6099  REVT  RV-R  (nll_old=1.1993 nll_new=1.2754)
+    seed=6 spawn#13: color=2  pre=0.7099  prob=2.1389  delta=-1.4291  REVT  RV-K  (nll_old=1.0814 nll_new=0.9929)
+    seed=6 spawn#14: color=3  pre=0.7643  prob=1.5541  delta=-0.7898  REVT  RV-K  (nll_old=1.1764 nll_new=1.0753)
+    seed=6 spawn#15: color=0  pre=1.4173  prob=2.9231  delta=-1.5058  REVT  RV-K  (nll_old=1.2947 nll_new=1.1128)
+    seed=6 spawn#16: color=1  pre=1.5227  prob=2.0361  delta=-0.5134  REVT  RV-R  (nll_old=1.2259 nll_new=1.3176)
+    seed=6 spawn#17: color=2  pre=0.6851  prob=2.9736  delta=-2.2885  REVT  RV-K  (nll_old=1.1077 nll_new=0.9088)
+    seed=6 spawn#18: color=0  pre=0.7977  prob=0.7316  delta=+0.0662  REVT  RV-R  (nll_old=1.1491 nll_new=1.1561)
+    seed=6 spawn#19: color=3  pre=0.8377  prob=1.0910  delta=-0.2533  REVT  RV-K  (nll_old=1.0893 nll_new=1.0240)
+    seed=6 spawn#20: color=1  pre=1.6662  prob=2.3777  delta=  N/A  REVT  RV-R  (nll_old=1.1087 nll_new=1.2210)
+    seed=7 spawn#1: color=0  pre=0.9782  prob=1.4254  delta=-0.4472  REVT  RV-K  (nll_old=1.1187 nll_new=1.0060)
+    seed=7 spawn#2: color=1  pre=1.5914  prob=2.0166  delta=-0.4253  REVT  RV-R  (nll_old=1.1083 nll_new=1.1870)
+    seed=7 spawn#3: color=2  pre=0.7635  prob=1.8192  delta=-1.0556  REVT  RV-K  (nll_old=1.1443 nll_new=0.9705)
+    seed=7 spawn#4: color=1  pre=1.5700  prob=1.9078  delta=-0.3378  REVT  RV-R  (nll_old=1.1111 nll_new=1.1868)
+    seed=7 spawn#5: color=3  pre=0.9866  prob=1.0354  delta=-0.0489  REVT  RV-K  (nll_old=1.0224 nll_new=0.9933)
+    seed=7 spawn#6: color=0  pre=0.9371  prob=1.7012  delta=-0.7641  REVT  RV-K  (nll_old=1.0963 nll_new=1.0105)
+    seed=7 spawn#7: color=1  pre=1.4202  prob=2.0524  delta=-0.6321  REVT  RV-R  (nll_old=1.1212 nll_new=1.2279)
+    seed=7 spawn#8: color=3  pre=0.9125  prob=1.1877  delta=-0.2753  REVT  RV-K  (nll_old=1.0396 nll_new=0.9927)
+    seed=7 spawn#9: color=2  pre=0.8000  prob=1.9082  delta=-1.1082  REVT  RV-K  (nll_old=1.2469 nll_new=1.0482)
+    seed=7 spawn#10: color=1  pre=1.4721  prob=1.9728  delta=-0.5008  REVT  RV-R  (nll_old=1.1358 nll_new=1.2194)
+    seed=7 spawn#11: color=0  pre=0.8563  prob=1.0366  delta=-0.1803  REVT  RV-R  (nll_old=1.1363 nll_new=1.1503)
+    seed=7 spawn#12: color=3  pre=0.9473  prob=1.5367  delta=-0.5894  REVT  RV-K  (nll_old=1.0473 nll_new=0.9658)
+    seed=7 spawn#13: color=1  pre=1.7372  prob=2.0814  delta=-0.3442  REVT  RV-R  (nll_old=1.2892 nll_new=1.3592)
+    seed=7 spawn#14: color=3  pre=0.9773  prob=2.4427  delta=-1.4654  REVT  RV-K  (nll_old=1.0893 nll_new=1.0292)
+    seed=7 spawn#15: color=0  pre=0.7866  prob=0.8749  delta=-0.0883  REVT  RV-R  (nll_old=1.0664 nll_new=1.0707)
+    seed=7 spawn#16: color=2  pre=0.9200  prob=1.8261  delta=-0.9061  REVT  RV-K  (nll_old=1.0900 nll_new=0.9004)
+    seed=7 spawn#17: color=1  pre=1.4622  prob=1.9412  delta=-0.4790  REVT  RV-R  (nll_old=1.1045 nll_new=1.1851)
+    seed=7 spawn#18: color=3  pre=0.9499  prob=1.6873  delta=-0.7375  REVT  RV-K  (nll_old=1.3037 nll_new=1.2614)
+    seed=7 spawn#19: color=0  pre=1.1124  prob=1.2676  delta=-0.1552  REVT  RV-K  (nll_old=1.2152 nll_new=1.1941)
+    seed=7 spawn#20: color=1  pre=1.9556  prob=2.1274  delta=  N/A  REVT  RV-R  (nll_old=1.1562 nll_new=1.2212)
+
+  TALLIES — Layout 2
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 2: FAIL
+    seed=0: plateau=1.1522  final=1.2003  drop=-0.048  finCeil=155  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.9112  final=1.3778  drop=-0.467  finCeil=59  comps=[3, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.0443  final=1.3027  drop=-0.258  finCeil=238  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.1428  final=1.6254  drop=-0.483  finCeil=137  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.0438  final=1.3282  drop=-0.284  finCeil=175  comps=[2, 1, 2, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.1306  final=1.5271  drop=-0.396  finCeil=103  comps=[2, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.9249  final=1.1477  drop=-0.223  finCeil=276  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.0870  final=1.2611  drop=-0.174  finCeil=175  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 probation honesty (>= 70% kept show sustained benefit):
+    Kept spawns: 7  Sustained: 6  Fraction: 85.7%  
+    P2 layout 2: PASS
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0484  pass
+    seed=1: loc_med=0.0439  pass
+    seed=2: loc_med=0.0483  pass
+    seed=3: loc_med=0.0457  pass
+    seed=4: loc_med=0.0463  pass
+    seed=5: loc_med=0.0430  pass
+    seed=6: loc_med=0.0457  pass
+    seed=7: loc_med=0.0482  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 3  (rng(13))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 0, 0, 2]
+    row 1: [1, 2, 1, 0]
+    row 2: [1, 3, 2, 2]
+    row 3: [3, 3, 3, 0]
+  CMAP array: [1, 0, 0, 2, 1, 2, 1, 0, 1, 3, 2, 2, 3, 3, 3, 0]
+
+  Color -> cells and centers:
+    color 0: cells [1, 2, 7, 15]  centers [[1.0, 0.0], [2.0, 0.0], [3.0, 1.0], [3.0, 3.0]]
+    color 1: cells [0, 4, 6, 8]  centers [[0.0, 0.0], [0.0, 1.0], [2.0, 1.0], [0.0, 2.0]]
+    color 2: cells [3, 5, 10, 11]  centers [[3.0, 0.0], [1.0, 1.0], [2.0, 2.0], [3.0, 2.0]]
+    color 3: cells [9, 12, 13, 14]  centers [[1.0, 2.0], [0.0, 3.0], [1.0, 3.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   SustB%  TwinF500
+----------------------------------------------------------------------------------------------------
+   0   0.6714   1.0330  -0.362      161  [1, 3, 5, 1]     6    13  0.0336      50%    1.0000
+   1   0.7666   1.0507  -0.284      173  [2, 1, 4, 1]     4    16  0.0424     100%    1.0000
+   2   0.7999   1.0823  -0.282       82  [1, 1, 4, 1]     3    17  0.0407       0%    1.0000
+   3   0.8613   0.9767  -0.115      139  [1, 1, 5, 3]     6    14  0.0391     100%    1.0000
+   4   0.7079   0.9270  -0.219      193  [1, 3, 4, 1]     5    15  0.0457      60%    1.0000
+   5   0.7702   0.7801  -0.010      242  [2, 2, 1, 1]     2    18  0.0459      50%    1.0000
+   6   0.7270   0.8016  -0.075      110  [1, 2, 1, 1]     1    19  0.0410     100%    1.0000
+   7   0.7276   0.9149  -0.187      184  [1, 1, 4, 1]     3    17  0.0465     100%    1.0000
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 3):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                    22             8
+    Live=REVERT                  82            47
+    Total decided: 159
+    Agree: 69  Disagree: 90  Agreement rate: 43.4%
+
+  Per-spawn detail (Layout 3):
+    seed=0 spawn#1: color=2  pre=1.1067  prob=1.5368  delta=-0.4301  REVT  RV-R  (nll_old=0.6894 nll_new=0.7040)
+    seed=0 spawn#2: color=1  pre=0.8184  prob=1.2236  delta=-0.4052  REVT  RV-K  (nll_old=0.7538 nll_new=0.6656)
+    seed=0 spawn#3: color=2  pre=0.8809  prob=1.4262  delta=-0.5453  REVT  RV-R  (nll_old=0.7257 nll_new=0.7462)
+    seed=0 spawn#4: color=2  pre=1.4189  prob=1.1407  delta=+0.2782  KEPT  RV-R  (nll_old=0.7190 nll_new=0.7564)
+    seed=0 spawn#5: color=1  pre=0.9098  prob=0.8606  delta=+0.0492  REVT  RV-K  (nll_old=0.8003 nll_new=0.7520)
+    seed=0 spawn#6: color=2  pre=1.0403  prob=3.6758  delta=-2.6355  REVT  RV-K  (nll_old=0.8203 nll_new=0.7634)
+    seed=0 spawn#7: color=2  pre=3.3699  prob=3.5785  delta=-0.2086  REVT  RV-K  (nll_old=0.7763 nll_new=0.7203)
+    seed=0 spawn#8: color=1  pre=0.7107  prob=0.5653  delta=+0.1455  KEPT  RV-K  (nll_old=0.7677 nll_new=0.7075)
+    seed=0 spawn#9: color=3  pre=0.6227  prob=0.7838  delta=-0.1611  REVT  RV-R  (nll_old=0.6577 nll_new=0.6925)
+    seed=0 spawn#10: color=2  pre=0.9990  prob=3.7480  delta=-2.7490  REVT  RV-K  (nll_old=0.7861 nll_new=0.7528)
+    seed=0 spawn#11: color=2  pre=3.7664  prob=3.2876  delta=+0.4787  KEPT  RV-K  (nll_old=0.7384 nll_new=0.7117)
+    seed=0 spawn#12: color=1  pre=0.6021  prob=1.4035  delta=-0.8014  REVT  RV-K  (nll_old=1.0704 nll_new=0.9545)
+    seed=0 spawn#13: color=2  pre=2.9287  prob=2.8866  delta=+0.0422  REVT  RV-K  (nll_old=0.9636 nll_new=0.7112)
+    seed=0 spawn#14: color=2  pre=2.9065  prob=2.6942  delta=+0.2123  KEPT  RV-K  (nll_old=0.9852 nll_new=0.7243)
+    seed=0 spawn#15: color=2  pre=2.5813  prob=2.0337  delta=+0.5477  KEPT  RV-K  (nll_old=0.9003 nll_new=0.7238)
+    seed=0 spawn#16: color=1  pre=0.7236  prob=1.3844  delta=-0.6608  REVT  RV-K  (nll_old=1.1329 nll_new=1.0332)
+    seed=0 spawn#17: color=1  pre=1.3868  prob=1.8524  delta=-0.4656  REVT  RV-K  (nll_old=0.9549 nll_new=0.8738)
+    seed=0 spawn#18: color=1  pre=1.5843  prob=1.0704  delta=+0.5139  KEPT  RV-K  (nll_old=0.8968 nll_new=0.7957)
+    seed=0 spawn#19: color=1  pre=0.8942  prob=1.6218  delta=  N/A  REVT  RV-K  (nll_old=0.9075 nll_new=0.7784)
+    seed=1 spawn#1: color=1  pre=0.8856  prob=0.8234  delta=+0.0622  REVT  RV-K  (nll_old=0.7829 nll_new=0.6440)
+    seed=1 spawn#2: color=2  pre=0.8982  prob=1.4359  delta=-0.5376  REVT  RV-R  (nll_old=0.6733 nll_new=0.6991)
+    seed=1 spawn#3: color=3  pre=0.6795  prob=1.2721  delta=-0.5926  REVT  RV-R  (nll_old=0.7973 nll_new=0.8137)
+    seed=1 spawn#4: color=2  pre=1.1685  prob=1.0951  delta=+0.0734  REVT  RV-K  (nll_old=0.6370 nll_new=0.6287)
+    seed=1 spawn#5: color=2  pre=1.0960  prob=1.1419  delta=-0.0459  REVT  RV-K  (nll_old=0.7891 nll_new=0.7859)
+    seed=1 spawn#6: color=0  pre=0.6237  prob=1.7206  delta=-1.0968  REVT  RV-K  (nll_old=0.6635 nll_new=0.5054)
+    seed=1 spawn#7: color=0  pre=1.5706  prob=1.0766  delta=+0.4940  KEPT  RV-K  (nll_old=0.8211 nll_new=0.7182)
+    seed=1 spawn#8: color=2  pre=1.0010  prob=1.0078  delta=-0.0068  REVT  RV-K  (nll_old=0.6985 nll_new=0.6881)
+    seed=1 spawn#9: color=2  pre=1.0077  prob=1.5990  delta=-0.5913  REVT  RV-R  (nll_old=0.6975 nll_new=0.7440)
+    seed=1 spawn#10: color=0  pre=0.6601  prob=0.8836  delta=-0.2235  REVT  RV-K  (nll_old=0.7210 nll_new=0.6147)
+    seed=1 spawn#11: color=2  pre=1.0321  prob=2.4492  delta=-1.4171  REVT  RV-R  (nll_old=0.7345 nll_new=0.7717)
+    seed=1 spawn#12: color=2  pre=2.5459  prob=1.5592  delta=+0.9868  KEPT  RV-R  (nll_old=0.8437 nll_new=0.8478)
+    seed=1 spawn#13: color=2  pre=1.7484  prob=2.5598  delta=-0.8114  REVT  RV-K  (nll_old=0.7194 nll_new=0.7179)
+    seed=1 spawn#14: color=2  pre=2.7107  prob=1.8811  delta=+0.8295  KEPT  RV-R  (nll_old=0.7447 nll_new=0.7533)
+    seed=1 spawn#15: color=2  pre=1.7485  prob=2.5664  delta=-0.8180  REVT  RV-K  (nll_old=0.9085 nll_new=0.7792)
+    seed=1 spawn#16: color=2  pre=2.3530  prob=2.7032  delta=-0.3503  REVT  RV-K  (nll_old=0.8975 nll_new=0.7654)
+    seed=1 spawn#17: color=2  pre=2.6187  prob=1.8553  delta=+0.7634  KEPT  RV-K  (nll_old=1.1225 nll_new=0.8671)
+    seed=1 spawn#18: color=2  pre=1.8099  prob=2.7387  delta=-0.9289  REVT  RV-K  (nll_old=0.8294 nll_new=0.6799)
+    seed=1 spawn#19: color=2  pre=2.6933  prob=2.7948  delta=-0.1016  REVT  RV-K  (nll_old=0.9302 nll_new=0.8293)
+    seed=1 spawn#20: color=2  pre=2.7600  prob=2.1590  delta=  N/A  REVT  RV-K  (nll_old=0.8923 nll_new=0.7441)
+    seed=2 spawn#1: color=1  pre=0.7813  prob=1.0271  delta=-0.2458  REVT  RV-K  (nll_old=0.8023 nll_new=0.7047)
+    seed=2 spawn#2: color=2  pre=0.8746  prob=1.6726  delta=-0.7980  REVT  RV-K  (nll_old=0.7724 nll_new=0.7694)
+    seed=2 spawn#3: color=1  pre=1.0324  prob=0.9690  delta=+0.0634  REVT  RV-K  (nll_old=0.8796 nll_new=0.7526)
+    seed=2 spawn#4: color=2  pre=1.0336  prob=1.2943  delta=-0.2607  REVT  RV-K  (nll_old=0.7069 nll_new=0.6981)
+    seed=2 spawn#5: color=1  pre=0.6668  prob=0.7286  delta=-0.0618  REVT  RV-K  (nll_old=0.7273 nll_new=0.7086)
+    seed=2 spawn#6: color=2  pre=1.1461  prob=1.7010  delta=-0.5549  REVT  RV-K  (nll_old=0.8203 nll_new=0.8004)
+    seed=2 spawn#7: color=2  pre=1.5888  prob=1.4747  delta=+0.1141  KEPT  RV-R  (nll_old=0.7673 nll_new=0.7996)
+    seed=2 spawn#8: color=3  pre=0.6864  prob=1.5616  delta=-0.8752  REVT  RV-R  (nll_old=0.7183 nll_new=0.7418)
+    seed=2 spawn#9: color=0  pre=0.6603  prob=1.4169  delta=-0.7566  REVT  RV-K  (nll_old=0.7461 nll_new=0.7104)
+    seed=2 spawn#10: color=2  pre=1.1206  prob=2.9433  delta=-1.8227  REVT  RV-R  (nll_old=0.6707 nll_new=0.6806)
+    seed=2 spawn#11: color=2  pre=2.9273  prob=2.6619  delta=+0.2655  KEPT  RV-K  (nll_old=0.8249 nll_new=0.8006)
+    seed=2 spawn#12: color=2  pre=2.6084  prob=2.6822  delta=-0.0738  REVT  RV-K  (nll_old=0.8572 nll_new=0.6668)
+    seed=2 spawn#13: color=1  pre=0.5869  prob=1.8273  delta=-1.2403  REVT  RV-K  (nll_old=1.1508 nll_new=0.9618)
+    seed=2 spawn#14: color=2  pre=2.3567  prob=3.1194  delta=-0.7627  REVT  RV-K  (nll_old=1.0601 nll_new=0.8304)
+    seed=2 spawn#15: color=2  pre=3.1278  prob=2.4389  delta=+0.6889  KEPT  RV-K  (nll_old=0.8478 nll_new=0.7243)
+    seed=2 spawn#16: color=3  pre=0.6176  prob=1.4831  delta=-0.8655  REVT  RV-R  (nll_old=0.9858 nll_new=1.0042)
+    seed=2 spawn#17: color=2  pre=2.4548  prob=3.1509  delta=-0.6961  REVT  RV-K  (nll_old=0.8246 nll_new=0.7282)
+    seed=2 spawn#18: color=2  pre=3.1216  prob=3.3388  delta=-0.2173  REVT  RV-K  (nll_old=1.0211 nll_new=0.8177)
+    seed=2 spawn#19: color=2  pre=3.3401  prob=3.2540  delta=+0.0861  REVT  RV-K  (nll_old=0.8266 nll_new=0.7722)
+    seed=2 spawn#20: color=2  pre=3.2496  prob=3.4430  delta=  N/A  REVT  RV-K  (nll_old=0.8140 nll_new=0.7408)
+    seed=3 spawn#1: color=2  pre=1.1163  prob=2.2611  delta=-1.1448  REVT  RV-R  (nll_old=0.7761 nll_new=0.8069)
+    seed=3 spawn#2: color=2  pre=2.2215  prob=1.3277  delta=+0.8938  KEPT  RV-R  (nll_old=0.7630 nll_new=0.7970)
+    seed=3 spawn#3: color=1  pre=0.5146  prob=1.0596  delta=-0.5450  REVT  RV-R  (nll_old=0.6745 nll_new=0.6907)
+    seed=3 spawn#4: color=2  pre=1.0060  prob=3.1932  delta=-2.1872  REVT  RV-K  (nll_old=0.7787 nll_new=0.7292)
+    seed=3 spawn#5: color=2  pre=2.9564  prob=3.3783  delta=-0.4219  REVT  RV-R  (nll_old=0.7985 nll_new=0.8102)
+    seed=3 spawn#6: color=2  pre=3.3087  prob=4.1226  delta=-0.8139  REVT  RV-R  (nll_old=0.7502 nll_new=0.7533)
+    seed=3 spawn#7: color=2  pre=3.8932  prob=3.1978  delta=+0.6953  KEPT  RV-K  (nll_old=0.7321 nll_new=0.6893)
+    seed=3 spawn#8: color=1  pre=0.7893  prob=0.9138  delta=-0.1244  REVT  RV-K  (nll_old=1.0481 nll_new=0.9044)
+    seed=3 spawn#9: color=2  pre=2.8256  prob=2.5836  delta=+0.2420  KEPT  RV-K  (nll_old=0.8892 nll_new=0.6519)
+    seed=3 spawn#10: color=2  pre=2.5643  prob=3.1331  delta=-0.5688  REVT  RV-K  (nll_old=0.9060 nll_new=0.7367)
+    seed=3 spawn#11: color=3  pre=0.6252  prob=1.8699  delta=-1.2448  REVT  RV-R  (nll_old=1.0367 nll_new=1.0771)
+    seed=3 spawn#12: color=2  pre=2.1681  prob=1.8753  delta=+0.2928  KEPT  RV-K  (nll_old=0.9261 nll_new=0.7593)
+    seed=3 spawn#13: color=3  pre=1.4090  prob=1.5911  delta=-0.1821  REVT  RV-K  (nll_old=0.7917 nll_new=0.7912)
+    seed=3 spawn#14: color=3  pre=1.5732  prob=2.2211  delta=-0.6479  REVT  RV-R  (nll_old=0.8079 nll_new=0.8321)
+    seed=3 spawn#15: color=3  pre=2.0010  prob=1.3654  delta=+0.6356  KEPT  RV-R  (nll_old=0.9968 nll_new=0.9981)
+    seed=3 spawn#16: color=3  pre=1.3424  prob=1.3141  delta=+0.0283  REVT  RV-K  (nll_old=0.9664 nll_new=0.7891)
+    seed=3 spawn#17: color=3  pre=1.3106  prob=1.3020  delta=+0.0086  REVT  RV-K  (nll_old=1.1136 nll_new=0.9674)
+    seed=3 spawn#18: color=3  pre=1.2202  prob=1.3186  delta=-0.0984  REVT  RV-K  (nll_old=1.0619 nll_new=0.9003)
+    seed=3 spawn#19: color=3  pre=1.2134  prob=0.8284  delta=+0.3850  KEPT  RV-K  (nll_old=1.1009 nll_new=0.9328)
+    seed=3 spawn#20: color=3  pre=0.7970  prob=0.9463  delta=  N/A  REVT  RV-K  (nll_old=0.8777 nll_new=0.7714)
+    seed=4 spawn#1: color=0  pre=0.7935  prob=1.1682  delta=-0.3747  REVT  RV-K  (nll_old=0.7366 nll_new=0.6467)
+    seed=4 spawn#2: color=0  pre=1.1522  prob=1.2760  delta=-0.1239  REVT  RV-K  (nll_old=0.7683 nll_new=0.6460)
+    seed=4 spawn#3: color=2  pre=0.6238  prob=1.3803  delta=-0.7564  REVT  RV-R  (nll_old=0.7107 nll_new=0.7271)
+    seed=4 spawn#4: color=1  pre=0.7783  prob=0.6695  delta=+0.1087  KEPT  RV-K  (nll_old=0.8141 nll_new=0.7329)
+    seed=4 spawn#5: color=2  pre=1.1270  prob=1.4002  delta=-0.2732  REVT  RV-R  (nll_old=0.7506 nll_new=0.7773)
+    seed=4 spawn#6: color=2  pre=1.4564  prob=1.1536  delta=+0.3028  KEPT  RV-R  (nll_old=0.7547 nll_new=0.7609)
+    seed=4 spawn#7: color=0  pre=0.6361  prob=2.0302  delta=-1.3941  REVT  RV-K  (nll_old=0.7063 nll_new=0.5682)
+    seed=4 spawn#8: color=2  pre=0.7498  prob=2.7765  delta=-2.0267  REVT  RV-R  (nll_old=0.7237 nll_new=0.7485)
+    seed=4 spawn#9: color=2  pre=2.7116  prob=1.3640  delta=+1.3476  KEPT  RV-K  (nll_old=0.7640 nll_new=0.7530)
+    seed=4 spawn#10: color=1  pre=0.6887  prob=0.5570  delta=+0.1317  KEPT  RV-K  (nll_old=0.7981 nll_new=0.7490)
+    seed=4 spawn#11: color=3  pre=0.7189  prob=1.5870  delta=-0.8681  REVT  RV-R  (nll_old=0.7617 nll_new=0.7684)
+    seed=4 spawn#12: color=2  pre=1.2170  prob=3.9815  delta=-2.7645  REVT  RV-K  (nll_old=0.6871 nll_new=0.6830)
+    seed=4 spawn#13: color=2  pre=3.9634  prob=4.2645  delta=-0.3011  REVT  RV-R  (nll_old=0.6819 nll_new=0.7461)
+    seed=4 spawn#14: color=2  pre=4.1187  prob=4.2653  delta=-0.1466  REVT  RV-R  (nll_old=0.8033 nll_new=0.8170)
+    seed=4 spawn#15: color=2  pre=4.1810  prob=4.3481  delta=-0.1672  REVT  RV-R  (nll_old=0.7636 nll_new=0.8034)
+    seed=4 spawn#16: color=1  pre=0.6516  prob=1.9118  delta=-1.2602  REVT  RV-K  (nll_old=0.7782 nll_new=0.7038)
+    seed=4 spawn#17: color=2  pre=1.0556  prob=4.4071  delta=-3.3515  REVT  RV-R  (nll_old=0.8651 nll_new=0.8965)
+    seed=4 spawn#18: color=2  pre=4.2445  prob=1.1260  delta=+3.1184  KEPT  RV-K  (nll_old=0.7483 nll_new=0.7003)
+    seed=4 spawn#19: color=3  pre=0.6062  prob=1.6560  delta=-1.0498  REVT  RV-R  (nll_old=0.7477 nll_new=0.7514)
+    seed=4 spawn#20: color=1  pre=0.8270  prob=1.4827  delta=  N/A  REVT  RV-K  (nll_old=0.8120 nll_new=0.7096)
+    seed=5 spawn#1: color=0  pre=0.7193  prob=1.2618  delta=-0.5425  REVT  RV-K  (nll_old=0.7913 nll_new=0.7137)
+    seed=5 spawn#2: color=1  pre=0.6020  prob=0.7330  delta=-0.1311  REVT  RV-R  (nll_old=0.7366 nll_new=0.7397)
+    seed=5 spawn#3: color=2  pre=0.9849  prob=1.3506  delta=-0.3656  REVT  RV-R  (nll_old=0.7398 nll_new=0.7614)
+    seed=5 spawn#4: color=0  pre=0.6976  prob=1.6001  delta=-0.9025  REVT  RV-K  (nll_old=0.7917 nll_new=0.7239)
+    seed=5 spawn#5: color=1  pre=0.6190  prob=1.6692  delta=-1.0502  REVT  RV-K  (nll_old=0.6968 nll_new=0.6312)
+    seed=5 spawn#6: color=2  pre=0.8781  prob=1.2034  delta=-0.3253  REVT  RV-R  (nll_old=0.7717 nll_new=0.7815)
+    seed=5 spawn#7: color=3  pre=0.6943  prob=0.9153  delta=-0.2210  REVT  RV-R  (nll_old=0.7260 nll_new=0.7551)
+    seed=5 spawn#8: color=1  pre=0.8066  prob=1.2542  delta=-0.4476  REVT  RV-K  (nll_old=0.8092 nll_new=0.7253)
+    seed=5 spawn#9: color=2  pre=0.8839  prob=1.4673  delta=-0.5835  REVT  RV-K  (nll_old=0.6867 nll_new=0.6696)
+    seed=5 spawn#10: color=2  pre=1.4017  prob=1.3692  delta=+0.0325  REVT  RV-R  (nll_old=0.7352 nll_new=0.7466)
+    seed=5 spawn#11: color=3  pre=0.7264  prob=1.3456  delta=-0.6192  REVT  RV-R  (nll_old=0.7701 nll_new=0.7779)
+    seed=5 spawn#12: color=0  pre=0.6582  prob=1.9241  delta=-1.2659  REVT  RV-K  (nll_old=0.6823 nll_new=0.5946)
+    seed=5 spawn#13: color=1  pre=0.7574  prob=1.2510  delta=-0.4936  REVT  RV-K  (nll_old=0.8357 nll_new=0.7199)
+    seed=5 spawn#14: color=2  pre=0.7623  prob=1.4198  delta=-0.6575  REVT  RV-R  (nll_old=0.6736 nll_new=0.7083)
+    seed=5 spawn#15: color=2  pre=1.4061  prob=1.4310  delta=-0.0249  REVT  RV-K  (nll_old=0.7240 nll_new=0.7182)
+    seed=5 spawn#16: color=1  pre=0.9469  prob=0.5056  delta=+0.4413  KEPT  RV-K  (nll_old=0.7588 nll_new=0.7092)
+    seed=5 spawn#17: color=0  pre=0.7058  prob=1.4718  delta=-0.7661  REVT  RV-K  (nll_old=0.6876 nll_new=0.5720)
+    seed=5 spawn#18: color=0  pre=1.4713  prob=0.7392  delta=+0.7321  KEPT  RV-K  (nll_old=0.8002 nll_new=0.7642)
+    seed=5 spawn#19: color=2  pre=0.9248  prob=1.2418  delta=-0.3170  REVT  RV-K  (nll_old=0.6904 nll_new=0.6208)
+    seed=5 spawn#20: color=1  pre=0.7509  prob=2.9140  delta=  N/A  REVT  RV-K  (nll_old=0.7363 nll_new=0.6831)
+    seed=6 spawn#1: color=2  pre=1.1258  prob=1.1133  delta=+0.0124  REVT  RV-R  (nll_old=0.7140 nll_new=0.7257)
+    seed=6 spawn#2: color=3  pre=0.7288  prob=1.3166  delta=-0.5878  REVT  RV-R  (nll_old=0.7860 nll_new=0.8183)
+    seed=6 spawn#3: color=1  pre=0.9576  prob=2.4904  delta=-1.5327  REVT  RV-K  (nll_old=0.8664 nll_new=0.7418)
+    seed=6 spawn#4: color=2  pre=1.0637  prob=1.1425  delta=-0.0789  REVT  RV-K  (nll_old=0.9357 nll_new=0.9324)
+    seed=6 spawn#5: color=0  pre=0.8005  prob=0.9301  delta=-0.1296  REVT  RV-K  (nll_old=0.8218 nll_new=0.7389)
+    seed=6 spawn#6: color=1  pre=0.7210  prob=1.0771  delta=-0.3561  REVT  RV-K  (nll_old=0.8433 nll_new=0.7230)
+    seed=6 spawn#7: color=2  pre=0.9314  prob=1.4426  delta=-0.5112  REVT  RV-R  (nll_old=0.6810 nll_new=0.7091)
+    seed=6 spawn#8: color=1  pre=0.9411  prob=1.5570  delta=-0.6159  REVT  RV-K  (nll_old=0.7547 nll_new=0.6444)
+    seed=6 spawn#9: color=2  pre=0.9999  prob=1.5129  delta=-0.5130  REVT  RV-K  (nll_old=0.7762 nll_new=0.7399)
+    seed=6 spawn#10: color=2  pre=1.2820  prob=1.2690  delta=+0.0130  REVT  RV-K  (nll_old=0.6407 nll_new=0.6202)
+    seed=6 spawn#11: color=3  pre=0.5901  prob=1.8816  delta=-1.2916  REVT  RV-K  (nll_old=0.9106 nll_new=0.9106)
+    seed=6 spawn#12: color=0  pre=0.7122  prob=2.5013  delta=-1.7891  REVT  RV-K  (nll_old=0.7533 nll_new=0.5897)
+    seed=6 spawn#13: color=2  pre=0.7168  prob=1.3485  delta=-0.6317  REVT  RV-R  (nll_old=0.7631 nll_new=0.7769)
+    seed=6 spawn#14: color=1  pre=1.0417  prob=0.7659  delta=+0.2758  KEPT  RV-K  (nll_old=0.8805 nll_new=0.8098)
+    seed=6 spawn#15: color=3  pre=0.7189  prob=1.7737  delta=-1.0549  REVT  RV-R  (nll_old=0.8326 nll_new=0.8411)
+    seed=6 spawn#16: color=2  pre=1.1166  prob=1.3775  delta=-0.2609  REVT  RV-R  (nll_old=0.8302 nll_new=0.8318)
+    seed=6 spawn#17: color=0  pre=0.6982  prob=0.6535  delta=+0.0447  REVT  RV-K  (nll_old=0.7539 nll_new=0.7042)
+    seed=6 spawn#18: color=2  pre=1.0803  prob=1.1097  delta=-0.0294  REVT  RV-K  (nll_old=0.7753 nll_new=0.7648)
+    seed=6 spawn#19: color=1  pre=0.6580  prob=0.5740  delta=+0.0840  REVT  RV-K  (nll_old=0.7360 nll_new=0.6847)
+    seed=6 spawn#20: color=3  pre=0.6255  prob=2.5727  delta=  N/A  REVT  RV-R  (nll_old=0.6943 nll_new=0.7086)
+    seed=7 spawn#1: color=0  pre=0.7014  prob=1.6847  delta=-0.9833  REVT  RV-K  (nll_old=0.6952 nll_new=0.6913)
+    seed=7 spawn#2: color=2  pre=0.9508  prob=1.0365  delta=-0.0857  REVT  RV-K  (nll_old=0.6449 nll_new=0.6330)
+    seed=7 spawn#3: color=1  pre=0.7412  prob=2.0173  delta=-1.2761  REVT  RV-K  (nll_old=0.8112 nll_new=0.7085)
+    seed=7 spawn#4: color=2  pre=0.8516  prob=1.3107  delta=-0.4591  REVT  RV-R  (nll_old=0.6857 nll_new=0.6890)
+    seed=7 spawn#5: color=2  pre=1.2518  prob=2.3703  delta=-1.1186  REVT  RV-R  (nll_old=0.6438 nll_new=0.6830)
+    seed=7 spawn#6: color=3  pre=0.7037  prob=1.4906  delta=-0.7869  REVT  RV-R  (nll_old=0.8672 nll_new=0.9016)
+    seed=7 spawn#7: color=2  pre=1.5420  prob=1.2774  delta=+0.2646  KEPT  RV-K  (nll_old=0.6662 nll_new=0.6635)
+    seed=7 spawn#8: color=1  pre=0.5685  prob=0.9320  delta=-0.3635  REVT  RV-K  (nll_old=0.6718 nll_new=0.6627)
+    seed=7 spawn#9: color=2  pre=1.2521  prob=1.3670  delta=-0.1149  REVT  RV-R  (nll_old=0.8434 nll_new=0.8543)
+    seed=7 spawn#10: color=2  pre=1.3403  prob=1.4562  delta=-0.1159  REVT  RV-R  (nll_old=0.7248 nll_new=0.7461)
+    seed=7 spawn#11: color=1  pre=0.5639  prob=2.0600  delta=-1.4961  REVT  RV-K  (nll_old=0.6852 nll_new=0.5920)
+    seed=7 spawn#12: color=2  pre=0.8149  prob=3.1408  delta=-2.3259  REVT  RV-R  (nll_old=0.8051 nll_new=0.8079)
+    seed=7 spawn#13: color=1  pre=0.9447  prob=0.8559  delta=+0.0888  REVT  RV-K  (nll_old=0.9078 nll_new=0.8258)
+    seed=7 spawn#14: color=2  pre=1.0567  prob=2.7681  delta=-1.7114  REVT  RV-R  (nll_old=0.8152 nll_new=0.8729)
+    seed=7 spawn#15: color=2  pre=2.7797  prob=1.3527  delta=+1.4271  KEPT  RV-R  (nll_old=0.7654 nll_new=0.7789)
+    seed=7 spawn#16: color=2  pre=1.6160  prob=1.2767  delta=+0.3392  KEPT  RV-K  (nll_old=0.6403 nll_new=0.6276)
+    seed=7 spawn#17: color=1  pre=0.7656  prob=0.8861  delta=-0.1205  REVT  RV-K  (nll_old=0.7637 nll_new=0.7384)
+    seed=7 spawn#18: color=0  pre=0.7977  prob=2.2068  delta=-1.4092  REVT  RV-K  (nll_old=0.8778 nll_new=0.7096)
+    seed=7 spawn#19: color=1  pre=0.7667  prob=1.0739  delta=-0.3071  REVT  RV-K  (nll_old=0.8591 nll_new=0.8225)
+    seed=7 spawn#20: color=2  pre=1.0636  prob=1.5733  delta=  N/A  REVT  RV-R  (nll_old=0.8926 nll_new=0.9295)
+
+  TALLIES — Layout 3
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 3: FAIL
+    seed=0: plateau=0.6714  final=1.0330  drop=-0.362  finCeil=161  comps=[1, 3, 5, 1](2/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.7666  final=1.0507  drop=-0.284  finCeil=173  comps=[2, 1, 4, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=0.7999  final=1.0823  drop=-0.282  finCeil=82  comps=[1, 1, 4, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=0.8613  final=0.9767  drop=-0.115  finCeil=139  comps=[1, 1, 5, 3](2/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=0.7079  final=0.9270  drop=-0.219  finCeil=193  comps=[1, 3, 4, 1](2/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=0.7702  final=0.7801  drop=-0.010  finCeil=242  comps=[2, 2, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.7270  final=0.8016  drop=-0.075  finCeil=110  comps=[1, 2, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=0.7276  final=0.9149  drop=-0.187  finCeil=184  comps=[1, 1, 4, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 probation honesty (>= 70% kept show sustained benefit):
+    Kept spawns: 30  Sustained: 21  Fraction: 70.0%  
+    P2 layout 3: PASS
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0336  pass
+    seed=1: loc_med=0.0424  pass
+    seed=2: loc_med=0.0407  pass
+    seed=3: loc_med=0.0391  pass
+    seed=4: loc_med=0.0457  pass
+    seed=5: loc_med=0.0459  pass
+    seed=6: loc_med=0.0410  pass
+    seed=7: loc_med=0.0465  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+GLOBAL CONJUNCT TALLIES (across all 3 layouts)
+================================================================================
+
+P1 alarm answered (all 3 layouts):
+  Layout 1 (rng(7)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 2 (rng(11)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 3 (rng(13)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  P1 GLOBAL: FAIL
+
+P2 probation honesty (>= 70% sustained benefit, all 3 layouts):
+  Layout 1: kept=4  frac=75.0%  PASS
+  Layout 2: kept=7  frac=85.7%  PASS
+  Layout 3: kept=30  frac=70.0%  PASS
+  P2 GLOBAL: PASS
+
+P3 no regression (>= 7/8 seeds, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+  P3 GLOBAL: PASS
+
+Twin sanity (>= 7/8, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+
+================================================================================
+HALT-ARM EVALUATION
+================================================================================
+
+  Falsifier: P1 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — live-probation growth still cannot reduce predictive surprise; second growth design fails (MIGRATION HALT with both designs logged)
+
+================================================================================
+VERDICT: NEGATIVE
+MIGRATION HALT
+  P1 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — live-probation growth still cannot reduce predictive surprise; second growth design fails (MIGRATION HALT with both designs logged)
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp145_rows.json
