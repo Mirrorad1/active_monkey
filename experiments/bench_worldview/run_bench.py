@@ -87,6 +87,7 @@ from active_loop.growth import (
     mixture_emission_moments,
     mixture_predictive_logprobs,
     pick_round_robin_color,
+    replay_nll,
     select_best_k,
     _copy_color_components,
 )
@@ -94,6 +95,7 @@ from active_loop.verdict import write_verdict
 from active_loop.worlds import (
     aliased,
     analytic_floor,
+    ground_truth,
     learnable,
     noisy,
     nonstationary,
@@ -121,11 +123,32 @@ _T_SMOKE_PHASE2 = 1400   # SMOKE: smallest T that lets C's alarm show (need ~50-
 # Eval window: last fraction of phase2
 _FINAL_EVAL_FRAC = 0.25  # last 25% of phase2 used for final-surprise eval
 
-# Mechanism whitelist
-_IMPLEMENTED_MECHANISMS = {"none", "grow"}
-_RESERVED_MECHANISMS = {
-    "decay", "random_accept", "replay_accept", "bigger_fixed", "oracle"
+# Mechanism whitelist (T16 adds: decay, random_accept, replay_accept, bigger_fixed, oracle)
+_IMPLEMENTED_MECHANISMS = {
+    "none", "grow", "decay", "random_accept", "replay_accept", "bigger_fixed", "oracle"
 }
+_RESERVED_MECHANISMS: set[str] = set()  # all mechanisms now implemented
+
+# ---------------------------------------------------------------------------
+# Decay mechanism constants (Exp 137)
+# ---------------------------------------------------------------------------
+
+# Count-decay forgetting: keep_mean=True form validated by Exp 137 mechanism check.
+# lam = kappa0 + lam_raw * (kappa - kappa0) → decay kappa toward kappa0 each step.
+# Steady-state N_eff = 1/(1 - lam_raw).  N_eff=50 gives lam=1-1/50=0.98.
+# The window N_eff=50 is borrowed from the COLOR_SURPRISE_WINDOW (50 obs) —
+# it matches the alarm's look-back horizon.  Source: Exp 137 mechanism check
+# (cube-root law N* ≈ (σ²/2v²)^{1/3}; for the lab's typical σ=0.35 and slow
+# drift the optimum lands in the 20-80 range; 50 is the alarm-matched value).
+# "Decay counts, not location" is the pinned law from Exp 137.
+_DECAY_N_EFF: int = 50
+_DECAY_LAM: float = 1.0 - 1.0 / _DECAY_N_EFF   # = 0.98
+
+# Random-accept base rate: fraction of grow spawn attempts that were kept across
+# all four worlds (A/B/C/D) in the T15 smoke run (2 seeds each, normalized conv).
+# Raw counts: A 4/4, B 3/6, C 4/4, D 2/6 → 13 kept / 20 attempts = 0.65.
+# Source: committed outputs bench_{A,B,C,D}_grow_normalized_s2_l1_rows.json.
+_RANDOM_ACCEPT_RATE: float = 0.65
 
 # Output dir relative to repo root
 _BENCH_DIR = Path(__file__).resolve().parent
@@ -241,6 +264,96 @@ def _obs_color(
 
 
 # ---------------------------------------------------------------------------
+# T16 initialisation helpers (bigger_fixed, oracle)
+# ---------------------------------------------------------------------------
+
+
+def _init_bigger_fixed(
+    world: dict,
+    n_colors: int,
+    arena_center: np.ndarray,
+    S0: np.ndarray,
+) -> tuple[list[list[tuple[float, NIW]]], list[list[int]]]:
+    """Install true_K components per color at birth from ground truth.
+
+    Each color gets true_K_per_color[k] equal-weight components, all at
+    the arena centre with the uninformative prior (same as the unimodal start
+    but multiplied out).  No ground-truth location is used — this tests whether
+    simply having the right CAPACITY (K) helps, independent of placement.
+
+    Mechanism: bigger_fixed (T16, rigor-fairness-upgrade spec).
+    Ground-truth source: worlds.ground_truth() → true_K_per_color.
+    """
+    gt = ground_truth(world)
+    true_K = gt["true_K_per_color"]
+    components: list[list[tuple[float, NIW]]] = []
+    counts: list[list[int]] = []
+    for k in range(n_colors):
+        K = max(1, true_K[k])
+        w = 1.0 / K
+        color_comps = []
+        color_counts = []
+        for _ in range(K):
+            niw = NIW(m=arena_center.copy(), kappa=_KAPPA0, nu=_NU0, S=S0.copy())
+            color_comps.append((w, niw))
+            color_counts.append(1)
+        components.append(color_comps)
+        counts.append(color_counts)
+    return components, counts
+
+
+def _init_oracle(
+    world: dict,
+    n_colors: int,
+    cell_centers: np.ndarray,
+    S0: np.ndarray,
+) -> tuple[list[list[tuple[float, NIW]]], list[list[int]]]:
+    """Install true K components with true assignments and fitted moments.
+
+    For each color k, the oracle gets one NIW component per true cell,
+    initialised by fitting moments on those cell positions:
+      - m  = mean of cell_centers[cells]
+      - kappa = len(cells) * 10  (strong pseudo-count to anchor location)
+      - nu, S: standard prior but S adjusted to the within-cluster scatter
+
+    This is the upper-bound mechanism: it knows exactly where each color
+    lives and how many clusters there are.
+
+    Mechanism: oracle (T16, rigor-fairness-upgrade spec).
+    Ground-truth source: worlds.ground_truth() → true_assignments.
+    """
+    gt = ground_truth(world)
+    true_assignments = gt["true_assignments"]
+    components: list[list[tuple[float, NIW]]] = []
+    counts: list[list[int]] = []
+    for k in range(n_colors):
+        cells = true_assignments[k]
+        if not cells:
+            # Degenerate: color appears in no cell — use unimodal prior
+            niw = NIW(m=cell_centers.mean(axis=0), kappa=_KAPPA0, nu=_NU0, S=S0.copy())
+            components.append([(1.0, niw)])
+            counts.append([1])
+            continue
+        K = len(cells)
+        w = 1.0 / K
+        color_comps = []
+        color_counts = []
+        for cell in cells:
+            m = cell_centers[cell].copy()
+            # Strong anchor: pseudo-count = 50 (matches COLOR_SURPRISE_WINDOW)
+            kappa = float(COLOR_SURPRISE_WINDOW)
+            nu = _NU0 + float(COLOR_SURPRISE_WINDOW)
+            # S: uninformative scale (no within-cluster scatter in a single cell)
+            S = S0.copy() * (nu - _D - 1) / (_NU0 - _D - 1)
+            niw = NIW(m=m, kappa=kappa, nu=nu, S=S)
+            color_comps.append((w, niw))
+            color_counts.append(COLOR_SURPRISE_WINDOW)
+        components.append(color_comps)
+        counts.append(color_counts)
+    return components, counts
+
+
+# ---------------------------------------------------------------------------
 # Core simulation loop (world-agnostic, mechanism-parameterised)
 # ---------------------------------------------------------------------------
 
@@ -264,15 +377,29 @@ def run_single_seed(
     — unchanged from exp153/exp154). The convention argument controls only the
     PREDICTIVE evaluation (surprise, alarm, ceiling, probation scoring).
 
+    Mechanisms (T16 extensions):
+    - none         : fixed unimodal; no adaptation of K.
+    - grow         : live probation + batch-jump EM (Exp 145/153/154 validated form).
+    - decay        : no K-adaptation; per-step count-decay of each NIW component
+                     using NIW.decay(lam=_DECAY_LAM, keep_mean=True). Exp 137 law.
+    - random_accept: spawns like grow, accepts/rejects at fixed rate _RANDOM_ACCEPT_RATE
+                     (no probation). Rate matched to T15 grow smoke acceptance rate.
+    - replay_accept: spawns like grow, accepts iff replay NLL strictly decreases
+                     (< −1e-6). Dishonest control from Exp 144.
+    - bigger_fixed : true K per color installed at birth (wrong location, right K).
+                     Upper-K ablation for structure economy.
+    - oracle       : true K + true assignments + fitted cell moments at birth.
+                     Upper bound on surprise achievable with correct structure.
+
     Parameters
     ----------
     world_key    : 'A' | 'B' | 'C' | 'D'
     world        : world dict from worlds.py
     cmap_initial : int array of cell→color mapping (pre-remap for D)
-    mechanism    : 'none' or 'grow'
+    mechanism    : any of the 7 mechanisms above
     convention   : 'unnormalized' or 'normalized'
     actions      : pre-drawn action sequence, shape (t_phase1+t_phase2,)
-    run_rng      : numpy Generator for EM / K-selection
+    run_rng      : numpy Generator for EM / K-selection / random_accept
     t_phase1     : phase-1 step count
     t_phase2     : phase-2 step count
 
@@ -299,13 +426,24 @@ def run_single_seed(
     # Place belief
     cp = ContinuousPlace(arena_center.copy(), np.diag([4.0, 4.0]), arena)
 
-    # NIW components — one per color, initial unimodal
-    components: list[list[tuple[float, NIW]]] = []
-    counts: list[list[int]] = []
-    for k in range(n_colors):
-        niw0 = NIW(m=arena_center.copy(), kappa=_KAPPA0, nu=_NU0, S=S0.copy())
-        components.append([(1.0, niw0)])
-        counts.append([1])
+    # NIW components — mechanism-dependent initialisation
+    if mechanism == "bigger_fixed":
+        components, counts = _init_bigger_fixed(world, n_colors, arena_center, S0)
+    elif mechanism == "oracle":
+        components, counts = _init_oracle(world, n_colors, cell_centers, S0)
+    else:
+        components = []
+        counts = []
+        for k in range(n_colors):
+            niw0 = NIW(m=arena_center.copy(), kappa=_KAPPA0, nu=_NU0, S=S0.copy())
+            components.append([(1.0, niw0)])
+            counts.append([1])
+
+    # Build per-color unimodal priors for decay mechanism (fixed natal prior)
+    _decay_priors: list[NIW] = [
+        NIW(m=arena_center.copy(), kappa=_KAPPA0, nu=_NU0, S=S0.copy())
+        for _ in range(n_colors)
+    ] if mechanism == "decay" else []
 
     # --- Mechanism: grow state ---
     spawn_budget = [SPAWN_BUDGET] * n_colors   # max extra components per color
@@ -397,7 +535,7 @@ def run_single_seed(
             if is_ceiling and phase2_t >= t_phase2 - max(100, t_phase2 // 4):
                 phase2_final_ceiling_count += 1
 
-            # --- Probation resolution ---
+            # --- Probation resolution (grow only) ---
             if probation_color >= 0 and mechanism == "grow":
                 elapsed = phase2_t - probation_start_phase2_t
                 if elapsed >= PROBATION_STEPS:
@@ -429,9 +567,10 @@ def run_single_seed(
                     probation_color_counts_snap = []
                     probation_observations = []
 
-            # --- Alarm check and growth attempt ---
+            # --- Alarm check and growth attempt (grow / random_accept / replay_accept) ---
+            _is_spawn_mechanism = mechanism in ("grow", "random_accept", "replay_accept")
             if (
-                mechanism == "grow"
+                _is_spawn_mechanism
                 and probation_color < 0
                 and phase2_t > 0
                 and phase2_t % SPAWN_INTERVAL == 0
@@ -473,7 +612,6 @@ def run_single_seed(
                             color_replay_pairs, run_rng
                         )
 
-                        components[jump_color] = best_comps
                         n_total = len(color_replay_pairs)
                         new_counts = [
                             max(1, int(round(
@@ -481,28 +619,76 @@ def run_single_seed(
                             )))
                             for j in range(best_K)
                         ]
-                        counts[jump_color] = new_counts
-
-                        probation_color = jump_color
-                        probation_start_phase2_t = phase2_t
-                        probation_pre_jump_mean = pre_jump_mean
-                        probation_color_snap = snap_comps
-                        probation_color_counts_snap = snap_counts
-                        probation_observations = []
 
                         nll_serial = {
                             str(K): {"nll": nll_by_k[K][0], "score": nll_by_k[K][1]}
                             for K in K_CANDIDATES
                         }
-                        attempt_records.append({
-                            "color": jump_color,
-                            "K_chosen": best_K,
-                            "nll_by_k": nll_serial,
-                            "pre_jump_mean": pre_jump_mean,
-                            "probation_mean": float("nan"),
-                            "delta": float("nan"),
-                            "kept": None,
-                        })
+
+                        if mechanism == "grow":
+                            # Install candidate, start live probation
+                            components[jump_color] = best_comps
+                            counts[jump_color] = new_counts
+
+                            probation_color = jump_color
+                            probation_start_phase2_t = phase2_t
+                            probation_pre_jump_mean = pre_jump_mean
+                            probation_color_snap = snap_comps
+                            probation_color_counts_snap = snap_counts
+                            probation_observations = []
+
+                            attempt_records.append({
+                                "color": jump_color,
+                                "K_chosen": best_K,
+                                "nll_by_k": nll_serial,
+                                "pre_jump_mean": pre_jump_mean,
+                                "probation_mean": float("nan"),
+                                "delta": float("nan"),
+                                "kept": None,
+                            })
+
+                        elif mechanism == "random_accept":
+                            # Accept at fixed base rate (no probation); rate source: T15 smoke
+                            keep = bool(float(run_rng.random()) < _RANDOM_ACCEPT_RATE)
+                            if keep:
+                                components[jump_color] = best_comps
+                                counts[jump_color] = new_counts
+                                spawn_budget[jump_color] -= 1
+                            attempt_records.append({
+                                "color": jump_color,
+                                "K_chosen": best_K,
+                                "nll_by_k": nll_serial,
+                                "pre_jump_mean": pre_jump_mean,
+                                "probation_mean": float("nan"),
+                                "delta": float("nan"),
+                                "kept": keep,
+                            })
+
+                        elif mechanism == "replay_accept":
+                            # Exp 144: strict NLL decrease on full replay buffer
+                            # — the dishonest control (uses global replay, not live obs)
+                            nll_old = replay_nll(replay_buf, components)
+                            # Temporarily install to compute new NLL
+                            old_comps_saved = components[jump_color]
+                            old_counts_saved = counts[jump_color]
+                            components[jump_color] = best_comps
+                            counts[jump_color] = new_counts
+                            nll_new = replay_nll(replay_buf, components)
+                            keep = bool(nll_new < nll_old - 1e-6)
+                            if keep:
+                                spawn_budget[jump_color] -= 1
+                            else:
+                                components[jump_color] = old_comps_saved
+                                counts[jump_color] = old_counts_saved
+                            attempt_records.append({
+                                "color": jump_color,
+                                "K_chosen": best_K,
+                                "nll_by_k": nll_serial,
+                                "pre_jump_mean": pre_jump_mean,
+                                "probation_mean": float("nan"),
+                                "delta": nll_old - nll_new,
+                                "kept": keep,
+                            })
 
         # --- Place update (UNCHANGED: unnormalized conjugate) ---
         mu_mix, Sigma_mix_diag, hard_idx = mixture_emission_moments(
@@ -526,6 +712,23 @@ def run_single_seed(
             (counts[obs_k][j] / total_k, niw)
             for j, (_, niw) in enumerate(components[obs_k])
         ]
+
+        # --- Decay step (decay mechanism only) ---
+        # "Decay counts, not location" — Exp 137 keep_mean=True form.
+        # Applied to every component of every color each step.
+        if mechanism == "decay":
+            for kk in range(n_colors):
+                components[kk] = [
+                    (w, niw.decay(_DECAY_LAM, _decay_priors[kk], keep_mean=True))
+                    for (w, niw) in components[kk]
+                ]
+                # counts: decay pseudo-counts analogously so they stay consistent
+                # with the NIW kappas (purely for bookkeeping; K stays fixed)
+                total_k_kk = sum(counts[kk])
+                if total_k_kk > len(counts[kk]):
+                    counts[kk] = [
+                        max(1, int(round(c * _DECAY_LAM))) for c in counts[kk]
+                    ]
 
         action = int(actions[t])
         true_cell = _move_cell(true_cell, action, rows, cols)
@@ -557,6 +760,12 @@ def run_single_seed(
 
     final_comps = [len(components[k]) for k in range(n_colors)]
 
+    # Structure economy: components used vs needed (from ground truth)
+    gt = ground_truth(world)
+    true_K_per_color = gt["true_K_per_color"]
+    comps_used = sum(final_comps)
+    comps_needed = sum(true_K_per_color)
+
     loc_arr_p2 = np.array(phase2_loc_errors) if phase2_loc_errors else np.array([float("nan")])
     loc_arr_p1 = np.array(phase1_loc_errors) if phase1_loc_errors else np.array([float("nan")])
     loc_med_p2 = float(np.median(loc_arr_p2[-min(500, len(loc_arr_p2)):]))
@@ -575,6 +784,9 @@ def run_single_seed(
         "final_ceiling_events": phase2_final_ceiling_count,
         "phase1_ceiling_events": phase1_ceiling_count,
         "final_comps_per_color": final_comps,
+        "true_K_per_color": true_K_per_color,
+        "comps_used": comps_used,
+        "comps_needed": comps_needed,
         "attempt_records": attempt_records,
         "loc_median_final500_p2": loc_med_p2,
         "loc_median_final500_p1": loc_med_p1,
@@ -896,14 +1108,20 @@ def main(argv: list[str] | None = None) -> None:
     # Write JSON rows
     _OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     rows_path = _OUTPUTS_DIR / f"{tag}_rows.json"
+
+    def _safe(v):
+        """Recursively make v JSON-serialisable: NaN→null, bool stays bool."""
+        if isinstance(v, float) and math.isnan(v):
+            return None
+        if isinstance(v, dict):
+            return {kk: _safe(vv) for kk, vv in v.items()}
+        if isinstance(v, list):
+            return [_safe(item) for item in v]
+        return v
+
     with rows_path.open("w") as fh:
         for row in rows:
-            # Serialise — replace NaN with null for JSON compliance
-            def _ser(v):
-                if isinstance(v, float) and math.isnan(v):
-                    return None
-                return v
-            safe_row = {k: _ser(v) if not isinstance(v, (list, dict)) else v for k, v in row.items()}
+            safe_row = _safe(row)
             fh.write(json.dumps(safe_row) + "\n")
     print(f"[bench] wrote {len(rows)} rows → {rows_path}")
 

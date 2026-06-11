@@ -298,3 +298,67 @@ def nonstationary(
         "cmap": list(base["cmap"]),   # pre-remap (explicit, not relying on **base)
         "cmap_after": new_cmap.tolist(),
     }
+
+
+# ---------------------------------------------------------------------------
+# Ground-truth accessor (T16 — bigger_fixed and oracle mechanisms)
+# ---------------------------------------------------------------------------
+
+
+def ground_truth(world: dict) -> dict:
+    """Return the ground-truth structure of *world* for oracle/bigger_fixed mechanisms.
+
+    For mechanisms that need the true layout at birth (bigger_fixed) or the true
+    generating structure (oracle), this accessor centralises what the world dict
+    exposes:
+
+    - ``true_K_per_color``: list[int], length n_colors.  Number of true emission
+      components per color (= n_cells_per_color for aliased worlds; 1 for all others).
+    - ``true_assignments``: list[list[int]], length n_colors.  Each entry is a list
+      of cell indices belonging to that color under the pre-remap cmap.  For
+      nonstationary worlds, the PRE-remap assignment is returned (the structure the
+      agent was born into).
+    - ``cell_centers``: np.ndarray, shape (n_cells, 2), (x=col, y=row) for each cell.
+
+    For aliased worlds each color maps to n_cells_per_color cells scattered across the
+    grid, so true_K_per_color[k] = n_cells_per_color for all k.
+    For learnable/noisy worlds the cmap is injective per color (one cell per color in
+    the standard 3-color learnable world, but technically the cmap can map multiple
+    cells to the same color — we return the actual count).
+    For nonstationary worlds, the pre-remap structure is used (the agent starts in the
+    base layout and must respond to drift, not anticipate the remap).
+
+    Added in T16 (rigor-fairness-upgrade spec) to support bigger_fixed and oracle
+    baseline mechanisms.
+
+    Args:
+        world: A world dict returned by learnable(), noisy(), aliased(), or
+               nonstationary().
+
+    Returns:
+        dict with keys: true_K_per_color, true_assignments, cell_centers.
+    """
+    cmap = list(world["cmap"])  # pre-remap for nonstationary
+    n_colors = int(world["n_colors"])
+    rows = int(world.get("rows", ROWS))
+    cols = int(world.get("cols", COLS))
+    n_cells = rows * cols
+
+    # Build true_assignments: for each color, which cells belong to it
+    true_assignments: list[list[int]] = [[] for _ in range(n_colors)]
+    for cell, color in enumerate(cmap):
+        true_assignments[color].append(cell)
+
+    true_K_per_color = [len(cells) for cells in true_assignments]
+
+    # Cell centers: (x=col, y=row)
+    cell_centers = np.array(
+        [[float(c), float(r)] for r in range(rows) for c in range(cols)],
+        dtype=float,
+    )
+
+    return {
+        "true_K_per_color": true_K_per_color,
+        "true_assignments": true_assignments,
+        "cell_centers": cell_centers,
+    }
