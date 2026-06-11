@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:134, breakthrough:6, positive:82, wall:21, partial:25, from:4.81, to:4.00 };
+window.AM_TALLY = { total:135, breakthrough:6, positive:83, wall:21, partial:25, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1355,7 +1355,17 @@ window.AM_EXPERIMENTS = [
     setup:"Four word-Gaussians at square corners, a 12-cell (separation x footprint-width) sweep with 8 seeds per cell, 50/50 blended streams from opposite corners, pure-corner controls, and the tabular twin on identical streams. Predeclared: no snap, no Sigma widening, and a cost gap rising to ln 2 — the third falsified by reversal. A fresh-seed rerun and an exact log-space recomputation pinned the mechanism and separated one implementation artifact (an underflow ratchet in probability-space filtering, now guarded by a core helper plus regression test) from the real effect.",
     result:"P1 interpolation 12/12 cells and 0/96 snaps; P2 max trace difference exactly 0.0; P3 falsifier triggered with rho -0.98 in the opposite direction — count imbalance of a single word multiplies the tabular odds by e^(L^2/sigma^2), collapsing it to one corner with unbounded cost, verified 46/46 in exact log-space Bayes.",
     implication:"The direction's first genuine tabular-ceiling datum: out-of-model blends break tables, not continua. The unimodal cost is real but bounded (uncertainty never widens; floor ln 4 vs ideal ln 2); the tabular cost is unbounded in separation. Rung 3, the Exp 31 collapse rematch, is next.",
-    trace:{ script:"experiments/exp134_cont_interpolation.py", output:"experiments/outputs/exp134.txt" } }
+    trace:{ script:"experiments/exp134_cont_interpolation.py", output:"experiments/outputs/exp134.txt" } },
+
+  { n:135, kind:"positive", chapter:"frontier",
+    title:"The collapse rematch: erosion is arithmetic, and it does not care about the substrate.",
+    one:"Rung 3, the Exp 31 rematch: noise-phase collapse of NIW-learned emission means follows n/(kappa_eff+n) to within 0.015 in every cell, half-life linear in banked mass (108/123/217 vs kappa_eff 101/110/200), the Dirichlet twin erodes at the same rate on identical streams (ratio 1.52), and nu0 is a proven null knob for mean drift (max effect 0.011) — all four predeclared conjuncts, 6 cells x 8 seeds.",
+    plain:"The direction's central question: the old finding was that a mind learning its own sensory map loses it when the world turns to noise — was that a flaw of the boxed-state substrate, or of online learning itself? Answer: the learning, not the boxes. The continuous mind erodes too, and so does its boxed twin on the very same stream — but the erosion is exact arithmetic: how long structure survives is simply proportional to how much structured experience was banked, one prior knob dials that resistance, and the other provably does not matter for it.",
+    metric:{ from:101, to:217, unit:"half-collapse noise dose tracking kappa_eff across the sweep (law deviation <= 0.015)" },
+    setup:"Six true concept centers, emission MEANS learned online by moment-matched NIW updates under a provided position anchor; 600 structured steps then 2400 noise steps with words decorrelated from position; a kappa0 x nu0 sweep with eight seeds per cell and a Dirichlet tabular twin consuming the identical streams. Predeclared: the conjugate shrinkage calibration, the n/(kappa_eff+n) erosion law with half-dose linear in kappa0, both-substrates collapse with bounded asymmetry, and the nu0 null.",
+    result:"All four predictions hold: calibration 6/6 cells, law deviation 0.007-0.015, n_half within 25 percent of kappa_eff 6/6, collapse index ratios 0.002-0.066 in both substrates, cont/tab erosion ratio 1.52, nu0 effect 0.011. One logged post-hoc diagnostic: nu0 does shift predictive (NLL) erosion through covariance widening.",
+    implication:"Paired with Exp 134 the substrate verdict is two-sided: the tabular ceiling is not in noise-collapse (both substrates erode identically, mass-linearly) but is in out-of-model blends (tables unboundedly brittle, continua bounded). Rungs 1-3 have verdicts; dimensionality scaling is next.",
+    trace:{ script:"experiments/exp135_cont_collapse_rematch.py", output:"experiments/outputs/exp135.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

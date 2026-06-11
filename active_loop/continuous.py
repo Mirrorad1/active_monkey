@@ -263,6 +263,54 @@ class NIW:
         new._d = self._d
         return new
 
+    def update_moments(self, mu_q: np.ndarray, Sigma_q: np.ndarray) -> "NIW":
+        """Return a new NIW updated with one observation known only as N(mu_q, Sigma_q).
+
+        This is moment-matched update for a soft observation: the data point's
+        location is uncertain with posterior N(mu_q, Sigma_q).  The mean update and
+        kappa/nu increments are identical to update(x=mu_q), but the scatter term
+        absorbs the observation uncertainty::
+
+            kappa_T = kappa + 1
+            nu_T    = nu + 1
+            m_T     = (kappa * m + mu_q) / kappa_T
+            S_T     = S + Sigma_q + (kappa / kappa_T) * outer(mu_q - m, mu_q - m)
+
+        The Sigma_q -> 0 limit recovers update(x=mu_q) exactly: the outer-product
+        term equals kappa/(kappa+1) * outer(x-m, x-m), which is the standard NIW
+        scatter for T=1, and Sigma_q vanishes.
+
+        Parameters
+        ----------
+        mu_q : array_like, shape (d,)
+            Mean of the observation posterior.
+        Sigma_q : array_like, shape (d, d)
+            Covariance of the observation posterior.  Pass zeros((d,d)) to recover
+            the hard-observation update(x=mu_q).
+
+        Returns
+        -------
+        NIW
+            New NIW instance with updated parameters.
+        """
+        mu_q = np.asarray(mu_q, dtype=float)
+        Sigma_q = np.asarray(Sigma_q, dtype=float)
+
+        kappa_T = self._kappa + 1.0
+        nu_T = self._nu + 1.0
+        m_T = (self._kappa * self._m + mu_q) / kappa_T
+        diff = mu_q - self._m
+        outer = np.outer(diff, diff)
+        S_T = self._S + Sigma_q + (self._kappa / kappa_T) * outer
+
+        new = NIW.__new__(NIW)
+        new._m = m_T
+        new._kappa = kappa_T
+        new._nu = nu_T
+        new._S = S_T
+        new._d = self._d
+        return new
+
     # ------------------------------------------------------------------
     # Expected parameters
     # ------------------------------------------------------------------

@@ -180,6 +180,51 @@ def test_predictive_logprobs_normalized() -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# test_niw_update_moments_limit
+# ---------------------------------------------------------------------------
+
+def test_niw_update_moments_limit() -> None:
+    """update_moments(x, 0) == update(x), and Sigma_q adds exactly to S."""
+    rng = np.random.default_rng(31415)
+    d = 3
+    m = rng.standard_normal(d)
+    S = _random_psd(d, rng)
+    niw = NIW(m=m, kappa=2.0, nu=float(d + 2), S=S)
+
+    x = rng.standard_normal(d)
+
+    # (a) update_moments(x, zeros) must equal update(x) on all four params
+    niw_hard = niw.update(x)
+    niw_moments_zero = niw.update_moments(x, np.zeros((d, d)))
+
+    np.testing.assert_allclose(
+        niw_moments_zero._m, niw_hard._m, atol=1e-12,
+        err_msg="update_moments(x, 0): m mismatch vs update(x)"
+    )
+    np.testing.assert_allclose(
+        niw_moments_zero._kappa, niw_hard._kappa, atol=1e-12,
+        err_msg="update_moments(x, 0): kappa mismatch vs update(x)"
+    )
+    np.testing.assert_allclose(
+        niw_moments_zero._nu, niw_hard._nu, atol=1e-12,
+        err_msg="update_moments(x, 0): nu mismatch vs update(x)"
+    )
+    np.testing.assert_allclose(
+        niw_moments_zero._S, niw_hard._S, atol=1e-12,
+        err_msg="update_moments(x, 0): S mismatch vs update(x)"
+    )
+
+    # (b) With Sigma_q = 0.3*I, the resulting S exceeds update(x) S by exactly Sigma_q
+    Sigma_q = 0.3 * np.eye(d)
+    niw_soft = niw.update_moments(x, Sigma_q)
+    S_diff = niw_soft._S - niw_hard._S
+    np.testing.assert_allclose(
+        S_diff, Sigma_q, atol=1e-12,
+        err_msg="update_moments(x, 0.3*I): S - update(x).S must equal Sigma_q"
+    )
+
+
 def test_log_categorical_posterior_order_independent_no_ratchet():
     """Exp 134 guard: the log-space filter must be order-independent and immune to
     the underflow ratchet that breaks multiply-then-renormalize filters."""

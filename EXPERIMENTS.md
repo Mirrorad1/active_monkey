@@ -3738,3 +3738,50 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 3 — the Exp 31 rematch (NIW-learned emission means, structured→noise
   phases, collapse index vs (ν₀, κ₀)), now with the log-space twin mandated by the new
   card rule.
+
+## Exp 135 — continuous-substrate rung 3, the Exp 31 rematch: collapse under noise is conjugate arithmetic — common to BOTH substrates, linear in accumulated mass, dialed by kappa alone (POSITIVE; all P1–P4 conjuncts; 6 cells × 8 seeds)
+- Plain: The direction's central question: the old finding was that a mind learning its
+  own sensory map loses it when the world turns to noise — was that a flaw of the
+  boxed-state substrate, or of online learning itself? Answer: it is a property of the
+  learning, not the boxes — the continuous mind erodes too, and so does its boxed twin
+  on the very same stream — but the erosion is exact arithmetic: how long the structure
+  survives is simply proportional to how much structured experience was banked, and one
+  prior knob dials that resistance up and down while the other knob provably does not
+  matter for it.
+- Setup (predeclared in the script docstring before running): 6 true centers (hexagon
+  r=1), footprints 0.35²I known, MEANS learned via NIW with moment-matched updates
+  (new core method update_moments + limit test); anchor PROVIDED throughout (position
+  posterior N(pos_t, 0.05²I) — erosion test, not symmetry breaking); T_struct=600
+  (≈100/word), T_noise=2400 uniform words decorrelated from position; sweep
+  κ₀∈{1,10,100} × ν₀∈{4,20}, seeds 0–7; Dirichlet(α₀=1) tabular twin on IDENTICAL
+  streams. P1: end-struct error = κ₀/(κ₀+100) ±0.10. P2: drift δ(n)=n/(κ_eff+n) ±0.10
+  at every checkpoint, n_half within ±25% of κ_eff=κ₀+100 in ≥5/6 cells. P3: both
+  substrates collapse (CI ratio <25%), NLL n_half ratio cont/tab ∈ [0.5,2] at the weak
+  cell. P4: ν₀ moves mean drift < 0.05 (null knob).
+- Result: POSITIVE on every conjunct. P1 6/6 (deviation ≤0.022 — the ~3% neighbor-word
+  leakage floor, same as rung 1). P2: max law deviation 0.007–0.015 per cell (an order
+  under the band); n_half 108→123→217 tracking κ_eff 101→110→200, 6/6 cells —
+  resistance LINEAR in κ₀ as predicted. P3: CI collapses in all cells (end-noise/end-
+  struct 0.002–0.066); ratio 1.52 — no substrate asymmetry in erosion (the card's deep-
+  negative fork confirmed in its lawful form). P4: max ν₀ effect on drift 0.011 < 0.05
+  — mean inertia is κ-only, a refinement AGAINST the supplied program's lumped
+  "(ν₀,κ₀) virtual counts." Logged diagnostic (not predeclared): ν₀ does shift NLL-
+  based n_half (174 vs 140 at κ₀=1) via E[Σ] widening — covariance erosion has its own
+  knob. Suite 99 green.
+- Implication: paired with Exp 134, the substrate verdict sharpens into a two-sided
+  law: the tabular ceiling is NOT in noise-collapse (both substrates erode identically,
+  mass-linearly — the social chapter's dose-vs-accumulated-mass law is substrate-
+  independent) but IS in out-of-model blends (tables unboundedly brittle, continua
+  bounded). Rungs 1–3 now have verdicts; observations may stay discrete and the action
+  model fixed per the card; rung 4 (dimensionality) is next.
+- Honest caveat: anchor PROVIDED throughout (this rung never asked the symmetry-
+  breaking question — that stays the documented ceiling); erosion's cleanliness is
+  partly BY CONSTRUCTION (the anchor never lies, so noise enters only through words);
+  Σ_k known and shared; the ν₀-NLL observation is post-hoc and untested on fresh seeds;
+  d=2, one geometry, α₀ matched only at the weak cell.
+- Verdict: POSITIVE / NEW INSIGHT (first closed-form collapse-resistance law on this
+  substrate; ν₀-null refinement of the supplied program). Self-grade: POSITIVE-SINGLE
+  (the law's mass-linearity was already known tabularly from the social chapter; new is
+  its substrate-independence and the κ-only attribution).
+- Next: rung 4 — d ∈ {2,4,8,16,32}, convergence quality + wall clock, Mahalanobis
+  separation held constant across d per the ratified confound control.

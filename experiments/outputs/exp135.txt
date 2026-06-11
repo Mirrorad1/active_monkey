@@ -1,0 +1,55 @@
+====================================================================================================
+Exp 135 — continuous-substrate rung 3: collapse rematch
+====================================================================================================
+ kappa0   nu0    EndStructErr   Predicted   n_half_d  kappa_eff  CI_noise/CI_struct  NLL_half_cont  NLL_half_tab
+----------------------------------------------------------------------------------------------------
+      1     4          0.0316      0.0099      110.4      101.0              0.0023          173.8         114.6
+      1    20          0.0283      0.0099      108.3      101.0              0.0032          139.6         114.6
+     10     4          0.1076      0.0909      118.8      110.0              0.0062          189.6         116.7
+     10    20          0.1066      0.0909      122.9      110.0              0.0076          145.8         120.8
+    100     4          0.5099      0.5000      216.7      200.0              0.0657          135.4         114.6
+    100    20          0.5087      0.5000      216.7      200.0              0.0607          106.2         116.7
+
+--- P1: Calibration (end-struct error within +-0.10 of kappa0/(kappa0+100)) ---
+  kappa0=  1, nu0=4: mean_err=0.0316, predicted=0.0099, |dev|=0.0217 -> PASS
+  kappa0=  1, nu0=20: mean_err=0.0283, predicted=0.0099, |dev|=0.0184 -> PASS
+  kappa0= 10, nu0=4: mean_err=0.1076, predicted=0.0909, |dev|=0.0167 -> PASS
+  kappa0= 10, nu0=20: mean_err=0.1066, predicted=0.0909, |dev|=0.0157 -> PASS
+  kappa0=100, nu0=4: mean_err=0.5099, predicted=0.5000, |dev|=0.0099 -> PASS
+  kappa0=100, nu0=20: mean_err=0.5087, predicted=0.5000, |dev|=0.0087 -> PASS
+  P1 failing cells: 0/6 (falsifier: >= 2)
+
+--- P2: Erosion law (|delta(n) - n/(kappa_eff+n)| < 0.10 at every checkpoint) ---
+  kappa0=  1, nu0=4: max_dev=0.0070, dev_fail_checkpoints=0, mean_n_half=110.4, kappa_eff=101.0, n_half_in_band=YES
+  kappa0=  1, nu0=20: max_dev=0.0047, dev_fail_checkpoints=0, mean_n_half=108.3, kappa_eff=101.0, n_half_in_band=YES
+  kappa0= 10, nu0=4: max_dev=0.0059, dev_fail_checkpoints=0, mean_n_half=118.8, kappa_eff=110.0, n_half_in_band=YES
+  kappa0= 10, nu0=20: max_dev=0.0090, dev_fail_checkpoints=0, mean_n_half=122.9, kappa_eff=110.0, n_half_in_band=YES
+  kappa0=100, nu0=4: max_dev=0.0124, dev_fail_checkpoints=0, mean_n_half=216.7, kappa_eff=200.0, n_half_in_band=YES
+  kappa0=100, nu0=20: max_dev=0.0152, dev_fail_checkpoints=0, mean_n_half=216.7, kappa_eff=200.0, n_half_in_band=YES
+  P2 delta-deviation fail cells (>= 3 checkpoints): 0/6 (falsifier: >= 2)
+  P2 n_half in +-25% band: 6/6 cells pass (need >= 5; failing: 0)
+
+--- P3: Twin collapse (both substrates; NLL n_half ratio at kappa0=1,nu0=4) ---
+  kappa0=  1, nu0=4: CI_struct=23.2137, CI_noise=0.0524, ratio=0.0023 -> collapse (<0.25)
+  kappa0=  1, nu0=20: CI_struct=15.7301, CI_noise=0.0506, ratio=0.0032 -> collapse (<0.25)
+  kappa0= 10, nu0=4: CI_struct=7.5425, CI_noise=0.0468, ratio=0.0062 -> collapse (<0.25)
+  kappa0= 10, nu0=20: CI_struct=6.7463, CI_noise=0.0514, ratio=0.0076 -> collapse (<0.25)
+  kappa0=100, nu0=4: CI_struct=0.5554, CI_noise=0.0365, ratio=0.0657 -> collapse (<0.25)
+  kappa0=100, nu0=20: CI_struct=0.6036, CI_noise=0.0366, ratio=0.0607 -> collapse (<0.25)
+
+  NLL n_half ratio (cont/tab) at kappa0=1, nu0=4: 1.5169 (need [0.5, 2.0]) -> PASS
+  CI collapse in all 6 cells: YES
+  P3 ratio falsifier (outside [0.2,5]): no
+
+--- P4: nu0 null (per-kappa0 mean |delta(nu0=4) - delta(nu0=20)| < 0.05) ---
+  kappa0=  1: max |delta_nu4 - delta_nu20| = 0.0089, fail_checkpoints = 0 -> PASS
+  kappa0= 10: max |delta_nu4 - delta_nu20| = 0.0074, fail_checkpoints = 0 -> PASS
+  kappa0=100: max |delta_nu4 - delta_nu20| = 0.0107, fail_checkpoints = 0 -> PASS
+
+VERDICT: POSITIVE — all P1/P2/P3/P4 conjuncts satisfied
+  P1 calibration: all 6 cells within +-0.10 band
+  P2 erosion law: delta deviations < 0.10, n_half within +-25% in >= 5/6 cells
+  P3 twin: CI collapse in all cells, NLL n_half ratio in [0.5, 2.0]
+  P4 nu0 null: max |delta_nu4 - delta_nu20| < 0.05 in all kappa0 values
+
+Rows written to: /Users/mirro/Projects/active-loop/experiments/outputs/exp135_rows.json
