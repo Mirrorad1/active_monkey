@@ -80,6 +80,9 @@ throughout).**
   (batch-jump complete-cover probation; background-floor no-hole mixtures).
   The migration continues at M4 on the human's word.
   **PARK RATIFIED ("continue with m4", 2026-06-10) — M4 is the active rung.**
+  **RE-OPENED by human word (2026-06-11): both cracks authorized in sequence —
+  M3e batch-jump (Exp 152), then M3f background-floor (Exp 153) if M3e's surprise
+  arm fails. Both failing re-confirms the wall with the cracks spent.**
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

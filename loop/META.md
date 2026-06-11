@@ -26,6 +26,8 @@ a reusable insight. Examples (all real, from this project's own history):
    - mechanical invariant (data/site/count drift, a checkable property) -> add a FAST TEST
      that fails on recurrence (e.g. tests/test_site_data.py)
    - process rule -> amend the relevant `loop/` module (PROTOCOL / VALIDATION / this file)
+     AND add/update the one-line distilled rule in `loop/LESSONS.md` in the same commit
+     (the module holds the binding text; LESSONS is the consult-at-start digest)
    - reusable technique (non-obvious debugging / recovery / workaround) -> extract a skill
      via the `claudeception` skill (`/claudeception`)
    - environment / config gotcha -> record in project memory AND a CLAUDE.md standing rule
