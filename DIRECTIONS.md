@@ -4,7 +4,7 @@
 
 | direction            | state                 | latest Exp  | next falsifiable step                                                                                                                                                            |
 | -------------------- | --------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| continuous-creature  | halted                | Exp 153     | Exp 154 re-test the unnormalized-footprint dilution hypothesis with normalized-density convention                                                                                |
+| continuous-creature  | flagship-candidate    | Exp 154     | full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira             |
 | continuous-substrate | closed-positive       | Exp 138–140 | TBD-human                                                                                                                                                                        |
 | functional-emergence | exploratory           | TBD-human   | build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control                                                                                      |
 | graded-uncertainty   | exploratory           | TBD-human   | Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands                                                                             |

@@ -1,11 +1,11 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 157, title: "the first missing N2 piece works: per-place expected uncertainty, read off the creature's own lived outcomes, tracks its accuracy — type-2 AUROC 0.80 pooled vs 0.56 for the natural channel, 8/8 forks, calibration r ≥ 0.95", tag: "POSITIVE" },
-  tally: { total: 157, positive: 98, negative: 33, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 158, title: "the second N2 piece works: the slope-gate-free classifier separates OK / noise / structure perfectly across randomized geometries — and the ungated probe refutes its designer, pinning the instrument's true boundary: it reads TEMPORAL compressibility, and place-conditional unreliability belongs to the other instrument", tag: "POSITIVE" },
+  tally: { total: 158, positive: 99, negative: 33, mixed: 22, breakthroughs: 3 },
   directions: [
     { name: "meta-calibration-n3", state: "active (prereq build)", latest: "Exp 157", next: "the noise-vs-structural classifier (lag-1 residual statistic, slope-gate-free), then prereq re-confirmation with per-fork-randomized regimes" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
-    { name: "continuous-creature", state: "halted", latest: "Exp 153", next: "Exp 154 re-test the unnormalized-footprint dilution hypothesis with normalized-density convention" },
+    { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
     { name: "graded-uncertainty", state: "exploratory", latest: "TBD-human", next: "Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands" },
     { name: "persistent-creature", state: "exploratory", latest: "TBD-human", next: "Exp 41 BIRTH: map accuracy >= 8/9 cells correctly represented in committed belief" },

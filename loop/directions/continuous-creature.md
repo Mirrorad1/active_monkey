@@ -120,4 +120,4 @@ nira is committed; the two walls (growth valley, valence range) are documented w
 named cracks/limits. Closing synthesis: docs/research/continuous-creature-migration.md.
 Closure consult in loop/IDEAS.md; this card re-opens only on an explicit choice there.
 
-**STATUS.** state: halted · latest: Exp 153 · depends-on: continuous-substrate · reusable: continuous.py, NIW inference patterns · why: growth thread halted awaiting Exp 154 consult; ladder itself complete at Exp 151 · next-falsifiable: Exp 154 re-test the unnormalized-footprint dilution hypothesis with normalized-density convention
+**STATUS.** state: flagship-candidate · latest: Exp 154 · depends-on: continuous-substrate · reusable: continuous.py, growth.py, worlds.py, NIW inference patterns · why: ladder complete at Exp 151; growth wall fell at Exp 154 (re-bounded to the footprint convention); the worldview-too-small arc is the flagship candidate · next-falsifiable: full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira
