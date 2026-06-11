@@ -3974,3 +3974,38 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   deflated; the ν₀-null law confirmed out-of-sample). Self-grade: n/a.
 - Next: the consult in loop/IDEAS.md still awaits the human; remaining sanctioned
   consolidation item: the phase-picture synthesis doc.
+
+## Exp 140 — self-audit of the continuous-substrate chapter (Exp 133–139): 6/7 entries fully clean; one citation-only discrepancy in Exp 136, corrected here (POSITIVE; CONSOLIDATION; audit script committed)
+- Plain: Before anything gets built on the new chapter, every number its log cites was
+  re-checked against the committed raw outputs by a mechanical script. Six of seven
+  entries are exactly reproducible. One slip: after a verdict-logic patch forced a
+  re-run of the dimensionality experiment, its entry kept two wall-clock numbers from
+  the superseded first run — the cost ratio and the milliseconds drifted within timing
+  noise (1.03x vs 1.02x; 8.3 vs 8.2 ms), changing nothing about any verdict, but a
+  number that cannot be found in the committed output fails this project's standard.
+  It is corrected here, and the logging rule now requires re-quoting the final output
+  after any re-run.
+- Setup (predeclared in the script docstring before running): every headline number in
+  the Exp 133–139 entries re-checked as verbatim substrings of the committed outputs
+  (experiments/exp140_chapter_audit.py); known-discrepancy expectations asserted so
+  the audit itself is reproducible. Standard: entry passes iff all citations found.
+- Result: 10/10 output files PASS on all checked citations; the two stale Exp 136
+  citations CONFIRMED absent from the committed output (the post-patch re-run prints
+  1.02x and 0.0082 s). No verdict in the chapter is affected; the Exp 136 slopes
+  (0.170/0.578) and all deterministic numbers match. CORRECTION (per VALIDATION's
+  new-entry rule): Exp 136's entry and curated record should read d8/d2 ratio 1.02x
+  and d=32 full run 8.2 ms; both remain an order of magnitude inside their
+  predeclared bands. Clarifier for Exp 138: the 12,800,000 training word-samples are
+  PER ENCODER (one per seed); the comparison unit (one agent vs one agent) is as
+  logged.
+- Implication: the chapter's evidence base survives a hostile-reviewer pass; the
+  failure mode found (quoting a superseded run after a patch) is now guarded by the
+  re-run re-quote rule in PROTOCOL step 5. The closure consult in loop/IDEAS.md
+  remains the open decision.
+- Honest caveat: the audit checks citation-reproducibility, not re-execution (a full
+  independent re-run of each script was not performed — the suite's trace checks and
+  the chapter's own rerun/mechanism scripts cover parts of that); the checked-needle
+  lists are the entries' HEADLINE numbers, not every digit in every entry.
+- Verdict: POSITIVE / CONSOLIDATION (audit; one citation correction, zero verdict
+  changes). Self-grade: POSITIVE-SINGLE.
+- Next: the closure consult still awaits the human's choice (a–d); the loop holds.

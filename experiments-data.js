@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:139, breakthrough:6, positive:83, wall:21, partial:29, from:4.81, to:4.00 };
+window.AM_TALLY = { total:140, breakthrough:6, positive:84, wall:21, partial:29, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1405,7 +1405,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 135's exact protocol on never-run seeds, continuous agent only, four cells, with the suspected mechanism made into its own predeclared conjunct and the established nu0-null law re-tested out-of-sample alongside.",
     result:"Effect partial (one cell in band, one below), mechanism refuted, null law confirmed (max drift difference 0.014). Post-hoc diagnosis from the committed table: the NLL half-dose midpoint is baseline-sensitive and nu0 moves the baseline mechanically.",
     implication:"Exp 135's diagnostic is demoted — nu0 is not a covariance-erosion knob; it sets initial predictive confidence. Metric rule for future erosion comparisons: compute half-dose crossings from a common baseline. The closure consult still awaits the human; one sanctioned consolidation item remains.",
-    trace:{ script:"experiments/exp139_cont_nu0_nll.py", output:"experiments/outputs/exp139.txt" } }
+    trace:{ script:"experiments/exp139_cont_nu0_nll.py", output:"experiments/outputs/exp139.txt" } },
+
+  { n:140, kind:"positive", chapter:"frontier",
+    title:"The chapter audits itself — and one number confesses.",
+    one:"Hostile-reviewer self-audit of Exp 133-139: every headline citation mechanically re-checked against the committed raw outputs — 10/10 files pass; one citation-only slip found and corrected (Exp 136 quoted the superseded pre-patch run's wall clock: 1.03x and 8.3 ms vs the committed 1.02x and 8.2 ms — timing noise, zero verdict impact), and the logging rule now requires re-quoting the final output after any re-run.",
+    plain:"Before anything gets built on the new chapter, every number its log cites was re-checked against the committed raw outputs by a mechanical script. Six of seven entries are exactly reproducible. One slip: after a verdict-logic patch forced a re-run, the dimensionality entry kept two wall-clock numbers from the superseded first run — drift within timing noise, changing no verdict, but a number that cannot be found in the committed output fails this project's standard. Corrected, and guarded against recurring.",
+    metric:{ from:1.03, to:1.02, unit:"the corrected citation (d8/d2 cost ratio, superseded run vs committed output)" },
+    setup:"A committed audit script re-checks every headline number in the seven chapter entries as verbatim substrings of their committed outputs, with the known discrepancies themselves asserted so the audit is reproducible.",
+    result:"All checked citations found in 10/10 output files; the two stale Exp 136 citations confirmed absent from the committed post-patch output; the Exp 138 training-cost figure clarified as per-encoder. No verdict in the chapter is affected.",
+    implication:"The chapter's evidence base survives a hostile-reviewer pass and the found failure mode (quoting a superseded run after a patch) is institutionalized away in PROTOCOL. The closure consult remains the open decision.",
+    trace:{ script:"experiments/exp140_chapter_audit.py", output:"experiments/outputs/exp140.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

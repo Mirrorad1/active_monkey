@@ -1,0 +1,15 @@
+Exp 133                                  exp133.txt                   PASS
+Exp 134                                  exp134.txt                   PASS
+Exp 134 rerun                            exp134_rerun.txt             PASS
+Exp 134 exact check                      exp134_exact_check.txt       PASS
+Exp 135                                  exp135.txt                   PASS
+Exp 136 (committed, post-patch re-run)   exp136.txt                   PASS
+Exp 137                                  exp137.txt                   PASS
+Exp 137 mech                             exp137_mech.txt              PASS
+Exp 138                                  exp138.txt                   PASS
+Exp 139                                  exp139.txt                   PASS
+
+KNOWN DISCREPANCY CONFIRMED: Exp 136 entry cites '1.03x' (committed output: 1.02x)
+KNOWN DISCREPANCY CONFIRMED: Exp 136 entry cites '8.3 ms' / 0.0083 s (committed output: 0.0082 s)
+
+AUDIT VERDICT: 6/7 entries fully clean; 1 known citation-only discrepancy (Exp 136 wall-clock numbers quote the superseded pre-patch run; verdict and all deterministic numbers unaffected). Correction logged in the Exp 140 entry; PROTOCOL step 5 gains the re-run re-quote rule.

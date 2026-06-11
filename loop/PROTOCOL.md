@@ -57,6 +57,12 @@ several half-experiments. Steps:
    in the journey). No double-quotes inside it (the site stores it as a JS double-quoted
    string).
 
+   **Re-run re-quote rule (added after Exp 140's audit):** if a script is re-run
+   after ANY patch (verdict fix, stability guard), the entry must quote the FINAL
+   committed output — re-check every non-deterministic number (timings especially);
+   Exp 136's entry cited the superseded run's wall clock and failed the audit's
+   reproducibility standard.
+
    **Self-grade (mandatory for every POSITIVE entry):** declare BREAKTHROUGH or
    POSITIVE-SINGLE.
 
