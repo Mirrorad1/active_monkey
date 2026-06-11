@@ -5921,3 +5921,58 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   re-aimed at displacement: P1′ = flip in ≥7/8 forks AND baseline recovery-failure
   within 2000 steps on ≥2/3 bursts (the regime measurably degrades the layerless
   agent persistently); recovery becomes rung 3's deliverable, not the world's.
+
+## Exp 175 — N4 rung-1 gate, attempt 2 (the displacement gate): NO VERDICT by PC2 again — but by ONE fork on ONE burst, and the slower decay fixed attempt 1's failure mode while exposing a shallower one: the inherited near-tie hasn't washed out by the first stability window. The displacement portrait is total at λ=0.9997: flips 24/24, recoveries 0/24 (NO VERDICT; settle-extension redesign predeclared)
+
+- Plain: we slowed the creature's forgetting so it could hold a favorite, and it
+  mostly did — six of eight forks held one favorite rock-steady for the thousand
+  steps before the first captivity. The two that wobbled were torn exactly between
+  the two things the parent creature itself almost can't choose between (its
+  inherited values are near-tied), and the wobble window sits where that
+  inheritance is still ~40% alive. Once captivity hits, the picture is unanimous
+  and stark: every burst re-makes every fork's favorite, and not one comes back —
+  ever, in 24 chances. The gate missed its stability bar by a single fork; the
+  fix is to start the bursts later, after the inheritance has faded.
+- Question (predeclared): at λ=0.9997 (declared, window-theorem band; half-life
+  ~2310 steps) does the forced-relocation regime persistently degrade the
+  layerless baseline — P1′: FLIP (≥50% of final 400 burst steps) AND RECOVERY
+  FAILURE (no restore-and-hold-500 within 2000 steps) on ≥2/3 bursts in ≥7/8
+  forks; F1′ ≤4/8?
+- Setup: identical to Exp 174 except λ=0.9997 (equilibrium mass ~3333) and FRESH
+  seeds 162–169; PC1–PC3 retained verbatim; smoke (seed 162) disclosed.
+- Result: NO VERDICT — PC2 fired, marginally: burst 0 had 6/8 forks with a
+  constant preference over steps 2000–3000 (need ≥7); bursts 1 and 2 PASSED
+  (8/8 — attempt 1 had 4/8 there). Ungated diagnostics, uniform: FLIP in 24/24
+  bursts (flip_frac 0.873–1.000, latency 64–451), RECOVERY 0/24 — at +2000 steps
+  every fork still expressed the burst color (v gap ~200–300 over the old
+  favorite). PC1/PC3 green (drift ≤0.011-class; confinement held). Deterministic
+  rerun diagnostic: the two unstable forks (seeds 166, 167) flicker EXCLUSIVELY
+  between the near-tied inherited pair 0↔2 (compositions 782/218 and 796/204,
+  16 and 3 switches; color 1 — the clear loser — never appears). Mechanism: the
+  spine's inherited value fractions are 0.337/0.314/0.350 (colors 0 vs 2 gap
+  3.8%), and at the 2000–3000 window the init's influence (half-life 2310) is
+  still ~40% live — the race is undecided in 2/8 forks.
+- Verifier: not dispatched (no verdict licensed; the PC mapping is mechanical and
+  printed; the rerun diagnostic is deterministic and committed with the rows).
+- Implication (instrument, sharply localized): the λ correction WORKED for what
+  it targeted — decay-driven flicker is gone (pre-burst stability on bursts 1–2
+  went 4/8 → 8/8, and even the burst-0 failures are inheritance-races, not decay
+  noise). What remains is settle length, not decay rate: by t≈5000 the init
+  influence drops below 23% and the world's own equilibrium (color 2 holds 9/25
+  cells, an occupancy edge) should pick the favorite. The displacement portrait
+  meanwhile strengthens at slow decay: recoveries fell from ~3/24 (λ=0.999) to
+  0/24 — slower forgetting makes the overwrite MORE durable, not less, because
+  the new identity decays as slowly as the old one did.
+- Honest caveat: all displacement numbers are ungated diagnostics — no verdict is
+  claimed; with the longer settle the standing favorite becomes world-determined
+  (the occupancy edge), not inheritance-determined, so attempt 3 perturbs the
+  world-equilibrium identity and must say so; λ and the settle length are both
+  PROVIDED design choices; this is the second consecutive PC2 block on this rung
+  — per the card's stop condition a THIRD blocks to a consult, not an attempt 4.
+- Verdict: NO VERDICT (PC2); iteration outcome NEGATIVE (instrument) / CONSOLIDATION
+  (the displacement portrait re-confirmed at slower decay; the new content is the
+  near-tie wash-out mechanism). Self-grade: NEGATIVE.
+- Next: Exp 176 = rung-1 attempt 3 — settle extension only: N_STEPS=15000, bursts
+  at (6000,6800), (9000,9800), (12000,12800); FRESH seeds 170–177; λ=0.9997, PC1–PC3
+  and P1′/F1′ retained verbatim. Prediction: PC2 passes (init influence <23% at the
+  first window) and P1′ decides. A third PC2 failure → consult per the card.

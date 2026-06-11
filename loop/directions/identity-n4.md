@@ -83,4 +83,11 @@ IDENTITY DISPLACEMENT, not whipsaw: an 800-step burst permanently re-makes the f
 (one fork re-made 3× in a session). The gate re-aims at displacement; recovery becomes
 rung 3's deliverable.
 
-**STATUS.** state: active (rung 1, attempt 2) · latest: Exp 174 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the displacement portrait (174) · why: the ladder's next rung; the gate's instrument needs a stable baseline identity first · next-falsifiable: Exp 175 — λ=0.9997 (declared, window-theorem band), PC2 retained, P1′ = flip ≥7/8 AND baseline recovery-failure on ≥2/3 bursts (the regime degrades the layerless agent persistently)
+**RUNG 1, ATTEMPT 2 (Exp 175, NO VERDICT by PC2 — by one fork on one burst).** The
+slower decay (λ=0.9997) fixed attempt 1's failure mode (later-burst stability 4/8 → 8/8);
+the residual block is the spine's near-tied inherited values (0↔2 gap 3.8%), still ~40%
+live in the first stability window — 2/8 forks flicker exactly between the tied pair.
+Displacement turned absolute: flips 24/24, recoveries 0/24 (slower forgetting makes the
+overwrite MORE durable). Second consecutive PC2 block: a third → consult, not attempt 4.
+
+**STATUS.** state: active (rung 1, attempt 3) · latest: Exp 175 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the displacement portrait (174, absolute at 175) · why: the ladder's next rung; the inherited near-tie must wash out before the first burst · next-falsifiable: Exp 176 — settle extension only: N_STEPS=15000, bursts at 6000/9000/12000, fresh seeds 170–177, λ and PC1–PC3 and P1′/F1′ retained verbatim; a third PC2 failure → consult

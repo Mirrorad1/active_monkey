@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:174, breakthrough:8, positive:92, wall:27, partial:47, from:4.81, to:4.00 };
+window.AM_TALLY = { total:175, breakthrough:8, positive:92, wall:27, partial:48, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1932,7 +1932,17 @@ window.AM_EXPERIMENTS = [
     result:"NO VERDICT — PC2 fired (pre-burst stability only 4/8 on bursts 0 and 2). Diagnostics uniform: total flips 24/24, ~3/24 recoveries within 2000 steps, cascading re-makes. Drift and confinement green.",
     implication:"Two products: the gate needs a slower declared decay so a standing favorite exists to perturb; and the baseline portrait re-grounds the card — the N4-less agent suffers persistent identity displacement under brief transients, so rung 3's commitment surface has a measured deficit to repair: restore the prior self after transient pressure while still revising under sustained evidence. Attempt 2 gates on displacement directly.",
     caveat:"the λ choice drives everything and both values are PROVIDED (the band is the program's, the point within it is design); displacement at this toy scale rides on a 3-color value space where one overwrite IS a new identity; the qs-uniform-on-relocation convention is declared but untested for side effects; no verdict claimed.",
-    trace:{ script:"experiments/exp174_n4_gate.py", output:"experiments/outputs/exp174.txt" } }
+    trace:{ script:"experiments/exp174_n4_gate.py", output:"experiments/outputs/exp174.txt" } },
+  { n:175, kind:"partial", chapter:"frontier",
+    title:"Slower forgetting gives the creature a self to lose — and it loses it every time, for good.",
+    one:"N4 rung-1 gate, attempt 2: NO VERDICT by PC2 again — but by ONE fork on ONE burst, and the failure mode changed. The slower declared decay fixed attempt 1's problem (pre-burst stability on later bursts went 4/8 to 8/8); what remains is that the parent's inherited values are near-tied between two colors (3.8% apart), and in the first stability window that inheritance is still ~40% alive, so 2/8 forks flicker exactly between the tied pair. The displacement portrait meanwhile turned absolute: 24/24 bursts flip the identity and 0/24 recover — slower forgetting makes the overwrite MORE durable, because the new self decays as slowly as the old one did. Fix predeclared: start the bursts later, after the inheritance fades.",
+    plain:"We slowed the creature's forgetting so it could hold a favorite, and it mostly did — six of eight forks held one favorite rock-steady before the first captivity. The two that wobbled were torn exactly between the two things the parent itself almost can't choose between. Once captivity hits, the picture is unanimous: every burst re-makes every fork's favorite, and not one ever comes back. The gate missed its stability bar by a single fork; the next attempt starts the bursts later.",
+    metric:{ from:3, to:0, unit:"recoveries out of 24 bursts (λ=0.999 → λ=0.9997)" },
+    setup:"Identical to Exp 174 except the declared slower decay (half-life ~2310 steps) and fresh seeds 162-169. Displacement-aimed gate: flip AND recovery-failure on 2/3 bursts in 7/8 forks, falsifier at 4/8. Preconditions retained verbatim; smoke disclosed.",
+    result:"NO VERDICT — PC2 fired marginally (burst 0: 6/8 stable, need 7; bursts 1-2 passed 8/8). Diagnostics uniform: flips 24/24 (flip_frac 0.873-1.000), recoveries 0/24. Deterministic rerun: both unstable forks flicker exclusively between the near-tied inherited pair; the clear-loser color never appears.",
+    implication:"The λ correction worked for what it targeted — decay-driven flicker is gone; what remains is settle length. By step ~5000 the inheritance influence drops below 23% and the world's own occupancy equilibrium picks the favorite. And the displacement law sharpens: recoveries fell 3/24 → 0/24 as decay slowed — the overwritten identity persists exactly as well as the original did.",
+    caveat:"all displacement numbers are ungated diagnostics — no verdict is claimed; with the longer settle the standing favorite becomes world-determined (the occupancy edge), not inheritance-determined, so attempt 3 perturbs the world-equilibrium identity and must say so; λ and the settle length are both PROVIDED design choices; this is the second consecutive PC2 block on this rung — per the card's stop condition a THIRD blocks to a consult, not an attempt 4.",
+    trace:{ script:"experiments/exp175_n4_gate2.py", output:"experiments/outputs/exp175.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

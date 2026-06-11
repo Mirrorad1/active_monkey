@@ -1,0 +1,10 @@
+# Exp 175 ungated diagnostic: deterministic rerun, pre-burst-0 window composition
+# window = expressed_arr[2000:3000) per fork; switches = adjacent changes
+seed=162 window[2000:3000) composition={2: 1000} switches=0 stable=True
+seed=163 window[2000:3000) composition={0: 1000} switches=0 stable=True
+seed=164 window[2000:3000) composition={2: 1000} switches=0 stable=True
+seed=165 window[2000:3000) composition={2: 1000} switches=0 stable=True
+seed=166 window[2000:3000) composition={0: 218, 2: 782} switches=16 stable=False
+seed=167 window[2000:3000) composition={0: 796, 2: 204} switches=3 stable=False
+seed=168 window[2000:3000) composition={2: 1000} switches=0 stable=True
+seed=169 window[2000:3000) composition={2: 1000} switches=0 stable=True
