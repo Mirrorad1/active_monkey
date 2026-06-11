@@ -4205,3 +4205,33 @@
 {"event": "live", "age_steps": 126700, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
 {"event": "save", "age_steps": 126700, "summary": "saved to creature/state/mirro", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
 {"event": "checkpoint_after", "exp": "Exp 131", "age_steps": 126700, "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5", "summary": "Exp 131: checkpoint after (age 120700 -> 126700)"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s0_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s0_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s0_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s1_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s1_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s1_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s2_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s2_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s2_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s3_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s3_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s3_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s4_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s4_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s4_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s5_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s5_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s5_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s6_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s6_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s6_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s7_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s7_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s7_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s8_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s8_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s8_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s9_R-CTRL'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s9_R-NOISE'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}
+{"event": "fork", "age_steps": 126700, "summary": "forked into 'exp155_s9_R-STRUCT'", "state_hash": "0f35f93115f4371fde6e435a2c599740b57a9f6bd9d8700ce066af0a9fc79bd5"}

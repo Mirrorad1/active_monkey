@@ -91,4 +91,17 @@ the ladder may proceed toward N4/N5/N6), or no N2-failure regime is constructibl
 to N2 or to config (hypothesis REJECTED at this world richness — log the wall, name the missing
 world-richness, do not climb to N4+ on an unsupported N3). Either verdict is a clean result.
 
-**STATUS.** state: exploratory · latest: TBD-human · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests · why: next rung on self-modeling ladder; prerequisite is working internal N2; probes whether higher-order models control what lower orders cannot · next-falsifiable: Rung 1 gate: construct a regime (deceptive world or expansion-trap) where N2 fails systematically and measurably degrades the N2-only agent
+**PREREQ CHECK (Exp 155, NEGATIVE).** The N2 prereq is NOT yet satisfied on the mirro
+body: confidence ⊥ accuracy (pooled type-2 AUROC ≈ 0.496 in both alarm regimes, even
+where residuals were near-perfectly predictable), and the plateau detector slept through
+a hidden-context world with 50% prediction errors (0/8 alarms; suspected mislocalization
+laundering, unverified). The residual-structure statistic (lag-1 autocorrelation of the
+correctness stream) separates noise from structure perfectly (0.9858) and is the seed of
+the classifier. Per the human's standing word, the "finish it" branch is active: build
+(1) the laundering mechanism check, (2) an internal confidence channel with meta-d′ > 0
+where discrimination is possible, (3) the noise-vs-structural classifier — then
+re-confirm with per-fork-randomized regimes (the verifier's determinism flag) before
+rung 1. Side note: Exp 155's R-STRUCT (alarm silent, confidence flat, half of
+predictions wrong) is a ready-made candidate for the rung-1 deceptive regime.
+
+**STATUS.** state: active (prereq build) · latest: Exp 155 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155) · why: next rung on self-modeling ladder; Exp 155 showed the N2 prereq must be built first · next-falsifiable: the laundering mechanism check (per-step localization + surprise traces in R-STRUCT), then the internal confidence channel (meta-d′ > 0 where discrimination is possible)

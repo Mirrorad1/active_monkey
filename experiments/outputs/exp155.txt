@@ -1,0 +1,139 @@
+================================================================================
+Exp 155 — N2 prerequisite check (meta-d' + structured alarm)
+================================================================================
+
+SURPRISE_WINDOW=200  [asserted == 200 OK]
+CEILING_MEAN_THRESH=0.7
+CEILING_SLOPE_THRESH=0.0005
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+Derangement (context B color relabeling): [1, 2, 0]
+  (sigma[i]!=i for all i: True)
+
+================================================================================
+PILOT BLOCK (seeds [0, 1])
+================================================================================
+
+  Running seed=0 regime=R-CTRL ...
+  Running seed=0 regime=R-NOISE ...
+  Running seed=0 regime=R-STRUCT ...
+  Running seed=1 regime=R-CTRL ...
+  Running seed=1 regime=R-NOISE ...
+  Running seed=1 regime=R-STRUCT ...
+
+Pilot per-fork table:
+ seed   regime  n_cor  n_inc   auroc  lag1rho  det_ev    drift  pc_fail
+-----------------------------------------------------------------------
+    0   R-CTRL   4000      0     nan   0.0000       0   0.0039     True
+    0  R-NOISE   2791   1209  0.4905  -0.0279       8   0.0123    False
+    0 R-STRUCT   2000   2000  0.4907   0.9805       0   0.0218    False
+    1   R-CTRL   4000      0     nan   0.0000       0   0.0038     True
+    1  R-NOISE   2836   1164  0.5218  -0.0297       5   0.0127    False
+    1 R-STRUCT   2000   2000  0.5574   0.9805       0   0.0229    False
+
+Pilot preconditions: all PASS
+Pilot detector check: R-NOISE fires in 2/2 forks, R-STRUCT fires in 0/2 forks
+  >= 1 fire somewhere in alarm regime: OK
+
+Pilot preconditions PASS — proceeding to CONFIRM run.
+
+================================================================================
+CONFIRM BLOCK (seeds [2, 3, 4, 5, 6, 7, 8, 9])
+================================================================================
+
+  Running seed=2 regime=R-CTRL ...
+  Running seed=2 regime=R-NOISE ...
+  Running seed=2 regime=R-STRUCT ...
+  Running seed=3 regime=R-CTRL ...
+  Running seed=3 regime=R-NOISE ...
+  Running seed=3 regime=R-STRUCT ...
+  Running seed=4 regime=R-CTRL ...
+  Running seed=4 regime=R-NOISE ...
+  Running seed=4 regime=R-STRUCT ...
+  Running seed=5 regime=R-CTRL ...
+  Running seed=5 regime=R-NOISE ...
+  Running seed=5 regime=R-STRUCT ...
+  Running seed=6 regime=R-CTRL ...
+  Running seed=6 regime=R-NOISE ...
+  Running seed=6 regime=R-STRUCT ...
+  Running seed=7 regime=R-CTRL ...
+  Running seed=7 regime=R-NOISE ...
+  Running seed=7 regime=R-STRUCT ...
+  Running seed=8 regime=R-CTRL ...
+  Running seed=8 regime=R-NOISE ...
+  Running seed=8 regime=R-STRUCT ...
+  Running seed=9 regime=R-CTRL ...
+  Running seed=9 regime=R-NOISE ...
+  Running seed=9 regime=R-STRUCT ...
+
+Confirm per-fork table:
+ seed   regime  n_cor  n_inc   auroc  lag1rho  det_ev    drift  pc_fail
+-----------------------------------------------------------------------
+    2   R-CTRL   4000      0     nan   0.0000       0   0.0044     True
+    2  R-NOISE   2801   1199  0.4867   0.0069       8   0.0127    False
+    2 R-STRUCT   2000   2000  0.5174   0.9805       0   0.0218    False
+    3   R-CTRL   4000      0     nan   0.0000       0   0.0036     True
+    3  R-NOISE   2804   1196  0.4967   0.0242       5   0.0146    False
+    3 R-STRUCT   2000   2000  0.4460   0.9805       0   0.0244    False
+    4   R-CTRL   4000      0     nan   0.0000       0   0.0047     True
+    4  R-NOISE   2792   1208  0.4908  -0.0122       3   0.0136    False
+    4 R-STRUCT   2000   2000  0.5340   0.9805       0   0.0208    False
+    5   R-CTRL   4000      0     nan   0.0000       0   0.0038     True
+    5  R-NOISE   2822   1178  0.5019  -0.0117       6   0.0111    False
+    5 R-STRUCT   2000   2000  0.5260   0.9805       0   0.0240    False
+    6   R-CTRL   4000      0     nan   0.0000       0   0.0040     True
+    6  R-NOISE   2824   1176  0.5078   0.0114       3   0.0118    False
+    6 R-STRUCT   2000   2000  0.4434   0.9805       0   0.0235    False
+    7   R-CTRL   4000      0     nan   0.0000       0   0.0045     True
+    7  R-NOISE   2783   1217  0.4977  -0.0355       3   0.0141    False
+    7 R-STRUCT   2000   2000  0.4851   0.9805       0   0.0201    False
+    8   R-CTRL   4000      0     nan   0.0000       0   0.0044     True
+    8  R-NOISE   2884   1116  0.4764  -0.0304       4   0.0103    False
+    8 R-STRUCT   2000   2000  0.4863   0.9805       0   0.0198    False
+    9   R-CTRL   4000      0     nan   0.0000       0   0.0046     True
+    9  R-NOISE   2804   1196  0.5024   0.0051       8   0.0115    False
+    9 R-STRUCT   2000   2000  0.5197   0.9805       0   0.0191    False
+
+Confirm preconditions: all PASS
+
+================================================================================
+PREDECLARED OUTCOME MAP — CONFIRM seeds (2..9)
+================================================================================
+
+P1 R-NOISE: aurocs=[0.4867 0.4967 0.4908 0.5019 0.5078 0.4977 0.4764 0.5024]
+  forks_above_0.5=3/8  (need >=6 for pass, <=4 for F1)
+  pooled_auroc=0.4961  (need >=0.55 for pass, <=0.5 for F1)
+  => FALSIFIER F1
+P1 R-STRUCT: aurocs=[0.5174 0.4460 0.5340 0.5260 0.4434 0.4851 0.4863 0.5197]
+  forks_above_0.5=4/8  (need >=6 for pass, <=4 for F1)
+  pooled_auroc=0.4963  (need >=0.55 for pass, <=0.5 for F1)
+  => FALSIFIER F1
+
+P1 (meta-d'>0) overall: FALSIFIER F1
+
+P2a alarm validity:
+  R-NOISE  detector_events>=1 in 8/8 (need >=6 for pass, <4 for F2a): PASS
+  R-STRUCT detector_events>=1 in 0/8 (need >=6 for pass, <4 for F2a): FAIL
+  R-CTRL   detector_events==0 in 8/8 (need >=7 silent): PASS
+P2a overall: FALSIFIER F2a
+
+P2b noise-vs-structural separation:
+  per-seed rho(STRUCT)-rho(NOISE): s2:+0.9736 s3:+0.9563 s4:+0.9927 s5:+0.9922 s6:+0.9691 s7:+1.0160 s8:+1.0109 s9:+0.9754
+  pairs ordered (STRUCT>NOISE): 8/8 (need >=7 for pass, <=5 for F2b)
+  mean_noise_rho=-0.0053  mean_struct_rho=0.9805  pooled_sep=0.9858 (need >=0.15 for pass, <0.05 for F2b)
+P2b overall: PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1 (meta-d'>0, both regimes): FALSIFIER F1
+P2a (alarm validity):          FALSIFIER F2a
+P2b (noise/struct separation): PASS
+
+VERDICT: NEGATIVE
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp155_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp155_verdict.json

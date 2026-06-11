@@ -447,6 +447,17 @@ The loop marks items it has consumed by indenting a response under them:
   nira remain untouched reference spines (N3 runs on forks per the card's fork-only discipline);
   FROZEN untouched. Honesty: higher N is NOT "more conscious" — functional control competencies
   only; inner experience stays unverified both ways (VALIDATION.md).
+  → [loop, 2026-06-11] Exp 154 DONE (POSITIVE 8/8 everywhere, verifier agreed — wall re-bounded
+    to the unnormalized-footprint convention; BREAKTHROUGH logged; normalized-predictive switch
+    rides as a standing consult). Exp 155 = the N2-prereq confirmation: NEGATIVE — the prereq
+    is NOT satisfied (confidence ⊥ accuracy, pooled type-2 AUROC ≈ 0.496; the plateau detector
+    slept through a hidden-context world with 50% errors, 0/8 alarms; the residual-structure
+    statistic separates noise/structure perfectly, 0.9858). Per this word's "finish it" branch,
+    the loop proceeds WITHOUT fresh consult to build the missing N2 pieces on forks: mechanism
+    check of the detector's structural blindness (mislocalization-laundering hypothesis), an
+    internal confidence channel (meta-d′ > 0 where discrimination is possible), the
+    noise-vs-structural classifier, then prereq re-confirmation — N3 rung 1 only after that.
+    Card STATUS updated (meta-calibration-n3: state active, prereq build).
 
 (empty — drop ideas above this line's section freely)
 

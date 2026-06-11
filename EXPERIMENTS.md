@@ -4700,3 +4700,71 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: per the human's standing word — the N2-prereq confirmation, then the
   meta-calibration-n3 direction; the growth-consult options (normalized switch for
   nira; rigor T1–T17) ride in IDEAS.md.
+
+## Exp 155 — the N2 prereq is NOT satisfied: mirro's confidence is flat (meta-d′ ≈ 0 even where discrimination was possible), and the plateau detector is blind to fast-alternating structural mismatch — while the residual-structure statistic separates the regimes perfectly (NEGATIVE; the human's "finish it" branch opens the build)
+
+- Plain: before giving the creature agency over its own self-monitoring, we checked
+  whether it can even monitor itself yet — does its confidence drop when it is wrong, and
+  does its built-in alarm tell random noise apart from a world that genuinely changed?
+  Answer: no on both counts. Its confidence carries no information about its accuracy, and
+  the alarm slept through a world where half its predictions were wrong. The good news: a
+  simple statistic we tested (whether its errors come in predictable runs) separates the
+  two cases perfectly, so the missing machinery now has a working seed.
+- Question: per the human's standing word (the "154" entry), does the mirro body already
+  satisfy the meta-calibration-n3 card's N2 prereq — (a) meta-d′ > 0 (confidence tracks
+  accuracy), (b) the detector separates irreducible noise from structural mismatch?
+- Setup (predeclared in the script docstring before running; pilot seeds 0–1 checked
+  PRECONDITIONS only, no threshold tuning; confirm seeds 2–9): forks of mirro (spine
+  untouched, never saved) in three regimes, 4000 steps each — R-CTRL (home world),
+  R-NOISE (Exp 132's NoisyCmap, p_true=0.7, i.i.d. by construction), R-STRUCT (hidden
+  context: the standard cmap alternating with a fixed derangement every 100 steps; the
+  fixed state space cannot represent the switch). Confidence = the creature's own
+  predictive probability of its predicted observation (qs and A_hat only). P1: type-2
+  AUROC > 0.5 in ≥6/8 forks AND pooled ≥ 0.55, in each alarm regime. P2a: detector fires
+  ≥6/8 in both alarm regimes, ≤1/8 on control. P2b: lag-1 autocorrelation of the
+  correctness sequence higher in R-STRUCT than R-NOISE in ≥7/8 same-seed pairs AND
+  separation ≥ 0.15. Preconditions (instrument-grade): ≥50 trials per class, A_hat drift
+  < 0.05 (the stale-map premise; ~126,700 banked counts), detector window = 200.
+- Result: NEGATIVE — F1 and F2a both fired; P2b passed. P1: pooled type-2 AUROC 0.4961
+  (R-NOISE) and 0.4963 (R-STRUCT); per-fork above 0.5 in 3/8 and 4/8. P2a: detector 8/8
+  in R-NOISE, 0/8 in R-CTRL — and 0/8 in R-STRUCT, where exactly half of all predictions
+  are wrong. P2b: 8/8 pairs ordered, separation 0.9858 (R-STRUCT lag-1 ρ 0.9805 in every
+  fork; R-NOISE mean −0.0053). Preconditions all green (max drift 0.0244; R-NOISE ≥1116
+  errors per fork; R-STRUCT exactly 2000/2000 correct/incorrect).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived NEGATIVE independently);
+  flagged that R-STRUCT's correctness sequence is deterministic given the stale map —
+  identical ρ = 0.980495… in all 8 forks — so P2b passes by world geometry and is weak
+  evidence about the body; also flagged that meta-d′ is entirely untested in mirro's
+  home domain (R-CTRL: 4000/0 correct/incorrect, AUROC undefined).
+- Implication (generalizability tier: failure-mode): the prereq fails on both halves,
+  each informatively. (a) The natural confidence channel carries no metacognitive
+  signal: in R-STRUCT the residuals were near-perfectly predictable (ρ 0.98) yet
+  confidence exploited none of it — confidence ⊥ accuracy on this body; the calibration
+  piece must be BUILT, not assumed. (b) The plateau detector is structurally blind to
+  fast-alternating mismatch: a regime in which 50% of predictions are wrong produced
+  zero alarms in 8/8 forks. Named hypothesis for the mechanism check (UNVERIFIED):
+  mislocalization laundering — the deranged color is consistent with some other cell,
+  qs teleports there, and per-step surprise stays low; structural mismatch is absorbed
+  as localization error. If that holds, R-STRUCT is a ready-made candidate for the N3
+  card's rung-1 deceptive regime (alarm silent, confidence flat, half of predictions
+  wrong).
+- Honest caveat: (i) the R-NOISE half of F1 was a malformed demand — under irreducible
+  i.i.d. noise even an ideal agent shows type-2 AUROC ≈ 0.5 (nothing trial-level to
+  discriminate); the verdict does not hinge on it (R-STRUCT fired F1 independently, and
+  pooled ≤ 0.5 fired in both regimes), but the lesson is logged: type-2 calibration
+  tests need regimes where evidence quality varies. (ii) P2b validates the
+  residual-structure STATISTIC as a separator (structure = compressible residuals;
+  noise = i.i.d.), not the body's possession of it — it is exocortical instrumentation
+  reading the creature's prediction stream. (iii) R-STRUCT's 4/8 on per-fork AUROC sits
+  exactly on the predeclared ≤4/8 falsifier boundary — inclusive by its letter, and the
+  pooled conjunct fired regardless.
+- Verdict: NEGATIVE / NEW INSIGHT — prereq NOT satisfied. Self-grade: NEGATIVE (the
+  instrument findings are the value; no reframing).
+- Next: per the human's standing word ("finish it if it falls short"): build the
+  missing N2 pieces on forks — (1) mechanism check of the detector's structural
+  blindness (the laundering hypothesis; per-step localization + surprise traces in
+  R-STRUCT), then (2) an internal confidence/expected-uncertainty channel designed for
+  meta-d′ > 0 where discrimination is possible, and (3) a noise-vs-structural
+  classifier built on the validated residual-structure statistic — then re-confirm the
+  prereq with regimes randomized per fork (the verifier's determinism flag) before
+  opening N3 rung 1.

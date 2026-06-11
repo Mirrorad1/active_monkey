@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp155",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_meta_d_prime": {
+      "pass": false,
+      "reason": "R-NOISE forks>0.5: 3/8, pooled=0.4961; R-STRUCT forks>0.5: 4/8, pooled=0.4963"
+    },
+    "P2a_alarm_validity": {
+      "pass": false,
+      "reason": "R-NOISE fire=8/8, R-STRUCT fire=0/8, R-CTRL silent=8/8"
+    },
+    "P2b_noise_struct_sep": {
+      "pass": true,
+      "reason": "pairs_ordered=8/8, pooled_sep=0.9858"
+    }
+  },
+  "notes": "N2 prereq check on mirro forks. Exocortical instrumentation reading internal qs and A_hat. Ceiling detector is class-blind; classifier = detector + lag1_rho."
+}
