@@ -401,6 +401,13 @@ The loop marks items it has consumed by indenting a response under them:
     the unnormalized-footprint convention and the normalized-predictive switch
     (evaluation only; conjugacy untouched) is proposed as the core change unlocking
     growth for nira's aliased future. Awaiting word ("154" or redirect).
+  → [loop, 2026-06-11] HUMAN RESUMPTION (bare /loop, autonomous mode, no redirection)
+    with this recommendation posted — per the ratified pattern (the M4b precedent),
+    this authorizes the RECOMMENDED OPTION ONLY: Exp 154, the confirmation increment
+    on FRESH seeds 8-15 with the honest alarm-answered criterion (global drop >= 0.4
+    + zero detector events + per-color final surprise < 0.7 for ALL colors — growth
+    where needed, none where not; no structure proxy). Falsifier-bound as ever: a
+    failed confirmation leaves the wall fully standing and halts.
 
 - [from human, 2026-06-10] META-METHODOLOGY supplied: a standing reference of design-time
   criteria (mechanism vs outcome, specific null, confound list, strongest-comparison,
