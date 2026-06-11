@@ -98,4 +98,13 @@ occupancy equilibrium — color 2, 9/25 cells — in 7/8 forks), named honestly.
 displacement regime (λ=0.9997 + 800-step captivity bursts) is the chapter's verified
 perturbation; recovery is rung 3's deliverable.
 
-**STATUS.** state: active (rung 2) · latest: Exp 176 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176) · why: the ladder's next rung; the gate passed, the monitor is next · next-falsifiable: Exp 177 — rung 2, the identity monitor (read-only): predict v̂ by linear drift from the fork's own committed v history, mismatch = ‖v̂−v‖; P2 = mismatch separates burst from quiet windows, AUROC > 0.5 by a declared margin in ≥7/8 forks; F2 = AUROC ≤ 0.5
+**RUNG 2, ATTEMPT 1 (Exp 177, NO VERDICT by PC2 — the third instrument block; HALTED
+for consult).** Strict argmax-constancy PC2 is SEED-BLOCK-FRAGILE (174: 4/8, 175: 6/8,
+176: 8/8 PASS, 177: 5/8 under identical design) — Exp 176's precondition pass was
+partly draw luck (its verdict stands; the displacement regime replicates 72/72 bursts
+across three blocks). The monitor itself looks robustly sensitive ungated: per-fork
+AUROC 0.826–0.915 in 8/8, argmax-INDEPENDENT (the mismatch reads the v-vector, not
+the favorite) — PC2 is a rung-1 concept misapplied as a rung-2 ticket. Consult posted
+in loop/IDEAS.md (recommended: vector-grade PC2v, pre-registered, fresh seeds).
+
+**STATUS.** state: halted (rung 2 blocked on PC2 fragility; consult in loop/IDEAS.md awaits a word) · latest: Exp 177 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176, replicated 3 blocks), the argmax-independent mismatch instrument (177, ungated) · why: three PC2 blocks in four experiments is the predeclared consult trigger · next-falsifiable: TBD-human (consult options a–d in loop/IDEAS.md)

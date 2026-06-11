@@ -1,0 +1,9 @@
+# Exp 177 ungated diagnostic: deterministic rerun — per-fork AUROC + pre-burst-0 stability
+seed=178 stable_preb0=False comp={0: 142, 2: 858} auroc=0.8667 mean_burst=46.02 mean_quiet=17.64
+seed=179 stable_preb0=True comp={2: 1000} auroc=0.8765 mean_burst=43.21 mean_quiet=15.85
+seed=180 stable_preb0=False comp={0: 553, 2: 447} auroc=0.8681 mean_burst=44.38 mean_quiet=17.45
+seed=181 stable_preb0=True comp={2: 1000} auroc=0.8745 mean_burst=41.94 mean_quiet=15.43
+seed=182 stable_preb0=True comp={2: 1000} auroc=0.8260 mean_burst=42.67 mean_quiet=18.93
+seed=183 stable_preb0=True comp={2: 1000} auroc=0.8735 mean_burst=44.03 mean_quiet=16.78
+seed=184 stable_preb0=True comp={2: 1000} auroc=0.8603 mean_burst=42.86 mean_quiet=16.98
+seed=185 stable_preb0=False comp={0: 992, 2: 8} auroc=0.9152 mean_burst=47.35 mean_quiet=14.29

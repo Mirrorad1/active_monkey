@@ -623,6 +623,32 @@ The loop marks items it has consumed by indenting a response under them:
     mirro currently has NO N4, ages anti-correlate −0.71). First iteration per the
     card-first convention: loop/directions/identity-n4.md committed for review.
 
+- [from the loop, CONSULT — N4 rung 2 blocked, 2026-06-11] Exp 177 (the identity
+  monitor) is the THIRD PC2 block in four experiments (174: 4/8, 175: 6/8, 176: 8/8
+  PASS, 177: 5/8) — the strict argmax-constancy stability precondition is
+  SEED-BLOCK-FRAGILE under identical design, so the thread halts per the predeclared
+  rule. Two facts for the decision: (1) the displacement regime itself replicates
+  perfectly (72/72 bursts flipped, 0/72 recovered, across three seed blocks); (2) the
+  rung-2 monitor looks robustly sensitive in ungated diagnostics — per-fork AUROC
+  0.826–0.915 in 8/8 forks, INDEPENDENT of argmax stability (the mismatch reads the
+  v-vector trajectory; near-tie flicker barely moves it). PC2 is a rung-1 concept
+  (there the flipped quantity IS the argmax) misapplied as a rung-2 entry ticket.
+  OPTIONS, each needs a word:
+  (a) RECOMMENDED — re-run rung 2 with a vector-grade precondition, pre-registered
+      before seeing new data, on FRESH seeds: PC2v = quiet-period mismatch bounded
+      (declared cap on the monitor's null, e.g. P95(quiet mismatch) < a declared
+      fraction of the burst-onset scale) — matched to what rung 2 actually measures;
+      PC1/PC3 retained; P2/F2 unchanged. Honest cost: PC2v is designed AFTER seeing
+      Exp 177's diagnostics; fresh seeds + pre-registration is the mitigation.
+  (b) Keep strict PC2 and declare a screening protocol (run N forks, evaluate the
+      first 8 that pass stability — "the gate population is agents WITH a standing
+      identity"); cost: selection must be named in every entry, and rung-1's
+      universality claim quietly narrows.
+  (c) Strengthen the world's asymmetry for rung 2+ (e.g. an 11/25-cell favorite
+      color in the fork world) so identity is decisively determined; cost: departs
+      from mirro's own world — the "settled self" becomes partly designed.
+  (d) Stop the chapter at rung 1 (gate verified; monitor and control unproven).
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:176, breakthrough:8, positive:93, wall:27, partial:48, from:4.81, to:4.00 };
+window.AM_TALLY = { total:177, breakthrough:8, positive:93, wall:27, partial:49, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1952,7 +1952,17 @@ window.AM_EXPERIMENTS = [
     result:"POSITIVE — preconditions all pass (the settle extension fixed PC2 exactly as predicted: 8/8 stable on every window). Flips 24/24 (flip_frac 1.000 in 23), recoveries 0/24. Pre-burst favorite = the world-equilibrium color in 7/8 forks, as predicted. Blinded verifier confirmed independently.",
     implication:"Rung 2 is armed: the identity monitor (predict your own value vector by linear drift from your own history; mismatch = how far you are from who you predicted you'd be) must separate burst windows from quiet ones. Rung 3's deliverable is precise: recovery is what commitment regulation must add — with the fixed-inertia constant sweep standing by as the universal-constant kill test.",
     caveat:"the standing identity displaced here is WORLD-DETERMINED (the occupancy equilibrium), not inheritance-determined — the settle extension trades \"perturb the inherited self\" for \"perturb the settled self,\" named in advance in Exp 175's caveat; the unanimity (24/24, mostly flip_frac 1.000) reflects how strong forced relocation is at this toy scale (3 colors, one overwrite IS a new identity); λ, the schedule, and the displacement thresholds are PROVIDED design choices; the burst is world-driven captivity, not adversarial perception.",
-    trace:{ script:"experiments/exp176_n4_gate3.py", output:"experiments/outputs/exp176.txt" } }
+    trace:{ script:"experiments/exp176_n4_gate3.py", output:"experiments/outputs/exp176.txt" } },
+  { n:177, kind:"partial", chapter:"frontier",
+    title:"The mirror works — but the entry ticket fails a third time, and the protocol says: stop and ask.",
+    one:"N4 rung 2, the identity monitor: NO VERDICT by PC2 — the third instrument block in four experiments (4/8, 6/8, 8/8 pass, 5/8 across adjacent seed blocks), exposing the strict-constancy stability precondition as seed-block-fragile: Exp 176's clean pass was partly draw luck (its verdict stands — the displacement regime has now replicated 72/72 bursts across three blocks). Meanwhile the ungated diagnostics say the monitor itself is robustly sensitive: a read-only linear-drift self-prediction ('who am I about to be?') separates captivity from quiet with AUROC 0.826-0.915 in 8/8 forks — independent of argmax stability, because the mismatch reads the whole value vector, not the favorite. PC2 is a rung-1 concept misapplied as a rung-2 ticket. Halted for consult per the predeclared rule.",
+    plain:"We gave the creature a mirror — a running prediction of who it is about to be, so captivity shows up as 'I am not who I predicted.' By the numbers we are not allowed to grade, the mirror works in every fork: surprise spikes when captivity starts and decays as the new self settles. But the experiment's entry ticket — every fork must hold one stable favorite first — failed again on fresh seeds, third time in four experiments, and whether it passes turns out to be partly luck of the draw. Three blocks means stop and ask.",
+    metric:{ from:0.826, to:0.915, unit:"per-fork AUROC range, burst vs quiet (ungated; bar was 0.8)" },
+    setup:"Read-only monitor on the verified Exp 176 regime, fresh seeds 178-185: predict your own value vector by linear drift (1000-step window, 100-step horizon), L2 mismatch, AUROC over burst-vs-quiet labels with a post-burst exclusion band. Monitor form provided; all content self-formed. Preconditions verbatim from Exp 176.",
+    result:"NO VERDICT — PC2 fired (burst 0: 5/8 stable, need 7). Diagnostics: AUROC ≥ 0.826 in all 8 forks; mean mismatch ~42-47 in bursts vs ~14-19 quiet; onset spike ~77 decaying to ~14 as the drift estimator adapts. Flips 24/24, recoveries 0/24 — third replication.",
+    implication:"Two new facts: strict argmax-constancy doesn't generalize across seed draws (the 6000-step settle leaves the near-tie a coin flip in some forks), and the mismatch instrument doesn't care — identity-perturbation sensitivity lives in the vector trajectory, not the argmax. The consult proposes a vector-grade precondition, pre-registered, on fresh seeds.",
+    caveat:"all AUROC numbers are ungated diagnostics computed post-hoc by a deterministic rerun — no verdict is claimed and P2 is NOT graded; the post-hoc computation saw the data before any precondition redesign, so the redesigned rung-2 attempt must use FRESH seeds and a precondition fixed in advance; the 0.8 bar and the exclusion band are PROVIDED design choices; halting rather than redesigning inline is the predeclared discipline, not modesty.",
+    trace:{ script:"experiments/exp177_n4_monitor.py", output:"experiments/outputs/exp177.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

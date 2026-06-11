@@ -6032,3 +6032,57 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   ‖v̂_{t+Δ}−v_{t+Δ}‖; P2: mismatch separates burst-labeled from quiet windows with
   AUROC > 0.5 by a declared margin in ≥7/8 forks; FALSIFIER F2: AUROC ≤ 0.5 (no
   metacognitive sensitivity over identity). Same regime as Exp 176, fresh seeds.
+
+## Exp 177 — N4 rung 2 (the identity monitor): NO VERDICT by PC2 — the third instrument block in four experiments, and it exposes two things at once: the strict-constancy stability precondition is seed-block-fragile (8/8 in Exp 176, 5/8 here on the adjacent block), while the monitor itself looks robustly sensitive in the ungated diagnostics — AUROC 0.826–0.915 in 8/8 forks, INDEPENDENT of argmax stability. HALTED for consult per the card (NO VERDICT; consult posted in loop/IDEAS.md)
+
+- Plain: we gave the creature a mirror — a running prediction of who it is about to
+  be, so that captivity shows up as "I am not who I predicted." The mirror works,
+  by the numbers we are not allowed to grade: in every fork the surprise spikes when
+  captivity starts and decays as the new self settles, separating burst from quiet
+  cleanly. But the experiment's entry ticket — every fork must hold one stable
+  favorite before the first burst — failed again on fresh seeds, third time in four
+  experiments. The ticket checks the wrong thing for this rung (the mirror reads the
+  whole value vector, not just the favorite), and whether it passes turns out to be
+  partly luck of the seed draw. The protocol says: three blocks, stop, ask.
+- Question (predeclared): on the Exp 176 regime, does a READ-ONLY linear-drift
+  self-prediction monitor (W=1000 steps, horizon 100, L2 mismatch; burst vs quiet
+  labels with a 1000-step post-burst exclusion band) separate burst from quiet —
+  P2: per-fork AUROC ≥ 0.8 in ≥7/8 forks; F2: median AUROC ≤ 0.5? Monitor FORM
+  provided; value content, drift history, every mismatch self-formed.
+- Setup: forks of mirro, FRESH seeds 178–185; PC1–PC3 verbatim from Exp 176;
+  smoke (seed 178) disclosed.
+- Result: NO VERDICT — PC2 fired (burst 0: 5/8 forks stable; need ≥7). Ungated
+  diagnostics (deterministic rerun committed as exp177_diag_auroc.txt): per-fork
+  AUROC 0.8260–0.9152, ALL ≥ 0.8 (would have been 8/8 on P2's bar); mean mismatch
+  burst ≈ 42–47 vs quiet ≈ 14–19; the smoke adaptation curve shows mismatch ~77 at
+  burst onset decaying to ~14 by burst end (the drift estimator absorbs the new
+  regime). Stability is argmax-flicker only: the three unstable forks (178: 858/142,
+  180: 553/447 — a coin flip, 185: 992/8 settled on color 0) have AUROC 0.867,
+  0.868, 0.915 — sensitivity does NOT depend on a stable favorite. Flips 24/24,
+  recoveries 0/24 again (the displacement regime replicates on a third seed block).
+- Verifier: not dispatched (no verdict licensed; PC mapping mechanical; diagnostics
+  deterministic and committed).
+- Implication (two NEW facts): (1) PC2's strict argmax-constancy is SEED-BLOCK-
+  FRAGILE — 8/8 (seeds 170–177) vs 5/8 (seeds 178–185) under identical design; the
+  6000-step settle does not deterministically resolve the near-tie, so Exp 176's
+  precondition pass was partly draw luck (its VERDICT stands — preconditions held on
+  its declared seeds and the displacement regime has now replicated 72/72 bursts
+  across three blocks — but the PC2 instrument does not generalize across draws).
+  (2) The mismatch instrument is ARGMAX-INDEPENDENT: it reads the v-vector's
+  trajectory, and pre-burst flicker between near-tied colors barely moves it — PC2
+  is a rung-1 concept (the flipped quantity IS the argmax) misapplied as a rung-2
+  entry ticket. The consult (loop/IDEAS.md) proposes a vector-grade precondition
+  for rung 2, pre-registered, on fresh seeds.
+- Honest caveat: all AUROC numbers are ungated diagnostics computed post-hoc by a
+  deterministic rerun — no verdict is claimed and P2 is NOT graded; the post-hoc
+  computation saw the data before any precondition redesign, so the redesigned
+  rung-2 attempt must use FRESH seeds and a precondition fixed in advance; the 0.8
+  bar and the exclusion band are PROVIDED design choices; halting rather than
+  redesigning inline is the predeclared discipline, not modesty.
+- Verdict: NO VERDICT (PC2); iteration outcome NEGATIVE (instrument) / NEW INSIGHT
+  (the seed-block fragility of strict-constancy PC2 + the argmax-independence of
+  the mismatch instrument). Self-grade: NEGATIVE.
+- Next: HALTED — consult posted in loop/IDEAS.md (options: vector-grade rung-2
+  precondition pre-registered on fresh seeds — recommended; stability screening as
+  a declared protocol; world-asymmetry strengthening; stop). The thread resumes on
+  an explicit human word.
