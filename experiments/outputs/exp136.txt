@@ -1,0 +1,57 @@
+================================================================================
+Exp 136 — continuous-substrate rung 4: dimensionality scaling
+================================================================================
+
+   d  mean sigma_d  mean min sep   P1 pass/8   NLL cont   NLL tab      gap  med full-run s   obs us/op  solve us/op
+------------------------------------------------------------------------------------------------------------------------
+   2        0.0750        0.2251           8     0.0154    0.0150   0.0004          0.0065      1.2028       7.2572
+   4        0.1881        0.5642           8     0.0311    0.0293   0.0018          0.0065      1.2113       7.4115
+   8        0.2679        0.8038           8     0.0692    0.0697  -0.0005          0.0066      1.2172       8.6927
+  16        0.3512        1.0535           8     0.0551    0.0532   0.0019          0.0069      1.3027      11.5655
+  32        0.4003        1.2010           8     0.0460    0.0425   0.0036          0.0082      1.5408      19.3833
+
+Log-log slopes over d in {8, 16, 32}:
+  observe() kernel slope:        0.170  (target band [0.5, 2.5])
+  Sigma-solve (.Sigma) slope:    0.578  (target band [1.5, 3.5])
+
+================================================================================
+TALLIES
+================================================================================
+
+P1 — quality d-invariant (Mahalanobis err < 1.0 in >= 7/8 seeds at EVERY d):
+  d= 2: 8/8 seeds pass  [PASS]  errs=['0.000', '0.000', '0.015', '0.000', '0.045', '0.015', '0.000', '0.000']
+  d= 4: 8/8 seeds pass  [PASS]  errs=['0.000', '0.000', '0.032', '0.015', '0.015', '0.030', '0.030', '0.000']
+  d= 8: 8/8 seeds pass  [PASS]  errs=['0.000', '0.045', '0.045', '0.062', '0.016', '0.000', '0.000', '0.015']
+  d=16: 8/8 seeds pass  [PASS]  errs=['0.030', '0.060', '0.030', '0.000', '0.030', '0.025', '0.055', '0.000']
+  d=32: 8/8 seeds pass  [PASS]  errs=['0.000', '0.042', '0.033', '0.046', '0.077', '0.017', '0.000', '0.000']
+
+P2 — twin gap d-invariant (mean early NLL gap cont-tab <= 0.15 nats at EVERY d):
+  d= 2: gap = 0.0004 nats  [PASS]
+  d= 4: gap = 0.0018 nats  [PASS]
+  d= 8: gap = -0.0005 nats  [PASS]
+  d=16: gap = 0.0019 nats  [PASS]
+  d=32: gap = 0.0036 nats  [PASS]
+
+P3 — cost alive:
+  P3(a): d=8 full-run / d=2 full-run = 1.02x  (< 100x required)  [PASS]
+  P3(b): d=32 median full-run = 0.0082 s  (< 1.0 s required)  [PASS]
+  P3(c): observe() slope = 0.170  (target [0.5, 2.5])  [OUT-OF-BAND]
+  P3(c): Sigma-solve slope = 0.578  (target [1.5, 3.5])  [OUT-OF-BAND]
+
+================================================================================
+VERDICT
+================================================================================
+
+  [NOTE] MIXED-grade boundary note: observe() slope = 0.170 outside [0.5, 2.5]
+  [NOTE] MIXED-grade boundary note: Sigma-solve slope = 0.578 outside [1.5, 3.5]
+
+  P1 holds across all d:     YES
+  P2 holds across all d:     YES
+  P3(a) d8/d2 < 100x:        YES
+  P3(b) d32 < 1.0 s:         YES
+  P3(c) obs slope in band:   NO (see notes)
+  P3(c) sol slope in band:   NO (see notes)
+
+VERDICT: MIXED
+
+JSON rows written to experiments/outputs/exp136_rows.json  (210 rows)

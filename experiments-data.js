@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:135, breakthrough:6, positive:83, wall:21, partial:25, from:4.81, to:4.00 };
+window.AM_TALLY = { total:136, breakthrough:6, positive:83, wall:21, partial:26, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1365,7 +1365,17 @@ window.AM_EXPERIMENTS = [
     setup:"Six true concept centers, emission MEANS learned online by moment-matched NIW updates under a provided position anchor; 600 structured steps then 2400 noise steps with words decorrelated from position; a kappa0 x nu0 sweep with eight seeds per cell and a Dirichlet tabular twin consuming the identical streams. Predeclared: the conjugate shrinkage calibration, the n/(kappa_eff+n) erosion law with half-dose linear in kappa0, both-substrates collapse with bounded asymmetry, and the nu0 null.",
     result:"All four predictions hold: calibration 6/6 cells, law deviation 0.007-0.015, n_half within 25 percent of kappa_eff 6/6, collapse index ratios 0.002-0.066 in both substrates, cont/tab erosion ratio 1.52, nu0 effect 0.011. One logged post-hoc diagnostic: nu0 does shift predictive (NLL) erosion through covariance widening.",
     implication:"Paired with Exp 134 the substrate verdict is two-sided: the tabular ceiling is not in noise-collapse (both substrates erode identically, mass-linearly) but is in out-of-model blends (tables unboundedly brittle, continua bounded). Rungs 1-3 have verdicts; dimensionality scaling is next.",
-    trace:{ script:"experiments/exp135_cont_collapse_rematch.py", output:"experiments/outputs/exp135.txt" } }
+    trace:{ script:"experiments/exp135_cont_collapse_rematch.py", output:"experiments/outputs/exp135.txt" } },
+
+  { n:136, kind:"partial", chapter:"frontier",
+    title:"Thirty-two dimensions, eight milliseconds — and exponents nobody can see.",
+    one:"Rung 4: with Mahalanobis separation pinned at 3.0 across d in {2,4,8,16,32}, localization passes 8/8 seeds at every dimension (max error 0.077 footprint-widths), the twin gap stays under 0.004 nats, and the full d=32 run takes 8.3 ms — the card's dead-by-d~8 FAIL clause refuted; but the O(d^2)/O(d^3) kernel exponents are invisible under numpy overhead (slopes 0.17/0.58), so the cost-crossover question stays out of toy reach. MIXED as predeclared.",
+    plain:"Does the continuous mind break when its inner space grows from 2 dimensions to 32? No — with concept crowding held honestly constant, it localizes just as well at every size, stays within a few thousandths of a nat of its boxed twin, and a full run at the largest size takes eight milliseconds. What we could not measure: the textbook cost curves are invisible at these sizes — fixed overheads swamp them — so the promised continuous-vs-neural cost crossover stays out of toy reach.",
+    metric:{ from:2, to:32, unit:"dimensions with flat quality (8/8 localization everywhere; d=32 run 8.3 ms)" },
+    setup:"Six concept centers random on the unit hypersphere per seed, footprint width set so the minimum Mahalanobis separation is exactly 3.0 at every dimension — the ratified confound control that deliberately removes the high-d blessing. The rung-1 task at each of five dimensions, eight seeds each, with the log-space tabular twin on identical streams and microbenchmarked update/solve kernels.",
+    result:"Quality flat: 8/8 seeds at every d, twin gap -0.0005 to +0.0036 nats. Cost alive: d8/d2 ratio 1.03x, d=32 full run 8.3 ms. Slope conjunct out of band in the benign sub-linear direction — overhead-dominated, logged as the unresolved arm. A coder verdict-softening (not-a-falsifier counted toward POSITIVE) was caught in review, patched, and codified as a PROTOCOL rule.",
+    implication:"The phase picture's dimension axis is flat where measurable: no quality cliff, no cost cliff to d=32 under constant separation. Toy scale bounds cost claims to alive-and-cheap, not to exponents — the closed-form-vs-amortized crossover needs either larger d or rung 6's bounded framing.",
+    trace:{ script:"experiments/exp136_cont_dimensionality.py", output:"experiments/outputs/exp136.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

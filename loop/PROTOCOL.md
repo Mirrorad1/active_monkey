@@ -35,6 +35,11 @@ several half-experiments. Steps:
    plus validation against the docstring caught it. The printed verdict line is the
    coder's claim, not the experiment's result; the entry's verdict comes from applying
    the predeclared rule to the committed raw output.
+   **Three-way verdict rule (added after Exp 136):** when a predeclaration says
+   "TRUE iff all", the POSITIVE branch must require EVERY conjunct — a condition
+   labeled "not a falsifier" still blocks POSITIVE and routes to MIXED. "Not a
+   falsifier" never means "counts toward POSITIVE". Coder subagents soften this
+   distinction reliably (Exp 133, Exp 136); check the three-way branch explicitly.
 
 4. **Run & validate.** Apply `loop/VALIDATION.md` (binding) to the raw output before
    interpreting anything.

@@ -3785,3 +3785,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   its substrate-independence and the κ-only attribution).
 - Next: rung 4 — d ∈ {2,4,8,16,32}, convergence quality + wall clock, Mahalanobis
   separation held constant across d per the ratified confound control.
+
+## Exp 136 — continuous-substrate rung 4: quality is dimension-invariant and cost is nowhere near dead by d≈8 — but the scaling exponents are unmeasurable at toy scale (MIXED: substantive arms pass, slope characterization unresolved; 5 dims × 8 seeds)
+- Plain: Does the continuous mind break when its inner space grows from 2 dimensions to
+  32? No — with concept crowding held honestly constant, it localizes just as well at
+  every size, stays within a few thousandths of a nat of its boxed twin, and a full run
+  at the largest size takes eight milliseconds. What we could NOT measure: the textbook
+  cost curves (quadratic updates, cubic solves) are invisible at these sizes — the
+  computer's fixed overheads swamp them — so the promised continuous-vs-neural cost
+  crossover stays out of toy reach.
+- Setup (predeclared in the script docstring before running): d ∈ {2,4,8,16,32}, 6
+  centers random on the unit hypersphere per seed, σ_d = min pairwise distance / 3.0
+  (Mahalanobis separation pinned at 3.0 — the ratified confound control; the high-d
+  blessing deliberately controlled away, raw separations logged: 0.23→1.20). Rung-1
+  task at each d, anchor GIVEN, T=200+200, seeds 0–7; log-space tabular twin on
+  identical streams (card rule). P1: Mahalanobis localization error < 1 in ≥7/8 seeds
+  at every d. P2: early-NLL gap ≤ 0.15 nats at every d. P3: (a) wall clock d=8 < 100×
+  d=2, (b) d=32 full run < 1 s, (c) kernel log-log slopes over {8,16,32}: observe ∈
+  [0.5,2.5], solve ∈ [1.5,3.5] (declared not-falsifiers but POSITIVE-blocking).
+- Result: P1 8/8 at EVERY d (max Mahalanobis error 0.077 — an order under threshold).
+  P2: gaps −0.0005…+0.0036 nats, flat in d (rung 1's twin edge does not grow with
+  dimension). P3a: ratio 1.03×; P3b: 8.3 ms at d=32 — the card's FAIL clause ("dead by
+  d≈8") is refuted decisively. P3c OUT OF BAND in the benign direction: observe ≈1.3 µs
+  nearly flat (slope 0.17), solve 7→19 µs (slope 0.58) — sub-linear because Python/
+  numpy fixed overhead dominates tiny matrices; the O(d²)/O(d³) asymptotics, and hence
+  the program's hoped-for closed-form-vs-amortized cost crossover, are not observable
+  below d≈32. Suite 99 green.
+- Process note: the coder's script printed POSITIVE by treating "not a falsifier" as
+  "counts toward POSITIVE" — the second verdict-softening in four iterations (cf. Exp
+  133). Patched, re-run (deterministic metrics identical; timings re-measured), and the
+  three-way verdict rule is now codified in PROTOCOL.md step 3 as the durable guard.
+- Implication: the phase picture's d-axis is flat where it could be measured: no
+  quality cliff, no cost cliff, twin parity to d=32 under constant Mahalanobis
+  separation. The honest boundary: toy scale bounds COST claims to "alive and cheap,"
+  not to exponents; any crossover-vs-amortized claim must wait for rung 6's bounded
+  framing (or larger d, out of the predeclared grid).
+- Honest caveat: timing is the one non-deterministic measurement in this ladder (3-block
+  medians; slopes moved 0.13→0.17 between runs — the bands were never going to be tight);
+  quality d-invariance is conditional on the Mahalanobis control — uncontrolled high-d
+  would IMPROVE (near-orthogonal centers), so this is the conservative reading; anchor
+  GIVEN; 6 concepts only; d stops at 32.
+- Verdict: MIXED (P1/P2/P3a/P3b pass — the FAIL clause refuted; P3c unresolved at toy
+  scale, logged as the bounded arm) / the d-flat quality curve and twin parity are NEW
+  data; the cost-aliveness is CONSOLIDATION-grade given rung 1.
+- Next: rung 5 — non-stationary tracking (drifting μ_true(t), precision forgetting as
+  NIW-as-learning-rate, fixed-lr baseline), with the predeclared Exp 88 window-law
+  cross-link per the ratified constraints.
