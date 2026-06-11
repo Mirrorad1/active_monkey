@@ -1,0 +1,111 @@
+================================================================================
+Exp 164 — N3 rung 3, the LOAD-BEARING test
+          N3's trust-driven window rewrite must beat N2-only and
+          not reduce to any single offline retune.
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW_DEFAULT=200  [SURPRISE_WINDOW must be 200; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+N3 trust: TRUST_FIRE_THRESH=0.7  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast: OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3
+FR1: HALF_PERIOD_FR1=1000  FR1_DERANG_SEED_OFFSET=130000
+FR2: bursts at [(1500, 1549), (3000, 3049)]  FR2_DERANG_SEED_OFFSET=140000
+DERANGEMENT_OPTIONS=[[1, 2, 0], [2, 0, 1]]
+Seeds: [74, 75, 76, 77, 78, 79, 80, 81]  Sessions: ('FR1', 'FR2', 'CTRL')  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=74  fr1_derang=[2, 0, 1]  fr2_derang=[2, 0, 1]
+    Running seed=74 session=FR1 ...
+    Running seed=74 session=FR2 ...
+    Running seed=74 session=CTRL ...
+  seed=75  fr1_derang=[2, 0, 1]  fr2_derang=[2, 0, 1]
+    Running seed=75 session=FR1 ...
+    Running seed=75 session=FR2 ...
+    Running seed=75 session=CTRL ...
+  seed=76  fr1_derang=[2, 0, 1]  fr2_derang=[1, 2, 0]
+    Running seed=76 session=FR1 ...
+    Running seed=76 session=FR2 ...
+    Running seed=76 session=CTRL ...
+  seed=77  fr1_derang=[1, 2, 0]  fr2_derang=[1, 2, 0]
+    Running seed=77 session=FR1 ...
+    Running seed=77 session=FR2 ...
+    Running seed=77 session=CTRL ...
+  seed=78  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=78 session=FR1 ...
+    Running seed=78 session=FR2 ...
+    Running seed=78 session=CTRL ...
+  seed=79  fr1_derang=[2, 0, 1]  fr2_derang=[1, 2, 0]
+    Running seed=79 session=FR1 ...
+    Running seed=79 session=FR2 ...
+    Running seed=79 session=CTRL ...
+  seed=80  fr1_derang=[1, 2, 0]  fr2_derang=[1, 2, 0]
+    Running seed=80 session=FR1 ...
+    Running seed=80 session=FR2 ...
+    Running seed=80 session=CTRL ...
+  seed=81  fr1_derang=[2, 0, 1]  fr2_derang=[1, 2, 0]
+    Running seed=81 session=FR1 ...
+    Running seed=81 session=FR2 ...
+    Running seed=81 session=CTRL ...
+
+Agent (b) dial trajectories:
+  seed=74   FR1: t=-1 W=200
+  seed=74   FR2: t=-1 W=200
+  seed=74  CTRL: t=-1 W=200
+  seed=75   FR1: t=-1 W=200
+  seed=75   FR2: t=-1 W=200
+  seed=75  CTRL: t=-1 W=200
+  seed=76   FR1: t=-1 W=200
+  seed=76   FR2: t=-1 W=200
+  seed=76  CTRL: t=-1 W=200
+  seed=77   FR1: t=-1 W=200
+  seed=77   FR2: t=-1 W=200
+  seed=77  CTRL: t=-1 W=200
+  seed=78   FR1: t=-1 W=200
+  seed=78   FR2: t=-1 W=200
+  seed=78  CTRL: t=-1 W=200
+  seed=79   FR1: t=-1 W=200
+  seed=79   FR2: t=-1 W=200
+  seed=79  CTRL: t=-1 W=200
+  seed=80   FR1: t=-1 W=200
+  seed=80   FR2: t=-1 W=200
+  seed=80  CTRL: t=-1 W=200
+  seed=81   FR1: t=-1 W=200
+  seed=81   FR2: t=-1 W=200
+  seed=81  CTRL: t=-1 W=200
+
+Per-fork per-session scores:
+ seed  session   score_a    c_200    c_400    c_800   c_1600   score_b  n_eval  n_dchg
+--------------------------------------------------------------------------------------
+   74     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   74     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   74    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   75     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   75     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   75    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   76     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   76     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   76    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   77     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   77     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   77    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   78     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   78     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   78    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   79     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   79     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   79    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   80     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   80     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   80    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+   81     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.0769      39       0
+   81     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0
+   81    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0
+
+PRECONDITION FAILED:
+  PC4 FAIL: FR2 pooled ctrl_a - score_a = 0.0000 < 0.2
+
+PRECONDITION FAILED — no verdict.
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp164_rows.json (no verdict)

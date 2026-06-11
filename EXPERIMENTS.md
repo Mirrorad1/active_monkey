@@ -5253,3 +5253,68 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   trust drops, scored on diagnostic recovery across R-SLOW AND an unseen instance of
   the failure class (different H), against the card's two falsifiers (must beat (a);
   must not reduce to (c)).
+
+## Exp 164 — rung 3, attempt 1: NO VERDICT — the triplet design was malformed in two pinned ways (the burst regime opens no gap for the small-window agent, and the trust trigger is itself geometry-sensitive), while the retune curve it produced PROVES the disjointness that rung 3 needs: no single window constant wins both failure regimes (best constant 0.64 combined vs 1.0 adaptive)
+
+- Plain: the ladder's decisive test stumbled on its own setup, and the stumble taught
+  three things. First, our second trap (tiny bursts of structure) only fools wide
+  windows — the baseline agent uses a narrow one and sees the bursts perfectly, so
+  there was nothing for the new layer to rescue there; the safety check caught this and
+  correctly refused to grade the experiment. Second, the dial-changing controller never
+  acted at all: its distrust trigger was set against a world that lies often, and this
+  world lies rarely-but-deeply — the trigger itself is a fixed dial with the same
+  disease one level up. Third, the good news hiding in the wreck: the measured scores
+  across all fixed dials prove no single setting can handle both trap worlds — exactly
+  the opening a dial-setting layer needs. The redesign is fully specified by the
+  failure.
+- Question (as predeclared): does N3's trust-driven window rewrite (i) recover ≥ 60% of
+  the diagnostic gap the N2-only agent loses, and (ii) beat every single offline window
+  constant, across FR1 (slow alternation H=1000, unseen instance) and FR2 (50-step
+  micro-bursts)?
+- Setup (predeclared in the script docstring before running; FRESH seeds 74–81; one
+  creature run per fork-session, four read-only dial readouts — declared): agents
+  (a) W=200, (c_W) W ∈ {200,400,800,1600}, (b) N3 controller (rolling trust over last
+  10 scored forecasts, advance dial when < 0.7). PC4 demanded ctrl−score_a ≥ 0.2 in
+  BOTH failure regimes. Smoke (seed 74) previewed the controller's silence; the
+  predeclaration was locked and run as written.
+- Result: NO VERDICT — PC4 fired exactly as predeclared: FR2 gap = 0.0000 (agent (a)
+  scores 1.0 in FR2 — W=200 sees 50-step bursts at error 0.25, far above the OK bar;
+  the burst regime breaks ONLY wide windows: c_1600 = 0.02). FR1 gap was huge (0.9231;
+  score_a 0.0769). Controller fired 0 times in 24 cells (at H=1000, violations come
+  only at the 3 phase transitions; rolling-10 trust bottoms ~0.8, never < 0.7). The
+  retune curve (identical 8/8, geometry-determined): FR1 0.0769/0.2432/0.6364/1.0000
+  and FR2 1.0000/1.0000/1.0000/0.0200 for W=200/400/800/1600 — best single-constant
+  combined = 0.6364 (W=800) vs 1.0 for the ideal adaptive assignment.
+- Verifier: agree (blinded — confirmed PC1–PC3 clean, PC4 correctly fired on the
+  numbers, no verdict is the right application of the predeclared rule; independently
+  noted the controller's total silence and that the per-dial table cleanly verifies
+  the opposing-directions design premise).
+- Implication (generalizability tier: failure-mode, plus one functional-form datum):
+  (1) PC4 worked — the rung-1 premise (a real gap for (a)) must hold per regime, and a
+  regime that breaks only OTHER dials belongs to the not-config arm, not the recovery
+  arm; the P-structure must scope recovery to FR1 and demand no-harm in FR2/CTRL.
+  (2) The controller's fixed 0.7 trust bar is transition-density-sensitive — N3's own
+  θ_N3 reproduces the fixed-dial disease one level up, the exact regress the
+  anti-regress law names; the principled fix is justified on Exp 163's committed
+  baseline (valid regimes had ZERO violations in 912 scored labels), so fire-on-2-
+  violations-in-10 (trust < 0.85) has near-zero false-fire risk by prior data, not by
+  tuning here. (3) The disjointness premise is now MEASURED: no single window constant
+  wins the (FR1, FR2) pair — rung 3's P2 is winnable by an adaptive layer and by
+  nothing constant.
+- Honest caveat: this is a design-failure entry, not a result on the rung-3 hypothesis
+  (no verdict was licensed and none is claimed); the retune curve is geometry-
+  determined (8 forks = one schedule per regime); the smoke previewed the controller
+  silence on seed 74 before the full run — the predeclaration was deliberately left
+  unchanged and run as written, which is what gave PC4 the chance to catch the second
+  flaw; the 0.85 trigger for the redesign is justified on prior committed data but
+  remains a PROVIDED θ_N3 choice — its own regime-sensitivity is a named open issue
+  for rung 4.
+- Verdict: NO VERDICT on the rung-3 hypothesis (PC4 precondition fired); iteration
+  outcome NEGATIVE (instrument) / NEW INSIGHT (the measured disjointness + the θ_N3
+  regress datum). Self-grade: NEGATIVE.
+- Next: Exp 165 = rung 3, attempt 2, fully specified by this failure: P1 recovery ≥
+  0.6 scoped to FR1 (≥7/8 forks; F1 pooled ≤ 0.3); P1b no-harm — (b) ≥ (a) − 0.05 in
+  FR2 and CTRL; P2 unchanged (combined_b − best constant ≥ 0.15; F2 any constant
+  within 0.05 of (b) on both); controller trigger = 2 violations in last 10 scored
+  (trust < 0.85, justified from Exp 163's zero-violation valid baseline); FR2 retained
+  solely for the not-config arm.

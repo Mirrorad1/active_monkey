@@ -178,4 +178,13 @@ FAILS (its sign tracks world difficulty, not brokenness — ranks R-PLACE above 
 Verifier bounds logged: valid-regime ceiling (direction, not graded sensitivity); R-SLOW
 geometry determinism (8 forks = one schedule).
 
-**STATUS.** state: active (rung 3) · latest: Exp 163 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161), window-blind-spot regime R-SLOW (Exp 162), forecast-scoring trust monitor (Exp 163 — score the diagnoses' forecasts, not the channel's statistics) · why: N3 has measured metacognitive sensitivity over N2; the load-bearing control test remains · next-falsifiable: rung 3 — same-snapshot triplet (a) N1+N2, (b) N2+N3 acting (rewrite the classifier window when trust drops), (c) N2 oracle-retuned offline; N3 must recover ≥ 60% of (a)'s diagnostic gap AND not reduce to one fixed retune across ≥ 2 distinct failure-class instances (unseen H per the leakage clause); falsifiers: (i) N3 fails to beat (a); (ii) one offline retune matches N3
+**RUNG 3, ATTEMPT 1 (Exp 164, NO VERDICT — PC4 fired; design malformed two ways, redesign
+fully specified).** The burst regime breaks only wide windows (c₁₆₀₀ = 0.02) while (a)'s
+W=200 sees 50-step bursts perfectly (1.0) — no gap to recover, PC4 correctly refused the
+verdict. The controller never fired (0/24 cells): the 0.7 trust bar is transition-density-
+sensitive (calibrated at H=400, silent at H=1000) — θ_N3 reproduces the fixed-dial disease
+one level up (the named regress). SALVAGE, measured: no single constant wins the (FR1, FR2)
+pair — best constant combined 0.6364 (W=800) vs 1.0 adaptive. Rung 3's P2 is winnable by an
+adaptive layer and nothing constant.
+
+**STATUS.** state: active (rung 3, attempt 2) · latest: Exp 164 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual separator (155), slope-gate law (156), expected-uncertainty channel (157), classifier (158), randomized protocol (159), deception-tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), measured dial-disjointness + θ_N3 regress datum (164) · why: the load-bearing test is armed and its design flaws are pinned · next-falsifiable: Exp 165 — P1 recovery ≥ 0.6 scoped to FR1 (≥7/8; F1 pooled ≤ 0.3); P1b no-harm (b ≥ a − 0.05 in FR2/CTRL); P2 combined_b − best constant ≥ 0.15 (F2: any constant within 0.05 of b on both); trigger = 2 violations in last 10 scored (trust < 0.85, justified on Exp 163's zero-violation valid baseline)
