@@ -5007,3 +5007,62 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   richness, a real negative per the anti-regress rule). Candidates, in order: the
   period ≥ window blind spot; an OK-bar-hugging error regime; an index the instruments
   do not carry.
+
+## Exp 160 — N3 rung-1 gate, candidate 1 FAILS: fast reliability swaps deceive the confidence channel only ONCE — the alternating world re-validates the learned map on every return and then blurs it to uninformative, never sustaining anti-calibration (NEGATIVE by F1; the transient deception is real at AUROC 0.22, and the decay law it traces names the next candidate: swap at the learner's own memory constant)
+
+- Plain: the ladder's next rung demands a world that makes the creature's new
+  self-monitoring systematically WRONG — not just useless. We tried the obvious trap:
+  let it learn which places are unreliable, then keep swapping the unreliable places
+  faster than it can relearn. The trap springs exactly once: right after the first swap
+  its confidence is badly inverted (it trusts exactly the wrong places). But because the
+  world alternates back, its old map keeps coming back into validity, and under repeated
+  fast swaps its map just blurs into carrying no signal at all. Useless is not wrong —
+  so this world fails the gate. The trace shows precisely why, and it points at the
+  sharper trap: change the world at the same tempo the creature's memory updates, so
+  every swap inverts a freshly re-learned map.
+- Question: does a reliability-swap world (burn-in on placement P0, then P0 ↔ complement
+  every 250 steps, far below the EWMA's ~500-step relearn time) make the Exp 157
+  confidence channel systematically anti-calibrated (the meta-calibration-n3 card's
+  rung-1 deceptive regime), with an oracle control proving discriminability?
+- Setup (predeclared in the script docstring before running; FRESH seeds 42–49): forks
+  only, 4000 steps; burn-in steps 0–999 on random 13-cell P0; swaps every 250 steps
+  thereafter (12 swaps). N2 channel = Exp 157 EWMA; oracle = true current reliability at
+  the true cell (control, reads the generator); classifier rides along ungated. PC3
+  input-validity: burn-in AUROC > 0.6 (the map must be learned before it can be
+  inverted). P1: post-burn-in N2 AUROC pooled ≤ 0.45 AND per-fork < 0.5 in ≥7/8 (F1:
+  pooled ≥ 0.5). P2: oracle pooled ≥ 0.7 (F2: < 0.6). GATE PASSES iff P1∧P2.
+- Result: NEGATIVE — F1 fired. Pooled N2 AUROC 0.5408 (per-fork 0.5142–0.5673, 0/8
+  below 0.5); oracle 0.8221 (P2 PASS — the world was discriminable; the failure is the
+  candidate's). Preconditions green (burn-in AUROC 0.7789–0.8033; drift ≤ 0.0133). The
+  per-segment trace is the finding: first-swap segments 0.167–0.292 (mean 0.217 —
+  strong, real anti-calibration in 8/8), P0-return segments snap back to 0.716–0.804,
+  and the sawtooth DECAYS — by segment 4+ values scatter around chance as the EWMA
+  blurs toward the average. Classifier post-burn-in: 100% NOISE in 8/8 (the typed alarm
+  also carries no swap signal — as expected ungated).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived NEGATIVE independently);
+  characterized the time-course as a decaying sawtooth — anti-calibration sustained
+  only in the first cold inversion of a freshly learned map — and flagged that terminal
+  EWMA stays POSITIVELY correlated with P0 (0.31–0.54): confused, never flipped.
+- Implication (generalizability tier: functional-form — a deception-tempo law for
+  history-indexed channels): an EWMA-style expected-uncertainty channel cannot be
+  PERSISTENTLY deceived by change faster than its own memory constant — fast
+  alternation re-validates (on returns) and blurs (on average) the map, driving AUROC to
+  ~0.5 (useless), not below it (wrong). Deception requires the world to sit exactly one
+  memory-constant behind the learner: each swap must invert a RE-SHARPENED map. This
+  names candidate 2 precisely: T_swap ≈ the relearn constant (~500–750 steps here), at
+  which every segment should open with the 0.22-class inversion. A NEGATIVE here kills
+  candidate 1 only; the gate stays open with candidates 2 (lag-matched tempo), 3
+  (period ≥ classifier window), 4 (OK-bar-hugging error rates) before any "no N2-failure
+  regime at this richness" conclusion is licensed.
+- Honest caveat: the gated bars were set on a 250-step tempo chosen from a coarse
+  relearn estimate (1/α visits ≈ 500 steps) that the data partly contradicts (partial
+  adaptation within 2–3 cycles) — the candidate, not the gate concept, is what failed;
+  transient deception (segment 0) is demonstrated but was not the gated claim; the
+  oracle reads the generator and is a measurement control, not an agent capability;
+  the smoke run (seed 42) previewed the direction before the full run, predeclaration
+  unchanged.
+- Verdict: NEGATIVE / NEW INSIGHT (the deception-tempo law). Self-grade: NEGATIVE.
+- Next: Exp 161 = rung-1 candidate 2, the lag-matched swap (T_swap ≈ 500–750), with the
+  mechanism-derived prediction that every segment opens deceived (per-segment AUROC
+  < 0.5 in most segments, pooled ≤ 0.45) because each swap inverts a freshly
+  re-learned map.

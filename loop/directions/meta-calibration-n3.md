@@ -141,4 +141,12 @@ boundaries: period ≥ window (classifier window-purity blind spot), OK-bar-hugg
 rates (~0.05), ρ near the 0.3 threshold, and reliability varying by an index neither
 instrument carries (color/time rather than place).
 
-**STATUS.** state: active (rung 1 open) · latest: Exp 159 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159) · why: N2 prereq satisfied; the ladder's discriminating-perturbation gate is the next falsifiable step · next-falsifiable: rung 1 — construct a regime where the new N2 is systematically wrong (candidates: period ≥ window; error ≈ OK bar; un-carried index); FAIL = no such regime ⇒ N3 superfluous at this richness (a real negative per the anti-regress rule)
+**RUNG 1, CANDIDATE 1 (Exp 160, NEGATIVE — candidate killed, gate open).** Fast reliability
+swaps (250 steps vs ~500-step EWMA constant) do not sustain anti-calibration: pooled AUROC
+0.5408 (0/8 below 0.5), oracle 0.8221 — the world was discriminable, the trap was not.
+The trace pins a deception-tempo law: change faster than the memory constant makes a
+history-indexed channel USELESS (→0.5), not WRONG (<0.5) — alternation re-validates and
+blurs. First-swap inversion is real (0.167–0.292 in 8/8). Candidate 2 follows from the
+mechanism: lag-matched swaps (T ≈ 500–750) so every swap inverts a freshly re-learned map.
+
+**STATUS.** state: active (rung 1, candidate 2) · latest: Exp 160 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160) · why: the gate needs a constructible N2-failure regime; candidate 1 dead, mechanism names candidate 2 · next-falsifiable: lag-matched swap (T_swap ≈ 500–750): every segment opens deceived (per-segment AUROC < 0.5 in most segments, pooled ≤ 0.45); remaining candidates after that: period ≥ classifier window; OK-bar-hugging error rates

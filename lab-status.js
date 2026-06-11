@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 159, title: "the N2 prereq is SATISFIED: with the built channel and classifier, the body passes the test it failed at Exp 155 — under per-fork randomization of every regime parameter", tag: "POSITIVE" },
-  tally: { total: 159, positive: 100, negative: 33, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 160, title: "N3 rung-1 gate, candidate 1 FAILS: fast reliability swaps deceive the confidence channel only ONCE — the alternating world re-validates the learned map on every return and then blurs it to uninformative, never sustaining anti-calibration", tag: "NEGATIVE" },
+  tally: { total: 160, positive: 100, negative: 34, mixed: 22, breakthroughs: 3 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (rung 1 open)", latest: "Exp 159", next: "rung 1 — construct a regime where the new N2 is systematically wrong (candidates: period ≥ window; error ≈ OK bar; un-carried index); FAIL = no such regime ⇒ N3 superfluous at this richness (a real negative per the anti-regress rule)" },
+    { name: "meta-calibration-n3", state: "active (rung 1, candidate 2)", latest: "Exp 160", next: "lag-matched swap (T_swap ≈ 500–750): every segment opens deceived (per-segment AUROC < 0.5 in most segments, pooled ≤ 0.45); remaining candidates after that: period ≥ classifier window; OK-bar-hugging error rates" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

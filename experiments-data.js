@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:159, breakthrough:7, positive:90, wall:25, partial:37, from:4.81, to:4.00 };
+window.AM_TALLY = { total:160, breakthrough:7, positive:90, wall:25, partial:38, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1766,7 +1766,18 @@ window.AM_EXPERIMENTS = [
     result:"POSITIVE — prereq SATISFIED. Channel AUROC 0.7989-0.8202 (8/8), pooled 0.8091; majorities 8/8 in all three regimes; pooled false-structural 0.0000; preconditions green everywhere. The blinded verifier derived the verdict independently and confirmed the parameter draws spanned all declared ranges.",
     implication:"The N2 layer now exists on this body: confidence that tracks accuracy where discrimination is possible, and randomization-robust noise-vs-structure separation. Per the standing word, N3 rung 1 opens — construct the regime where THIS N2 is systematically wrong. The instruments' own measured boundaries supply the attack surfaces: periods longer than the classifier's window, error rates hugging the OK bar, and reliability varying by an index neither instrument carries.",
     caveat:"this is the confirmation increment of a build — it confirms more than it discovers (the new data are the randomization-robustness, the geometry-free channel, and the confirmed parity mechanism); both instrument FORMS remain provided; P1's discrimination regime is still place-indexed by construction; \"prereq satisfied\" binds to these four regime families at toy scale, and the boundary worlds named above are exactly where it has NOT been tested — deliberately, since they are rung 1's raw material.",
-    trace:{ script:"experiments/exp159_prereq_reconfirm.py", output:"experiments/outputs/exp159.txt" } }
+    trace:{ script:"experiments/exp159_prereq_reconfirm.py", output:"experiments/outputs/exp159.txt" } },
+
+  { n:160, kind:"partial", chapter:"frontier",
+    title:"The first trap fails — and failing, writes the law of how to deceive a remembering mind.",
+    one:"N3 rung-1 gate, candidate 1, NEGATIVE by its predeclared falsifier: fast reliability swaps (every 250 steps, against a ~500-step memory constant) do NOT sustain anti-calibration — pooled type-2 AUROC 0.5408 with 0/8 forks below chance, while the oracle control proves the world was discriminable (0.8221). The per-segment trace is the finding: the FIRST swap deceives hard in 8/8 forks (AUROC 0.167-0.292), every return to the learned placement re-validates the map (0.716-0.804), and repeated fast swaps blur the channel to uninformative — useless is not wrong. Deception of a history-indexed channel requires the world to sit exactly one memory-constant behind the learner.",
+    plain:"The ladder's next rung demands a world that makes the creature's new self-monitoring systematically wrong — not just useless. We tried the obvious trap: let it learn which places are unreliable, then keep swapping the unreliable places faster than it can relearn. The trap springs exactly once: right after the first swap its confidence is badly inverted. But because the world alternates back, its old map keeps coming back into validity, and under repeated fast swaps the map just blurs into carrying no signal. The trace shows precisely why — and points at the sharper trap: change the world at the same tempo the creature's memory updates, so every swap inverts a freshly re-learned map.",
+    metric:{ from:0.217, to:0.5408, unit:"N2 channel AUROC: first-swap segment mean vs pooled (deception decays)" },
+    setup:"Forks of mirro (spine untouched), fresh seeds 42-49, 4000 steps: 1000-step burn-in on a random 13-cell noisy placement, then placement swapped with its complement every 250 steps (12 swaps). Gated: N2 channel AUROC pooled at or below 0.45 with 7/8 forks below 0.5 (deception), oracle AUROC at or above 0.7 (discriminability). Burn-in calibration above 0.6 required as input validity. All predeclared; blinded verification before logging.",
+    result:"NEGATIVE — F1 fired (pooled 0.5408, 0/8 below 0.5); P2 passed (oracle 0.8221). First-swap segments 0.167-0.292 in 8/8; P0-return segments 0.716-0.804; sawtooth decays to chance-scatter by segment 4. Classifier read the swap world as 100% NOISE (as expected ungated). The blinded verifier derived NEGATIVE independently and characterized the decaying sawtooth.",
+    implication:"A deception-tempo law for history-indexed confidence: change faster than the memory constant makes the channel useless (AUROC to 0.5), not wrong (below 0.5) — alternation re-validates and blurs. Sustained deception requires lag-matching: each swap must invert a freshly re-sharpened map. That is candidate 2, with the mechanism-derived prediction that every segment opens at the 0.22-class inversion. The gate stays open — this kills one candidate, not the rung.",
+    caveat:"the gated bars were set on a 250-step tempo chosen from a coarse relearn estimate (1/α visits ≈ 500 steps) that the data partly contradicts (partial adaptation within 2–3 cycles) — the candidate, not the gate concept, is what failed; transient deception (segment 0) is demonstrated but was not the gated claim; the oracle reads the generator and is a measurement control, not an agent capability; the smoke run (seed 42) previewed the direction before the full run, predeclaration unchanged.",
+    trace:{ script:"experiments/exp160_n3_gate_deception.py", output:"experiments/outputs/exp160.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

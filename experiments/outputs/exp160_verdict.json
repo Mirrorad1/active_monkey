@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "exp160",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_anticalibration": {
+      "pass": false,
+      "reason": "Post-burn-in pooled N2 AUROC=0.5408 (need <=0.45); forks with N2 AUROC < 0.5: 0/8 (need >=7); F1 fired=True"
+    },
+    "P2_oracle_discriminable": {
+      "pass": true,
+      "reason": "Post-burn-in pooled oracle AUROC=0.8221 (need >=0.7); F2 fired=False"
+    }
+  },
+  "notes": "N3 rung 1 gate: R-SWAP world swaps which 13-of-25 cells are noisy every 250 steps (250 << 500-step EWMA relearn time) after a 1000-step burn-in. P0 burn-in lets EWMA learn the map; post-burn-in swap inverts the learned reliability map. N2 channel (EWMA) is history-indexed and cannot follow the swap \u2014 predicted anti-calibration (type-2 AUROC < 0.5). Oracle channel reads the TRUE current reliability per step \u2014 serves as control proving the world itself is discriminable. POSITIVE => GATE PASSES, discriminating perturbation exists, N3 rung 2 opens. NEGATIVE kills this candidate only; other candidates remain."
+}

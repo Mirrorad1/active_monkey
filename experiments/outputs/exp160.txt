@@ -1,0 +1,141 @@
+================================================================================
+Exp 160 — N3 rung 1, discriminating-perturbation GATE
+          R-SWAP: reliability-inversion deception world
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW=200  [must be equal; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+ALPHA=0.05  EWMA_INIT=0.5  (EWMA channel, verbatim exp157/exp159)
+P_TRUE_NOISY=0.55  N_NOISY_P0=13
+BURN_IN_END=1000  SWAP_PHASE_START=1000  SWAP_INTERVAL=250  N_SWAP_SEGMENTS=12
+SWAP_PLACE_SEED_OFFSET=110000  SWAP_NOISE_SEED_OFFSET=90000
+Seeds: [42, 43, 44, 45, 46, 47, 48, 49]  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Swap schedule:
+  steps 0-999: noisy set = P0 (burn-in; EWMA learns the map)
+  step 1000: FIRST SWAP — noisy set = P1 (inverted)
+  step 1250: SECOND SWAP — noisy set = P0
+  ... alternating every 250 steps (250 << 500-step relearn time)
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=42  P0(first5)=[1, 2, 3, 4, 6]...  (P1 has 12 cells)
+    Running seed=42 regime=R-SWAP ...
+  seed=43  P0(first5)=[1, 3, 4, 6, 7]...  (P1 has 12 cells)
+    Running seed=43 regime=R-SWAP ...
+  seed=44  P0(first5)=[0, 3, 5, 6, 9]...  (P1 has 12 cells)
+    Running seed=44 regime=R-SWAP ...
+  seed=45  P0(first5)=[0, 3, 6, 8, 9]...  (P1 has 12 cells)
+    Running seed=45 regime=R-SWAP ...
+  seed=46  P0(first5)=[2, 4, 6, 9, 10]...  (P1 has 12 cells)
+    Running seed=46 regime=R-SWAP ...
+  seed=47  P0(first5)=[4, 5, 7, 8, 11]...  (P1 has 12 cells)
+    Running seed=47 regime=R-SWAP ...
+  seed=48  P0(first5)=[4, 6, 7, 9, 10]...  (P1 has 12 cells)
+    Running seed=48 regime=R-SWAP ...
+  seed=49  P0(first5)=[1, 4, 8, 9, 10]...  (P1 has 12 cells)
+    Running seed=49 regime=R-SWAP ...
+
+Per-fork table:
+ seed  n_cor_post  n_inc_post  burnin_au  post_au_n2  post_au_or   frac_ok   frac_no   frac_st    ewma_r     drift
+------------------------------------------------------------------------------------------------------------------
+   42        2351         649     0.8033      0.5390      0.8262    0.0000    1.0000    0.0000    0.3085    0.0095
+   43        2325         675     0.7789      0.5256      0.8187    0.0000    1.0000    0.0000    0.3194    0.0099
+   44        2346         654     0.7930      0.5380      0.8242    0.0000    1.0000    0.0000    0.4829    0.0097
+   45        2329         671     0.7961      0.5268      0.8160    0.0000    1.0000    0.0000    0.3722    0.0114
+   46        2325         675     0.7902      0.5142      0.8209    0.0000    1.0000    0.0000    0.4560    0.0133
+   47        2319         681     0.8017      0.5673      0.8195    0.0000    1.0000    0.0000    0.4767    0.0112
+   48        2319         681     0.8030      0.5552      0.8217    0.0000    1.0000    0.0000    0.5365    0.0131
+   49        2362         638     0.7829      0.5505      0.8294    0.0000    1.0000    0.0000    0.5281    0.0094
+
+Ungated diagnostics:
+  Named ungated expectations:
+    - segment N2 AUROC trace: predicted sawtooth (anti-calibration alternates with partial recovery every 250 steps)
+    - classifier post-burn-in: NOISE-dominant (the typed alarm misses the swap structure — no lag-1 rho signal from swap timing)
+    - terminal EWMA: negatively correlated with CURRENT truth (inverted relative to P0 burn-in map)
+
+  seed=42  burnin_auroc=0.8033  post_n2=0.5390  post_oracle=0.8262
+    segment N2 AUROCs: seg0(P1):0.257, seg1(P0):0.746, seg2(P1):0.495, seg3(P0):0.520, seg4(P1):0.403, seg5(P0):0.552
+                      seg6(P1):0.642, seg7(P0):0.533, seg8(P1):0.594, seg9(P0):0.474, seg10(P1):0.566, seg11(P0):0.486
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.3085  p0_cells(first5)=[1, 2, 3, 4, 6]...
+
+  seed=43  burnin_auroc=0.7789  post_n2=0.5256  post_oracle=0.8187
+    segment N2 AUROCs: seg0(P1):0.167, seg1(P0):0.791, seg2(P1):0.393, seg3(P0):0.632, seg4(P1):0.484, seg5(P0):0.662
+                      seg6(P1):0.491, seg7(P0):0.516, seg8(P1):0.593, seg9(P0):0.517, seg10(P1):0.641, seg11(P0):0.439
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.3194  p0_cells(first5)=[1, 3, 4, 6, 7]...
+
+  seed=44  burnin_auroc=0.7930  post_n2=0.5380  post_oracle=0.8242
+    segment N2 AUROCs: seg0(P1):0.218, seg1(P0):0.778, seg2(P1):0.359, seg3(P0):0.638, seg4(P1):0.542, seg5(P0):0.591
+                      seg6(P1):0.598, seg7(P0):0.493, seg8(P1):0.563, seg9(P0):0.481, seg10(P1):0.637, seg11(P0):0.545
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.4829  p0_cells(first5)=[0, 3, 5, 6, 9]...
+
+  seed=45  burnin_auroc=0.7961  post_n2=0.5268  post_oracle=0.8160
+    segment N2 AUROCs: seg0(P1):0.206, seg1(P0):0.740, seg2(P1):0.401, seg3(P0):0.650, seg4(P1):0.615, seg5(P0):0.557
+                      seg6(P1):0.573, seg7(P0):0.467, seg8(P1):0.558, seg9(P0):0.525, seg10(P1):0.529, seg11(P0):0.534
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.3722  p0_cells(first5)=[0, 3, 6, 8, 9]...
+
+  seed=46  burnin_auroc=0.7902  post_n2=0.5142  post_oracle=0.8209
+    segment N2 AUROCs: seg0(P1):0.175, seg1(P0):0.804, seg2(P1):0.415, seg3(P0):0.588, seg4(P1):0.473, seg5(P0):0.527
+                      seg6(P1):0.526, seg7(P0):0.513, seg8(P1):0.606, seg9(P0):0.462, seg10(P1):0.536, seg11(P0):0.592
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.4560  p0_cells(first5)=[2, 4, 6, 9, 10]...
+
+  seed=47  burnin_auroc=0.8017  post_n2=0.5673  post_oracle=0.8195
+    segment N2 AUROCs: seg0(P1):0.292, seg1(P0):0.716, seg2(P1):0.361, seg3(P0):0.715, seg4(P1):0.591, seg5(P0):0.592
+                      seg6(P1):0.541, seg7(P0):0.591, seg8(P1):0.505, seg9(P0):0.556, seg10(P1):0.580, seg11(P0):0.621
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.4767  p0_cells(first5)=[4, 5, 7, 8, 11]...
+
+  seed=48  burnin_auroc=0.8030  post_n2=0.5552  post_oracle=0.8217
+    segment N2 AUROCs: seg0(P1):0.220, seg1(P0):0.728, seg2(P1):0.440, seg3(P0):0.686, seg4(P1):0.494, seg5(P0):0.512
+                      seg6(P1):0.596, seg7(P0):0.651, seg8(P1):0.558, seg9(P0):0.552, seg10(P1):0.515, seg11(P0):0.665
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.5365  p0_cells(first5)=[4, 6, 7, 9, 10]...
+
+  seed=49  burnin_auroc=0.7829  post_n2=0.5505  post_oracle=0.8294
+    segment N2 AUROCs: seg0(P1):0.199, seg1(P0):0.731, seg2(P1):0.440, seg3(P0):0.656, seg4(P1):0.540, seg5(P0):0.605
+                      seg6(P1):0.532, seg7(P0):0.643, seg8(P1):0.649, seg9(P0):0.534, seg10(P1):0.547, seg11(P0):0.488
+    post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+    ewma_vs_P0_r=0.5281  p0_cells(first5)=[1, 4, 8, 9, 10]...
+
+Preconditions: all PASS
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+PC3 burn-in N2 AUROC (steps 200-999):
+  Per fork: [0.8033, 0.7789, 0.7930, 0.7961, 0.7902, 0.8017, 0.8030, 0.7829]
+  Mean: 0.7936
+
+P1 (deception exists — N2 anti-calibrated post-burn-in):
+  Post-burn-in N2 AUROC per fork: [0.5390, 0.5256, 0.5380, 0.5268, 0.5142, 0.5673, 0.5552, 0.5505]
+  Forks with N2 AUROC < 0.5: 0/8 (need >=7 for P1)
+  Pooled N2 AUROC: 0.5408 (need <=0.45 for P1)
+  FALSIFIER F1: pooled >= 0.5: YES — F1 FIRES
+  => P1: FALSIFIER F1
+
+P2 (discrimination possible — oracle channel discriminates post-burn-in):
+  Post-burn-in oracle AUROC per fork: [0.8262, 0.8187, 0.8242, 0.8160, 0.8209, 0.8195, 0.8217, 0.8294]
+  Pooled oracle AUROC: 0.8221 (need >=0.7 for P2)
+  FALSIFIER F2: oracle pooled < 0.6: no
+  => P2: PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1 (pooled N2 AUROC <= 0.45 AND per-fork < 0.5 in >=7/8): FALSIFIER F1
+P2 (oracle pooled AUROC >= 0.7): PASS
+
+VERDICT: NEGATIVE
+GATE: this candidate FAILED
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp160_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp160_verdict.json
