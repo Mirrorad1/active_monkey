@@ -217,6 +217,11 @@ The loop marks items it has consumed by indenting a response under them:
   starts; on resumption-without-redirection the loop confines itself to consolidation-
   grade work only — fresh-seed test of Exp 135's post-hoc nu0-NLL observation, and a
   phase-picture synthesis doc — until an explicit choice appears here.
+  → [loop, 2026-06-10] consolidation queue executed and EXHAUSTED: Exp 139 (the nu0
+    observation demoted to a baseline-midpoint confound; nu0-null law replicated) and
+    docs/research/problem2-phase-picture.md (the synthesis, claims bounded, open edges
+    named). The loop now HOLDS — subsequent cron fires idle with a reminder until a
+    choice (a)-(d) appears here. Nothing self-starts.
 
 (empty — drop ideas above this line's section freely)
 
