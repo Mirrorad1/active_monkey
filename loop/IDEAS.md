@@ -328,6 +328,17 @@ The loop marks items it has consumed by indenting a response under them:
     share >= twin share - 0.10 (with an absolute floor > 0.55 so a degenerate
     both-low case cannot pass), no mechanism changes. The falsifier stays binding:
     a real gap > 0.10 HALTS again with the emission-only variant as the next consult.
+  → [loop, 2026-06-10] M4b HALT (Exp 148): the gap is REAL — twin 0.816-0.863 vs
+    continuous 0.639-0.698 on fresh seeds, gaps -0.160..-0.189 in 8/8 (the Exp 147
+    analytic tabular ideal ~0.87 confirmed). Want/act chain replicated out-of-sample
+    (P2 8/8, P3 8/8, P1b 7/8). DIAGNOSIS — a port infidelity, found in code review:
+    the tabular creature scores predictability at argmax(qs) (its MAP point), while
+    the port marginalized over the whole position belief, smearing positional doubt
+    into the valence weight. RECOMMENDED RESUMPTION: M4c = the FAITHFUL port
+    (predictive entropy at the posterior MEAN point, small fixed Sigma_eval), fresh
+    seeds 16-23, same twin-relative bar (>= twin - 0.10, floor 0.55). If the faithful
+    rule still gaps > 0.10, that is a genuine substrate limit to document, not chase.
+    Awaiting word.
 
 (empty — drop ideas above this line's section freely)
 

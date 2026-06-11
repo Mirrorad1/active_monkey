@@ -1,0 +1,61 @@
+================================================================================
+Exp 148 — continuous-creature rung M4b: the twin-calibrated re-test
+================================================================================
+
+Seed  RelShare_C  TwinShare     Gap  Spearman  Fav_C  FavHalf   OccA_C   OccB_C  Fav_M  FavHalf_M  Spearman_M
+--------------------------------------------------------------------------------------------------------------
+   8      0.6890     0.8495  -0.1605    0.6794      3    right   0.0580   0.7340     12       left      0.6500
+   9      0.6590     0.8467  -0.1877    0.7441     15    right   0.0622   0.6880      0       left      0.6588
+  10      0.6410     0.8162  -0.1752    0.6441     15    right   0.0558   0.6210     12       left      0.6794
+  11      0.6676     0.8289  -0.1613    0.7824     15    right   0.0633   0.7860      0       left      0.8265
+  12      0.6956     0.8562  -0.1606    0.7971      3    right   0.0845   0.8430      0       left      0.7324
+  13      0.6976     0.8633  -0.1657    0.7500      3    right   0.0732   0.8520     12       left      0.6441
+  14      0.6484     0.8350  -0.1866    0.8029      3    right   0.0805   0.8395     12       left      0.7765
+  15      0.6392     0.8280  -0.1888    0.4265      3    right   0.0542   0.6175      0       left      0.6029
+
+================================================================================
+TALLIES
+================================================================================
+
+P1 want grounds:
+  P1a twin-relative (cont >= twin-0.10 AND cont > 0.55): 0/8 seeds  (need >= 7/8)
+  P1b Spearman > 0.6 (cont vs tab):                      7/8 seeds  (need >= 7/8)
+  P1 HOLDS: False
+    seed=8: rel_share=0.6890  twin_share=0.8495  gap=-0.1605  (FAIL)  spearman=0.6794 (pass)
+    seed=9: rel_share=0.6590  twin_share=0.8467  gap=-0.1877  (FAIL)  spearman=0.7441 (pass)
+    seed=10: rel_share=0.6410  twin_share=0.8162  gap=-0.1752  (FAIL)  spearman=0.6441 (pass)
+    seed=11: rel_share=0.6676  twin_share=0.8289  gap=-0.1613  (FAIL)  spearman=0.7824 (pass)
+    seed=12: rel_share=0.6956  twin_share=0.8562  gap=-0.1606  (FAIL)  spearman=0.7971 (pass)
+    seed=13: rel_share=0.6976  twin_share=0.8633  gap=-0.1657  (FAIL)  spearman=0.7500 (pass)
+    seed=14: rel_share=0.6484  twin_share=0.8350  gap=-0.1866  (FAIL)  spearman=0.8029 (pass)
+    seed=15: rel_share=0.6392  twin_share=0.8280  gap=-0.1888  (FAIL)  spearman=0.4265 (FAIL)
+
+P2 act works (occ_B > 4x baseline=0.0625 AND > 2x occ_A):
+  Seeds pass: 8/8  (need >= 6/8)  PASS
+    seed=8: occ_A=0.0580  occ_B=0.7340  4x_baseline=0.2500  2x_occA=0.1160  (pass)
+    seed=9: occ_A=0.0622  occ_B=0.6880  4x_baseline=0.2500  2x_occA=0.1245  (pass)
+    seed=10: occ_A=0.0558  occ_B=0.6210  4x_baseline=0.2500  2x_occA=0.1115  (pass)
+    seed=11: occ_A=0.0633  occ_B=0.7860  4x_baseline=0.2500  2x_occA=0.1265  (pass)
+    seed=12: occ_A=0.0845  occ_B=0.8430  4x_baseline=0.2500  2x_occA=0.1690  (pass)
+    seed=13: occ_A=0.0732  occ_B=0.8520  4x_baseline=0.2500  2x_occA=0.1465  (pass)
+    seed=14: occ_A=0.0805  occ_B=0.8395  4x_baseline=0.2500  2x_occA=0.1610  (pass)
+    seed=15: occ_A=0.0542  occ_B=0.6175  4x_baseline=0.2500  2x_occA=0.1085  (pass)
+
+P3 history sets the want (primary fav in right, mirror fav in left):
+  Seeds pass: 8/8  (need >= 6/8)  PASS
+    seed=8: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=9: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=10: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=11: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=12: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=13: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=14: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=15: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+
+================================================================================
+VERDICT: NEGATIVE
+MIGRATION HALT
+  Falsifier triggered: P1a FAILED in 8/8 seeds — the gap is REAL (> 0.10), the substrate genuinely under-concentrates valence; next consult offers emission-only valence weight as principled variant
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp148_rows.json

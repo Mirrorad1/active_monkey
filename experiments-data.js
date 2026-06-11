@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:147, breakthrough:6, positive:85, wall:24, partial:32, from:4.81, to:4.00 };
+window.AM_TALLY = { total:148, breakthrough:6, positive:85, wall:24, partial:33, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1485,7 +1485,17 @@ window.AM_EXPERIMENTS = [
     setup:"A half-noisy sixteen-color world; the Exp 26 valence rule with the continuous predictive entropy; a softmax one-step lookahead policy on the learned value field; the tabular twin on identical streams; a mirrored-world sibling per seed. All thresholds predeclared.",
     result:"P1a 0/8 (the halt); P1b twin rank-tracking 8/8; P2 navigation 7/8; P3 history-sets-want 8/8. The twin's own empirical share went unrecorded — the missing calibration number the resumption records.",
     implication:"The RECIPE's want and act links function on the continuous substrate; what is unresolved is whether the weaker concentration is a real substrate effect (position uncertainty inside the valence weight) or a miscalibrated bar. M4b re-tests twin-relative on fresh seeds; the emission-only weight stands ready as the principled variant if the gap is real.",
-    trace:{ script:"experiments/exp147_m4_want_act.py", output:"experiments/outputs/exp147.txt" } }
+    trace:{ script:"experiments/exp147_m4_want_act.py", output:"experiments/outputs/exp147.txt" } },
+
+  { n:148, kind:"partial", chapter:"frontier",
+    title:"The gap is real — because the translation was wrong.",
+    one:"Migration rung M4b on fresh seeds: the twin concentrates 0.816-0.863 of its valence on the reliable half, the continuous creature 0.639-0.698 — a structural gap of -0.16 to -0.19 in 8/8 (HALT per the twin-relative bar). The diagnosis came from code review: the tabular rule scores predictability at its MAP point while the port marginalized over the whole position belief, smearing positional doubt into the feeling. Meanwhile navigation (8/8) and history-sets-want (8/8) replicated out of sample.",
+    plain:"The recalibrated test confirmed the shortfall is not a misjudged bar: on fresh seeds the boxed twin concentrates 82-86 percent of its feeling on the dependable half, the continuous creature only 64-70 — every run. Hunting the cause exposed a translation error in the port itself: the original creature judges how predictable a place feels from its single best guess of where it is, while the ported rule averaged that judgment over all the places it might be, flattening the contrast. The fix is not a tweak to pass the test; it is the faithful translation of the original rule.",
+    metric:{ from:0.863, to:0.698, unit:"best twin vs best continuous reliable share, fresh seeds (gap structural in 8/8)" },
+    setup:"Exp 147's exact protocol on never-run seeds with the previously-unrecorded twin share logged and the bar restated twin-relative — no mechanism changes, per the authorized recommendation.",
+    result:"P1a 0/8 (the halt; gaps -0.160 to -0.189); rank-tracking 7/8; navigation 8/8 with occupancy 0.62-0.85; mirrored favorites opposite 8/8. The port-infidelity diagnosis (argmax-point vs belief-marginalized scoring) is from code reading; the M4c ablation tests it.",
+    implication:"The consult recommends M4c — the faithful point-evaluated valence rule on fresh seeds under the same twin-relative bar. If the faithful rule still gaps, that becomes a documented substrate limit rather than a thing to chase.",
+    trace:{ script:"experiments/exp148_m4b_twin_relative.py", output:"experiments/outputs/exp148.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

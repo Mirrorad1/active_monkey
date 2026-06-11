@@ -4357,3 +4357,46 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   substantive M4 result, pending the calibrated re-test. Self-grade: n/a.
   THE MIGRATION IS HALTED awaiting explicit human word.
 - Next: nothing on this thread until the consult is answered.
+
+## Exp 148 — continuous-creature rung M4b: the valence gap is REAL (−0.16…−0.19 in 8/8 fresh seeds, twin at 0.82–0.86) — and the diagnosis is a PORT INFIDELITY: the tabular rule scores predictability at its point estimate, the port marginalized over the belief (NEGATIVE/HALT; want/act chain replicates out-of-sample; M4c consult posted)
+- Plain: The recalibrated test confirmed the shortfall is not a misjudged bar: on
+  fresh seeds the old boxed twin concentrates 82–86 percent of its feeling on the
+  dependable half, the continuous creature only 64–70 — a steady gap in every run.
+  Hunting the cause exposed a translation error in the port itself: the original
+  creature judges how predictable a place feels from its single best guess of where
+  it is, while the ported rule averaged that judgment over ALL the places it might
+  be — smearing in its own positional doubt and flattening the contrast between
+  dependable and flickery. The fix is not a tweak to pass the test; it is the
+  faithful translation of the original rule. Everything else replicated perfectly
+  out of sample: it walks to its favorites, and mirrored upbringings still produce
+  opposite favorites, every run.
+- Setup (predeclared in the script docstring before running): Exp 147's exact
+  protocol, FRESH seeds 8–15, the twin's reliable share recorded, P1a re-predeclared
+  twin-relative (continuous ≥ twin − 0.10, with an absolute floor > 0.55); no
+  mechanism changes. P1b/P2/P3 as Exp 147.
+- Result: NEGATIVE — HALT on P1a (0/8: twin 0.816–0.863, continuous 0.639–0.698,
+  gaps −0.160…−0.189 — structural, every seed; the Exp 147 analytic estimate 0.87 for
+  the tabular ideal confirmed empirically). P1b PASS 7/8 (seed 15 at 0.43, the one
+  miss). P2 PASS 8/8 (occupancy 0.62–0.85 vs wander 0.05–0.08). P3 PASS 8/8.
+  Suite 108 green.
+- Diagnosis (the port infidelity, identified in review): the tabular creature's own
+  rule (creature.py) computes the predictability weight from A_hat at argmax(qs) —
+  the MAP CELL, a POINT estimate. The M4 port computed the predictive entropy of the
+  belief-INTEGRATED color distribution — folding position uncertainty and footprint
+  leakage into H and compressing the e^−H contrast between reliable and noisy
+  regions. The "emission-only variant" flagged in Exp 147's consult is therefore not
+  a mechanism change to chase a threshold — it is the FAITHFUL translation
+  (predictive entropy evaluated at the posterior mean point).
+- RECOMMENDED RESUMPTION (consult posted): M4c = the faithful port (valence weight =
+  exp(−H(color predictive at the posterior MEAN, small fixed Σ_eval))), fresh seeds
+  16–23, the same twin-relative bar. If the faithful rule STILL gaps > 0.10, that
+  would be a genuine substrate limit to document (not chase).
+- Honest caveat: the port-infidelity diagnosis is from code reading (creature.py's
+  argmax(qs) rule vs the experiment's marginalized predictive), not yet an ablation —
+  M4c IS that ablation; seed 15's P1b miss (0.43) rode the 7/8 threshold; the gap
+  numbers inherit all of Exp 147's declared modeling choices.
+- Verdict: NEGATIVE (P1a falsifier as predeclared — the gap is real for the
+  AS-PORTED rule) / the P2+P3 out-of-sample replication is the durable M4 result so
+  far. Self-grade: n/a. THE MIGRATION IS HALTED awaiting explicit human word.
+- Next: nothing on this thread until the consult is answered ("m4c" runs the
+  faithful-port ablation).
