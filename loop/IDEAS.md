@@ -237,6 +237,16 @@ The loop marks items it has consumed by indenting a response under them:
     require an explicit word here — (b) by its own standing fence. (d) stop remains
     available by saying so. If this recommendation is wrong, one line here redirects
     it.
+  → [human, 2026-06-10] "A" — the explicit word for option (a): MIGRATE THE CREATURE
+    SUBSTRATE TO CONTINUOUS. Consumed as the new directive. Guardrails adopted from the
+    ratified M4a pattern: each migration increment carries predeclared properties and
+    falsifiers; ANY failed predeclared test HALTS the thread for explicit human input.
+    Scope guards: mirro's and vela's tabular spines are UNTOUCHED (the continuous
+    creature is a NEW species line under creature/state/, per the clade model); the old
+    substrate's behavior stays bit-invariant (existing suite + continuity test enforce);
+    M4a increment 1c remains halted behind its own fence; FROZEN paths untouched.
+    First iteration: the migration direction card (rung ladder + falsifiers), committed
+    for review — loop/directions/continuous-creature.md.
 
 (empty — drop ideas above this line's section freely)
 
