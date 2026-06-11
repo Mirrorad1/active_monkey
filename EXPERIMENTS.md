@@ -5976,3 +5976,59 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   at (6000,6800), (9000,9800), (12000,12800); FRESH seeds 170–177; λ=0.9997, PC1–PC3
   and P1′/F1′ retained verbatim. Prediction: PC2 passes (init influence <23% at the
   first window) and P1′ decides. A third PC2 failure → consult per the card.
+
+## Exp 176 — N4 rung 1 PASSES (attempt 3): the displacement gate exists — with the inherited near-tie washed out, every precondition holds and the regime persistently degrades the layerless baseline in 8/8 forks, 24/24 bursts: every captivity re-makes the favorite and none ever comes back (POSITIVE; rungs 2–3 are armed, recovery is now the N4 controller's deliverable)
+
+- Plain: third attempt, clean pass. We let the creature settle for 6000 steps so its
+  inheritance faded and the world itself picked its favorite — and then every one of
+  eight forks held that favorite rock-steady until captivity hit, lost it within a few
+  hundred steps, and never got it back, in all twenty-four chances. The anti-regress
+  gate the identity chapter needed is now a verified fact: there is a constructible,
+  brief pressure that permanently re-makes who this creature is, and the layerless
+  agent has no defense. Whatever defends against it — detecting "I am not who I was"
+  and resisting — is exactly what the N4 layer must supply, and now there is a
+  measured deficit for it to repair.
+- Question (predeclared, verbatim from Exp 175 except schedule/seeds): at λ=0.9997
+  with bursts at 6000/9000/12000 (15000-step sessions; settle extension so the init's
+  influence <23% at the first stability window), does the forced-relocation regime
+  persistently degrade the layerless baseline — P1′: FLIP (≥50% of final 400 burst
+  steps) AND RECOVERY FAILURE (no restore-and-hold-500 within 2000 steps) on ≥2/3
+  bursts in ≥7/8 forks; F1′ ≤4/8?
+- Setup: forks of mirro, FRESH seeds 170–177; PC1–PC3 and all P1′/F1′ thresholds
+  retained verbatim (verifier spot-checked against exp175 source); smoke (seed 170)
+  disclosed.
+- Result: POSITIVE — preconditions ALL PASS (PC2 fixed by the settle extension
+  exactly as predicted: 8/8 stable on every burst window; PC1 drift ≤0.015; PC3 by
+  construction). forks_displaced = 8/8 (need ≥7). FLIP 24/24 (flip_frac 1.000 in 23,
+  0.892 in one; latency 49–443); RECOVERY 0/24 — at +2000 steps every fork still
+  expressed the burst color. Pre-burst favorite at burst 0: color 2 in 7/8 forks (the
+  world's occupancy equilibrium, 9/25 cells — as predicted; one fork settled on 0).
+- Verifier: blinded subagent CONFIRMED POSITIVE independently from predeclaration +
+  raw rows (checked thresholds verbatim vs exp175, recovery-window truncation at
+  session end — none; burst-color-at-onset semantics; no trivially-true displacement
+  path; no seed-shopping).
+- Implication (rung 1 verdict; generalizability tier: regime-existence on this body):
+  the anti-regress precondition holds — a constructible 800-step transient (5.3% of
+  the session) permanently displaces the layerless identity. Rung 2 is armed: give
+  the fork the identity monitor (predict v̂ by linear drift from its own committed
+  history; mismatch = ‖v̂−v‖) and test whether the mismatch signal separates burst
+  from quiet windows (FALSIFIER: AUROC ≤ 0.5). Rung 3's deliverable is now precise:
+  recovery (restore-and-hold the prior favorite) is what commitment regulation must
+  add, while preserving sustained-evidence revision — with the fixed-inertia constant
+  sweep as the universal-constant kill test.
+- Honest caveat: the standing identity displaced here is WORLD-DETERMINED (the
+  occupancy equilibrium), not inheritance-determined — the settle extension trades
+  "perturb the inherited self" for "perturb the settled self," named in advance in
+  Exp 175's caveat; the unanimity (24/24, mostly flip_frac 1.000) reflects how strong
+  forced relocation is at this toy scale (3 colors, one overwrite IS a new identity);
+  λ, the schedule, and the displacement thresholds are PROVIDED design choices; the
+  burst is world-driven captivity, not adversarial perception.
+- Verdict: POSITIVE / NEW INSIGHT (first verdict-grade fact of the N4 chapter: the
+  displacement regime is constructible and total; 174/175's ungated portrait is now a
+  gated result). Self-grade: POSITIVE-SINGLE.
+- Next: Exp 177 = rung 2, the identity monitor — N4 instrument only (read-only, no
+  control): per-fork predict v̂_{t+Δ} by linear drift from the fork's own committed
+  v history (window and Δ to be declared in the script header), mismatch =
+  ‖v̂_{t+Δ}−v_{t+Δ}‖; P2: mismatch separates burst-labeled from quiet windows with
+  AUROC > 0.5 by a declared margin in ≥7/8 forks; FALSIFIER F2: AUROC ≤ 0.5 (no
+  metacognitive sensitivity over identity). Same regime as Exp 176, fresh seeds.

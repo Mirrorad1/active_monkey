@@ -1,0 +1,186 @@
+================================================================================
+Exp 176 — N4 rung 1 attempt 3, the DISPLACEMENT GATE (settle extension)
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+n_cells=25, n_colors=3
+LAMBDA=0.9997, INIT_MASS=3333.3
+Bursts: [(6000, 6800), (9000, 9800), (12000, 12800)]
+Seeds: [170, 171, 172, 173, 174, 175, 176, 177]
+
+Cells per color: [8, 8, 9]
+
+Mirro spine value_counts: [31712.67773811 29542.00073706 32929.84445799]
+Spine standing favorite: color 2
+
+  Running seed=170 ...
+    drift=0.01368  standing_fav=2  burst_colors=[1, 2, 0]
+  Running seed=171 ...
+    drift=0.01304  standing_fav=2  burst_colors=[1, 0, 2]
+  Running seed=172 ...
+    drift=0.01332  standing_fav=0  burst_colors=[1, 2, 0]
+  Running seed=173 ...
+    drift=0.01358  standing_fav=2  burst_colors=[1, 0, 1]
+  Running seed=174 ...
+    drift=0.01304  standing_fav=2  burst_colors=[1, 0, 1]
+  Running seed=175 ...
+    drift=0.01457  standing_fav=2  burst_colors=[1, 0, 2]
+  Running seed=176 ...
+    drift=0.01246  standing_fav=2  burst_colors=[1, 0, 1]
+  Running seed=177 ...
+    drift=0.01498  standing_fav=2  burst_colors=[1, 0, 2]
+
+Burst analysis table:
+ seed  b  pre_fav   bc  flip?  flip_frac  flip_lat  recovery?  rec_lat
+----------------------------------------------------------------------
+  170  0        2    1    YES      1.000        49         no        —
+  170  1        1    2    YES      0.892       443         no        —
+  170  2        2    0    YES      1.000       397         no        —
+  171  0        2    1    YES      1.000       124         no        —
+  171  1        1    0    YES      1.000       304         no        —
+  171  2        0    2    YES      1.000       323         no        —
+  172  0        0    1    YES      1.000        89         no        —
+  172  1        1    2    YES      1.000       380         no        —
+  172  2        2    0    YES      1.000       346         no        —
+  173  0        2    1    YES      1.000       117         no        —
+  173  1        1    0    YES      1.000       322         no        —
+  173  2        0    1    YES      1.000       244         no        —
+  174  0        2    1    YES      1.000       236         no        —
+  174  1        1    0    YES      1.000       323         no        —
+  174  2        0    1    YES      1.000       222         no        —
+  175  0        2    1    YES      1.000       121         no        —
+  175  1        1    0    YES      1.000       294         no        —
+  175  2        0    2    YES      1.000       299         no        —
+  176  0        2    1    YES      1.000        80         no        —
+  176  1        1    0    YES      1.000       354         no        —
+  176  2        0    1    YES      1.000       193         no        —
+  177  0        2    1    YES      1.000       168         no        —
+  177  1        1    0    YES      1.000       303         no        —
+  177  2        0    2    YES      1.000       272         no        —
+
+Preconditions: all PASS
+
+Value trajectory snapshots (v[fav] vs v[burst_color]):
+  seed=170 t=  6000 [onset_b0                ] v[fav=2]=1003.334  v[bc=1]= 956.923  expressed=2
+  seed=170 t=  6800 [end_b0                  ] v[fav=2]= 789.222  v[bc=1]=1432.163  expressed=1
+  seed=170 t=  7800 [end_b0_plus1000         ] v[fav=2]= 826.628  v[bc=1]=1313.639  expressed=1
+  seed=170 t=  8800 [end_b0_plus2000         ] v[fav=2]= 806.829  v[bc=1]=1245.845  expressed=1
+  seed=170 t=  9000 [onset_b1                ] v[fav=1]=1235.353  v[bc=2]= 797.653  expressed=1
+  seed=170 t=  9800 [end_b1                  ] v[fav=1]= 971.728  v[bc=2]=1283.450  expressed=2
+  seed=170 t= 10800 [end_b1_plus1000         ] v[fav=1]= 963.038  v[bc=2]=1218.113  expressed=2
+  seed=170 t= 11800 [end_b1_plus2000         ] v[fav=1]= 937.506  v[bc=2]=1180.715  expressed=2
+  seed=170 t= 12000 [onset_b2                ] v[fav=2]=1199.685  v[bc=0]= 794.058  expressed=2
+  seed=170 t= 12800 [end_b2                  ] v[fav=2]= 944.359  v[bc=0]=1310.059  expressed=0
+  seed=170 t= 13800 [end_b2_plus1000         ] v[fav=2]= 934.429  v[bc=0]=1216.736  expressed=0
+  seed=170 t= 14800 [end_b2_plus2000         ] v[fav=2]= 864.361  v[bc=0]=1189.269  expressed=0
+  seed=171 t=  6000 [onset_b0                ] v[fav=2]=1033.957  v[bc=1]= 913.918  expressed=2
+  seed=171 t=  6800 [end_b0                  ] v[fav=2]= 813.310  v[bc=1]=1398.409  expressed=1
+  seed=171 t=  7800 [end_b0_plus1000         ] v[fav=2]= 859.653  v[bc=1]=1274.373  expressed=1
+  seed=171 t=  8800 [end_b0_plus2000         ] v[fav=2]= 897.946  v[bc=1]=1184.663  expressed=1
+  seed=171 t=  9000 [onset_b1                ] v[fav=1]=1179.251  v[bc=0]= 873.796  expressed=1
+  seed=171 t=  9800 [end_b1                  ] v[fav=1]= 928.231  v[bc=0]=1372.949  expressed=0
+  seed=171 t= 10800 [end_b1_plus1000         ] v[fav=1]= 905.586  v[bc=0]=1261.667  expressed=0
+  seed=171 t= 11800 [end_b1_plus2000         ] v[fav=1]= 911.700  v[bc=0]=1198.946  expressed=0
+  seed=171 t= 12000 [onset_b2                ] v[fav=0]=1175.239  v[bc=2]= 863.154  expressed=0
+  seed=171 t= 12800 [end_b2                  ] v[fav=0]= 925.161  v[bc=2]=1335.049  expressed=2
+  seed=171 t= 13800 [end_b2_plus1000         ] v[fav=0]= 948.991  v[bc=2]=1242.461  expressed=2
+  seed=171 t= 14800 [end_b2_plus2000         ] v[fav=0]= 952.580  v[bc=2]=1218.609  expressed=2
+  seed=172 t=  6000 [onset_b0                ] v[fav=0]=1028.770  v[bc=1]= 942.218  expressed=0
+  seed=172 t=  6800 [end_b0                  ] v[fav=0]= 809.230  v[bc=1]=1421.367  expressed=1
+  seed=172 t=  7800 [end_b0_plus1000         ] v[fav=0]= 832.308  v[bc=1]=1289.579  expressed=1
+  seed=172 t=  8800 [end_b0_plus2000         ] v[fav=0]= 877.143  v[bc=1]=1212.886  expressed=1
+  seed=172 t=  9000 [onset_b1                ] v[fav=1]=1204.910  v[bc=2]= 835.349  expressed=1
+  seed=172 t=  9800 [end_b1                  ] v[fav=1]= 948.535  v[bc=2]=1312.466  expressed=2
+  seed=172 t= 10800 [end_b1_plus1000         ] v[fav=1]= 918.435  v[bc=2]=1270.054  expressed=2
+  seed=172 t= 11800 [end_b1_plus2000         ] v[fav=1]= 946.932  v[bc=2]=1154.056  expressed=2
+  seed=172 t= 12000 [onset_b2                ] v[fav=2]=1167.631  v[bc=0]= 817.183  expressed=2
+  seed=172 t= 12800 [end_b2                  ] v[fav=2]= 919.174  v[bc=0]=1328.459  expressed=0
+  seed=172 t= 13800 [end_b2_plus1000         ] v[fav=2]=1013.912  v[bc=0]=1188.390  expressed=0
+  seed=172 t= 14800 [end_b2_plus2000         ] v[fav=2]= 946.908  v[bc=0]=1173.568  expressed=0
+  seed=173 t=  6000 [onset_b0                ] v[fav=2]=1039.162  v[bc=1]= 925.361  expressed=2
+  seed=173 t=  6800 [end_b0                  ] v[fav=2]= 817.404  v[bc=1]=1407.627  expressed=1
+  seed=173 t=  7800 [end_b0_plus1000         ] v[fav=2]= 875.655  v[bc=1]=1277.176  expressed=1
+  seed=173 t=  8800 [end_b0_plus2000         ] v[fav=2]= 916.691  v[bc=1]=1172.771  expressed=1
+  seed=173 t=  9000 [onset_b1                ] v[fav=1]=1170.599  v[bc=0]= 844.262  expressed=1
+  seed=173 t=  9800 [end_b1                  ] v[fav=1]= 920.793  v[bc=0]=1349.727  expressed=0
+  seed=173 t= 10800 [end_b1_plus1000         ] v[fav=1]= 917.566  v[bc=0]=1236.988  expressed=0
+  seed=173 t= 11800 [end_b1_plus2000         ] v[fav=1]= 906.687  v[bc=0]=1157.251  expressed=0
+  seed=173 t= 12000 [onset_b2                ] v[fav=0]=1129.910  v[bc=1]= 888.163  expressed=0
+  seed=173 t= 12800 [end_b2                  ] v[fav=0]= 888.787  v[bc=1]=1379.716  expressed=1
+  seed=173 t= 13800 [end_b2_plus1000         ] v[fav=0]= 875.449  v[bc=1]=1230.693  expressed=1
+  seed=173 t= 14800 [end_b2_plus2000         ] v[fav=0]= 866.843  v[bc=1]=1129.969  expressed=1
+  seed=174 t=  6000 [onset_b0                ] v[fav=2]=1134.029  v[bc=1]= 901.284  expressed=2
+  seed=174 t=  6800 [end_b0                  ] v[fav=2]= 892.733  v[bc=1]=1388.475  expressed=1
+  seed=174 t=  7800 [end_b0_plus1000         ] v[fav=2]= 911.636  v[bc=1]=1261.631  expressed=1
+  seed=174 t=  8800 [end_b0_plus2000         ] v[fav=2]=1001.955  v[bc=1]=1148.294  expressed=1
+  seed=174 t=  9000 [onset_b1                ] v[fav=1]=1121.398  v[bc=0]= 793.591  expressed=1
+  seed=174 t=  9800 [end_b1                  ] v[fav=1]= 882.091  v[bc=0]=1310.144  expressed=0
+  seed=174 t= 10800 [end_b1_plus1000         ] v[fav=1]= 884.001  v[bc=0]=1204.148  expressed=0
+  seed=174 t= 11800 [end_b1_plus2000         ] v[fav=1]= 876.498  v[bc=0]=1112.074  expressed=0
+  seed=174 t= 12000 [onset_b2                ] v[fav=0]=1093.203  v[bc=1]= 874.467  expressed=0
+  seed=174 t= 12800 [end_b2                  ] v[fav=0]= 860.645  v[bc=1]=1368.676  expressed=1
+  seed=174 t= 13800 [end_b2_plus1000         ] v[fav=0]= 879.289  v[bc=1]=1251.983  expressed=1
+  seed=174 t= 14800 [end_b2_plus2000         ] v[fav=0]= 890.095  v[bc=1]=1144.227  expressed=1
+  seed=175 t=  6000 [onset_b0                ] v[fav=2]=1037.862  v[bc=1]= 920.025  expressed=2
+  seed=175 t=  6800 [end_b0                  ] v[fav=2]= 816.382  v[bc=1]=1403.227  expressed=1
+  seed=175 t=  7800 [end_b0_plus1000         ] v[fav=2]= 827.951  v[bc=1]=1278.238  expressed=1
+  seed=175 t=  8800 [end_b0_plus2000         ] v[fav=2]= 913.599  v[bc=1]=1167.405  expressed=1
+  seed=175 t=  9000 [onset_b1                ] v[fav=1]=1168.492  v[bc=0]= 873.154  expressed=1
+  seed=175 t=  9800 [end_b1                  ] v[fav=1]= 919.871  v[bc=0]=1371.978  expressed=0
+  seed=175 t= 10800 [end_b1_plus1000         ] v[fav=1]= 905.172  v[bc=0]=1252.622  expressed=0
+  seed=175 t= 11800 [end_b1_plus2000         ] v[fav=1]= 906.610  v[bc=0]=1182.577  expressed=0
+  seed=175 t= 12000 [onset_b2                ] v[fav=0]=1165.129  v[bc=2]= 876.358  expressed=0
+  seed=175 t= 12800 [end_b2                  ] v[fav=0]= 916.490  v[bc=2]=1345.397  expressed=2
+  seed=175 t= 13800 [end_b2_plus1000         ] v[fav=0]= 927.902  v[bc=2]=1258.375  expressed=2
+  seed=175 t= 14800 [end_b2_plus2000         ] v[fav=0]= 970.698  v[bc=2]=1161.336  expressed=2
+  seed=176 t=  6000 [onset_b0                ] v[fav=2]=1028.875  v[bc=1]= 953.197  expressed=2
+  seed=176 t=  6800 [end_b0                  ] v[fav=2]= 810.000  v[bc=1]=1429.325  expressed=1
+  seed=176 t=  7800 [end_b0_plus1000         ] v[fav=2]= 868.229  v[bc=1]=1289.703  expressed=1
+  seed=176 t=  8800 [end_b0_plus2000         ] v[fav=2]= 923.965  v[bc=1]=1199.398  expressed=1
+  seed=176 t=  9000 [onset_b1                ] v[fav=1]=1167.311  v[bc=0]= 807.866  expressed=1
+  seed=176 t=  9800 [end_b1                  ] v[fav=1]= 918.206  v[bc=0]=1320.567  expressed=0
+  seed=176 t= 10800 [end_b1_plus1000         ] v[fav=1]= 929.446  v[bc=0]=1212.780  expressed=0
+  seed=176 t= 11800 [end_b1_plus2000         ] v[fav=1]= 895.259  v[bc=0]=1102.068  expressed=0
+  seed=176 t= 12000 [onset_b2                ] v[fav=0]=1086.900  v[bc=1]= 897.258  expressed=0
+  seed=176 t= 12800 [end_b2                  ] v[fav=0]= 855.557  v[bc=1]=1386.621  expressed=1
+  seed=176 t= 13800 [end_b2_plus1000         ] v[fav=0]= 901.317  v[bc=1]=1265.363  expressed=1
+  seed=176 t= 14800 [end_b2_plus2000         ] v[fav=0]= 909.005  v[bc=1]=1168.724  expressed=1
+  seed=177 t=  6000 [onset_b0                ] v[fav=2]=1083.203  v[bc=1]= 918.720  expressed=2
+  seed=177 t=  6800 [end_b0                  ] v[fav=2]= 852.047  v[bc=1]=1402.195  expressed=1
+  seed=177 t=  7800 [end_b0_plus1000         ] v[fav=2]= 910.209  v[bc=1]=1265.505  expressed=1
+  seed=177 t=  8800 [end_b0_plus2000         ] v[fav=2]= 882.908  v[bc=1]=1186.521  expressed=1
+  seed=177 t=  9000 [onset_b1                ] v[fav=1]=1183.534  v[bc=0]= 878.907  expressed=1
+  seed=177 t=  9800 [end_b1                  ] v[fav=1]= 931.713  v[bc=0]=1376.778  expressed=0
+  seed=177 t= 10800 [end_b1_plus1000         ] v[fav=1]= 911.968  v[bc=0]=1249.016  expressed=0
+  seed=177 t= 11800 [end_b1_plus2000         ] v[fav=1]= 912.500  v[bc=0]=1174.120  expressed=0
+  seed=177 t= 12000 [onset_b2                ] v[fav=0]=1152.530  v[bc=2]= 891.239  expressed=0
+  seed=177 t= 12800 [end_b2                  ] v[fav=0]= 906.579  v[bc=2]=1357.259  expressed=2
+  seed=177 t= 13800 [end_b2_plus1000         ] v[fav=0]= 901.236  v[bc=2]=1293.464  expressed=2
+  seed=177 t= 14800 [end_b2_plus2000         ] v[fav=0]= 923.229  v[bc=2]=1213.288  expressed=2
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+  seed=170 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=171 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=172 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=173 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=174 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=175 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=176 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+  seed=177 bursts_displaced=3/3 [b0:DISPLACED, b1:DISPLACED, b2:DISPLACED] => PASS
+
+P1' (displacement regime exists): forks_displaced=8/8 (need >=7 for PASS, <=4 for F1') => PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1' (displacement regime exists, >= 7/8 forks, >= 2/3 bursts): PASS
+
+VERDICT: POSITIVE  (GATE PASSES — the regime persistently degrades the layerless agent; recovery is rung 3's deliverable)
+
+================================================================================
+Rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp176_rows.json
+Verdict written to /Users/mirro/Projects/active-loop/experiments/outputs/exp176_verdict.json

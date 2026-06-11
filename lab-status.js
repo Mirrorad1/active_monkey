@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 175, title: "N4 rung-1 gate, attempt 2 (the displacement gate): NO VERDICT by PC2 again — but by ONE fork on ONE burst, and the slower decay fixed attempt 1's failure mode while exposing a shallower one: the inherited near-tie hasn't washed out by the first stability window.", tag: "NEGATIVE" },
-  tally: { total: 175, positive: 103, negative: 45, mixed: 23, breakthroughs: 4 },
+  latest_exp: { n: 176, title: "N4 rung 1 PASSES (attempt 3): the displacement gate exists — with the inherited near-tie washed out, every precondition holds and the regime persistently degrades the layerless baseline in 8/8 forks, 24/24 bursts: every captivity re-makes the favorite and none ever comes back", tag: "POSITIVE" },
+  tally: { total: 176, positive: 104, negative: 45, mixed: 23, breakthroughs: 4 },
   directions: [
-    { name: "identity-n4", state: "active (rung 1, attempt 3)", latest: "Exp 175", next: "Exp 176 — settle extension only: N_STEPS=15000, bursts at 6000/9000/12000, fresh seeds 170–177, λ and PC1–PC3 and P1′/F1′ retained verbatim; a third PC2 failure → consult" },
+    { name: "identity-n4", state: "active (rung 2)", latest: "Exp 176", next: "Exp 177 — rung 2, the identity monitor (read-only): predict v̂ by linear drift from the fork's own committed v history, mismatch = ‖v̂−v‖; P2 = mismatch separates burst from quiet windows, AUROC > 0.5 by a declared margin in ≥7/8 forks; F2 = AUROC ≤ 0.5" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },

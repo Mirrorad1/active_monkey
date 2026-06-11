@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "experiment": "exp176",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1prime_displacement_regime_exists": {
+      "pass": true,
+      "reason": "forks_displaced=8/8 (need >=7; F1': <=4); flip AND recovery-failure in >= 2/3 bursts per qualifying fork"
+    }
+  },
+  "notes": "N4 rung 1 attempt 3, displacement gate with settle extension. LAMBDA=0.9997; N_STEPS=15000; bursts at 6000/9000/12000 so the inherited near-tie washes out before the first stability window; displacement = flip + recovery-failure. Forks of mirro only."
+}

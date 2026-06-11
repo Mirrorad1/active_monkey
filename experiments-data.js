@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:175, breakthrough:8, positive:92, wall:27, partial:48, from:4.81, to:4.00 };
+window.AM_TALLY = { total:176, breakthrough:8, positive:93, wall:27, partial:48, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1942,7 +1942,17 @@ window.AM_EXPERIMENTS = [
     result:"NO VERDICT — PC2 fired marginally (burst 0: 6/8 stable, need 7; bursts 1-2 passed 8/8). Diagnostics uniform: flips 24/24 (flip_frac 0.873-1.000), recoveries 0/24. Deterministic rerun: both unstable forks flicker exclusively between the near-tied inherited pair; the clear-loser color never appears.",
     implication:"The λ correction worked for what it targeted — decay-driven flicker is gone; what remains is settle length. By step ~5000 the inheritance influence drops below 23% and the world's own occupancy equilibrium picks the favorite. And the displacement law sharpens: recoveries fell 3/24 → 0/24 as decay slowed — the overwritten identity persists exactly as well as the original did.",
     caveat:"all displacement numbers are ungated diagnostics — no verdict is claimed; with the longer settle the standing favorite becomes world-determined (the occupancy edge), not inheritance-determined, so attempt 3 perturbs the world-equilibrium identity and must say so; λ and the settle length are both PROVIDED design choices; this is the second consecutive PC2 block on this rung — per the card's stop condition a THIRD blocks to a consult, not an attempt 4.",
-    trace:{ script:"experiments/exp175_n4_gate2.py", output:"experiments/outputs/exp175.txt" } }
+    trace:{ script:"experiments/exp175_n4_gate2.py", output:"experiments/outputs/exp175.txt" } },
+  { n:176, kind:"positive", chapter:"frontier",
+    title:"The identity chapter's gate opens: a brief captivity permanently re-makes who the creature is, and the layerless agent has no defense.",
+    one:"N4 rung 1 PASSES on attempt 3. With a 6000-step settle so the inherited near-tie washes out and the world's own occupancy equilibrium picks the favorite, every precondition holds — and the displacement is total: 8/8 forks, 24/24 bursts flip the standing favorite (latency 49-443 steps) and 0/24 ever restore it within 2000 steps. An 800-step transient — 5.3% of the session — permanently displaces the layerless identity. The anti-regress gate is now a verified fact with a blinded confirmation: there is a measured deficit (recovery) for the N4 commitment surface to repair at rung 3, and rung 2's identity monitor has a regime to detect.",
+    plain:"Third attempt, clean pass. We let the creature settle until the world itself picked its favorite — then every one of eight forks held that favorite rock-steady until captivity hit, lost it within a few hundred steps, and never got it back, in all twenty-four chances. The gate the identity chapter needed is now a fact: a brief pressure permanently re-makes who this creature is. Whatever detects 'I am not who I was' and resists — that is exactly what the identity layer must supply.",
+    metric:{ from:8, to:8, unit:"forks persistently displaced (gate needs ≥7)" },
+    setup:"Forks of mirro, fresh seeds 170-177, 15000-step sessions; identical to Exp 175 except bursts moved to 6000/9000/12000 so the inherited near-tie (still ~40% live at the old window) washes out first. All thresholds retained verbatim — verifier spot-checked against the attempt-2 source.",
+    result:"POSITIVE — preconditions all pass (the settle extension fixed PC2 exactly as predicted: 8/8 stable on every window). Flips 24/24 (flip_frac 1.000 in 23), recoveries 0/24. Pre-burst favorite = the world-equilibrium color in 7/8 forks, as predicted. Blinded verifier confirmed independently.",
+    implication:"Rung 2 is armed: the identity monitor (predict your own value vector by linear drift from your own history; mismatch = how far you are from who you predicted you'd be) must separate burst windows from quiet ones. Rung 3's deliverable is precise: recovery is what commitment regulation must add — with the fixed-inertia constant sweep standing by as the universal-constant kill test.",
+    caveat:"the standing identity displaced here is WORLD-DETERMINED (the occupancy equilibrium), not inheritance-determined — the settle extension trades \"perturb the inherited self\" for \"perturb the settled self,\" named in advance in Exp 175's caveat; the unanimity (24/24, mostly flip_frac 1.000) reflects how strong forced relocation is at this toy scale (3 colors, one overwrite IS a new identity); λ, the schedule, and the displacement thresholds are PROVIDED design choices; the burst is world-driven captivity, not adversarial perception.",
+    trace:{ script:"experiments/exp176_n4_gate3.py", output:"experiments/outputs/exp176.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

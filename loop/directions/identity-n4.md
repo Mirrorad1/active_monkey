@@ -90,4 +90,12 @@ live in the first stability window — 2/8 forks flicker exactly between the tie
 Displacement turned absolute: flips 24/24, recoveries 0/24 (slower forgetting makes the
 overwrite MORE durable). Second consecutive PC2 block: a third → consult, not attempt 4.
 
-**STATUS.** state: active (rung 1, attempt 3) · latest: Exp 175 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the displacement portrait (174, absolute at 175) · why: the ladder's next rung; the inherited near-tie must wash out before the first burst · next-falsifiable: Exp 176 — settle extension only: N_STEPS=15000, bursts at 6000/9000/12000, fresh seeds 170–177, λ and PC1–PC3 and P1′/F1′ retained verbatim; a third PC2 failure → consult
+**RUNG 1 PASSED (Exp 176, attempt 3, POSITIVE, blind-verified).** Settle extension
+(bursts at 6000/9000/12000, 15000-step sessions) washed out the inherited near-tie; all
+preconditions held (PC2 8/8 on every window) and displacement was total: 8/8 forks,
+flips 24/24, recoveries 0/24. The standing identity displaced is WORLD-DETERMINED (the
+occupancy equilibrium — color 2, 9/25 cells — in 7/8 forks), named honestly. The
+displacement regime (λ=0.9997 + 800-step captivity bursts) is the chapter's verified
+perturbation; recovery is rung 3's deliverable.
+
+**STATUS.** state: active (rung 2) · latest: Exp 176 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176) · why: the ladder's next rung; the gate passed, the monitor is next · next-falsifiable: Exp 177 — rung 2, the identity monitor (read-only): predict v̂ by linear drift from the fork's own committed v history, mismatch = ‖v̂−v‖; P2 = mismatch separates burst from quiet windows, AUROC > 0.5 by a declared margin in ≥7/8 forks; F2 = AUROC ≤ 0.5
