@@ -374,6 +374,16 @@ The loop marks items it has consumed by indenting a response under them:
     (d) cross-substrate encounters (nira meets the clade) — needs a new card.
     (e) stop/pause the loop.
     Until a word or resumption: the loop holds at consolidation-grade.
+  → [human, 2026-06-11] "go to do batch jumping and if that fails, do the background
+    floor, basically address the cracks we want to target growth" — explicit word for
+    option (b), BOTH cracks in sequence. The growth wall re-opens as the directive:
+    Exp 152 = batch-jump (fit the complete per-color mixture at once on replay,
+    K chosen by penalized replay NLL, probate the complete cover as ONE move under
+    the Exp 145-validated live test); if its predeclared surprise arm fails, the
+    loop proceeds DIRECTLY to background-floor (Exp 153, permanent broad component,
+    provably hole-free additions) without a fresh consult — the sequence is
+    pre-authorized. Both failing -> halt, wall re-confirmed with both cracks spent.
+    PROTOCOL 4.5 blinded verification applies from here (Exp 152 on).
 
 (empty — drop ideas above this line's section freely)
 
