@@ -4577,3 +4577,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   hypothesis is the candidate NEW INSIGHT pending its test. Self-grade: n/a.
 - Next: Exp 153 — background-floor (crack 2, pre-authorized) PLUS the predeclared
   normalized-density diagnostic arm testing the dilution account.
+
+## Exp 153 — growth crack 2 + the dilution diagnostic: the floor is harmless-but-insufficient exactly as the mechanism predicted, and the normalized arm answers the alarm everywhere — yet fails its bar on a proxy conjunct the success itself made obsolete (NEGATIVE by the letter; MIGRATION HALT consult; the convention finding one honest re-test from confirmed)
+- Plain: Two arms. The safety-net design (keep the old vague piece forever, add sharp
+  ones on top) behaved exactly as the dilution arithmetic said it would: it never
+  hurt, and it never helped enough — the sharp pieces still cannot out-shout the cap.
+  The diagnostic arm removed the cap: judged by honest probability instead of capped
+  footprints, every fitted set of sharp pieces was accepted, surprise collapsed
+  (sometimes to a third of a percent), and the inadequacy alarm went COMPLETELY
+  silent in every one of twenty-four runs — the thing five designs failed to do. By
+  the rule declared in advance it still counts as a failure, because I demanded most
+  colors end up with many pieces, and the success undercut that: once two colors went
+  sharp, the others became predictable enough that they never needed to grow. The
+  bar measured structure; the goal was silence; we got silence.
+- Setup (predeclared in the script docstring before running): same worlds/seeds as
+  every failed design. Arm A (the authorized floor): permanent broad component at
+  weight 0.3, batch-fitted tight components on top at 0.7, standard convention,
+  validated probation. Arm B (the diagnostic): Exp 152's batch-jump with ONE change —
+  all predictive evaluation (surprise/detector/probation) uses normalized mixture
+  densities; the conjugate place update untouched. P1 (Arm B): drop ≥0.4 + zero
+  final-1000 ceiling events + components ≥3 for ≥3/4 colors, ≥6/8 per layout, ≥2/3
+  layouts. P2 (Arm A): no-surge AND drop-fails (the harmless-but-insufficient
+  signature). P3: localization. Named outcomes predeclared incl. "both fail → halt
+  consult".
+- Result: NEGATIVE by the letter — the named both-fail outcome. P1 Arm B: drop arm
+  8/8 in ALL layouts (0.56–1.21 nats; finals as low as 0.003), quiet arm 8/8 in ALL
+  layouts (ZERO detector events, 24/24 — first time across six designs), acceptance
+  100% — but the comps conjunct 2/8, 3/8, 0/8 → 0/3 layouts. P2 Arm A: PASS 3/3 (mean
+  deltas +0.13…+0.18 inside the no-surge band; drop reached in 2/0/0 seeds) — the
+  dilution mechanism's exact predicted signature. P3: 48/48. Suite 131 green.
+- Verifier: agree (blinded, conjunct-by-conjunct; verdict NEGATIVE, both-fail
+  outcome). Verifier FLAG (recorded verbatim in spirit): sub-arm (c) fails from
+  INCOMPLETE COVERAGE, not from the convention failing — restructured colors keep
+  their components; the un-restructured ones never alarm again because cross-color
+  normalization makes them predictable once their neighbors go tight. The conjunct
+  was written for a regime the success abolished.
+- Reading (post-verdict, honest): the dilution hypothesis's CORE predictions all
+  landed — floor harmless-but-insufficient under the cap (P2, predicted in advance),
+  normalized growth accepted at 100% with total alarm silence (the directive's own
+  goal since Exp 132). What failed is a structural-match PROXY I predeclared from the
+  unnormalized regime's intuitions. Per L7, the fix is a fresh predeclaration on
+  fresh seeds, not a reinterpretation: the convention finding is one honest re-test
+  from confirmed.
+- RECOMMENDED RESUMPTION (consult posted; both authorized cracks spent by the
+  letter, so the thread halts for word): Exp 154 = the confirmation increment, fresh
+  seeds, the alarm-answered criterion stated honestly — global surprise ≤ plateau
+  −0.4 AND zero detector events AND every color either (grown and quiet) or
+  (never-re-alarmed and quiet) — no structure proxy. If it passes: the growth wall
+  is RE-BOUNDED to the unnormalized-footprint convention; the wall doc amended; the
+  normalized-predictive switch proposed as a core change (evaluation only — conjugacy
+  untouched) unlocking growth for nira's aliased future.
+- Honest caveat: the "silence everywhere" reading rests on the detector built for
+  the unnormalized scale (0.7 nats) applied to normalized surprise within Arm B (an
+  internal-bar choice, declared); colors-never-alarmed is success only if their
+  PREDICTIONS are genuinely good (final surprise 0.003–0.31 says yes, but the
+  per-color breakdown was not predeclared — Exp 154 predeclares it); the floor arm's
+  acceptance counts (27–60%) show its probation was passable, just not bar-clearing.
+- Verdict: NEGATIVE (the predeclared letter; both cracks spent) / the dilution
+  mechanism's predicted signatures landing in BOTH arms is the candidate NEW INSIGHT
+  awaiting the Exp 154 confirmation. Self-grade: n/a. THE THREAD IS HALTED awaiting
+  word ("154" or redirect).
+- Next: nothing until the consult is answered.

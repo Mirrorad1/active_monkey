@@ -384,6 +384,23 @@ The loop marks items it has consumed by indenting a response under them:
     provably hole-free additions) without a fresh consult — the sequence is
     pre-authorized. Both failing -> halt, wall re-confirmed with both cracks spent.
     PROTOCOL 4.5 blinded verification applies from here (Exp 152 on).
+  → [loop, 2026-06-11] Exp 152 batch-jump NEGATIVE (verifier agreed) with the
+    DILUTION autopsy; Exp 153 ran crack 2 + the diagnostic: NEGATIVE BY THE LETTER
+    (both-fail named outcome; verifier agreed) — but the conjunct-level split is the
+    story: the floor showed the dilution mechanism's exact predicted signature
+    (harmless-but-insufficient, 3/3 layouts), and the normalized arm answered the
+    alarm EVERYWHERE (drops 0.56-1.21 nats, ZERO detector events 24/24, acceptance
+    100%) while failing only the structure-count proxy that its own success made
+    obsolete (verifier FLAG: incomplete coverage, not a broken convention —
+    un-grown colors never re-alarm because their neighbors' tightness makes them
+    predictable). Both authorized cracks are spent by the letter -> HALT.
+    RECOMMENDED RESUMPTION: Exp 154, the confirmation increment — fresh seeds, the
+    alarm-answered criterion stated honestly (global drop >= 0.4 + zero events +
+    every color grown-and-quiet OR never-re-alarmed-and-quiet, per-color surprise
+    predeclared), no structure proxy. If it passes, the growth wall is RE-BOUNDED to
+    the unnormalized-footprint convention and the normalized-predictive switch
+    (evaluation only; conjugacy untouched) is proposed as the core change unlocking
+    growth for nira's aliased future. Awaiting word ("154" or redirect).
 
 - [from human, 2026-06-10] META-METHODOLOGY supplied: a standing reference of design-time
   criteria (mechanism vs outcome, specific null, confound list, strongest-comparison,

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:152, breakthrough:6, positive:87, wall:25, partial:34, from:4.81, to:4.00 };
+window.AM_TALLY = { total:153, breakthrough:6, positive:87, wall:25, partial:35, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1535,7 +1535,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 145's worlds and machinery with the move changed to batch-jump: EM-fitted complete mixtures, K selected by penalized replay likelihood, replace-and-probate as one move under the validated live test. The proceed-to-background-floor consequence was pre-authorized by the human; the blinded verifier checked the verdict before logging.",
     result:"Falsifier triggered maximally (surprise arm 0/8 in 3/3 layouts); localization untouched 24/24; the verifier agreed conjunct-by-conjunct. The dilution account is marked post-hoc, unclaimed, and predeclared for test in the next experiment.",
     implication:"Crack 1 is spent. Exp 153 runs crack 2 (the background floor) plus the diagnostic that could re-bound the whole wall: the same growth under normalized densities, where sharp pieces are finally allowed to be loud.",
-    trace:{ script:"experiments/exp152_m3e_batch_jump.py", output:"experiments/outputs/exp152.txt" } }
+    trace:{ script:"experiments/exp152_m3e_batch_jump.py", output:"experiments/outputs/exp152.txt" } },
+
+  { n:153, kind:"partial", chapter:"frontier",
+    title:"Remove the cap and the alarm goes silent — but the bar was written for a world the success abolished.",
+    one:"Crack 2 + the dilution diagnostic, NEGATIVE by the letter with the split that matters: the background floor behaved exactly as the dilution arithmetic predicted (harmless-but-insufficient, 3/3 layouts), while the normalized-density arm answered the alarm everywhere — drops 0.56-1.21 nats, ZERO detector events in 24/24 runs, 100 percent acceptance, finals as low as 0.003 — failing only a structure-count proxy its own success made obsolete (once two colors go sharp, the rest never need to grow). Verifier agreed and flagged the coverage mechanism independently.",
+    plain:"Two arms. The safety-net design (keep the vague piece forever, add sharp ones on top) never hurt and never helped enough — sharp pieces still cannot out-shout the cap, exactly as predicted. The diagnostic arm removed the cap: judged by honest probability instead of capped footprints, every fitted set of sharp pieces was accepted, surprise collapsed, and the inadequacy alarm went completely silent in every run — the thing five designs failed to do. By the rule declared in advance it still counts as a failure, because the bar demanded most colors end up with many pieces, and the success undercut that. The bar measured structure; the goal was silence; we got silence.",
+    metric:{ from:0.7, to:0.003, unit:"detector threshold vs best final surprise under normalized densities, nats (zero alarm events in 24/24)" },
+    setup:"Same worlds and seeds as every failed design. Arm A: the authorized permanent-floor mixture under the standard convention. Arm B: one declared change — predictive evaluation by normalized mixture densities, the conjugate place update untouched. All bars and named outcomes predeclared; blinded verification before logging.",
+    result:"Both arms failed their letter-bars (the predeclared both-fail outcome; halt consult posted). The dilution mechanism's predicted signatures landed in both arms; the verifier independently flagged that the one failing conjunct fails from incomplete coverage, not a broken convention.",
+    implication:"One honest re-test from a major re-bounding: Exp 154 predeclares the alarm-answered criterion without the obsolete structure proxy, on fresh seeds. If it passes, the growth wall belongs to the footprint convention, not to growth — and the evaluation-only normalized switch unlocks structure learning for nira's aliased future.",
+    trace:{ script:"experiments/exp153_m3f_floor_and_normalized.py", output:"experiments/outputs/exp153.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

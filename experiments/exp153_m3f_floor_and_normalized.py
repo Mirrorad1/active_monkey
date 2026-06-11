@@ -49,7 +49,7 @@ Predictions (TRUE iff all):
 - P3 no regression: final-500 median localization <= 0.5 in >= 7/8 seeds per
   layout, BOTH arms.
 
-Named outcome map (predeclared): B passes & A insufficient -> the growth wall is
+Falsifiers / named outcome map (predeclared): B passes & A insufficient -> the growth wall is
 RE-BOUNDED to the unnormalized-footprint convention (major finding; the wall doc
 gets amended). Both arms fail their bars -> the wall stands with both authorized
 cracks AND the convention hypothesis spent -> MIGRATION HALT consult. A passes
