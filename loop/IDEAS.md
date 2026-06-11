@@ -497,6 +497,13 @@ The loop marks items it has consumed by indenting a response under them:
     named). The consolidation queue is now EMPTY: options (a) lock-on-label-consistency
     and (c) stop/redirect await an explicit word here; subsequent automated fires idle
     with a reminder.
+  → [human, 2026-06-11] "Crack it" — explicit word for option (a): attack the rung-3
+    wall with the named crack, lock-on-label-consistency. Consumed as Exp 167 (rung 3,
+    attempt 4). Guardrails: the controller's movement trigger stays the Exp 165-justified
+    form (2-in-10 OK/NOISE forecast violations); STRUCTURAL forecasts are NOT scored
+    (the false-war law); the lock is the new regime statistic (dial freezes while the
+    last K=8 labels under the current dial are one class); all falsifiers predeclared;
+    a failure here re-confirms the wall with the crack spent and halts for a word.
 
 (empty — drop ideas above this line's section freely)
 

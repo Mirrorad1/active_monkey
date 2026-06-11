@@ -1,0 +1,308 @@
+================================================================================
+Exp 167 — N3 rung 3, LOCK-ON-LABEL-CONSISTENCY (attempt 4)
+          Attempt 1 (exp164): PC4 fired; controller silent at H=1000.
+          Attempt 2 (exp165): NEGATIVE — false peace + evidence-reset latency.
+          Attempt 3 (exp166): false war — STRUCTURAL scoring punished correct dial.
+          Attempt 4 (this): LOCK crack — consistency statistic, not forecast check.
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW_DEFAULT=200  [SURPRISE_WINDOW must be 200; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+N3 trust: TRUST_FIRE_THRESH=0.85  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast (reverted to exp165): OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3  STRUCTURAL=NOT scored
+LOCK: LOCK_K=8  (last K same-class labels => lock; spans 800 steps)
+FR1: HALF_PERIOD_FR1=1000  FR1_DERANG_SEED_OFFSET=130000
+FR2: bursts at [(1500, 1549), (4500, 4549), (7500, 7549), (10500, 10549)]  FR2_DERANG_SEED_OFFSET=140000
+DERANGEMENT_OPTIONS=[[1, 2, 0], [2, 0, 1]]
+N_STEPS=12000  N_CHUNKS=120  CHUNK_SIZE=100
+STEADY_STATE_START=8000  (gated scores over t >= 8000)
+PC1_AHAT_DRIFT_MAX=0.15  (law 5: scaled from 0.05@4000 to 0.15@12000)
+Seeds: [98, 99, 100, 101, 102, 103, 104, 105]  Sessions: ('FR1', 'FR2', 'CTRL')
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=98  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=98 session=FR1 ...
+    Running seed=98 session=FR2 ...
+    Running seed=98 session=CTRL ...
+  seed=99  fr1_derang=[1, 2, 0]  fr2_derang=[1, 2, 0]
+    Running seed=99 session=FR1 ...
+    Running seed=99 session=FR2 ...
+    Running seed=99 session=CTRL ...
+  seed=100  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=100 session=FR1 ...
+    Running seed=100 session=FR2 ...
+    Running seed=100 session=CTRL ...
+  seed=101  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=101 session=FR1 ...
+    Running seed=101 session=FR2 ...
+    Running seed=101 session=CTRL ...
+  seed=102  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=102 session=FR1 ...
+    Running seed=102 session=FR2 ...
+    Running seed=102 session=CTRL ...
+  seed=103  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=103 session=FR1 ...
+    Running seed=103 session=FR2 ...
+    Running seed=103 session=CTRL ...
+  seed=104  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=104 session=FR1 ...
+    Running seed=104 session=FR2 ...
+    Running seed=104 session=CTRL ...
+  seed=105  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=105 session=FR1 ...
+    Running seed=105 session=FR2 ...
+    Running seed=105 session=CTRL ...
+
+Agent (b) dial trajectories + LOCK events:
+  seed=98   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=98   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=98  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=99   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=99   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=99  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=100   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=100   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=100  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=101   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=101   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=101  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=102   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=102   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=102  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=103   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=103   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=103  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=104   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=104   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=104  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+  seed=105   FR1: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1099 W=200 [LOCK:LOCKED on NOISE] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE] -> t=2199 W=400 [trust=0.800] -> t=4099 W=800 [trust=0.800] -> t=5099 W=1600 [trust=0.667] [LOCK:LOCKED on STRUCTURAL]  |  final=1600 locked=True(STRUCTURAL) t2fc=2199 t2s1600=5799  n_changes=3
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1099 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=1899 LOCKED on=NOISE dial=200
+    LOCK_EVENT: t=2099 UNLOCKED on=NOISE dial=200
+    LOCK_EVENT: t=5799 LOCKED on=STRUCTURAL dial=1600
+  seed=105   FR2: t=-1 W=200 [LOCK:LOCKED on OK] -> t=1599 W=200 [LOCK:LOCKED on OK] -> t=4599 W=200 [LOCK:LOCKED on OK] -> t=7599 W=200 [LOCK:LOCKED on OK] -> t=10599 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+    LOCK_EVENT: t=1599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=2499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=4599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=5499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=7599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=8499 LOCKED on=OK dial=200
+    LOCK_EVENT: t=10599 UNLOCKED on=OK dial=200
+    LOCK_EVENT: t=11499 LOCKED on=OK dial=200
+  seed=105  CTRL: t=-1 W=200 [LOCK:LOCKED on OK]  |  final=200 locked=True(OK) t2fc=None t2s1600=None  n_changes=0
+    LOCK_EVENT: t=899 LOCKED on=OK dial=200
+
+  No-thrash check: CTRL total dial changes = 0 (expected 0)
+  No-thrash check: FR2  total dial changes = 0 (expected 0)
+
+Per-fork per-session scores (SS = steady-state, FULL = full-session diagnostic):
+ seed  session     a_ss   a_full  c200_ss  c400_ss  c800_ss  c1600_ss     b_ss   b_full   n_ss  n_full  n_dchg  final_W   locked   t2s1600
+------------------------------------------------------------------------------------------------------------------------------------------
+   98     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+   98     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+   98    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+   99     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+   99     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+   99    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  100     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  100     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  100    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  101     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  101     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  101    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  102     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  102     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  102    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  103     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  103     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  103    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  104     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  104     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  104    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+  105     FR1   0.1000   0.0924   0.1000   0.3000   0.7000   1.0000   1.0000   0.7059     40     119       3     1600     True      5799
+  105     FR2   1.0000   1.0000   1.0000   1.0000   1.0000   0.5000   1.0000   1.0000     40     119       0      200     True      None
+  105    CTRL   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000     40     119       0      200     True      None
+
+Preconditions: all PASS
+
+Per-dial score table — STEADY-STATE scores (t >= 8000), pooled over forks:
+     agent  FR1_score  FR2_score  CTRL_score   combined
+-------------------------------------------------------
+ (a) W=200   0.1000   1.0000      1.0000   0.1000
+ (c) W=200   0.1000   1.0000      1.0000   0.1000
+ (c) W=400   0.3000   1.0000      1.0000   0.3000
+ (c) W=800   0.7000   1.0000      1.0000   0.7000
+(c) W=1600   1.0000   0.5000      1.0000   0.5000
+    (b) N3   1.0000   1.0000      1.0000   1.0000
+
+  combined_b - max_W(combined_c) =  0.3000  (need >= 0.15 for P2)
+  best single W by combined = W=800
+
+Ungated full-session scores (diagnostic only), pooled over forks:
+     agent   FR1_full   FR2_full   CTRL_full
+--------------------------------------------------
+ (a) W=200   0.0924   1.0000      1.0000
+ (c) W=200   0.0924   1.0000      1.0000
+ (c) W=400   0.2821   1.0000      1.0000
+ (c) W=800   0.6814   1.0000      1.0000
+(c) W=1600   1.0000   0.5000      1.0000
+    (b) N3   0.7059   1.0000      1.0000
+
+Per-fork recovery table (FR1 only, steady-state):
+   seed    rec_FR1  p1_FR1_ok   p1b_FR2_m   p1b_CTRL_m
+  -------------------------------------------------------
+     98   1.0000        YES      0.0000       0.0000
+     99   1.0000        YES      0.0000       0.0000
+    100   1.0000        YES      0.0000       0.0000
+    101   1.0000        YES      0.0000       0.0000
+    102   1.0000        YES      0.0000       0.0000
+    103   1.0000        YES      0.0000       0.0000
+    104   1.0000        YES      0.0000       0.0000
+    105   1.0000        YES      0.0000       0.0000
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (N3 recovers FR1 — recovery(b,FR1) >= 0.6 in >= 7/8 forks):
+  Pooled recovery FR1: 1.0000
+  Forks recovery(FR1) >= 0.6: 8/8  (need >= 7)
+  FALSIFIER F1: pooled FR1 recovery <= 0.3: no
+  => P1: PASS
+
+P1b (no harm — score_b >= score_a - 0.05 in >= 7/8 each):
+  FR2 forks no-harm: 8/8  CTRL forks no-harm: 8/8  (need >= 7 each)
+  FALSIFIER F1b: pooled score_a - score_b > 0.15: no
+  => P1b: PASS
+
+P2 (not reducible to config — combined margin >= 0.15 pooled, >= 7/8 forks):
+  Pooled combined_b = 1.0000  max_W(combined_c) = 0.7000 (best W=800)
+  Pooled combined margin = 0.3000  (need >= 0.15)
+  Forks combined_b > max_W(combined_c): 8/8  (need >= 7)
+  FALSIFIER F2: single W matches (b) in BOTH regimes pooled: no
+  => P2: PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1  (FR1 recovery >= 0.6, >= 7/8 forks): PASS
+P1b (no harm in FR2/CTRL, >= 7/8 forks each): PASS
+P2  (not config-reducible, combined margin >= 0.15): PASS
+
+VERDICT: POSITIVE
+RUNG 3 PASSES — N3 owns a regime-adaptive control surface no constant matches
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp167_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp167_verdict.json

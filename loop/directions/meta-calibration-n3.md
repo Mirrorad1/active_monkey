@@ -207,4 +207,12 @@ lock-on-label-consistency (dial freezes when the label distribution collapses to
 class — a regime statistic, the minimal "N1 inside N3"). CONSULT in loop/IDEAS.md;
 recommended (silence-actionable): the chapter synthesis first.
 
-**STATUS.** state: halted (rung-3 wall, consult open) · latest: Exp 166 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166) · why: rungs 1–2 passed; rung 3 walled for the promise-checking class — N3 needs regime structure of its own · next-falsifiable: per the human's word — (a) lock-on-label-consistency design, or (b) chapter synthesis (recommended), or (c) stop
+**RUNG 3 PASSES (Exp 167, BREAKTHROUGH — the human's "Crack it" word).** Lock-on-label-
+consistency (freeze the dial while the last K=8 labels are one class — a regime statistic,
+the minimal N1-inside-N3) converts distrust into stable repair: climbs 200→400→800→1600,
+locks on STRUCTURAL at t=5799 (8/8), recovery 1.0000, no-harm perfect, combined 1.0 vs 0.7
+for the best constant (no constant within 0.05 on both regimes). Zero mis-engagements.
+Verifier bounds: geometry-uniform trajectories; one derangement variant by rng accident;
+K=8 and the dial set remain provided θ_N3.
+
+**STATUS.** state: active (rung 4) · latest: Exp 167 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), the lock controller (167) · why: rungs 1–3 passed; one rung remains before the card's hypothesis is graded · next-falsifiable: rung 4 — independent variance / override concentration over a MIXED schedule of valid and broken regimes: overrides concentrated in broken regimes (precision/recall > chance by a predeclared margin); falsifiers: zero independent variance (epiphenomenal) or indiscriminate overriding (hurts valid regimes)

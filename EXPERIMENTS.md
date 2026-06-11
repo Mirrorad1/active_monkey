@@ -5425,3 +5425,75 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   wall and write the N3 chapter synthesis (rungs 1–2 passed, rung 3 walled, five laws),
   then await direction, (c) stop here. The loop holds at consolidation-grade until a
   word or resumption per the ratified pattern.
+
+## Exp 167 — THE WALL CRACKS: lock-on-label-consistency gives N3 stable, regime-adaptive dial authority — the controller climbs to the right window and FREEZES on its own diagnosis's consistency, recovery 1.0000 in 8/8, no constant dial within 0.30 of it, zero harm in honest worlds (POSITIVE on every conjunct; RUNG 3 PASSES; the human's "Crack it" word vindicated; BREAKTHROUGH)
+
+- Plain: the missing piece was never more promise-checking — it was giving the
+  dial-setter one tiny piece of world-modeling of its own: when the self-monitoring's
+  verdicts become CONSISTENT, stop touching the dial. With that single rule added, the
+  controller distrusts its way up through three wrong settings, reaches the right one,
+  watches its diagnosis settle into one steady answer, and locks — permanently, in
+  every run. In worlds where nothing is wrong it locks on "all is well" at the default
+  setting and never fidgets. No fixed setting can match it, because the two trap worlds
+  need opposite settings. The creature's stack can now notice its self-monitoring is
+  broken AND repair the dial that broke it — and keep the repair.
+- Question (predeclared; the human's "Crack it" word): does the lock-on-label-
+  consistency controller — movement by the Exp 165-justified trust trigger (2-in-10
+  OK/NOISE forecast violations; STRUCTURAL never forecast-scored, per the false-war
+  law), freezing whenever the last K=8 labels under the current dial are one class —
+  pass rung 3's three conjuncts?
+- Setup: Exp 166 harness (12000 steps, steady-state scoring on the final 4000, FR1
+  H=1000 / FR2 micro-bursts / CTRL, read-only dial readouts declared); PC1 drift bound
+  horizon-scaled to 0.15 (law 5); FRESH seeds 98–105. P1 recovery ≥ 0.6 in ≥7/8 (F1
+  pooled ≤ 0.3); P1b no-harm (F1b loss > 0.15); P2 combined margin ≥ 0.15, ≥7/8 (F2
+  any constant within 0.05 on both). A failure = wall re-confirmed, crack spent.
+- Result: POSITIVE — every conjunct, maximal margins. FR1: the dial climbs
+  200→400→800→1600 (changes at t=2199/4099/5099) and LOCKS on STRUCTURAL at t=5799,
+  frozen thereafter; steady-state score_b 1.0000 vs score_a 0.1000 → recovery 1.0000
+  in 8/8 (transient locks on OK and NOISE at the wrong dial were broken by the phase
+  boundaries exactly as designed — no mis-engagement anywhere). FR2/CTRL: locked on OK
+  at 200, zero dial changes, score 1.0000 = (a). P2: combined_b 1.0000 vs best
+  constant 0.7000 (W=800; margin 0.3000, 8/8); F2: no constant within 0.05 on both —
+  W=1600 ties (b) on FR1 but scores 0.5 on FR2. Preconditions green (max drift 0.062
+  vs the 0.15 bound).
+- Verifier: agree (blinded, conjunct-by-conjunct, POSITIVE from first principles);
+  flagged (i) PC3's components not itemized in the output (audit-data gap, noted),
+  (ii) a display-level timestamp conflation between trigger events and lock events
+  (JSON lock_events are ground truth), (iii) all 8 FR1 forks drew derangement [1,2,0]
+  (rng artifact — the [2,0,1] variant untested here) and the trajectories are
+  byte-identical across forks (geometry uniformity: effectively one realization).
+- Story so far: This chapter set out to test the N-order ladder's third rung — whether
+  a mind can hold AGENCY over its own self-monitoring, not merely have it. The prereq
+  build (Exp 155–159) first discovered the creature could not even watch itself, then
+  built and confirmed the two N2 instruments. Rung 1 (Exp 162) constructed the regime
+  where the rebuilt N2 is systematically wrong — pinned at its fixed window dial — and
+  rung 2 (Exp 163) showed a third-order monitor detects that wrongness from the
+  diagnoses' own broken promises. Then the hard part: three controller designs failed
+  to turn detection into repair, hardening into a documented wall with five laws —
+  promise-checking cannot validate the regime-conditional STRUCTURAL diagnosis, so
+  the dial either stalls at false peace or cycles in false war. The human's one word,
+  "Crack it," authorized the named crack: give N3 a single regime statistic — freeze
+  the dial while the diagnosis stream is self-consistent. With it, the controller
+  climbs to the right window and keeps it, in every run, harming nothing, beating
+  every constant. What remains provided: the dial set, the trigger, K=8, and the
+  worlds themselves; what is self-formed is every trust value, every violation, every
+  climb, and every lock, from the creature's own lived record. Inner experience
+  remains unverified both ways; this is a control competency — but it is the first
+  time in this program that a layer repaired the layer beneath it and held the repair.
+- Honest caveat: the lock constant K=8 and the dial set are PROVIDED θ_N3 choices
+  (their own regime-sensitivity is rung-4/regress territory, observed at Exp 164); the
+  trajectories are geometry-uniform (8 forks = 1 realization; and one derangement
+  variant by rng accident); P2's "no constant" is bounded to the dial set and these
+  two regimes; the controller is a read-only diagnosis-layer authority — behavioral
+  consequences (acting on the repaired diagnosis) are untested; rung 4 (override
+  concentration / independent variance over a mixed schedule) remains open before the
+  card's full hypothesis is SUPPORTED.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: BREAKTHROUGH (first conversion of
+  metacognitive distrust into stable, regime-adaptive parameter authority that no
+  constant matches — the rung-3 capability the system did not have through three
+  designs and a documented wall; survives the hostile test: Exp 164–166 are the
+  record of the same system failing without the lock).
+- Next: rung 4 — independent variance / override concentration over a mixed schedule
+  of valid and broken regimes (the card's final rung before the N3 hypothesis is
+  graded), with the lock controller as built; then the card's stop condition is met
+  either way and the chapter synthesis gets its closing section.

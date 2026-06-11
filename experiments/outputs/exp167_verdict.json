@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp167",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_recovery_FR1": {
+      "pass": true,
+      "reason": "recovery(b,FR1) >= 0.6 in 8/8 forks (need >= 7); pooled FR1=1.0000; F1 fired=False"
+    },
+    "P1b_no_harm": {
+      "pass": true,
+      "reason": "FR2 forks no-harm=8/8; CTRL forks no-harm=8/8 (need >= 7); F1b fired=False "
+    },
+    "P2_not_config": {
+      "pass": true,
+      "reason": "pooled combined_b=1.0000 max_W(combined_c)=0.7000 (W=800); margin=0.3000 (need >= 0.15); forks_b_wins=8/8 (need >= 7); F2 fired=False (firing_W=None)"
+    }
+  },
+  "notes": "N3 rung 3 LOCK-ON-LABEL-CONSISTENCY (attempt 4, crack authorised by 'Crack it'). Attempt 1 (exp164): PC4 fired (FR2 gap absent); controller silent at H=1000. Attempt 2 (exp165): NEGATIVE \u2014 false peace: STRUCTURAL unscored, violations dried up. Attempt 3 (exp166): false war \u2014 scoring STRUCTURAL punished correct dial in quiet phases. Attempt 4 crack: LOCK-ON-LABEL-CONSISTENCY \u2014 K=8 same-class label run => dial frozen. Correct dial produces all-STRUCTURAL run => permanent lock (no false war). Wrong dial mixes classes => lock never engages => violations escalate (no false peace). POSITIVE: RUNG 3 PASSES. NEGATIVE: crack SPENT \u2014 halt for a word."
+}
