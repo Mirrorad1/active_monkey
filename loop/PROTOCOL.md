@@ -29,17 +29,10 @@ several half-experiments. Steps:
    dispatched to a Sonnet subagent (`Agent` tool, `model: "sonnet"`) with a tight spec —
    files, expected behavior, exact verification command. The main model reviews the
    returned code against the spec and VALIDATION.md before running the experiment.
-   **Review must include the verdict logic:** check every compound predeclaration
-   (AND/OR conjuncts, conditional branches) is implemented exactly — Exp 72's script
-   printed a passing verdict after silently dropping a conjunct; the per-seed raw data
-   plus validation against the docstring caught it. The printed verdict line is the
-   coder's claim, not the experiment's result; the entry's verdict comes from applying
-   the predeclared rule to the committed raw output.
-   **Three-way verdict rule (added after Exp 136):** when a predeclaration says
-   "TRUE iff all", the POSITIVE branch must require EVERY conjunct — a condition
-   labeled "not a falsifier" still blocks POSITIVE and routes to MIXED. "Not a
-   falsifier" never means "counts toward POSITIVE". Coder subagents soften this
-   distinction reliably (Exp 133, Exp 136); check the three-way branch explicitly.
+   Review must include the verdict logic conjunct-by-conjunct: the printed verdict
+   line is the coder's claim, not the experiment's result, and "not a falsifier"
+   never counts toward POSITIVE (L1, L2 in `loop/LESSONS.md`). Step 4.5's blinded
+   verifier is the independent backstop, not a substitute for this review.
 
 4. **Run & validate.** Apply `loop/VALIDATION.md` (binding) to the raw output before
    interpreting anything.
