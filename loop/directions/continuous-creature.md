@@ -60,9 +60,13 @@ throughout).**
   verify the self-regulation mechanism Exp 143 hypothesized. FAIL = burn-in-scored
   spawning still cannot reduce predictive surprise (HALT — the growing toolkit cannot
   feed the alarm it answers).
-  **STATUS: HALTED at Exp 144** — the HALT arm fired (3/3 layouts). Diagnosis +
-  recommended M3c (per-color alarms, round-robin scheduling, live-probation
-  acceptance) in the IDEAS.md consult. The thread waits for the human's word.
+  **STATUS: HALTED at Exp 144, RESUMED by human word ("go with m3c", 2026-06-10).**
+- **M3c — live-probation growth (the human's chosen resumption).** Per-color alarms +
+  round-robin scheduling (growth shared across alarmed colors, not worst-first) +
+  live-probation acceptance (provisional install after burn-in; keep iff the color's
+  live observed surprise drops >= 0.1 nats over 400 probation steps vs its pre-spawn
+  window; revert restores the color's snapshot). FAIL = the surprise arm fails again
+  (>= 3/8 seeds in >= 2/3 layouts) — HALT with both designs logged.
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

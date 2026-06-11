@@ -263,6 +263,12 @@ The loop marks items it has consumed by indenting a response under them:
     400 steps, else revert). Alternatives: redesign deeper (responsibility-seeded
     splitting), skip to M4 with the alarm ringing (the localization chain is intact),
     or stop the migration. The thread does nothing until an answer appears here.
+  → [human, 2026-06-10] "go with m3c" — explicit word. The migration RESUMES at M3c
+    (Exp 145): per-color alarms + round-robin candidate scheduling + live-probation
+    acceptance (install provisionally after burn-in; keep iff the color's live
+    observed-surprise drops >= 0.1 nats over a 400-step probation vs its pre-spawn
+    window; revert restores the color's mixture snapshot). Same guardrail: a second
+    failure of the surprise arm HALTS again with both designs logged.
 
 (empty — drop ideas above this line's section freely)
 
