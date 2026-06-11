@@ -18,5 +18,13 @@ if [ -n "$(git status --porcelain)" ]; then
   git commit -q -m "auto-sync: experiments + site ($(date -u +%FT%TZ))" || true
 fi
 
-# Push whatever is ahead of origin/main; harmless no-op when already in sync.
-git push -q origin "HEAD:main" 2>/dev/null || true
+# Push policy (fixed 2026-06-10): only main may push to main. On any other
+# branch, push the branch under its own name — an unconditional HEAD:main here
+# once swept feature-branch work straight onto origin/main, silently bypassing
+# the PR review path that META.md mandates for non-experiment changes.
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" = "main" ]; then
+  git push -q origin "HEAD:main" 2>/dev/null || true
+elif [ "$branch" != "HEAD" ]; then
+  git push -q origin "HEAD:refs/heads/$branch" 2>/dev/null || true
+fi
