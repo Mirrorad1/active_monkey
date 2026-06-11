@@ -4304,3 +4304,56 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   incomplete-cover mechanism unifying all three failures). Self-grade: n/a.
   THE MIGRATION IS HALTED; the consult recommends PARK-AND-CONTINUE-AT-M4.
 - Next: awaiting the human's word on the park recommendation (or a named crack).
+
+## Exp 147 — continuous-creature rung M4: want ranks RIGHT and acts (twin-tracking 8/8, nav 7/8, history-sets-want 8/8) but concentrates WEAKLY — the absolute valence bar missed in 8/8 and the thread halts on its letter (NEGATIVE/HALT on P1a; the qualitative chain intact; twin calibration queued)
+- Plain: The creature was raised in a world where half the places are dependable and
+  half are flickery, with the rule that things feel good when they prove predictable.
+  Everything qualitative worked: it values exactly the colors its old boxed twin
+  values, in the same order, in every run; once allowed to act on its wants it walks
+  to its favorite place and stays there (occupancy rising from six percent to as much
+  as eighty-five); and a twin of itself raised in the mirrored world forms its
+  favorite on the opposite side, every time — history, not architecture, decides what
+  it likes. What missed was a number I set in advance: HOW concentrated its liking
+  should be. It put 64–70 percent of its total feeling on the dependable half where I
+  demanded 75. By the build rules, a missed number is a halt, so it halts — with the
+  diagnosis that the bar was calibrated for the old substrate's sharper confidence,
+  and the fix being measured rather than assumed.
+- Setup (predeclared in the script docstring before running): 4×4, 16 distinct colors,
+  noisy LEFT half (true color at p=0.6, else uniform); phase A T=4000 wander with M2
+  map learning + the Exp 26 valence rule (value[obs] += exp(−H(predictive color
+  distribution))); tabular twin identical streams, its own valence rule; phase B
+  T=2000 with a softmax one-step lookahead on V(s)=Σ value_share·p(color|s) (τ=0.05,
+  ε=0.1); a mirrored-world creature per seed. P1a: reliable-set share >0.75 (chance
+  0.5) ≥7/8. P1b: Spearman vs twin >0.6 ≥7/8. P2: favorite-cell occupancy >4× uniform
+  AND >2× own wander baseline ≥6/8. P3: mirrored favorite on the opposite side ≥6/8.
+- Result: NEGATIVE on the predeclared letter — P1a 0/8 (shares 0.639–0.699; above
+  chance everywhere, below the bar everywhere). P1b PASS 8/8 (Spearman 0.66–0.86;
+  mirror arm 0.63–0.84). P2 PASS 7/8 (occupancy 0.65–0.85 vs wander 0.06–0.09; the
+  one miss converged elsewhere). P3 PASS 8/8 (perfect half-separation of favorites).
+  Suite 108 green. THE MIGRATION HALTS on P1a per the guardrail.
+- Calibration analysis (for the consult; analytic, in-entry): at this noise level the
+  TABULAR rule's ideal reliable share ≈0.87 (weights e⁰ vs e^−1.68; noise leaks 40%
+  of its credit across both halves) — so 0.75 was fair for the OLD substrate. The
+  continuous shortfall has two named candidate sources: (i) its predictive entropy
+  includes position uncertainty and footprint leakage (M1's measured 0.06–0.09 nats),
+  compressing the reliable-vs-noisy weight contrast; (ii) early-phase high-entropy
+  steps credit all colors near-uniformly and cumulative counts never wash that out.
+  The twin's OWN empirical share was not recorded (rows carry the Spearman, not the
+  twin share) — the one missing calibration number.
+- RECOMMENDED RESUMPTION (consult posted): M4b = the same protocol on FRESH seeds
+  with (a) the twin's reliable share recorded, and (b) P1a re-predeclared
+  TWIN-RELATIVE (continuous share ≥ twin share − 0.10), which is what the card's own
+  FAIL clause ("doesn't track the structure the twin's does") always meant — no
+  mechanism changes. If the gap exceeds 0.10, the named principled variant for a
+  further consult: emission-only valence weight (entropy at the posterior MEAN,
+  excluding position uncertainty — the tabular rule's true analog).
+- Honest caveat: the halt is on an uncalibrated absolute threshold I set — the
+  qualitative card clause passed on every conjunct; the analytic 0.87 assumes
+  steady-state learned tables (the twin also has an early transient, shorter); P2's
+  baseline comparison uses the same creature's wander phase (not an independent
+  control); the policy evaluates the value field at positions (Σ_eval=0.01I,
+  declared), not beliefs.
+- Verdict: NEGATIVE (P1a falsifier as written) / the P1b+P2+P3 passes are the
+  substantive M4 result, pending the calibrated re-test. Self-grade: n/a.
+  THE MIGRATION IS HALTED awaiting explicit human word.
+- Next: nothing on this thread until the consult is answered.

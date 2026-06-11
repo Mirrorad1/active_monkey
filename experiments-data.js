@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:146, breakthrough:6, positive:85, wall:24, partial:31, from:4.81, to:4.00 };
+window.AM_TALLY = { total:147, breakthrough:6, positive:85, wall:24, partial:32, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1475,7 +1475,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 145's machinery with the move changed to split: the alarmed color's widest component divided along its leading eigendirection, children inheriting halved weight and mass, burn-in EM, then the validated live-probation vote. The third-failure park rule was predeclared before running.",
     result:"P1 0/8 on every arm in all layouts; P2 failed (split surges match add); P3 localization untouched 24/24; the demoted replay vote would have kept many splits the live test correctly rejected (26 percent agreement). The wall binds to local moves with short-horizon honest acceptance — impossibility is not claimed; batch-jump and background-floor remain untried by design.",
     implication:"The growth question is parked as a characterized open problem and the consult recommends continuing the migration at M4 — the creature navigates perfectly; its prediction inadequacy rides along as a documented limitation, alarm correctly ringing.",
-    trace:{ script:"experiments/exp146_m3d_split.py", output:"experiments/outputs/exp146.txt" } }
+    trace:{ script:"experiments/exp146_m3d_split.py", output:"experiments/outputs/exp146.txt" } },
+
+  { n:147, kind:"partial", chapter:"frontier",
+    title:"It wants the right things, walks to them, and likes them differently when raised differently — but not intensely enough for the bar I set.",
+    one:"Migration rung M4: the want-and-act chain works qualitatively in every run — value ranking matches the tabular twin 8/8 (Spearman 0.66-0.86), the one-step value policy lifts favorite-cell occupancy from 0.06-0.09 to 0.65-0.85 (7/8), and mirrored-world twins form favorites on opposite sides 8/8 — but the predeclared absolute concentration bar (reliable share >0.75) missed at 0.639-0.699 in 8/8, halting the thread on its letter. Analysis shows the bar was calibrated for the old substrate (~0.87 ideal); the consult proposes the twin-relative re-test the card always meant.",
+    plain:"The creature was raised where half the places are dependable and half flickery, under the rule that things feel good when they prove predictable. Everything qualitative worked: it values exactly what its boxed twin values, walks to its favorite and stays, and a twin raised in the mirrored world forms its favorite on the opposite side every time — history, not architecture, decides what it likes. What missed was a number set in advance: how concentrated the liking should be. By the build rules a missed number is a halt — with the diagnosis that the bar fit the old substrate's sharper confidence, and the fix is to measure rather than assume.",
+    metric:{ from:0.75, to:0.699, unit:"predeclared vs best observed reliable-half value share (chance 0.5; tabular ideal ~0.87)" },
+    setup:"A half-noisy sixteen-color world; the Exp 26 valence rule with the continuous predictive entropy; a softmax one-step lookahead policy on the learned value field; the tabular twin on identical streams; a mirrored-world sibling per seed. All thresholds predeclared.",
+    result:"P1a 0/8 (the halt); P1b twin rank-tracking 8/8; P2 navigation 7/8; P3 history-sets-want 8/8. The twin's own empirical share went unrecorded — the missing calibration number the resumption records.",
+    implication:"The RECIPE's want and act links function on the continuous substrate; what is unresolved is whether the weaker concentration is a real substrate effect (position uncertainty inside the valence weight) or a miscalibrated bar. M4b re-tests twin-relative on fresh seeds; the emission-only weight stands ready as the principled variant if the gap is real.",
+    trace:{ script:"experiments/exp147_m4_want_act.py", output:"experiments/outputs/exp147.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

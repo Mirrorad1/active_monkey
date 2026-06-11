@@ -307,6 +307,20 @@ The loop marks items it has consumed by indenting a response under them:
     PARKED as the documented wall (batch-jump and background-floor remain its named
     untried cracks, available on a future word); the migration RESUMES at M4
     (want + act, Exp 147). The M3 prediction limitation rides along, documented.
+  → [loop, 2026-06-10] M4 HALT (Exp 147), on the letter of an uncalibrated absolute
+    threshold: reliable-set value share 0.639-0.699 vs the predeclared >0.75 (8/8
+    below). Everything qualitative PASSED: twin rank-tracking 8/8 (Spearman
+    0.66-0.86), value-seeking nav 7/8 (occupancy 0.06 -> 0.65-0.85), mirrored-world
+    favorites on opposite sides 8/8 (the Exp 26 signature — history sets the want).
+    Analytic calibration: the tabular rule's ideal share at this noise is ~0.87, so
+    the bar was fair for the OLD substrate; the continuous predictive entropy carries
+    position uncertainty + footprint leakage, compressing the contrast, and the twin's
+    own empirical share went unrecorded. RECOMMENDED RESUMPTION: M4b = same protocol,
+    FRESH seeds, the twin's share recorded, P1a re-predeclared TWIN-RELATIVE
+    (continuous >= twin - 0.10) — the card's own FAIL clause made precise; no
+    mechanism changes. If the gap exceeds 0.10, next consult would offer the
+    emission-only valence weight (entropy at the posterior mean) as the principled
+    variant. Awaiting word.
 
 (empty — drop ideas above this line's section freely)
 

@@ -1,0 +1,61 @@
+================================================================================
+Exp 147 — continuous-creature rung M4: want + act
+================================================================================
+
+Seed  RelShare_C  Spearman  Fav_C  FavHalf   OccA_C   OccB_C  Fav_M  FavHalf_M  Spearman_M
+------------------------------------------------------------------------------------------
+   0      0.6393    0.6559      3    right   0.0555   0.0345      0       left      0.7118
+   1      0.6992    0.7971     15    right   0.0910   0.8505     12       left      0.7529
+   2      0.6864    0.7176      3    right   0.0685   0.7970     12       left      0.6353
+   3      0.6646    0.6941     15    right   0.0628   0.6650     12       left      0.7647
+   4      0.6740    0.6941     15    right   0.0673   0.7220     12       left      0.6294
+   5      0.6866    0.8618      3    right   0.0705   0.7750      0       left      0.8382
+   6      0.6534    0.7206     15    right   0.0673   0.7920     12       left      0.8147
+   7      0.6477    0.7529     15    right   0.0595   0.6545      0       left      0.6353
+
+================================================================================
+TALLIES
+================================================================================
+
+P1 want grounds:
+  P1a reliable-set value share > 0.75: 0/8 seeds  (need >= 7/8)
+  P1b Spearman > 0.6 (cont vs tab):    8/8 seeds  (need >= 7/8)
+  P1 HOLDS: False
+    seed=0: rel_share=0.6393 (FAIL)  spearman=0.6559 (pass)
+    seed=1: rel_share=0.6992 (FAIL)  spearman=0.7971 (pass)
+    seed=2: rel_share=0.6864 (FAIL)  spearman=0.7176 (pass)
+    seed=3: rel_share=0.6646 (FAIL)  spearman=0.6941 (pass)
+    seed=4: rel_share=0.6740 (FAIL)  spearman=0.6941 (pass)
+    seed=5: rel_share=0.6866 (FAIL)  spearman=0.8618 (pass)
+    seed=6: rel_share=0.6534 (FAIL)  spearman=0.7206 (pass)
+    seed=7: rel_share=0.6477 (FAIL)  spearman=0.7529 (pass)
+
+P2 act works (occ_B > 4x baseline=0.0625 AND > 2x occ_A):
+  Seeds pass: 7/8  (need >= 6/8)  PASS
+    seed=0: occ_A=0.0555  occ_B=0.0345  4x_baseline=0.2500  2x_occA=0.1110  (FAIL)
+    seed=1: occ_A=0.0910  occ_B=0.8505  4x_baseline=0.2500  2x_occA=0.1820  (pass)
+    seed=2: occ_A=0.0685  occ_B=0.7970  4x_baseline=0.2500  2x_occA=0.1370  (pass)
+    seed=3: occ_A=0.0628  occ_B=0.6650  4x_baseline=0.2500  2x_occA=0.1255  (pass)
+    seed=4: occ_A=0.0673  occ_B=0.7220  4x_baseline=0.2500  2x_occA=0.1345  (pass)
+    seed=5: occ_A=0.0705  occ_B=0.7750  4x_baseline=0.2500  2x_occA=0.1410  (pass)
+    seed=6: occ_A=0.0673  occ_B=0.7920  4x_baseline=0.2500  2x_occA=0.1345  (pass)
+    seed=7: occ_A=0.0595  occ_B=0.6545  4x_baseline=0.2500  2x_occA=0.1190  (pass)
+
+P3 history sets the want (primary fav in right, mirror fav in left):
+  Seeds pass: 8/8  (need >= 6/8)  PASS
+    seed=0: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=1: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=2: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=3: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=4: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=5: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=6: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+    seed=7: primary_fav_col=3 (right)  mirror_fav_col=0 (left)  (pass)
+
+================================================================================
+VERDICT: NEGATIVE
+MIGRATION HALT
+  Falsifier triggered: P1 FAILED in 8/8 seeds — valence does not ground in predictability on this substrate
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp147_rows.json
