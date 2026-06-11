@@ -50,9 +50,7 @@ ALARM_THRESH: float = 0.7           # per-color mean >= this = ALARMED; Exp 145 
 PRE_SPAWN_WINDOW: int = 100         # per-color deque for pre-spawn baseline; Exp 145 line 133
 
 # --- Probation ---
-# Validated in Exp 145. "Power note": with ~uniform color visitation, 400 live
-# steps yield ~100 observations of the probated color (4 colors), matching the
-# 50-obs alarm window with 2x observations for stability.
+# Validated in Exp 145 (confirmed unchanged in Exp 154).
 PROBATION_STEPS: int = 400          # live-step window for keep/revert; Exp 145 line 134
 KEEP_MARGIN: float = 0.1            # keep iff probation_mean <= pre_spawn_mean - KEEP_MARGIN; Exp 145
 
@@ -67,11 +65,11 @@ JUMP_COOLDOWN: int = 1200           # cooldown steps between jump attempts (Exp 
 BURN_IN_ITERS: int = 10             # EM iterations during burn-in; Exp 145 line 127
 BURN_IN_COV_FLOOR: float = 1e-4     # diagonal floor for covariance; Exp 145 line 128
 
-# --- Batch-jump EM (Exp 152/153) ---
+# --- Batch-jump EM (Exp 152/153, confirmed in Exp 154) ---
 EM_ITERS: int = 10                  # EM iters for batch-jump; Exp 153 line 143
 EM_COV_FLOOR: float = 1e-4          # covariance floor; Exp 153 line 144
 K_CANDIDATES: list[int] = [2, 3, 4] # component counts tried by K-selection; Exp 153 line 145
-K_PENALTY: float = 0.05             # BIC-style penalty per extra component; Exp 153 line 146
+K_PENALTY: float = 0.05             # BIC-style penalty per extra component; Exp 153 line 146, confirmed Exp 154
 MIN_REPLAY_PAIRS: int = 30          # minimum pairs before a jump is attempted; Exp 153 line 147
 
 # Used internally for normalized convention
@@ -745,6 +743,12 @@ class LiveProbation:
 
     Revert restores ONLY the probated color's snapshot; other colors keep their
     probation-period learning. This is the declared policy from Exp 145.
+
+    Power note (PROBATION_STEPS = 400): with ~uniform color visitation in a
+    4-color world, 400 live steps yield approximately 100 observations of the
+    probated color.  That is 2x the 50-observation alarm window
+    (COLOR_SURPRISE_WINDOW), giving the keep/revert decision a stable estimate
+    before committing.
 
     Validated: Exp 145 (lines 625-878).
     """
