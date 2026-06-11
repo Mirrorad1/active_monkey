@@ -354,6 +354,11 @@ The loop marks items it has consumed by indenting a response under them:
     RECOMMENDED (as predeclared in the falsifier clause): ACCEPT the limit and
     proceed to M5 (words + converse parity, the RECIPE's last links) — no further
     valence variants. Awaiting word ("m5" proceeds).
+  → [human, 2026-06-10] "m5" — explicit word. The M4 limit is ACCEPTED as documented;
+    Exp 150 runs M5: taught words + the answer chain on the continuous creature
+    (vocab mechanism ported exactly from creature.py; same n=8 taught budget as the
+    tabular default), with converse parity against the tabular pair on the same
+    mirrored-history protocol. Fresh seeds 24-31.
 
 (empty — drop ideas above this line's section freely)
 
