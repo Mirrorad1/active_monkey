@@ -1,0 +1,212 @@
+================================================================================
+Exp 154 — M3g: GROWTH-WALL CONFIRMATION (normalized-density, fresh seeds 8-15)
+================================================================================
+
+
+================================================================================
+LAYOUT 1  (rng(7))
+================================================================================
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 1, 2, 0]
+    row 1: [2, 3, 0, 1]
+    row 2: [0, 3, 0, 3]
+    row 3: [3, 2, 1, 2]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells and centers:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+  --- ARM B: normalized-density batch-jump (seeds 8..15) ---
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta                        ColMnS
+-------------------------------------------------------------------------------------------------------------------------------------------------
+   8   1.2006   0.2615   0.939        0  [4, 4, 1, 1]     2     0  0.0336     100%   +1.0772     [0.017 0.005 0.525 0.569]
+   9   1.2123   0.2989   0.913        0  [4, 4, 1, 1]     2     0  0.0350     100%   +1.1900     [0.017 0.005 0.557 0.562]
+  10   1.2520   0.2879   0.964        0  [4, 4, 1, 1]     2     0  0.0336     100%   +1.0262     [0.019 0.004 0.542 0.572]
+  11   1.1825   0.0029   1.180        0  [4, 4, 4, 1]     3     0  0.0310     100%   +0.9560     [0.008 0.001 0.003 0.000]
+  12   1.2223   0.2718   0.951        0  [4, 4, 1, 1]     2     0  0.0341     100%   +1.1432     [0.018 0.005 0.508 0.579]
+  13   1.2310   0.2685   0.963        0  [4, 4, 1, 1]     2     0  0.0340     100%   +1.1498     [0.017 0.005 0.501 0.575]
+  14   1.1680   0.0033   1.165        0  [4, 4, 4, 1]     3     0  0.0304     100%   +1.0251     [0.008 0.001 0.003 0.000]
+  15   1.2160   0.2672   0.949        0  [4, 4, 1, 1]     2     0  0.0350     100%   +1.1048     [0.016 0.005 0.511 0.554]
+
+  Per-color detail (Layout 1):
+    seed=8: c0:ALARMD/KEPT/0.017  c1:ALARMD/KEPT/0.005  c2:quiet/no-jump/0.525  c3:quiet/no-jump/0.569
+    seed=9: c0:ALARMD/KEPT/0.017  c1:ALARMD/KEPT/0.005  c2:quiet/no-jump/0.557  c3:quiet/no-jump/0.562
+    seed=10: c0:ALARMD/KEPT/0.019  c1:ALARMD/KEPT/0.004  c2:quiet/no-jump/0.542  c3:quiet/no-jump/0.572
+    seed=11: c0:ALARMD/KEPT/0.008  c1:ALARMD/KEPT/0.001  c2:ALARMD/KEPT/0.003  c3:quiet/no-jump/0.000
+    seed=12: c0:ALARMD/KEPT/0.018  c1:ALARMD/KEPT/0.005  c2:quiet/no-jump/0.508  c3:quiet/no-jump/0.579
+    seed=13: c0:ALARMD/KEPT/0.017  c1:ALARMD/KEPT/0.005  c2:quiet/no-jump/0.501  c3:quiet/no-jump/0.575
+    seed=14: c0:ALARMD/KEPT/0.008  c1:ALARMD/KEPT/0.001  c2:ALARMD/KEPT/0.003  c3:quiet/no-jump/0.000
+    seed=15: c0:ALARMD/KEPT/0.016  c1:ALARMD/KEPT/0.005  c2:quiet/no-jump/0.511  c3:quiet/no-jump/0.554
+
+  Per-jump attempt detail (Layout 1):
+    seed=8 jump#1: color=0  K=4  pre=1.3281  prob=0.0569  delta=+1.2712  KEPT  [K2:1.241 K3:-0.991 K4:-1.464]
+    seed=8 jump#2: color=1  K=4  pre=0.8923  prob=0.0090  delta=+0.8832  KEPT  [K2:0.595 K3:-0.927 K4:-1.973]
+    seed=9 jump#1: color=0  K=4  pre=1.4992  prob=0.0425  delta=+1.4566  KEPT  [K2:1.427 K3:-0.649 K4:-1.311]
+    seed=9 jump#2: color=1  K=4  pre=0.9312  prob=0.0077  delta=+0.9234  KEPT  [K2:1.456 K3:-1.228 K4:-1.899]
+    seed=10 jump#1: color=0  K=4  pre=1.2830  prob=0.0467  delta=+1.2364  KEPT  [K2:1.627 K3:-0.843 K4:-1.415]
+    seed=10 jump#2: color=1  K=4  pre=0.8235  prob=0.0074  delta=+0.8161  KEPT  [K2:1.233 K3:-1.073 K4:-1.860]
+    seed=11 jump#1: color=0  K=4  pre=1.3072  prob=0.0390  delta=+1.2682  KEPT  [K2:1.554 K3:-0.824 K4:-1.459]
+    seed=11 jump#2: color=2  K=4  pre=1.0803  prob=0.0094  delta=+1.0709  KEPT  [K2:1.745 K3:-1.181 K4:-1.952]
+    seed=11 jump#3: color=1  K=4  pre=0.5308  prob=0.0018  delta=+0.5290  KEPT  [K2:1.721 K3:-1.671 K4:-2.150]
+    seed=12 jump#1: color=0  K=4  pre=1.4056  prob=0.0397  delta=+1.3660  KEPT  [K2:1.661 K3:-1.019 K4:-1.537]
+    seed=12 jump#2: color=1  K=4  pre=0.9277  prob=0.0071  delta=+0.9205  KEPT  [K2:1.580 K3:-1.318 K4:-1.871]
+    seed=13 jump#1: color=0  K=4  pre=1.3388  prob=0.0493  delta=+1.2895  KEPT  [K2:1.472 K3:-0.875 K4:-1.495]
+    seed=13 jump#2: color=1  K=4  pre=1.0188  prob=0.0087  delta=+1.0102  KEPT  [K2:1.764 K3:-1.322 K4:-1.867]
+    seed=14 jump#1: color=0  K=4  pre=1.5317  prob=0.0474  delta=+1.4843  KEPT  [K2:1.354 K3:-1.373 K4:-1.722]
+    seed=14 jump#2: color=1  K=4  pre=0.9314  prob=0.0073  delta=+0.9241  KEPT  [K2:1.301 K3:-1.220 K4:-1.897]
+    seed=14 jump#3: color=2  K=4  pre=0.6705  prob=0.0037  delta=+0.6668  KEPT  [K2:1.146 K3:-0.617 K4:-2.043]
+    seed=15 jump#1: color=0  K=4  pre=1.4383  prob=0.0426  delta=+1.3957  KEPT  [K2:1.019 K3:-0.815 K4:-1.472]
+    seed=15 jump#2: color=1  K=4  pre=0.8211  prob=0.0073  delta=+0.8139  KEPT  [K2:1.202 K3:-1.032 K4:-1.904]
+
+  TALLIES — Layout 1
+
+  P1(a) drop >= 0.4 nats: 8/8  (need >= 6/8)  PASS
+  P1(b) zero final ceil:  8/8  (need >= 6/8)  PASS
+  P1(c) all-4 col<0.7:    8/8  (need >= 6/8)  PASS
+  P1 conjunct (all three): 8/8  (need >= 6/8)  PASS
+
+    seed=8: drop=0.939(pass)  ceil=0(pass)  col[0.017 0.005 0.525 0.569](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=9: drop=0.913(pass)  ceil=0(pass)  col[0.017 0.005 0.557 0.562](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=10: drop=0.964(pass)  ceil=0(pass)  col[0.019 0.004 0.542 0.572](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=11: drop=1.180(pass)  ceil=0(pass)  col[0.008 0.001 0.003 0.000](pass)  alarmed=[1, 1, 1, 0]  kept=[1, 1, 1, 0]  P1=pass
+    seed=12: drop=0.951(pass)  ceil=0(pass)  col[0.018 0.005 0.508 0.579](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=13: drop=0.963(pass)  ceil=0(pass)  col[0.017 0.005 0.501 0.575](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=14: drop=1.165(pass)  ceil=0(pass)  col[0.008 0.001 0.003 0.000](pass)  alarmed=[1, 1, 1, 0]  kept=[1, 1, 1, 0]  P1=pass
+    seed=15: drop=0.949(pass)  ceil=0(pass)  col[0.016 0.005 0.511 0.554](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+
+  P2 pooled acceptance >= 50%: 18/18 = 100.0%  PASS
+
+  P3 no regression (loc_med <= 0.5, >= 7/8): 8/8  PASS
+    seed=8: loc_med=0.0336  pass
+    seed=9: loc_med=0.0350  pass
+    seed=10: loc_med=0.0336  pass
+    seed=11: loc_med=0.0310  pass
+    seed=12: loc_med=0.0341  pass
+    seed=13: loc_med=0.0340  pass
+    seed=14: loc_med=0.0304  pass
+    seed=15: loc_med=0.0350  pass
+
+================================================================================
+LAYOUT 2  (rng(11))
+================================================================================
+
+  --- ARM B: normalized-density batch-jump (seeds 8..15) ---
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta                        ColMnS
+-------------------------------------------------------------------------------------------------------------------------------------------------
+   8   0.8874   0.1329   0.754        0  [4, 1, 4, 1]     2     0  0.0357     100%   +0.8511     [0.004 0.381 0.003 0.140]
+   9   0.9120   0.1267   0.785        0  [4, 1, 4, 1]     2     0  0.0360     100%   +0.7592     [0.004 0.392 0.003 0.131]
+  10   0.9179   0.1050   0.813        0  [4, 1, 1, 4]     2     0  0.0378     100%   +0.8714     [0.003 0.306 0.077 0.008]
+  11   0.8657   0.0037   0.862        0  [4, 4, 4, 1]     3     0  0.0305     100%   +0.8324     [0.003 0.010 0.002 0.000]
+  12   0.9341   0.0041   0.930        0  [4, 4, 4, 1]     3     0  0.0310     100%   +0.8561     [0.003 0.011 0.002 0.000]
+  13   0.9763   0.0880   0.888        0  [4, 1, 1, 4]     2     0  0.0346     100%   +0.8776     [0.004 0.315 0.044 0.008]
+  14   0.9127   0.0918   0.821        0  [4, 1, 1, 4]     2     0  0.0351     100%   +0.7850     [0.004 0.282 0.104 0.008]
+  15   0.9663   0.0037   0.963        0  [4, 4, 4, 1]     3     0  0.0318     100%   +0.7067     [0.002 0.010 0.003 0.000]
+  Layout 2: 19 attempts, 19 kept
+
+  TALLIES — Layout 2
+
+  P1(a) drop >= 0.4 nats: 8/8  (need >= 6/8)  PASS
+  P1(b) zero final ceil:  8/8  (need >= 6/8)  PASS
+  P1(c) all-4 col<0.7:    8/8  (need >= 6/8)  PASS
+  P1 conjunct (all three): 8/8  (need >= 6/8)  PASS
+
+    seed=8: drop=0.754(pass)  ceil=0(pass)  col[0.004 0.381 0.003 0.140](pass)  alarmed=[1, 0, 1, 0]  kept=[1, 0, 1, 0]  P1=pass
+    seed=9: drop=0.785(pass)  ceil=0(pass)  col[0.004 0.392 0.003 0.131](pass)  alarmed=[1, 0, 1, 0]  kept=[1, 0, 1, 0]  P1=pass
+    seed=10: drop=0.813(pass)  ceil=0(pass)  col[0.003 0.306 0.077 0.008](pass)  alarmed=[1, 0, 0, 1]  kept=[1, 0, 0, 1]  P1=pass
+    seed=11: drop=0.862(pass)  ceil=0(pass)  col[0.003 0.010 0.002 0.000](pass)  alarmed=[1, 1, 1, 0]  kept=[1, 1, 1, 0]  P1=pass
+    seed=12: drop=0.930(pass)  ceil=0(pass)  col[0.003 0.011 0.002 0.000](pass)  alarmed=[1, 1, 1, 0]  kept=[1, 1, 1, 0]  P1=pass
+    seed=13: drop=0.888(pass)  ceil=0(pass)  col[0.004 0.315 0.044 0.008](pass)  alarmed=[1, 0, 0, 1]  kept=[1, 0, 0, 1]  P1=pass
+    seed=14: drop=0.821(pass)  ceil=0(pass)  col[0.004 0.282 0.104 0.008](pass)  alarmed=[1, 0, 0, 1]  kept=[1, 0, 0, 1]  P1=pass
+    seed=15: drop=0.963(pass)  ceil=0(pass)  col[0.002 0.010 0.003 0.000](pass)  alarmed=[1, 1, 1, 0]  kept=[1, 1, 1, 0]  P1=pass
+
+  P2 pooled acceptance >= 50%: 19/19 = 100.0%  PASS
+
+  P3 no regression (loc_med <= 0.5, >= 7/8): 8/8  PASS
+    seed=8: loc_med=0.0357  pass
+    seed=9: loc_med=0.0360  pass
+    seed=10: loc_med=0.0378  pass
+    seed=11: loc_med=0.0305  pass
+    seed=12: loc_med=0.0310  pass
+    seed=13: loc_med=0.0346  pass
+    seed=14: loc_med=0.0351  pass
+    seed=15: loc_med=0.0318  pass
+
+================================================================================
+LAYOUT 3  (rng(13))
+================================================================================
+
+  --- ARM B: normalized-density batch-jump (seeds 8..15) ---
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta                        ColMnS
+-------------------------------------------------------------------------------------------------------------------------------------------------
+   8   0.6297   0.0542   0.576        0  [4, 1, 4, 1]     2     0  0.0334     100%   +0.7884     [0.002 0.084 0.010 0.139]
+   9   0.7336   0.0655   0.668        0  [4, 1, 4, 1]     2     0  0.0364     100%   +0.7587     [0.002 0.088 0.012 0.143]
+  10   0.6621   0.0589   0.603        0  [4, 4, 1, 1]     2     0  0.0355     100%   +0.8229     [0.005 0.008 0.077 0.138]
+  11   0.6544   0.0445   0.610        0  [4, 4, 1, 1]     2     0  0.0345     100%   +0.6945     [0.006 0.009 0.052 0.113]
+  12   0.6932   0.0446   0.649        0  [4, 4, 1, 1]     2     0  0.0336     100%   +0.8100     [0.006 0.009 0.066 0.118]
+  13   0.7412   0.0442   0.697        0  [4, 4, 1, 1]     2     0  0.0336     100%   +0.7372     [0.006 0.010 0.059 0.112]
+  14   0.6494   0.0727   0.577        0  [4, 1, 4, 1]     2     0  0.0323     100%   +0.6927     [0.002 0.112 0.009 0.158]
+  15   0.7583   0.0545   0.704        0  [4, 4, 1, 1]     2     0  0.0348     100%   +0.7612     [0.005 0.007 0.072 0.138]
+  Layout 3: 16 attempts, 16 kept
+
+  TALLIES — Layout 3
+
+  P1(a) drop >= 0.4 nats: 8/8  (need >= 6/8)  PASS
+  P1(b) zero final ceil:  8/8  (need >= 6/8)  PASS
+  P1(c) all-4 col<0.7:    8/8  (need >= 6/8)  PASS
+  P1 conjunct (all three): 8/8  (need >= 6/8)  PASS
+
+    seed=8: drop=0.576(pass)  ceil=0(pass)  col[0.002 0.084 0.010 0.139](pass)  alarmed=[1, 0, 1, 0]  kept=[1, 0, 1, 0]  P1=pass
+    seed=9: drop=0.668(pass)  ceil=0(pass)  col[0.002 0.088 0.012 0.143](pass)  alarmed=[1, 0, 1, 0]  kept=[1, 0, 1, 0]  P1=pass
+    seed=10: drop=0.603(pass)  ceil=0(pass)  col[0.005 0.008 0.077 0.138](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=11: drop=0.610(pass)  ceil=0(pass)  col[0.006 0.009 0.052 0.113](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=12: drop=0.649(pass)  ceil=0(pass)  col[0.006 0.009 0.066 0.118](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=13: drop=0.697(pass)  ceil=0(pass)  col[0.006 0.010 0.059 0.112](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+    seed=14: drop=0.577(pass)  ceil=0(pass)  col[0.002 0.112 0.009 0.158](pass)  alarmed=[1, 0, 1, 0]  kept=[1, 0, 1, 0]  P1=pass
+    seed=15: drop=0.704(pass)  ceil=0(pass)  col[0.005 0.007 0.072 0.138](pass)  alarmed=[1, 1, 0, 0]  kept=[1, 1, 0, 0]  P1=pass
+
+  P2 pooled acceptance >= 50%: 16/16 = 100.0%  PASS
+
+  P3 no regression (loc_med <= 0.5, >= 7/8): 8/8  PASS
+    seed=8: loc_med=0.0334  pass
+    seed=9: loc_med=0.0364  pass
+    seed=10: loc_med=0.0355  pass
+    seed=11: loc_med=0.0345  pass
+    seed=12: loc_med=0.0336  pass
+    seed=13: loc_med=0.0336  pass
+    seed=14: loc_med=0.0323  pass
+    seed=15: loc_med=0.0348  pass
+
+================================================================================
+GLOBAL CONJUNCT TALLIES (across all 3 layouts)
+================================================================================
+
+P1 alarm answered (>= 6/8 seeds in >= 2/3 layouts):
+  Layout 1 (rng(7)): conjunct=8/8  [a(drop)=8/8  b(ceil)=8/8  c(per-col)=8/8]  PASS
+  Layout 2 (rng(11)): conjunct=8/8  [a(drop)=8/8  b(ceil)=8/8  c(per-col)=8/8]  PASS
+  Layout 3 (rng(13)): conjunct=8/8  [a(drop)=8/8  b(ceil)=8/8  c(per-col)=8/8]  PASS
+  Layouts passing: 3/3  (need >= 2)  P1 GLOBAL: PASS
+
+P2 pooled acceptance >= 50% (per layout):
+  Layout 1: 18/18 = 100.0%  PASS
+  Layout 2: 19/19 = 100.0%  PASS
+  Layout 3: 16/16 = 100.0%  PASS
+  P2 GLOBAL (all 3 layouts): PASS
+
+P3 no regression (>= 7/8 seeds, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+  P3 GLOBAL: PASS
+
+================================================================================
+NAMED OUTCOME + VERDICT
+================================================================================
+
+VERDICT: POSITIVE
+P1 PASSES (3/3 layouts). P2 PASSES (3/3 layouts >= 50% acceptance). P3 holds. The growth wall is RE-BOUNDED to the unnormalized-footprint convention. Wall documentation is amended. The normalized-predictive switch (evaluation only) is proposed for the creature. Under normalized evaluation, growth answers the alarm: surprise drops far below the detector threshold globally AND per-color — grown where needed, predictable anyway where not.
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp154_rows.json

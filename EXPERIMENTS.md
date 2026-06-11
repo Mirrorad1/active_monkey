@@ -4638,3 +4638,65 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   awaiting the Exp 154 confirmation. Self-grade: n/a. THE THREAD IS HALTED awaiting
   word ("154" or redirect).
 - Next: nothing until the consult is answered.
+
+## Exp 154 — THE GROWTH WALL FALLS: under honest evaluation the creature grows its own mind on demand — 24/24 runs, every jump accepted, every color quiet, the alarm fully answered on fresh seeds (POSITIVE 8/8 everywhere; verifier agreed; the wall RE-BOUNDED to the footprint convention; BREAKTHROUGH)
+- Plain: The confirmation run settled it: the thing five designs could not do — let the
+  creature notice its model of the world is too small and grow it, judged by its own
+  honest test — works completely once its predictions are scored by true probability
+  instead of the capped shortcut. On worlds it had never seen with these dice, every
+  proposed expansion was accepted, its surprise collapsed to near zero for grown
+  concepts, the concepts that did not need growing became predictable on their own,
+  and the structural-inadequacy alarm — which had rung through every previous attempt
+  — went silent in all twenty-four runs. The wall we documented was never about
+  growing; it was about the scoring shortcut we had declared at the chapter's start.
+- Story so far: This chapter set out to give a creature the ability to expand its own
+  model when experience demands it — the structure-learning directive's goal since
+  Exp 132, where the inadequacy detector was built and validated but had no world to
+  fire in. The migration to the continuous substrate gave it that world (aliased
+  colors, Exp 143), and the detector fired its first live positive — but five
+  successive growth designs (spawn, probated spawn, split, batch-jump, background
+  floor) all failed the creature's own honest acceptance test, hardening into a
+  documented wall: partial sharpness loses to complete vagueness under log-loss. The
+  Exp 152 autopsy found the deeper cause: the substrate's declared conjugacy-buying
+  shortcut caps every footprint at full strength, so sharp components could never be
+  louder than vague ones — growth was being scored in a currency that punished it.
+  Exp 153 showed the cure in a diagnostic arm; Exp 154 confirmed it on fresh seeds
+  under an honestly restated criterion: with evaluation switched to normalized
+  probability (the conjugate update untouched), detector→grow→quiet runs end-to-end,
+  100% acceptance, alarm silent everywhere. What remains provided, not self-formed:
+  the growth machinery itself (EM fitting, probation protocol) is designed; what the
+  creature self-forms is when to grow, what shape fits its world, and whether to keep
+  it — judged by its own lived surprise.
+- Setup (predeclared in the script docstring before running): Exp 153 Arm B verbatim,
+  FRESH seeds 8–15, three layouts; the honest criterion: (a) global drop ≥0.4 nats,
+  (b) zero detector events in the final 1000, (c) per-color final mean < 0.7 for ALL
+  colors (grown-vs-never-re-alarmed logged, not gated); P2 acceptance ≥50%; P3
+  localization. Falsifiers final per the human's word.
+- Result: POSITIVE — 8/8 seeds on every conjunct in all 3 layouts. Drops 0.58–1.18
+  nats; ceiling events 0 in 24/24; per-color final means: grown colors 0.001–0.019,
+  un-grown 0.000–0.579 (all < 0.7 — the verifier checked every cell); acceptance
+  53/53 = 100%; localization 0.030–0.038. Suite 150 green.
+- Verifier: agree (blinded, conjunct-by-conjunct, "no ambiguities").
+- Implication (generalizability tier: functional-form, per METHODOLOGY): the
+  Exp 144–146 wall is RE-BOUNDED — it binds to the unnormalized-footprint EVALUATION
+  convention, not to online structure growth; wall docs amended. Proposed core
+  change (consult-grade, not self-applied): the creature's predictive evaluation
+  (surprise, detector, valence, probation) switches to normalized densities —
+  evaluation only, conjugacy untouched. Side prediction worth its own test: this
+  switch should also narrow the M4 valence-range limit (the footprint cap was
+  depressing certainty there too). Growth is now available for nira's aliased
+  future. The rigor-and-fairness task list (docs/specs/rigor-fairness-upgrade.md)
+  was gated on this consult and is now unblocked.
+- Honest caveat: one growth mechanism (batch-jump) under one acceptance protocol;
+  the detector threshold (0.7) was reused on the normalized scale where it is
+  conservative; "wall falls" binds to THIS world family and toy scale; the
+  normalized switch is proposed, not yet applied to nira (that is a consult, and the
+  M4/M5 results would need re-verification under it).
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: BREAKTHROUGH (first end-to-end
+  demonstration of detector-triggered, honestly-judged autonomous model growth — the
+  structure-learning directive's goal — plus the re-attribution of a documented wall
+  to a declared approximation; survives the hostile test: no prior experiment had
+  the system grow structure and silence its own alarm).
+- Next: per the human's standing word — the N2-prereq confirmation, then the
+  meta-calibration-n3 direction; the growth-consult options (normalized switch for
+  nira; rigor T1–T17) ride in IDEAS.md.

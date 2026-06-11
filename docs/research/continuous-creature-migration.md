@@ -43,6 +43,16 @@ scatter — aliased senses are automatically down-weighted). **Named untried
 cracks:** batch-jump (fit the complete cover at once, probate it as one move);
 background-floor (a permanent broad component makes additions provably hole-free).
 
+**AMENDED at Exp 152–154 (the cracks were run on the human's word):** both cracks
+fail under the standard convention — and the Exp 152 autopsy + Exp 153 diagnostic +
+Exp 154 fresh-seed confirmation re-bound the wall: it belongs to the
+UNNORMALIZED-FOOTPRINT EVALUATION convention (footprints capped at 1, so sharpness
+buys no loudness and any K-fold refinement divides its voice by K), not to online
+growth. Under normalized predictive evaluation (the conjugate update untouched),
+batch-jump growth answers the alarm completely: 100% acceptance, zero detector
+events, every color quiet, 24/24 fresh-seed runs (verifier-checked). The
+normalized-predictive switch is a standing consult for the creature.
+
 ## Wall 2 — the valence range limit (Exp 147–149; accepted)
 
 Predictability-grounded valence on the continuous substrate preserves ORDERING

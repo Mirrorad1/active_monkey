@@ -83,6 +83,12 @@ throughout).**
   **RE-OPENED by human word (2026-06-11): both cracks authorized in sequence —
   M3e batch-jump (Exp 152), then M3f background-floor (Exp 153) if M3e's surprise
   arm fails. Both failing re-confirms the wall with the cracks spent.**
+  **WALL RE-BOUNDED at Exp 154 (confirmation POSITIVE, fresh seeds, verifier
+  agreed): the Exp 144–146 growth wall binds to the UNNORMALIZED-FOOTPRINT
+  EVALUATION convention, not to online structure growth. Under normalized
+  predictive evaluation (conjugate update untouched), detector→grow→quiet runs
+  end-to-end: 100% jump acceptance, zero alarm events, every color quiet, 24/24.
+  The normalized-predictive switch for the creature is a standing consult.**
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence
