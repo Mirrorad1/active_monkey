@@ -60,6 +60,9 @@ throughout).**
   verify the self-regulation mechanism Exp 143 hypothesized. FAIL = burn-in-scored
   spawning still cannot reduce predictive surprise (HALT — the growing toolkit cannot
   feed the alarm it answers).
+  **STATUS: HALTED at Exp 144** — the HALT arm fired (3/3 layouts). Diagnosis +
+  recommended M3c (per-color alarms, round-robin scheduling, live-probation
+  acceptance) in the IDEAS.md consult. The thread waits for the human's word.
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

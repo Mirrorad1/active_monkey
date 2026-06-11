@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:143, breakthrough:6, positive:85, wall:21, partial:31, from:4.81, to:4.00 };
+window.AM_TALLY = { total:144, breakthrough:6, positive:85, wall:22, partial:31, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1445,7 +1445,17 @@ window.AM_EXPERIMENTS = [
     setup:"Two phases on identical streams against the tabular twin: unimodal learning with the Exp 132 detector armed at its original constants, then spawning enabled under the structure-learning strict-decrease rule with a four-component budget per color. The no-wall branch was predeclared as a loggable finding, not a halt.",
     result:"Localization 0.044-0.061 in 8/8 both phases; detector >=1 event in 8/8 (the first live positive) and 394-607 events in the final 1000 steps; spawns 0-1 kept vs 5-11 reverted; twin sanity 1.000. No falsifier triggered; the mechanism account (covariance self-regulation; myopic scoring) is logged as hypothesis pending M3b instrumentation.",
     implication:"The migration's localization chain is unblocked — but the directive's own point, growing the model when surprise is irreducible, is unmet. M3b is inserted: burn-in-scored spawning judged on predictive surprise, varied layouts, and the instrumentation to pin the mechanism.",
-    trace:{ script:"experiments/exp143_m3_aliasing.py", output:"experiments/outputs/exp143.txt" } }
+    trace:{ script:"experiments/exp143_m3_aliasing.py", output:"experiments/outputs/exp143.txt" } },
+
+  { n:144, kind:"wall", chapter:"frontier",
+    title:"The alarm rings on: practice before the vote was not enough.",
+    one:"Migration rung M3b NEGATIVE and HALTED per the guardrail: burn-in EM before the strict-decrease vote still cannot reduce predictive surprise (3/3 layouts, 0/8 seeds — drops -0.35 to +0.15 nats, detector ringing 89-353 events per final thousand, growth budget exhausted on the single worst color). The measured consolation: learned covariances land at 0.90-0.98x the true within-color scatter — Exp 143's self-regulation hypothesis is now a fact.",
+    plain:"The fix for the short-sighted model-growing rule — let each proposed addition practice on recent memories before being voted on — did not work. Across three worlds and every run the creature's surprise stayed pinned or worsened, the inadequacy alarm kept ringing, and the growth budget went entirely to the squeakiest color while the others never grew. By the build rules this stops the migration until the human speaks. The consolation is genuine: the guess about why localization survived aliasing is now a measurement — the model automatically discounts senses it cannot trust, almost exactly in proportion to their unreliability.",
+    metric:{ from:0.4, to:-0.35, unit:"required vs observed surprise drop, nats (worst case; the halt arm)" },
+    setup:"Three aliased layouts times eight seeds; Exp 143's machinery plus candidate burn-in (ten EM iterations on the color's replay pairs before the strict-decrease vote) and per-color covariance instrumentation. The halt falsifier was predeclared: if the surprise arm fails in most seeds in two of three layouts, the toolkit cannot feed the alarm it answers.",
+    result:"Halt arm fired in all three layouts. Diagnosis from the committed tables: worst-color scheduling starves the other colors, and frozen-replay strict-decrease accepts spawns that hurt live inference — the documented active-data bias is load-bearing. Localization stayed perfect (0.04-0.05, 24/24); the structure is reachable (kept components settle on individual cells).",
+    implication:"The migration waits for the human's word. The recommended resumption is one bounded increment: per-color alarms, round-robin scheduling, and live-probation acceptance — keep a spawn only if its color's live surprise actually drops. The covariance self-regulation measurement stands on its own as the rung's insight.",
+    trace:{ script:"experiments/exp144_m3b_spawn_burnin.py", output:"experiments/outputs/exp144.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

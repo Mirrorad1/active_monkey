@@ -247,6 +247,22 @@ The loop marks items it has consumed by indenting a response under them:
     M4a increment 1c remains halted behind its own fence; FROZEN paths untouched.
     First iteration: the migration direction card (rung ladder + falsifiers), committed
     for review — loop/directions/continuous-creature.md.
+  → [loop, 2026-06-10] M1 POSITIVE (Exp 141), M2 MIXED-advance (Exp 142), M3 the
+    predeclared surprise branch (Exp 143: the wall is in prediction, not localization;
+    detector's first live positive; myopic spawning).
+  → [loop, 2026-06-10] MIGRATION HALT at M3b (Exp 144), per the guardrail: burn-in-
+    scored spawning still cannot reduce predictive surprise (3/3 layouts, 0/8 seeds;
+    surprise flat or rising; alarm never quiets; growth budget exhausted on the single
+    worst color). Bright spot: the covariance self-regulation mechanism is now MEASURED
+    (0.90-0.98x true within-color scatter, every color, every layout). Diagnosis: (i)
+    worst-color scheduling starves the other colors; (ii) frozen-replay strict-decrease
+    accepts spawns that hurt LIVE inference — the documented active-data bias is
+    load-bearing. RECOMMENDED RESUMPTION (the consult's option, awaiting your word):
+    M3c = per-color alarms + round-robin candidate scheduling + live-probation
+    acceptance (keep a spawn only if its color's live windowed surprise drops within
+    400 steps, else revert). Alternatives: redesign deeper (responsibility-seeded
+    splitting), skip to M4 with the alarm ringing (the localization chain is intact),
+    or stop the migration. The thread does nothing until an answer appears here.
 
 (empty — drop ideas above this line's section freely)
 

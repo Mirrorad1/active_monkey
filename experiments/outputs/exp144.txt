@@ -1,0 +1,294 @@
+================================================================================
+Exp 144 — continuous-creature rung M3b: spawn-for-prediction with burn-in
+================================================================================
+
+
+================================================================================
+LAYOUT 1  (rng(7))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 1, 2, 0]
+    row 1: [2, 3, 0, 1]
+    row 2: [0, 3, 0, 3]
+    row 3: [3, 2, 1, 2]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells and centers:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+  True within-color scatter traces (tr(cov of 4 cell centers, ddof=0)):
+    color 0: tr = 1.8750
+    color 1: tr = 2.7500
+    color 2: tr = 2.9375
+    color 3: tr = 1.6875
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  TwinF500
+----------------------------------------------------------------------------------------
+   0   1.2625   1.5850  -0.323      192  [4, 1, 1, 1]     3     2  0.0422    1.0000
+   1   1.2340   1.3392  -0.105      154  [4, 1, 1, 1]     3     5  0.0508    1.0000
+   2   1.2696   1.3627  -0.093      139  [3, 1, 1, 1]     2     4  0.0441    1.0000
+   3   1.2854   1.3032  -0.018      353  [4, 1, 1, 1]     3     2  0.0488    1.0000
+   4   1.3267   1.3564  -0.030      263  [3, 1, 1, 1]     2     6  0.0509    1.0000
+   5   1.2073   1.5589  -0.352      154  [5, 1, 1, 1]     4     1  0.0406    1.0000
+   6   1.2196   1.2537  -0.034      352  [3, 1, 1, 1]     2     1  0.0470    1.0000
+   7   1.2663   1.4905  -0.224      133  [5, 1, 1, 1]     4     2  0.0469    1.0000
+
+  P1 mechanism — tr(E[Sigma_k]) vs true scatter (ratio, per seed):
+  Seed    color0    color1    color2    color3
+     0     0.927     0.974     0.950     0.866
+     1     0.928     0.857     0.876     0.962
+     2     0.961     0.982     0.954     1.016
+     3     0.983     0.922     0.967     0.892
+     4     0.914     0.941     0.943     0.987
+     5     0.942     0.910     0.975     0.970
+     6     0.946     0.987     0.910     1.037
+     7     0.975     0.917     0.965     0.879
+  mean     0.947     0.936     0.943     0.951
+
+  TALLIES — Layout 1
+
+  P1 mechanism (mean ratio in [0.5, 1.5]):
+    color 0: mean_ratio=0.947  true_scatter=1.8750  IN BAND
+    color 1: mean_ratio=0.936  true_scatter=2.7500  IN BAND
+    color 2: mean_ratio=0.943  true_scatter=2.9375  IN BAND
+    color 3: mean_ratio=0.951  true_scatter=1.6875  IN BAND
+  P1 colors in band: 4/4  (need >= 3/4)  PASS
+
+  P2 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P2 layout 1: FAIL
+    seed=0: plateau=1.2625  final=1.5850  drop=-0.323  finCeil=192  comps=[4, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=1.2340  final=1.3392  drop=-0.105  finCeil=154  comps=[4, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.2696  final=1.3627  drop=-0.093  finCeil=139  comps=[3, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.2854  final=1.3032  drop=-0.018  finCeil=353  comps=[4, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.3267  final=1.3564  drop=-0.030  finCeil=263  comps=[3, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.2073  final=1.5589  drop=-0.352  finCeil=154  comps=[5, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=1.2196  final=1.2537  drop=-0.034  finCeil=352  comps=[3, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.2663  final=1.4905  drop=-0.224  finCeil=133  comps=[5, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0422  pass
+    seed=1: loc_med=0.0508  pass
+    seed=2: loc_med=0.0441  pass
+    seed=3: loc_med=0.0488  pass
+    seed=4: loc_med=0.0509  pass
+    seed=5: loc_med=0.0406  pass
+    seed=6: loc_med=0.0470  pass
+    seed=7: loc_med=0.0469  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 2  (rng(11))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [3, 1, 0, 2]
+    row 1: [2, 1, 1, 3]
+    row 2: [0, 1, 3, 2]
+    row 3: [0, 0, 3, 2]
+  CMAP array: [3, 1, 0, 2, 2, 1, 1, 3, 0, 1, 3, 2, 0, 0, 3, 2]
+
+  Color -> cells and centers:
+    color 0: cells [2, 8, 12, 13]  centers [[2.0, 0.0], [0.0, 2.0], [0.0, 3.0], [1.0, 3.0]]
+    color 1: cells [1, 5, 6, 9]  centers [[1.0, 0.0], [1.0, 1.0], [2.0, 1.0], [1.0, 2.0]]
+    color 2: cells [3, 4, 11, 15]  centers [[3.0, 0.0], [0.0, 1.0], [3.0, 2.0], [3.0, 3.0]]
+    color 3: cells [0, 7, 10, 14]  centers [[0.0, 0.0], [3.0, 1.0], [2.0, 2.0], [2.0, 3.0]]
+
+  True within-color scatter traces (tr(cov of 4 cell centers, ddof=0)):
+    color 0: tr = 2.1875
+    color 1: tr = 0.6875
+    color 2: tr = 2.9375
+    color 3: tr = 2.4375
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  TwinF500
+----------------------------------------------------------------------------------------
+   0   1.1522   1.1354   0.017      293  [1, 1, 1, 1]     0     5  0.0483    1.0000
+   1   0.9112   1.0245  -0.113      206  [1, 1, 1, 1]     0     3  0.0580    1.0000
+   2   1.0443   1.1110  -0.067      221  [1, 1, 1, 1]     0     2  0.0505    1.0000
+   3   1.1428   1.0776   0.065      266  [1, 1, 1, 1]     0     5  0.0506    1.0000
+   4   1.0438   1.1063  -0.062      173  [1, 1, 1, 1]     0     6  0.0519    1.0000
+   5   1.1306   1.1388  -0.008      129  [1, 1, 1, 1]     0     6  0.0509    1.0000
+   6   0.9249   1.1246  -0.200      190  [2, 2, 1, 1]     2     0  0.0486    1.0000
+   7   1.0870   1.1863  -0.099      187  [1, 1, 1, 1]     0     2  0.0575    1.0000
+
+  P1 mechanism — tr(E[Sigma_k]) vs true scatter (ratio, per seed):
+  Seed    color0    color1    color2    color3
+     0     0.907     0.949     1.025     1.013
+     1     0.790     0.992     0.803     0.585
+     2     0.857     0.938     0.960     0.862
+     3     0.948     0.956     0.955     0.940
+     4     0.954     0.907     0.906     0.892
+     5     1.053     0.972     0.947     1.005
+     6     0.666     0.987     0.869     0.928
+     7     1.045     0.957     0.982     1.036
+  mean     0.903     0.957     0.931     0.907
+
+  TALLIES — Layout 2
+
+  P1 mechanism (mean ratio in [0.5, 1.5]):
+    color 0: mean_ratio=0.903  true_scatter=2.1875  IN BAND
+    color 1: mean_ratio=0.957  true_scatter=0.6875  IN BAND
+    color 2: mean_ratio=0.931  true_scatter=2.9375  IN BAND
+    color 3: mean_ratio=0.907  true_scatter=2.4375  IN BAND
+  P1 colors in band: 4/4  (need >= 3/4)  PASS
+
+  P2 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P2 layout 2: FAIL
+    seed=0: plateau=1.1522  final=1.1354  drop=0.017  finCeil=293  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.9112  final=1.0245  drop=-0.113  finCeil=206  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.0443  final=1.1110  drop=-0.067  finCeil=221  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.1428  final=1.0776  drop=0.065  finCeil=266  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.0438  final=1.1063  drop=-0.062  finCeil=173  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.1306  final=1.1388  drop=-0.008  finCeil=129  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.9249  final=1.1246  drop=-0.200  finCeil=190  comps=[2, 2, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.0870  final=1.1863  drop=-0.099  finCeil=187  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0483  pass
+    seed=1: loc_med=0.0580  pass
+    seed=2: loc_med=0.0505  pass
+    seed=3: loc_med=0.0506  pass
+    seed=4: loc_med=0.0519  pass
+    seed=5: loc_med=0.0509  pass
+    seed=6: loc_med=0.0486  pass
+    seed=7: loc_med=0.0575  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 3  (rng(13))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 0, 0, 2]
+    row 1: [1, 2, 1, 0]
+    row 2: [1, 3, 2, 2]
+    row 3: [3, 3, 3, 0]
+  CMAP array: [1, 0, 0, 2, 1, 2, 1, 0, 1, 3, 2, 2, 3, 3, 3, 0]
+
+  Color -> cells and centers:
+    color 0: cells [1, 2, 7, 15]  centers [[1.0, 0.0], [2.0, 0.0], [3.0, 1.0], [3.0, 3.0]]
+    color 1: cells [0, 4, 6, 8]  centers [[0.0, 0.0], [0.0, 1.0], [2.0, 1.0], [0.0, 2.0]]
+    color 2: cells [3, 5, 10, 11]  centers [[3.0, 0.0], [1.0, 1.0], [2.0, 2.0], [3.0, 2.0]]
+    color 3: cells [9, 12, 13, 14]  centers [[1.0, 2.0], [0.0, 3.0], [1.0, 3.0], [2.0, 3.0]]
+
+  True within-color scatter traces (tr(cov of 4 cell centers, ddof=0)):
+    color 0: tr = 2.1875
+    color 1: tr = 1.2500
+    color 2: tr = 1.3750
+    color 3: tr = 0.6875
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  TwinF500
+----------------------------------------------------------------------------------------
+   0   0.6714   0.7467  -0.075      241  [1, 2, 2, 1]     2     3  0.0471    1.0000
+   1   0.7666   0.7396   0.027      201  [1, 1, 4, 1]     3     3  0.0528    1.0000
+   2   0.7999   0.8748  -0.075      307  [1, 5, 2, 1]     5     0  0.0415    1.0000
+   3   0.8613   0.7079   0.153       89  [1, 1, 1, 1]     0     0  0.0512    1.0000
+   4   0.7079   0.7943  -0.086      276  [1, 1, 2, 1]     1     5  0.0519    1.0000
+   5   0.7702   0.7349   0.035      137  [1, 1, 3, 1]     2     2  0.0517    1.0000
+   6   0.7270   0.9690  -0.242      206  [1, 1, 3, 1]     2     1  0.0471    1.0000
+   7   0.7276   0.7306  -0.003      116  [1, 1, 1, 1]     0     3  0.0586    1.0000
+
+  P1 mechanism — tr(E[Sigma_k]) vs true scatter (ratio, per seed):
+  Seed    color0    color1    color2    color3
+     0     0.966     0.940     0.932     0.973
+     1     0.988     0.968     0.872     0.923
+     2     0.974     0.953     0.939     1.023
+     3     1.011     0.948     0.963     0.938
+     4     0.910     0.976     0.951     0.917
+     5     0.956     0.998     1.008     0.968
+     6     1.076     0.931     0.859     0.989
+     7     0.954     0.909     0.970     0.920
+  mean     0.979     0.953     0.937     0.956
+
+  TALLIES — Layout 3
+
+  P1 mechanism (mean ratio in [0.5, 1.5]):
+    color 0: mean_ratio=0.979  true_scatter=2.1875  IN BAND
+    color 1: mean_ratio=0.953  true_scatter=1.2500  IN BAND
+    color 2: mean_ratio=0.937  true_scatter=1.3750  IN BAND
+    color 3: mean_ratio=0.956  true_scatter=0.6875  IN BAND
+  P1 colors in band: 4/4  (need >= 3/4)  PASS
+
+  P2 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P2 layout 3: FAIL
+    seed=0: plateau=0.6714  final=0.7467  drop=-0.075  finCeil=241  comps=[1, 2, 2, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.7666  final=0.7396  drop=0.027  finCeil=201  comps=[1, 1, 4, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=0.7999  final=0.8748  drop=-0.075  finCeil=307  comps=[1, 5, 2, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=0.8613  final=0.7079  drop=0.153  finCeil=89  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=0.7079  final=0.7943  drop=-0.086  finCeil=276  comps=[1, 1, 2, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=0.7702  final=0.7349  drop=0.035  finCeil=137  comps=[1, 1, 3, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.7270  final=0.9690  drop=-0.242  finCeil=206  comps=[1, 1, 3, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=0.7276  final=0.7306  drop=-0.003  finCeil=116  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0471  pass
+    seed=1: loc_med=0.0528  pass
+    seed=2: loc_med=0.0415  pass
+    seed=3: loc_med=0.0512  pass
+    seed=4: loc_med=0.0519  pass
+    seed=5: loc_med=0.0517  pass
+    seed=6: loc_med=0.0471  pass
+    seed=7: loc_med=0.0586  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+GLOBAL CONJUNCT TALLIES (across all 3 layouts)
+================================================================================
+
+P1 mechanism (>= 3/4 colors in [0.5,1.5] for ALL 3 layouts):
+  Layout 1 (rng(7)): 4/4 colors in band  PASS
+  Layout 2 (rng(11)): 4/4 colors in band  PASS
+  Layout 3 (rng(13)): 4/4 colors in band  PASS
+  P1 GLOBAL: PASS
+
+P2 alarm answered (all 3 layouts):
+  Layout 1: drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 2: drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 3: drop=0/8  quiet=0/8  comps=0/8  FAIL
+  P2 GLOBAL: FAIL
+
+P3 no regression (>= 7/8 seeds, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+  P3 GLOBAL: PASS
+
+Twin sanity (>= 7/8, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+
+================================================================================
+HALT-ARM EVALUATION
+================================================================================
+
+  Falsifier: P2 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — burn-in-scored growing still cannot reduce predictive surprise; toolkit cannot feed the alarm it answers (MIGRATION HALT)
+
+================================================================================
+VERDICT: NEGATIVE
+MIGRATION HALT
+  P2 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — burn-in-scored growing still cannot reduce predictive surprise; toolkit cannot feed the alarm it answers (MIGRATION HALT)
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp144_rows.json

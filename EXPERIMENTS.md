@@ -4144,3 +4144,51 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   wall; the detector's first live positive; the myopic-spawn lesson). Self-grade: n/a.
 - Next: rung M3b — spawn-for-prediction (burn-in-scored candidates, varied layouts,
   Σ instrumentation); halt guardrails re-armed on its falsifiers.
+
+## Exp 144 — continuous-creature rung M3b: burn-in spawning STILL cannot feed the alarm — MIGRATION HALT as the guardrail demands; the self-regulation mechanism is promoted from hypothesis to measured fact, 0.90–0.98× across every color and layout (NEGATIVE/HALT + the P1 measurement)
+- Plain: The fix for the short-sighted model-growing rule — let each proposed addition
+  practice on recent memories before being voted on — did not work. Across three
+  different worlds and every run, the creature's surprise stayed pinned or got worse,
+  the inadequacy alarm kept ringing, and the growth budget was spent entirely on the
+  single squeakiest color while the other three never grew. By the build rules this
+  stops the migration until the human speaks. The consolation is genuine: the guess
+  about WHY localization survived aliasing is now a measurement — each color's learned
+  uncertainty inflates to almost exactly the spread of its scattered cells, the model
+  automatically discounting senses it cannot trust.
+- Setup (predeclared in the script docstring before running): three aliased layouts
+  (rng 7/11/13) × 8 seeds; Exp 143 machinery + three changes: candidate BURN-IN (10 EM
+  iterations on the color's replay pairs, stored moments as per-point uncertainty)
+  before the strict-decrease vote, NIW write-back convention, per-color tr(E[Σ])
+  checkpoints. P1 mechanism: tr(E[Σ_k]) within [0.5,1.5]× the true within-color
+  scatter, ≥3/4 colors, all layouts. P2: surprise drop ≥0.4 nats + detector quiet +
+  components ≥3 for ≥3/4 colors, ≥6/8 seeds per layout. P3: localization ≤0.5. HALT =
+  P2's surprise arm fails ≥3/8 seeds in ≥2/3 layouts.
+- Result: NEGATIVE — THE HALT ARM FIRED (3/3 layouts; 0/8 seeds pass the drop arm
+  anywhere; drops −0.35…+0.15 nats, i.e., surprise flat or RISING; final-1000 ceiling
+  events 89–353 everywhere; components grow only on the worst color, [3–5,1,1,1]).
+  P1 PASS everywhere: ratios 0.903–0.979 across 4 colors × 3 layouts — the covariance
+  self-regulation account is now MEASURED (Exp 143's hypothesis confirmed within 10%).
+  P3 PASS (localization 0.04–0.05, 24/24). Twin sanity 1.000. Suite 108 green.
+- Diagnosis (from the committed tables, for the human's decision): two compounding
+  flaws. (i) SCHEDULING: worst-color targeting + per-color budget lets the squeakiest
+  color exhaust all growth while the rest stay unimodal — the alarm is global but the
+  fix is delivered to one address. (ii) ACCEPTANCE: strict-decrease on the FROZEN
+  replay window accepted spawns that RAISED live surprise — the active-data bias
+  documented since Exp 132's spec is load-bearing: replay wins do not transfer to live
+  inference (sharp new components change posterior dynamics for every color). The
+  structure itself is reachable — color 0's kept components settle on its individual
+  cells.
+- RECOMMENDED RESUMPTION (one increment, on the human's word — CONSULT posted to
+  loop/IDEAS.md): M3c = per-color alarms + round-robin candidate scheduling + LIVE
+  PROBATION acceptance (a kept spawn must drop its color's live windowed surprise
+  within the next 400 steps or be reverted). Bounded, falsifiable, targets both flaws.
+- Honest caveat: the burn-in EM itself was one design (10 iterations, hard floors); a
+  stronger adaptation (more iterations, annealed responsibilities) was not tried —
+  the halt is on THIS design, the recommended M3c, not on mixture-growing in
+  principle; per-color surprise attribution uses the mixture predictive's per-color
+  terms (an approximation); the P1 band [0.5,1.5] was generous and the result
+  (0.90–0.98) much tighter than required.
+- Verdict: NEGATIVE (the predeclared HALT arm) / the P1 measurement is NEW INSIGHT
+  (conjugate covariance learning as automatic reliability weighting, quantified).
+  Self-grade: n/a. THE MIGRATION THREAD IS HALTED awaiting explicit human word.
+- Next: nothing on this thread until the consult is answered; the loop holds.
