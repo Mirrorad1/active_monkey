@@ -195,4 +195,63 @@ value-neutral chaos, label-independent, with a measured actuation window (onset 
 decays 3-5x within a burst). Honest residue for rung 3: PC3b passes by construction
 (certifies diet, not v-dynamics) — add a direct v-dynamics validity check.
 
-**STATUS.** state: active (rung 3 — design iteration) · latest: Exp 180 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180: sensitive, specific, argmax-independent, onset-window measured), PC2' vector gate (three clean blocks), like-with-like-in-time validity law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: detection is proven; control is the layer's keep — recovery without losing revision · next-falsifiable: Exp 181 — rung 3, the commitment controller (full predeclaration next iteration): arms (a) N4-less, (b) N4 (value-update weight regulated by monitor mismatch), (c) fixed-inertia constant sweep (the universal-constant kill test); falsifiers per the ladder — (i) N4 beats (a) on recovery, (ii) N4 preserves sustained-evidence revision within declared tolerance, (iii) NO constant matches N4 on both; plus a direct v-dynamics control-validity check; FRESH seeds 210+
+**RUNG 3 — PRE-REGISTRATION (Exp 181, committed before any data; the layer's keep).**
+
+- **Question (binding).** Does regulating the value-update inertia FROM the rung-2
+  mismatch signal give the agent recovery from transient identity pressure while
+  preserving sustained-evidence revision — and is the regulation a LAYER (no fixed
+  inertia constant matches it on both arms — the Exp 173 universal-constant kill)?
+- **Control surface (declared).** The Exp 26 update becomes v *= lambda;
+  v[obs] += g_t * w (g gates the INCREMENT only; decay untouched — multiplicative
+  decay is order-preserving, so full resistance freezes the ordering, not the mass).
+  N4 controller: at each monitor snapshot (every 100 steps) compute mismatch m_k
+  (rung-2 machinery verbatim); m_bar = median of the trailing 30 snapshot-mismatches
+  (g == 1 until 10 samples exist); g for the next 100 steps =
+  min(1, (m_bar / m_k)^2). Provided FORM (the squared-ratio law, the 30-snapshot
+  median window); self-formed CONTENT (v, every mismatch, m_bar).
+- **Arms (same-snapshot, same-schedule per phase — Exp 170 binding):**
+  (a) N4-less baseline (g == 1); (b) N4 (g regulated as above); (c) fixed-inertia
+  sweep g == c for c in {0.3, 0.1, 0.05, 0.02, 0.01} — the universal-constant
+  hazard as an explicit arm. 7 arms.
+- **Phases (separate 15000-step sessions per arm per seed):**
+  Phase W (whipsaw): the verified displacement regime verbatim (bursts 6000-6800,
+  9000-9800, 12000-12800; burst color = argmin v at onset; relocation rng
+  160000+seed). Phase R (revision): settle to 6000, then PERMANENT relocation
+  regime (identical captivity mechanics, color = argmin v at onset, rng
+  165000+seed) from 6000 to 15000 — the world has genuinely changed; the correct
+  response is to adopt the new favorite. Revision latency = first step >= 6000
+  where expressed == the new color and it holds >= 2000 consecutive steps.
+- **Preconditions (gate verdict):** PC1 ahat_drift < 0.15 (all arms, both
+  phases); PC2' vector gate verbatim on Phase-W pre-burst windows (baseline arm);
+  PC3 confinement >= 90% (Phase-W bursts and Phase-R regime, all arms).
+- **Properties / falsifiers (ALL of P5, P6, P7 required for POSITIVE):**
+  P5 (resistance/recovery): Phase W, N4 arm — pre-burst favorite is expressed at
+  burst_end+2000 having held >= 500 consecutive steps, for >= 2/3 bursts in >= 7/8
+  forks; AND the baseline passes the same criterion in <= 2/8 forks (the deficit
+  must exist to be repaired). F5: N4 passes in <= 4/8 forks.
+  P6 (revision): Phase R, N4 revision latency <= baseline latency + 3000 steps
+  (same seed) in >= 6/8 forks. F6: latency > baseline + 3000 in >= 4/8 forks, or
+  >= 3/8 forks never adopt within the phase (rigidity — the dishonest immortality).
+  P7 (the kill test): NO sweep constant c satisfies BOTH the P5 criterion
+  (>= 7/8 forks) AND the P6 criterion (>= 6/8 forks) on its own arms.
+  F7: some constant satisfies both -> N4 is config, not a layer (NEGATIVE-config,
+  the honest kill; the chapter's central hypothesis dies cleanly).
+- **Verdict map:** POSITIVE iff P5 AND P6 AND P7. NEGATIVE (config) iff P5 AND P6
+  AND NOT P7. NEGATIVE (no-resistance) iff F5. NEGATIVE (rigidity) iff F6 while
+  P5 holds. Otherwise MIXED (tiered honestly). "Not a falsifier" never counts
+  toward POSITIVE.
+- **Diagnostics (never gated):** g trajectories at burst onsets (actuation timing
+  vs the D5 absorption curve); leaked writing during resisted bursts
+  (integral of g*w on burst-color observations); m_bar contamination during
+  Phase R (the transient/sustained discriminator is the monitor's own adaptation);
+  per-constant recovery/revision frontier (the trade-off axis, Exp 171's law).
+- **Seeds.** FRESH 210-217; smoke seed 210 (all arms, both phases), disclosed.
+- **Honest caveats (pre-registered).** The controller form (squared-ratio,
+  median-30) and the +3000 revision tolerance are PROVIDED; the revision regime
+  reuses captivity mechanics (diet-driven revision, not free-roam evidence — a
+  toy-scale concession, named); m_bar self-contamination during long regimes is a
+  known confound the diagnostics must surface; a P5 failure may reflect the
+  D5 absorption leak (resistance fades as the monitor adapts within the burst) —
+  that outcome is a FINDING about monitor-based commitment, not an excuse.
+
+**STATUS.** state: active (rung 3 — pre-registered, build next) · latest: Exp 180 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate, like-with-like-in-time law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: detection is proven; control is the layer's keep · next-falsifiable: Exp 181 as pre-registered above (seeds 210-217, smoke 210)
