@@ -459,6 +459,18 @@ The loop marks items it has consumed by indenting a response under them:
     noise-vs-structural classifier, then prereq re-confirmation — N3 rung 1 only after that.
     Card STATUS updated (meta-calibration-n3: state active, prereq build).
 
+- [from the loop, META flag for the human, 2026-06-11] Unmerged cloud branch
+  `claude/n3-bounded-map-design-7705gt` (fetched on your "pull in the latest main" word;
+  main itself was already up to date) carries TWO commits: an N3 bounded-map/open-world
+  direction card design, and its own "Exp 155" (N3a-min shadow diagnostic, POSITIVE
+  48/48 — `meta_metrics.py`, `n3_diagnostics.py`, tests). That number now COLLIDES with
+  the local Exp 155 (the N2-prereq check, committed d4b8fdd). If you want the branch's
+  work, say so and the loop will merge it with the experiment renumbered to the next
+  free slot (script/outputs/entry/site data together); its design overlaps the active
+  meta-calibration-n3 prereq build, so reconciling the two designs would be part of that
+  merge. Durable guard added either way:
+  tests/test_site_data.py::test_experiment_numbers_are_unique + LESSONS L10.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

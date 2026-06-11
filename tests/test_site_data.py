@@ -527,3 +527,24 @@ def test_asset_cache_versions_are_consistent():
         "Mixed ?v= asset versions across pages (bump them together): "
         + "; ".join(f"v={v}: {sorted(set(p))}" for v, p in sorted(versions.items()))
     )
+
+
+# ---------------------------------------------------------------------------
+# Experiment-number uniqueness: cross-branch collision guard (Exp 155
+# incident, 2026-06-11). Two agents working in parallel — the local loop and
+# a cloud branch (claude/n3-bounded-map-design-7705gt) — both claimed
+# "Exp 155" for different experiments. Numbers are stable citations
+# (LESSONS.md ground rule); a merge that lands a duplicate must trip CI here
+# instead of silently double-numbering the log.
+# ---------------------------------------------------------------------------
+
+
+def test_experiment_numbers_are_unique():
+    text = _read("EXPERIMENTS.md")
+    nums = [int(m) for m in re.findall(r"^## Exp (\d+) ", text, re.MULTILINE)]
+    dupes = sorted({n for n in nums if nums.count(n) > 1})
+    assert not dupes, (
+        f"duplicate experiment numbers in EXPERIMENTS.md: {dupes} — "
+        "a parallel branch's expNN must be renumbered to the next free "
+        "number at merge time (script, outputs, entry, and site data all move together)"
+    )

@@ -44,3 +44,7 @@ Ground rules for this file:
   are checked by a BLINDED verifier subagent that sees only the predeclaration + raw
   output — independent verification beats self-critique; the designer grades leniently.
   [PROTOCOL step 4.5]
+- **L10 (Exp 155 collision, 2026-06-11).** An experiment number is CLAIMED only by a
+  commit on local main; parallel/cloud branches that picked the same "next" number get
+  renumbered to the next free number at merge (script, outputs, entry, site data move
+  together). Guard: tests/test_site_data.py::test_experiment_numbers_are_unique.
