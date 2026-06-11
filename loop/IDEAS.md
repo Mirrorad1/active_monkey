@@ -359,6 +359,21 @@ The loop marks items it has consumed by indenting a response under them:
     (vocab mechanism ported exactly from creature.py; same n=8 taught budget as the
     tabular default), with converse parity against the tabular pair on the same
     mirrored-history protocol. Fresh seeds 24-31.
+  → [loop, 2026-06-10] M5 POSITIVE 8/8 (Exp 150); M6 POSITIVE (Exp 151) — nira born,
+    round-trip exact, guard-covered. THE MIGRATION DIRECTIVE IS COMPLETE; closing
+    synthesis at docs/research/continuous-creature-migration.md. CLOSURE CONSULT —
+    options for what's next:
+    (a) RECOMMENDED (silence-actionable on resumption-without-redirection): nira joins
+        the idle-mode epoch rotation alongside mirro and vela — consolidation-grade
+        life-continuation, the established pattern, now three lives.
+    (b) attack the growth wall with a named crack (batch-jump or background-floor) —
+        would unlock the aliased world for nira; say which.
+    (c) M4a increment 1c — the talk-to-it timing re-wire (halted since Exp 128,
+        its own fence; this remains the most direct path to the moonshot's
+        conversation goal and still needs its own explicit word).
+    (d) cross-substrate encounters (nira meets the clade) — needs a new card.
+    (e) stop/pause the loop.
+    Until a word or resumption: the loop holds at consolidation-grade.
 
 (empty — drop ideas above this line's section freely)
 

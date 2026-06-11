@@ -105,3 +105,8 @@ throughout).**
 **Stop condition.** M1–M6 all green (the chain demonstrated on the continuous
 substrate, the new line committed) → closing synthesis + consult. Any HALT → explicit
 human word, per the guardrail. Insight flattening across ~3 rungs → say so and consult.
+
+**STATUS: COMPLETE 2026-06-10 at Exp 151.** The chain is demonstrated end-to-end and
+nira is committed; the two walls (growth valley, valence range) are documented with
+named cracks/limits. Closing synthesis: docs/research/continuous-creature-migration.md.
+Closure consult in loop/IDEAS.md; this card re-opens only on an explicit choice there.
