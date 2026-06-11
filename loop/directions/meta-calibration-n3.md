@@ -122,4 +122,13 @@ reaches type-2 AUROC 0.80 pooled vs 0.56 for the natural channel, 8/8 fresh fork
 calibration r ≥ 0.95 — the confidence half of the N2 prereq exists on this body. Bound:
 discrimination demonstrated where reliability varies by PLACE (the channel's index).
 
-**STATUS.** state: active (prereq build) · latest: Exp 157 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156: plateau detectors are blind to mismatch with period < window), per-place expected-uncertainty channel (Exp 157) · why: next rung on self-modeling ladder; Exp 155/156 showed the N2 prereq must be built and pinned what to build; Exp 157 delivered the confidence half · next-falsifiable: the noise-vs-structural classifier (lag-1 residual statistic, slope-gate-free), then prereq re-confirmation with per-fork-randomized regimes
+**PREREQ BUILD, PIECE 2 (Exp 158, POSITIVE).** The slope-gate-free classifier (window-200
+error rate + lag-1 residual autocorrelation; OK/NOISE/STRUCTURAL) separated perfectly —
+every gated fraction 1.0 across randomized derangements and periods; false-structure rate
+0.0 under irreducible noise. The ungated place-noise probe REFUTED the designer's
+prediction (reads NOISE, ρ₁ negative −0.14..−0.19, parity-alternation mechanism): the
+statistic measures TEMPORAL compressibility; place-conditional unreliability belongs to
+the Exp 157 channel. The two N2 pieces factor the predicament space — complementarity
+measured, not assumed.
+
+**STATUS.** state: active (prereq build) · latest: Exp 158 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158) · why: next rung on self-modeling ladder; Exp 155/156 pinned what to build; Exp 157+158 delivered both N2 pieces · next-falsifiable: the prereq RE-CONFIRMATION (Exp 155 protocol with the new channel + classifier, per-fork-randomized regimes per the verifier's determinism flag) — pass opens N3 rung 1

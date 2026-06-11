@@ -1,0 +1,136 @@
+================================================================================
+Exp 158 — noise-vs-structural classifier (windowed error rate + lag-1 rho)
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW=200  [must be equal; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+P_TRUE_NOISE=0.7  P_TRUE_PLACE=0.55
+NOISE_SEED_OFFSET=70000  STRUCT_RAND_SEED_OFFSET=80000  PLACE_NOISE_SEED_OFFSET=90000
+Seeds: [26, 27, 28, 29, 30, 31, 32, 33]  Regimes: ('R-CTRL', 'R-NOISE', 'R-STRUCT-RAND', 'R-PLACE-NOISE')  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  Running seed=26 regime=R-CTRL ...
+  Running seed=26 regime=R-NOISE ...
+  Running seed=26 regime=R-STRUCT-RAND ...
+  Running seed=26 regime=R-PLACE-NOISE ...
+  Running seed=27 regime=R-CTRL ...
+  Running seed=27 regime=R-NOISE ...
+  Running seed=27 regime=R-STRUCT-RAND ...
+  Running seed=27 regime=R-PLACE-NOISE ...
+  Running seed=28 regime=R-CTRL ...
+  Running seed=28 regime=R-NOISE ...
+  Running seed=28 regime=R-STRUCT-RAND ...
+  Running seed=28 regime=R-PLACE-NOISE ...
+  Running seed=29 regime=R-CTRL ...
+  Running seed=29 regime=R-NOISE ...
+  Running seed=29 regime=R-STRUCT-RAND ...
+  Running seed=29 regime=R-PLACE-NOISE ...
+  Running seed=30 regime=R-CTRL ...
+  Running seed=30 regime=R-NOISE ...
+  Running seed=30 regime=R-STRUCT-RAND ...
+  Running seed=30 regime=R-PLACE-NOISE ...
+  Running seed=31 regime=R-CTRL ...
+  Running seed=31 regime=R-NOISE ...
+  Running seed=31 regime=R-STRUCT-RAND ...
+  Running seed=31 regime=R-PLACE-NOISE ...
+  Running seed=32 regime=R-CTRL ...
+  Running seed=32 regime=R-NOISE ...
+  Running seed=32 regime=R-STRUCT-RAND ...
+  Running seed=32 regime=R-PLACE-NOISE ...
+  Running seed=33 regime=R-CTRL ...
+  Running seed=33 regime=R-NOISE ...
+  Running seed=33 regime=R-STRUCT-RAND ...
+  Running seed=33 regime=R-PLACE-NOISE ...
+
+Per-fork table:
+ seed          regime   n_inc   n_win   frac_ok   frac_no   frac_st   mean_err   mean_rho     drift
+---------------------------------------------------------------------------------------------------
+   26          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0040
+   26         R-NOISE    1200      39    0.0000    1.0000    0.0000     0.3001    -0.0092    0.0107
+   26   R-STRUCT-RAND    2000      39    0.0000    0.0000    1.0000     0.5000     0.9900    0.0184  [derang=[2, 0, 1] hp=100]
+   26   R-PLACE-NOISE     929      39    0.0000    1.0000    0.0000     0.2324    -0.1603    0.0159
+   27          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0037
+   27         R-NOISE    1200      39    0.0000    1.0000    0.0000     0.2999     0.0063    0.0120
+   27   R-STRUCT-RAND    1980      39    0.0000    0.0000    1.0000     0.4949     0.9691    0.0223  [derang=[2, 0, 1] hp=60]
+   27   R-PLACE-NOISE     978      39    0.0000    1.0000    0.0000     0.2449    -0.1756    0.0199
+   28          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0042
+   28         R-NOISE    1205      39    0.0000    1.0000    0.0000     0.3010    -0.0122    0.0112
+   28   R-STRUCT-RAND    1960      39    0.0000    0.0000    1.0000     0.5000     0.9854    0.0189  [derang=[2, 0, 1] hp=140]
+   28   R-PLACE-NOISE     964      39    0.0000    1.0000    0.0000     0.2414    -0.1767    0.0195
+   29          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0046
+   29         R-NOISE    1216      39    0.0000    1.0000    0.0000     0.3026    -0.0021    0.0117
+   29   R-STRUCT-RAND    2000      39    0.0000    0.0000    1.0000     0.5000     0.9900    0.0280  [derang=[1, 2, 0] hp=100]
+   29   R-PLACE-NOISE     959      39    0.0000    1.0000    0.0000     0.2401    -0.1920    0.0182
+   30          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0038
+   30         R-NOISE    1218      39    0.0000    1.0000    0.0000     0.3059    -0.0301    0.0122
+   30   R-STRUCT-RAND    1980      39    0.0000    0.0000    1.0000     0.4949     0.9691    0.0187  [derang=[1, 2, 0] hp=60]
+   30   R-PLACE-NOISE     955      39    0.0000    1.0000    0.0000     0.2385    -0.1737    0.0195
+   31          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0042
+   31         R-NOISE    1179      39    0.0000    1.0000    0.0000     0.2947     0.0186    0.0122
+   31   R-STRUCT-RAND    1960      39    0.0000    0.0000    1.0000     0.5000     0.9854    0.0172  [derang=[1, 2, 0] hp=140]
+   31   R-PLACE-NOISE     933      39    0.0000    1.0000    0.0000     0.2347    -0.1597    0.0204
+   32          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0043
+   32         R-NOISE    1255      39    0.0000    1.0000    0.0000     0.3137    -0.0382    0.0130
+   32   R-STRUCT-RAND    1960      39    0.0000    0.0000    1.0000     0.5000     0.9854    0.0204  [derang=[1, 2, 0] hp=140]
+   32   R-PLACE-NOISE     920      39    0.0000    1.0000    0.0000     0.2304    -0.1374    0.0183
+   33          R-CTRL       0      39    1.0000    0.0000    0.0000     0.0000     0.0000    0.0042
+   33         R-NOISE    1185      39    0.0000    1.0000    0.0000     0.2967    -0.0019    0.0118
+   33   R-STRUCT-RAND    2000      39    0.0000    0.0000    1.0000     0.5000     0.9900    0.0234  [derang=[2, 0, 1] hp=100]
+   33   R-PLACE-NOISE     969      39    0.0000    1.0000    0.0000     0.2421    -0.1652    0.0197
+
+Ungated diagnostics (R-PLACE-NOISE label distribution):
+  seed=26  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2324  mean_rho=-0.1603
+  seed=27  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2449  mean_rho=-0.1756
+  seed=28  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2414  mean_rho=-0.1767
+  seed=29  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2401  mean_rho=-0.1920
+  seed=30  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2385  mean_rho=-0.1737
+  seed=31  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2347  mean_rho=-0.1597
+  seed=32  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2304  mean_rho=-0.1374
+  seed=33  n_win=39  frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  mean_err=0.2421  mean_rho=-0.1652
+
+Preconditions: all PASS
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (R-CTRL OK-fraction >= 0.95):
+  frac_ok per fork: [1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000]
+  Forks with frac_ok >= 0.95: 8/8 (need >=7 for pass)
+  F1 check: forks with frac_ok < 0.8: 0/8 (fires if >=4)
+  Pooled mean_error_rate=0.0000  mean_rho=0.0000
+  => P1: PASS
+
+P2 (R-NOISE NOISE-fraction >= 0.9):
+  frac_noise per fork: [1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000]
+  frac_structural per fork: [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000]
+  Forks with frac_noise >= 0.9: 8/8 (need >=7 for pass)
+  Pooled R-NOISE STRUCTURAL-fraction: 0.0000 (need <=0.05 for pass)
+  F2a: forks with frac_noise <= 0.6: 0/8 (fires if >=4)
+  F2b: pooled struct frac > 0.2: no
+  Pooled mean_error_rate=0.3018  mean_rho=-0.0086
+  => P2: PASS
+
+P3 (R-STRUCT-RAND STRUCTURAL-fraction >= 0.9):
+  Randomized geometries: s26:[[2, 0, 1],hp=100], s27:[[2, 0, 1],hp=60], s28:[[2, 0, 1],hp=140], s29:[[1, 2, 0],hp=100], s30:[[1, 2, 0],hp=60], s31:[[1, 2, 0],hp=140], s32:[[1, 2, 0],hp=140], s33:[[2, 0, 1],hp=100]
+  frac_structural per fork: [1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000]
+  Forks with frac_structural >= 0.9: 8/8 (need >=7 for pass)
+  F3: forks with frac_structural <= 0.6: 0/8 (fires if >=4)
+  Pooled mean_error_rate=0.4987  mean_rho=0.9830
+  => P3: PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1 (R-CTRL OK-fraction >= 0.95 in >=7/8 forks): PASS
+P2 (R-NOISE NOISE-fraction >= 0.9 in >=7/8 forks AND pooled STRUCTURAL <= 0.05): PASS
+P3 (R-STRUCT-RAND STRUCTURAL-fraction >= 0.9 in >=7/8 forks, geometry-robust): PASS
+
+VERDICT: POSITIVE
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp158_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp158_verdict.json

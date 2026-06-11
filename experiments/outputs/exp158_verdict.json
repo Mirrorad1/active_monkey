@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp158",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_control_ok": {
+      "pass": true,
+      "reason": "R-CTRL frac_ok >= 0.95 in 8/8 forks (need 7); F1 forks_low=0/8"
+    },
+    "P2_noise_typed": {
+      "pass": true,
+      "reason": "R-NOISE frac_noise >= 0.9 in 8/8 forks (need 7); pooled struct frac=0.0000 (need <=0.05); F2a forks_low=0/8; F2b=False"
+    },
+    "P3_structure_typed_geometry_robust": {
+      "pass": true,
+      "reason": "R-STRUCT-RAND frac_structural >= 0.9 in 8/8 forks (need 7); F3 forks_low=0/8"
+    }
+  },
+  "notes": "N2 prereq build piece 2: windowed error-rate + lag-1 rho classifier, no flatness gate. Randomized structural geometries across forks. R-PLACE-NOISE is an ungated probe (place-conditional structure). Fixes Exp 155 class-blindness and Exp 156 flatness-gate blindness."
+}

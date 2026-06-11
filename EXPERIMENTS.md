@@ -4889,3 +4889,63 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   residual-structure statistic (validated Exp 155), with no flatness gate (Exp 156's
   blindness law); then the prereq re-confirmation with per-fork-randomized regimes
   before N3 rung 1.
+
+## Exp 158 — the second N2 piece works: the slope-gate-free classifier separates OK / noise / structure perfectly across randomized geometries — and the ungated probe refutes its designer, pinning the instrument's true boundary: it reads TEMPORAL compressibility, and place-conditional unreliability belongs to the other instrument (POSITIVE; the two N2 pieces are complementary by measurement, not assumption)
+
+- Plain: we built the second piece of the creature's self-monitoring — a typed alarm that
+  tells three situations apart from its own error stream alone: all is well, the world is
+  irreducibly random, or the world has changed in a way its model cannot represent. It
+  classified every test window correctly, including in lying worlds whose period and
+  pattern were randomized. The bonus came from a side probe that proved me wrong: a world
+  where unreliability depends on PLACE reads as random to this alarm, not structural —
+  because this alarm reads patterns in TIME. That is exactly the gap the previous piece
+  (the per-place reliability sense) covers, so the two pieces fit together, measured
+  rather than assumed.
+- Question: does a slope-gate-free classifier over the creature's own correctness stream
+  (windowed error rate + lag-1 residual autocorrelation) separate OK / irreducible-noise /
+  structural mismatch, robustly across randomized structural geometries — fixing Exp 155's
+  class-blind detector and obeying Exp 156's blindness law?
+- Setup (predeclared in the script docstring before running; FRESH seeds 26–33): forks of
+  mirro, 4000 steps; classifier: window 200 over correctness, evaluated every 100 steps;
+  error < 0.05 → OK, else ρ₁ > 0.3 → STRUCTURAL, else NOISE (thresholds justified from
+  committed Exp 155 numbers, not tuned here). Regimes: R-CTRL; R-NOISE (p 0.7);
+  R-STRUCT-RAND with per-fork randomized derangement {[1,2,0],[2,0,1]} × half-period
+  {60,100,140}. P1: CTRL OK ≥ 0.95 in ≥7/8 (F1 < 0.8 in ≥4/8). P2: NOISE ≥ 0.9 in ≥7/8 AND
+  pooled false-STRUCTURAL ≤ 0.05 (F2: ≤ 0.6 in ≥4/8 OR > 0.2). P3: STRUCT ≥ 0.9 in ≥7/8
+  (F3 ≤ 0.6 in ≥4/8). POSITIVE iff all. Ungated probe: Exp 157's place-noise world, with
+  the NAMED prediction it would lean STRUCTURAL (dwell correlates errors by place).
+- Result: POSITIVE — every gated fraction was exactly 1.0000 (no borderline window in
+  936 gated evaluations): CTRL 8/8 OK (mean error 0.0000); NOISE 8/8 NOISE (pooled mean
+  ρ −0.0086, false-STRUCTURAL 0.0000); STRUCT-RAND 8/8 STRUCTURAL across all six
+  geometry combinations (pooled mean error 0.4987, ρ 0.9830). Preconditions green (max
+  drift 0.0280). PROBE: prediction REFUTED 0/8 — place-noise classified 100% NOISE with
+  consistently NEGATIVE ρ₁ (−0.1374..−0.1920), error rate 0.23–0.24.
+- Verifier: agree (blinded, conjunct-by-conjunct, derived POSITIVE independently);
+  flagged the probe prediction as unambiguously refuted, the negative ρ as the surprise,
+  and the hedged "either outcome informative" phrasing as having no quantitative
+  threshold (fair — it was ungated by design).
+- Implication (generalizability tier: functional-form for the separator; the probe
+  finding is parameter-level to this grid). The classifier piece of N2 exists and is
+  geometry-robust where the old detector was structurally blind. The probe pins its
+  honest boundary: lag-1 residual autocorrelation reads TEMPORAL compressibility of the
+  error stream, not representable structure per se — place-conditional unreliability
+  produces NEGATIVE temporal correlation here. Named mechanism for that sign (analytic
+  argument, not yet instrumented): N/S/E/W unit moves flip checkerboard parity at every
+  non-wall step, so the walk ALTERNATES clean/noisy cells and errors anti-correlate at
+  lag 1; the wall-clamp steps dilute it toward −0.16 from −0.45 ideal. Synthesis the two
+  pieces now license: N2's instruments factor the predicament space — temporal structure
+  → classifier (this exp), spatial reliability → expected-uncertainty channel (Exp 157)
+  — complementarity demonstrated by the same world reading differently in each.
+- Honest caveat: classifier form and thresholds are PROVIDED (justified on prior
+  committed data, but designed); the perfect 1.0 fractions reflect that these three
+  regimes are far from the thresholds — boundary worlds (error ≈ 0.05, ρ ≈ 0.3, period ≥
+  window) are untested; the parity mechanism for the negative ρ is an analytic argument,
+  not yet verified by logging parity per step; R-PLACE-NOISE's "correct" label is
+  genuinely contested (it IS representable structure spatially, i.i.d. temporally) — the
+  probe was ungated precisely because the taxonomy, not the instrument, was in question.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE-SINGLE (instrument validated as
+  designed; the probe refutation is the genuinely new datum and it cost nothing gated).
+- Next: N2 prereq RE-CONFIRMATION (the Exp 155 protocol re-run with both new pieces in
+  place of the channels that failed it, per-fork-randomized regimes per the verifier's
+  determinism flag) — then, if it passes, the N3 rung-1 gate opens with R-STRUCT as the
+  deceptive-regime candidate.
