@@ -490,6 +490,13 @@ The loop marks items it has consumed by indenting a response under them:
   RECOMMENDED (bounded, silence-actionable on resumption-without-redirection): (b) the
   synthesis — the wall is well-shaped and the chapter's findings deserve consolidation
   before more design attempts; (a) stays available on an explicit word.
+  → [loop, 2026-06-11] recommendation (b) EXECUTED as consolidation-grade work (the
+    class automated fires are sanctioned for): docs/research/n3-meta-calibration-chapter.md
+    — the chapter synthesis (prereq build 155–159, rung 1 at 162, rung 2 at 163, the
+    rung-3 wall 164–166, the five controller laws, bridge claims bounded, open edges
+    named). The consolidation queue is now EMPTY: options (a) lock-on-label-consistency
+    and (c) stop/redirect await an explicit word here; subsequent automated fires idle
+    with a reminder.
 
 (empty — drop ideas above this line's section freely)
 
