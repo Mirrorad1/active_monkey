@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp180",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P2_sensitivity": {
+      "pass": true,
+      "reason": "forks with AUROC_A>=0.8: 8/8 (need >=7); median AUROC_A=0.894 (F2 if <=0.5)"
+    },
+    "P3_specificity": {
+      "pass": true,
+      "reason": "pairs with AUROC_A-AUROC_B>=0.2: 8/8 (need >=6); median AUROC_B=0.262 (<=0.65?=True); PC3b_valid=True"
+    },
+    "P4_argmax_independence": {
+      "pass": true,
+      "reason": "flickering_forks=[202, 205, 208]; evaluable=True; status=pass"
+    },
+    "PC3b_control_validity": {
+      "pass": true,
+      "reason": "all bursts within TV bar"
+    }
+  },
+  "notes": "N4 rung 2 attempt 4. Per-burst-matched scramble control (each burst's histogram from its own [bstart-1000,bstart) window \u2014 the like-with-like-in-time law from Exp 179); PC3b, P2, P3/F3, P4, D5 and decision rule verbatim from the Exp 178 pre-registered card. Forks of mirro only."
+}

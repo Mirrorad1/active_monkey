@@ -185,4 +185,14 @@ declaration is FALSIFIED (quiet windows differ pairwise by median TV 0.057 > the
 bar; captivity also shifts subsequent dwell). Burst 0 — matched to its own preceding
 window — certified 8/8 at TV down to 0.0025: the constructive proof of the fix.
 
-**STATUS.** state: active (rung 2, attempt 4 — the last before a consult, declared) · latest: Exp 179 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the twice-replicated rung-1.5 monitor (178/179), PC2' vector gate (two clean blocks), the like-with-like-in-time validity law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: one valid control separates rung-1.5 from rung-2; the fix has a constructive proof · next-falsifiable: Exp 180 — per-burst-matched scramble: Arm B recomputes the occupancy histogram from EACH burst's own pre-burst window [bstart-1000, bstart) at onset (rng 175000+seed); PC3b, P2, P3/F3, P4, D5, decision rule verbatim; FRESH seeds 202-209; smoke 202; prediction PC3b passes all bursts (TV ~ 0.02) and P3 decides; a THIRD PC3b void -> consult, no attempt 5
+**RUNG 2 PASSED (Exp 180, attempt 4, POSITIVE, adversarially blind-verified).** The
+per-burst-matched control certified (PC3b 24/24 at sampling-noise level) and every
+conjunct landed: P2 8/8 (median AUROC 0.894), P3 8/8 pairs (delta 0.536-0.719; the
+scramble inversion LICENSED at 0.262 — value-neutral chaos makes the signal quieter
+than quiet, three blocks running, 0/24 flips), P4, D5 24/24. The N4 instrument is
+real: read-only self-prediction separates identity displacement from quiet AND from
+value-neutral chaos, label-independent, with a measured actuation window (onset spike
+decays 3-5x within a burst). Honest residue for rung 3: PC3b passes by construction
+(certifies diet, not v-dynamics) — add a direct v-dynamics validity check.
+
+**STATUS.** state: active (rung 3 — design iteration) · latest: Exp 180 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180: sensitive, specific, argmax-independent, onset-window measured), PC2' vector gate (three clean blocks), like-with-like-in-time validity law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: detection is proven; control is the layer's keep — recovery without losing revision · next-falsifiable: Exp 181 — rung 3, the commitment controller (full predeclaration next iteration): arms (a) N4-less, (b) N4 (value-update weight regulated by monitor mismatch), (c) fixed-inertia constant sweep (the universal-constant kill test); falsifiers per the ladder — (i) N4 beats (a) on recovery, (ii) N4 preserves sustained-evidence revision within declared tolerance, (iii) NO constant matches N4 on both; plus a direct v-dynamics control-validity check; FRESH seeds 210+

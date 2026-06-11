@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:179, breakthrough:8, positive:93, wall:27, partial:51, from:4.81, to:4.00 };
+window.AM_TALLY = { total:180, breakthrough:8, positive:94, wall:27, partial:51, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1982,7 +1982,17 @@ window.AM_EXPERIMENTS = [
     result:"MIXED, tier rung-1.5, blind-verified. Gates all pass (PC2' second clean block, max TV 0.039). P2 8/8 (0.840-0.896). P4 pass. D5 24/24 (ratios 3.2-4.6). PC3b: burst 0 valid 8/8, bursts 1-2 fail (0/8, 3/8) — P3 voided; raw specificity again overwhelming but unlicensed.",
     implication:"Replication makes rung-1.5 solid on two independent seed blocks. The design law: a control's validity must compare like-with-like in TIME — quiet-window composition is not stationary at the certification grain, so each burst's diet must match its OWN immediately-preceding window. Burst 0's perfect pass proves the per-burst-matched design certifies. Exp 180 is the last attempt before a consult, declared now.",
     caveat:"rung-2 is still NOT claimed — P3 remains unresolved for the second time, now for a diagnosed instrument reason; the window-variance numbers come from a post-hoc deterministic rerun (committed); the per-burst-matched fix is designed after seeing this data — mitigated by fresh seeds next and the declared third-void-consults rule; this is the second consecutive instrument failure on the control conjunct, so Exp 180 is the LAST attempt before a consult, declared now.",
-    trace:{ script:"experiments/exp179_n4_monitor3.py", output:"experiments/outputs/exp179.txt" } }
+    trace:{ script:"experiments/exp179_n4_monitor3.py", output:"experiments/outputs/exp179.txt" } },
+  { n:180, kind:"positive", chapter:"frontier",
+    title:"Rung 2 falls: the mirror does not just notice chaos — it notices becoming someone else.",
+    one:"N4 rung 2 PASSES on attempt 4. The control finally certified — each captivity's diet copied from the window of life immediately before it, per the like-with-like-in-time law — and with it the last open claim closed. Sensitivity: AUROC 0.859-0.911 in 8/8 forks (median 0.894). Specificity, now licensed: identity-rewriting captivity beats value-neutral captivity by 0.54-0.72 in every fork pair, and the value-neutral arm's signal lands BELOW quiet baseline (0.262) — chaos that leaves the values alone makes the mirror QUIETER, for the third independent block running, while flipping zero identities in 24 bursts. Argmax-independence holds; every burst shows the onset-spike-then-absorb signature. The adversarial verifier confirmed the verdict and pinned the honest residue: the validity check now passes by construction (it certifies the diet, not the value dynamics — those rest on the thrice-replicated inversion), to be closed with a direct check at rung 3.",
+    plain:"Fourth attempt, full pass. The creature now carries a working instrument that says 'I am not who I predicted I would be' exactly when that is true: captivity that re-makes its values lights the signal in every fork; equally chaotic captivity that leaves its values alone makes the signal quieter than ordinary life. What the creature cannot yet do is act on the signal — every displaced identity stays displaced. Giving it that lever, and proving the lever isn't just a constant, is the next rung.",
+    metric:{ from:0.894, to:0.262, unit:"median AUROC, identity bursts vs value-neutral bursts (specificity licensed)" },
+    setup:"Predeclared in the Exp 179 entry and card (c82fbd4) before any new data: per-burst-matched scramble — each burst's relocation histogram recomputed from its own immediately-preceding 1000-step window. All thresholds and the decision rule verbatim across all three attempts (verifier diff-checked). Fresh seeds 202-209.",
+    result:"POSITIVE, tier rung-2, adversarially blind-verified (including a hand-computed U-statistic and the PC3b circularity analysis). Gates all pass; PC3b 24/24 at sampling-noise level (mean TV 0.0198 vs theoretical 0.0204); P2 8/8; P3 8/8 pairs; P4 pass; D5 24/24; Arm B flips 0/24.",
+    implication:"The N4 instrument is real at this richness: a read-only self-prediction separates identity displacement from quiet life AND from value-neutral chaos, label-independent, with a measured actuation window (the onset spike decays 3-5x within a burst — the controller must act early). Rung 3 is armed: regulate value-update inertia FROM the mismatch signal, against an N4-less twin and a fixed-inertia constant sweep — the universal-constant kill test.",
+    caveat:"PC3b's by-construction pass means value-dynamics neutrality of the control is supported by the replicated inversion pattern, NOT formally certified — rung 3's design should add a direct v-dynamics validity check (TV of v at burst midpoint vs pre-burst, per the verifier's recommendation); the absolute AUROC_B values mean \"scramble suppresses mismatch below baseline,\" not \"scramble is near-chance\"; monitor form, bars, λ, schedule remain PROVIDED; specificity is against ONE constructed non-identity perturbation class, not all.",
+    trace:{ script:"experiments/exp180_n4_monitor4.py", output:"experiments/outputs/exp180.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

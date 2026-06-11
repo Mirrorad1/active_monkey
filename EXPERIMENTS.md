@@ -6211,3 +6211,68 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   verbatim; FRESH seeds 202–209; smoke 202. Prediction: PC3b passes all three
   bursts (TV ≈ sampling noise ≈ 0.02) and P3 finally decides rung-2 vs rung-1.5.
   A THIRD PC3b void → consult, no attempt 5.
+
+## Exp 180 — N4 RUNG 2 PASSES (attempt 4, POSITIVE, blind-verified): the per-burst-matched control certifies and every conjunct lands — the identity monitor DETECTS and SPECIFIES identity displacement: sensitivity 8/8 (median AUROC 0.894), specificity 8/8 pairs (Δ 0.536–0.719, the scramble inversion now LICENSED at 0.262), argmax-independence, adaptation 24/24 (POSITIVE; rung 3 — the commitment controller — is armed)
+
+- Plain: fourth attempt, full pass. The control finally certified — by copying each
+  captivity's diet from the window of life immediately before it, the way the
+  design law demanded — and with it the last open claim closed: the mirror does
+  not just notice chaos, it notices BECOMING SOMEONE ELSE. Captivity that re-makes
+  the creature's values lights the signal in every fork; equally chaotic captivity
+  that leaves its values alone not only fails to light it — it makes the signal
+  QUIETER than ordinary life, in all eight forks, for the third block running.
+  The creature now carries a working instrument that says "I am not who I
+  predicted I would be" exactly when that is true. What it cannot yet do is act
+  on it: every displaced identity stays displaced. Giving it that lever — and
+  proving the lever isn't just a constant — is the next rung.
+- Question (predeclared in the Exp 179 entry's Next line + card, commit c82fbd4):
+  same as Exp 178/179 with Arm B's occupancy histogram recomputed at EACH burst
+  onset from that burst's own pre-burst window [bstart−1000, bstart) (the
+  like-with-like-in-time law); PC3b, P2, P3/F3, P4, D5, decision rule verbatim;
+  FRESH seeds 202–209; smoke 202; a third PC3b void → consult.
+- Setup: as declared; verifier diff-checked exp180 vs exp179 — only seeds, the
+  per-burst recomputation, and IDs changed.
+- Result: POSITIVE, tier RUNG-2. Gates: PC1 (drift ≤0.014), PC2′ (24/24 windows,
+  max TV 0.046 — third clean block for the vector gate), PC3 all PASS. PC3b PASS
+  24/24 (TV 0.0005–0.0475, mean 0.0198 vs theoretical sampling noise 0.0204).
+  P2: AUROC_A 0.859–0.911, 8/8, median 0.894. P3: Δ 0.536–0.719 in 8/8 pairs,
+  median AUROC_B 0.262, F3 false. P4: flickering forks {202,205,208} score
+  0.911/0.891/0.888. D5 1.000 (ratios 3.3–5.2). Arm B flips 0/24 (the control
+  never displaces an identity). The AUROC_B inversion is consistent across all
+  three blocks (0.287/0.294/0.262).
+- Verifier: blinded subagent CONFIRMED POSITIVE/rung-2 adversarially, including
+  the crux analysis: PC3b now passes BY CONSTRUCTION (i.i.d. draws checked
+  against their own source distribution — mean TV matches theoretical sampling
+  noise to 3 significant figures), so its certification is structurally limited
+  to color-frequency neutrality; but the specificity substance is genuine — the
+  qs-reset is identical across arms, the delta's artifactual component (Arm B's
+  v-suppression pushing AUROC_B below 0.5) is CONSERVATIVE in direction, and the
+  inversion replicates on three independent blocks. Verdict mapping, diff
+  integrity, AUROC arithmetic (incl. a hand U-statistic check) all confirmed.
+- Implication (rung 2 verdict; the chapter's second verdict-grade fact): the N4
+  instrument is real at this richness — a read-only linear-drift self-prediction
+  separates identity displacement from both quiet life AND value-neutral chaos,
+  independent of the favorite label, with a measured actuation window (onset
+  spike decays 3–5× within a burst). Rung 3 is armed with its deliverable
+  precise: regulate the value-update inertia FROM this mismatch signal (high
+  mismatch ⇒ resist; sustained low-mismatch drift ⇒ permit), arms (a) N4-less,
+  (b) N4-regulated, (c) a fixed-inertia constant SWEEP — the universal-constant
+  kill test (Exp 173's law): if any constant matches N4 on both whipsaw
+  resistance AND sustained-evidence revision speed, N4 is config, not a layer.
+- Honest caveat: PC3b's by-construction pass means value-dynamics neutrality of
+  the control is supported by the replicated inversion pattern, NOT formally
+  certified — rung 3's design should add a direct v-dynamics validity check (TV
+  of v at burst midpoint vs pre-burst, per the verifier's recommendation); the
+  absolute AUROC_B values mean "scramble suppresses mismatch below baseline,"
+  not "scramble is near-chance"; monitor form, bars, λ, schedule remain PROVIDED;
+  specificity is against ONE constructed non-identity perturbation class, not all.
+- Verdict: POSITIVE / NEW INSIGHT (rung-2 evidence per the pre-registered
+  decision rule; the specificity claim and the licensed inversion are new).
+  Self-grade: POSITIVE-SINGLE.
+- Next: Exp 181 = rung 3, the commitment controller (design to be predeclared in
+  full next iteration): same-snapshot same-schedule arms on the verified regime —
+  (a) N4-less baseline, (b) N4 (per-step value-update weight w_t regulated by the
+  monitor's mismatch), (c) fixed-inertia sweep (the universal-constant kill
+  test); deliverables: recovery (restore-and-hold the pre-burst favorite) AND
+  sustained-evidence revision within tolerance of (a); plus the verifier's
+  v-dynamics control-validity check. FRESH seeds 210+.
