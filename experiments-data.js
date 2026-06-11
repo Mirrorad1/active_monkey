@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:145, breakthrough:6, positive:85, wall:23, partial:31, from:4.81, to:4.00 };
+window.AM_TALLY = { total:146, breakthrough:6, positive:85, wall:24, partial:31, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1465,7 +1465,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 144's three worlds and machinery with the two diagnosed flaws fixed: per-color alarms with round-robin growth, and live-probation acceptance with snapshot revert, the replay vote demoted to a printed diagnostic. The halt falsifier was predeclared as the same surprise bar failing again.",
     result:"Halt arm fired in all three layouts (0/8 on every P1 arm); probation honesty PASSED (75/86/70 percent sustained); localization untouched (24/24 at 0.03-0.05); the 1-to-2-component step is where the trap is worst — the one color that reached multiple components kept growing.",
     implication:"Two failed designs triangulate one conclusion from opposite sides: a dishonest test, then an honest test rejecting a structurally bad move. The consult recommends M3d — the split operator, which inherits coverage and steps across the valley — under the now-validated probation test; a third failure would make this a documented wall, parked, with the migration continuing at M4.",
-    trace:{ script:"experiments/exp145_m3c_live_probation.py", output:"experiments/outputs/exp145.txt" } }
+    trace:{ script:"experiments/exp145_m3c_live_probation.py", output:"experiments/outputs/exp145.txt" } },
+
+  { n:146, kind:"wall", chapter:"frontier",
+    title:"Three failures, one law: sharp-in-places loses to vague-everywhere.",
+    one:"Migration rung M3d, third HALT — and the wall takes its true shape. The split operator surged like add (mean probation deltas +0.64 to +1.72 nats vs the predicted +0.1; keep rates 0/0/14.9 percent; the alarm never quiets), refuting the coverage-preservation prediction as implemented. Unified mechanism across Exp 144-146: under log-loss an incomplete tight cover loses to a complete loose cover — local growth moves judged by any honest short-horizon test are anti-productive until coverage is complete. Parked per the predeclared rule, two untried cracks named.",
+    plain:"The third growing design — divide the too-broad piece into halves that inherit its territory — failed the same honest test, and its failure completed the picture. Splitting covers half the locations sharply and leaves half exposed, and the arithmetic of surprise is unforgiving: one badly-covered sighting costs more than several well-covered ones gain. All three failures are one fact from three sides: a mind cannot grow toward a many-placed concept piece by piece, judged honestly step by step. By the rule declared in advance, this is now a documented wall, parked with its two known untried cracks named, and the migration continues at the next rung.",
+    metric:{ from:0.1, to:1.72, unit:"predicted vs worst observed mean probation surge, nats — the anti-valley signature refuted" },
+    setup:"Exp 145's machinery with the move changed to split: the alarmed color's widest component divided along its leading eigendirection, children inheriting halved weight and mass, burn-in EM, then the validated live-probation vote. The third-failure park rule was predeclared before running.",
+    result:"P1 0/8 on every arm in all layouts; P2 failed (split surges match add); P3 localization untouched 24/24; the demoted replay vote would have kept many splits the live test correctly rejected (26 percent agreement). The wall binds to local moves with short-horizon honest acceptance — impossibility is not claimed; batch-jump and background-floor remain untried by design.",
+    implication:"The growth question is parked as a characterized open problem and the consult recommends continuing the migration at M4 — the creature navigates perfectly; its prediction inadequacy rides along as a documented limitation, alarm correctly ringing.",
+    trace:{ script:"experiments/exp146_m3d_split.py", output:"experiments/outputs/exp146.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

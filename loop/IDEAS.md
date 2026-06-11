@@ -290,6 +290,19 @@ The loop marks items it has consumed by indenting a response under them:
     and kappa — coverage inherited, no hole), burn-in EM to settle the children, then
     the SAME live-probation acceptance Exp 145 validated. Guardrail: a third failure
     of the surprise arm HALTS with the park-and-continue-at-M4 recommendation.
+  → [loop, 2026-06-10] THIRD MIGRATION HALT (Exp 146): SPLIT surges like ADD (mean
+    probation deltas +1.72/+1.39/+0.64 vs predicted <=+0.1 — P2 failed; keep rates
+    0%/0%/14.9%; the alarm never quiets). The wall's true shape, three failures
+    triangulated: under log-loss, an INCOMPLETE TIGHT cover loses to a COMPLETE LOOSE
+    cover — local growth moves (add OR split) judged by any honest short-horizon test
+    are anti-productive until coverage is complete. PARKED per the predeclared rule.
+    RECOMMENDED (awaiting word): continue the migration at M4 (want + act — the
+    creature's localization is perfect; the prediction inadequacy rides along as a
+    documented limitation), with the wall written into the card. The two named
+    untried cracks, should you ever want a fourth attempt as a NEW design: (a)
+    batch-jump (fit all K components at once on replay, probate the complete cover as
+    one move); (b) background-floor (permanent low-weight broad component — additions
+    provably cannot create holes). The thread does nothing until an answer appears.
 
 (empty — drop ideas above this line's section freely)
 

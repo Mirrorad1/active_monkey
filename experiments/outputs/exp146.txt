@@ -1,0 +1,741 @@
+================================================================================
+Exp 146 — continuous-creature rung M3d: SPLIT growth under live-probation
+================================================================================
+
+
+================================================================================
+LAYOUT 1  (rng(7))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 1, 2, 0]
+    row 1: [2, 3, 0, 1]
+    row 2: [0, 3, 0, 3]
+    row 3: [3, 2, 1, 2]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells and centers:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   MnDelta  TwinF500
+---------------------------------------------------------------------------------------------------------
+   0   1.2625   1.5605  -0.298      115  [1, 1, 1, 1]     0    20  0.0475   +1.8821    1.0000
+   1   1.2340   1.4549  -0.221      232  [1, 1, 1, 1]     0    20  0.0494   +1.7633    1.0000
+   2   1.2696   1.6014  -0.332      150  [1, 1, 1, 1]     0    20  0.0469   +1.7340    1.0000
+   3   1.2854   1.4272  -0.142      189  [1, 1, 1, 1]     0    20  0.0532   +1.6450    1.0000
+   4   1.3267   1.5039  -0.177      229  [1, 1, 1, 1]     0    20  0.0540   +1.8125    1.0000
+   5   1.2073   1.4490  -0.242      241  [1, 1, 1, 1]     0    20  0.0457   +1.5582    1.0000
+   6   1.2196   1.4740  -0.254      150  [1, 1, 1, 1]     0    20  0.0450   +1.6550    1.0000
+   7   1.2663   1.3881  -0.122      119  [1, 1, 1, 1]     0    20  0.0443   +1.7030    1.0000
+
+  P2 Anti-Valley Summary (Layout 1):
+  (mean(probation_mean - pre_spawn_mean) per attempt, vs Exp 145 surges +0.6..+3.5)
+    Total attempts: 152  Kept: 0  Reverted: 152  Keep-rate: 0.0%
+    Mean(prob-pre): +1.7191  Max: +3.3532  Min: +0.4659  (P2 threshold <= +0.1)  FAIL
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 1):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                     0             0
+    Live=REVERT                 118            42
+    Total decided: 160
+    Agree: 42  Disagree: 118  Agreement rate: 26.2%
+
+  Per-split detail (Layout 1):
+    seed=0 split#1: color=0  parent_tr=1.7487  sep=2.4879  pre=1.5671  prob=3.1584  delta=-1.5913  REVT  RV-K  (nll_old=1.2016 nll_new=1.1867)
+    seed=0 split#2: color=1  parent_tr=2.6378  sep=2.9070  pre=0.7823  prob=2.0776  delta=-1.2953  REVT  RV-K  (nll_old=1.2416 nll_new=1.1452)
+    seed=0 split#3: color=2  parent_tr=2.7900  sep=2.6826  pre=0.8823  prob=3.2169  delta=-2.3345  REVT  RV-K  (nll_old=1.2333 nll_new=1.1552)
+    seed=0 split#4: color=3  parent_tr=1.4565  sep=2.0544  pre=1.1838  prob=2.5839  delta=-1.4001  REVT  RV-R  (nll_old=1.2878 nll_new=1.2935)
+    seed=0 split#5: color=0  parent_tr=1.7731  sep=2.5034  pre=1.3465  prob=3.4035  delta=-2.0570  REVT  RV-R  (nll_old=1.2967 nll_new=1.3040)
+    seed=0 split#6: color=1  parent_tr=2.6137  sep=2.8749  pre=0.7651  prob=2.6557  delta=-1.8905  REVT  RV-K  (nll_old=1.2410 nll_new=1.1816)
+    seed=0 split#7: color=2  parent_tr=2.8526  sep=2.7251  pre=0.7656  prob=2.5815  delta=-1.8159  REVT  RV-K  (nll_old=1.2505 nll_new=1.1962)
+    seed=0 split#8: color=3  parent_tr=1.5169  sep=2.0995  pre=1.2099  prob=1.8419  delta=-0.6320  REVT  RV-K  (nll_old=1.2347 nll_new=1.2118)
+    seed=0 split#9: color=0  parent_tr=1.7976  sep=2.5290  pre=1.5257  prob=3.6824  delta=-2.1567  REVT  RV-K  (nll_old=1.2764 nll_new=1.2534)
+    seed=0 split#10: color=1  parent_tr=2.6233  sep=2.8608  pre=0.8277  prob=2.3052  delta=-1.4775  REVT  RV-K  (nll_old=1.2846 nll_new=1.2158)
+    seed=0 split#11: color=2  parent_tr=2.8313  sep=2.7144  pre=0.8104  prob=3.3195  delta=-2.5092  REVT  RV-K  (nll_old=1.2819 nll_new=1.1542)
+    seed=0 split#12: color=3  parent_tr=1.5542  sep=2.1394  pre=1.0044  prob=2.4721  delta=-1.4677  REVT  RV-R  (nll_old=1.2597 nll_new=1.2777)
+    seed=0 split#13: color=0  parent_tr=1.8182  sep=2.5465  pre=1.4284  prob=3.3147  delta=-1.8864  REVT  RV-K  (nll_old=1.2264 nll_new=1.2164)
+    seed=0 split#14: color=2  parent_tr=2.8049  sep=2.6869  pre=0.8661  prob=3.0142  delta=-2.1481  REVT  RV-K  (nll_old=1.2836 nll_new=1.2051)
+    seed=0 split#15: color=1  parent_tr=2.5745  sep=2.8331  pre=0.6454  prob=1.6495  delta=-1.0041  REVT  RV-K  (nll_old=1.1936 nll_new=1.1384)
+    seed=0 split#16: color=3  parent_tr=1.5654  sep=2.1548  pre=1.2508  prob=4.6039  delta=-3.3532  REVT  RV-K  (nll_old=1.2306 nll_new=1.2299)
+    seed=0 split#17: color=0  parent_tr=1.8361  sep=2.5607  pre=1.2341  prob=3.2386  delta=-2.0046  REVT  RV-R  (nll_old=1.3117 nll_new=1.4045)
+    seed=0 split#18: color=2  parent_tr=2.8083  sep=2.6823  pre=0.8330  prob=3.2177  delta=-2.3847  REVT  RV-K  (nll_old=1.2387 nll_new=1.1911)
+    seed=0 split#19: color=1  parent_tr=2.6123  sep=2.8482  pre=0.7169  prob=3.0677  delta=-2.3508  REVT  RV-K  (nll_old=1.2010 nll_new=1.1642)
+    seed=0 split#20: color=3  parent_tr=1.5742  sep=2.1637  pre=1.3530  prob=2.7655  delta=  N/A  REVT  RV-K  (nll_old=1.2590 nll_new=1.2343)
+    seed=1 split#1: color=0  parent_tr=1.7426  sep=2.4644  pre=1.3645  prob=2.7558  delta=-1.3913  REVT  RV-K  (nll_old=1.2360 nll_new=1.2214)
+    seed=1 split#2: color=2  parent_tr=2.6474  sep=2.6236  pre=0.8318  prob=2.8533  delta=-2.0215  REVT  RV-K  (nll_old=1.2424 nll_new=1.1616)
+    seed=1 split#3: color=1  parent_tr=2.5726  sep=2.7724  pre=0.7363  prob=2.0324  delta=-1.2961  REVT  RV-K  (nll_old=1.2358 nll_new=1.1143)
+    seed=1 split#4: color=3  parent_tr=1.6455  sep=2.2820  pre=1.2836  prob=2.8507  delta=-1.5671  REVT  RV-R  (nll_old=1.2286 nll_new=1.2653)
+    seed=1 split#5: color=0  parent_tr=1.7493  sep=2.4742  pre=1.3298  prob=2.9310  delta=-1.6012  REVT  RV-R  (nll_old=1.2223 nll_new=1.2387)
+    seed=1 split#6: color=2  parent_tr=2.6784  sep=2.6685  pre=0.8370  prob=3.7221  delta=-2.8851  REVT  RV-K  (nll_old=1.2309 nll_new=1.1825)
+    seed=1 split#7: color=3  parent_tr=1.6242  sep=2.2527  pre=1.2930  prob=2.9597  delta=-1.6667  REVT  RV-R  (nll_old=1.2653 nll_new=1.2719)
+    seed=1 split#8: color=1  parent_tr=2.6587  sep=2.8534  pre=0.8635  prob=2.2415  delta=-1.3780  REVT  RV-K  (nll_old=1.1947 nll_new=1.1190)
+    seed=1 split#9: color=0  parent_tr=1.7671  sep=2.4917  pre=1.3189  prob=2.9688  delta=-1.6499  REVT  RV-R  (nll_old=1.2311 nll_new=1.2312)
+    seed=1 split#10: color=2  parent_tr=2.6850  sep=2.6763  pre=0.9470  prob=2.9479  delta=-2.0009  REVT  RV-K  (nll_old=1.3053 nll_new=1.2192)
+    seed=1 split#11: color=3  parent_tr=1.6547  sep=2.2778  pre=1.2232  prob=2.4853  delta=-1.2621  REVT  RV-R  (nll_old=1.2267 nll_new=1.2299)
+    seed=1 split#12: color=1  parent_tr=2.6657  sep=2.8608  pre=0.9012  prob=2.4982  delta=-1.5970  REVT  RV-K  (nll_old=1.2853 nll_new=1.1520)
+    seed=1 split#13: color=0  parent_tr=1.7555  sep=2.4849  pre=1.3498  prob=3.5826  delta=-2.2328  REVT  RV-K  (nll_old=1.2671 nll_new=1.2319)
+    seed=1 split#14: color=2  parent_tr=2.7322  sep=2.6928  pre=0.9276  prob=3.5982  delta=-2.6707  REVT  RV-K  (nll_old=1.2428 nll_new=1.1743)
+    seed=1 split#15: color=3  parent_tr=1.6632  sep=2.2773  pre=1.1732  prob=2.5116  delta=-1.3385  REVT  RV-R  (nll_old=1.2571 nll_new=1.2938)
+    seed=1 split#16: color=1  parent_tr=2.6580  sep=2.8432  pre=0.9955  prob=2.1006  delta=-1.1051  REVT  RV-K  (nll_old=1.2428 nll_new=1.1533)
+    seed=1 split#17: color=0  parent_tr=1.7749  sep=2.5073  pre=1.3869  prob=3.7366  delta=-2.3497  REVT  RV-R  (nll_old=1.2913 nll_new=1.2981)
+    seed=1 split#18: color=2  parent_tr=2.7601  sep=2.6910  pre=0.9363  prob=2.9121  delta=-1.9758  REVT  RV-K  (nll_old=1.2353 nll_new=1.2073)
+    seed=1 split#19: color=3  parent_tr=1.6287  sep=2.2362  pre=1.1492  prob=2.6630  delta=-1.5138  REVT  RV-R  (nll_old=1.2834 nll_new=1.3068)
+    seed=1 split#20: color=1  parent_tr=2.6611  sep=2.8489  pre=0.8657  prob=2.6458  delta=  N/A  REVT  RV-K  (nll_old=1.2329 nll_new=1.1139)
+    seed=2 split#1: color=0  parent_tr=1.7901  sep=2.5123  pre=1.4599  prob=3.0546  delta=-1.5947  REVT  RV-R  (nll_old=1.2808 nll_new=1.3210)
+    seed=2 split#2: color=1  parent_tr=2.7085  sep=2.8774  pre=0.7054  prob=1.7765  delta=-1.0711  REVT  RV-K  (nll_old=1.2502 nll_new=1.1136)
+    seed=2 split#3: color=2  parent_tr=2.8058  sep=2.7087  pre=0.9258  prob=3.0246  delta=-2.0988  REVT  RV-K  (nll_old=1.2725 nll_new=1.1601)
+    seed=2 split#4: color=3  parent_tr=1.6514  sep=2.2364  pre=1.0748  prob=2.2935  delta=-1.2187  REVT  RV-R  (nll_old=1.2334 nll_new=1.2410)
+    seed=2 split#5: color=0  parent_tr=1.7932  sep=2.5163  pre=1.3896  prob=3.4264  delta=-2.0368  REVT  RV-R  (nll_old=1.2758 nll_new=1.2810)
+    seed=2 split#6: color=1  parent_tr=2.6592  sep=2.8418  pre=0.8040  prob=2.2846  delta=-1.4805  REVT  RV-K  (nll_old=1.2514 nll_new=1.1972)
+    seed=2 split#7: color=2  parent_tr=2.8212  sep=2.7174  pre=0.9226  prob=2.7198  delta=-1.7972  REVT  RV-K  (nll_old=1.2550 nll_new=1.1765)
+    seed=2 split#8: color=3  parent_tr=1.6344  sep=2.2263  pre=1.0073  prob=2.6131  delta=-1.6058  REVT  RV-R  (nll_old=1.2475 nll_new=1.2731)
+    seed=2 split#9: color=0  parent_tr=1.7710  sep=2.5002  pre=1.3273  prob=3.3699  delta=-2.0426  REVT  RV-K  (nll_old=1.2054 nll_new=1.1730)
+    seed=2 split#10: color=1  parent_tr=2.6763  sep=2.8606  pre=0.8879  prob=2.3561  delta=-1.4683  REVT  RV-K  (nll_old=1.2606 nll_new=1.1709)
+    seed=2 split#11: color=2  parent_tr=2.8222  sep=2.7231  pre=0.8902  prob=2.7569  delta=-1.8667  REVT  RV-K  (nll_old=1.2451 nll_new=1.1918)
+    seed=2 split#12: color=3  parent_tr=1.6617  sep=2.2490  pre=1.0398  prob=2.9705  delta=-1.9307  REVT  RV-R  (nll_old=1.2320 nll_new=1.2321)
+    seed=2 split#13: color=0  parent_tr=1.7534  sep=2.4911  pre=1.3400  prob=3.6226  delta=-2.2826  REVT  RV-R  (nll_old=1.2565 nll_new=1.2816)
+    seed=2 split#14: color=1  parent_tr=2.6624  sep=2.8570  pre=0.7171  prob=2.4621  delta=-1.7450  REVT  RV-K  (nll_old=1.2361 nll_new=1.1018)
+    seed=2 split#15: color=2  parent_tr=2.8088  sep=2.7050  pre=0.8061  prob=2.2410  delta=-1.4349  REVT  RV-K  (nll_old=1.2686 nll_new=1.1711)
+    seed=2 split#16: color=3  parent_tr=1.6489  sep=2.2397  pre=1.1432  prob=2.1575  delta=-1.0143  REVT  RV-R  (nll_old=1.2672 nll_new=1.2691)
+    seed=2 split#17: color=0  parent_tr=1.7481  sep=2.4836  pre=1.3895  prob=3.7171  delta=-2.3276  REVT  RV-K  (nll_old=1.2253 nll_new=1.1969)
+    seed=2 split#18: color=1  parent_tr=2.6693  sep=2.8647  pre=0.8630  prob=2.4594  delta=-1.5964  REVT  RV-K  (nll_old=1.2813 nll_new=1.1359)
+    seed=2 split#19: color=2  parent_tr=2.7994  sep=2.6945  pre=0.8701  prob=3.2032  delta=-2.3332  REVT  RV-K  (nll_old=1.2595 nll_new=1.1641)
+    seed=2 split#20: color=3  parent_tr=1.6535  sep=2.2436  pre=1.0832  prob=4.3495  delta=  N/A  REVT  RV-K  (nll_old=1.2726 nll_new=1.2708)
+    seed=3 split#1: color=0  parent_tr=1.8425  sep=2.5640  pre=1.4571  prob=3.0958  delta=-1.6387  REVT  RV-K  (nll_old=1.1998 nll_new=1.1847)
+    seed=3 split#2: color=1  parent_tr=2.5246  sep=2.8007  pre=0.7078  prob=1.5340  delta=-0.8261  REVT  RV-K  (nll_old=1.2680 nll_new=1.1675)
+    seed=3 split#3: color=2  parent_tr=2.8260  sep=2.7341  pre=0.9364  prob=3.2735  delta=-2.3371  REVT  RV-K  (nll_old=1.2556 nll_new=1.1863)
+    seed=3 split#4: color=3  parent_tr=1.5516  sep=2.1330  pre=1.2804  prob=2.3927  delta=-1.1123  REVT  RV-K  (nll_old=1.2263 nll_new=1.2221)
+    seed=3 split#5: color=0  parent_tr=1.8491  sep=2.5692  pre=1.3421  prob=2.8902  delta=-1.5481  REVT  RV-R  (nll_old=1.2706 nll_new=1.2731)
+    seed=3 split#6: color=1  parent_tr=2.4698  sep=2.7731  pre=0.9377  prob=2.7587  delta=-1.8210  REVT  RV-K  (nll_old=1.3011 nll_new=1.1643)
+    seed=3 split#7: color=3  parent_tr=1.5545  sep=2.1402  pre=1.2675  prob=2.3883  delta=-1.1208  REVT  RV-K  (nll_old=1.2434 nll_new=1.2258)
+    seed=3 split#8: color=2  parent_tr=2.7970  sep=2.6872  pre=0.9321  prob=3.3315  delta=-2.3993  REVT  RV-K  (nll_old=1.2774 nll_new=1.1719)
+    seed=3 split#9: color=0  parent_tr=1.8554  sep=2.5727  pre=1.2841  prob=3.7535  delta=-2.4694  REVT  RV-K  (nll_old=1.2593 nll_new=1.2227)
+    seed=3 split#10: color=1  parent_tr=2.5256  sep=2.8031  pre=0.8225  prob=2.0111  delta=-1.1886  REVT  RV-K  (nll_old=1.1943 nll_new=1.1267)
+    seed=3 split#11: color=3  parent_tr=1.5818  sep=2.1656  pre=1.4175  prob=2.8683  delta=-1.4508  REVT  RV-K  (nll_old=1.2706 nll_new=1.2546)
+    seed=3 split#12: color=2  parent_tr=2.8418  sep=2.7489  pre=0.9152  prob=3.9729  delta=-3.0577  REVT  RV-K  (nll_old=1.2650 nll_new=1.1672)
+    seed=3 split#13: color=0  parent_tr=1.8864  sep=2.6025  pre=1.0910  prob=3.5267  delta=-2.4357  REVT  RV-K  (nll_old=1.2278 nll_new=1.1855)
+    seed=3 split#14: color=1  parent_tr=2.5353  sep=2.8079  pre=0.8094  prob=1.7337  delta=-0.9242  REVT  RV-K  (nll_old=1.2170 nll_new=1.1201)
+    seed=3 split#15: color=3  parent_tr=1.5413  sep=2.1187  pre=1.5038  prob=2.0305  delta=-0.5268  REVT  RV-R  (nll_old=1.2094 nll_new=1.2205)
+    seed=3 split#16: color=2  parent_tr=2.8346  sep=2.7324  pre=1.0914  prob=3.7540  delta=-2.6626  REVT  RV-K  (nll_old=1.2669 nll_new=1.2266)
+    seed=3 split#17: color=0  parent_tr=1.8882  sep=2.6062  pre=1.0790  prob=3.4334  delta=-2.3544  REVT  RV-R  (nll_old=1.2728 nll_new=1.2819)
+    seed=3 split#18: color=1  parent_tr=2.5632  sep=2.8268  pre=0.9540  prob=1.8694  delta=-0.9154  REVT  RV-K  (nll_old=1.2467 nll_new=1.2149)
+    seed=3 split#19: color=3  parent_tr=1.5696  sep=2.1481  pre=1.4653  prob=1.9312  delta=-0.4659  REVT  RV-K  (nll_old=1.2890 nll_new=1.2847)
+    seed=3 split#20: color=2  parent_tr=2.8278  sep=2.7257  pre=0.9577  prob=3.5022  delta=  N/A  REVT  RV-K  (nll_old=1.2179 nll_new=1.1460)
+    seed=4 split#1: color=0  parent_tr=1.7243  sep=2.4777  pre=1.5408  prob=2.9287  delta=-1.3880  REVT  RV-R  (nll_old=1.2642 nll_new=1.2643)
+    seed=4 split#2: color=1  parent_tr=2.6015  sep=2.7887  pre=0.7541  prob=2.2908  delta=-1.5367  REVT  RV-K  (nll_old=1.2833 nll_new=1.2206)
+    seed=4 split#3: color=2  parent_tr=2.7698  sep=2.6743  pre=0.8782  prob=2.7247  delta=-1.8465  REVT  RV-K  (nll_old=1.2594 nll_new=1.1661)
+    seed=4 split#4: color=3  parent_tr=1.5909  sep=2.1936  pre=1.2299  prob=2.8961  delta=-1.6661  REVT  RV-R  (nll_old=1.2495 nll_new=1.2608)
+    seed=4 split#5: color=0  parent_tr=1.7295  sep=2.4762  pre=1.3147  prob=3.2290  delta=-1.9143  REVT  RV-R  (nll_old=1.2526 nll_new=1.2774)
+    seed=4 split#6: color=1  parent_tr=2.5639  sep=2.7585  pre=0.8964  prob=2.1268  delta=-1.2303  REVT  RV-K  (nll_old=1.2695 nll_new=1.2280)
+    seed=4 split#7: color=2  parent_tr=2.7614  sep=2.6791  pre=0.7635  prob=2.5813  delta=-1.8177  REVT  RV-K  (nll_old=1.2359 nll_new=1.1529)
+    seed=4 split#8: color=3  parent_tr=1.6591  sep=2.2647  pre=1.0844  prob=2.8674  delta=-1.7830  REVT  RV-R  (nll_old=1.2727 nll_new=1.2842)
+    seed=4 split#9: color=0  parent_tr=1.7102  sep=2.4544  pre=1.4637  prob=3.3965  delta=-1.9328  REVT  RV-K  (nll_old=1.2524 nll_new=1.2406)
+    seed=4 split#10: color=1  parent_tr=2.5660  sep=2.7529  pre=0.8514  prob=2.2508  delta=-1.3994  REVT  RV-K  (nll_old=1.2565 nll_new=1.1877)
+    seed=4 split#11: color=2  parent_tr=2.7715  sep=2.6790  pre=0.8739  prob=3.0790  delta=-2.2051  REVT  RV-K  (nll_old=1.3043 nll_new=1.2026)
+    seed=4 split#12: color=3  parent_tr=1.6276  sep=2.2347  pre=1.0698  prob=3.8442  delta=-2.7744  REVT  RV-K  (nll_old=1.2609 nll_new=1.2491)
+    seed=4 split#13: color=0  parent_tr=1.7413  sep=2.4773  pre=1.2996  prob=3.5153  delta=-2.2157  REVT  RV-K  (nll_old=1.2619 nll_new=1.2408)
+    seed=4 split#14: color=2  parent_tr=2.7752  sep=2.6765  pre=0.8786  prob=2.9747  delta=-2.0961  REVT  RV-K  (nll_old=1.2702 nll_new=1.2123)
+    seed=4 split#15: color=1  parent_tr=2.5841  sep=2.7773  pre=0.7671  prob=1.8673  delta=-1.1002  REVT  RV-K  (nll_old=1.2862 nll_new=1.1628)
+    seed=4 split#16: color=3  parent_tr=1.6253  sep=2.2290  pre=1.2997  prob=3.1035  delta=-1.8038  REVT  RV-K  (nll_old=1.2629 nll_new=1.2546)
+    seed=4 split#17: color=0  parent_tr=1.7229  sep=2.4642  pre=1.3604  prob=3.7080  delta=-2.3476  REVT  RV-R  (nll_old=1.2622 nll_new=1.3069)
+    seed=4 split#18: color=2  parent_tr=2.7719  sep=2.6668  pre=0.9049  prob=3.4327  delta=-2.5277  REVT  RV-K  (nll_old=1.2402 nll_new=1.1589)
+    seed=4 split#19: color=1  parent_tr=2.5571  sep=2.7577  pre=0.7758  prob=1.6277  delta=-0.8519  REVT  RV-K  (nll_old=1.2819 nll_new=1.1701)
+    seed=4 split#20: color=3  parent_tr=1.6334  sep=2.2366  pre=1.4186  prob=2.9889  delta=  N/A  REVT  RV-K  (nll_old=1.2905 nll_new=1.2862)
+    seed=5 split#1: color=0  parent_tr=1.7742  sep=2.5100  pre=1.6312  prob=3.1281  delta=-1.4969  REVT  RV-K  (nll_old=1.1990 nll_new=1.1796)
+    seed=5 split#2: color=2  parent_tr=2.8508  sep=2.7251  pre=0.8946  prob=2.8584  delta=-1.9638  REVT  RV-K  (nll_old=1.2336 nll_new=1.2013)
+    seed=5 split#3: color=1  parent_tr=2.4720  sep=2.7909  pre=0.6713  prob=2.5150  delta=-1.8437  REVT  RV-K  (nll_old=1.1804 nll_new=1.1514)
+    seed=5 split#4: color=3  parent_tr=1.6306  sep=2.1867  pre=1.2812  prob=2.2501  delta=-0.9689  REVT  RV-R  (nll_old=1.2153 nll_new=1.2272)
+    seed=5 split#5: color=0  parent_tr=1.7880  sep=2.5227  pre=1.4354  prob=3.5601  delta=-2.1247  REVT  RV-K  (nll_old=1.2624 nll_new=1.2530)
+    seed=5 split#6: color=2  parent_tr=2.8496  sep=2.7204  pre=0.8731  prob=2.4141  delta=-1.5410  REVT  RV-K  (nll_old=1.1904 nll_new=1.1582)
+    seed=5 split#7: color=1  parent_tr=2.5561  sep=2.8421  pre=0.9119  prob=2.4269  delta=-1.5150  REVT  RV-K  (nll_old=1.2191 nll_new=1.1349)
+    seed=5 split#8: color=3  parent_tr=1.6067  sep=2.1700  pre=1.2303  prob=1.8678  delta=-0.6375  REVT  RV-K  (nll_old=1.2989 nll_new=1.2882)
+    seed=5 split#9: color=0  parent_tr=1.8571  sep=2.5790  pre=1.4522  prob=3.0777  delta=-1.6255  REVT  RV-K  (nll_old=1.2961 nll_new=1.2845)
+    seed=5 split#10: color=1  parent_tr=2.5623  sep=2.8423  pre=0.9537  prob=2.1890  delta=-1.2353  REVT  RV-K  (nll_old=1.2617 nll_new=1.1814)
+    seed=5 split#11: color=2  parent_tr=2.8581  sep=2.7348  pre=0.8778  prob=3.6263  delta=-2.7485  REVT  RV-K  (nll_old=1.2093 nll_new=1.1425)
+    seed=5 split#12: color=3  parent_tr=1.5894  sep=2.1550  pre=1.2765  prob=2.8263  delta=-1.5498  REVT  RV-K  (nll_old=1.2320 nll_new=1.2186)
+    seed=5 split#13: color=0  parent_tr=1.8394  sep=2.5627  pre=1.2769  prob=3.4213  delta=-2.1444  REVT  RV-R  (nll_old=1.3059 nll_new=1.3462)
+    seed=5 split#14: color=1  parent_tr=2.6283  sep=2.8797  pre=0.9251  prob=1.6703  delta=-0.7452  REVT  RV-K  (nll_old=1.2371 nll_new=1.1353)
+    seed=5 split#15: color=2  parent_tr=2.8541  sep=2.7432  pre=0.9582  prob=2.4983  delta=-1.5401  REVT  RV-K  (nll_old=1.1424 nll_new=1.0787)
+    seed=5 split#16: color=3  parent_tr=1.6338  sep=2.2014  pre=1.0352  prob=2.1745  delta=-1.1392  REVT  RV-R  (nll_old=1.2397 nll_new=1.2575)
+    seed=5 split#17: color=0  parent_tr=1.8481  sep=2.5707  pre=1.4388  prob=3.7288  delta=-2.2900  REVT  RV-K  (nll_old=1.2005 nll_new=1.1650)
+    seed=5 split#18: color=1  parent_tr=2.6340  sep=2.8807  pre=0.7822  prob=1.5456  delta=-0.7634  REVT  RV-K  (nll_old=1.2589 nll_new=1.1565)
+    seed=5 split#19: color=2  parent_tr=2.8360  sep=2.7203  pre=0.9813  prob=2.7136  delta=-1.7323  REVT  RV-K  (nll_old=1.2194 nll_new=1.1843)
+    seed=5 split#20: color=3  parent_tr=1.6140  sep=2.1893  pre=1.1144  prob=3.7659  delta=  N/A  REVT  RV-R  (nll_old=1.2620 nll_new=1.2813)
+    seed=6 split#1: color=0  parent_tr=1.7742  sep=2.4926  pre=1.5556  prob=3.0633  delta=-1.5076  REVT  RV-K  (nll_old=1.2124 nll_new=1.1950)
+    seed=6 split#2: color=1  parent_tr=2.7187  sep=2.9454  pre=0.6165  prob=1.8611  delta=-1.2445  REVT  RV-K  (nll_old=1.2093 nll_new=1.0847)
+    seed=6 split#3: color=2  parent_tr=2.6771  sep=2.7026  pre=0.8787  prob=2.5603  delta=-1.6816  REVT  RV-K  (nll_old=1.3224 nll_new=1.1961)
+    seed=6 split#4: color=3  parent_tr=1.6749  sep=2.2821  pre=1.2198  prob=2.1694  delta=-0.9496  REVT  RV-K  (nll_old=1.2941 nll_new=1.2805)
+    seed=6 split#5: color=0  parent_tr=1.8126  sep=2.5297  pre=1.3132  prob=3.3015  delta=-1.9884  REVT  RV-R  (nll_old=1.2436 nll_new=1.2507)
+    seed=6 split#6: color=2  parent_tr=2.7609  sep=2.7245  pre=0.9851  prob=2.3762  delta=-1.3911  REVT  RV-K  (nll_old=1.2487 nll_new=1.1608)
+    seed=6 split#7: color=1  parent_tr=2.6978  sep=2.9180  pre=0.9997  prob=2.2143  delta=-1.2146  REVT  RV-K  (nll_old=1.2395 nll_new=1.1720)
+    seed=6 split#8: color=3  parent_tr=1.7030  sep=2.3033  pre=1.3133  prob=2.4018  delta=-1.0885  REVT  RV-R  (nll_old=1.2447 nll_new=1.2693)
+    seed=6 split#9: color=0  parent_tr=1.8300  sep=2.5446  pre=1.4414  prob=2.9275  delta=-1.4861  REVT  RV-K  (nll_old=1.2644 nll_new=1.2344)
+    seed=6 split#10: color=2  parent_tr=2.7581  sep=2.6914  pre=0.8887  prob=3.8751  delta=-2.9864  REVT  RV-K  (nll_old=1.1987 nll_new=1.1208)
+    seed=6 split#11: color=1  parent_tr=2.6332  sep=2.8810  pre=0.6921  prob=3.2616  delta=-2.5696  REVT  RV-K  (nll_old=1.2484 nll_new=1.1350)
+    seed=6 split#12: color=3  parent_tr=1.6577  sep=2.2501  pre=1.4062  prob=2.5213  delta=-1.1151  REVT  RV-R  (nll_old=1.2040 nll_new=1.2062)
+    seed=6 split#13: color=0  parent_tr=1.8547  sep=2.5731  pre=1.3543  prob=3.8646  delta=-2.5103  REVT  RV-R  (nll_old=1.2741 nll_new=1.2939)
+    seed=6 split#14: color=2  parent_tr=2.7858  sep=2.6981  pre=0.8339  prob=3.6593  delta=-2.8254  REVT  RV-K  (nll_old=1.2413 nll_new=1.1691)
+    seed=6 split#15: color=1  parent_tr=2.6085  sep=2.8610  pre=0.7926  prob=1.4517  delta=-0.6591  REVT  RV-K  (nll_old=1.2544 nll_new=1.1362)
+    seed=6 split#16: color=3  parent_tr=1.6162  sep=2.2029  pre=1.4023  prob=2.6489  delta=-1.2466  REVT  RV-K  (nll_old=1.2083 nll_new=1.1936)
+    seed=6 split#17: color=0  parent_tr=1.8165  sep=2.5435  pre=1.3134  prob=3.9573  delta=-2.6439  REVT  RV-R  (nll_old=1.2760 nll_new=1.3136)
+    seed=6 split#18: color=2  parent_tr=2.8068  sep=2.7050  pre=0.8305  prob=2.6149  delta=-1.7844  REVT  RV-K  (nll_old=1.2494 nll_new=1.1716)
+    seed=6 split#19: color=1  parent_tr=2.6275  sep=2.8575  pre=0.9962  prob=1.5485  delta=-0.5523  REVT  RV-K  (nll_old=1.2975 nll_new=1.1686)
+    seed=6 split#20: color=3  parent_tr=1.6056  sep=2.1923  pre=1.4247  prob=3.5729  delta=  N/A  REVT  RV-K  (nll_old=1.2432 nll_new=1.2369)
+    seed=7 split#1: color=0  parent_tr=1.8220  sep=2.5559  pre=1.5355  prob=2.5102  delta=-0.9747  REVT  RV-K  (nll_old=1.2115 nll_new=1.1590)
+    seed=7 split#2: color=1  parent_tr=2.5344  sep=2.8420  pre=1.0215  prob=2.5322  delta=-1.5107  REVT  RV-K  (nll_old=1.2612 nll_new=1.1930)
+    seed=7 split#3: color=2  parent_tr=2.7705  sep=2.6744  pre=0.7158  prob=2.5614  delta=-1.8456  REVT  RV-K  (nll_old=1.3050 nll_new=1.1445)
+    seed=7 split#4: color=3  parent_tr=1.5516  sep=2.1371  pre=1.1269  prob=4.2748  delta=-3.1479  REVT  RV-K  (nll_old=1.2537 nll_new=1.2309)
+    seed=7 split#5: color=0  parent_tr=1.7622  sep=2.4985  pre=1.2496  prob=3.2047  delta=-1.9552  REVT  RV-K  (nll_old=1.1758 nll_new=1.1238)
+    seed=7 split#6: color=1  parent_tr=2.6162  sep=2.8726  pre=1.0545  prob=2.6672  delta=-1.6127  REVT  RV-K  (nll_old=1.3124 nll_new=1.2415)
+    seed=7 split#7: color=2  parent_tr=2.7916  sep=2.7298  pre=0.7392  prob=2.5377  delta=-1.7985  REVT  RV-K  (nll_old=1.1519 nll_new=1.1065)
+    seed=7 split#8: color=3  parent_tr=1.5856  sep=2.1729  pre=1.1518  prob=2.5284  delta=-1.3766  REVT  RV-R  (nll_old=1.2187 nll_new=1.2305)
+    seed=7 split#9: color=0  parent_tr=1.7599  sep=2.4957  pre=1.3050  prob=3.4036  delta=-2.0986  REVT  RV-K  (nll_old=1.2798 nll_new=1.2736)
+    seed=7 split#10: color=1  parent_tr=2.5897  sep=2.8539  pre=0.7722  prob=1.7893  delta=-1.0170  REVT  RV-K  (nll_old=1.2009 nll_new=1.1168)
+    seed=7 split#11: color=2  parent_tr=2.7679  sep=2.6891  pre=0.9105  prob=2.4102  delta=-1.4997  REVT  RV-K  (nll_old=1.2370 nll_new=1.1854)
+    seed=7 split#12: color=3  parent_tr=1.6078  sep=2.1996  pre=1.0854  prob=2.8593  delta=-1.7740  REVT  RV-R  (nll_old=1.2850 nll_new=1.3241)
+    seed=7 split#13: color=0  parent_tr=1.7336  sep=2.4737  pre=1.2487  prob=3.5579  delta=-2.3092  REVT  RV-R  (nll_old=1.2366 nll_new=1.2783)
+    seed=7 split#14: color=1  parent_tr=2.5857  sep=2.8343  pre=0.8201  prob=2.1524  delta=-1.3323  REVT  RV-K  (nll_old=1.2387 nll_new=1.1864)
+    seed=7 split#15: color=2  parent_tr=2.7815  sep=2.6859  pre=0.8325  prob=2.8233  delta=-1.9908  REVT  RV-K  (nll_old=1.2446 nll_new=1.1747)
+    seed=7 split#16: color=3  parent_tr=1.6326  sep=2.2272  pre=1.0848  prob=2.5211  delta=-1.4363  REVT  RV-R  (nll_old=1.2104 nll_new=1.2215)
+    seed=7 split#17: color=0  parent_tr=1.7574  sep=2.4944  pre=1.4083  prob=3.7075  delta=-2.2992  REVT  RV-R  (nll_old=1.2603 nll_new=1.2631)
+    seed=7 split#18: color=1  parent_tr=2.5910  sep=2.8456  pre=0.6790  prob=1.4001  delta=-0.7211  REVT  RV-K  (nll_old=1.2532 nll_new=1.1209)
+    seed=7 split#19: color=2  parent_tr=2.7889  sep=2.6819  pre=0.9695  prob=2.6273  delta=-1.6578  REVT  RV-K  (nll_old=1.2361 nll_new=1.1663)
+    seed=7 split#20: color=3  parent_tr=1.6113  sep=2.2009  pre=1.1135  prob=2.5741  delta=  N/A  REVT  RV-R  (nll_old=1.2869 nll_new=1.3247)
+
+  TALLIES — Layout 1
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 1: FAIL
+    seed=0: plateau=1.2625  final=1.5605  drop=-0.298  finCeil=115  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=1.2340  final=1.4549  drop=-0.221  finCeil=232  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.2696  final=1.6014  drop=-0.332  finCeil=150  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.2854  final=1.4272  drop=-0.142  finCeil=189  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.3267  final=1.5039  drop=-0.177  finCeil=229  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.2073  final=1.4490  drop=-0.242  finCeil=241  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=1.2196  final=1.4740  drop=-0.254  finCeil=150  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.2663  final=1.3881  drop=-0.122  finCeil=119  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 anti-valley (mean(prob-pre) <= +0.1, all attempts per layout):
+    Mean(prob-pre): +1.7191  FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0475  pass
+    seed=1: loc_med=0.0494  pass
+    seed=2: loc_med=0.0469  pass
+    seed=3: loc_med=0.0532  pass
+    seed=4: loc_med=0.0540  pass
+    seed=5: loc_med=0.0457  pass
+    seed=6: loc_med=0.0450  pass
+    seed=7: loc_med=0.0443  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 2  (rng(11))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [3, 1, 0, 2]
+    row 1: [2, 1, 1, 3]
+    row 2: [0, 1, 3, 2]
+    row 3: [0, 0, 3, 2]
+  CMAP array: [3, 1, 0, 2, 2, 1, 1, 3, 0, 1, 3, 2, 0, 0, 3, 2]
+
+  Color -> cells and centers:
+    color 0: cells [2, 8, 12, 13]  centers [[2.0, 0.0], [0.0, 2.0], [0.0, 3.0], [1.0, 3.0]]
+    color 1: cells [1, 5, 6, 9]  centers [[1.0, 0.0], [1.0, 1.0], [2.0, 1.0], [1.0, 2.0]]
+    color 2: cells [3, 4, 11, 15]  centers [[3.0, 0.0], [0.0, 1.0], [3.0, 2.0], [3.0, 3.0]]
+    color 3: cells [0, 7, 10, 14]  centers [[0.0, 0.0], [3.0, 1.0], [2.0, 2.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   MnDelta  TwinF500
+---------------------------------------------------------------------------------------------------------
+   0   1.1522   1.5090  -0.357       64  [1, 1, 1, 1]     0    20  0.0437   +1.3792    1.0000
+   1   0.9112   1.2686  -0.357       93  [1, 1, 1, 1]     0    20  0.0470   +1.2996    1.0000
+   2   1.0443   1.0324   0.012      255  [1, 1, 1, 1]     0    20  0.0456   +1.4882    1.0000
+   3   1.1428   1.1455  -0.003      286  [1, 1, 1, 1]     0    20  0.0541   +1.4476    1.0000
+   4   1.0438   1.3019  -0.258      178  [1, 1, 1, 1]     0    20  0.0507   +1.3618    1.0000
+   5   1.1306   1.5235  -0.393      137  [1, 1, 1, 1]     0    20  0.0444   +1.8405    1.0000
+   6   0.9249   1.2793  -0.354      142  [1, 1, 1, 1]     0    20  0.0416   +1.1505    1.0000
+   7   1.0870   1.2583  -0.171      134  [1, 1, 1, 1]     0    20  0.0452   +1.1911    1.0000
+
+  P2 Anti-Valley Summary (Layout 2):
+  (mean(probation_mean - pre_spawn_mean) per attempt, vs Exp 145 surges +0.6..+3.5)
+    Total attempts: 152  Kept: 0  Reverted: 152  Keep-rate: 0.0%
+    Mean(prob-pre): +1.3948  Max: +3.4099  Min: -0.0385  (P2 threshold <= +0.1)  FAIL
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 2):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                     0             0
+    Live=REVERT                 108            52
+    Total decided: 160
+    Agree: 52  Disagree: 108  Agreement rate: 32.5%
+
+  Per-split detail (Layout 2):
+    seed=0 split#1: color=0  parent_tr=2.0114  sep=2.6605  pre=1.2635  prob=1.9185  delta=-0.6549  REVT  RV-K  (nll_old=1.1589 nll_new=1.0502)
+    seed=0 split#2: color=1  parent_tr=0.6554  sep=1.3785  pre=1.6006  prob=2.0290  delta=-0.4284  REVT  RV-R  (nll_old=1.1968 nll_new=1.2462)
+    seed=0 split#3: color=2  parent_tr=3.0259  sep=2.8847  pre=0.7414  prob=2.1783  delta=-1.4370  REVT  RV-K  (nll_old=1.1670 nll_new=0.9542)
+    seed=0 split#4: color=0  parent_tr=1.9718  sep=2.6316  pre=0.6727  prob=2.2516  delta=-1.5788  REVT  RV-K  (nll_old=1.1476 nll_new=1.0435)
+    seed=0 split#5: color=3  parent_tr=2.4823  sep=2.8197  pre=0.7822  prob=2.0572  delta=-1.2750  REVT  RV-K  (nll_old=1.1256 nll_new=1.0047)
+    seed=0 split#6: color=1  parent_tr=0.6500  sep=1.3625  pre=1.4995  prob=3.8604  delta=-2.3609  REVT  RV-R  (nll_old=1.1925 nll_new=1.2724)
+    seed=0 split#7: color=2  parent_tr=2.9181  sep=2.8199  pre=0.7786  prob=2.6496  delta=-1.8709  REVT  RV-K  (nll_old=1.2169 nll_new=1.0126)
+    seed=0 split#8: color=0  parent_tr=2.1503  sep=2.7756  pre=1.0743  prob=1.3406  delta=-0.2663  REVT  RV-K  (nll_old=1.1528 nll_new=1.0227)
+    seed=0 split#9: color=3  parent_tr=2.4733  sep=2.7927  pre=0.6650  prob=1.8448  delta=-1.1798  REVT  RV-K  (nll_old=1.1190 nll_new=0.9326)
+    seed=0 split#10: color=1  parent_tr=0.6470  sep=1.3562  pre=1.5235  prob=2.7099  delta=-1.1863  REVT  RV-R  (nll_old=1.1416 nll_new=1.1961)
+    seed=0 split#11: color=2  parent_tr=2.9154  sep=2.8194  pre=0.7614  prob=3.1197  delta=-2.3584  REVT  RV-K  (nll_old=1.0987 nll_new=0.9282)
+    seed=0 split#12: color=0  parent_tr=2.1529  sep=2.7807  pre=0.7148  prob=1.7756  delta=-1.0609  REVT  RV-K  (nll_old=1.1421 nll_new=1.0675)
+    seed=0 split#13: color=3  parent_tr=2.4419  sep=2.7574  pre=0.6518  prob=2.1710  delta=-1.5191  REVT  RV-K  (nll_old=1.1362 nll_new=0.9469)
+    seed=0 split#14: color=1  parent_tr=0.6520  sep=1.3647  pre=1.4856  prob=2.2863  delta=-0.8007  REVT  RV-R  (nll_old=1.1468 nll_new=1.2119)
+    seed=0 split#15: color=0  parent_tr=2.1557  sep=2.7832  pre=1.0115  prob=2.4249  delta=-1.4134  REVT  RV-K  (nll_old=1.1348 nll_new=1.0359)
+    seed=0 split#16: color=3  parent_tr=2.4358  sep=2.7449  pre=0.8140  prob=1.6051  delta=-0.7911  REVT  RV-K  (nll_old=1.0758 nll_new=0.9333)
+    seed=0 split#17: color=1  parent_tr=0.6532  sep=1.3609  pre=1.6211  prob=2.5402  delta=-0.9191  REVT  RV-R  (nll_old=1.1101 nll_new=1.1611)
+    seed=0 split#18: color=2  parent_tr=2.8762  sep=2.7199  pre=0.8348  prob=3.0592  delta=-2.2244  REVT  RV-K  (nll_old=1.0883 nll_new=0.9080)
+    seed=0 split#19: color=1  parent_tr=0.6533  sep=1.3605  pre=1.6605  prob=4.5397  delta=-2.8792  REVT  RV-R  (nll_old=1.0847 nll_new=1.1505)
+    seed=0 split#20: color=0  parent_tr=2.1383  sep=2.7689  pre=0.8571  prob=1.8853  delta=  N/A  REVT  RV-K  (nll_old=1.1514 nll_new=1.0070)
+    seed=1 split#1: color=0  parent_tr=1.8038  sep=2.4787  pre=1.2086  prob=1.1701  delta=+0.0385  REVT  RV-K  (nll_old=0.9593 nll_new=0.7679)
+    seed=1 split#2: color=1  parent_tr=0.6870  sep=1.4184  pre=1.1107  prob=2.2032  delta=-1.0925  REVT  RV-R  (nll_old=1.0758 nll_new=1.0945)
+    seed=1 split#3: color=2  parent_tr=2.5456  sep=2.5472  pre=0.7638  prob=2.3558  delta=-1.5920  REVT  RV-K  (nll_old=1.1430 nll_new=0.9606)
+    seed=1 split#4: color=3  parent_tr=1.8820  sep=2.2753  pre=0.7570  prob=2.4100  delta=-1.6530  REVT  RV-K  (nll_old=0.9444 nll_new=0.8490)
+    seed=1 split#5: color=0  parent_tr=1.9073  sep=2.5668  pre=0.7200  prob=1.3934  delta=-0.6734  REVT  RV-K  (nll_old=1.0883 nll_new=0.8970)
+    seed=1 split#6: color=1  parent_tr=0.6827  sep=1.4205  pre=1.2340  prob=2.2017  delta=-0.9676  REVT  RV-R  (nll_old=1.0409 nll_new=1.0705)
+    seed=1 split#7: color=2  parent_tr=2.6692  sep=2.6201  pre=0.8559  prob=2.8826  delta=-2.0268  REVT  RV-K  (nll_old=1.2547 nll_new=1.0106)
+    seed=1 split#8: color=3  parent_tr=2.1229  sep=2.4817  pre=0.6063  prob=1.7042  delta=-1.0980  REVT  RV-K  (nll_old=1.0107 nll_new=0.8625)
+    seed=1 split#9: color=1  parent_tr=0.6837  sep=1.4247  pre=1.3869  prob=2.7435  delta=-1.3566  REVT  RV-R  (nll_old=0.9713 nll_new=1.0277)
+    seed=1 split#10: color=0  parent_tr=1.9377  sep=2.5950  pre=0.9024  prob=2.0975  delta=-1.1951  REVT  RV-K  (nll_old=1.0980 nll_new=0.9874)
+    seed=1 split#11: color=3  parent_tr=2.1500  sep=2.5072  pre=0.8020  prob=1.6489  delta=-0.8469  REVT  RV-K  (nll_old=1.0445 nll_new=0.9457)
+    seed=1 split#12: color=1  parent_tr=0.6750  sep=1.4090  pre=1.3370  prob=2.4621  delta=-1.1251  REVT  RV-R  (nll_old=1.1669 nll_new=1.2668)
+    seed=1 split#13: color=2  parent_tr=2.7227  sep=2.6721  pre=0.8512  prob=3.0185  delta=-2.1673  REVT  RV-K  (nll_old=1.0827 nll_new=0.8566)
+    seed=1 split#14: color=0  parent_tr=1.9943  sep=2.6424  pre=0.7983  prob=2.3414  delta=-1.5431  REVT  RV-K  (nll_old=1.0824 nll_new=0.9366)
+    seed=1 split#15: color=3  parent_tr=2.2287  sep=2.5604  pre=0.8049  prob=1.7903  delta=-0.9855  REVT  RV-K  (nll_old=1.1552 nll_new=1.0093)
+    seed=1 split#16: color=1  parent_tr=0.6701  sep=1.3948  pre=1.3877  prob=2.4770  delta=-1.0893  REVT  RV-R  (nll_old=1.0332 nll_new=1.0887)
+    seed=1 split#17: color=2  parent_tr=2.7326  sep=2.6299  pre=0.7409  prob=3.2225  delta=-2.4817  REVT  RV-K  (nll_old=1.1627 nll_new=0.9670)
+    seed=1 split#18: color=0  parent_tr=2.0601  sep=2.6950  pre=0.8965  prob=2.1194  delta=-1.2229  REVT  RV-K  (nll_old=1.1627 nll_new=1.0060)
+    seed=1 split#19: color=3  parent_tr=2.2369  sep=2.5577  pre=0.7585  prob=2.3735  delta=-1.6150  REVT  RV-K  (nll_old=1.0433 nll_new=0.9309)
+    seed=1 split#20: color=1  parent_tr=0.6676  sep=1.3943  pre=1.3089  prob=2.8918  delta=  N/A  REVT  RV-R  (nll_old=1.1262 nll_new=1.1971)
+    seed=2 split#1: color=0  parent_tr=1.9453  sep=2.6201  pre=1.5100  prob=1.5390  delta=-0.0291  REVT  RV-K  (nll_old=1.0590 nll_new=0.9570)
+    seed=2 split#2: color=1  parent_tr=0.6446  sep=1.3448  pre=1.4513  prob=2.8140  delta=-1.3627  REVT  RV-R  (nll_old=1.1433 nll_new=1.2225)
+    seed=2 split#3: color=3  parent_tr=2.1214  sep=2.4664  pre=0.9503  prob=2.9748  delta=-2.0245  REVT  RV-K  (nll_old=1.0849 nll_new=1.0549)
+    seed=2 split#4: color=1  parent_tr=0.6583  sep=1.3795  pre=1.3067  prob=1.8625  delta=-0.5558  REVT  RV-R  (nll_old=1.1388 nll_new=1.2068)
+    seed=2 split#5: color=3  parent_tr=2.0460  sep=2.3835  pre=0.9646  prob=3.0760  delta=-2.1114  REVT  RV-K  (nll_old=0.9573 nll_new=0.9339)
+    seed=2 split#6: color=0  parent_tr=2.0349  sep=2.6902  pre=0.8134  prob=1.9786  delta=-1.1652  REVT  RV-K  (nll_old=1.1726 nll_new=0.9969)
+    seed=2 split#7: color=1  parent_tr=0.6559  sep=1.3727  pre=1.3812  prob=3.9389  delta=-2.5577  REVT  RV-R  (nll_old=1.1022 nll_new=1.1495)
+    seed=2 split#8: color=2  parent_tr=2.7586  sep=2.6274  pre=0.6896  prob=2.8820  delta=-2.1924  REVT  RV-K  (nll_old=1.1048 nll_new=0.8699)
+    seed=2 split#9: color=0  parent_tr=2.0214  sep=2.6788  pre=0.6830  prob=1.5744  delta=-0.8914  REVT  RV-K  (nll_old=1.1340 nll_new=0.9755)
+    seed=2 split#10: color=3  parent_tr=2.1780  sep=2.4951  pre=0.7812  prob=2.0870  delta=-1.3058  REVT  RV-K  (nll_old=1.0109 nll_new=0.8781)
+    seed=2 split#11: color=1  parent_tr=0.6496  sep=1.3649  pre=1.3866  prob=4.1643  delta=-2.7777  REVT  RV-R  (nll_old=1.1337 nll_new=1.2056)
+    seed=2 split#12: color=0  parent_tr=2.0789  sep=2.7250  pre=0.9873  prob=2.7446  delta=-1.7574  REVT  RV-K  (nll_old=1.0864 nll_new=0.9493)
+    seed=2 split#13: color=3  parent_tr=2.1866  sep=2.5037  pre=0.8357  prob=2.0550  delta=-1.2192  REVT  RV-K  (nll_old=1.1849 nll_new=1.0602)
+    seed=2 split#14: color=1  parent_tr=0.6493  sep=1.3626  pre=1.3942  prob=4.0675  delta=-2.6733  REVT  RV-R  (nll_old=1.1411 nll_new=1.1820)
+    seed=2 split#15: color=0  parent_tr=2.0542  sep=2.7035  pre=0.6529  prob=1.5017  delta=-0.8488  REVT  RV-K  (nll_old=0.9668 nll_new=0.9122)
+    seed=2 split#16: color=3  parent_tr=2.1520  sep=2.4796  pre=0.7815  prob=2.0709  delta=-1.2894  REVT  RV-K  (nll_old=1.0744 nll_new=0.9713)
+    seed=2 split#17: color=2  parent_tr=2.7166  sep=2.6079  pre=0.6427  prob=3.1228  delta=-2.4801  REVT  RV-K  (nll_old=1.1332 nll_new=0.8994)
+    seed=2 split#18: color=1  parent_tr=0.6481  sep=1.3642  pre=1.3147  prob=1.7754  delta=-0.4607  REVT  RV-R  (nll_old=1.1027 nll_new=1.1313)
+    seed=2 split#19: color=0  parent_tr=2.0428  sep=2.6921  pre=0.6663  prob=1.2402  delta=-0.5738  REVT  RV-K  (nll_old=1.0565 nll_new=0.9184)
+    seed=2 split#20: color=3  parent_tr=2.1798  sep=2.5141  pre=0.8359  prob=1.7235  delta=  N/A  REVT  RV-K  (nll_old=1.0301 nll_new=0.8954)
+    seed=3 split#1: color=0  parent_tr=2.0306  sep=2.6684  pre=0.7599  prob=2.2044  delta=-1.4446  REVT  RV-K  (nll_old=1.0827 nll_new=0.9629)
+    seed=3 split#2: color=1  parent_tr=0.6510  sep=1.3985  pre=1.3670  prob=4.0874  delta=-2.7204  REVT  RV-R  (nll_old=1.2341 nll_new=1.3026)
+    seed=3 split#3: color=2  parent_tr=2.8642  sep=2.7622  pre=0.7889  prob=2.4364  delta=-1.6475  REVT  RV-K  (nll_old=1.0429 nll_new=0.8313)
+    seed=3 split#4: color=0  parent_tr=2.1044  sep=2.7286  pre=1.0454  prob=1.7083  delta=-0.6628  REVT  RV-K  (nll_old=1.2025 nll_new=1.0304)
+    seed=3 split#5: color=3  parent_tr=2.3662  sep=2.6878  pre=0.6669  prob=1.8893  delta=-1.2224  REVT  RV-K  (nll_old=1.1269 nll_new=0.9637)
+    seed=3 split#6: color=1  parent_tr=0.6551  sep=1.4011  pre=1.4965  prob=2.6585  delta=-1.1620  REVT  RV-R  (nll_old=1.1101 nll_new=1.1616)
+    seed=3 split#7: color=2  parent_tr=2.8683  sep=2.7882  pre=0.8124  prob=3.1009  delta=-2.2885  REVT  RV-K  (nll_old=1.1738 nll_new=0.9361)
+    seed=3 split#8: color=1  parent_tr=0.6561  sep=1.4011  pre=1.4938  prob=2.3511  delta=-0.8573  REVT  RV-R  (nll_old=1.1172 nll_new=1.1600)
+    seed=3 split#9: color=0  parent_tr=2.0367  sep=2.6792  pre=0.9545  prob=1.8901  delta=-0.9356  REVT  RV-K  (nll_old=1.1036 nll_new=1.0291)
+    seed=3 split#10: color=3  parent_tr=2.3848  sep=2.7101  pre=0.7419  prob=1.5772  delta=-0.8353  REVT  RV-K  (nll_old=1.0637 nll_new=0.9166)
+    seed=3 split#11: color=1  parent_tr=0.6461  sep=1.3817  pre=1.5027  prob=2.7884  delta=-1.2857  REVT  RV-R  (nll_old=1.0402 nll_new=1.1113)
+    seed=3 split#12: color=2  parent_tr=2.8323  sep=2.7664  pre=0.7382  prob=2.6713  delta=-1.9332  REVT  RV-K  (nll_old=1.0876 nll_new=0.9462)
+    seed=3 split#13: color=0  parent_tr=2.0932  sep=2.7252  pre=1.0637  prob=2.2840  delta=-1.2203  REVT  RV-K  (nll_old=1.2087 nll_new=0.9829)
+    seed=3 split#14: color=3  parent_tr=2.4548  sep=2.7515  pre=0.7075  prob=2.7496  delta=-2.0421  REVT  RV-K  (nll_old=1.1312 nll_new=0.9572)
+    seed=3 split#15: color=1  parent_tr=0.6441  sep=1.3830  pre=1.3417  prob=4.5759  delta=-3.2342  REVT  RV-R  (nll_old=1.3070 nll_new=1.4110)
+    seed=3 split#16: color=2  parent_tr=2.9323  sep=2.8293  pre=1.1080  prob=3.1950  delta=-2.0869  REVT  RV-K  (nll_old=1.2145 nll_new=0.9703)
+    seed=3 split#17: color=0  parent_tr=2.1175  sep=2.7457  pre=0.9750  prob=1.9052  delta=-0.9302  REVT  RV-K  (nll_old=1.1965 nll_new=1.0620)
+    seed=3 split#18: color=3  parent_tr=2.4687  sep=2.7654  pre=0.7592  prob=1.5289  delta=-0.7697  REVT  RV-K  (nll_old=1.0559 nll_new=0.9800)
+    seed=3 split#19: color=1  parent_tr=0.6472  sep=1.3838  pre=1.5547  prob=1.7804  delta=-0.2256  REVT  RV-R  (nll_old=1.1252 nll_new=1.1594)
+    seed=3 split#20: color=2  parent_tr=2.9052  sep=2.8031  pre=0.8387  prob=3.9387  delta=  N/A  REVT  RV-K  (nll_old=1.0421 nll_new=0.8252)
+    seed=4 split#1: color=0  parent_tr=2.0859  sep=2.7142  pre=0.9007  prob=1.5892  delta=-0.6884  REVT  RV-K  (nll_old=1.1107 nll_new=0.9895)
+    seed=4 split#2: color=1  parent_tr=0.6414  sep=1.3464  pre=1.4329  prob=2.2437  delta=-0.8108  REVT  RV-R  (nll_old=1.1718 nll_new=1.2335)
+    seed=4 split#3: color=2  parent_tr=2.7215  sep=2.7028  pre=0.7161  prob=2.7916  delta=-2.0755  REVT  RV-K  (nll_old=1.0871 nll_new=0.8849)
+    seed=4 split#4: color=0  parent_tr=2.0451  sep=2.6815  pre=0.8418  prob=1.7663  delta=-0.9244  REVT  RV-K  (nll_old=1.1662 nll_new=1.0245)
+    seed=4 split#5: color=3  parent_tr=2.2236  sep=2.5343  pre=0.7615  prob=1.6035  delta=-0.8421  REVT  RV-K  (nll_old=1.1043 nll_new=0.9794)
+    seed=4 split#6: color=1  parent_tr=0.6425  sep=1.3455  pre=1.4842  prob=2.7356  delta=-1.2515  REVT  RV-R  (nll_old=0.9844 nll_new=1.0356)
+    seed=4 split#7: color=2  parent_tr=2.6265  sep=2.6359  pre=0.6403  prob=2.9770  delta=-2.3367  REVT  RV-K  (nll_old=1.0167 nll_new=0.8027)
+    seed=4 split#8: color=0  parent_tr=2.0041  sep=2.6543  pre=0.7565  prob=1.9383  delta=-1.1818  REVT  RV-K  (nll_old=1.0347 nll_new=0.9406)
+    seed=4 split#9: color=3  parent_tr=2.1572  sep=2.4791  pre=0.7762  prob=1.5896  delta=-0.8134  REVT  RV-K  (nll_old=1.0679 nll_new=0.9410)
+    seed=4 split#10: color=1  parent_tr=0.6530  sep=1.3626  pre=1.4365  prob=2.6323  delta=-1.1959  REVT  RV-R  (nll_old=1.0847 nll_new=1.1276)
+    seed=4 split#11: color=2  parent_tr=2.6037  sep=2.6032  pre=0.8112  prob=2.8087  delta=-1.9975  REVT  RV-K  (nll_old=1.1200 nll_new=0.9197)
+    seed=4 split#12: color=0  parent_tr=2.0216  sep=2.6666  pre=0.6446  prob=1.3590  delta=-0.7144  REVT  RV-K  (nll_old=1.1452 nll_new=1.0073)
+    seed=4 split#13: color=3  parent_tr=2.1700  sep=2.5047  pre=0.7651  prob=1.9288  delta=-1.1637  REVT  RV-K  (nll_old=1.0137 nll_new=0.9076)
+    seed=4 split#14: color=1  parent_tr=0.6540  sep=1.3665  pre=1.3950  prob=2.7142  delta=-1.3192  REVT  RV-R  (nll_old=1.1650 nll_new=1.2113)
+    seed=4 split#15: color=2  parent_tr=2.6421  sep=2.6172  pre=0.7360  prob=3.3983  delta=-2.6623  REVT  RV-K  (nll_old=1.0939 nll_new=0.9025)
+    seed=4 split#16: color=1  parent_tr=0.6501  sep=1.3575  pre=1.4912  prob=3.1698  delta=-1.6786  REVT  RV-R  (nll_old=1.0805 nll_new=1.1524)
+    seed=4 split#17: color=0  parent_tr=2.0935  sep=2.7239  pre=1.0292  prob=2.0651  delta=-1.0360  REVT  RV-K  (nll_old=1.1065 nll_new=0.9640)
+    seed=4 split#18: color=3  parent_tr=2.1159  sep=2.4426  pre=0.8195  prob=2.1485  delta=-1.3290  REVT  RV-K  (nll_old=1.1486 nll_new=1.0374)
+    seed=4 split#19: color=1  parent_tr=0.6513  sep=1.3558  pre=1.4500  prob=3.3022  delta=-1.8522  REVT  RV-R  (nll_old=1.1255 nll_new=1.1785)
+    seed=4 split#20: color=0  parent_tr=2.1478  sep=2.7650  pre=1.0966  prob=2.8215  delta=  N/A  REVT  RV-K  (nll_old=1.0442 nll_new=0.9158)
+    seed=5 split#1: color=0  parent_tr=2.2895  sep=2.8754  pre=0.9777  prob=1.8669  delta=-0.8893  REVT  RV-K  (nll_old=1.1866 nll_new=0.9895)
+    seed=5 split#2: color=1  parent_tr=0.6622  sep=1.3893  pre=1.4827  prob=3.7668  delta=-2.2841  REVT  RV-R  (nll_old=1.1898 nll_new=1.2693)
+    seed=5 split#3: color=2  parent_tr=2.8770  sep=2.7290  pre=0.7998  prob=2.7213  delta=-1.9215  REVT  RV-K  (nll_old=1.1536 nll_new=0.9881)
+    seed=5 split#4: color=0  parent_tr=2.3247  sep=2.9025  pre=0.8951  prob=1.4641  delta=-0.5690  REVT  RV-K  (nll_old=1.1293 nll_new=1.0224)
+    seed=5 split#5: color=3  parent_tr=2.4903  sep=2.7727  pre=0.7250  prob=3.5715  delta=-2.8466  REVT  RV-K  (nll_old=1.0695 nll_new=0.9086)
+    seed=5 split#6: color=1  parent_tr=0.6628  sep=1.3900  pre=1.3906  prob=4.2425  delta=-2.8519  REVT  RV-R  (nll_old=1.1518 nll_new=1.2227)
+    seed=5 split#7: color=2  parent_tr=2.8661  sep=2.7515  pre=0.8540  prob=3.1838  delta=-2.3298  REVT  RV-K  (nll_old=1.1609 nll_new=0.9614)
+    seed=5 split#8: color=0  parent_tr=2.3204  sep=2.8971  pre=0.7229  prob=1.5381  delta=-0.8151  REVT  RV-K  (nll_old=1.0649 nll_new=0.9692)
+    seed=5 split#9: color=3  parent_tr=2.4728  sep=2.7559  pre=0.6517  prob=3.8714  delta=-3.2197  REVT  RV-K  (nll_old=1.1355 nll_new=0.9466)
+    seed=5 split#10: color=1  parent_tr=0.6635  sep=1.3872  pre=1.4995  prob=2.5110  delta=-1.0114  REVT  RV-R  (nll_old=1.0825 nll_new=1.1165)
+    seed=5 split#11: color=2  parent_tr=2.9132  sep=2.7874  pre=0.8293  prob=2.6481  delta=-1.8188  REVT  RV-K  (nll_old=1.2053 nll_new=1.0310)
+    seed=5 split#12: color=0  parent_tr=2.2587  sep=2.8519  pre=0.8197  prob=2.0099  delta=-1.1902  REVT  RV-K  (nll_old=1.1590 nll_new=1.0015)
+    seed=5 split#13: color=3  parent_tr=2.4851  sep=2.7739  pre=0.7947  prob=3.6914  delta=-2.8967  REVT  RV-K  (nll_old=1.1102 nll_new=1.0187)
+    seed=5 split#14: color=1  parent_tr=0.6590  sep=1.3817  pre=1.4881  prob=2.7346  delta=-1.2465  REVT  RV-R  (nll_old=1.0546 nll_new=1.1179)
+    seed=5 split#15: color=0  parent_tr=2.2167  sep=2.8205  pre=1.0173  prob=1.7991  delta=-0.7818  REVT  RV-K  (nll_old=1.0926 nll_new=0.9659)
+    seed=5 split#16: color=3  parent_tr=2.4844  sep=2.7756  pre=0.7994  prob=3.2265  delta=-2.4271  REVT  RV-K  (nll_old=1.0285 nll_new=0.9162)
+    seed=5 split#17: color=1  parent_tr=0.6620  sep=1.3866  pre=1.4527  prob=2.8165  delta=-1.3638  REVT  RV-R  (nll_old=1.0581 nll_new=1.1228)
+    seed=5 split#18: color=0  parent_tr=2.1955  sep=2.8046  pre=0.9952  prob=2.0916  delta=-1.0964  REVT  RV-K  (nll_old=1.1822 nll_new=1.0253)
+    seed=5 split#19: color=3  parent_tr=2.4871  sep=2.7814  pre=0.7478  prob=4.1578  delta=-3.4099  REVT  RV-K  (nll_old=1.1857 nll_new=0.9962)
+    seed=5 split#20: color=1  parent_tr=0.6671  sep=1.3942  pre=1.4672  prob=3.6176  delta=  N/A  REVT  RV-R  (nll_old=1.1068 nll_new=1.1780)
+    seed=6 split#1: color=1  parent_tr=0.6760  sep=1.4473  pre=1.5023  prob=2.2237  delta=-0.7214  REVT  RV-R  (nll_old=1.0372 nll_new=1.0641)
+    seed=6 split#2: color=0  parent_tr=1.4312  sep=2.1745  pre=1.1404  prob=1.5342  delta=-0.3938  REVT  RV-K  (nll_old=1.1236 nll_new=1.0100)
+    seed=6 split#3: color=3  parent_tr=2.2986  sep=2.6844  pre=0.7651  prob=1.6124  delta=-0.8473  REVT  RV-K  (nll_old=1.1182 nll_new=0.9928)
+    seed=6 split#4: color=1  parent_tr=0.6639  sep=1.4028  pre=1.2989  prob=2.3704  delta=-1.0715  REVT  RV-R  (nll_old=1.2277 nll_new=1.2721)
+    seed=6 split#5: color=2  parent_tr=2.7245  sep=2.6678  pre=0.7496  prob=2.5112  delta=-1.7616  REVT  RV-K  (nll_old=1.2337 nll_new=0.9855)
+    seed=6 split#6: color=0  parent_tr=1.8309  sep=2.5237  pre=1.2569  prob=1.3762  delta=-0.1193  REVT  RV-K  (nll_old=1.1248 nll_new=0.9381)
+    seed=6 split#7: color=3  parent_tr=2.3658  sep=2.7203  pre=0.7567  prob=1.7581  delta=-1.0014  REVT  RV-K  (nll_old=1.0044 nll_new=0.9002)
+    seed=6 split#8: color=1  parent_tr=0.6632  sep=1.3979  pre=1.3268  prob=2.3705  delta=-1.0438  REVT  RV-R  (nll_old=1.1005 nll_new=1.1590)
+    seed=6 split#9: color=2  parent_tr=2.7504  sep=2.6888  pre=0.8208  prob=2.4817  delta=-1.6609  REVT  RV-K  (nll_old=1.2395 nll_new=1.0361)
+    seed=6 split#10: color=1  parent_tr=0.6676  sep=1.4117  pre=1.3628  prob=2.6074  delta=-1.2445  REVT  RV-R  (nll_old=1.0788 nll_new=1.1131)
+    seed=6 split#11: color=0  parent_tr=2.0017  sep=2.6606  pre=1.6058  prob=2.4792  delta=-0.8734  REVT  RV-K  (nll_old=1.3039 nll_new=1.0658)
+    seed=6 split#12: color=1  parent_tr=0.6659  sep=1.4093  pre=1.4521  prob=3.6016  delta=-2.1495  REVT  RV-R  (nll_old=1.2021 nll_new=1.2442)
+    seed=6 split#13: color=3  parent_tr=2.4992  sep=2.8064  pre=0.9071  prob=1.9552  delta=-1.0481  REVT  RV-K  (nll_old=1.0835 nll_new=0.9161)
+    seed=6 split#14: color=0  parent_tr=2.0333  sep=2.6864  pre=1.0390  prob=2.8438  delta=-1.8048  REVT  RV-K  (nll_old=1.1780 nll_new=1.0349)
+    seed=6 split#15: color=1  parent_tr=0.6636  sep=1.4051  pre=1.4484  prob=1.9060  delta=-0.4576  REVT  RV-R  (nll_old=1.3034 nll_new=1.3539)
+    seed=6 split#16: color=3  parent_tr=2.4649  sep=2.7759  pre=0.9851  prob=1.5709  delta=-0.5858  REVT  RV-K  (nll_old=1.2340 nll_new=1.0965)
+    seed=6 split#17: color=1  parent_tr=0.6634  sep=1.4015  pre=1.5451  prob=3.4611  delta=-1.9160  REVT  RV-R  (nll_old=1.1116 nll_new=1.1621)
+    seed=6 split#18: color=2  parent_tr=2.7751  sep=2.6294  pre=0.7600  prob=3.0810  delta=-2.3210  REVT  RV-K  (nll_old=1.1553 nll_new=0.9762)
+    seed=6 split#19: color=1  parent_tr=0.6598  sep=1.3978  pre=1.4702  prob=2.3081  delta=-0.8378  REVT  RV-R  (nll_old=1.0886 nll_new=1.1730)
+    seed=6 split#20: color=0  parent_tr=2.0438  sep=2.6921  pre=0.8736  prob=3.8389  delta=  N/A  REVT  RV-K  (nll_old=1.1096 nll_new=0.9836)
+    seed=7 split#1: color=0  parent_tr=2.2708  sep=2.8586  pre=0.9782  prob=1.4254  delta=-0.4472  REVT  RV-K  (nll_old=1.1187 nll_new=1.0060)
+    seed=7 split#2: color=1  parent_tr=0.6708  sep=1.4278  pre=1.5914  prob=1.9930  delta=-0.4016  REVT  RV-R  (nll_old=1.1083 nll_new=1.1700)
+    seed=7 split#3: color=2  parent_tr=2.8722  sep=2.8420  pre=0.7633  prob=2.7112  delta=-1.9479  REVT  RV-K  (nll_old=1.1454 nll_new=0.9717)
+    seed=7 split#4: color=1  parent_tr=0.6700  sep=1.4209  pre=1.5815  prob=1.8593  delta=-0.2778  REVT  RV-R  (nll_old=1.1110 nll_new=1.1341)
+    seed=7 split#5: color=3  parent_tr=2.5004  sep=2.8190  pre=0.9957  prob=1.6527  delta=-0.6570  REVT  RV-K  (nll_old=1.0227 nll_new=0.8916)
+    seed=7 split#6: color=1  parent_tr=0.6631  sep=1.4056  pre=1.5549  prob=2.4498  delta=-0.8949  REVT  RV-R  (nll_old=1.0971 nll_new=1.1798)
+    seed=7 split#7: color=2  parent_tr=2.8365  sep=2.8344  pre=0.6574  prob=2.5467  delta=-1.8893  REVT  RV-K  (nll_old=1.1181 nll_new=0.9006)
+    seed=7 split#8: color=1  parent_tr=0.6626  sep=1.4052  pre=1.5309  prob=1.9472  delta=-0.4163  REVT  RV-R  (nll_old=1.0376 nll_new=1.0741)
+    seed=7 split#9: color=0  parent_tr=2.0704  sep=2.7039  pre=1.2731  prob=1.9841  delta=-0.7110  REVT  RV-K  (nll_old=1.2432 nll_new=1.0995)
+    seed=7 split#10: color=3  parent_tr=2.5362  sep=2.8485  pre=0.6981  prob=2.2842  delta=-1.5862  REVT  RV-K  (nll_old=1.1317 nll_new=0.9683)
+    seed=7 split#11: color=1  parent_tr=0.6603  sep=1.4033  pre=1.3679  prob=4.5403  delta=-3.1724  REVT  RV-R  (nll_old=1.1316 nll_new=1.2002)
+    seed=7 split#12: color=0  parent_tr=2.0276  sep=2.6694  pre=0.8369  prob=3.0289  delta=-2.1920  REVT  RV-K  (nll_old=1.0468 nll_new=0.9803)
+    seed=7 split#13: color=3  parent_tr=2.4704  sep=2.7871  pre=0.7666  prob=1.8509  delta=-1.0844  REVT  RV-K  (nll_old=1.2922 nll_new=1.1525)
+    seed=7 split#14: color=1  parent_tr=0.6550  sep=1.3833  pre=1.5171  prob=2.6878  delta=-1.1707  REVT  RV-R  (nll_old=1.0844 nll_new=1.1226)
+    seed=7 split#15: color=0  parent_tr=2.0246  sep=2.6665  pre=1.0112  prob=1.6310  delta=-0.6198  REVT  RV-K  (nll_old=1.0633 nll_new=0.9903)
+    seed=7 split#16: color=1  parent_tr=0.6606  sep=1.3933  pre=1.6247  prob=1.8754  delta=-0.2507  REVT  RV-R  (nll_old=1.0843 nll_new=1.1369)
+    seed=7 split#17: color=2  parent_tr=2.8024  sep=2.7879  pre=0.7466  prob=3.0481  delta=-2.3015  REVT  RV-K  (nll_old=1.0979 nll_new=0.8917)
+    seed=7 split#18: color=0  parent_tr=2.0546  sep=2.6916  pre=1.1492  prob=2.7472  delta=-1.5980  REVT  RV-K  (nll_old=1.2988 nll_new=1.1140)
+    seed=7 split#19: color=3  parent_tr=2.4686  sep=2.7811  pre=0.7215  prob=1.7346  delta=-1.0131  REVT  RV-K  (nll_old=1.2136 nll_new=1.0536)
+    seed=7 split#20: color=1  parent_tr=0.6559  sep=1.3790  pre=1.5565  prob=2.7965  delta=  N/A  REVT  RV-R  (nll_old=1.1542 nll_new=1.1884)
+
+  TALLIES — Layout 2
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 2: FAIL
+    seed=0: plateau=1.1522  final=1.5090  drop=-0.357  finCeil=64  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.9112  final=1.2686  drop=-0.357  finCeil=93  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.0443  final=1.0324  drop=0.012  finCeil=255  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.1428  final=1.1455  drop=-0.003  finCeil=286  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.0438  final=1.3019  drop=-0.258  finCeil=178  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.1306  final=1.5235  drop=-0.393  finCeil=137  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.9249  final=1.2793  drop=-0.354  finCeil=142  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.0870  final=1.2583  drop=-0.171  finCeil=134  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 anti-valley (mean(prob-pre) <= +0.1, all attempts per layout):
+    Mean(prob-pre): +1.3948  FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0437  pass
+    seed=1: loc_med=0.0470  pass
+    seed=2: loc_med=0.0456  pass
+    seed=3: loc_med=0.0541  pass
+    seed=4: loc_med=0.0507  pass
+    seed=5: loc_med=0.0444  pass
+    seed=6: loc_med=0.0416  pass
+    seed=7: loc_med=0.0452  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 3  (rng(13))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 0, 0, 2]
+    row 1: [1, 2, 1, 0]
+    row 2: [1, 3, 2, 2]
+    row 3: [3, 3, 3, 0]
+  CMAP array: [1, 0, 0, 2, 1, 2, 1, 0, 1, 3, 2, 2, 3, 3, 3, 0]
+
+  Color -> cells and centers:
+    color 0: cells [1, 2, 7, 15]  centers [[1.0, 0.0], [2.0, 0.0], [3.0, 1.0], [3.0, 3.0]]
+    color 1: cells [0, 4, 6, 8]  centers [[0.0, 0.0], [0.0, 1.0], [2.0, 1.0], [0.0, 2.0]]
+    color 2: cells [3, 5, 10, 11]  centers [[3.0, 0.0], [1.0, 1.0], [2.0, 2.0], [3.0, 2.0]]
+    color 3: cells [9, 12, 13, 14]  centers [[1.0, 2.0], [0.0, 3.0], [1.0, 3.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed   MnDelta  TwinF500
+---------------------------------------------------------------------------------------------------------
+   0   0.6714   1.1463  -0.475      159  [1, 1, 3, 1]     2    18  0.0391   +0.8169    1.0000
+   1   0.7666   1.0389  -0.272      148  [1, 1, 5, 1]     4     8  0.0367   +0.1720    1.0000
+   2   0.7999   0.7358   0.064       98  [5, 1, 1, 1]     4    14  0.0425   +0.5602    1.0000
+   3   0.8613   0.9740  -0.113       83  [1, 1, 3, 1]     2    18  0.0441   +0.3591    1.0000
+   4   0.7079   1.0962  -0.388      185  [1, 2, 5, 1]     5    12  0.0345   +0.3428    1.0000
+   5   0.7702   1.0162  -0.246      153  [1, 1, 4, 1]     3    17  0.0399   +0.6581    1.0000
+   6   0.7270   0.9939  -0.267      102  [1, 1, 1, 1]     0    20  0.0435   +1.0373    1.0000
+   7   0.7276   1.2166  -0.489      123  [1, 1, 2, 1]     1    19  0.0425   +0.9792    1.0000
+
+  P2 Anti-Valley Summary (Layout 3):
+  (mean(probation_mean - pre_spawn_mean) per attempt, vs Exp 145 surges +0.6..+3.5)
+    Total attempts: 141  Kept: 21  Reverted: 120  Keep-rate: 14.9%
+    Mean(prob-pre): +0.6439  Max: +2.4589  Min: -1.4549  (P2 threshold <= +0.1)  FAIL
+
+  Keep vs Demoted-Replay-Vote Contingency (Layout 3):
+    (Live decision vs what Exp144 would have decided)
+                        Replay=KEEP  Replay=REVERT
+    Live=KEEP                    17             4
+    Live=REVERT                  93            33
+    Total decided: 147
+    Agree: 50  Disagree: 97  Agreement rate: 34.0%
+
+  Per-split detail (Layout 3):
+    seed=0 split#1: color=2  parent_tr=1.2809  sep=1.6616  pre=1.1067  prob=2.2972  delta=-1.1906  REVT  RV-R  (nll_old=0.6894 nll_new=0.7038)
+    seed=0 split#2: color=1  parent_tr=1.1720  sep=1.6444  pre=0.7720  prob=1.2275  delta=-0.4555  REVT  RV-K  (nll_old=0.7537 nll_new=0.6646)
+    seed=0 split#3: color=2  parent_tr=1.2836  sep=1.6701  pre=0.9000  prob=2.0455  delta=-1.1455  REVT  RV-R  (nll_old=0.7257 nll_new=0.7284)
+    seed=0 split#4: color=3  parent_tr=0.6684  sep=1.3837  pre=0.6604  prob=1.3920  delta=-0.7316  REVT  RV-K  (nll_old=0.7178 nll_new=0.7105)
+    seed=0 split#5: color=1  parent_tr=1.1676  sep=1.6403  pre=0.8416  prob=2.0295  delta=-1.1879  REVT  RV-K  (nll_old=0.8008 nll_new=0.6902)
+    seed=0 split#6: color=2  parent_tr=1.2802  sep=1.6482  pre=0.8398  prob=1.7444  delta=-0.9046  REVT  RV-R  (nll_old=0.8164 nll_new=0.8213)
+    seed=0 split#7: color=1  parent_tr=1.1698  sep=1.6480  pre=0.7979  prob=2.0998  delta=-1.3019  REVT  RV-K  (nll_old=0.7781 nll_new=0.6643)
+    seed=0 split#8: color=2  parent_tr=1.2914  sep=1.6573  pre=0.9614  prob=2.3316  delta=-1.3703  REVT  RV-K  (nll_old=0.7768 nll_new=0.7521)
+    seed=0 split#9: color=3  parent_tr=0.6709  sep=1.3906  pre=0.6162  prob=1.6859  delta=-1.0697  REVT  RV-R  (nll_old=0.6711 nll_new=0.7211)
+    seed=0 split#10: color=1  parent_tr=1.1659  sep=1.6524  pre=1.0035  prob=1.5747  delta=-0.5712  REVT  RV-K  (nll_old=0.8160 nll_new=0.7160)
+    seed=0 split#11: color=2  parent_tr=1.3004  sep=1.6598  pre=0.8559  prob=2.5519  delta=-1.6960  REVT  RV-R  (nll_old=0.7559 nll_new=0.7752)
+    seed=0 split#12: color=1  parent_tr=1.1792  sep=1.6692  pre=0.7869  prob=1.5237  delta=-0.7368  REVT  RV-K  (nll_old=0.8048 nll_new=0.7179)
+    seed=0 split#13: color=2  parent_tr=1.3025  sep=1.6618  pre=0.9226  prob=2.5184  delta=-1.5958  REVT  RV-K  (nll_old=0.7117 nll_new=0.7101)
+    seed=0 split#14: color=2  parent_tr=1.3025  sep=1.6618  pre=2.4077  prob=2.2156  delta=+0.1921  KEPT  RV-K  (nll_old=0.7705 nll_new=0.7569)
+    seed=0 split#15: color=2  parent_tr=0.7289  sep=1.5458  pre=2.2888  prob=2.2996  delta=-0.0109  REVT  RV-K  (nll_old=0.7874 nll_new=0.6888)
+    seed=0 split#16: color=2  parent_tr=0.7289  sep=1.5458  pre=2.2353  prob=3.2665  delta=-1.0312  REVT  RV-K  (nll_old=1.1968 nll_new=0.7099)
+    seed=0 split#17: color=2  parent_tr=0.7289  sep=1.5458  pre=2.8921  prob=3.7582  delta=-0.8662  REVT  RV-K  (nll_old=1.0267 nll_new=0.8018)
+    seed=0 split#18: color=2  parent_tr=0.7289  sep=1.5458  pre=3.4731  prob=3.2905  delta=+0.1826  KEPT  RV-K  (nll_old=0.7022 nll_new=0.6090)
+    seed=0 split#19: color=2  parent_tr=0.2474  sep=0.9885  pre=3.4175  prob=3.4484  delta=-0.0309  REVT  RV-K  (nll_old=0.9198 nll_new=0.6635)
+    seed=0 split#20: color=2  parent_tr=0.2474  sep=0.9885  pre=3.4495  prob=3.6960  delta=  N/A  REVT  RV-K  (nll_old=1.1813 nll_new=0.7806)
+    seed=1 split#1: color=1  parent_tr=1.2161  sep=1.8677  pre=0.8856  prob=0.8234  delta=+0.0622  REVT  RV-K  (nll_old=0.7829 nll_new=0.6440)
+    seed=1 split#2: color=2  parent_tr=1.2369  sep=1.6517  pre=0.8982  prob=2.3986  delta=-1.5003  REVT  RV-R  (nll_old=0.6733 nll_new=0.7275)
+    seed=1 split#3: color=2  parent_tr=1.2369  sep=1.6517  pre=2.4406  prob=2.5806  delta=-0.1400  REVT  RV-R  (nll_old=0.7985 nll_new=0.8656)
+    seed=1 split#4: color=2  parent_tr=1.2369  sep=1.6517  pre=2.4700  prob=2.4454  delta=+0.0245  REVT  RV-R  (nll_old=0.6416 nll_new=0.6479)
+    seed=1 split#5: color=2  parent_tr=1.2369  sep=1.6517  pre=2.4516  prob=2.6278  delta=-0.1762  REVT  RV-R  (nll_old=0.7925 nll_new=0.8078)
+    seed=1 split#6: color=2  parent_tr=1.2369  sep=1.6517  pre=2.6350  prob=2.9415  delta=-0.3065  REVT  RV-R  (nll_old=0.6653 nll_new=0.6822)
+    seed=1 split#7: color=2  parent_tr=1.2369  sep=1.6517  pre=2.9816  prob=1.5266  delta=+1.4549  KEPT  RV-K  (nll_old=0.8099 nll_new=0.7677)
+    seed=1 split#8: color=2  parent_tr=1.2684  sep=1.7079  pre=1.5312  prob=3.8545  delta=-2.3232  REVT  RV-R  (nll_old=0.7368 nll_new=0.7674)
+    seed=1 split#9: color=2  parent_tr=1.2684  sep=1.7079  pre=3.8512  prob=4.0673  delta=-0.2160  REVT  RV-R  (nll_old=0.7119 nll_new=0.7685)
+    seed=1 split#10: color=2  parent_tr=1.2684  sep=1.7079  pre=3.9424  prob=3.5882  delta=+0.3542  KEPT  RV-R  (nll_old=0.7403 nll_new=0.7907)
+    seed=1 split#11: color=2  parent_tr=0.4919  sep=1.1801  pre=3.5353  prob=3.4269  delta=+0.1084  KEPT  RV-K  (nll_old=1.1291 nll_new=0.7979)
+    seed=1 split#12: color=2  parent_tr=0.0062  sep=0.1148  pre=3.5502  prob=2.9560  delta=+0.5942  KEPT  RV-K  (nll_old=1.2194 nll_new=0.8920)
+    seed=2 split#1: color=1  parent_tr=1.1963  sep=1.7122  pre=0.7813  prob=1.1850  delta=-0.4037  REVT  RV-K  (nll_old=0.8023 nll_new=0.7047)
+    seed=2 split#2: color=2  parent_tr=1.3183  sep=1.7296  pre=0.8746  prob=2.1415  delta=-1.2669  REVT  RV-K  (nll_old=0.7724 nll_new=0.7713)
+    seed=2 split#3: color=3  parent_tr=0.6858  sep=1.4520  pre=0.7019  prob=1.7745  delta=-1.0726  REVT  RV-R  (nll_old=0.8780 nll_new=0.8971)
+    seed=2 split#4: color=0  parent_tr=2.0882  sep=2.7241  pre=0.7044  prob=1.6358  delta=-0.9314  REVT  RV-K  (nll_old=0.7090 nll_new=0.5784)
+    seed=2 split#5: color=0  parent_tr=2.0882  sep=2.7241  pre=1.6328  prob=2.1415  delta=-0.5088  REVT  RV-K  (nll_old=0.7355 nll_new=0.6283)
+    seed=2 split#6: color=2  parent_tr=1.3241  sep=1.7201  pre=0.7734  prob=1.6961  delta=-0.9227  REVT  RV-K  (nll_old=0.8309 nll_new=0.8121)
+    seed=2 split#7: color=2  parent_tr=1.3241  sep=1.7201  pre=1.5838  prob=2.0838  delta=-0.4999  REVT  RV-R  (nll_old=0.7738 nll_new=0.7814)
+    seed=2 split#8: color=3  parent_tr=0.6833  sep=1.4415  pre=0.7836  prob=1.5799  delta=-0.7963  REVT  RV-R  (nll_old=0.7129 nll_new=0.7381)
+    seed=2 split#9: color=0  parent_tr=2.0944  sep=2.7291  pre=0.6774  prob=2.0099  delta=-1.3325  REVT  RV-K  (nll_old=0.7426 nll_new=0.6599)
+    seed=2 split#10: color=0  parent_tr=2.0944  sep=2.7291  pre=1.9021  prob=2.3757  delta=-0.4736  REVT  RV-K  (nll_old=0.6660 nll_new=0.5416)
+    seed=2 split#11: color=0  parent_tr=2.0944  sep=2.7291  pre=2.3623  prob=2.2037  delta=+0.1587  KEPT  RV-K  (nll_old=0.8116 nll_new=0.6455)
+    seed=2 split#12: color=0  parent_tr=0.9249  sep=1.9221  pre=2.3515  prob=2.0069  delta=+0.3446  KEPT  RV-K  (nll_old=0.8471 nll_new=0.5644)
+    seed=2 split#13: color=1  parent_tr=1.2404  sep=1.7488  pre=0.5955  prob=1.8828  delta=-1.2873  REVT  RV-K  (nll_old=0.9315 nll_new=0.7677)
+    seed=2 split#14: color=0  parent_tr=0.2364  sep=0.9706  pre=1.3631  prob=2.5286  delta=-1.1655  REVT  RV-K  (nll_old=0.7583 nll_new=0.7034)
+    seed=2 split#15: color=0  parent_tr=0.2364  sep=0.9706  pre=2.3868  prob=2.2340  delta=+0.1528  KEPT  RV-K  (nll_old=0.6773 nll_new=0.5733)
+    seed=2 split#16: color=0  parent_tr=0.0044  sep=0.1141  pre=2.0729  prob=2.6271  delta=-0.5542  REVT  RV-K  (nll_old=0.9201 nll_new=0.6997)
+    seed=2 split#17: color=0  parent_tr=0.0044  sep=0.1141  pre=2.6825  prob=2.7755  delta=-0.0930  REVT  RV-K  (nll_old=1.0145 nll_new=0.6415)
+    seed=2 split#18: color=0  parent_tr=0.0044  sep=0.1141  pre=2.7652  prob=2.1975  delta=+0.5677  KEPT  RV-K  (nll_old=1.1252 nll_new=0.6595)
+    seed=3 split#1: color=2  parent_tr=1.3246  sep=1.7049  pre=1.1163  prob=2.0597  delta=-0.9434  REVT  RV-R  (nll_old=0.7761 nll_new=0.7808)
+    seed=3 split#2: color=2  parent_tr=1.3246  sep=1.7049  pre=2.0262  prob=2.4904  delta=-0.4642  REVT  RV-K  (nll_old=0.7632 nll_new=0.7480)
+    seed=3 split#3: color=2  parent_tr=1.3246  sep=1.7049  pre=2.4115  prob=2.2982  delta=+0.1134  KEPT  RV-R  (nll_old=0.6670 nll_new=0.6885)
+    seed=3 split#4: color=1  parent_tr=1.1457  sep=1.6361  pre=0.6597  prob=1.6132  delta=-0.9535  REVT  RV-K  (nll_old=0.8459 nll_new=0.7348)
+    seed=3 split#5: color=2  parent_tr=0.8318  sep=1.7200  pre=1.2611  prob=3.3425  delta=-2.0814  REVT  RV-K  (nll_old=0.8305 nll_new=0.8112)
+    seed=3 split#6: color=2  parent_tr=0.8318  sep=1.7200  pre=3.1768  prob=3.5915  delta=-0.4148  REVT  RV-K  (nll_old=0.7700 nll_new=0.7530)
+    seed=3 split#7: color=2  parent_tr=0.8318  sep=1.7200  pre=3.4613  prob=2.9020  delta=+0.5593  KEPT  RV-R  (nll_old=0.6896 nll_new=0.6955)
+    seed=3 split#8: color=1  parent_tr=1.1757  sep=1.6629  pre=0.7961  prob=0.9132  delta=-0.1171  REVT  RV-K  (nll_old=1.0001 nll_new=0.8600)
+    seed=3 split#9: color=2  parent_tr=0.2456  sep=0.9862  pre=2.6012  prob=3.1124  delta=-0.5112  REVT  RV-K  (nll_old=0.8527 nll_new=0.6915)
+    seed=3 split#10: color=2  parent_tr=0.2456  sep=0.9862  pre=3.0901  prob=3.0766  delta=+0.0134  REVT  RV-K  (nll_old=0.9390 nll_new=0.7371)
+    seed=3 split#11: color=3  parent_tr=0.6637  sep=1.3900  pre=0.6221  prob=0.6850  delta=-0.0629  REVT  RV-R  (nll_old=1.0681 nll_new=1.0853)
+    seed=3 split#12: color=2  parent_tr=0.2447  sep=0.9850  pre=2.3466  prob=2.2836  delta=+0.0630  REVT  RV-K  (nll_old=0.9619 nll_new=0.8113)
+    seed=3 split#13: color=2  parent_tr=0.2447  sep=0.9850  pre=2.2882  prob=2.5765  delta=-0.2883  REVT  RV-K  (nll_old=0.8466 nll_new=0.7316)
+    seed=3 split#14: color=2  parent_tr=0.2447  sep=0.9850  pre=2.6481  prob=2.7423  delta=-0.0942  REVT  RV-K  (nll_old=0.8523 nll_new=0.7330)
+    seed=3 split#15: color=2  parent_tr=0.2447  sep=0.9850  pre=2.7336  prob=2.9741  delta=-0.2406  REVT  RV-K  (nll_old=1.0295 nll_new=0.8152)
+    seed=3 split#16: color=2  parent_tr=0.2447  sep=0.9850  pre=2.8430  prob=2.7478  delta=+0.0952  REVT  RV-K  (nll_old=0.7984 nll_new=0.6357)
+    seed=3 split#17: color=1  parent_tr=1.1567  sep=1.6329  pre=0.5807  prob=1.5641  delta=-0.9834  REVT  RV-K  (nll_old=0.9932 nll_new=0.8352)
+    seed=3 split#18: color=2  parent_tr=0.2436  sep=0.9835  pre=2.2579  prob=2.6064  delta=-0.3484  REVT  RV-K  (nll_old=0.9122 nll_new=0.7559)
+    seed=3 split#19: color=2  parent_tr=0.2436  sep=0.9835  pre=2.6678  prob=2.8322  delta=-0.1644  REVT  RV-K  (nll_old=0.9747 nll_new=0.8461)
+    seed=3 split#20: color=2  parent_tr=0.2436  sep=0.9835  pre=2.8787  prob=2.7885  delta=  N/A  REVT  RV-K  (nll_old=0.7540 nll_new=0.6277)
+    seed=4 split#1: color=0  parent_tr=2.0000  sep=2.6588  pre=0.7935  prob=2.1178  delta=-1.3243  REVT  RV-K  (nll_old=0.7366 nll_new=0.6308)
+    seed=4 split#2: color=0  parent_tr=2.0000  sep=2.6588  pre=1.9973  prob=2.1667  delta=-0.1694  REVT  RV-K  (nll_old=0.7686 nll_new=0.6393)
+    seed=4 split#3: color=2  parent_tr=1.2726  sep=1.6200  pre=0.7205  prob=1.8535  delta=-1.1331  REVT  RV-R  (nll_old=0.7116 nll_new=0.7448)
+    seed=4 split#4: color=2  parent_tr=1.2726  sep=1.6200  pre=1.8535  prob=1.6668  delta=+0.1868  KEPT  RV-K  (nll_old=0.8136 nll_new=0.8044)
+    seed=4 split#5: color=2  parent_tr=1.1530  sep=1.6276  pre=1.6093  prob=2.4629  delta=-0.8535  REVT  RV-R  (nll_old=0.7983 nll_new=0.8141)
+    seed=4 split#6: color=2  parent_tr=1.1530  sep=1.6276  pre=2.5685  prob=4.2054  delta=-1.6369  REVT  RV-K  (nll_old=0.8043 nll_new=0.7971)
+    seed=4 split#7: color=2  parent_tr=1.1530  sep=1.6276  pre=3.9448  prob=2.7759  delta=+1.1689  KEPT  RV-K  (nll_old=0.7153 nll_new=0.6966)
+    seed=4 split#8: color=2  parent_tr=0.9654  sep=1.9642  pre=2.8086  prob=3.4105  delta=-0.6019  REVT  RV-K  (nll_old=0.9828 nll_new=0.7764)
+    seed=4 split#9: color=2  parent_tr=0.9654  sep=1.9642  pre=3.4041  prob=3.5057  delta=-0.1015  REVT  RV-K  (nll_old=1.0327 nll_new=0.8286)
+    seed=4 split#10: color=2  parent_tr=0.9654  sep=1.9642  pre=3.5013  prob=3.4490  delta=+0.0523  REVT  RV-K  (nll_old=1.1101 nll_new=0.8286)
+    seed=4 split#11: color=2  parent_tr=0.9654  sep=1.9642  pre=3.4376  prob=3.2376  delta=+0.2000  KEPT  RV-K  (nll_old=1.1485 nll_new=0.8522)
+    seed=4 split#12: color=2  parent_tr=0.0071  sep=0.1201  pre=3.3110  prob=3.1792  delta=+0.1318  KEPT  RV-K  (nll_old=0.9097 nll_new=0.6952)
+    seed=4 split#13: color=1  parent_tr=1.2335  sep=1.7642  pre=0.6149  prob=2.7918  delta=-2.1770  REVT  RV-K  (nll_old=1.0328 nll_new=0.9025)
+    seed=4 split#14: color=1  parent_tr=1.2335  sep=1.7642  pre=2.2626  prob=2.2337  delta=+0.0288  REVT  RV-K  (nll_old=1.2295 nll_new=1.0646)
+    seed=4 split#15: color=1  parent_tr=1.2335  sep=1.7642  pre=2.2379  prob=1.3568  delta=+0.8811  KEPT  RV-K  (nll_old=1.0839 nll_new=0.9475)
+    seed=4 split#16: color=1  parent_tr=0.6327  sep=1.5899  pre=1.3285  prob=1.4656  delta=-0.1371  REVT  RV-K  (nll_old=1.0998 nll_new=0.9691)
+    seed=4 split#17: color=1  parent_tr=0.6327  sep=1.5899  pre=1.5036  prob=1.3471  delta=  N/A  REVT  RV-K  (nll_old=1.2179 nll_new=1.0095)
+    seed=5 split#1: color=0  parent_tr=2.1326  sep=2.7579  pre=0.7193  prob=2.4507  delta=-1.7313  REVT  RV-K  (nll_old=0.7913 nll_new=0.6691)
+    seed=5 split#2: color=1  parent_tr=1.2020  sep=1.7181  pre=0.5105  prob=1.3161  delta=-0.8055  REVT  RV-K  (nll_old=0.7355 nll_new=0.6626)
+    seed=5 split#3: color=2  parent_tr=1.3707  sep=1.7339  pre=0.8323  prob=2.4187  delta=-1.5864  REVT  RV-R  (nll_old=0.7403 nll_new=0.7468)
+    seed=5 split#4: color=1  parent_tr=1.2122  sep=1.7301  pre=0.5966  prob=1.5719  delta=-0.9753  REVT  RV-K  (nll_old=0.7923 nll_new=0.6975)
+    seed=5 split#5: color=2  parent_tr=1.3576  sep=1.7155  pre=0.8870  prob=1.5524  delta=-0.6654  REVT  RV-R  (nll_old=0.6988 nll_new=0.7306)
+    seed=5 split#6: color=2  parent_tr=1.3576  sep=1.7155  pre=1.4833  prob=1.6898  delta=-0.2065  REVT  RV-K  (nll_old=0.7751 nll_new=0.7593)
+    seed=5 split#7: color=3  parent_tr=0.6402  sep=1.3599  pre=0.7293  prob=2.4077  delta=-1.6784  REVT  RV-R  (nll_old=0.7254 nll_new=0.7571)
+    seed=5 split#8: color=2  parent_tr=1.3632  sep=1.7414  pre=1.0348  prob=2.5815  delta=-1.5468  REVT  RV-R  (nll_old=0.8132 nll_new=0.8281)
+    seed=5 split#9: color=2  parent_tr=1.3632  sep=1.7414  pre=2.2366  prob=1.4055  delta=+0.8311  KEPT  RV-K  (nll_old=0.6901 nll_new=0.6571)
+    seed=5 split#10: color=2  parent_tr=0.9886  sep=1.5961  pre=1.4409  prob=3.8997  delta=-2.4589  REVT  RV-K  (nll_old=0.7374 nll_new=0.7223)
+    seed=5 split#11: color=2  parent_tr=0.9886  sep=1.5961  pre=3.8096  prob=3.3317  delta=+0.4779  KEPT  RV-K  (nll_old=0.8273 nll_new=0.7483)
+    seed=5 split#12: color=2  parent_tr=0.2406  sep=0.9743  pre=3.3571  prob=3.7860  delta=-0.4289  REVT  RV-K  (nll_old=0.9696 nll_new=0.7049)
+    seed=5 split#13: color=1  parent_tr=1.1971  sep=1.6865  pre=0.6473  prob=1.1268  delta=-0.4794  REVT  RV-K  (nll_old=1.5322 nll_new=1.3584)
+    seed=5 split#14: color=2  parent_tr=0.2436  sep=0.9820  pre=3.0128  prob=2.9694  delta=+0.0435  REVT  RV-K  (nll_old=0.9967 nll_new=0.7215)
+    seed=5 split#15: color=2  parent_tr=0.2436  sep=0.9820  pre=2.9697  prob=3.1760  delta=-0.2062  REVT  RV-K  (nll_old=0.9833 nll_new=0.7611)
+    seed=5 split#16: color=1  parent_tr=1.2111  sep=1.7016  pre=0.7315  prob=0.9022  delta=-0.1708  REVT  RV-K  (nll_old=1.1025 nll_new=0.9724)
+    seed=5 split#17: color=2  parent_tr=0.2418  sep=0.9788  pre=2.5526  prob=3.1374  delta=-0.5848  REVT  RV-K  (nll_old=0.8556 nll_new=0.7005)
+    seed=5 split#18: color=2  parent_tr=0.2418  sep=0.9788  pre=3.1559  prob=2.6127  delta=+0.5432  KEPT  RV-K  (nll_old=1.1232 nll_new=0.8603)
+    seed=5 split#19: color=2  parent_tr=0.0073  sep=0.1221  pre=2.5256  prob=3.4006  delta=-0.8750  REVT  RV-K  (nll_old=0.8440 nll_new=0.6982)
+    seed=5 split#20: color=2  parent_tr=0.0073  sep=0.1221  pre=3.2739  prob=2.7351  delta=  N/A  REVT  RV-K  (nll_old=1.2012 nll_new=0.7732)
+    seed=6 split#1: color=2  parent_tr=1.1700  sep=1.6078  pre=1.1258  prob=2.1678  delta=-1.0420  REVT  RV-R  (nll_old=0.7140 nll_new=0.7485)
+    seed=6 split#2: color=3  parent_tr=0.6617  sep=1.4045  pre=0.7375  prob=1.3143  delta=-0.5768  REVT  RV-R  (nll_old=0.7854 nll_new=0.8181)
+    seed=6 split#3: color=1  parent_tr=1.1784  sep=1.6092  pre=0.9408  prob=2.4903  delta=-1.5495  REVT  RV-K  (nll_old=0.8664 nll_new=0.7418)
+    seed=6 split#4: color=2  parent_tr=1.2432  sep=1.6024  pre=1.0635  prob=2.2837  delta=-1.2201  REVT  RV-K  (nll_old=0.9357 nll_new=0.8948)
+    seed=6 split#5: color=3  parent_tr=0.6635  sep=1.4008  pre=0.7898  prob=1.6484  delta=-0.8586  REVT  RV-K  (nll_old=0.8217 nll_new=0.8056)
+    seed=6 split#6: color=1  parent_tr=1.1920  sep=1.6359  pre=0.7500  prob=1.0826  delta=-0.3326  REVT  RV-K  (nll_old=0.8450 nll_new=0.7249)
+    seed=6 split#7: color=2  parent_tr=1.2453  sep=1.6037  pre=0.9359  prob=1.5973  delta=-0.6613  REVT  RV-R  (nll_old=0.6825 nll_new=0.7031)
+    seed=6 split#8: color=1  parent_tr=1.1991  sep=1.6475  pre=0.9337  prob=1.2468  delta=-0.3130  REVT  RV-K  (nll_old=0.7540 nll_new=0.6445)
+    seed=6 split#9: color=2  parent_tr=1.2762  sep=1.6437  pre=0.9946  prob=2.1820  delta=-1.1874  REVT  RV-K  (nll_old=0.7767 nll_new=0.7448)
+    seed=6 split#10: color=2  parent_tr=1.2762  sep=1.6437  pre=1.6712  prob=2.9978  delta=-1.3266  REVT  RV-K  (nll_old=0.6421 nll_new=0.6200)
+    seed=6 split#11: color=3  parent_tr=0.6574  sep=1.3890  pre=0.6096  prob=1.7318  delta=-1.1222  REVT  RV-K  (nll_old=0.9108 nll_new=0.8935)
+    seed=6 split#12: color=0  parent_tr=2.1380  sep=2.7605  pre=0.6858  prob=2.5381  delta=-1.8524  REVT  RV-K  (nll_old=0.7544 nll_new=0.5902)
+    seed=6 split#13: color=2  parent_tr=1.2984  sep=1.6717  pre=0.7165  prob=2.3558  delta=-1.6393  REVT  RV-K  (nll_old=0.7641 nll_new=0.7456)
+    seed=6 split#14: color=1  parent_tr=1.2056  sep=1.6656  pre=0.9581  prob=2.1351  delta=-1.1771  REVT  RV-K  (nll_old=0.8807 nll_new=0.7167)
+    seed=6 split#15: color=3  parent_tr=0.6553  sep=1.3847  pre=0.6999  prob=2.7218  delta=-2.0219  REVT  RV-R  (nll_old=0.8725 nll_new=0.8735)
+    seed=6 split#16: color=2  parent_tr=1.3115  sep=1.7002  pre=1.0929  prob=1.4708  delta=-0.3780  REVT  RV-K  (nll_old=0.8671 nll_new=0.7981)
+    seed=6 split#17: color=2  parent_tr=1.3115  sep=1.7002  pre=1.4878  prob=2.1470  delta=-0.6592  REVT  RV-K  (nll_old=0.7825 nll_new=0.7773)
+    seed=6 split#18: color=3  parent_tr=0.6563  sep=1.3885  pre=0.6628  prob=2.0293  delta=-1.3665  REVT  RV-R  (nll_old=0.8108 nll_new=0.8259)
+    seed=6 split#19: color=1  parent_tr=1.2269  sep=1.7122  pre=0.6263  prob=1.0508  delta=-0.4245  REVT  RV-K  (nll_old=0.7521 nll_new=0.6402)
+    seed=6 split#20: color=2  parent_tr=1.2974  sep=1.6709  pre=0.9055  prob=1.7653  delta=  N/A  REVT  RV-R  (nll_old=0.7035 nll_new=0.7159)
+    seed=7 split#1: color=0  parent_tr=2.0537  sep=2.7022  pre=0.7014  prob=2.1153  delta=-1.4139  REVT  RV-K  (nll_old=0.6952 nll_new=0.6097)
+    seed=7 split#2: color=0  parent_tr=2.0537  sep=2.7022  pre=1.8316  prob=2.1377  delta=-0.3061  REVT  RV-K  (nll_old=0.6440 nll_new=0.5132)
+    seed=7 split#3: color=2  parent_tr=1.2802  sep=1.6600  pre=0.7388  prob=1.8930  delta=-1.1542  REVT  RV-R  (nll_old=0.8137 nll_new=0.8848)
+    seed=7 split#4: color=1  parent_tr=1.1488  sep=1.6139  pre=0.8566  prob=1.0289  delta=-0.1723  REVT  RV-K  (nll_old=0.6815 nll_new=0.6018)
+    seed=7 split#5: color=2  parent_tr=1.2709  sep=1.6611  pre=0.8845  prob=2.4598  delta=-1.5753  REVT  RV-R  (nll_old=0.6383 nll_new=0.6775)
+    seed=7 split#6: color=3  parent_tr=0.6404  sep=1.3424  pre=0.7189  prob=1.9805  delta=-1.2616  REVT  RV-R  (nll_old=0.8637 nll_new=0.8989)
+    seed=7 split#7: color=2  parent_tr=1.2708  sep=1.6622  pre=1.5934  prob=1.5182  delta=+0.0752  REVT  RV-K  (nll_old=0.6634 nll_new=0.6544)
+    seed=7 split#8: color=1  parent_tr=1.1510  sep=1.6133  pre=0.5811  prob=2.1264  delta=-1.5453  REVT  RV-K  (nll_old=0.6499 nll_new=0.5888)
+    seed=7 split#9: color=2  parent_tr=1.2756  sep=1.6680  pre=0.8237  prob=2.6742  delta=-1.8505  REVT  RV-R  (nll_old=0.8293 nll_new=0.8395)
+    seed=7 split#10: color=2  parent_tr=1.2756  sep=1.6680  pre=2.4799  prob=2.0104  delta=+0.4695  KEPT  RV-R  (nll_old=0.7182 nll_new=0.7226)
+    seed=7 split#11: color=1  parent_tr=1.1369  sep=1.5981  pre=0.5205  prob=1.9801  delta=-1.4596  REVT  RV-K  (nll_old=0.7331 nll_new=0.6397)
+    seed=7 split#12: color=2  parent_tr=0.7857  sep=1.6715  pre=1.3439  prob=3.5300  delta=-2.1861  REVT  RV-K  (nll_old=0.8880 nll_new=0.8080)
+    seed=7 split#13: color=1  parent_tr=1.1599  sep=1.6378  pre=0.8973  prob=2.2808  delta=-1.3834  REVT  RV-K  (nll_old=0.9143 nll_new=0.7387)
+    seed=7 split#14: color=2  parent_tr=0.7945  sep=1.6977  pre=1.1676  prob=3.4102  delta=-2.2426  REVT  RV-K  (nll_old=0.8227 nll_new=0.7849)
+    seed=7 split#15: color=2  parent_tr=0.7945  sep=1.6977  pre=3.3246  prob=3.6409  delta=-0.3163  REVT  RV-K  (nll_old=0.7794 nll_new=0.7226)
+    seed=7 split#16: color=2  parent_tr=0.7945  sep=1.6977  pre=3.3794  prob=3.5854  delta=-0.2060  REVT  RV-K  (nll_old=0.6508 nll_new=0.5924)
+    seed=7 split#17: color=2  parent_tr=0.7945  sep=1.6977  pre=3.4511  prob=3.4009  delta=+0.0502  REVT  RV-K  (nll_old=0.8071 nll_new=0.7273)
+    seed=7 split#18: color=2  parent_tr=0.7945  sep=1.6977  pre=3.4071  prob=3.4817  delta=-0.0746  REVT  RV-K  (nll_old=0.9320 nll_new=0.8312)
+    seed=7 split#19: color=1  parent_tr=1.1761  sep=1.6679  pre=0.7259  prob=2.7783  delta=-2.0524  REVT  RV-K  (nll_old=0.9189 nll_new=0.7384)
+    seed=7 split#20: color=2  parent_tr=0.8072  sep=1.7203  pre=1.3310  prob=4.5920  delta=  N/A  REVT  RV-K  (nll_old=0.9309 nll_new=0.8687)
+
+  TALLIES — Layout 3
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 3: FAIL
+    seed=0: plateau=0.6714  final=1.1463  drop=-0.475  finCeil=159  comps=[1, 1, 3, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.7666  final=1.0389  drop=-0.272  finCeil=148  comps=[1, 1, 5, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=0.7999  final=0.7358  drop=0.064  finCeil=98  comps=[5, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=0.8613  final=0.9740  drop=-0.113  finCeil=83  comps=[1, 1, 3, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=0.7079  final=1.0962  drop=-0.388  finCeil=185  comps=[1, 2, 5, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=0.7702  final=1.0162  drop=-0.246  finCeil=153  comps=[1, 1, 4, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.7270  final=0.9939  drop=-0.267  finCeil=102  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=0.7276  final=1.2166  drop=-0.489  finCeil=123  comps=[1, 1, 2, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 anti-valley (mean(prob-pre) <= +0.1, all attempts per layout):
+    Mean(prob-pre): +0.6439  FAIL
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0391  pass
+    seed=1: loc_med=0.0367  pass
+    seed=2: loc_med=0.0425  pass
+    seed=3: loc_med=0.0441  pass
+    seed=4: loc_med=0.0345  pass
+    seed=5: loc_med=0.0399  pass
+    seed=6: loc_med=0.0435  pass
+    seed=7: loc_med=0.0425  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+GLOBAL CONJUNCT TALLIES (across all 3 layouts)
+================================================================================
+
+P1 alarm answered (all 3 layouts):
+  Layout 1 (rng(7)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 2 (rng(11)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 3 (rng(13)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  P1 GLOBAL: FAIL
+
+P2 anti-valley signature (mean(prob-pre) <= +0.1, all 3 layouts):
+  Layout 1: attempts=152  kept=0  keep_rate=0.0%  mean(prob-pre)=+1.7191  FAIL
+  Layout 2: attempts=152  kept=0  keep_rate=0.0%  mean(prob-pre)=+1.3948  FAIL
+  Layout 3: attempts=141  kept=21  keep_rate=14.9%  mean(prob-pre)=+0.6439  FAIL
+  P2 GLOBAL: FAIL (P1 carries if P2 alone fails)
+
+P3 no regression (>= 7/8 seeds, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+  P3 GLOBAL: PASS
+
+Twin sanity (>= 7/8, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+
+================================================================================
+HALT-ARM EVALUATION
+================================================================================
+
+  Falsifier: P1 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — THIRD growth design fails (ADD and SPLIT both exhausted); MIGRATION HALT — park at M3d and continue at M4 (three mechanistically distinct failures = a documented wall)
+
+================================================================================
+VERDICT: NEGATIVE
+MIGRATION HALT
+  P1 SURPRISE HALT: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — THIRD growth design fails (ADD and SPLIT both exhausted); MIGRATION HALT — park at M3d and continue at M4 (three mechanistically distinct failures = a documented wall)
+  Park recommendation: park M3d, continue migration at M4 (three mechanistically distinct growth designs exhausted; the alarm ceiling may require a fundamentally different approach at the next rung rather than further growth operator variants).
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp146_rows.json

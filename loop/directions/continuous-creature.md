@@ -72,6 +72,13 @@ throughout).**
   component from K (single additions help 1/4 and hurt 3/4 of a color's
   observations; the trap weakens once >=2 components exist). Consult recommends
   M3d = the SPLIT operator under the validated live-probation test.
+- **M3d — split (HALTED at Exp 146, third halt).** Split surges like add (+0.64 to
+  +1.72 mean deltas; P2 anti-valley signature FAILED). The wall's true shape: under
+  log-loss, incomplete tight covers lose to complete loose covers — local growth
+  moves judged by honest short-horizon tests cannot reach a K-modal emission.
+  PARKED per the predeclared flattening rule, with two named untried cracks
+  (batch-jump complete-cover probation; background-floor no-hole mixtures).
+  The migration continues at M4 on the human's word.
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

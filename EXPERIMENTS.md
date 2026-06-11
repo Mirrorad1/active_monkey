@@ -4253,3 +4253,54 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   growth valley; probation honesty). Self-grade: n/a. THE MIGRATION IS HALTED
   awaiting explicit human word.
 - Next: nothing on this thread until the consult is answered.
+
+## Exp 146 — continuous-creature rung M3d: SPLIT surges like ADD — third design fails, and the wall gets its true shape: in log-loss, an incomplete tight cover loses to a complete loose cover (NEGATIVE/THIRD HALT; park recommended per the predeclared flattening rule)
+- Plain: The third growing design — divide the too-broad piece into two halves that
+  inherit its territory — failed the same honest test, and its failure completed the
+  picture. Splitting in two covers half the locations sharply and leaves half exposed,
+  and the arithmetic of surprise is unforgiving: one badly-covered sighting costs more
+  than several well-covered ones gain. All three failures are one fact seen from three
+  sides: a mind cannot grow toward a many-placed concept piece by piece, judged
+  honestly step by step — partial sharpness loses to complete vagueness until the
+  cover is complete. By the rule declared in advance, three distinct failures make
+  this a documented wall: the growth question is parked with its two known untried
+  cracks named, and the migration continues at the next rung.
+- Setup (predeclared in the script docstring before running): Exp 145's machinery,
+  move changed to SPLIT (widest component of the alarmed color, children at
+  m ± √λ₁·v, halved weights and κ, leading eigenvalue quartered, burn-in EM, then the
+  validated live probation). P1: the same third-attempt bar. P2 (the anti-valley
+  signature): mean probation−pre-spawn delta ≤ +0.1 nats per layout. P3: localization
+  ≤0.5. HALT = P1's surprise arm fails again (with the park recommendation
+  predeclared).
+- Result: NEGATIVE — THIRD HALT (P1 0/8 on every arm, all layouts). P2 FAILED: split
+  deltas +1.72 / +1.39 / +0.64 mean per layout — surges of the same order as ADD's
+  (the coverage-preservation prediction wrong as implemented: children separation
+  ~2·√λ₁ ≈ 2.5–3.5 on a ~3-unit arena; 10-iteration EM cannot consolidate onto
+  sub-clusters; 2 children cover ~2 of 4 cells tightly and expose the rest). Keep
+  rates 0% / 0% / 14.9%; layout 3's kept splits grew one color to 3–5 components yet
+  the alarm never quieted and final surprise stayed above plateau. P3 PASS (0.03–0.05,
+  24/24). Replay-vote agreement 26% (it would have kept many splits the live test
+  correctly rejected — third confirmation of its dishonesty). Suite 108 green.
+- The wall, stated precisely (three failures, one mechanism family): under log-loss,
+  growing a unimodal emission toward a K-modal truth by LOCAL moves (add a component,
+  split a component) judged by ANY honest short-horizon criterion is anti-productive,
+  because every intermediate model trades complete-but-vague coverage for
+  partial-but-sharp coverage, and misses cost more nats than hits gain. Exp 144
+  (dishonest test), Exp 145 (honest test rejects add), Exp 146 (honest test rejects
+  split) triangulate it. NAMED UNTRIED CRACKS (for the wall doc, not run): (a)
+  BATCH-JUMP — fit all K components at once (k-means/EM on the color's replay) and
+  probate the complete cover as one move; (b) BACKGROUND-FLOOR — keep the original
+  broad component as a permanent low-weight background so tight additions can never
+  create holes (provably no-hole by construction). Either would be a NEW design, not
+  a variant — hence parked, per the predeclared rule, rather than attempted as a
+  fourth iteration.
+- Honest caveat: "wall" binds to THIS family (local moves + short-horizon honest
+  acceptance, this world scale); the two named designs are untried, so impossibility
+  is NOT claimed; the split implementation made specific choices (±1σ separation,
+  10 EM iterations, λ₁/4 children) — a gentler split was not swept; P2's failure
+  partly reflects implementation (wide children) and partly the log-loss mechanism —
+  the entry does not separate those shares.
+- Verdict: NEGATIVE (third predeclared HALT) / NEW INSIGHT (the log-loss
+  incomplete-cover mechanism unifying all three failures). Self-grade: n/a.
+  THE MIGRATION IS HALTED; the consult recommends PARK-AND-CONTINUE-AT-M4.
+- Next: awaiting the human's word on the park recommendation (or a named crack).
