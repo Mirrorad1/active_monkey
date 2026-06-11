@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 173, title: "the multi-tempo gate runs and the tier-3 claim is REJECTED at this richness: even with the gap moving, K=16 is a universal attractor within the clamp — the regulator converges onto the constant it was meant to beat (bit-identical scores), the time-window's tempo signal inverts under schedule carryover, and the responsiveness bar is unreachable for slow-tempo-first forks", tag: "NEGATIVE" },
-  tally: { total: 173, positive: 103, negative: 43, mixed: 23, breakthroughs: 4 },
+  latest_exp: { n: 174, title: "N4 rung-1 gate, attempt 1: NO VERDICT by PC2 — and the instrument failure IS the baseline portrait: at the sanctioned decay rate the N4-less identity flickers even unpressured (4/8 forks unstable pre-burst), and when pressured it does not whipsaw — it is REWRITTEN (flips total in 24/24 bursts, ~3/24 recoveries; bursts cascade, re-making the favorite repeatedly)", tag: "NEGATIVE" },
+  tally: { total: 174, positive: 103, negative: 44, mixed: 23, breakthroughs: 4 },
   directions: [
-    { name: "identity-n4", state: "active (card committed for review; rung 1 next on resumption)", latest: "—", next: "rung 1, the whipsaw gate — a constructible burst regime that transiently flips the baseline's preference ordering" },
+    { name: "identity-n4", state: "active (rung 1, attempt 2)", latest: "Exp 174", next: "Exp 175 — λ=0.9997 (declared, window-theorem band), PC2 retained, P1′ = flip ≥7/8 AND baseline recovery-failure on ≥2/3 bursts (the regime degrades the layerless agent persistently)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },

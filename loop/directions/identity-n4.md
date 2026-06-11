@@ -76,4 +76,11 @@ same-schedule reference arms binding (Exp 170); horizon-scaled instrument bounds
 (untestable at this richness), or two iterations stuck on instrument numerics →
 consult. The M4a thread, nira's switch, and the cloud merge remain separate consults.
 
-**STATUS.** state: active (card committed for review; rung 1 next on resumption) · latest: — · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the Exp 48/49 inertia law, Exp 55's no-N4 baseline (−0.71), Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173) · why: the ladder's next rung above a supported N3; the human's word "move up the ladder" · next-falsifiable: rung 1, the whipsaw gate — a constructible burst regime that transiently flips the baseline's preference ordering
+**RUNG 1, ATTEMPT 1 (Exp 174, NO VERDICT by PC2 — the displacement portrait).** At
+λ=0.999 the baseline has no stable favorite even unpressured (4/8 pre-burst unstable);
+under captivity it flips totally (24/24, latency 40–143) and recovers ~3/24 — persistent
+IDENTITY DISPLACEMENT, not whipsaw: an 800-step burst permanently re-makes the favorite
+(one fork re-made 3× in a session). The gate re-aims at displacement; recovery becomes
+rung 3's deliverable.
+
+**STATUS.** state: active (rung 1, attempt 2) · latest: Exp 174 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the displacement portrait (174) · why: the ladder's next rung; the gate's instrument needs a stable baseline identity first · next-falsifiable: Exp 175 — λ=0.9997 (declared, window-theorem band), PC2 retained, P1′ = flip ≥7/8 AND baseline recovery-failure on ≥2/3 bursts (the regime degrades the layerless agent persistently)

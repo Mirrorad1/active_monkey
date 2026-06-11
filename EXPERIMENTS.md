@@ -5872,3 +5872,52 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   switch; the cloud-branch merge); (b) pursue one of the verifier's three cracks;
   (c) stop/redirect. RECOMMENDED: (a) with the synthesis update as the
   consolidation-grade next step.
+
+## Exp 174 — N4 rung-1 gate, attempt 1: NO VERDICT by PC2 — and the instrument failure IS the baseline portrait: at the sanctioned decay rate the N4-less identity flickers even unpressured (4/8 forks unstable pre-burst), and when pressured it does not whipsaw — it is REWRITTEN (flips total in 24/24 bursts, ~3/24 recoveries; bursts cascade, re-making the favorite repeatedly) (NO VERDICT; the displacement finding sharpens the gate for attempt 2)
+
+- Plain: before testing whether an identity layer can hold a self together, we had to
+  check that the layerless creature can be knocked over and get back up. It cannot
+  even stand: at the program's own lifelong forgetting rate its favorite thing wobbles
+  on its own, with no pushing — and when an 800-step captivity does push, the old
+  favorite doesn't bounce back; the creature simply becomes someone else, three times
+  in one session. The gate's letter (flip-then-recover) failed its preconditions, but
+  the picture it exposed is stronger than the one it sought: the layerless baseline
+  has no self to whipsaw — only a self to overwrite. The next attempt gates on exactly
+  that.
+- Question (predeclared): under window-decayed values (λ=0.999, declared from the
+  Exp 88 band) does forced-relocation captivity (800 steps on the argmin-valued
+  color, 3 bursts/12000 steps) flip the expressed preference AND let it recover
+  (P1: flip+recovery on ≥2/3 bursts in ≥7/8 forks; F1 ≤4/8)?
+- Setup: forks of mirro, FRESH seeds 154–161; v inherited from the spine at decay-
+  equilibrium mass; relocation rng per fork; smoke (seed 154) disclosed.
+- Result: NO VERDICT — PC2 fired (pre-burst stability: bursts 0 and 2 had only 4/8
+  forks with a constant preference over the prior 1000 steps). Diagnostics, uniform:
+  FLIP total in 24/24 bursts (flip_frac 1.000, latency 40–143 steps; v[favorite]
+  crashes ~340→~150 while v[burst color] →~640); RECOVERY rare (~3/24 within 2000
+  steps; at +2000 most forks still expressed the burst color or a successor — e.g.
+  seed 159 was re-made three times and ended the session with a third identity).
+  PC1/PC3 green (drift ≤ 0.011-class; confinement held).
+- Verifier: not dispatched (no verdict licensed; the PC mapping is mechanical and
+  printed; the diagnostic table is the committed record).
+- Implication (generalizability tier: failure-mode + the baseline portrait): two
+  findings. (1) Instrument: λ=0.999 (700-step half-life) leaves no stable identity to
+  perturb — the gate needs a slower declared decay (λ≈0.9997, ~2300-step half-life,
+  still inside the window-theorem band) so a standing favorite exists unpressured.
+  (2) Substance: the N4-less baseline exhibits PERSISTENT IDENTITY DISPLACEMENT, not
+  whipsaw — an 800-step burst (0.6% of its lifetime) permanently re-makes its
+  favorite. This is a STRONGER degradation than the card's whipsaw and a cleaner
+  anti-regress gate: attempt 2 gates on displacement (flip ≥7/8 AND recovery-failure
+  as the baseline's measured deficit), making recovery-under-transients exactly the
+  capability N4's commitment surface must supply at rung 3 — while sustained-evidence
+  revision stays the other arm.
+- Honest caveat: the λ choice drives everything and both values are PROVIDED (the
+  band is the program's, the point within it is design); displacement at this toy
+  scale rides on a 3-color value space where one overwrite IS a new identity; the
+  qs-uniform-on-relocation convention is declared but untested for side effects;
+  no verdict claimed.
+- Verdict: NO VERDICT (PC2); iteration outcome NEGATIVE (instrument) / NEW INSIGHT
+  (the displacement portrait). Self-grade: NEGATIVE.
+- Next: Exp 175 = rung-1 attempt 2 — λ=0.9997 (declared), PC2 retained, gate
+  re-aimed at displacement: P1′ = flip in ≥7/8 forks AND baseline recovery-failure
+  within 2000 steps on ≥2/3 bursts (the regime measurably degrades the layerless
+  agent persistently); recovery becomes rung 3's deliverable, not the world's.

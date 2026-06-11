@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:173, breakthrough:8, positive:92, wall:27, partial:46, from:4.81, to:4.00 };
+window.AM_TALLY = { total:174, breakthrough:8, positive:92, wall:27, partial:47, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1921,7 +1921,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — F_reg (c16 ties bR exactly, all forks), F_resp (3/8 — slow-first forks cannot respond within the first segment by resolution), F_K (tempo signal inverted by carryover across boundaries); F_HARM silent, with the lineage's best valid margin (0.0553) as an unclaimed aside. The blinded verifier recomputed all 16-segment class pools and named the three structural causes and three untried design dimensions.",
     implication:"The universal-constant law closes the K chapter: horizon regulation is only necessary where no feasible constant covers all regimes, and on this body such a world is not constructible — every regulator converges onto the covering constant. The three tiers fully graded: provided works; derived works vacuously; regulated rejected at its own gate. The exact parallel of the anti-regress principle, applied to the program's own design constants. Halted: fold into the synthesis and return to the ladder or standing consults, or pursue the named cracks.",
     caveat:"\"rejected at this richness\" binds to the clamp [3,16], this controller class, these tempos and segment lengths; the verifier's three design dimensions are genuine untried cracks (most plausibly: a body with a wider dial/horizon range whose ceiling carries real costs); the F_resp failures are partly a criterion artifact (resolution, not sloth) — a delayed-response criterion might pass, but would not rescue F_reg, which is the load-bearing kill; smoke disclosed; per the guardrail the thread HALTS.",
-    trace:{ script:"experiments/exp173_multitempo.py", output:"experiments/outputs/exp173.txt" } }
+    trace:{ script:"experiments/exp173_multitempo.py", output:"experiments/outputs/exp173.txt" } },
+
+  { n:174, kind:"partial", chapter:"frontier",
+    title:"The identity chapter opens with a portrait: the layerless creature has no self to whipsaw — only a self to overwrite.",
+    one:"N4 rung-1 gate, attempt 1: NO VERDICT by PC2 — and the precondition failure IS the finding. At the program's own lifelong forgetting rate the N4-less baseline's favorite flickers even unpressured (4/8 forks unstable before any burst); under 800-step captivity pressure it flips totally in 24/24 bursts (latency 40-143 steps) and recovers in only ~3 of 24 — the old favorite does not bounce back; the creature is simply re-made, in one fork three times in a single session. Persistent identity displacement, not whipsaw: a stronger degradation than the gate sought, and a cleaner anti-regress demand for attempt 2 — recovery becomes the capability the identity layer must supply, not a courtesy of the world.",
+    plain:"Before testing whether an identity layer can hold a self together, we checked that the layerless creature can be knocked over and get back up. It cannot even stand: at the program's own forgetting rate its favorite thing wobbles on its own — and when an 800-step captivity pushes, the old favorite never returns; the creature becomes someone else, three times in one session. The gate's letter failed its preconditions, but the picture it exposed is stronger than the one it sought: no self to whipsaw, only a self to overwrite. The next attempt gates on exactly that.",
+    metric:{ from:24, to:3, unit:"bursts that flipped the identity vs bursts it recovered from" },
+    setup:"Forks of mirro (spine untouched), fresh seeds 154-161, 12000-step sessions with window-decayed values (declared from the Exp 88 band) and three 800-step forced-relocation bursts onto the currently least-valued color. Flip-and-recover gated with falsifiers; preconditions instrument-grade; smoke disclosed.",
+    result:"NO VERDICT — PC2 fired (pre-burst stability only 4/8 on bursts 0 and 2). Diagnostics uniform: total flips 24/24, ~3/24 recoveries within 2000 steps, cascading re-makes. Drift and confinement green.",
+    implication:"Two products: the gate needs a slower declared decay so a standing favorite exists to perturb; and the baseline portrait re-grounds the card — the N4-less agent suffers persistent identity displacement under brief transients, so rung 3's commitment surface has a measured deficit to repair: restore the prior self after transient pressure while still revising under sustained evidence. Attempt 2 gates on displacement directly.",
+    caveat:"the λ choice drives everything and both values are PROVIDED (the band is the program's, the point within it is design); displacement at this toy scale rides on a 3-color value space where one overwrite IS a new identity; the qs-uniform-on-relocation convention is declared but untested for side effects; no verdict claimed.",
+    trace:{ script:"experiments/exp174_n4_gate.py", output:"experiments/outputs/exp174.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
