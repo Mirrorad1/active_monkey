@@ -1,7 +1,9 @@
 # PROTOCOL — one iteration of the self-guided research loop
 
 Each iteration is ONE hypothesis-driven experiment, run start-to-finish. Never batch
-several half-experiments. Steps:
+several half-experiments. Open `loop/LESSONS.md` (the distilled rules card) at the
+start of every iteration — it is the one-page digest of every incident-derived rule;
+the full stories stay in EXPERIMENTS.md. Steps:
 
 0. **Inbox.** Read `loop/IDEAS.md`. If a human dropped an idea/redirection, it outranks
    your own queue: address it (run it, or log in IDEAS.md why it's deferred — never
@@ -37,8 +39,28 @@ several half-experiments. Steps:
 4. **Run & validate.** Apply `loop/VALIDATION.md` (binding) to the raw output before
    interpreting anything.
 
+4.5. **Blinded verify (binding, added 2026-06-10 — independent verdict before logging).**
+   Before writing the entry, dispatch a VERIFIER subagent (`Agent` tool,
+   `model: "sonnet"`) that is blinded to your interpretation. It receives ONLY:
+   (a) the script's predeclared docstring (hypothesis / predictions / falsifiers), and
+   (b) the committed raw output (`experiments/outputs/expNN.txt`) — never the main
+   session's reading, never the draft entry. Instruct it to IGNORE any verdict/summary
+   claims printed inside the output and recompute from the raw numbers. It returns a
+   three-way verdict (POSITIVE / NEGATIVE / MIXED) derived by applying the predeclared
+   rule conjunct-by-conjunct, with the mapping written out.
+   - **Agree** → proceed to step 5; the entry records `- Verifier: agree` (a required
+     entry line from Exp 152 on; `loop/check_iteration.py` enforces it).
+   - **Disagree** → do NOT log yet; investigate. If the disagreement survives
+     investigation (a genuine ambiguity in the predeclaration), take the STRICTER
+     verdict and record both readings: `- Verifier: disagreed — <one line on what and
+     how resolved>`.
+   Rationale: the same mind that designed an experiment grades it leniently;
+   independent verification beats self-critique on exactly the failure class this
+   loop has logged repeatedly (L1/L2/L9 in `loop/LESSONS.md`).
+
 5. **Log.** Append one honest entry to `EXPERIMENTS.md` in the established format
-   (Plain / Setup / Result / Implication / Honest caveat / Next), explicitly tagged:
+   (Plain / Setup / Result / Implication / Honest caveat / Verdict / Verifier / Next),
+   explicitly tagged:
    POSITIVE / NEGATIVE / MIXED, and CONSOLIDATION / NEW INSIGHT. Negative results get
    the same care as positive ones.
 
@@ -50,11 +72,10 @@ several half-experiments. Steps:
    in the journey). No double-quotes inside it (the site stores it as a JS double-quoted
    string).
 
-   **Re-run re-quote rule (added after Exp 140's audit):** if a script is re-run
-   after ANY patch (verdict fix, stability guard), the entry must quote the FINAL
-   committed output — re-check every non-deterministic number (timings especially);
-   Exp 136's entry cited the superseded run's wall clock and failed the audit's
-   reproducibility standard.
+   **Re-run re-quote rule:** if a script is re-run after ANY patch, the entry quotes
+   the FINAL committed output — re-check every non-deterministic number (L3 in
+   `loop/LESSONS.md`; `loop/check_iteration.py` warns on entry numbers absent from
+   the committed output).
 
    **Self-grade (mandatory for every POSITIVE entry):** declare BREAKTHROUGH or
    POSITIVE-SINGLE.
@@ -75,16 +96,17 @@ several half-experiments. Steps:
    synthesis is placed BOTH in the EXPERIMENTS.md entry AND in the new curated entry's
    `story` field in `experiments-data.js`.
 
-6. **Commit.** One commit per experiment containing the script.
-   **Atomicity norm (resolves the Exp 41/42 autosync split):** write script + raw output +
-   EXPERIMENTS.md entry + experiments-data.js AND commit them within ONE turn — the Stop-
-   hook autosync fires between turns and will sweep a half-finished working set into an
-   `auto-sync:` commit. Exp 64-81 all committed atomically this way; treat it as binding.
-   One commit per experiment containing the script
+6. **Commit.** One commit per experiment containing the script
    (`experiments/expNN_<slug>.py`), its raw output (`experiments/outputs/expNN.txt`),
-   AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All three land in
-   the same atomic commit. A log entry without committed script and output is an
+   AND the EXPERIMENTS.md entry: `expNN: <one-line honest summary>`. All land in the
+   same atomic commit, written and committed within ONE turn (atomicity norm, binding
+   — L4 in `loop/LESSONS.md`). A log entry without committed script and output is an
    unverified claim.
+   **Mechanical rubric (binding, added 2026-06-10):** before committing, run
+   `uv run --python .venv python loop/check_iteration.py` — it checks the entry's
+   required lines/tags, the committed artifacts, and the docstring predeclaration.
+   Hard failures block the commit; warnings (entry numbers not found in the raw
+   output) must each be confirmed derived-not-stale.
    - **Persistent-creature experiments (Exp 58+) advance ONE continuous spine** (`mirro`
      by default). They do NOT re-birth or branch the spine: wrap the episode in
      `active_loop.checkpoint.mirro_episode("Exp NN")`, which loads the committed snapshot,
