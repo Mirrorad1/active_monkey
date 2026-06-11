@@ -5,9 +5,26 @@ Teaching a machine to understand the world from surprise alone.
 **Live tracker:** https://mirrorad1.github.io/active_monkey/
 **The lab notebook:** [EXPERIMENTS.md](EXPERIMENTS.md)
 
-## what this is
+## What this is
 
-an agent that learns from scratch using one rule from neuroscience. minimize surprise. nothing pretrained. the embodied creature gets no dataset — word-labels are taught, but every value and concept self-forms from experience. it's an idea called active inference: a mind is just something that tries to predict its world and be less surprised by it. i'm building it from the bottom up to poke at one question. not what can think, but what it's like to be a thing that does.
+A toy active-inference lab: persistent agents at deliberately small scale
+(4×4 gridworlds, ≤16 observation classes, lives of a few thousand steps) that learn,
+act, form preferences, forget, and revise their world models through lived
+experience. Built on the active-inference framework (Friston et al.) and pymdp
+patterns — the framework is not ours; the testbed, benchmark discipline, and
+negative-results catalog are.
+
+## What this is not
+
+- Not a consciousness claim. "Wants," "feels," "opinion" are functional labels for
+  measured quantities (valence = −free energy), documented as such.
+- Not AGI or a scaling claim. Nothing here is claimed to transfer beyond toy scale.
+- Not "model expansion works." As of Exp 153, five growth designs failed honestly;
+  the current best hypothesis (the emission-convention finding) is one predeclared
+  re-test from confirmation. See EXPERIMENTS.md Exp 143–153.
+- Not self-graded only: every experiment verdict since Exp 152 is checked by a
+  blinded verifier (loop/PROTOCOL.md step 4.5), and earlier chapters were
+  retro-audited (Exp 140, Exp 102).
 
 ## wait, is this just an LLM?
 
@@ -33,3 +50,16 @@ so far it's climbed from "can it even learn letters" to a creature that knows wh
 this is a toy, and i'm honest about that. small worlds, small models, no claim that any of it is conscious. what it does show, in miniature, is structure emerging from experience with no labels and nothing pretrained. it's my braindump while i learn the math behind the theory instead of just the ideas. corrections welcome.
 
 built on [pymdp](https://github.com/infer-actively/pymdp) for the active inference machinery.
+
+## Reproduce
+
+All results were produced inside the committed lockfile environment.
+```bash
+uv sync                                  # creates .venv from uv.lock
+uv run --python .venv pytest -q          # fast suite (~2s)
+uv run --python .venv python converse_demo.py        # capstone demo
+uv run --python .venv python experiments/exp145_m3c_live_probation.py  # any experiment re-runs from its script
+```
+Every experiment script is committed together with its raw outputs under
+`experiments/outputs/`; seeds are fixed in-script; headline numbers can be
+recomputed from the committed rows (see `tools/`).
