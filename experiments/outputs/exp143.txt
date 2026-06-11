@@ -1,0 +1,83 @@
+================================================================================
+Exp 143 — continuous-creature rung M3: the aliasing wall
+================================================================================
+
+ALIASED CMAP (rng(7), 4 colors x 4 cells each):
+  Grid layout (cell index -> color; row-major, row=y, col=x):
+  row 0: [np.int64(1), np.int64(1), np.int64(2), np.int64(0)]
+  row 1: [np.int64(2), np.int64(3), np.int64(0), np.int64(1)]
+  row 2: [np.int64(0), np.int64(3), np.int64(0), np.int64(3)]
+  row 3: [np.int64(3), np.int64(2), np.int64(1), np.int64(2)]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+Seed  P1LocMed  P1Ceil  P2LocMed         Comps  Kept  Revt  P2FinCeil  TwinF500
+-------------------------------------------------------------------------------------
+   0    0.0492     809    0.0475  [2, 1, 1, 1]     1     5        607    1.0000
+   1    0.0555    1003    0.0570  [1, 1, 1, 2]     1     7        394    1.0000
+   2    0.0611    1068    0.0502  [2, 1, 1, 1]     1    11        449    1.0000
+   3    0.0539     951    0.0500  [1, 1, 1, 1]     0    10        406    1.0000
+   4    0.0539     701    0.0507  [2, 1, 1, 1]     1    11        531    1.0000
+   5    0.0439     747    0.0530  [1, 1, 1, 1]     0     6        452    1.0000
+   6    0.0590     914    0.0510  [1, 1, 1, 1]     0     9        597    1.0000
+   7    0.0511     630    0.0575  [1, 1, 1, 1]     0     8        412    1.0000
+
+================================================================================
+TALLIES
+================================================================================
+
+P2a unimodal wall + detector:
+  Seeds with phase-1 final-500 loc_median >= 1.0: 0/8  (need >= 6/8)  FAIL
+  Seeds with >= 1 ceiling event in phase 1: 8/8  (need >= 7/8)  PASS
+  P2a: FAIL
+    seed=0: p1_loc_med=0.0492  p1_ceil_events=809  wall=FAIL  ceil=pass
+    seed=1: p1_loc_med=0.0555  p1_ceil_events=1003  wall=FAIL  ceil=pass
+    seed=2: p1_loc_med=0.0611  p1_ceil_events=1068  wall=FAIL  ceil=pass
+    seed=3: p1_loc_med=0.0539  p1_ceil_events=951  wall=FAIL  ceil=pass
+    seed=4: p1_loc_med=0.0539  p1_ceil_events=701  wall=FAIL  ceil=pass
+    seed=5: p1_loc_med=0.0439  p1_ceil_events=747  wall=FAIL  ceil=pass
+    seed=6: p1_loc_med=0.0590  p1_ceil_events=914  wall=FAIL  ceil=pass
+    seed=7: p1_loc_med=0.0511  p1_ceil_events=630  wall=FAIL  ceil=pass
+
+P2b spawn recovery:
+  Seeds with final-500 loc_median <= 0.5: 8/8  (need >= 6/8)  PASS
+  Seeds with comps within +/-1 of 4 for >= 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  Seeds with zero ceiling events in final 1000 steps: 0/8  (need >= 6/8)  FAIL
+  P2b: FAIL
+    seed=0: p2_loc_med=0.0475  comps=[2, 1, 1, 1] (0/4 within +/-1)  fin_ceil=607  kept=1  reverted=5
+    seed=1: p2_loc_med=0.0570  comps=[1, 1, 1, 2] (0/4 within +/-1)  fin_ceil=394  kept=1  reverted=7
+    seed=2: p2_loc_med=0.0502  comps=[2, 1, 1, 1] (0/4 within +/-1)  fin_ceil=449  kept=1  reverted=11
+    seed=3: p2_loc_med=0.0500  comps=[1, 1, 1, 1] (0/4 within +/-1)  fin_ceil=406  kept=0  reverted=10
+    seed=4: p2_loc_med=0.0507  comps=[2, 1, 1, 1] (0/4 within +/-1)  fin_ceil=531  kept=1  reverted=11
+    seed=5: p2_loc_med=0.0530  comps=[1, 1, 1, 1] (0/4 within +/-1)  fin_ceil=452  kept=0  reverted=6
+    seed=6: p2_loc_med=0.0510  comps=[1, 1, 1, 1] (0/4 within +/-1)  fin_ceil=597  kept=0  reverted=9
+    seed=7: p2_loc_med=0.0575  comps=[1, 1, 1, 1] (0/4 within +/-1)  fin_ceil=412  kept=0  reverted=8
+
+P3 twin sanity (tabular MAP-cell correct >= 80% of final-500 steps):
+  Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: final_500_map_frac=1.0000  (pass)
+    seed=1: final_500_map_frac=1.0000  (pass)
+    seed=2: final_500_map_frac=1.0000  (pass)
+    seed=3: final_500_map_frac=1.0000  (pass)
+    seed=4: final_500_map_frac=1.0000  (pass)
+    seed=5: final_500_map_frac=1.0000  (pass)
+    seed=6: final_500_map_frac=1.0000  (pass)
+    seed=7: final_500_map_frac=1.0000  (pass)
+
+================================================================================
+HALT-ARM EVALUATION
+================================================================================
+
+
+================================================================================
+VERDICT: FINDING (unexpected — not a halt)
+Phase-1 localization did NOT hit the wall: only 0/8 seeds reached median >= 1.0.  The unimodal map localizes despite aliasing.  This is a genuine surprise — NOT a halt; P2b grading is moot (recovery premise absent).  Log as finding and re-examine the aliasing hypothesis.
+  P3 PASS: twin sanity holds (8/8 seeds >= 80%).
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp143_rows.json

@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:142, breakthrough:6, positive:85, wall:21, partial:30, from:4.81, to:4.00 };
+window.AM_TALLY = { total:143, breakthrough:6, positive:85, wall:21, partial:31, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1435,7 +1435,17 @@ window.AM_EXPERIMENTS = [
     setup:"Three agents on identical streams in the 4x4 world: the tabular twin running the creature's own equations, a new moment-matched clamped predict (analytic truncated-Gaussian moments, Monte-Carlo-validated tests), and the naive mean-clamp — all learning sixteen per-color emission Gaussians by moment-matched NIW from a broad center prior, no position given.",
     result:"Twin sanity 8/8 at accuracy 1.0; moment-matched bootstrap 8/8 (16/16 colors, map error 0.054-0.066, localization 0.039-0.053); naive also 16/16 with error ratio 1.390 — between the account-wrong line (1.2) and the prediction (1.5). No falsifier, no halt. Suite 108 green.",
     implication:"The RECIPE's learn-the-map link holds on the continuous substrate with the motor anchor alone — stronger than the anchored Exp 135 protocol. Next is the centerpiece: the aliasing wall, where one Gaussian per color meets a world where colors repeat.",
-    trace:{ script:"experiments/exp142_m2_learn_map.py", output:"experiments/outputs/exp142.txt" } }
+    trace:{ script:"experiments/exp142_m2_learn_map.py", output:"experiments/outputs/exp142.txt" } },
+
+  { n:143, kind:"partial", chapter:"frontier",
+    title:"The wall was never where we aimed: the creature knows where it is, and not what comes next.",
+    one:"Migration rung M3, the centerpiece, lands in its predeclared surprise branch: in a 4-colors-x-4-cells aliased world the unimodal map localizes to 0.05 cells in 8/8 seeds (the predicted >=1.0 wall appeared in 0/8) — while the Exp 132 surprise-ceiling detector fires its FIRST LIVE POSITIVE in all eight runs (630-1068 events) and keeps ringing after spawning, because the strict-decrease spawn rule reverts nearly every candidate (0-1 kept vs 5-11 reverted). The inadequacy is real but lives in prediction, not place.",
+    plain:"The centerpiece test put the continuous creature in a world where colors repeat — the case its one-blob-per-color map should not be able to represent. The predicted failure never came: it knows where it is to a twentieth of a cell in every run. What is broken is its ability to predict what it will see next — its surprise stays pinned high, the structural-inadequacy alarm rings constantly, and the model-growing rule built to answer that alarm keeps proposing additions and immediately taking them back. The wall is real, but it is in prediction, not in knowing where you are.",
+    metric:{ from:1.0, to:0.05, unit:"predicted localization wall vs measured error, cells (while the detector fires 8/8)" },
+    setup:"Two phases on identical streams against the tabular twin: unimodal learning with the Exp 132 detector armed at its original constants, then spawning enabled under the structure-learning strict-decrease rule with a four-component budget per color. The no-wall branch was predeclared as a loggable finding, not a halt.",
+    result:"Localization 0.044-0.061 in 8/8 both phases; detector >=1 event in 8/8 (the first live positive) and 394-607 events in the final 1000 steps; spawns 0-1 kept vs 5-11 reverted; twin sanity 1.000. No falsifier triggered; the mechanism account (covariance self-regulation; myopic scoring) is logged as hypothesis pending M3b instrumentation.",
+    implication:"The migration's localization chain is unblocked — but the directive's own point, growing the model when surprise is irreducible, is unmet. M3b is inserted: burn-in-scored spawning judged on predictive surprise, varied layouts, and the instrumentation to pin the mechanism.",
+    trace:{ script:"experiments/exp143_m3_aliasing.py", output:"experiments/outputs/exp143.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

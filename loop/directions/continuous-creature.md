@@ -51,6 +51,15 @@ throughout).**
   silent while the map is provably inadequate (instrument gap). FAIL-B = spawned
   mixtures don't recover localization (the toolkit doesn't compose with the continuous
   substrate — a deep negative, logged as such). Either failure HALTS per the guardrail.
+- **M3b — spawn-for-prediction (inserted after Exp 143's finding).** The wall is in
+  PREDICTION space, not localization: the detector fires correctly (first live
+  positive, 8/8) but the strict-decrease spawn rule is myopic (fresh components
+  immediately reverted). M3b: candidates get a burn-in (EM adaptation on the replay
+  window) BEFORE scoring; success = predictive-surprise drop + detector quiet (NOT
+  localization, already fine); varied aliased layouts; E[Sigma] instrumentation to
+  verify the self-regulation mechanism Exp 143 hypothesized. FAIL = burn-in-scored
+  spawning still cannot reduce predictive surprise (HALT — the growing toolkit cannot
+  feed the alarm it answers).
 - **M4 — want + act.** Grounded valence (Exp 26 mechanism: predictability-weighted
   value accumulation, continuous predictive entropy at the posterior mean) and
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence

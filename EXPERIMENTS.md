@@ -4093,3 +4093,54 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   anchor on the continuous substrate). Self-grade: n/a (MIXED).
 - Next: rung M3 — the aliasing wall (the centerpiece: detector + spawn toolkit, halt
   guardrails armed on both failure modes).
+
+## Exp 143 — continuous-creature rung M3: the aliasing wall is NOT where it was predicted — localization sails through while prediction stays starved; the detector fires its first live positive (8/8) and the myopic spawn rule cannot feed it (MIXED/FINDING as predeclared; no halt)
+- Plain: The centerpiece test put the continuous creature in a world where colors
+  repeat — the case its one-blob-per-color map should not be able to represent. The
+  predicted failure never came: it knows where it is to a twentieth of a cell in every
+  run. What IS broken is its ability to predict what it will see next — its surprise
+  stays pinned high, the new structural-inadequacy alarm rings constantly (its first
+  real positive, in all eight runs), and the model-growing rule built to answer that
+  alarm keeps proposing additions and immediately taking them back. The wall is real,
+  but it is in prediction, not in knowing where you are — and the growing rule, as
+  designed, is too short-sighted to climb it.
+- Setup (predeclared in the script docstring before running): 4×4 world, ALIASED cmap
+  (4 colors × 4 cells, fixed seeded layout, printed); phase 1 T=2000 unimodal (1 NIW
+  per color, M2 machinery, Exp 132 detector armed — same constants 0.7 nats / 5e-4);
+  phase 2 T=4000 spawning enabled (ceiling → spawn for worst-surprise color at the
+  posterior mean → keep iff replay NLL strictly decreases, budget 4/color); tabular
+  twin identical streams; seeds 0–7. P2a: phase-1 loc ≥1.0 (wall) + detector fires.
+  P2b: recovery ≤0.5 + components ≈4 + detector quiet. P3 twin ≥80%. The no-wall
+  branch was predeclared: "NOT a halt; log as the finding; P2b grading moot."
+- Result: the predeclared no-wall branch. Phase-1 localization 0.044–0.061 median in
+  8/8 seeds (the ≥1.0 wall in 0/8) — the unimodal map LOCALIZES despite aliasing.
+  Detector: ≥1 ceiling event in 8/8 (630–1068 events/seed) — ITS FIRST LIVE POSITIVE,
+  and it keeps firing through phase 2 (394–607 events in the final 1000). Spawning:
+  0–1 kept vs 5–11 reverted per seed; final components [1–2,1,1,1–2]; localization
+  unchanged (~0.05). P3: twin 1.000 in 8/8. No falsifier; no halt. Suite 108 green.
+- Finding (facts above; mechanism below is HYPOTHESIS, post-hoc, to be instrumented in
+  M3b): (i) the inadequacy is real but lives in PREDICTION space — surprise pinned
+  near the color-marginal entropy because one wide Gaussian per color predicts colors
+  near-uniformly — while localization rides the motor anchor; plausibly NIW covariance
+  learning SELF-REGULATES (aliased scatter inflates E[Σ_k], down-weighting the useless
+  emission in the place update — automatic reliability weighting). (ii) The
+  strict-decrease spawn rule is MYOPIC on this substrate: a fresh narrow component at
+  one cell helps ~1/4 of its color's replay pairs and hurts ~3/4 through re-weighting
+  → immediate revert; the rule needs candidate burn-in (EM adaptation before scoring)
+  or responsibility-seeded splitting. The Exp 132 implication ("the detector's firing
+  becomes the spawn trigger") survives; the SELECTION procedure does not, as designed.
+- Implication: M3 splits. The migration's localization chain is NOT blocked (M4 could
+  proceed) — but the directive's own point (grow the model when surprise is
+  irreducible) is unmet, so M3b is inserted before M4: spawn-for-PREDICTION with
+  candidate burn-in scoring, success = predictive-surprise drop + detector quiet, plus
+  the E[Σ] instrumentation to verify the self-regulation mechanism. Card updated.
+- Honest caveat: the mechanism account is unverified (Σ traces not recorded — queued
+  as M3b instrumentation, per the Exp 134/137 precedent of pinning before promoting);
+  one aliased layout (the centroid-separation of this layout may flatter unimodal
+  localization — M3b varies it); detector event COUNTS are window-overlapping (one
+  event per step while pinned, not independent detections); spawn scoring used stored
+  posterior means (frozen-context replay, the documented active-data bias applies).
+- Verdict: MIXED / NEW INSIGHT (the prediction-vs-localization split of the aliasing
+  wall; the detector's first live positive; the myopic-spawn lesson). Self-grade: n/a.
+- Next: rung M3b — spawn-for-prediction (burn-in-scored candidates, varied layouts,
+  Σ instrumentation); halt guardrails re-armed on its falsifiers.
