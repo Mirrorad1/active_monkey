@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:136, breakthrough:6, positive:83, wall:21, partial:26, from:4.81, to:4.00 };
+window.AM_TALLY = { total:137, breakthrough:6, positive:83, wall:21, partial:27, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1375,7 +1375,17 @@ window.AM_EXPERIMENTS = [
     setup:"Six concept centers random on the unit hypersphere per seed, footprint width set so the minimum Mahalanobis separation is exactly 3.0 at every dimension — the ratified confound control that deliberately removes the high-d blessing. The rung-1 task at each of five dimensions, eight seeds each, with the log-space tabular twin on identical streams and microbenchmarked update/solve kernels.",
     result:"Quality flat: 8/8 seeds at every d, twin gap -0.0005 to +0.0036 nats. Cost alive: d8/d2 ratio 1.03x, d=32 full run 8.3 ms. Slope conjunct out of band in the benign sub-linear direction — overhead-dominated, logged as the unresolved arm. A coder verdict-softening (not-a-falsifier counted toward POSITIVE) was caught in review, patched, and codified as a PROTOCOL rule.",
     implication:"The phase picture's dimension axis is flat where measurable: no quality cliff, no cost cliff to d=32 under constant separation. Toy scale bounds cost claims to alive-and-cheap, not to exponents — the closed-form-vs-amortized crossover needs either larger d or rung 6's bounded framing.",
-    trace:{ script:"experiments/exp136_cont_dimensionality.py", output:"experiments/outputs/exp136.txt" } }
+    trace:{ script:"experiments/exp136_cont_dimensionality.py", output:"experiments/outputs/exp136.txt" } },
+
+  { n:137, kind:"partial", chapter:"frontier",
+    title:"Forget how much you know — never where you think you are.",
+    one:"Rung 5 NEGATIVE as predeclared, then pinned: power-prior forgetting that re-anchors the mean toward its natal prior loses to a plain EMA by 22-516 percent under drift (bias grows 60x with velocity), while count-only decay ties the EMA within 0.4 percent and lands the cube-root window law exactly ([80,20,10] vs predicted [62.6,24.8,9.9]); at v=0 the unforgetting conjugate annealer beats every fixed rate 8/8. Mechanism check bit-identical to the original run.",
+    plain:"Can the agent track a world whose facts slowly move, by gently forgetting old evidence? With the forgetting form first declared — which quietly drags the belief back toward where it was born — no: it loses to the dumbest baseline, and loses worse the faster the world moves. The follow-up pinned why: the failure is the dragging-home, not the forgetting. Forget how much you know, never where you think you are — with that one change the conjugate tracker exactly matches the baseline, and the predicted sweet spot of forgetting appears right where the math said it would.",
+    metric:{ from:516, to:0.4, unit:"percent loss vs fixed-lr at the fastest drift: static-prior form vs count-decay form" },
+    setup:"One emission mean drifting at four velocities, NIW trackers across a grid of forgetting windows against matched fixed-learning-rate baselines on identical streams, eight seeds per cell. Predeclared: the v=0 conjugate-annealing win, a steady-state tie under drift, and a U-shaped forgetting window on the EMA cube-root law. A committed mechanism check then compared static-prior, keep-mean, and EMA forms on bit-identical streams.",
+    result:"The predeclared form falsified P2 and P3 (loses 22/140/516 percent; argmin distorted 4x at the fastest drift). Keep-mean decay ties the EMA at 1.004/0.989/1.000 and restores all three argmins to within 1.3x of the cube-root prediction. The v=0 advantage held 8/8 against every rate.",
+    implication:"NIW-as-learning-rate survives in refined form: annealing wins stationary worlds, count-decay equals the best fixed rate in drifting ones, and the decayed quantity must be evidence mass, never location. The Exp 88 forgetting-window law holds on the continuous substrate under that form. One rung left: the amortized control.",
+    trace:{ script:"experiments/exp137_cont_tracking.py", output:"experiments/outputs/exp137.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

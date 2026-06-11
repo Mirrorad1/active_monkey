@@ -45,3 +45,8 @@ word) nor mirro's/vela's spines.
   filters underflow-ratchet at large separation (entries hit exact float 0 and never
   recover, making the filter order-dependent; 7/46 argmax anomalies, all artifacts).
   Guard test: tests/test_continuous.py::test_log_categorical_posterior_order_independent_no_ratchet.
+- [Exp 137] Non-stationary tracking / forgetting MUST decay evidence counts, not
+  location: `NIW.decay(..., keep_mean=True)`. The default static-prior re-anchor form
+  loses to a plain EMA by up to 6x under sustained drift and distorts the forgetting-
+  window optimum (mechanism pinned, bit-identical replication). Decay counts, not
+  location. Guard test: tests/test_continuous.py::test_niw_decay_keep_mean.

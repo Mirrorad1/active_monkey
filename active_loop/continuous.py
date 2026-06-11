@@ -312,6 +312,89 @@ class NIW:
         return new
 
     # ------------------------------------------------------------------
+    # Read-only properties
+    # ------------------------------------------------------------------
+
+    @property
+    def kappa(self) -> float:
+        """Pseudo-count for the mean (scalar > 0)."""
+        return self._kappa
+
+    @property
+    def nu(self) -> float:
+        """Degrees-of-freedom for the covariance."""
+        return self._nu
+
+    @property
+    def m(self) -> np.ndarray:
+        """Prior mean of mu (d-vector, copy)."""
+        return self._m.copy()
+
+    @property
+    def S(self) -> np.ndarray:
+        """Scatter matrix (d x d, copy)."""
+        return self._S.copy()
+
+    # ------------------------------------------------------------------
+    # Exponential forgetting
+    # ------------------------------------------------------------------
+
+    def decay(self, lam: float, prior: "NIW", keep_mean: bool = False) -> "NIW":
+        """Exponential forgetting of accumulated evidence toward *prior* (power-prior form).
+
+        Returns a new NIW with parameters interpolated between the prior and self::
+
+            kappa' = prior.kappa + lam * (kappa - prior.kappa)
+            nu'    = prior.nu    + lam * (nu    - prior.nu)
+            m'     = (lam * kappa * m + (1 - lam) * prior.kappa * prior.m) / kappa'
+            S'     = prior.S + lam * (S - prior.S)
+
+        The steady-state effective sample size under per-step decay *lam* with
+        unit-count updates is ``1 / (1 - lam)``.  ``lam=1`` is a no-op; ``lam=0``
+        returns the prior.
+
+        **Drift-tracking warning (Exp 137):** the default form re-anchors the mean
+        toward the STATIC prior location every step.  Under sustained drift away
+        from the natal prior this adds a position-dependent bias that grows with
+        the distance travelled — it lost to a plain EMA by up to 6x and distorted
+        the forgetting-window optimum.  For tracking, pass ``keep_mean=True``:
+        counts and scatter decay toward prior magnitudes but the location estimate
+        is kept, which is analytically an EMA with rate ~``1/(kappa_ss + 1)`` and
+        restores the cube-root window law (Exp 137 mechanism check, bit-identical
+        replication).  Decay counts, not location.
+
+        Parameters
+        ----------
+        lam : float
+            Decay factor in [0, 1].  Closer to 1 = slower forgetting.
+        prior : NIW
+            The prior NIW to decay toward.
+        keep_mean : bool
+            If True, keep the current location estimate m (decay evidence mass
+            only).  Required form for non-stationary tracking.
+
+        Returns
+        -------
+        NIW
+            New NIW instance with decayed parameters.
+        """
+        kappa_new = prior._kappa + lam * (self._kappa - prior._kappa)
+        nu_new    = prior._nu    + lam * (self._nu    - prior._nu)
+        if keep_mean:
+            m_new = self._m.copy()
+        else:
+            m_new = (lam * self._kappa * self._m + (1.0 - lam) * prior._kappa * prior._m) / kappa_new
+        S_new     = prior._S + lam * (self._S - prior._S)
+
+        new = NIW.__new__(NIW)
+        new._m     = m_new
+        new._kappa = kappa_new
+        new._nu    = nu_new
+        new._S     = S_new
+        new._d     = self._d
+        return new
+
+    # ------------------------------------------------------------------
     # Expected parameters
     # ------------------------------------------------------------------
 

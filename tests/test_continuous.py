@@ -225,6 +225,51 @@ def test_niw_update_moments_limit() -> None:
     )
 
 
+def test_niw_decay_limits() -> None:
+    """NIW.decay: lam=1 is a no-op, lam=0 returns prior, steady-state kappa_acc~19."""
+    rng = np.random.default_rng(55)
+    d = 2
+    m0 = np.array([0.0, 0.0])
+    kappa0 = 1.0
+    nu0 = float(d + 2)
+    S0 = 0.35 ** 2 * (nu0 - d - 1) * np.eye(d)
+    prior = NIW(m=m0, kappa=kappa0, nu=nu0, S=S0)
+
+    # Build a distinct "self" NIW with some accumulated evidence
+    niw_self = prior.update_batch(rng.standard_normal((10, d)))
+
+    # (a) decay(1.0, prior) == self on all params (1e-12)
+    decayed_1 = niw_self.decay(1.0, prior)
+    assert abs(decayed_1.kappa - niw_self.kappa) < 1e-12, "lam=1: kappa mismatch"
+    assert abs(decayed_1.nu    - niw_self.nu)    < 1e-12, "lam=1: nu mismatch"
+    np.testing.assert_allclose(decayed_1.m, niw_self.m, atol=1e-12, err_msg="lam=1: m mismatch")
+    np.testing.assert_allclose(decayed_1.S, niw_self.S, atol=1e-12, err_msg="lam=1: S mismatch")
+
+    # (b) decay(0.0, prior) == prior on all params
+    decayed_0 = niw_self.decay(0.0, prior)
+    assert abs(decayed_0.kappa - prior.kappa) < 1e-12, "lam=0: kappa mismatch"
+    assert abs(decayed_0.nu    - prior.nu)    < 1e-12, "lam=0: nu mismatch"
+    np.testing.assert_allclose(decayed_0.m, prior.m, atol=1e-12, err_msg="lam=0: m mismatch")
+    np.testing.assert_allclose(decayed_0.S, prior.S, atol=1e-12, err_msg="lam=0: S mismatch")
+
+    # (c) Steady-state: start from prior, repeat 2000x [update(x) then decay(lam=0.95, prior)]
+    # Deterministic fixed point: kappa_acc = lam / (1 - lam) = 0.95 / 0.05 = 19
+    # (kappa = prior.kappa + kappa_acc; we check kappa_acc = kappa - prior.kappa ~ 19)
+    lam = 0.95
+    target = np.array([1.5, -0.8])
+    rng2 = np.random.default_rng(77)
+    niw_ss = NIW(m=m0.copy(), kappa=kappa0, nu=nu0, S=S0.copy())
+    for _ in range(2000):
+        x = rng2.standard_normal(d) * 0.1 + target
+        niw_ss = niw_ss.update(x).decay(lam, prior)
+    kappa_acc = niw_ss.kappa - prior.kappa
+    assert abs(kappa_acc - 19.0) / 19.0 < 0.01, (
+        f"Steady-state kappa_acc={kappa_acc:.4f}, expected ~19 (within 1%)"
+    )
+    err_m = float(np.linalg.norm(niw_ss.m - target))
+    assert err_m < 0.15, f"Steady-state m={niw_ss.m} far from target={target}, err={err_m:.4f}"
+
+
 def test_log_categorical_posterior_order_independent_no_ratchet():
     """Exp 134 guard: the log-space filter must be order-independent and immune to
     the underflow ratchet that breaks multiply-then-renormalize filters."""
@@ -255,3 +300,21 @@ def test_log_categorical_posterior_order_independent_no_ratchet():
     # exact Bayes on the same stream says state 0 (98 vs 2)
     logq2 = log_categorical_posterior(logA, np.concatenate([[1] * 2, [0] * 98]))
     assert int(np.argmax(logq2)) == 0
+
+
+def test_niw_decay_keep_mean():
+    """Exp 137 guard: tracking must decay counts, not location — keep_mean=True
+    keeps m exactly while decaying evidence mass; the default form re-anchors m
+    toward the static prior (documented drift hazard)."""
+    from active_loop.continuous import NIW
+
+    d = 2
+    prior = NIW(np.zeros(d), 1.0, d + 2, np.eye(d))
+    niw = prior.update(np.array([5.0, -3.0])).update(np.array([5.2, -2.8]))
+    m_before = niw.m
+    dec_keep = niw.decay(0.9, prior, keep_mean=True)
+    assert np.allclose(dec_keep.m, m_before, atol=1e-12)
+    assert np.isclose(dec_keep.kappa, 1.0 + 0.9 * (niw.kappa - 1.0))
+    # default form moves m toward the prior location
+    dec_anchor = niw.decay(0.9, prior)
+    assert np.linalg.norm(dec_anchor.m) < np.linalg.norm(m_before)

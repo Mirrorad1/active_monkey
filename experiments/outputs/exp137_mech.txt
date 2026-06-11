@@ -1,0 +1,77 @@
+Simulation wall time: 5.7s
+
+=== v = 0.0005 ===
+   N_eff    static RMS    keepmean RMS    fixedlr RMS
+       5       0.29509         0.14683        0.16284
+      10       0.16739         0.10503        0.11062
+      20       0.10279         0.07465        0.07653
+      40       0.07167         0.05544        0.05591
+      80       0.06449         0.05305        0.05286
+     160       0.08869         0.08214        0.08174
+     320       0.15918         0.15622        0.15806
+
+=== v = 0.002 ===
+   N_eff    static RMS    keepmean RMS    fixedlr RMS
+       5       1.07064         0.15139        0.16710
+      10       0.55210         0.11101        0.11627
+      20       0.30634         0.08710        0.08805
+      40       0.21093         0.09627        0.09504
+      80       0.22182         0.16396        0.16207
+     160       0.34779         0.32059        0.31881
+     320       0.63998         0.62811        0.63546
+
+=== v = 0.008 ===
+   N_eff    static RMS    keepmean RMS    fixedlr RMS
+       5       4.25945         0.15426        0.16785
+      10       2.18079         0.13396        0.13402
+      20       1.19862         0.17756        0.17125
+      40       0.82503         0.32507        0.31729
+      80       0.87997         0.64190        0.63393
+     160       1.38998         1.28021        1.27304
+     320       2.55954         2.51189        2.54102
+
+=== Per-v best cells and ratios ===
+v=0.0005: static_prior best N=80 RMS=0.06449 | keep_mean best N=80 RMS=0.05305 | fixed_lr best N=80 RMS=0.05286
+       km/fl ratio=1.0036  sp/fl ratio=1.2201  sp/km ratio=1.2157
+v=0.002: static_prior best N=40 RMS=0.21093 | keep_mean best N=20 RMS=0.08710 | fixed_lr best N=20 RMS=0.08805
+       km/fl ratio=0.9892  sp/fl ratio=2.3957  sp/km ratio=2.4218
+v=0.008: static_prior best N=40 RMS=0.82503 | keep_mean best N=10 RMS=0.13396 | fixed_lr best N=10 RMS=0.13402
+       km/fl ratio=0.9996  sp/fl ratio=6.1560  sp/km ratio=6.1587
+
+=== Argmins vs predicted N* (62.6 / 24.8 / 9.9) ===
+  v=0.0005: keep_mean argmin N*=80  pred=62.6  ratio=1.28  interior=yes
+  v=0.002: keep_mean argmin N*=20  pred=24.8  ratio=0.81  interior=yes
+  v=0.008: keep_mean argmin N*=10  pred=9.9  ratio=1.01  interior=yes
+
+=== C1: keep-mean ties fixed-lr within +-5% at every v>0 ===
+  v=0.0005: keep_mean=0.05305, fixed_lr=0.05286, ratio=1.0036  PASS
+  v=0.002: keep_mean=0.08710, fixed_lr=0.08805, ratio=0.9892  PASS
+  v=0.008: keep_mean=0.13396, fixed_lr=0.13402, ratio=0.9996  PASS
+  C1 overall: PASS
+
+=== C2: keep-mean N* within 2.5x cube-root law, non-increasing in v ===
+  v=0.0005: N*=80, pred=62.6, ratio=1.28  within 2.5x
+  v=0.002: N*=20, pred=24.8, ratio=0.81  within 2.5x
+  v=0.008: N*=10, pred=9.9, ratio=1.01  within 2.5x
+  N* sequence: [80, 20, 10]  non-increasing=yes
+  C2 overall: PASS
+
+=== C3: static-prior excess over keep-mean GROWS with v (monotone) ===
+  v=0.0005: static_prior=0.06449, keep_mean=0.05305, excess=0.01144
+  v=0.002: static_prior=0.21093, keep_mean=0.08710, excess=0.12383
+  v=0.008: static_prior=0.82503, keep_mean=0.13396, excess=0.69107
+  Excess sequence: ['0.01144', '0.12383', '0.69107']  monotone-growing=yes
+  C3 overall: PASS
+
+======================================================================
+C1=PASS  C2=PASS  C3=PASS
+VERDICT: CONFIRMED
+  Keep-mean NIW ties fixed-lr (C1), N* returns to cube-root law (C2), and static-prior excess grows with v (C3). The Exp 137 tracking negative IS attributable to the re-anchoring form.
+======================================================================
+
+=== BIT-IDENTITY CHECK ===
+  This script  (static_prior, v=0.002, N_eff=40, seed=0): 0.20061044676293144
+  exp137_rows  (niw,          v=0.002, N_eff=40, seed=0): 0.20061044676293144
+  MATCH: bit-identical.
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp137_mech_rows.json

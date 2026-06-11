@@ -1,0 +1,88 @@
+Simulation wall time: 8.4s
+
+=== v = 0.0 ===
+   N_eff     NIW cell-mean RMS   FixedLR cell-mean RMS
+       5               0.13173                 0.16467
+      10               0.10143                 0.11270
+      20               0.07380                 0.07769
+      40               0.05220                 0.05353
+      80               0.03653                 0.03699
+     160               0.02551                 0.02567
+     320               0.01793                 0.01788
+inf(no-fgt)               0.01018                     n/a
+
+=== v = 0.0005 ===
+   N_eff     NIW cell-mean RMS   FixedLR cell-mean RMS
+       5               0.29509                 0.16284
+      10               0.16739                 0.11062
+      20               0.10279                 0.07653
+      40               0.07167                 0.05591
+      80               0.06449                 0.05286
+     160               0.08869                 0.08174
+     320               0.15918                 0.15806
+inf(no-fgt)               0.66368                     n/a
+
+=== v = 0.002 ===
+   N_eff     NIW cell-mean RMS   FixedLR cell-mean RMS
+       5               1.07064                 0.16710
+      10               0.55210                 0.11627
+      20               0.30634                 0.08805
+      40               0.21093                 0.09504
+      80               0.22182                 0.16207
+     160               0.34779                 0.31881
+     320               0.63998                 0.63546
+inf(no-fgt)               2.64957                     n/a
+
+=== v = 0.008 ===
+   N_eff     NIW cell-mean RMS   FixedLR cell-mean RMS
+       5               4.25945                 0.16785
+      10               2.18079                 0.13402
+      20               1.19862                 0.17125
+      40               0.82503                 0.31729
+      80               0.87997                 0.63393
+     160               1.38998                 1.27304
+     320               2.55954                 2.54102
+inf(no-fgt)              10.58428                     n/a
+
+v=0.0: best-lam N_eff=320 RMS=0.01793 | best-alpha N_eff=320 RMS=0.01788 | ratio(NIW/LR)=1.003 | pred N*=inf | obs N*=320 | U-shape interior=no
+v=0.0005: best-lam N_eff=80 RMS=0.06449 | best-alpha N_eff=80 RMS=0.05286 | ratio(NIW/LR)=1.220 | pred N*=62.6 | obs N*=80 | U-shape interior=yes
+v=0.002: best-lam N_eff=40 RMS=0.21093 | best-alpha N_eff=20 RMS=0.08805 | ratio(NIW/LR)=2.396 | pred N*=24.8 | obs N*=40 | U-shape interior=yes
+v=0.008: best-lam N_eff=40 RMS=0.82503 | best-alpha N_eff=10 RMS=0.13402 | ratio(NIW/LR)=6.156 | pred N*=9.9 | obs N*=40 | U-shape interior=yes
+
+P1a (v=0, no-fgt NIW < every fixed-lr in >=7/8 seeds):
+  alpha=1/5: 8/8 seeds NIW wins  OK
+  alpha=1/10: 8/8 seeds NIW wins  OK
+  alpha=1/20: 8/8 seeds NIW wins  OK
+  alpha=1/40: 8/8 seeds NIW wins  OK
+  alpha=1/80: 8/8 seeds NIW wins  OK
+  alpha=1/160: 8/8 seeds NIW wins  OK
+  alpha=1/320: 8/8 seeds NIW wins  OK
+  P1a overall: PASS
+
+P1b v=0.0005: no-fgt RMS=0.66368, best-lam RMS=0.06449, ratio=10.290  OK
+P1b v=0.002: no-fgt RMS=2.64957, best-lam RMS=0.21093, ratio=12.561  OK
+P1b v=0.008: no-fgt RMS=10.58428, best-lam RMS=0.82503, ratio=12.829  OK
+  P1b overall: PASS
+
+P2 (v>0, best-lam NIW within +-15% of best-alpha LR):
+  v=0.0005: NIW=0.06449, LR=0.05286, ratio=1.2201  FAIL (> 15% gap)
+  v=0.002: NIW=0.21093, LR=0.08805, ratio=2.3957  FAIL (> 15% gap)
+  v=0.008: NIW=0.82503, LR=0.13402, ratio=6.1560  FAIL (> 15% gap)
+  P2 overall: FAIL
+
+P3 (window law: U-shaped, interior argmin, N* within 2.5x pred, non-increasing in v):
+  v=0.0005: argmin_idx=4 N*=80, pred=62.6, ratio=1.28  U-interior=yes  within2.5x=yes
+  v=0.002: argmin_idx=3 N*=40, pred=24.8, ratio=1.61  U-interior=yes  within2.5x=yes
+  v=0.008: argmin_idx=3 N*=40, pred=9.9, ratio=4.06  U-interior=yes  within2.5x=no
+  N* sequence across v>0: [80, 40, 40]  non-increasing=yes
+  P3 overall: FAIL
+
+======================================================================
+VERDICT: NEGATIVE
+  FALSIFIER: NIW loses to fixed-lr by 22.0% at v=0.0005 (FAIL clause)
+  FALSIFIER: NIW loses to fixed-lr by 139.6% at v=0.002 (FAIL clause)
+  FALSIFIER: NIW loses to fixed-lr by 515.6% at v=0.008 (FAIL clause)
+  FALSIFIER: N* off by > 2.5x at v=0.008
+======================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp137_rows.json

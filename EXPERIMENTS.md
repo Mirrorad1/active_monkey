@@ -3831,3 +3831,57 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: rung 5 — non-stationary tracking (drifting μ_true(t), precision forgetting as
   NIW-as-learning-rate, fixed-lr baseline), with the predeclared Exp 88 window-law
   cross-link per the ratified constraints.
+
+## Exp 137 — continuous-substrate rung 5: the predeclared forgetting form LOSES to a plain learning rate under drift (NEGATIVE as falsified) — mechanism pinned to the decay FORM, and the window law lands once you decay counts, not location (NEW INSIGHT; bit-identical mechanism check)
+- Plain: Can the agent track a world whose facts slowly move, by gently forgetting old
+  evidence? With the forgetting I declared — which quietly drags the belief back toward
+  where it was born — no: it loses to the dumbest possible baseline, and loses worse the
+  faster the world moves. The follow-up pinned why: the failure is the dragging-home, not
+  the forgetting. Forget how MUCH you know, never WHERE you think you are: with that one
+  change the conjugate tracker exactly matches the baseline, and the predicted sweet spot
+  of forgetting — fast worlds need short memories, on a precise cube-root schedule —
+  appears right where the math said it would.
+- Setup (predeclared in the script docstring before running): d=2, one emission mean
+  drifting at v ∈ {0, 0.0005, 0.002, 0.008}/step, x_t = μ_true(t)+N(0, 0.35²I), T=4000
+  (eval last 3000); NIW with per-step power-prior decay toward the natal prior
+  (m₀=(0,0), κ₀=1) at λ = 1−1/N_eff, N_eff ∈ {5..320, ∞}; fixed-lr EMA baselines
+  α = 1/N_eff on identical streams; 8 seeds/cell. P1: v=0 conjugate annealer beats every
+  fixed lr; no-forgetting ≥3× worse than best-λ at v>0. P2: best-λ ties best-α ±15%.
+  P3: U-shaped window, argmin within 2.5× of the EMA ramp law N* = (σ²/2v²)^{1/3},
+  monotone in v. Falsifier: NIW-forgetting LOSES >15% (the card's FAIL clause).
+- Result: NEGATIVE on the predeclared form. P1 PASS both arms (v=0: 8/8 vs every α —
+  the conjugate annealing advantage is real; no-forgetting 10–13× worse under drift).
+  P2 FALSIFIED: best-λ loses to best-α by 22% / 140% / 516% at the three drifts. P3
+  FALSIFIED at v=0.008 (argmin 40 vs predicted 9.9, off 4.1×; U-shapes interior
+  everywhere). Mechanism check (exp137_mechanism_check.py, static-prior arm
+  bit-identical to the original run, 0.20061044676293144 = 0.20061044676293144):
+  C1 keep-mean decay (counts decay, m kept) ties fixed-lr at 1.004/0.989/1.000 —
+  within 0.4%; C2 its argmins [80, 20, 10] vs predicted [62.6, 24.8, 9.9] — ratios
+  1.28/0.81/1.01, all within 2.5×, monotone; C3 the static-prior excess grows
+  0.011 → 0.124 → 0.691 with v (the position-dependent bias signature). CONFIRMED 3/3.
+- Mechanism (pinned): the power-prior decay's mean blend m' = (λκm + (1−λ)κ₀m₀)/κ'
+  re-anchors toward the STATIC natal location each step; under sustained drift the
+  truth walks away from m₀ and the pull grows with distance travelled — a bias term a
+  pure EMA does not have. Keep-mean decay is analytically an EMA with rate
+  ~1/(κ_ss+1), hence the exact tie.
+- Implication: NIW-as-learning-rate survives in refined form: (i) stationary worlds —
+  conjugate annealing strictly beats every fixed rate (P1); (ii) drifting worlds —
+  count-decay forgetting equals the best fixed rate with the optimum window on the
+  cube-root law; (iii) the decayed quantity must be evidence mass, never location.
+  The Exp 88 window law (forgetting between accuracy floor and tempo ceiling) holds on
+  the continuous substrate under the correct form — substrate-independent, with the
+  form caveat now part of the law. META guard: NIW.decay(keep_mean=True) + drift
+  warning in the docstring + guard test + card rule.
+- Honest caveat: the mechanism check ran on the SAME streams as the original (the
+  tie is an analytic identity, so fresh seeds could not plausibly move it, but it is
+  not an out-of-sample replication); constant-velocity drift only (no regime switches,
+  where conjugate adaptivity might genuinely differ from fixed-lr); the cube-root
+  comparison is coarse (factor-2 grid); d=2; the predeclared decay form was my design
+  choice — the program's "exponential decay on accumulated precision" was ambiguous
+  and the wrong reading was tested first.
+- Verdict: NEGATIVE on the predeclared hypothesis (P2/P3 falsified as written; the
+  card's FAIL clause triggered for the static-prior form) / NEW INSIGHT (the decay-form
+  law: decay counts, not location; window law substrate-independent under that form).
+  Self-grade: n/a (negative).
+- Next: rung 6 — the amortized control (minimal ELBO encoder on the same generative
+  model), the last rung; then the direction's stop-condition synthesis.
