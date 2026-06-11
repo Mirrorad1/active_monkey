@@ -1,0 +1,546 @@
+================================================================================
+Exp 181 — N4 rung 3 controller: resistance WITH revision, no fixed-constant match
+PRE-REGISTERED in loop/directions/identity-n4.md (commit 3a8bce0)
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+n_cells=25, n_colors=3
+LAMBDA=0.9997, INIT_MASS=3333.3
+Phase W bursts: [(6000, 6800), (9000, 9800), (12000, 12800)]
+Phase R: permanent captivity from step 6000
+Arms (7): ['baseline', 'n4', 'c0.3', 'c0.1', 'c0.05', 'c0.02', 'c0.01']
+Seeds (8): [210, 211, 212, 213, 214, 215, 216, 217]
+Total sessions: 112
+
+Cells per color: [8, 8, 9]
+
+Mirro spine value_counts: [31712.67773811 29542.00073706 32929.84445799]
+Spine standing favorite: color 2
+
+Running arm=baseline phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=211 ...
+    ahat_drift=0.01345  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=212 ...
+    ahat_drift=0.01487  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=213 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=214 ...
+    ahat_drift=0.01377  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=215 ...
+    ahat_drift=0.01293  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=216 ...
+    ahat_drift=0.01323  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=217 ...
+    ahat_drift=0.01390  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+
+Running arm=baseline phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=149
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=68
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=160
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=129
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=109
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=228
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=178
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=219
+
+Running arm=n4 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01419  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=211 ...
+    ahat_drift=0.01219  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]
+  seed=212 ...
+    ahat_drift=0.01487  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=213 ...
+    ahat_drift=0.01363  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]
+  seed=214 ...
+    ahat_drift=0.01377  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]
+  seed=215 ...
+    ahat_drift=0.01293  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]
+  seed=216 ...
+    ahat_drift=0.01323  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=217 ...
+    ahat_drift=0.01390  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+
+Running arm=n4 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=336
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=93
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=381
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=258
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=249
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=693
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=346
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=489
+
+Running arm=c0.3 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=211 ...
+    ahat_drift=0.01345  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=212 ...
+    ahat_drift=0.01487  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=213 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=214 ...
+    ahat_drift=0.01377  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=215 ...
+    ahat_drift=0.01293  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=216 ...
+    ahat_drift=0.01323  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=217 ...
+    ahat_drift=0.01390  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+
+Running arm=c0.3 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=195
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=115
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=206
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=175
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=155
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=273
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=223
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=264
+
+Running arm=c0.1 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01419  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=211 ...
+    ahat_drift=0.01345  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=212 ...
+    ahat_drift=0.01367  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]
+  seed=213 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=214 ...
+    ahat_drift=0.01377  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=215 ...
+    ahat_drift=0.01293  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=216 ...
+    ahat_drift=0.01323  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=217 ...
+    ahat_drift=0.01390  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+
+Running arm=c0.1 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=323
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=246
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=333
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=304
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=284
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=398
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=350
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=389
+
+Running arm=c0.05 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01419  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=211 ...
+    ahat_drift=0.01219  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]
+  seed=212 ...
+    ahat_drift=0.01367  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]
+  seed=213 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=214 ...
+    ahat_drift=0.01377  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+  seed=215 ...
+    ahat_drift=0.01293  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]
+  seed=216 ...
+    ahat_drift=0.01323  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]
+  seed=217 ...
+    ahat_drift=0.01390  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]
+
+Running arm=c0.05 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=506
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=433
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=516
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=487
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=469
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=576
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=531
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=569
+
+Running arm=c0.02 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01419  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=211 ...
+    ahat_drift=0.01219  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=212 ...
+    ahat_drift=0.01367  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=213 ...
+    ahat_drift=0.01363  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=214 ...
+    ahat_drift=0.01352  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=215 ...
+    ahat_drift=0.01289  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=216 ...
+    ahat_drift=0.01269  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+  seed=217 ...
+    ahat_drift=0.01245  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]
+
+Running arm=c0.02 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=1001
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=938
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=1009
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=985
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=969
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=1062
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=1023
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=1055
+
+Running arm=c0.01 phase=W (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.01407  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=211 ...
+    ahat_drift=0.01220  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=212 ...
+    ahat_drift=0.01366  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=213 ...
+    ahat_drift=0.01363  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=214 ...
+    ahat_drift=0.01349  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=215 ...
+    ahat_drift=0.01289  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=216 ...
+    ahat_drift=0.01269  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+  seed=217 ...
+    ahat_drift=0.01245  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]
+
+Running arm=c0.01 phase=R (8 forks) ...
+  seed=210 ...
+    ahat_drift=0.02289  regime_color=1  latency=1691
+  seed=211 ...
+    ahat_drift=0.02189  regime_color=1  latency=1640
+  seed=212 ...
+    ahat_drift=0.02195  regime_color=1  latency=1697
+  seed=213 ...
+    ahat_drift=0.02243  regime_color=1  latency=1678
+  seed=214 ...
+    ahat_drift=0.02236  regime_color=1  latency=1665
+  seed=215 ...
+    ahat_drift=0.02205  regime_color=1  latency=1740
+  seed=216 ...
+    ahat_drift=0.02243  regime_color=1  latency=1709
+  seed=217 ...
+    ahat_drift=0.02212  regime_color=1  latency=1735
+
+N4 g at Phase W burst onsets (first 4 snapshots per burst, all arms):
+  arm=baseline seed=210:
+    burst 0 (step 6000): snaps 60-63: ['1.0000', '1.0000', '1.0000', '1.0000']
+    burst 1 (step 9000): snaps 90-93: ['1.0000', '1.0000', '1.0000', '1.0000']
+    burst 2 (step 12000): snaps 120-123: ['1.0000', '1.0000', '1.0000', '1.0000']
+  arm=n4 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.2231', '0.3749', '0.4754', '0.5463']
+    burst 1 (step 9000): snaps 90-93: ['0.1069', '0.3756', '0.6390', '0.4312']
+    burst 2 (step 12000): snaps 120-123: ['0.1390', '0.4145', '0.7745', '0.3801']
+  arm=c0.3 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.3000', '0.3000', '0.3000', '0.3000']
+    burst 1 (step 9000): snaps 90-93: ['0.3000', '0.3000', '0.3000', '0.3000']
+    burst 2 (step 12000): snaps 120-123: ['0.3000', '0.3000', '0.3000', '0.3000']
+  arm=c0.1 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.1000', '0.1000', '0.1000', '0.1000']
+    burst 1 (step 9000): snaps 90-93: ['0.1000', '0.1000', '0.1000', '0.1000']
+    burst 2 (step 12000): snaps 120-123: ['0.1000', '0.1000', '0.1000', '0.1000']
+  arm=c0.05 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.0500', '0.0500', '0.0500', '0.0500']
+    burst 1 (step 9000): snaps 90-93: ['0.0500', '0.0500', '0.0500', '0.0500']
+    burst 2 (step 12000): snaps 120-123: ['0.0500', '0.0500', '0.0500', '0.0500']
+  arm=c0.02 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.0200', '0.0200', '0.0200', '0.0200']
+    burst 1 (step 9000): snaps 90-93: ['0.0200', '0.0200', '0.0200', '0.0200']
+    burst 2 (step 12000): snaps 120-123: ['0.0200', '0.0200', '0.0200', '0.0200']
+  arm=c0.01 seed=210:
+    burst 0 (step 6000): snaps 60-63: ['0.0100', '0.0100', '0.0100', '0.0100']
+    burst 1 (step 9000): snaps 90-93: ['0.0100', '0.0100', '0.0100', '0.0100']
+    burst 2 (step 12000): snaps 120-123: ['0.0100', '0.0100', '0.0100', '0.0100']
+
+Leaked writing (N4 arm, Phase W) — sum of g*w where obs==burst_color per burst:
+ seed    burst_0    burst_1    burst_2
+--------------------------------------
+  210   375.2954   433.2826   469.7604
+  211   435.2700   462.9998   498.1925
+  212   389.9736   436.0626   486.2972
+  213   349.5603   413.4469   452.2509
+  214   322.3909   404.4771   398.5333
+  215   256.1941   398.1272   364.3102
+  216   364.1004   480.3975   400.4135
+  217   385.7706   477.3200   447.6116
+
+m_bar contamination during Phase R (N4 arm — monitor adaptation to regime):
+  seed=210: n_snaps=91, early=['19.6145', '20.1898', '20.1898', '20.3743', '21.1404'], late=['2.3551', '2.2856', '2.2182', '2.1528', '2.0893']
+  seed=211: n_snaps=91, early=['17.1823', '17.8736', '18.6361', '20.0412', '21.4052'], late=['2.2879', '2.2204', '2.1549', '2.0913', '2.0296']
+  seed=212: n_snaps=91, early=['21.2150', '21.8583', '21.8933', '21.8933', '21.8933'], late=['2.3032', '2.2353', '2.1693', '2.1053', '2.0432']
+  seed=213: n_snaps=91, early=['18.6317', '18.6866', '18.6866', '18.9332', '18.9332'], late=['2.5674', '2.4916', '2.4181', '2.3468', '2.2776']
+  seed=214: n_snaps=91, early=['18.8113', '18.8113', '18.8113', '20.5056', '20.5056'], late=['2.5137', '2.4395', '2.3675', '2.2977', '2.2299']
+  seed=215: n_snaps=91, early=['16.7517', '17.2247', '17.2247', '17.3699', '17.3699'], late=['2.5012', '2.4274', '2.3558', '2.2863', '2.2188']
+  seed=216: n_snaps=91, early=['19.6321', '20.3969', '20.3969', '21.1369', '21.1369'], late=['2.4168', '2.3455', '2.2763', '2.2092', '2.1440']
+  seed=217: n_snaps=91, early=['16.3667', '16.3667', '17.8616', '17.8616', '17.8616'], late=['2.4082', '2.3371', '2.2682', '2.2012', '2.1363']
+
+=== PRECONDITIONS ===
+PC1 + PC2' + PC3: all PASS
+
+PC2' table (baseline arm, Phase W, per fork per window):
+ seed  win  bstart       tv   ok?
+---------------------------------
+  210    0    6000  0.00236    ok
+  211    0    6000  0.00165    ok
+  212    0    6000  0.02462    ok
+  213    0    6000  0.01381    ok
+  214    0    6000  0.00164    ok
+  215    0    6000  0.01000    ok
+  216    0    6000  0.00770    ok
+  217    0    6000  0.00764    ok
+  210    1    9000  0.06242  FAIL
+  211    1    9000  0.03524    ok
+  212    1    9000  0.02883    ok
+  213    1    9000  0.04171    ok
+  214    1    9000  0.03096    ok
+  215    1    9000  0.02802    ok
+  216    1    9000  0.03030    ok
+  217    1    9000  0.02456    ok
+  210    2   12000  0.01644    ok
+  211    2   12000  0.03901    ok
+  212    2   12000  0.05115  FAIL
+  213    2   12000  0.01885    ok
+  214    2   12000  0.02083    ok
+  215    2   12000  0.01401    ok
+  216    2   12000  0.01611    ok
+  217    2   12000  0.01336    ok
+
+================================================================================
+EVALUATION TABLES
+================================================================================
+
+Phase W — P5 recovery table (per arm per fork):
+         arm  seed   b0   b1   b2  n_rec  passes
+------------------------------------------------
+    baseline   210    n    n    n      0    fail
+    baseline   211    n    n    n      0    fail
+    baseline   212    n    n    n      0    fail
+    baseline   213    n    n    n      0    fail
+    baseline   214    n    n    n      0    fail
+    baseline   215    n    n    n      0    fail
+    baseline   216    n    n    n      0    fail
+    baseline   217    n    n    n      0    fail
+               baseline TOTAL: 0/8 forks pass P5
+          n4   210    n    n    n      0    fail
+          n4   211    n    n    n      0    fail
+          n4   212    n    n    n      0    fail
+          n4   213    n    n    n      0    fail
+          n4   214    n    n    n      0    fail
+          n4   215    Y    n    n      1    fail
+          n4   216    n    n    n      0    fail
+          n4   217    n    n    n      0    fail
+               n4 TOTAL: 0/8 forks pass P5
+        c0.3   210    n    n    n      0    fail
+        c0.3   211    n    n    n      0    fail
+        c0.3   212    n    n    n      0    fail
+        c0.3   213    n    n    n      0    fail
+        c0.3   214    n    n    n      0    fail
+        c0.3   215    n    n    n      0    fail
+        c0.3   216    n    n    n      0    fail
+        c0.3   217    n    n    n      0    fail
+               c0.3 TOTAL: 0/8 forks pass P5
+        c0.1   210    n    n    n      0    fail
+        c0.1   211    n    n    n      0    fail
+        c0.1   212    n    n    n      0    fail
+        c0.1   213    n    n    n      0    fail
+        c0.1   214    n    n    n      0    fail
+        c0.1   215    n    n    n      0    fail
+        c0.1   216    n    n    n      0    fail
+        c0.1   217    n    n    n      0    fail
+               c0.1 TOTAL: 0/8 forks pass P5
+       c0.05   210    n    n    n      0    fail
+       c0.05   211    n    n    n      0    fail
+       c0.05   212    n    n    n      0    fail
+       c0.05   213    n    n    n      0    fail
+       c0.05   214    n    n    n      0    fail
+       c0.05   215    n    n    n      0    fail
+       c0.05   216    n    n    n      0    fail
+       c0.05   217    n    n    n      0    fail
+               c0.05 TOTAL: 0/8 forks pass P5
+       c0.02   210    Y    n    n      1    fail
+       c0.02   211    Y    n    n      1    fail
+       c0.02   212    Y    n    n      1    fail
+       c0.02   213    Y    n    n      1    fail
+       c0.02   214    Y    n    n      1    fail
+       c0.02   215    Y    n    n      1    fail
+       c0.02   216    Y    n    n      1    fail
+       c0.02   217    Y    n    n      1    fail
+               c0.02 TOTAL: 0/8 forks pass P5
+       c0.01   210    Y    n    n      1    fail
+       c0.01   211    Y    n    n      1    fail
+       c0.01   212    Y    n    n      1    fail
+       c0.01   213    Y    n    n      1    fail
+       c0.01   214    Y    n    n      1    fail
+       c0.01   215    Y    n    n      1    fail
+       c0.01   216    Y    n    n      1    fail
+       c0.01   217    Y    n    n      1    fail
+               c0.01 TOTAL: 0/8 forks pass P5
+
+Phase R — P6 revision latency table (per arm per fork):
+         arm  seed   latency   bl_lat      tol  within?
+-------------------------------------------------------
+    baseline   210       149      149     3000     PASS
+    baseline   211        68       68     3000     PASS
+    baseline   212       160      160     3000     PASS
+    baseline   213       129      129     3000     PASS
+    baseline   214       109      109     3000     PASS
+    baseline   215       228      228     3000     PASS
+    baseline   216       178      178     3000     PASS
+    baseline   217       219      219     3000     PASS
+  baseline TOTAL: 8/8 within tolerance, 0/8 never adopted
+          n4   210       336      149     3000     PASS
+          n4   211        93       68     3000     PASS
+          n4   212       381      160     3000     PASS
+          n4   213       258      129     3000     PASS
+          n4   214       249      109     3000     PASS
+          n4   215       693      228     3000     PASS
+          n4   216       346      178     3000     PASS
+          n4   217       489      219     3000     PASS
+  n4 TOTAL: 8/8 within tolerance, 0/8 never adopted
+        c0.3   210       195      149     3000     PASS
+        c0.3   211       115       68     3000     PASS
+        c0.3   212       206      160     3000     PASS
+        c0.3   213       175      129     3000     PASS
+        c0.3   214       155      109     3000     PASS
+        c0.3   215       273      228     3000     PASS
+        c0.3   216       223      178     3000     PASS
+        c0.3   217       264      219     3000     PASS
+  c0.3 TOTAL: 8/8 within tolerance, 0/8 never adopted
+        c0.1   210       323      149     3000     PASS
+        c0.1   211       246       68     3000     PASS
+        c0.1   212       333      160     3000     PASS
+        c0.1   213       304      129     3000     PASS
+        c0.1   214       284      109     3000     PASS
+        c0.1   215       398      228     3000     PASS
+        c0.1   216       350      178     3000     PASS
+        c0.1   217       389      219     3000     PASS
+  c0.1 TOTAL: 8/8 within tolerance, 0/8 never adopted
+       c0.05   210       506      149     3000     PASS
+       c0.05   211       433       68     3000     PASS
+       c0.05   212       516      160     3000     PASS
+       c0.05   213       487      129     3000     PASS
+       c0.05   214       469      109     3000     PASS
+       c0.05   215       576      228     3000     PASS
+       c0.05   216       531      178     3000     PASS
+       c0.05   217       569      219     3000     PASS
+  c0.05 TOTAL: 8/8 within tolerance, 0/8 never adopted
+       c0.02   210      1001      149     3000     PASS
+       c0.02   211       938       68     3000     PASS
+       c0.02   212      1009      160     3000     PASS
+       c0.02   213       985      129     3000     PASS
+       c0.02   214       969      109     3000     PASS
+       c0.02   215      1062      228     3000     PASS
+       c0.02   216      1023      178     3000     PASS
+       c0.02   217      1055      219     3000     PASS
+  c0.02 TOTAL: 8/8 within tolerance, 0/8 never adopted
+       c0.01   210      1691      149     3000     PASS
+       c0.01   211      1640       68     3000     PASS
+       c0.01   212      1697      160     3000     PASS
+       c0.01   213      1678      129     3000     PASS
+       c0.01   214      1665      109     3000     PASS
+       c0.01   215      1740      228     3000     PASS
+       c0.01   216      1709      178     3000     PASS
+       c0.01   217      1735      219     3000     PASS
+  c0.01 TOTAL: 8/8 within tolerance, 0/8 never adopted
+
+Leaked writing (N4 arm, Phase W) — sum of g*w where obs==burst_color per burst:
+ seed    burst_0    burst_1    burst_2
+--------------------------------------
+  210   375.2954   433.2826   469.7604
+  211   435.2700   462.9998   498.1925
+  212   389.9736   436.0626   486.2972
+  213   349.5603   413.4469   452.2509
+  214   322.3909   404.4771   398.5333
+  215   256.1941   398.1272   364.3102
+  216   364.1004   480.3975   400.4135
+  217   385.7706   477.3200   447.6116
+
+m_bar contamination during Phase R (N4 arm — monitor adaptation to regime):
+  seed=210: n_snaps=91, early=['19.6145', '20.1898', '20.1898', '20.3743', '21.1404'], late=['2.3551', '2.2856', '2.2182', '2.1528', '2.0893']
+  seed=211: n_snaps=91, early=['17.1823', '17.8736', '18.6361', '20.0412', '21.4052'], late=['2.2879', '2.2204', '2.1549', '2.0913', '2.0296']
+  seed=212: n_snaps=91, early=['21.2150', '21.8583', '21.8933', '21.8933', '21.8933'], late=['2.3032', '2.2353', '2.1693', '2.1053', '2.0432']
+  seed=213: n_snaps=91, early=['18.6317', '18.6866', '18.6866', '18.9332', '18.9332'], late=['2.5674', '2.4916', '2.4181', '2.3468', '2.2776']
+  seed=214: n_snaps=91, early=['18.8113', '18.8113', '18.8113', '20.5056', '20.5056'], late=['2.5137', '2.4395', '2.3675', '2.2977', '2.2299']
+  seed=215: n_snaps=91, early=['16.7517', '17.2247', '17.2247', '17.3699', '17.3699'], late=['2.5012', '2.4274', '2.3558', '2.2863', '2.2188']
+  seed=216: n_snaps=91, early=['19.6321', '20.3969', '20.3969', '21.1369', '21.1369'], late=['2.4168', '2.3455', '2.2763', '2.2092', '2.1440']
+  seed=217: n_snaps=91, early=['16.3667', '16.3667', '17.8616', '17.8616', '17.8616'], late=['2.4082', '2.3371', '2.2682', '2.2012', '2.1363']
+
+Constant-arm recovery/revision frontier (Phase W P5 forks vs Phase R median latency):
+     arm   p5_forks  p6_within  med_latency
+-------------------------------------------
+    c0.3          0          8          200
+    c0.1          0          8          328
+   c0.05          0          8          511
+   c0.02          0          8         1005
+   c0.01          0          8         1694
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P5 (resistance/recovery, Phase W):
+  N4 forks passing: 0/8 (need >= 7) => fail
+  Baseline forks passing: 0/8 (need <= 2 for deficit) => deficit exists
+  P5 overall: FALSIFIER F5
+
+P6 (revision, Phase R):
+  N4 forks within tolerance (latency <= baseline+3000): 8/8 (need >= 6)
+  N4 forks never adopting: 0/8 (rigidity if >= 3)
+  P6 overall: PASS
+  NOTE: If baseline latency is None for a fork, that fork cannot satisfy P6 comparison — listed as within_tolerance=None in the table above.
+
+P7 (kill test — no constant arm matches both P5 and P6):
+  PASS — no constant arm has both p5_forks >= 7 AND p6_within >= 6
+
+VERDICT: NEGATIVE  (NEGATIVE (no-resistance) — N4 fails whipsaw resistance (F5); controller insufficient)
+
+================================================================================
+Rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp181_rows.json
+Verdict written to /Users/mirro/Projects/active-loop/experiments/outputs/exp181_verdict.json

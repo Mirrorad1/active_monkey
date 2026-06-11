@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp181",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P5_resistance_recovery": {
+      "pass": false,
+      "reason": "N4 forks passing Phase W: 0/8 (need >= 7); baseline forks passing: 0/8 (need <= 2); falsifier F5: N4 <= 4/8"
+    },
+    "P6_revision": {
+      "pass": true,
+      "reason": "N4 forks within latency tolerance (baseline+3000): 8/8 (need >= 6); never-adopted: 0/8 (rigidity-falsifier if >= 3); falsifier F6: latency > baseline+3000 in >= 4/8 forks"
+    },
+    "P7_not_config": {
+      "pass": true,
+      "reason": "no fixed constant arm matches both P5 and P6 criteria"
+    }
+  },
+  "notes": "N4 rung 3 controller. PRE-REGISTERED in loop/directions/identity-n4.md (commit 3a8bce0) BEFORE any data. Controller form provided, content self-formed. 7 arms x 2 phases x 8 seeds = 112 sessions. Operationalization: expressed_arr[bend+1500:bend+2000] all == pre_fav (simpler equivalent of >= 500 consecutive steps holding at bend+2000). Verdict map: POSITIVE iff P5 AND P6 AND P7; NEGATIVE-config iff P5 AND P6 AND NOT P7; NEGATIVE-no-resistance iff F5; NEGATIVE-rigidity iff P5 AND F6; MIXED otherwise."
+}

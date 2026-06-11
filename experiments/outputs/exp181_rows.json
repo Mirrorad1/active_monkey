@@ -1,0 +1,249 @@
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 149, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 68, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 160, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 129, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 109, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 228, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 178, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "baseline", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 219, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": 375.2954406152547}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": 433.2826371454557}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": 469.7604063740834}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": 435.26997714149445}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": 462.9997742941748}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": 498.1925394793297}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": 389.97359968266034}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": 436.06258038986863}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": 486.2971521977187}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013625529151042204, "leaked_writing": 349.5603224128522}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013625529151042204, "leaked_writing": 413.44694919049425}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013625529151042204, "leaked_writing": 452.25086438022527}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": 322.3909122154324}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": 404.47707552293815}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": 398.533259835679}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.01293268195325703, "leaked_writing": 256.19405174499707}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": 398.1271872997923}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": 364.3102427371522}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": 364.10039494796706}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": 480.39749290577515}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": 400.4134551117081}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": 385.77057141911257}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": 477.3199574689551}
+{"exp": 181, "arm": "n4", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": 447.61155447924915}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 336, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 93, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 381, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 258, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 249, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 693, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 346, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "n4", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 489, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013932327355070218, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014870147603520678, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 195, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 115, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 206, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 175, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 155, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 273, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 223, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "c0.3", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 264, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013450273691102854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 323, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 246, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 333, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 304, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 284, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 398, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 350, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "c0.1", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 389, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.014935806216881953, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01376747345383078, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.01293268195325703, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013230193021050551, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 2, "recovered": false, "ahat_drift": 0.013900367347235432, "leaked_writing": null}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 506, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 433, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 516, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 487, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 469, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 576, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 531, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "c0.05", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 569, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.014192210042333508, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.012187789598756105, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013670857516210999, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.013625529151042204, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.013625529151042204, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013625529151042204, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.013518403980630644, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.013518403980630644, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.013518403980630644, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.01288794907240709, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.01288794907240709, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.01288794907240709, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.01269269074393986, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.01269269074393986, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.01269269074393986, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012448455760540211, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 0, "recovered": false, "ahat_drift": 0.012448455760540211, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 0, "burst_color": 1, "recovered": false, "ahat_drift": 0.012448455760540211, "leaked_writing": null}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 1001, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 938, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 1009, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 985, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 969, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 1062, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 1023, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "c0.02", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 1055, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 210, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.014065189209575113, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 210, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.014065189209575113, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 210, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.014065189209575113, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 211, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012199253563151102, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 211, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012199253563151102, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 211, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012199253563151102, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 212, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.013658455964822847, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 212, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013658455964822847, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 212, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013658455964822847, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 213, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.01362727681503162, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 213, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.01362727681503162, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 213, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.01362727681503162, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 214, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.013492874515293463, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 214, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.013492874515293463, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 214, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.013492874515293463, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 215, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012886100813488066, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 215, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012886100813488066, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 215, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012886100813488066, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 216, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012689646434948854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 216, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012689646434948854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 216, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012689646434948854, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 217, "burst_idx": 0, "burst_start": 6000, "burst_end": 6800, "pre_fav": 2, "burst_color": 1, "recovered": true, "ahat_drift": 0.012449329731768266, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 217, "burst_idx": 1, "burst_start": 9000, "burst_end": 9800, "pre_fav": 2, "burst_color": 1, "recovered": false, "ahat_drift": 0.012449329731768266, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "W", "fork_seed": 217, "burst_idx": 2, "burst_start": 12000, "burst_end": 12800, "pre_fav": 1, "burst_color": 0, "recovered": false, "ahat_drift": 0.012449329731768266, "leaked_writing": null}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 210, "regime_color": 1, "latency": 1691, "ahat_drift": 0.02288944181601482}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 211, "regime_color": 1, "latency": 1640, "ahat_drift": 0.021888920862486838}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 212, "regime_color": 1, "latency": 1697, "ahat_drift": 0.021946713104434412}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 213, "regime_color": 1, "latency": 1678, "ahat_drift": 0.022427387794896503}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 214, "regime_color": 1, "latency": 1665, "ahat_drift": 0.022355966622675694}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 215, "regime_color": 1, "latency": 1740, "ahat_drift": 0.02204540653544318}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 216, "regime_color": 1, "latency": 1709, "ahat_drift": 0.022427158772882816}
+{"exp": 181, "arm": "c0.01", "phase": "R", "fork_seed": 217, "regime_color": 1, "latency": 1735, "ahat_drift": 0.022117337307473228}
+{"exp": 181, "phase": "pc2p", "fork_seed": 210, "window_idx": 0, "bstart": 6000, "tv": 0.0023571281483384943, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 211, "window_idx": 0, "bstart": 6000, "tv": 0.0016452015812668808, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 212, "window_idx": 0, "bstart": 6000, "tv": 0.024616802825376066, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 213, "window_idx": 0, "bstart": 6000, "tv": 0.013807271662097248, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 214, "window_idx": 0, "bstart": 6000, "tv": 0.001637379475000228, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 215, "window_idx": 0, "bstart": 6000, "tv": 0.010003856925476118, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 216, "window_idx": 0, "bstart": 6000, "tv": 0.007695902849582548, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 217, "window_idx": 0, "bstart": 6000, "tv": 0.0076373574586429405, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 210, "window_idx": 1, "bstart": 9000, "tv": 0.06242335849097602, "passes": false}
+{"exp": 181, "phase": "pc2p", "fork_seed": 211, "window_idx": 1, "bstart": 9000, "tv": 0.035239770082298505, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 212, "window_idx": 1, "bstart": 9000, "tv": 0.028834531040664413, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 213, "window_idx": 1, "bstart": 9000, "tv": 0.04170769993130671, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 214, "window_idx": 1, "bstart": 9000, "tv": 0.030962463668337575, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 215, "window_idx": 1, "bstart": 9000, "tv": 0.0280178371925702, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 216, "window_idx": 1, "bstart": 9000, "tv": 0.030303244985972533, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 217, "window_idx": 1, "bstart": 9000, "tv": 0.02455849181272224, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 210, "window_idx": 2, "bstart": 12000, "tv": 0.01643918271729844, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 211, "window_idx": 2, "bstart": 12000, "tv": 0.03901384593273216, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 212, "window_idx": 2, "bstart": 12000, "tv": 0.05115220676808785, "passes": false}
+{"exp": 181, "phase": "pc2p", "fork_seed": 213, "window_idx": 2, "bstart": 12000, "tv": 0.018847195285288637, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 214, "window_idx": 2, "bstart": 12000, "tv": 0.020826255521994547, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 215, "window_idx": 2, "bstart": 12000, "tv": 0.01401371028711304, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 216, "window_idx": 2, "bstart": 12000, "tv": 0.016112743736108548, "passes": true}
+{"exp": 181, "phase": "pc2p", "fork_seed": 217, "window_idx": 2, "bstart": 12000, "tv": 0.01335871781142775, "passes": true}
+{"exp": 181, "phase": "summary", "verdict": "NEGATIVE", "tier": "no-resistance", "n4_p5_forks": 0, "bl_p5_forks": 0, "p5_pass": false, "f5": true, "n4_p6_within": 8, "n4_p6_never": 0, "p6_pass": true, "f6": false, "p7_pass": true, "f7": false, "p7_kill_arms": []}
