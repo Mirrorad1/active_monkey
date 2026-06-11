@@ -1,10 +1,14 @@
-# The N3 meta-calibration chapter — synthesis (Exp 155–166)
+# The N3 meta-calibration chapter — synthesis (Exp 155–168)
 
-**Status:** chapter closed at a documented wall (rung 3), 2026-06-11. Rungs 1–2 of the
-N3 ladder PASSED; rung 3 walled for the promise-checking controller class. The consult
-with next-step options lives in `loop/IDEAS.md`; the card is
-`loop/directions/meta-calibration-n3.md`; the ladder's design doc is
-`docs/specs/n-order-self-modeling.md`.
+**Status (updated):** CHAPTER CLOSED with all four rungs graded, 2026-06-11. Rungs 1–3
+PASSED (rung 3 on the human-authorized fourth attempt, Exp 167, after the documented
+wall below); rung 4 (Exp 168) NEGATIVE on the no-harm conjunct alone — the RATCHET LAW.
+**The card's central hypothesis is SUPPORTED:** N3 owns a regime-adaptive control
+surface over θ_N2 that N2 lacks and no constant matches; the as-built controller's
+missing descent driver is the named, measured residual. Sections 5–6 below describe
+the wall as it stood at Exp 166; the closing section (§10) records how it cracked and
+what remains. The card is `loop/directions/meta-calibration-n3.md`; the ladder's design
+doc is `docs/specs/n-order-self-modeling.md`.
 
 **Honesty header.** Functional control competencies only — higher N is not "more
 conscious" (VALIDATION.md). Every instrument form in this chapter is PROVIDED design;
@@ -150,6 +154,40 @@ and the forecast-vs-Brier monitor design boundary (163).
 ## 9. Reproduce
 
 Scripts and committed outputs: `experiments/exp155_n2_prereq.py` through
-`experiments/exp166_n3_loadbearing3.py` with outputs under `experiments/outputs/`
-(exp155–exp166, rows + verdict JSON). Every gated verdict was blind-verified
+`experiments/exp168_n3_rung4_mixed.py` with outputs under `experiments/outputs/`
+(exp155–exp168, rows + verdict JSON). Every gated verdict was blind-verified
 (PROTOCOL 4.5); entries in `EXPERIMENTS.md` quote committed outputs only.
+
+## 10. Closing section — the crack and the chapter's verdict (Exp 167–168)
+
+**Exp 167 (BREAKTHROUGH — rung 3 passes).** The human's word "Crack it" authorized the
+named crack: **lock-on-label-consistency** — the dial freezes while the last K=8 labels
+under the current dial are one class. This is the minimal "N1 inside N3" the wall
+demanded: a regime statistic over the diagnosis stream replaces the impossible
+fixed-horizon validation of STRUCTURAL. With it (and STRUCTURAL forecast-scoring
+reverted per the false-war law), the controller climbs 200→400→800→1600 and locks on
+STRUCTURAL at t=5799 in 8/8 forks; steady-state recovery 1.0000; zero mis-engagements;
+locked on OK at the default dial in both honest worlds; combined score 1.0 vs 0.7 for
+the best constant. The first conversion in this program of metacognitive distrust into
+stable, regime-adaptive parameter authority.
+
+**Exp 168 (rung 4 — NEGATIVE on no-harm alone; the RATCHET LAW).** Over a shuffled
+mixed schedule the controller's overrides concentrate in broken segments (0.7500,
+exact-boundary), respond in the first broken segment 8/8, and deliver +0.5034 where
+broken — but valid segments suffer −0.1688 pooled (CTRL −0.31, persistent): the lock
+that wins rung 3 has no descent driver. Climbing is driven by forecast violations;
+descending has no motor, because an oversized dial in an honest world produces
+CONSISTENT diagnoses — indistinguishable from correct, from the inside. The four
+observed cycle-wrap descents recovered accuracy within their segments; the named fix is
+a homeostatic bias toward the smallest consistent dial.
+
+**Chapter verdict.** Rung 1: a constructible, sustained, dial-pinned N2-failure regime
+exists. Rung 2: N3-trust detects it from the diagnoses' own broken promises. Rung 3:
+N3 repairs it, irreducibly to config. Rung 4: the repairs concentrate where they should
+and earn their keep; the layer-invalidating falsifiers (epiphenomenality, overriding
+without benefit) never fired; the no-harm failure is a controller-design residual, not
+layer non-existence. **The N3 hypothesis — agency over metacognition, a control surface
+N2 lacks — is SUPPORTED at this world richness**, with eight laws and one named residual
+(the ratchet) as the chapter's durable products. Honest bounds: diagnosis-layer
+authority only (behavior untested); geometry-determined trajectories; all θ_N3
+constants provided. The ladder may proceed toward N4 on an explicit human word.

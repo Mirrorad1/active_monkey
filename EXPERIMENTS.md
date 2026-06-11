@@ -5497,3 +5497,68 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   of valid and broken regimes (the card's final rung before the N3 hypothesis is
   graded), with the lock controller as built; then the card's stop condition is met
   either way and the chapter synthesis gets its closing section.
+
+## Exp 168 — rung 4 verdict: NEGATIVE on the no-harm conjunct ALONE — overrides concentrate (0.75), respond 8/8, and massively help where broken (+0.50), but the lock that cracked rung 3 has no descent driver: a too-large dial in an honest world reads CONSISTENT, so the controller ratchets upward and carries stale-window harm into valid segments (THE RATCHET LAW; all four rungs now have verdicts — the chapter closes with the N3 layer REAL and the as-built controller's flaw named)
+
+- Plain: the final exam asked whether the dial-setter knows when NOT to act. Mostly
+  yes: its interventions land overwhelmingly in the broken stretches of a shuffled
+  world, it reacts the first time brokenness appears, and where it acts it helps
+  enormously. The one failure is the mirror of its rung-3 victory: the freeze rule
+  that lets it KEEP a good dial also makes it KEEP a stale one — after a broken
+  stretch ends, the big window keeps seeing old trouble, then settles into consistent
+  verdicts at the wrong size, and the freeze holds it there. Climbing has a motor —
+  distrust; descending has none, because oversized-but-consistent feels fine from the
+  inside. The layer is real; this controller needs a homing instinct toward small
+  dials. Both facts are now measured.
+- Question (predeclared): over a mixed shuffled schedule (3 R-SLOW + CTRL/NOISE/PLACE
+  segments of 4000 steps; derangement forced to alternate by seed parity, fixing
+  Exp 167's rng accident), do the lock controller's overrides (i) concentrate in
+  broken segments (≥0.75 vs 0.5 chance), (ii) respond in the first broken segment
+  (≥7/8), (iii) not harm valid segments (≥ a − 0.05), (iv) help broken ones (≥ a + 0.2)?
+- Setup: one continuous 24000-step session per fork (the controller has no segment
+  knowledge); agents (a) fixed-200 and (b) the Exp 167 lock controller verbatim,
+  read-only readouts; ground-truth labels per the Exp 158 taxonomy; PC1 drift < 0.30
+  (horizon-scaled); FRESH seeds 106–113. POSITIVE iff P1∧P2∧P3∧P4.
+- Result: NEGATIVE — F3 fired, alone. P1 PASS at the exact boundary (24/32 = 0.7500;
+  one seed-108 ramp completion crossed into a CTRL segment — attribution ambiguity
+  flagged). P2 PASS 8/8. P4 PASS by +0.5034 (broken-segment correctness 0.5901 vs
+  0.0867). P3: valid-segment deficit 0.1688 > 0.15. The harm decomposition (verifier):
+  CTRL −0.3062 PERSISTENT (the dial enters at 1600; the 1600-window straddles back
+  into SLOW history producing stale labels, then settles into consistent verdicts the
+  LOCK freezes — no descent driver); PLACE −0.1688 mixed; NOISE −0.0313 minimal; the
+  four observed descent events (cycle-wrap 1600→200) recovered correctness to
+  0.925–0.950 within their segments. Seed 110's pre-SLOW CTRL segment shows zero harm
+  (0.975 = a) — the harm is purely carryover. Derangement variants spanned both
+  options (the Exp 167 accident fixed). Preconditions green (max drift 0.0759).
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles);
+  produced the harm decomposition and the persistence analysis; flagged P1's exact
+  boundary hit and the trigger-vs-event segment-attribution ambiguity.
+- Implication (generalizability tier: functional-form — THE RATCHET LAW): a
+  consistency-locked dial controller is ascent-only — climbing is driven by forecast
+  violations (present when the dial is wrong in a broken world), but a too-large dial
+  in a valid world produces CONSISTENT diagnoses, so the lock holds it high;
+  oversized-but-consistent is indistinguishable from correct, from the inside.
+  Graceful descent needs its own driver (a homeostatic bias toward the smallest
+  consistent dial, or window-content awareness at regime boundaries). CHAPTER
+  GRADING, all four rungs in: rung 1 PASS (a constructible N2-failure regime exists,
+  dial-pinned), rung 2 PASS (N3-trust detects it), rung 3 PASS (N3 repairs it,
+  irreducible to config), rung 4 three of four properties PASS with the
+  layer-invalidating falsifiers (epiphenomenality, indiscriminate overriding-without-
+  benefit) NOT fired — the failure is a controller-design flaw, not layer
+  non-existence. The card's central hypothesis (N3 = agency over metacognition, a
+  control surface N2 lacks) is SUPPORTED; the as-built controller's ratchet is the
+  named, measured residual.
+- Honest caveat: the chapter's grading rests on the program's own operationalizations
+  (diagnosis-layer authority, read-only dials; behavioral consequences untested);
+  P1's pass is boundary-exact and attribution-sensitive (the stricter trigger-segment
+  rule would give 25/32); the ratchet explanation of CTRL harm combines two pinned
+  mechanisms (stale straddling windows, then lock-held consistency) whose separate
+  contributions were not isolated; K=8, the dial set, and all monitor thresholds
+  remain provided θ_N3.
+- Verdict: NEGATIVE / NEW INSIGHT (the ratchet law; the chapter grading). Self-grade:
+  NEGATIVE.
+- Next: the chapter's stop condition is met (rungs 1–4 all have verdicts). Closing
+  consult goes to loop/IDEAS.md: the synthesis doc gets its closing section; the
+  named next crack (descent driver: smallest-consistent-dial homeostasis) and the
+  ladder's next rungs (N4+) await an explicit human word. The loop holds at
+  consolidation-grade.

@@ -504,6 +504,22 @@ The loop marks items it has consumed by indenting a response under them:
     (the false-war law); the lock is the new regime statistic (dial freezes while the
     last K=8 labels under the current dial are one class); all falsifiers predeclared;
     a failure here re-confirms the wall with the crack spent and halts for a word.
+  → [loop, 2026-06-11] "Crack it" VINDICATED: Exp 167 PASSED rung 3 on every conjunct
+    (BREAKTHROUGH — recovery 1.0000 8/8, lock on STRUCTURAL at t=5799, no constant
+    within 0.30). Exp 168 then ran rung 4 (mixed schedule): NEGATIVE on the no-harm
+    conjunct ALONE — concentration 0.75, responsiveness 8/8, benefit +0.50, but the
+    lock has no descent driver (THE RATCHET LAW: oversized-but-consistent is
+    indistinguishable from correct, from the inside; CTRL harm −0.31 persistent).
+    CHAPTER CLOSED, all four rungs graded: the N3 hypothesis is SUPPORTED (the
+    layer-invalidating falsifiers never fired); the ratchet is the named residual.
+    Card → closed-positive; synthesis doc updated with the closing section.
+    NEXT-STEP OPTIONS (each needs an explicit word): (a) the descent driver
+    (smallest-consistent-dial homeostasis — would complete the controller); (b) climb
+    to N4 (identity) per the ladder, N3 being supported; (c) return to one of the
+    standing open consults (M4a increment 1c — still the most direct path to
+    "talk to it"; nira normalized switch; cloud-branch merge); (d) stop/redirect.
+    RECOMMENDED (bounded, silence-actionable): none self-starts; the loop holds at
+    consolidation-grade until a word.
 
 (empty — drop ideas above this line's section freely)
 

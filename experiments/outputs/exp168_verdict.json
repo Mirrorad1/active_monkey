@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp168",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_override_concentration": {
+      "pass": true,
+      "reason": "pooled fraction of changes in SLOW = 0.7500 (need >= 0.75); total_changes=32 slow_changes=24; F1 fired=False"
+    },
+    "P2_responsiveness": {
+      "pass": true,
+      "reason": "8/8 forks responded on first SLOW segment (need >= 7); F2 fired=False"
+    },
+    "P3_no_harm_valid": {
+      "pass": false,
+      "reason": "pooled_valid_a=0.9854 pooled_valid_b=0.8167 margin(b-a)=-0.1687 (need >= -0.05); F3 fired=True"
+    },
+    "P4_overrides_earn_keep": {
+      "pass": true,
+      "reason": "pooled_slow_a=0.0867 pooled_slow_b=0.5901 margin(b-a)=0.5034 (need >= +0.2); F4 fired=False"
+    }
+  },
+  "notes": "N3 rung 4: MIXED SCHEDULE \u2014 6 segments (3 SLOW + 3 valid) in random order. Exp 167 lock controller (verbatim) runs continuously across all segments. Tests independent variance: overrides concentrated in broken regimes (P1), responsive on first SLOW encounter (P2), no harm to valid regimes (P3), overrides improve SLOW-segment diagnosis (P4). POSITIVE: RUNG 4 PASSES, card hypothesis SUPPORTED. NEGATIVE: a falsifier fired, epiphenomenal collapse or indiscriminate firing."
+}

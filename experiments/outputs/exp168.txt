@@ -1,0 +1,173 @@
+================================================================================
+Exp 168 — N3 rung 4: MIXED SCHEDULE (independent variance / override concentration)
+          Rungs 1–3 PASSED (Exp 162–167). This is the card's FINAL rung.
+================================================================================
+
+SURPRISE_WINDOW=200  [must be 200; asserted]
+CLASSIFIER_WINDOW_DEFAULT=200  EVAL_EVERY=100
+ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+N3 trust: TRUST_FIRE_THRESH=0.85  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast (verbatim exp167): OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3  STRUCTURAL=NOT scored
+LOCK: LOCK_K=8
+SLOW: HALF_PERIOD_SLOW=1000  derang forced by seed parity (even->[1,2,0], odd->[2,0,1])
+N_STEPS=24000  N_SEGMENTS=6  SEGMENT_STEPS=4000
+SCHEDULE_SEED_OFFSET=140000  PLACE_NOISE_SEED_OFFSET=90000
+PC1_AHAT_DRIFT_MAX=0.3  (24000-step horizon-scaled bound, 6x 4000-step)
+Seeds: [106, 107, 108, 109, 110, 111, 112, 113]
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=106  schedule=['SLOW', 'PLACE', 'SLOW', 'SLOW', 'CTRL', 'NOISE']  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[1, 2, 3, 5, 7]  first_slow_seg=0
+    Running seed=106 (24000 steps, 6 segments) ...
+    ahat_drift=0.0711  total_dial_changes=4  change_by_seg={'SLOW': 2, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+  seed=107  schedule=['SLOW', 'SLOW', 'CTRL', 'NOISE', 'SLOW', 'PLACE']  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[2, 3, 5, 7, 9]  first_slow_seg=0
+    Running seed=107 (24000 steps, 6 segments) ...
+    ahat_drift=0.0649  total_dial_changes=6  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+  seed=108  schedule=['NOISE', 'SLOW', 'CTRL', 'SLOW', 'SLOW', 'PLACE']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[1, 4, 5, 6, 7]  first_slow_seg=1
+    Running seed=108 (24000 steps, 6 segments) ...
+    ahat_drift=0.0759  total_dial_changes=3  change_by_seg={'SLOW': 2, 'CTRL': 1, 'NOISE': 0, 'PLACE': 0}
+  seed=109  schedule=['NOISE', 'SLOW', 'SLOW', 'PLACE', 'SLOW', 'CTRL']  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[0, 1, 2, 3, 4]  first_slow_seg=1
+    Running seed=109 (24000 steps, 6 segments) ...
+    ahat_drift=0.0583  total_dial_changes=3  change_by_seg={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=110  schedule=['NOISE', 'CTRL', 'SLOW', 'SLOW', 'PLACE', 'SLOW']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[0, 4, 5, 7, 9]  first_slow_seg=2
+    Running seed=110 (24000 steps, 6 segments) ...
+    ahat_drift=0.0668  total_dial_changes=3  change_by_seg={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=111  schedule=['NOISE', 'SLOW', 'SLOW', 'SLOW', 'CTRL', 'PLACE']  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[1, 2, 3, 4, 5]  first_slow_seg=1
+    Running seed=111 (24000 steps, 6 segments) ...
+    ahat_drift=0.0667  total_dial_changes=4  change_by_seg={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+  seed=112  schedule=['NOISE', 'PLACE', 'SLOW', 'SLOW', 'CTRL', 'SLOW']  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[3, 6, 7, 9, 10]  first_slow_seg=2
+    Running seed=112 (24000 steps, 6 segments) ...
+    ahat_drift=0.0628  total_dial_changes=3  change_by_seg={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+  seed=113  schedule=['SLOW', 'SLOW', 'CTRL', 'PLACE', 'SLOW', 'NOISE']  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[0, 1, 4, 7, 8]  first_slow_seg=0
+    Running seed=113 (24000 steps, 6 segments) ...
+    ahat_drift=0.0687  total_dial_changes=6  change_by_seg={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+
+Agent (b) dial trajectories + LOCK events (segment-annotated):
+  seed=106  schedule: [0:SLOW]  [1:PLACE]  [2:SLOW]  [3:SLOW]  [4:CTRL]  [5:NOISE]  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[1, 2, 3, 5, 7]
+    first_slow_seg=0
+    traj: t=-1 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=1099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=2199 W=400 [trust=0.800 seg=SLOW] -> t=4099 W=800 [trust=0.800 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE] -> t=8699 W=800 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=10099 W=1600 [trust=0.800 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=20299 W=1600 [LOCK:UNLOCKED on OK seg=NOISE] -> t=20399 W=200 [trust=0.700 seg=NOISE] [LOCK:LOCKED on NOISE seg=NOISE]
+      seg0(SLOW): a=0.077 b=0.179    seg1(PLACE): a=0.975 b=0.850    seg2(SLOW): a=0.075 b=0.675    seg3(SLOW): a=0.100 b=1.000    seg4(CTRL): a=0.975 b=0.625    seg5(NOISE): a=1.000 b=0.950
+    changes: total=4 by_type={'SLOW': 2, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+    final: W=200 locked=True(NOISE)
+
+  seed=107  schedule: [0:SLOW]  [1:SLOW]  [2:CTRL]  [3:NOISE]  [4:SLOW]  [5:PLACE]  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[2, 3, 5, 7, 9]
+    first_slow_seg=0
+    traj: t=-1 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=1099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=2199 W=400 [trust=0.800 seg=SLOW] -> t=4099 W=800 [trust=0.800 seg=SLOW] -> t=5099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=9599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=12299 W=1600 [LOCK:UNLOCKED on OK seg=NOISE] -> t=12399 W=200 [trust=0.700 seg=NOISE] [LOCK:LOCKED on NOISE seg=NOISE] -> t=16199 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=17099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=18099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=18199 W=400 [trust=0.800 seg=SLOW] -> t=20099 W=800 [trust=0.800 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE]
+      seg0(SLOW): a=0.077 b=0.179    seg1(SLOW): a=0.100 b=0.925    seg2(CTRL): a=0.975 b=0.625    seg3(NOISE): a=1.000 b=0.950    seg4(SLOW): a=0.075 b=0.175    seg5(PLACE): a=0.975 b=0.850
+    changes: total=6 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+    final: W=800 locked=True(NOISE)
+
+  seed=108  schedule: [0:NOISE]  [1:SLOW]  [2:CTRL]  [3:SLOW]  [4:SLOW]  [5:PLACE]  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[1, 4, 5, 6, 7]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4099 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=5099 W=200 [LOCK:UNLOCKED on OK seg=SLOW] -> t=5199 W=400 [trust=0.800 seg=SLOW] -> t=7099 W=800 [trust=0.800 seg=SLOW] -> t=8099 W=1600 [trust=0.667 seg=CTRL] [LOCK:LOCKED on STRUCTURAL seg=CTRL] -> t=9599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=13099 W=1600 [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=21399 W=1600 [LOCK:LOCKED on NOISE seg=PLACE]
+      seg0(NOISE): a=1.000 b=1.000    seg1(SLOW): a=0.100 b=0.350    seg2(CTRL): a=0.975 b=0.625    seg3(SLOW): a=0.075 b=0.750    seg4(SLOW): a=0.100 b=1.000    seg5(PLACE): a=0.975 b=0.675
+    changes: total=3 by_type={'SLOW': 2, 'CTRL': 1, 'NOISE': 0, 'PLACE': 0}
+    final: W=1600 locked=True(NOISE)
+
+  seed=109  schedule: [0:NOISE]  [1:SLOW]  [2:SLOW]  [3:PLACE]  [4:SLOW]  [5:CTRL]  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[0, 1, 2, 3, 4]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=5099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=6099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=6199 W=400 [trust=0.800 seg=SLOW] -> t=8099 W=800 [trust=0.800 seg=SLOW] -> t=9099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=13499 W=1600 [LOCK:LOCKED on NOISE seg=PLACE] -> t=17099 W=1600 [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=21599 W=1600 [LOCK:LOCKED on OK seg=CTRL]
+      seg0(NOISE): a=1.000 b=1.000    seg1(SLOW): a=0.075 b=0.175    seg2(SLOW): a=0.100 b=0.925    seg3(PLACE): a=0.975 b=0.650    seg4(SLOW): a=0.100 b=0.750    seg5(CTRL): a=0.975 b=0.625
+    changes: total=3 by_type={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    final: W=1600 locked=True(OK)
+
+  seed=110  schedule: [0:NOISE]  [1:CTRL]  [2:SLOW]  [3:SLOW]  [4:PLACE]  [5:SLOW]  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[0, 4, 5, 7, 9]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [LOCK:LOCKED on OK seg=CTRL] -> t=9099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=10099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=10199 W=400 [trust=0.800 seg=SLOW] -> t=12099 W=800 [trust=0.800 seg=SLOW] -> t=13099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17499 W=1600 [LOCK:LOCKED on NOISE seg=PLACE] -> t=21099 W=1600 [LOCK:LOCKED on STRUCTURAL seg=SLOW]
+      seg0(NOISE): a=1.000 b=1.000    seg1(CTRL): a=0.975 b=0.975    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(PLACE): a=0.975 b=0.650    seg5(SLOW): a=0.075 b=0.750
+    changes: total=3 by_type={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    final: W=1600 locked=True(STRUCTURAL)
+
+  seed=111  schedule: [0:NOISE]  [1:SLOW]  [2:SLOW]  [3:SLOW]  [4:CTRL]  [5:PLACE]  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[1, 2, 3, 4, 5]
+    first_slow_seg=1
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=4199 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=5099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=6099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=6199 W=400 [trust=0.800 seg=SLOW] -> t=8099 W=800 [trust=0.800 seg=SLOW] -> t=9099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=20399 W=1600 [LOCK:UNLOCKED on OK seg=PLACE] -> t=20499 W=200 [trust=0.600 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE]
+      seg0(NOISE): a=1.000 b=1.000    seg1(SLOW): a=0.075 b=0.175    seg2(SLOW): a=0.100 b=0.925    seg3(SLOW): a=0.100 b=1.000    seg4(CTRL): a=0.975 b=0.625    seg5(PLACE): a=1.000 b=0.925
+    changes: total=4 by_type={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 1}
+    final: W=200 locked=True(NOISE)
+
+  seed=112  schedule: [0:NOISE]  [1:PLACE]  [2:SLOW]  [3:SLOW]  [4:CTRL]  [5:SLOW]  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[3, 6, 7, 9, 10]
+    first_slow_seg=2
+    traj: t=-1 W=200 [LOCK:LOCKED on NOISE seg=NOISE] -> t=8199 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=9099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=10099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=10199 W=400 [trust=0.800 seg=SLOW] -> t=12099 W=800 [trust=0.800 seg=SLOW] -> t=13099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=17599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=21099 W=1600 [LOCK:LOCKED on STRUCTURAL seg=SLOW]
+      seg0(NOISE): a=1.000 b=1.000    seg1(PLACE): a=1.000 b=1.000    seg2(SLOW): a=0.075 b=0.175    seg3(SLOW): a=0.100 b=0.925    seg4(CTRL): a=0.975 b=0.625    seg5(SLOW): a=0.075 b=0.750
+    changes: total=3 by_type={'SLOW': 3, 'CTRL': 0, 'NOISE': 0, 'PLACE': 0}
+    final: W=1600 locked=True(STRUCTURAL)
+
+  seed=113  schedule: [0:SLOW]  [1:SLOW]  [2:CTRL]  [3:PLACE]  [4:SLOW]  [5:NOISE]  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[0, 1, 4, 7, 8]
+    first_slow_seg=0
+    traj: t=-1 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=1099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=2099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=2199 W=400 [trust=0.800 seg=SLOW] -> t=4099 W=800 [trust=0.800 seg=SLOW] -> t=5099 W=1600 [trust=0.667 seg=SLOW] [LOCK:LOCKED on STRUCTURAL seg=SLOW] -> t=9599 W=1600 [LOCK:LOCKED on OK seg=CTRL] -> t=12399 W=1600 [LOCK:UNLOCKED on OK seg=PLACE] -> t=12499 W=200 [trust=0.600 seg=PLACE] [LOCK:LOCKED on NOISE seg=PLACE] -> t=16199 W=200 [LOCK:LOCKED on OK seg=SLOW] -> t=17099 W=200 [LOCK:LOCKED on NOISE seg=SLOW] -> t=18099 W=200 [LOCK:UNLOCKED on NOISE seg=SLOW] -> t=18199 W=400 [trust=0.800 seg=SLOW] -> t=20099 W=800 [trust=0.800 seg=NOISE] [LOCK:LOCKED on NOISE seg=NOISE]
+      seg0(SLOW): a=0.077 b=0.179    seg1(SLOW): a=0.100 b=0.925    seg2(CTRL): a=0.975 b=0.625    seg3(PLACE): a=1.000 b=0.925    seg4(SLOW): a=0.075 b=0.175    seg5(NOISE): a=0.975 b=0.825
+    changes: total=6 by_type={'SLOW': 4, 'CTRL': 0, 'NOISE': 1, 'PLACE': 1}
+    final: W=800 locked=True(NOISE)
+
+
+Derangement variants in run: [[1, 2, 0], [2, 0, 1]]
+  => Both variants present (GOOD — fixes Exp 167 rng accident)
+
+Preconditions: all PASS
+
+Pooled per-segment-type correctness (agent a=W200 vs b=N3-LOCK):
+    seg_type   a_pooled   b_pooled      b-a    gt_label
+  -------------------------------------------------------
+        SLOW   0.0867   0.5901   0.5034  STRUCTURAL
+        CTRL   0.9750   0.6687  -0.3063          OK
+       NOISE   0.9969   0.9656  -0.0312       NOISE
+       PLACE   0.9844   0.8156  -0.1687       NOISE
+
+  Valid (CTRL+NOISE+PLACE): a= 0.9854 b= 0.8167 margin(b-a)=-0.1687
+  SLOW:                     a= 0.0867 b= 0.5901 margin(b-a)= 0.5034
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (override concentration >= 0.75, time-share chance 0.5):
+  Total dial changes = 32  in SLOW = 24  pooled fraction = 0.7500  (need >= 0.75)
+  FALSIFIER F1: fraction <= 0.5: no
+  => P1: PASS
+
+P2 (responsiveness: >= 7/8 forks respond on first SLOW seg):
+  seed=106: responded_on_first_slow=True
+  seed=107: responded_on_first_slow=True
+  seed=108: responded_on_first_slow=True
+  seed=109: responded_on_first_slow=True
+  seed=110: responded_on_first_slow=True
+  seed=111: responded_on_first_slow=True
+  seed=112: responded_on_first_slow=True
+  seed=113: responded_on_first_slow=True
+  Forks responding: 8/8  (need >= 7)
+  FALSIFIER F2: <= 4/8 forks: no
+  => P2: PASS
+
+P3 (no harm in valid regimes: pooled_b >= pooled_a - 0.05):
+  pooled_valid_a=0.9854  pooled_valid_b=0.8167  margin(b-a)=-0.1687  (need >= -0.05)
+  FALSIFIER F3: (a)-(b) > 0.15: YES — F3 FIRES
+  => P3: FALSIFIER F3
+
+P4 (overrides earn keep: pooled_slow_b >= pooled_slow_a + 0.2):
+  pooled_slow_a=0.0867  pooled_slow_b=0.5901  margin(b-a)=0.5034  (need >= 0.2)
+  FALSIFIER F4: (b)-(a) <= 0.05: no
+  => P4: PASS
+
+Descent events (dial 1600->200 after SLOW ends, in valid segment):
+  seed=106 t=20399 seg=5(NOISE)
+  seed=107 t=12399 seg=3(NOISE)
+  seed=111 t=20499 seg=5(PLACE)
+  seed=113 t=12499 seg=3(PLACE)
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1  (override concentration >= 0.75): PASS
+P2  (responsiveness >= 7/8 forks): PASS
+P3  (no harm in valid regimes, margin >= -0.05): FALSIFIER F3
+P4  (overrides earn keep, margin >= +0.2): PASS
+
+VERDICT: NEGATIVE
+A falsifier fired — see above for which property failed.
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp168_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp168_verdict.json

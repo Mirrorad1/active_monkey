@@ -215,4 +215,19 @@ for the best constant (no constant within 0.05 on both regimes). Zero mis-engage
 Verifier bounds: geometry-uniform trajectories; one derangement variant by rng accident;
 K=8 and the dial set remain provided θ_N3.
 
-**STATUS.** state: active (rung 4) · latest: Exp 167 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), the lock controller (167) · why: rungs 1–3 passed; one rung remains before the card's hypothesis is graded · next-falsifiable: rung 4 — independent variance / override concentration over a MIXED schedule of valid and broken regimes: overrides concentrated in broken regimes (precision/recall > chance by a predeclared margin); falsifiers: zero independent variance (epiphenomenal) or indiscriminate overriding (hurts valid regimes)
+**RUNG 4 VERDICT (Exp 168, NEGATIVE on no-harm alone — THE RATCHET LAW).** Over a shuffled
+mixed schedule: concentration 0.75 (exact-boundary PASS), responsiveness 8/8, broken-segment
+benefit +0.5034 — but valid-segment deficit 0.1688 (F3): the lock has no descent driver.
+A too-large dial in an honest world reads CONSISTENT — indistinguishable from correct from
+the inside — so the controller ratchets upward; CTRL harm −0.31 persistent via lock-held
+stale dials. The layer-invalidating falsifiers (epiphenomenality; overriding-without-benefit)
+did NOT fire.
+
+**CHAPTER GRADING (all four rungs in): the card's central hypothesis is SUPPORTED** — N3
+owns a regime-adaptive control surface over θ_N2 that N2 lacks and no constant matches
+(rungs 1–3), with overrides concentrated and beneficial (rung 4 P1/P2/P4); the as-built
+controller's ratchet (no graceful descent) is the named, measured residual with a named fix
+(smallest-consistent-dial homeostasis). The ladder may proceed toward N4+ per the card's
+stop condition — on an explicit human word.
+
+**STATUS.** state: closed-positive (ratchet residual documented) · latest: Exp 168 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), five controller laws (164–166), lock controller (167), ratchet law (168) · why: rungs 1–4 all have verdicts; hypothesis supported with one named design residual · next-falsifiable: per a human word — descent-driver design (smallest-consistent-dial homeostasis), or N4 (identity), or elsewhere
