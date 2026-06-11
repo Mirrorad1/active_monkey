@@ -4446,3 +4446,46 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Self-grade: n/a. THE MIGRATION IS HALTED awaiting the accept-and-proceed word.
 - Next: on the human's word — M5 (teach_word / answer chain, converse parity), the
   RECIPE's last links.
+
+## Exp 150 — continuous-creature rung M5: the creature answers in words — taught labels carry at the twin's budget, opinions diverge by history, converse parity with the capstone (POSITIVE 8/8 on every conjunct; only M6 remains)
+- Plain: The final links of the chain: teach the continuous creature a few words for
+  its colors — eight examples each, exactly the budget the original creature uses —
+  then ask it questions. It answers with the word for what it actually came to like
+  through its own life; its sibling raised in the mirrored world names the opposite
+  favorite; and each says the other's favorite unsettles it. The old boxed pair,
+  asked the same questions, shows the same pattern. Content self-formed, labels
+  taught, opinions divergent by history — the whole moonshot chain now runs on the
+  continuous substrate.
+- Setup (predeclared in the script docstring before running): Exp 149's accepted
+  protocol (fresh seeds 24–31) raises primary + mirror; vocab/teach/answer machinery
+  ported EXACTLY from creature.py (n=8 counts per word, one word per color; the
+  like/dislike rule quoted from source); tabular twins on the same protocol. P1:
+  what-do-you-like names the true argmax-value color's word ≥7/8 per arm. P2:
+  divergent words, each in its own reliable half, cross-disapproval ≥6/8. P3: the
+  tabular pair shows the same pattern ≥6/8 (word agreement diagnostic only).
+- Result: POSITIVE — every conjunct 8/8 (P1 both arms, P2a, P2b, P3a, P3b).
+  Seed-24 transcript committed (the "talk to it" exchange on both substrates).
+  Diagnostic: word-level agreement continuous-vs-tabular 0/8 — expected and declared:
+  the continuous creature's phase-B value-seeking sharpens its favorite while the
+  twin (phase-A only, no nav) ranks from wandering; both place favorites in the
+  correct half every time. Suite 108 green.
+- Implication: the RECIPE chain — perceive, learn, want, act, form values by
+  history, answer in words — is demonstrated end-to-end on the continuous substrate,
+  with two documented walls riding along (growth: Exp 144–146; valence range:
+  Exp 147–149). Only M6 remains: birth the species line (engineering + round-trip
+  verification), then the migration synthesis.
+- Honest caveat: labels TAUGHT (provided), content self-formed — as always, named;
+  the answer rule is the tabular creature's own (ported, quoted), not redesigned for
+  the substrate; the twin comparison is pattern-level by predeclaration (the
+  protocols differ in phase B by design); one world geometry; the M4 range limit
+  means the continuous "conviction" numbers run lower than the twin's (0.38–0.55
+  shares vs the twin's flatter 0.12 — n.b. the twin's share is over 16 colors
+  without nav concentration, so the comparison is not apples-to-apples and is not
+  claimed).
+- Verdict: POSITIVE / CONSOLIDATION-grade port completion (the wiring was predicted
+  substrate-independent given M4's ordering result; the parity verification is the
+  datum). Self-grade: POSITIVE-SINGLE.
+- Next: M6 — birth of the continuous species line (name, committed state path,
+  save/load round-trip exactness, continuity guard extension). On the human's word,
+  or per the card it is an engineering rung the loop may run on the next fire (no
+  open consult — M5 carried cleanly).

@@ -1,0 +1,121 @@
+================================================================================
+Exp 150 — continuous-creature rung M5: taught words + the answer chain
+================================================================================
+
+================================================================================
+SEED-24 TRANSCRIPT (both substrates)
+================================================================================
+
+--- CONTINUOUS PRIMARY (noisy-left; reliable half = right cols 2,3) ---
+  True favorite color: 15 (col 3, right half, share=0.5454)
+  Q: What do you like?
+  A: "I like w15"
+  Q: Do you like w15? (own favorite)
+  A: "I like w15"  [val_frac=0.5454, threshold=1/16=0.0625, liked=True]
+  Q: Do you like w12? (mirror's favorite)
+  A: "w12 unsettles me"  [val_frac=0.0311, liked=False]
+
+--- CONTINUOUS MIRROR (noisy-right; reliable half = left cols 0,1) ---
+  True favorite color: 12 (col 0, left half, share=0.3818)
+  Q: What do you like?
+  A: "I like w12"
+  Q: Do you like w12? (own favorite)
+  A: "I like w12"  [val_frac=0.3818, liked=True]
+  Q: Do you like w15? (primary's favorite)
+  A: "w15 unsettles me"  [val_frac=0.0324, liked=False]
+
+--- TABULAR PRIMARY (same action/obs stream; phase A only) ---
+  True favorite color: 14 (col 2, right half, share=0.1251)
+  Q: What do you like?
+  A: "I like w14"
+  Q: Do you like w14? (own favorite)
+  A: "I like w14"  [val_frac=0.1251, liked=True]
+  Q: Do you like w12? (tabular mirror's favorite)
+  A: "w12 unsettles me"  [val_frac=0.0207, liked=False]
+
+--- TABULAR MIRROR (same action/obs stream; phase A only) ---
+  True favorite color: 12 (col 0, left half, share=0.1194)
+  Q: What do you like?
+  A: "I like w12"
+  Q: Do you like w12? (own favorite)
+  A: "I like w12"  [val_frac=0.1194, liked=True]
+  Q: Do you like w14? (tabular primary's favorite)
+  A: "w14 unsettles me"  [val_frac=0.0197, liked=False]
+
+  Word-level agreement (continuous vs tabular, diagnostic): primary=w15==w14 (no), mirror=w12==w12 (yes)
+
+================================================================================
+PER-SEED VERDICT TABLE
+================================================================================
+
+Seed     P     M  word_P  word_M  P1p  P1m  P2a  P2b   P2  P3a  P3b   P3  wAgr  word_Tp  word_Tm
+------------------------------------------------------------------------------------------------
+  24    15    12     w15     w12    Y    Y    Y    Y    Y    Y    Y    Y     N      w14      w12
+  25     3     0      w3      w0    Y    Y    Y    Y    Y    Y    Y    Y     N       w7       w0
+  26     3    12      w3     w12    Y    Y    Y    Y    Y    Y    Y    Y     N       w3      w13
+  27    15     0     w15      w0    Y    Y    Y    Y    Y    Y    Y    Y     N      w11       w0
+  28    15     0     w15      w0    Y    Y    Y    Y    Y    Y    Y    Y     N       w2       w0
+  29    15     0     w15      w0    Y    Y    Y    Y    Y    Y    Y    Y     N      w11       w0
+  30    15     0     w15      w0    Y    Y    Y    Y    Y    Y    Y    Y     N       w2       w1
+  31    15     0     w15      w0    Y    Y    Y    Y    Y    Y    Y    Y     N       w7      w13
+
+================================================================================
+TALLIES
+================================================================================
+
+P1 (bridge carries — word == word of true argmax-value color):
+  P1 primary arm: 8/8  (need >= 7/8)
+  P1 mirror arm:  8/8  (need >= 7/8)
+  P1 both arms:   8/8  (need >= 7/8 in each)
+    seed=24: primary word=w15 fav=15 (pass)  mirror word=w12 fav=12 (pass)
+    seed=25: primary word=w3 fav=3 (pass)  mirror word=w0 fav=0 (pass)
+    seed=26: primary word=w3 fav=3 (pass)  mirror word=w12 fav=12 (pass)
+    seed=27: primary word=w15 fav=15 (pass)  mirror word=w0 fav=0 (pass)
+    seed=28: primary word=w15 fav=15 (pass)  mirror word=w0 fav=0 (pass)
+    seed=29: primary word=w15 fav=15 (pass)  mirror word=w0 fav=0 (pass)
+    seed=30: primary word=w15 fav=15 (pass)  mirror word=w0 fav=0 (pass)
+    seed=31: primary word=w15 fav=15 (pass)  mirror word=w0 fav=0 (pass)
+
+P2 (opinions diverge in words — continuous pair):
+  P2a (diff words + each in own reliable half): 8/8  (need >= 7/8)
+  P2b (cross-disapproval + own-approval):       8/8  (need >= 6/8)
+  P2 (P2a AND P2b):                             8/8  (need >= 6/8 by most constraining conjunct)
+    seed=24: words=(w15,w12) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=25: words=(w3,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=26: words=(w3,w12) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=27: words=(w15,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=28: words=(w15,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=29: words=(w15,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=30: words=(w15,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+    seed=31: words=(w15,w0) P_right=True M_left=True p_cross_dislike=True m_own_like=True m_cross_dislike=True p_own_like=True  P2a=pass P2b=pass
+
+P3 (capstone parity — tabular pair):
+  P3a (diff words + each in own reliable half): 8/8  (need >= 6/8)
+  P3b (cross-disapproval + own-approval):       8/8  (need >= 6/8)
+  P3 (P3a AND P3b):                             8/8  (need >= 6/8)
+    seed=24: words=(w14,w12) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=25: words=(w7,w0) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=26: words=(w3,w13) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=27: words=(w11,w0) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=28: words=(w2,w0) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=29: words=(w11,w0) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=30: words=(w2,w1) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+    seed=31: words=(w7,w13) Tp_right=True Tm_left=True tp_cross_dislike=True tm_own_like=True tm_cross_dislike=True tp_own_like=True  P3a=pass P3b=pass
+
+Word-level agreement diagnostic (continuous vs tabular, NOT required):
+  Both words agree: 0/8
+    seed=24: cont_P=w15 tab_P=w14 cont_M=w12 tab_M=w12 differ
+    seed=25: cont_P=w3 tab_P=w7 cont_M=w0 tab_M=w0 differ
+    seed=26: cont_P=w3 tab_P=w3 cont_M=w12 tab_M=w13 differ
+    seed=27: cont_P=w15 tab_P=w11 cont_M=w0 tab_M=w0 differ
+    seed=28: cont_P=w15 tab_P=w2 cont_M=w0 tab_M=w0 differ
+    seed=29: cont_P=w15 tab_P=w11 cont_M=w0 tab_M=w0 differ
+    seed=30: cont_P=w15 tab_P=w2 cont_M=w0 tab_M=w1 differ
+    seed=31: cont_P=w15 tab_P=w7 cont_M=w0 tab_M=w13 differ
+
+================================================================================
+VERDICT: POSITIVE
+All predeclared properties satisfied. Migration thread advances to M6.
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp150_rows.json

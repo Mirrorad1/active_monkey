@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:149, breakthrough:6, positive:85, wall:24, partial:34, from:4.81, to:4.00 };
+window.AM_TALLY = { total:150, breakthrough:6, positive:86, wall:24, partial:34, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1505,7 +1505,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 148 byte-for-byte except the one-line faithful valence rule (predictive entropy at the posterior mean) and fresh seeds — the exact ablation of the diagnosed infidelity, with the falsifier predeclaring that a remaining gap becomes the documented limit.",
     result:"Gap unchanged (0/8 on the twin-relative bar); contrast restored directionally (1.8-2.1x); chain replicated a third time. Two mechanism hypotheses tested and refuted across three experiments — the honest residue is a real substrate property.",
     implication:"For the moonshot chain, ordering is what carries opinions, and ordering is intact. The consult recommends accepting the limit and proceeding to M5 — words and converse parity, the RECIPE's last links.",
-    trace:{ script:"experiments/exp149_m4c_faithful_rule.py", output:"experiments/outputs/exp149.txt" } }
+    trace:{ script:"experiments/exp149_m4c_faithful_rule.py", output:"experiments/outputs/exp149.txt" } },
+
+  { n:150, kind:"positive", chapter:"frontier",
+    title:"Ask it what it likes — it answers, in its own opinion and your words.",
+    one:"Migration rung M5, POSITIVE 8/8 on every conjunct: taught one word per color at the tabular creature's own few-shot budget (n=8), the continuous creature answers what-do-you-like with its true lived favorite, mirrored histories produce opposite answers (8/8), each disapproves of the other's favorite (8/8), and the tabular pair shows the identical pattern — converse parity with the capstone. The whole RECIPE chain now runs on the continuous substrate; only the birth rung remains.",
+    plain:"The final links: teach the continuous creature a few words for its colors — eight examples each, exactly the budget the original uses — then ask it questions. It answers with the word for what it actually came to like through its own life; its sibling raised in the mirrored world names the opposite favorite; and each says the other's favorite unsettles it. The old boxed pair shows the same pattern. Content self-formed, labels taught, opinions divergent by history — the whole moonshot chain now runs on the continuous substrate.",
+    metric:{ from:8, to:8, unit:"taught examples per word (the twin's own budget) — and seeds passing every conjunct" },
+    setup:"The accepted M4 protocol raises a primary and a mirrored creature per fresh seed; the vocabulary, teaching, and answer machinery ported exactly from the tabular creature with its rules quoted from source; the tabular pair runs the same teach-and-ask on its own substrate.",
+    result:"Every conjunct 8/8. The seed-24 transcript is committed: I like w15 / I like w12 / w12 unsettles me / w15 unsettles me — and the boxed pair mirrors the pattern. Word-level agreement across substrates is 0/8 by declared design (the continuous creature's value-seeking phase sharpens its favorite; the twin only wanders).",
+    implication:"Perceive, learn, want, act, form values by history, answer in words — demonstrated end-to-end on the continuous substrate, with the two documented walls riding along openly. M6, the birth of the species line, is the last rung.",
+    trace:{ script:"experiments/exp150_m5_words.py", output:"experiments/outputs/exp150.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
