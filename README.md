@@ -4,6 +4,7 @@ Teaching a machine to understand the world from surprise alone.
 
 **Live tracker:** https://mirrorad1.github.io/active_monkey/
 **The lab notebook:** [EXPERIMENTS.md](EXPERIMENTS.md)
+**Related work and prior art:** [docs/RELATED_WORK.md](docs/RELATED_WORK.md)
 
 ## What this is
 
