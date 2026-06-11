@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:156, breakthrough:7, positive:87, wall:25, partial:37, from:4.81, to:4.00 };
+window.AM_TALLY = { total:157, breakthrough:7, positive:88, wall:25, partial:37, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1732,7 +1732,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — falsifiers F1 and F3 both fired. Mislocalization 0.000 everywhere; deranged-phase surprise 4.20-4.26 nats; zero detector events despite window means 2.70-2.98 nats. The blinded verifier derived NEGATIVE independently and independently spotted the slope-gate inversion.",
     implication:"Two mechanisms pinned. On this body observations have zero authority over position (deterministic known motor model + point-mass belief = pure dead reckoning), so laundering was impossible from the start. And the detector's blindness is its own flatness condition — a plateau detector is structurally blind to any mismatch whose period is shorter than its window. The N2 build is now exactly specified: a classifier without the flatness gate, seeded by the validated residual-structure statistic, and a confidence channel reading observation-likelihood rather than positional certainty.",
     caveat:"a --smoke code-validation run (seed 10, 800 steps) preceded the full run and previewed the direction; the predeclaration was written before any run and unchanged.",
-    trace:{ script:"experiments/exp156_launder_check.py", output:"experiments/outputs/exp156.txt" } }
+    trace:{ script:"experiments/exp156_launder_check.py", output:"experiments/outputs/exp156.txt" } },
+
+  { n:157, kind:"positive", chapter:"frontier",
+    title:"The first piece of self-monitoring works: a learned sense of where its own predictions can be trusted.",
+    one:"The N2 build's first increment, POSITIVE on every conjunct with wide margins: a per-place expected-uncertainty channel — an EWMA of the creature's own prediction outcomes indexed by its believed cell — reaches type-2 AUROC 0.79-0.81 in 8/8 fresh forks (pooled 0.8025, near the analytic ideal ~0.81 for this world), versus 0.52-0.58 for the natural max-predictive-probability channel Exp 155 showed was flat. Terminal channel values track true per-cell reliability at Pearson r 0.95-0.99.",
+    plain:"We built the first piece of the creature's missing self-monitoring — a sense of how reliable its own predictions have been at each place, learned from nothing but its own hits and misses. In a world where some places lie often and others never, that sense predicts whether it is about to be right or wrong far better than the built-in feeling it had before, which an earlier test showed was nearly useless. The form of the sense is given by us; everything it contains comes from the creature's own experience.",
+    metric:{ from:0.5594, to:0.8025, unit:"pooled type-2 AUROC, natural channel vs built expected-uncertainty channel" },
+    setup:"Forks of mirro (spine untouched), fresh seeds 18-25, 4000 steps in a checkerboard-reliability world: half the cells always tell the truth, half lie 45% of the time. Both channels computed each step before the belief update; the new channel is a per-cell running average (alpha 0.05) of the creature's own correctness, indexed by where it believes it is. Preconditions, properties, and falsifiers predeclared; blinded verification before logging.",
+    result:"POSITIVE — P1 and P2 pass in 8/8 forks. New channel 0.7915-0.8062 (pooled 0.8025); natural channel 0.5237-0.5787 (pooled 0.5594); pooled contrast 0.2431 against a 0.10 bar. Placement validity green (clean-cell accuracy 1.0000 everywhere, noisy 0.5254-0.5766). The blinded verifier derived POSITIVE independently.",
+    implication:"Expected uncertainty — knowing which contexts are unreliable — is buildable on this body from purely internal signals, and it is exactly what the natural confidence lacks: map sharpness is static at this mass, lived reliability is not. The confidence half of the N2 prerequisite now exists; the remaining piece is the noise-vs-structural classifier, slope-gate-free per Exp 156's blindness law, then re-confirmation before the N3 gate opens.",
+    caveat:"the channel form (per-cell EWMA, α, init), like the world's noise placement, is PROVIDED design — what is self-formed is only the contents; meta-d′ > 0 here binds to a world where reliability varies by PLACE (the channel's index); a world varying by color or time would need a different index, untested.",
+    trace:{ script:"experiments/exp157_confidence_channel.py", output:"experiments/outputs/exp157.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

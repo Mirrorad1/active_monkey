@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "exp157",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_channel_works": {
+      "pass": true,
+      "reason": "C-new AUROC > 0.55 in 8/8 forks (need 7); pooled C-new AUROC=0.8025 (need >=0.6); F1 forks count=8/8"
+    },
+    "P2_beats_natural": {
+      "pass": true,
+      "reason": "C-new > C-old in 8/8 forks (need 7); pooled diff=0.2431 (need >=0.1; F2 fires if <=0.02)"
+    }
+  },
+  "notes": "N2 prereq build piece 1: internal per-place EWMA confidence channel vs natural max-prob channel (C-old). World R-PLACE-NOISE: checkerboard reliability (13 noisy p=0.55, 12 clean). Channel FORM and world noise placement are PROVIDED; channel VALUES are self-formed online from the creature's own lived prediction outcomes; nothing is read from the generator."
+}

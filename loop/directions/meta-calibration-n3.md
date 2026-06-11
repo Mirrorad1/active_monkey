@@ -116,4 +116,10 @@ the confidence channel must read observation-likelihood, not positional certaint
 at entropy 0). R-STRUCT stays the rung-1 deceptive-regime candidate, sharpened: the alarm's
 own input screams 4x over threshold and the gate vetoes it.
 
-**STATUS.** state: active (prereq build) · latest: Exp 156 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156: plateau detectors are blind to mismatch with period < window) · why: next rung on self-modeling ladder; Exp 155/156 showed the N2 prereq must be built, and pinned exactly what to build · next-falsifiable: the internal confidence channel (observation-likelihood-based; meta-d′ > 0 where discrimination is possible) + the slope-gate-free noise-vs-structural classifier
+**PREREQ BUILD, PIECE 1 (Exp 157, POSITIVE).** The per-place expected-uncertainty channel
+(EWMA of own correctness indexed by believed cell; form provided, contents self-formed)
+reaches type-2 AUROC 0.80 pooled vs 0.56 for the natural channel, 8/8 fresh forks,
+calibration r ≥ 0.95 — the confidence half of the N2 prereq exists on this body. Bound:
+discrimination demonstrated where reliability varies by PLACE (the channel's index).
+
+**STATUS.** state: active (prereq build) · latest: Exp 157 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156: plateau detectors are blind to mismatch with period < window), per-place expected-uncertainty channel (Exp 157) · why: next rung on self-modeling ladder; Exp 155/156 showed the N2 prereq must be built and pinned what to build; Exp 157 delivered the confidence half · next-falsifiable: the noise-vs-structural classifier (lag-1 residual statistic, slope-gate-free), then prereq re-confirmation with per-fork-randomized regimes

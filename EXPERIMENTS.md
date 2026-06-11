@@ -4829,3 +4829,63 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (observation-likelihood-based, meta-d′ > 0 where discrimination is possible) and the
   noise-vs-structural classifier seeded by the lag-1 residual statistic, slope-gate-free;
   then the prereq re-confirmation with per-fork-randomized regimes.
+
+## Exp 157 — the first missing N2 piece works: per-place expected uncertainty, read off the creature's own lived outcomes, tracks its accuracy — type-2 AUROC 0.80 pooled vs 0.56 for the natural channel, 8/8 forks, calibration r ≥ 0.95 (POSITIVE; the confidence half of the prereq now exists on this body)
+
+- Plain: we built the first piece of the creature's missing self-monitoring — a sense of
+  how reliable its own predictions have been at each place, learned from nothing but its
+  own hits and misses. In a world where some places lie often and others never, that sense
+  predicts whether it is about to be right or wrong far better than the built-in feeling
+  it had before, which Exp 155 showed was nearly useless. The form of the sense is given
+  by us; everything it contains comes from the creature's own experience.
+- Question: does an internal confidence channel that indexes the creature's own
+  prediction-outcome history by believed place (per-cell EWMA of correctness — expected
+  uncertainty) achieve meta-d′ > 0 where discrimination is possible, while Exp 155's
+  natural channel (max predictive probability) stays near chance?
+- Setup (predeclared in the script docstring before running; FRESH seeds 18–25): forks of
+  mirro in R-PLACE-NOISE — checkerboard reliability, (row+col) even ⇒ noisy (p_true 0.55),
+  odd ⇒ clean (p 1.0); 4000 steps; both channels computed pre-update each step; C-new =
+  EWMA[argmax qs] (α 0.05, init 0.5), C-old = max(A_hat @ qs). PC1 ≥50/class; PC2 drift
+  < 0.05; PC3 placement validity clean−noisy accuracy ≥ 0.3. P1: C-new AUROC > 0.55 in
+  ≥7/8 AND pooled ≥ 0.60 (F1: ≤4/8 > 0.5 OR pooled ≤ 0.52). P2: C-new > C-old in ≥7/8 AND
+  pooled diff ≥ 0.10 (F2: diff ≤ 0.02). POSITIVE iff P1∧P2. Provided vs self-formed named:
+  channel form and noise placement provided; channel contents self-formed from lived
+  outcomes.
+- Result: POSITIVE — every conjunct, margins wide. C-new per fork 0.7915–0.8062, pooled
+  0.8025 (the analytic ideal for this world ≈ 0.81); C-old 0.5237–0.5787, pooled 0.5594;
+  pooled diff 0.2431; new > old 8/8. Preconditions green everywhere (clean accuracy
+  1.0000 in 8/8, noisy 0.5254–0.5766, drift 0.0155–0.0201). Terminal EWMA vs true
+  per-cell reliability: Pearson r 0.9544–0.9882. Detector events 5–12 per fork (ungated;
+  i.i.d.-noise world, consistent with the Exp 155 R-NOISE class).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived POSITIVE independently);
+  flagged that C-old is NOT at chance (pooled 0.559 — the hypothesis said "near chance";
+  mildly violated), that P1/F1 asymmetry leaves a latent MIXED zone (5–6 forks in
+  0.5–0.55 would neither pass nor falsify), and that the calibration r is driven by the
+  binary clean/noisy split, not within-class resolution.
+- Implication (generalizability tier: functional-form): expected uncertainty — known
+  per-context unreliability, the Yu–Dayan distinction — is buildable on this body from
+  purely internal signals (own predictions, own observations, own believed place), and it
+  is what the natural channel lacks: max-predictive-probability reads the map's sharpness
+  (static at this mass), not the world's lived reliability. The weak C-old signal (0.56)
+  has a pinned mechanism: 4000 steps of noisy-cell Dirichlet updates flatten those A_hat
+  columns slightly (drift 0.016–0.020), leaking place information — confirming the
+  channel contrast is mass-dependent, not architectural. The N2 prereq's confidence half
+  now exists; the remaining piece is the noise-vs-structural classifier (Exp 155's
+  residual statistic, slope-gate-free per Exp 156), then re-confirmation with randomized
+  regimes.
+- Honest caveat: the channel form (per-cell EWMA, α, init), like the world's noise
+  placement, is PROVIDED design — what is self-formed is only the contents; meta-d′ > 0
+  here binds to a world where reliability varies by PLACE (the channel's index); a world
+  varying by color or time would need a different index, untested. Clean cells are at
+  ceiling (accuracy 1.0), so discrimination rests entirely on the clean/noisy contrast,
+  and the calibration r overstates within-class resolution (verifier flag). C-old's
+  near-chance claim was narrative, not gated, and was mildly violated (0.559). A
+  print-only crash was patched after the first full run and the script re-run end-to-end;
+  all per-fork numbers are from the final committed output (bit-identical run, L3).
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE-SINGLE (a designed build
+  increment validated out-of-sample; not a first-of-kind capability for the program and
+  consistent with prediction — the wide margins are the world's doing, not a discovery).
+- Next: N2 piece 2 — the noise-vs-structural classifier built on the lag-1
+  residual-structure statistic (validated Exp 155), with no flatness gate (Exp 156's
+  blindness law); then the prereq re-confirmation with per-fork-randomized regimes
+  before N3 rung 1.
