@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:138, breakthrough:6, positive:83, wall:21, partial:28, from:4.81, to:4.00 };
+window.AM_TALLY = { total:139, breakthrough:6, positive:83, wall:21, partial:29, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1395,7 +1395,17 @@ window.AM_EXPERIMENTS = [
     setup:"One generative model — prior-sampled continuous states emitting words from the normalized hexagon mixture — with three inference engines on identical eval streams: zero-training precision accumulation under the declared unnormalized-footprint mismatch, a minimal reparameterized-ELBO encoder trained on the true likelihood, and a 241-squared grid posterior as gold standard. Eight seeds, in-distribution and blend evaluations, predeclared bands for every comparison.",
     result:"Prediction ties everywhere (closed within 37 milli-nats of exact; encoder within 11 milli-nats of closed; blends within 0.088). The one missed conjunct: the encoder localizes slightly better (closed-form is biased in far-field states), exceeding its band by 0.009 — MIXED under the three-way rule, no falsifier triggered.",
     implication:"The licensed claim bounding the whole ladder: at toy scale closed-form, amortized, and exact inference agree in prediction; the real currencies are the training bill, the conjugacy tax, and an at-scale question toy experiments provably cannot reach. The phase picture is complete and the direction closes with a consult.",
-    trace:{ script:"experiments/exp138_cont_amortized.py", output:"experiments/outputs/exp138.txt" } }
+    trace:{ script:"experiments/exp138_cont_amortized.py", output:"experiments/outputs/exp138.txt" } },
+
+  { n:139, kind:"partial", chapter:"frontier",
+    title:"A loose thread pulled: the knob was moving the goalpost, not the world.",
+    one:"Fresh-seed test of Exp 135's post-hoc nu0 observation: partial replication (1.397 at kappa0=1, 1.079 — below the 1.15 band — at kappa0=10), the widening-as-hedging mechanism refuted at 1.022 vs the predicted 1.25, and the effect demoted to a baseline confound — nu0 sets starting confidence (end-structured NLL 0.678 vs 0.384), which the half-dose midpoint metric silently tracks. The nu0-null law itself replicates out-of-sample.",
+    plain:"A loose observation from the collapse study — that one prior knob seemed to change how fast predictions degrade under noise — got its required fresh-seed test. It half-survived: clear at one setting, weak at the other, and the proposed mechanism measured at one-fiftieth of the predicted size. The surviving explanation is mundane: the knob sets how confident the model starts out, which silently moves the goalpost the metric measured against. The observation is demoted; the established law it orbited replicated cleanly.",
+    metric:{ from:1.25, to:1.022, unit:"predicted vs measured mechanism ratio (end-noise covariance widening)" },
+    setup:"Exp 135's exact protocol on never-run seeds, continuous agent only, four cells, with the suspected mechanism made into its own predeclared conjunct and the established nu0-null law re-tested out-of-sample alongside.",
+    result:"Effect partial (one cell in band, one below), mechanism refuted, null law confirmed (max drift difference 0.014). Post-hoc diagnosis from the committed table: the NLL half-dose midpoint is baseline-sensitive and nu0 moves the baseline mechanically.",
+    implication:"Exp 135's diagnostic is demoted — nu0 is not a covariance-erosion knob; it sets initial predictive confidence. Metric rule for future erosion comparisons: compute half-dose crossings from a common baseline. The closure consult still awaits the human; one sanctioned consolidation item remains.",
+    trace:{ script:"experiments/exp139_cont_nu0_nll.py", output:"experiments/outputs/exp139.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

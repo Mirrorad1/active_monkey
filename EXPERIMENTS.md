@@ -3935,3 +3935,42 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the direction's stop condition is met — closure CONSULT in loop/IDEAS.md
   (options: new card from the named gaps, the halted M4a 1c question, or stop). The
   loop confines itself to consolidation-grade work until the human answers.
+
+## Exp 139 — fresh-seed test of Exp 135's post-hoc ν₀-NLL observation: partial replication, mechanism REFUTED, the effect demoted to a metric artifact (MIXED; CONSOLIDATION; the ν₀-null law itself replicates out-of-sample)
+- Plain: A loose observation from the collapse study — that one prior knob seemed to
+  change how fast predictions degrade under noise — was given its required fresh-seed
+  test. It half-survived: clear at one setting, weak at the other, and the proposed
+  mechanism (the model hedging by widening its uncertainty) measured at one-fiftieth
+  of the predicted size. The surviving explanation is mundane: that knob sets how
+  confident the model starts out, which silently moves the goalpost the metric was
+  measuring against. The observation is demoted, not promoted; and the established
+  law it orbited — that the knob provably does not move the learned positions —
+  replicated cleanly.
+- Setup (predeclared in the script docstring before running): Exp 135's exact protocol,
+  continuous agent only, κ₀ ∈ {1,10} × ν₀ ∈ {4,20}, FRESH seeds 8–15 (VALIDATION's
+  post-hoc rule). P1: NLL n_half ratio (ν₀=4 / ν₀=20) ≥ 1.15 at both κ₀. P2 mechanism:
+  end-noise tr(E[Σ]) ratio ≥ 1.25 (widening-as-hedging). P3: the ν₀-null for mean
+  drift replicates (< 0.05).
+- Result: MIXED. P1: 1.397 at κ₀=1 (clear), 1.079 at κ₀=10 (below band). P2 REFUTED:
+  tr(E[Σ]) ratios 1.022 / 1.022 — by end-noise 3000 scatter terms swamp ν₀; no
+  hedging. P3 PASS out-of-sample (max diffs 0.011 / 0.014) — the ν₀-null law stands.
+  Diagnosis (post-hoc, from the committed table): end-structured NLL baselines differ
+  mechanically with ν₀ (0.678 vs 0.384 at κ₀=1 — fewer prior dof → wider E[Σ] → less
+  confident start), and NLL n_half is defined off the baseline-to-plateau midpoint —
+  a higher baseline shifts the crossing later on its own. The "ν₀ shifts predictive
+  erosion" reading was baseline-confounded.
+- Implication: Exp 135's logged diagnostic is hereby DEMOTED — do not cite it as a
+  covariance-erosion knob; the honest statement is "ν₀ sets initial predictive
+  confidence, which the n_half metric is sensitive to." Metric note for any future
+  erosion comparison: n_half midpoints must be computed from a COMMON baseline (or
+  report absolute-NLL crossings) when comparing agents whose starting confidence
+  differs.
+- Honest caveat: the baseline-confound diagnosis is itself post-hoc (one step of
+  honest regress — it explains a refutation rather than claiming a new effect, and
+  the raw table carrying it is committed); 4 cells, one geometry; the κ₀=1 1.40×
+  residual could still contain a real small effect beyond the artifact — unresolved,
+  parked unless something downstream needs it.
+- Verdict: MIXED / CONSOLIDATION (a candidate observation tested and substantially
+  deflated; the ν₀-null law confirmed out-of-sample). Self-grade: n/a.
+- Next: the consult in loop/IDEAS.md still awaits the human; remaining sanctioned
+  consolidation item: the phase-picture synthesis doc.
