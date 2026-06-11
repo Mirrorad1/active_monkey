@@ -4768,3 +4768,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   classifier built on the validated residual-structure statistic — then re-confirm the
   prereq with regimes randomized per fork (the verifier's determinism flag) before
   opening N3 rung 1.
+
+## Exp 156 — laundering REFUTED, and the detector's true blindness pinned: mirro never doubts its position at all (dead-reckoning point-mass belief gives observations zero authority over localization), B-phase surprise sits at 4.2 nats in plain view, and the plateau detector's own slope gate vetoes every alarm — oscillating mismatch is structurally invisible to a flatness-gated detector (NEGATIVE; the N2 build now knows exactly what to construct)
+
+- Plain: we tested last time's guess — that the creature explains away a lying world by
+  deciding it is somewhere else. Wrong: it never doubts where it is, not once. Its sense
+  of place runs on its own movements alone, so the lies land as huge moment-to-moment
+  surprise — six times the alarm level. The alarm still never rings because it only fires
+  on STEADY high surprise, and a world that lies on a schedule makes surprise rise and
+  fall too fast to ever look steady. The self-monitoring piece we must build is now
+  precisely specified.
+- Question: mechanism check of Exp 155's named hypothesis — is the detector's silence in
+  R-STRUCT caused by mislocalization laundering (posterior teleports to a cell consistent
+  with the deranged observation, keeping per-step surprise sub-threshold)?
+- Setup (predeclared in the script docstring before running; FRESH seeds 10–17 per L7 —
+  the hypothesis was formed post-hoc on seeds 0–9): R-STRUCT only, 4000 steps = 40
+  alternating 100-step blocks, within-run A-phases as control; steady state = last 80
+  steps of each block. P1 teleport: B-misloc ≥ 0.8 AND A-misloc ≤ 0.2 in ≥7/8 (F1:
+  B ≤ 0.5 in ≥4/8). P2 self-consistency on mislocalized steps ≥ 0.8 in ≥7/8 (F2: pooled
+  < 0.6). P3 load-bearing: B-steady mean surprise < 0.7 nats in ≥7/8 (F3: ≥ 0.7 in ≥4/8).
+  Named alternative DILUTION (window-straddle averaging) predeclared. Instrument check:
+  reconstructed detector must replicate 0 events everywhere; PC2 drift < 0.05.
+- Result: NEGATIVE — F1 and F3 both fired; the refutation is total, not marginal.
+  B-misloc 0.000 in 8/8 forks (A-misloc 0.000; posterior entropy ~0 throughout — qs is a
+  point mass every step); B-steady surprise 4.20–4.26 nats in 8/8 (A-phase 0.043–0.051);
+  P2 unevaluable (zero mislocalized steps exist); detector events 0/8 with max window
+  means 2.70–2.98. Instrument check and PC2 green (drift 0.0197–0.0265).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived NEGATIVE independently);
+  flagged P2's unevaluable third state (verdict-invariant — F1/F3 fire regardless) and
+  independently derived the slope-gate finding below from the committed numbers.
+- Implication (generalizability tier: functional-form for the detector claim;
+  parameter-level for the localization claim): two mechanisms pinned. (1) On this body,
+  observations have ZERO authority over position: the motor model B is deterministic and
+  known, so dead reckoning keeps qs an exact point mass (prior mass 0 everywhere else),
+  and the Bayes update cannot move the argmax whatever the observation says —
+  mislocalization laundering was impossible from the start; structural mismatch is
+  absorbed NOWHERE and stands in plain view as per-step surprise. (2) The detector's
+  blindness is its own slope gate: window means reached 2.70–2.98 nats (4x the 0.7 mean
+  threshold) with ZERO events, which by the detector's conjunction (mean > 0.7 AND
+  |slope| < 0.0005) entails the flatness condition vetoed every check — the 200-step
+  window always straddles a context switch (period 100), so the surprise signal never
+  looks flat. A plateau detector is structurally blind to any mismatch whose period is
+  shorter than its window. Build consequences for the N2 prereq, now exact: the
+  noise-vs-structural classifier must not inherit the flatness gate (use the validated
+  residual-structure statistic + an oscillation-aware surprise account), and the
+  confidence channel must read observation-likelihood, not positional certainty (which
+  is degenerate at entropy 0). R-STRUCT stays the rung-1 deceptive-regime candidate,
+  sharpened: the alarm's own input screams 4x over threshold and the gate vetoes it.
+- Honest caveat: a --smoke code-validation run (seed 10, 800 steps) preceded the full
+  run and previewed the direction; the predeclaration was written before any run and
+  unchanged. The slope-gate mechanism is a logical derivation from committed numbers
+  (supra-threshold window means + zero events ⇒ slope vetoed), not a logged slope trace;
+  one derangement, one period (100) vs one window (200) — the "always straddles" geometry
+  is by design, so the claim is untested at periods ≥ window. The localization claim
+  binds to deterministic-B bodies with point-mass belief; a rerun would be bit-identical
+  (deterministic seeds), so no rerun was done.
+- Verdict: NEGATIVE / NEW INSIGHT. Self-grade: NEGATIVE (the two pinned mechanisms are
+  the value; no reframing).
+- Next: per the standing "finish it" branch — build the internal confidence channel
+  (observation-likelihood-based, meta-d′ > 0 where discrimination is possible) and the
+  noise-vs-structural classifier seeded by the lag-1 residual statistic, slope-gate-free;
+  then the prereq re-confirmation with per-fork-randomized regimes.

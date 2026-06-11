@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp156",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_teleport": {
+      "pass": false,
+      "reason": "B-phase misloc>=0.8 AND A-phase misloc<=0.2 in 0/8 forks (need 7); F1 count (B<=0.5): 8/8"
+    },
+    "P2_self_consistency": {
+      "pass": false,
+      "reason": "pooled consistency=nan (n_misloc=0)"
+    },
+    "P3_surprise_subthreshold": {
+      "pass": false,
+      "reason": "B-phase steady mean surprise<0.7 in 0/8 forks; F3 count (mean_B>=0.7): 8/8"
+    }
+  },
+  "notes": "Mechanism check of Exp 155's laundering hypothesis; R-STRUCT forks only, fresh seeds 10-17."
+}

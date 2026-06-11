@@ -104,4 +104,16 @@ re-confirm with per-fork-randomized regimes (the verifier's determinism flag) be
 rung 1. Side note: Exp 155's R-STRUCT (alarm silent, confidence flat, half of
 predictions wrong) is a ready-made candidate for the rung-1 deceptive regime.
 
-**STATUS.** state: active (prereq build) · latest: Exp 155 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155) · why: next rung on self-modeling ladder; Exp 155 showed the N2 prereq must be built first · next-falsifiable: the laundering mechanism check (per-step localization + surprise traces in R-STRUCT), then the internal confidence channel (meta-d′ > 0 where discrimination is possible)
+**MECHANISM CHECK (Exp 156, NEGATIVE — laundering refuted, blindness pinned).** mirro never
+mislocalizes at all (0.000 in 8/8 fresh forks, posterior entropy ~0: deterministic known B +
+point-mass belief = pure dead reckoning; observations have zero authority over position), and
+B-phase surprise stands in plain view at 4.2 nats. The detector's silence is its own slope
+gate: window means hit 2.70–2.98 (4x the 0.7 mean threshold) with zero events — the flatness
+condition vetoes every check because the 200-step window always straddles a 100-step context
+switch. Build consequences (binding for the prereq build): the noise-vs-structural classifier
+must NOT inherit the flatness gate (seed it with the Exp 155 residual-structure statistic);
+the confidence channel must read observation-likelihood, not positional certainty (degenerate
+at entropy 0). R-STRUCT stays the rung-1 deceptive-regime candidate, sharpened: the alarm's
+own input screams 4x over threshold and the gate vetoes it.
+
+**STATUS.** state: active (prereq build) · latest: Exp 156 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156: plateau detectors are blind to mismatch with period < window) · why: next rung on self-modeling ladder; Exp 155/156 showed the N2 prereq must be built, and pinned exactly what to build · next-falsifiable: the internal confidence channel (observation-likelihood-based; meta-d′ > 0 where discrimination is possible) + the slope-gate-free noise-vs-structural classifier

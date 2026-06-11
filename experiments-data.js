@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:155, breakthrough:7, positive:87, wall:25, partial:36, from:4.81, to:4.00 };
+window.AM_TALLY = { total:156, breakthrough:7, positive:87, wall:25, partial:37, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1721,7 +1721,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — two of three conjuncts fired their falsifiers. Confidence-accuracy AUROC pooled 0.4961 / 0.4963 (3/8 and 4/8 forks above chance); detector 8/8 on noise, 0/8 on control, 0/8 on the structural world; residual lag-1 autocorrelation 0.9805 in every structural run vs −0.0053 mean under noise. The verifier derived NEGATIVE independently and flagged that the structural world's error sequence is deterministic given the stale map, so that conjunct's pass is world geometry, not creature skill.",
     implication:"The N2 layer (confidence that tracks accuracy; a noise-vs-structural classifier) must be built before N3 can be tested — exactly the 'finish it' branch the human's word pre-authorized. And an accidental gift: a regime where half the predictions are wrong, the alarm is silent, and confidence is flat is a ready-made candidate for the N3 gate's deceptive world. Suspected mechanism, to be checked next: the creature launders structural mismatch into mislocalization.",
     caveat:"(i) the R-NOISE half of F1 was a malformed demand — under irreducible i.i.d. noise even an ideal agent shows type-2 AUROC ≈ 0.5 (nothing trial-level to discriminate); the verdict does not hinge on it (R-STRUCT fired F1 independently, and pooled ≤ 0.5 fired in both regimes), but the lesson is logged: type-2 calibration tests need regimes where evidence quality varies.",
-    trace:{ script:"experiments/exp155_n2_prereq.py", output:"experiments/outputs/exp155.txt" } }
+    trace:{ script:"experiments/exp155_n2_prereq.py", output:"experiments/outputs/exp155.txt" } },
+
+  { n:156, kind:"partial", chapter:"frontier",
+    title:"The alarm's blindness is its own flatness gate — and the creature never doubts its position at all.",
+    one:"Mechanism check of Exp 155's laundering hypothesis, NEGATIVE with the refutation total: in 8/8 fresh forks mirro's mislocalization rate is exactly 0.000 in both phases (posterior entropy ~0 — its belief is a point mass driven by dead reckoning alone), while deranged-phase surprise sits at 4.20-4.26 nats in plain view. The detector still produced zero events with window means of 2.70-2.98 nats — 4x its own 0.7 threshold — which by its mean-AND-flat conjunction proves the slope gate vetoed every check: the 200-step window always straddles a context switch, so oscillating mismatch never looks flat.",
+    plain:"We tested last time's guess — that the creature explains away a lying world by deciding it is somewhere else. Wrong: it never doubts where it is, not once. Its sense of place runs on its own movements alone, so the lies land as huge moment-to-moment surprise — six times the alarm level. The alarm still never rings because it only fires on steady high surprise, and a world that lies on a schedule makes surprise rise and fall too fast to ever look steady. The self-monitoring piece we must build is now precisely specified.",
+    metric:{ from:4.2, to:0, unit:"deranged-phase surprise in nats (6x alarm bar) vs detector events fired" },
+    setup:"R-STRUCT only, fresh seeds 10-17 (the hypothesis was formed post-hoc on seeds 0-9), 4000 steps of alternating 100-step contexts, within-run normal phases as control. Predeclared: P1 teleport (mislocalization >= 0.8 in deranged phases), P2 self-consistency of the teleported belief, P3 load-bearing (per-step surprise below the 0.7-nat bar). Falsifiers, the dilution alternative, and an instrument check (detector must replicate its silence) all predeclared; blinded verification before logging.",
+    result:"NEGATIVE — falsifiers F1 and F3 both fired. Mislocalization 0.000 everywhere; deranged-phase surprise 4.20-4.26 nats; zero detector events despite window means 2.70-2.98 nats. The blinded verifier derived NEGATIVE independently and independently spotted the slope-gate inversion.",
+    implication:"Two mechanisms pinned. On this body observations have zero authority over position (deterministic known motor model + point-mass belief = pure dead reckoning), so laundering was impossible from the start. And the detector's blindness is its own flatness condition — a plateau detector is structurally blind to any mismatch whose period is shorter than its window. The N2 build is now exactly specified: a classifier without the flatness gate, seeded by the validated residual-structure statistic, and a confidence channel reading observation-likelihood rather than positional certainty.",
+    caveat:"a --smoke code-validation run (seed 10, 800 steps) preceded the full run and previewed the direction; the predeclaration was written before any run and unchanged.",
+    trace:{ script:"experiments/exp156_launder_check.py", output:"experiments/outputs/exp156.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
