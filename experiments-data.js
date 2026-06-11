@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:137, breakthrough:6, positive:83, wall:21, partial:27, from:4.81, to:4.00 };
+window.AM_TALLY = { total:138, breakthrough:6, positive:83, wall:21, partial:28, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1385,7 +1385,17 @@ window.AM_EXPERIMENTS = [
     setup:"One emission mean drifting at four velocities, NIW trackers across a grid of forgetting windows against matched fixed-learning-rate baselines on identical streams, eight seeds per cell. Predeclared: the v=0 conjugate-annealing win, a steady-state tie under drift, and a U-shaped forgetting window on the EMA cube-root law. A committed mechanism check then compared static-prior, keep-mean, and EMA forms on bit-identical streams.",
     result:"The predeclared form falsified P2 and P3 (loses 22/140/516 percent; argmin distorted 4x at the fastest drift). Keep-mean decay ties the EMA at 1.004/0.989/1.000 and restores all three argmins to within 1.3x of the cube-root prediction. The v=0 advantage held 8/8 against every rate.",
     implication:"NIW-as-learning-rate survives in refined form: annealing wins stationary worlds, count-decay equals the best fixed rate in drifting ones, and the decayed quantity must be evidence mass, never location. The Exp 88 forgetting-window law holds on the continuous substrate under that form. One rung left: the amortized control.",
-    trace:{ script:"experiments/exp137_cont_tracking.py", output:"experiments/outputs/exp137.txt" } }
+    trace:{ script:"experiments/exp137_cont_tracking.py", output:"experiments/outputs/exp137.txt" } },
+
+  { n:138, kind:"partial", chapter:"frontier",
+    title:"The two camps tie on accuracy — and settle the bill in different currencies.",
+    one:"Rung 6, the ladder completes: closed-form conjugate, an ELBO-trained encoder, and the grid-exact posterior tie on held-out prediction within hundredths of a nat (amort-closed -0.011; closed-exact +0.037), the conjugacy shortcut costs a small localization tax (1.609 vs 1.550, missing its conjunct by 0.009 -> MIXED as the rule counts it), and the encoder pays 12,800,000 training samples for what precision accumulation gets for free. No falsifier; the stop condition is met.",
+    plain:"The final test the chapter owed: pit the closed-form mind against the other camp's answer — a small neural network trained to do the same inference — with the exact mathematical truth as referee. On prediction they all tie within a few hundredths of a nat. The differences are elsewhere: the closed-form agent pays a small location penalty for the shortcut that buys its instant updates, and the network pays twelve million practice examples for what the closed form gets for free. At this scale the camps argue about what you pay and when, not about accuracy.",
+    metric:{ from:0.037, to:0.011, unit:"nats from exact (closed-form) and from closed-form (encoder) — a three-way predictive tie; training bill 12,800,000 samples vs zero" },
+    setup:"One generative model — prior-sampled continuous states emitting words from the normalized hexagon mixture — with three inference engines on identical eval streams: zero-training precision accumulation under the declared unnormalized-footprint mismatch, a minimal reparameterized-ELBO encoder trained on the true likelihood, and a 241-squared grid posterior as gold standard. Eight seeds, in-distribution and blend evaluations, predeclared bands for every comparison.",
+    result:"Prediction ties everywhere (closed within 37 milli-nats of exact; encoder within 11 milli-nats of closed; blends within 0.088). The one missed conjunct: the encoder localizes slightly better (closed-form is biased in far-field states), exceeding its band by 0.009 — MIXED under the three-way rule, no falsifier triggered.",
+    implication:"The licensed claim bounding the whole ladder: at toy scale closed-form, amortized, and exact inference agree in prediction; the real currencies are the training bill, the conjugacy tax, and an at-scale question toy experiments provably cannot reach. The phase picture is complete and the direction closes with a consult.",
+    trace:{ script:"experiments/exp138_cont_amortized.py", output:"experiments/outputs/exp138.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

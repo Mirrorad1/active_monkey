@@ -3885,3 +3885,53 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Self-grade: n/a (negative).
 - Next: rung 6 — the amortized control (minimal ELBO encoder on the same generative
   model), the last rung; then the direction's stop-condition synthesis.
+
+## Exp 138 — continuous-substrate rung 6, the amortized control: prediction ties across all three engines; the conjugacy mismatch costs location, not prediction; the real currency is 12.8M training samples vs zero (MIXED — one conjunct missed by 0.009; no falsifier; THE LADDER COMPLETES)
+- Plain: The final test the whole chapter owed: pit the closed-form mind against the
+  other camp's answer — a small neural network trained to do the same inference — with
+  the exact mathematical truth standing between them as referee. On prediction they all
+  tie within a few hundredths of a nat. The differences are elsewhere: the closed-form
+  agent pays a small location penalty for the shortcut that buys its instant updates,
+  and the network pays twelve million practice examples for what the closed form gets
+  for free. At this scale the two camps' argument is not about accuracy at all — it is
+  about what you pay and when.
+- Setup (predeclared in the script docstring before running): one generative model
+  (s ~ N(0,4I), normalized hexagon mixture, T=50-word streams); three engines on
+  identical eval streams — closed-form precision accumulation (unnormalized footprint,
+  zero training), MLP encoder (6→32→32→4, reparam ELBO on the true likelihood, Adam,
+  2000×128 fresh streams, one per seed, jax), grid-exact posterior (241² gold
+  standard); 64 in-dist + 32 blend eval streams × 8 seeds; MC-256 predictive NLL +
+  localization. P1 comparison possible; P2 |NLL_a−NLL_c| ≤ 0.10, NLL_c−NLL_e ≤ 0.10,
+  loc_c ≤ loc_a + 0.05; P3 training ≥1000× vs zero; P4 blend tie ≤ 0.15.
+- Result: MIXED. P1 PASS (the card's structural FAIL clause does not trigger — the
+  comparison is clean at toy scale). P2: both NLL conjuncts PASS (amort−closed =
+  −0.011 nats; closed−exact = +0.037 — the mismatch's predictive cost is 37
+  milli-nats); the LOCALIZATION conjunct FAILED by 0.009 (closed 1.609 vs amort 1.550
+  — the trained encoder localizes better; prior-sampled eval states include far-field
+  regions where the unnormalized-footprint bias is large, unlike rung 1's on-center
+  states). P3 PASS: 12,800,000 training word-samples vs 0 (inference tied, ~2.05 vs
+  2.07 ms/stream). P4 PASS: blend gap +0.088 ≤ 0.15 (seed-level noise large: one seed
+  +0.60 — cell mean carries the verdict as predeclared). No falsifier triggered.
+  Suite 101 green.
+- Implication (the licensed claim, bounding rungs 1–5): at toy scale, closed-form ≈
+  amortized ≈ exact in PREDICTION; the fork's real currencies are (i) the training
+  bill — millions of model samples vs zero, (ii) the conjugacy constraint — a real
+  but small accuracy tax (37 mnat predictive, ~4% localization) paid for closed-form
+  updates, (iii) nothing at this scale resolves the at-scale question (rung 4's
+  exponent blindness stands). STOP CONDITION MET: the phase picture exists
+  (interpolation everywhere + unbounded table brittleness [134], mass-linear erosion
+  law [135], flat d-curve [136], the decay-form tracking law [137]) and the amortized
+  comparison is logged. The direction closes; synthesis CONSULT posted to
+  loop/IDEAS.md.
+- Honest caveat: the encoder is minimal (counts → diagonal Gaussian; no architecture
+  search — a stronger encoder could widen its localization edge); MC-256 predictive
+  noise ~ the smallest gaps measured; the localization conjunct missed by less than
+  its seed-level spread (a borderline miss, reported as the rule requires, not
+  reinterpreted); single geometry, d=2, T=50; "12.8M vs 0" counts samples, not
+  joules or wall-time at scale.
+- Verdict: MIXED (no falsifier; one P2 conjunct failed as the three-way rule counts
+  it) / NEW INSIGHT (the cost-currency framing with measured numbers: 37 mnat + 4%
+  localization for conjugacy; 12.8M samples for amortization). Self-grade: n/a.
+- Next: the direction's stop condition is met — closure CONSULT in loop/IDEAS.md
+  (options: new card from the named gaps, the halted M4a 1c question, or stop). The
+  loop confines itself to consolidation-grade work until the human answers.

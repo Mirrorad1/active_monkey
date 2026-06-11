@@ -1,0 +1,242 @@
+[
+  {
+    "seed": 0,
+    "agent": "closed",
+    "nll_indist": 0.24936407277735947,
+    "nll_blend": 1.9697925532342015,
+    "loc_indist": 1.6092123191333416,
+    "loc_blend": 0.09993878749266072,
+    "train_word_samples": 0,
+    "inference_ms": 2.0479584927670658
+  },
+  {
+    "seed": 0,
+    "agent": "amortized",
+    "nll_indist": 0.23985362356608697,
+    "nll_blend": 2.073828674779077,
+    "loc_indist": 1.536717247549191,
+    "loc_blend": 0.1835801768646565,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.039166502072476
+  },
+  {
+    "seed": 0,
+    "agent": "exact",
+    "nll_indist": 0.21314424020294506,
+    "nll_blend": 1.7988780697169293,
+    "loc_indist": 1.0308456760418216,
+    "loc_blend": 0.025031539157860404,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 1,
+    "agent": "closed",
+    "nll_indist": 0.2844794898879338,
+    "nll_blend": 2.0282156495885015,
+    "loc_indist": 1.5635628859911985,
+    "loc_blend": 0.0974403178053442,
+    "train_word_samples": 0,
+    "inference_ms": 2.0584585145115852
+  },
+  {
+    "seed": 1,
+    "agent": "amortized",
+    "nll_indist": 0.2694209646093531,
+    "nll_blend": 2.057462122035691,
+    "loc_indist": 1.495695547456096,
+    "loc_blend": 0.18426463554211708,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.067791487206705
+  },
+  {
+    "seed": 1,
+    "agent": "exact",
+    "nll_indist": 0.2340160371379032,
+    "nll_blend": 1.816176884744686,
+    "loc_indist": 0.9590671568007898,
+    "loc_blend": 0.02447061051414154,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 2,
+    "agent": "closed",
+    "nll_indist": 0.3685380062091778,
+    "nll_blend": 2.1330905843506183,
+    "loc_indist": 1.6545801748995725,
+    "loc_blend": 0.11867731014753462,
+    "train_word_samples": 0,
+    "inference_ms": 2.047562491497956
+  },
+  {
+    "seed": 2,
+    "agent": "amortized",
+    "nll_indist": 0.36047772540047374,
+    "nll_blend": 2.3430147823907403,
+    "loc_indist": 1.621304749284831,
+    "loc_blend": 0.21767832048389063,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.0655209809774533
+  },
+  {
+    "seed": 2,
+    "agent": "exact",
+    "nll_indist": 0.3255387441308956,
+    "nll_blend": 1.824734933599958,
+    "loc_indist": 1.051607000295977,
+    "loc_blend": 0.030356553933934473,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 3,
+    "agent": "closed",
+    "nll_indist": 0.33433995335227806,
+    "nll_blend": 1.9677438613903098,
+    "loc_indist": 1.3630691132997779,
+    "loc_blend": 0.0974403178053442,
+    "train_word_samples": 0,
+    "inference_ms": 2.057291509117931
+  },
+  {
+    "seed": 3,
+    "agent": "amortized",
+    "nll_indist": 0.32097604538798363,
+    "nll_blend": 1.8957440125216718,
+    "loc_indist": 1.318092326129353,
+    "loc_blend": 0.1206671199359022,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.0793545118067414
+  },
+  {
+    "seed": 3,
+    "agent": "exact",
+    "nll_indist": 0.2906583871792595,
+    "nll_blend": 1.801558314048699,
+    "loc_indist": 0.811220920876192,
+    "loc_blend": 0.024437243626422724,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 4,
+    "agent": "closed",
+    "nll_indist": 0.3108947736260642,
+    "nll_blend": 2.2695358386981024,
+    "loc_indist": 1.6649795922623678,
+    "loc_blend": 0.1374158328024085,
+    "train_word_samples": 0,
+    "inference_ms": 2.0497295045061037
+  },
+  {
+    "seed": 4,
+    "agent": "amortized",
+    "nll_indist": 0.2914681495760032,
+    "nll_blend": 2.8699584119167616,
+    "loc_indist": 1.5882268928372907,
+    "loc_blend": 0.3268256723076415,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.062770989141427
+  },
+  {
+    "seed": 4,
+    "agent": "exact",
+    "nll_indist": 0.2661768977819314,
+    "nll_blend": 1.852941073596825,
+    "loc_indist": 0.9384490095017788,
+    "loc_blend": 0.03551648829573065,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 5,
+    "agent": "closed",
+    "nll_indist": 0.23044121899330333,
+    "nll_blend": 1.9380749452547295,
+    "loc_indist": 1.5674412618179798,
+    "loc_blend": 0.0824494996814451,
+    "train_word_samples": 0,
+    "inference_ms": 2.0458540093386546
+  },
+  {
+    "seed": 5,
+    "agent": "amortized",
+    "nll_indist": 0.2248134771616389,
+    "nll_blend": 2.0854816906648566,
+    "loc_indist": 1.50970748420364,
+    "loc_blend": 0.158757761409886,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.064208500087261
+  },
+  {
+    "seed": 5,
+    "agent": "exact",
+    "nll_indist": 0.20614726955549884,
+    "nll_blend": 1.798707655353615,
+    "loc_indist": 1.0114571081705386,
+    "loc_blend": 0.020747807146737154,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 6,
+    "agent": "closed",
+    "nll_indist": 0.23309902278713224,
+    "nll_blend": 2.0681312175108477,
+    "loc_indist": 1.7692594303351843,
+    "loc_blend": 0.12367424952216764,
+    "train_word_samples": 0,
+    "inference_ms": 2.049603994237259
+  },
+  {
+    "seed": 6,
+    "agent": "amortized",
+    "nll_indist": 0.22412701362488402,
+    "nll_blend": 1.8553218430064948,
+    "loc_indist": 1.6885698474885367,
+    "loc_blend": 0.14098656613821142,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.0698125154012814
+  },
+  {
+    "seed": 6,
+    "agent": "exact",
+    "nll_indist": 0.20648452665847292,
+    "nll_blend": 1.8120220410592225,
+    "loc_indist": 0.9798876390021913,
+    "loc_blend": 0.031438693239909686,
+    "train_word_samples": 0,
+    "inference_ms": null
+  },
+  {
+    "seed": 7,
+    "agent": "closed",
+    "nll_indist": 0.27971650154905353,
+    "nll_blend": 2.0191147514819887,
+    "loc_indist": 1.6811694938042658,
+    "loc_blend": 0.09868955264900248,
+    "train_word_samples": 0,
+    "inference_ms": 2.0598335104295984
+  },
+  {
+    "seed": 7,
+    "agent": "amortized",
+    "nll_indist": 0.2748598416288572,
+    "nll_blend": 1.9168712798125345,
+    "loc_indist": 1.6431909945024035,
+    "loc_blend": 0.1416824864223887,
+    "train_word_samples": 12800000,
+    "inference_ms": 2.08058298449032
+  },
+  {
+    "seed": 7,
+    "agent": "exact",
+    "nll_indist": 0.2569355969879455,
+    "nll_blend": 1.8135338650033286,
+    "loc_indist": 1.038772051025199,
+    "loc_blend": 0.025009120403985247,
+    "train_word_samples": 0,
+    "inference_ms": null
+  }
+]
