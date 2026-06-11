@@ -5679,3 +5679,67 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   CYCLING class only), tested with the K=8 reference as a same-schedule arm; the
   straddle term (the dominant P3 component, twice confirmed) remains a separate,
   named target.
+
+## Exp 171 — tier B FAILS on the other side of the gap, completing the trade-off picture: the tempo-regulated horizon transiently dips below the cycling period and the controller locks on sub-phases of the broken regime (broken margin halved, F5) — while its faster homing posts the BEST valid margin of the whole lineage (−0.0698, nearest the no-harm bar yet); the magic 8 is revealed as designer knowledge of a GAP both naive derivations missed from opposite sides (NEGATIVE; halted for a word)
+
+- Plain: the tempo-following horizon fixed exactly what the pooled one broke, and broke
+  exactly what the pooled one preserved. Because it tracks the stream's recent rhythm,
+  it sometimes demands LESS consistency than one phase of the slow lie lasts — so it
+  declares "settled" mid-deception, walks the dial home, and has to climb again, over
+  and over, halving its benefit in broken worlds. Yet the same nimbleness makes it the
+  gentlest controller we have ever measured in honest worlds. The picture is now
+  complete: the verdict-stream's run lengths have two camps with a gap between them
+  (short flickers up to ~9; long plateaus from ~24 up), the magic eight sat in that gap
+  by our knowledge rather than the creature's, and one derivation undershot the gap
+  while the other overshot it. What the creature must find is the GAP itself.
+- Question (predeclared; tier B per the human's "Continue"): does K(t) =
+  clamp(ceil(2×median(last 12 completed runs))+1, 3, 16) match or beat the K=8
+  controller (b8) run as a SAME-SCHEDULE arm — P5 each pooled metric within 0.05 of
+  b8's same-run values or better (F5 worse by > 0.10); P7 regulation (K diverse,
+  pegged < 0.5; F7 > 0.9); gates P1/P2/P4; F_HARM; P6 = the straddle projection,
+  third test, ungated?
+- Setup: Exp 170 protocol with three same-schedule read-only arms (a, b8, bB); FRESH
+  seeds 130–137; smoke (seed 130) disclosed.
+- Result: NEGATIVE — F5 fired on broken margin: bB 0.2420 vs b8's same-run 0.4423
+  (worse by 0.2003); concentration soft-failed (0.8049 vs 0.8788, in the 0.05–0.10
+  zone); responsiveness equal (8/8); VALID margin BETTER by 0.0542 (−0.0698 vs
+  −0.1240 — e.g. seed 132 CTRL: bB 0.925 vs b8 0.625). P7 PASS (K values 3–16, 3–8
+  distinct per fork, pooled pegged 0.137 — regulation is real; no tier-A collapse).
+  P1/P2/P4 PASS; F_HARM silent. P6 HELD a third time (−0.0698 < −0.05, though by
+  0.020 — the closest approach). Mechanism (verifier): during the M=12 fill-up the
+  windowed median rides the cycling runs, K dips to 6–7 < the ~10-eval SLOW
+  half-period → premature stationary locks on sub-phases → 3–4 abortive
+  ascend-lock-descend cycles inside SLOW in 6/8 forks; the two plateau-first forks
+  (131, 133) behave identically to b8. Same-schedule attribution clean: forks where
+  K-policy is irrelevant produce bit-identical arm scores.
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles; all
+  pooled numbers recomputed from raw rows); flagged the P5 middle-zone (a soft-fail
+  band between tolerance and falsifier) and a latent per-fork pegged-fraction
+  vulnerability (seed 131 at 0.473); confirmed the bimodal run distribution
+  (cycling 1–9; plateaus 24–84; pooled median 7).
+- Implication (generalizability tier: functional-form — THE GAP LAW, completing
+  Exp 170's conditioning lesson): the lock horizon must sit IN THE GAP between the
+  diagnosis stream's two run-length modes — above everything the cycling mode
+  demonstrates, below the plateau mode's evidence cost. Central-tendency statistics
+  hover AROUND the cycling mode (tier B, undershoots transiently → false stationary
+  locks inside broken regimes); pooled extreme statistics are captured by the plateau
+  mode (tier A, overshoots permanently → sluggish everywhere). And the measured
+  trade-off axis: horizon-down buys valid-regime gentleness (best-ever −0.0698) at
+  the price of broken-regime persistence — the two halves of rung 4's P3/P4 pull the
+  same dial opposite ways, which is WHY a gap-seeking rule (not a tempo-average) is
+  the remaining candidate: K = (max of recent cycling-mode completions) + margin,
+  recency-windowed — bounded above the demonstrated flicker, untouched by plateaus.
+- Honest caveat: the multiplier 2, M=12, and clamp are provided policy — tier B as
+  TESTED is one point in its design family; the small-K transient is a cold-start
+  artifact in part (a warm-start or higher floor was deliberately not added — it
+  would re-import a magic constant); the trade-off readings ride on this world
+  family's specific periods; per the guardrail the thread HALTS for a word.
+- Verdict: NEGATIVE / NEW INSIGHT (the gap law; the measured trade-off axis; the
+  best-yet valid margin). Self-grade: NEGATIVE.
+- Next: HALTED. Recommended resumption (one word proceeds): tier B-revisited = the
+  GAP-SEEKING horizon — K(t) = max(completed runs in the recent window, plateau
+  completions excluded by a declared size cut at the measured gap... no: excluded by
+  RECENCY alone) + 1, i.e. recent-max+1: sits just above everything the stream has
+  recently shown can end, is rarely touched by plateaus (they rarely complete), and
+  decays within one window of a regime change — with b8 again as the same-schedule
+  arm and the same falsifier structure.

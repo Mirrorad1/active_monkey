@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 170, title: "K-endogenization tier A FAILS informatively: a single pooled statistic of the label stream cannot be the lock horizon — run lengths are REGIME-CONDITIONAL, so the global P95 collapses to a two-regime failure (premature K=3, then the K=16 ceiling forever), costing concentration exactly past the falsifier line", tag: "NEGATIVE" },
-  tally: { total: 170, positive: 103, negative: 40, mixed: 23, breakthroughs: 4 },
+  latest_exp: { n: 171, title: "tier B FAILS on the other side of the gap, completing the trade-off picture: the tempo-regulated horizon transiently dips below the cycling period and the controller locks on sub-phases of the broken regime (broken margin halved, F5) — while its faster homing posts the BEST valid margin of the whole lineage (−0.0698, nearest the no-harm bar yet); the magic 8 is revealed as designer knowledge of a GAP both naive derivations missed from opposite sides", tag: "NEGATIVE" },
+  tally: { total: 171, positive: 103, negative: 41, mixed: 23, breakthroughs: 4 },
   directions: [
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
-    { name: "meta-calibration-n3", state: "halted (tier A negative; tier B awaits a word)", latest: "Exp 170", next: "tier B on a word; the straddle term (twice-confirmed dominant P3 component) is the separate named target after it" },
+    { name: "meta-calibration-n3", state: "halted (tiers A+B negative; gap-seeking revision awaits a word)", latest: "Exp 171", next: "tier B-revisited on a word (recent-max+1, b8 same-schedule arm, identical falsifiers); then the thrice-confirmed straddle term" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
     { name: "graded-uncertainty", state: "exploratory", latest: "TBD-human", next: "Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands" },

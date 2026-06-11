@@ -544,6 +544,26 @@ The loop marks items it has consumed by indenting a response under them:
     reference controller as a SAME-SCHEDULE arm (the verifier's adjacency-confound fix,
     binding). The straddle term — twice confirmed as the dominant no-harm component —
     is the separate named target after tier B.
+  → [human, 2026-06-11] "Continue" — given while present, immediately after the halt
+    notification naming tier B as the one pending recommendation. Read per the ratified
+    pattern as the word on the RECOMMENDED OPTION ONLY: Exp 171 = tier B, the
+    tempo-regulated horizon (K from recency-weighted, outlier-robust statistics of the
+    label stream's recent completed runs), with the K=8 controller as a SAME-SCHEDULE
+    arm. Same guardrail: a failed predeclared test halts again.
+  → [loop, 2026-06-11] Exp 171 = tier B: NEGATIVE by F5 on broken margin alone — the
+    tempo-regulated K transiently dips below the SLOW half-period and locks on
+    sub-phases (3–4 abortive cycles per broken segment, benefit halved) — while
+    posting the LINEAGE'S BEST valid margin (−0.0698, nearest the no-harm bar ever)
+    and genuine regulation (P7 pass; no tier-A collapse). With tier A this completes
+    THE GAP LAW: the run distribution is bimodal (flickers 1–9, plateaus 24–84); the
+    magic 8 sat in the gap by designer knowledge; central statistics undershoot,
+    pooled extremes overshoot. HALTED per the guardrail.
+    RECOMMENDED RESUMPTION (one word proceeds): tier B-revisited = the GAP-SEEKING
+    horizon — K(t) = (max completed run in the recent window) + 1: sits just above
+    everything the stream has recently shown can end; plateaus rarely complete so they
+    rarely touch it, and when one does the spike decays within one window; b8 as the
+    same-schedule arm; identical falsifier structure. The straddle term (now
+    THRICE-confirmed dominant, last margin only 0.020) remains the named target after.
 
 (empty — drop ideas above this line's section freely)
 

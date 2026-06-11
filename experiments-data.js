@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:170, breakthrough:8, positive:92, wall:26, partial:44, from:4.81, to:4.00 };
+window.AM_TALLY = { total:171, breakthrough:8, positive:92, wall:26, partial:45, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1888,7 +1888,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — F5 on concentration only; broken margin soft-failed (deficit 0.0935, under the trigger, and contaminated by the adjacency confound); responsiveness and valid margin within tolerance; F_HARM silent; P6 held (second consecutive confirmation that K-changes alone cannot clear the no-harm bar). Halted for a word per the standing guardrail.",
     implication:"The conditioning lesson: run length is regime-conditional — plateaus at a right dial are evidence FOR locking, but a pooled percentile reads them as grounds for suspicion. Endogenizing K requires class-conditioned, recency-weighted statistics — a horizon regulated by the reliability and tempo of the label stream, the human's tier B verbatim: tier A's failure derives tier B's design. The recommended resumption is tier B with the K=8 reference as a same-schedule arm.",
     caveat:"F5 fired by 0.008 over its line on one metric — a marginal kill, and the adjacency confound cuts both ways (it contaminates the soft-failed broken margin more than the fired concentration metric, which is schedule-normalized by construction but still attribution-sensitive at boundaries); the clamp [3,16] and P95 are themselves provided policy; per the standing word's guardrail the thread HALTS here for a word rather than self-starting tier B.",
-    trace:{ script:"experiments/exp170_k_derived.py", output:"experiments/outputs/exp170.txt" } }
+    trace:{ script:"experiments/exp170_k_derived.py", output:"experiments/outputs/exp170.txt" } },
+
+  { n:171, kind:"partial", chapter:"frontier",
+    title:"The tempo-follower fails on the gap's other side — and the trade-off axis is measured.",
+    one:"K-endogenization tier B (recency-windowed median, same-schedule reference arm), NEGATIVE by F5 on broken margin alone: the tempo-regulated horizon transiently dips to 6-7 — below the slow lie's ~10-evaluation half-period — so the controller declares settled mid-deception, walks the dial home, and climbs again, 3-4 abortive cycles per broken segment in 6/8 forks, halving its benefit (0.2420 vs the constant-K arm's same-run 0.4423). The same nimbleness posts the LINEAGE'S BEST valid margin (-0.0698, nearest the -0.05 no-harm bar ever) and genuine regulation (K spans 3-16, pegged only 13.7%). With tier A this completes the gap law: the run distribution is bimodal (flickers 1-9, plateaus 24-84); the magic 8 sat in the gap by designer knowledge; central statistics undershoot it, pooled extremes overshoot it. The creature must find the gap itself.",
+    plain:"The tempo-following horizon fixed exactly what the pooled one broke, and broke exactly what the pooled one preserved. Because it tracks the stream's recent rhythm, it sometimes demands less consistency than one phase of the slow lie lasts — so it declares settled mid-deception, walks home, and must climb again, halving its benefit in broken worlds. Yet the same nimbleness makes it the gentlest controller we have ever measured in honest worlds. The picture is complete: the verdict-stream's runs have two camps with a gap between them; the magic eight sat in that gap by our knowledge, not the creature's; one derivation undershot, the other overshot. What the creature must find is the gap itself.",
+    metric:{ from:-0.124, to:-0.0698, unit:"valid-segment margin, constant-K arm vs tier B — best yet" },
+    setup:"Three same-schedule read-only arms over identical recorded sessions (fixed-200, the K=8 lock+descent controller, and tier B with K = clamp(2 x median of last 12 completed runs + 1, 3, 16)) — the adjacency confound eliminated by design; fresh seeds 130-137; regulation gated (P7), the claim gated against the same-run reference (P5/F5); blinded verification before logging.",
+    result:"NEGATIVE — F5 on broken margin (worse by 0.2003); concentration soft-failed; valid margin BETTER by 0.0542; P7 regulation PASS (no tier-A collapse); P1/P2/P4 pass, F_HARM silent; the straddle projection held a third time (by only 0.020 — the closest approach). The blinded verifier recomputed everything from raw rows and pinned the small-K transient mechanism.",
+    implication:"The gap law: the lock horizon must sit between the diagnosis stream's two run-length modes — above everything the flicker mode demonstrates, untouched by the plateau mode. And the measured trade-off: horizon-down buys honest-world gentleness at the price of broken-world persistence. The remaining candidate is gap-seeking, not tempo-averaging: recent-max-plus-one. Halted for a word per the standing guardrail.",
+    caveat:"the multiplier 2, M=12, and clamp are provided policy — tier B as TESTED is one point in its design family; the small-K transient is a cold-start artifact in part (a warm-start or higher floor was deliberately not added — it would re-import a magic constant); the trade-off readings ride on this world family's specific periods; per the guardrail the thread HALTS for a word.",
+    trace:{ script:"experiments/exp171_k_tempo.py", output:"experiments/outputs/exp171.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

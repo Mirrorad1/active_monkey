@@ -247,4 +247,13 @@ plateaus at a right dial are evidence FOR locking; a pooled statistic reads them
 for suspicion. Tier A's failure DERIVES tier B. Binding design fix: the reference controller
 runs as a same-schedule ARM (the verifier's adjacency-confound flag).
 
-**STATUS.** state: halted (tier A negative; tier B awaits a word) · latest: Exp 170 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, separators and laws (155–166), lock controller (167), ratchet law (168), descent driver + transition-penalty formula (169), conditioning lesson + two-regime collapse (170) · why: per the K-word's guardrail a falsifier-fired attempt halts; tier B (recency-weighted, class-conditioned horizon — regulate by reliability and tempo) is the recommended resumption, with the K=8 reference as a same-schedule arm · next-falsifiable: tier B on a word; the straddle term (twice-confirmed dominant P3 component) is the separate named target after it
+**TIER B (Exp 171, NEGATIVE by F5 — THE GAP LAW; HALTED).** The tempo-regulated median
+horizon transiently dips below the SLOW half-period → premature stationary locks INSIDE
+broken segments (3–4 abortive cycles, benefit halved: 0.2420 vs b8's same-run 0.4423) —
+while posting the lineage's BEST valid margin (−0.0698) and genuine regulation (P7 pass,
+pegged 0.137). With tier A: the run distribution is bimodal (flickers 1–9, plateaus 24–84);
+the magic 8 sat in the GAP by designer knowledge; central statistics undershoot, pooled
+extremes overshoot. Measured trade-off axis: horizon-down = honest-world gentleness,
+horizon-up = broken-world persistence. Straddle projection held a THIRD time (margin 0.020).
+
+**STATUS.** state: halted (tiers A+B negative; gap-seeking revision awaits a word) · latest: Exp 171 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, separators and laws (155–166), lock controller (167), ratchet law (168), descent driver + penalty formula (169), conditioning lesson (170), gap law + trade-off axis (171) · why: both naive endogenizations falsified from opposite sides of the measured gap; the gap-seeking rule (recent-max+1) is the derived remaining candidate · next-falsifiable: tier B-revisited on a word (recent-max+1, b8 same-schedule arm, identical falsifiers); then the thrice-confirmed straddle term
