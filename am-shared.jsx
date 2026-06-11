@@ -93,7 +93,7 @@ function Footer(){
     <footer className="foot">
       <div className="foot-in">
         <span>active_monkey · <span className="muted">free energy = surprise = the reward</span></span>
-        <span>the trail lives in <a href="https://github.com/Mirrorad1/active_monkey/blob/main/EXPERIMENTS.md" target="_blank" rel="noopener">EXPERIMENTS.md</a> — a little mind, coming online.</span>
+        <span>the trail lives in <a href="https://github.com/Mirrorad1/active_monkey/blob/main/EXPERIMENTS.md" target="_blank" rel="noopener">EXPERIMENTS.md</a> — a small agent, learning its world.</span>
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>active_monkey — understanding the world from surprise alone</title>
-<meta name="description" content="An autonomous research log: an active-inference agent that learns from scratch using nothing but its own surprise. 35 experiments, honest results, one little mind coming online.">
+<meta name="description" content="An autonomous research log: a tiny active-inference agent learning its world from experience — a toy-scale open research lab.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
@@ -178,7 +178,7 @@ function Hero({tally, status}){
         <div>
           <div className="kicker">An autonomous research log · active inference</div>
           <h1 className="h-display">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
-          <p className="lead">No rewards. Nothing pretrained. Word-labels only ever taught — every value and concept self-formed. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly builds a little mind that <b>perceives, learns facts, wants things, and acts.</b></p>
+          <p className="lead">No rewards. Nothing pretrained. Word-labels only ever taught — every value and concept self-formed. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly assembles a toy agent that <b>localizes, learns its map, forms preferences, and acts — in a 4×4 world it has to figure out from experience.</b></p>
           <div className="hero-cta">
             <a className="btn btn-primary" href="journey.html">Follow the journey →</a>
             <a className="btn btn-ghost" href="open_problem.html">The open problem</a>
@@ -189,6 +189,7 @@ function Hero({tally, status}){
             <div className="stat win"><b className="tabnum">{positives}</b><span>positives</span></div>
             <div className="stat"><b className="tabnum">{walls}</b><span>honest walls</span></div>
           </div>
+          <p style={{marginTop:'22px', fontSize:'15px', color:'var(--ink-2)', fontFamily:"var(--serif)", lineHeight:1.55, maxWidth:'52ch'}}>Everything here is toy scale (4×4 worlds, 16 colors), every experiment predeclares its falsifiers before running, negative results are logged as negatives, and since Exp 152 every verdict is checked by a blinded verifier. <a href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener" style={{color:'var(--accent)', fontWeight:500}}>Open on GitHub ↗</a></p>
         </div>
         <div className="hero-side">
           <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
@@ -213,7 +214,7 @@ function Lenses(){
         <Reveal className="sec-head">
           <div className="kicker">The big idea</div>
           <h2 className="h-section">One principle, three lenses.</h2>
-          <p>The whole project rides on a single bet from theoretical neuroscience: a mind is just a thing that tries to <em>not be surprised</em>. Perception, learning, wanting, acting — all of it falls out of minimizing free energy. Three thinkers keep it honest.</p>
+          <p>The whole project rides on a single bet borrowed from theoretical neuroscience: adaptive behavior falls out of <em>minimizing surprise</em>. Perception, learning, wanting, acting — all of it follows. Three thinkers keep it honest.</p>
         </Reveal>
         <Reveal className="lenses" delay={80}>
           {AM_LENSES.map((l,i)=>(
@@ -246,7 +247,7 @@ function HowItWorks(){
           </div>
           <div className="col subject">
             <div className="lab">The subject</div>
-            <h3>A mind built from math</h3>
+            <h3>An agent built from math</h3>
             <p>What it studies is a tiny active inference agent. There is no language model inside it, and nothing pretrained. The embodied creature gets no dataset — just a small generative model dropped into a world, updating itself to be less surprised by what it senses. (The early language experiments streamed a small text corpus as sensory input; the embodied creature that followed does not.) Everything it comes to know, it built from its own experience.</p>
           </div>
         </Reveal>
@@ -255,7 +256,7 @@ function HowItWorks(){
           <div className="steps">a hypothesis <span className="ar">→</span> build the agent <span className="ar">→</span> drop it in a tiny world <span className="ar">→</span> measure its surprise <span className="ar">→</span> keep what lowers it <span className="ar">→</span> log it honestly <span className="ar">→</span> again</div>
         </Reveal>
         <Reveal className="how-note" delay={120}>
-          <p>So when you watch it learn, that isn't the language model talking. It is a little mind made of math, figuring out its world from nothing. The LLM just makes it possible to keep running these experiments without me babysitting every one.</p>
+          <p>So when you watch it learn, that isn't the language model talking. It is a small agent made of math, learning its world from experience plus one innate anchor. The LLM just makes it possible to keep running these experiments without me babysitting every one.</p>
         </Reveal>
       </div>
     </section>
@@ -268,7 +269,7 @@ function Climb({exps}){
       <div className="wrap">
         <Reveal className="sec-head">
           <div className="kicker">The climb · five acts</div>
-          <h2 className="h-section">A little mind, coming online.</h2>
+          <h2 className="h-section">A small agent, learning its world.</h2>
           <p>Every experiment is one hypothesis and its honest result. They read as an ascent — each act a question the agent had to answer before it could climb to the next. The log is append-only, so it keeps growing.</p>
         </Reveal>
         <div className="climb">
@@ -362,7 +363,7 @@ function DeepDive(){
         <Reveal className="dd">
           <div>
             <div className="kicker slate">The deep dive</div>
-            <h2 style={{marginTop:10}}>Why a mind won't grow a concept on its own.</h2>
+            <h2 style={{marginTop:10}}>Why unsupervised concepts didn't form in the regime we tested.</h2>
             <p>The hardest wall, stated precisely in mathematics: where free-energy minimization stops, why an unsupervised "concept" refuses to crystallize — and the exact footholds that break the symmetry.</p>
           </div>
           <a className="btn btn-primary" href="open_problem.html">Read the open problem →</a>
