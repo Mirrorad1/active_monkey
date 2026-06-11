@@ -425,6 +425,29 @@ The loop marks items it has consumed by indenting a response under them:
     Implication line now names the generalizability tier claimed), loop/README.md table,
     RESUME.md map. Lands in PR #24 (the steering stack itself merged in PR #23).
 
+- [from human, 2026-06-11] "154" — explicit word: run Exp 154, the confirmation increment
+  exactly as the loop's standing recommendation states (fresh seeds; the alarm-answered
+  criterion stated honestly — global drop >= 0.4 + zero detector events + every color
+  grown-and-quiet OR never-re-alarmed-and-quiet, per-color surprise predeclared; no
+  structure-count proxy). Same guardrail binds: the predeclared falsifier is final; a failed
+  arm halts with the result logged. Resolve the growth question first — whichever way 154 lands
+  (pass -> wall re-bounded to the unnormalized-footprint convention, normalized-predictive
+  switch proposed; fail -> wall re-confirmed, both cracks spent).
+  THEN, once 154 closes the growth question, turn to the **meta-calibration-n3** direction
+  (loop/directions/meta-calibration-n3.md) — the N3 "agency over metacognition" rung of the
+  N-order self-modeling ladder (full design: docs/specs/n-order-self-modeling.md). This is a
+  natural successor, NOT an interruption: N3's hard PREREQ is a working INTERNAL N2 (precision/
+  confidence + a noise-vs-structural-vs-volatility classifier), and the graded-uncertainty
+  (Exp 85-91) + surprise-detector / structural-inadequacy work (Exp 128-153) is exactly that
+  machinery — so first CONFIRM that body satisfies the N2 prereq (meta-d' > 0: confidence
+  tracks accuracy; the detector separates noise from structural mismatch), finish it if it
+  falls short, THEN start N3 rung 1 (construct the regime where N2 is systematically wrong;
+  the load-bearing test is that N3 beats N2-only AND is not reproducible by offline retuning of
+  N2). Scope fences UNCHANGED: M4a increment 1c stays halted behind its own word; mirro/vela/
+  nira remain untouched reference spines (N3 runs on forks per the card's fork-only discipline);
+  FROZEN untouched. Honesty: higher N is NOT "more conscious" — functional control competencies
+  only; inner experience stays unverified both ways (VALIDATION.md).
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
