@@ -85,6 +85,13 @@ throughout).**
   value-seeking action (Exp 30 analog on the continuous value field). FAIL = valence
   doesn't track the predictability structure the twin's does, or nav doesn't reach
   preferred regions above chance.
+  **M4 SUBSTRATE LIMIT (documented at Exp 147-149):** predictability-grounded
+  valence on this substrate preserves ORDERING (Spearman > 0.6 in 23/24 runs) but
+  compresses DYNAMIC RANGE (~0.65 vs ~0.84 reliable share) — Gaussian emission
+  footprints retain neighbor-overlap entropy that categorical columns do not. Both
+  mechanism hypotheses (uncalibrated bar; port infidelity) were tested and refuted;
+  the limit is real. Accepted on the human's word; ordering is the load-bearing
+  property for the opinion chain.
 - **M5 — words + the chain end-to-end.** teach_word / answer_* on the continuous
   creature (taught labels, content self-formed — the RECIPE's last links);
   converse-parity check against the tabular capstone. FAIL = the few-shot word↔concept

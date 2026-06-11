@@ -4400,3 +4400,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   far. Self-grade: n/a. THE MIGRATION IS HALTED awaiting explicit human word.
 - Next: nothing on this thread until the consult is answered ("m4c" runs the
   faithful-port ablation).
+
+## Exp 149 — continuous-creature rung M4c: the faithful rule does NOT close the gap — the valence compression is a genuine substrate property, now documented as the M4 limit (NEGATIVE; the port-infidelity hypothesis refuted; the want/act chain replicates a third time)
+- Plain: The suspected translation error was fixed — the creature now judges
+  predictability from its single best position guess, exactly as the original does —
+  and the gap barely moved. The reason is now visible in the numbers: even standing
+  exactly at a dependable spot, the continuous creature's learned sense of "what
+  color is here" is a soft blur that overlaps its neighbors, so its certainty never
+  approaches the old table's near-perfect confidence. Its feelings have the right
+  ORDER (it prefers exactly what the twin prefers, in every run, for the third
+  experiment running) but a compressed RANGE — about sixty-five cents of feeling
+  concentrated where the twin puts eighty-five. That is a property of carrying a
+  smooth map instead of a table, and by the predeclared rule it is now documented as
+  the substrate's M4 limit rather than chased further.
+- Setup (predeclared in the script docstring before running): Exp 148 byte-for-byte
+  except the valence weight = exp(−H(predictive at the posterior MEAN, Σ_eval=0.01I))
+  — the tabular rule's true analog — and fresh seeds 16–23. Same twin-relative bar.
+- Result: NEGATIVE — P1a 0/8 (gaps −0.151…−0.183; twin 0.814–0.863, continuous
+  0.631–0.705). The contrast diagnostic shows the faithful rule WORKS directionally
+  (reliable-half weights 0.34–0.43 vs noisy 0.19–0.23, ratio ~1.8–2.1×) but absolute
+  weights stay far below the twin's ~1.0: the learned footprints (NIW Σ ≈ 0.35² +
+  scatter) overlap neighbors, leaving ~1 nat of residual entropy at reliable cells
+  that no point evaluation removes. P1b 8/8, P2 7/8 (seed 20 the miss), P3 8/8 — the
+  third independent replication of the want/act chain. Suite 108 green.
+- The M4 substrate limit (documented, with three-experiment provenance): on the
+  continuous substrate, predictability-grounded valence preserves ORDERING
+  (Spearman > 0.6 in 23/24 runs across Exp 147–149) but compresses DYNAMIC RANGE
+  (reliable-set share ~0.65 vs the tabular ~0.84 at this noise level), because
+  Gaussian emission footprints retain neighbor-overlap entropy that categorical
+  columns do not. Functionally: the creature wants the same things in the same order
+  and acts on them identically; its preferences are less sharply contrasted in
+  magnitude. For the moonshot chain (opinions formed from experience), ordering is
+  the load-bearing property.
+- RECOMMENDED (per the predeclared falsifier clause; consult posted): ACCEPT the
+  limit and proceed to M5 (words + the chain end-to-end), with the limit logged in
+  the card. No further valence variants.
+- Honest caveat: "limit" binds to this valence rule family and this noise level/
+  geometry (a sharper innate footprint σ would narrow it — untried, and would be a
+  different anchor, not a fix); seed 20's P2 miss is the second navigation outlier in
+  three runs (~1/8 rate, unexplained, logged); the twin's near-1.0 weights partly
+  reflect its identity-table convergence on a non-aliased world — the comparison is
+  fair but the world is the friendly one.
+- Verdict: NEGATIVE (P1a as predeclared; the second mechanism hypothesis refuted) /
+  NEW INSIGHT (the ordering-vs-range decomposition of valence across substrates).
+  Self-grade: n/a. THE MIGRATION IS HALTED awaiting the accept-and-proceed word.
+- Next: on the human's word — M5 (teach_word / answer chain, converse parity), the
+  RECIPE's last links.

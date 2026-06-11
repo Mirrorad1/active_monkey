@@ -344,6 +344,16 @@ The loop marks items it has consumed by indenting a response under them:
     Sigma_eval = 0.01 I)) — the tabular rule's true analog (it scores at argmax(qs));
     fresh seeds 16-23; same twin-relative bar (>= twin - 0.10, floor 0.55). A
     remaining gap > 0.10 becomes the documented substrate limit.
+  → [loop, 2026-06-10] M4c NEGATIVE (Exp 149): the faithful rule does NOT close the
+    gap (-0.151..-0.183 in 8/8) — the port-infidelity hypothesis is refuted and the
+    valence compression is a GENUINE SUBSTRATE PROPERTY, now documented as the M4
+    limit: ordering preserved (Spearman > 0.6 in 23/24 runs across Exp 147-149),
+    dynamic range compressed (~0.65 vs ~0.84 reliable share) because learned Gaussian
+    footprints retain neighbor-overlap entropy that categorical columns do not.
+    The want/act chain replicated a third time (P1b 8/8, P2 7/8, P3 8/8).
+    RECOMMENDED (as predeclared in the falsifier clause): ACCEPT the limit and
+    proceed to M5 (words + converse parity, the RECIPE's last links) — no further
+    valence variants. Awaiting word ("m5" proceeds).
 
 (empty — drop ideas above this line's section freely)
 

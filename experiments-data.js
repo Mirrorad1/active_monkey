@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:148, breakthrough:6, positive:85, wall:24, partial:33, from:4.81, to:4.00 };
+window.AM_TALLY = { total:149, breakthrough:6, positive:85, wall:24, partial:34, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1495,7 +1495,17 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 147's exact protocol on never-run seeds with the previously-unrecorded twin share logged and the bar restated twin-relative — no mechanism changes, per the authorized recommendation.",
     result:"P1a 0/8 (the halt; gaps -0.160 to -0.189); rank-tracking 7/8; navigation 8/8 with occupancy 0.62-0.85; mirrored favorites opposite 8/8. The port-infidelity diagnosis (argmax-point vs belief-marginalized scoring) is from code reading; the M4c ablation tests it.",
     implication:"The consult recommends M4c — the faithful point-evaluated valence rule on fresh seeds under the same twin-relative bar. If the faithful rule still gaps, that becomes a documented substrate limit rather than a thing to chase.",
-    trace:{ script:"experiments/exp148_m4b_twin_relative.py", output:"experiments/outputs/exp148.txt" } }
+    trace:{ script:"experiments/exp148_m4b_twin_relative.py", output:"experiments/outputs/exp148.txt" } },
+
+  { n:149, kind:"partial", chapter:"frontier",
+    title:"Right order, smaller feelings: the limit is the substrate's own.",
+    one:"Migration rung M4c: the faithful point-evaluated valence rule restores the weight contrast (reliable 0.34-0.43 vs noisy 0.19-0.23) but does NOT close the gap to the twin (-0.151 to -0.183 in 8/8 fresh seeds) — the port-infidelity hypothesis is refuted and the compression is documented as a genuine substrate limit: learned Gaussian footprints keep ~1 nat of neighbor-overlap entropy that categorical columns shed. Ordering held for the third straight experiment (Spearman 8/8; nav 7/8; mirrored favorites opposite 8/8).",
+    plain:"The suspected translation error was fixed — the creature now judges predictability from its single best position guess, exactly as the original does — and the gap barely moved. The reason is visible in the numbers: even standing exactly at a dependable spot, its learned sense of what color is here is a soft blur overlapping the neighbors, so its certainty never matches the old table's near-perfect confidence. Its feelings have the right order — it prefers exactly what the twin prefers, every run, three experiments straight — but a compressed range. That is a property of carrying a smooth map instead of a table, now documented rather than chased.",
+    metric:{ from:0.84, to:0.65, unit:"tabular vs continuous reliable-half valence share — the documented range compression (ordering preserved 23/24)" },
+    setup:"Exp 148 byte-for-byte except the one-line faithful valence rule (predictive entropy at the posterior mean) and fresh seeds — the exact ablation of the diagnosed infidelity, with the falsifier predeclaring that a remaining gap becomes the documented limit.",
+    result:"Gap unchanged (0/8 on the twin-relative bar); contrast restored directionally (1.8-2.1x); chain replicated a third time. Two mechanism hypotheses tested and refuted across three experiments — the honest residue is a real substrate property.",
+    implication:"For the moonshot chain, ordering is what carries opinions, and ordering is intact. The consult recommends accepting the limit and proceeding to M5 — words and converse parity, the RECIPE's last links.",
+    trace:{ script:"experiments/exp149_m4c_faithful_rule.py", output:"experiments/outputs/exp149.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
