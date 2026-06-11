@@ -8,6 +8,9 @@ from numpy.linalg import inv
 from active_loop.continuous import gaussian_product
 from active_loop.creature_continuous import ContinuousPlace
 
+# Arena used for predict_clamped_moments tests: (xmin, xmax, ymin, ymax) = (0, 3, 0, 3)
+_ARENA_3 = (0.0, 3.0, 0.0, 3.0)
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -190,3 +193,128 @@ def test_coverage_95() -> None:
 
     assert cp2.coverage_95(p_boundary_in) is True, "Non-diagonal: inside boundary should be True"
     assert cp2.coverage_95(p_boundary_out) is False, "Non-diagonal: outside boundary should be False"
+
+
+# ---------------------------------------------------------------------------
+# test_clamped_moments_match_monte_carlo
+# ---------------------------------------------------------------------------
+
+def _mc_clamped_moments(
+    mu: np.ndarray,
+    sigma_diag: np.ndarray,
+    delta: np.ndarray,
+    Q_diag: np.ndarray,
+    arena: tuple,
+    n_samples: int = 200_000,
+    seed: int = 0,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Monte Carlo reference: clamp(N(mu+delta, diag(sigma_diag+Q_diag))) moments."""
+    rng = np.random.default_rng(seed)
+    m = mu + delta
+    v = sigma_diag + Q_diag
+    xmin, xmax, ymin, ymax = arena
+    lo = np.array([xmin, ymin])
+    hi = np.array([xmax, ymax])
+    samples = rng.standard_normal((n_samples, 2)) * np.sqrt(v) + m
+    samples = np.clip(samples, lo, hi)
+    mc_mean = samples.mean(axis=0)
+    mc_var = samples.var(axis=0)
+    return mc_mean, mc_var
+
+
+def test_clamped_moments_match_monte_carlo() -> None:
+    """predict_clamped_moments matches 200k-sample Monte Carlo: mean within 0.01,
+    variance within 0.01 for several (mu, Sigma_diag, delta) cases including
+    (i) far from walls, (ii) mean pushed past a wall, (iii) straddling a wall."""
+    arena = _ARENA_3
+    Q_diag = np.array([0.05 ** 2, 0.05 ** 2])
+    Q = np.diag(Q_diag)
+
+    # Each case: (mu, sigma_diag, delta, description)
+    cases = [
+        # (i) far from walls: center of arena, small delta
+        (np.array([1.5, 1.5]), np.array([0.3, 0.3]), np.array([0.1, 0.1]), "far_from_walls"),
+        # (ii) mean pushed past upper-right wall
+        (np.array([2.8, 2.8]), np.array([0.4, 0.4]), np.array([0.8, 0.8]), "mean_past_wall"),
+        # (iii) straddling: mean near lower-left wall
+        (np.array([0.3, 0.3]), np.array([0.5, 0.5]), np.array([-0.5, -0.5]), "straddle_lo_wall"),
+        # (iv) large variance near upper wall on x only
+        (np.array([2.5, 1.5]), np.array([0.8, 0.2]), np.array([0.4, 0.0]), "large_var_near_wall"),
+    ]
+
+    for seed_offset, (mu, sigma_diag, delta, desc) in enumerate(cases):
+        Sigma = np.diag(sigma_diag)
+        cp = ContinuousPlace(mu.copy(), Sigma.copy(), arena)
+        cp.predict_clamped_moments(delta, Q)
+        analytic_mean = cp.mu
+        analytic_var = np.diag(cp.Sigma)
+
+        mc_mean, mc_var = _mc_clamped_moments(mu, sigma_diag, delta, Q_diag, arena, seed=seed_offset)
+
+        np.testing.assert_allclose(
+            analytic_mean, mc_mean, atol=0.01,
+            err_msg=f"case={desc}: mean mismatch (analytic={analytic_mean}, mc={mc_mean})",
+        )
+        np.testing.assert_allclose(
+            analytic_var, mc_var, atol=0.01,
+            err_msg=f"case={desc}: variance mismatch (analytic={analytic_var}, mc={mc_var})",
+        )
+
+
+# ---------------------------------------------------------------------------
+# test_clamped_moments_no_wall_equals_naive
+# ---------------------------------------------------------------------------
+
+def test_clamped_moments_no_wall_equals_naive() -> None:
+    """Far from walls, predict_clamped_moments == naive predict (mu+delta, Sigma+Q) to 1e-6."""
+    # Use a large arena so the mean + delta is nowhere near a wall
+    arena = (0.0, 100.0, 0.0, 100.0)
+    mu = np.array([50.0, 50.0])
+    sigma_diag = np.array([0.4, 0.6])
+    Sigma = np.diag(sigma_diag)
+    delta = np.array([0.3, -0.2])
+    Q_diag = np.array([0.05 ** 2, 0.05 ** 2])
+    Q = np.diag(Q_diag)
+
+    cp_clamped = ContinuousPlace(mu.copy(), Sigma.copy(), arena)
+    cp_clamped.predict_clamped_moments(delta, Q)
+
+    cp_naive = ContinuousPlace(mu.copy(), Sigma.copy(), arena)
+    cp_naive.predict(delta, Q)
+
+    np.testing.assert_allclose(
+        cp_clamped.mu, cp_naive.mu, atol=1e-6,
+        err_msg="Far-from-wall: clamped-moments mean should equal naive mean",
+    )
+    np.testing.assert_allclose(
+        np.diag(cp_clamped.Sigma), np.diag(cp_naive.Sigma), atol=1e-6,
+        err_msg="Far-from-wall: clamped-moments diagonal variance should equal naive variance",
+    )
+
+
+# ---------------------------------------------------------------------------
+# test_clamped_moments_shrinks_variance_at_wall
+# ---------------------------------------------------------------------------
+
+def test_clamped_moments_shrinks_variance_at_wall() -> None:
+    """Mean pushed well past a wall -> post variance on that axis < pre variance + Q
+    (wall information gained through moment-matched clamping)."""
+    arena = _ARENA_3
+    # Push x well past the upper wall: mu_x=2.9, delta_x=+1.5 -> pre-clamp m_x=4.4 >> xmax=3.0
+    mu = np.array([2.9, 1.5])
+    sigma_diag = np.array([0.5, 0.5])
+    Sigma = np.diag(sigma_diag)
+    delta = np.array([1.5, 0.0])
+    Q_diag = np.array([0.05 ** 2, 0.05 ** 2])
+    Q = np.diag(Q_diag)
+
+    pre_var_x = sigma_diag[0] + Q_diag[0]  # naive pre-clamp variance on x
+
+    cp = ContinuousPlace(mu.copy(), Sigma.copy(), arena)
+    cp.predict_clamped_moments(delta, Q)
+    post_var_x = cp.Sigma[0, 0]
+
+    assert post_var_x < pre_var_x, (
+        f"Expected variance to shrink at wall (wall information gained): "
+        f"post_var_x={post_var_x:.6f} should be < pre_var_x={pre_var_x:.6f}"
+    )
