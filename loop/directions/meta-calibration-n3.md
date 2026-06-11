@@ -131,4 +131,14 @@ statistic measures TEMPORAL compressibility; place-conditional unreliability bel
 the Exp 157 channel. The two N2 pieces factor the predicament space — complementarity
 measured, not assumed.
 
-**STATUS.** state: active (prereq build) · latest: Exp 158 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158) · why: next rung on self-modeling ladder; Exp 155/156 pinned what to build; Exp 157+158 delivered both N2 pieces · next-falsifiable: the prereq RE-CONFIRMATION (Exp 155 protocol with the new channel + classifier, per-fork-randomized regimes per the verifier's determinism flag) — pass opens N3 rung 1
+**PREREQ SATISFIED (Exp 159, POSITIVE).** Re-confirmation under per-fork randomization of
+every regime parameter: channel AUROC 0.799–0.820 in 8/8 (pooled 0.8091, random placement —
+the channel never depended on geometry), classifier majorities 8/8 per regime, false-
+structure 0.0000; the parity mechanism (Exp 158) confirmed out-of-sample (ρ → ~0 under
+random placement). The body passes the exam it failed at Exp 155. RUNG 1 IS OPEN per the
+human's standing word. Rung-1 attack surfaces, from the instruments' own measured
+boundaries: period ≥ window (classifier window-purity blind spot), OK-bar-hugging error
+rates (~0.05), ρ near the 0.3 threshold, and reliability varying by an index neither
+instrument carries (color/time rather than place).
+
+**STATUS.** state: active (rung 1 open) · latest: Exp 159 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159) · why: N2 prereq satisfied; the ladder's discriminating-perturbation gate is the next falsifiable step · next-falsifiable: rung 1 — construct a regime where the new N2 is systematically wrong (candidates: period ≥ window; error ≈ OK bar; un-carried index); FAIL = no such regime ⇒ N3 superfluous at this richness (a real negative per the anti-regress rule)

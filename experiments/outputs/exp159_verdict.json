@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "exp159",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_meta_d_prime_randomized": {
+      "pass": true,
+      "reason": "R-PLACE EWMA channel AUROC > 0.55 in 8/8 forks (need 6); pooled AUROC=0.8091 (need >=0.55); F1a forks>0.5=8/8; F1b pooled<=0.5=False"
+    },
+    "P2_separation_randomized": {
+      "pass": true,
+      "reason": "R-CTRL majority=OK: 8/8; R-NOISE majority=NOISE: 8/8; R-STRUCT majority=STRUCTURAL: 8/8; pooled R-NOISE STRUCTURAL-frac=0.0000 (need <=0.05); F2 sub-flags: ctrl=False noise=False struct=False pooled=False"
+    }
+  },
+  "notes": "N2 prereq re-confirmation with Exp 157 EWMA channel and Exp 158 classifier. Per-fork randomization of all regime parameters (p_true_noise, derangement, half_period, noisy_cell_placement) addresses Exp 155 verifier's determinism flag. R-PLACE uses 13 randomly-placed noisy cells (not checkerboard) to remove parity anti-correlation; named ungated prediction: R-PLACE mean_rho ~0 and majority NOISE. POSITIVE opens N3 rung 1."
+}

@@ -4949,3 +4949,61 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   place of the channels that failed it, per-fork-randomized regimes per the verifier's
   determinism flag) — then, if it passes, the N3 rung-1 gate opens with R-STRUCT as the
   deceptive-regime candidate.
+
+## Exp 159 — the N2 prereq is SATISFIED: with the built channel and classifier, the body passes the test it failed at Exp 155 — under per-fork randomization of every regime parameter (POSITIVE; the meta-calibration-n3 gate to rung 1 OPENS, per the human's standing word)
+
+- Plain: four experiments ago the creature failed its self-monitoring exam on both
+  halves. We built the two missing pieces and now re-ran the exam — harder this time,
+  with every world's parameters randomized per run so nothing could pass by lucky
+  geometry. It passed everything: its learned sense of where to trust itself tracks its
+  accuracy even when the unreliable places are scattered at random, and its typed alarm
+  tells "all is well," "world is random," and "world has changed" apart without a single
+  false alarm. The door to the actual question of this chapter — can a mind usefully
+  manage its own self-monitoring? — is now open.
+- Question: with the Exp 157 expected-uncertainty channel and the Exp 158 classifier in
+  place of the channels that failed Exp 155, does the mirro body satisfy the
+  meta-calibration-n3 card's N2 prereq — under per-fork randomization (the Exp 155
+  verifier's determinism flag)?
+- Setup (predeclared in the script docstring before running; FRESH seeds 34–41): forks
+  only, 4000 steps per (fork, regime). Randomized per fork: R-NOISE p_true ∈
+  {0.6,0.7,0.8}; R-STRUCT derangement × half-period ∈ {60,100,140}; R-PLACE with RANDOM
+  13-cell noisy placement (kills Exp 158's parity geometry), p 0.55. P1 (Exp 155's
+  original bands): R-PLACE channel AUROC > 0.55 in ≥6/8 AND pooled ≥ 0.55 (F1: ≤4/8 >
+  0.5 OR pooled ≤ 0.5). P2: classifier majority correct per regime in ≥7/8 each AND
+  pooled R-NOISE false-STRUCTURAL ≤ 0.05 (F2: any ≤5/8 OR > 0.2). POSITIVE = prereq
+  SATISFIED iff P1∧P2. PC1–PC4 instrument-grade. Ungated named prediction: random
+  placement removes the parity anti-correlation (ρ → ~0, label stays NOISE).
+- Result: POSITIVE — P1: AUROC 0.7989–0.8202 in 8/8 (pooled 0.8091); P2: majorities
+  8/8–8/8–8/8, pooled false-STRUCTURAL 0.0000. Preconditions green (min clean−noisy gap
+  0.4452; max drift 0.0310; 39 windows everywhere). Ungated prediction HELD: R-PLACE ρ₁
+  −0.023..+0.102 (pooled 0.0331, vs −0.14..−0.19 on the checkerboard), majority NOISE
+  8/8 — Exp 158's parity mechanism survives its out-of-sample test. Draws spanned all
+  declared ranges (verifier checked).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived POSITIVE/prereq-satisfied
+  independently); flagged that R-NOISE channel AUROCs sit at chance (0.476–0.513,
+  expected — uniform noise has no per-cell differential, P1 scopes R-PLACE only) and
+  that the channel's 0.80 AUROC under random placement shows it never depended on
+  geometry — only the classifier's ρ signature did.
+- Implication (generalizability tier: functional-form, bounded to this body and world
+  family): the N2 prereq holds — confidence tracks accuracy where discrimination is
+  possible, and noise-vs-structure separation is randomization-robust. Per the human's
+  standing word ("…THEN start N3 rung 1"), the gate to rung 1 opens: construct the
+  regime where THIS N2 is systematically wrong (the anti-regress requirement). The
+  instruments' own measured boundaries supply the candidate attack surfaces: period ≥
+  window (the classifier's window-purity blind spot, untested by design), error rates
+  hovering at the 0.05 OK-bar, ρ near the 0.3 threshold, and reliability varying by an
+  index neither instrument carries (color or time rather than place).
+- Honest caveat: this is the confirmation increment of a build — it confirms more than
+  it discovers (the new data are the randomization-robustness, the geometry-free
+  channel, and the confirmed parity mechanism); both instrument FORMS remain provided;
+  P1's discrimination regime is still place-indexed by construction; "prereq satisfied"
+  binds to these four regime families at toy scale, and the boundary worlds named above
+  are exactly where it has NOT been tested — deliberately, since they are rung 1's raw
+  material.
+- Verdict: POSITIVE / CONSOLIDATION (a predeclared confirmation rung; tagged honestly).
+  Self-grade: POSITIVE-SINGLE.
+- Next: N3 rung 1 — the discriminating-perturbation gate (construct a regime where the
+  new N2 is systematically wrong; FAIL = no such regime ⇒ N3 superfluous at this
+  richness, a real negative per the anti-regress rule). Candidates, in order: the
+  period ≥ window blind spot; an OK-bar-hugging error regime; an index the instruments
+  do not carry.
