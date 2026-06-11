@@ -5318,3 +5318,54 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   within 0.05 of (b) on both); controller trigger = 2 violations in last 10 scored
   (trust < 0.85, justified from Exp 163's zero-violation valid baseline); FR2 retained
   solely for the not-config arm.
+
+## Exp 165 — rung 3, attempt 2 FAILS with the mechanism fully pinned: the escalator fires once and stalls — each dial change resets its evidence, and the partially-better dial routes transition windows into the one label class the monitor does not score, silencing distrust while the dial is still wrong (NEGATIVE by F1+F2; no-harm clean 8/8; the false-peace flaw and the horizon constraint specify attempt 3)
+
+- Plain: the dial-setter now works — once. It noticed the world's slow lie, distrusted
+  its self-monitoring, and turned the dial one notch. Then it went quiet, two notches
+  short. Two reasons, both now exact: changing the dial wipes the evidence it had
+  gathered, and the slightly-better dial starts labeling the troublesome moments
+  "structural change" — the one verdict our promise-checker deliberately doesn't check
+  — so the complaints stop while the problem remains. It also never fidgeted in the
+  honest worlds, which is the half that worked. The fix is specified by the failure:
+  give every label a checkable promise, and give the world enough time to teach.
+- Question (predeclared): with the 2-in-10 trigger (justified on Exp 163's
+  zero-violation valid baseline) does N3 (i) recover ≥ 0.6 of (a)'s FR1 gap, (ii) do no
+  harm in FR2/CTRL, (iii) beat every constant dial?
+- Setup: Exp 164 harness, FRESH seeds 82–89; PC4 rescoped to FR1; P1 recovery ≥ 0.6 in
+  ≥7/8 (F1 pooled ≤ 0.3); P1b no-harm ≥ (a) − 0.05 (F1b loss > 0.15); P2 combined
+  margin ≥ 0.15 (F2 any constant within 0.05 on both). Smoke (seed 82) disclosed.
+- Result: NEGATIVE — F1 and F2 fired. Controller fired exactly once in 8/8 FR1 forks
+  (t=2099, 99 steps after the second transition; 200→400; trust 0.800) then stalled;
+  final dial 400 everywhere; score_b(FR1) 0.1795 (worse than pure c_400's 0.2432 — the
+  early W=200 stretch drags it); recovery 0.1111 pooled, 0/8 ≥ 0.6; F2 at W=400 (and
+  W=800 also qualifies — verifier note). P1b PASS 8/8/8/8 (zero dial changes in
+  FR2/CTRL, margins exactly 0). Preconditions green (PC4 FR1 gap 0.9231).
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles);
+  autopsy: the stall is the STRUCTURAL-exclusion FALSE PEACE — at W=400 transition
+  windows go STRUCTURAL, which the monitor does not score, so scored violations fall
+  below 2-in-10 while c_400(FR1) is still only 0.2432; plus buffer-reset latency (one
+  escalation consumes one transition; H=1000 affords too few). Flagged again: all 8
+  forks byte-identical (geometry determinism — one independent realization).
+- Implication (generalizability tier: failure-mode, with one functional-form law): a
+  trust-driven controller whose monitor has an UNSCORED diagnosis class can be silenced
+  by partial improvement that routes evidence into that class — monitor coverage must
+  be total or the controller stalls at false peace. And dial-search under
+  evidence-reset converges at ~one step per world transition — the horizon must afford
+  (dial-distance × transition-period) steps. Both fixes are pre-justifiable: (a) score
+  STRUCTURAL forecasts too (its implicit claim: errors continue, next-100 error ≥
+  0.05 — zero false-fire risk in valid regimes by Exp 163's committed data, where
+  STRUCTURAL labels never occur outside broken/structural contexts); (b) 12000-step
+  sessions with gated scores on the final 4000 (steady-state diagnostic quality — fair
+  to constants, which are stationary; transient cost logged ungated).
+- Honest caveat: attempt 2's design flaw is the finding; no claim about N3's ceiling is
+  licensed — the retune curve shows the information is present (c_800 0.6364, c_1600
+  1.0) and only the controller's evidence plumbing failed; geometry determinism means
+  8 forks = 1 realization for the gated fractions; the trigger and the new
+  STRUCTURAL-forecast rule remain PROVIDED θ_N3 choices (the regress lives at rung 4).
+- Verdict: NEGATIVE / NEW INSIGHT (the false-peace law + escalation-latency law).
+  Self-grade: NEGATIVE.
+- Next: Exp 166 = rung 3, attempt 3 — total-coverage monitor (STRUCTURAL scored:
+  holds iff next-100 error ≥ 0.05), 12000-step sessions, gated scores on the final
+  4000 steps, same P1/P1b/P2 structure and falsifiers. If attempt 3 fails, rung 3 is
+  a documented wall and the consult names it.

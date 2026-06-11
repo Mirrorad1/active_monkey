@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp165",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_recovery_FR1": {
+      "pass": false,
+      "reason": "recovery(b,FR1) >= 0.6 in 0/8 forks (need >= 7); pooled FR1=0.1111; F1 fired=True"
+    },
+    "P1b_no_harm": {
+      "pass": true,
+      "reason": "FR2 forks no-harm=8/8; CTRL forks no-harm=8/8 (need >= 7); F1b fired=False "
+    },
+    "P2_not_config": {
+      "pass": false,
+      "reason": "pooled combined_b=0.1795 max_W(combined_c)=0.6364 (W=800); margin=-0.4569 (need >= 0.15); forks_b_wins=0/8 (need >= 7); F2 fired=True (firing_W=400)"
+    }
+  },
+  "notes": "N3 rung 3 load-bearing test (attempt 2): exp164 attempt 1 failed PC4 (FR2 gap absent) and controller was silent at H=1000 (trust<0.7 never triggered). Attempt 2 rescopes PC4 to FR1 only (FR2 is not-config arm; baseline ~1.0 there) and retightens controller to trust<0.85 (>= 2 violations in 10 = near-zero false-fire per exp163 baseline of ZERO violations in 912 scored labels). P1 scoped to FR1 recovery; P1b guards no-harm in FR2/CTRL; P2 unchanged. POSITIVE: RUNG 3 PASSES. NEGATIVE: RUNG 3 FAILED."
+}

@@ -187,4 +187,12 @@ one level up (the named regress). SALVAGE, measured: no single constant wins the
 pair — best constant combined 0.6364 (W=800) vs 1.0 adaptive. Rung 3's P2 is winnable by an
 adaptive layer and nothing constant.
 
-**STATUS.** state: active (rung 3, attempt 2) · latest: Exp 164 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual separator (155), slope-gate law (156), expected-uncertainty channel (157), classifier (158), randomized protocol (159), deception-tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), measured dial-disjointness + θ_N3 regress datum (164) · why: the load-bearing test is armed and its design flaws are pinned · next-falsifiable: Exp 165 — P1 recovery ≥ 0.6 scoped to FR1 (≥7/8; F1 pooled ≤ 0.3); P1b no-harm (b ≥ a − 0.05 in FR2/CTRL); P2 combined_b − best constant ≥ 0.15 (F2: any constant within 0.05 of b on both); trigger = 2 violations in last 10 scored (trust < 0.85, justified on Exp 163's zero-violation valid baseline)
+**RUNG 3, ATTEMPT 2 (Exp 165, NEGATIVE — F1+F2; stall mechanism pinned).** The controller
+fired once (200→400 at t=2099, 8/8) then stalled at FALSE PEACE: the partially-better dial
+routes transition windows into STRUCTURAL — the unscored class — silencing distrust while
+c₄₀₀(FR1) is still 0.2432; plus evidence-reset latency (one escalation per transition).
+No-harm clean 8/8 (zero changes in FR2/CTRL). Laws: monitor coverage must be TOTAL or
+partial improvement silences the controller; dial-search under evidence reset needs horizon
+≥ dial-distance × transition-period.
+
+**STATUS.** state: active (rung 3, attempt 3) · latest: Exp 165 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, residual separator (155), slope-gate law (156), channel (157), classifier (158), randomized protocol (159), tempo law (160–161), R-SLOW (162), forecast-scoring monitor (163), dial-disjointness (164), false-peace + escalation-latency laws (165) · why: the controller's evidence plumbing, not the information, is what failed — c₈₀₀/c₁₆₀₀ prove the signal is present · next-falsifiable: Exp 166 — total-coverage monitor (STRUCTURAL scored: holds iff next-100 error ≥ 0.05; zero false-fire in valid regimes by Exp 163's committed data), 12000-step sessions, gated scores on the final 4000 (steady state, fair to stationary constants), same P1/P1b/P2; a third failure makes rung 3 a documented wall → consult

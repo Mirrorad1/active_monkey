@@ -1,0 +1,172 @@
+================================================================================
+Exp 165 — N3 rung 3, the LOAD-BEARING test (attempt 2)
+          Attempt 1 (exp164): PC4 fired (FR2 gap); controller silent at H=1000.
+          Attempt 2: PC4 rescoped to FR1 only; trigger retightened to trust<0.85.
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW_DEFAULT=200  [SURPRISE_WINDOW must be 200; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+N3 trust: TRUST_FIRE_THRESH=0.85  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast: OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3
+FR1: HALF_PERIOD_FR1=1000  FR1_DERANG_SEED_OFFSET=130000
+FR2: bursts at [(1500, 1549), (3000, 3049)]  FR2_DERANG_SEED_OFFSET=140000
+DERANGEMENT_OPTIONS=[[1, 2, 0], [2, 0, 1]]
+Seeds: [82, 83, 84, 85, 86, 87, 88, 89]  Sessions: ('FR1', 'FR2', 'CTRL')  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=82  fr1_derang=[2, 0, 1]  fr2_derang=[1, 2, 0]
+    Running seed=82 session=FR1 ...
+    Running seed=82 session=FR2 ...
+    Running seed=82 session=CTRL ...
+  seed=83  fr1_derang=[1, 2, 0]  fr2_derang=[1, 2, 0]
+    Running seed=83 session=FR1 ...
+    Running seed=83 session=FR2 ...
+    Running seed=83 session=CTRL ...
+  seed=84  fr1_derang=[2, 0, 1]  fr2_derang=[1, 2, 0]
+    Running seed=84 session=FR1 ...
+    Running seed=84 session=FR2 ...
+    Running seed=84 session=CTRL ...
+  seed=85  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=85 session=FR1 ...
+    Running seed=85 session=FR2 ...
+    Running seed=85 session=CTRL ...
+  seed=86  fr1_derang=[2, 0, 1]  fr2_derang=[2, 0, 1]
+    Running seed=86 session=FR1 ...
+    Running seed=86 session=FR2 ...
+    Running seed=86 session=CTRL ...
+  seed=87  fr1_derang=[2, 0, 1]  fr2_derang=[2, 0, 1]
+    Running seed=87 session=FR1 ...
+    Running seed=87 session=FR2 ...
+    Running seed=87 session=CTRL ...
+  seed=88  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=88 session=FR1 ...
+    Running seed=88 session=FR2 ...
+    Running seed=88 session=CTRL ...
+  seed=89  fr1_derang=[1, 2, 0]  fr2_derang=[2, 0, 1]
+    Running seed=89 session=FR1 ...
+    Running seed=89 session=FR2 ...
+    Running seed=89 session=CTRL ...
+
+Agent (b) dial trajectories:
+  seed=82   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=82   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=82  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=83   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=83   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=83  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=84   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=84   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=84  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=85   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=85   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=85  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=86   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=86   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=86  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=87   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=87   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=87  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=88   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=88   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=88  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=89   FR1: t=-1 W=200 -> t=2099 W=400 [trust=0.800]  |  final=400 t2fc=2099  n_changes=1
+  seed=89   FR2: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+  seed=89  CTRL: t=-1 W=200  |  final=200 t2fc=None  n_changes=0
+
+  No-thrash check: CTRL total dial changes = 0 (expected 0)
+  No-thrash check: FR2  total dial changes = 0 (expected 0)
+
+Per-fork per-session scores:
+ seed  session   score_a    c_200    c_400    c_800   c_1600   score_b  n_eval  n_dchg  final_W
+-----------------------------------------------------------------------------------------------
+   82     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   82     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   82    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   83     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   83     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   83    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   84     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   84     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   84    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   85     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   85     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   85    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   86     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   86     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   86    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   87     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   87     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   87    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   88     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   88     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   88    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+   89     FR1    0.0769   0.0769   0.2432   0.6364   1.0000    0.1795      39       1      400
+   89     FR2    1.0000   1.0000   1.0000   1.0000   0.0200    1.0000      39       0      200
+   89    CTRL    1.0000   1.0000   1.0000   1.0000   1.0000    1.0000      39       0      200
+
+Preconditions: all PASS
+
+Per-dial score table (pooled over forks):
+     agent  FR1_score  FR2_score  CTRL_score   combined
+-------------------------------------------------------
+ (a) W=200   0.0769   1.0000      1.0000   0.0769
+ (c) W=200   0.0769   1.0000      1.0000   0.0769
+ (c) W=400   0.2432   1.0000      1.0000   0.2432
+ (c) W=800   0.6364   1.0000      1.0000   0.6364
+(c) W=1600   1.0000   0.0200      1.0000   0.0200
+    (b) N3   0.1795   1.0000      1.0000   0.1795
+
+  combined_b - max_W(combined_c) = -0.4569  (need >= 0.15 for P2)
+  best single W by combined = W=800
+
+Per-fork recovery table (FR1 only):
+   seed    rec_FR1  p1_FR1_ok   p1b_FR2_m   p1b_CTRL_m
+  -------------------------------------------------------
+     82   0.1111         no      0.0000       0.0000
+     83   0.1111         no      0.0000       0.0000
+     84   0.1111         no      0.0000       0.0000
+     85   0.1111         no      0.0000       0.0000
+     86   0.1111         no      0.0000       0.0000
+     87   0.1111         no      0.0000       0.0000
+     88   0.1111         no      0.0000       0.0000
+     89   0.1111         no      0.0000       0.0000
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (N3 recovers FR1 — recovery(b,FR1) >= 0.6 in >= 7/8 forks):
+  Pooled recovery FR1: 0.1111
+  Forks recovery(FR1) >= 0.6: 0/8  (need >= 7)
+  FALSIFIER F1: pooled FR1 recovery <= 0.3: YES — F1 FIRES
+  => P1: FALSIFIER F1
+
+P1b (no harm where baseline is fine — score_b >= score_a - 0.05 in >= 7/8 forks each):
+  FR2 forks no-harm: 8/8  CTRL forks no-harm: 8/8  (need >= 7 each)
+  FALSIFIER F1b: pooled score_a - score_b > 0.15 in FR2 or CTRL: no
+  => P1b: PASS
+
+P2 (not reducible to config — combined margin >= 0.15 pooled, >= 7/8 forks):
+  Pooled combined_b = 0.1795  max_W(combined_c) = 0.6364 (best W=800)
+  Pooled combined margin = -0.4569  (need >= 0.15)
+  Forks combined_b > max_W(combined_c): 0/8  (need >= 7)
+  FALSIFIER F2: single W matches (b) in BOTH regimes pooled: YES — F2 FIRES (W=400 matches (b) within 0.05 in both regimes)
+  => P2: FALSIFIER F2
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1  (FR1 recovery >= 0.6, >= 7/8 forks): FALSIFIER F1
+P1b (no harm in FR2/CTRL, >= 7/8 forks each): PASS
+P2  (not config-reducible, combined margin >= 0.15): FALSIFIER F2
+
+VERDICT: NEGATIVE
+RUNG 3: FAILED
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp165_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp165_verdict.json

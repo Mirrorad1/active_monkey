@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:164, breakthrough:7, positive:92, wall:25, partial:40, from:4.81, to:4.00 };
+window.AM_TALLY = { total:165, breakthrough:7, positive:92, wall:25, partial:41, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1821,7 +1821,18 @@ window.AM_EXPERIMENTS = [
     result:"NO VERDICT — PC4 fired (FR2 gap 0.0000; FR1 gap 0.9231). Controller: 0 dial changes in 24 cells. Retune curve (identical 8/8): FR1 0.077/0.243/0.636/1.000 and FR2 1.000/1.000/1.000/0.020 across W=200/400/800/1600. The blinded verifier confirmed every precondition mapping and the controller silence independently.",
     implication:"Three products: the P-structure must scope recovery to the regime that actually breaks the baseline and demand no-harm elsewhere; the controller trigger must be justified on prior committed data (Exp 163's valid regimes had zero violations in 912 scored labels, so fire-on-2-in-10 has near-zero false-fire risk) rather than inherit a density-sensitive bar; and the disjointness rung 3 needs is now measured fact. Attempt 2 is fully specified by the failure.",
     caveat:"this is a design-failure entry, not a result on the rung-3 hypothesis (no verdict was licensed and none is claimed); the retune curve is geometry- determined (8 forks = one schedule per regime); the smoke previewed the controller silence on seed 74 before the full run — the predeclaration was deliberately left unchanged and run as written, which is what gave PC4 the chance to catch the second flaw; the 0.85 trigger for the redesign is justified on prior committed data but remains a PROVIDED θ_N3 choice — its own regime-sensitivity is a named open issue for rung 4.",
-    trace:{ script:"experiments/exp164_n3_loadbearing.py", output:"experiments/outputs/exp164.txt" } }
+    trace:{ script:"experiments/exp164_n3_loadbearing.py", output:"experiments/outputs/exp164.txt" } },
+
+  { n:165, kind:"partial", chapter:"frontier",
+    title:"The dial-setter works once, then falls for a false peace — and the stall mechanism is pinned exactly.",
+    one:"Rung 3, attempt 2, NEGATIVE by F1+F2 with the autopsy complete: the controller correctly distrusted its self-monitoring and escalated the window once (200 to 400, at t=2099 — 99 steps after the second hidden transition, in 8/8 forks) then stalled two notches short. Two pinned mechanisms: each dial change wipes the gathered evidence (one escalation consumes one world transition), and the partially-better dial routes transition windows into STRUCTURAL — the one label class the promise-checking monitor deliberately does not score — so distrust dries up while the dial is still wrong. The no-harm half was perfect: zero dial changes and zero loss in both honest worlds, 8/8.",
+    plain:"The dial-setter now works — once. It noticed the world's slow lie, distrusted its self-monitoring, and turned the dial one notch. Then it went quiet, two notches short. Two reasons, both now exact: changing the dial wipes the evidence it had gathered, and the slightly-better dial starts labeling the troublesome moments structural change — the one verdict our promise-checker deliberately doesn't check — so the complaints stop while the problem remains. It never fidgeted in the honest worlds, which is the half that worked. The fix is specified by the failure: give every label a checkable promise, and give the world enough time to teach.",
+    metric:{ from:0.1111, to:0.6, unit:"FR1 recovery achieved vs the predeclared bar" },
+    setup:"Exp 164's harness with the redesign that failure specified: trigger = two violations in the last ten scored forecasts (justified on Exp 163's zero-violation valid baseline), PC4 rescoped to the regime that actually breaks the baseline, no-harm clauses added. Fresh seeds 82-89; smoke disclosed; all falsifiers predeclared; blinded verification before logging.",
+    result:"NEGATIVE — F1 (pooled recovery 0.1111, 0/8 forks at 0.6) and F2 (constant W=400 matches agent b within 0.05 on both regimes; W=800 also qualifies) fired; P1b no-harm passed 8/8 everywhere. The blinded verifier derived NEGATIVE from first principles and produced the timing autopsy relating the single firing to the H=1000 transition schedule.",
+    implication:"Two laws for trust-driven controllers: a monitor with an unscored diagnosis class can be silenced by partial improvement that routes evidence into that class — coverage must be total or the controller stalls at false peace; and dial-search under evidence reset converges at one step per world transition, so the horizon must afford dial-distance times transition-period. Attempt 3 is fully specified: score STRUCTURAL's implicit promise too (errors continue), 12000-step sessions, steady-state scoring on the final third.",
+    caveat:"attempt 2's design flaw is the finding; no claim about N3's ceiling is licensed — the retune curve shows the information is present (c_800 0.6364, c_1600 1.0) and only the controller's evidence plumbing failed; geometry determinism means 8 forks = 1 realization for the gated fractions; the trigger and the new STRUCTURAL-forecast rule remain PROVIDED θ_N3 choices (the regress lives at rung 4).",
+    trace:{ script:"experiments/exp165_n3_loadbearing2.py", output:"experiments/outputs/exp165.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

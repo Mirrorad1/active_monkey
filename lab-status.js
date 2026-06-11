@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 164, title: "rung 3, attempt 1: NO VERDICT — the triplet design was malformed in two pinned ways (the burst regime opens no gap for the small-window agent, and the trust trigger is itself geometry-sensitive), while the retune curve it produced PROVES the disjointness that rung 3 needs: no single window constant wins both failure regimes", tag: "NEGATIVE" },
-  tally: { total: 164, positive: 102, negative: 36, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 165, title: "rung 3, attempt 2 FAILS with the mechanism fully pinned: the escalator fires once and stalls — each dial change resets its evidence, and the partially-better dial routes transition windows into the one label class the monitor does not score, silencing distrust while the dial is still wrong", tag: "NEGATIVE" },
+  tally: { total: 165, positive: 102, negative: 37, mixed: 22, breakthroughs: 3 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (rung 3, attempt 2)", latest: "Exp 164", next: "Exp 165 — P1 recovery ≥ 0.6 scoped to FR1 (≥7/8; F1 pooled ≤ 0.3); P1b no-harm (b ≥ a − 0.05 in FR2/CTRL); P2 combined_b − best constant ≥ 0.15 (F2: any constant within 0.05 of b on both); trigger = 2 violations in last 10 scored (trust < 0.85, justified on Exp 163's zero-violation valid baseline)" },
+    { name: "meta-calibration-n3", state: "active (rung 3, attempt 3)", latest: "Exp 165", next: "Exp 166 — total-coverage monitor (STRUCTURAL scored: holds iff next-100 error ≥ 0.05; zero false-fire in valid regimes by Exp 163's committed data), 12000-step sessions, gated scores on the final 4000 (steady state, fair to stationary constants), same P1/P1b/P2; a third failure makes rung 3 a documented wall → consult" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
