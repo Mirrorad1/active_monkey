@@ -648,6 +648,15 @@ The loop marks items it has consumed by indenting a response under them:
       color in the fork world) so identity is decisively determined; cost: departs
       from mirro's own world — the "settled self" becomes partly designed.
   (d) Stop the chapter at rung 1 (gate verified; monitor and control unproven).
+  → CONSUMED 2026-06-11: the human chose (a) UPGRADED — direct word (methodology-
+    consultant framing): PC2 strict argmax-constancy is falsified as the rung-2 gate,
+    NOT the monitor; replace with vector-grade PC2' (quiet TV continuity of pi=v/sum v,
+    argmax logged as covariate only), add a value-neutral scramble-captivity arm
+    (generic-surprise / specificity control, P3), a conditional argmax-flicker control
+    (P4), an adaptation diagnostic (D5), fresh seeds 186-193, smoke 186 disclosed, and
+    a three-tier decision rule (rung-2 / rung-1.5 / negative / no-verdict). Full
+    pre-registration committed in loop/directions/identity-n4.md BEFORE any new data;
+    taken up as Exp 178.
 
 (empty — drop ideas above this line's section freely)
 

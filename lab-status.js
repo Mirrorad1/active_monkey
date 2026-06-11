@@ -3,8 +3,8 @@ window.AM_LAB_STATUS = {
   latest_exp: { n: 177, title: "N4 rung 2 (the identity monitor): NO VERDICT by PC2 — the third instrument block in four experiments, and it exposes two things at once: the strict-constancy stability precondition is seed-block-fragile (8/8 in Exp 176, 5/8 here on the adjacent block), while the monitor itself looks robustly sensitive in the ungated diagnostics — AUROC 0.826–0.915 in 8/8 forks, INDEPENDENT of argmax stability.", tag: "NEGATIVE" },
   tally: { total: 177, positive: 104, negative: 46, mixed: 23, breakthroughs: 4 },
   directions: [
+    { name: "identity-n4", state: "active (rung 2, attempt 2 — pre-registered)", latest: "Exp 177", next: "Exp 178 — PC2' vector-grade gate, scramble control (P3 specificity), conditional flicker control (P4), seeds 186-193, decision rule rung-2 / rung-1.5 / negative / no-verdict as pre-registered above" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
-    { name: "identity-n4", state: "halted (rung 2 blocked on PC2 fragility; consult in loop/IDEAS.md awaits a word)", latest: "Exp 177", next: "TBD-human (consult options a–d in loop/IDEAS.md)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

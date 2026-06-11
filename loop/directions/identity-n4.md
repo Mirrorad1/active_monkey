@@ -107,4 +107,64 @@ AUROC 0.826–0.915 in 8/8, argmax-INDEPENDENT (the mismatch reads the v-vector,
 the favorite) — PC2 is a rung-1 concept misapplied as a rung-2 ticket. Consult posted
 in loop/IDEAS.md (recommended: vector-grade PC2v, pre-registered, fresh seeds).
 
-**STATUS.** state: halted (rung 2 blocked on PC2 fragility; consult in loop/IDEAS.md awaits a word) · latest: Exp 177 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176, replicated 3 blocks), the argmax-independent mismatch instrument (177, ungated) · why: three PC2 blocks in four experiments is the predeclared consult trigger · next-falsifiable: TBD-human (consult options a–d in loop/IDEAS.md)
+**RUNG 2, ATTEMPT 2 — PRE-REGISTRATION (Exp 178, committed before any new data).**
+The human's word (2026-06-11): Exp 177's NO VERDICT falsified strict argmax-constancy
+as the rung-2 entry gate, NOT the monitor; re-run with a vector-grade stability
+precondition, controls, and separated claims. Card:
+
+- **Hypothesis (binding).** The identity vector pi = v/sum(v) is locally stable in
+  quiet windows at VECTOR grade even where the argmax flickers; on such a baseline
+  the read-only linear-drift monitor detects identity displacement (high
+  burst-vs-quiet AUROC), SPECIFICALLY (low AUROC under value-neutral captivity),
+  independent of argmax flicker.
+- **Seeds.** FRESH 186-193, both arms same-snapshot same-schedule (Exp 170 binding).
+  Smoke = seed 186, both arms, disclosed.
+- **Arms.** A (identity bursts): verbatim Exp 177 regime — lambda=0.9997, 15000
+  steps, bursts (6000,6800),(9000,9800),(12000,12800), burst color = argmin(v) at
+  onset, relocation rng 160000+seed. B (scramble bursts, generic-surprise control):
+  identical except each burst-step relocation targets a uniformly random cell of the
+  WHOLE grid (color marginal ~ baseline; value-neutral by design), relocation rng
+  175000+seed, qs reset uniform over ALL cells (same disorientation convention,
+  color-neutral).
+- **Instrumentation.** Monitor verbatim Exp 177 (v snapshot every 100 steps; linear
+  drift W=1000, horizon 100; L2 mismatch; BURST/EXCLUDED(1000)/QUIET labels; midrank
+  AUROC). NEW covariates (logged, never gated): per-window TV drift of pi, argmax
+  flicker count, top-2 margin.
+- **Preconditions** (any PC1/PC2'/PC3 failure => NO VERDICT):
+  PC1 ahat_drift < 0.15 (both arms).
+  PC2' (vector-grade quiet continuity, REPLACES PC2): per pre-burst window
+  [bstart-1000, bstart), TV(pi(bstart-1000), pi(bstart)) <= 0.05 in >= 7/8 Arm-A
+  forks per window. Basis (analytic + committed old blocks, NOT the new seeds):
+  quiet occupancy-noise TV ~ 0.006/1000 steps; burst-rate TV ~ 0.15/800 steps; 0.05
+  sits >= 8 sigma above quiet noise and 3x below the burst rate. Argmax constancy in
+  the same windows: covariate only.
+  PC3 confinement >= 90% on burst-color cells (Arm A, unchanged).
+  PC3b (control validity): per scramble burst, observed color-frequency vector
+  within TV <= 0.05 of the fork's own pre-burst-window frequencies in >= 6/8 forks;
+  PC3b failure VOIDS P3 ONLY (ceiling drops to rung-1.5), never P2.
+- **Properties / falsifiers.**
+  P2 (sensitivity, verbatim 177): Arm-A AUROC >= 0.8 in >= 7/8 forks. F2: median
+  Arm-A AUROC <= 0.5.
+  P3 (specificity): AUROC_A - AUROC_B >= 0.2 in >= 6/8 fork-pairs AND median
+  AUROC_B <= 0.65. F3: median AUROC_B >= median AUROC_A - 0.05 (generic-surprise
+  detector).
+  P4 (argmax-independence, conditional): evaluated iff >= 2 Arm-A forks flicker
+  pre-burst; then (i) every flickering fork AUROC >= 0.8 and (ii) quiet-sample
+  AUROC(flicker-window vs stable-window mismatch) in [0.35, 0.65]. If < 2 flickering
+  forks: not-evaluable, no penalty.
+  D5 (adaptation, diagnostic only): onset mismatch (first 2 burst samples) >= 2x
+  late-burst (last 2) — quantifies drift absorption; informs rung 3's actuation
+  window. Never gated.
+- **Decision rule.** RUNG-2 EVIDENCE (POSITIVE): PCs pass + P2 + P3 (P4-i failing,
+  if evaluable, demotes to MIXED). RUNG-1.5 (MIXED): P2 passes but P3 fails on a
+  valid control (sensitive-but-unspecific: regime change, not identity per se), OR
+  P2 passes with PC3b-voided P3 (specificity unresolved). NEGATIVE: F2. NO VERDICT:
+  PC1/PC2'/PC3 failure — and a FOURTH stability block means the stability primitive
+  itself is wrong at this lambda: consult again, no inline redesign.
+- **Honest caveats (pre-registered).** PC2' and all bars designed AFTER Exp 177's
+  ungated diagnostics; mitigation = fresh seeds + this card committed before any new
+  data. The 0.05 TV bar is analytic, not fit to the new block. Monitor FORM, bars,
+  lambda, schedule are PROVIDED. AUROC_B uses scramble-window labels of identical
+  geometry. Exp 177's NO VERDICT is NOT evidence against the monitor.
+
+**STATUS.** state: active (rung 2, attempt 2 — pre-registered) · latest: Exp 177 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176, replicated 3 blocks), the argmax-independent mismatch instrument (177, ungated) · why: the human's word converts the consult into PC2' + controls + separated claims · next-falsifiable: Exp 178 — PC2' vector-grade gate, scramble control (P3 specificity), conditional flicker control (P4), seeds 186-193, decision rule rung-2 / rung-1.5 / negative / no-verdict as pre-registered above
