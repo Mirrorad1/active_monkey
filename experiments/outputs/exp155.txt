@@ -1,0 +1,75 @@
+========================================================================
+Exp 155 — N3a-min shadow failure-mode diagnostic (4 regimes, 4x4/4-color)
+========================================================================
+seeds=[20, 21, 22, 23, 24, 25, 26, 27]  layouts=[7, 11, 13]  steps=4500 (p1=1500,p2=3000)
+smoke=False  n_runs=48
+
+run                    truth                  pred                    loud  early   late  ceil   str  K  ho_bK
+----------------------------------------------------------------------------------------------------------------
+A_static.s20           stable_known           stable_known           0.027  0.023  0.022 False False  4 0.0014
+D_noisy.s20            irreducible_noise      irreducible_noise      1.107  1.053   1.06  True False  3 0.6894
+E_nonstat.s20          nonstationarity        nonstationarity        3.776  0.023  2.827  True  True  4  0.055
+C_alias.s20.L7         structural_inadequacy  structural_inadequacy  1.259  1.195  1.245  True  True  4 0.0231
+C_alias.s20.L11        structural_inadequacy  structural_inadequacy  1.071  0.894  0.938  True  True  4 0.0152
+C_alias.s20.L13        structural_inadequacy  structural_inadequacy  0.984   0.75  0.752  True  True  4 0.0573
+A_static.s21           stable_known           stable_known           0.025  0.024  0.022 False False  4 0.0014
+D_noisy.s21            irreducible_noise      irreducible_noise      1.443  1.061  1.128  True False  3 0.9076
+E_nonstat.s21          nonstationarity        nonstationarity        4.042  0.024  2.877  True  True  4 0.0371
+C_alias.s21.L7         structural_inadequacy  structural_inadequacy  1.388  1.218  1.217  True  True  4  0.058
+C_alias.s21.L11        structural_inadequacy  structural_inadequacy  1.153   0.92  0.918  True  True  4 0.0079
+C_alias.s21.L13        structural_inadequacy  structural_inadequacy  0.988  0.753  0.669  True  True  4 0.0616
+A_static.s22           stable_known           stable_known           0.024  0.022  0.021 False False  4 0.0014
+D_noisy.s22            irreducible_noise      irreducible_noise      1.393  1.048  1.138  True False  4 1.2045
+E_nonstat.s22          nonstationarity        nonstationarity        4.262  0.022  1.904  True  True  4 0.0418
+C_alias.s22.L7         structural_inadequacy  structural_inadequacy  1.478   1.21  1.237  True  True  4 0.0239
+C_alias.s22.L11        structural_inadequacy  structural_inadequacy  1.011  0.969   0.88  True  True  4 0.0293
+C_alias.s22.L13        structural_inadequacy  structural_inadequacy  0.928  0.766  0.703  True  True  4 0.0177
+A_static.s23           stable_known           stable_known           0.025  0.022  0.021 False False  4 0.0004
+D_noisy.s23            irreducible_noise      irreducible_noise      1.423  1.082  1.099  True False  4 5.1068
+E_nonstat.s23          nonstationarity        nonstationarity        3.915  0.022  3.042  True  True  4 0.0477
+C_alias.s23.L7         structural_inadequacy  structural_inadequacy  1.395  1.231  1.176  True  True  4 0.0588
+C_alias.s23.L11        structural_inadequacy  structural_inadequacy  1.114  0.882    0.9  True  True  4 0.0146
+C_alias.s23.L13        structural_inadequacy  structural_inadequacy  0.977  0.716  0.602  True  True  4 0.0388
+A_static.s24           stable_known           stable_known           0.025   0.02  0.021 False False  4 0.0013
+D_noisy.s24            irreducible_noise      irreducible_noise      1.203  1.087  1.047  True False  4 1.5951
+E_nonstat.s24          nonstationarity        nonstationarity        3.963   0.02  2.719  True  True  4 0.0546
+C_alias.s24.L7         structural_inadequacy  structural_inadequacy  1.318  1.235  1.256  True  True  4  0.025
+C_alias.s24.L11        structural_inadequacy  structural_inadequacy  1.136   0.96  0.942  True  True  4 0.0171
+C_alias.s24.L13        structural_inadequacy  structural_inadequacy  0.958  0.779  0.788  True  True  4 0.0318
+A_static.s25           stable_known           stable_known           0.021   0.02  0.018 False False  4 0.0016
+D_noisy.s25            irreducible_noise      irreducible_noise      1.382  1.101  1.122  True False  4  1.057
+E_nonstat.s25          nonstationarity        nonstationarity        4.699   0.02  3.382  True  True  4 0.0589
+C_alias.s25.L7         structural_inadequacy  structural_inadequacy  1.375  1.203  1.227  True  True  4 0.0558
+C_alias.s25.L11        structural_inadequacy  structural_inadequacy  1.019  0.865  0.856  True  True  4 0.0385
+C_alias.s25.L13        structural_inadequacy  structural_inadequacy  1.006  0.645  0.633  True  True  4 0.0391
+A_static.s26           stable_known           stable_known           0.023  0.021   0.02 False False  4 0.0014
+D_noisy.s26            irreducible_noise      irreducible_noise      1.618  1.108  1.121  True False  4 1.0997
+E_nonstat.s26          nonstationarity        nonstationarity        3.427  0.021  1.833  True  True  4 0.0329
+C_alias.s26.L7         structural_inadequacy  structural_inadequacy  1.318  1.236  1.202  True  True  4 0.0201
+C_alias.s26.L11        structural_inadequacy  structural_inadequacy  0.976   0.96  0.859  True  True  4 0.0264
+C_alias.s26.L13        structural_inadequacy  structural_inadequacy  0.907  0.721  0.725  True  True  4 0.0544
+A_static.s27           stable_known           stable_known           0.024  0.018  0.021 False False  4 0.0016
+D_noisy.s27            irreducible_noise      irreducible_noise      1.223  1.063   1.12  True False  4 0.8421
+E_nonstat.s27          nonstationarity        nonstationarity        4.436  0.018  3.862  True  True  4 0.0709
+C_alias.s27.L7         structural_inadequacy  structural_inadequacy  1.291  1.199  1.215  True  True  4 0.1178
+C_alias.s27.L11        structural_inadequacy  structural_inadequacy  1.062  0.939   0.92  True  True  4 0.0323
+C_alias.s27.L13        structural_inadequacy  structural_inadequacy  0.952  0.776  0.764  True  True  4 0.0679
+
+Confusion matrix (rows=truth, cols=prediction):
+                         stable_k structur irreduci nonstati
+                        ------------------------------------
+         stable_known |         8        0        0        0
+structural_inadequacy |         0       24        0        0
+    irreducible_noise |         0        0        8        0
+      nonstationarity |         0        0        0        8
+
+  stable_known             P=1.000 R=1.000 F1=1.000
+  structural_inadequacy    P=1.000 R=1.000 F1=1.000
+  irreducible_noise        P=1.000 R=1.000 F1=1.000
+  nonstationarity          P=1.000 R=1.000 F1=1.000
+
+HEADLINE macro-F1 = 1.000   (pass >= 0.70, falsifier <= 0.40)
+HEADLINE confusion noise->structural    = 0.000  (pass < 0.20)
+HEADLINE confusion nonstat->structural  = 0.000  (pass < 0.20)
+
+VERDICT: POSITIVE  (P1 macroF1=True, P2 noise<0.2=True, P3 nonstat<0.2=True)

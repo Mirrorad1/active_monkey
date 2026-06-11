@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp155",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_macro_f1": {
+      "pass": true,
+      "reason": "macro-F1=1.000 (>=0.70)"
+    },
+    "P2_noise_not_structural": {
+      "pass": true,
+      "reason": "rate=0.000 (<0.20)"
+    },
+    "P3_nonstat_not_structural": {
+      "pass": true,
+      "reason": "rate=0.000 (<0.20)"
+    }
+  },
+  "notes": "N3a-min shadow diagnostic; rule-based classifier (provided); fresh seeds 20-27."
+}

@@ -4700,3 +4700,60 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: per the human's standing word — the N2-prereq confirmation, then the
   meta-calibration-n3 direction; the growth-consult options (normalized switch for
   nira; rigor T1–T17) ride in IDEAS.md.
+
+## Exp 155 — N3a-min: the shadow failure-mode diagnostic separates noise / structure / change / stable on fresh seeds — the gate of the bounded-map open-world ladder passes its predeclared bar, but on hand-built worlds with a provided rule-based readout, and the real insight is the discriminator the smoke run forced (POSITIVE on all bars; NEW INSIGHT = offline replay-NLL is insufficient, the held-out-predictive floor is the faithful shadow analog of live probation)
+- Framing (direction n3-bounded-map-open-world; docs/specs/n3-open-world.md §9). Before any
+  N3 repair controller is allowed to act, the GATE: can the creature's own learning signals tell
+  apart WHY surprise is high — in SHADOW mode (the diagnostic predicts, never touches the
+  creature)? This is the N2-order half of the N2→N3 spine, instantiated as an auditable benchmark.
+- What is self-formed vs provided (binding, VALIDATION "provided vs self-formed"): the classifier
+  rules + thresholds are PROVIDED (designer-written, baseline-grade), tied to already-validated
+  growth constants (ALARM_THRESH 0.7, KEEP_MARGIN 0.1) and fixed BEFORE the run. The empirical
+  question is NOT whether the rules are clever — it is whether the creature's signals carry
+  separable regime information at all. The base M3 loop (single component per color, NO growth) is
+  copied verbatim-in-arithmetic from exp154 Arm B.
+- Setup (predeclared in the script docstring before running): four regimes held on a SHARED 4x4 /
+  4-color geometry so regime is the only varying factor — A static (localized 2x2 blocks) →
+  stable_known; C scattered aliased (Exp 143 layouts 7/11/13) → structural_inadequacy; D localized
+  base + p_true=0.7 observation noise → irreducible_noise; E localized base + late color remap →
+  nonstationarity. Fresh seeds 20–27 (never run on any prior protocol). Diagnostic reads only
+  internal signals (loud-color final surprise, global ceiling events, early-vs-late jump, and a
+  held-out predictive split test); never the world label. PASS iff pooled macro-F1 ≥ 0.70 AND
+  confusion(noise→structural) < 0.20 AND confusion(nonstat→structural) < 0.20. FALSIFIER (any →
+  NEGATIVE, halt controller work): macro-F1 ≤ 0.40, or either critical confusion ≥ 0.20.
+- Result: POSITIVE — 48/48 runs classified correctly (8 A, 8 D, 8 E, 24 C). macro-F1 = 1.000;
+  confusion noise→structural = 0.000; confusion nonstat→structural = 0.000. Held-out predictive
+  surprise cleanly separates the structure/noise pair: structural runs drop to 0.008–0.118 nats,
+  noisy runs stay at their irreducible floor 0.69–5.11. Per-color loud means: A 0.02, C 0.9–1.5,
+  D 1.1–1.6, E 3.4–4.7 (post-remap, stale components). New unit tests 19/19; change-relevant
+  suite 114 green. Artifacts: experiments/exp155_n3a_min_shadow.py, outputs/exp155.txt,
+  exp155_verdict.json (one-command reproduction; headline numbers recomputed in-script).
+- The actual NEW INSIGHT (logged honestly, discovered in the smoke run BEFORE the full sweep, not
+  hidden): a naive offline penalized replay-NLL split test — the obvious first cut — FAILS to
+  separate noise from structure (smoke run misread all noisy worlds as structural, K=4). Noisy
+  observations carry genuine multi-cluster spatial structure (a true block plus scattered
+  noise), so an offline split "improves" replay NLL even though it cannot reduce real surprise.
+  The faithful discriminator is the SHADOW ANALOG OF LIVE PROBATION (Exp 145/154): fit the split
+  on a TRAIN subset, evaluate HELD-OUT predictive surprise against the full competing mixture, and
+  require the split to drive surprise BELOW the irreducible-floor threshold (structure is
+  reducible; noise is not) AND beat the single-component fit by the validated 0.1-nat keep margin.
+  This generalizes the Exp 152 dilution lesson: replay-fit ≠ surprise-reduction; only held-out
+  predictive evaluation (or live probation) tells them apart. Reusable across the N3 workstream.
+- Honest caveat (mandatory): perfect 1.000 F1 is a LOW bar — these are four WELL-SEPARATED,
+  purpose-built worlds on shared geometry, and the readout is a provided rule-based classifier,
+  not a learned/self-formed model. This tests only 4 of the 10 designed regimes; the hard
+  open-world ones (entropic spreading, unreachable frontier, aliasing-needing-context) are NOT
+  here. Noise's held-out floor reached 0.69 on one seed (s20) — close to the 0.7 absolute
+  threshold; the relative 0.1-margin clause is load-bearing there, so the separation is robust but
+  not by a huge margin on the worst case. Shadow/offline (full trajectory) — a live online
+  diagnostic is later work. No persistent creature (mirro/nira) was touched; this is a synthetic
+  benchmark, so no creature snapshot applies. This is NOT a breakthrough and NOT a control result:
+  it establishes only that the signals are separable, which is necessary, not sufficient.
+- Verdict: POSITIVE / NEW INSIGHT (the discriminator finding; the classification result itself is
+  consolidation-grade on easy worlds). The gate is cleared; the load-bearing tests are still
+  ahead. Per the anti-regress law the layer is NOT yet earned — that requires N3b: a repair
+  controller that BEATS always-grow AND is not matched by an offline-retuned fixed policy.
+- Next: N3b controlled repair — build the forget + quarantine operators and let the controller
+  pick among {continue, explore, grow, forget, quarantine}; predeclared load-bearing falsifiers
+  (must beat always-grow; must NOT be offline-retunable). Then enrich toward the harder regimes
+  (build the expanding / spreading / horizon worlds for the full 10-way diagnostic).
