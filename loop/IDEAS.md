@@ -603,6 +603,11 @@ The loop marks items it has consumed by indenting a response under them:
     "talk to it"), nira's normalized switch, the cloud-branch merge; (b) pursue a
     verifier-named crack (wider-clamp body; carryover-proof expiry; delayed-response
     criterion); (c) stop/redirect.
+  → [human, 2026-06-11] "Continue" — the word on the recommended option only: fold the
+    K chapter (Exp 169–173) into the synthesis doc, consolidation-grade. After the
+    fold-in the loop HOLDS for the direction choice among: N4 (identity), M4a
+    increment 1c ("talk to it"), nira's normalized switch, the cloud-branch merge —
+    each needs its own explicit word; none is silence-actionable.
 
 (empty — drop ideas above this line's section freely)
 

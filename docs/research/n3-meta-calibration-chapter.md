@@ -191,3 +191,53 @@ N2 lacks — is SUPPORTED at this world richness**, with eight laws and one name
 (the ratchet) as the chapter's durable products. Honest bounds: diagnosis-layer
 authority only (behavior untested); geometry-determined trajectories; all θ_N3
 constants provided. The ladder may proceed toward N4 on an explicit human word.
+
+## 11. The K-endogenization coda (Exp 169–173) — de-magicking the lock horizon
+
+The human's standing word asked whether K=8 could stop being a magic constant, with
+three claim tiers. Five experiments graded all three.
+
+- **Exp 169 (MIXED):** the descent driver (smallest-consistent-dial homeostasis)
+  answers the ratchet — persistent harm eliminated everywhere (CTRL −0.31 → −0.08) —
+  and reduces the residual boundary transient to a formula:
+  penalty ≈ (W_max/EVAL + K) × EVAL ≈ 2400 steps, an explicit function of the provided
+  constants. The straddle term is the dominant component (confirmed four times,
+  Exp 169–172's P6 chain).
+- **Exp 170 (NEGATIVE — the conditioning lesson):** a global P95 of completed run
+  lengths collapses to premature-K=3-then-permanent-K=16: the run distribution is
+  bimodal (cycling flickers 1–9 evals; settled plateaus 24–84) and regime-conditional;
+  a pooled percentile is outlier-dominated. Binding design fix discovered: reference
+  controllers must run as same-schedule arms (the adjacency confound).
+- **Exp 171 (NEGATIVE — the gap law + trade-off axis):** a recency-windowed median
+  undershoots transiently (K dips below the SLOW half-period → premature stationary
+  locks INSIDE broken segments, benefit halved) while posting the lineage's best valid
+  margin. The lock horizon must sit IN THE GAP between the two run-length modes;
+  central statistics hover around the cycling mode, pooled extremes are captured by
+  the plateau mode. Horizon-down buys honest-world gentleness at the price of
+  broken-world persistence.
+- **Exp 172 (NEGATIVE — ceiling capture):** the gap-seeker (recent-max+1) matches K=8
+  PERFECTLY (all four pooled metrics identical — the first derivation to do it) by
+  collapsing onto the clamp ceiling and becoming a de facto constant (pegged 0.92;
+  behaviorally inert). It fixes tier B's sub-phase locks; it cannot stay off the
+  ceiling, because plateau completions are the dominant completion type and always
+  exceed the clamp.
+- **Exp 173 (NEGATIVE — THE UNIVERSAL-CONSTANT LAW; tier 3 rejected at its gate):**
+  in the multi-tempo world built to move the gap (H 600 vs 1400, shuffled short
+  segments, four same-schedule arms), K=16 covers BOTH tempos and the time-decay
+  regulator converges onto it bit-identically; the tempo signal inverts under
+  schedule carryover; slow-tempo-first response is impossible by resolution at the
+  default dial. Horizon regulation is only NECESSARY where no feasible constant
+  covers all regimes — and on this body, such a world is not constructible.
+
+**The three tiers, graded.** (1) The provided K=8 works — it sat in the measured gap
+by designer knowledge. (2) K CAN be self-derived at zero performance cost — but only
+vacuously, by constant-convergence. (3) Self-regulation of the horizon is REJECTED at
+its own honestly-run gate at this richness: its necessity premise fails. The
+universal-constant law is the anti-regress principle applied to the program's own
+design constants: a capacity is only a capacity where a regime exists that demands it.
+Untried cracks (verifier-named): a body with a wider dial/horizon range whose ceiling
+carries real costs; a carryover-proof expiry; a delayed-response criterion.
+
+Reproduce: `experiments/exp169_n3_descent.py` through `experiments/exp173_multitempo.py`
+with outputs under `experiments/outputs/` (exp169–exp173). Every gated verdict
+blind-verified.
