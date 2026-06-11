@@ -5803,3 +5803,72 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   tested; (b) accept the constant-in-the-gap as this richness's answer, write the
   K-chapter close into the synthesis doc, and return to the ladder (N4) or the
   standing consults; (c) stop/redirect.
+
+## Exp 173 — the multi-tempo gate runs and the tier-3 claim is REJECTED at this richness: even with the gap moving, K=16 is a universal attractor within the clamp — the regulator converges onto the constant it was meant to beat (bit-identical scores), the time-window's tempo signal inverts under schedule carryover, and the responsiveness bar is unreachable for slow-tempo-first forks (NEGATIVE on three falsifiers; the K-endogenization chapter closes fully graded; halted)
+
+- Plain: we built the world where the rhythm changes mid-life, precisely so a
+  self-adjusting horizon could prove it beats any fixed one. It could not — for a
+  reason worth having: within the sizes this body can use, one large setting covers
+  every rhythm we could construct, and the self-adjuster simply converges onto that
+  setting and ties it exactly. Its tempo-sense also inverts when rhythms follow each
+  other (old evidence bleeds across boundaries), and the slow rhythm cannot even be
+  SEEN at the starting dial, so first-contact response is impossible there by
+  resolution, not by sloth. The question's third tier now has its honest answer at
+  this scale: the creature can set the number, but adjusting it buys nothing a
+  well-placed constant doesn't already give. Regulation would need a body whose
+  feasible settings cannot all be covered by one constant — a richer creature, not a
+  cleverer rule.
+- Question (predeclared; the human's "Continue"): with the gap moving (SLOW600 vs
+  SLOW1400 segments, 8×3000 steps, shuffled), does the time-decay-regulated horizon
+  (recent-max+1 over a 3000-step expiry window) beat BOTH constants K=8 and K=16
+  (same-schedule arms) by ≥ 0.10 combined (F_reg: any constant within 0.05), respond
+  in the first broken segment (≥7/8), and track tempo (mean-K difference ≥ 2; F_K
+  < 0.5)?
+- Setup: four same-schedule read-only arms (a, c8, c16, bR); FRESH seeds 146–153;
+  smoke (seed 146) disclosed — its clean single-seed tempo signal (9.1 vs 14.8) did
+  not generalize.
+- Result: NEGATIVE — F_reg, F_resp, F_K all fired. F_reg: combined(bR) = 0.1336 =
+  combined(c16) EXACTLY (bit-identical per-segment scores in all 8 forks; c8's
+  combined 0.0753 — K=8 fails SLOW1400 as designed, so the asymmetry is real, but
+  c16 covers both tempos); F_resp 3/8 (the five failures are SLOW1400-first or
+  late-first-broken forks — at W=200 a 1400-half-period is unresolvable, so
+  first-segment response is impossible by construction); F_K: pooled mean K
+  INVERTED (SLOW600 13.69 > SLOW1400 12.42 vs the smoke's +5.6) — carryover: a
+  SLOW1400 segment preceding a SLOW600 leaves its long runs inside the 3000-step
+  expiry window, inflating K in the fast segment, while SLOW1400 often opens on an
+  expiry cold-start. F_HARM silent (bR valid deficit 0.0553 — incidentally the best
+  valid margin of the entire lineage, fourth straddle note).
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles;
+  all pooled numbers recomputed from raw rows, including the 16-segment class sums);
+  named the three structural causes and the three design dimensions that could
+  change the verdict (a clamp whose ceiling does not cover all tempos; a
+  carryover-proof expiry; a delayed-response criterion); flagged the F_K sign
+  ambiguity (signed vs absolute — the code's signed reading fired for the right
+  reason).
+- Implication (generalizability tier: functional-form — THE UNIVERSAL-CONSTANT LAW,
+  closing the K chapter): horizon regulation can only be NECESSARY where no feasible
+  constant covers all regimes — and on this body, with run lengths compressed near
+  the clamp ceiling at usable dials, such a world is not constructible: every
+  regulator we can build converges onto the covering constant. The human's three
+  tiers, fully graded: (1) the provided K=8 works; (2) K can be self-derived at zero
+  cost — vacuously, by constant-convergence (Exp 172, 173); (3) self-REGULATION of
+  the horizon is rejected at its own gate at this richness — its necessity premise
+  fails. The parallel to the program's spine finding is exact: like the anti-regress
+  gate at every layer, a capacity is only a capacity where a regime exists that
+  demands it.
+- Honest caveat: "rejected at this richness" binds to the clamp [3,16], this
+  controller class, these tempos and segment lengths; the verifier's three design
+  dimensions are genuine untried cracks (most plausibly: a body with a wider
+  dial/horizon range whose ceiling carries real costs); the F_resp failures are
+  partly a criterion artifact (resolution, not sloth) — a delayed-response criterion
+  might pass, but would not rescue F_reg, which is the load-bearing kill; smoke
+  disclosed; per the guardrail the thread HALTS.
+- Verdict: NEGATIVE / NEW INSIGHT (the universal-constant law; the carryover
+  inversion; the chapter's full grading). Self-grade: NEGATIVE.
+- Next: HALTED. The K-endogenization chapter is complete (Exp 169–173, five
+  experiments, graded verdicts on all three tiers). Options for the word: (a) fold
+  the K chapter into the synthesis doc and return to the ladder (N4) or the standing
+  consults (M4a 1c — still the most direct path to "talk to it"; nira's normalized
+  switch; the cloud-branch merge); (b) pursue one of the verifier's three cracks;
+  (c) stop/redirect. RECOMMENDED: (a) with the synthesis update as the
+  consolidation-grade next step.

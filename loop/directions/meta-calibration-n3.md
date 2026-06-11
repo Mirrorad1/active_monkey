@@ -266,4 +266,15 @@ is NOT TESTABLE at single-tempo richness — plateaus complete often and always 
 clamp, so a constant in the gap is optimal and unbeatable here. Straddle projection held a
 FOURTH time.
 
-**STATUS.** state: halted (K-arc closed with the testability verdict; next move awaits a word) · latest: Exp 172 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, laws (155–166), lock controller (167), ratchet law (168), descent driver + penalty formula (169), conditioning lesson (170), gap law + trade-off axis (171), testability verdict + ceiling-capture mechanism (172) · why: the three-design bracket answers tiers 1–2 and shows tier 3 needs a multi-tempo discriminating regime · next-falsifiable: on a word — (a) the multi-tempo world (H varying mid-session; the gap moves, no constant can sit in it) to gate tier-3 regulation, or (b) close the K chapter into the synthesis and return to N4/standing consults
+**THE MULTI-TEMPO GATE (Exp 173, NEGATIVE on three falsifiers — TIER 3 REJECTED at its
+own gate; THE K CHAPTER CLOSES, Exp 169–173).** K=16 is a UNIVERSAL ATTRACTOR within the
+clamp: the regulator converges onto it bit-identically (combined 0.1336, 8/8) while c8
+fails SLOW1400 as designed — the asymmetry was real, one constant just covers it. The
+time-window tempo signal INVERTS under schedule carryover; slow-tempo-first response is
+impossible by resolution at W=200. THE UNIVERSAL-CONSTANT LAW: horizon regulation is only
+necessary where no feasible constant covers all regimes — not constructible on this body.
+Tiers fully graded: provided ✓; derived ✓-vacuous (172); regulated ✗ necessity-fails (173).
+Untried cracks (verifier): wider-clamp body; carryover-proof expiry; delayed-response
+criterion.
+
+**STATUS.** state: halted (K chapter closed, fully graded; next move awaits a word) · latest: Exp 173 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, laws (155–166), lock controller (167), ratchet law (168), descent driver + penalty formula (169), conditioning lesson (170), gap law + trade-off axis (171), ceiling capture (172), universal-constant law + carryover inversion (173) · why: all three of the human's claim tiers now have honest verdicts · next-falsifiable: on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack

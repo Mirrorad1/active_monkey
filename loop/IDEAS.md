@@ -583,6 +583,26 @@ The loop marks items it has consumed by indenting a response under them:
     close into the synthesis, return to the ladder (N4) or standing consults; (c)
     stop/redirect. RECOMMENDED: (a) — it is the exact anti-regress move this program
     makes at every layer, and the tier-3 claim deserves its gate.
+  → [human, 2026-06-11] "Continue" — the word on the recommended option only: Exp 173 =
+    the multi-tempo world (cycling half-period varying across segments, H 600 vs 1400,
+    shorter segments so lock latency bites), gating tier-3 regulation against BOTH
+    constants K=8 and K=16 as same-schedule arms; the regulated candidate uses a
+    TIME-decayed completion window (count-windows fail when completion rate varies —
+    the Exp 172 lesson). Same guardrail: a failed predeclared test halts.
+  → [loop, 2026-06-11] Exp 173: NEGATIVE on three falsifiers — the tier-3 claim is
+    REJECTED at its own honestly-run gate. K=16 is a UNIVERSAL ATTRACTOR within the
+    clamp (the regulator converges onto it, bit-identical combined 0.1336 in 8/8;
+    c8 fails SLOW1400 as designed, so the asymmetry was real — one constant just
+    covers it); the time-window tempo signal INVERTS under schedule carryover; slow-
+    tempo-first response is impossible by resolution. THE K CHAPTER CLOSES FULLY
+    GRADED (Exp 169–173): provided ✓; derived ✓-vacuous; regulated ✗-necessity-fails.
+    The universal-constant law = the anti-regress principle applied to the program's
+    own design constants. HALTED. OPTIONS: (a) RECOMMENDED — fold the K chapter into
+    the synthesis doc (consolidation-grade) and then await direction among: N4
+    (identity, the ladder's next rung), M4a increment 1c (the most direct path to
+    "talk to it"), nira's normalized switch, the cloud-branch merge; (b) pursue a
+    verifier-named crack (wider-clamp body; carryover-proof expiry; delayed-response
+    criterion); (c) stop/redirect.
 
 (empty — drop ideas above this line's section freely)
 

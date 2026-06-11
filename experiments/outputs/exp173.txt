@@ -1,0 +1,189 @@
+================================================================================
+Exp 173 — N3 MULTI-TEMPO REGULATED HORIZON (TIER-3 GATE)
+          K(t) = clamp(max(completed runs within last T_exp steps)+1, 3, 16)
+          Four arms: (a) W=200, (c8) K=8, (c16) K=16, (bR) time-regulated;
+          same schedule/stream.
+================================================================================
+
+SURPRISE_WINDOW=200  [must be 200; asserted]
+CLASSIFIER_WINDOW_DEFAULT=200  EVAL_EVERY=100
+ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+DIAL_CANDIDATES=[200, 400, 800, 1600]  starting W=200
+TIME-REGULATED K (bR): T_exp=3000  K_MIN=3  K_MAX=16
+  K(t) = clamp(max(completed runs within last 3000 steps)+1, 3, 16)
+  with no live completions: K(t) = 3
+  T_exp = segment length = 3000 steps (declared policy)
+AGENTS: (a) W=200 | (c8) K=8 | (c16) K=16 | (bR) time-regulated
+DELTA B (verbatim exp169) — NO WRAP: ascent saturates at 1600
+DELTA A (verbatim exp169) — DESCENT: locked on OK/NOISE AND W>200 => step down
+N3 trust: TRUST_FIRE_THRESH=0.85  ROLLING_TRUST_WINDOW=10  MIN_SCORED_FOR_TRUST=3
+N3 forecast: OK_VIOLATION_THRESH=0.15  NOISE_VIOLATION_DELTA=0.3  STRUCTURAL=NOT scored
+MULTI-TEMPO: SLOW600 half_period=600  SLOW1400 half_period=1400
+N_SEGMENTS=8  SEGMENT_STEPS=3000  N_STEPS=24000
+Segment pool: ['SLOW600', 'SLOW600', 'SLOW1400', 'SLOW1400', 'CTRL', 'NOISE', 'PLACE', 'CTRL']
+SCHEDULE_SEED_OFFSET=150000  PLACE_NOISE_SEED_OFFSET=90000
+PC1_AHAT_DRIFT_MAX=0.3
+PC2_MIN_EVAL_POINTS=20  PC3_SLOW_DERANGED_ERR_MIN=0.9
+P_reg: margin >= 0.1 AND bR>both in >= 6/8 forks
+P_resp: >= 7/8 forks  P_K: k_diff >= 2.0  F_HARM: deficit > 0.15
+Seeds: [146, 147, 148, 149, 150, 151, 152, 153]
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  seed=146  schedule=['SLOW600', 'CTRL', 'PLACE', 'NOISE', 'SLOW1400', 'CTRL', 'SLOW600', 'SLOW1400']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[0, 1, 2, 3, 8]  first_broken_seg=0
+    Running seed=146 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0596  c8: ascent=4 desc=4  c16: ascent=5 desc=2  bR: ascent=5 desc=2  bR_final_K=14  bR_k_seen=[3, 6, 14, 16]  bR_mean_K={'broken600': 9.133333333333333, 'broken1400': 14.766666666666667, 'valid': 11.916666666666666}
+  seed=147  schedule=['SLOW1400', 'SLOW600', 'PLACE', 'CTRL', 'SLOW600', 'NOISE', 'CTRL', 'SLOW1400']  derang=[2, 0, 1]  p_noise=0.80  noisy_cells(5)=[0, 1, 2, 4, 6]  first_broken_seg=0
+    Running seed=147 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0563  c8: ascent=5 desc=5  c16: ascent=5 desc=5  bR: ascent=5 desc=5  bR_final_K=16  bR_k_seen=[3, 4, 6, 14, 16]  bR_mean_K={'broken600': 13.366666666666667, 'broken1400': 9.216666666666667, 'valid': 15.191666666666666}
+  seed=148  schedule=['CTRL', 'PLACE', 'SLOW1400', 'SLOW600', 'NOISE', 'CTRL', 'SLOW600', 'SLOW1400']  derang=[1, 2, 0]  p_noise=0.80  noisy_cells(5)=[2, 3, 4, 6, 7]  first_broken_seg=2
+    Running seed=148 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0531  c8: ascent=4 desc=4  c16: ascent=5 desc=2  bR: ascent=5 desc=2  bR_final_K=14  bR_k_seen=[3, 4, 14, 16]  bR_mean_K={'broken600': 13.4, 'broken1400': 14.766666666666667, 'valid': 12.333333333333334}
+  seed=149  schedule=['PLACE', 'SLOW1400', 'CTRL', 'SLOW1400', 'SLOW600', 'SLOW600', 'CTRL', 'NOISE']  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[3, 7, 8, 10, 11]  first_broken_seg=1
+    Running seed=149 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0559  c8: ascent=3 desc=3  c16: ascent=3 desc=3  bR: ascent=3 desc=3  bR_final_K=16  bR_k_seen=[3, 4, 14, 16]  bR_mean_K={'broken600': 14.733333333333333, 'broken1400': 12.316666666666666, 'valid': 11.108333333333333}
+  seed=150  schedule=['CTRL', 'NOISE', 'SLOW600', 'SLOW600', 'CTRL', 'PLACE', 'SLOW1400', 'SLOW1400']  derang=[1, 2, 0]  p_noise=0.60  noisy_cells(5)=[0, 6, 11, 12, 13]  first_broken_seg=2
+    Running seed=150 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0607  c8: ascent=4 desc=4  c16: ascent=4 desc=4  bR: ascent=4 desc=4  bR_final_K=16  bR_k_seen=[3, 4, 14, 16]  bR_mean_K={'broken600': 15.366666666666667, 'broken1400': 15.1, 'valid': 11.666666666666666}
+  seed=151  schedule=['CTRL', 'CTRL', 'SLOW1400', 'SLOW600', 'SLOW1400', 'NOISE', 'PLACE', 'SLOW600']  derang=[2, 0, 1]  p_noise=0.70  noisy_cells(5)=[0, 1, 4, 7, 9]  first_broken_seg=2
+    Running seed=151 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0509  c8: ascent=5 desc=3  c16: ascent=5 desc=3  bR: ascent=5 desc=3  bR_final_K=16  bR_k_seen=[3, 4, 14, 16]  bR_mean_K={'broken600': 14.7, 'broken1400': 12.35, 'valid': 6.775}
+  seed=152  schedule=['PLACE', 'SLOW600', 'SLOW1400', 'NOISE', 'CTRL', 'SLOW1400', 'CTRL', 'SLOW600']  derang=[1, 2, 0]  p_noise=0.70  noisy_cells(5)=[2, 4, 5, 7, 10]  first_broken_seg=1
+    Running seed=152 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0555  c8: ascent=5 desc=3  c16: ascent=5 desc=3  bR: ascent=5 desc=3  bR_final_K=16  bR_k_seen=[3, 6, 14, 15, 16]  bR_mean_K={'broken600': 14.05, 'broken1400': 11.866666666666667, 'valid': 11.925}
+  seed=153  schedule=['SLOW1400', 'NOISE', 'PLACE', 'CTRL', 'CTRL', 'SLOW1400', 'SLOW600', 'SLOW600']  derang=[2, 0, 1]  p_noise=0.60  noisy_cells(5)=[1, 2, 3, 4, 5]  first_broken_seg=0
+    Running seed=153 (24000 steps, 8 segments x 3000) ...
+    ahat_drift=0.0594  c8: ascent=4 desc=1  c16: ascent=4 desc=1  bR: ascent=4 desc=1  bR_final_K=16  bR_k_seen=[3, 4, 14, 16]  bR_mean_K={'broken600': 14.733333333333333, 'broken1400': 9.0, 'valid': 8.708333333333334}
+
+bR K(t) trajectories with mean K by segment class (time-regulated):
+  seed=146  schedule: [0:SLOW600]  [1:CTRL]  [2:PLACE]  [3:NOISE]  [4:SLOW1400]  [5:CTRL]  [6:SLOW600]  [7:SLOW1400]
+    final_K=14  k_seen=[3, 6, 14, 16]  n_expiry_events=12
+    mean_K: broken600=9.13  broken1400=14.77  valid=11.92
+    K trajectory: t=99 K=3(k_change); t=699 K=6(run_comp); t=3199 K=16(run_comp); t=9099 K=3(k_change); t=12199 K=16(run_comp); t=15199 K=14(k_change); t=17899 K=3(k_change); t=18699 K=16(run_comp); t=21699 K=14(k_change)
+
+  seed=147  schedule: [0:SLOW1400]  [1:SLOW600]  [2:PLACE]  [3:CTRL]  [4:SLOW600]  [5:NOISE]  [6:CTRL]  [7:SLOW1400]
+    final_K=16  k_seen=[3, 4, 6, 14, 16]  n_expiry_events=14
+    mean_K: broken600=13.37  broken1400=9.22  valid=15.19
+    K trajectory: t=99 K=3(k_change); t=1499 K=14(run_comp); t=5899 K=4(k_change); t=6199 K=16(run_comp); t=9199 K=3(k_change); t=9199 K=16(run_comp); t=12199 K=3(k_change); t=12699 K=16(run_comp); t=15699 K=14(k_change); t=18199 K=6(k_change); t=18199 K=16(run_comp); t=21199 K=3(k_change); ...(13 total)
+
+  seed=148  schedule: [0:CTRL]  [1:PLACE]  [2:SLOW1400]  [3:SLOW600]  [4:NOISE]  [5:CTRL]  [6:SLOW600]  [7:SLOW1400]
+    final_K=14  k_seen=[3, 4, 14, 16]  n_expiry_events=12
+    mean_K: broken600=13.40  broken1400=14.77  valid=12.33
+    K trajectory: t=99 K=3(k_change); t=3099 K=16(run_comp); t=6099 K=3(k_change); t=6199 K=16(run_comp); t=9199 K=14(k_change); t=11899 K=4(k_change); t=12199 K=16(run_comp); t=15199 K=3(k_change); t=15199 K=16(run_comp); t=18199 K=3(k_change); t=18699 K=16(run_comp); t=21699 K=14(k_change)
+
+  seed=149  schedule: [0:PLACE]  [1:SLOW1400]  [2:CTRL]  [3:SLOW1400]  [4:SLOW600]  [5:SLOW600]  [6:CTRL]  [7:NOISE]
+    final_K=16  k_seen=[3, 4, 14, 16]  n_expiry_events=12
+    mean_K: broken600=14.73  broken1400=12.32  valid=11.11
+    K trajectory: t=99 K=3(k_change); t=3199 K=16(run_comp); t=6199 K=14(k_change); t=8899 K=3(k_change); t=10499 K=16(run_comp); t=13499 K=14(k_change); t=14899 K=4(k_change); t=15199 K=16(run_comp); t=18199 K=3(k_change); t=18999 K=16(run_comp)
+
+  seed=150  schedule: [0:CTRL]  [1:NOISE]  [2:SLOW600]  [3:SLOW600]  [4:CTRL]  [5:PLACE]  [6:SLOW1400]  [7:SLOW1400]
+    final_K=16  k_seen=[3, 4, 14, 16]  n_expiry_events=12
+    mean_K: broken600=15.37  broken1400=15.10  valid=11.67
+    K trajectory: t=99 K=3(k_change); t=3099 K=16(run_comp); t=6099 K=3(k_change); t=6199 K=16(run_comp); t=9199 K=4(k_change); t=9199 K=16(run_comp); t=12199 K=3(k_change); t=12999 K=16(run_comp); t=18099 K=3(k_change); t=18199 K=16(run_comp); t=21199 K=14(k_change); t=22499 K=16(run_comp)
+
+  seed=151  schedule: [0:CTRL]  [1:CTRL]  [2:SLOW1400]  [3:SLOW600]  [4:SLOW1400]  [5:NOISE]  [6:PLACE]  [7:SLOW600]
+    final_K=16  k_seen=[3, 4, 14, 16]  n_expiry_events=9
+    mean_K: broken600=14.70  broken1400=12.35  valid=6.78
+    K trajectory: t=99 K=3(k_change); t=7499 K=16(run_comp); t=10499 K=14(k_change); t=11899 K=4(k_change); t=12199 K=16(run_comp); t=15199 K=14(k_change); t=19199 K=3(k_change); t=21199 K=16(run_comp)
+
+  seed=152  schedule: [0:PLACE]  [1:SLOW600]  [2:SLOW1400]  [3:NOISE]  [4:CTRL]  [5:SLOW1400]  [6:CTRL]  [7:SLOW600]
+    final_K=16  k_seen=[3, 6, 14, 15, 16]  n_expiry_events=13
+    mean_K: broken600=14.05  broken1400=11.87  valid=11.93
+    K trajectory: t=99 K=3(k_change); t=3199 K=16(run_comp); t=6199 K=6(k_change); t=6199 K=14(run_comp); t=10299 K=15(run_comp); t=12199 K=16(run_comp); t=15199 K=3(k_change); t=16499 K=16(run_comp); t=19499 K=14(k_change); t=20899 K=3(k_change); t=21699 K=16(run_comp)
+
+  seed=153  schedule: [0:SLOW1400]  [1:NOISE]  [2:PLACE]  [3:CTRL]  [4:CTRL]  [5:SLOW1400]  [6:SLOW600]  [7:SLOW600]
+    final_K=16  k_seen=[3, 4, 14, 16]  n_expiry_events=11
+    mean_K: broken600=14.73  broken1400=9.00  valid=8.71
+    K trajectory: t=99 K=3(k_change); t=1499 K=14(run_comp); t=5899 K=3(k_change); t=9199 K=16(run_comp); t=12199 K=3(k_change); t=16499 K=16(run_comp); t=19499 K=14(k_change); t=20899 K=4(k_change); t=21199 K=16(run_comp)
+
+
+Four-arm per-segment-class correctness (a=W200 / c8=K8 / c16=K16 / bR=regulated):
+       class    a_pool   c8_pool  c16_pool   bR_pool    bR-c8   bR-c16    gt_label
+  -------------------------------------------------------------------------------------
+   broken600   0.1336   0.6640   0.6640   0.6640   0.0000   0.0000  STRUCTURAL
+  broken1400   0.0670   0.0753   0.1336   0.1336   0.0583   0.0000  STRUCTURAL
+       valid   0.9938   0.9604   0.9385   0.9385  -0.0219   0.0000    OK/NOISE
+
+Derangement variants in run: [[1, 2, 0], [2, 0, 1]]
+  => Both variants present (GOOD)
+
+Preconditions: all PASS
+
+Four-arm per-segment-class correctness (a=W200 / c8=K8 / c16=K16 / bR=regulated):
+       class    a_pool   c8_pool  c16_pool   bR_pool    bR-c8   bR-c16    gt_label
+  -------------------------------------------------------------------------------------
+   broken600   0.1336   0.6640   0.6640   0.6640   0.0000   0.0000  STRUCTURAL
+  broken1400   0.0670   0.0753   0.1336   0.1336   0.0583   0.0000  STRUCTURAL
+       valid   0.9938   0.9604   0.9385   0.9385  -0.0219   0.0000    OK/NOISE
+
+  combined(a)  =  0.0670
+  combined(c8) =  0.0753
+  combined(c16)=  0.1336
+  combined(bR) =  0.1336
+  bR - max(c8,c16) =  0.0000  (need >= 0.1 for P_reg)
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P_reg (THE TIER-3 GATE — pooled combined(bR) - max(c8,c16) >= 0.1):
+  combined(a)=0.0670  combined(c8)=0.0753  combined(c16)=0.1336  combined(bR)=0.1336
+  max(c8,c16)=0.1336  bR - max(c8,c16) = 0.0000  (need >= 0.1)
+  bR > both constants per fork: 0/8  (need >= 6)
+    seed=146: bR>both=False
+    seed=147: bR>both=False
+    seed=148: bR>both=False
+    seed=149: bR>both=False
+    seed=150: bR>both=False
+    seed=151: bR>both=False
+    seed=152: bR>both=False
+    seed=153: bR>both=False
+  FALSIFIER F_reg (constant within 0.05 of bR pooled): YES — F_reg FIRES
+  => P_reg: FALSIFIER F_reg
+
+P_resp (bR responds on first broken seg: >= 7/8 forks):
+  seed=146: responded=True
+  seed=147: responded=False
+  seed=148: responded=False
+  seed=149: responded=False
+  seed=150: responded=True
+  seed=151: responded=False
+  seed=152: responded=True
+  seed=153: responded=False
+  Forks responding: 3/8  (need >= 7)
+  FALSIFIER F_resp (<=  4/8): YES — F_resp FIRES
+  => P_resp: FALSIFIER F_resp
+
+F_HARM (bR valid deficit vs a > 0.15 — GATES VERDICT):
+  pooled_valid_a=0.9938  pooled_valid_bR=0.9385
+  valid_deficit(a-bR)=0.0552  (fires if > 0.15)
+  F_HARM: silent
+
+P_K (K tracks tempo: mean_K_SLOW1400 - mean_K_SLOW600 >= 2.0):
+  mean_K_SLOW600=13.6854  mean_K_SLOW1400=12.4229  mean_K_valid=11.2031
+  k_diff(1400-600)=-1.2625  (need >= 2.0)
+  FALSIFIER F_K (diff < 0.5): YES — F_K FIRES
+  => P_K: FALSIFIER F_K
+
+Ungated diagnostics:
+  Total expiry events (bR): 95
+  Descent events bR: 23
+  Descent events c8: 27
+  Descent events c16: 23
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P_reg (tier-3 gate: bR combined >= max(c8,c16) + 0.1): FALSIFIER F_reg
+P_resp (bR responsiveness >= 7/8 forks): FALSIFIER F_resp
+F_HARM (bR valid deficit > 0.15 — GATES): silent
+P_K (K tracks tempo by >= 2.0): FALSIFIER F_K
+
+VERDICT: NEGATIVE
+A falsifier fired — halt for a word.
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp173_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp173_verdict.json

@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 172, title: "the gap-seeker matches the magic constant at literally zero cost (P5: all four metrics IDENTICAL, the first derivation to do it) — by collapsing onto the ceiling and becoming a constant itself (F7: pegged 0.9195; behaviorally inert, dial trajectories bit-identical to K=8 in 6/8 forks): the three-attempt arc closes with a verdict on the human's tiers — K CAN be derived, but horizon REGULATION is not testable at single-tempo world richness", tag: "NEGATIVE" },
-  tally: { total: 172, positive: 103, negative: 42, mixed: 23, breakthroughs: 4 },
+  latest_exp: { n: 173, title: "the multi-tempo gate runs and the tier-3 claim is REJECTED at this richness: even with the gap moving, K=16 is a universal attractor within the clamp — the regulator converges onto the constant it was meant to beat (bit-identical scores), the time-window's tempo signal inverts under schedule carryover, and the responsiveness bar is unreachable for slow-tempo-first forks", tag: "NEGATIVE" },
+  tally: { total: 173, positive: 103, negative: 43, mixed: 23, breakthroughs: 4 },
   directions: [
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
-    { name: "meta-calibration-n3", state: "halted (K-arc closed with the testability verdict; next move awaits a word)", latest: "Exp 172", next: "on a word — (a) the multi-tempo world (H varying mid-session; the gap moves, no constant can sit in it) to gate tier-3 regulation, or (b) close the K chapter into the synthesis and return to N4/standing consults" },
+    { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
     { name: "graded-uncertainty", state: "exploratory", latest: "TBD-human", next: "Rung 1 no-harm test: λ-creature vs non-decay twin on static world with predeclared effect-size bands" },

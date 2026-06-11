@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp173",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P_reg_tier3_gate": {
+      "pass": false,
+      "reason": "combined(bR)=0.1336  max(c8,c16)=0.1336  margin=0.0000 (need >= 0.1); bR>both in 0/8 forks (need >= 6); F_reg fired=True"
+    },
+    "P_resp_responsiveness": {
+      "pass": false,
+      "reason": "3/8 forks responded on first broken segment (need >= 7); F_resp fired=True"
+    },
+    "F_HARM_valid_deficit": {
+      "pass": true,
+      "reason": "valid_deficit(a-bR)=0.0552 (fires if > 0.15); F_HARM=silent"
+    },
+    "P_K_tempo_tracking": {
+      "pass": false,
+      "reason": "mean_K_SLOW600=13.6854  mean_K_SLOW1400=12.4229  k_diff=-1.2625 (need >= 2.0); F_K fired=True"
+    }
+  },
+  "notes": "N3 multi-tempo regulated horizon (TIER-3 GATE). K(t)=clamp(max(completed within last 3000 steps)+1,3,16). Four arms on same schedule/stream: (a) W=200, (c8) K=8, (c16) K=16, (bR) regulated. 8 segments x 3000 steps = 24000 total; two SLOW tempos (600, 1400). POSITIVE: TIER-3 CLAIM SUPPORTED. NEGATIVE: falsifier fired. MIXED: partial. Seeds 146-153 (exp172 used 138-145). combined(bR)=0.1336 combined(c8)=0.0753 combined(c16)=0.1336 k_diff=-1.2625."
+}
