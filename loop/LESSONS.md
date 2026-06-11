@@ -48,3 +48,8 @@ Ground rules for this file:
   commit on local main; parallel/cloud branches that picked the same "next" number get
   renumbered to the next free number at merge (script, outputs, entry, site data move
   together). Guard: tests/test_site_data.py::test_experiment_numbers_are_unique.
+- **L11 (Exp 158 commit slip, 2026-06-11).** When gating a commit on the suite, run
+  pytest BARE in the && chain — piping it (`pytest | tail`) replaces its exit code with
+  the pipe's last command, so a red suite sails through. Check the printed
+  pass/fail line BEFORE the commit lands, and re-run any generator the failure names
+  (site_data --lab-status, gen_directions_index) after card/site edits. [PROTOCOL step 6]
