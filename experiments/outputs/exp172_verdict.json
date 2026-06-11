@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "experiment": "exp172",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_override_concentration_bB": {
+      "pass": true,
+      "reason": "bB pooled fraction of ascent changes in SLOW = 0.7838 (need >= 0.75); total_ascent=37 slow_ascent=29; F1 fired=False"
+    },
+    "P2_responsiveness_bB": {
+      "pass": true,
+      "reason": "8/8 bB forks responded on first SLOW segment (need >= 7); F2 fired=False"
+    },
+    "P3_no_harm_valid_REPORTED_ONLY": {
+      "pass": false,
+      "reason": "REPORTED ONLY \u2014 does not gate verdict. pooled_valid_a=0.9813 pooled_valid_bB=0.8854 margin(bB-a)=-0.0958; ctrl_margin_bB=-0.0750; F_HARM fired=False (gates verdict)"
+    },
+    "P4_overrides_earn_keep_bB": {
+      "pass": true,
+      "reason": "pooled_slow_a=0.0835 pooled_slow_bB=0.4077 margin(bB-a)=0.3242 (need >= +0.2); F4 fired=False"
+    },
+    "P5_gap_seeking_k_endogenization": {
+      "pass": true,
+      "reason": "bB within 0.05 of b8 same-run pooled values on all 4 metrics. conc: bB=0.7838 b8=0.7838; resp: bB=8 b8=8; valid_margin: bB=-0.0958 b8=-0.0958; broken_margin: bB=0.3242 b8=0.3242; F5 fired=False"
+    },
+    "P6_straddle_projection_ungated": {
+      "pass": false,
+      "reason": "UNGATED (FOURTH test). Projection: bB valid margin < -0.05. bB margin=-0.0958; projection_holds=True; projection_refuted=False"
+    },
+    "P7_regulation_claim": {
+      "pass": false,
+      "reason": "8/8 forks with >= 2 distinct K (need >= 7); pooled_pegged_frac=0.9195 (need < 0.5; F7 if > 0.9); F7 fired=True"
+    }
+  },
+  "notes": "N3 K-endogenization gap-seeking horizon. K(t)=clamp(max(last 12 runs)+1,3,16). Three arms on same schedule/stream: (a) W=200, (b8) K=8, (bB) gap-seeking. P5 compares bB vs b8 same-run pooled values (schedule confound eliminated). P7 checks K regulation: diverse values and non-degenerate pegging. P3 REPORTED ONLY; F_HARM gates instead. Seeds 138-145 (exp171 used 130-137). POSITIVE: GAP-SEEKING HORIZON SUPPORTED. NEGATIVE: falsifier fired. wrap_bB=0 wrap_b8=0 ctrl_margin_bB=-0.0750."
+}

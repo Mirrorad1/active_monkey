@@ -256,4 +256,14 @@ the magic 8 sat in the GAP by designer knowledge; central statistics undershoot,
 extremes overshoot. Measured trade-off axis: horizon-down = honest-world gentleness,
 horizon-up = broken-world persistence. Straddle projection held a THIRD time (margin 0.020).
 
-**STATUS.** state: halted (tiers A+B negative; gap-seeking revision awaits a word) · latest: Exp 171 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, separators and laws (155–166), lock controller (167), ratchet law (168), descent driver + penalty formula (169), conditioning lesson (170), gap law + trade-off axis (171) · why: both naive endogenizations falsified from opposite sides of the measured gap; the gap-seeking rule (recent-max+1) is the derived remaining candidate · next-falsifiable: tier B-revisited on a word (recent-max+1, b8 same-schedule arm, identical falsifiers); then the thrice-confirmed straddle term
+**GAP-SEEKER (Exp 172, NEGATIVE by F7 — THE ARC CLOSES).** P5 passed for the FIRST time
+(all four metrics IDENTICAL to b8) — vacuously: the rule ceiling-captured on first plateau
+contact (pegged 0.9195; behaviorally inert, bit-identical trajectories 6/8). Tier B's
+sub-phase failure fixed (zero inside-SLOW locks). Three designs bracket the gap: undershoot
+(171), permanent overshoot (170), ceiling capture (172). ARC VERDICT on the human's tiers:
+the provided K=8 works; K CAN be self-derived at zero cost (vacuously); horizon REGULATION
+is NOT TESTABLE at single-tempo richness — plateaus complete often and always exceed the
+clamp, so a constant in the gap is optimal and unbeatable here. Straddle projection held a
+FOURTH time.
+
+**STATUS.** state: halted (K-arc closed with the testability verdict; next move awaits a word) · latest: Exp 172 · depends-on: functional-emergence, persistent-creature · reusable: anti-regress rule, laws (155–166), lock controller (167), ratchet law (168), descent driver + penalty formula (169), conditioning lesson (170), gap law + trade-off axis (171), testability verdict + ceiling-capture mechanism (172) · why: the three-design bracket answers tiers 1–2 and shows tier 3 needs a multi-tempo discriminating regime · next-falsifiable: on a word — (a) the multi-tempo world (H varying mid-session; the gap moves, no constant can sit in it) to gate tier-3 regulation, or (b) close the K chapter into the synthesis and return to N4/standing consults

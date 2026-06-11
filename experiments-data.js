@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:171, breakthrough:8, positive:92, wall:26, partial:45, from:4.81, to:4.00 };
+window.AM_TALLY = { total:172, breakthrough:8, positive:92, wall:26, partial:46, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1899,7 +1899,18 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE — F5 on broken margin (worse by 0.2003); concentration soft-failed; valid margin BETTER by 0.0542; P7 regulation PASS (no tier-A collapse); P1/P2/P4 pass, F_HARM silent; the straddle projection held a third time (by only 0.020 — the closest approach). The blinded verifier recomputed everything from raw rows and pinned the small-K transient mechanism.",
     implication:"The gap law: the lock horizon must sit between the diagnosis stream's two run-length modes — above everything the flicker mode demonstrates, untouched by the plateau mode. And the measured trade-off: horizon-down buys honest-world gentleness at the price of broken-world persistence. The remaining candidate is gap-seeking, not tempo-averaging: recent-max-plus-one. Halted for a word per the standing guardrail.",
     caveat:"the multiplier 2, M=12, and clamp are provided policy — tier B as TESTED is one point in its design family; the small-K transient is a cold-start artifact in part (a warm-start or higher floor was deliberately not added — it would re-import a magic constant); the trade-off readings ride on this world family's specific periods; per the guardrail the thread HALTS for a word.",
-    trace:{ script:"experiments/exp171_k_tempo.py", output:"experiments/outputs/exp171.txt" } }
+    trace:{ script:"experiments/exp171_k_tempo.py", output:"experiments/outputs/exp171.txt" } },
+
+  { n:172, kind:"partial", chapter:"frontier",
+    title:"The third derivation matches the magic number perfectly — by becoming a constant itself. The arc closes with its verdict.",
+    one:"The gap-seeking horizon (recent-max+1), NEGATIVE by F7 with the first-ever P5 pass: all four pooled metrics IDENTICAL to the K=8 arm — because the rule slammed into its ceiling on first plateau contact and stayed (pegged 0.9195; dial trajectories bit-identical in 6/8 forks; behaviorally inert). Tier B's sub-phase-lock failure is fixed (zero inside-SLOW locks), but plateau completions are the DOMINANT completion type and always exceed the clamp, so the window never escapes the ceiling. Three designs now bracket the gap from every side — undershoot, permanent overshoot, ceiling capture — closing the arc with its verdict: K can be self-derived at zero cost, but horizon REGULATION is not testable in a world whose rhythm never changes.",
+    plain:"The third derivation finally matched the hand-picked eight perfectly — every score identical — but it cheated in an honest and revealing way: the long settled stretches of the slow world complete often, and are so much longer than the allowed maximum, that the rule hit its ceiling almost immediately and stayed there. It became a constant wearing a derivation's clothes, and a constant works fine here. The three attempts together answer the question: yes, the creature can set this number itself — but whether it can usefully keep adjusting it cannot be tested in a world whose rhythm never changes. Regulation only earns its keep where tempo varies; that world is the next thing to build, if wanted.",
+    metric:{ from:0.9195, to:0.5, unit:"fraction of evals with K pegged at a clamp bound vs the regulation bar" },
+    setup:"Exp 171's three same-schedule arms with one delta: K = clamp(max of last 12 completed runs + 1, 3, 16). Identical falsifier structure; the regulation claim gated (P7/F7); fresh seeds 138-145; blinded verification before logging.",
+    result:"NEGATIVE — F7 (pegged 0.9195, six forks at 239/239 evals); P5 PASS trivially (all metrics identical to b8 same-run); P1/P2/P4 pass, F_HARM silent; zero sub-phase locks inside broken segments (tier B's failure fixed); the straddle projection held a fourth time. The blinded verifier confirmed everything from raw rows and stated the testability finding.",
+    implication:"The arc's verdict on the three claim tiers: the provided constant works; K can be self-derived at zero performance cost (vacuously, by clamp capture); and the strongest claim — N3 regulating its own evidence horizon — is NOT TESTABLE at single-tempo richness, the anti-regress gate's logic one level up. The discriminating regime is a multi-tempo world where the gap itself moves and no constant can sit in it. Halted for a word: build that world, or accept the constant and close the chapter.",
+    caveat:"the testability verdict binds to this world family, clamp, and M; the ceiling capture is partly a clamp artifact (K_MAX 16 < plateau lengths — raising it would trade toward tier-A sluggishness, not fix testability); P5's pass is real but vacuous and is NOT claimed as the stronger tier's fulfillment; per the guardrail the thread HALTS for a word.",
+    trace:{ script:"experiments/exp172_k_gap.py", output:"experiments/outputs/exp172.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

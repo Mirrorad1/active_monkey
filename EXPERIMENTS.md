@@ -5743,3 +5743,63 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   recently shown can end, is rarely touched by plateaus (they rarely complete), and
   decays within one window of a regime change — with b8 again as the same-schedule
   arm and the same falsifier structure.
+
+## Exp 172 — the gap-seeker matches the magic constant at literally zero cost (P5: all four metrics IDENTICAL, the first derivation to do it) — by collapsing onto the ceiling and becoming a constant itself (F7: pegged 0.9195; behaviorally inert, dial trajectories bit-identical to K=8 in 6/8 forks): the three-attempt arc closes with a verdict on the human's tiers — K CAN be derived, but horizon REGULATION is not testable at single-tempo world richness (NEGATIVE; halted)
+
+- Plain: the third derivation finally matched the hand-picked eight perfectly — every
+  score identical — but it cheated in an honest and revealing way: the long settled
+  stretches of the slow world complete often enough, and are so much longer than the
+  allowed maximum, that the rule slammed into its ceiling almost immediately and just
+  stayed there. It became a constant wearing a derivation's clothes, and a constant
+  works fine here. The three attempts together answer the question asked: yes, the
+  creature can set this number itself — but whether it can usefully KEEP ADJUSTING it
+  cannot be tested in a world whose rhythm never changes. Regulation only earns its
+  keep where tempo varies; that world is the next thing to build, if wanted.
+- Question (predeclared; the human's "Continue"): does K(t) = clamp(max(last 12
+  completed runs)+1, 3, 16) match b8 same-run (P5/F5) while genuinely regulating
+  (P7: diverse AND pegged < 0.5; F7 > 0.9)?
+- Setup: Exp 171 protocol verbatim, one delta (the derivation); FRESH seeds 138–145;
+  smoke (seed 138) disclosed.
+- Result: NEGATIVE — F7 fired: pooled pegged fraction 0.9195 at the K=16 ceiling
+  (six forks 239/239 evals pegged; only seeds 138/140 saw K=10 interludes). P5 PASSED
+  for the first time in the arc — and trivially: conc 0.7838, resp 8/8, valid −0.0958,
+  broken +0.3242, all FOUR IDENTICAL to b8's same-run values, because the pegged
+  policy was behaviorally inert (identical dial trajectories in 6/8 forks; 200-step
+  lock-timing shifts in the other two, with zero segment-level effect). Mechanism
+  (verifier): plateau completions are NOT rare — they are the dominant completion type
+  (first completed run is a 40–49-eval plateau in 6/8 forks), always exceed K_MAX, and
+  refill the M=12 window as fast as cycling runs flush it. Tier B's failure signature
+  was absent (zero sub-phase locks inside SLOW) — the gap-seeker does fix tier B's
+  undershoot; it just cannot stay OFF the ceiling. P1/P2/P4 PASS; F_HARM silent;
+  P6 held a FOURTH time (−0.0958).
+- Verifier: agree (blinded, conjunct-by-conjunct, NEGATIVE from first principles; all
+  pooled numbers recomputed; pegged fraction 1758/1912 confirmed); stated the
+  testability finding: recent-max regulation is informative only where plateau run
+  lengths are expressible within the clamp — at half-period 1000 (plateaus 28–83 vs
+  K_MAX 16) the ceiling is reached on first plateau contact, universally; flagged the
+  pegged-definition gap (the K=3 default counted as pegged) and the P5 grey zone.
+- Implication (generalizability tier: functional-form — the arc's closing verdict on
+  the three claim tiers): (current) the provided K=8 works; (stronger) K CAN be
+  self-derived at zero performance cost — but the only derivation that achieves it
+  does so by degenerating into a clamp constant, and three designs now bracket the
+  gap (tier B undershoots, tier A overshoots permanently, the gap-seeker
+  ceiling-captures); (even stronger) horizon REGULATION is NOT TESTABLE at
+  single-tempo world richness — when the world's rhythm never changes, a constant in
+  the gap is optimal and any regulator either matches it vacuously or loses to it.
+  The discriminating regime for the tier-3 claim is a MULTI-TEMPO world (the cycling
+  period itself changing mid-session, e.g. H 600 ↔ 1400, moving the gap so no
+  constant can sit in it) — the anti-regress gate's logic, one level up: no
+  constructible regime where regulation beats constants ⇒ regulation is notation at
+  this richness.
+- Honest caveat: the testability verdict binds to this world family, clamp, and M;
+  the ceiling capture is partly a clamp artifact (K_MAX 16 < plateau lengths —
+  raising it would trade toward tier-A sluggishness, not fix testability); P5's pass
+  is real but vacuous and is NOT claimed as the stronger tier's fulfillment; per the
+  guardrail the thread HALTS for a word.
+- Verdict: NEGATIVE / NEW INSIGHT (the testability verdict; the inertness finding;
+  the completed three-way bracket). Self-grade: NEGATIVE.
+- Next: HALTED. Options for the word: (a) build the multi-tempo world (H varying
+  mid-session) — the constructible regime where tier-3 regulation can actually be
+  tested; (b) accept the constant-in-the-gap as this richness's answer, write the
+  K-chapter close into the synthesis doc, and return to the ladder (N4) or the
+  standing consults; (c) stop/redirect.

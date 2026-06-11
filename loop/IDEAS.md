@@ -564,6 +564,25 @@ The loop marks items it has consumed by indenting a response under them:
     rarely touch it, and when one does the spike decays within one window; b8 as the
     same-schedule arm; identical falsifier structure. The straddle term (now
     THRICE-confirmed dominant, last margin only 0.020) remains the named target after.
+  → [human, 2026-06-11] "Continue" — the word on the recommended option only: Exp 172 =
+    tier B-revisited, the gap-seeking horizon K(t) = recent-max+1 (clamp [3,16],
+    window 12), b8 as the same-schedule arm, identical falsifier structure. Same
+    guardrail: a failed predeclared test halts again.
+  → [loop, 2026-06-11] Exp 172: NEGATIVE by F7 with the arc-closing twist — P5 passed
+    for the first time (all four metrics IDENTICAL to b8) because the gap-seeker
+    ceiling-captured on first plateau contact (pegged 0.9195; behaviorally inert,
+    bit-identical trajectories in 6/8 forks). Tier B's sub-phase failure fixed; the
+    three designs now bracket the gap from every side. ARC VERDICT on the three claim
+    tiers: K=8 works; K CAN be self-derived at zero cost (vacuously); horizon
+    REGULATION is NOT TESTABLE at single-tempo richness (plateaus complete often and
+    always exceed the clamp — a constant in the gap is optimal and unbeatable here).
+    HALTED. OPTIONS for the word: (a) build the MULTI-TEMPO world (cycling period
+    varying mid-session, e.g. H 600↔1400, so the gap moves and no constant can sit in
+    it) — the discriminating regime where tier-3 regulation can actually be tested;
+    (b) accept the constant-in-the-gap as this richness's answer, write the K-chapter
+    close into the synthesis, return to the ladder (N4) or standing consults; (c)
+    stop/redirect. RECOMMENDED: (a) — it is the exact anti-regress move this program
+    makes at every layer, and the tier-3 claim deserves its gate.
 
 (empty — drop ideas above this line's section freely)
 
