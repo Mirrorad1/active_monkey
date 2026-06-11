@@ -167,4 +167,14 @@ precondition, controls, and separated claims. Card:
   lambda, schedule are PROVIDED. AUROC_B uses scramble-window labels of identical
   geometry. Exp 177's NO VERDICT is NOT evidence against the monitor.
 
-**STATUS.** state: active (rung 2, attempt 2 — pre-registered) · latest: Exp 177 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: Exp 48/49 inertia law, Exp 55 baseline, Exp 26 value machinery, same-schedule-arms protocol (170), universal-constant kill test (173), the verified displacement regime (176, replicated 3 blocks), the argmax-independent mismatch instrument (177, ungated) · why: the human's word converts the consult into PC2' + controls + separated claims · next-falsifiable: Exp 178 — PC2' vector-grade gate, scramble control (P3 specificity), conditional flicker control (P4), seeds 186-193, decision rule rung-2 / rung-1.5 / negative / no-verdict as pre-registered above
+**RUNG 2, ATTEMPT 2 RESULT (Exp 178, MIXED, tier RUNG-1.5, blind-verified).** PC2'
+worked first try (TVs 0.003-0.046 vs the 0.05 analytic bar, 8/8 every window — the
+blocking streak ends; gate granularity must match the measured quantity). P2 PASS
+8/8 (AUROC 0.844-0.893, median 0.879); P4 PASS (flickering forks score equally);
+D5 24/24 (onset spike ~78 -> ~17 within a burst: rung 3's actuation window). P3
+VOIDED by PC3b — uniform-cell scramble is not the walk's stationary diet (TV up to
+0.124 vs 0.05 in half the forks); raw specificity numbers (delta 0.54-0.62 in 8/8,
+median AUROC_B 0.287 — an INVERSION: scramble stabilizes v below quiet noise) are
+unlicensed. SENSITIVITY + ARGMAX-INDEPENDENCE BANKED; specificity open.
+
+**STATUS.** state: active (rung 2, attempt 3) · latest: Exp 178 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the banked rung-1.5 monitor (178: sensitive, argmax-independent, measured actuation window), PC2' vector gate, same-schedule-arms protocol (170), universal-constant kill test (173) · why: one valid control separates rung-1.5 from rung-2 · next-falsifiable: Exp 179 — occupancy-matched scramble: Arm B relocates by sampling the fork's OWN pre-burst (5000-6000) empirical cell-occupancy histogram (rng 175000+seed); PC3b, P2, P3/F3, P4, D5 and the decision rule retained verbatim; FRESH seeds 194-201; smoke 194; prediction: PC3b passes (TV ~0.01) and P3 decides rung-2 vs rung-1.5

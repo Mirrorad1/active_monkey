@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp178",
+  "verdict": "MIXED",
+  "halted": false,
+  "arms": {
+    "P2_sensitivity": {
+      "pass": true,
+      "reason": "forks with AUROC_A>=0.8: 8/8 (need >=7); median AUROC_A=0.879 (F2 if <=0.5)"
+    },
+    "P3_specificity": {
+      "pass": false,
+      "reason": "pairs with AUROC_A-AUROC_B>=0.2: 8/8 (need >=6); median AUROC_B=0.287 (<=0.65?=True); PC3b_valid=False"
+    },
+    "P4_argmax_independence": {
+      "pass": true,
+      "reason": "flickering_forks=[186, 191, 193]; evaluable=True; status=pass"
+    },
+    "PC3b_control_validity": {
+      "pass": false,
+      "reason": "PC3b FAIL: burst 0 (bstart=6000) \u2014 only 4/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided; PC3b FAIL: burst 2 (bstart=12000) \u2014 only 4/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided"
+    }
+  },
+  "notes": "N4 rung 2 attempt 2, tier=rung-1.5. Pre-registered card in loop/directions/identity-n4.md; PC2' vector-grade gate (TV(pi_pre, pi_onset) <= 0.05, replaces argmax-constancy); scramble specificity control (Arm B, rng 175000+seed, whole-grid relocation); argmax covariate only (flicker count logged, never gated). D5 adaptation fraction=1.000. P4 status=pass (flickering=[186, 191, 193])."
+}

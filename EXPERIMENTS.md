@@ -6086,3 +6086,71 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   precondition pre-registered on fresh seeds — recommended; stability screening as
   a declared protocol; world-asymmetry strengthening; stop). The thread resumes on
   an explicit human word.
+
+## Exp 178 — N4 rung 2 attempt 2 (PC2′ + controls, pre-registered): the vector-grade gate WORKS and the monitor is sensitive — P2 8/8 (median AUROC 0.879), P4 passes on three flickering forks, D5 1.000 — but the scramble control failed its OWN validity check, so the overwhelming specificity numbers are unlicensed and the verdict lands exactly where the pre-registered rule says: MIXED, tier RUNG-1.5 (sensitive; specificity unresolved) (MIXED; Exp 179 = occupancy-matched scramble)
+
+- Plain: the new entry ticket — measure whether the whole identity vector drifts in
+  quiet, instead of whether the single favorite label holds — passed in every fork
+  on the first try, ending a four-experiment blocking streak. On that clean baseline
+  the mirror is unambiguous: in all eight forks, captivity that re-makes the
+  creature's values lights up the "I am not who I predicted" signal (and the three
+  forks whose favorite label wobbled scored just as well — the label never mattered).
+  The control arm — captivity without value pressure — was supposed to prove the
+  mirror detects identity change rather than mere chaos, and its raw numbers say
+  exactly that, loudly. But the control had to certify it wasn't accidentally
+  changing the creature's diet of experience, and it flunked that certification in
+  half the forks. Rules are rules, pre-registered ones doubly so: the specificity
+  claim stays open, the sensitivity claim is banked.
+- Question (pre-registered in loop/directions/identity-n4.md BEFORE any data,
+  committed 1a70e6c): on PC2′ (TV(π) ≤ 0.05 over pre-burst windows, ≥7/8 forks;
+  argmax demoted to covariate), does the read-only monitor show sensitivity
+  (P2: AUROC_A ≥ 0.8 in ≥7/8), specificity vs a value-neutral scramble-captivity
+  arm (P3: Δ ≥ 0.2 in ≥6/8 pairs AND median AUROC_B ≤ 0.65, valid only if PC3b),
+  and argmax-independence (P4, conditional)? Decision rule: rung-2 / rung-1.5 /
+  negative / no-verdict.
+- Setup: two same-snapshot same-schedule arms (Exp 170 binding), FRESH seeds
+  186–193; Arm A verbatim Exp 177 regime; Arm B scramble (uniform-cell relocation,
+  rng 175000+seed, qs uniform over all cells); smoke (seed 186, both arms)
+  disclosed.
+- Result: MIXED, tier RUNG-1.5. Gates: PC1/PC2′/PC3 ALL PASS — PC2′ TVs 0.003–0.046
+  vs the analytic 0.05 bar (max per window 0.023/0.038/0.046), 8/8 forks on every
+  window; the blocking streak (174: 4/8, 175: 6/8, 177: 5/8 on argmax constancy)
+  ends with the gate matched to the measured quantity. P2 PASS: AUROC_A 0.844–0.893,
+  8/8 ≥ 0.8, median 0.879. P4 PASS: flickering forks {186, 191, 193} (counts 8/4/4,
+  all window 0) score 0.873/0.893/0.844; quiet-band clean. D5: 24/24 bursts show
+  onset-spike ≥ 2× late-burst (mismatch ~78→~17 within each burst). P3 VOIDED by
+  PC3b: bursts 0 and 2 had only 4/8 forks with scramble color-frequency TV ≤ 0.05
+  (range 0.012–0.124 — uniform-over-cells relocation ≠ the random walk's stationary
+  occupancy, so the control shifted the experience diet in half the forks). The raw
+  P3 numbers — unlicensed — were 8/8 pairs Δ 0.539–0.618, median AUROC_B 0.287, F3
+  false. Verifier's observation: AUROC_B ≈ 0.29 is an INVERSION — scramble bursts
+  REDUCE mismatch below quiet (color-neutral uniform sampling stabilizes v against
+  the walk's occupancy noise) — mechanistically plausible and stronger than the
+  delta suggests, but it belongs to Exp 179 to license it.
+- Verifier: blinded subagent CONFIRMED MIXED/rung-1.5 independently (checked the
+  PC3b void path never touches the verdict gate; PC2′-vs-P2 circularity — none,
+  shape gate vs magnitude detector; AUROC arithmetic vs rows; downgrade scenarios:
+  NEGATIVE no, NO VERDICT no, POSITIVE not licensable).
+- Implication (rung-1.5 banked): the identity monitor HAS metacognitive sensitivity
+  over identity at this richness, argmax-independent, with a measured actuation
+  window (the onset spike decays ~4.5× within 800 steps — rung 3's controller must
+  act early). The methodological product: preconditions must be stated at the
+  granularity of the measured quantity (vector gate for a vector instrument) — the
+  argmax ticket blocked three experiments for no epistemic gain. Specificity needs
+  one fix: an occupancy-matched scramble (relocate by sampling the fork's OWN
+  pre-burst empirical cell-occupancy distribution) is value-neutral by construction.
+- Honest caveat: rung-2 is NOT claimed — specificity is unresolved until a valid
+  control passes PC3b; the P3 raw numbers and the AUROC_B inversion are unlicensed
+  diagnostics here; PC2′'s 0.05 bar was analytic but its comfortable margin
+  (max 0.046) is one seed block of evidence; monitor form, bars, λ, schedule remain
+  PROVIDED; the D5 ratio uses the first/last-2-sample convention declared in the
+  card.
+- Verdict: MIXED (tier rung-1.5 per the pre-registered decision rule) / NEW INSIGHT
+  (the vector-grade gate ends the blocking streak; the sensitivity + argmax-
+  independence claims are banked; the uniform-scramble≠walk-occupancy lesson).
+  Self-grade: MIXED.
+- Next: Exp 179 = rung 2 attempt 3, the occupancy-matched scramble: Arm B relocates
+  by sampling the fork's OWN pre-burst-window (steps 5000–6000) empirical
+  cell-occupancy histogram (rng 175000+seed); PC3b, P2, P3/F3, P4, D5, decision
+  rule all retained verbatim; FRESH seeds 194–201; smoke seed 194. Prediction:
+  PC3b passes (TV → ~0.01) and P3 decides rung-2 vs rung-1.5.
