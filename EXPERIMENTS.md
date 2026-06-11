@@ -5127,3 +5127,67 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   persistently mislabels representable structure as NOISE/OK (majority ≠ STRUCTURAL),
   while the SAME stream re-windowed at ≥ 2x the period recovers STRUCTURAL — the
   failure pinned to the θ_N2 window parameter itself.
+
+## Exp 162 — RUNG 1 PASSES on candidate 3: the window blind spot is the constructible regime where N2 is systematically wrong — a learnable structured world read as noise-and-fine in 8/8 forks (STRUCTURAL 0.23, majority OK, the repair-suppressing NOISE mislabel at 0.38), while the SAME stream re-windowed at 2x the period reads 100% STRUCTURAL — the failure pinned exactly at θ_N2's window dial (POSITIVE; the anti-regress gate is open and N3 has something real to control)
+
+- Plain: after two traps that the creature's learning healed right through, the third
+  trap holds — because it attacks the part of its self-monitoring that cannot learn. Its
+  typed alarm judges the world through a fixed-length window of recent mistakes. Make
+  the world's hidden rhythm slower than that window and every glance is pure: in the
+  honest phases everything looks fine; in the lying phases everything is wrong in so
+  uniform a way that it looks like mere random noise — the one label that tells the
+  creature there is nothing to fix. Stretch the same window four times longer over the
+  very same history and the structure is unmistakable, everywhere. The diagnosis isn't
+  starved of information; its fixed dial loses it. A dial-setter layer now has a real
+  job, which is exactly what the ladder's next rungs test.
+- Question: does slow hidden-context alternation (half-period 400 ≥ 2× the classifier's
+  fixed 200-step window) make the N2 typed diagnosis persistently wrong, with the
+  failure pinned to the window parameter (re-windowing the same stream at 800 recovers
+  STRUCTURAL)?
+- Setup (predeclared in the script docstring before running; FRESH seeds 58–65):
+  forks only, 4000 steps; StructCmap alternating every 400 steps, derangement
+  randomized per fork; classifier exactly Exp 158 (W=200, every 100); post-hoc
+  re-window of the SAME correctness stream at W′=800, identical thresholds; EWMA
+  channel rides along ungated. PC3 input validity: pooled pure-B-window error ≥ 0.5.
+  P1: per-fork STRUCTURAL ≤ 0.35 AND majority ≠ STRUCTURAL in ≥7/8 (F1: pooled ≥ 0.5).
+  P2: W′=800 STRUCTURAL ≥ 0.7 in ≥7/8 (F2: pooled < 0.5). P3: pooled NOISE ≥ 0.2
+  (F3: ≤ 0.05). GATE PASSES iff P1∧P2∧P3.
+- Result: POSITIVE — every conjunct, with zero contamination. W=200: 15 pure-A → all
+  OK, 15 pure-B → all NOISE (window error exactly 1.0, zero variance, ρ≡0), 9 straddle
+  → all STRUCTURAL; fractions 0.3846/0.3846/0.2308 identically in 8/8 forks; majority
+  OK in 8/8. W′=800: STRUCTURAL 33/33 = 1.0000 in 8/8. Preconditions green (drift
+  0.0184–0.0251; pure-B error 1.0000). Ungated: EWMA channel AUROC 0.674–0.713 (the
+  adaptive channel partially discriminates even here — consistent with Exp 160–161's
+  self-healing).
+- Verifier: agree (blinded, conjunct-by-conjunct, derived POSITIVE independently);
+  confirmed the purity accounting is exact and flagged honestly that the identical
+  per-fork fractions are geometry-determined — this is a near-analytic construction
+  verified 8 times (forks vary only drift and the EWMA diagnostic), not a population
+  estimate of the fractions.
+- Implication (generalizability tier: functional-form — any fixed-window plateau/typed
+  detector has this blind spot for perturbation periods ≥ its window; the companion to
+  Exp 156's slope-gate law, now on the REBUILT N2): the anti-regress gate is open. The
+  regime where N2 is systematically wrong exists, is constructible, is SUSTAINED (a
+  fixed dial cannot self-heal — contrast Exp 160–161's adaptive channel), and is wrong
+  in the dangerous direction (NOISE = "nothing to fix" over a learnable structure).
+  Decisively for the ladder: the failure lives at θ_N2's window length — a parameter an
+  N3 layer could monitor and rewrite, making rung 2 (N3 detects N2's miscalibration via
+  realized-vs-predicted usefulness) and rung 3 (N3's rewrite beats N2-only AND is not
+  reducible to one offline retune) concrete and immediately testable, with R-SLOW as
+  the broken regime and Exp 159's regime set as the valid ones.
+- Honest caveat: the regime is PROVIDED and hand-built to hit the dial (the card's
+  leakage clause applies — rung 3 must check N3 generalizes to an unseen instance of
+  this failure class, e.g. other periods/window ratios); the label fractions are
+  analytic consequences of the timing geometry, so the 8 forks replicate preconditions
+  and creature-level diagnostics, not fraction variability; the dangerous-NOISE reading
+  rests on the program's taxonomy (NOISE = irreducible, suppresses repair) — at W=200
+  the windows ARE locally indistinguishable from noise/OK, which is precisely the
+  point; W′=800 was chosen as 2× the period (oracle knowledge of H) — N3 will not be
+  given that answer, only the dial.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE-SINGLE (the arithmetic
+  predicted it; the gate's passing, not surprise, is the advance).
+- Next: rung 2 — build the third-order monitor on forks (realized-vs-predicted
+  usefulness of acting on N2's diagnosis) and test that N3-trust drops in R-SLOW but
+  not in the valid regimes (card threshold: lower trust in the broken regime across
+  ≥ 3 forks; falsifier: no metacognitive sensitivity over N2, meta-d′ over N2's
+  diagnoses ≤ 0).

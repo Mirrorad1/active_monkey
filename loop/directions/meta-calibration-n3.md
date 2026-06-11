@@ -158,4 +158,15 @@ cannot be kept wrong; its FIXED parameters (classifier window 200, thresholds 0.
 — and those are literally θ_N2, the surface this card assigns to N3. Candidate 3 attacks
 the window.
 
-**STATUS.** state: active (rung 1, candidate 3) · latest: Exp 161 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161: adaptive self-heals, fixed is attackable) · why: the gate needs a constructible N2-failure regime; the law says attack θ_N2's fixed dials · next-falsifiable: candidate 3, the window blind spot — hidden-context alternation with half-period ≥ 2x the classifier window: majority label ≠ STRUCTURAL persistently (the typed diagnosis wrong at a θ_N2 dial), while the same stream re-windowed ≥ 2x the period recovers STRUCTURAL (the information was present; the fixed window lost it)
+**RUNG 1 PASSED (Exp 162, POSITIVE — candidate 3, the window blind spot).** R-SLOW
+(hidden-context alternation, half-period 400 ≥ 2× the classifier's fixed window 200) makes
+the typed diagnosis persistently wrong: pure-A windows → OK, pure-B → NOISE (error exactly
+1.0, zero variance, the repair-suppressing label), STRUCTURAL only 0.2308 with majority OK
+in 8/8 — while the SAME stream at W′=800 reads 100% STRUCTURAL. Failure pinned at θ_N2's
+window dial; fixed dials cannot self-heal (contrast Exp 160–161). The verifier's honesty
+flag: the fractions are geometry-determined (near-analytic construction verified 8×).
+Leakage clause armed for rung 3: N3 must generalize to unseen instances (other
+period/window ratios), and N3 gets the DIAL, not the answer (W′=800 used oracle knowledge
+of H).
+
+**STATUS.** state: active (rung 2) · latest: Exp 162 · depends-on: functional-emergence, persistent-creature · reusable: N-order anti-regress rule, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161), window-blind-spot regime R-SLOW (Exp 162) · why: rung 1 gate passed — N2 has a constructible, sustained, dial-pinned failure regime; N3 now has something real to control · next-falsifiable: rung 2 — the third-order monitor (realized-vs-predicted usefulness of acting on N2's diagnosis): N3-trust lower in R-SLOW than in valid regimes across ≥ 3 forks; falsifier: meta-d′ over N2's diagnoses ≤ 0 (no metacognitive sensitivity over N2)

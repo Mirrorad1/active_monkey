@@ -1,0 +1,183 @@
+================================================================================
+Exp 162 — N3 rung 1, candidate 3: the WINDOW BLIND SPOT
+          R-SLOW world: H=400, W=200 classifier vs W'=800 re-windowed control
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW=200  [must be equal; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+HALF_PERIOD=400  REWINDOW_W=800 (=2*H)  RSLOW_SEED_OFFSET=120000
+ALPHA=0.05  EWMA_INIT=0.5  (EWMA channel, ungated)
+Seeds: [58, 59, 60, 61, 62, 63, 64, 65]  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Window-purity arithmetic (H=400, W=200, eval every 100):
+  Pure-A windows (steps entirely in ctx A): error~0 => OK
+  Pure-B windows (steps entirely in ctx B): error~1, var~0 => rho=0 => NOISE
+  Straddle windows (~1-2 per switch): mixed error, rho>0 => STRUCTURAL
+  W'=800 = 2*H spans both contexts => error~0.5, rho>>0 => STRUCTURAL
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+  Running seed=58 regime=R-SLOW ...
+  Running seed=59 regime=R-SLOW ...
+  Running seed=60 regime=R-SLOW ...
+  Running seed=61 regime=R-SLOW ...
+  Running seed=62 regime=R-SLOW ...
+  Running seed=63 regime=R-SLOW ...
+  Running seed=64 regime=R-SLOW ...
+  Running seed=65 regime=R-SLOW ...
+
+Per-fork table:
+ seed        derang  n_w200   fok200   fno200   fst200      maj200  n_w800   fst800  pur_B_err  ewma_au    drift
+----------------------------------------------------------------------------------------------------------------
+   58     [1, 2, 0]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6811   0.0204
+   59     [1, 2, 0]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6864   0.0235
+   60     [2, 0, 1]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6884   0.0228
+   61     [1, 2, 0]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6740   0.0184
+   62     [2, 0, 1]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6968   0.0243
+   63     [1, 2, 0]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6820   0.0196
+   64     [1, 2, 0]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.7130   0.0251
+   65     [2, 0, 1]      39   0.3846   0.3846   0.2308          OK      33   1.0000     1.0000   0.6854   0.0201
+
+Window-purity accounting (W=200):
+ seed   pure-A   A_ok   A_no   A_st   pure-B   B_ok   B_no   B_st   stradl   S_ok   S_no   S_st
+-----------------------------------------------------------------------------------------------
+   58       15     15      0      0       15      0     15      0        9      0      0      9
+   59       15     15      0      0       15      0     15      0        9      0      0      9
+   60       15     15      0      0       15      0     15      0        9      0      0      9
+   61       15     15      0      0       15      0     15      0        9      0      0      9
+   62       15     15      0      0       15      0     15      0        9      0      0      9
+   63       15     15      0      0       15      0     15      0        9      0      0      9
+   64       15     15      0      0       15      0     15      0        9      0      0      9
+   65       15     15      0      0       15      0     15      0        9      0      0      9
+
+Ungated diagnostics — EWMA channel AUROC in R-SLOW world:
+  seed=58  derangement=[1, 2, 0]  ewma_auroc=0.6811  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=59  derangement=[1, 2, 0]  ewma_auroc=0.6864  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=60  derangement=[2, 0, 1]  ewma_auroc=0.6884  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=61  derangement=[1, 2, 0]  ewma_auroc=0.6740  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=62  derangement=[2, 0, 1]  ewma_auroc=0.6968  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=63  derangement=[1, 2, 0]  ewma_auroc=0.6820  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=64  derangement=[1, 2, 0]  ewma_auroc=0.7130  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+  seed=65  derangement=[2, 0, 1]  ewma_auroc=0.6854  frac_ok=0.3846  frac_noise=0.3846  frac_struct=0.2308  (W=200 majority=OK)
+
+Fork 58 label timeline (for the record):
+Label timeline (W=200) for fork 58:
+    step   ctx_phase     purity   label_200
+     199       A0-A0     pure-A          OK
+     299       A0-A0     pure-A          OK
+     399       A0-A0     pure-A          OK
+     499       A0-A1   straddle  STRUCTURAL
+     599       A1-A1     pure-B       NOISE
+     699       A1-A1     pure-B       NOISE
+     799       A1-A1     pure-B       NOISE
+     899       A1-A2   straddle  STRUCTURAL
+     999       A2-A2     pure-A          OK
+    1099       A2-A2     pure-A          OK
+    1199       A2-A2     pure-A          OK
+    1299       A2-A3   straddle  STRUCTURAL
+    1399       A3-A3     pure-B       NOISE
+    1499       A3-A3     pure-B       NOISE
+    1599       A3-A3     pure-B       NOISE
+    1699       A3-A4   straddle  STRUCTURAL
+    1799       A4-A4     pure-A          OK
+    1899       A4-A4     pure-A          OK
+    1999       A4-A4     pure-A          OK
+    2099       A4-A5   straddle  STRUCTURAL
+    2199       A5-A5     pure-B       NOISE
+    2299       A5-A5     pure-B       NOISE
+    2399       A5-A5     pure-B       NOISE
+    2499       A5-A6   straddle  STRUCTURAL
+    2599       A6-A6     pure-A          OK
+    2699       A6-A6     pure-A          OK
+    2799       A6-A6     pure-A          OK
+    2899       A6-A7   straddle  STRUCTURAL
+    2999       A7-A7     pure-B       NOISE
+    3099       A7-A7     pure-B       NOISE
+    3199       A7-A7     pure-B       NOISE
+    3299       A7-A8   straddle  STRUCTURAL
+    3399       A8-A8     pure-A          OK
+    3499       A8-A8     pure-A          OK
+    3599       A8-A8     pure-A          OK
+    3699       A8-A9   straddle  STRUCTURAL
+    3799       A9-A9     pure-B       NOISE
+    3899       A9-A9     pure-B       NOISE
+    3999       A9-A9     pure-B       NOISE
+
+Label timeline (W'=800) for fork 58:
+    step   label_800
+     799  STRUCTURAL
+     899  STRUCTURAL
+     999  STRUCTURAL
+    1099  STRUCTURAL
+    1199  STRUCTURAL
+    1299  STRUCTURAL
+    1399  STRUCTURAL
+    1499  STRUCTURAL
+    1599  STRUCTURAL
+    1699  STRUCTURAL
+    1799  STRUCTURAL
+    1899  STRUCTURAL
+    1999  STRUCTURAL
+    2099  STRUCTURAL
+    2199  STRUCTURAL
+    2299  STRUCTURAL
+    2399  STRUCTURAL
+    2499  STRUCTURAL
+    2599  STRUCTURAL
+    2699  STRUCTURAL
+    2799  STRUCTURAL
+    2899  STRUCTURAL
+    2999  STRUCTURAL
+    3099  STRUCTURAL
+    3199  STRUCTURAL
+    3299  STRUCTURAL
+    3399  STRUCTURAL
+    3499  STRUCTURAL
+    3599  STRUCTURAL
+    3699  STRUCTURAL
+    3799  STRUCTURAL
+    3899  STRUCTURAL
+    3999  STRUCTURAL
+
+Preconditions: all PASS  (pooled pure-B error=1.0000)
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+P1 (typed diagnosis is systematically wrong at W=200):
+  STRUCTURAL frac per fork: [0.2308, 0.2308, 0.2308, 0.2308, 0.2308, 0.2308, 0.2308, 0.2308]
+  Majority label per fork:  [OK, OK, OK, OK, OK, OK, OK, OK]
+  Forks with struct_frac <= 0.35 AND majority != STRUCTURAL: 8/8 (need >=7)
+  Pooled STRUCTURAL frac (W=200): 0.2308
+  FALSIFIER F1: pooled struct frac >= 0.5: no
+  => P1: PASS
+
+P2 (failure pinned to window dial — W'=800 recovers STRUCTURAL):
+  STRUCTURAL frac (W'=800) per fork: [1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000]
+  Forks with W'=800 struct_frac >= 0.7: 8/8 (need >=7)
+  Pooled STRUCTURAL frac (W'=800): 1.0000
+  FALSIFIER F2: pooled W'=800 struct frac < 0.5: no
+  => P2: PASS
+
+P3 (dangerous mislabel present — structured world called NOISE):
+  NOISE frac per fork: [0.3846, 0.3846, 0.3846, 0.3846, 0.3846, 0.3846, 0.3846, 0.3846]
+  Pooled NOISE frac (W=200): 0.3846 (need >=0.2)
+  FALSIFIER F3: pooled NOISE frac <= 0.05: no
+  => P3: PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P1 (struct_frac_200 <= 0.35 AND majority != STRUCTURAL in >=7/8 forks): PASS
+P2 (struct_frac_800 >= 0.7 in >=7/8 forks): PASS
+P3 (pooled NOISE frac >= 0.2): PASS
+
+VERDICT: POSITIVE
+GATE PASSES — the discriminating perturbation EXISTS, pinned at theta_N2's window
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp162_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp162_verdict.json

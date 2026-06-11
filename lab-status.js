@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 161, title: "rung-1 candidate 2 FAILS, completing the deception-tempo law: lag-matched swaps do not sustain anti-calibration — pooled calibration rises MONOTONICALLY with swap period (0.5408 → 0.5747 → 0.6203 across T=250/500/750) because the adaptive channel self-heals at every tempo", tag: "NEGATIVE" },
-  tally: { total: 161, positive: 100, negative: 35, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 162, title: "RUNG 1 PASSES on candidate 3: the window blind spot is the constructible regime where N2 is systematically wrong — a learnable structured world read as noise-and-fine in 8/8 forks (STRUCTURAL 0.23, majority OK, the repair-suppressing NOISE mislabel at 0.38), while the SAME stream re-windowed at 2x the period reads 100% STRUCTURAL — the failure pinned exactly at θ_N2's window dial", tag: "POSITIVE" },
+  tally: { total: 162, positive: 101, negative: 35, mixed: 22, breakthroughs: 3 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (rung 1, candidate 3)", latest: "Exp 161", next: "candidate 3, the window blind spot — hidden-context alternation with half-period ≥ 2x the classifier window: majority label ≠ STRUCTURAL persistently (the typed diagnosis wrong at a θ_N2 dial), while the same stream re-windowed ≥ 2x the period recovers STRUCTURAL (the information was present; the fixed window lost it)" },
+    { name: "meta-calibration-n3", state: "active (rung 2)", latest: "Exp 162", next: "rung 2 — the third-order monitor (realized-vs-predicted usefulness of acting on N2's diagnosis): N3-trust lower in R-SLOW than in valid regimes across ≥ 3 forks; falsifier: meta-d′ over N2's diagnoses ≤ 0 (no metacognitive sensitivity over N2)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

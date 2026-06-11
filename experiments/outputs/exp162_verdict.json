@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp162",
+  "verdict": "POSITIVE",
+  "halted": false,
+  "arms": {
+    "P1_diagnosis_wrong": {
+      "pass": true,
+      "reason": "W=200 struct_frac <= 0.35 AND majority != STRUCTURAL in 8/8 forks (need 7); pooled struct frac=0.2308; F1 fired=False"
+    },
+    "P2_window_pinned": {
+      "pass": true,
+      "reason": "W'=800 struct_frac >= 0.7 in 8/8 forks (need 7); pooled W'=800 struct frac=1.0000; F2 fired=False"
+    },
+    "P3_dangerous_mislabel": {
+      "pass": true,
+      "reason": "Pooled NOISE frac (W=200)=0.3846 (need >=0.2); F3 fired=False"
+    }
+  },
+  "notes": "N3 rung 1 candidate 3: window blind spot. R-SLOW world with H=400 (half-period > W=200 classifier window). Pure context-B windows read NOISE (zero variance => rho=0 => dangerous mislabel). The failure is pinned to theta_N2's window dial: re-windowing at W'=800=2H recovers STRUCTURAL. Fixed window cannot self-heal unlike the adaptive EWMA channel. POSITIVE => GATE PASSES, discriminating perturbation exists. NEGATIVE kills candidate 3 only; candidate 4 remains."
+}
