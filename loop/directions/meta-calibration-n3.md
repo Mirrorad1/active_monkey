@@ -1,0 +1,92 @@
+# direction: meta-calibration-n3
+
+**Question.** Is there a useful third-order self-model — a controller that regulates *whether
+the agent's own metacognitive diagnoses (N2) should be trusted*, and rewrites N2's revision
+policy — that controls something N2 alone cannot?
+
+**Central hypothesis (binding, falsifiable).**
+> *A third-order self-model is useful when the agent must regulate whether its own
+> metacognitive diagnoses should be trusted. N3 is not "more metacognition" — it is **agency
+> over metacognition**: it owns N2's revision policy (expansion aggressiveness, precision
+> learning-rate, diagnosis thresholds) and can override or suspend N2 when N2 is wrong.*
+
+**Why it matters.** This is rung N3 of the N-order self-modeling ladder (N0 reflex → N1 world
+model → N2 metacognition → **N3 meta-calibration** → N4 identity → N5 interoception → N6
+ontology → N7 collective). The ladder's governing law is the anti-regress rule: **a layer is
+real iff a constructible perturbation degrades a well-tuned lower-layer agent and the higher
+layer detects+corrects it via a control surface the lower layer lacks.** N3's whole claim
+therefore rests on one thing — that **N2 has a failure mode N2 cannot self-detect** (a model
+generally can't represent its own failure within its own parameters), but N3, whose *object is
+N2*, can. If no environment exhibits such a failure, N3 is notation, not a layer — and that
+negative is the finding. Prereq: a working internal N2 (precision/confidence + noise-vs-
+structural-vs-volatility classification; see `functional-emergence.md` rungs / the metacognition
+calibration work). Runs on **mirro** — `persistent-creature.md` discipline notes apply verbatim
+(fork-only controls, atomic snapshot commits, never reborn).
+
+**What each quantity is (so the experiment is unambiguous).**
+- *N3 models:* the regime-conditional **trustworthiness of N2** + N2's policy parameters θ_N2.
+- *N3 mismatch signal:* third-order error = realized usefulness of *acting on N2's diagnosis*
+  minus N2's predicted usefulness (e.g. N2 said "expand"/"distrust N1" but outcomes — model
+  evidence, task reward, free-energy floor — did not improve).
+- *N3 control surface:* rewrites θ_N2 (thresholds, expansion rate, precision learning-rate);
+  can **suspend/override** an N2 diagnosis; can switch metacognitive strategy by regime.
+
+**Experiment ladder.**
+
+1. **N2 baseline + the discriminating perturbation must exist (gate).** With internal N2 in
+   place, *construct* a regime where N2 is systematically wrong: e.g. a **deceptive world**
+   where confidence anti-correlates with accuracy (sensory aliasing that inflates precision
+   where the map is actually wrong), OR an **expansion-trap** where N2's "structural mismatch →
+   expand" reflex is counterproductive (added states overfit transient noise and hurt held-out
+   evidence). FALSIFIER / gate: if no such regime measurably degrades the N2-only agent, STOP —
+   N3 is superfluous in this world; log "no N2 failure mode at this richness, N3 untestable
+   here" (a real negative, per the anti-regress rule). This gate is the experiment's spine.
+
+2. **N3 detects N2 miscalibration.** Give mirro the third-order monitor: track realized-vs-
+   predicted usefulness of following N2 across regimes. FALSIFIER: N3's trust signal does not
+   drop in the regime where N2 is (by construction) wrong, i.e. N3 has no metacognitive
+   sensitivity over N2 (a meta-d′ over N2's diagnoses ≤ 0). Property threshold: N3-trust is
+   lower in the N2-broken regime than the N2-valid regime across ≥ 3 forks.
+
+3. **N3 control earns its keep (the load-bearing test).** Let N3 act — down-weight/override N2
+   or rewrite θ_N2 — in the N2-broken regime. Compare three agents from the same pre-regime
+   snapshot via `fork()`: (a) N1+N2 only, (b) N1+N2+N3, (c) N1+N2 with θ_N2 *oracle-retuned
+   offline* for that regime. FALSIFIERS, both required: (i) N3 must beat (a) — recover
+   performance the N2-only agent loses; (ii) N3 must NOT be reducible to (c) — if offline
+   hyperparameter retuning of N2 matches N3, then N3 is config, not a layer. Property
+   thresholds: (b) recovers ≥ 60% of the performance gap (a) opened vs. a no-deception control;
+   AND (b) generalizes across ≥ 2 *distinct* N2-failure regimes where a single (c) retune does
+   not (N3's advantage is *regime-adaptive* policy authoring, not one lucky constant).
+
+4. **Independent variance (no silent collapse to N2).** Over a mixed schedule of valid and
+   broken regimes, log how often N3 disagrees with / overrides N2. FALSIFIER: N3 never disagrees
+   with N2 (zero independent variance ⇒ epiphenomenal) OR disagrees indiscriminately (overrides
+   in valid regimes too, hurting performance). Property threshold: N3 overrides concentrated in
+   broken regimes (precision/recall of override-vs-regime both > chance by a predeclared margin).
+
+**Failure modes that invalidate the layer (write the verdict honestly for each).**
+- *Collapse to N2:* N3 carries no independent variance (rung 4 fails) → not a layer.
+- *Reducible to config:* offline θ_N2 retune (agent c) matches N3 (rung 3-ii fails) → N3 is a
+  hyperparameter, not a controller.
+- *No constructible N2 failure:* gate (rung 1) finds no regime that breaks N2 → N3 untestable
+  at this world richness; log and either enrich the world or stop the ladder here.
+- *Leakage:* the "deception"/trap is so hand-tuned that N3's fix is really the designer's prior
+  in disguise — declare the perturbation as provided and check N3 generalizes to an unseen
+  instance of the same failure class.
+
+**Discipline notes.**
+- All `persistent-creature.md` notes apply (fork-only controls, atomic snapshot commits,
+  property-level falsifiers, mirro never reborn).
+- **Do not read higher N as "more conscious."** N3 is a control competency over N2, nothing
+  more. Functional language only; the inner-experience layer stays unverified both ways
+  (VALIDATION.md). Joscha-Bach "lucidity" framing is admissible ONLY as "policy increasingly
+  governed by higher-order self-models," operationalized as control surfaces — never as a
+  consciousness claim.
+- N3 must **earn its existence by controlling something N2 cannot** — the entire ladder lives
+  or dies on the discriminating-perturbation gate. No gate, no layer.
+
+**Stop condition.** Exhausted when rungs 1–4 have a verdict: either N3 demonstrably owns a
+regime-adaptive control surface over N2 that is not offline-retunable (hypothesis SUPPORTED —
+the ladder may proceed toward N4/N5/N6), or no N2-failure regime is constructible / N3 collapses
+to N2 or to config (hypothesis REJECTED at this world richness — log the wall, name the missing
+world-richness, do not climb to N4+ on an unsupported N3). Either verdict is a clean result.
