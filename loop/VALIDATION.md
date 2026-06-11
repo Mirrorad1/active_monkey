@@ -111,3 +111,8 @@ these, under strict guardrails:
 ## Self-audit (when asked, or every ~10 experiments)
 Reread the last N entries as a hostile reviewer: would each claim survive a replication
 by someone who only has the entry text? Log discrepancies as a correction entry.
+
+The audit ends with a **distillation pass** (added 2026-06-10): fold any new
+incident-derived rules into `loop/LESSONS.md` as one-liners (stable numbers, never
+renumber), and re-compress narrative that has accreted in PROTOCOL/VALIDATION into
+rules + pointers. The consult card stays short or it stops being consulted.
