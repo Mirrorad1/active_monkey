@@ -14,6 +14,9 @@ cd "$(dirname "$0")/.." || exit 0
 [ -d .git/rebase-apply ] && exit 0
 
 if [ -n "$(git status --porcelain)" ]; then
+  # Self-heal generated indexes before staging, so a direction-card edit can
+  # never strand the suite red on the DIRECTIONS.md staleness guard.
+  uv run --python .venv python tools/gen_directions_index.py >/dev/null 2>&1 || true
   git add -A
   git commit -q -m "auto-sync: experiments + site ($(date -u +%FT%TZ))" || true
 fi
