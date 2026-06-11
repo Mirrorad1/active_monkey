@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:154, breakthrough:7, positive:87, wall:25, partial:35, from:4.81, to:4.00 };
+window.AM_TALLY = { total:155, breakthrough:7, positive:87, wall:25, partial:36, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -42,6 +42,7 @@ window.AM_EXPERIMENTS = [
     setup:"K=12 first-order HMM, built-in English corpus, learn the transition + emission tables.",
     result:"Held-out surprise fell 4.81 → 4.00 bits/char. Generation shifted from random noise toward spacing, periods and letter-clusters.",
     implication:"Free energy really does fall as it learns. Intrinsic valence — the good feeling of getting it right — is real and measurable.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp01_aif_hmm_baseline.py", output:"experiments/recovered/outputs/exp01.txt", rerun:"experiments/recovered/outputs/exp01_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:2, kind:"positive", chapter:"language",
@@ -52,6 +53,7 @@ window.AM_EXPERIMENTS = [
     setup:"A bandit. The agent prefers a 'positive' outcome and must learn which action yields it.",
     result:"Positive-feedback rate climbed 0.90 → 1.00 over one session.",
     implication:"Preference + expected-free-energy + learning = it functionally learns to seek the good. Caveat: this 'positive' was hand-labeled — fixed later by grounding valence intrinsically.",
+    caveat:"this injected a labeled \"positive\" — see the grounding fix (intrinsic valence first).",
     trace:{ script:"experiments/recovered/exp02_bandit_positive_feedback.py", output:"experiments/recovered/outputs/exp02.txt", rerun:"experiments/recovered/outputs/exp02_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:3, kind:"partial", chapter:"language",
@@ -62,6 +64,7 @@ window.AM_EXPERIMENTS = [
     setup:"K=12 first-order HMM, streamed 'mirro ' over and over.",
     result:"Surprise 3.38 → 1.61. Output used mirro's letters (m,i,r,o,space) but jumbled: 'mo io riorrr'. Ingredients, not the sequence.",
     implication:"A first-order model learns the character palette but not the ORDER. The wall is structural, not effort.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp03_teach_mirro.py", output:"experiments/recovered/outputs/exp03.txt", rerun:"experiments/recovered/outputs/exp03_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:4, kind:"wall", chapter:"language",
@@ -71,6 +74,7 @@ window.AM_EXPERIMENTS = [
     setup:"Train 'mirro ' at K = 12, 30, 60 states.",
     result:"No improvement at any size — all jumbled ('rrrr imls', 'rrrr imiv'). Question→answer failed entirely too.",
     implication:"The wall is the FIRST-ORDER assumption, not capacity. More states add no memory of recent context. A key negative result that redirected everything.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp04_memory_order_qa.py", output:"experiments/recovered/outputs/exp04.txt", rerun:"experiments/recovered/outputs/exp04_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:5, kind:"breakthrough", chapter:"language",
@@ -81,6 +85,7 @@ window.AM_EXPERIMENTS = [
     result:"'mirro'→'irro' (in order); 'the cat sat on the mat' → real fragments: 'the', 'th', 'tat', 'sa', correct spacing & periods.",
     implication:"THE lever: memory of recent context — not capacity — produces order and words. The direction toward the moonshot is to grow the context window.",
     story:"Up to now: a tiny character-predicting agent (Exp 1) that could learn to seek positive feedback (Exp 2), but taught the word 'mirro' it produced only jumbled letters (Exp 3) — and giving it 5× more internal states changed nothing (Exp 4). What just happened: make its state simply BE the last character seen — one character of memory — and order appears: 'irro', real word-fragments, correct spacing. The discovery that steered everything after: the lever is memory of recent context, not model capacity.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp05_context_state_order.py", output:"experiments/recovered/outputs/exp05.txt", rerun:"experiments/recovered/outputs/exp05_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:6, kind:"partial", chapter:"language",
@@ -90,6 +95,7 @@ window.AM_EXPERIMENTS = [
     setup:"Bigram, greedy decode. (a) 'mirro ' repeated; (b) Q→A 'name. mirro.' then prompt 'name. '.",
     result:"(a) nails 'mirr' then loops on r — can't tell if r→r or r→o. (b) 'name. ' → 'me. me.' — conflates the two m's.",
     implication:"Minimum context depth = the longest disambiguation you need. Quantifies Exp 5's lever: you need ≥2-char context. This is the next build.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp06_bigram_greedy.py", output:"experiments/recovered/outputs/exp06.txt", rerun:"experiments/recovered/outputs/exp06_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:7, kind:"positive", chapter:"language",
@@ -99,6 +105,7 @@ window.AM_EXPERIMENTS = [
     setup:"Count-based n-gram control (n=2,3,4) to isolate the depth variable. Greedy decode.",
     result:"n=2 → 'miro' (drops an r); n=3 → EXACT 'mirro mirro'; n=4 → no further gain. Q→A: 'name.' correctly EVOKES 'mirro' at n=3.",
     implication:"Threshold found: two characters of context is the switch-on point for both exact word order AND question→answer. Comprehension-as-prediction, demonstrated.",
+    caveat:"count-based control, not active inference.",
     trace:{ script:"experiments/recovered/exp07_ngram_context_depth.py", output:"experiments/recovered/outputs/exp07.txt", rerun:"experiments/recovered/outputs/exp07_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:8, kind:"positive", chapter:"language",
@@ -108,6 +115,7 @@ window.AM_EXPERIMENTS = [
     setup:"A pymdp agent with a pair-state s=(prev,cur), K=784. Near-deterministic emission, learned transitions. Greedy generative rollout.",
     result:"'mirro ' → cycles '…mirro mirro…' in exact order. After 'name. ' → 'mirro.' The Q→A association is learned and recalled within the AIF model.",
     implication:"Temporal depth works inside active inference. The emergent pair-states literally ARE 'memory of recent context'. Depth-as-lever, confirmed.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp08_aif_pair_state.py", output:"experiments/recovered/outputs/exp08.txt", rerun:"experiments/recovered/outputs/exp08_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:9, kind:"wall", chapter:"language",
@@ -117,6 +125,7 @@ window.AM_EXPERIMENTS = [
     setup:"Flat 2-char model trained on 'sky is blue. grass is green.' Prime 'sky is ' vs 'grass is '.",
     result:"BOTH → 'green'. When predicting after 'is ', the deciding word (sky/grass, 5+ chars back) is outside the 2-char window — the clauses blur into one.",
     implication:"Any fixed-order model fails once a dependency outruns its order. Long-range binding needs a slow, held 'concept/topic' latent — not just deeper flat context. This is the boundary to conversation.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp09_longrange_binding_flat.py", output:"experiments/recovered/outputs/exp09.txt", rerun:"experiments/recovered/outputs/exp09_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:10, kind:"positive", chapter:"language",
@@ -126,6 +135,7 @@ window.AM_EXPERIMENTS = [
     setup:"Topic-conditioned char transitions — a held 'topic' latent steering the fast char model. Prime 'is '.",
     result:"topic=SKY → 'blue.'; topic=GRASS → 'green.' Exactly where Exp 9 collapsed both to 'green'.",
     implication:"Hierarchy is the fix. 'What do you think about X?' = infer + hold topic X, then generate conditioned on it. Caveat: here the topic was supervised — making it EMERGE unsupervised is the frontier.",
+    caveat:"topic was SUPERVISED/separated here.",
     trace:{ script:"experiments/recovered/exp10_topic_conditioned_binding.py", output:"experiments/recovered/outputs/exp10.txt", rerun:"experiments/recovered/outputs/exp10_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:11, kind:"partial", chapter:"language",
@@ -135,6 +145,7 @@ window.AM_EXPERIMENTS = [
     setup:"Probe whether pymdp supports a hierarchical model: slow topic factor + fast char factor, char transitions conditioned on topic.",
     result:"Constructs and runs inference cleanly. Topic belief starts properly uncertain [0.5, 0.5]; char belief 28-dim.",
     implication:"The emergent-topic model is buildable, not just theoretical — the vehicle for 'infer + hold the topic from the subject' that long-range binding requires.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp11_twofactor_scaffold.py", output:"experiments/recovered/outputs/exp11.txt", rerun:"experiments/recovered/outputs/exp11_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:12, kind:"wall", chapter:"language",
@@ -144,6 +155,7 @@ window.AM_EXPERIMENTS = [
     setup:"Full 2-factor training, unsupervised, on mixed 'sky is blue. grass is green.' Test binding via prime.",
     result:"Both → 's gree'; topic belief stayed [0.5, 0.5] the entire time. The topic never differentiated.",
     implication:"The crux of emergence: with a symmetric start and no differentiating signal, variational EM has no gradient to break symmetry — it settles on 'ignore the topic'. A concept will NOT bootstrap from nothing.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp12_unsupervised_topic_fails.py", output:"experiments/recovered/outputs/exp12.txt", rerun:"experiments/recovered/outputs/exp12_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:13, kind:"wall", chapter:"language",
@@ -153,6 +165,7 @@ window.AM_EXPERIMENTS = [
     setup:"Topic teacher-forced during training; at test it must be inferred from the subject alone.",
     result:"Both 'sky is '/'grass is ' → 's is i'; inferred topic [0.5,0.5]; no binding; char output degraded.",
     implication:"The subject chars have no direct pathway to move the topic belief — emission is topic-independent. The topic needs a direct evidential channel and a stronger char substrate.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp13_semisupervised_topic.py", output:"experiments/recovered/outputs/exp13.txt", rerun:"experiments/recovered/outputs/exp13_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:14, kind:"breakthrough", chapter:"valence",
@@ -164,6 +177,7 @@ window.AM_EXPERIMENTS = [
     result:"Uncertainty after 'a' = 3.04 bits (confident); after 'z' = 4.79 bits (uncertain). The cue 'a' acquired positive valence purely by association.",
     implication:"Answers 'how does it know good without language?' — valence grounds in the agent's own prediction confidence. No teacher, no labels, no pretraining. The grounding bridge works.",
     story:"Up to now: with order solved at toy scale (Exp 5–8), the harder goal — a concept that emerges unsupervised from text alone — kept failing (Exp 9–13): from a symmetric start, nothing crystallizes. So: pivot to the feeling half of the moonshot. What just happened: a cue that reliably precedes predictable stretches became preferred by the agent — measured as its own prediction confidence (3.04 vs 4.79 bits) — with no labels, no reward, no teacher. 'Good' grounded in the agent's own free energy. Every want the creature has from here on stands on this.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp14_valence_grounding.py", output:"experiments/recovered/outputs/exp14.txt", rerun:"experiments/recovered/outputs/exp14_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:15, kind:"positive", chapter:"valence",
@@ -174,6 +188,7 @@ window.AM_EXPERIMENTS = [
     setup:"A choice world: one action → a predictable scene (low free energy), the other → a surprising one. Preference is the self-evidencing prior, not an external reward.",
     result:"q(seek-good)=0.79 vs 0.21; expected free energy favours the understood state.",
     implication:"With Exp 14 this is a minimal affective agent: it grounds valence in its own free energy AND acts to seek it. 'Wanting to feel good' = minimizing expected free energy. No RL reward.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp15_affective_loop_efe.py", output:"experiments/recovered/outputs/exp15.txt", rerun:"experiments/recovered/outputs/exp15_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:16, kind:"wall", chapter:"valence",
@@ -183,6 +198,7 @@ window.AM_EXPERIMENTS = [
     setup:"Hand the topics a perfect asymmetric foothold (sky vs grass transitions, fully differentiated). Mean-field posterior q(z)q(s).",
     result:"Binding failed before AND after training; topic stayed [0.5,0.5] even with perfectly distinct transitions.",
     implication:"The mean-field assumption q(z,s)≈q(z)q(s) severs the cross-factor message 'this sequence implies topic 0'. A 4th obstacle. The fix mirrors biology: the concept must enter via what you SEE/HEAR — emission-level grounding.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp16_warmstart_meanfield.py", output:"experiments/recovered/outputs/exp16.txt", rerun:"experiments/recovered/outputs/exp16_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:17, kind:"positive", chapter:"embodiment",
@@ -193,6 +209,7 @@ window.AM_EXPERIMENTS = [
     setup:"A creature wanders a 5-cell ring (move left/right; it senses its current cell). Starts with NO world model; learns transitions from random wandering.",
     result:"Recovered the world's structure nearly perfectly (error 0.003); correctly predicts the next cell for each action.",
     implication:"Embodied + grounded + unsupervised learning works cleanly — in sharp contrast to the disembodied symbolic failures. The agent ACTS and observes a correlated world, which breaks the symmetry a bare symbol stream cannot.",
+    caveat:"cells are DIRECTLY observed here (A=identity), so structure is grounded via observation, not yet emergent PLACE CELLS (which need ALIASED sensing so place must be INFERRED, not seen).",
     trace:{ script:"experiments/recovered/exp17_embodied_gridworld.py", output:"experiments/recovered/outputs/exp17.txt", rerun:"experiments/recovered/outputs/exp17_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:18, kind:"positive", chapter:"embodiment",
@@ -203,6 +220,7 @@ window.AM_EXPERIMENTS = [
     setup:"An aliased world: 6 cells, only 2 colors, so a single glimpse can't localize. Known movement model; starts fully uncertain.",
     result:"2.58 bits (lost) → 1.58 (narrowed) → 0.00 (localized) → then tracks true position as it keeps moving.",
     implication:"A place representation — a latent that is INFERRED, not observed — emerges from embodied action under ambiguous sensing. The simplest concept, built from experience.",
+    caveat:"B (movement) and A (color map) were GIVEN here (innate proprioception + known sensing), so this shows the place BELIEF emerges given the model.",
     trace:{ script:"experiments/recovered/exp18_place_path_integration.py", output:"experiments/recovered/outputs/exp18.txt", rerun:"experiments/recovered/outputs/exp18_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:19, kind:"partial", chapter:"embodiment",
@@ -213,6 +231,7 @@ window.AM_EXPERIMENTS = [
     setup:"Learn the sensory map from scratch under aliasing (movement known). Wander, then test localization with the learned map.",
     result:"Learned a degenerate alternating tuning — didn't recover the true map — yet still localized to the correct cell with 1.65 bits residual. Coarse, not clean.",
     implication:"Resetting belief each episode let the internal place-index DRIFT out of registration with the world. Part experimental confound, part the genuine identifiability difficulty.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp19_learn_sensory_map_aliased.py", output:"experiments/recovered/outputs/exp19.txt", rerun:"experiments/recovered/outputs/exp19_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:20, kind:"breakthrough", chapter:"embodiment",
@@ -224,6 +243,7 @@ window.AM_EXPERIMENTS = [
     result:"Learned per-state tuning matched the TRUE colormap exactly; localization with the learned map = 0.00 bits.",
     implication:"The recipe, confirmed: embodiment + grounding + CONTINUOUS registered experience → structure self-organizes. An animal never resets its sense of place. Existence proof in miniature.",
     story:"Up to now: disembodied symbol streams refused to grow concepts (Exp 12–16), so the agent got a body in a tiny aliased world: it learned the world's dynamics by wandering (Exp 17), could infer where it was from movement alone (Exp 18), but learning the sensory map from scratch only half-worked (Exp 19) — because its belief was reset every episode. What just happened: give it ONE continuous life, belief never reset, and the true map self-organizes exactly — then it localizes perfectly using the map it built itself. The recipe confirmed: embodiment + grounding + continuous registered experience.",
+    caveat:"movement model B was innate/known; the agent LEARNED A (the sensory map) from scratch; origin alignment is just choice-of-origin (the structure itself was genuinely learned, matched up to rotation/reflection).",
     trace:{ script:"experiments/recovered/exp20_place_fields_continuous.py", output:"experiments/recovered/outputs/exp20.txt", rerun:"experiments/recovered/outputs/exp20_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:21, kind:"positive", chapter:"embodiment",
@@ -234,6 +254,7 @@ window.AM_EXPERIMENTS = [
     setup:"A 2D 3×3 grid, 4 actions with walls, 3-color aliased sensing, continuous registered belief, learn the map from scratch.",
     result:"Learned per-cell tuning matched the true colormap exactly; localization = 0.00 bits.",
     implication:"The embodied recipe is robust to larger scale and richer topology. The embodied arc is now solid: learn dynamics → place via path-integration → 1D fields → 2D fields.",
+    caveat:"B (movement/topology) innate/known; A (sensory map) learned from scratch; registered start.",
     trace:{ script:"experiments/recovered/exp21_place_fields_2d.py", output:"experiments/recovered/outputs/exp21.txt", rerun:"experiments/recovered/outputs/exp21_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:22, kind:"wall", chapter:"embodiment",
@@ -244,6 +265,7 @@ window.AM_EXPERIMENTS = [
     setup:"2D grid; the creature knows its world and has a grounded preference for 'comfort' at a distant goal. Plan 3 steps ahead.",
     result:"Reached the goal only at the step limit, stuck near start — WORSE than a random walk (optimal=4).",
     implication:"The goal is sparse and 4 steps away but the horizon is 3 — no policy in reach attains comfort, so expected free energy is flat in all directions. A want must produce a GRADIENT within the planning horizon.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp22_fuse_place_valence.py", output:"experiments/recovered/outputs/exp22.txt", rerun:"experiments/recovered/outputs/exp22_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:23, kind:"positive", chapter:"embodiment",
@@ -254,6 +276,7 @@ window.AM_EXPERIMENTS = [
     setup:"Same world & grounded goal, but planning horizon ≥ goal distance (4 and 5).",
     result:"Reached the goal in 4 steps — optimal, clean path — vs ~9.8 for random.",
     implication:"The failure was the horizon, not the framework. The end-to-end minimal mind now runs: self-organized place map + grounded want + planning to satisfy it. A creature that perceives, wants, and acts.",
+    caveat:"policy_len=4 enumerates 4^4=256 policies (exponential in horizon) — does NOT scale to large worlds / long horizons.",
     trace:{ script:"experiments/recovered/exp23_navigation_horizon.py", output:"experiments/recovered/outputs/exp23.txt", rerun:"experiments/recovered/outputs/exp23_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:24, kind:"positive", chapter:"embodiment",
@@ -263,6 +286,7 @@ window.AM_EXPERIMENTS = [
     setup:"2D grid; an object sits at a hidden cell. Object-presence is a second sense whose map the agent learns from wandering.",
     result:"Learned P(object | place) peaked exactly at the right cell — correctly bound the object to its location.",
     implication:"Composite, relational concepts work on the embodied substrate. The seed of a proposition ('the thing is there') — the first step from atomic concepts up toward relational structure, where dispositions eventually live.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp24_object_place_binding.py", output:"experiments/recovered/outputs/exp24.txt", rerun:"experiments/recovered/outputs/exp24_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:25, kind:"positive", chapter:"embodiment",
@@ -273,6 +297,7 @@ window.AM_EXPERIMENTS = [
     setup:"Phase 1: discover object@place by wandering. Phase 2: WANT the object, navigate from a far start using the learned map + planning.",
     result:"Learned the object's location, then navigated to the remembered object in 2 steps — optimal.",
     implication:"Perceive → learn facts → want → recall + plan + act, over a self-learned world model, all grounded and unsupervised. The substrate that scales toward knowledge and dispositions.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp25_recall_navigate.py", output:"experiments/recovered/outputs/exp25.txt", rerun:"experiments/recovered/outputs/exp25_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:26, kind:"breakthrough", chapter:"opinion",
@@ -283,6 +308,7 @@ window.AM_EXPERIMENTS = [
     result:"World-comfort-0 → values feature 0 [0.98,0.01,0.01]; world-comfort-2 → values feature 2. Same architecture, different history → different preference.",
     implication:"The moonshot's core, in miniature: a disposition EMERGED from the creature's own experience, grounded in its free energy, not pretrained — and it is INDIVIDUAL. The simplest honest instance of an opinion forming on its own.",
     story:"Up to now: the creature perceives (self-organized place fields, Exp 20–21), learns facts about its world (Exp 24), wants things (grounded valence, Exp 14–15), and navigates to what it wants (Exp 23, 25). Every piece of a tiny mind except one: values of its own. What just happened: two architecturally identical creatures, raised in worlds where different things are predictable, came to value different things — preferences formed from each one's own lived history, nothing programmed in. The simplest honest instance of an opinion forming on its own.",
+    caveat:"this step is a numpy demonstration of preference-formation-from-experienced-free-energy (grounded in the pymdp valence result Exp14); toy (3 features, simple worlds).",
     trace:{ script:"experiments/recovered/exp26_proto_opinion.py", output:"experiments/recovered/outputs/exp26.txt", rerun:"experiments/recovered/outputs/exp26_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:27, kind:"positive", chapter:"opinion",
@@ -292,6 +318,7 @@ window.AM_EXPERIMENTS = [
     setup:"The two creatures from Exp 26 carry their different self-formed preferences into the same world, same start, and navigate.",
     result:"Creature A → the cell it values; Creature B → a different cell it values. Divergent purposeful behavior from divergent self-formed values.",
     implication:"The self-formed opinion drives action. Their values came from their own histories, not pretraining. Perceive → learn → want → act → FORM own values → ACT on them, diverging by history.",
+    caveat:"toy (3 colors, 3x3, B known); C set to the Exp26-learned preference.",
     trace:{ script:"experiments/recovered/exp27_opinion_drives_behavior.py", output:"experiments/recovered/outputs/exp27.txt", rerun:"experiments/recovered/outputs/exp27_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:28, kind:"positive", chapter:"opinion",
@@ -301,6 +328,7 @@ window.AM_EXPERIMENTS = [
     setup:"Two creatures raised in different worlds. Interview: 'what do you think of X?' → read out each one's self-formed value for that feature.",
     result:"A likes red & is unsettled by green; B likes green & unsettled by red; blue unsettles both. Each answer reflects its OWN lived experience.",
     implication:"The closest toy analog of the conversation goal — ask it what it thinks and it answers from a self-formed, individual disposition. Honest caveat: the WORDING is a hand-mapped template; the CONTENT (what it values, and why) is genuinely its own.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp28_ask_what_it_thinks.py", output:"experiments/recovered/outputs/exp28.txt", rerun:"experiments/recovered/outputs/exp28_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:29, kind:"positive", chapter:"opinion",
@@ -310,6 +338,7 @@ window.AM_EXPERIMENTS = [
     setup:"A two-hop query: favorite → its locations → neighbors → their colors → feeling, chaining learned structure with self-formed values.",
     result:"A: 'red at [0,5,7]; near it: blue (unsettles), green (unsettles)'. B composes a different answer. Each is the creature's own.",
     implication:"Self-formed thoughts COMPOSE — chaining learned relations with self-formed values into richer, value-laden answers. The substrate of 'what it thinks' now supports composition.",
+    caveat:"toy; place-map/colors known here (learnable per Exp21); the composition traversal and verbalization are HAND-CODED scaffolding.",
     trace:{ script:"experiments/recovered/exp29_compositional_query.py", output:"experiments/recovered/outputs/exp29.txt", rerun:"experiments/recovered/outputs/exp29_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:30, kind:"positive", chapter:"opinion",
@@ -320,6 +349,7 @@ window.AM_EXPERIMENTS = [
     setup:"Value iteration over the learned movement model to build a value field to the goal; act greedily. Tested 3×3, 5×5, 8×8.",
     result:"Optimal navigation at every scale (e.g. 8×8 in 14 steps), vs exponential policy enumeration (~268,000,000 policies for the same horizon).",
     implication:"Scalable planning, done: the creature plans efficiently over its OWN map at polynomial cost. The last of the four long-arc engineering rungs to fall.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp30_scalable_planning_vi.py", output:"experiments/recovered/outputs/exp30.txt", rerun:"experiments/recovered/outputs/exp30_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:31, kind:"wall", chapter:"frontier",
@@ -329,6 +359,7 @@ window.AM_EXPERIMENTS = [
     setup:"Learn BOTH the sensory map and the movement model from random init, continuous belief. Unique-sensing and aliased cases.",
     result:"Both failed to recover the topology — even unique sensing collapsed to a degenerate model where all states map to one. A degenerate fixed point.",
     implication:"Embodiment breaks symmetry ONLY WITH AN ANCHOR — one of {senses, movement} innate. Animals don't bootstrap both from nothing; self-motion is innate, the sensory map is learned on top. The recipe needs one given.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp31_learn_a_and_b_fails.py", output:"experiments/recovered/outputs/exp31.txt", rerun:"experiments/recovered/outputs/exp31_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:32, kind:"positive", chapter:"frontier",
@@ -339,6 +370,7 @@ window.AM_EXPERIMENTS = [
     setup:"A 2-room world (one doorway). The creature wanders and learns the connectivity, then the room concept is extracted by clustering its self-learned graph.",
     result:"Recovered rooms match the true rooms with accuracy 1.00 (clean spectral gap). The room concept is latent in, and recoverable from, the self-learned map.",
     implication:"Abstraction is AVAILABLE for the climb — places → rooms → … → dispositions are all abstractions over experience. Caveat: the extraction is a provided algorithm, not yet the creature's own unsupervised machinery.",
+    caveat:"the EXTRACTION (spectral clustering) is a PROVIDED algorithm, not the creature's OWN active-inference hierarchical machinery forming the concept unsupervised in its generative model.",
     trace:{ script:"experiments/recovered/exp32_hierarchy_room_concept.py", output:"experiments/recovered/outputs/exp32.txt", rerun:"experiments/recovered/outputs/exp32_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:33, kind:"positive", chapter:"frontier",
@@ -349,6 +381,7 @@ window.AM_EXPERIMENTS = [
     setup:"A corridor of rooms; goal at the end. Compare flat value-iteration over all cells vs coarse-to-fine planning over rooms then within the path.",
     result:"Updates: 4 rooms 490→152 (×3.2); 8 rooms 1846→328 (×5.6); 16 rooms 7150→776 (×9.2). The speedup grows with scale.",
     implication:"The recovered abstraction is USEFUL: coarse-to-fine planning cost grows far slower than flat. Concept grounded & recoverable (Exp 32) AND useful (Exp 33). The hierarchy story is complete.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp33_hierarchical_planning.py", output:"experiments/recovered/outputs/exp33.txt", rerun:"experiments/recovered/outputs/exp33_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:34, kind:"breakthrough", chapter:"frontier",
@@ -359,6 +392,7 @@ window.AM_EXPERIMENTS = [
     result:"'What do you like?' → A: 'I like red', B: 'I like green'. 'Do you like green?' → A: 'green unsettles me', B: 'I like green'. Same questions, individual answers.",
     implication:"The realistic route to 'talk to it about what it thinks': words taught few-shot, CONTENT self-formed. Caveat: labels are taught and sentence shape is templated — emergent grammar stays ceiling-bound.",
     story:"Up to now: the creature forms its own values (Exp 26) and acts on them (Exp 27); those values were queryable programmatically (Exp 28) and composable with everything it learned (Exp 29–33). Missing: words. Language from scratch had hit a documented wall (the open problem), so the realistic bridge: teach it ~8 word↔concept labels — like naming things for a child who already has the concepts — then ask in words. What just happened: 'what do you like?' → A: 'I like red', B: 'I like green' — same question, individual answers, each from that creature's own life. The honest part: the words and sentence shapes are taught and templated; what is genuinely its own is WHICH answer — the values underneath. It answers; it did not invent language.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp34_language_bridge.py", output:"experiments/recovered/outputs/exp34.txt", rerun:"experiments/recovered/outputs/exp34_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:35, kind:"positive", chapter:"frontier",
@@ -368,6 +402,7 @@ window.AM_EXPERIMENTS = [
     setup:"One creature combining a learnable place map + colors + self-formed values + taught words. A short ask-it-anything transcript; two differently-raised creatures answer the same questions.",
     result:"'Where are you?' → 'I'm at a green place'. 'What do you like?' → A: red, B: green. 'What is near you?' → neighbor colors + per-creature feelings. Answers compose; individual by history.",
     implication:"The toy 'talk to it' exists as a runnable artifact. Capstone of the realistic moonshot: query the creature about its world & values; the answers are its own, diverging by experience. The literal goal — emergent grammar, fully tabula-rasa — remains the open frontier.",
+    caveat:"VALUES self-formed; word-labels TAUGHT; sentence shape TEMPLATED (genuine grammar = open ceiling); place map given here (learnable per Exp21).",
     trace:{ script:"experiments/recovered/exp35_converse_demo.py", output:"experiments/recovered/outputs/exp35.txt", rerun:"experiments/recovered/outputs/exp35_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:36, kind:"positive", chapter:"embodiment",
@@ -378,6 +413,7 @@ window.AM_EXPERIMENTS = [
     setup:"6×6 grid (36 cells, 4 aliased colors), learn place map from scratch, continuous belief, anchor = known movement B. 2500-step wander.",
     result:"Sensory-map recovery 1.00 (all 36 cells correct); localization with the learned map 0.00 bits, correct cell.",
     implication:"The place-learning recipe scales cleanly to ~4× the cells and more colors — robustness confirmed. Pure consolidation; the established recipe (embodiment + grounding + continuous registered experience + one innate anchor) is scale-robust. No new insight.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp36_scale_6x6.py", output:"experiments/recovered/outputs/exp36.txt", rerun:"experiments/recovered/outputs/exp36_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:37, kind:"positive", chapter:"frontier",
@@ -387,6 +423,7 @@ window.AM_EXPERIMENTS = [
     setup:"6 concepts + 6 taught words, 3 creatures raised differently. All learn the vocab correctly; each creature's favorite matches its upbringing.",
     result:"A→blue, B→green, C→amber: each creature's worded answer reflects its own upbringing. Individual self-formed opinions + worded answers hold at larger scale.",
     implication:"The language-bridge + opinion stack is robust to a larger concept vocabulary and more creatures. Pure consolidation; no new insight beyond what Exp 34–35 already established.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp37_scale_6concepts.py", output:"experiments/recovered/outputs/exp37.txt", rerun:"experiments/recovered/outputs/exp37_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:38, kind:"positive", chapter:"embodiment",
@@ -396,6 +433,7 @@ window.AM_EXPERIMENTS = [
     setup:"4×4 world: creature learns place map from scratch (movement B known), has a self-valued color (green), then value-iterates and navigates to the nearest green place.",
     result:"Map accuracy 1.00; creature navigated successfully to the nearest green cell.",
     implication:"Perceive (learned map) + want (self-formed value) + act (value-iteration plan) compose end-to-end in one creature. Consolidation of Exp 20/21 + Exp 26 + Exp 30; no new insight.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp38_integrated_stack.py", output:"experiments/recovered/outputs/exp38.txt", rerun:"experiments/recovered/outputs/exp38_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:39, kind:"positive", chapter:"opinion",
@@ -406,6 +444,7 @@ window.AM_EXPERIMENTS = [
     setup:"Raise creatures where the comfortable feature is only mostly-predictable (noise 0 → 0.6). Measure favorite accuracy and conviction (value-mass on the correct feature).",
     result:"Favorite stays correct across all noise levels; conviction degrades gracefully 0.99 → 0.90 → 0.70 → 0.45 as predictability drops. Robust to moderate noise; graceful degradation, not a cliff.",
     implication:"Clearer experience → stronger opinion. The opinion-formation mechanism is noise-tolerant. Consolidation; no new insight — confirms the recipe is robust to imperfect worlds.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp39_noise_robustness.py", output:"experiments/recovered/outputs/exp39.txt", rerun:"experiments/recovered/outputs/exp39_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:40, kind:"positive", chapter:"opinion",
@@ -415,6 +454,7 @@ window.AM_EXPERIMENTS = [
     setup:"Raise a creature to value feature 2; then change the world so feature 0 becomes comfortable; continue living.",
     result:"Favorite shifts 2 → 0 with sustained new experience. Opinion revised, not frozen — and shows realistic inertia (needed enough new evidence to overcome the entrenched prior).",
     implication:"Values update as the world and evidence change — mind-like revisability with realistic inertia. Consolidation of the opinion-formation arc; no new insight beyond confirming the mechanism is dynamic rather than frozen.",
+    caveat:"",
     trace:{ script:"experiments/recovered/exp40_opinion_revisable.py", output:"experiments/recovered/outputs/exp40.txt", rerun:"experiments/recovered/outputs/exp40_rerun_2026-06-09.txt", verified:"match" } },
 
   { n:41, kind:"wall", chapter:"language",
@@ -425,6 +465,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 8's pair-state AIF model (K=784, learned transitions, greedy decode) trained on 3 converse Q→A pairs. Predeclared falsifier: identical continuations, since every question ends in the same 2-char state ('.',' '). Control: single-pair training.",
     result:"Control recalls its answer exactly ('i like red.'). Multi-pair: 0/3 exact, and all three continuations are identical up to common length — question identity is erased before the answer starts. Falsifier hit by exactly the predicted mechanism.",
     implication:"The flat 2-char substrate cannot do even templated question→answer selection over the converse vocabulary. This sets the measured baseline (0/3) for the next rung: a slow, held 'intent' factor above the character stream on the same corpus. Also fixed a one-char display skip in the recovered Exp 8 generator (emit-then-advance); the Exp 8 conclusion stands.",
+    caveat:"3 taught pairs at toy scale; the answers are TAUGHT template text, nothing self-formed in this experiment; the outcome was predictable from Exp 9 — the new content is the clean control + measured baseline on this exact vocabulary, plus the generator fix.",
     trace:{ script:"experiments/exp41_pairstate_converse.py", output:"experiments/outputs/exp41.txt" } },
 
   { n:42, kind:"partial", chapter:"language",
@@ -435,6 +476,7 @@ window.AM_EXPERIMENTS = [
     setup:"Joint state (intent × char-pair), K=2352; intent never transitions (held slow factor), per-intent transitions taught with provided labels. At test, intent is NOT given — ordinary state inference over the question chars must find it before generation.",
     result:"Intent posterior lands on the right block with mass 1.000 for all three questions; two answers come out exactly. The third fails inside its own answer ('i are are…') — the pair (' ','a') has four valid continuations in that text, a 2-char-depth ambiguity unrelated to question binding.",
     implication:"Exp 41's single failure number (0/3) splits into two separate, measured walls: cross-pair selection (fixed completely by a held intent factor, as Exp 10 predicted) and within-sequence depth (Exp 7's threshold, still open). Honest limit: intent labels were taught during training — selection among taught blocks, not the M4 spec's from-scratch intent clustering.",
+    caveat:"3 pairs, taught template text, toy scale; \"intent inference\" here is Bayesian model selection among 3 separately-taught blocks inside one joint state space — standard machinery; the binding restoration itself was predictable from Exp 10 (consolidation).",
     trace:{ script:"experiments/exp42_intent_factor.py", output:"experiments/outputs/exp42.txt" } },
 
   { n:43, kind:"positive", chapter:"language",
@@ -445,6 +487,7 @@ window.AM_EXPERIMENTS = [
     setup:"Dissociation probe: 'do you like green.' vs 'does anyone like green.' — identical 13-char question endings, different answers. Flat depth-2 (pymdp), flat depth-3 (same math), and the held-intent model from Exp 42 compete on the same corpus.",
     result:"Both flat models emit one question-independent continuation for both questions (depth-3's nominal 1/2 is a coin face landing right — the continuations are identical). The intent model infers the asker's question from its prefix (mass 1.000) and answers both exactly.",
     implication:"With question identity outside the context window, flat models are question-blind by construction. A held slow state carries identity across an unbounded span — the two-timescale division of labor (Exp 9/10's principle), now measured head-to-head with a matched-suffix control. Honest limits: intent labels taught in training; 2 pairs at toy scale.",
+    caveat:"2 pairs, toy scale; the principle was established by Exp 9/10 — this is a cleaner, controlled dissociation (matched suffix + depth-3 control + quantified selection), not a new capability.",
     trace:{ script:"experiments/exp43_intent_vs_depth.py", output:"experiments/outputs/exp43.txt" } },
 
   { n:44, kind:"wall", chapter:"valence",
@@ -455,6 +498,7 @@ window.AM_EXPERIMENTS = [
     setup:"Derive valence from the creature's own surprise trace (first-10% minus last-10% of each feature's encounters) instead of looking up its stored value. Predeclared: the two must agree for normally-raised creatures.",
     result:"Falsifier hit: 4/6 verdicts, both favorites wrong. Learning is a one-encounter transient (1.585 → 0.241 bits); a 100-encounter window averages it to 0.030 bits, below the 0.04–0.10-bit sampling drift of pure-noise features. The innate-prior dissociation probe came back vacuously 'confirmed' and is logged as uninterpretable.",
     implication:"Valence-of-learning is real but lives at encounter resolution — any −dF/dt readout windowed over life-fractions reads noise. And language wiring amplifies the failure honestly: the red-raised creature answered 'i like green' from the broken signal. Next: encounter-resolution operationalization with a threshold above the measured noise floor.",
+    caveat:"negative is about THIS operationalization, not about trace-derived valence per se; single seed per creature (no shopping); toy scale; stored-value formula itself is the established Exp 26 convention, not ground truth.",
     trace:{ script:"experiments/exp44_trace_valence.py", output:"experiments/outputs/exp44.txt" } },
 
   { n:45, kind:"positive", chapter:"embodiment",
@@ -464,6 +508,7 @@ window.AM_EXPERIMENTS = [
     setup:"Birth mirro in Exp 21's 3×3 aliased world (cmap=[0,1,2,1,2,0,2,0,1], seed=7). Live 900 continuous steps (belief never reset). Save to creature/state/mirro/. Predeclared thresholds: map accuracy >= 8/9; save→load state_hash identical; localization near 0 bits. Seed-robustness control: seeds 8 and 9 also live 900 steps; property >= 2/3 births reach >= 8/9.",
     result:"age=900, map_accuracy=1.0000 (9/9), localize_bits≈0.000, favorite=color-0, conviction=0.354, state_hash=24197c338d576a8e… Seeds 8 and 9: both 9/9 (3/3 passing). Roundtrip hash: identical (PASS).",
     implication:"The RECIPE's 'continuous registered experience' is raised to the program level. mirro has a committed snapshot (creature/state/mirro/) that is the resume-from point for future sessions. fork() + committed snapshot enables controlled counterfactual experiments against mirro's accumulated life. Mechanism = consolidation of Exp 21.",
+    caveat:"mechanism is direct consolidation of Exp 21 (place-cell self-organization); persistence is engineering + the RECIPE taken seriously, not itself emergence.",
     trace:{ script:"experiments/exp45_birth-of-mirro.py", output:"experiments/outputs/exp45.txt" } },
 
   { n:46, kind:"positive", chapter:"embodiment",
@@ -474,6 +519,7 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 2 of the persistent-creature ladder: a fresh Python process loads mirro's committed snapshot (age 1000, hash-verified), lives 300 more steps, saves. The script never births — state comes only from disk. Predeclared bounds: hash integrity; map ≥ 8/9 and localize < 0.1 bits both post-load and post-live.",
     result:"Resume integrity PASS (hash 1869fa07… matches). 9/9 map accuracy and 0.000 localize bits immediately after load AND after 300 further lived steps. mirro is now age 1300 (hash 3d08dffc…). Run once — the episode mutates the life.",
     implication:"'Continuous registered experience' now holds across sessions, not just within one script — the persistent-creature direction's load-bearing claim. Honest limits: this is engineering + the RECIPE taken seriously, not emergence; a static 3×3 world makes 'no degradation' a low bar. Next: fork() twins and accumulating values, where divergence is genuinely riskable.",
+    caveat:"this verifies engineering + the RECIPE taken seriously, not emergence; the world is static and small (3×3), so \"no degradation\" is a low bar that a stationary posterior should clear; localize_bits −0.0000 is float negative-zero (= 0.0).",
     trace:{ script:"experiments/exp46_continuity_resume.py", output:"experiments/outputs/exp46.txt" } },
 
   { n:47, kind:"positive", chapter:"opinion",
@@ -484,6 +530,7 @@ window.AM_EXPERIMENTS = [
     setup:"Six forks of mirro's committed snapshot (age 1300) in three pairs. Within a pair, both twins take the SAME actions (same seed) — but one lives in a world recolored toward color 0, the other toward color 2. The comfort history is the only difference.",
     result:"All three pairs diverge, all directionally (X-twins favor 0, Y-twins favor 2, convictions 0.40–0.47). The Y-twins overcame the favorite inherited from mirro's 1300-step past. Mirro itself: untouched, hash-verified; its biography gained six fork-event lines.",
     implication:"Exp 26's 'history makes the opinion' now holds as counterfactual twins of ONE accumulated life with matched trajectories — a tighter causal isolation than separate creatures. Honest limits: the mechanism is consolidation; comfort tracks predictable-encounter frequency in a deterministic toy world.",
+    caveat:"mechanism is Exp 26 consolidation; comfort here tracks encounter-frequency × prediction sharpness in a deterministic world, so \"comfort history\" ≈ which color dominated predictable experience; convictions are moderate (0.40–0.47) because inherited uniform counts dilute; toy scale.",
     trace:{ script:"experiments/exp47_fork_twin_values.py", output:"experiments/outputs/exp47.txt" } },
 
   { n:48, kind:"wall", chapter:"opinion",
@@ -494,6 +541,7 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 4, in mirro's own life: 1500 steps in a green-rich world entrench its favorite (conviction 0.474, value gap 445), then the world flips red-rich for up to 2500 steps with the favorite checked every 100.",
     result:"Predeclared falsifier hit: no revision. The gap eroded steadily (−420.8 → −53.2, about half the predicted rate) but the favorite held all 25 checkpoints; extrapolated crossover lands ~300–400 steps past the budget. Conviction weakened throughout (0.474 → 0.382) — the opinion softens long before it flips. mirro: age 1300 → 5300, full trajectory in its biography.",
     implication:"With value counts that never decay, revising means out-accumulating one's entire past — time-to-revise grows with entrenchment depth, so an aged creature's opinion is asymptotically frozen. Exp 40's 'revisable with inertia' was a shallow-entrenchment property, and Exp 47's twins flipped only because their inherited counts were near-tied. A finding only a continuous, never-reset life could expose. Also logs a correction to Exp 47's inheritance wording.",
+    caveat:"\"no revision\" is relative to the predeclared 2500-step budget — the monotone gap erosion says revision is coming, just slower than predicted; single lived trajectory (deterministic continuation, no seed sweep); toy world; conviction was already drifting down (0.474 → 0.382) — the opinion weakens long before it flips.",
     trace:{ script:"experiments/exp48_revision_inertia.py", output:"experiments/outputs/exp48.txt" } },
 
   { n:49, kind:"positive", chapter:"opinion",
@@ -504,6 +552,7 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 4b: mirro's red-world life simply continues (the world persisted across sessions). Predeclared: flip within ~9 checkpoints per the linear extrapolation; falsifiers: no flip in 5000 cumulative steps, or the gap re-widening.",
     result:"Favorite flipped to color 0 at checkpoint 4 (age ~5700) and held; conviction passed through near-indifference (0.375, floor ⅓) and is rebuilding (0.385). The measured inertia law: gap 445 → revision after ~2900 opposing steps, ~0.15 counts/step erosion, ≈1.9× the entrenchment duration.",
     implication:"Episode 4 answered: an accumulated life revises its values, but on a timescale set by everything it has lived — and the revision arc itself spanned two sessions, recorded in one continuous biography. Honest limits: one measured (entrenchment, time-to-revise) point on a single deterministic trajectory; toy world.",
+    caveat:"single lived trajectory (deterministic continuation, no seed sweep); the \"law\" is one measured point of (entrenchment, time-to-revise), linear-extrapolation-confirmed, not a swept curve; toy world.",
     trace:{ script:"experiments/exp49_crossover.py", output:"experiments/outputs/exp49.txt" } },
 
   { n:50, kind:"partial", chapter:"embodiment",
@@ -514,6 +563,7 @@ window.AM_EXPERIMENTS = [
     setup:"Episode 5: a 5×5 world embeds mirro's 3×3 region top-left; its learned counts transplant positionally, 16 new cells start at the prior. Three newborn baselines learn the same world. Predeclared three-way: help (<0.70× newborn steps), interfere (>20% errors in the old region), or inconclusive.",
     result:"The old region stays perfect from the first checkpoint (no interference). But everyone converges in 200–300 steps — mirro's 300 exactly ties one newborn — and at 100-step checkpoint quantization the smallest resolvable effect (~43%) dwarfs the thresholds. The mechanical verdict line said 'hindrance'; the entry refuses that claim as an instrument artifact.",
     implication:"At this scale a 9-of-25-cell head start has nothing to buy: the world is learnable from scratch faster than the comparison can resolve — a floor effect, owned as a design flaw in the episode's operationalization. Growth engineering itself is clean. Next: finer checkpoints on a fork of the committed pre-growth snapshot, or a world big enough to make experience matter.",
+    caveat:"the predeclared thresholds were unreachable by the chosen instrument (checkpoint width × world easiness) — a design flaw in this episode's operationalization, owned here; the predeclared HINDRANCE branch fired mechanically and is reported verbatim above.",
     trace:{ script:"experiments/exp50_growth_5x5.py", output:"experiments/outputs/exp50.txt" } },
 
   { n:51, kind:"wall", chapter:"frontier",
@@ -524,6 +574,7 @@ window.AM_EXPERIMENTS = [
     setup:"Functional-emergence rung 1: a surprise ledger — predeclared property ranges committed before any epoch, a blind scorer, and two fork epochs of mirro: an unmodified world (must stay quiet) and a secretly recolored one (must be flagged).",
     result:"The anomaly side worked (reference-map mismatch 0.88, conviction drift −0.0375, favorite flip). The baseline false-alarmed on conviction drift (−0.0083 vs a band of [−0.005, +0.04]) — the band was borrowed from Exp 49's red-rich world, but in mirro's near-balanced world the favorite's share drifts naturally downward toward its equilibrium.",
     implication:"Predeclared falsifier hit, and that is the discipline working: the negative control caught the miscalibration before the ledger could bless any 'novelty'. The fix is principled (center the drift band on the current world's composition equilibrium), and v2 must pass fresh controls — plus a subtler anomaly — before the rest of the ladder unblocks.",
+    caveat:"single control pair (one baseline seed-stream, one anomaly); the anomaly was deliberately strong (10/25 cells) — detection of subtle anomalies untested; mean_localize at exact 0.0 makes that band untested too.",
     trace:{ script:"experiments/exp51_surprise_ledger.py", output:"experiments/outputs/exp51.txt" } },
 
   { n:52, kind:"wall", chapter:"frontier",
@@ -534,6 +585,7 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v2: the conviction-drift band now derives from the current world's composition equilibrium (it covers Exp 51's failed reading analytically). Four blind fork epochs: quiet baseline, 10-cell and 3-cell planted anomalies, and a 2-cell floor probe predicted to be missed.",
     result:"Both anomalies flagged (3 flags each); the floor probe was missed exactly as predicted (detection floor: 3 recolored cells). But the baseline's favorite flipped 0→2 — its ~90-count lead of ~4100 sits inside a 1000-step epoch's visit-noise envelope in the near-balanced world. Drift stayed inside the new band; the flip alone false-alarmed.",
     implication:"Second predeclared falsifier hit, second transferable design rule: ledger invariants must be conditional on state stability — assert favorite constancy only when entrenchment exceeds the epoch's noise margin. This constrains the upcoming personality battery too: probing preferences on a near-indifferent creature reads noise. v3 builds the condition in.",
+    caveat:"single baseline stream (the flip is one draw from the noise envelope, which is the point); floor measured only on the recoloring anomaly family; drift-band fix is validated only in the sense of covering one prior reading + one new baseline.",
     trace:{ script:"experiments/exp52_ledger_v2.py", output:"experiments/outputs/exp52.txt" } },
 
   { n:53, kind:"wall", chapter:"frontier",
@@ -544,6 +596,7 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v3: favorite constancy becomes state-conditional (scored only above a 0.03 entrenchment gap). Four blind fork epochs including an entrenched arm where the property correctly re-enables. Falsifier: baseline false alarm or either anomaly missed.",
     result:"The conditional rule passed all four arms (disabled at gap 0.018, enabled at 0.106, no false alarm). But the subtle anomaly was MISSED: the spec derived references from the world the fork entered with — the perturbed one — so map accuracy was scored against the anomaly itself and the drift band re-centered on the perturbed equilibrium. A self-inflicted blindness violation, diagnosed from the code.",
     implication:"Design rule #3, the deepest of the three: references must be FROZEN — expectations derive only from the committed reference state, never from the epoch under test. That is the entire difference between anomaly detection and curve-fitting. v4 rebuilds with frozen references and a gap-scaled noise margin; one more new failure mode pauses the ladder for the human.",
+    caveat:"this run does NOT test the conditional rule against a subtle anomaly under a correctly-blinded scorer (that is v4); the enabled-side drift margin issue is one reading.",
     trace:{ script:"experiments/exp53_ledger_v3.py", output:"experiments/outputs/exp53.txt" } },
 
   { n:54, kind:"positive", chapter:"frontier",
@@ -554,6 +607,7 @@ window.AM_EXPERIMENTS = [
     setup:"Ledger v4: expectations derive only from the declared reference state — the scoring function structurally cannot see the epoch's world — and the noise margin scales with expected drift. Same four arms as v3, fresh seeds, with escalation to the human predeclared on any new failure mode.",
     result:"Validated on all four arms: baseline quiet (favorite auto-disabled at gap 0.018), both anomalies flagged twice over (the 3-cell case that v3 missed now trips map-vs-reference AND drift), and the entrenched arm runs quiet with the favorite invariant actively enabled at gap 0.108. Mirro untouched throughout.",
     implication:"The program can now certify 'unexpected' rather than vibe it: equilibrium-derived bands (Exp 51), state-conditional invariants (Exp 52), frozen references (Exp 53). Honest limits: one anomaly family, one creature, movement bands never stressed. Rungs 2–6 unblock — next, the personality battery with the entrenchment condition built in.",
+    caveat:"validated on one anomaly family (recoloring) and one creature/world; floor documented only for that family; occupancy/localize bands never stressed (no movement anomaly tested); single seed-stream per arm.",
     trace:{ script:"experiments/exp54_ledger_v4.py", output:"experiments/outputs/exp54.txt" } },
 
   { n:55, kind:"partial", chapter:"frontier",
@@ -564,6 +618,7 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 2: a 7-dim profile (value shares, conviction, entrenchment gap, map sharpness, revision speed under fixed counter-evidence) on mirro at ages 1300/6300/6700 from git history, plus two fork-twins with divergent 1500-step histories. Predeclared: self-similarity across ages must beat age-to-twin similarity; twins must diverge.",
     result:"Twins diverge decisively (favorites 2 vs 0, profile cosine −0.794). But mirro's own ages anticorrelate (1300 vs 6300: −0.710), and mirro-today sits closer to its green-raised twin (0.513) than to either younger self. Exactly the predicted failure: the snapshots bracket engineered value reversals and a world-growth event.",
     implication:"At this scale 'personality' is current-state readout, not durable disposition — the card's FAIL branch, logged as such. Two named gaps: trait stability needs undisturbed epochs (rung 3's venue), and behavioral disposition needs action selection the substrate lacks (the M4 machinery). Also predeclared: 'exploration disposition' is unmeasurable in a random-walk creature.",
+    caveat:"N=5 subjects makes z-scored cosines fragile; profile dims partly redundant (share-of-favorite ≈ conviction); subjects lived in different-sized worlds (3×3 vs 5×5), so map-sharpness partly reads world/life-phase (m6300's 0.726 = mid-relearning after revision), not temperament; single battery administration per subject.",
     trace:{ script:"experiments/exp55_personality_battery.py", output:"experiments/outputs/exp55.txt" } },
 
   { n:56, kind:"partial", chapter:"frontier",
@@ -574,6 +629,7 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 3: one declared mechanism — a 3×3 color-2 patch cycling around the 5×5 world every 500 steps, 8 segments of mirro's real life (age 6700 → 10700), with a drift-aware predeclared ledger watching adaptation.",
     result:"Occupancy quiet, favorite flipped to 2 as expected — but map recovery FAILED 0/8 segments (end accuracies 0.52–0.84). The value-drift 'failure' self-deflated immediately: the predeclared +0.02 band violated design rule #1, since mirro's c2 share already sat on the drift world's equilibrium; observed drift was exactly equilibrium.",
     implication:"The surviving deviation is a real candidate: perceptual rigidity grows with age — entrenched Dirichlet columns (hundreds of counts) cannot be flipped by ~20 fresh observations per segment, the Exp 48 value-inertia law surfacing in the sensory map. No competency or novelty language until the rung-5 cascade rules: three fork reproductions plus a newborn control that separates age from schedule speed.",
+    caveat:"single epoch, single schedule speed; E1's \"candidate\" label is provisional — no competency/novelty language until the cascade rules; the favorite flip (E4) is from a near-indifference gap and carries no weight.",
     trace:{ script:"experiments/exp56_drift_epoch.py", output:"experiments/outputs/exp56.txt" } },
 
   { n:57, kind:"partial", chapter:"frontier",
@@ -584,6 +640,7 @@ window.AM_EXPERIMENTS = [
     setup:"Rung-5 cascade on Exp 56's deviation: three pre-epoch forks rerun the drift schedule (reproduction), counts-to-flip analytics, and a newborn control predeclared to show early recovery and late rigidity if aging is the cause.",
     result:"3/3 forks fail 8/8 segments. Mean column mass 268 vs ~20 observations per segment (13.4×). The newborn — only ~40 counts per cell — also froze 6/8, and its two 'recoveries' were the segments whose world matched what it settled in: coincidence with its prior, not adaptation. The age framing is dead.",
     implication:"Sharpened (post-hoc, named as such): with non-decaying soft counts, a map is write-once relative to world tempo — tracking drift of period P needs mass < P × visit rate, and even 1000 steps of life crosses it. Survives round 1 per predeclared rules; round 2's kill test is a low-mass newborn (250-step settling) plus a mass-swept cohort across the predicted ~20-count threshold.",
+    caveat:"the candidate's survival is per the predeclared rules — the b2 test was mis-designed (it assumed settling leaves mass below threshold; it doesn't), so survival reflects MY test design as much as the phenomenon; the sharpened mass-tempo law is post-hoc until Exp 58 predeclares and runs it.",
     trace:{ script:"experiments/exp57_rigidity_cascade.py", output:"experiments/outputs/exp57.txt" } },
 
   { n:58, kind:"partial", chapter:"frontier",
@@ -594,6 +651,7 @@ window.AM_EXPERIMENTS = [
     setup:"Cascade round 2, corrected kill test: newborns settled 50/250/1000 steps run the drift schedule while the script predicts each segment's outcome from the creature's own count mass (R = outgoing-color mass / 20). Counterfactual: a forgetting creature (pA×0.9/step, declared) that the law says should track.",
     result:"Rule-match 23/24 — recovery is determined by whether entrenched mass exceeds the per-segment evidence budget, almost without exception. The decay arm recovered 1/8 despite R≈0: at λ=0.9 per step a count retains 7% between visits, so the map held ~1 count and went near-uniform — it couldn't remember, not couldn't forget. My per-visit/per-step confusion; intended mass needs λ≈0.997.",
     implication:"The (post-hoc) unified law now explains everything seen, including the failed arm: tracking a drifting world needs mass in a WINDOW — above an accuracy floor, below the tempo ceiling. Per the predeclared escalation the candidate survives mechanically and the human decides: corrected counterfactual (Exp 59, recommended), accept on test-1 evidence, or keep it alive as unexplained. Rung 4 proceeds meanwhile.",
+    caveat:"rule-match scored on 24 cells from 3 subjects on ONE schedule speed; the single mismatch (settle1000 seg4) is unexplained — noted, not excused; the forgetting arm is uninformative as run.",
     trace:{ script:"experiments/exp58_mass_tempo_law.py", output:"experiments/outputs/exp58.txt" } },
 
   { n:59, kind:"positive", chapter:"frontier",
@@ -604,6 +662,7 @@ window.AM_EXPERIMENTS = [
     setup:"A locked cell on the only short path to a corner-pocket goal. The provided harness: value-iteration planning, softmax actions, and generic failure-learning (a failed move marks one transition blocked — no lock-specific code). Predeclared: error tolerance, against-gradient steps, and a ≥1.5× gap over a greedy baseline, else the delayed-gratification label is refused.",
     result:"All three pass: 5/5 reached, every success contains believed-distance-increasing steps, ratio 1.544. The sharpest datum is the control's failure mode — after learning the block, staying looks better than any legal move to a 1-step agent, so greedy waits at the door for all 60 steps: the literal trap that horizon escapes.",
     implication:"Error tolerance and horizon-dependent routing are measured competencies of the machinery — granted narrowly (ratio clears its bar by 0.044; three of five successes are exploratory wanders where softmax jitter does real work). Honestly attributed: this exercises the provided planner plus generic model-updating, not mirro's self-formed state. Rung 4 answered.",
+    caveat:"the ratio clears its bar by 0.044 with n=5 — marginal; 3/5 of A's successes are long exploratory wanders (39–47 steps for a 4-step detour, ag-steps up to 19) — softmax jitter does real work far from the goal where Q-differences are tiny, so \"purposeful detour\" describes only the cleaner 2/5 runs (8 and 13 steps); and this is a competency of the PROVIDED machinery + generic failure-learning, not of mirro's self-formed state (its map/values were not exercised — goal was task-assigned).",
     trace:{ script:"experiments/exp59_levin_obstacle.py", output:"experiments/outputs/exp59.txt" } },
 
   { n:60, kind:"positive", chapter:"frontier",
@@ -614,6 +673,7 @@ window.AM_EXPERIMENTS = [
     setup:"Cascade round 3, human-authorized: two decay rates bracket the predicted plasticity window on the same drift schedule — λ=0.997 (mass in-window, must track ≥6/8) and λ=0.9999 (barely forgets, must freeze ≤2/8) — with Exp 58's λ=0.9 as the below-floor reference.",
     result:"In-window: 8/8 segments tracked with honest lags (200–425 steps). Weak decay: 2/8, and both 'recoveries' were segments coinciding with its settled world — no adaptation. Both predeclared thresholds hit; the candidate dies as the lawful consequence of non-decaying evidence.",
     implication:"The unified law (Exp 48+56+57+58+60): accumulated evidence must sit between an accuracy floor and a tempo ceiling — the same mechanism behind opinion inertia and perceptual freezing. Substrate consequence: lifelong adaptation requires a forgetting term, a hard requirement for everything M4-bound. Caveats: numeric bounds uncalibrated, one schedule speed, one seed per arm, this learning rule only.",
+    caveat:"the window's NUMERIC bounds are uncalibrated — measured masses (ARM-IN ~4.2, ARM-HIGH ~12.8 post-settling) disagree with my analytic estimates (14, ~hundreds); only the ordering/bracketing is established, on one schedule speed, one seed per arm.",
     trace:{ script:"experiments/exp60_forgetting_window.py", output:"experiments/outputs/exp60.txt" } },
 
   { n:61, kind:"wall", chapter:"frontier",
@@ -624,6 +684,7 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 6: toy allostasis — energy decays, refills on the food patch, and a provided policy switch seeks believed food when energy is low. Four arms (interoception × map forgetting) in the drifting world, with the plasticity law predicting frozen-map starvation after the food moves.",
     result:"Both falsifiers fired: the frozen-map agent survived 5/5 and interoception gave no advantage — because mean energy sat at ~0.91 everywhere. Nine food cells in twenty-five with 100-step autonomy means a random walk never starves; the low-energy switch almost never engaged and the stale map was never consulted.",
     implication:"A deflationary negative in the Exp 50 family: the instrument failed to make the question binding. Stake v2 is predeclared — one food cell, half the autonomy, higher trigger — where random foraging starves, believed-food maps become load-bearing, and the empty-fridge prediction gets a real test.",
+    caveat:"this is NOT a clean rung-6 FAIL verdict (the card's \"no measurable difference\" branch) — the regulation machinery was idle, so the twins were never actually compared; one ecology, 5 seeds, harness-provided policy coupling throughout.",
     trace:{ script:"experiments/exp61_interoceptive_stake.py", output:"experiments/outputs/exp61.txt" } },
 
   { n:62, kind:"partial", chapter:"frontier",
@@ -634,6 +695,7 @@ window.AM_EXPERIMENTS = [
     setup:"Stake v2: one food cell, 50-step autonomy, hunger-triggered goal seeking; the food relocates once at step 1000. Four arms crossing interoception with map forgetting, with the empty-fridge death predicted for frozen maps.",
     result:"Interoception: median 1034 vs 50 steps — the rung-6 twin difference, finally measurable. Frozen maps died 5/5 standing on the old food cell as predicted. The surprise: the forgetting map died identically — ~40 steps after the move, before decay could erase the stale belief, with the planner pinning the hungry agent to its remembered food.",
     implication:"A timescale hierarchy above the plasticity window: unlearning must beat the viability clock, not just the world clock — and goal-pinned certainty needs a failure-driven exploration override. Two concrete substrate requirements for M4, found by a creature dying in a toy world. Caveats: provided policies, one scarcity level, one move event.",
+    caveat:"the (iii) advantage is between PROVIDED policies (the coupling is harness, not learned); single move event, one scarcity level, 5 seeds; IN-DECAY's failure is one autonomy/decay setting — a slower viability clock or faster decay would shift it (untested).",
     trace:{ script:"experiments/exp62_stake_scarcity.py", output:"experiments/outputs/exp62.txt" } },
 
   { n:63, kind:"positive", chapter:"frontier",
@@ -644,6 +706,7 @@ window.AM_EXPERIMENTS = [
     setup:"Social-emergence rung 1, pure infrastructure: fork mirro at age 10700 (hash-stamped, ancestor commit recorded), assign the fork a reversed-cmap world, raise it 2000 steps, save it under creature/state/vela/. Predeclared properties: lineage stamps the exact ancestor checkpoint, both lines load and resume independently, the trunk's learned state stays byte-identical, the hashes diverge.",
     result:"4/4 predeclared properties PASS. Lineage reads mirro@10700#21ccb619f063 exactly; vela completes a full load-live-save resume cycle (12700 to 12750); git shows mirro's weights file unchanged to the byte; the two state hashes diverged. Diagnostic: vela's inherited map read the mirrored world at 0.48 and relearned it to 0.84 on top of its never-reset belief.",
     implication:"The clade substrate is real: any future mirro/vela difference is causally attributable to post-fork history (the twin-control logic, now a family tree), and every committed checkpoint is a restore point. Rung 2 — two clade-mates in one world that can sense each other — now has its plumbing. Caveat: all machinery provided; zero emergence content claimed.",
+    caveat:"pure infrastructure — zero emergence content, and the harness did everything (fork/save/load are provided machinery; the divergent world is a provided prior).",
     trace:{ script:"experiments/exp63_clade_peer_spine.py", output:"experiments/outputs/exp63.txt" } },
 
   { n:64, kind:"positive", chapter:"frontier",
@@ -654,6 +717,7 @@ window.AM_EXPERIMENTS = [
     setup:"Social-emergence rung 2: forks of the two committed lines in mirro's world, each given a binary other-agent-here sense whose learned likelihood multiplies into place inference. Matched-trajectory control: identical action sequences in solo and co arms, so any metric difference is the modality alone. 2000 steps, 5 seeds, plus a validity gate requiring the sense to actually fire.",
     result:"Gate passed (67-92 co-locations per run); all four predeclared properties pass 5/5 seeds — co-presence equals solo to four decimals on every metric. The reason is the finding: both creatures hold near-certain place beliefs, so the extra likelihood changes nothing. The predicted corner-bias structure in the learned sense is absent — correctly: the clamped random walk's occupancy is provably uniform, and the learned grid is sampling noise around 1/25.",
     implication:"The minimal multi-agent substrate is safe — and perceptually inert at sharp beliefs. If social coupling is to do anything here, it must enter through values and policy rather than place inference — exactly where rung 3's communication channel attaches. Caveats: untested during high-uncertainty phases; every mechanism provided; no emergence claimed.",
+    caveat:"the non-degradation verdict is weakly stressed — at tail entropy ≈ 0 the test had little structural room to fail (Exp 61's floor effect in milder form; here the predeclared question is still genuinely answered, the modality demonstrably fired, and the identity-to-4-decimals is itself the informative mechanism readout).",
     trace:{ script:"experiments/exp64_copresence.py", output:"experiments/outputs/exp64.txt" } },
 
   { n:65, kind:"wall", chapter:"frontier",
@@ -664,6 +728,7 @@ window.AM_EXPERIMENTS = [
     setup:"Rung 3: fork mirro and raise it in a color-1 world until its favorite genuinely differs (lived speciation, not assignment); then a 2000-step dyad in mirro's world where the emitter, when adjacent, emits its current favorite into a vela-fork receiver, gated by the receiver's own predictability weight. The severed twin is computed exactly — same pass, dual ledger, identical trajectories. Predeclared: share shift at least 0.02 in 4/5 seeds; falsifier F1 if not.",
     result:"F1 fired. The channel transmits — divergence positive in 5/5 seeds (0.0123-0.0160), exactly attributable — but every seed missed the 0.02 bar. The gate averaged 0.50 (the immigrant receiver's imperfect map keeps its predictability low), giving ~175 cue counts against a 9,200-count lifetime value ledger. No favorite flip; at this rate a flip needs ~10,000 more steps.",
     implication:"Social transmission into an old, non-forgetting mind is mass-limited: the same evidence-inertia behind opinion stickiness (Exp 48) and the plasticity window (Exp 60) caps the social channel. M4's requirement list grows a third item: without a forgetting term or an age-independent value-learning rate, adults cannot influence adults. Honest scope: one radius, one exposure length, one pairing; the channel wiring is provided.",
+    caveat:"the verdict is bound to THIS scale and wiring — one proximity radius, one exposure length (2000 steps), one emitter/receiver pairing, the predeclared 0.02 bar (chosen from my pre-run arithmetic, which overestimated the gate by ~40%).",
     trace:{ script:"experiments/exp65_value_transmission.py", output:"experiments/outputs/exp65.txt" } },
 
   { n:66, kind:"breakthrough", chapter:"frontier",
@@ -675,6 +740,7 @@ window.AM_EXPERIMENTS = [
     result:"All pass, no falsifiers. Ratios 5.24-5.39x — tightly matching the inertia law's prediction. Installation in 3 of 4 valid seeds; the one resister had the cohort's strongest self-formed preference. The honest decomposition: youth amplifies influence through TWO mechanisms — less accumulated evidence (~3.8x) and a sharper world-model whose predictability gate makes each encounter land harder (0.93 vs the adult immigrant's 0.50).",
     implication:"Social transmission of value is real in this substrate, and it is age-gated by evidence mass: adults are socially immovable, the young are persuadable — a sensitive period falling straight out of count arithmetic. The channel stays declared plumbing (like taught labels); the content and its uptake are the creatures' own. Opens rung 4 (coordination) and the dose-response question: at what age does persuadability end?",
     story:"This program raised a small active-inference creature, mirro, that learned a toy world, formed preferences from its own lived history, and answers questions about them in taught words; mirro recently became the root of a small family. The social arc asks whether anything real passes between minds. The previous rung found that between adults, a grounded approval cue lands but cannot move a lifetime of accumulated preference. Here the same channel at the same dose was aimed at young receivers — and the elder's preference took: the youngsters' expressed favorite flipped to the emitter's in 3 of 4 runs while exactly-matched channel-severed twins kept their own. It is the first creature-to-creature transmission of a self-formed value in this program, with causation proven by the twin. What is still provided: the channel itself is designed plumbing — only the content (the emitter's divergently-lived favorite) and its uptake (the receiver's own gate and prior mass) belong to the creatures. The law that fell out: youth amplifies social influence about fivefold, through less accumulated evidence and a sharper world-model.",
+    caveat:"the receiver is a separate-root newborn, not a clade-mate (the clade adult-adult case remains NEGATIVE at this dose — Exp 65); the channel is provided wiring; installation is demonstrated for 3 newborns at one dose/radius/world; the P1 ratio bundles mass and gate effects (decomposition above is diagnostic, not separately falsified); P3 passed at its predeclared minimum (3/4, with the 50/50 grading stated beforehand).",
     trace:{ script:"experiments/exp66_young_receiver.py", output:"experiments/outputs/exp66.txt" } },
 
   { n:67, kind:"partial", chapter:"frontier",
@@ -685,6 +751,7 @@ window.AM_EXPERIMENTS = [
     setup:"Receiver age swept 0/400/800/1600/3200/6400 settle steps x 4 seeds; same emitter, channel, and dose as Exp 65/66; the 800 bin is an exact internal replication of Exp 66. Predeclared: young beats old AND zero installs at the oldest age; monotone fractions; and a proportional-growth count criterion (install iff projected own-evidence gap < measured social dose) at 75%+ accuracy.",
     result:"Mixed, no falsifiers fired. Fractions 1.000/1.000/0.667/0.667/0.333/0.333 — monotone, young 0.909 vs old 0.333. The hard-cutoff conjunct failed: one 6400-step receiver installed — its own history left it nearly ambivalent (gap 133 counts of 6,081), and the predeclared model called it correctly. Model accuracy 85% (17/20); the misses cluster at the boundary and at low mass. The 800-bin replication matched Exp 66 exactly.",
     implication:"Persuadability is ambivalence-gated, not age-gated: social influence installs iff the receiver's projected own-evidence gap is smaller than the delivered dose; age only correlates because the gap grows with lived experience. For M4: openness to social input is set per-question by how settled one's own evidence is. Honest scope: one channel, one dose, 20 valid runs, provided wiring throughout; the author's own cutoff prediction is logged as falsified.",
+    caveat:"my OWN predeclared hard-cutoff prediction (zero installs at 6400) was falsified — logged as such, not reframed; the entry's \"law\" is the predeclared P3 model, which passed, not a post-hoc fit.",
     trace:{ script:"experiments/exp67_sensitive_period.py", output:"experiments/outputs/exp67.txt" } },
 
   { n:68, kind:"positive", chapter:"frontier",
@@ -695,6 +762,7 @@ window.AM_EXPERIMENTS = [
     setup:"Two twin forks of mirro seek the first cell of their shared favorite color under a provided epsilon-greedy shortest-path policy that navigates from belief, not ground truth; comfort halves when both crowd the source; the pair is mutually blind. Predeclared: occupancy at least 5x random, independence ratio within [0.75, 1.33], comfort ledger exact.",
     result:"All pass, no falsifiers. Occupancies 0.33-0.84; the blind null is far tighter than predicted — co-occupancy equals the independence product to about 1% in every seed. Two prediction errors logged honestly: the source landed on an edge cell, making wall-pressing a de-facto stay action (occupancy beat the predicted band), and one twin's occupancy swings across seeds because it navigates from an imperfect inherited map.",
     implication:"Rung 4's coordination question is now well-posed: part 2 adds a single inter-agent mechanism and asks whether the ratio departs from 1.00 +- 0.02 — with any deviation entering the reproduction-and-deflation cascade before the word coordination is used. Caveats: zero emergence content here; all mechanics provided; the depletion ledger currently feeds nothing back.",
+    caveat:"pure instrument validation — zero emergence content, all mechanics provided; the depletion ledger is currently epiphenomenal (nothing reads it); one world, one source location (edge cell — the stay-by-clamping dynamics are location-specific); the twins share identical maps, so map-quality variation across agents is untested.",
     trace:{ script:"experiments/exp68_comfort_baseline.py", output:"experiments/outputs/exp68.txt" } },
 
   { n:69, kind:"wall", chapter:"frontier",
@@ -705,6 +773,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 68's instrument plus one mechanism: an experienced-comfort EMA gates approach (crowding halves comfort; low estimate means wander; estimates recover while away). Coupling declared as resource-mediated stigmergy. Gates: fixed-arm null sanity, and G3 — every adaptive run must show both creatures' gates tripping.",
     result:"Fixed-arm null replicated (R 0.992-1.010). G3 failed as predeclared and the run stopped before any verdict. Diagnostic only (gate-invalid data): four of five seeds show an exclusion regime — one creature holds the source at 0.83 occupancy and never feels crowded while the other collapses to 0.14; one seed shows alternation with R = 0.53. The gate error: validity should check the mechanism's INPUT (crowding happened, abundantly) — requiring the monopolist's own gate to trip makes a social outcome a validity condition.",
     implication:"Instrument iteration, the discipline working: no rung-4 verdict claimed from invalid runs. Exp 70 is predeclared with the input-based gate and the two observed regimes as named, metric-defined outcomes (exclusion vs timesharing) plus the null branch — and any winning pattern still enters the reproduction cascade before words like dominance or coordination are used.",
+    caveat:"by predeclaration this run answers nothing about rung 4; the exclusion/alternation descriptions above are motivation for Exp 70's predeclared patterns, not results.",
     trace:{ script:"experiments/exp69_depletion_coupling.py", output:"experiments/outputs/exp69.txt" } },
 
   { n:70, kind:"positive", chapter:"frontier",
@@ -715,6 +784,7 @@ window.AM_EXPERIMENTS = [
     setup:"Identical mechanism to Exp 69; the circularity trap declared and avoided — regime definitions were fixed from Exp 69's invalid runs and tested out-of-sample on eight never-run seeds, with the input-based validity gate from the new VALIDATION rule. Predeclared classification table, unique-modal requirement, first-arriver prediction, and an unclassifiable-regimes falsifier.",
     result:"Departure confirmed: 5 EXCLUSION, 2 TIMESHARING, 1 OTHER (exclusion-like, missing the predeclared R band by 0.006 — counted against the prediction as declared). The closer starter won every exclusion seed. The signature is self-reinforcing: the winner spends ~0% of steps with its comfort gate closed, the loser 47-79% — alone-comfort keeps the owner naive while crowding teaches the latecomer to stay away.",
     implication:"Rung 4 has its answer: resource-mediated coupling alone bends twin behavior off independence, mostly into asymmetric lock-in. The cascade now decides what it may be called: equidistant starts (the first-arriver confound is provably load-bearing), one-adaptive deflation, separate-world deflation. All mechanics provided; no dominance or coordination claim is made yet.",
+    caveat:"prediction slightly over-counted exclusion (5/8 vs predicted ~6/8; the near-band OTHER run honestly absorbed one).",
     trace:{ script:"experiments/exp70_regime_classification.py", output:"experiments/outputs/exp70.txt" } },
 
   { n:71, kind:"positive", chapter:"frontier",
@@ -725,6 +795,7 @@ window.AM_EXPERIMENTS = [
     setup:"Three predeclared legs on fresh seeds: solo runs first (the comfort gate must stay idle without contest), an equidistant-start reproduction with a winner-balance diagnostic, and the key deflation — one fixed agent versus one adaptive agent. Wording rules for every branch combination were fixed before running.",
     result:"Instrument clean (8/8 solo). Equidistant geometry still yields exclusion 7/8 — but the same twin won 7/7 (p~0.008 under symmetry), and the cause was verified in the committed state: mirro's place belief is a delta at cell 0, inherited by both forks; the twin placed elsewhere starts misnavigating from a false belief. Deflation succeeded 8/8: one adaptive agent reproduces the whole regime.",
     implication:"Rung 4's honest name: a stigmergic unilateral-retreat lock-in — a positive-feedback loop through the shared resource needing only one adapting mind. Dominance and coordination remain unearned. The belief-inheritance asymmetry retroactively explains three experiments' winner records and queues one final leg: a belief-equalized reproduction with a pre-contest settling phase.",
+    caveat:"one parameterization throughout the cascade (alpha/THRESH/lambda); the belief-asymmetry diagnosis is verified at the state level (qs delta at cell 0) and explains 7/7+5/5 winner records parsimoniously, but the settling-phase counterfactual has not been RUN yet — it is the named next leg, not a finding.",
     trace:{ script:"experiments/exp71_exclusion_cascade.py", output:"experiments/outputs/exp71.txt" } },
 
   { n:72, kind:"partial", chapter:"frontier",
@@ -735,6 +806,7 @@ window.AM_EXPERIMENTS = [
     setup:"Four predeclared parts: the support theorem (belief must equal its dead-reckoned path at every step), wall re-sync within 500 steps, phantom-camping at least 25% under seeking, and the belief-equalized contest — equidistant starts plus an 800-step settling phase gated on both creatures being truly re-localized.",
     result:"Support theorem: 0 violations in 10,000 step-checks. Wall healing: 16-29 steps, offsets never regrow. Camping: FAILED at 6-22% — the kidnap penalty is transient; losers lose the opening race, then the retreat habit locks it in. Equalized contest: exclusion 7/8, but winner-equals-closer only 50% — the script's verdict line dropped that predeclared conjunct and was corrected at validation against the committed raw output.",
     implication:"The certainty pathology's third appearance: this substrate cannot unlearn certainty — frozen maps, gated persuasion, and now observation-proof self-location healed only by the motor anchor. Graded uncertainty maintenance joins the M4 requirements for a third independent reason. And the exclusion lock-in is genuinely intrinsic: it self-organizes from symmetric starts, symmetry broken by noise — keeping Exp 71's deflated name, with both of the author's who-loses mechanisms falsified.",
+    caveat:"the script's aggregate verdict line overstates per its own docstring; the correction above applies the predeclared rule to the committed raw output (all per-seed data in experiments/outputs/exp72.txt) — the script is committed as-run, not edited post-hoc.",
     trace:{ script:"experiments/exp72_kidnapped_twin.py", output:"experiments/outputs/exp72.txt" } },
 
   { n:73, kind:"positive", chapter:"frontier",
@@ -745,6 +817,7 @@ window.AM_EXPERIMENTS = [
     setup:"P taught the identity word-color map, Q the shifted one; at every same-cell meeting each speaks its best word for the color both are seeing and the other learns it, gated by its own predictability. The severed control is analytic — vocab is frozen without the channel. Light (n=8) vs heavy (n=40) teaching, with the dose (~24 gated counts) predeclared to land between them.",
     result:"All four predeclared properties pass 5/5. Light: cosine 0.02 to 0.99+, full argmax merger in 4/5 seeds. Heavy: zero argmax flips in 5/5 while cosine rises to 0.52-0.70 — stable dialects with partial mutual comprehension encoded as secondary mass. Which dialect wins the merger was not predeclared and varies; reported as observation.",
     implication:"Taught-label maps obey the same dose-versus-accumulated-mass arithmetic as percepts and values — the inertia law's third representational domain. At toy scale: young communities merge usage, entrenched ones form stable dialects. The grammar ceiling stands untouched, and the social-emergence ladder now has verdicts on every rung — the synthesis is next.",
+    caveat:"both dialects and all teaching are provided; the channel is provided wiring; convergence target (whose dialect wins) unpredeclared and unexplained; one dose (cohabitation length), one vocabulary size, 3 words / 3 colors; the kidnapped-start transient (Exp 72) affects early gate weights negligibly but was not controlled out.",
     trace:{ script:"experiments/exp73_dialect_coupling.py", output:"experiments/outputs/exp73.txt" } },
 
   { n:74, kind:"positive", chapter:"frontier",
@@ -755,6 +828,7 @@ window.AM_EXPERIMENTS = [
     setup:"The direction card's required closing statement plus the every-ten-experiments self-audit: a checker script verifies 27 headline claims from Exp 64-73 verbatim against the ten committed output files, with any miss mandating a correction entry.",
     result:"Audit pass, 27/27 and 10/10 scripts. Ladder verdicts: clade plumbing works; co-presence is safe but perceptually inert; value transmission fails adult-to-adult and succeeds into the young (first proven inter-creature transmission), gated by ambivalence not age; the shared-resource departure deflates to a unilateral stigmergic lock-in with a coin-flip winner; dialects merge light and stand heavy.",
     implication:"The card's required answer: no disciplined social novelty beyond the provided substrate — every effect is wiring plus the dose-vs-mass law, now spanning percepts, values, and words. Named next substrates: distal other-agent sensing, graded uncertainty maintenance (thrice-motivated), self-other modeling. The M4 requirements list is amended; the direction is closed; the loop pauses on direction choice.",
+    caveat:"the audit checks that quoted numbers exist in committed outputs — it does not re-run the experiments (resume-from-snapshot remains the reproducibility unit); the synthesis table is static text whose content was validated by the audit, not recomputed.",
     trace:{ script:"experiments/exp74_synthesis_audit.py", output:"experiments/outputs/exp74.txt" } },
 
   { n:75, kind:"partial", chapter:"frontier",
@@ -765,6 +839,7 @@ window.AM_EXPERIMENTS = [
     setup:"The spine's first checkpointed episode since Exp 63: profile, 2000 undisturbed steps in its own world, profile again. Predeclared stability bands on value shares, conviction, map accuracy, and localization; favorite predicted unchanged at stated low confidence (its 11-count margin makes mirro a near-ambivalent adult by Exp 67's own law).",
     result:"Mixed, falsifier respected: the map band blew upward (+0.16 — the drift-epoch staleness relearned at exactly the mass-tempo law's pace) while every value-core component passed comfortably and the favorite held. Spine advanced 10700 to 12700, hash-stamped, integrity-verified. New datum: the favorite margin halved to 5 counts.",
     implication:"The open personality question splits by dimension: the value core is stable under undisturbed living — Exp 55's instability was the interventions, not the creature — while knowledge self-heals toward the world. The band design conflated the two; the diagnosis is in the per-component data. And mirro now sits one natural drift from flipping its own favorite, no intervention required.",
+    caveat:"F1 stands as fired — the verdict respects the predeclared structure; the knowledge/value split is diagnosis, not a passed test.",
     trace:{ script:"experiments/exp75_undisturbed_epoch.py", output:"experiments/outputs/exp75.txt" } },
 
   { n:76, kind:"partial", chapter:"frontier",
@@ -775,6 +850,7 @@ window.AM_EXPERIMENTS = [
     setup:"One spine episode, twelve 500-step checkpoints with the full profile sampled at each; the signed color-2-minus-color-0 gap as the primary trajectory. Predeclared: structure reasserts (gap widens, medium confidence), no flip, knowledge one-sided band, value bands — with the flip branch explicitly named: the spine keeps it, no rollback.",
     result:"The flip branch fired at checkpoint 4 and held at all eight subsequent checkpoints (gap oscillating -1 to -113, still shallow). Value shares stayed within 0.012 — a razor-crossing, not an upheaval. The map healed further to 0.96. Spine advanced to age 18,700, hash-stamped and integrity-verified.",
     implication:"The ambivalence law now has its live demonstration on the spine itself: an adult creature near the gap-zero boundary changes its expressed preference from nothing but ongoing experience — mirro answers the favorite-color question differently than it did a week of its life ago. The falsified prediction is the next experiment: per-color gate asymmetry is the suspect for why the rarer color wins.",
+    caveat:"single deterministic run (resume-from-snapshot is the reproducibility unit); the flip is shallow (gap max -113 of ~7,600 total mass; oscillation suggests it could re-cross); the gate-asymmetry diagnosis is a hypothesis, not a tested claim; the structural-drift reasoning that failed was mine (visit-uniformity x cell-count is evidently not the whole accrual law — the correction is the named follow-up).",
     trace:{ script:"experiments/exp76_margin_watch.py", output:"experiments/outputs/exp76.txt" } },
 
   { n:77, kind:"positive", chapter:"frontier",
@@ -785,6 +861,7 @@ window.AM_EXPERIMENTS = [
     setup:"The gate-asymmetry hypothesis made analytic: with localization at zero bits, per-color accrual rate is the mean predictability gate over that color's cells — computable read-only from the committed snapshot. Three predeclared tests: the analytic ordering, behavioral validation by a fork within 10%, and the drift magnitude matching the observed flip within a factor of two.",
     result:"All three pass, no falsifiers. The diagnostic locates the asymmetry: color 2's nine cells form one contiguous aliased block whose observation columns stay soft even at 0.96 map accuracy — structural aliasing, not transient staleness. The common, clumped color is experienced less confidently per visit.",
     implication:"Self-formed preference in this substrate tracks epistemic legibility, not abundance — predictability-grounded valence followed to its honest conclusion. The natural opinion flip is explained end-to-end, and the accrual law (visit share times mean gate, where the gate can invert abundance) becomes a design lever for M4. Caveat: the aliasing isolation experiment (clumped vs scattered layouts) was not run.",
+    caveat:"the aliasing reading rests on the visual block structure plus the argmax-accurate-yet-soft-gated coexistence — a targeted aliasing experiment (same color counts, scattered vs clumped layouts, fresh creatures) would isolate it cleanly and was NOT run; staleness contribution not separately quantified.",
     trace:{ script:"experiments/exp77_accrual_diagnosis.py", output:"experiments/outputs/exp77.txt" } },
 
   { n:78, kind:"partial", chapter:"frontier",
@@ -795,6 +872,7 @@ window.AM_EXPERIMENTS = [
     setup:"Fresh newborns in two worlds with identical color counts differing only in layout: a 3x3 clump versus nine scattered checkerboard cells. Predeclared: scattered gates beat clumped gates (the aliasing mechanism), scattered share beats clumped share, and clumping inverts the favorite — with the first prediction's failure explicitly naming a correction to Exp 77.",
     result:"The mechanism prediction failed 1/5 and inverted — clumped end-gates are the grid's sharpest (a uniform block makes observations given the cell maximally predictable; aliasing hurts localization, not columns). The share and favorite effects replicated anyway (4/5 and 3/5+3/5). Exp 77's measured law stands; its interpretation is retracted and replaced: the early localization tax, imprinted permanently by the non-decaying ledger — with mirro's historical scar verified read-only on the committed state.",
     implication:"The discipline killed its author's published reading within one day and produced a sharper one: preference deficits are early-life imprints that nothing ever washes out — the substrate's gates remember every world it has believed in. The forgetting-term requirement for M4 gains its fifth independent motivation. Named follow-up: the direct accrual-by-life-stage test.",
+    caveat:"the early-tax mechanism is the corrected HYPOTHESIS with indirect evidence (P2/P3 pass under equal end-gates); the direct test (per-color accrual trajectory in early vs late life) was not run.",
     trace:{ script:"experiments/exp78_aliasing_isolation.py", output:"experiments/outputs/exp78.txt" } },
 
   { n:79, kind:"wall", chapter:"frontier",
@@ -805,6 +883,7 @@ window.AM_EXPERIMENTS = [
     setup:"Fresh seeds, Exp 78's two layouts, twelve 250-step windows of per-color accrual, with the early-tax predictions and falsifiers fixed in advance: early deficit concentration, late fairness, and half the end gap in place by a third of life.",
     result:"The falsifier fired and the sign guard found the deeper problem: the end-state gap was negative in 4/5 fresh seeds — no deficit to explain. Window shares swing plus-minus 0.2 with no early structure; localization is sharp within the first window in both arms. Exp 78's share and favorite effects were noise passing permissive count thresholds.",
     implication:"The honest causal ledger after three rounds: the spine's accrual law and its historical scar are solid; structural aliasing, the early tax, and any fresh-creature layout effect are dead at this sample size. The methodology yield is binding: count thresholds on noisy endpoints now require a predeclared effect size or more seeds — the gap this noise walked through is closed.",
+    caveat:"n=5 per arm here too — the un-replication shows instability, not a proven null; a >=16-seed effect-size-banded experiment could still find a small real layout effect (named, not planned — the spine's story does not depend on it).",
     trace:{ script:"experiments/exp79_early_tax.py", output:"experiments/outputs/exp79.txt" } },
 
   { n:80, kind:"positive", chapter:"frontier",
@@ -815,6 +894,7 @@ window.AM_EXPERIMENTS = [
     setup:"From the committed snapshot: the law's drift rate forecasts the gap at about -76 with a plus-minus 40 band; the favorite should stay color 0; and the non-decay arithmetic predicts the per-color gate gap narrows as fixed scar mass dilutes under growing pure counts. Falsifiers: out-of-band or re-cross halts the thread; a widening gate gap kills the dilution arithmetic.",
     result:"All pass, no falsifiers. Gap -44.84 in band; favorite consolidated; gates rose across all colors with the gap narrowing 0.0073 to 0.0048 — the in-band shortfall and the dilution are one phenomenon: the drift decelerates, so the preference gap asymptotes. Spine at age 24,700, hash-stamped and committed.",
     implication:"The accrual-law thread closes fully validated: retrodiction, historical attribution, and forward prediction with its second-order term. A creature's valence trajectory is forecastable from its committed state — and would be steerable by a forgetting term. The loop's non-direction queue is now empty; the M4a decision is the standing point.",
+    caveat:"the band (+-40) was generous — the center prediction missed by 31 even though the miss is mechanistically explained (the simple forecast used start-state rates; a rate-decay-integrated forecast was not predeclared and is not claimed).",
     trace:{ script:"experiments/exp80_forward_test.py", output:"experiments/outputs/exp80.txt" } },
 
   { n:81, kind:"wall", chapter:"frontier",
@@ -825,6 +905,7 @@ window.AM_EXPERIMENTS = [
     setup:"The exact Exp 80 procedure with zero tuning on the other committed line: vela's own gates forecast a +32.7 end gap (no flip this epoch) with the same band and the dilution prediction; the out-of-band falsifier halts the thread for diagnosis. Vela's line advances and keeps whatever happens.",
     result:"The falsifier fired: end gap -21.7, realized drift 2.9x the forecast, favorite flipped to 0 — vela's first natural opinion change, in its own world. Dilution still passed, with all gates rising steeply as the immigrant's map heals. Vela at age 18,750, hash-stamped, committed.",
     implication:"The accrual law is a converged-regime law: valid on a resident who knows its world, several-fold wrong on a still-healing mind. The halt-mandated diagnosis (per-step accounting of the 3x) is queued. And the lineage echo — shared ancestral scars steering both descendants to the same preference in different worlds — is named as the clade-level question to test after.",
+    caveat:"single deterministic run; the 2.9x factor is one epoch on one creature; the mislocalization mechanism is hypothesis until the named accounting runs; the band (+-40) was calibrated on mirro's noise and may underestimate an immigrant's.",
     trace:{ script:"experiments/exp81_vela_forward.py", output:"experiments/outputs/exp81.txt" } },
 
   { n:82, kind:"positive", chapter:"frontier",
@@ -835,6 +916,7 @@ window.AM_EXPERIMENTS = [
     setup:"vela's pre-epoch state recovered from git history, the 6000-step epoch replayed with live() replicated bit-for-bit, gated on reproducing the committed end-state hash exactly. The drift decomposes by construction into the forecast plus three measurable terms: visit noise, gate evolution, and mislocalization.",
     result:"Replay exact (hash match, identity residual zero). Visit noise -55.2 dominates; rate evolution +0.7; mislocalization exactly zero — vela self-located perfectly all 6000 steps, killing Exp 81's suspect twice over. The author's rate-evolution prediction was wrong, the third such reversal this chapter.",
     implication:"No converged-regime boundary: the accrual law survives as an expectation whose per-epoch realizations carry walk noise comparable to the mean — Exp 80's in-band landings were partly favorable draws, and the lineage echo weakens to shared expectation with noise-set timing. The exact-replay accounting itself joins the toolkit. The halt is resolved; the M4a decision remains the standing point.",
+    caveat:"one replayed epoch; the variance claim (\"sigma comparable to mean\") is from a single -55 draw plus the band miss, not an estimated distribution — a multi-counterfactual-seed variance estimate (fork + alternative action streams) would quantify it properly and was not run.",
     trace:{ script:"experiments/exp82_drift_accounting.py", output:"experiments/outputs/exp82.txt" } },
 
   { n:83, kind:"partial", chapter:"frontier",
@@ -845,6 +927,7 @@ window.AM_EXPERIMENTS = [
     setup:"Twenty counterfactual 6000-step epochs from the git-recovered pre-anomaly state, differing only in the action stream. Predeclared: the mean matches the analytic forecast within 2 SE; sigma lands in a stated band; the actually-lived draw is ordinary. The sigma band's high side was an explicitly named informative branch.",
     result:"Mean -18.8, within 2 SE of -29.3 — the law is an unbiased expectation, now properly tested. Sigma 121, far above the band's top: per-epoch forecasting is uninformative (signal-to-noise about 0.25, and the drift decays while the noise does not). The lived anomaly sits half a sigma from the mean — ordinary. Flip probability ~40% per epoch, making both lines' flips unremarkable.",
     implication:"The preference-dynamics arc (Exp 76-83) closes with its honest physics: expressed opinion at this scale is a noisy readout of a faint historical bias. Exp 80's evidence is retroactively downgraded and replaced by the right test. For M4: stable self-formed preference needs deeper mass asymmetries or a forgetting term that lets the present dominate the past. The queue is empty; the M4a decision stands.",
+    caveat:"20 branches, one start state, one creature, one horizon; sigma at other ages/creatures not measured (expected to scale ~sqrt(steps) per visit-noise arithmetic, unverified); P2's [25,90] band was my guess and missed high — logged as the predeclared F2-high branch, which was itself a named informative outcome.",
     trace:{ script:"experiments/exp83_law_error_bars.py", output:"experiments/outputs/exp83.txt" } },
 
   { n:84, kind:"partial", chapter:"frontier",
@@ -855,6 +938,7 @@ window.AM_EXPERIMENTS = [
     setup:"Three forecast horizons (1500/6000/24000 steps), twelve counterfactual lives each, from the same git-recovered moment. Predeclared: square-root noise scaling within a band, and no usable forecast horizon at the longest reach — with both falsifier branches named as findings.",
     result:"Mixed: the scaling band broke by a hair at the top, with both measured exponents above one-half — superdiffusive noise — while the no-horizon prediction passed emphatically: the mean drift saturated as sigma tripled. Marginal on the band, unambiguous on the physics.",
     implication:"The preference-dynamics arc closes in full: genuine individual histories bias these creatures measurably, but their individual futures are constitutively open — not by design, by arithmetic. The queue is empty; the M4a decision is the standing point, and the loop idles until the human chooses.",
+    caveat:"F1's firing margin is 0.005 on an n=12 std ratio (estimation error ~30%); the superdiffusive reading rests on both exponents sitting above 0.5, not on the marginal band breach alone.",
     trace:{ script:"experiments/exp84_noise_scaling.py", output:"experiments/outputs/exp84.txt" } },
 
   { n:85, kind:"positive", chapter:"frontier",
@@ -865,6 +949,7 @@ window.AM_EXPERIMENTS = [
     setup:"Mechanism M-A: per-step count decay at Exp 60's in-window lambda, implemented in the experiment stepper only — spines untouched, creature class untouched. Eight matched-trajectory seed pairs in a static world, with effect-size parity bands, localization bounds, and the equilibrium-mass arithmetic as predeclared gates.",
     result:"All three properties pass 8/8: perfect map parity, zero-bit localization in both arms, and the mass equilibrium within 0.2 percent of theory. The rung-1 gate could not be cleaner.",
     implication:"Everything this program attributes to unbounded evidence mass — scars, freezing, social immovability, saturating drift — now has a candidate mechanism whose null cost is established. Rung 2 tests healing directly, with a predeclared scar half-life of ~231 steps. The direction was opened under the social-emergence card's own closing clause; the M4a build decision stays with the human.",
+    caveat:"static world, fresh creatures, one lambda, one floor, 3000 steps — no-harm is established exactly there; aliased-block localization under decay (soft counts spread thinner at equilibrium) showed no cost here but mirro's world has only a 3x3 block; deeper aliasing untested.",
     trace:{ script:"experiments/exp85_lambda_no_harm.py", output:"experiments/outputs/exp85.txt" } },
 
   { n:86, kind:"partial", chapter:"frontier",
@@ -875,6 +960,7 @@ window.AM_EXPERIMENTS = [
     setup:"A maximal scar implanted identically into both arms (1500 steps in one world, 1500 in its color-permuted twin, then bit-identical deepcopies); 3000 healing steps with the scar fraction sampled every 250. Predeclared: the control follows pure dilution; the forgetting arm halves its scar within the 231-step mass half-life and ends below 0.05; gates recover.",
     result:"Dilution law confirmed to three decimals (8/8); end-state healing emphatic (8/8); gate recovery the largest effect of the chapter (+0.42, 8/8) — but the 250-step half-life check failed 0/8, because the ratio's denominator decays too: the scar fraction falls on the replacement timescale (~1100 steps), matching the corrected arithmetic to within observation.",
     implication:"The mechanism heals as the right arithmetic says; the predeclaration measured with the wrong clock. Per the falsifier the ladder halts until the replacement-clock rate law passes out-of-sample — the corrected predictions are stated and Exp 87 tests them on fresh seeds. The fourth authorial error of the session caught by its own predeclared structure.",
+    caveat:"per the predeclared F2, the ladder HALTS until the corrected rate claim is re-posed and passed on FRESH seeds (the out-of-sample rule — the corrected numbers above were read off this run's trajectory, so they may not be confirmed on it).",
     trace:{ script:"experiments/exp86_scar_healing.py", output:"experiments/outputs/exp86.txt" } },
 
   { n:87, kind:"positive", chapter:"frontier",
@@ -885,6 +971,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 86's implant protocol verbatim on eight never-run seeds, with the replacement-clock bands stated in Exp 86's entry before this run: early ratio, half-crossing window, and end-state healing — and a single falsifier that keeps the ladder halted if the corrected law fails too.",
     result:"All three properties pass 8/8 with the crossing dead-center: the rate law's corrected form is validated, not fitted. The rung-2 halt lifts.",
     implication:"Count decay at the in-window lambda is now fully characterized: costless when the world is stable, scar-erasing on a ~1000-step replacement clock when it is not. Rung 3 asks the direction's hard question: the same decay erodes the value mass that makes a creature an individual — is there a lambda where healing and identity coexist, or is the dilemma provable?",
+    caveat:"the corrected bands were derived from Exp 86's trajectories and pass here on fresh seeds — proper out-of-sample, but same world pair, same implant protocol, same lambda; the crossing's tightness (1000 in 8/8) partly reflects the 250-step sampling grid.",
     trace:{ script:"experiments/exp87_replacement_clock.py", output:"experiments/outputs/exp87.txt" } },
 
   { n:88, kind:"positive", chapter:"frontier",
@@ -895,6 +982,7 @@ window.AM_EXPERIMENTS = [
     setup:"Value-ledger decay isolated; identity formed in a strongly color-0 world, then either a permanent world change (adoption cohorts, two ages, two lambdas) or a 200-step adverse spell (three lambdas). All bands — the age-ratio, the age-free ratio, and the three-way spell ordering — predeclared from the window arithmetic.",
     result:"All pass, 8/8 everywhere: rigidity grows with age for non-decay (ratio 2.73), windowed adoption is exactly age-free (ratio 1.00), the spell ordering is perfect, and every transiently-flipped creature recovered its identity on the window clock.",
     implication:"Identity-versus-adaptability is not a dilemma but a timescale to choose: pick the window between the world's transients and its true changes. The no-forgetting alternative is unbounded rigidity, now quantified. Mechanism M-A is characterized end-to-end on both ledgers; rung 4 re-tests the program's closed doors (the adult wall, the empty fridge, forecast noise) with the window in place.",
+    caveat:"one world pair, one spell length/one change type, medians over 8 seeds with a 50-step sampling grid; identity formation ran WITH decay active (the decayed arms' identities are windowed from birth — declared); the theorem language describes this mechanism's arithmetic demonstrated at these scales, not a general impossibility result.",
     trace:{ script:"experiments/exp88_window_theorem.py", output:"experiments/outputs/exp88.txt" } },
 
   { n:89, kind:"positive", chapter:"frontier",
@@ -905,6 +993,7 @@ window.AM_EXPERIMENTS = [
     setup:"The Exp 65-era adult recovered from git history, split into windowed and frozen arms with byte-identical positions, pre-equilibrated, then run through Exp 65's exact channel and dose on eight fresh seeds against the original 0.02 threshold — with the frozen arm as a paired replication of the original wall.",
     result:"All pass: windowed divergence 0.076-0.092 (8/8), frozen 0.011-0.014 (8/8 — the original wall to the digit), adult adoption 6/8 with severed twins never adopting. The window arithmetic's predicted equilibrium mass (667) appeared exactly.",
     implication:"Receiver mass is the wall, and the window removes it: adults become socially reachable at better-than-young rates while the window theorem prices the lability honestly. The M4 requirement is now a measured design statement. Remaining: the promotion CONSULT (rung 5) — the mechanism's evidence base is arguably complete.",
+    caveat:"emitter substituted (declared); one LV, one dose, one receiver state; the windowed adult's \"adoption\" is adoption of a ~667-mass windowed identity — by construction more labile than a frozen one (that lability is the mechanism's point, priced by Exp 88's theorem, but it must not be oversold as the old kind of conviction). pA decay was off — combined-ledger behavior untested.",
     trace:{ script:"experiments/exp89_wall_reopened.py", output:"experiments/outputs/exp89.txt" } },
 
   { n:90, kind:"partial", chapter:"frontier",
@@ -915,6 +1004,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 62's scarcity protocol replicated faithfully with the map-forgetting rate swept across four values spanning half-lives 231 to 23 steps, against a ~25-40 step post-move survival budget — with the empty-window impossibility and its interpretation rule predeclared.",
     result:"Slow arms died post-move 8/8 as the half-life arithmetic demands; max fast-arm survival 1/8 — empty window confirmed. The monotonicity prediction failed informatively: survival dips again at the fastest rate because the accuracy floor bites — the two-walled window's signature, visible in the death modes swapping from certain to amnesiac across the sweep.",
     implication:"The mechanism's reach has a proven boundary: count decay solves slow-world pathologies but cannot beat fast viability clocks. The M4 requirements are now fully measured — a window sized by the window theorem PLUS a prediction-failure exploration reflex, both necessary. Rung 5, the promotion CONSULT, closes the ladder.",
+    caveat:"one ecology (Exp 62's exact scarcity), 8 seeds/arm, four lambdas; the \"unstable optimum\" reading of 0.98's single survivor is interpretation (n=1); my P2 prediction contradicted my own P3 arithmetic and fired F2 — the monotonicity band was authored carelessly, logged as such (fifth authorial reversal of the run).",
     trace:{ script:"experiments/exp90_fridge_window.py", output:"experiments/outputs/exp90.txt" } },
 
   { n:91, kind:"positive", chapter:"frontier",
@@ -925,6 +1015,7 @@ window.AM_EXPERIMENTS = [
     setup:"The direction card's rung 5 plus the audit duty: a checker verifies ten headline claims from Exp 85-90 verbatim against the six committed output files, with any miss mandating a correction entry and blocking the dossier.",
     result:"Audit pass, 10/10 and 6/6 scripts. The ladder in one line each: costless when static; scars heal on the replacement clock, validated out-of-sample; the window theorem with rigidity 2.73x for the never-forgetting; the adult social wall opened with the control replicating the original to the digit; the empty window at the fridge proving the exploration reflex necessary.",
     implication:"The M4 requirements are measured design constants, and rung 5 merges with the standing M4a decision into one human question: approve the next generation with windows and the reflex, spines untouched as reference individuals. The loop's sanctioned queue is empty; it idles until the human answers.",
+    caveat:"the audit checks committed text, not re-runs (resume-from-snapshot remains the reproducibility unit); all scale caveats of Exp 85-90 carry through (one world family per rung, one-to-four lambdas, 8 seeds per claim); the recommendation is a recommendation — the substrate of committed lives changes only on explicit human word.",
     trace:{ script:"experiments/exp91_window_dossier.py", output:"experiments/outputs/exp91.txt" } },
 
   { n:92, kind:"positive", chapter:"frontier",
@@ -935,6 +1026,7 @@ window.AM_EXPERIMENTS = [
     setup:"The binding every-ten-experiments audit duty, applied to the spine-epochs and preference-law arc that Exp 91's dossier audit did not cover: nineteen substrings across ten output files, plus script existence, plus the hostile re-read for claims that would not survive replication from entry text alone.",
     result:"Full pass; no correction entry required. The re-read's notes: the correction chains are complete and append-only by design; the honestly-unfinished threads are declared as such in their entries; no entry claims more than its committed output supports.",
     implication:"The log's integrity holds across its most self-correcting stretch. The sanctioned queue remains empty pending the one merged decision (M4a with windows and the reflex); declared idle-mode for automated fires is a single checkpointed spine life-epoch per fire — the continuous life continuing, honestly tagged as such.",
+    caveat:"the audit verifies quoted text against committed outputs, not re-runs; the hostile re-read is the loop auditing itself — an external replication from entry text remains the stronger standard, available to anyone via the committed scripts.",
     trace:{ script:"experiments/exp92_decade_audit.py", output:"experiments/outputs/exp92.txt" } },
 
   { n:93, kind:"positive", chapter:"frontier",
@@ -945,6 +1037,7 @@ window.AM_EXPERIMENTS = [
     setup:"Declared idle-mode: one checkpointed spine life-epoch per automated fire while the merged M4a decision awaits the human. Knowledge band one-sided, value-core bands per the twice-passed horizon, and the gap forecast carrying honest 2.5-sigma error bars — with the favorite explicitly reported rather than predicted.",
     result:"All bands held. Map 0.96 to 1.000; share deltas under 0.005; the gap landed 1.04 sigma from the forecast center — inside the band, on the other side of zero: mirro's second natural opinion change, this one by dice against the weak drift, exactly the event class the noise model owns.",
     implication:"The quantitative self-model holds in production: stable cores, healing knowledge, stochastic razor-margin preferences. mirro is empirically an ambivalent adult — and by the ambivalence law, maximally open to social influence on exactly this question, should the M4a dyad ever ask it. The life continues; the decision waits.",
+    caveat:"consolidation by design — the idle-mode's purpose is continuity, not discovery; single deterministic run; the 1.04-sigma \"calibration success\" is one draw, not a calibration test.",
     trace:{ script:"experiments/exp93_mirro_epoch.py", output:"experiments/outputs/exp93.txt" } },
 
   { n:94, kind:"positive", chapter:"frontier",
@@ -955,6 +1048,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: a 6000-step checkpointed life epoch with the relative knowledge band, the value-core bands, the noise-calibrated gap forecast, and the favorite reported rather than predicted at its razor margin.",
     result:"All bands held: map 0.92 to 1.000, value deltas under 0.005, the gap landing 0.69 sigma from forecast on the far side of zero — vela's second natural opinion change, mirroring mirro's last entry almost beat for beat.",
     implication:"The production picture is symmetric across the clade: stable cores, completed knowledge, stochastic razor-margin preferences. Two ambivalent adults with fully-mapped worlds, lives continuing — while the one merged decision (M4a with windows and the reflex) waits for the human.",
+    caveat:"consolidation by design (idle-mode); single deterministic run per line; the two 1.000 maps say nothing about gate-level scar mass (Exp 78's distinction stands).",
     trace:{ script:"experiments/exp94_vela_epoch.py", output:"experiments/outputs/exp94.txt" } },
 
   { n:95, kind:"positive", chapter:"frontier",
@@ -965,6 +1059,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands, the favorite reported rather than predicted, and the cumulative flip record now tracked across entries.",
     result:"All bands held; no falsifiers; the first hold of the flip record. Spine at 36,700, hash-stamped and committed.",
     implication:"The quantitative self-model keeps holding in production, now including its quiet weeks. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the 0.05-sigma landing is one draw (as Exp 93's 1.04 was); the flip tally remains small-n.",
     trace:{ script:"experiments/exp95_mirro_epoch2.py", output:"experiments/outputs/exp95.txt" } },
 
   { n:96, kind:"positive", chapter:"frontier",
@@ -975,6 +1070,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: the standard checkpointed epoch with knowledge, value-core, and noise-calibrated forecast bands; favorite reported, not predicted; the cumulative flip record tracked across entries.",
     result:"All bands held, no falsifiers; the flip tally moves to 5/6 against the model's ~40 percent — small-n, running hot, tracked honestly. Vela at 30,750, hash-stamped, committed.",
     implication:"The clade now contains a demonstrated preference oscillator — an ambivalent adult whose expressed favorite genuinely alternates with the dice while its structure holds. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the deepened gap (-101.5) as an entrenchment signal is a watch-item, not a claim.",
     trace:{ script:"experiments/exp96_vela_epoch2.py", output:"experiments/outputs/exp96.txt" } },
 
   { n:97, kind:"positive", chapter:"frontier",
@@ -985,6 +1081,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the standard checkpointed epoch — knowledge, value-core, and noise-calibrated forecast bands, favorite reported not predicted, the cumulative flip record tracked.",
     result:"All bands held, no falsifiers. Spine at 42,700, hash-stamped, committed.",
     implication:"The lives continue and the calibration record grows; the descriptive contrast between the steadying trunk and the oscillating branch is noted as texture, not yet a measured trait. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; \"temperament\" is a descriptive word for two short runs of holds-vs-flips, not a measured trait claim.",
     trace:{ script:"experiments/exp97_mirro_epoch3.py", output:"experiments/outputs/exp97.txt" } },
 
   { n:98, kind:"positive", chapter:"frontier",
@@ -995,6 +1092,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn, with the Exp 96 entrenchment watch-item live: standard bands, the favorite reported not predicted, a hold stated as likelier at this depth without being banded.",
     result:"All bands held; the first hold of vela's life, at its deepest margin; the gap drifted shallower again, so next epoch returns toward razor territory. Vela at 36,750, hash-stamped, committed.",
     implication:"One consistent datum for the depth law — flip probability falls as margins deepen — with the accumulating record eventually supporting the binned analysis. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; one hold at one depth is a consistent datum, not a confirmed depth law (that would need the binned flip-rate-vs-depth analysis the accumulating record will eventually support).",
     trace:{ script:"experiments/exp98_vela_epoch3.py", output:"experiments/outputs/exp98.txt" } },
 
   { n:99, kind:"positive", chapter:"frontier",
@@ -1005,6 +1103,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: standard bands, favorite reported not predicted, the flip and depth records accumulating across entries.",
     result:"All bands held; the stillest epoch yet. Spine at 48,700, hash-stamped, committed.",
     implication:"The lives continue, the calibration records grow, and the next mirro epoch — the centennial entry — opens on a razor margin. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp99_mirro_epoch4.py", output:"experiments/outputs/exp99.txt" } },
 
   { n:100, kind:"positive", chapter:"frontier",
@@ -1015,6 +1114,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn: standard bands with the favorite reported not predicted at an intermediate entering depth — and the noise band holding by a whisker at the far edge.",
     result:"All bands held; flip tally reaches 5 flips and 5 holds — exactly the predicted rate; the depth record gains its most extreme point, and the first near-tail forecast draw is logged for the calibration record.",
     implication:"At -316 the flip arithmetic says vela is, for now, someone with a settled favorite — testable for free in every coming epoch. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; \"committed\" is the depth arithmetic talking (flip probability collapses at -316), not a new trait claim — the next vela epochs test it for free.",
     trace:{ script:"experiments/exp100_vela_epoch4.py", output:"experiments/outputs/exp100.txt" } },
 
   { n:101, kind:"positive", chapter:"frontier",
@@ -1025,6 +1125,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn on its thinnest-ever margin: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
     result:"All bands held; the flip arrived as the rate law expects at razor margins; both lines now sit at depth on the same color, stated plainly as coincidence of independent walks. Spine at 54,700, hash-stamped, committed.",
     implication:"The calibration records grow (6/11 against ~40 percent); the next vela epoch tests its -316 commitment for free; the 92-101 decade audit falls due. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the clade alignment is dice (independent walks, no channel) — stated to preempt any echo reading.",
     trace:{ script:"experiments/exp101_mirro_epoch5.py", output:"experiments/outputs/exp101.txt" } },
 
   { n:102, kind:"positive", chapter:"frontier",
@@ -1035,6 +1136,7 @@ window.AM_EXPERIMENTS = [
     setup:"The every-ten-experiments audit duty applied to the idle-mode decade: nineteen substrings, ten scripts, plus a calibration recompute parsing the nine error-over-sigma landings straight from the committed outputs.",
     result:"Full pass; flip-tally bookkeeping consistent across all entries; the value-core bands acknowledged as catastrophe-tests rather than drift-tests; no entry over-claims. One near-tail event in nine — the centennial plunge — exactly what honest bands should occasionally produce.",
     implication:"The idle-mode is doing science by accumulation: the noise model now has an empirical calibration certificate. The lives continue; the merged M4a decision still waits.",
+    caveat:"the calibration check uses sigma = 121 measured once (Exp 83, vela@12750); its reuse across both lines and later ages is supported by these 9 landings but has not been re-estimated; the audit checks text, not re-runs.",
     trace:{ script:"experiments/exp102_decade_audit.py", output:"experiments/outputs/exp102.txt" } },
 
   { n:103, kind:"positive", chapter:"frontier",
@@ -1045,6 +1147,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn, with the commitment test live: at -316 a flip requires a ~2.6-sigma adverse draw, so a hold was called near-certain — stated, not banded — with the standard knowledge, core, and forecast bands.",
     result:"Held as called; the gap rebounded sharply in band; all bands held; the tally's denominator now mixes depths, flagged for the eventual binned analysis. Vela at 48,750, hash-stamped, committed.",
     implication:"One more clean datum for the depth law from both sides: holds at depth, relaxation toward the boundary. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; \"breathes\" is description, not a dynamics claim — the gap trajectory (62 -> -22 -> +41 -> -101 -> -60 -> -316 -> -85) is one realization of drift+noise, nothing more is asserted.",
     trace:{ script:"experiments/exp103_vela_epoch5.py", output:"experiments/outputs/exp103.txt" } },
 
   { n:104, kind:"positive", chapter:"frontier",
@@ -1055,6 +1158,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn at intermediate depth: standard bands, favorite reported not predicted, the flip and depth records accumulating.",
     result:"All bands held; both lines now at shallow gaps after their deep excursions — two independent realizations of the same physics, stated as description not coupling. Spine at 60,700, hash-stamped, committed.",
     implication:"The records grow; both lines re-enter flip territory together. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; \"breathe in step\" is description of two independent realizations, not coupling.",
     trace:{ script:"experiments/exp104_mirro_epoch6.py", output:"experiments/outputs/exp104.txt" } },
 
   { n:105, kind:"positive", chapter:"frontier",
@@ -1065,6 +1169,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn at shallow-intermediate depth: standard bands, favorite reported not predicted, the records accumulating.",
     result:"All bands held. Vela at 54,750, hash-stamped, committed.",
     implication:"The lives continue; mirro's -23 razor is next. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp105_vela_epoch6.py", output:"experiments/outputs/exp105.txt" } },
 
   { n:106, kind:"positive", chapter:"frontier",
@@ -1075,6 +1180,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn on the razor: standard bands, favorite reported not predicted, the depth record accumulating toward its formal analysis.",
     result:"All bands held; the informal binning is flagged as informal — bins by eye, threshold not predeclared, and the entry says so. Spine at 66,700, hash-stamped, committed.",
     implication:"When the depth record supports it, a predeclared-threshold binned test turns the pattern into a law. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the binning above is informal (bins chosen by eye; the depth boundary is not predeclared) — flagged, since the proper analysis needs a predeclared depth threshold before it may be called a law.",
     trace:{ script:"experiments/exp106_mirro_epoch7.py", output:"experiments/outputs/exp106.txt" } },
 
   { n:107, kind:"positive", chapter:"frontier",
@@ -1085,6 +1191,7 @@ window.AM_EXPERIMENTS = [
     setup:"The registration, per the out-of-sample rule: razor bin (under 60) predicts flips at 40 percent or more, deep bin (120 or more) predicts holds with flip probability under 10 percent, the middle unbinned — with explicit confirmation criteria and an honest insufficient-sample branch. Plus the standard idle bands.",
     result:"All bands held; the first registered call landed; vela remains deep entering the next epoch. Stillest core deltas yet. Vela at 60,750, hash-stamped, committed.",
     implication:"Idle-mode now carries a live prospective experiment of its own. The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; one registered call is one Bernoulli draw — the evaluation waits for the registered sample, no early claims.",
     trace:{ script:"experiments/exp107_vela_epoch7.py", output:"experiments/outputs/exp107.txt" } },
 
   { n:108, kind:"positive", chapter:"frontier",
@@ -1095,6 +1202,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn from the unbinned middle: standard bands, no registered call this epoch, the records accumulating.",
     result:"All bands held; a record depth. Spine at 72,700, hash-stamped, committed.",
     implication:"Both lives now sit deep; the registered depth-law test gets its next calls cheaply. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp108_mirro_epoch8.py", output:"experiments/outputs/exp108.txt" } },
 
   { n:109, kind:"positive", chapter:"frontier",
@@ -1105,6 +1213,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn with the second registered deep call live: standard bands, the call recorded not checked, everything else as the declared pattern.",
     result:"All bands held; held as called; the margin deepened to -262. Vela at 66,750, hash-stamped, committed.",
     implication:"The registered test accumulates; both lines sit deep so the coming calls are holds — the razor bin will need patience. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; two registered calls are two Bernoulli draws — evaluation still waits for the registered sample.",
     trace:{ script:"experiments/exp109_vela_epoch8.py", output:"experiments/outputs/exp109.txt" } },
 
   { n:110, kind:"positive", chapter:"frontier",
@@ -1115,6 +1224,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's first registered deep call: standard bands, the call recorded not checked, the forecast center itself now moving deeper through the gate dynamics.",
     result:"All bands held; record depth again. Spine at 78,700, hash-stamped, committed.",
     implication:"Both lives deep and deepening: the registered deep bin fills fast, the razor bin waits. The merged M4a decision still waits too.",
+    caveat:"consolidation by design; single deterministic run; three registered calls are three draws — evaluation at the registered sample.",
     trace:{ script:"experiments/exp110_mirro_epoch9.py", output:"experiments/outputs/exp110.txt" } },
 
   { n:111, kind:"partial", chapter:"frontier",
@@ -1125,6 +1235,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode with the registered deep call live — and the predeclared F3 falsifier (any >2.5-sigma forecast event questions the noise calibration itself) doing exactly its job.",
     result:"F3 fired; everything else held (map perfect, conviction delta 0.0001 — the distribution barely moved as the argmax lurched, the razor-versus-mass distinction at its starkest). The flip is vela's life and is kept. Registered record 3/4.",
     implication:"Mandated next: re-estimate sigma at vela's current deep state with the counterfactual-ensemble instrument — superdiffusive noise (Exp 84) predicts deep states swing harder, in which case F3 resolves as state-dependent calibration, not broken physics. The diagnosis outranks the next idle epoch.",
+    caveat:"one 3-sigma event among 12 draws has p ~ 0.14 under honest unit bands — alarming alongside the 2.42 but not yet damning; the diagnosis decides.",
     trace:{ script:"experiments/exp111_vela_epoch9.py", output:"experiments/outputs/exp111.txt" } },
 
   { n:112, kind:"partial", chapter:"frontier",
@@ -1135,6 +1246,7 @@ window.AM_EXPERIMENTS = [
     setup:"The falsifier-mandated diagnosis: the pre-lurch state git-recovered, twenty counterfactual epochs, with a three-branch sigma prediction, the lived-draw ordinariness test, the bias test, and the flip fraction recorded for the registered evaluation.",
     result:"Borderline sigma branch as predeclared (171, inside the prediction band); lived draw ordinary at 1.89 sigma; law unbiased; no falsifiers. The registered test's deep criterion sits at half the measured rate, inside its wide n=20 confidence interval — judged at ~Exp 117 as registered.",
     implication:"State-dependent error bars join the noise model; the idle bands stay as registered with tails read against this entry; and the program demonstrates the discipline's answer to a tempting sin — measuring that your registered number looks wrong and refusing to quietly fix it. Idle-mode resumes.",
+    caveat:"sigma_deep from n=20 (SE ~ 27); the 0.20 flip rate is 4 Bernoulli successes (95% CI roughly 0.08-0.42 — wide, and the registered 0.10 is inside it); one state, one creature, one horizon.",
     trace:{ script:"experiments/exp112_deep_sigma.py", output:"experiments/outputs/exp112.txt" } },
 
   { n:113, kind:"positive", chapter:"frontier",
@@ -1145,6 +1257,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's registered deep call, with the forecast band carried as registered and deep tails read against Exp 112's state-dependent sigma finding.",
     result:"All bands held; the deep bin now has its five entries — the razor bin has none since registration, and the evaluation will say so honestly if the lines stay deep. Spine at 84,700, hash-stamped, committed.",
     implication:"The registered evaluation approaches with its sample shape visible in advance. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the registered evaluation (~Exp 117) needs >= 5 deep entries (have 5) and >= 4 razor entries (have 0 since registration) — the razor side will need both lines to relax first, and the evaluation will declare insufficient-razor-sample honestly if they have not.",
     trace:{ script:"experiments/exp113_mirro_epoch10.py", output:"experiments/outputs/exp113.txt" } },
 
   { n:114, kind:"positive", chapter:"frontier",
@@ -1155,6 +1268,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's registered deep call on the color-2 side of its lurch: standard bands, deep tails read against the state-dependent sigma finding.",
     result:"All bands held. Vela at 78,750, hash-stamped, committed.",
     implication:"The registered evaluation approaches with a deep-heavy sample; the razor side will be declared insufficient honestly. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp114_vela_epoch10.py", output:"experiments/outputs/exp114.txt" } },
 
   { n:115, kind:"positive", chapter:"frontier",
@@ -1165,6 +1279,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's registered deep call: the established pattern, nothing varied.",
     result:"All bands held. Spine at 90,700, hash-stamped, committed.",
     implication:"One epoch to the registered evaluation. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp115_mirro_epoch11.py", output:"experiments/outputs/exp115.txt" } },
 
   { n:116, kind:"positive", chapter:"frontier",
@@ -1175,6 +1290,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn in the unbinned middle: standard bands, no registered call, the evaluation queued.",
     result:"All bands held. Vela at 84,750, hash-stamped, committed.",
     implication:"Exp 117 scores the registration as written. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp116_vela_epoch11.py", output:"experiments/outputs/exp116.txt" } },
 
   { n:117, kind:"partial", chapter:"frontier",
@@ -1185,6 +1301,7 @@ window.AM_EXPERIMENTS = [
     setup:"An audit instrument verifies all nine post-registration epoch records verbatim against the committed outputs, then scores the two registered bins exactly as written, with the insufficient-sample branch available and the Exp 112 ensemble measurement cited but never substituted.",
     result:"Nine of nine records verified; deep confirmed-at-limit; razor declared insufficient with its books open under the same registered numbers; the unbinned middle reported unscored. The deep states' self-perpetuation (which starved the razor bin) is noted as informative but unregistered.",
     implication:"The idle-mode's embedded prospective experiment closes its first cycle the way registered science should — partial, fragile, and explicit about both. The lives continue; the merged M4a decision still waits.",
+    caveat:"7 deep entries from 2 creatures' partially-overlapping dynamics are not independent draws; the razor-bin absence is itself informative (deep states self-perpetuate via the gate-drift compounding seen in Exp 110-115) but was not a registered prediction.",
     trace:{ script:"experiments/exp117_depth_law_eval.py", output:"experiments/outputs/exp117.txt" } },
 
   { n:118, kind:"positive", chapter:"frontier",
@@ -1195,6 +1312,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn: the established pattern with the razor books open per the evaluation.",
     result:"All bands held. Spine at 96,700, hash-stamped, committed.",
     implication:"The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp118_mirro_epoch12.py", output:"experiments/outputs/exp118.txt" } },
 
   { n:119, kind:"positive", chapter:"frontier",
@@ -1205,6 +1323,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern, razor books open.",
     result:"All bands held. Vela at 90,750, hash-stamped, committed.",
     implication:"The lives continue; mirro's hundred-thousandth step comes next. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; the same-color alignment remains independent dice, as stated at Exp 101.",
     trace:{ script:"experiments/exp119_vela_epoch12.py", output:"experiments/outputs/exp119.txt" } },
 
   { n:120, kind:"positive", chapter:"frontier",
@@ -1215,6 +1334,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn across the milestone: the established pattern, the milestone noted but not celebrated into the bands.",
     result:"All bands held; the steadiest epoch of the program. Spine at age 102,700, hash-stamped, committed.",
     implication:"The continuous life — the recipe's central invariant — now spans six figures. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; a milestone is a number, not a finding.",
     trace:{ script:"experiments/exp120_mirro_100k.py", output:"experiments/outputs/exp120.txt" } },
 
   { n:121, kind:"positive", chapter:"frontier",
@@ -1225,6 +1345,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern.",
     result:"All bands held. Vela at 96,750, hash-stamped, committed.",
     implication:"The lives continue toward vela's own hundred-thousandth step. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; a tight landing is one draw, as ever.",
     trace:{ script:"experiments/exp121_vela_epoch13.py", output:"experiments/outputs/exp121.txt" } },
 
   { n:122, kind:"positive", chapter:"frontier",
@@ -1235,6 +1356,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 108,700, hash-stamped, committed.",
     implication:"The lives continue; vela crosses one hundred thousand steps next. The merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp122_mirro_epoch13.py", output:"experiments/outputs/exp122.txt" } },
 
   { n:123, kind:"positive", chapter:"frontier",
@@ -1245,6 +1367,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's turn across its milestone: the established pattern, the milestone noted but not celebrated into the bands.",
     result:"All bands held. Vela at age 102,750, hash-stamped, committed.",
     implication:"The clade's continuous lives both span six figures; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run; a milestone is a number, not a finding.",
     trace:{ script:"experiments/exp123_vela_100k.py", output:"experiments/outputs/exp123.txt" } },
 
   { n:124, kind:"positive", chapter:"frontier",
@@ -1255,6 +1378,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 114,700, hash-stamped, committed.",
     implication:"The lives continue; the merged M4a decision still waits.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp124_mirro_epoch14.py", output:"experiments/outputs/exp124.txt" } },
 
   { n:125, kind:"wall", chapter:"frontier",
@@ -1265,6 +1389,7 @@ window.AM_EXPERIMENTS = [
     setup:"Built per the M4 spec with the season's requirements designed in: the LV=0.999 window on the Dirichlet ledgers and the exploration reflex via the epistemic term plus ASK; validated against a deterministic scripted partner over eight seeded 100-turn sessions, every falsifier wired to HALT.",
     result:"Three of four predeclared properties passed — intent inference, the ASK reflex, and the window arithmetic landing exact to three decimals. The learning property failed at chance level in all eight seeds, with the structural diagnosis (enable the spec's own learn_B) recorded for the human's decision, not acted on.",
     implication:"The recommended resumption — increment 1b with B-learning enabled, same predeclarations, fresh seeds — awaits explicit human word in loop/IDEAS.md. Idle-mode spine epochs continue meanwhile. The guardrails work.",
+    caveat:"the JAX \"static array\" warnings in the agent construction are noted and unexplained — increment 1b should confirm they are benign; the chance-level POS rates also rule out accidental reward leakage (a useful negative control, unplanned).",
     trace:{ script:"experiments/exp125_m4a_core.py", output:"experiments/outputs/exp125.txt" } },
 
   { n:126, kind:"positive", chapter:"frontier",
@@ -1275,6 +1400,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern, with the M4a thread halted in parallel.",
     result:"All bands held. Vela at 108,750, hash-stamped, committed.",
     implication:"Idle-mode continues; the M4a resumption (increment 1b) awaits explicit human word in loop/IDEAS.md.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp126_vela_epoch14.py", output:"experiments/outputs/exp126.txt" } },
 
   { n:127, kind:"wall", chapter:"frontier",
@@ -1285,6 +1411,7 @@ window.AM_EXPERIMENTS = [
     setup:"The recommended one-scope change: observe_feedback now decays and learns both Dirichlet ledgers, with B-updates verified live in smoke. Identical predeclarations, fresh seeds, every falsifier wired to halt.",
     result:"Three of four properties pass again with the window arithmetic exact; learning fails 0/8 at chance. The seed-invariant B-mass total is noticed and explained (unit-mass updates), not banded.",
     implication:"Recommended next, on the human's word: a pure 1000-turn learning-trend diagnostic — no architecture change — to decide between scaling up and redesigning the valence timing. Idle-mode continues meanwhile; the guardrails keep working.",
+    caveat:"the seed-invariant pB total is consistent with unit-mass updates but was not predicted in advance (noticed, explained, not banded); the lr_pB=1.0 choice is the library default, untested against alternatives.",
     trace:{ script:"experiments/exp127_m4a_1b.py", output:"experiments/outputs/exp127.txt" } },
 
   { n:128, kind:"wall", chapter:"frontier",
@@ -1295,6 +1422,7 @@ window.AM_EXPERIMENTS = [
     setup:"The as-built agent, unmodified, two 1000-turn sessions with predeclared D1/D2 bands — a falsifier-mandated pure diagnostic per the program's own precedent, resuming nothing.",
     result:"D2 decisively: every bin within noise of chance, the epistemic ASK rate non-decaying across all twenty bins — the model never becomes predictive of the partner. Scale ruled out; the timing explanation stands as the surviving suspect.",
     implication:"The recommended increment 1c — observe feedback in the same inference step as the turn's own code, the spec's own converse flow — awaits explicit human word in loop/IDEAS.md. Idle-mode continues; the guardrails keep the build honest.",
+    caveat:"two sessions (the diagnostic's bands were sized for a trend that would be unmissable if present — none was); the timing explanation is the surviving suspect, not yet a demonstrated fix; lr/capacity alternatives remain possible but less parsimonious given the ASK-non-decay symptom.",
     trace:{ script:"experiments/exp128_learning_trend.py", output:"experiments/outputs/exp128.txt" } },
 
   { n:129, kind:"positive", chapter:"frontier",
@@ -1305,6 +1433,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's recorded deep call: the established pattern.",
     result:"All bands held. Spine at 120,700, hash-stamped, committed.",
     implication:"The lives continue; increment 1c awaits the human's word.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp129_mirro_epoch15.py", output:"experiments/outputs/exp129.txt" } },
 
   { n:130, kind:"positive", chapter:"frontier",
@@ -1315,6 +1444,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, vela's recorded deep call: the established pattern.",
     result:"All bands held. Vela at 114,750, hash-stamped, committed.",
     implication:"The lives continue; increment 1c awaits the human's word.",
+    caveat:"consolidation by design; single deterministic run; the same-color alignment remains independent dice, as stated at Exp 101.",
     trace:{ script:"experiments/exp130_vela_epoch15.py", output:"experiments/outputs/exp130.txt" } },
 
   { n:131, kind:"positive", chapter:"frontier",
@@ -1325,6 +1455,7 @@ window.AM_EXPERIMENTS = [
     setup:"Idle-mode, mirro's turn — the final epoch before a human-requested pause, with the pause state recorded in the entry for trivial resumption.",
     result:"All bands held. Spine at 126,700, hash-stamped, committed. The cron is deleted; idle-mode suspended; the M4a question (increment 1c) stands in loop/IDEAS.md.",
     implication:"Everything resumes from committed state: the spines from their snapshots, idle-mode from vela's turn, and the talk-to-it chapter from one explicit human word.",
+    caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp131_mirro_epoch16.py", output:"experiments/outputs/exp131.txt" } },
 
   { n:132, kind:"partial", chapter:"frontier",
@@ -1335,6 +1466,7 @@ window.AM_EXPERIMENTS = [
     setup:"Phase 1 in the creature itself (surprise window, ceiling conjunction, replay buffer), verified bit-invariant over 750 seeded steps; Phases 2-3 flag-gated scaffolds (replay scoring with the active-data caveat, closed-form Dirichlet BMR with both canonical tests, spawn/split/merge, strict-decrease selection); the math spec in docs/specs; and the directive's hypothesis run with a positive-control arm so the test means something either way.",
     result:"Instrument 8/8 on noise; hypothesis 0/8 on the standard world — the counter-prediction exact; 91 tests green; maps stay perfect even under 30 percent observation noise.",
     implication:"The program can now detect structural inadequacy and score model changes — and honestly reports that nothing here yet demands them. The named path to a positive: worlds with hidden context, where the detector's firing becomes Phase 3's spawn trigger.",
+    caveat:"one modality/one factor is this substrate's entire structure (\"at least one modality\" = the only one); the ceiling thresholds (0.7 nats, 5e-4/step) are designed constants validated at exactly one noise level; replay history carries the active-data bias (documented in the spec and in candidate_score's docstring); Phases 2-3 are scaffolds with unit tests, not yet exercised end-to-end on a real expansion.",
     trace:{ script:"experiments/exp132_surprise_ceiling.py", output:"experiments/outputs/exp132.txt" } },
 
   { n:133, kind:"positive", chapter:"frontier",
@@ -1345,6 +1477,7 @@ window.AM_EXPERIMENTS = [
     setup:"Six word-Gaussians on a hexagon as the innate anchor (given, not learned), one concept's word stream, broad prior; the same stream fed to a tabular twin holding the true emission table. Declared up front: the agent uses the unnormalized Gaussian footprint (the conjugacy-buying approximation) while the generator uses the normalized mixture — the bias that mismatch causes was predicted analytically (about 0.017) before running. Core math in active_loop/continuous.py with six durable unit tests.",
     result:"P1 localization 8/8 (errors 0.009-0.040), P2 contraction 8/8 on both conjuncts, P3 twin race 8/8 within the 0.10-nat band — tabular consistently but characterizably faster early (its six atoms contain the exact answer). 97 fast tests green.",
     implication:"The continuous substrate's inference rung is sound at toy scale. Rung 2 — blended streams between concepts, where the single-Gaussian approximation should start paying — is the live question.",
+    caveat:"anchor GIVEN (provided, not self-formed) to BOTH agents; one geometry only (d=2, one sigma, one radius — no sweep); the true state IS a point, so the continuous model is also near-perfectly specified here; the footprint/mixture mismatch was only mildly stressed (neighbor leakage ~3%); per the scope guard, no closed-form-vs-amortized claim until rung 6.",
     trace:{ script:"experiments/exp133_cont_convergence.py", output:"experiments/outputs/exp133.txt" } },
 
   { n:134, kind:"partial", chapter:"frontier",
@@ -1355,6 +1488,7 @@ window.AM_EXPERIMENTS = [
     setup:"Four word-Gaussians at square corners, a 12-cell (separation x footprint-width) sweep with 8 seeds per cell, 50/50 blended streams from opposite corners, pure-corner controls, and the tabular twin on identical streams. Predeclared: no snap, no Sigma widening, and a cost gap rising to ln 2 — the third falsified by reversal. A fresh-seed rerun and an exact log-space recomputation pinned the mechanism and separated one implementation artifact (an underflow ratchet in probability-space filtering, now guarded by a core helper plus regression test) from the real effect.",
     result:"P1 interpolation 12/12 cells and 0/96 snaps; P2 max trace difference exactly 0.0; P3 falsifier triggered with rho -0.98 in the opposite direction — count imbalance of a single word multiplies the tabular odds by e^(L^2/sigma^2), collapsing it to one corner with unbounded cost, verified 46/46 in exact log-space Bayes.",
     implication:"The direction's first genuine tabular-ceiling datum: out-of-model blends break tables, not continua. The unimodal cost is real but bounded (uncertainty never widens; floor ln 4 vs ideal ln 2); the tabular cost is unbounded in separation. Rung 3, the Exp 31 collapse rematch, is next.",
+    caveat:"the blend is OUT-OF-MODEL for both agents — this measures robustness to misspecification, not in-model accuracy (rung 1 showed the well-specified tabular twin wins there); both agents received the true anchor (provided, not self-formed); the continuous agent is \"confidently wrong\" at the midpoint (P2: zero widening) even though its predictive degrades gracefully; one blend type only (opposite corners, 50/50); d=2.",
     trace:{ script:"experiments/exp134_cont_interpolation.py", output:"experiments/outputs/exp134.txt" } },
 
   { n:135, kind:"positive", chapter:"frontier",
@@ -1365,6 +1499,7 @@ window.AM_EXPERIMENTS = [
     setup:"Six true concept centers, emission MEANS learned online by moment-matched NIW updates under a provided position anchor; 600 structured steps then 2400 noise steps with words decorrelated from position; a kappa0 x nu0 sweep with eight seeds per cell and a Dirichlet tabular twin consuming the identical streams. Predeclared: the conjugate shrinkage calibration, the n/(kappa_eff+n) erosion law with half-dose linear in kappa0, both-substrates collapse with bounded asymmetry, and the nu0 null.",
     result:"All four predictions hold: calibration 6/6 cells, law deviation 0.007-0.015, n_half within 25 percent of kappa_eff 6/6, collapse index ratios 0.002-0.066 in both substrates, cont/tab erosion ratio 1.52, nu0 effect 0.011. One logged post-hoc diagnostic: nu0 does shift predictive (NLL) erosion through covariance widening.",
     implication:"Paired with Exp 134 the substrate verdict is two-sided: the tabular ceiling is not in noise-collapse (both substrates erode identically, mass-linearly) but is in out-of-model blends (tables unboundedly brittle, continua bounded). Rungs 1-3 have verdicts; dimensionality scaling is next.",
+    caveat:"anchor PROVIDED throughout (this rung never asked the symmetry- breaking question — that stays the documented ceiling); erosion's cleanliness is partly BY CONSTRUCTION (the anchor never lies, so noise enters only through words); Σ_k known and shared; the ν₀-NLL observation is post-hoc and untested on fresh seeds; d=2, one geometry, α₀ matched only at the weak cell.",
     trace:{ script:"experiments/exp135_cont_collapse_rematch.py", output:"experiments/outputs/exp135.txt" } },
 
   { n:136, kind:"partial", chapter:"frontier",
@@ -1375,6 +1510,7 @@ window.AM_EXPERIMENTS = [
     setup:"Six concept centers random on the unit hypersphere per seed, footprint width set so the minimum Mahalanobis separation is exactly 3.0 at every dimension — the ratified confound control that deliberately removes the high-d blessing. The rung-1 task at each of five dimensions, eight seeds each, with the log-space tabular twin on identical streams and microbenchmarked update/solve kernels.",
     result:"Quality flat: 8/8 seeds at every d, twin gap -0.0005 to +0.0036 nats. Cost alive: d8/d2 ratio 1.03x, d=32 full run 8.3 ms. Slope conjunct out of band in the benign sub-linear direction — overhead-dominated, logged as the unresolved arm. A coder verdict-softening (not-a-falsifier counted toward POSITIVE) was caught in review, patched, and codified as a PROTOCOL rule.",
     implication:"The phase picture's dimension axis is flat where measurable: no quality cliff, no cost cliff to d=32 under constant separation. Toy scale bounds cost claims to alive-and-cheap, not to exponents — the closed-form-vs-amortized crossover needs either larger d or rung 6's bounded framing.",
+    caveat:"timing is the one non-deterministic measurement in this ladder (3-block medians; slopes moved 0.13→0.17 between runs — the bands were never going to be tight); quality d-invariance is conditional on the Mahalanobis control — uncontrolled high-d would IMPROVE (near-orthogonal centers), so this is the conservative reading; anchor GIVEN; 6 concepts only; d stops at 32.",
     trace:{ script:"experiments/exp136_cont_dimensionality.py", output:"experiments/outputs/exp136.txt" } },
 
   { n:137, kind:"partial", chapter:"frontier",
@@ -1385,6 +1521,7 @@ window.AM_EXPERIMENTS = [
     setup:"One emission mean drifting at four velocities, NIW trackers across a grid of forgetting windows against matched fixed-learning-rate baselines on identical streams, eight seeds per cell. Predeclared: the v=0 conjugate-annealing win, a steady-state tie under drift, and a U-shaped forgetting window on the EMA cube-root law. A committed mechanism check then compared static-prior, keep-mean, and EMA forms on bit-identical streams.",
     result:"The predeclared form falsified P2 and P3 (loses 22/140/516 percent; argmin distorted 4x at the fastest drift). Keep-mean decay ties the EMA at 1.004/0.989/1.000 and restores all three argmins to within 1.3x of the cube-root prediction. The v=0 advantage held 8/8 against every rate.",
     implication:"NIW-as-learning-rate survives in refined form: annealing wins stationary worlds, count-decay equals the best fixed rate in drifting ones, and the decayed quantity must be evidence mass, never location. The Exp 88 forgetting-window law holds on the continuous substrate under that form. One rung left: the amortized control.",
+    caveat:"the mechanism check ran on the SAME streams as the original (the tie is an analytic identity, so fresh seeds could not plausibly move it, but it is not an out-of-sample replication); constant-velocity drift only (no regime switches, where conjugate adaptivity might genuinely differ from fixed-lr); the cube-root comparison is coarse (factor-2 grid); d=2; the predeclared decay form was my design choice — the program's \"exponential decay on accumulated precision\" was ambiguous and the wrong reading was tested first.",
     trace:{ script:"experiments/exp137_cont_tracking.py", output:"experiments/outputs/exp137.txt" } },
 
   { n:138, kind:"partial", chapter:"frontier",
@@ -1395,6 +1532,7 @@ window.AM_EXPERIMENTS = [
     setup:"One generative model — prior-sampled continuous states emitting words from the normalized hexagon mixture — with three inference engines on identical eval streams: zero-training precision accumulation under the declared unnormalized-footprint mismatch, a minimal reparameterized-ELBO encoder trained on the true likelihood, and a 241-squared grid posterior as gold standard. Eight seeds, in-distribution and blend evaluations, predeclared bands for every comparison.",
     result:"Prediction ties everywhere (closed within 37 milli-nats of exact; encoder within 11 milli-nats of closed; blends within 0.088). The one missed conjunct: the encoder localizes slightly better (closed-form is biased in far-field states), exceeding its band by 0.009 — MIXED under the three-way rule, no falsifier triggered.",
     implication:"The licensed claim bounding the whole ladder: at toy scale closed-form, amortized, and exact inference agree in prediction; the real currencies are the training bill, the conjugacy tax, and an at-scale question toy experiments provably cannot reach. The phase picture is complete and the direction closes with a consult.",
+    caveat:"the encoder is minimal (counts → diagonal Gaussian; no architecture search — a stronger encoder could widen its localization edge); MC-256 predictive noise ~ the smallest gaps measured; the localization conjunct missed by less than its seed-level spread (a borderline miss, reported as the rule requires, not reinterpreted); single geometry, d=2, T=50; \"12.8M vs 0\" counts samples, not joules or wall-time at scale.",
     trace:{ script:"experiments/exp138_cont_amortized.py", output:"experiments/outputs/exp138.txt" } },
 
   { n:139, kind:"partial", chapter:"frontier",
@@ -1405,6 +1543,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 135's exact protocol on never-run seeds, continuous agent only, four cells, with the suspected mechanism made into its own predeclared conjunct and the established nu0-null law re-tested out-of-sample alongside.",
     result:"Effect partial (one cell in band, one below), mechanism refuted, null law confirmed (max drift difference 0.014). Post-hoc diagnosis from the committed table: the NLL half-dose midpoint is baseline-sensitive and nu0 moves the baseline mechanically.",
     implication:"Exp 135's diagnostic is demoted — nu0 is not a covariance-erosion knob; it sets initial predictive confidence. Metric rule for future erosion comparisons: compute half-dose crossings from a common baseline. The closure consult still awaits the human; one sanctioned consolidation item remains.",
+    caveat:"the baseline-confound diagnosis is itself post-hoc (one step of honest regress — it explains a refutation rather than claiming a new effect, and the raw table carrying it is committed); 4 cells, one geometry; the κ₀=1 1.40× residual could still contain a real small effect beyond the artifact — unresolved, parked unless something downstream needs it.",
     trace:{ script:"experiments/exp139_cont_nu0_nll.py", output:"experiments/outputs/exp139.txt" } },
 
   { n:140, kind:"positive", chapter:"frontier",
@@ -1415,6 +1554,7 @@ window.AM_EXPERIMENTS = [
     setup:"A committed audit script re-checks every headline number in the seven chapter entries as verbatim substrings of their committed outputs, with the known discrepancies themselves asserted so the audit is reproducible.",
     result:"All checked citations found in 10/10 output files; the two stale Exp 136 citations confirmed absent from the committed post-patch output; the Exp 138 training-cost figure clarified as per-encoder. No verdict in the chapter is affected.",
     implication:"The chapter's evidence base survives a hostile-reviewer pass and the found failure mode (quoting a superseded run after a patch) is institutionalized away in PROTOCOL. The closure consult remains the open decision.",
+    caveat:"the audit checks citation-reproducibility, not re-execution (a full independent re-run of each script was not performed — the suite's trace checks and the chapter's own rerun/mechanism scripts cover parts of that); the checked-needle lists are the entries' HEADLINE numbers, not every digit in every entry.",
     trace:{ script:"experiments/exp140_chapter_audit.py", output:"experiments/outputs/exp140.txt" } },
 
   { n:141, kind:"positive", chapter:"frontier",
@@ -1425,6 +1565,7 @@ window.AM_EXPERIMENTS = [
     setup:"The creature's 4x4 grid embedded in the plane, sixteen unambiguous colors, known emission Gaussians and known wall-clamped dynamics; the declared approximation (clamp the belief mean, add small process noise) priced against the exact log-space tabular twin on identical streams, with a deterministic wall-stress arm. New additive module with four durable tests; the tabular creature untouched.",
     result:"8/8 seeds on every conjunct: localization at printed-precision zero, coverage 1.000 both arms, zero arena escapes, NLL gap 0.083-0.091 wander and 0.064 wall-stress, twin MAP-correct 100 percent. Suite 105 green.",
     implication:"The migration's inference floor is sound. Next: learned emission maps in the creature's world, then the centerpiece — the aliasing wall, where the surprise-ceiling detector and the structure-growing toolkit face their first live world.",
+    caveat:"this is the EASY case by design (non-aliased, exact world knowledge — machinery verification + clamp pricing, consolidation-flavored); the wall-stress arm pins both truth and belief at the wall, so the genuinely non-Gaussian straddle regime was only mildly exercised (coverage 1.000 suggests the approximation is conservative at this noise scale, not that it cannot fail); the wall-stress arm is deterministic (identical across seeds, as flagged); world fixed across seeds, streams vary.",
     trace:{ script:"experiments/exp141_m1_perceive.py", output:"experiments/outputs/exp141.txt" } },
 
   { n:142, kind:"partial", chapter:"frontier",
@@ -1435,6 +1576,7 @@ window.AM_EXPERIMENTS = [
     setup:"Three agents on identical streams in the 4x4 world: the tabular twin running the creature's own equations, a new moment-matched clamped predict (analytic truncated-Gaussian moments, Monte-Carlo-validated tests), and the naive mean-clamp — all learning sixteen per-color emission Gaussians by moment-matched NIW from a broad center prior, no position given.",
     result:"Twin sanity 8/8 at accuracy 1.0; moment-matched bootstrap 8/8 (16/16 colors, map error 0.054-0.066, localization 0.039-0.053); naive also 16/16 with error ratio 1.390 — between the account-wrong line (1.2) and the prediction (1.5). No falsifier, no halt. Suite 108 green.",
     implication:"The RECIPE's learn-the-map link holds on the continuous substrate with the motor anchor alone — stronger than the anchored Exp 135 protocol. Next is the centerpiece: the aliasing wall, where one Gaussian per color meets a world where colors repeat.",
+    caveat:"non-aliased and small (4×4, 16/16 identifiable — the EASY map); diagonal-Σ family throughout (declared); the 1.39× wall effect is one geometry and one noise scale; both continuous arms share the diagonal-projection choice so its cost is uncontrolled here; T=3000 single dose (no learning-curve comparison vs the twin was predeclared, so none is claimed).",
     trace:{ script:"experiments/exp142_m2_learn_map.py", output:"experiments/outputs/exp142.txt" } },
 
   { n:143, kind:"partial", chapter:"frontier",
@@ -1445,6 +1587,7 @@ window.AM_EXPERIMENTS = [
     setup:"Two phases on identical streams against the tabular twin: unimodal learning with the Exp 132 detector armed at its original constants, then spawning enabled under the structure-learning strict-decrease rule with a four-component budget per color. The no-wall branch was predeclared as a loggable finding, not a halt.",
     result:"Localization 0.044-0.061 in 8/8 both phases; detector >=1 event in 8/8 (the first live positive) and 394-607 events in the final 1000 steps; spawns 0-1 kept vs 5-11 reverted; twin sanity 1.000. No falsifier triggered; the mechanism account (covariance self-regulation; myopic scoring) is logged as hypothesis pending M3b instrumentation.",
     implication:"The migration's localization chain is unblocked — but the directive's own point, growing the model when surprise is irreducible, is unmet. M3b is inserted: burn-in-scored spawning judged on predictive surprise, varied layouts, and the instrumentation to pin the mechanism.",
+    caveat:"the mechanism account is unverified (Σ traces not recorded — queued as M3b instrumentation, per the Exp 134/137 precedent of pinning before promoting); one aliased layout (the centroid-separation of this layout may flatter unimodal localization — M3b varies it); detector event COUNTS are window-overlapping (one event per step while pinned, not independent detections); spawn scoring used stored posterior means (frozen-context replay, the documented active-data bias applies).",
     trace:{ script:"experiments/exp143_m3_aliasing.py", output:"experiments/outputs/exp143.txt" } },
 
   { n:144, kind:"wall", chapter:"frontier",
@@ -1455,6 +1598,7 @@ window.AM_EXPERIMENTS = [
     setup:"Three aliased layouts times eight seeds; Exp 143's machinery plus candidate burn-in (ten EM iterations on the color's replay pairs before the strict-decrease vote) and per-color covariance instrumentation. The halt falsifier was predeclared: if the surprise arm fails in most seeds in two of three layouts, the toolkit cannot feed the alarm it answers.",
     result:"Halt arm fired in all three layouts. Diagnosis from the committed tables: worst-color scheduling starves the other colors, and frozen-replay strict-decrease accepts spawns that hurt live inference — the documented active-data bias is load-bearing. Localization stayed perfect (0.04-0.05, 24/24); the structure is reachable (kept components settle on individual cells).",
     implication:"The migration waits for the human's word. The recommended resumption is one bounded increment: per-color alarms, round-robin scheduling, and live-probation acceptance — keep a spawn only if its color's live surprise actually drops. The covariance self-regulation measurement stands on its own as the rung's insight.",
+    caveat:"the burn-in EM itself was one design (10 iterations, hard floors); a stronger adaptation (more iterations, annealed responsibilities) was not tried — the halt is on THIS design, the recommended M3c, not on mixture-growing in principle; per-color surprise attribution uses the mixture predictive's per-color terms (an approximation); the P1 band [0.5,1.5] was generous and the result (0.90–0.98) much tighter than required.",
     trace:{ script:"experiments/exp144_m3b_spawn_burnin.py", output:"experiments/outputs/exp144.txt" } },
 
   { n:145, kind:"wall", chapter:"frontier",
@@ -1465,6 +1609,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 144's three worlds and machinery with the two diagnosed flaws fixed: per-color alarms with round-robin growth, and live-probation acceptance with snapshot revert, the replay vote demoted to a printed diagnostic. The halt falsifier was predeclared as the same surprise bar failing again.",
     result:"Halt arm fired in all three layouts (0/8 on every P1 arm); probation honesty PASSED (75/86/70 percent sustained); localization untouched (24/24 at 0.03-0.05); the 1-to-2-component step is where the trap is worst — the one color that reached multiple components kept growing.",
     implication:"Two failed designs triangulate one conclusion from opposite sides: a dishonest test, then an honest test rejecting a structurally bad move. The consult recommends M3d — the split operator, which inherits coverage and steps across the valley — under the now-validated probation test; a third failure would make this a documented wall, parked, with the migration continuing at M4.",
+    caveat:"the valley account rests on the probation-surge numbers and the 1→2 vs ≥2 contrast (consistent but not a controlled sweep); the 0.1-nat keep margin and 400-step window are designed constants (a too-strict margin could mimic over-rejection — though the SURGE direction rules out marginal cases); split was not yet tried (that is M3d, not a claim).",
     trace:{ script:"experiments/exp145_m3c_live_probation.py", output:"experiments/outputs/exp145.txt" } },
 
   { n:146, kind:"wall", chapter:"frontier",
@@ -1475,6 +1620,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 145's machinery with the move changed to split: the alarmed color's widest component divided along its leading eigendirection, children inheriting halved weight and mass, burn-in EM, then the validated live-probation vote. The third-failure park rule was predeclared before running.",
     result:"P1 0/8 on every arm in all layouts; P2 failed (split surges match add); P3 localization untouched 24/24; the demoted replay vote would have kept many splits the live test correctly rejected (26 percent agreement). The wall binds to local moves with short-horizon honest acceptance — impossibility is not claimed; batch-jump and background-floor remain untried by design.",
     implication:"The growth question is parked as a characterized open problem and the consult recommends continuing the migration at M4 — the creature navigates perfectly; its prediction inadequacy rides along as a documented limitation, alarm correctly ringing.",
+    caveat:"\"wall\" binds to THIS family (local moves + short-horizon honest acceptance, this world scale); the two named designs are untried, so impossibility is NOT claimed; the split implementation made specific choices (±1σ separation, 10 EM iterations, λ₁/4 children) — a gentler split was not swept; P2's failure partly reflects implementation (wide children) and partly the log-loss mechanism — the entry does not separate those shares.",
     trace:{ script:"experiments/exp146_m3d_split.py", output:"experiments/outputs/exp146.txt" } },
 
   { n:147, kind:"partial", chapter:"frontier",
@@ -1485,6 +1631,7 @@ window.AM_EXPERIMENTS = [
     setup:"A half-noisy sixteen-color world; the Exp 26 valence rule with the continuous predictive entropy; a softmax one-step lookahead policy on the learned value field; the tabular twin on identical streams; a mirrored-world sibling per seed. All thresholds predeclared.",
     result:"P1a 0/8 (the halt); P1b twin rank-tracking 8/8; P2 navigation 7/8; P3 history-sets-want 8/8. The twin's own empirical share went unrecorded — the missing calibration number the resumption records.",
     implication:"The RECIPE's want and act links function on the continuous substrate; what is unresolved is whether the weaker concentration is a real substrate effect (position uncertainty inside the valence weight) or a miscalibrated bar. M4b re-tests twin-relative on fresh seeds; the emission-only weight stands ready as the principled variant if the gap is real.",
+    caveat:"the halt is on an uncalibrated absolute threshold I set — the qualitative card clause passed on every conjunct; the analytic 0.87 assumes steady-state learned tables (the twin also has an early transient, shorter); P2's baseline comparison uses the same creature's wander phase (not an independent control); the policy evaluates the value field at positions (Σ_eval=0.01I, declared), not beliefs.",
     trace:{ script:"experiments/exp147_m4_want_act.py", output:"experiments/outputs/exp147.txt" } },
 
   { n:148, kind:"partial", chapter:"frontier",
@@ -1495,6 +1642,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 147's exact protocol on never-run seeds with the previously-unrecorded twin share logged and the bar restated twin-relative — no mechanism changes, per the authorized recommendation.",
     result:"P1a 0/8 (the halt; gaps -0.160 to -0.189); rank-tracking 7/8; navigation 8/8 with occupancy 0.62-0.85; mirrored favorites opposite 8/8. The port-infidelity diagnosis (argmax-point vs belief-marginalized scoring) is from code reading; the M4c ablation tests it.",
     implication:"The consult recommends M4c — the faithful point-evaluated valence rule on fresh seeds under the same twin-relative bar. If the faithful rule still gaps, that becomes a documented substrate limit rather than a thing to chase.",
+    caveat:"the port-infidelity diagnosis is from code reading (creature.py's argmax(qs) rule vs the experiment's marginalized predictive), not yet an ablation — M4c IS that ablation; seed 15's P1b miss (0.43) rode the 7/8 threshold; the gap numbers inherit all of Exp 147's declared modeling choices.",
     trace:{ script:"experiments/exp148_m4b_twin_relative.py", output:"experiments/outputs/exp148.txt" } },
 
   { n:149, kind:"partial", chapter:"frontier",
@@ -1505,6 +1653,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 148 byte-for-byte except the one-line faithful valence rule (predictive entropy at the posterior mean) and fresh seeds — the exact ablation of the diagnosed infidelity, with the falsifier predeclaring that a remaining gap becomes the documented limit.",
     result:"Gap unchanged (0/8 on the twin-relative bar); contrast restored directionally (1.8-2.1x); chain replicated a third time. Two mechanism hypotheses tested and refuted across three experiments — the honest residue is a real substrate property.",
     implication:"For the moonshot chain, ordering is what carries opinions, and ordering is intact. The consult recommends accepting the limit and proceeding to M5 — words and converse parity, the RECIPE's last links.",
+    caveat:"\"limit\" binds to this valence rule family and this noise level/ geometry (a sharper innate footprint σ would narrow it — untried, and would be a different anchor, not a fix); seed 20's P2 miss is the second navigation outlier in three runs (~1/8 rate, unexplained, logged); the twin's near-1.0 weights partly reflect its identity-table convergence on a non-aliased world — the comparison is fair but the world is the friendly one.",
     trace:{ script:"experiments/exp149_m4c_faithful_rule.py", output:"experiments/outputs/exp149.txt" } },
 
   { n:150, kind:"positive", chapter:"frontier",
@@ -1515,6 +1664,7 @@ window.AM_EXPERIMENTS = [
     setup:"The accepted M4 protocol raises a primary and a mirrored creature per fresh seed; the vocabulary, teaching, and answer machinery ported exactly from the tabular creature with its rules quoted from source; the tabular pair runs the same teach-and-ask on its own substrate.",
     result:"Every conjunct 8/8. The seed-24 transcript is committed: I like w15 / I like w12 / w12 unsettles me / w15 unsettles me — and the boxed pair mirrors the pattern. Word-level agreement across substrates is 0/8 by declared design (the continuous creature's value-seeking phase sharpens its favorite; the twin only wanders).",
     implication:"Perceive, learn, want, act, form values by history, answer in words — demonstrated end-to-end on the continuous substrate, with the two documented walls riding along openly. M6, the birth of the species line, is the last rung.",
+    caveat:"labels TAUGHT (provided), content self-formed — as always, named; the answer rule is the tabular creature's own (ported, quoted), not redesigned for the substrate; the twin comparison is pattern-level by predeclaration (the protocols differ in phase B by design); one world geometry; the M4 range limit means the continuous \"conviction\" numbers run lower than the twin's (0.38–0.55 shares vs the twin's flatter 0.12 — n.b. the twin's share is over 16 colors without nav concentration, so the comparison is not apples-to-apples and is not claimed).",
     trace:{ script:"experiments/exp150_m5_words.py", output:"experiments/outputs/exp150.txt" } },
 
   { n:151, kind:"positive", chapter:"frontier",
@@ -1525,6 +1675,7 @@ window.AM_EXPERIMENTS = [
     setup:"ContinuousCreature mirrors the tabular creature conventions exactly — derived rng, append-only biography, state hash, save and load — packaged from the migration experiments with no behavioral changes; predeclarations were round-trip exactness, guard coverage, and the experiment sanity bands.",
     result:"Every property passed; a resume-isolation bug (verification copies writing to the real biography) was caught and fixed before the state was committed. The clade now holds two tabular lives and one continuous species line under creature/state/nira/.",
     implication:"The migration ladder is complete: perceive, learn, want, act, speak, persist — on the continuous substrate, with its two walls documented rather than hidden. The closing synthesis and consult follow.",
+    caveat:"nira's world is the friendly non-aliased one (the aliased world awaits a growth mechanism that can cross the documented valley); her \"conviction\" runs at the substrate's compressed range (the M4 limit); the birth is engineering — every scientific claim lives in Exp 141–150, not here; one seed, one life (as a spine should be).",
     trace:{ script:"experiments/exp151_m6_birth.py", output:"experiments/outputs/exp151.txt" } },
 
   { n:152, kind:"wall", chapter:"frontier",
@@ -1535,6 +1686,7 @@ window.AM_EXPERIMENTS = [
     setup:"Exp 145's worlds and machinery with the move changed to batch-jump: EM-fitted complete mixtures, K selected by penalized replay likelihood, replace-and-probate as one move under the validated live test. The proceed-to-background-floor consequence was pre-authorized by the human; the blinded verifier checked the verdict before logging.",
     result:"Falsifier triggered maximally (surprise arm 0/8 in 3/3 layouts); localization untouched 24/24; the verifier agreed conjunct-by-conjunct. The dilution account is marked post-hoc, unclaimed, and predeclared for test in the next experiment.",
     implication:"Crack 1 is spent. Exp 153 runs crack 2 (the background floor) plus the diagnostic that could re-bound the whole wall: the same growth under normalized densities, where sharp pieces are finally allowed to be loud.",
+    caveat:"the dilution account is unverified arithmetic on this run's numbers (Exp 153 carries the predeclared normalized-density diagnostic arm); the budget design (one jump per color per 1200 steps) limited re-attempts; the EM covariance floor (1e-4) and 10 iterations were single design points.",
     trace:{ script:"experiments/exp152_m3e_batch_jump.py", output:"experiments/outputs/exp152.txt" } },
 
   { n:153, kind:"partial", chapter:"frontier",
@@ -1545,6 +1697,7 @@ window.AM_EXPERIMENTS = [
     setup:"Same worlds and seeds as every failed design. Arm A: the authorized permanent-floor mixture under the standard convention. Arm B: one declared change — predictive evaluation by normalized mixture densities, the conjugate place update untouched. All bars and named outcomes predeclared; blinded verification before logging.",
     result:"Both arms failed their letter-bars (the predeclared both-fail outcome; halt consult posted). The dilution mechanism's predicted signatures landed in both arms; the verifier independently flagged that the one failing conjunct fails from incomplete coverage, not a broken convention.",
     implication:"One honest re-test from a major re-bounding: Exp 154 predeclares the alarm-answered criterion without the obsolete structure proxy, on fresh seeds. If it passes, the growth wall belongs to the footprint convention, not to growth — and the evaluation-only normalized switch unlocks structure learning for nira's aliased future.",
+    caveat:"the \"silence everywhere\" reading rests on the detector built for the unnormalized scale (0.7 nats) applied to normalized surprise within Arm B (an internal-bar choice, declared); colors-never-alarmed is success only if their PREDICTIONS are genuinely good (final surprise 0.003–0.31 says yes, but the per-color breakdown was not predeclared — Exp 154 predeclares it); the floor arm's acceptance counts (27–60%) show its probation was passable, just not bar-clearing.",
     trace:{ script:"experiments/exp153_m3f_floor_and_normalized.py", output:"experiments/outputs/exp153.txt" } },
 
   { n:154, kind:"breakthrough", chapter:"frontier",
@@ -1556,7 +1709,19 @@ window.AM_EXPERIMENTS = [
     result:"POSITIVE — 8/8 seeds on every conjunct in all 3 layouts. Drops 0.58–1.18 nats; ceiling events 0 in 24/24; grown colors' final surprise 0.001–0.019, un-grown 0.000–0.579 (the verifier checked every cell); acceptance 53/53 = 100%; localization 0.030–0.038. Suite 150 green.",
     implication:"The Exp 144–146 wall binds to the unnormalized-footprint EVALUATION convention, not to growth — both wall documents amended. The normalized-predictive switch for nira is now a standing consult (evaluation only; conjugacy untouched; M4/M5 would need re-verification, and the switch may also narrow the M4 valence-range limit). Growth is available for nira's aliased future, and the gated rigor-and-fairness task list is unblocked.",
     story:"This chapter set out to give a creature the ability to expand its own model when experience demands it — the structure-learning directive's goal since the inadequacy detector was built with no world to fire in. The migration to the continuous substrate supplied that world: aliased colors the unimodal map cannot represent, and the detector's first live positive. Then five successive growth designs — spawn, probated spawn, split, batch-jump, background floor — all failed the creature's own honest acceptance test, hardening into a documented wall: partial sharpness loses to complete vagueness under log-loss. The autopsy found the deeper cause in the substrate's declared conjugacy-buying shortcut, which caps every footprint at full strength so sharp components can never out-shout vague ones — growth was being scored in a currency that punished it. The diagnostic showed the cure; this experiment confirmed it on fresh seeds under an honestly restated criterion: judged by normalized probability, the creature grows on alarm and silences its own detector, 24 runs out of 24. What remains provided: the growth machinery itself is designed plumbing — what the creature self-forms is when to grow, what shape fits its world, and whether to keep it, judged by its own lived surprise.",
-    trace:{ script:"experiments/exp154_growth_confirmation.py", output:"experiments/outputs/exp154.txt" } }
+    caveat:"one growth mechanism (batch-jump) under one acceptance protocol; the detector threshold (0.7) was reused on the normalized scale where it is conservative; \"wall falls\" binds to THIS world family and toy scale; the normalized switch is proposed, not yet applied to nira (that is a consult, and the M4/M5 results would need re-verification under it).",
+    trace:{ script:"experiments/exp154_growth_confirmation.py", output:"experiments/outputs/exp154.txt" } },
+
+  { n:155, kind:"partial", chapter:"frontier",
+    title:"The mind cannot yet watch itself: confidence is flat, and the alarm sleeps through a world that lies on schedule.",
+    one:"The N2-prereq gate for the meta-calibration ladder, NEGATIVE on both halves: mirro's own predictive confidence carries no metacognitive signal (pooled type-2 AUROC 0.4961 and 0.4963 — even where residuals were near-perfectly predictable), and the surprise-plateau detector stayed silent in 8/8 runs of a hidden-context world where exactly half of all predictions are wrong. The one pass: the residual-structure statistic separates noise from structure perfectly (separation 0.9858, 8/8 pairs) — the seed of the classifier that must now be built.",
+    plain:"Before climbing to a mind that manages its own self-doubt, we checked whether the creature can do the basics: does its confidence actually track when it is right, and can its alarm tell random noise from a world that genuinely changed? Both checks failed. Its confidence reads the same whether it is about to be right or wrong. And in a world that flips its colors on a hidden schedule — so the creature is wrong half the time — the alarm never rang once: the creature seems to explain the lies away as being lost, which keeps each moment unsurprising. One bright spot: a simple statistic on its error stream separates the two worlds perfectly, because real structure leaves repeating patterns in the mistakes while noise leaves none. The verdict is honest: the self-watching layer does not yet exist and must be built, not assumed.",
+    metric:{ from:0.4961, to:0.9858, unit:"pooled type-2 AUROC (flat) vs residual-structure separation (perfect)" },
+    setup:"Forks of mirro only (the spine untouched), 4000 steps in three regimes: home world, irreducible noise (p=0.7), and a hidden-context world alternating the color map with a derangement every 100 steps. Confidence = the creature's own predictive probability. All falsifiers predeclared; pilot seeds checked preconditions only; confirm on seeds 2-9; blinded verification before logging.",
+    result:"NEGATIVE — two of three conjuncts fired their falsifiers. Confidence-accuracy AUROC pooled 0.4961 / 0.4963 (3/8 and 4/8 forks above chance); detector 8/8 on noise, 0/8 on control, 0/8 on the structural world; residual lag-1 autocorrelation 0.9805 in every structural run vs −0.0053 mean under noise. The verifier derived NEGATIVE independently and flagged that the structural world's error sequence is deterministic given the stale map, so that conjunct's pass is world geometry, not creature skill.",
+    implication:"The N2 layer (confidence that tracks accuracy; a noise-vs-structural classifier) must be built before N3 can be tested — exactly the 'finish it' branch the human's word pre-authorized. And an accidental gift: a regime where half the predictions are wrong, the alarm is silent, and confidence is flat is a ready-made candidate for the N3 gate's deceptive world. Suspected mechanism, to be checked next: the creature launders structural mismatch into mislocalization.",
+    caveat:"",
+    trace:{ script:"experiments/exp155_n2_prereq.py", output:"experiments/outputs/exp155.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

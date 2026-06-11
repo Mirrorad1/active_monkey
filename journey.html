@@ -109,6 +109,10 @@
   .dpane .plain-tag{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
   .dpane .setup-tech{font-size:11.5px;line-height:1.5;color:var(--ink-2);}
   .dpane .plain + .setup-tech{padding-top:11px;border-top:1px dashed var(--line);}
+  /* honest caveat — always present, visually subordinate */
+  .caveat-row{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);}
+  .caveat-row .caveat-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-right:6px;}
+  .caveat-row p{display:inline;margin:0;font-size:11px;line-height:1.5;color:var(--ink-3);}
   .bigmetric{display:flex;align-items:baseline;gap:12px;margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);}
   .bigmetric .bm{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--accent);line-height:1;}
   .bigmetric .bmu{font-size:11px;color:var(--ink-2);letter-spacing:.04em;}
@@ -298,6 +302,7 @@ function ExpCard({e, open, onToggle}){
             <div className="dpane"><div className="dl"><span className="b"></span>What happened</div><p>{e.result}</p></div>
             <div className="dpane r"><div className="dl"><span className="b"></span>What it means</div><p>{e.implication}</p></div>
           </div>
+          {e.caveat && <div className="caveat-row"><span className="caveat-tag">Honest caveat</span><p>{e.caveat}</p></div>}
           <Metric m={e.metric} compact={false}/>
           <TraceSection trace={e.trace}/>
         </div></div></div>

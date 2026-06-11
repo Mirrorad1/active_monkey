@@ -392,6 +392,122 @@ def test_surprise_segments_points_in_md():
 
 
 # ---------------------------------------------------------------------------
+# Caveat fields: T11 (rigor-fairness-upgrade) — honest caveats on public cards.
+# Every AM_EXPERIMENTS entry must carry a `caveat` key; breakthrough/positive
+# entries that have a non-empty caveat in EXPERIMENTS.md must surface it.
+# ---------------------------------------------------------------------------
+
+def _unescape_js(s: str) -> str:
+    """Unescape a JS string literal value (handle \\", \\\\, \\n etc.)."""
+    return s.replace('\\"', '"').replace("\\\\", "\\").replace("\\n", "\n")
+
+
+def _caveat_fields():
+    """Return list of (n, caveat_text_or_None) from AM_EXPERIMENTS entries.
+
+    The returned text is unescaped from JS (\\\" → ") so it can be compared
+    directly against the raw text from EXPERIMENTS.md.
+    """
+    results = []
+    for n, blk in _split_entries():
+        m = re.search(r'caveat\s*:\s*"((?:[^"\\]|\\.)*)"', blk)
+        results.append((n, _unescape_js(m.group(1)) if m else None))
+    return results
+
+
+def test_all_entries_have_caveat_field():
+    """Every AM_EXPERIMENTS entry has a `caveat` field (may be empty string).
+
+    Guards: the public timeline never shows an experiment card without the
+    caveat key present — front-end code can rely on it always existing.
+    """
+    missing = [n for n, cav in _caveat_fields() if cav is None]
+    assert not missing, (
+        f"Entries missing a caveat field: {missing}. "
+        "Run `uv run --python .venv python -m active_loop.site_data` to regenerate."
+    )
+
+
+def test_breakthrough_positive_entries_have_non_empty_caveat_when_md_has_one():
+    """BREAKTHROUGH/POSITIVE entries whose EXPERIMENTS.md section contains a
+    caveat line must carry a non-empty caveat field in experiments-data.js.
+
+    This is the core fairness invariant: the public timeline never shows a
+    positive card while silently omitting the recorded honest caveat.
+    """
+    from active_loop.site_data import parse_caveats_from_md  # type: ignore
+
+    md_caveats = parse_caveats_from_md()
+    js_entries = {n: cav for n, cav in _caveat_fields()}
+
+    offenders = []
+    for n, kind in _all_entry_kinds():
+        if kind not in ("breakthrough", "positive"):
+            continue
+        md_caveat = md_caveats.get(n, "")
+        js_caveat = js_entries.get(n, None) or ""
+        if md_caveat and not js_caveat:
+            offenders.append(
+                f"Exp {n} ({kind}): EXPERIMENTS.md has caveat but card has none"
+            )
+    assert not offenders, (
+        "Positive/breakthrough cards missing their honest caveats:\n"
+        + "\n".join(offenders)
+    )
+
+
+def test_caveat_field_is_first_sentence_from_md():
+    """Spot-check: Exp 20's caveat in the JS matches the first sentence
+    extracted by parse_caveats_from_md, confirming the generator and the
+    committed file agree.
+    """
+    from active_loop.site_data import parse_caveats_from_md  # type: ignore
+
+    md_caveats = parse_caveats_from_md()
+    js_entries = {n: cav for n, cav in _caveat_fields()}
+
+    exp20_md = md_caveats.get(20, "")
+    exp20_js = js_entries.get(20, "")
+    assert exp20_md, "Exp 20 must have a caveat in EXPERIMENTS.md"
+    assert exp20_js, "Exp 20 caveat must be non-empty in experiments-data.js"
+    assert exp20_js == exp20_md, (
+        f"Exp 20 caveat mismatch.\n"
+        f"  MD (generator):  {exp20_md!r}\n"
+        f"  JS (committed):  {exp20_js!r}\n"
+        "Run `uv run --python .venv python -m active_loop.site_data` to resync."
+    )
+
+
+def test_caveat_js_is_in_sync_with_generator():
+    """Staleness guard: experiments-data.js caveat fields must match what the
+    generator would produce from EXPERIMENTS.md right now.
+
+    If this fails, run:
+      uv run --python .venv python -m active_loop.site_data
+    and commit the result.
+    """
+    from active_loop.site_data import parse_caveats_from_md  # type: ignore
+
+    md_caveats = parse_caveats_from_md()
+    js_entries = {n: cav for n, cav in _caveat_fields()}
+
+    drift = []
+    for n, md_cav in md_caveats.items():
+        js_cav = js_entries.get(n, None)
+        if js_cav is None:
+            drift.append(f"Exp {n}: no caveat field in JS")
+        elif js_cav != md_cav:
+            drift.append(
+                f"Exp {n}: JS={js_cav!r:.60} vs MD={md_cav!r:.60}"
+            )
+    assert not drift, (
+        "experiments-data.js caveat fields are out of sync with EXPERIMENTS.md.\n"
+        "Regenerate: uv run --python .venv python -m active_loop.site_data\n"
+        + "\n".join(drift[:10])
+    )
+
+
+# ---------------------------------------------------------------------------
 # Asset cache-busting: all ?v=N versions must agree across the three pages.
 # Guard for the recurring stale-cache failure (a shared asset like am.css
 # changes but a page is left referencing the old ?v= → returning visitors get
