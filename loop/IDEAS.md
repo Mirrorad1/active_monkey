@@ -284,6 +284,12 @@ The loop marks items it has consumed by indenting a response under them:
     k-means on replay), skip to M4 (localization intact), stop. FLATTENING NOTE: a
     third failure would make this a documented wall (greedy online structure growth)
     — the loop would then recommend parking it and continuing at M4. Awaiting word.
+  → [human, 2026-06-10] "yes m3d" — explicit word. The migration RESUMES at M3d
+    (Exp 146): the SPLIT operator (divide the alarmed color's widest component along
+    its leading eigendirection; children at m +- sqrt(lambda1)*v with halved weights
+    and kappa — coverage inherited, no hole), burn-in EM to settle the children, then
+    the SAME live-probation acceptance Exp 145 validated. Guardrail: a third failure
+    of the surprise arm HALTS with the park-and-continue-at-M4 recommendation.
 
 (empty — drop ideas above this line's section freely)
 
