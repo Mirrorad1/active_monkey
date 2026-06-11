@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "exp161",
+  "verdict": "NEGATIVE",
+  "halted": false,
+  "arms": {
+    "P1_sustained_anticalibration": {
+      "pass": false,
+      "reason": "T=500 pooled_n2=0.5747 (forks_below=0/8); T=750 pooled_n2=0.6203 (forks_below=0/8); F1(both_arms_pooled>=0.5)=True"
+    },
+    "P2_oracle_discriminable": {
+      "pass": true,
+      "reason": "T=500 pooled_oracle=0.8261; T=750 pooled_oracle=0.8243; F2(both_arms_oracle<0.6)=False"
+    }
+  },
+  "notes": "N3 rung 1 gate, candidate 2 (lag-matched): R-SWAP-LAG world swaps which 13-of-25 cells are noisy every T_swap steps \u2014 two arms T=500 and T=750, both matched to the EWMA relearn time (~500 steps) after a 1000-step burn-in. Mechanism prediction: at these tempos the EWMA fully converts within each segment, so the next swap (either direction) inverts a freshly-learned map, sustaining anti-calibration unlike the decaying sawtooth of Exp 160 (T=250). POSITIVE => GATE PASSES. NEGATIVE kills candidate 2 only; candidates 3 and 4 remain."
+}

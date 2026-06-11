@@ -1,9 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 160, title: "N3 rung-1 gate, candidate 1 FAILS: fast reliability swaps deceive the confidence channel only ONCE — the alternating world re-validates the learned map on every return and then blurs it to uninformative, never sustaining anti-calibration", tag: "NEGATIVE" },
-  tally: { total: 160, positive: 100, negative: 34, mixed: 22, breakthroughs: 3 },
+  latest_exp: { n: 161, title: "rung-1 candidate 2 FAILS, completing the deception-tempo law: lag-matched swaps do not sustain anti-calibration — pooled calibration rises MONOTONICALLY with swap period (0.5408 → 0.5747 → 0.6203 across T=250/500/750) because the adaptive channel self-heals at every tempo", tag: "NEGATIVE" },
+  tally: { total: 161, positive: 100, negative: 35, mixed: 22, breakthroughs: 3 },
   directions: [
-    { name: "meta-calibration-n3", state: "active (rung 1, candidate 2)", latest: "Exp 160", next: "lag-matched swap (T_swap ≈ 500–750): every segment opens deceived (per-segment AUROC < 0.5 in most segments, pooled ≤ 0.45); remaining candidates after that: period ≥ classifier window; OK-bar-hugging error rates" },
+    { name: "meta-calibration-n3", state: "active (rung 1, candidate 3)", latest: "Exp 161", next: "candidate 3, the window blind spot — hidden-context alternation with half-period ≥ 2x the classifier window: majority label ≠ STRUCTURAL persistently (the typed diagnosis wrong at a θ_N2 dial), while the same stream re-windowed ≥ 2x the period recovers STRUCTURAL (the information was present; the fixed window lost it)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

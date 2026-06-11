@@ -149,4 +149,13 @@ history-indexed channel USELESS (→0.5), not WRONG (<0.5) — alternation re-va
 blurs. First-swap inversion is real (0.167–0.292 in 8/8). Candidate 2 follows from the
 mechanism: lag-matched swaps (T ≈ 500–750) so every swap inverts a freshly re-learned map.
 
-**STATUS.** state: active (rung 1, candidate 2) · latest: Exp 160 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160) · why: the gate needs a constructible N2-failure regime; candidate 1 dead, mechanism names candidate 2 · next-falsifiable: lag-matched swap (T_swap ≈ 500–750): every segment opens deceived (per-segment AUROC < 0.5 in most segments, pooled ≤ 0.45); remaining candidates after that: period ≥ classifier window; OK-bar-hugging error rates
+**RUNG 1, CANDIDATE 2 (Exp 161, NEGATIVE — tempo law complete, gate redirected).**
+Lag-matched swaps fail too: pooled AUROC rises MONOTONICALLY with period (0.5408 → 0.5747 →
+0.6203 at T=250/500/750), 0/8 forks below chance in any arm, oracle ~0.82 everywhere. The
+adaptive channel SELF-HEALS at every tempo — fast flips blur it (useless, not wrong), slow
+flips let it track; only the first cold inversion deceives. Law: N2's adaptive components
+cannot be kept wrong; its FIXED parameters (classifier window 200, thresholds 0.05/0.3) can
+— and those are literally θ_N2, the surface this card assigns to N3. Candidate 3 attacks
+the window.
+
+**STATUS.** state: active (rung 1, candidate 3) · latest: Exp 161 · depends-on: functional-emergence, persistent-creature · reusable: N-order self-modeling anti-regress rule, regime-discriminating perturbations, N3 control-surface tests, residual-structure separator (Exp 155), slope-gate blindness law (Exp 156), per-place expected-uncertainty channel (Exp 157), OK/NOISE/STRUCTURAL classifier (Exp 158), randomized prereq protocol (Exp 159), deception-tempo law (Exp 160–161: adaptive self-heals, fixed is attackable) · why: the gate needs a constructible N2-failure regime; the law says attack θ_N2's fixed dials · next-falsifiable: candidate 3, the window blind spot — hidden-context alternation with half-period ≥ 2x the classifier window: majority label ≠ STRUCTURAL persistently (the typed diagnosis wrong at a θ_N2 dial), while the same stream re-windowed ≥ 2x the period recovers STRUCTURAL (the information was present; the fixed window lost it)

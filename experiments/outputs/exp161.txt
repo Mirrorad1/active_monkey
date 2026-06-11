@@ -1,0 +1,211 @@
+================================================================================
+Exp 161 — N3 rung 1, candidate 2: LAG-MATCHED SWAP (R-SWAP-LAG)
+          Two arms: T_swap = 500 and T_swap = 750
+================================================================================
+
+SURPRISE_WINDOW=200  CLASSIFIER_WINDOW=200  [must be equal; asserted]
+EVAL_EVERY=100  ERROR_RATE_OK_THRESH=0.05  LAG1_RHO_STRUCT_THRESH=0.3
+ALPHA=0.05  EWMA_INIT=0.5  (EWMA channel, verbatim exp157/exp159)
+P_TRUE_NOISY=0.55  N_NOISY_P0=13
+BURN_IN_END=1000  SWAP_PHASE_START=1000  ARMS=[500, 750]
+SWAP_PLACE_SEED_OFFSET=110000  SWAP_NOISE_SEED_OFFSET=90000
+Seeds: [50, 51, 52, 53, 54, 55, 56, 57]  N_CHUNKS=40  CHUNK_SIZE=100  N_STEPS=4000
+
+Swap schedule (both arms, same convention as Exp 160):
+  steps 0-999: noisy set = P0 (burn-in; EWMA learns the map)
+  step 1000: FIRST post-burn-in segment uses P1 (inverted from burn-in)
+  subsequent segments: alternate P0/P1 at each arm's T_swap tempo
+  T=500: 6 segments (6 swaps); T=750: 4 segments (4 swaps)
+
+Loaded mirro: age=126700, world=5x5, n_colors=3, n_cells=25
+Base cmap: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+
+--- ARM T_swap=500 ---
+  T_swap=500  seed=50  P0(first5)=[1, 2, 3, 4, 5]...  (P1 has 12 cells)
+  T_swap=500  seed=51  P0(first5)=[0, 1, 2, 3, 5]...  (P1 has 12 cells)
+  T_swap=500  seed=52  P0(first5)=[0, 3, 5, 6, 8]...  (P1 has 12 cells)
+  T_swap=500  seed=53  P0(first5)=[0, 2, 3, 4, 5]...  (P1 has 12 cells)
+  T_swap=500  seed=54  P0(first5)=[0, 1, 2, 3, 7]...  (P1 has 12 cells)
+  T_swap=500  seed=55  P0(first5)=[0, 8, 10, 11, 12]...  (P1 has 12 cells)
+  T_swap=500  seed=56  P0(first5)=[1, 2, 3, 5, 6]...  (P1 has 12 cells)
+  T_swap=500  seed=57  P0(first5)=[3, 5, 6, 8, 11]...  (P1 has 12 cells)
+
+--- ARM T_swap=750 ---
+  T_swap=750  seed=50  P0(first5)=[1, 2, 3, 4, 5]...  (P1 has 12 cells)
+  T_swap=750  seed=51  P0(first5)=[0, 1, 2, 3, 5]...  (P1 has 12 cells)
+  T_swap=750  seed=52  P0(first5)=[0, 3, 5, 6, 8]...  (P1 has 12 cells)
+  T_swap=750  seed=53  P0(first5)=[0, 2, 3, 4, 5]...  (P1 has 12 cells)
+  T_swap=750  seed=54  P0(first5)=[0, 1, 2, 3, 7]...  (P1 has 12 cells)
+  T_swap=750  seed=55  P0(first5)=[0, 8, 10, 11, 12]...  (P1 has 12 cells)
+  T_swap=750  seed=56  P0(first5)=[1, 2, 3, 5, 6]...  (P1 has 12 cells)
+  T_swap=750  seed=57  P0(first5)=[3, 5, 6, 8, 11]...  (P1 has 12 cells)
+
+  Per-fork table (arm T_swap=500):
+   seed  n_cor_post  n_inc_post  burnin_au  post_au_n2  post_au_or   frac_ok   frac_no   frac_st    ewma_r     drift
+  ------------------------------------------------------------------------------------------------------------------
+     50        2355         645     0.7801      0.5784      0.8301    0.0000    0.9667    0.0333    0.8608    0.0106
+     51        2347         653     0.7729      0.5652      0.8161    0.0000    1.0000    0.0000    0.8006    0.0093
+     52        2335         665     0.7863      0.5941      0.8321    0.0000    1.0000    0.0000    0.8603    0.0121
+     53        2345         655     0.8269      0.5683      0.8271    0.0000    1.0000    0.0000    0.8112    0.0119
+     54        2346         654     0.8389      0.5763      0.8427    0.0000    0.9333    0.0667    0.8357    0.0105
+     55        2309         691     0.8285      0.5623      0.8216    0.0000    1.0000    0.0000    0.8131    0.0102
+     56        2332         668     0.7527      0.5874      0.8223    0.0000    1.0000    0.0000    0.7021    0.0112
+     57        2327         673     0.8087      0.5596      0.8163    0.0000    1.0000    0.0000    0.8210    0.0106
+
+  Per-fork table (arm T_swap=750):
+   seed  n_cor_post  n_inc_post  burnin_au  post_au_n2  post_au_or   frac_ok   frac_no   frac_st    ewma_r     drift
+  ------------------------------------------------------------------------------------------------------------------
+     50        2320         680     0.7801      0.6197      0.8170    0.0000    0.9667    0.0333    0.9253    0.0130
+     51        2361         639     0.7729      0.6086      0.8215    0.0000    1.0000    0.0000    0.8802    0.0109
+     52        2300         700     0.7863      0.6229      0.8224    0.0000    1.0000    0.0000    0.9175    0.0108
+     53        2313         687     0.8269      0.6068      0.8169    0.0000    1.0000    0.0000    0.9478    0.0097
+     54        2369         631     0.8389      0.6350      0.8495    0.0000    0.8667    0.1333    0.8794    0.0109
+     55        2337         663     0.8285      0.6235      0.8318    0.0000    1.0000    0.0000    0.8616    0.0107
+     56        2280         720     0.7527      0.6057      0.8007    0.0000    1.0000    0.0000    0.8169    0.0115
+     57        2368         632     0.8087      0.6296      0.8336    0.0000    1.0000    0.0000    0.8826    0.0127
+
+Ungated diagnostics:
+  Named ungated expectations:
+    - segment N2 AUROC trace: deceived openings in BOTH directions (not only the first swap, unlike Exp 160)
+    - fraction of segments with AUROC < 0.5 per arm (Exp 160 comparison: decaying, only early segments)
+    - classifier post-burn-in: NOISE-dominant
+    - terminal EWMA: negatively correlated with CURRENT truth (inverted relative to P0 burn-in map)
+
+  [ARM T_swap=500, n_segs=6]
+    seed=50  burnin_auroc=0.7801  post_n2=0.5784  post_oracle=0.8301  frac_segs_dec=0.167
+      seg0(P1):0.404, seg1(P0):0.651, seg2(P1):0.579, seg3(P0):0.646
+      seg4(P1):0.641, seg5(P0):0.511
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=0.9667  frac_struct=0.0333  (n_win=30)
+      ewma_vs_P0_r=0.8608  p0_cells(first5)=[1, 2, 3, 4, 5]...
+    seed=51  burnin_auroc=0.7729  post_n2=0.5652  post_oracle=0.8161  frac_segs_dec=0.167
+      seg0(P1):0.385, seg1(P0):0.651, seg2(P1):0.541, seg3(P0):0.579
+      seg4(P1):0.561, seg5(P0):0.621
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8006  p0_cells(first5)=[0, 1, 2, 3, 5]...
+    seed=52  burnin_auroc=0.7863  post_n2=0.5941  post_oracle=0.8321  frac_segs_dec=0.167
+      seg0(P1):0.460, seg1(P0):0.646, seg2(P1):0.534, seg3(P0):0.656
+      seg4(P1):0.648, seg5(P0):0.609
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8603  p0_cells(first5)=[0, 3, 5, 6, 8]...
+    seed=53  burnin_auroc=0.8269  post_n2=0.5683  post_oracle=0.8271  frac_segs_dec=0.167
+      seg0(P1):0.385, seg1(P0):0.675, seg2(P1):0.521, seg3(P0):0.598
+      seg4(P1):0.667, seg5(P0):0.562
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8112  p0_cells(first5)=[0, 2, 3, 4, 5]...
+    seed=54  burnin_auroc=0.8389  post_n2=0.5763  post_oracle=0.8427  frac_segs_dec=0.333
+      seg0(P1):0.441, seg1(P0):0.678, seg2(P1):0.570, seg3(P0):0.495
+      seg4(P1):0.622, seg5(P0):0.633
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=0.9333  frac_struct=0.0667  (n_win=30)
+      ewma_vs_P0_r=0.8357  p0_cells(first5)=[0, 1, 2, 3, 7]...
+    seed=55  burnin_auroc=0.8285  post_n2=0.5623  post_oracle=0.8216  frac_segs_dec=0.333
+      seg0(P1):0.405, seg1(P0):0.683, seg2(P1):0.632, seg3(P0):0.489
+      seg4(P1):0.596, seg5(P0):0.532
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8131  p0_cells(first5)=[0, 8, 10, 11, 12]...
+    seed=56  burnin_auroc=0.7527  post_n2=0.5874  post_oracle=0.8223  frac_segs_dec=0.167
+      seg0(P1):0.380, seg1(P0):0.699, seg2(P1):0.615, seg3(P0):0.581
+      seg4(P1):0.646, seg5(P0):0.587
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.7021  p0_cells(first5)=[1, 2, 3, 5, 6]...
+    seed=57  burnin_auroc=0.8087  post_n2=0.5596  post_oracle=0.8163  frac_segs_dec=0.167
+      seg0(P1):0.407, seg1(P0):0.588, seg2(P1):0.557, seg3(P0):0.608
+      seg4(P1):0.586, seg5(P0):0.586
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8210  p0_cells(first5)=[3, 5, 6, 8, 11]...
+
+  [ARM T_swap=750, n_segs=4]
+    seed=50  burnin_auroc=0.7801  post_n2=0.6197  post_oracle=0.8170  frac_segs_dec=0.000
+      seg0(P1):0.535, seg1(P0):0.648, seg2(P1):0.647, seg3(P0):0.627
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=0.9667  frac_struct=0.0333  (n_win=30)
+      ewma_vs_P0_r=0.9253  p0_cells(first5)=[1, 2, 3, 4, 5]...
+    seed=51  burnin_auroc=0.7729  post_n2=0.6086  post_oracle=0.8215  frac_segs_dec=0.000
+      seg0(P1):0.565, seg1(P0):0.640, seg2(P1):0.623, seg3(P0):0.598
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8802  p0_cells(first5)=[0, 1, 2, 3, 5]...
+    seed=52  burnin_auroc=0.7863  post_n2=0.6229  post_oracle=0.8224  frac_segs_dec=0.000
+      seg0(P1):0.571, seg1(P0):0.595, seg2(P1):0.659, seg3(P0):0.642
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.9175  p0_cells(first5)=[0, 3, 5, 6, 8]...
+    seed=53  burnin_auroc=0.8269  post_n2=0.6068  post_oracle=0.8169  frac_segs_dec=0.000
+      seg0(P1):0.516, seg1(P0):0.672, seg2(P1):0.619, seg3(P0):0.617
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.9478  p0_cells(first5)=[0, 2, 3, 4, 5]...
+    seed=54  burnin_auroc=0.8389  post_n2=0.6350  post_oracle=0.8495  frac_segs_dec=0.000
+      seg0(P1):0.572, seg1(P0):0.678, seg2(P1):0.611, seg3(P0):0.668
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=0.8667  frac_struct=0.1333  (n_win=30)
+      ewma_vs_P0_r=0.8794  p0_cells(first5)=[0, 1, 2, 3, 7]...
+    seed=55  burnin_auroc=0.8285  post_n2=0.6235  post_oracle=0.8318  frac_segs_dec=0.000
+      seg0(P1):0.545, seg1(P0):0.726, seg2(P1):0.599, seg3(P0):0.614
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8616  p0_cells(first5)=[0, 8, 10, 11, 12]...
+    seed=56  burnin_auroc=0.7527  post_n2=0.6057  post_oracle=0.8007  frac_segs_dec=0.000
+      seg0(P1):0.507, seg1(P0):0.656, seg2(P1):0.643, seg3(P0):0.612
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8169  p0_cells(first5)=[1, 2, 3, 5, 6]...
+    seed=57  burnin_auroc=0.8087  post_n2=0.6296  post_oracle=0.8336  frac_segs_dec=0.000
+      seg0(P1):0.569, seg1(P0):0.648, seg2(P1):0.671, seg3(P0):0.620
+      post-burn-in classifier: frac_ok=0.0000  frac_noise=1.0000  frac_struct=0.0000  (n_win=30)
+      ewma_vs_P0_r=0.8826  p0_cells(first5)=[3, 5, 6, 8, 11]...
+
+Preconditions: all PASS
+
+================================================================================
+PREDECLARED OUTCOME MAP
+================================================================================
+
+[ARM T_swap=500]
+PC3 burn-in N2 AUROC (steps 200-999):
+  Per fork: [0.7801, 0.7729, 0.7863, 0.8269, 0.8389, 0.8285, 0.7527, 0.8087]
+  Mean: 0.7994
+
+P1 (sustained deception in arm T=500):
+  Post-burn-in N2 AUROC per fork: [0.5784, 0.5652, 0.5941, 0.5683, 0.5763, 0.5623, 0.5874, 0.5596]
+  Forks with N2 AUROC < 0.5: 0/8 (need >=7 for P1)
+  Pooled N2 AUROC: 0.5747 (need <=0.45 for P1)
+  FALSIFIER F1 (this arm): pooled >= 0.5: YES
+  => P1 (arm T=500): F1 (this arm)
+
+P2 (discrimination possible in arm T=500):
+  Post-burn-in oracle AUROC per fork: [0.8301, 0.8161, 0.8321, 0.8271, 0.8427, 0.8216, 0.8223, 0.8163]
+  Pooled oracle AUROC: 0.8261 (need >=0.7 for P2)
+  FALSIFIER F2 (this arm): oracle pooled < 0.6: no
+  => P2 (arm T=500): PASS
+
+[ARM T_swap=750]
+PC3 burn-in N2 AUROC (steps 200-999):
+  Per fork: [0.7801, 0.7729, 0.7863, 0.8269, 0.8389, 0.8285, 0.7527, 0.8087]
+  Mean: 0.7994
+
+P1 (sustained deception in arm T=750):
+  Post-burn-in N2 AUROC per fork: [0.6197, 0.6086, 0.6229, 0.6068, 0.6350, 0.6235, 0.6057, 0.6296]
+  Forks with N2 AUROC < 0.5: 0/8 (need >=7 for P1)
+  Pooled N2 AUROC: 0.6203 (need <=0.45 for P1)
+  FALSIFIER F1 (this arm): pooled >= 0.5: YES
+  => P1 (arm T=750): F1 (this arm)
+
+P2 (discrimination possible in arm T=750):
+  Post-burn-in oracle AUROC per fork: [0.8170, 0.8215, 0.8224, 0.8169, 0.8495, 0.8318, 0.8007, 0.8336]
+  Pooled oracle AUROC: 0.8243 (need >=0.7 for P2)
+  FALSIFIER F2 (this arm): oracle pooled < 0.6: no
+  => P2 (arm T=750): PASS
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+  T=500 P1: FAIL  pooled_n2=0.5747  forks_below=0/8
+  T=750 P1: FAIL  pooled_n2=0.6203  forks_below=0/8
+  P1 (at least one arm passes): FAIL
+  FALSIFIER F1 (BOTH arms pooled >= 0.5): YES — F1 FIRES
+
+  T=500 P2: PASS  pooled_oracle=0.8261
+  T=750 P2: PASS  pooled_oracle=0.8243
+  P2 (oracle discriminable in P1-passing arms): PASS
+  FALSIFIER F2 (oracle pooled < 0.6 in BOTH arms): no
+
+VERDICT: NEGATIVE
+GATE: this candidate FAILED
+
+================================================================================
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp161_rows.json
+Verdict JSON written to /Users/mirro/Projects/active-loop/experiments/outputs/exp161_verdict.json

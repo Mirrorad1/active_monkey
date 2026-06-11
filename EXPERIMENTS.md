@@ -5066,3 +5066,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   mechanism-derived prediction that every segment opens deceived (per-segment AUROC
   < 0.5 in most segments, pooled ≤ 0.45) because each swap inverts a freshly
   re-learned map.
+
+## Exp 161 — rung-1 candidate 2 FAILS, completing the deception-tempo law: lag-matched swaps do not sustain anti-calibration — pooled calibration rises MONOTONICALLY with swap period (0.5408 → 0.5747 → 0.6203 across T=250/500/750) because the adaptive channel self-heals at every tempo (NEGATIVE by F1 in both arms; the gate redirects to N2's FIXED parameters — which are exactly the θ_N2 surface the card hands to N3)
+
+- Plain: we tried the sharper trap the last failure suggested — change the world at the
+  same tempo the creature's memory updates, so every change inverts a freshly re-learned
+  map. It failed too, and the three experiments together draw one clean curve: the
+  faster the world flips, the more useless (never wrong) the creature's learned trust
+  becomes; the slower it flips, the better the creature tracks it. A sense that keeps
+  learning can be briefly fooled but not kept fooled. What CAN be kept fooled is the
+  part of its self-monitoring that does not learn — its fixed window lengths and
+  thresholds. Those are precisely the dials the ladder's next layer is supposed to own,
+  so the hunt moves there.
+- Question: at swap tempos matched to the EWMA's relearn time (T ∈ {500, 750} vs Exp
+  160's 250), does every swap — including returns — invert a freshly re-learned map,
+  sustaining the anti-calibration that decayed at T=250?
+- Setup (predeclared in the script docstring before running; FRESH seeds 50–57, both
+  arms on the same seeds, independent forks): Exp 160's R-SWAP harness verbatim except
+  T_swap; burn-in 1000 on random P0, then P0 ↔ complement at T; N2 channel / oracle /
+  classifier as Exp 160. P1: in ≥1 arm, pooled post-burn-in N2 AUROC ≤ 0.45 AND
+  per-fork < 0.5 in ≥7/8. F1: BOTH arms pooled ≥ 0.5. P2: oracle ≥ 0.7 (F2: < 0.6 in
+  both). GATE PASSES iff P1∧P2.
+- Result: NEGATIVE — F1 fired in both arms. T=500: pooled 0.5747 (per-fork
+  0.5596–0.5941, 0/8 below 0.5); T=750: pooled 0.6203 (0.6057–0.6350, 0/8). Oracle
+  0.8261 / 0.8243 (P2 record-pass — the worlds stayed discriminable). Preconditions
+  green (burn-in 0.7527–0.8389; drift ≤ 0.0130). Mechanism prediction FAILED: deceived
+  openings did NOT recur in both directions — at T=500 only seg0 dips (0.380–0.460,
+  weaker than T=250's 0.167–0.292 because longer segments average in the recovery
+  tail); at T=750 not one segment in 32 fell below 0.5.
+- Verifier: agree (blinded, conjunct-by-conjunct, derived NEGATIVE independently);
+  assembled the cross-arm law (monotone rise of pooled AUROC with period) and confirmed
+  the lag-matching prediction failed on the segment traces.
+- Implication (generalizability tier: functional-form — the completed deception-tempo
+  law): an online-adaptive expected-uncertainty channel cannot be PERSISTENTLY deceived
+  by binary reliability alternation at ANY tempo on this body — fast flips blur it
+  toward uninformative (AUROC → 0.5 from above), slow flips let it track (AUROC rises),
+  and the only sub-0.5 window is the first cold inversion of a fresh map; the EWMA
+  re-crosses the calibration midpoint within ~a segment even at T=500. The rung-1
+  redirect this forces is the iteration's real product: N2's ADAPTIVE components
+  self-heal; its FIXED components — the classifier's 200-step window and its 0.05/0.3
+  thresholds — cannot. Those fixed parameters are literally θ_N2, the surface the
+  meta-calibration-n3 card assigns to N3's control. Candidate 3 therefore attacks the
+  window: a hidden-context alternation with half-period ≥ the window makes most windows
+  context-pure (high error, zero ρ variance → labeled NOISE; or zero error → OK), so
+  the typed diagnosis would be persistently wrong — irreducible-noise where there is
+  learnable structure — and wrong AT a θ_N2 dial, making rung 3's "N3 rewrites θ_N2"
+  the natural fix if the gate passes.
+- Honest caveat: only binary alternation between one placement and its complement was
+  tested — richer placement schedules (e.g., rotating fresh placements correlated with
+  the EWMA's current state) are unexplored, though the self-healing argument (the
+  channel always moves toward current truth) suggests the same limit; the "relearn
+  time" was estimated, not measured per-cell (visit-rate heterogeneity unmodeled); the
+  smoke run (seed 50) previewed both arms before the full run, predeclaration
+  unchanged; pooled-vs-mean AUROC differ in the third decimal (pooling over trials is
+  the declared form).
+- Verdict: NEGATIVE / NEW INSIGHT (the completed tempo law + the fixed-vs-adaptive
+  redirect). Self-grade: NEGATIVE.
+- Next: Exp 162 = rung-1 candidate 3, the window blind spot — slow hidden-context
+  alternation (half-period ≥ 2x the classifier window): predict the classifier
+  persistently mislabels representable structure as NOISE/OK (majority ≠ STRUCTURAL),
+  while the SAME stream re-windowed at ≥ 2x the period recovers STRUCTURAL — the
+  failure pinned to the θ_N2 window parameter itself.
