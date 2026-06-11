@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:178, breakthrough:8, positive:93, wall:27, partial:50, from:4.81, to:4.00 };
+window.AM_TALLY = { total:179, breakthrough:8, positive:93, wall:27, partial:51, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1972,7 +1972,17 @@ window.AM_EXPERIMENTS = [
     result:"MIXED, tier rung-1.5, blind-verified. Gates all pass. P2 8/8 (median 0.879). P4 pass (flickering forks 0.844-0.893). D5 24/24. P3 voided by PC3b (scramble color-diet TV up to 0.124 vs 0.05 bar on 2/3 bursts); raw specificity numbers overwhelming but unlicensed — including an AUROC_B inversion (0.287: scramble STABILIZES the value vector below quiet noise).",
     implication:"The monitor has metacognitive sensitivity over identity, independent of the favorite label, with a measured actuation window. Methodological law: preconditions must match the granularity of the measured quantity — the argmax ticket blocked three experiments for no epistemic gain. One fix remains for rung-2: an occupancy-matched scramble (sample the fork's own pre-burst cell-occupancy) is value-neutral by construction.",
     caveat:"rung-2 is NOT claimed — specificity is unresolved until a valid control passes PC3b; the P3 raw numbers and the AUROC_B inversion are unlicensed diagnostics here; PC2′'s 0.05 bar was analytic but its comfortable margin (max 0.046) is one seed block of evidence; monitor form, bars, λ, schedule remain PROVIDED; the D5 ratio uses the first/last-2-sample convention declared in the card.",
-    trace:{ script:"experiments/exp178_n4_monitor2.py", output:"experiments/outputs/exp178.txt" } }
+    trace:{ script:"experiments/exp178_n4_monitor2.py", output:"experiments/outputs/exp178.txt" } },
+  { n:179, kind:"partial", chapter:"frontier",
+    title:"Everything the mirror claimed replicates — and the control flunks again, teaching a law about time.",
+    one:"N4 rung 2, attempt 3: the occupancy-matched scramble copied the creature's own diet of experience from one stretch of its life (steps 5000-6000, declared stationary) and used it for all three bursts. The banked claims replicated exactly on eight fresh forks — sensitivity 8/8 (median AUROC 0.884), argmax-independence, the 24/24 onset-spike signature, even the scramble inversion (0.294). But PC3b voided specificity a second time, and the diagnosis is now precise: the stationarity declaration is FALSIFIED — the walk's own quiet windows differ pairwise by median TV 0.057, above the 0.05 validity bar, and captivity itself shifts where the creature subsequently wanders. The one burst whose diet was copied from its own immediately-preceding window certified perfectly (8/8, TV down to 0.0025) — the constructive proof of the fix. MIXED, rung-1.5, blind-verified; attempt 4 matches each burst to its own window, and a third void goes to consult.",
+    plain:"We rebuilt the control to copy the creature's own diet of experience — but copied it from one stretch of its life and assumed every later stretch eats the same. It doesn't: the burst that re-makes the creature also re-makes where it wanders, and even two quiet stretches of one life differ by more than our certification allows. The single burst whose diet came from the window right before it passed perfectly — which is the whole fix. Meanwhile everything the mirror claimed last time held up exactly on eight new forks.",
+    metric:{ from:0.057, to:0.05, unit:"median between-window diet TV vs the validity bar it must fit under" },
+    setup:"Identical to Exp 178 (verifier diff-checked: only seeds, relocation mechanism, and IDs changed) with Arm B sampling the fork's own 5000-6000 cell-occupancy histogram; fresh seeds 194-201; predeclared in the Exp 178 entry and card before any new data.",
+    result:"MIXED, tier rung-1.5, blind-verified. Gates all pass (PC2' second clean block, max TV 0.039). P2 8/8 (0.840-0.896). P4 pass. D5 24/24 (ratios 3.2-4.6). PC3b: burst 0 valid 8/8, bursts 1-2 fail (0/8, 3/8) — P3 voided; raw specificity again overwhelming but unlicensed.",
+    implication:"Replication makes rung-1.5 solid on two independent seed blocks. The design law: a control's validity must compare like-with-like in TIME — quiet-window composition is not stationary at the certification grain, so each burst's diet must match its OWN immediately-preceding window. Burst 0's perfect pass proves the per-burst-matched design certifies. Exp 180 is the last attempt before a consult, declared now.",
+    caveat:"rung-2 is still NOT claimed — P3 remains unresolved for the second time, now for a diagnosed instrument reason; the window-variance numbers come from a post-hoc deterministic rerun (committed); the per-burst-matched fix is designed after seeing this data — mitigated by fresh seeds next and the declared third-void-consults rule; this is the second consecutive instrument failure on the control conjunct, so Exp 180 is the LAST attempt before a consult, declared now.",
+    trace:{ script:"experiments/exp179_n4_monitor3.py", output:"experiments/outputs/exp179.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

@@ -1,0 +1,237 @@
+================================================================================
+Exp 179 — N4 rung 2 attempt 3: occupancy-matched scramble
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+n_cells=25, n_colors=3
+LAMBDA=0.9997, INIT_MASS=3333.3
+Bursts: [(6000, 6800), (9000, 9800), (12000, 12800)]
+Seeds: [194, 195, 196, 197, 198, 199, 200, 201]  Arms: identity + scramble
+
+Cells per color: [8, 8, 9]
+
+Mirro spine value_counts: [31712.67773811 29542.00073706 32929.84445799]
+Spine standing favorite: color 2
+
+Running Arm A (identity) ...
+  Arm A seed=194 ...
+    drift=0.01266  standing_fav=2  burst_colors=[1, 2, 0]
+  Arm A seed=195 ...
+    drift=0.01437  standing_fav=2  burst_colors=[1, 2, 0]
+  Arm A seed=196 ...
+    drift=0.01294  standing_fav=2  burst_colors=[1, 0, 1]
+  Arm A seed=197 ...
+    drift=0.01300  standing_fav=2  burst_colors=[1, 2, 0]
+  Arm A seed=198 ...
+    drift=0.01486  standing_fav=2  burst_colors=[1, 0, 2]
+  Arm A seed=199 ...
+    drift=0.01302  standing_fav=2  burst_colors=[1, 0, 1]
+  Arm A seed=200 ...
+    drift=0.01333  standing_fav=2  burst_colors=[1, 0, 2]
+  Arm A seed=201 ...
+    drift=0.01402  standing_fav=0  burst_colors=[1, 0, 2]
+
+Running Arm B (scramble) ...
+  Arm B seed=194 ...
+    drift=0.01082  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=195 ...
+    drift=0.01282  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=196 ...
+    drift=0.01207  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=197 ...
+    drift=0.01084  burst_onset_color(covariate)=[1, 2, 0]
+  Arm B seed=198 ...
+    drift=0.01359  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=199 ...
+    drift=0.01182  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=200 ...
+    drift=0.01102  burst_onset_color(covariate)=[1, 1, 1]
+  Arm B seed=201 ...
+    drift=0.01247  burst_onset_color(covariate)=[1, 1, 1]
+
+Burst analysis table (Arm A — identity):
+ seed  b  pre_fav   bc  flip?  flip_frac  flip_lat  recovery?  rec_lat
+----------------------------------------------------------------------
+  194  0        2    1    YES      1.000       144         no        —
+  194  1        1    2    YES      1.000       341         no        —
+  194  2        2    0    YES      0.830       468         no        —
+  195  0        2    1    YES      1.000       245         no        —
+  195  1        1    2    YES      1.000       355         no        —
+  195  2        2    0    YES      1.000       355         no        —
+  196  0        2    1    YES      1.000        75         no        —
+  196  1        1    0    YES      1.000       323         no        —
+  196  2        0    1    YES      1.000       265         no        —
+  197  0        2    1    YES      1.000        12         no        —
+  197  1        1    2    YES      0.853       459         no        —
+  197  2        2    0    YES      1.000       369         no        —
+  198  0        2    1    YES      1.000        43         no        —
+  198  1        1    0    YES      1.000       313         no        —
+  198  2        0    2    YES      1.000       372         no        —
+  199  0        2    1    YES      1.000        54         no        —
+  199  1        1    0    YES      1.000       317         no        —
+  199  2        0    1    YES      1.000       241         no        —
+  200  0        2    1    YES      1.000       140         no        —
+  200  1        1    0    YES      1.000       308         no        —
+  200  2        0    2    YES      1.000       276         no        —
+  201  0        0    1    YES      1.000        32         no        —
+  201  1        1    0    YES      1.000       320         no        —
+  201  2        0    2    YES      1.000       328         no        —
+
+Burst analysis table (Arm B — scramble):
+ seed  b  pre_fav   bc  flip?  flip_frac  flip_lat  recovery?  rec_lat
+----------------------------------------------------------------------
+  194  0        2    1     no      0.000         —        YES        0
+  194  1        2    1     no      0.000         —        YES        0
+  194  2        2    1     no      0.000         —        YES        0
+  195  0        2    1     no      0.000         —        YES        0
+  195  1        0    1     no      0.000         —         no        —
+  195  2        2    1     no      0.000         —        YES        0
+  196  0        2    1     no      0.000         —        YES        0
+  196  1        2    1     no      0.000         —        YES        0
+  196  2        2    1     no      0.000         —        YES        0
+  197  0        2    1    YES      1.000        68         no        —
+  197  1        1    2     no      0.000         —        YES        0
+  197  2        2    0     no      0.000         —         no        —
+  198  0        2    1     no      0.000         —        YES        0
+  198  1        2    1     no      0.000         —        YES        0
+  198  2        2    1     no      0.000         —        YES        0
+  199  0        2    1     no      0.000         —        YES     1432
+  199  1        2    1     no      0.000         —        YES        0
+  199  2        2    1     no      0.000         —        YES        0
+  200  0        2    1     no      0.000         —        YES      568
+  200  1        2    1     no      0.000         —        YES        0
+  200  2        2    1     no      0.000         —        YES        0
+  201  0        0    1     no      0.000         —         no        —
+  201  1        2    1     no      0.000         —        YES        0
+  201  2        2    1     no      0.000         —        YES        0
+
+=== PRECONDITIONS ===
+PC1 + PC2' + PC3: all PASS
+PC3b (non-gating — voids P3 only):
+  PC3b FAIL: burst 1 (bstart=9000) — only 0/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided
+  PC3b FAIL: burst 2 (bstart=12000) — only 3/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided
+
+PC2' table (per fork per window: tv, flicker, margin):
+ seed  win  bstart       tv  flicker   margin   ok?
+---------------------------------------------------
+  194    0    6000  0.00147        0   0.0379    ok
+  195    0    6000  0.01140        0   0.0602    ok
+  196    0    6000  0.00200        0   0.0130    ok
+  197    0    6000  0.01143       10   0.0027    ok
+  198    0    6000  0.03611        1   0.0009    ok
+  199    0    6000  0.00701        0   0.0031    ok
+  200    0    6000  0.01667        0   0.0450    ok
+  201    0    6000  0.02368        8   0.0010    ok
+  194    1    9000  0.02384        0   0.1116    ok
+  195    1    9000  0.02585        0   0.0981    ok
+  196    1    9000  0.03884        0   0.0856    ok
+  197    1    9000  0.02162        0   0.1173    ok
+  198    1    9000  0.03163        0   0.1073    ok
+  199    1    9000  0.03363        0   0.0795    ok
+  200    1    9000  0.03181        0   0.0621    ok
+  201    1    9000  0.02856        0   0.1063    ok
+  194    2   12000  0.01597        0   0.1254    ok
+  195    2   12000  0.02785        0   0.0890    ok
+  196    2   12000  0.03313        0   0.0838    ok
+  197    2   12000  0.03762        0   0.0819    ok
+  198    2   12000  0.02815        0   0.0829    ok
+  199    2   12000  0.03465        0   0.0546    ok
+  200    2   12000  0.03421        0   0.0865    ok
+  201    2   12000  0.02000        0   0.0838    ok
+
+PC3b table (scramble color-frequency TV):
+ seed  burst  bstart       tv   ok?
+-----------------------------------
+  194      0    6000  0.01100    ok
+  195      0    6000  0.00650    ok
+  196      0    6000  0.00250    ok
+  197      0    6000  0.03500    ok
+  198      0    6000  0.01375    ok
+  199      0    6000  0.02675    ok
+  200      0    6000  0.02525    ok
+  201      0    6000  0.02275    ok
+  194      1    9000  0.05075  FAIL
+  195      1    9000  0.07550  FAIL
+  196      1    9000  0.05400  FAIL
+  197      1    9000  0.08175  FAIL
+  198      1    9000  0.07800  FAIL
+  199      1    9000  0.07850  FAIL
+  200      1    9000  0.06050  FAIL
+  201      1    9000  0.09375  FAIL
+  194      2   12000  0.04425    ok
+  195      2   12000  0.05050  FAIL
+  196      2   12000  0.03950    ok
+  197      2   12000  0.04150    ok
+  198      2   12000  0.07700  FAIL
+  199      2   12000  0.11575  FAIL
+  200      2   12000  0.07025  FAIL
+  201      2   12000  0.06275  FAIL
+
+================================================================================
+MONITOR TABLE — per-fork AUROC
+================================================================================
+
+ seed   AUROC_A  n_bA  n_qA   mean_m_bA  pass_P2?
+-------------------------------------------------
+  194    0.8701    24    85    45.12449      PASS
+  195    0.8961    24    85    46.61908      PASS
+  196    0.8858    24    85    46.55079      PASS
+  197    0.8926    24    85    46.03767      PASS
+  198    0.8902    24    85    44.97722      PASS
+  199    0.8779    24    85    45.05782      PASS
+  200    0.8824    24    85    40.91062      PASS
+  201    0.8397    24    85    42.92739      PASS
+
+AUROC table (per seed: AUROC_A, AUROC_B, delta):
+ seed   AUROC_A   AUROC_B    delta  P2_ok?  P3_ok?
+--------------------------------------------------
+  194    0.8701    0.3000   0.5701    PASS    PASS
+  195    0.8961    0.3422   0.5539    PASS    PASS
+  196    0.8858    0.2887   0.5971    PASS    PASS
+  197    0.8926    0.2529   0.6397    PASS    PASS
+  198    0.8902    0.2809   0.6093    PASS    PASS
+  199    0.8779    0.3211   0.5569    PASS    PASS
+  200    0.8824    0.4103   0.4721    PASS    PASS
+  201    0.8397    0.2260   0.6137    PASS    PASS
+
+D5 adaptation diagnostic (Arm A, first-2 vs last-2 burst samples):
+  seed=194 burst=0 first2=['78.0019', '68.1884'] last2=['20.9148', '13.5189'] ratio=4.25 >=2
+  seed=194 burst=1 first2=['75.0640', '66.2457'] last2=['21.0369', '13.7402'] ratio=4.06 >=2
+  seed=194 burst=2 first2=['78.2783', '69.6486'] last2=['22.6243', '13.0539'] ratio=4.15 >=2
+  seed=195 burst=0 first2=['82.6979', '74.0999'] last2=['24.3237', '14.9745'] ratio=3.99 >=2
+  seed=195 burst=1 first2=['75.6737', '68.6354'] last2=['27.5862', '17.5805'] ratio=3.20 >=2
+  seed=195 burst=2 first2=['75.4837', '65.0654'] last2=['21.5361', '11.7592'] ratio=4.22 >=2
+  seed=196 burst=0 first2=['77.9243', '68.7808'] last2=['22.0563', '12.7041'] ratio=4.22 >=2
+  seed=196 burst=1 first2=['80.7172', '72.8982'] last2=['21.4627', '12.4721'] ratio=4.53 >=2
+  seed=196 burst=2 first2=['82.4940', '72.9623'] last2=['22.9736', '15.9824'] ratio=3.99 >=2
+  seed=197 burst=0 first2=['77.1720', '70.2820'] last2=['24.3611', '16.6927'] ratio=3.59 >=2
+  seed=197 burst=1 first2=['80.4941', '72.3390'] last2=['24.5406', '14.0981'] ratio=3.96 >=2
+  seed=197 burst=2 first2=['72.9397', '63.7127'] last2=['20.4789', '11.4209'] ratio=4.28 >=2
+  seed=198 burst=0 first2=['83.0976', '73.2795'] last2=['27.5533', '18.1972'] ratio=3.42 >=2
+  seed=198 burst=1 first2=['74.5492', '67.0792'] last2=['20.1263', '10.6368'] ratio=4.60 >=2
+  seed=198 burst=2 first2=['68.7708', '61.5110'] last2=['25.2328', '14.4925'] ratio=3.28 >=2
+  seed=199 burst=0 first2=['75.8334', '65.1646'] last2=['19.2550', '11.4816'] ratio=4.59 >=2
+  seed=199 burst=1 first2=['80.6667', '71.4328'] last2=['22.1304', '12.7652'] ratio=4.36 >=2
+  seed=199 burst=2 first2=['82.6599', '73.1292'] last2=['24.6476', '17.2837'] ratio=3.72 >=2
+  seed=200 burst=0 first2=['73.9083', '65.1000'] last2=['20.7518', '13.8168'] ratio=4.02 >=2
+  seed=200 burst=1 first2=['76.6481', '67.2360'] last2=['22.6729', '16.3580'] ratio=3.69 >=2
+  seed=200 burst=2 first2=['64.1233', '53.8487'] last2=['15.8418', '11.5260'] ratio=4.31 >=2
+  seed=201 burst=0 first2=['80.9422', '70.7983'] last2=['21.5091', '13.0294'] ratio=4.39 >=2
+  seed=201 burst=1 first2=['74.3674', '65.2627'] last2=['19.3669', '11.5594'] ratio=4.51 >=2
+  seed=201 burst=2 first2=['70.8482', '60.8125'] last2=['21.3743', '11.9296'] ratio=3.95 >=2
+D5 fraction (bursts with ratio >= 2.0): 1.000
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P2 (sensitivity): forks with AUROC_A >= 0.8: 8/8 (need >= 7); median AUROC_A = 0.884 (F2 if <= 0.5) => PASS
+P3 (specificity): pairs with delta >= 0.2: 8/8 (need >= 6); median AUROC_B = 0.294 (<= 0.65?=True); F3_flag=False => voided-PC3b
+P4 (argmax-independence): flickering_forks=[197, 198, 201] evaluable=True => pass
+D5 (adaptation fraction): 1.000
+
+VERDICT: MIXED  (MIXED — sensitive but specificity unresolved)
+
+================================================================================
+Rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp179_rows.json
+Verdict written to /Users/mirro/Projects/active-loop/experiments/outputs/exp179_verdict.json

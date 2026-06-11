@@ -6154,3 +6154,60 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   cell-occupancy histogram (rng 175000+seed); PC3b, P2, P3/F3, P4, D5, decision
   rule all retained verbatim; FRESH seeds 194–201; smoke seed 194. Prediction:
   PC3b passes (TV → ~0.01) and P3 decides rung-2 vs rung-1.5.
+
+## Exp 179 — N4 rung 2 attempt 3 (occupancy-matched scramble): MIXED, tier RUNG-1.5 again — the banked claims REPLICATE on fresh seeds (P2 8/8, median AUROC 0.884; P4 pass; D5 24/24; the scramble inversion reappears at 0.294) but PC3b voids P3 a second time, and the diagnosis is now precise: the single-histogram stationarity declaration is FALSIFIED — quiet windows differ from each other by more than the validity bar (MIXED; Exp 180 = per-burst-matched scramble, a third PC3b void → consult)
+
+- Plain: we rebuilt the control to copy the creature's own diet of experience — but we
+  copied the diet from one stretch of its life and assumed every later stretch eats
+  the same. It doesn't: the burst that re-makes the creature also re-makes where it
+  wanders, and even two quiet stretches of the same life differ from each other by
+  more than our certification allows. The one burst whose diet was copied from its
+  own immediately-preceding window passed certification perfectly — which is the
+  whole fix: match each burst to the window right before it. Meanwhile everything
+  the mirror claimed last time held up exactly on eight new forks.
+- Question (predeclared in the Exp 178 entry's Next line + card, commit dc78dd9):
+  same as Exp 178 with Arm B relocating via the fork's OWN steps-5000–6000
+  cell-occupancy histogram (declared stationary — one histogram for all bursts);
+  PC3b, P2, P3/F3, P4, D5, decision rule verbatim; FRESH seeds 194–201; smoke 194.
+- Setup: as declared; verifier diff-checked exp179 vs exp178 — only seeds, the
+  relocation mechanism, and IDs changed; every threshold and evaluation path
+  byte-identical.
+- Result: MIXED, tier RUNG-1.5. Gates PC1/PC2′/PC3 all PASS (PC2′ max TV 0.039 —
+  second clean block for the vector gate). P2 PASS: AUROC_A 0.840–0.896, 8/8,
+  median 0.884 (replicating 178's 0.879). P4 PASS (flickering forks 197/198/201
+  score 0.893/0.890/0.840). D5 1.000 (ratios 3.2–4.6). PC3b: burst 0 VALID 8/8
+  (TV 0.0025–0.035 — the i.i.d. draw from its own source window certifies
+  perfectly); bursts 1 and 2 FAIL (0/8 at TV 0.051–0.094; 3/8 at 0.040–0.116) →
+  P3 voided again. Unlicensed raw P3: 8/8 pairs, median AUROC_B 0.294 (the
+  inversion replicates). Ungated diagnostic (deterministic rerun, committed as
+  exp179_diag_windowtv.txt): the walk's OWN quiet windows differ pairwise by
+  median TV 0.057, 58% of pairs > 0.05 — the validity bar sits BELOW the world's
+  between-window variance, so no single-histogram scramble can certify on later
+  bursts; the verifier adds that post-burst-0 windows cluster away from the
+  pre-burst-0 window (captivity also shifts where the walk subsequently dwells).
+- Verifier: blinded subagent CONFIRMED MIXED/rung-1.5 (PC3b non-gating correctly
+  applied; AUROC cross-checks 6/6; diff integrity clean; flagged the stationarity
+  declaration as falsified — "should not be repeated as a design principle").
+- Implication: two products. (1) Replication: the monitor's sensitivity,
+  argmax-independence, and the scramble inversion now stand on TWO independent
+  seed blocks — rung-1.5 is solid. (2) Design law: a control's validity criterion
+  must compare like-with-like in TIME — each burst's diet must be matched to its
+  OWN immediately-preceding window, because quiet-window composition is not
+  stationary at the 0.05 grain (and captivity itself moves it). Burst 0's perfect
+  pass is the constructive proof the per-burst-matched design certifies.
+- Honest caveat: rung-2 is still NOT claimed — P3 remains unresolved for the
+  second time, now for a diagnosed instrument reason; the window-variance numbers
+  come from a post-hoc deterministic rerun (committed); the per-burst-matched fix
+  is designed after seeing this data — mitigated by fresh seeds next and the
+  declared third-void-consults rule; this is the second consecutive instrument
+  failure on the control conjunct, so Exp 180 is the LAST attempt before a
+  consult, declared now.
+- Verdict: MIXED (tier rung-1.5) / CONSOLIDATION (the banked rung-1.5 claims
+  replicate on fresh seeds; the new content is the window-nonstationarity design
+  law and the falsified stationarity declaration). Self-grade: MIXED.
+- Next: Exp 180 = rung 2 attempt 4 — per-burst-matched scramble: Arm B recomputes
+  the occupancy histogram from EACH burst's own pre-burst window [bstart−1000,
+  bstart) at burst onset (rng 175000+seed); PC3b, P2, P3/F3, P4, D5, decision rule
+  verbatim; FRESH seeds 202–209; smoke 202. Prediction: PC3b passes all three
+  bursts (TV ≈ sampling noise ≈ 0.02) and P3 finally decides rung-2 vs rung-1.5.
+  A THIRD PC3b void → consult, no attempt 5.

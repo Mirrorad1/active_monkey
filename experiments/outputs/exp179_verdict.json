@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment": "exp179",
+  "verdict": "MIXED",
+  "halted": false,
+  "arms": {
+    "P2_sensitivity": {
+      "pass": true,
+      "reason": "forks with AUROC_A>=0.8: 8/8 (need >=7); median AUROC_A=0.884 (F2 if <=0.5)"
+    },
+    "P3_specificity": {
+      "pass": false,
+      "reason": "pairs with AUROC_A-AUROC_B>=0.2: 8/8 (need >=6); median AUROC_B=0.294 (<=0.65?=True); PC3b_valid=False"
+    },
+    "P4_argmax_independence": {
+      "pass": true,
+      "reason": "flickering_forks=[197, 198, 201]; evaluable=True; status=pass"
+    },
+    "PC3b_control_validity": {
+      "pass": false,
+      "reason": "PC3b FAIL: burst 1 (bstart=9000) \u2014 only 0/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided; PC3b FAIL: burst 2 (bstart=12000) \u2014 only 3/8 forks with color-freq TV(burst, pre-burst) <= 0.05 (need >= 6); P3 voided"
+    }
+  },
+  "notes": "N4 rung 2 attempt 3. Occupancy-matched scramble control (fork's own 5000-6000 cell-occupancy histogram) \u2014 value-neutral by construction; PC3b, P2, P3/F3, P4, D5 and decision rule verbatim from the Exp 178 pre-registered card. Forks of mirro only."
+}

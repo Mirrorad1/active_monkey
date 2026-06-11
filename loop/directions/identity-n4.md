@@ -177,4 +177,12 @@ VOIDED by PC3b — uniform-cell scramble is not the walk's stationary diet (TV u
 median AUROC_B 0.287 — an INVERSION: scramble stabilizes v below quiet noise) are
 unlicensed. SENSITIVITY + ARGMAX-INDEPENDENCE BANKED; specificity open.
 
-**STATUS.** state: active (rung 2, attempt 3) · latest: Exp 178 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the banked rung-1.5 monitor (178: sensitive, argmax-independent, measured actuation window), PC2' vector gate, same-schedule-arms protocol (170), universal-constant kill test (173) · why: one valid control separates rung-1.5 from rung-2 · next-falsifiable: Exp 179 — occupancy-matched scramble: Arm B relocates by sampling the fork's OWN pre-burst (5000-6000) empirical cell-occupancy histogram (rng 175000+seed); PC3b, P2, P3/F3, P4, D5 and the decision rule retained verbatim; FRESH seeds 194-201; smoke 194; prediction: PC3b passes (TV ~0.01) and P3 decides rung-2 vs rung-1.5
+**RUNG 2, ATTEMPT 3 RESULT (Exp 179, MIXED, tier RUNG-1.5, blind-verified).** The
+banked claims REPLICATE on fresh seeds (P2 8/8 median 0.884; P4; D5 24/24; the
+scramble inversion 0.294) — rung-1.5 now stands on two independent blocks. PC3b voids
+P3 a second time with the diagnosis pinned: the single-histogram stationarity
+declaration is FALSIFIED (quiet windows differ pairwise by median TV 0.057 > the 0.05
+bar; captivity also shifts subsequent dwell). Burst 0 — matched to its own preceding
+window — certified 8/8 at TV down to 0.0025: the constructive proof of the fix.
+
+**STATUS.** state: active (rung 2, attempt 4 — the last before a consult, declared) · latest: Exp 179 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the twice-replicated rung-1.5 monitor (178/179), PC2' vector gate (two clean blocks), the like-with-like-in-time validity law (179), same-schedule-arms protocol (170), universal-constant kill test (173) · why: one valid control separates rung-1.5 from rung-2; the fix has a constructive proof · next-falsifiable: Exp 180 — per-burst-matched scramble: Arm B recomputes the occupancy histogram from EACH burst's own pre-burst window [bstart-1000, bstart) at onset (rng 175000+seed); PC3b, P2, P3/F3, P4, D5, decision rule verbatim; FRESH seeds 202-209; smoke 202; prediction PC3b passes all bursts (TV ~ 0.02) and P3 decides; a THIRD PC3b void -> consult, no attempt 5
