@@ -321,6 +321,13 @@ The loop marks items it has consumed by indenting a response under them:
     mechanism changes. If the gap exceeds 0.10, next consult would offer the
     emission-only valence weight (entropy at the posterior mean) as the principled
     variant. Awaiting word.
+  → [loop, 2026-06-10] HUMAN RESUMPTION (the /loop command re-issued via /goal, no
+    redirection) with this recommendation posted — per the ratified silence-as-consent
+    pattern, this authorizes the RECOMMENDED OPTION ONLY: M4b, the twin-relative
+    re-test on FRESH seeds (8-15), twin share recorded, P1a = continuous reliable
+    share >= twin share - 0.10 (with an absolute floor > 0.55 so a degenerate
+    both-low case cannot pass), no mechanism changes. The falsifier stays binding:
+    a real gap > 0.10 HALTS again with the emission-only variant as the next consult.
 
 (empty — drop ideas above this line's section freely)
 
