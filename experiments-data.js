@@ -14,7 +14,8 @@ window.AM_CHAPTERS = [
   { id:"valence",    act:"II",  label:"Valence",    question:"Can it want anything?",          color:"val" },
   { id:"embodiment", act:"III", label:"Embodiment", question:"What if it had a body?",         color:"emb" },
   { id:"opinion",    act:"IV",  label:"Opinion",    question:"Can it form its own values?",    color:"opi" },
-  { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
+  { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" },
+  { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
 window.AM_TALLY = { total:157, breakthrough:7, positive:88, wall:25, partial:37, from:4.81, to:4.00 };
@@ -1458,7 +1459,7 @@ window.AM_EXPERIMENTS = [
     caveat:"consolidation by design; single deterministic run.",
     trace:{ script:"experiments/exp131_mirro_epoch16.py", output:"experiments/outputs/exp131.txt" } },
 
-  { n:132, kind:"partial", chapter:"frontier",
+  { n:132, kind:"partial", chapter:"growth",
     title:"A detector for too-small minds — and a world too simple to need one.",
     one:"The structure-learning chapter opens: a behavior-invariant surprise-ceiling detector (bit-identical seeded runs), flag-gated BMR/expansion scaffolds with pinned-sign unit tests — validated 8/8 on irreducible noise (0.69-0.94 vs analytic 0.82 nats) while the standard world stays correctly silent at 0/8, exactly as counter-predicted.",
     plain:"The new chapter the human directed: machinery for a creature to notice when its own model of the world is structurally too small, and scaffolds for shrinking and growing that model with proper Bayesian scoring. Phase 1 is live and provably changes nothing about behavior. The opening question — does the standard life hit an irreducible-surprise ceiling? — came back no: in a learnable world surprise falls a hundred-fold to near zero, while in a control world with genuinely irreducible noise the detector fires every run, within a few percent of the analytic level. The current world is too simple to need a bigger mind; the machinery now waits for worlds that are not.",
@@ -1579,7 +1580,7 @@ window.AM_EXPERIMENTS = [
     caveat:"non-aliased and small (4×4, 16/16 identifiable — the EASY map); diagonal-Σ family throughout (declared); the 1.39× wall effect is one geometry and one noise scale; both continuous arms share the diagonal-projection choice so its cost is uncontrolled here; T=3000 single dose (no learning-curve comparison vs the twin was predeclared, so none is claimed).",
     trace:{ script:"experiments/exp142_m2_learn_map.py", output:"experiments/outputs/exp142.txt" } },
 
-  { n:143, kind:"partial", chapter:"frontier",
+  { n:143, kind:"partial", chapter:"growth",
     title:"The wall was never where we aimed: the creature knows where it is, and not what comes next.",
     one:"Migration rung M3, the centerpiece, lands in its predeclared surprise branch: in a 4-colors-x-4-cells aliased world the unimodal map localizes to 0.05 cells in 8/8 seeds (the predicted >=1.0 wall appeared in 0/8) — while the Exp 132 surprise-ceiling detector fires its FIRST LIVE POSITIVE in all eight runs (630-1068 events) and keeps ringing after spawning, because the strict-decrease spawn rule reverts nearly every candidate (0-1 kept vs 5-11 reverted). The inadequacy is real but lives in prediction, not place.",
     plain:"The centerpiece test put the continuous creature in a world where colors repeat — the case its one-blob-per-color map should not be able to represent. The predicted failure never came: it knows where it is to a twentieth of a cell in every run. What is broken is its ability to predict what it will see next — its surprise stays pinned high, the structural-inadequacy alarm rings constantly, and the model-growing rule built to answer that alarm keeps proposing additions and immediately taking them back. The wall is real, but it is in prediction, not in knowing where you are.",
@@ -1590,7 +1591,7 @@ window.AM_EXPERIMENTS = [
     caveat:"the mechanism account is unverified (Σ traces not recorded — queued as M3b instrumentation, per the Exp 134/137 precedent of pinning before promoting); one aliased layout (the centroid-separation of this layout may flatter unimodal localization — M3b varies it); detector event COUNTS are window-overlapping (one event per step while pinned, not independent detections); spawn scoring used stored posterior means (frozen-context replay, the documented active-data bias applies).",
     trace:{ script:"experiments/exp143_m3_aliasing.py", output:"experiments/outputs/exp143.txt" } },
 
-  { n:144, kind:"wall", chapter:"frontier",
+  { n:144, kind:"wall", chapter:"growth",
     title:"The alarm rings on: practice before the vote was not enough.",
     one:"Migration rung M3b NEGATIVE and HALTED per the guardrail: burn-in EM before the strict-decrease vote still cannot reduce predictive surprise (3/3 layouts, 0/8 seeds — drops -0.35 to +0.15 nats, detector ringing 89-353 events per final thousand, growth budget exhausted on the single worst color). The measured consolation: learned covariances land at 0.90-0.98x the true within-color scatter — Exp 143's self-regulation hypothesis is now a fact.",
     plain:"The fix for the short-sighted model-growing rule — let each proposed addition practice on recent memories before being voted on — did not work. Across three worlds and every run the creature's surprise stayed pinned or worsened, the inadequacy alarm kept ringing, and the growth budget went entirely to the squeakiest color while the others never grew. By the build rules this stops the migration until the human speaks. The consolation is genuine: the guess about why localization survived aliasing is now a measurement — the model automatically discounts senses it cannot trust, almost exactly in proportion to their unreliability.",
@@ -1601,7 +1602,7 @@ window.AM_EXPERIMENTS = [
     caveat:"the burn-in EM itself was one design (10 iterations, hard floors); a stronger adaptation (more iterations, annealed responsibilities) was not tried — the halt is on THIS design, the recommended M3c, not on mixture-growing in principle; per-color surprise attribution uses the mixture predictive's per-color terms (an approximation); the P1 band [0.5,1.5] was generous and the result (0.90–0.98) much tighter than required.",
     trace:{ script:"experiments/exp144_m3b_spawn_burnin.py", output:"experiments/outputs/exp144.txt" } },
 
-  { n:145, kind:"wall", chapter:"frontier",
+  { n:145, kind:"wall", chapter:"growth",
     title:"The honest judge and the wrong move: growth walks into a valley and turns back.",
     one:"Migration rung M3c, second HALT — and the mechanism pinned: live-probation acceptance is provably honest (70-86 percent of kept spawns show sustained benefit; the old replay vote disagreed with it 57-69 percent of the time), yet it correctly rejects nearly everything (4-30 kept of ~160 attempts) because every single addition genuinely hurts during its own trial — post-install surprise surges 0.9-1.6 to 1.5-5.0 nats. A fitness valley separates one component from K; greedy addition cannot cross it under any honest short-horizon test.",
     plain:"The approved fix worked exactly as designed — and that is how we finally saw the real problem. The new acceptance test judges each addition by whether the creature's lived surprise actually drops, and it is provably honest: the few additions it kept genuinely helped. But it rejected almost everything, correctly, because every single addition genuinely hurt during its trial: a new narrow piece steals belief-weight from the broad piece covering all four locations of a color, improving one and worsening three. Between one piece and the right four lies a valley — and one-step growth, judged honestly, walks in and turns back every time. The toolkit's unused operator — split, which divides a piece while keeping its coverage — is the move designed not to have this trap.",
@@ -1612,7 +1613,7 @@ window.AM_EXPERIMENTS = [
     caveat:"the valley account rests on the probation-surge numbers and the 1→2 vs ≥2 contrast (consistent but not a controlled sweep); the 0.1-nat keep margin and 400-step window are designed constants (a too-strict margin could mimic over-rejection — though the SURGE direction rules out marginal cases); split was not yet tried (that is M3d, not a claim).",
     trace:{ script:"experiments/exp145_m3c_live_probation.py", output:"experiments/outputs/exp145.txt" } },
 
-  { n:146, kind:"wall", chapter:"frontier",
+  { n:146, kind:"wall", chapter:"growth",
     title:"Three failures, one law: sharp-in-places loses to vague-everywhere.",
     one:"Migration rung M3d, third HALT — and the wall takes its true shape. The split operator surged like add (mean probation deltas +0.64 to +1.72 nats vs the predicted +0.1; keep rates 0/0/14.9 percent; the alarm never quiets), refuting the coverage-preservation prediction as implemented. Unified mechanism across Exp 144-146: under log-loss an incomplete tight cover loses to a complete loose cover — local growth moves judged by any honest short-horizon test are anti-productive until coverage is complete. Parked per the predeclared rule, two untried cracks named.",
     plain:"The third growing design — divide the too-broad piece into halves that inherit its territory — failed the same honest test, and its failure completed the picture. Splitting covers half the locations sharply and leaves half exposed, and the arithmetic of surprise is unforgiving: one badly-covered sighting costs more than several well-covered ones gain. All three failures are one fact from three sides: a mind cannot grow toward a many-placed concept piece by piece, judged honestly step by step. By the rule declared in advance, this is now a documented wall, parked with its two known untried cracks named, and the migration continues at the next rung.",
@@ -1678,7 +1679,7 @@ window.AM_EXPERIMENTS = [
     caveat:"nira's world is the friendly non-aliased one (the aliased world awaits a growth mechanism that can cross the documented valley); her \"conviction\" runs at the substrate's compressed range (the M4 limit); the birth is engineering — every scientific claim lives in Exp 141–150, not here; one seed, one life (as a spine should be).",
     trace:{ script:"experiments/exp151_m6_birth.py", output:"experiments/outputs/exp151.txt" } },
 
-  { n:152, kind:"wall", chapter:"frontier",
+  { n:152, kind:"wall", chapter:"growth",
     title:"The complete cover fails too — and points the finger at the shortcut itself.",
     one:"Growth crack 1, batch-jump, NEGATIVE as predeclared: complete per-color mixtures fitted in one move (K=4 chosen near-universally, replay NLL -1.4 to -1.9 — excellent fits, correctly placed) were rejected by the honest live test in 0 to 3.6 percent-acceptance across all three layouts, with probation surprise RISING ~1 nat. The autopsy arithmetic: under the unnormalized-footprint convention, sharpness buys no density gain, so K tight pieces speak at 1/K the volume of one vague piece — p(own color at own cell) ~0.25 to ~0.067 predicts the observed 1.7-2.8 nats. The dilution hypothesis goes to test in Exp 153 alongside the background floor.",
     plain:"The first authorized crack at the growth wall — fit the complete set of pieces in one move instead of growing piece by piece — was rejected by the creature's honest acceptance test in essentially every attempt. The strange part: the fitted pieces were excellent and placed exactly right. The autopsy explains it: under this substrate's declared shortcut, where a footprint is capped at full strength no matter how sharp, splitting a concept into four sharp pieces divides its voice by four with nothing gained. If that arithmetic holds, the growth wall is partly a property of the shortcut, not of growing — and the next experiment tests exactly that.",
@@ -1689,7 +1690,7 @@ window.AM_EXPERIMENTS = [
     caveat:"the dilution account is unverified arithmetic on this run's numbers (Exp 153 carries the predeclared normalized-density diagnostic arm); the budget design (one jump per color per 1200 steps) limited re-attempts; the EM covariance floor (1e-4) and 10 iterations were single design points.",
     trace:{ script:"experiments/exp152_m3e_batch_jump.py", output:"experiments/outputs/exp152.txt" } },
 
-  { n:153, kind:"partial", chapter:"frontier",
+  { n:153, kind:"partial", chapter:"growth",
     title:"Remove the cap and the alarm goes silent — but the bar was written for a world the success abolished.",
     one:"Crack 2 + the dilution diagnostic, NEGATIVE by the letter with the split that matters: the background floor behaved exactly as the dilution arithmetic predicted (harmless-but-insufficient, 3/3 layouts), while the normalized-density arm answered the alarm everywhere — drops 0.56-1.21 nats, ZERO detector events in 24/24 runs, 100 percent acceptance, finals as low as 0.003 — failing only a structure-count proxy its own success made obsolete (once two colors go sharp, the rest never need to grow). Verifier agreed and flagged the coverage mechanism independently.",
     plain:"Two arms. The safety-net design (keep the vague piece forever, add sharp ones on top) never hurt and never helped enough — sharp pieces still cannot out-shout the cap, exactly as predicted. The diagnostic arm removed the cap: judged by honest probability instead of capped footprints, every fitted set of sharp pieces was accepted, surprise collapsed, and the inadequacy alarm went completely silent in every run — the thing five designs failed to do. By the rule declared in advance it still counts as a failure, because the bar demanded most colors end up with many pieces, and the success undercut that. The bar measured structure; the goal was silence; we got silence.",
@@ -1700,7 +1701,7 @@ window.AM_EXPERIMENTS = [
     caveat:"the \"silence everywhere\" reading rests on the detector built for the unnormalized scale (0.7 nats) applied to normalized surprise within Arm B (an internal-bar choice, declared); colors-never-alarmed is success only if their PREDICTIONS are genuinely good (final surprise 0.003–0.31 says yes, but the per-color breakdown was not predeclared — Exp 154 predeclares it); the floor arm's acceptance counts (27–60%) show its probation was passable, just not bar-clearing.",
     trace:{ script:"experiments/exp153_m3f_floor_and_normalized.py", output:"experiments/outputs/exp153.txt" } },
 
-  { n:154, kind:"breakthrough", chapter:"frontier",
+  { n:154, kind:"breakthrough", chapter:"growth",
     title:"The growth wall falls: judged honestly, the creature grows its own mind on demand.",
     one:"Fresh-seed confirmation of the Exp 153 cure, POSITIVE 8/8 on every conjunct in all 3 layouts: with predictive evaluation switched to normalized densities (the conjugate update untouched), detector→grow→quiet runs end-to-end — global surprise drops 0.58–1.18 nats, ZERO detector events in 24/24 runs, jump acceptance 53/53, every color's final surprise under the 0.7 alarm bar. The blinded verifier agreed with no ambiguities. The five-design wall is RE-BOUNDED: it belonged to the capped-footprint evaluation convention, not to online structure growth.",
     plain:"Last time, removing the footprint cap silenced the inadequacy alarm in a diagnostic — but by a bar written for a world the success had abolished. This time the bar was restated honestly in advance — answer the alarm: surprise must drop, the detector must go fully quiet, every color must end below the alarm line — and the whole thing was re-run on seeds never used before. It passed everywhere. Every proposed expansion of the creature's world-model was accepted by its own lived-experience test, the alarm went silent in all 24 runs, and the wall that five designs died on turns out to have been a scoring artifact: sharp knowledge was being graded in a currency that made sharpness inaudible. This is the first end-to-end demonstration in this program of a mind noticing its model is too small, growing it, and verifying — by its own standard — that the growth worked.",

@@ -116,6 +116,37 @@
   @media(max-width:720px){.dd{grid-template-columns:1fr;}}
   .dd h2{font-family:var(--serif);font-size:27px;font-weight:500;margin:0;letter-spacing:-.01em;line-height:1.1;}
   .dd p{margin:12px 0 0;color:var(--ink-2);font-size:14px;max-width:54ch;line-height:1.55;}
+
+  /* ---------- lab status ---------- */
+  .lab-status{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:22px 24px 24px;}
+  .lab-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:760px){.lab-status-grid{grid-template-columns:1fr;}}
+  .ls-block{padding:0;}
+  .ls-label{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:10px;}
+  .ls-latest{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .ls-latest .ls-n{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
+  .ls-latest .ls-title{font-size:13px;color:var(--ink-2);line-height:1.45;}
+  .ls-tally{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+  .ls-chip{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+  .ls-chip.total{background:var(--paper-2);color:var(--ink-2);border:1px solid var(--line);}
+  .ls-chip.positive{background:var(--positive-soft);color:var(--positive-deep);border:1px solid var(--positive);}
+  .ls-chip.negative{background:var(--wall-soft);color:var(--wall);border:1px solid var(--wall);}
+  .ls-chip.mixed{background:var(--partial-soft);color:var(--partial);border:1px solid var(--partial);}
+  .ls-chip.breakthrough{background:var(--break-soft);color:var(--break-deep);border:1px solid var(--break);}
+  .ls-directions{display:flex;flex-direction:column;gap:7px;}
+  .ls-dir{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;padding:8px 10px;border:1px solid var(--line);background:rgba(255,255,255,.3);}
+  .ls-dir-name{font-size:12.5px;color:var(--ink);font-weight:500;line-height:1.3;}
+  .ls-dir-next{font-size:11px;color:var(--ink-3);margin-top:3px;line-height:1.4;}
+  .ls-state-chip{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+  .ls-state-chip.active{background:var(--positive-soft);color:var(--positive-deep);border:1px solid var(--positive);}
+  .ls-state-chip.halted{background:#fdf3dc;color:#8a6800;border:1px solid #e0c060;}
+  .ls-state-chip.exploratory{background:var(--paper-2);color:var(--ink-2);border:1px solid var(--line);}
+  .ls-state-chip.closed-positive{background:var(--paper-3);color:var(--ink-3);border:1px solid var(--line);}
+  .ls-state-chip.closed-negative{background:var(--paper-3);color:var(--ink-3);border:1px solid var(--line);}
+  .ls-state-chip.flagship-candidate{background:var(--break-soft);color:var(--break-deep);border:1px solid var(--break);}
+  .ls-flagship{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-2);}
+  .ls-flagship a{color:var(--accent);text-decoration:none;font-weight:500;}
+  .ls-flagship a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -126,6 +157,7 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="experiments-data.js?v=5"></script>
 <script src="am-live.js?v=5"></script>
+<script src="lab-status.js?v=5"></script>
 <script type="text/babel" src="tweaks-panel.jsx?v=5"></script>
 <script type="text/babel" src="am-shared.jsx?v=5"></script>
 
@@ -164,6 +196,7 @@ const ACT_SUMMARY = {
   embodiment:"Give it a body. Place cells self-organize, it learns where it is, and it plans far enough ahead to reach what it wants.",
   opinion:"Two identical creatures, raised in different worlds, come to value different things — and act on opinions that are entirely their own.",
   frontier:"The honest boundary of 'from scratch', abstraction that scales, and a runnable demo where you ask it, in words, what it thinks.",
+  growth:"The world stops being friendly: colors repeat, noise is irreducible, the map is the wrong shape. A structural-inadequacy alarm is built and validated, five growth designs fail its honest acceptance test, the wall is traced to a scoring artifact — and once scoring is honest, the creature grows its own model on demand: alarm to silence, 24 runs out of 24.",
 };
 
 function Hero({tally, status}){
@@ -178,7 +211,7 @@ function Hero({tally, status}){
         <div>
           <div className="kicker">An autonomous research log · active inference</div>
           <h1 className="h-display">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
-          <p className="lead">No rewards. Nothing pretrained. Word-labels only ever taught — every value and concept self-formed. Just an agent that minimizes its own <b>free energy</b> — the gap between what it predicts and what it senses — and slowly assembles a toy agent that <b>localizes, learns its map, forms preferences, and acts — in a 4×4 world it has to figure out from experience.</b></p>
+          <p className="lead"><b>active_monkey is an open-source toy active-inference lab</b>: persistent agents at deliberately small scale that learn, act, form preferences, forget, and revise their world models through lived experience. It began as one question — can an agent form its own opinions from experience, never pretrained? — and grew into a multi-act research program. The founding arc reached its answer at toy scale. The lab kept going: worlds that change, models that grow, agents that notice their worldview is too small.</p>
           <div className="hero-cta">
             <a className="btn btn-primary" href="journey.html">Follow the journey →</a>
             <a className="btn btn-ghost" href="open_problem.html">The open problem</a>
@@ -263,12 +296,69 @@ function HowItWorks(){
   );
 }
 
+function LabStatus(){
+  const s = window.AM_LAB_STATUS;
+  if(!s) return null;
+  const stateClass = st => st ? st.replace(/[^a-z-]/g,'') : 'exploratory';
+  return (
+    <section id="lab-status">
+      <div className="wrap">
+        <Reveal className="sec-head">
+          <div className="kicker">The lab right now</div>
+          <h2 className="h-section">Where the research stands.</h2>
+        </Reveal>
+        <Reveal delay={60}>
+          <div className="lab-status">
+            <div className="lab-status-grid">
+              <div className="ls-block">
+                <div className="ls-label">Latest experiment</div>
+                <div className="ls-latest">
+                  <span className="ls-n">{String(s.latest_exp.n).padStart(2,"0")}</span>
+                  <span className="ls-title">{s.latest_exp.title}</span>
+                  {s.latest_exp.tag && <span className={"ls-chip "+(s.latest_exp.tag==="breakthrough"?"breakthrough":s.latest_exp.tag==="positive"?"positive":s.latest_exp.tag==="wall"?"negative":"mixed")}>{s.latest_exp.tag}</span>}
+                </div>
+                <div className="ls-tally" style={{marginTop:16}}>
+                  <div className="ls-label" style={{marginBottom:6,marginTop:0,width:'100%'}}>Tally</div>
+                  <span className="ls-chip total">{s.tally.total} total</span>
+                  <span className="ls-chip positive">{s.tally.positive} positive</span>
+                  <span className="ls-chip negative">{s.tally.negative} walls</span>
+                  <span className="ls-chip mixed">{s.tally.mixed} partial</span>
+                  {s.tally.breakthroughs > 0 && <span className="ls-chip breakthrough">{s.tally.breakthroughs} breakthrough{s.tally.breakthroughs!==1?"s":""}</span>}
+                </div>
+                {s.flagship && (
+                  <div className="ls-flagship">
+                    Flagship draft: <a href={s.flagship.page} target="_blank" rel="noopener">{s.flagship.title} ↗</a>
+                  </div>
+                )}
+              </div>
+              <div className="ls-block">
+                <div className="ls-label">Research directions</div>
+                <div className="ls-directions">
+                  {s.directions.map((d,i)=>(
+                    <div className="ls-dir" key={i}>
+                      <div>
+                        <div className="ls-dir-name">{d.name}</div>
+                        {d.next && <div className="ls-dir-next">{d.next}</div>}
+                      </div>
+                      <span className={"ls-state-chip "+stateClass(d.state)}>{d.state}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function Climb({exps}){
   return (
     <section id="climb">
       <div className="wrap">
         <Reveal className="sec-head">
-          <div className="kicker">The climb · five acts</div>
+          <div className="kicker">The acts</div>
           <h2 className="h-section">A small agent, learning its world.</h2>
           <p>Every experiment is one hypothesis and its honest result. They read as an ascent — each act a question the agent had to answer before it could climb to the next. The log is append-only, so it keeps growing.</p>
         </Reveal>
@@ -384,6 +474,7 @@ function App(){
       <hr className="rule" style={{maxWidth:'var(--maxw)',margin:'0 auto'}}/>
       <Lenses/>
       <div style={{background:'var(--paper-2)'}}><HowItWorks/></div>
+      <LabStatus/>
       <Climb exps={exps}/>
       <Takeaways/>
       <div style={{background:'var(--paper-2)'}}><Loop/></div>
