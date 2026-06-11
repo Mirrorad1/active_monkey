@@ -17,7 +17,7 @@ window.AM_CHAPTERS = [
   { id:"frontier",   act:"V",   label:"Frontier",   question:"Can we talk to it?",             color:"fro" }
 ];
 
-window.AM_TALLY = { total:151, breakthrough:6, positive:87, wall:24, partial:34, from:4.81, to:4.00 };
+window.AM_TALLY = { total:152, breakthrough:6, positive:87, wall:25, partial:34, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -1525,7 +1525,17 @@ window.AM_EXPERIMENTS = [
     setup:"ContinuousCreature mirrors the tabular creature conventions exactly — derived rng, append-only biography, state hash, save and load — packaged from the migration experiments with no behavioral changes; predeclarations were round-trip exactness, guard coverage, and the experiment sanity bands.",
     result:"Every property passed; a resume-isolation bug (verification copies writing to the real biography) was caught and fixed before the state was committed. The clade now holds two tabular lives and one continuous species line under creature/state/nira/.",
     implication:"The migration ladder is complete: perceive, learn, want, act, speak, persist — on the continuous substrate, with its two walls documented rather than hidden. The closing synthesis and consult follow.",
-    trace:{ script:"experiments/exp151_m6_birth.py", output:"experiments/outputs/exp151.txt" } }
+    trace:{ script:"experiments/exp151_m6_birth.py", output:"experiments/outputs/exp151.txt" } },
+
+  { n:152, kind:"wall", chapter:"frontier",
+    title:"The complete cover fails too — and points the finger at the shortcut itself.",
+    one:"Growth crack 1, batch-jump, NEGATIVE as predeclared: complete per-color mixtures fitted in one move (K=4 chosen near-universally, replay NLL -1.4 to -1.9 — excellent fits, correctly placed) were rejected by the honest live test in 0 to 3.6 percent-acceptance across all three layouts, with probation surprise RISING ~1 nat. The autopsy arithmetic: under the unnormalized-footprint convention, sharpness buys no density gain, so K tight pieces speak at 1/K the volume of one vague piece — p(own color at own cell) ~0.25 to ~0.067 predicts the observed 1.7-2.8 nats. The dilution hypothesis goes to test in Exp 153 alongside the background floor.",
+    plain:"The first authorized crack at the growth wall — fit the complete set of pieces in one move instead of growing piece by piece — was rejected by the creature's honest acceptance test in essentially every attempt. The strange part: the fitted pieces were excellent and placed exactly right. The autopsy explains it: under this substrate's declared shortcut, where a footprint is capped at full strength no matter how sharp, splitting a concept into four sharp pieces divides its voice by four with nothing gained. If that arithmetic holds, the growth wall is partly a property of the shortcut, not of growing — and the next experiment tests exactly that.",
+    metric:{ from:0.25, to:0.067, unit:"predicted own-color probability at own cell, before vs after the jump — the dilution arithmetic the observed surge matches" },
+    setup:"Exp 145's worlds and machinery with the move changed to batch-jump: EM-fitted complete mixtures, K selected by penalized replay likelihood, replace-and-probate as one move under the validated live test. The proceed-to-background-floor consequence was pre-authorized by the human; the blinded verifier checked the verdict before logging.",
+    result:"Falsifier triggered maximally (surprise arm 0/8 in 3/3 layouts); localization untouched 24/24; the verifier agreed conjunct-by-conjunct. The dilution account is marked post-hoc, unclaimed, and predeclared for test in the next experiment.",
+    implication:"Crack 1 is spent. Exp 153 runs crack 2 (the background floor) plus the diagnostic that could re-bound the whole wall: the same growth under normalized densities, where sharp pieces are finally allowed to be loud.",
+    trace:{ script:"experiments/exp152_m3e_batch_jump.py", output:"experiments/outputs/exp152.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

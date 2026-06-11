@@ -1,0 +1,619 @@
+================================================================================
+Exp 152 — continuous-creature rung M3e: BATCH-JUMP
+================================================================================
+
+
+================================================================================
+LAYOUT 1  (rng(7))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 1, 2, 0]
+    row 1: [2, 3, 0, 1]
+    row 2: [0, 3, 0, 3]
+    row 3: [3, 2, 1, 2]
+  CMAP array: [1, 1, 2, 0, 2, 3, 0, 1, 0, 3, 0, 3, 3, 2, 1, 2]
+
+  Color -> cells and centers:
+    color 0: cells [3, 6, 8, 10]  centers [[3.0, 0.0], [2.0, 1.0], [0.0, 2.0], [2.0, 2.0]]
+    color 1: cells [0, 1, 7, 14]  centers [[0.0, 0.0], [1.0, 0.0], [3.0, 1.0], [2.0, 3.0]]
+    color 2: cells [2, 4, 13, 15]  centers [[2.0, 0.0], [0.0, 1.0], [1.0, 3.0], [3.0, 3.0]]
+    color 3: cells [5, 9, 11, 12]  centers [[1.0, 1.0], [1.0, 2.0], [3.0, 2.0], [0.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta  TwinF500
+--------------------------------------------------------------------------------------------------------------
+      [K-select] attempt#0 color=0 pairs=87
+        K=2: nll=1.1940  score=1.2940
+        K=3: nll=-0.9011  score=-0.7511
+        K=4: nll=-1.5792  score=-1.3792 <-- CHOSEN
+      [K-select] attempt#1 color=1 pairs=108
+        K=2: nll=0.9645  score=1.0645
+        K=3: nll=-1.1358  score=-0.9858
+        K=4: nll=-2.0409  score=-1.8409 <-- CHOSEN
+      [K-select] attempt#2 color=3 pairs=97
+        K=2: nll=1.7238  score=1.8238
+        K=3: nll=-0.9642  score=-0.8142
+        K=4: nll=-1.7973  score=-1.5973 <-- CHOSEN
+      [K-select] attempt#3 color=2 pairs=92
+        K=2: nll=1.6979  score=1.7979
+        K=3: nll=-1.4457  score=-1.2957
+        K=4: nll=-2.1258  score=-1.9258 <-- CHOSEN
+      [K-select] attempt#4 color=0 pairs=100
+        K=2: nll=1.4583  score=1.5583
+        K=3: nll=-1.0649  score=-0.9149
+        K=4: nll=-1.8167  score=-1.6167 <-- CHOSEN
+      [K-select] attempt#5 color=1 pairs=105
+        K=2: nll=1.0390  score=1.1390
+        K=3: nll=-1.1714  score=-1.0214
+        K=4: nll=-2.0689  score=-1.8689 <-- CHOSEN
+      [K-select] attempt#6 color=3 pairs=80
+        K=2: nll=0.9327  score=1.0327
+        K=3: nll=-1.1502  score=-1.0002
+        K=4: nll=-1.9308  score=-1.7308 <-- CHOSEN
+      [K-select] attempt#7 color=2 pairs=116
+        K=2: nll=1.2503  score=1.3503
+        K=3: nll=-0.9912  score=-0.8412
+        K=4: nll=-2.3200  score=-2.1200 <-- CHOSEN
+      [K-select] attempt#8 color=0 pairs=101
+        K=2: nll=0.1129  score=0.2129
+        K=3: nll=-1.3217  score=-1.1717
+        K=4: nll=-1.8574  score=-1.6574 <-- CHOSEN
+      [K-select] attempt#9 color=1 pairs=95
+        K=2: nll=1.4873  score=1.5873
+        K=3: nll=-1.6111  score=-1.4611
+        K=4: nll=-2.1832  score=-1.9832 <-- CHOSEN
+      [K-select] attempt#10 color=3 pairs=111
+        K=2: nll=1.1957  score=1.2957
+        K=3: nll=-1.0706  score=-0.9206
+        K=4: nll=-1.7805  score=-1.5805 <-- CHOSEN
+      [K-select] attempt#11 color=2 pairs=77
+        K=2: nll=1.5930  score=1.6930
+        K=3: nll=-0.9974  score=-0.8474
+        K=4: nll=-2.0780  score=-1.8780 <-- CHOSEN
+      [K-select] attempt#12 color=0 pairs=92
+        K=2: nll=0.6991  score=0.7991
+        K=3: nll=-1.1586  score=-1.0086
+        K=4: nll=-1.8485  score=-1.6485 <-- CHOSEN
+      [K-select] attempt#13 color=3 pairs=97
+        K=2: nll=1.2924  score=1.3924
+        K=3: nll=-1.0885  score=-0.9385
+        K=4: nll=-1.8901  score=-1.6901 <-- CHOSEN
+      [K-select] attempt#14 color=1 pairs=118
+        K=2: nll=0.7328  score=0.8328
+        K=3: nll=-1.0918  score=-0.9418
+        K=4: nll=-2.1192  score=-1.9192 <-- CHOSEN
+   0   1.2625   1.3312  -0.069      258  [1, 1, 1, 1]     0    15  0.0412       0%       N/A    1.0000
+   1   1.2340   1.2570  -0.023      354  [1, 1, 1, 1]     0    15  0.0479       0%       N/A    1.0000
+   2   1.2696   1.3186  -0.049      365  [1, 1, 1, 1]     0    15  0.0365       0%       N/A    1.0000
+   3   1.2854   1.2718   0.014      313  [1, 1, 1, 1]     0    15  0.0420       0%       N/A    1.0000
+   4   1.3267   1.3815  -0.055      142  [1, 1, 1, 1]     0    15  0.0404       0%       N/A    1.0000
+   5   1.2073   1.1854   0.022      416  [1, 1, 1, 1]     0    15  0.0436       0%       N/A    1.0000
+   6   1.2196   1.2826  -0.063      289  [1, 1, 1, 1]     0    15  0.0461       0%       N/A    1.0000
+   7   1.2663   1.2351   0.031      276  [1, 1, 1, 1]     0    15  0.0435       0%       N/A    1.0000
+
+  Per-jump attempt detail (Layout 1):
+    seed=0 jump#1: color=0  K=4  pre=1.5671  prob=2.4469  delta=-0.8798  REVT  [K2:1.294 K3:-0.751 K4:-1.379]
+    seed=0 jump#2: color=1  K=4  pre=0.7764  prob=1.7706  delta=-0.9942  REVT  [K2:1.064 K3:-0.986 K4:-1.841]
+    seed=0 jump#3: color=3  K=4  pre=1.2302  prob=2.5669  delta=-1.3367  REVT  [K2:1.824 K3:-0.814 K4:-1.597]
+    seed=0 jump#4: color=2  K=4  pre=0.8996  prob=1.9134  delta=-1.0138  REVT  [K2:1.798 K3:-1.296 K4:-1.926]
+    seed=0 jump#5: color=0  K=4  pre=1.1068  prob=2.6382  delta=-1.5314  REVT  [K2:1.558 K3:-0.915 K4:-1.617]
+    seed=0 jump#6: color=1  K=4  pre=0.7566  prob=1.9277  delta=-1.1711  REVT  [K2:1.139 K3:-1.021 K4:-1.869]
+    seed=0 jump#7: color=3  K=4  pre=1.2937  prob=2.5693  delta=-1.2756  REVT  [K2:1.033 K3:-1.000 K4:-1.731]
+    seed=0 jump#8: color=2  K=4  pre=0.7737  prob=2.2246  delta=-1.4509  REVT  [K2:1.350 K3:-0.841 K4:-2.120]
+    seed=0 jump#9: color=0  K=4  pre=1.2745  prob=2.5664  delta=-1.2920  REVT  [K2:0.213 K3:-1.172 K4:-1.657]
+    seed=0 jump#10: color=1  K=4  pre=0.8200  prob=1.9722  delta=-1.1521  REVT  [K2:1.587 K3:-1.461 K4:-1.983]
+    seed=0 jump#11: color=3  K=4  pre=1.1934  prob=2.3480  delta=-1.1546  REVT  [K2:1.296 K3:-0.921 K4:-1.580]
+    seed=0 jump#12: color=2  K=4  pre=0.7969  prob=1.9329  delta=-1.1360  REVT  [K2:1.693 K3:-0.847 K4:-1.878]
+    seed=0 jump#13: color=0  K=4  pre=1.1963  prob=2.4590  delta=-1.2627  REVT  [K2:0.799 K3:-1.009 K4:-1.648]
+    seed=0 jump#14: color=3  K=4  pre=1.2328  prob=2.3369  delta=-1.1041  REVT  [K2:1.392 K3:-0.938 K4:-1.690]
+    seed=0 jump#15: color=1  K=4  pre=0.8650  prob=1.9542  delta=  N/A  REVT  [K2:0.833 K3:-0.942 K4:-1.919]
+    seed=1 jump#1: color=0  K=4  pre=1.3645  prob=2.4023  delta=-1.0378  REVT  [K2:0.860 K3:-0.852 K4:-1.504]
+    seed=1 jump#2: color=2  K=4  pre=0.8299  prob=1.9152  delta=-1.0853  REVT  [K2:1.395 K3:-0.788 K4:-2.000]
+    seed=1 jump#3: color=3  K=4  pre=1.2043  prob=2.4640  delta=-1.2597  REVT  [K2:-0.064 K3:-1.119 K4:-1.733]
+    seed=1 jump#4: color=1  K=4  pre=0.8656  prob=1.8493  delta=-0.9837  REVT  [K2:1.709 K3:-1.401 K4:-1.923]
+    seed=1 jump#5: color=0  K=4  pre=1.0382  prob=2.4317  delta=-1.3934  REVT  [K2:1.502 K3:-0.726 K4:-1.499]
+    seed=1 jump#6: color=2  K=4  pre=0.8186  prob=2.0861  delta=-1.2675  REVT  [K2:1.337 K3:-0.692 K4:-1.992]
+    seed=1 jump#7: color=3  K=4  pre=1.2691  prob=2.4895  delta=-1.2204  REVT  [K2:1.160 K3:-0.682 K4:-1.552]
+    seed=1 jump#8: color=1  K=4  pre=0.8302  prob=1.9311  delta=-1.1009  REVT  [K2:1.138 K3:-1.047 K4:-1.895]
+    seed=1 jump#9: color=0  K=4  pre=1.1580  prob=2.5991  delta=-1.4410  REVT  [K2:1.227 K3:-0.800 K4:-1.534]
+    seed=1 jump#10: color=2  K=4  pre=0.9320  prob=1.9996  delta=-1.0676  REVT  [K2:1.538 K3:-0.898 K4:-1.835]
+    seed=1 jump#11: color=3  K=4  pre=1.1435  prob=2.6784  delta=-1.5349  REVT  [K2:0.627 K3:-1.340 K4:-1.822]
+    seed=1 jump#12: color=1  K=4  pre=0.8670  prob=1.7725  delta=-0.9055  REVT  [K2:1.497 K3:-1.250 K4:-1.850]
+    seed=1 jump#13: color=0  K=4  pre=1.2214  prob=2.3626  delta=-1.1412  REVT  [K2:1.388 K3:-0.943 K4:-1.592]
+    seed=1 jump#14: color=2  K=4  pre=0.9020  prob=1.9665  delta=-1.0645  REVT  [K2:1.821 K3:-0.845 K4:-1.776]
+    seed=1 jump#15: color=3  K=4  pre=1.1086  prob=2.0225  delta=  N/A  REVT  [K2:1.009 K3:-0.889 K4:-1.450]
+    seed=2 jump#1: color=0  K=4  pre=1.4599  prob=2.3138  delta=-0.8539  REVT  [K2:1.380 K3:-0.674 K4:-1.225]
+    seed=2 jump#2: color=1  K=4  pre=0.7018  prob=2.1809  delta=-1.4790  REVT  [K2:0.753 K3:-0.916 K4:-2.017]
+    seed=2 jump#3: color=3  K=4  pre=1.2457  prob=2.5560  delta=-1.3104  REVT  [K2:0.751 K3:-1.000 K4:-1.596]
+    seed=2 jump#4: color=2  K=4  pre=0.8570  prob=1.8879  delta=-1.0308  REVT  [K2:1.633 K3:-0.756 K4:-1.828]
+    seed=2 jump#5: color=0  K=4  pre=1.1913  prob=2.5198  delta=-1.3285  REVT  [K2:1.265 K3:-0.855 K4:-1.522]
+    seed=2 jump#6: color=1  K=4  pre=0.8051  prob=1.8970  delta=-1.0919  REVT  [K2:1.288 K3:-1.188 K4:-1.880]
+    seed=2 jump#7: color=3  K=4  pre=1.1768  prob=2.3907  delta=-1.2139  REVT  [K2:1.184 K3:-1.042 K4:-1.627]
+    seed=2 jump#8: color=2  K=4  pre=0.8097  prob=1.9104  delta=-1.1007  REVT  [K2:1.372 K3:-0.635 K4:-1.897]
+    seed=2 jump#9: color=0  K=4  pre=1.2042  prob=2.5251  delta=-1.3209  REVT  [K2:1.345 K3:-0.689 K4:-1.524]
+    seed=2 jump#10: color=1  K=4  pre=0.8929  prob=1.9427  delta=-1.0497  REVT  [K2:1.304 K3:-1.285 K4:-1.930]
+    seed=2 jump#11: color=3  K=4  pre=1.2247  prob=2.3601  delta=-1.1354  REVT  [K2:1.245 K3:-0.903 K4:-1.616]
+    seed=2 jump#12: color=2  K=4  pre=0.8617  prob=1.9399  delta=-1.0782  REVT  [K2:1.433 K3:-0.667 K4:-1.865]
+    seed=2 jump#13: color=0  K=4  pre=1.1039  prob=2.5004  delta=-1.3965  REVT  [K2:1.689 K3:-1.006 K4:-1.704]
+    seed=2 jump#14: color=1  K=4  pre=0.6870  prob=2.1254  delta=-1.4384  REVT  [K2:0.679 K3:-1.055 K4:-1.969]
+    seed=2 jump#15: color=3  K=4  pre=1.0763  prob=2.4095  delta=  N/A  REVT  [K2:1.651 K3:-1.290 K4:-1.802]
+    seed=3 jump#1: color=0  K=4  pre=1.4571  prob=2.4288  delta=-0.9717  REVT  [K2:1.690 K3:-0.945 K4:-1.561]
+    seed=3 jump#2: color=1  K=4  pre=0.7038  prob=1.8984  delta=-1.1947  REVT  [K2:1.046 K3:-0.958 K4:-1.771]
+    seed=3 jump#3: color=3  K=4  pre=1.2506  prob=2.5151  delta=-1.2645  REVT  [K2:1.917 K3:-1.105 K4:-1.667]
+    seed=3 jump#4: color=2  K=4  pre=0.9612  prob=1.9128  delta=-0.9516  REVT  [K2:1.170 K3:-1.219 K4:-1.899]
+    seed=3 jump#5: color=0  K=4  pre=1.1384  prob=2.5874  delta=-1.4490  REVT  [K2:1.152 K3:-1.004 K4:-1.656]
+    seed=3 jump#6: color=1  K=4  pre=0.8408  prob=1.8071  delta=-0.9663  REVT  [K2:0.983 K3:-1.107 K4:-1.941]
+    seed=3 jump#7: color=3  K=4  pre=1.2090  prob=2.3721  delta=-1.1630  REVT  [K2:1.297 K3:-0.861 K4:-1.535]
+    seed=3 jump#8: color=2  K=4  pre=0.7991  prob=2.0837  delta=-1.2847  REVT  [K2:0.882 K3:-0.803 K4:-2.072]
+    seed=3 jump#9: color=0  K=4  pre=1.2734  prob=2.6221  delta=-1.3487  REVT  [K2:1.157 K3:-1.211 K4:-1.715]
+    seed=3 jump#10: color=1  K=4  pre=0.8245  prob=2.0560  delta=-1.2315  REVT  [K2:1.039 K3:-1.004 K4:-2.001]
+    seed=3 jump#11: color=3  K=4  pre=1.2669  prob=2.4809  delta=-1.2140  REVT  [K2:0.989 K3:-0.816 K4:-1.507]
+    seed=3 jump#12: color=2  K=4  pre=0.8222  prob=1.9584  delta=-1.1362  REVT  [K2:1.638 K3:-0.739 K4:-1.884]
+    seed=3 jump#13: color=0  K=4  pre=1.0888  prob=2.4605  delta=-1.3718  REVT  [K2:1.577 K3:-1.644 K4:-2.037]
+    seed=3 jump#14: color=1  K=4  pre=0.8139  prob=1.5613  delta=-0.7475  REVT  [K2:0.909 K3:-1.032 K4:-1.969]
+    seed=3 jump#15: color=3  K=4  pre=1.2924  prob=2.2476  delta=  N/A  REVT  [K2:1.524 K3:-0.660 K4:-1.685]
+    seed=4 jump#1: color=0  K=4  pre=1.5408  prob=2.5449  delta=-1.0042  REVT  [K2:1.479 K3:-0.786 K4:-1.346]
+    seed=4 jump#2: color=1  K=4  pre=0.7514  prob=1.8336  delta=-1.0821  REVT  [K2:1.256 K3:-1.088 K4:-1.826]
+    seed=4 jump#3: color=3  K=4  pre=1.1113  prob=2.6706  delta=-1.5593  REVT  [K2:1.749 K3:-0.960 K4:-1.588]
+    seed=4 jump#4: color=2  K=4  pre=0.8214  prob=1.6949  delta=-0.8734  REVT  [K2:1.527 K3:-0.698 K4:-1.808]
+    seed=4 jump#5: color=0  K=4  pre=1.1854  prob=2.4625  delta=-1.2771  REVT  [K2:1.497 K3:-0.792 K4:-1.500]
+    seed=4 jump#6: color=1  K=4  pre=0.8805  prob=2.0354  delta=-1.1549  REVT  [K2:1.974 K3:-1.735 K4:-2.096]
+    seed=4 jump#7: color=3  K=4  pre=1.1597  prob=2.2604  delta=-1.1007  REVT  [K2:1.779 K3:-1.134 K4:-1.656]
+    seed=4 jump#8: color=2  K=4  pre=0.8310  prob=1.9231  delta=-1.0921  REVT  [K2:1.442 K3:-0.590 K4:-1.861]
+    seed=4 jump#9: color=0  K=4  pre=1.2467  prob=2.5732  delta=-1.3265  REVT  [K2:1.149 K3:-0.971 K4:-1.561]
+    seed=4 jump#10: color=1  K=4  pre=0.8414  prob=1.8668  delta=-1.0254  REVT  [K2:1.762 K3:-1.436 K4:-1.909]
+    seed=4 jump#11: color=3  K=4  pre=1.1868  prob=2.4291  delta=-1.2423  REVT  [K2:0.784 K3:-0.805 K4:-1.510]
+    seed=4 jump#12: color=2  K=4  pre=0.9465  prob=1.9178  delta=-0.9712  REVT  [K2:1.691 K3:-0.870 K4:-1.870]
+    seed=4 jump#13: color=0  K=4  pre=1.2449  prob=2.5539  delta=-1.3090  REVT  [K2:1.157 K3:-0.954 K4:-1.584]
+    seed=4 jump#14: color=3  K=4  pre=1.2560  prob=2.4592  delta=-1.2031  REVT  [K2:0.982 K3:-0.872 K4:-1.625]
+    seed=4 jump#15: color=1  K=4  pre=0.8719  prob=1.9896  delta=  N/A  REVT  [K2:1.446 K3:-1.122 K4:-1.831]
+    seed=5 jump#1: color=0  K=4  pre=1.6312  prob=2.4772  delta=-0.8459  REVT  [K2:1.631 K3:-1.218 K4:-1.717]
+    seed=5 jump#2: color=2  K=4  pre=0.8899  prob=1.8337  delta=-0.9438  REVT  [K2:1.889 K3:-1.082 K4:-1.859]
+    seed=5 jump#3: color=3  K=4  pre=1.0476  prob=2.4556  delta=-1.4079  REVT  [K2:0.745 K3:-1.079 K4:-1.703]
+    seed=5 jump#4: color=1  K=4  pre=1.0694  prob=2.1001  delta=-1.0306  REVT  [K2:1.145 K3:-1.121 K4:-1.879]
+    seed=5 jump#5: color=0  K=4  pre=1.2793  prob=2.3866  delta=-1.1073  REVT  [K2:1.320 K3:-0.911 K4:-1.615]
+    seed=5 jump#6: color=2  K=4  pre=0.8634  prob=1.7951  delta=-0.9316  REVT  [K2:1.501 K3:-1.033 K4:-2.077]
+    seed=5 jump#7: color=3  K=4  pre=1.0155  prob=2.5398  delta=-1.5243  REVT  [K2:1.418 K3:-0.755 K4:-1.635]
+    seed=5 jump#8: color=1  K=4  pre=1.2372  prob=2.0042  delta=-0.7669  REVT  [K2:1.852 K3:-1.604 K4:-1.969]
+    seed=5 jump#9: color=0  K=4  pre=1.1797  prob=2.7665  delta=-1.5867  REVT  [K2:1.421 K3:-1.309 K4:-1.731]
+    seed=5 jump#10: color=3  K=4  pre=1.1746  prob=2.6705  delta=-1.4959  REVT  [K2:1.803 K3:-1.082 K4:-1.757]
+    seed=5 jump#11: color=2  K=4  pre=0.8717  prob=2.0387  delta=-1.1671  REVT  [K2:1.854 K3:-1.092 K4:-1.973]
+    seed=5 jump#12: color=0  K=4  pre=1.1360  prob=2.7130  delta=-1.5770  REVT  [K2:1.500 K3:-1.289 K4:-1.783]
+    seed=5 jump#13: color=1  K=4  pre=1.1415  prob=1.9003  delta=-0.7588  REVT  [K2:0.485 K3:-1.525 K4:-1.891]
+    seed=5 jump#14: color=3  K=4  pre=1.1781  prob=2.3013  delta=-1.1232  REVT  [K2:1.847 K3:-0.956 K4:-1.588]
+    seed=5 jump#15: color=2  K=4  pre=0.7726  prob=2.0471  delta=  N/A  REVT  [K2:1.404 K3:-0.648 K4:-2.050]
+    seed=6 jump#1: color=0  K=4  pre=1.5556  prob=2.4489  delta=-0.8932  REVT  [K2:1.179 K3:-0.768 K4:-1.308]
+    seed=6 jump#2: color=1  K=4  pre=0.6121  prob=2.0269  delta=-1.4148  REVT  [K2:0.866 K3:-0.955 K4:-1.974]
+    seed=6 jump#3: color=3  K=4  pre=1.1904  prob=2.6089  delta=-1.4184  REVT  [K2:1.903 K3:-1.084 K4:-1.650]
+    seed=6 jump#4: color=2  K=4  pre=0.9318  prob=2.1568  delta=-1.2251  REVT  [K2:0.820 K3:-0.976 K4:-2.087]
+    seed=6 jump#5: color=0  K=4  pre=1.1528  prob=2.4508  delta=-1.2980  REVT  [K2:1.582 K3:-1.079 K4:-1.682]
+    seed=6 jump#6: color=3  K=4  pre=1.3469  prob=2.6241  delta=-1.2771  REVT  [K2:0.149 K3:-1.148 K4:-1.753]
+    seed=6 jump#7: color=1  K=4  pre=1.0430  prob=1.8439  delta=-0.8009  REVT  [K2:1.500 K3:-1.276 K4:-1.881]
+    seed=6 jump#8: color=0  K=4  pre=1.1411  prob=2.4150  delta=-1.2739  REVT  [K2:1.008 K3:-0.579 K4:-1.500]
+    seed=6 jump#9: color=2  K=4  pre=1.0174  prob=2.0679  delta=-1.0505  REVT  [K2:0.891 K3:-1.366 K4:-1.942]
+    seed=6 jump#10: color=3  K=4  pre=0.9988  prob=2.8393  delta=-1.8405  REVT  [K2:1.799 K3:-1.036 K4:-1.799]
+    seed=6 jump#11: color=1  K=4  pre=0.8682  prob=1.7124  delta=-0.8442  REVT  [K2:0.943 K3:-1.185 K4:-1.894]
+    seed=6 jump#12: color=0  K=4  pre=1.0846  prob=2.4173  delta=-1.3327  REVT  [K2:1.386 K3:-0.916 K4:-1.632]
+    seed=6 jump#13: color=2  K=4  pre=0.8502  prob=1.7719  delta=-0.9217  REVT  [K2:1.471 K3:-0.748 K4:-1.848]
+    seed=6 jump#14: color=3  K=4  pre=1.2252  prob=2.6990  delta=-1.4738  REVT  [K2:1.413 K3:-0.741 K4:-1.572]
+    seed=6 jump#15: color=1  K=4  pre=0.9188  prob=1.8260  delta=  N/A  REVT  [K2:1.098 K3:-0.917 K4:-1.736]
+    seed=7 jump#1: color=0  K=4  pre=1.5355  prob=2.4966  delta=-0.9612  REVT  [K2:1.431 K3:-0.795 K4:-1.463]
+    seed=7 jump#2: color=1  K=4  pre=1.0195  prob=1.9119  delta=-0.8924  REVT  [K2:1.187 K3:-1.004 K4:-1.853]
+    seed=7 jump#3: color=3  K=4  pre=1.2852  prob=2.2163  delta=-0.9311  REVT  [K2:0.643 K3:-0.781 K4:-1.496]
+    seed=7 jump#4: color=2  K=4  pre=0.7590  prob=1.7189  delta=-0.9599  REVT  [K2:1.298 K3:-0.769 K4:-1.944]
+    seed=7 jump#5: color=0  K=4  pre=1.1925  prob=2.5905  delta=-1.3980  REVT  [K2:1.341 K3:-0.953 K4:-1.663]
+    seed=7 jump#6: color=1  K=4  pre=0.9726  prob=1.7934  delta=-0.8209  REVT  [K2:1.907 K3:-1.618 K4:-2.015]
+    seed=7 jump#7: color=3  K=4  pre=1.2465  prob=2.2226  delta=-0.9761  REVT  [K2:1.106 K3:-0.682 K4:-1.398]
+    seed=7 jump#8: color=0  K=4  pre=1.3277  prob=2.6077  delta=-1.2800  REVT  [K2:1.190 K3:-1.107 K4:-1.757]
+    seed=7 jump#9: color=2  K=4  pre=0.8801  prob=1.8852  delta=-1.0051  REVT  [K2:1.327 K3:-1.041 K4:-1.835]
+    seed=7 jump#10: color=3  K=4  pre=1.0793  prob=2.5606  delta=-1.4813  REVT  [K2:1.251 K3:-1.207 K4:-1.766]
+    seed=7 jump#11: color=1  K=4  pre=0.8728  prob=2.0940  delta=-1.2211  REVT  [K2:0.915 K3:-0.847 K4:-1.842]
+    seed=7 jump#12: color=0  K=4  pre=1.1224  prob=2.5959  delta=-1.4736  REVT  [K2:1.496 K3:-0.921 K4:-1.600]
+    seed=7 jump#13: color=2  K=4  pre=0.8554  prob=1.8065  delta=-0.9510  REVT  [K2:1.813 K3:-1.043 K4:-1.883]
+    seed=7 jump#14: color=3  K=4  pre=1.0432  prob=2.3670  delta=-1.3238  REVT  [K2:0.680 K3:-1.093 K4:-1.621]
+    seed=7 jump#15: color=1  K=4  pre=1.0272  prob=1.7984  delta=  N/A  REVT  [K2:1.653 K3:-1.297 K4:-1.844]
+
+  TALLIES — Layout 1
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 1: FAIL
+    seed=0: plateau=1.2625  final=1.3312  drop=-0.069  finCeil=258  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=1.2340  final=1.2570  drop=-0.023  finCeil=354  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.2696  final=1.3186  drop=-0.049  finCeil=365  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.2854  final=1.2718  drop=0.014  finCeil=313  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.3267  final=1.3815  drop=-0.055  finCeil=142  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.2073  final=1.1854  drop=0.022  finCeil=416  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=1.2196  final=1.2826  drop=-0.063  finCeil=289  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.2663  final=1.2351  drop=0.031  finCeil=276  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 completeness mechanism:
+    Attempted: 120  Accepted: 0  AccFrac: 0.0%  (need >= 50%)  FAIL
+    Mean accepted delta: N/A  (need <= -0.2)  FAIL
+  P2 layout 1: FAIL (not a halt if P1 carries)
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0412  pass
+    seed=1: loc_med=0.0479  pass
+    seed=2: loc_med=0.0365  pass
+    seed=3: loc_med=0.0420  pass
+    seed=4: loc_med=0.0404  pass
+    seed=5: loc_med=0.0436  pass
+    seed=6: loc_med=0.0461  pass
+    seed=7: loc_med=0.0435  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 2  (rng(11))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [3, 1, 0, 2]
+    row 1: [2, 1, 1, 3]
+    row 2: [0, 1, 3, 2]
+    row 3: [0, 0, 3, 2]
+  CMAP array: [3, 1, 0, 2, 2, 1, 1, 3, 0, 1, 3, 2, 0, 0, 3, 2]
+
+  Color -> cells and centers:
+    color 0: cells [2, 8, 12, 13]  centers [[2.0, 0.0], [0.0, 2.0], [0.0, 3.0], [1.0, 3.0]]
+    color 1: cells [1, 5, 6, 9]  centers [[1.0, 0.0], [1.0, 1.0], [2.0, 1.0], [1.0, 2.0]]
+    color 2: cells [3, 4, 11, 15]  centers [[3.0, 0.0], [0.0, 1.0], [3.0, 2.0], [3.0, 3.0]]
+    color 3: cells [0, 7, 10, 14]  centers [[0.0, 0.0], [3.0, 1.0], [2.0, 2.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta  TwinF500
+--------------------------------------------------------------------------------------------------------------
+   0   1.1522   1.2007  -0.048      165  [1, 1, 1, 1]     0    15  0.0408       0%       N/A    1.0000
+   1   0.9112   1.1379  -0.227      301  [4, 1, 1, 1]     1    14  0.0395       7%   +0.1378    1.0000
+   2   1.0443   1.1261  -0.082      213  [1, 1, 1, 1]     0    14  0.0394       0%       N/A    1.0000
+   3   1.1428   1.2477  -0.105      260  [1, 1, 1, 1]     0    14  0.0408       0%       N/A    1.0000
+   4   1.0438   1.1436  -0.100      175  [1, 1, 1, 1]     0    15  0.0396       0%       N/A    1.0000
+   5   1.1306   1.1449  -0.014      212  [1, 1, 1, 1]     0    15  0.0433       0%       N/A    1.0000
+   6   0.9249   1.3176  -0.393      165  [1, 1, 1, 1]     0    14  0.0438       0%       N/A    1.0000
+   7   1.0870   1.1776  -0.091      215  [1, 1, 1, 1]     0    13  0.0426       0%       N/A    1.0000
+
+  Per-jump attempt detail (Layout 2):
+    seed=0 jump#1: color=0  K=4  pre=1.2635  prob=1.7858  delta=-0.5223  REVT  [K2:0.983 K3:-0.856 K4:-1.560]
+    seed=0 jump#2: color=1  K=4  pre=1.5877  prob=2.7823  delta=-1.1946  REVT  [K2:-0.220 K3:-0.249 K4:-1.353]
+    seed=0 jump#3: color=2  K=4  pre=0.7369  prob=1.6060  delta=-0.8691  REVT  [K2:-0.556 K3:-1.365 K4:-2.023]
+    seed=0 jump#4: color=0  K=4  pre=0.6730  prob=1.8030  delta=-1.1300  REVT  [K2:1.013 K3:-0.794 K4:-1.840]
+    seed=0 jump#5: color=3  K=4  pre=0.7782  prob=1.9334  delta=-1.1553  REVT  [K2:1.481 K3:-0.903 K4:-1.636]
+    seed=0 jump#6: color=1  K=4  pre=1.3990  prob=2.6117  delta=-1.2127  REVT  [K2:-0.194 K3:-0.444 K4:-1.172]
+    seed=0 jump#7: color=2  K=4  pre=0.7517  prob=1.3634  delta=-0.6117  REVT  [K2:-0.531 K3:-1.249 K4:-1.970]
+    seed=0 jump#8: color=0  K=4  pre=1.0740  prob=1.7939  delta=-0.7198  REVT  [K2:0.105 K3:-1.095 K4:-1.933]
+    seed=0 jump#9: color=3  K=4  pre=0.6601  prob=2.0225  delta=-1.3623  REVT  [K2:0.889 K3:-1.025 K4:-1.688]
+    seed=0 jump#10: color=1  K=4  pre=1.4426  prob=2.6531  delta=-1.2105  REVT  [K2:-0.386 K3:-0.360 K4:-0.579]
+    seed=0 jump#11: color=2  K=4  pre=0.7611  prob=1.3934  delta=-0.6323  REVT  [K2:-0.497 K3:-1.226 K4:-2.099]
+    seed=0 jump#12: color=0  K=4  pre=0.7144  prob=1.6769  delta=-0.9625  REVT  [K2:0.742 K3:-0.717 K4:-1.883]
+    seed=0 jump#13: color=3  K=4  pre=0.6489  prob=2.0261  delta=-1.3773  REVT  [K2:0.630 K3:-1.039 K4:-1.784]
+    seed=0 jump#14: color=1  K=4  pre=1.4276  prob=2.6948  delta=-1.2673  REVT  [K2:-0.101 K3:-0.272 K4:-1.320]
+    seed=0 jump#15: color=0  K=4  pre=1.0059  prob=1.7820  delta=  N/A  REVT  [K2:0.526 K3:-1.031 K4:-2.073]
+    seed=1 jump#1: color=0  K=4  pre=1.2086  prob=1.0707  delta=+0.1378  KEPT  [K2:0.659 K3:-0.773 K4:-1.806]
+    seed=1 jump#2: color=1  K=4  pre=1.0901  prob=2.0040  delta=-0.9139  REVT  [K2:0.952 K3:-0.751 K4:-1.333]
+    seed=1 jump#3: color=3  K=4  pre=0.8803  prob=1.6707  delta=-0.7904  REVT  [K2:0.777 K3:-1.123 K4:-1.863]
+    seed=1 jump#4: color=0  K=4  pre=0.8697  prob=1.6278  delta=-0.7581  REVT  [K2:1.104 K3:-0.698 K4:-2.118]
+    seed=1 jump#5: color=1  K=4  pre=1.2783  prob=2.0624  delta=-0.7841  REVT  [K2:1.070 K3:-0.802 K4:-1.435]
+    seed=1 jump#6: color=3  K=4  pre=0.7762  prob=1.5732  delta=-0.7971  REVT  [K2:0.833 K3:-0.927 K4:-1.980]
+    seed=1 jump#7: color=0  K=4  pre=1.3577  prob=1.5696  delta=-0.2119  REVT  [K2:0.010 K3:-1.489 K4:-2.041]
+    seed=1 jump#8: color=1  K=4  pre=1.1961  prob=2.2311  delta=-1.0350  REVT  [K2:-0.014 K3:-0.663 K4:-1.280]
+    seed=1 jump#9: color=3  K=4  pre=0.7548  prob=1.5883  delta=-0.8335  REVT  [K2:1.221 K3:-0.763 K4:-1.738]
+    seed=1 jump#10: color=0  K=4  pre=1.2382  prob=1.5588  delta=-0.3206  REVT  [K2:1.078 K3:-0.672 K4:-2.068]
+    seed=1 jump#11: color=1  K=4  pre=1.1721  prob=2.3188  delta=-1.1467  REVT  [K2:-0.256 K3:-0.263 K4:-1.481]
+    seed=1 jump#12: color=3  K=4  pre=0.7612  prob=1.4895  delta=-0.7283  REVT  [K2:1.473 K3:-0.774 K4:-1.834]
+    seed=1 jump#13: color=0  K=4  pre=1.2815  prob=1.6247  delta=-0.3432  REVT  [K2:1.017 K3:-1.113 K4:-2.048]
+    seed=1 jump#14: color=1  K=4  pre=1.2257  prob=2.3348  delta=-1.1091  REVT  [K2:-0.256 K3:-0.664 K4:-1.367]
+    seed=1 jump#15: color=3  K=4  pre=0.8118  prob=1.9725  delta=  N/A  REVT  [K2:0.615 K3:-1.542 K4:-1.963]
+    seed=2 jump#1: color=0  K=4  pre=1.5100  prob=1.5739  delta=-0.0640  REVT  [K2:0.880 K3:-0.523 K4:-1.631]
+    seed=2 jump#2: color=1  K=4  pre=1.4309  prob=2.5647  delta=-1.1337  REVT  [K2:-0.154 K3:-0.181 K4:-1.013]
+    seed=2 jump#3: color=3  K=4  pre=0.9502  prob=1.9494  delta=-0.9991  REVT  [K2:1.815 K3:-0.768 K4:-1.756]
+    seed=2 jump#4: color=2  K=4  pre=0.5488  prob=1.3702  delta=-0.8214  REVT  [K2:-0.276 K3:-1.064 K4:-1.818]
+    seed=2 jump#5: color=0  K=4  pre=0.6355  prob=1.7075  delta=-1.0720  REVT  [K2:0.899 K3:-0.772 K4:-1.913]
+    seed=2 jump#6: color=1  K=4  pre=1.4368  prob=2.6695  delta=-1.2327  REVT  [K2:1.627 K3:-0.326 K4:-1.295]
+    seed=2 jump#7: color=3  K=4  pre=1.0709  prob=1.8545  delta=-0.7835  REVT  [K2:1.136 K3:-1.084 K4:-1.727]
+    seed=2 jump#8: color=0  K=4  pre=0.7932  prob=1.3584  delta=-0.5653  REVT  [K2:0.846 K3:-1.064 K4:-1.804]
+    seed=2 jump#9: color=1  K=4  pre=1.3381  prob=2.5708  delta=-1.2327  REVT  [K2:-0.060 K3:-0.131 K4:-1.340]
+    seed=2 jump#10: color=2  K=4  pre=0.7757  prob=1.4720  delta=-0.6963  REVT  [K2:-0.288 K3:-1.477 K4:-2.016]
+    seed=2 jump#11: color=3  K=4  pre=0.8700  prob=2.0229  delta=-1.1529  REVT  [K2:0.926 K3:-0.789 K4:-1.706]
+    seed=2 jump#12: color=0  K=4  pre=0.9506  prob=1.6248  delta=-0.6742  REVT  [K2:0.098 K3:-1.279 K4:-1.844]
+    seed=2 jump#13: color=1  K=4  pre=1.3884  prob=2.6629  delta=-1.2744  REVT  [K2:-0.118 K3:-0.143 K4:-1.328]
+    seed=2 jump#14: color=3  K=4  pre=0.9611  prob=1.9079  delta=  N/A  REVT  [K2:1.510 K3:-0.616 K4:-1.780]
+    seed=3 jump#1: color=0  K=4  pre=0.7599  prob=1.7375  delta=-0.9776  REVT  [K2:0.769 K3:-0.915 K4:-1.771]
+    seed=3 jump#2: color=1  K=4  pre=1.3490  prob=2.5873  delta=-1.2383  REVT  [K2:-0.148 K3:-0.182 K4:-1.260]
+    seed=3 jump#3: color=2  K=4  pre=0.7886  prob=1.4697  delta=-0.6811  REVT  [K2:-0.588 K3:-1.179 K4:-1.984]
+    seed=3 jump#4: color=0  K=4  pre=1.0458  prob=1.6335  delta=-0.5877  REVT  [K2:0.074 K3:-1.363 K4:-1.889]
+    seed=3 jump#5: color=3  K=4  pre=0.6580  prob=1.9964  delta=-1.3384  REVT  [K2:0.905 K3:-1.001 K4:-1.648]
+    seed=3 jump#6: color=1  K=4  pre=1.4477  prob=2.7368  delta=-1.2892  REVT  [K2:-0.138 K3:-0.176 K4:-1.349]
+    seed=3 jump#7: color=2  K=4  pre=0.8038  prob=1.3914  delta=-0.5876  REVT  [K2:-0.740 K3:-1.099 K4:-1.930]
+    seed=3 jump#8: color=0  K=4  pre=0.7130  prob=1.6361  delta=-0.9231  REVT  [K2:0.968 K3:-0.602 K4:-1.704]
+    seed=3 jump#9: color=3  K=4  pre=0.7506  prob=2.2291  delta=-1.4785  REVT  [K2:-0.352 K3:-1.725 K4:-2.164]
+    seed=3 jump#10: color=1  K=4  pre=1.4043  prob=2.6456  delta=-1.2413  REVT  [K2:-0.237 K3:-0.236 K4:-0.770]
+    seed=3 jump#11: color=0  K=4  pre=1.0036  prob=1.8465  delta=-0.8429  REVT  [K2:0.202 K3:-1.617 K4:-2.057]
+    seed=3 jump#12: color=3  K=4  pre=0.8042  prob=1.8001  delta=-0.9959  REVT  [K2:0.981 K3:-1.583 K4:-1.927]
+    seed=3 jump#13: color=1  K=4  pre=1.3177  prob=2.6567  delta=-1.3390  REVT  [K2:0.027 K3:-0.087 K4:-1.380]
+    seed=3 jump#14: color=2  K=4  pre=0.7930  prob=1.5858  delta=  N/A  REVT  [K2:-0.844 K3:-1.755 K4:-2.168]
+    seed=4 jump#1: color=0  K=4  pre=0.9007  prob=1.4514  delta=-0.5506  REVT  [K2:0.933 K3:-0.929 K4:-1.615]
+    seed=4 jump#2: color=1  K=4  pre=1.4111  prob=2.6463  delta=-1.2352  REVT  [K2:0.523 K3:-0.594 K4:-1.306]
+    seed=4 jump#3: color=2  K=4  pre=0.7152  prob=1.5264  delta=-0.8112  REVT  [K2:-0.393 K3:-0.896 K4:-1.950]
+    seed=4 jump#4: color=0  K=4  pre=0.8412  prob=1.5369  delta=-0.6957  REVT  [K2:0.848 K3:-1.058 K4:-1.732]
+    seed=4 jump#5: color=3  K=4  pre=0.7594  prob=1.9521  delta=-1.1927  REVT  [K2:1.212 K3:-0.951 K4:-1.625]
+    seed=4 jump#6: color=1  K=4  pre=1.4237  prob=2.7106  delta=-1.2869  REVT  [K2:-0.430 K3:-0.469 K4:-1.355]
+    seed=4 jump#7: color=2  K=4  pre=0.5600  prob=1.5171  delta=-0.9570  REVT  [K2:-0.469 K3:-0.988 K4:-2.157]
+    seed=4 jump#8: color=0  K=4  pre=0.7551  prob=1.5552  delta=-0.8001  REVT  [K2:0.704 K3:-0.721 K4:-1.849]
+    seed=4 jump#9: color=3  K=4  pre=0.7754  prob=1.9955  delta=-1.2201  REVT  [K2:1.168 K3:-0.968 K4:-1.644]
+    seed=4 jump#10: color=1  K=4  pre=1.3515  prob=2.6839  delta=-1.3324  REVT  [K2:0.318 K3:-0.275 K4:-1.389]
+    seed=4 jump#11: color=2  K=4  pre=0.8111  prob=1.4307  delta=-0.6196  REVT  [K2:-0.467 K3:-1.136 K4:-1.905]
+    seed=4 jump#12: color=0  K=4  pre=0.6443  prob=1.3715  delta=-0.7271  REVT  [K2:0.759 K3:-0.722 K4:-1.760]
+    seed=4 jump#13: color=3  K=4  pre=0.7649  prob=1.9379  delta=-1.1730  REVT  [K2:1.316 K3:-0.789 K4:-1.580]
+    seed=4 jump#14: color=1  K=4  pre=1.3250  prob=2.6957  delta=-1.3707  REVT  [K2:-0.267 K3:-0.298 K4:-1.295]
+    seed=4 jump#15: color=2  K=4  pre=0.7361  prob=1.3695  delta=  N/A  REVT  [K2:-0.288 K3:-1.134 K4:-2.036]
+    seed=5 jump#1: color=0  K=4  pre=0.9777  prob=1.7399  delta=-0.7622  REVT  [K2:-0.050 K3:-1.317 K4:-1.701]
+    seed=5 jump#2: color=1  K=4  pre=1.4653  prob=2.6895  delta=-1.2243  REVT  [K2:-0.234 K3:-0.279 K4:-1.423]
+    seed=5 jump#3: color=2  K=4  pre=0.7997  prob=1.4629  delta=-0.6632  REVT  [K2:-0.473 K3:-1.222 K4:-2.102]
+    seed=5 jump#4: color=0  K=4  pre=0.8956  prob=1.6886  delta=-0.7930  REVT  [K2:0.299 K3:-0.952 K4:-1.838]
+    seed=5 jump#5: color=3  K=4  pre=0.7193  prob=2.0013  delta=-1.2820  REVT  [K2:1.124 K3:-0.616 K4:-1.754]
+    seed=5 jump#6: color=1  K=4  pre=1.3811  prob=2.8223  delta=-1.4412  REVT  [K2:-0.306 K3:-0.310 K4:-1.443]
+    seed=5 jump#7: color=2  K=4  pre=0.8534  prob=1.6388  delta=-0.7854  REVT  [K2:-1.067 K3:-1.316 K4:-2.285]
+    seed=5 jump#8: color=0  K=4  pre=0.7225  prob=1.6207  delta=-0.8983  REVT  [K2:0.488 K3:-1.055 K4:-1.917]
+    seed=5 jump#9: color=3  K=4  pre=0.6438  prob=2.2404  delta=-1.5966  REVT  [K2:0.383 K3:-1.577 K4:-1.872]
+    seed=5 jump#10: color=1  K=4  pre=1.4984  prob=2.7994  delta=-1.3010  REVT  [K2:-0.004 K3:-0.287 K4:-1.387]
+    seed=5 jump#11: color=2  K=4  pre=0.8287  prob=1.5765  delta=-0.7477  REVT  [K2:-0.545 K3:-1.308 K4:-1.991]
+    seed=5 jump#12: color=0  K=4  pre=0.8199  prob=1.7662  delta=-0.9463  REVT  [K2:0.609 K3:-1.259 K4:-1.870]
+    seed=5 jump#13: color=3  K=4  pre=0.7928  prob=1.9492  delta=-1.1564  REVT  [K2:1.653 K3:-0.509 K4:-1.606]
+    seed=5 jump#14: color=1  K=4  pre=1.4816  prob=2.5657  delta=-1.0841  REVT  [K2:-0.172 K3:-0.166 K4:-0.768]
+    seed=5 jump#15: color=0  K=4  pre=1.0134  prob=1.5351  delta=  N/A  REVT  [K2:0.524 K3:-0.810 K4:-1.858]
+    seed=6 jump#1: color=1  K=4  pre=1.5023  prob=2.5378  delta=-1.0356  REVT  [K2:0.460 K3:-0.430 K4:-1.180]
+    seed=6 jump#2: color=0  K=4  pre=1.1346  prob=1.5482  delta=-0.4135  REVT  [K2:1.084 K3:-0.528 K4:-1.721]
+    seed=6 jump#3: color=3  K=4  pre=0.7638  prob=1.8340  delta=-1.0702  REVT  [K2:1.589 K3:-0.552 K4:-1.640]
+    seed=6 jump#4: color=1  K=4  pre=1.2053  prob=2.5632  delta=-1.3578  REVT  [K2:1.392 K3:-0.320 K4:-1.424]
+    seed=6 jump#5: color=2  K=4  pre=0.7172  prob=1.4742  delta=-0.7570  REVT  [K2:-0.473 K3:-1.582 K4:-2.110]
+    seed=6 jump#6: color=0  K=4  pre=1.2543  prob=1.7919  delta=-0.5376  REVT  [K2:0.186 K3:-1.338 K4:-1.968]
+    seed=6 jump#7: color=3  K=4  pre=0.7541  prob=1.8812  delta=-1.1271  REVT  [K2:1.109 K3:-0.856 K4:-1.708]
+    seed=6 jump#8: color=1  K=4  pre=1.2668  prob=2.5998  delta=-1.3329  REVT  [K2:-0.217 K3:-0.230 K4:-1.331]
+    seed=6 jump#9: color=2  K=4  pre=0.8065  prob=1.6485  delta=-0.8420  REVT  [K2:-0.536 K3:-1.689 K4:-2.012]
+    seed=6 jump#10: color=0  K=4  pre=0.8898  prob=1.8951  delta=-1.0054  REVT  [K2:0.858 K3:-0.711 K4:-1.931]
+    seed=6 jump#11: color=1  K=4  pre=1.4845  prob=2.5345  delta=-1.0500  REVT  [K2:-0.257 K3:-0.246 K4:-1.259]
+    seed=6 jump#12: color=3  K=4  pre=0.9146  prob=1.9784  delta=-1.0638  REVT  [K2:0.237 K3:-1.388 K4:-1.972]
+    seed=6 jump#13: color=0  K=4  pre=0.7403  prob=1.8328  delta=-1.0925  REVT  [K2:0.970 K3:-0.967 K4:-1.827]
+    seed=6 jump#14: color=1  K=4  pre=1.4802  prob=2.6466  delta=  N/A  REVT  [K2:-0.177 K3:-0.192 K4:-1.295]
+    seed=7 jump#1: color=0  K=4  pre=0.9782  prob=1.7150  delta=-0.7368  REVT  [K2:0.781 K3:-1.080 K4:-1.768]
+    seed=7 jump#2: color=1  K=4  pre=1.5659  prob=2.9272  delta=-1.3613  REVT  [K2:1.019 K3:-0.678 K4:-1.429]
+    seed=7 jump#3: color=2  K=4  pre=0.7589  prob=1.5300  delta=-0.7711  REVT  [K2:-0.520 K3:-1.234 K4:-1.953]
+    seed=7 jump#4: color=3  K=4  pre=0.7301  prob=1.8960  delta=-1.1659  REVT  [K2:0.933 K3:-0.929 K4:-1.717]
+    seed=7 jump#5: color=1  K=4  pre=1.4498  prob=2.5821  delta=-1.1323  REVT  [K2:0.883 K3:-0.283 K4:-0.669]
+    seed=7 jump#6: color=0  K=4  pre=0.9222  prob=1.7440  delta=-0.8218  REVT  [K2:0.755 K3:-1.070 K4:-1.830]
+    seed=7 jump#7: color=3  K=4  pre=0.8062  prob=2.0550  delta=-1.2489  REVT  [K2:0.815 K3:-1.197 K4:-1.890]
+    seed=7 jump#8: color=1  K=4  pre=1.2758  prob=2.4851  delta=-1.2093  REVT  [K2:-0.110 K3:-0.108 K4:-0.363]
+    seed=7 jump#9: color=2  K=4  pre=0.9519  prob=1.3779  delta=-0.4260  REVT  [K2:-0.941 K3:-1.322 K4:-1.864]
+    seed=7 jump#10: color=0  K=4  pre=0.7608  prob=1.9093  delta=-1.1485  REVT  [K2:0.980 K3:-0.908 K4:-1.648]
+    seed=7 jump#11: color=3  K=4  pre=0.7646  prob=1.9823  delta=-1.2177  REVT  [K2:1.182 K3:-1.126 K4:-1.692]
+    seed=7 jump#12: color=1  K=4  pre=1.4701  prob=2.7272  delta=-1.2571  REVT  [K2:-0.276 K3:-0.282 K4:-1.233]
+    seed=7 jump#13: color=0  K=4  pre=0.9838  prob=1.5881  delta=  N/A  REVT  [K2:0.788 K3:-1.021 K4:-1.873]
+
+  TALLIES — Layout 2
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 2: FAIL
+    seed=0: plateau=1.1522  final=1.2007  drop=-0.048  finCeil=165  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.9112  final=1.1379  drop=-0.227  finCeil=301  comps=[4, 1, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=1.0443  final=1.1261  drop=-0.082  finCeil=213  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=1.1428  final=1.2477  drop=-0.105  finCeil=260  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=1.0438  final=1.1436  drop=-0.100  finCeil=175  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=1.1306  final=1.1449  drop=-0.014  finCeil=212  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.9249  final=1.3176  drop=-0.393  finCeil=165  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=1.0870  final=1.1776  drop=-0.091  finCeil=215  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 completeness mechanism:
+    Attempted: 115  Accepted: 1  AccFrac: 0.9%  (need >= 50%)  FAIL
+    Mean accepted delta: +0.1378  (need <= -0.2)  FAIL
+  P2 layout 2: FAIL (not a halt if P1 carries)
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0408  pass
+    seed=1: loc_med=0.0395  pass
+    seed=2: loc_med=0.0394  pass
+    seed=3: loc_med=0.0408  pass
+    seed=4: loc_med=0.0396  pass
+    seed=5: loc_med=0.0433  pass
+    seed=6: loc_med=0.0438  pass
+    seed=7: loc_med=0.0426  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+LAYOUT 3  (rng(13))
+================================================================================
+
+  ALIASED CMAP (4 colors x 4 cells):
+    row 0: [1, 0, 0, 2]
+    row 1: [1, 2, 1, 0]
+    row 2: [1, 3, 2, 2]
+    row 3: [3, 3, 3, 0]
+  CMAP array: [1, 0, 0, 2, 1, 2, 1, 0, 1, 3, 2, 2, 3, 3, 3, 0]
+
+  Color -> cells and centers:
+    color 0: cells [1, 2, 7, 15]  centers [[1.0, 0.0], [2.0, 0.0], [3.0, 1.0], [3.0, 3.0]]
+    color 1: cells [0, 4, 6, 8]  centers [[0.0, 0.0], [0.0, 1.0], [2.0, 1.0], [0.0, 2.0]]
+    color 2: cells [3, 5, 10, 11]  centers [[3.0, 0.0], [1.0, 1.0], [2.0, 2.0], [3.0, 2.0]]
+    color 3: cells [9, 12, 13, 14]  centers [[1.0, 2.0], [0.0, 3.0], [1.0, 3.0], [2.0, 3.0]]
+
+Seed  Plateau    Final    Drop  FinCeil         Comps  Kept  Revt  LocMed  AccFrac   MnDelta  TwinF500
+--------------------------------------------------------------------------------------------------------------
+   0   0.6714   0.7713  -0.100      250  [1, 1, 1, 1]     0    10  0.0430       0%       N/A    1.0000
+   1   0.7666   0.7338   0.033       81  [1, 4, 1, 1]     3     7  0.0414      30%   +0.2221    1.0000
+   2   0.7999   0.7461   0.054      116  [1, 1, 1, 1]     0    11  0.0420       0%       N/A    1.0000
+   3   0.8613   0.7222   0.139      242  [1, 1, 1, 1]     0    10  0.0440       0%       N/A    1.0000
+   4   0.7079   0.7734  -0.065      210  [1, 1, 1, 1]     0    10  0.0397       0%       N/A    1.0000
+   5   0.7702   0.7240   0.046      296  [1, 1, 1, 1]     0    11  0.0456       0%       N/A    1.0000
+   6   0.7270   0.8355  -0.109      192  [1, 1, 1, 1]     0    11  0.0516       0%       N/A    1.0000
+   7   0.7276   0.7302  -0.003      223  [1, 1, 1, 1]     0    11  0.0466       0%       N/A    1.0000
+
+  Per-jump attempt detail (Layout 3):
+    seed=0 jump#1: color=2  K=4  pre=1.1067  prob=2.0157  delta=-0.9091  REVT  [K2:1.581 K3:-0.489 K4:-1.393]
+    seed=0 jump#2: color=1  K=4  pre=0.6674  prob=0.9227  delta=-0.2552  REVT  [K2:-0.593 K3:-0.651 K4:-1.684]
+    seed=0 jump#3: color=3  K=4  pre=0.6601  prob=1.0622  delta=-0.4021  REVT  [K2:0.236 K3:-0.622 K4:-1.570]
+    seed=0 jump#4: color=2  K=4  pre=1.0201  prob=1.9575  delta=-0.9374  REVT  [K2:1.121 K3:-0.657 K4:-1.612]
+    seed=0 jump#5: color=1  K=4  pre=0.6380  prob=1.0754  delta=-0.4375  REVT  [K2:-0.719 K3:-0.855 K4:-1.628]
+    seed=0 jump#6: color=2  K=4  pre=1.0779  prob=2.0855  delta=-1.0076  REVT  [K2:1.169 K3:-0.797 K4:-1.520]
+    seed=0 jump#7: color=1  K=2  pre=0.7637  prob=0.9466  delta=-0.1829  REVT  [K2:-0.649 K3:-0.622 K4:-0.635]
+    seed=0 jump#8: color=2  K=4  pre=0.9442  prob=1.9325  delta=-0.9883  REVT  [K2:1.197 K3:-0.703 K4:-1.569]
+    seed=0 jump#9: color=1  K=4  pre=0.7981  prob=1.0215  delta=-0.2234  REVT  [K2:-0.836 K3:-1.268 K4:-1.602]
+    seed=0 jump#10: color=2  K=4  pre=0.9993  prob=1.9644  delta=-0.9651  REVT  [K2:1.082 K3:-1.041 K4:-1.619]
+    seed=1 jump#1: color=1  K=4  pre=0.8856  prob=0.5879  delta=+0.2977  KEPT  [K2:-0.792 K3:-0.837 K4:-1.557]
+    seed=1 jump#2: color=2  K=4  pre=0.8973  prob=1.6794  delta=-0.7821  REVT  [K2:0.989 K3:-0.718 K4:-1.652]
+    seed=1 jump#3: color=1  K=4  pre=0.7493  prob=1.0962  delta=-0.3470  REVT  [K2:-0.660 K3:-1.090 K4:-1.321]
+    seed=1 jump#4: color=2  K=4  pre=0.9041  prob=1.6283  delta=-0.7242  REVT  [K2:1.030 K3:-0.668 K4:-1.618]
+    seed=1 jump#5: color=1  K=4  pre=0.9737  prob=0.7732  delta=+0.2005  KEPT  [K2:-0.628 K3:-0.623 K4:-1.629]
+    seed=1 jump#6: color=2  K=4  pre=0.9219  prob=1.7758  delta=-0.8539  REVT  [K2:0.905 K3:-0.900 K4:-1.766]
+    seed=1 jump#7: color=1  K=4  pre=1.0239  prob=0.8558  delta=+0.1681  KEPT  [K2:-0.577 K3:-0.948 K4:-1.493]
+    seed=1 jump#8: color=2  K=4  pre=0.8968  prob=1.6230  delta=-0.7262  REVT  [K2:1.043 K3:-0.813 K4:-1.666]
+    seed=1 jump#9: color=1  K=4  pre=0.9312  prob=1.0194  delta=-0.0882  REVT  [K2:-0.558 K3:-0.569 K4:-1.851]
+    seed=1 jump#10: color=2  K=4  pre=0.9264  prob=1.6649  delta=-0.7385  REVT  [K2:0.409 K3:-1.061 K4:-1.786]
+    seed=2 jump#1: color=1  K=4  pre=0.7813  prob=0.7828  delta=-0.0015  REVT  [K2:-0.525 K3:-0.898 K4:-1.376]
+    seed=2 jump#2: color=2  K=4  pre=0.8747  prob=1.9630  delta=-1.0884  REVT  [K2:1.174 K3:-1.148 K4:-1.686]
+    seed=2 jump#3: color=3  K=4  pre=0.6518  prob=0.9987  delta=-0.3469  REVT  [K2:-0.399 K3:-0.892 K4:-1.507]
+    seed=2 jump#4: color=1  K=4  pre=0.5932  prob=1.1025  delta=-0.5093  REVT  [K2:-0.645 K3:-1.113 K4:-1.463]
+    seed=2 jump#5: color=2  K=4  pre=0.8516  prob=1.9725  delta=-1.1209  REVT  [K2:1.325 K3:-0.959 K4:-1.523]
+    seed=2 jump#6: color=3  K=4  pre=0.7550  prob=1.0060  delta=-0.2511  REVT  [K2:-0.596 K3:-0.598 K4:-1.413]
+    seed=2 jump#7: color=0  K=4  pre=0.6558  prob=1.2345  delta=-0.5787  REVT  [K2:-0.012 K3:-1.202 K4:-1.744]
+    seed=2 jump#8: color=2  K=4  pre=0.8851  prob=2.0994  delta=-1.2143  REVT  [K2:0.915 K3:-1.427 K4:-1.838]
+    seed=2 jump#9: color=1  K=4  pre=0.6299  prob=1.3701  delta=-0.7401  REVT  [K2:-0.475 K3:-1.156 K4:-1.680]
+    seed=2 jump#10: color=0  K=4  pre=0.6782  prob=1.3947  delta=-0.7164  REVT  [K2:-0.241 K3:-0.954 K4:-1.808]
+    seed=2 jump#11: color=3  K=4  pre=0.5921  prob=1.0368  delta=  N/A  REVT  [K2:-0.370 K3:-0.483 K4:-1.617]
+    seed=3 jump#1: color=2  K=4  pre=1.1163  prob=1.9399  delta=-0.8236  REVT  [K2:1.354 K3:-0.884 K4:-1.593]
+    seed=3 jump#2: color=1  K=4  pre=0.7294  prob=1.0737  delta=-0.3443  REVT  [K2:-0.564 K3:-0.559 K4:-0.639]
+    seed=3 jump#3: color=2  K=4  pre=0.8337  prob=2.0252  delta=-1.1915  REVT  [K2:1.248 K3:-0.826 K4:-1.578]
+    seed=3 jump#4: color=1  K=4  pre=0.5713  prob=1.3528  delta=-0.7816  REVT  [K2:-0.422 K3:-0.460 K4:-1.532]
+    seed=3 jump#5: color=2  K=4  pre=0.8603  prob=2.0308  delta=-1.1705  REVT  [K2:0.989 K3:-0.975 K4:-1.689]
+    seed=3 jump#6: color=1  K=4  pre=0.7412  prob=1.2755  delta=-0.5343  REVT  [K2:-0.740 K3:-0.930 K4:-1.985]
+    seed=3 jump#7: color=3  K=4  pre=0.6461  prob=1.1994  delta=-0.5533  REVT  [K2:0.326 K3:-1.163 K4:-1.689]
+    seed=3 jump#8: color=2  K=4  pre=1.0555  prob=1.7406  delta=-0.6851  REVT  [K2:0.646 K3:-0.960 K4:-1.650]
+    seed=3 jump#9: color=3  K=4  pre=0.6944  prob=1.1422  delta=-0.4478  REVT  [K2:1.028 K3:-1.006 K4:-1.595]
+    seed=3 jump#10: color=0  K=4  pre=0.7707  prob=1.3267  delta=  N/A  REVT  [K2:-0.553 K3:-0.831 K4:-1.925]
+    seed=4 jump#1: color=0  K=4  pre=0.7935  prob=1.3987  delta=-0.6051  REVT  [K2:0.011 K3:-1.092 K4:-1.639]
+    seed=4 jump#2: color=2  K=4  pre=0.6337  prob=2.0712  delta=-1.4375  REVT  [K2:1.497 K3:-0.436 K4:-1.493]
+    seed=4 jump#3: color=3  K=4  pre=0.6622  prob=1.0007  delta=-0.3384  REVT  [K2:-0.679 K3:-0.666 K4:-1.057]
+    seed=4 jump#4: color=1  K=4  pre=0.6991  prob=1.0406  delta=-0.3414  REVT  [K2:-0.565 K3:-0.889 K4:-1.524]
+    seed=4 jump#5: color=2  K=4  pre=0.8757  prob=2.0175  delta=-1.1418  REVT  [K2:0.903 K3:-0.744 K4:-1.632]
+    seed=4 jump#6: color=0  K=4  pre=0.6994  prob=1.4207  delta=-0.7213  REVT  [K2:-0.104 K3:-0.985 K4:-1.679]
+    seed=4 jump#7: color=1  K=4  pre=0.5508  prob=1.1118  delta=-0.5610  REVT  [K2:-0.633 K3:-1.305 K4:-1.720]
+    seed=4 jump#8: color=2  K=4  pre=0.8574  prob=2.0149  delta=-1.1575  REVT  [K2:1.240 K3:-0.635 K4:-1.486]
+    seed=4 jump#9: color=0  K=4  pre=0.6605  prob=1.3330  delta=-0.6725  REVT  [K2:0.040 K3:-1.150 K4:-1.700]
+    seed=4 jump#10: color=2  K=4  pre=0.8510  prob=2.0208  delta=  N/A  REVT  [K2:1.086 K3:-1.080 K4:-1.641]
+    seed=5 jump#1: color=0  K=4  pre=0.7193  prob=1.4437  delta=-0.7244  REVT  [K2:-0.098 K3:-0.972 K4:-1.712]
+    seed=5 jump#2: color=1  K=4  pre=0.5144  prob=0.8685  delta=-0.3542  REVT  [K2:-0.622 K3:-0.602 K4:-0.884]
+    seed=5 jump#3: color=2  K=4  pre=0.8202  prob=1.9568  delta=-1.1367  REVT  [K2:1.065 K3:-0.778 K4:-1.713]
+    seed=5 jump#4: color=1  K=4  pre=0.6653  prob=1.0345  delta=-0.3692  REVT  [K2:-0.535 K3:-1.022 K4:-1.408]
+    seed=5 jump#5: color=2  K=4  pre=0.8815  prob=2.2630  delta=-1.3815  REVT  [K2:0.832 K3:-1.103 K4:-1.836]
+    seed=5 jump#6: color=1  K=4  pre=0.7242  prob=0.9101  delta=-0.1860  REVT  [K2:-0.596 K3:-1.094 K4:-1.570]
+    seed=5 jump#7: color=2  K=4  pre=0.8849  prob=2.1758  delta=-1.2910  REVT  [K2:1.046 K3:-1.306 K4:-1.766]
+    seed=5 jump#8: color=3  K=4  pre=0.6017  prob=0.9715  delta=-0.3697  REVT  [K2:-0.513 K3:-0.995 K4:-1.652]
+    seed=5 jump#9: color=0  K=4  pre=0.6666  prob=1.3635  delta=-0.6969  REVT  [K2:-0.233 K3:-1.103 K4:-1.827]
+    seed=5 jump#10: color=1  K=4  pre=0.6844  prob=0.8377  delta=-0.1533  REVT  [K2:-0.797 K3:-1.150 K4:-1.633]
+    seed=5 jump#11: color=2  K=4  pre=0.7637  prob=1.9392  delta=-1.1755  REVT  [K2:1.199 K3:-0.827 K4:-1.580]
+    seed=6 jump#1: color=2  K=4  pre=1.1258  prob=2.0019  delta=-0.8761  REVT  [K2:1.648 K3:-0.471 K4:-1.311]
+    seed=6 jump#2: color=1  K=4  pre=0.6648  prob=1.4556  delta=-0.7908  REVT  [K2:-0.496 K3:-0.918 K4:-1.494]
+    seed=6 jump#3: color=3  K=4  pre=0.6625  prob=1.2371  delta=-0.5746  REVT  [K2:-0.633 K3:-0.640 K4:-1.240]
+    seed=6 jump#4: color=0  K=4  pre=0.6384  prob=1.3406  delta=-0.7023  REVT  [K2:-0.161 K3:-0.926 K4:-1.739]
+    seed=6 jump#5: color=2  K=4  pre=0.6047  prob=1.9814  delta=-1.3767  REVT  [K2:1.013 K3:-0.709 K4:-1.587]
+    seed=6 jump#6: color=1  K=4  pre=0.6998  prob=0.8533  delta=-0.1536  REVT  [K2:-0.541 K3:-1.118 K4:-1.632]
+    seed=6 jump#7: color=3  K=4  pre=0.7208  prob=0.9202  delta=-0.1994  REVT  [K2:-0.807 K3:-0.794 K4:-1.052]
+    seed=6 jump#8: color=0  K=4  pre=0.6935  prob=1.4289  delta=-0.7353  REVT  [K2:-0.220 K3:-1.150 K4:-1.911]
+    seed=6 jump#9: color=2  K=4  pre=0.7708  prob=1.8983  delta=-1.1275  REVT  [K2:1.250 K3:-0.827 K4:-1.539]
+    seed=6 jump#10: color=1  K=4  pre=0.8226  prob=1.2252  delta=-0.4027  REVT  [K2:-0.609 K3:-1.162 K4:-1.660]
+    seed=6 jump#11: color=3  K=4  pre=0.7194  prob=0.9925  delta=  N/A  REVT  [K2:-0.685 K3:-0.660 K4:-1.145]
+    seed=7 jump#1: color=0  K=4  pre=0.7014  prob=1.3351  delta=-0.6337  REVT  [K2:0.016 K3:-1.263 K4:-1.766]
+    seed=7 jump#2: color=1  K=4  pre=0.7399  prob=1.1027  delta=-0.3628  REVT  [K2:-0.501 K3:-0.496 K4:-0.762]
+    seed=7 jump#3: color=2  K=4  pre=0.8180  prob=1.8917  delta=-1.0737  REVT  [K2:1.457 K3:-0.551 K4:-1.592]
+    seed=7 jump#4: color=1  K=4  pre=0.6908  prob=0.9405  delta=-0.2497  REVT  [K2:-0.420 K3:-0.979 K4:-1.327]
+    seed=7 jump#5: color=2  K=4  pre=0.9278  prob=2.0146  delta=-1.0868  REVT  [K2:1.233 K3:-0.894 K4:-1.562]
+    seed=7 jump#6: color=3  K=4  pre=0.6402  prob=0.9909  delta=-0.3507  REVT  [K2:-0.539 K3:-0.560 K4:-1.366]
+    seed=7 jump#7: color=1  K=4  pre=0.7174  prob=0.8207  delta=-0.1033  REVT  [K2:-0.487 K3:-0.637 K4:-1.594]
+    seed=7 jump#8: color=2  K=4  pre=0.8697  prob=1.9538  delta=-1.0841  REVT  [K2:1.335 K3:-0.606 K4:-1.510]
+    seed=7 jump#9: color=3  K=4  pre=0.6283  prob=1.1010  delta=-0.4728  REVT  [K2:0.316 K3:-0.594 K4:-1.360]
+    seed=7 jump#10: color=1  K=4  pre=1.1110  prob=1.2558  delta=-0.1448  REVT  [K2:-0.718 K3:-1.217 K4:-1.559]
+    seed=7 jump#11: color=2  K=4  pre=0.8139  prob=1.8605  delta=-1.0466  REVT  [K2:1.542 K3:-0.569 K4:-1.562]
+
+  TALLIES — Layout 3
+
+  P1 alarm answered:
+    Arm1 drop >= 0.4 nats: 0/8  (need >= 6/8)  FAIL
+    Arm2 zero final ceil: 0/8  (need >= 6/8)  FAIL
+    Arm3 comps>=3 for 3/4 colors: 0/8  (need >= 6/8)  FAIL
+  P1 layout 3: FAIL
+    seed=0: plateau=0.6714  final=0.7713  drop=-0.100  finCeil=250  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=1: plateau=0.7666  final=0.7338  drop=0.033  finCeil=81  comps=[1, 4, 1, 1](1/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=2: plateau=0.7999  final=0.7461  drop=0.054  finCeil=116  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=3: plateau=0.8613  final=0.7222  drop=0.139  finCeil=242  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=4: plateau=0.7079  final=0.7734  drop=-0.065  finCeil=210  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=5: plateau=0.7702  final=0.7240  drop=0.046  finCeil=296  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=6: plateau=0.7270  final=0.8355  drop=-0.109  finCeil=192  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+    seed=7: plateau=0.7276  final=0.7302  drop=-0.003  finCeil=223  comps=[1, 1, 1, 1](0/4>=3)  drop=FAIL  quiet=FAIL  comps=FAIL
+
+  P2 completeness mechanism:
+    Attempted: 84  Accepted: 3  AccFrac: 3.6%  (need >= 50%)  FAIL
+    Mean accepted delta: +0.2221  (need <= -0.2)  FAIL
+  P2 layout 3: FAIL (not a halt if P1 carries)
+
+  P3 no regression (final-500 loc_median <= 0.5):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+    seed=0: loc_med=0.0430  pass
+    seed=1: loc_med=0.0414  pass
+    seed=2: loc_med=0.0420  pass
+    seed=3: loc_med=0.0440  pass
+    seed=4: loc_med=0.0397  pass
+    seed=5: loc_med=0.0456  pass
+    seed=6: loc_med=0.0516  pass
+    seed=7: loc_med=0.0466  pass
+
+  Twin sanity (MAP >= 80% in final 500):
+    Seeds passing: 8/8  (need >= 7/8)  PASS
+
+================================================================================
+GLOBAL CONJUNCT TALLIES (across all 3 layouts)
+================================================================================
+
+P1 alarm answered (all 3 layouts):
+  Layout 1 (rng(7)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 2 (rng(11)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  Layout 3 (rng(13)): drop=0/8  quiet=0/8  comps=0/8  FAIL
+  P1 GLOBAL: FAIL
+
+P2 completeness mechanism (both arms, all 3 layouts):
+  Layout 1: attempted=120  accepted=0  acc_frac=0.0%  mean_delta=N/A  delta_arm=FAIL  frac_arm=FAIL  FAIL (not halt if P1 carries)
+  Layout 2: attempted=115  accepted=1  acc_frac=0.9%  mean_delta=+0.1378  delta_arm=FAIL  frac_arm=FAIL  FAIL (not halt if P1 carries)
+  Layout 3: attempted=84  accepted=3  acc_frac=3.6%  mean_delta=+0.2221  delta_arm=FAIL  frac_arm=FAIL  FAIL (not halt if P1 carries)
+  P2 GLOBAL: FAIL (not halt if P1 carries)
+
+P3 no regression (>= 7/8 seeds, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+  P3 GLOBAL: PASS
+
+Twin sanity (>= 7/8, all 3 layouts):
+  Layout 1: 8/8  PASS
+  Layout 2: 8/8  PASS
+  Layout 3: 8/8  PASS
+
+================================================================================
+HALT-ARM EVALUATION
+================================================================================
+
+  Falsifier: P1 SURPRISE FAILURE: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — batch-jump crack fails
+
+================================================================================
+VERDICT: NEGATIVE
+PROCEED TO BACKGROUND-FLOOR (pre-authorized)
+  P1 SURPRISE FAILURE: drop < 0.4 nats in >= 3/8 seeds for 3/3 layouts (>= 2) — batch-jump crack fails
+================================================================================
+
+JSON rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp152_rows.json

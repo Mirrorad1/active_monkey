@@ -4531,3 +4531,49 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verdict: POSITIVE / the rung is engineering by predeclaration. Self-grade:
   POSITIVE-SINGLE.
 - Next: the migration closing synthesis + consult (next iteration).
+
+## Exp 152 — growth crack 1, BATCH-JUMP: fails everywhere (0–3.6% acceptance, 3/3 layouts) — and the autopsy points past the wall to the substrate's own emission convention (NEGATIVE as predeclared; proceeding to background-floor per the pre-authorized sequence; the dilution hypothesis goes to test in Exp 153)
+- Plain: The first authorized crack at the growth wall — fit the complete set of
+  pieces in one move instead of growing piece by piece — was rejected by the
+  creature's honest acceptance test in essentially every attempt, across all three
+  worlds. The strange part: the fitted pieces were excellent on its memories and
+  placed exactly right. The autopsy explains it: under this substrate's declared
+  shortcut (footprints capped at full strength no matter how sharp), splitting a
+  concept into four sharp pieces divides its voice by four with nothing gained in
+  return — a sharp piece cannot shout louder than a vague one, only smaller. If that
+  arithmetic is right, the growth wall is partly a property of the shortcut, not of
+  growing — and the next experiment tests exactly that.
+- Setup (predeclared in the script docstring before running): Exp 145's machinery and
+  worlds (3 layouts × 8 seeds); the move = batch-jump (EM fit of the COMPLETE
+  per-color mixture on replay, K ∈ {2,3,4} by penalized replay NLL with 0.05·K
+  declared, REPLACE + live-probate as one move). P1: the unchanged alarm-answered bar.
+  P2: accepted jumps improve live surprise ≤ −0.2 with ≥50% acceptance. P3:
+  localization ≤0.5. Falsifier: P1's surprise arm fails ≥3/8 in ≥2/3 layouts →
+  NEGATIVE and PROCEED to background-floor (pre-authorized, no halt-for-word).
+- Result: NEGATIVE — the falsifier triggered maximally (Arm1 0/8 in 3/3 layouts;
+  acceptance 0% / 0.9% / 3.6%; the few accepted jumps had POSITIVE deltas; detector
+  ringing 81–416 events/final-1000; components stay [1,1,1,1] almost everywhere).
+  K-selection worked as designed (K=4 chosen near-universally; replay NLL −1.4…−1.9 —
+  the fits are GOOD on replay). P3 PASS 24/24 (loc 0.04–0.05). Twin sanity 24/24.
+  Suite 131 green.
+- Verifier: agree (blinded, conjunct-by-conjunct; one vacuous-delta ambiguity noted,
+  verdict-invariant).
+- Autopsy (post-hoc analysis, marked for TEST in Exp 153, not claimed): probation
+  surprise ROSE ~1 nat after replacement despite excellent, correctly-placed fits.
+  The arithmetic of the rung-1 declared UNNORMALIZED-FOOTPRINT convention explains
+  it: footprint values are capped at 1 regardless of tightness, so a K-component
+  tight mixture's predictive mass at any one cell is ~w_j·1 ≈ 1/K of a broad
+  single component's — sharpness buys no density gain (a normalized Gaussian would
+  peak at 1/2πσ², compensating the 1/K). Predicted p(own color at own cell) falls
+  ~0.25 → ~0.067 ⇒ ~2.7 nats — matching the observed 1.7–2.8. If confirmed, the
+  Exp 143–146+152 growth wall is substantially an artifact of the conjugacy-buying
+  emission convention, not of log-loss geometry alone — a finding that would
+  re-bound the wall documentation.
+- Honest caveat: the dilution account is unverified arithmetic on this run's numbers
+  (Exp 153 carries the predeclared normalized-density diagnostic arm); the budget
+  design (one jump per color per 1200 steps) limited re-attempts; the EM covariance
+  floor (1e-4) and 10 iterations were single design points.
+- Verdict: NEGATIVE (the predeclared falsifier; crack 1 spent) / the dilution
+  hypothesis is the candidate NEW INSIGHT pending its test. Self-grade: n/a.
+- Next: Exp 153 — background-floor (crack 2, pre-authorized) PLUS the predeclared
+  normalized-density diagnostic arm testing the dilution account.
