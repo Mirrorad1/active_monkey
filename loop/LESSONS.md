@@ -60,3 +60,17 @@ Ground rules for this file:
   re-Read the generated region (tail entry + AM_TALLY line) at the START of each
   iteration's site-entry edit, and always edit-then-generate within one iteration,
   never generate-then-edit-later. Same applies to lab-status.js and DIRECTIONS.md.
+- **L13 (Exp 183 addendum, 2026-06-12).** Refuter/falsifier IMPLEMENTATIONS are
+  instruments: check their resolution against the measured quantity's timescale
+  before believing a fire (a 100-step snapshot cadence floor-snapped a 75-step
+  window, making erosion_head ≡ 0 by construction and firing a refuter as an
+  artifact — while a blinded verifier built a wrong counter-mechanism on top of it).
+  Where physics supplies an invariant (frozen ⇒ bit-constant), ASSERT it as the
+  measurement's license; the assert doubles as a guard on the mechanism itself.
+  [VALIDATION; the constancy-assert pattern in exp183_seed229_autopsy.py]
+- **L14 (Exp 183 addendum, 2026-06-12).** Diagnostic re-runs on a spine MUST use a
+  DETACHED deepcopy (`root = copy.deepcopy(spine); root._state_dir = None`) so
+  `fork()`'s bio appends become no-ops (brain state stays bit-identical, git stays
+  clean), and MUST gate every analysis behind a bit-match against the committed rows
+  (quantities + event fields, atol 1e-9) — an unmatched reconstruction is a different
+  experiment. [PROTOCOL; pattern: exp183_seed229_autopsy.py]
