@@ -389,4 +389,42 @@ inside the burst; H900-3000 plateau at n4's exact 6/8; H3000 brushes the P6 bar 
 25 steps). Honest flag: one-fork-sensitive near the majority bar. The verdict's
 residue is TIMING, not the surface.
 
-**STATUS.** state: halted (rung 3 attempt 2 MIXED; attempt 3 specified, loop paused on the human's word) · latest: Exp 182 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (five clean blocks), the wrong-control-surface law (181), the SUFFICIENT freeze surface + oracle upper bound (182), the majority displacement-rejection criterion (182), same-schedule-arms protocol (170), universal-constant kill test (173 — differentiating at last) · why: one fork short with both shortfalls instrument-grade and named · next-falsifiable: Exp 183 — rung 3 attempt 3 (pre-register before building): trigger check every 25 steps (dose ~85 -> ~21 units) + history-clear guard (retain m_bar_frozen as a floor prior across clears — no dead zone); ALL else verbatim incl. the majority bar; FRESH seeds 226-233; same P5/P6/P7 and verdict map
+**RUNG 3, ATTEMPT 3 — PRE-REGISTRATION (Exp 183, the fast-trigger freeze-gate;
+committed before any data; resumed on the human's word).** Two surgical instrument
+deltas closing Exp 182's confirmed gaps; EVERYTHING else verbatim (THETA=3.5,
+E_STAR=600, pressure window/bar 200/0.6, H-sweep {600..3000}, write-gain sweep,
+oracle diagnostic, P5 majority displacement-rejection <0.5, P6, P7, verdict map,
+both phases, 15000 steps).
+
+- **Delta 1 — fine trigger cadence (closes the lag dose, ~85 -> ~21 units).**
+  Snapshots every FINE_EVAL = 25 steps (was 100). The mismatch RATIO is scale-free,
+  so THETA=3.5 carries over: drift window stays 1000 steps (MON_W_SNAPS 10 -> 40
+  fine snapshots), m_bar window stays 3000 steps (CTRL_MBAR_WINDOW 30 -> 120),
+  arming threshold stays 1000 steps (CTRL_MIN_SNAPS 10 -> 40), pressure checks and
+  release calm stay 200 steps (RELEASE_CALM_SNAPS 2 -> 8 fine checks). Declared
+  risk: quiet ratio noise at the 25-step horizon may be twitchier — acceptable
+  because Delta 2 makes false alarms cheap.
+- **Delta 2 — the history-clear floor guard (closes the dead zone).** On any
+  release/concession the mismatch history is still cleared (predictions must not
+  span the frozen plateau), BUT: (a) m_bar_floor = the last live m_bar is CARRIED
+  across the clear; until 40 fresh post-release mismatches exist, the trigger uses
+  m_bar_floor as denominator; (b) the drift window SHORTENS during re-forming —
+  lookback L = min(40, available-1) fine snapshots, >= 2 required, so a trigger is
+  possible from ~50 steps post-release instead of ~1025; (c) a declared REFRACTORY
+  period: no re-trigger within 8 fine checks (200 steps) of a release, capping
+  alarm oscillation. The session start uses the same rule set (disarmed until 40
+  samples, as before).
+- **Prediction.** The two Exp 182 failure classes (lag-dose: 218/222/223-b0;
+  dead-zone: 221/224) are both addressed; if the mechanism analysis is right,
+  n4_freeze approaches the oracle's 8/8 and P5 passes; if quiet noise at the fine
+  horizon produces alarm storms, the events tables will show it and P5/P6 will
+  price it honestly. NEGATIVE-config remains live (H-arms inherit both deltas —
+  the sweep stays apples-to-apples).
+- **Seeds.** FRESH 226-233; smoke 226 (all arms, both phases), disclosed.
+- **Honest caveats (pre-registered).** FINE_EVAL=25, the refractory length, and
+  the shortened-lookback rule are PROVIDED; short-lookback slope estimates are
+  noisier (quiet m may inflate against m_bar_floor right after release — the
+  refractory plus fast transient release bound the cost); the bar-sensitivity flag
+  from Exp 182 carries (the majority bar stands on the pre-data oracle table).
+
+**STATUS.** state: active (rung 3, attempt 3 — pre-registered, build next) · latest: Exp 182 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (five clean blocks), the wrong-control-surface law (181), the SUFFICIENT freeze surface + oracle bound (182), majority displacement-rejection criterion (182), same-schedule-arms protocol (170), universal-constant kill test (173) · why: both Exp 182 shortfalls are instrument-grade and the fixes are surgical · next-falsifiable: Exp 183 as pre-registered above (seeds 226-233, smoke 226; P5/P6/P7 and verdict map verbatim)
