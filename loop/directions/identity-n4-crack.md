@@ -339,4 +339,57 @@ Two core cells are tolerance-relative (dissolve under loose); four hold at all
 tolerances. Exp 187 — ONE controller re-test in exactly the confirmed cells — is
 LICENSED per the pre-registration, under the standing word.
 
-**STATUS.** state: active (rung 5 = Exp 187, the licensed controller re-test — design + pre-registration first; the regulated-commitment question reopened exactly where regulation is provably necessary, kill-test discipline binding) · latest: Exp 186 (BREAKTHROUGH — crack confirmed, 9 cells) · depends-on: identity-n4 (closed-negative), Exp 183–185 artifacts · reusable: everything in the rung-1–4 toolkit + the confirmed crack-cell set · why: defense and revision provably separate in the confirmed cells while the oracle defends — the first regime where a discriminating controller could beat every constant · next-falsifiable: Exp 187 — does ANY realizable controller pass both bars in the confirmed cells (and does it beat the constants honestly, same-schedule, fresh seeds)? · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
+**EXP 187 — PRE-REGISTRATION (rung 5: the licensed controller re-test in the confirmed
+crack cells; under the standing word "a"; committed BEFORE any data).**
+
+- **Design thesis (falsifiable).** In the confirmed cells the transient/sustained
+  discriminator is pressure INTERMITTENCY: trains have gaps where the pressure
+  statistic de-asserts; a changed world never lets up. The controller family
+  INT = freeze machinery verbatim (THETA 3.5 sliding trigger) + gap-spanning release
+  (calm 2600) + concession on CONTINUOUS pressure only — the concession accumulator
+  RESETS whenever pressure de-asserts. Two concession forms, both constants on the
+  new surface (the kill test runs ON the surface): INT-E600 (evidence integral
+  E_blocked ≥ 600 of CONTINUOUS coherent pressure — Exp 183's surrender-schedule
+  controller repaired at its root: an integral that resets on gaps cannot be
+  outlasted by an intermittent attack, and a continuous attack IS functionally a
+  changed world) and INT-C{1500,2000,2900} (continuous-pressure stopwatches). The
+  N4 rung-2 monitor supplies the trigger; the concession discriminator is honest
+  REGIME STRUCTURE (the Exp 167 move at the concession level), not meta-judgment —
+  named as such.
+- **Arms (10).** baseline; oracle (witness); reference constants from Exp 186:
+  H3000, CALM2600-H6000, THETA3.0-H3000; the surrender-schedule contrast: n4_freeze
+  E*=600 WITHOUT gap reset (verbatim — same integral, no reset: the minimal pair);
+  INT-E600; INT-C1500; INT-C2000; INT-C2900.
+- **Cells (9, the confirmed set).** (1600,2,200), (1600,3,200), (2400,3,200),
+  (1600,4,200), (2400,4,200), (2400,4,600), (400,4,600), (400,4,2400), (800,4,600).
+- **Seeds.** FRESH 260–267 (8). W: 9 × 10 × 8 = 720 sessions; R: 9 non-oracle arms
+  × 8 = 72 sessions. Bars VERBATIM Exp 186 (defense ≥ 6/8; revision ≥ 6/8 vs
+  same-seed baseline + 3000 normal, tight/loose secondary; oracle ≥ 7/8; deficit
+  ≥ 7/8). PC1 gated. No mid-run adjustments.
+- **Predictions + falsifiers.**
+  P1: INT-E600 passes BOTH bars in ≥ 7/9 cells (defense: every gap resets the
+  integral, one head dose per train; revision: concedes at ~703 continuous steps —
+  also passes TIGHT, which no frozen-time arm can). F1: INT-E600 fails defense in
+  ≥ 3 cells (spurious resets or dose exhaustion) — intermittency insufficient, the
+  crack stands as an open wall.
+  P2: the C-sweep is tolerance-trivial on the new surface (any C ≤ tolerance passes
+  both bars; C2900 fails tight while E600 passes) — constants-on-the-right-surface
+  suffice: the UNIVERSAL-CONSTANT LAW REFINED (sufficient-surface at the concession
+  level), not broken. F2: no single C covers all 9 cells while cell-dependent C's
+  exist — a genuine regulation requirement (the chapter-reversing outcome; report
+  with both hands).
+  P3: the minimal pair separates — non-reset E*=600 fails defense in the train
+  cells (concedes mid-train) while INT-E600 defends: the gap-reset is the entire
+  difference. F3: the pair does NOT separate — the mechanism story is wrong.
+- **Verdict semantics.** INT family passing everywhere → the crack is CLOSED
+  CONSTRUCTIVELY: identity defense + revision coexist in the crack cells via the
+  continuity surface; the chapter's negative is refined (what was missing was the
+  SURFACE, not judgment); rung-2 instruments necessary, regulation still
+  unnecessary. INT failing → the crack stands; consult. Either way the chapter
+  synthesis follows as the next consolidation step, then consult.
+- **Build.** Extend the exp185/186 runner with the INT concession modes
+  (parameterized: gap-reset flag, continuity threshold form C-or-E); equivalence
+  gate with evidence table (L15); spine safety (L14); outputs exp187_rows.json /
+  exp187.txt; script experiments/exp187_n4_intermittency_controller.py.
+
+**STATUS.** state: active (rung 5 = Exp 187 pre-registered — the intermittency-gated concession vs the confirmed crack cells; kill test runs ON the new surface) · latest: Exp 186 (BREAKTHROUGH — crack confirmed, 9 cells) · depends-on: identity-n4 (closed-negative), Exp 183–185 artifacts · reusable: everything in the rung-1–4 toolkit + the confirmed crack-cell set · why: defense and revision provably separate in the confirmed cells while the oracle defends — the first regime where a discriminating controller could beat every constant · next-falsifiable: Exp 187 — does ANY realizable controller pass both bars in the confirmed cells (and does it beat the constants honestly, same-schedule, fresh seeds)? · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
