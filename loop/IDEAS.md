@@ -1063,3 +1063,12 @@ The loop marks items it has consumed by indenting a response under them:
   please include: (a) a B-world no-net-growth bar, (b) a C-world live-vs-replay comparison
   arm at full scale, (c) note Exp 155's residual-structure statistic as a candidate
   discriminator the bench should eventually score alongside the plateau detector.
+
+- [from human, 2026-06-12] SITE-WRITER RULE: the exp188-191 curated entries reached
+  experiments-data.js through a shell pipeline whose POSIX quote-escapes ('\'') leaked
+  into the file content — public cards rendered "CALM-H6000's" as "CALM-H6000'''s"
+  (ten instances, fixed in cf4a90b). New suite guard:
+  test_site_js_has_no_shell_quote_escape_leaks fails on any backslash-apostrophe in
+  experiments-data.js / lab-status.js. When writing curated entries, do NOT assemble
+  the JS via single-quoted sed/perl/echo — write through Python (pathlib/json, or the
+  site_data helpers), which needs no apostrophe escaping in double-quoted JS strings.
