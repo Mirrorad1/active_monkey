@@ -846,6 +846,16 @@ The loop marks items it has consumed by indenting a response under them:
       nira's switch, cloud merge, ladder).
   (c) Other / redirect / stop.
   The loop HOLDS at consolidation-grade until a word appears here.
+  → [human, 2026-06-12] "a" — the explicit word for option (a). CONSUMED as Exp 186 =
+    rung-4 fresh-seed confirmation: the 6 surviving normal-mode core cells + an
+    8-cell V-resolution sample (the four (1200,1,·) anomaly cells + the first four
+    other V cells by cell_idx), 16 arms (baseline, the 8-H sweep, n4-ref, oracle,
+    CALM2600×3, THETA3.0×2), FRESH seeds 250–257 (≥8/cell per the consult), bars
+    pre-registered before data. A replicated core (≥4/6 cells confirm) makes the
+    crack REAL at this body and licenses ONE controller re-test in exactly the
+    confirmed cells (Exp 187, same word, kill-test discipline binding); a dissolved
+    core closes the chapter config-sufficient. Falsifier-bound as ever; the verdict
+    is the verdict.
 
 (empty — drop ideas above this line's section freely)
 

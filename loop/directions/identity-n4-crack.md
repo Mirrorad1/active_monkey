@@ -289,4 +289,39 @@ than the margin affords (B) — exactly the regime where a discriminating contro
 (n4-ref revises at ~725–885 while the oracle defends everything) could earn its keep
 over every constant. Survivors are same-seed diagnoses, NOT confirmed cracks.
 
-**STATUS.** state: halted (rung-3 classification COMPLETE; CONSULT posted in loop/IDEAS.md 2026-06-12 — rung-4 fresh-seed confirmation of the surviving core is the recommended option and needs its own word; the loop HOLDS) · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
+**EXP 186 — PRE-REGISTRATION (rung 4: fresh-seed confirmation of the surviving core;
+authorized by the human's "a", 2026-06-12; committed BEFORE any data).**
+
+- **Cells (14).** The 6 surviving normal-mode core cells — A: (1600,2,200),
+  (1600,3,200), (2400,3,200); B: (1600,4,200), (2400,4,200), (2400,4,600) — plus the
+  V-resolution sample: the four (1200,1,G) anomaly cells and the first four OTHER
+  normal-mode V cells by cell_idx (from the committed exp185 classification).
+- **Arms (16).** baseline; H600–H6000 (8); n4_freeze (E*=600, reference); oracle
+  (diagnostic witness); CALM2600×{H1200,H3000,H6000}; THETA3.0×{H1200,H3000}. H9000
+  excluded analytically (fails revision in every mode by the latency law). W: 14 ×
+  16 × 8 = 1792 sessions; R: 16 × 8 = 128 sessions; FRESH seeds 250–257.
+- **Bars (CONFIRMATION-grade, primary = normal tolerance +3000; tight/loose logged
+  as secondary diagnostics).** defense_pass(arm, cell) = ≥ 6/8 seeds (final-window
+  displacement-rejection, verbatim exp184); revision_pass(arm) = ≥ 6/8 seeds at the
+  arm's own fresh-seed Phase-R latencies. Per core cell: CRACK CONFIRMED iff (i) NO
+  arm in the extended family passes both bars, (ii) oracle defends ≥ 7/8, (iii)
+  baseline fails ≥ 7/8 (the deficit exists). CORE REPLICATES iff ≥ 4/6 core cells
+  confirm; A/B labels re-derived per cell from which bar binds. V-sample verdicts:
+  covered / crack / variance-dominated (best-arm defense in [3,5]/8).
+- **Falsifiers.** F1: core fails to replicate (< 4/6) → the crack dissolves at seed
+  grade; NEGATIVE — the chapter closes config-sufficient (refined family). F2: oracle
+  fails ≥ 2/8 in a core cell → class-E contamination; that cell excluded + flagged.
+  F3: baseline deficit absent (< 7/8 fail) in a core cell → precondition failure;
+  cell excluded + flagged. PC1 ahat_drift < 0.15 gated. NO mid-run bar adjustments.
+- **Stakes (predeclared).** Replicated core → the crack is REAL at this body (the
+  two-inequality law named) and Exp 187 = ONE controller re-test in exactly the
+  confirmed cells proceeds under the same word (kill-test discipline binding: the
+  controller must beat EVERY constant in the extended family on both bars there).
+  Dissolved core → config-sufficiency holds everywhere robust; closure consult.
+- **Build.** Reuse the exp185 parameterized runner verbatim (THETA/CALM params);
+  equivalence gate re-run through the exp186 code path with the emitted evidence
+  table (L15); spine safety per L14. Outputs:
+  experiments/outputs/exp186_rows.json, exp186.txt, script
+  experiments/exp186_n4_core_confirmation.py.
+
+**STATUS.** state: active (rung 4 = core confirmation, authorized by "a" 2026-06-12; Exp 187 controller re-test licensed ONLY by a replicated core) · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
