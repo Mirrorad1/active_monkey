@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 182, title: "N4 rung 3 attempt 2 (the FREEZE-GATE, pre-registered + three declared pre-data amendments): MIXED, between-bands — the SURFACE IS SUFFICIENT (oracle 8/8: perfectly-timed freezing defends every fork) but the TRIGGER LOSES THE RACE (n4_freeze 6/8, one fork short of P5), and every fixed horizon plateaus at the same 6/8 — in Phase W the bottleneck is timing, not concession type; P6 passes 8/8 and the H-sweep finally has teeth", tag: "MIXED" },
-  tally: { total: 182, positive: 105, negative: 47, mixed: 26, breakthroughs: 4 },
+  latest_exp: { n: 183, title: "N4 rung 3 attempt 3 (fast-trigger freeze-gate, pre-registered + the detection-floor amendment): NEGATIVE — BOTH falsifiers fire.", tag: "NEGATIVE" },
+  tally: { total: 183, positive: 105, negative: 48, mixed: 26, breakthroughs: 4 },
   directions: [
-    { name: "identity-n4", state: "active (rung 3, attempt 3 — pre-registered, build next)", latest: "Exp 182", next: "Exp 183 as pre-registered above (seeds 226-233, smoke 226; P5/P6/P7 and verdict map verbatim)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
+    { name: "identity-n4", state: "halted (rung 3 closed by double falsifier F5+F7; chapter-grading consult in loop/IDEAS.md awaits a word; loop paused on the human's word)", latest: "Exp 183", next: "TBD-human (consult: grade the chapter as recommended, or hunt the seed-229 repeated-color crack with the Exp 173 dissolution warning attached)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

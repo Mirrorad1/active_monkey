@@ -446,4 +446,17 @@ dead-zone failures (seeds 221/224 class) and stands on its own. Expected honest
 outcomes: dead-zone fixes alone may lift n4 AND the H-arms to ~7/8 together —
 NEGATIVE-config is squarely live; or the stride gain + guard reach P5 with n4 only.
 
-**STATUS.** state: active (rung 3, attempt 3 — pre-registered, build next) · latest: Exp 182 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (five clean blocks), the wrong-control-surface law (181), the SUFFICIENT freeze surface + oracle bound (182), majority displacement-rejection criterion (182), same-schedule-arms protocol (170), universal-constant kill test (173) · why: both Exp 182 shortfalls are instrument-grade and the fixes are surgical · next-falsifiable: Exp 183 as pre-registered above (seeds 226-233, smoke 226; P5/P6/P7 and verdict map verbatim)
+**RUNG 3, ATTEMPT 3 RESULT (Exp 183, NEGATIVE, blind-verified — BOTH falsifiers).**
+F5 (binding tier, ordered map): the evidence-based concession surrenders MID-BURST
+(E*~700 steps < the 800-step attack — any finite evidence integral the attack can
+outlast becomes a surrender schedule the attacker sets; n4 collapses 6/8 -> 2/8
+despite trig_lat=75 and the closed dead zone). F7 — THE KILL TEST'S FIRST KILL:
+H1200/H1800/H2400/H3000 ALL pass both bars (defense 7/8 + revision within
+tolerance; each missing only seed 229, a repeated-burst-color regime). At this
+richness commitment is CONFIG: the Exp 173 universal-constant law lands at the
+identity level, and the regulated version is strictly worse than the constant.
+Constructive positive inside the negative: identity defense IS achievable on this
+body (fixed-horizon freeze on a mismatch trigger). Detection-floor law also banked:
+~75-100 steps of onset dose is irreducible for ratio triggers (probe, 874998c).
+
+**STATUS.** state: halted (rung 3 closed by double falsifier F5+F7; chapter-grading consult in loop/IDEAS.md awaits a word; loop paused on the human's word) · latest: Exp 183 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (six clean blocks), wrong-control-surface law (181), sufficient freeze surface + oracle bound (182), detection-floor law (183), surrender-schedule law (183), commitment-as-config (183), universal-constant kill test (173 — first kill) · why: the central hypothesis failed its load-bearing rung at its own pre-registered kill test · next-falsifiable: TBD-human (consult: grade the chapter as recommended, or hunt the seed-229 repeated-color crack with the Exp 173 dissolution warning attached)

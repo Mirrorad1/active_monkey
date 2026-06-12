@@ -6422,3 +6422,74 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   retain m̄_frozen as a floor prior instead of a full wipe — no dead zone), all
   else verbatim including the majority-rejection bar; FRESH seeds 226–233. The
   paused loop resumes on the human's word.
+
+## Exp 183 — N4 rung 3 attempt 3 (fast-trigger freeze-gate, pre-registered + the detection-floor amendment): NEGATIVE — BOTH falsifiers fire. F5: the evidence-based concession is now the leak (E*≈700 steps < the 800-step burst, so the faster trigger concedes MID-BURST — n4 collapses 6/8 → 2/8). F7, the kill test's first kill: FOUR fixed horizons (H1200–H3000) pass BOTH bars (7/8 defense + revision within tolerance) — at this richness, identity defense is CONFIG, and the regulated concession is strictly worse than a constant (NEGATIVE; the chapter's central hypothesis fails its load-bearing rung; HALTED on the human's word and per discipline)
+
+- Plain: we made the alarm faster, and it worked — the freeze now engages 75 steps
+  into every captivity instead of 100, and the blind spot after false alarms is
+  gone. But the faster alarm exposed the deeper flaw: the creature's "intelligent"
+  surrender rule — give in when enough contrary evidence has piled up — now piles
+  up that evidence INSIDE the captivity and surrenders with 75 steps still to go,
+  losing almost every fight it started winning. Meanwhile the dumb rule — hold on
+  for a fixed twelve hundred steps no matter what — defends seven forks of eight
+  AND still adapts to genuinely changed worlds fast enough. The experiment we
+  built to kill our own hypothesis has finally done it: at this scale of life,
+  holding onto yourself doesn't need judgment; it needs a stopwatch. The judgment
+  version isn't just unnecessary — it's worse.
+- Question (pre-registered 6aa9f77 + detection-floor amendment 874998c, both
+  committed before any data — verifier checked timestamps): with the sliding
+  100-step-horizon / 25-step-stride trigger (the probe showed NO signal-noise
+  separation exists at short horizons — the detection floor: ~75–100 steps of
+  onset dose is irreducible for ratio triggers on this body) and the
+  history-clear floor guard + refractory (no dead zone), do P5/P6/P7 (verbatim)
+  pass?
+- Setup: 13 verdict arms + oracle × 2 phases × FRESH seeds 226–233 = 216
+  sessions; smoke (seed 226, all arms) disclosed; one diagnostic-fields addition
+  to the return dict (v_fine/mismatch streams) for the calibration probe.
+- Result: NEGATIVE. Gates all PASS (PC2′ max TV 0.047 — sixth clean block).
+  P5: n4_freeze 2/8 (F5; need ≥7, falsifier ≤4) — trig_lat ~75 confirmed on
+  onsets, but every concession exits ~75–125 steps BEFORE burst end (E_blocked
+  hits 600 at ~entry+600 < burst end), and the unprotected tail re-writes the
+  identity; baseline 0/8 (deficit intact). P6: n4 8/8, no rigidity. P7: FAIL
+  (F7) — H1200/H1800/H2400 at 7/8 + 8/8 and H3000 at 7/8 + 6/8 ALL match both
+  bars (each failing only seed 229, a repeated-burst-color cumulation case, a
+  different mechanism); H900 6/8; H600 1/8 (concedes in-burst like n4). The
+  dead-zone guard WORKED (the exp182 dead-zone seeds recovered; H-arms rose
+  6/8 → 7/8). Oracle 8/8 again. No alarm storms (4–11 events/session, all
+  transients cheaply released). One residual trigger miss (seed 233 burst 2,
+  post-concession re-forming — did not affect its verdict).
+- Verifier: blinded subagent CONFIRMED NEGATIVE with tier NO-RESISTANCE as the
+  binding cell (the pre-registered map is an ordered tree; F5 fires before the
+  config branch, and F7's claim presupposes a working controller), with F7
+  explicitly REPORTABLE as the second-order finding; mechanism confirmed from
+  events tables (concession exits 6700–6725 vs burst end 6800, modal trig_lat
+  75); H-arms' rise attributed to the dead-zone guard; bar-sensitivity checked —
+  no plausible shift changes any count; row counts exact (465).
+- Implication (the chapter's load-bearing answer, in two layers): (1) THIS
+  controller dies by its own concession — the E*-vs-burst-length race is the
+  Exp 182 lag dose in a new coat: any evidence-integral threshold the attack can
+  outlast becomes a surrender schedule the attacker sets. (2) THE KILL TEST
+  KILLS: a fixed-horizon freeze-gate (hold ~1.5–3× the attack length, concede on
+  the stopwatch) defends 7/8 AND revises within tolerance — the Exp 173
+  universal-constant law lands at the identity level: at this richness no
+  regulation is necessary; commitment is CONFIG. The constructive positive
+  inside the negative: identity defense IS achievable on this body — by a
+  mechanism with no intelligence in it.
+- Honest caveat: F5 is the formally binding tier (the ordered map); the
+  config reading rests on H-arms that inherit the SAME trigger (the freeze
+  machinery is shared — only concession differs), so "config" here means
+  fixed-H-on-a-mismatch-trigger, not pure clockwork; seed 229 shows a regime
+  (repeated burst colors) where no current arm defends — a candidate
+  no-constant-covers crack, but Exp 173's precedent warns such cracks tend to
+  dissolve; E*=600 was PROVIDED and a larger E* would shift, not remove, the
+  surrender-schedule problem (any finite integral loses to a longer burst);
+  the bar-sensitivity flag from 182 carries.
+- Verdict: NEGATIVE / NEW INSIGHT (the surrender-schedule law + the kill test's
+  first kill: commitment-as-config). Self-grade: NEGATIVE.
+- Next: HALTED — falsifiers fired AND the human's word says pause. Consult
+  posted in loop/IDEAS.md: (a) accept NEGATIVE-config as the rung-3 verdict and
+  grade the chapter (monitor real at rung 2; control = config at rung 3; N4-as-
+  layer UNSUPPORTED at this richness, with the constructive fixed-H defense
+  documented); (b) attempt the seed-229-class crack (variable-length /
+  repeated-color attack schedules where no single H covers — the Exp 173
+  playbook, with its dissolution warning); (c) other.

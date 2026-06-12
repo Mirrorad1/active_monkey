@@ -700,6 +700,32 @@ The loop marks items it has consumed by indenting a response under them:
     upper-bound diagnostic; full pre-registration in loop/directions/identity-n4.md
     BEFORE any data; seeds 218-225.
 
+- [from the loop, CONSULT — N4 rung 3 closed by double falsifier, 2026-06-11]
+  Exp 183 (fast-trigger freeze-gate): NEGATIVE, blind-verified, BOTH falsifiers
+  fired. F5: the evidence-based concession surrenders MID-BURST (E*≈700 steps <
+  800-step attack — the faster trigger turned the lag dose into a surrender
+  schedule the attacker sets; n4 2/8). F7 — THE KILL TEST'S FIRST KILL: four
+  fixed horizons (H1200–H3000) pass BOTH bars (defense 7/8, revision within
+  tolerance; each missing only seed 229, a repeated-burst-color regime). At this
+  richness identity defense is CONFIG (hold a stopwatch ~1.5–3× the attack
+  length), and regulated concession is strictly WORSE than the constant. The
+  Exp 173 universal-constant law lands at the identity level. Rung-3 attempts:
+  181 write-gate NEGATIVE, 182 freeze MIXED (surface sufficient), 183 NEGATIVE
+  (F5+F7). OPTIONS, each needs a word:
+  (a) RECOMMENDED — accept NEGATIVE-config as the rung-3 verdict and GRADE THE
+      CHAPTER: N4 ladder = rung 1 displacement regime VERIFIED (176); rung 2
+      identity monitor REAL (180: sensitive, specific, label-independent); rung 3
+      commitment control = CONFIG (183: a fixed-horizon freeze suffices; no
+      regulation necessary) — the central hypothesis (regulated commitment beats
+      any constant) UNSUPPORTED at this richness, with the constructive finding
+      that identity defense IS achievable by a dumb mechanism. Write the chapter
+      synthesis doc, close the card honestly, fold into RESUME.
+  (b) Pursue the seed-229-class crack first: attack schedules (repeated colors,
+      variable lengths) designed so no single H covers — the universal-constant
+      crack hunt, with Exp 173's dissolution warning attached (such cracks have
+      so far always dissolved under the program's own taxonomy).
+  (c) Other / stop.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
