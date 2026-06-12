@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>active_monkey — understanding the world from surprise alone</title>
-<meta name="description" content="An autonomous research log: a tiny active-inference agent learning its world from experience — a toy-scale open research lab.">
+<title>active_monkey — a toy world-model lab</title>
+<meta name="description" content="An open-source active-inference research log testing world-model growth, identity continuity, and failure modes in tiny embodied agents.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
-<meta property="og:title" content="active_monkey — understanding the world from surprise alone">
-<meta property="og:description" content="An autonomous active-inference agent learns from scratch with no labels, rewards, or pretraining — and forms opinions of its own.">
+<meta property="og:title" content="active_monkey — a toy world-model lab">
+<meta property="og:description" content="Tiny active-inference creatures, predeclared falsifiers, blinded checks, and a research log about when a model knows its worldview is too small.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mirrorad1.github.io/active_monkey/">
 <meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
@@ -19,134 +19,69 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="am.css?v=5">
 <style>
-  /* ---------- hero ---------- */
-  .hero{padding:54px 0 24px;}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end;}
+  .hero{padding:54px 0 28px;}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:end;}
   @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:30px;}}
   .hero h1{font-size:clamp(34px,5vw,58px);margin:16px 0 0;}
-  .hero .lead{margin-top:22px;max-width:52ch;}
+  .hero .lead{margin-top:22px;max-width:57ch;}
   .hero .lead b{color:var(--ink);font-weight:500;}
   .hero-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
   .hero-side{display:flex;flex-direction:column;gap:18px;}
-  .hero-plot{border:1px solid var(--ink);background:rgba(255,255,255,.45);padding:15px 17px 9px;}
-  .hero-plot .ph{display:flex;justify-content:space-between;align-items:baseline;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px;}
-  .hero-plot .pv{display:flex;justify-content:space-between;font-family:var(--serif);font-size:13px;margin-top:2px;}
-  .hero-plot .pv .from{color:var(--ink-2);} .hero-plot .pv .to{color:var(--accent);}
-  .hero-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);}
-
-  /* section scaffolding */
+  .status-card{border:1px solid var(--ink);background:rgba(255,255,255,.45);padding:20px 22px;}
+  .status-card .label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:10px;}
+  .status-card .latest{font-family:var(--serif);font-size:19px;line-height:1.25;color:var(--ink);}
+  .status-card .latest span{color:var(--accent);font-style:italic;}
+  .status-card .small{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:12px;}
+  .hero-stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);}
   section{padding:46px 0;}
-  .sec-head{margin-bottom:34px;max-width:62ch;}
+  .sec-head{margin-bottom:30px;max-width:66ch;}
   .sec-head h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 0;}
   .sec-head p{margin:16px 0 0;color:var(--ink-2);font-family:var(--serif);font-size:17px;line-height:1.55;}
-
-  /* ---------- three lenses ---------- */
-  .lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
-  @media(max-width:760px){.lenses{grid-template-columns:1fr;}}
-  .lens{padding:24px 22px 26px;border-right:1px solid var(--line);}
-  .lens:last-child{border-right:none;}
-  @media(max-width:760px){.lens{border-right:none;border-bottom:1px solid var(--line);}.lens:last-child{border-bottom:none;}}
-  .lens .who{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
-  .lens .who span{color:var(--ink-3);font-weight:400;}
-  .lens h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:14px 0 8px;letter-spacing:-.01em;}
-  .lens p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55;}
-
-  /* ---------- how it works ---------- */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+  @media(max-width:820px){.cards3{grid-template-columns:1fr;}}
+  .card{padding:24px 22px 26px;border-right:1px solid var(--line);background:rgba(255,255,255,.25);}
+  .card:last-child{border-right:none;}
+  @media(max-width:820px){.card{border-right:none;border-bottom:1px solid var(--line);}.card:last-child{border-bottom:none;}}
+  .card .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .card h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:14px 0 8px;letter-spacing:-.01em;}
+  .card p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.58;}
+  .program{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.program{grid-template-columns:1fr;}}
+  .track{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:20px 20px 22px;}
+  .track .state{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px;}
+  .track h3{font-family:var(--serif);font-size:20px;font-weight:500;margin:0 0 8px;}
+  .track p{font-size:13px;color:var(--ink-2);line-height:1.55;margin:0;}
+  .track b{color:var(--ink);font-weight:500;}
   .how{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
   @media(max-width:760px){.how{grid-template-columns:1fr;}}
   .how .col{padding:24px 24px 26px;border-right:1px solid var(--line);}
   .how .col:last-child{border-right:none;}
   @media(max-width:760px){.how .col{border-right:none;border-bottom:1px solid var(--line);}.how .col:last-child{border-bottom:none;}}
   .how .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;}
-  .how .col.subject .lab{color:var(--accent);}
   .how h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:12px 0 10px;letter-spacing:-.01em;}
   .how p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6;}
-  .how-flow{margin-top:16px;border:1px solid var(--line);background:var(--paper-2);padding:15px 20px;}
-  .how-flow .fl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}
-  .how-flow .steps{font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.95;}
-  .how-flow .steps .ar{color:var(--accent);padding:0 2px;}
-  .how-note{margin-top:16px;border:1px solid var(--ink);background:var(--paper-2);padding:20px 22px;}
-  .how-note p{margin:0;font-size:15px;line-height:1.55;color:var(--ink);}
-  .how-note b{color:var(--accent);font-weight:600;}
-
-  /* ---------- the climb ---------- */
+  .flow{margin-top:16px;border:1px solid var(--line);background:var(--paper-2);padding:15px 20px;}
+  .flow .fl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}
+  .flow .steps{font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.95;}
+  .flow .ar{color:var(--accent);padding:0 2px;}
   .climb{position:relative;padding-left:34px;}
   .climb::before{content:"";position:absolute;left:9px;top:8px;bottom:34px;width:2px;background:linear-gradient(var(--accent),var(--line));}
-  .act{position:relative;border-top:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;text-decoration:none;color:inherit;transition:background .15s;}
+  .act{position:relative;border-top:1px solid var(--line);padding:20px 0;display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;text-decoration:none;color:inherit;transition:background .15s;}
   .act:hover{background:rgba(255,255,255,.4);}
-  .act::before{content:"";position:absolute;left:-29.5px;top:27px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--paper);}
+  .act::before{content:"";position:absolute;left:-29.5px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--paper);}
   .act .rn{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--ink);line-height:1;padding-top:2px;}
-  .act .q{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:-.01em;margin:0;line-height:1.12;}
-  .act .q em{font-style:italic;color:var(--accent);}
+  .act .q{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em;margin:0;line-height:1.12;}
   .act .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px;}
-  .act .sm{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;max-width:54ch;line-height:1.5;}
-  .act .dots{display:flex;gap:4px;margin-top:11px;flex-wrap:wrap;}
-  .act .dots i{width:8px;height:8px;border-radius:50%;display:block;}
+  .act .sm{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;max-width:58ch;line-height:1.5;}
   .act .meta{text-align:right;font-size:11px;color:var(--ink-2);white-space:nowrap;padding-top:4px;}
   .act .meta b{font-family:var(--serif);font-size:25px;font-weight:500;color:var(--ink);display:block;line-height:1;}
-  .act .go{font-size:11px;color:var(--accent);margin-top:10px;opacity:0;transition:opacity .15s;}
-  .act:hover .go{opacity:1;}
-
-  /* reveal */
-  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
-  .rv.in{opacity:1;transform:none;}
-  body[data-motion="off"] .rv{opacity:1;transform:none;}
-
-  /* ---------- takeaways ---------- */
-  .takes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  @media(max-width:820px){.takes{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:520px){.takes{grid-template-columns:1fr;}}
-  .take{background:var(--paper);padding:22px 20px 24px;}
-  .take .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;font-weight:600;}
-  .take h3{font-family:var(--serif);font-size:19px;font-weight:500;margin:12px 0 8px;letter-spacing:-.01em;}
-  .take p{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.55;}
-
-  /* ---------- the loop ---------- */
-  .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-  @media(max-width:760px){.loop{grid-template-columns:repeat(2,1fr);}}
-  .lp{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:18px 16px;position:relative;}
-  .lp .c{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
-  .lp h4{font-family:var(--serif);font-size:18px;font-weight:500;margin:8px 0 7px;}
-  .lp p{margin:0;font-size:12px;color:var(--ink-2);line-height:1.5;}
-  .lp .arr{position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:14px;z-index:2;}
-  @media(max-width:760px){.lp .arr{display:none;}}
-
-  /* ---------- deep dive cta ---------- */
   .dd{border:1px solid var(--ink);background:var(--paper-2);padding:34px 32px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
   @media(max-width:720px){.dd{grid-template-columns:1fr;}}
   .dd h2{font-family:var(--serif);font-size:27px;font-weight:500;margin:0;letter-spacing:-.01em;line-height:1.1;}
-  .dd p{margin:12px 0 0;color:var(--ink-2);font-size:14px;max-width:54ch;line-height:1.55;}
-
-  /* ---------- lab status ---------- */
-  .lab-status{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:22px 24px 24px;}
-  .lab-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-  @media(max-width:760px){.lab-status-grid{grid-template-columns:1fr;}}
-  .ls-block{padding:0;}
-  .ls-label{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:10px;}
-  .ls-latest{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
-  .ls-latest .ls-n{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
-  .ls-latest .ls-title{font-size:13px;color:var(--ink-2);line-height:1.45;}
-  .ls-tally{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
-  .ls-chip{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:3px 9px;border-radius:20px;white-space:nowrap;}
-  .ls-chip.total{background:var(--paper-2);color:var(--ink-2);border:1px solid var(--line);}
-  .ls-chip.positive{background:var(--positive-soft);color:var(--positive-deep);border:1px solid var(--positive);}
-  .ls-chip.negative{background:var(--wall-soft);color:var(--wall);border:1px solid var(--wall);}
-  .ls-chip.mixed{background:var(--partial-soft);color:var(--partial);border:1px solid var(--partial);}
-  .ls-chip.breakthrough{background:var(--break-soft);color:var(--break-deep);border:1px solid var(--break);}
-  .ls-directions{display:flex;flex-direction:column;gap:7px;}
-  .ls-dir{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;padding:8px 10px;border:1px solid var(--line);background:rgba(255,255,255,.3);}
-  .ls-dir-name{font-size:12.5px;color:var(--ink);font-weight:500;line-height:1.3;}
-  .ls-dir-next{font-size:11px;color:var(--ink-3);margin-top:3px;line-height:1.4;}
-  .ls-state-chip{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-  .ls-state-chip.active{background:var(--positive-soft);color:var(--positive-deep);border:1px solid var(--positive);}
-  .ls-state-chip.halted{background:#fdf3dc;color:#8a6800;border:1px solid #e0c060;}
-  .ls-state-chip.exploratory{background:var(--paper-2);color:var(--ink-2);border:1px solid var(--line);}
-  .ls-state-chip.closed-positive{background:var(--paper-3);color:var(--ink-3);border:1px solid var(--line);}
-  .ls-state-chip.closed-negative{background:var(--paper-3);color:var(--ink-3);border:1px solid var(--line);}
-  .ls-state-chip.flagship-candidate{background:var(--break-soft);color:var(--break-deep);border:1px solid var(--break);}
-  .ls-flagship{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-2);}
-  .ls-flagship a{color:var(--accent);text-decoration:none;font-weight:500;}
-  .ls-flagship a:hover{text-decoration:underline;}
+  .dd p{margin:12px 0 0;color:var(--ink-2);font-size:14px;max-width:58ch;line-height:1.55;}
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+  .rv.in{opacity:1;transform:none;}
+  body[data-motion="off"] .rv{opacity:1;transform:none;}
 </style>
 </head>
 <body>
@@ -162,7 +97,7 @@
 <script type="text/babel" src="am-shared.jsx?v=5"></script>
 
 <script type="text/babel">
-const { useState, useEffect, useRef } = React;
+const { useState, useEffect } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "growth",
@@ -171,92 +106,63 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "motion": true
 }/*EDITMODE-END*/;
 
-function Reveal({children, delay=0, tag="div", className=""}){
+function Reveal({children, delay=0, className=""}){
   const [ref,seen] = useInView();
-  const Tag = tag;
-  return <Tag ref={ref} className={"rv "+(seen?"in ":"")+className} style={{transitionDelay:(seen?delay:0)+"ms"}}>{children}</Tag>;
+  return <div ref={ref} className={"rv "+(seen?"in ":"")+className} style={{transitionDelay:(seen?delay:0)+"ms"}}>{children}</div>;
 }
 
-/* per-act stats — 4-kind taxonomy */
-function actStats(id, list){
-  const xs = (list||AM_EXPERIMENTS).filter(e=>e.chapter===id);
-  return {
-    all:xs,
-    breakthrough:xs.filter(e=>e.kind==="breakthrough").length,
-    positive:xs.filter(e=>e.kind==="positive"||e.kind==="win").length,
-    wall:xs.filter(e=>e.kind==="wall").length,
-    partial:xs.filter(e=>e.kind==="partial").length,
-    // legacy alias
-    win:xs.filter(e=>e.kind==="positive"||e.kind==="win"||e.kind==="breakthrough").length
-  };
+function chapterCount(id, exps){
+  return (exps||AM_EXPERIMENTS).filter(e => e.chapter === id).length;
 }
-const ACT_SUMMARY = {
-  language:"From a machine that barely echoes letters to one that won't grow a concept from nothing — and the discovery that depth, not capacity, is the lever.",
-  valence:"How a symbol becomes 'good' with no labels: valence grounds in the agent's own surprise, and it learns to act to feel understood.",
-  embodiment:"Give it a body. Place cells self-organize, it learns where it is, and it plans far enough ahead to reach what it wants.",
-  opinion:"Two identical creatures, raised in different worlds, come to value different things — and act on opinions that are entirely their own.",
-  frontier:"The honest boundary of 'from scratch', abstraction that scales, and a runnable demo where you ask it, in words, what it thinks.",
-  growth:"The world stops being friendly: colors repeat, noise is irreducible, the map is the wrong shape. A structural-inadequacy alarm is built and validated, five growth designs fail its honest acceptance test, the wall is traced to a scoring artifact — and once scoring is honest, the creature grows its own model on demand: alarm to silence, 24 runs out of 24.",
-};
 
-function Hero({tally, status}){
-  const [ref,seen] = useInView({threshold:.4});
-  const total      = useCountUp(tally.total, seen, 1000);
-  const breaks     = useCountUp(tally.breakthrough||0, seen, 1200);
-  const positives  = useCountUp(tally.positive||tally.win||0, seen, 1300);
-  const walls      = useCountUp(tally.wall, seen, 1400);
+function Hero({tally}){
+  const s = window.AM_LAB_STATUS;
+  const latest = s?.latest_exp;
   return (
-    <header className="hero" ref={ref}>
+    <header className="hero">
       <div className="wrap hero-grid">
         <div>
-          <div className="kicker">An autonomous research log · active inference</div>
-          <h1 className="h-display">Teaching a machine to understand the world from <em>surprise</em> alone.</h1>
-          <p className="lead"><b>active_monkey is an open-source toy active-inference lab</b>: persistent agents at deliberately small scale that learn, act, form preferences, forget, and revise their world models through lived experience. It began as one question — can an agent form its own opinions from experience, never pretrained? — and grew into a multi-act research program. The founding arc reached its answer at toy scale. The lab kept going: worlds that change, models that grow, agents that notice their worldview is too small.</p>
+          <div className="kicker">open-source research log · active inference · world models</div>
+          <h1 className="h-display">A tiny creature, tested until the story breaks.</h1>
+          <p className="lead"><b>active_monkey is a toy world-model lab built on active inference.</b> The subject is not an LLM. It is a small embodied agent that senses, acts, updates beliefs, forms preferences, grows structure, and sometimes fails in useful ways. The point is not to hype emergence; the point is to make every claim falsifiable enough that null results can steer the research.</p>
           <div className="hero-cta">
-            <a className="btn btn-primary" href="journey.html">Follow the journey →</a>
-            <a className="btn btn-ghost" href="open_problem.html">The open problem</a>
+            <a className="btn btn-primary" href="journey.html">Follow the experiment log →</a>
+            <a className="btn btn-ghost" href="open_problem.html">Current open problem</a>
           </div>
           <div className="hero-stats">
-            <div className="stat"><b className="tabnum">{total}</b><span>experiments run</span></div>
-            <div className="stat" style={{color:"var(--break)"}}><b className="tabnum" style={{color:"var(--break)"}}>{breaks}</b><span>breakthroughs</span></div>
-            <div className="stat win"><b className="tabnum">{positives}</b><span>positives</span></div>
-            <div className="stat"><b className="tabnum">{walls}</b><span>honest walls</span></div>
+            <div className="stat"><b className="tabnum">{tally.total}</b><span>experiments run</span></div>
+            <div className="stat" style={{color:"var(--break)"}}><b className="tabnum" style={{color:"var(--break)"}}>{tally.breakthrough||0}</b><span>breakthroughs</span></div>
+            <div className="stat win"><b className="tabnum">{tally.positive||tally.win||0}</b><span>positives</span></div>
+            <div className="stat"><b className="tabnum">{tally.wall}</b><span>honest walls</span></div>
           </div>
-          <p style={{marginTop:'22px', fontSize:'15px', color:'var(--ink-2)', fontFamily:"var(--serif)", lineHeight:1.55, maxWidth:'52ch'}}>Everything here is toy scale (4×4 worlds, 16 colors), every experiment predeclares its falsifiers before running, negative results are logged as negatives, and since Exp 152 every verdict is checked by a blinded verifier. <a href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener" style={{color:'var(--accent)', fontWeight:500}}>Open on GitHub ↗</a></p>
+          <p style={{marginTop:'22px', fontSize:'15px', color:'var(--ink-2)', fontFamily:"var(--serif)", lineHeight:1.55, maxWidth:'58ch'}}>Every serious result is predeclared against falsifiers, negative results stay in the log, and recent verdicts are checked with blinded verification. <a href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener" style={{color:'var(--accent)', fontWeight:500}}>Open on GitHub ↗</a></p>
         </div>
         <div className="hero-side">
           <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
-          <SyncChip status={status} count={tally.total}/>
-          <div className="hero-plot">
-            <div className="ph"><span>Surprise · bits / char</span><span>two separate experiments</span></div>
-            <SurpriseSegments segments={AM_SURPRISE_SEGMENTS} height={132}/>
-            <div style={{marginTop:'10px', fontFamily:'var(--mono)', fontSize:'10px', color:'var(--ink-3)', lineHeight:1.55, borderTop:'1px dashed var(--line)', paddingTop:'8px'}}>
-              No vision, no audio — the character stream we provide is its only sense. Falling surprise is the only 'reward' it ever gets.
-            </div>
-          </div>
+          {latest && <div className="status-card">
+            <div className="label">latest logged experiment</div>
+            <div className="latest"><span>Exp {latest.n}</span> · {latest.title}</div>
+            <div className="small">The current edge is not "does it look intelligent?" It is whether a named causal claim survives null interventions, stream-composition tests, and trivial baselines.</div>
+          </div>}
         </div>
       </div>
     </header>
   );
 }
 
-function Lenses(){
+function WhatItIs(){
   return (
     <section id="idea">
       <div className="wrap">
         <Reveal className="sec-head">
-          <div className="kicker">The big idea</div>
-          <h2 className="h-section">One principle, three lenses.</h2>
-          <p>The whole project rides on a single bet borrowed from theoretical neuroscience: adaptive behavior falls out of <em>minimizing surprise</em>. Perception, learning, wanting, acting — all of it follows. Three thinkers keep it honest.</p>
+          <div className="kicker">The framing</div>
+          <h2 className="h-section">Both active-inference lab and world-model lab.</h2>
+          <p>Active inference is the mechanism: prediction, surprise, action, belief update. World-model research is the target: what structure the agent has, how that structure grows, and whether identity survives perturbation.</p>
         </Reveal>
-        <Reveal className="lenses" delay={80}>
-          {AM_LENSES.map((l,i)=>(
-            <div className="lens" key={i}>
-              <div className="who">{l.who} <span>· {l.lens}</span></div>
-              <h3>{l.title}</h3>
-              <p>{l.body}</p>
-            </div>
-          ))}
+        <Reveal className="cards3" delay={80}>
+          <div className="card"><div className="eyebrow">mechanism</div><h3>Active inference</h3><p>The agent acts to reduce expected surprise and updates beliefs from what it senses. Think of it as a tiny runtime that continuously reconciles predictions with observations.</p></div>
+          <div className="card"><div className="eyebrow">object of study</div><h3>World models</h3><p>The experiments ask what the creature thinks exists: places, objects, anchors, self-state, and whether a missing factor should be added.</p></div>
+          <div className="card"><div className="eyebrow">discipline</div><h3>Falsifiable emergence</h3><p>A result only counts when the acceptance bars, trivial baselines, null interventions, and failure conditions are declared before the run.</p></div>
         </Reveal>
       </div>
     </section>
@@ -269,178 +175,97 @@ function HowItWorks(){
       <div className="wrap">
         <Reveal className="sec-head">
           <div className="kicker">How it actually works</div>
-          <h2 className="h-section">Wait, is this just an LLM?</h2>
-          <p>No. The language model here is the scientist, not the subject. It runs the lab. The thing actually learning is something much smaller and stranger.</p>
+          <h2 className="h-section">The LLM runs the lab. The creature is smaller.</h2>
+          <p>The language model is scaffolding: it proposes experiments, writes code, runs checks, and records verdicts. The subject being studied is the tiny active-inference agent inside those experiments.</p>
         </Reveal>
         <Reveal className="how" delay={60}>
           <div className="col">
-            <div className="lab">The scaffolding</div>
-            <h3>An LLM running the lab</h3>
-            <p>An autonomous agent (yes, an LLM) does the science. It poses a hypothesis, writes the experiment, runs it, reads the result, and notes what happened. Then it goes again, on its own, without stopping. It is the researcher, not the mind being studied.</p>
+            <div className="lab">The researcher</div>
+            <h3>An automated experiment loop</h3>
+            <p>Hypothesis, implementation, predeclared pass/fail bars, execution, verifier, log entry, next hypothesis. The LLM is useful because it keeps the loop moving, not because it is the mind being evaluated.</p>
           </div>
-          <div className="col subject">
+          <div className="col">
             <div className="lab">The subject</div>
-            <h3>An agent built from math</h3>
-            <p>What it studies is a tiny active inference agent. There is no language model inside it, and nothing pretrained. The embodied creature gets no dataset — just a small generative model dropped into a world, updating itself to be less surprised by what it senses. (The early language experiments streamed a small text corpus as sensory input; the embodied creature that followed does not.) Everything it comes to know, it built from its own experience.</p>
+            <h3>A toy embodied agent</h3>
+            <p>No pretrained language model sits inside the creature. It receives small-world sensory streams, maintains beliefs, acts, and sometimes grows a new model component when the old one cannot explain the world.</p>
           </div>
         </Reveal>
-        <Reveal className="how-flow" delay={100}>
-          <div className="fl">each experiment, start to finish</div>
-          <div className="steps">a hypothesis <span className="ar">→</span> build the agent <span className="ar">→</span> drop it in a tiny world <span className="ar">→</span> measure its surprise <span className="ar">→</span> keep what lowers it <span className="ar">→</span> log it honestly <span className="ar">→</span> again</div>
-        </Reveal>
-        <Reveal className="how-note" delay={120}>
-          <p>So when you watch it learn, that isn't the language model talking. It is a small agent made of math, learning its world from experience plus one innate anchor. The LLM just makes it possible to keep running these experiments without me babysitting every one.</p>
+        <Reveal className="flow" delay={100}>
+          <div className="fl">the current standard</div>
+          <div className="steps">claim <span className="ar">→</span> predeclare falsifiers <span className="ar">→</span> run creature <span className="ar">→</span> test trivial baselines <span className="ar">→</span> blind-check verdict <span className="ar">→</span> keep the nulls</div>
         </Reveal>
       </div>
     </section>
   );
 }
 
-function LabStatus(){
+function ResearchProgram(){
   const s = window.AM_LAB_STATUS;
-  if(!s) return null;
-  const stateClass = st => st ? st.replace(/[^a-z-]/g,'') : 'exploratory';
+  const dirs = s?.directions || [];
+  const pick = name => dirs.find(d => d.name === name);
+  const tracks = [
+    { name:"worldview growth", source:pick("continuous-creature"), body:"Can the creature detect that its model is too small and grow the right missing factor under strict bars?" },
+    { name:"identity continuity", source:pick("identity-n4-crack") || pick("n4-crack-edges"), body:"Can an identity state persist through captivity, regulation, release, and adversarial stream tests?" },
+    { name:"red-team baselines", source:pick("red-team"), body:"Can the strongest claims survive random policy, shuffled history, shuffled labels, and trivial-controller comparisons?" },
+    { name:"relational thoughts", source:pick("relational-thoughts"), body:"Can the creature compose learned relations across places, objects, and rooms without co-observing everything at once?" },
+  ];
   return (
-    <section id="lab-status">
+    <section id="program">
       <div className="wrap">
         <Reveal className="sec-head">
           <div className="kicker">The lab right now</div>
-          <h2 className="h-section">Where the research stands.</h2>
+          <h2 className="h-section">The current program is about causal claims.</h2>
+          <p>The recent trajectory moved from "look, something emerged" to "which named variable caused the measured change, and what null result would kill that explanation?"</p>
         </Reveal>
-        <Reveal delay={60}>
-          <div className="lab-status">
-            <div className="lab-status-grid">
-              <div className="ls-block">
-                <div className="ls-label">Latest experiment</div>
-                <div className="ls-latest">
-                  <span className="ls-n">{String(s.latest_exp.n).padStart(2,"0")}</span>
-                  <span className="ls-title">{s.latest_exp.title}</span>
-                  {s.latest_exp.tag && <span className={"ls-chip "+(s.latest_exp.tag==="breakthrough"?"breakthrough":s.latest_exp.tag==="positive"?"positive":s.latest_exp.tag==="wall"?"negative":"mixed")}>{s.latest_exp.tag}</span>}
-                </div>
-                <div className="ls-tally" style={{marginTop:16}}>
-                  <div className="ls-label" style={{marginBottom:6,marginTop:0,width:'100%'}}>Tally</div>
-                  <span className="ls-chip total">{s.tally.total} total</span>
-                  <span className="ls-chip positive">{s.tally.positive} positive</span>
-                  <span className="ls-chip negative">{s.tally.negative} walls</span>
-                  <span className="ls-chip mixed">{s.tally.mixed} partial</span>
-                  {s.tally.breakthroughs > 0 && <span className="ls-chip breakthrough">{s.tally.breakthroughs} breakthrough{s.tally.breakthroughs!==1?"s":""}</span>}
-                </div>
-                {s.flagship && (
-                  <div className="ls-flagship">
-                    Flagship draft: <a href={s.flagship.page} target="_blank" rel="noopener">{s.flagship.title} ↗</a>
-                  </div>
-                )}
+        <div className="program">
+          {tracks.map((t,i)=>(
+            <Reveal key={t.name} delay={i*50}>
+              <div className="track">
+                <div className="state">{t.source?.state || "exploratory"}</div>
+                <h3>{t.name}</h3>
+                <p><b>{t.source?.latest || "next rung pending"}</b> · {t.body}</p>
+                {t.source?.next && <p style={{marginTop:10}}>Next: {t.source.next}</p>}
               </div>
-              <div className="ls-block">
-                <div className="ls-label">Research directions</div>
-                <div className="ls-directions">
-                  {s.directions.map((d,i)=>(
-                    <div className="ls-dir" key={i}>
-                      <div>
-                        <div className="ls-dir-name">{d.name}</div>
-                        {d.next && <div className="ls-dir-next">{d.next}</div>}
-                      </div>
-                      <span className={"ls-state-chip "+stateClass(d.state)}>{d.state}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Climb({exps}){
-  return (
-    <section id="climb">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">The acts</div>
-          <h2 className="h-section">A small agent, learning its world.</h2>
-          <p>Every experiment is one hypothesis and its honest result. They read as an ascent — each act a question the agent had to answer before it could climb to the next. The log is append-only, so it keeps growing.</p>
-        </Reveal>
-        <div className="climb">
-          {AM_CHAPTERS.map((ch,i)=>{
-            const s = actStats(ch.id, exps);
-            return (
-              <Reveal key={ch.id} delay={i*60}>
-                <a className="act" href={`journey.html#act-${ch.id}`}>
-                  <div className="rn">{ch.act}</div>
-                  <div>
-                    <div className="lbl">{ch.label}</div>
-                    <p className="q">{ch.question}</p>
-                    <p className="sm">{ACT_SUMMARY[ch.id]}</p>
-                    <div className="dots">
-                      {s.all.map((e,j)=>{
-                        const k = e.kind;
-                        let bg = "transparent", border = "none";
-                        if(k==="breakthrough") { bg="var(--break)"; }
-                        else if(k==="positive"||k==="win") { bg="var(--positive)"; }
-                        else if(k==="partial") { bg="var(--partial)"; }
-                        else if(k==="wall") { border="1.6px solid var(--wall)"; }
-                        return <i key={j} style={{background:bg,border}}></i>;
-                      })}
-                    </div>
-                  </div>
-                  <div className="meta">
-                    <b className="tabnum">{String(s.all.length).padStart(2,"0")}</b>
-                    experiments
-                    <div className="go">explore act →</div>
-                  </div>
-                </a>
-              </Reveal>
-            );
-          })}
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Takeaways(){
+function Climb({exps}){
+  const summaries = {
+    language:"The founding wall: a bare symbol stream does not make an unsupervised topic latent become useful by magic.",
+    valence:"Surprise becomes affect-like signal: cues can become good or bad from the agent's own experience.",
+    embodiment:"A body gives the model a foothold: place, action, and persistence make structure identifiable.",
+    opinion:"Different histories produce different preferences, making opinion an experienced trajectory rather than a label.",
+    frontier:"The project becomes stricter: what exactly is still open, and what claims are too strong?",
+    growth:"The live frontier: structural-inadequacy alarms, model growth, identity continuity, null interventions, and blinded checks."
+  };
   return (
-    <section id="learned">
+    <section id="climb">
       <div className="wrap">
         <Reveal className="sec-head">
-          <div className="kicker">The takeaways</div>
-          <h2 className="h-section">Six things the climb taught us.</h2>
+          <div className="kicker">The acts</div>
+          <h2 className="h-section">A small agent, increasingly hard to fool.</h2>
+          <p>The log reads as a sequence of stricter questions. The later acts matter most because they turn emergence claims into causal-instrumentation problems.</p>
         </Reveal>
-        <Reveal className="takes" delay={60}>
-          {AM_TAKEAWAYS.map((t,i)=>(
-            <div className="take" key={i}>
-              <div className="n">{t.n}</div>
-              <h3>{t.title}</h3>
-              <p>{t.body}</p>
-            </div>
+        <div className="climb">
+          {AM_CHAPTERS.map((ch,i)=>(
+            <Reveal key={ch.id} delay={i*50}>
+              <a className="act" href={`journey.html#act-${ch.id}`}>
+                <div className="rn">{ch.act}</div>
+                <div>
+                  <div className="lbl">{ch.label}</div>
+                  <p className="q">{ch.question}</p>
+                  <p className="sm">{summaries[ch.id]}</p>
+                </div>
+                <div className="meta"><b className="tabnum">{String(chapterCount(ch.id, exps)).padStart(2,"0")}</b>experiments</div>
+              </a>
+            </Reveal>
           ))}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Loop(){
-  return (
-    <section id="loop">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">Under the hood</div>
-          <h2 className="h-section">The loop that never stops.</h2>
-          <p>It runs itself. Every cycle is the same four beats — and the world model in between only ever grows.</p>
-        </Reveal>
-        <Reveal className="loop" delay={60}>
-          {AM_LOOP.map((l,i)=>(
-            <div className="lp" key={i}>
-              <div className="c">cycle · {l.n}</div>
-              <h4>{l.title}</h4>
-              <p>{l.body}</p>
-              {i<AM_LOOP.length-1 && <span className="arr">→</span>}
-            </div>
-          ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -452,11 +277,11 @@ function DeepDive(){
       <div className="wrap">
         <Reveal className="dd">
           <div>
-            <div className="kicker slate">The deep dive</div>
-            <h2 style={{marginTop:10}}>Why unsupervised concepts didn't form in the regime we tested.</h2>
-            <p>The hardest wall, stated precisely in mathematics: where free-energy minimization stops, why an unsupervised "concept" refuses to crystallize — and the exact footholds that break the symmetry.</p>
+            <div className="kicker slate">The open problem</div>
+            <h2 style={{marginTop:10}}>When does the creature know its worldview is too small?</h2>
+            <p>The old language wall is still documented, but the current research question is sharper: model growth, identity continuity, stream-composition failures, and higher-order monitors under adversarial tests.</p>
           </div>
-          <a className="btn btn-primary" href="open_problem.html">Read the open problem →</a>
+          <a className="btn btn-primary" href="open_problem.html">Read the current framing →</a>
         </Reveal>
       </div>
     </section>
@@ -466,19 +291,17 @@ function DeepDive(){
 function App(){
   const [t,setTweak] = useTweaks(TWEAK_DEFAULTS);
   useEffect(()=>{ applyTweaks(t); },[t]);
-  const { exps, tally, status } = useLiveExperiments();
+  const { exps, tally } = useLiveExperiments();
   return (
     <>
       <Nav active="home"/>
-      <Hero tally={tally} status={status}/>
+      <Hero tally={tally}/>
       <hr className="rule" style={{maxWidth:'var(--maxw)',margin:'0 auto'}}/>
-      <Lenses/>
+      <WhatItIs/>
       <div style={{background:'var(--paper-2)'}}><HowItWorks/></div>
-      <LabStatus/>
+      <ResearchProgram/>
       <Climb exps={exps}/>
-      <Takeaways/>
-      <div style={{background:'var(--paper-2)'}}><Loop/></div>
-      <DeepDive/>
+      <div style={{background:'var(--paper-2)'}}><DeepDive/></div>
       <Footer/>
       <TweaksPanel>
         <TweakSection label="Palette"/>
