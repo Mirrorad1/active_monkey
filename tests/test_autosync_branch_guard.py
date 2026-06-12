@@ -55,7 +55,7 @@ def test_feature_branch_never_pushes_main(tmp_path):
     main_before = _git(origin, "rev-parse", "main")
 
     _git(work, "checkout", "-b", "feature/x")
-    (work / "new.txt").write_text("dirty\n", encoding="utf-8")
+    (work / "EXPERIMENTS.md").write_text("dirty\n", encoding="utf-8")
     _run_autosync(work)
 
     # origin/main untouched; the dirty tree was committed and pushed to the
@@ -69,8 +69,29 @@ def test_feature_branch_never_pushes_main(tmp_path):
 def test_main_still_pushes_main(tmp_path):
     origin, work = _make_sandbox(tmp_path)
 
-    (work / "new.txt").write_text("dirty on main\n", encoding="utf-8")
+    (work / "EXPERIMENTS.md").write_text("dirty on main\n", encoding="utf-8")
     _run_autosync(work)
 
     assert _git(origin, "rev-parse", "main") == _git(work, "rev-parse", "HEAD")
     assert _git(work, "status", "--porcelain") == ""
+
+
+def test_autosync_leaves_unmanaged_scratch_unstaged(tmp_path):
+    origin, work = _make_sandbox(tmp_path)
+    main_before = _git(origin, "rev-parse", "main")
+
+    _git(work, "checkout", "-b", "feature/x")
+    (work / "EXPERIMENTS.md").write_text("managed loop artifact\n", encoding="utf-8")
+    (work / "scratch.txt").write_text("do not sweep me\n", encoding="utf-8")
+
+    _run_autosync(work)
+
+    assert _git(origin, "rev-parse", "main") == main_before
+    assert _git(origin, "rev-parse", "refs/heads/feature/x") == _git(
+        work, "rev-parse", "HEAD"
+    )
+
+    committed = _git(work, "show", "--name-only", "--format=", "HEAD").splitlines()
+    assert "EXPERIMENTS.md" in committed
+    assert "scratch.txt" not in committed
+    assert _git(work, "status", "--porcelain") == "?? scratch.txt"
