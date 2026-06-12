@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp182",
+  "verdict": "MIXED",
+  "halted": false,
+  "arms": {
+    "P5_resistance_recovery": {
+      "pass": false,
+      "reason": "n4_freeze forks passing Phase W: 6/8 (need >= 7); baseline forks passing: 0/8 (need <= 2); falsifier F5: n4_freeze <= 4/8"
+    },
+    "P6_revision": {
+      "pass": true,
+      "reason": "n4_freeze forks within latency tolerance (baseline+3000): 8/8 (need >= 6); never-adopted: 0/8 (rigidity-falsifier if >= 3); falsifier F6: over-tolerance in >= 4/8 forks or never-adopt in >= 3/8"
+    },
+    "P7_not_config": {
+      "pass": true,
+      "reason": "no fixed constant arm (write-gain or fixed-H) matches both P5 and P6 criteria"
+    }
+  },
+  "notes": "Exp 182 N4 rung 3 attempt 2 FREEZE-GATE. PRE-REGISTERED in loop/directions/identity-n4.md (commit a0eaf1f) BEFORE any data. New control surface authorized by the human's word; Exp 181 remains NEGATIVE for write-channel gain control. Freeze preserves ordering AND mass (no decay during RESIST); monitor reference frozen during resistance (absorption-reopening addressed). NEGATIVE-config is a live outcome (fixed-H constant may suffice at this richness). 13 verdict arms + oracle x phases x 8 seeds = 216 sessions. Verdict map: POSITIVE iff P5 AND P6 AND P7; NEGATIVE-config iff P5 AND P6 AND NOT P7; NEGATIVE-no-resistance iff F5; NEGATIVE-rigidity iff P5 AND F6; MIXED otherwise. Critical interpretation rules: fixed-H passing => config; protect-without-revise => rigidity; revise-without-protect => no-resistance."
+}

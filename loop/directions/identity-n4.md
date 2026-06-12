@@ -375,4 +375,18 @@ the full run lands F5 with the oracle clean, the verdict's mechanism is the
 SNAPSHOT-CADENCE RACE, not the freeze surface. Strict exp181 criterion and the
 never-expressed form both retained as logged diagnostics.
 
-**STATUS.** state: active (rung 3, attempt 2 — pre-registered, build next) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181), the Exp 181 dynamics audit instrumentation, same-schedule-arms protocol (170), universal-constant kill test (173) · why: the human's word converts the F5 consult into the freeze-gate surface with frozen reference + concession horizon · next-falsifiable: Exp 182 as pre-registered above (seeds 218-225, smoke 218; P5/P6/P7 with NEGATIVE-config as a live outcome)
+**RUNG 3, ATTEMPT 2 RESULT (Exp 182, MIXED between-bands, blind-verified).** THE
+SURFACE IS SUFFICIENT: the oracle (exact-burst freeze) defends 8/8 forks, 23/24
+bursts — ordering and mass preserved, both Exp 181 mechanisms eliminated (m_bar
+frozen: zero contamination, asserted). The creature's own trigger defends 6/8 (need
+7; F5 at 4 — between bands), failing by exactly the two pre-registered instrument
+gaps: the 100-step trigger-lag dose (~85 units, election-deciding at the near-tied
+equilibrium — seeds 218/222/223 burst 0) and the cleared-history dead zone (stray
+alarm wipes m_bar 400-500 steps before a burst; the 10-snapshot re-forming window
+swallows it whole — seeds 221/224). P6 PASSES 8/8 (concede-by-evidence ~870 vs
+baseline 170); the H-sweep differentiates for the first time (H600 4/8 — concedes
+inside the burst; H900-3000 plateau at n4's exact 6/8; H3000 brushes the P6 bar by
+25 steps). Honest flag: one-fork-sensitive near the majority bar. The verdict's
+residue is TIMING, not the surface.
+
+**STATUS.** state: halted (rung 3 attempt 2 MIXED; attempt 3 specified, loop paused on the human's word) · latest: Exp 182 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (five clean blocks), the wrong-control-surface law (181), the SUFFICIENT freeze surface + oracle upper bound (182), the majority displacement-rejection criterion (182), same-schedule-arms protocol (170), universal-constant kill test (173 — differentiating at last) · why: one fork short with both shortfalls instrument-grade and named · next-falsifiable: Exp 183 — rung 3 attempt 3 (pre-register before building): trigger check every 25 steps (dose ~85 -> ~21 units) + history-clear guard (retain m_bar_frozen as a floor prior across clears — no dead zone); ALL else verbatim incl. the majority bar; FRESH seeds 226-233; same P5/P6/P7 and verdict map

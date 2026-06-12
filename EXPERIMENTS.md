@@ -6343,3 +6343,82 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (options: freeze-gate attempt 2 with frozen-reference commitment + concession
   horizon in the sweep — recommended; anchor-regularization form; accept the
   rung-3 negative as the chapter verdict; other). The thread resumes on a word.
+
+## Exp 182 — N4 rung 3 attempt 2 (the FREEZE-GATE, pre-registered + three declared pre-data amendments): MIXED, between-bands — the SURFACE IS SUFFICIENT (oracle 8/8: perfectly-timed freezing defends every fork) but the TRIGGER LOSES THE RACE (n4_freeze 6/8, one fork short of P5), and every fixed horizon plateaus at the same 6/8 — in Phase W the bottleneck is timing, not concession type; P6 passes 8/8 and the H-sweep finally has teeth (MIXED; the residual is two named instrument gaps)
+
+- Plain: we changed what the lever does — instead of writing more slowly, the
+  creature now stops time inside its values: nothing decays, nothing writes, who
+  you are is simply held. Timed perfectly (the oracle), this defends everything,
+  every fork, every captivity — the surface is right. Timed by the creature's own
+  mirror, it defends six forks of eight: the mirror checks itself only every 100
+  steps, so each captivity lands ~85 units of rewriting before the freeze engages,
+  and at a near-tied equilibrium that opening dose sometimes decides the election
+  1500 steps later. And twice, a stray alarm just before a captivity wiped the
+  mirror's memory, leaving the creature blind through the whole assault — the
+  declared dead zone, observed in the wild. Meanwhile the concession machinery
+  works: under a genuinely changed world the creature concedes by accumulated
+  evidence and adopts almost as fast as an undefended twin. One fork short of
+  victory, with both shortfalls named, mechanism-pinned, and instrument-grade.
+- Question (pre-registered a0eaf1f + amendments 274409f/2aea161, ALL committed
+  before the full run — verifier checked timestamps): does whole-dynamics
+  freeze-gating (v frozen in RESIST; m̄ frozen at entry; THETA=3.5 amended
+  pre-data from quiet-ratio statistics; transient release on pressure cessation;
+  n4 concession by blocked-evidence E*≥600 vs fixed-time H∈{600..3000}) pass
+  P5 (majority displacement-rejection: bc-expression fraction <0.5 over
+  [bend+1500,bend+2000), ≥2/3 bursts, ≥7/8 forks, baseline deficit ≤2/8; final
+  form justified by the quantified oracle smoke table), P6 (verbatim exp181), and
+  P7 (no constant from EITHER family matches both)?
+- Setup: 13 verdict arms + oracle × 2 phases × FRESH seeds 218–225 = 216
+  sessions; smoke (seed 218, all arms) disclosed; the oracle (exact-burst freeze)
+  is the declared upper-bound diagnostic, excluded from all properties.
+- Result: MIXED (between-bands). Gates PC1/PC2′/PC3 all PASS (PC2′ max TV 0.037 —
+  fifth clean block). P5: n4_freeze 6/8 (need 7; F5 at ≤4 — neither band);
+  baseline 0/8 (deficit intact). P6: 8/8 within tolerance (n4 latencies e.g. 870
+  vs baseline 170 — concession by evidence at E*≈670 then prompt adoption), 0
+  rigidity. P7 PASS — and for the first time the sweep DIFFERENTIATES: write-gains
+  0–2/8 on P5; H600 4/8 (concedes 100 steps before burst end — extra exposure);
+  H900–H3000 plateau at exactly n4's 6/8; H3000 fails one P6 fork by 25 steps
+  (latency 3145 vs bar 3120). ORACLE: 8/8 forks, 23/24 bursts — the freeze surface
+  defends essentially perfectly when timed perfectly.
+- Verifier: blinded subagent CONFIRMED MIXED/between-bands as the uniquely correct
+  cell (amendment timestamps pre-data; implementation matches spec on every
+  declared point; rows match tables; oracle structurally excluded). Failure
+  mechanisms CONFIRMED as the two pre-registered ones: (1) the trigger-lag dose —
+  seeds 218/222/223 burst 0: trigger at +100 steps, ~85 units of bc writing land
+  first, post-release near-tie decides against the old favorite (gap_end +10 to
+  +68 — genuinely borderline states); (2) the cleared-history dead zone — seeds
+  221/224: a stray transient event 400–500 steps before a burst wipes the
+  mismatch history, the 10-snapshot re-forming window swallows the burst entirely
+  (gap_end −624: full displacement, trigger silent). Honest flag carried: the
+  verdict is one-fork-sensitive near the 0.5 bar (three borderline bursts) — a
+  0.6 bar could yield NEGATIVE-config (H-arms track n4 exactly), a 0.4 bar the
+  same-or-weaker; the 0.5 bar stands on the pre-data oracle table (defended
+  0.0–0.36 vs displaced 1.0), not on the outcome.
+- Implication (the surface law and its residue): identity defense IS purchasable
+  on the freeze surface — ordering and mass preserved, revision intact, the
+  exp181 starvation and absorption mechanisms both eliminated (m̄ frozen: zero
+  contamination during RESIST, asserted structurally). What remains is the RACE:
+  a snapshot-cadence trigger pays a fixed dose per attack and a fixed dead zone
+  per false alarm, and at a near-tied equilibrium those instrument costs are
+  election-deciding. In Phase W, n4's evidence-concession is indistinguishable
+  from any H≥900 (the transient release does the work); the evidence-vs-time
+  distinction shows only in Phase R (n4 concedes at ~870 regardless of horizon;
+  H-arms at H+~150 — H3000 already brushing the tolerance bar). Attempt 3's
+  surgical residue: trigger cadence (check every 25 steps) and a dead-zone guard
+  (retain a frozen m̄ floor across history clears) — both instrument-grade.
+- Honest caveat: three pre-data amendments were needed to make the instrument
+  measure the question (each declared + committed before the run, each justified
+  from committed prior blocks or the oracle's quantified smoke — but the criterion
+  moved twice, and the bar-sensitivity flag above is the residue of that motion);
+  the oracle's 8/8 is an upper bound with perfect knowledge, not an achievable
+  controller; n4 vs fixed-H separation rests on Phase R only at this richness;
+  E*, THETA, the pressure window/bar, and the release calm count are all PROVIDED.
+- Verdict: MIXED / NEW INSIGHT (the freeze surface is sufficient — the first
+  defense result of the chapter; the residual is two named, instrument-grade
+  timing gaps; the kill-test sweep differentiates for the first time).
+  Self-grade: MIXED.
+- Next: rung 3 attempt 3 (pre-register before building): trigger check every 25
+  steps (4× faster race start; dose → ~21 units), history-clear guard (on release,
+  retain m̄_frozen as a floor prior instead of a full wipe — no dead zone), all
+  else verbatim including the majority-rejection bar; FRESH seeds 226–233. The
+  paused loop resumes on the human's word.
