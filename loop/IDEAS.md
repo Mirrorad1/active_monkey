@@ -1068,6 +1068,19 @@ The loop marks items it has consumed by indenting a response under them:
   THE LOOP IS PAUSED on the human's explicit in-session word ("pause the loop
   after you're done", 2026-06-12, received during Exp 192). It resumes only on
   the next explicit direction here; nothing is silence-actionable.
+  -> [human, 2026-06-12] "b" - the explicit word for option (b): THE RETURN-HOME
+    INTERVENTION. The loop RESUMES on this word. CONSUMED as Exp 193: relocate
+    the creature to its pre-captivity home position at the last burst end
+    (draw-free, one intervention point), cleanly isolating the defense from the
+    locality confound. This is the thread's causal test: same seeds, same
+    defenses, intervened experience stream - the locality mechanism PREDICTS
+    (P3, the crown) that surrendering seed 301 C-C now RETAINS, and (P1) that
+    release SETTLES (no locality-fed re-freeze cycling, M >= 10 everywhere).
+    P4 runs the durability question both ways honestly: if baseline
+    displacement self-heals at home, displacement durability was itself
+    locality-fed - a major threat-model reframe, reportable with both hands.
+    Pre-registration in loop/directions/n4-crack-edges.md before any data;
+    seeds pooled 296-311 (301 required for P3); bars predeclared.
 
 (empty — drop ideas above this line's section freely)
 

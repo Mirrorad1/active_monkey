@@ -174,4 +174,57 @@ extension: candidate reframes — stream-conditioned scoring (obs composition as
 covariate), matched-composition strata, or the return-home intervention at train
 end (isolating defense from locality).
 
-**STATUS.** state: halted (PAUSED on the human's explicit word after Exp 192; CONSULT in loop/IDEAS.md — rung-1 reframe options / rung 2 / redirect, each needs its own word) · latest: Exp 192 (rung-1 instrument-bounded twice; H-mech refuted; the locality mechanism + non-settling tail named) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
+**EXP 193 — PRE-REGISTRATION (the return-home intervention; the human's word "b",
+2026-06-12; committed BEFORE any data).**
+
+- **Question (causal).** When the locality confound is removed by intervention —
+  the creature is returned to its pre-captivity home position at the last burst
+  end — (i) does release SETTLE, (ii) what is the retention rate, and (iii) does
+  the surrendering seed 301 now RETAIN (the locality mechanism's direct causal
+  prediction: same seed, same defense, intervened stream)?
+- **The intervention (minimal, draw-free).** Runner parameter
+  `return_home: bool = False`. At the FIRST burst start, capture `home_pos =
+  true_pos` (the pre-relocation position); at the LAST burst end, set `true_pos =
+  home_pos` and localize `qs` at it (mirroring the captivity-relocation qs
+  pattern). NO rng draws consumed (the False path must remain bit-identical).
+  Built through the exp190 _must_replace patch chain (L16), with both branches
+  gated.
+- **Gates.** G1: exp183 equivalence through the exp193 path (return_home=False,
+  h=0), evidence emitted. G2: exp192 regression — a sample (C-A and C-C ×
+  {baseline, INT-C2900} × seeds {296, 301}, 8 sessions) re-run with
+  return_home=False must bit-match the committed exp192 rows (frozen_defense,
+  events, release_step, w-fracs, atol 1e-9). G3 (both-branches, L16): with
+  return_home=True, per session emit the evidence line `home_pos captured @
+  first-burst start == true_pos restored @ last_bend` (position trace); any
+  session without the applied relocation aborts.
+- **Cells/arms/seeds.** Cells C-A/C-B/C-C with tails 12,000 (n_steps verbatim
+  exp192: 21,400 / 29,400 / 26,800 — insurance against partial cycling); arms
+  baseline / oracle / INT-C2900 / REG-TB, ALL with return_home=True; seeds pooled
+  296–311 (Block 1 carries seed 301 for P3). 192 W sessions. Windows verbatim
+  exp191/192 (W1/W2 from final release; baseline release=last_bend; retained =
+  expr_frac(attack) < 0.5 in both). Same M ≥ 10 validity gate per covered pair;
+  covered-pair definitions verbatim exp192.
+- **Bars (predeclared).**
+  - **P1 (settling):** with the locality feed removed, the re-freeze cycle stops —
+    per controller pair, M ≥ 10 AND ≥ 12/16 of defended seats release by
+    bend + 4,000. **F1:** any controller pair M < 10 — the cycle persists at home;
+    the locality reading of the NON-SETTLING TAIL is wrong/incomplete (that is a
+    finding, not an instrument excuse — third strike on wall-clock instruments).
+  - **P2 (retention, the priced question):** every covered pair ≥ 5/6. **F2:**
+    any covered pair ≤ 2/3 (deferral persists without the locality feed — the
+    stored-state reading returns).
+  - **P3 (THE CROWN — the causal seed test):** s301 C-C retains under
+    return-home in BOTH controllers (w1 and w2 < 0.5). **F3:** s301 still
+    surrenders — the locality mechanism is refuted as the cause of its deferral.
+  - **P4 (durability at home; both directions named):** prediction — baseline
+    stays displaced (w1 ≥ 0.5) in ≥ 12/16 per cell (the train's overwrite is
+    intrinsic). **F4:** self-healing in ≥ 8/16 anywhere — displacement
+    durability was itself locality-fed; a major threat-model reframe for the
+    chapter's stakes, reported with both hands either way.
+  - **P5 (witness):** oracle retention ≥ 5/6 where covered (≥ 14/16 defense).
+- **Outputs.** experiments/exp193_n4_return_home.py, experiments/outputs/
+  exp193.txt + exp193_rows.json. One iteration; blinded verify (4.5); site
+  entries written through Python only (the SITE-WRITER RULE, 2026-06-12); no
+  mid-run adjustments.
+
+**STATUS.** state: active (RESUMED on the human's word "b" — Exp 193, the return-home causal test) · latest: Exp 192 (rung-1 instrument-bounded twice; H-mech refuted; the locality mechanism + non-settling tail named) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
