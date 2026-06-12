@@ -101,4 +101,59 @@ bend+6,550) and settle-phase false alarms (which consume fixed-H budgets pre-att
 — CALM-H6000's C-A precondition swing explained). Deferral EXISTENCE is banked;
 its RATE and mechanism are not yet priced.
 
+**EXP 192 — PRE-REGISTRATION (rung 1 completed: retention PRICED with a
+correctly-sized instrument + the s301-vs-s297 mechanism diagnostic; under the
+standing edges-thread word; committed BEFORE any data).**
+
+- **Question.** With the instrument sized to the measured release dynamics, what is
+  the post-release retention RATE of the spanning defenses — and what distinguishes
+  the one observed surrendering freeze (s301 C-C: entry pre-attack on a settle-phase
+  false alarm) from its retaining structural twin (s297: entry at first-burst onset)?
+- **Instrument corrections (each from an Exp 191 measurement).** Tails 6,600 →
+  12,000 (max observed final release was bend+6,550 via the re-freeze cycle; windows
+  now fit releases to bend+8,500): n_steps 21,400 / 29,400 / 26,800 for C-A / C-B /
+  C-C. Unmeasured seats (WINDOW_OVERRUN) are excluded from BOTH numerator and
+  denominator. Validity gate per covered pair: M = measured defended seats ≥ 10 of
+  the pooled 16, else the pair is INSTRUMENT-FAILED (logged, not graded).
+- **Arms (4).** baseline; oracle (witness); INT-C2900; REG-TB. CALM2600-H6000
+  dropped (failed its rung-1 precondition everywhere; its settle-false-alarm
+  H-budget mechanism is recorded).
+- **Seeds (two blocks, pooled for the bars).** Block 1 = 296–303 (the COMPLETION
+  block: same seeds, longer tails — completes the 9 unmeasured seats; the
+  deterministic prefix doubles as gate G2). Block 2 = FRESH 304–311 (the unbiased
+  block). W-only: 3 cells × 4 arms × 16 seeds = 192 sessions.
+- **Gates.** G1: the exp183 equivalence gate through the exp190 runner (h=0),
+  evidence emitted (L15). G2 (prefix bit-match, the instrument license): for every
+  Block-1 session, all quantities that lie within the exp191 session span must
+  REPRODUCE the committed exp191 rows exactly — frozen_defense, the event chain
+  (labels, entry/exit steps) up to the old n_steps, and every w-frac that was
+  measured in exp191 (atol 1e-9). Any mismatch → abort (a longer session must not
+  perturb the shared prefix; rng draws are per-step).
+- **Bars (predeclared; pooled 16 seeds).** Covered pairs: {INT-C2900, REG-TB} ×
+  {C-A, C-B, C-C} with frozen-defense ≥ 12/16; oracle covered where ≥ 14/16.
+  retention_rate = retained / M over measured defended seats.
+  - **P1:** every covered pair ≥ 5/6. **F1:** any covered pair ≤ 2/3 (deferral is
+    common, not rare — the chapter's defense claims get a standing retention
+    discount). Between → MIXED with per-pair detail.
+  - **P2:** baseline displaced in W1 ≥ 12/16 per cell (durability at the new
+    horizon). **F2:** self-healing (w1_frac < 0.5) in ≥ 8/16 anywhere.
+  - **P3:** oracle retention ≥ 5/6 where covered.
+  - Prior expectation stated honestly: Exp 191's measured seats ran 10/11 — P1 is
+    predicted to PASS unless s301-class deferral recurs at ~10%+ rate; either
+    outcome prices the phenomenon.
+- **The mechanism diagnostic (Part C; diagnostic-only, no bar).** Re-run C-C ×
+  INT-C2900 × seeds {297, 301} at the ORIGINAL exp191 n_steps (21,400), bit-match
+  gated against the committed exp191 rows, with v-trajectory dumps: v at freeze
+  entry, at each burst boundary, at release, at release+500/+1000; the
+  favorite-vs-attack margin through those points; and the post-release observation
+  composition over [release, release+1000). H-mech (falsifiable expectation, graded
+  informally): s301's surrender traces to its AT-ENTRY state — the freeze entered at
+  2,025, BEFORE settle consolidation, so its frozen v carries a smaller
+  favorite-over-attack margin at release than s297's (entry 6,075, post-settle);
+  the alternative (comparable margins, divergence from post-release dynamics alone)
+  would point at absorption/locality instead. Outcome informs rung 2's design.
+- **Outputs.** experiments/exp192_n4_retention_priced.py,
+  experiments/outputs/exp192.txt + exp192_rows.json. One iteration; blinded verify
+  (PROTOCOL 4.5); no mid-run bar adjustments.
+
 **STATUS.** state: active · latest: Exp 191 (rung-1 NEGATIVE — deferral exists; instrument undersized for the discovered release cycle) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
