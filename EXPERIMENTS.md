@@ -6804,3 +6804,82 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   ground).
 - Next: Exp 187 (licensed by this result under the standing word "a"): the
   controller re-test in the confirmed cells — design + pre-registration first.
+
+## Exp 187 — identity-n4-crack rung 5, the licensed controller re-test (pre-registered e1bda4e): MIXED — THE CRACK IS CLOSED CONSTRUCTIVELY at normal tolerance by INT-C2900 (9/9 cells, defense 7/8 each, revision in-tolerance: the CONTINUOUS-PRESSURE-STRETCH discriminator works) while BOTH mechanism predictions for the evidence form fail honestly (F1+F3: INT-E600 0/9 — with a named instrument-fidelity gap: the accumulator counted QUIET blocked evidence, so the pre-registered pressure-gated E-form went untested); the universal-constant law is REFINED, not broken: constants suffice ON THE RIGHT SURFACE, and the surface is the maximum continuous-pressure stretch (blind-verified CONFIRMED)
+
+- Plain: the judgment-free defense that finally works in the impossible cells is a
+  stopwatch — but a stopwatch on a different clock. Instead of timing how long it
+  has been frozen, it times how long the pressure has been UNBROKEN, and that clock
+  resets whenever the attack pauses for breath. Attack trains always pause (that is
+  what makes them trains); a genuinely changed world never does. With C=2900 on
+  that clock, all nine previously-impossible schedules are defended AND the
+  creature still adapts to real change in time. Our cleverer variant — accumulate
+  evidence instead of time — failed everywhere, partly because we built it wrong
+  (it counted quiet-time evidence toward surrender); its failure stands as built,
+  and the corrected form is a named leftover. The deep lesson repeats the
+  chapter's: no judgment was needed — just the right thing measured.
+- Question (pre-registered e1bda4e BEFORE any data): in the 9 confirmed crack
+  cells, does the INT family (freeze machinery verbatim + gap-spanning + concession
+  on CONTINUOUS pressure only, accumulator resets on de-assert) pass BOTH
+  exp186-verbatim bars where every frozen-time constant provably cannot? P1
+  INT-E600 >= 7/9; P2 C-sweep tolerance-trivial on the new surface; P3 the
+  no-reset/reset minimal pair separates. Fresh seeds 260-267; arms incl. the three
+  best exp186 constants, the non-reset n4_freeze E*=600, oracle, baseline.
+- Setup: experiments/exp187_n4_intermittency_controller.py (exp185/186 runner +
+  parameterized INT concession modes); equivalence gate with full evidence table
+  (PASS, bit-exact); branch verified main; 720 W + 72 R sessions, 2.5 min; PC1
+  0/720; oracle >= 7/8 and baseline deficit 8/8 in every cell (conjuncts intact).
+- Result (committed exp187.txt + exp187_rows.json): INT-C2900 passes BOTH bars in
+  9/9 cells (defense 7/8 in each; Phase-R latency ~2703 <= baseline+3000) — THE
+  CRACK IS CLOSED at normal tolerance. The C-sweep traces the law: INT-C1500
+  closes 4/9 (fails all L>=1600 cells), INT-C2000 closes 6/9 (fails exactly the
+  three L=2400 cells), INT-C2900 9/9 — i.e. C must exceed the maximum CONTINUOUS
+  pressure stretch a train can produce (~L + the 200-step pressure-window tail)
+  while staying <= the revision tolerance: the working interval on the new surface
+  is (L_max+~window, tolerance], non-empty at normal tolerance for every confirmed
+  cell. All C arms fail TIGHT revision (latencies 1477/1915/2703 > +1500), so the
+  tight-mode core stays uncovered: where tolerance < single-burst stretch the
+  interval is empty on EVERY surface tried so far. P1 NEGATIVE (F1): INT-E600 0/9
+  — rows show concessions entered from QUIET stray alarms with int_acc ~616 (e.g.
+  seed 260 (400,4,600): freeze at 4625, concession at 6225) — the accumulator
+  counted quiet blocked evidence, violating the pre-registered "continuous
+  coherent pressure only" semantics; the falsifier fired on the arm AS BUILT (no
+  retuning, Exp 181 precedent); the pressure-gated E-form is UNTESTED, a named
+  residual. P3 NEGATIVE (F3) with an inversion: in the two (400,4,·) cells the
+  non-reset n4_freeze defends 5/8 (its cumulative integral spans the whole train
+  without conceding: per-burst evidence ~384 < 600 and it concedes nowhere) while
+  INT-E600 defends 0/8 — under the implemented semantics the reset HURT; the
+  minimal pair separated in the wrong direction, mechanism honestly re-attributed
+  to the C-surface.
+- Verifier: blinded adversarial subagent: CONFIRMED — per-cell INT-E600 table
+  recomputed from rows (0/8 defense everywhere; revision 8/8 both normal AND
+  tight: the conceder revises fast, defends nothing — the exp183 pattern
+  recurring); P1/P2/P3 independent verdicts match; same-seed baselines verified;
+  no bar drift; no softening found. Integrity: branch main, only expected new
+  files, prior artifacts and spines untouched.
+- Implication (two layers): (1) THE SUFFICIENT-SURFACE LAW AT THE CONCESSION
+  LEVEL — the chapter's recurring shape completes: write-gating failed (181), the
+  freeze surface sufficed for defense (182), and now the CONTINUITY surface
+  suffices for the defense+revision conjunction in the crack cells; at every
+  level, what was missing was the measured quantity, never judgment. The
+  universal-constant law is refined: constants cover everything tried, ON the
+  right surface. (2) The boundary persists: under tight tolerance no surface
+  tried covers (the interval is empty whenever tolerance < the single-burst
+  stretch) — the residual crack is now exactly characterized. Generalizability
+  tier: functional-form (the (stretch, tolerance] interval is body-parameterized
+  arithmetic, verified across the 9-cell x 3-C pattern with zero exceptions).
+- Honest caveat: INT-E600's negative binds the IMPLEMENTED semantics only — the
+  pre-registered pressure-gated accumulator went untested (instrument-fidelity
+  gap, found post-hoc in the committed rows; logged, not patched mid-iteration);
+  with calm=2600 > the 2500-step post-train tail, spanning arms are still FROZEN
+  at the final scoring window — the revision bar rules out rigidity, but
+  post-release retention is untested at these session lengths (residual); C2900's
+  9/9 is one constant on fresh seeds, not a C-sweep optimum; tight-mode closure
+  was not attempted by any arm here; all instruments PROVIDED.
+- Verdict: MIXED / NEW INSIGHT — constructive closure at normal tolerance
+  (INT-C2900, 9/9) + two honest falsifier fires (F1, F3) + the continuous-stretch
+  interval law. Self-grade: MIXED.
+- Next: the chapter synthesis (consolidation-grade, sanctioned) folding Exp 183
+  addendum + 184-187 into the crack chapter's close, then the closing CONSULT
+  (residuals: the pressure-gated E-form; the tight-mode core; post-release
+  retention). The loop holds after the synthesis for a word.

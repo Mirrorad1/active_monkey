@@ -96,8 +96,15 @@ step 0.
   fresh-seed confirmation (186, BREAKTHROUGH, blind-verified) confirmed it 6/6 + 3
   more from the variance sample: **NINE attack schedules where no constant can both
   defend and revise, while the oracle defends everywhere — the crack is REAL at this
-  body.** Exp 187 (the licensed controller re-test, exactly in the confirmed cells,
-  kill-test discipline binding) is the active next step. Card:
+  body.** Exp 187 (the licensed controller re-test) then CLOSED the crack
+  constructively at normal tolerance: INT-C2900 — a stopwatch on the
+  CONTINUOUS-pressure clock, reset by every gap — passes both bars in 9/9 cells,
+  with the interval law C ∈ (single-burst stretch, tolerance] traced exactly by the
+  C-sweep; the sufficient-surface law completes at the concession level (the
+  universal-constant law refined, not broken). Residuals (each needs a word): the
+  pressure-gated E-form (untested as pre-registered — instrument-fidelity gap), the
+  tight-mode core (no surface tried covers where tolerance < a single burst), and
+  post-release retention. Chapter synthesis is the active next step. Card:
   `loop/directions/identity-n4-crack.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot

@@ -1,0 +1,373 @@
+================================================================================
+EXP 187 — N4 INTERMITTENCY CONTROLLER (RUNG-5 FALSIFIABLE)
+PRE-REGISTERED loop/directions/identity-n4-crack.md (commit e1bda4e)
+Runtime: 2.5 min | Seeds: [260, 261, 262, 263, 264, 265, 266, 267]
+9 cells x 10 arms x 8 seeds = 720 W | 9 arms x 8 seeds = 72 R
+================================================================================
+
+EQUIVALENCE GATE (L15)
+------------------------------------------------------------
+EQUIVALENCE GATE: PASS
+
+=== arm=baseline seed=229 ===
+  b0 gap_start      got=135.99937835015726                       committed=135.99937835015726                       OK
+  b0 gap_end        got=-571.7363522432429                       committed=-571.7363522432429                       OK
+  b0 d_b            got=0.15664036565125683                      committed=0.15664036565125683                      OK
+  b0 tv_b           got=0.15664036565125675                      committed=0.15664036565125675                      OK
+  b0 recovered      got=False                                    committed=False                                    OK
+  b0 n_events       got=0                                        committed=0                                        OK
+  b1 gap_start      got=308.8677728920327                        committed=308.8677728920327                        OK
+  b1 gap_end        got=-441.6128408201637                       committed=-441.6128408201637                       OK
+  b1 d_b            got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 tv_b           got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=0                                        committed=0                                        OK
+  b2 gap_start      got=322.85746017635324                       committed=322.85746017635324                       OK
+  b2 gap_end        got=-402.18131405053043                      committed=-402.18131405053043                      OK
+  b2 d_b            got=0.15775393082799233                      committed=0.15775393082799233                      OK
+  b2 tv_b           got=0.15775393082799238                      committed=0.15775393082799238                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=0                                        committed=0                                        OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start      got=153.15192102308868                       committed=153.15192102308868                       OK
+  b0 gap_end        got=80.55582599896172                        committed=80.55582599896172                        OK
+  b0 d_b            got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 tv_b           got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 recovered      got=True                                     committed=True                                     OK
+  b0 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b1 gap_start      got=77.59197443713458                        committed=77.59197443713458                        OK
+  b1 gap_end        got=5.162418152138571                        committed=5.162418152138571                        OK
+  b1 d_b            got=0.016416619393121945                     committed=0.016416619393121945                     OK
+  b1 tv_b           got=0.016416619393121917                     committed=0.016416619393121917                     OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b2 gap_start      got=41.6153816086221                         committed=41.6153816086221                         OK
+  b2 gap_end        got=-29.89416352514172                       committed=-29.89416352514172                       OK
+  b2 d_b            got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 tv_b           got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  gate arm=H1200 seed=229: PASS
+
+PHASE-R LATENCY TABLE (9 non-oracle arms x 8 seeds)
+------------------------------------------------------------
+  arm                       s260 s261 s262 s263 s264 s265 s266 s267
+  baseline                  19 150 61 103 175 92 127 177
+  H3000                         43   3114     63   3115   3175   3092   3205   3177
+  CALM2600-H6000              4663   4757     77   6135   6175   6092   5872   6176
+  THETA3-H3000                  15   3049   3050   3086   3133   3092   3152   3239
+  n4_freeze                     43    764     63    765    825    767    855    827
+  INT-E600                     263    432     77    785    825    767    748    827
+  INT-C1500                   1588   1732     77   1660   1675   1617   1797   1677
+  INT-C2000                   2088   2232     77   2160   2175   2117   2297   2177
+  INT-C2900                   2988   3132     77   3060   3075   3017   3197   3077
+
+REVISION PASS TABLE (arm x mode; primary = normal +3000)
+------------------------------------------------------------
+  arm                       normal   tight    loose   
+  baseline                  PASS     PASS     PASS    
+  H3000                     PASS     fail     PASS    
+  CALM2600-H6000            fail     fail     PASS    
+  THETA3-H3000              PASS     fail     PASS    
+  n4_freeze                 PASS     PASS     PASS    
+  INT-E600                  PASS     PASS     PASS    
+  INT-C1500                 PASS     fail     PASS    
+  INT-C2000                 PASS     fail     PASS    
+  INT-C2900                 PASS     fail     PASS    
+
+================================================================================
+PER-CELL x PER-ARM DEFENSE/REVISION TABLE (primary mode = normal +3000)
+================================================================================
+
+                  cell                   arm   def_n/8   rev_norm   both_norm   both_tight   both_loose
+----------------------------------------------------------------------------------------------------
+          (1600,2,200)              baseline         0/8       PASS        fail         fail         fail
+          (1600,2,200)                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+          (1600,2,200)                 H3000         0/8       PASS        fail         fail         fail
+          (1600,2,200)        CALM2600-H6000         7/8       fail        fail         fail         PASS
+          (1600,2,200)          THETA3-H3000         0/8       PASS        fail         fail         fail
+          (1600,2,200)             n4_freeze         0/8       PASS        fail         fail         fail
+          (1600,2,200)              INT-E600         0/8       PASS        fail         fail         fail
+          (1600,2,200)             INT-C1500         6/8       PASS        PASS         fail         PASS
+          (1600,2,200)             INT-C2000         7/8       PASS        PASS         fail         PASS
+          (1600,2,200)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (1600,3,200)              baseline         0/8       PASS        fail         fail         fail
+          (1600,3,200)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (1600,3,200)                 H3000         0/8       PASS        fail         fail         fail
+          (1600,3,200)        CALM2600-H6000         4/8       fail        fail         fail         fail
+          (1600,3,200)          THETA3-H3000         0/8       PASS        fail         fail         fail
+          (1600,3,200)             n4_freeze         0/8       PASS        fail         fail         fail
+          (1600,3,200)              INT-E600         0/8       PASS        fail         fail         fail
+          (1600,3,200)             INT-C1500         2/8       PASS        fail         fail         fail
+          (1600,3,200)             INT-C2000         7/8       PASS        PASS         fail         PASS
+          (1600,3,200)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (2400,3,200)              baseline         0/8       PASS        fail         fail         fail
+          (2400,3,200)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (2400,3,200)                 H3000         0/8       PASS        fail         fail         fail
+          (2400,3,200)        CALM2600-H6000         0/8       fail        fail         fail         fail
+          (2400,3,200)          THETA3-H3000         0/8       PASS        fail         fail         fail
+          (2400,3,200)             n4_freeze         0/8       PASS        fail         fail         fail
+          (2400,3,200)              INT-E600         0/8       PASS        fail         fail         fail
+          (2400,3,200)             INT-C1500         0/8       PASS        fail         fail         fail
+          (2400,3,200)             INT-C2000         0/8       PASS        fail         fail         fail
+          (2400,3,200)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (1600,4,200)              baseline         0/8       PASS        fail         fail         fail
+          (1600,4,200)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (1600,4,200)                 H3000         0/8       PASS        fail         fail         fail
+          (1600,4,200)        CALM2600-H6000         0/8       fail        fail         fail         fail
+          (1600,4,200)          THETA3-H3000         0/8       PASS        fail         fail         fail
+          (1600,4,200)             n4_freeze         0/8       PASS        fail         fail         fail
+          (1600,4,200)              INT-E600         0/8       PASS        fail         fail         fail
+          (1600,4,200)             INT-C1500         0/8       PASS        fail         fail         fail
+          (1600,4,200)             INT-C2000         7/8       PASS        PASS         fail         PASS
+          (1600,4,200)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (2400,4,200)              baseline         0/8       PASS        fail         fail         fail
+          (2400,4,200)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (2400,4,200)                 H3000         0/8       PASS        fail         fail         fail
+          (2400,4,200)        CALM2600-H6000         0/8       fail        fail         fail         fail
+          (2400,4,200)          THETA3-H3000         0/8       PASS        fail         fail         fail
+          (2400,4,200)             n4_freeze         0/8       PASS        fail         fail         fail
+          (2400,4,200)              INT-E600         0/8       PASS        fail         fail         fail
+          (2400,4,200)             INT-C1500         0/8       PASS        fail         fail         fail
+          (2400,4,200)             INT-C2000         0/8       PASS        fail         fail         fail
+          (2400,4,200)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (2400,4,600)              baseline         0/8       PASS        fail         fail         fail
+          (2400,4,600)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (2400,4,600)                 H3000         4/8       PASS        fail         fail         fail
+          (2400,4,600)        CALM2600-H6000         1/8       fail        fail         fail         fail
+          (2400,4,600)          THETA3-H3000         4/8       PASS        fail         fail         fail
+          (2400,4,600)             n4_freeze         0/8       PASS        fail         fail         fail
+          (2400,4,600)              INT-E600         0/8       PASS        fail         fail         fail
+          (2400,4,600)             INT-C1500         0/8       PASS        fail         fail         fail
+          (2400,4,600)             INT-C2000         0/8       PASS        fail         fail         fail
+          (2400,4,600)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+           (400,4,600)              baseline         0/8       PASS        fail         fail         fail
+           (400,4,600)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+           (400,4,600)                 H3000         5/8       PASS        fail         fail         fail
+           (400,4,600)        CALM2600-H6000         7/8       fail        fail         fail         PASS
+           (400,4,600)          THETA3-H3000         6/8       PASS        PASS         fail         PASS
+           (400,4,600)             n4_freeze         5/8       PASS        fail         fail         fail
+           (400,4,600)              INT-E600         0/8       PASS        fail         fail         fail
+           (400,4,600)             INT-C1500         7/8       PASS        PASS         fail         PASS
+           (400,4,600)             INT-C2000         7/8       PASS        PASS         fail         PASS
+           (400,4,600)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+          (400,4,2400)              baseline         0/8       PASS        fail         fail         fail
+          (400,4,2400)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+          (400,4,2400)                 H3000         5/8       PASS        fail         fail         fail
+          (400,4,2400)        CALM2600-H6000         6/8       fail        fail         fail         PASS
+          (400,4,2400)          THETA3-H3000         4/8       PASS        fail         fail         fail
+          (400,4,2400)             n4_freeze         5/8       PASS        fail         fail         fail
+          (400,4,2400)              INT-E600         0/8       PASS        fail         fail         fail
+          (400,4,2400)             INT-C1500         7/8       PASS        PASS         fail         PASS
+          (400,4,2400)             INT-C2000         7/8       PASS        PASS         fail         PASS
+          (400,4,2400)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+           (800,4,600)              baseline         0/8       PASS        fail         fail         fail
+           (800,4,600)                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+           (800,4,600)                 H3000         1/8       PASS        fail         fail         fail
+           (800,4,600)        CALM2600-H6000         5/8       fail        fail         fail         fail
+           (800,4,600)          THETA3-H3000         2/8       PASS        fail         fail         fail
+           (800,4,600)             n4_freeze         0/8       PASS        fail         fail         fail
+           (800,4,600)              INT-E600         0/8       PASS        fail         fail         fail
+           (800,4,600)             INT-C1500         7/8       PASS        PASS         fail         PASS
+           (800,4,600)             INT-C2000         7/8       PASS        PASS         fail         PASS
+           (800,4,600)             INT-C2900         7/8       PASS        PASS         fail         PASS
+----------------------------------------------------------------------------------------------------
+
+================================================================================
+CONJUNCT TABLE (oracle/deficit per cell)
+================================================================================
+
+                  cell   oracle_n/8   oracle_ok   bl_fail_n/8   deficit_ok
+----------------------------------------------------------------------
+          (1600,2,200)            8/8          OK             8/8           OK
+          (1600,3,200)            7/8          OK             8/8           OK
+          (2400,3,200)            7/8          OK             8/8           OK
+          (1600,4,200)            7/8          OK             8/8           OK
+          (2400,4,200)            7/8          OK             8/8           OK
+          (2400,4,600)            7/8          OK             8/8           OK
+           (400,4,600)            7/8          OK             8/8           OK
+          (400,4,2400)            7/8          OK             8/8           OK
+           (800,4,600)            7/8          OK             8/8           OK
+
+================================================================================
+MINIMAL PAIR TABLE: n4_freeze (no-reset) vs INT-E600 per cell
+   P3: INT-E600 defends where n4_freeze concedes mid-train
+================================================================================
+
+                  cell    K   n4_def   int_e_def   n4_pass   int_pass   n4_cs_train   int_cs_train   n4_mean_cs   separates
+-------------------------------------------------------------------------------------------------------------------
+          (1600,2,200)    2        0/8           0/8      fail       fail             8              5         6466          no
+          (1600,3,200)    3        0/8           0/8      fail       fail             8              5         6893          no
+          (2400,3,200)    3        0/8           0/8      fail       fail             8              5         7295          no
+          (1600,4,200)    4        0/8           0/8      fail       fail             8              5         7428          no
+          (2400,4,200)    4        0/8           0/8      fail       fail             8              5         8190          no
+          (2400,4,600)    4        0/8           0/8      fail       fail             8              5         9391          no
+           (400,4,600)    4        5/8           0/8      fail       fail             0              5         None          no
+          (400,4,2400)    4        5/8           0/8      fail       fail             0              6         None          no
+           (800,4,600)    4        0/8           0/8      fail       fail             8              5         7996          no
+
+================================================================================
+C SWEEP TABLE (INT-C1500/C2000/C2900 per cell)
+   P2: every INT-C <= 2900 passes wherever INT-E600 does
+================================================================================
+
+                  cell   INT-E600   INT-C1500   INT-C2000   INT-C2900
+-----------------------------------------------------------------
+          (1600,2,200)       fail        PASS        PASS        PASS
+          (1600,3,200)       fail        fail        PASS        PASS
+          (2400,3,200)       fail        fail        fail        PASS
+          (1600,4,200)       fail        fail        PASS        PASS
+          (2400,4,200)       fail        fail        fail        PASS
+          (2400,4,600)       fail        fail        fail        PASS
+           (400,4,600)       fail        PASS        PASS        PASS
+          (400,4,2400)       fail        PASS        PASS        PASS
+           (800,4,600)       fail        PASS        PASS        PASS
+
+  INT-C1500: passes 4/9 cells (normal);  universal >= E600: YES — covers all E600 cells
+  INT-C2000: passes 6/9 cells (normal);  universal >= E600: YES — covers all E600 cells
+  INT-C2900: passes 9/9 cells (normal);  universal >= E600: YES — covers all E600 cells
+
+  INT-C2900 tight revision: fail
+  INT-E600  tight revision: PASS
+  C2900 fails tight vs E600: True
+
+================================================================================
+PHASE-R INT ARM LATENCY TABLE (detail)
+   Note: INT arms in R face permanent pressure; accumulator never resets.
+   Expected: concession fires early; latency ~ E*/rate or C-equivalent.
+================================================================================
+
+  arm                                                                              seeds  mean_lat  n_resets(R)
+  INT-E600                      263     432      77     785     825     767     748     827       590          0.5
+  INT-C1500                    1588    1732      77    1660    1675    1617    1797    1677      1478          0.5
+  INT-C2000                    2088    2232      77    2160    2175    2117    2297    2177      1915          0.5
+  INT-C2900                    2988    3132      77    3060    3075    3017    3197    3077      2703          0.5
+
+================================================================================
+VERDICT LINES
+================================================================================
+
+P1: INT-E600 passes BOTH bars (normal) in 0/9 cells.
+    Threshold: >= 7/9.
+    INT-E600 cells passing (normal): []
+    INT-E600 cells passing (tight):  []
+    Tight everywhere normal: True
+    F1 fired (fails in >= 3 cells, i.e. passes in <= 6): True
+    => P1 VERDICT: NEGATIVE — F1 FIRED. INT-E600 passes only 0/9 cells.
+
+P2: C-sweep — universal coverage vs E600 cells, and C2900 tight tolerance.
+    INT-C1500: 4/9 normal pass; covers all E600 cells: True
+    INT-C2000: 6/9 normal pass; covers all E600 cells: True
+    INT-C2900: 9/9 normal pass; covers all E600 cells: True
+    C2900 fails tight while E600 passes: True
+    Any single C covers all 9 cells: True
+    => P2 VERDICT: POSITIVE (C1500, C2000 universal on E600 cells).
+
+P3 / MINIMAL PAIR: n4_freeze (no-reset) vs INT-E600.
+    n_cells_separated (INT-E600 passes, n4_freeze fails): 0/9
+    F3 fired (no separation): True
+    => P3 VERDICT: NEGATIVE — F3 FIRED. No separation.
+
+PC1: 0/720 sessions flagged ahat_drift >= 0.15
+
+================================================================================
+SUMMARY
+================================================================================
+
+  Gate:          PASS
+  Seeds:         [260, 261, 262, 263, 264, 265, 266, 267]
+  Runtime:       2.5 min
+
+  P1 (INT-E600 >= 7/9 cells, both bars): NEGATIVE
+     passes: 0/9  tight: 0/0
+  P2 (C sweep universal on E600 cells):  POSITIVE
+  P3 (minimal pair separation):          NEGATIVE
+     n_separated: 0/9
+
+  F1 (INT-E600 fails >= 3 cells):    True
+  F3 (no separation):                True
+
+  OVERALL: NEGATIVE — F1 FIRED. Crack stands; consult for next direction.
+================================================================================
