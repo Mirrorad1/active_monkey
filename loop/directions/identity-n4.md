@@ -459,14 +459,20 @@ Constructive positive inside the negative: identity defense IS achievable on thi
 body (fixed-horizon freeze on a mismatch trigger). Detection-floor law also banked:
 ~75-100 steps of onset dose is irreducible for ratio triggers (probe, 874998c).
 
-**CHAPTER GRADED AND CLOSED (2026-06-11, on the Exp 183 consult's recommended option
-via the ratified resumption pattern).** Rung 1 displacement regime VERIFIED (176);
-rung 2 identity monitor REAL (180: sensitive, specific, label-independent); rung 3
-commitment control = CONFIG (183: fixed-horizon freeze suffices; regulation strictly
-worse); rung 4 never reached. The central hypothesis is UNSUPPORTED at this richness;
-the constructive positive: identity defense IS achievable by a dumb mechanism. Full
-synthesis: `docs/research/n4-identity-chapter.md`. This card re-opens only on an
-explicit human word (the named candidate: the seed-229 repeated-color / variable-length
-crack, with the Exp 173 dissolution warning attached).
+**CHAPTER GRADED AND CLOSED (2026-06-11, on the human's EXPLICIT WORD: option (a) of
+the Exp 183 consult).** Final chapter verdict: rung 1 displacement regime VERIFIED
+(176, POSITIVE); rung 2 identity monitor REAL (180, POSITIVE: sensitive, specific
+against the locally-matched scramble, argmax-independent, adaptation measured); rung 3
+NEGATIVE-config — regulated commitment is NOT load-bearing (181 wrong control surface;
+182 freeze surface sufficient, timing residue; 183 surrender-schedule law + the kill
+test's first kill: fixed H1200–H3000 pass both bars); rung 4 never reached. F5/no-
+resistance is the binding tier; F7/config is the reportable second-order finding. The
+central hypothesis is UNSUPPORTED at this body/richness (NOT "N4 is false in general");
+the constructive positive: identity defense IS achievable here, by a fixed-horizon
+freeze on a mismatch trigger. Full synthesis:
+`docs/research/n4-identity-commitment-chapter.md`.
+**NO further N4 rung-3 experiment is authorized without a new human direction.** The
+seed-229 repeated-color / variable-length crack is DEFERRED — logged in the synthesis
+§6 with the Exp 173 dissolution caution, not active, not Exp 184.
 
-**STATUS.** state: closed-negative · latest: Exp 183 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (six clean blocks), wrong-control-surface law (181), sufficient freeze surface + oracle bound (182), detection-floor law (183), surrender-schedule law (183), commitment-as-config (183), universal-constant kill test (173 — first kill), synthesis docs/research/n4-identity-chapter.md · why: the central hypothesis (regulated commitment beats any constant) failed its load-bearing rung at its own pre-registered kill test; chapter graded with monitor real and defense-as-config documented · next-falsifiable: TBD-human (re-opens only on a word: the seed-229/variable-length crack, or the untried anchor form)
+**STATUS.** state: closed-negative · latest: Exp 183 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (six clean blocks), wrong-control-surface law (181), sufficient freeze surface + oracle bound (182), detection-floor law (183), surrender-schedule law (183), commitment-as-config (183), universal-constant kill test (173 — first kill), synthesis docs/research/n4-identity-commitment-chapter.md · why: the central hypothesis (regulated commitment beats any constant) failed its load-bearing rung at its own pre-registered kill test; chapter graded on the human's explicit word with monitor real and defense-as-config documented · next-falsifiable: TBD-human (re-opens only on a word: the seed-229/variable-length crack — deferred, or the untried anchor form)

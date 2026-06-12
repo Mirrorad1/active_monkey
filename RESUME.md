@@ -82,14 +82,16 @@ step 0.
   (Exp 183): the regulated E* concession becomes a surrender schedule, while fixed-H freeze
   arms defend 7/8 and revise within tolerance. **Chapter verdict:** N4 monitoring is real,
   but commitment control is CONFIG, not agency-over-identity — detection without defense;
-  defense, where achievable, needs only a stopwatch. Nine laws banked. Full synthesis:
-  `docs/research/n4-identity-chapter.md`.
-- **OPEN at a direction choice (loop/IDEAS.md, each needs an explicit word):** the
-  seed-229/variable-length crack at the N4 rung 3 verdict (Exp 173 dissolution warning
-  attached); M4a increment 1c (the "talk to it" path, halted since Exp 128 — the most
-  direct path to the moonshot goal); nira's normalized-predictive switch (standing consult
-  from Exp 154); the cloud-branch merge (renumber-on-merge plan); climbing the ladder past
-  N4 given a config verdict there.
+  defense, where achievable, needs only a stopwatch. Closed on the human's explicit word
+  (option (a) of the Exp 183 consult); the seed-229/variable-length crack is DEFERRED,
+  logged as a future crack only. Full synthesis:
+  `docs/research/n4-identity-commitment-chapter.md`.
+- **THE LOOP IS PAUSED (2026-06-11, human's word): it resumes only on the next explicit
+  direction in loop/IDEAS.md.** Standing options there (each needs its own word): M4a
+  increment 1c (the "talk to it" path, halted since Exp 128 — the most direct path to the
+  moonshot goal); nira's normalized-predictive switch (standing consult from Exp 154); the
+  cloud-branch merge (renumber-on-merge plan); the deferred seed-229 crack; climbing the
+  ladder past N4 given a config verdict there.
 - Suite ~217 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)

@@ -14,7 +14,7 @@ window.AM_LAB_STATUS = {
     { name: "social-emergence", state: "exploratory", latest: "TBD-human", next: "Rung 1 clade infrastructure: fork mirro into second committed line, verify lineage records shared-ancestor hash, both independently resumable, trunk byte-identical" },
     { name: "transfer", state: "exploratory", latest: "TBD-human", next: "Rung 1 same world, new geometry: creature with learned 4x4 map dropped into different 4x4 layout; FAIL = no difference vs fresh creature" },
     { name: "continuous-substrate", state: "closed-positive", latest: "Exp 138–140", next: "TBD-human" },
-    { name: "identity-n4", state: "closed-negative", latest: "Exp 183", next: "TBD-human (re-opens only on a word: the seed-229/variable-length crack, or the untried anchor form)" },
+    { name: "identity-n4", state: "closed-negative", latest: "Exp 183", next: "TBD-human (re-opens only on a word: the seed-229/variable-length crack — deferred, or the untried anchor form)" },
   ],
   flagship: { title: "Agents That Know When Their Worldview Is Too Small", page: "docs/flagship/worldview-too-small.md" }
 };
