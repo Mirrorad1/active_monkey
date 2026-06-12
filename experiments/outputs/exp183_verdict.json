@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "experiment": "exp183",
+  "verdict": "NEGATIVE",
+  "halted": true,
+  "arms": {
+    "P5_resistance_recovery": {
+      "pass": false,
+      "reason": "n4_freeze forks passing Phase W: 2/8 (need >= 7); baseline forks passing: 0/8 (need <= 2); falsifier F5: n4_freeze <= 4/8"
+    },
+    "P6_revision": {
+      "pass": true,
+      "reason": "n4_freeze forks within latency tolerance (baseline+3000): 8/8 (need >= 6); never-adopted: 0/8 (rigidity-falsifier if >= 3); falsifier F6: over-tolerance in >= 4/8 forks or never-adopt in >= 3/8"
+    },
+    "P7_not_config": {
+      "pass": false,
+      "reason": "FALSIFIER F7: constant arms satisfying both: ['H1200', 'H1800', 'H2400', 'H3000'] \u2014 NEGATIVE-config; a fixed horizon suffices at this richness"
+    }
+  },
+  "notes": "Exp 183 N4 rung 3 attempt 3 FREEZE-GATE (fast-trigger). PRE-REGISTERED in loop/directions/identity-n4.md (commit 6aa9f77) BEFORE any data. Delta 1 (pre-registered): fine trigger cadence FINE_EVAL=25 (was 100); MON_W_SNAPS=40, CTRL_MBAR_WINDOW=120, CTRL_MIN_SNAPS=40 (all 1000/3000/1000 steps); RELEASE_CALM_SNAPS=8 fine checks (200 steps); REFRACTORY_CHECKS=8 fine checks (200 steps). Delta 2 (pre-registered): history-clear floor guard \u2014 m_bar_floor carried across release clears; trigger denominator uses floor when < CTRL_MIN_SNAPS post-reset samples; refractory period 8 fine checks after any release/concession. Coarse v_traj (EVAL=100) retained for PC2'/gap/diagnostic tables. THETA=3.5, E_STAR=600, pressure 200/0.6, H-sweep, write-gain sweep, oracle diagnostic, P5 majority displacement-rejection <0.5, P6, P7, verdict map all verbatim Exp 182. 13 verdict arms + oracle x phases x 8 seeds = 216 sessions. Verdict map: POSITIVE iff P5 AND P6 AND P7; NEGATIVE-config iff P5 AND P6 AND NOT P7; NEGATIVE-no-resistance iff F5; NEGATIVE-rigidity iff P5 AND F6; MIXED otherwise."
+}

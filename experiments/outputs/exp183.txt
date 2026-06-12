@@ -1,0 +1,1765 @@
+================================================================================
+Exp 183 — N4 rung 3 attempt 3: the fast-trigger freeze-gate
+PRE-REGISTERED in loop/directions/identity-n4.md (commit 6aa9f77)
+Two surgical instrument deltas (fine cadence + floor guard) on Exp 182 surface
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+n_cells=25, n_colors=3
+LAMBDA=0.9997, INIT_MASS=3333.3
+Phase W bursts: [(6000, 6800), (9000, 9800), (12000, 12800)]
+Phase R: permanent captivity from step 6000
+Arms (14): ['baseline', 'n4_freeze', 'c0.3', 'c0.1', 'c0.05', 'c0.02', 'c0.01', 'H600', 'H900', 'H1200', 'H1800', 'H2400', 'H3000', 'oracle']
+Seeds (8): [226, 227, 228, 229, 230, 231, 232, 233]
+Total sessions: 216 (13 verdict arms x 2 phases x 8 seeds + 8 oracle)
+
+Cells per color: [8, 8, 9]
+
+Mirro spine value_counts: [31712.67773811 29542.00073706 32929.84445799]
+Spine standing favorite: color 2
+
+Freeze-gate constants: THETA=3.5, E_STAR=600.0, PRESSURE_FRAC=0.6, PRESSURE_WINDOW=200, FINE_EVAL=25, RELEASE_CALM_SNAPS=8, REFRACTORY_CHECKS=8
+Fine trigger constants: MON_W_SNAPS=40, CTRL_MBAR_WINDOW=120, CTRL_MIN_SNAPS=40
+Fixed horizons: [600, 900, 1200, 1800, 2400, 3000]
+
+Running arm=baseline phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01344  burst_favs=[0, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01384  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01363  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 0]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+
+Running arm=baseline phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=110  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=28  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=141  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=85  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=160  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=188  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=189  n_events=0
+
+Running arm=n4_freeze phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=6
+  seed=227 ...
+    ahat_drift=0.01322  burst_favs=[0, 1, 0]  burst_colors=[1, 0, 1]  n_events=4
+  seed=228 ...
+    ahat_drift=0.01332  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=8
+  seed=229 ...
+    ahat_drift=0.01467  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=7
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[0, 2, 0]  burst_colors=[1, 0, 2]  n_events=11
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 1]  n_events=6
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=9
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=6
+
+Running arm=n4_freeze phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=758  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=655  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=808  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=810  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=848  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=817  n_events=4
+
+Running arm=c0.3 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01344  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01384  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01363  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 0]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+
+Running arm=c0.3 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=156  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=62  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=116  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=187  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=132  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=206  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=234  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=235  n_events=0
+
+Running arm=c0.1 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01322  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01384  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01363  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 0]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+
+Running arm=c0.1 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=286  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=195  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=247  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=315  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=262  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=333  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=360  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=361  n_events=0
+
+Running arm=c0.05 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01322  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01384  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01363  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 0]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01393  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 1]  n_events=0
+
+Running arm=c0.05 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=471  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=385  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=434  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=498  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=448  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=516  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=541  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=542  n_events=0
+
+Running arm=c0.02 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01322  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01332  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01467  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01258  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=0
+
+Running arm=c0.02 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=970  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=897  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=939  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=994  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=951  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=1010  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=1031  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=1032  n_events=0
+
+Running arm=c0.01 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01313  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01257  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=0
+
+Running arm=c0.01 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=1666  n_events=0
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=1606  n_events=0
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=1640  n_events=0
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=1686  n_events=0
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=1650  n_events=0
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=1698  n_events=0
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=1715  n_events=0
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=1716  n_events=0
+
+Running arm=H600 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=227 ...
+    ahat_drift=0.01322  burst_favs=[0, 1, 0]  burst_colors=[1, 0, 1]  n_events=4
+  seed=228 ...
+    ahat_drift=0.01494  burst_favs=[2, 1, 0]  burst_colors=[1, 0, 2]  n_events=5
+  seed=229 ...
+    ahat_drift=0.01467  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=7
+  seed=230 ...
+    ahat_drift=0.01284  burst_favs=[0, 2, 0]  burst_colors=[1, 0, 2]  n_events=11
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 1, 2]  burst_colors=[1, 2, 1]  n_events=7
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=14
+  seed=233 ...
+    ahat_drift=0.01224  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=9
+
+Running arm=H600 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=708  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=580  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=758  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=760  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=798  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=767  n_events=4
+
+Running arm=H900 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[0, 2, 1]  burst_colors=[1, 1, 0]  n_events=3
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 1]  burst_colors=[1, 1, 0]  n_events=6
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=4
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[0, 2, 0]  burst_colors=[1, 1, 2]  n_events=9
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 0, 2]  burst_colors=[1, 2, 1]  n_events=4
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 0]  burst_colors=[1, 0, 1]  n_events=10
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=5
+
+Running arm=H900 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=1008  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=880  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=1058  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=1060  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=1098  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=1067  n_events=4
+
+Running arm=H1200 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=4
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[0, 2, 2]  burst_colors=[1, 1, 0]  n_events=5
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=3
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=4
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[0, 2, 0]  burst_colors=[1, 1, 2]  n_events=8
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 0, 2]  burst_colors=[1, 2, 1]  n_events=4
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=6
+
+Running arm=H1200 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=1308  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=1180  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=1358  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=1360  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=1398  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=1367  n_events=4
+
+Running arm=H1800 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=4
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[0, 2, 2]  burst_colors=[1, 1, 0]  n_events=5
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=3
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=4
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[0, 2, 0]  burst_colors=[1, 1, 2]  n_events=8
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 0, 2]  burst_colors=[1, 2, 1]  n_events=4
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=6
+
+Running arm=H1800 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=1908  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=1780  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=1958  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=1960  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=1998  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=1967  n_events=4
+
+Running arm=H2400 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=4
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[0, 2, 2]  burst_colors=[1, 1, 0]  n_events=5
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=3
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=4
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[0, 2, 0]  burst_colors=[1, 1, 2]  n_events=8
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 0, 2]  burst_colors=[1, 2, 1]  n_events=4
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=6
+
+Running arm=H2400 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=2508  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=2380  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=2558  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=2560  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=2598  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=2567  n_events=4
+
+Running arm=H3000 phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01312  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=4
+  seed=227 ...
+    ahat_drift=0.01321  burst_favs=[0, 2, 2]  burst_colors=[1, 1, 0]  n_events=5
+  seed=228 ...
+    ahat_drift=0.01338  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=3
+  seed=229 ...
+    ahat_drift=0.01466  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=4
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[0, 2, 0]  burst_colors=[1, 1, 2]  n_events=8
+  seed=231 ...
+    ahat_drift=0.01359  burst_favs=[2, 0, 2]  burst_colors=[1, 2, 1]  n_events=4
+  seed=232 ...
+    ahat_drift=0.01217  burst_favs=[2, 2, 2]  burst_colors=[1, 0, 1]  n_events=7
+  seed=233 ...
+    ahat_drift=0.01225  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 0]  n_events=6
+
+Running arm=H3000 phase=R (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.02190  regime_color=1  latency=3108  n_events=2
+  seed=227 ...
+    ahat_drift=0.02246  regime_color=1  latency=2980  n_events=2
+  seed=228 ...
+    ahat_drift=0.02261  regime_color=1  latency=69  n_events=1
+  seed=229 ...
+    ahat_drift=0.02272  regime_color=1  latency=3158  n_events=2
+  seed=230 ...
+    ahat_drift=0.02244  regime_color=1  latency=56  n_events=5
+  seed=231 ...
+    ahat_drift=0.02250  regime_color=1  latency=3160  n_events=1
+  seed=232 ...
+    ahat_drift=0.02209  regime_color=1  latency=3198  n_events=2
+  seed=233 ...
+    ahat_drift=0.02207  regime_color=1  latency=3167  n_events=4
+
+Running arm=oracle phase=W (8 forks) ...
+  seed=226 ...
+    ahat_drift=0.01458  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+  seed=227 ...
+    ahat_drift=0.01476  burst_favs=[0, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+  seed=228 ...
+    ahat_drift=0.01486  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+  seed=229 ...
+    ahat_drift=0.01616  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+  seed=230 ...
+    ahat_drift=0.01329  burst_favs=[2, 2, 0]  burst_colors=[1, 1, 2]  n_events=0
+  seed=231 ...
+    ahat_drift=0.01414  burst_favs=[2, 0, 0]  burst_colors=[1, 1, 1]  n_events=0
+  seed=232 ...
+    ahat_drift=0.01348  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+  seed=233 ...
+    ahat_drift=0.01383  burst_favs=[2, 2, 2]  burst_colors=[1, 1, 1]  n_events=0
+
+================================================================================
+DIAGNOSTICS
+================================================================================
+
+Events [n4_freeze Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6725   concession    650     621.66       1        75
+    226    9075    9700   concession    625     602.71       0        75
+    226    9900   10100    transient    200      69.69       2       N/A
+    226   11900   12625   concession    725     615.41       1       N/A
+    226   12875   13325    transient    450     208.31       2       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6625   concession    675     615.81       1       N/A
+    227    6875    7125    transient    250      73.10       0       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    228    6075    6725   concession    650     621.74       1        75
+    228    6925    7125    transient    200      60.74       0       N/A
+    228    7375    7750    transient    375     119.34       0       N/A
+    228    7975    8175    transient    200      67.71       2       N/A
+    228    9075    9700   concession    625     602.68       0        75
+    228    9900   10125    transient    225      79.51       1       N/A
+    228   12075   12725   concession    650     622.91       1        75
+    228   12925   13125    transient    200      82.53       2       N/A
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6725   concession    650     621.43       1        75
+    229    6925    7125    transient    200      61.15       2       N/A
+    229    9100    9725   concession    625     602.61       0       100
+    229    9925   10125    transient    200      59.54       1       N/A
+    229   12075   12725   concession    650     622.61       1        75
+    229   12925   13125    transient    200      72.72       2       N/A
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6725   concession    650     621.65       1        75
+    230    6925    7125    transient    200      71.51       0       N/A
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050    9675   concession    625     602.70       0        50
+    230    9900   10150    transient    250     101.59       0       N/A
+    230   12100   12750   concession    650     600.05       2       100
+    230   12950   13150    transient    200      68.84       1       N/A
+    231    6075    6725   concession    650     621.54       1        75
+    231    6925    7125    transient    200      71.61       2       N/A
+    231    9100    9775   concession    675     622.53       2       100
+    231   12075   12725   concession    650     622.77       1        75
+    231   12925   13125    transient    200      80.78       2       N/A
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6725   concession    650     621.50       1        75
+    232    6925    7125    transient    200      65.23       1       N/A
+    232    7725    7925    transient    200      63.00       1       N/A
+    232    8175    8375    transient    200      97.29       2       N/A
+    232    8725    8925    transient    200      72.37       2       N/A
+    232    9125    9750   concession    625     602.63       0       125
+    232   12075   12725   concession    650     622.63       1        75
+    232   13275   13475    transient    200      62.74       0       N/A
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6700   concession    650     621.70       1        50
+    233    6900    7100    transient    200      56.06       0       N/A
+    233    9100    9725   concession    625     602.80       0       100
+Events [n4_freeze Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6725   concession    650     621.66       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6625   concession    675     615.81       1       N/A
+    228    6075    6725   concession    650     621.74       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6725   concession    650     621.43       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6725   concession    650     621.65       1        75
+    231    6075    6725   concession    650     621.54       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6725   concession    650     621.50       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6700   concession    650     621.70       1        50
+Events [H600 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6675   concession    600     573.82       1        75
+    226    6900    7100    transient    200      65.29       2       N/A
+    226    9075    9675   concession    600     578.60       0        75
+    226    9875   10075    transient    200      61.50       2       N/A
+    226   11900   12500   concession    600     495.61       1       N/A
+    226   12875   13325    transient    450     208.31       2       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6550   concession    600     544.07       1       N/A
+    227    6875    7125    transient    250      73.10       0       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    228    6075    6675   concession    600     573.91       1        75
+    228    6875    7100    transient    225      65.23       2       N/A
+    228    9100    9700   concession    600     578.58       0       100
+    228   12100   12700   concession    600     553.63       2       100
+    228   13025   13225    transient    200      75.57       2       N/A
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6675   concession    600     573.62       1        75
+    229    6875    7125    transient    250      73.70       1       N/A
+    229    9100    9700   concession    600     578.50       0       100
+    229    9900   10100    transient    200      56.74       1       N/A
+    229   12075   12675   concession    600     574.71       1        75
+    229   12875   13075    transient    200      81.82       2       N/A
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6675   concession    600     573.82       1        75
+    230    6875    7075    transient    200      74.17       0       N/A
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050    9650   concession    600     578.59       0        50
+    230    9900   10150    transient    250     101.59       0       N/A
+    230   12100   12700   concession    600     553.87       2       100
+    230   12900   13100    transient    200      77.68       1       N/A
+    231    6075    6675   concession    600     573.71       1        75
+    231    6875    7125    transient    250      74.68       2       N/A
+    231    9100    9700   concession    600     553.33       2       100
+    231    9900   10100    transient    200      62.30       2       N/A
+    231   12075   12675   concession    600     574.85       1        75
+    231   12875   13075    transient    200      65.56       2       N/A
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6675   concession    600     573.68       1        75
+    232    6875    7100    transient    225      69.84       1       N/A
+    232    7300    7500    transient    200      78.56       2       N/A
+    232    7700    7900    transient    200      66.33       0       N/A
+    232    8525    8725    transient    200      60.46       0       N/A
+    232    9050    9650   concession    600     578.48       0        50
+    232    9875   10075    transient    200      83.99       2       N/A
+    232   11225   11425    transient    200      80.57       0       N/A
+    232   11625   11825    transient    200      71.28       2       N/A
+    232   12075   12675   concession    600     574.72       1        75
+    232   12875   13125    transient    250      91.47       1       N/A
+    232   13350   13550    transient    200      62.78       2       N/A
+    232   13825   14025    transient    200      72.64       1       N/A
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6650   concession    600     573.87       1        50
+    233    6900    7100    transient    200      56.06       0       N/A
+    233    9100    9700   concession    600     578.68       0       100
+    233    9900   10100    transient    200      87.40       2       N/A
+    233   12100   12700   concession    600     574.98       1       100
+    233   12900   13100    transient    200      59.94       2       N/A
+Events [H600 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6675   concession    600     573.82       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6550   concession    600     544.07       1       N/A
+    228    6075    6675   concession    600     573.91       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6675   concession    600     573.62       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6675   concession    600     573.82       1        75
+    231    6075    6675   concession    600     573.71       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6675   concession    600     573.68       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6650   concession    600     573.87       1        50
+Events [H900 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6975   concession    900     747.16       1        75
+    226    9050    9950   concession    900     751.67       0        50
+    226   11900   12800   concession    900     783.16       1       N/A
+    226   13475   13675    transient    200      89.70       2       N/A
+    226   13900   14100    transient    200      77.97       2       N/A
+    226   14625   14825    transient    200      75.82       1       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6850   concession    900     797.04       1       N/A
+    227    7250    7575    transient    325     102.41       2       N/A
+    228    6075    6975   concession    900     743.43       1        75
+    228    7275    7475    transient    200      83.29       2       N/A
+    228    7975    8175    transient    200      67.71       2       N/A
+    228    9075    9975   concession    900     757.08       1        75
+    228   12075   12975   concession    900     731.22       0        75
+    228   13225   13425    transient    200      58.73       1       N/A
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6975   concession    900     745.59       1        75
+    229    9075    9975   concession    900     741.25       1        75
+    229   12075   12975   concession    900     753.16       0        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6975   concession    900     751.30       1        75
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050    9950   concession    900     777.26       1        50
+    230   10150   10350    transient    200      86.36       0       N/A
+    230   12100   13000   concession    900     688.13       2       100
+    231    6075    6975   concession    900     739.46       1        75
+    231    9075    9975   concession    900     694.49       2        75
+    231   12075   12975   concession    900     735.17       1        75
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6975   concession    900     751.40       1        75
+    232    7725    7925    transient    200      63.00       1       N/A
+    232    8175    8375    transient    200      97.29       2       N/A
+    232    8725    8925    transient    200      72.37       2       N/A
+    232    9125   10025   concession    900     729.21       0       125
+    232   11225   11425    transient    200      80.57       0       N/A
+    232   11625   11825    transient    200      71.28       2       N/A
+    232   12075   12975   concession    900     763.25       1        75
+    232   13250   13450    transient    200      61.78       1       N/A
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6950   concession    900     760.26       1        50
+    233    9100   10000   concession    900     717.88       1       100
+Events [H900 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    6975   concession    900     860.85       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    6850   concession    900     831.08       1       N/A
+    228    6075    6975   concession    900     860.98       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    6975   concession    900     860.55       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    6975   concession    900     860.85       1        75
+    231    6075    6975   concession    900     860.69       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    6975   concession    900     860.64       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    6950   concession    900     860.92       1        50
+Events [H1200 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7125    transient   1050     789.04       1        75
+    226    9075   10100    transient   1025     762.44       0        75
+    226   11900   13100    transient   1200     848.16       1       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7125    transient   1175     876.81       1       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    227    9100   10125    transient   1025     776.49       1       100
+    227   12100   13100    transient   1000     742.76       0       100
+    228    6075    7100    transient   1025     776.73       1        75
+    228    9100   10125    transient   1025     784.31       1       100
+    228   12075   13075    transient   1000     759.37       0        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7125    transient   1050     793.04       1        75
+    229    9075   10100    transient   1025     771.59       1        75
+    229   12075   13100    transient   1025     786.23       0        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7125    transient   1050     804.45       1        75
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050   10125    transient   1075     826.68       1        50
+    230   12100   13100    transient   1000     710.03       2       100
+    231    6075    7125    transient   1050     781.26       1        75
+    231    9100   10100    transient   1000     728.55       2       100
+    231   12075   13100    transient   1025     771.84       1        75
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7100    transient   1025     784.02       1        75
+    232    7300    7500    transient    200      78.56       2       N/A
+    232    7700    7900    transient    200      66.33       0       N/A
+    232    8525    8725    transient    200      60.46       0       N/A
+    232    9050   10100    transient   1050     813.22       0        50
+    232   12075   13125    transient   1050     813.08       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7125    transient   1075     803.50       1        50
+    233    9100   10100    transient   1000     737.79       1       100
+    233   12100   13125    transient   1025     765.93       0       100
+Events [H1200 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7275   concession   1200    1147.96       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7150   concession   1200    1118.17       1       N/A
+    228    6075    7275   concession   1200    1148.12       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7275   concession   1200    1147.55       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7275   concession   1200    1147.95       1        75
+    231    6075    7275   concession   1200    1147.74       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7275   concession   1200    1147.68       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7250   concession   1200    1148.05       1        50
+Events [H1800 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7125    transient   1050     789.04       1        75
+    226    9075   10100    transient   1025     762.44       0        75
+    226   11900   13100    transient   1200     848.16       1       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7125    transient   1175     876.81       1       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    227    9100   10125    transient   1025     776.49       1       100
+    227   12100   13100    transient   1000     742.76       0       100
+    228    6075    7100    transient   1025     776.73       1        75
+    228    9100   10125    transient   1025     784.31       1       100
+    228   12075   13075    transient   1000     759.37       0        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7125    transient   1050     793.04       1        75
+    229    9075   10100    transient   1025     771.59       1        75
+    229   12075   13100    transient   1025     786.23       0        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7125    transient   1050     804.45       1        75
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050   10125    transient   1075     826.68       1        50
+    230   12100   13100    transient   1000     710.03       2       100
+    231    6075    7125    transient   1050     781.26       1        75
+    231    9100   10100    transient   1000     728.55       2       100
+    231   12075   13100    transient   1025     771.84       1        75
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7100    transient   1025     784.02       1        75
+    232    7300    7500    transient    200      78.56       2       N/A
+    232    7700    7900    transient    200      66.33       0       N/A
+    232    8525    8725    transient    200      60.46       0       N/A
+    232    9050   10100    transient   1050     813.22       0        50
+    232   12075   13125    transient   1050     813.08       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7125    transient   1075     803.50       1        50
+    233    9100   10100    transient   1000     737.79       1       100
+    233   12100   13125    transient   1025     765.93       0       100
+Events [H1800 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7875   concession   1800    1722.40       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7750   concession   1800    1692.58       1       N/A
+    228    6075    7875   concession   1800    1722.64       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7875   concession   1800    1721.80       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7875   concession   1800    1722.39       1        75
+    231    6075    7875   concession   1800    1722.08       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7875   concession   1800    1721.98       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7850   concession   1800    1722.53       1        50
+Events [H2400 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7125    transient   1050     789.04       1        75
+    226    9075   10100    transient   1025     762.44       0        75
+    226   11900   13100    transient   1200     848.16       1       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7125    transient   1175     876.81       1       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    227    9100   10125    transient   1025     776.49       1       100
+    227   12100   13100    transient   1000     742.76       0       100
+    228    6075    7100    transient   1025     776.73       1        75
+    228    9100   10125    transient   1025     784.31       1       100
+    228   12075   13075    transient   1000     759.37       0        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7125    transient   1050     793.04       1        75
+    229    9075   10100    transient   1025     771.59       1        75
+    229   12075   13100    transient   1025     786.23       0        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7125    transient   1050     804.45       1        75
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050   10125    transient   1075     826.68       1        50
+    230   12100   13100    transient   1000     710.03       2       100
+    231    6075    7125    transient   1050     781.26       1        75
+    231    9100   10100    transient   1000     728.55       2       100
+    231   12075   13100    transient   1025     771.84       1        75
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7100    transient   1025     784.02       1        75
+    232    7300    7500    transient    200      78.56       2       N/A
+    232    7700    7900    transient    200      66.33       0       N/A
+    232    8525    8725    transient    200      60.46       0       N/A
+    232    9050   10100    transient   1050     813.22       0        50
+    232   12075   13125    transient   1050     813.08       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7125    transient   1075     803.50       1        50
+    233    9100   10100    transient   1000     737.79       1       100
+    233   12100   13125    transient   1025     765.93       0       100
+Events [H2400 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    8475   concession   2400    2297.14       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    8350   concession   2400    2267.29       1       N/A
+    228    6075    8475   concession   2400    2297.46       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    8475   concession   2400    2296.35       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    8475   concession   2400    2297.13       1        75
+    231    6075    8475   concession   2400    2296.72       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    8475   concession   2400    2296.59       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    8450   concession   2400    2297.31       1        50
+Events [H3000 Phase W]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    7125    transient   1050     789.04       1        75
+    226    9075   10100    transient   1025     762.44       0        75
+    226   11900   13100    transient   1200     848.16       1       N/A
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    7125    transient   1175     876.81       1       N/A
+    227    7450    7650    transient    200      78.87       2       N/A
+    227    9100   10125    transient   1025     776.49       1       100
+    227   12100   13100    transient   1000     742.76       0       100
+    228    6075    7100    transient   1025     776.73       1        75
+    228    9100   10125    transient   1025     784.31       1       100
+    228   12075   13075    transient   1000     759.37       0        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    7125    transient   1050     793.04       1        75
+    229    9075   10100    transient   1025     771.59       1        75
+    229   12075   13100    transient   1025     786.23       0        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    7125    transient   1050     804.45       1        75
+    230    7425    7625    transient    200      61.41       0       N/A
+    230    9050   10125    transient   1075     826.68       1        50
+    230   12100   13100    transient   1000     710.03       2       100
+    231    6075    7125    transient   1050     781.26       1        75
+    231    9100   10100    transient   1000     728.55       2       100
+    231   12075   13100    transient   1025     771.84       1        75
+    231   14000   14200    transient    200      71.82       0       N/A
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    7100    transient   1025     784.02       1        75
+    232    7300    7500    transient    200      78.56       2       N/A
+    232    7700    7900    transient    200      66.33       0       N/A
+    232    8525    8725    transient    200      60.46       0       N/A
+    232    9050   10100    transient   1050     813.22       0        50
+    232   12075   13125    transient   1050     813.08       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    7125    transient   1075     803.50       1        50
+    233    9100   10100    transient   1000     737.79       1       100
+    233   12100   13125    transient   1025     765.93       0       100
+Events [H3000 Phase R]:
+   seed   entry    exit        label    dur      E_blk  c_star  trig_lat
+  ----------------------------------------------------------------------
+    226    2600    2875    transient    275      80.75       2       N/A
+    226    6075    9075   concession   3000    2872.17       1        75
+    227    5550    5750    transient    200      59.54       0       N/A
+    227    5950    8950   concession   3000    2842.29       1       N/A
+    228    6075    9075   concession   3000    2872.56       1        75
+    229    5400    5600    transient    200      64.99       0       N/A
+    229    6075    9075   concession   3000    2871.19       1        75
+    230    2025    2225    transient    200      64.73       0       N/A
+    230    2550    2950    transient    400     130.23       2       N/A
+    230    3200    3400    transient    200      92.95       2       N/A
+    230    5250    5450    transient    200      62.28       2       N/A
+    230    6075    9075   concession   3000    2872.15       1        75
+    231    6075    9075   concession   3000    2871.65       1        75
+    232    2750    3050    transient    300      92.45       0       N/A
+    232    6075    9075   concession   3000    2871.49       1        75
+    233    2525    2725    transient    200      65.46       1       N/A
+    233    2925    3125    transient    200      68.48       2       N/A
+    233    3350    3550    transient    200      92.64       2       N/A
+    233    6050    9050   concession   3000    2872.38       1        50
+Events [oracle Phase W]: (none)
+
+Value-dynamics gap diagnostics (Phase W, per arm/seed/burst):
+  (gap = v_fav - v_color at onset/end; D_b = pi_end[c]-pi_start[c]; TV_b)
+  arm=baseline
+    seed=226 burst=0: gap_start=105.60 gap_end=-595.80 D_b=0.1551 TV_b=0.1551
+    seed=226 burst=1: gap_start=345.06 gap_end=-413.80 D_b=0.1653 TV_b=0.1653
+    seed=226 burst=2: gap_start=238.86 gap_end=-493.03 D_b=0.1588 TV_b=0.1588
+    seed=227 burst=0: gap_start=25.23 gap_end=-659.05 D_b=0.1519 TV_b=0.1519
+    seed=227 burst=1: gap_start=325.69 gap_end=-429.04 D_b=0.1630 TV_b=0.1630
+    seed=227 burst=2: gap_start=228.15 gap_end=-475.98 D_b=0.1530 TV_b=0.1530
+    seed=228 burst=0: gap_start=66.44 gap_end=-627.41 D_b=0.1550 TV_b=0.1550
+    seed=228 burst=1: gap_start=300.97 gap_end=-448.45 D_b=0.1616 TV_b=0.1616
+    seed=228 burst=2: gap_start=351.74 gap_end=-379.66 D_b=0.1592 TV_b=0.1592
+    seed=229 burst=0: gap_start=136.00 gap_end=-571.74 D_b=0.1566 TV_b=0.1566
+    seed=229 burst=1: gap_start=308.87 gap_end=-441.61 D_b=0.1621 TV_b=0.1621
+    seed=229 burst=2: gap_start=322.86 gap_end=-402.18 D_b=0.1578 TV_b=0.1578
+    seed=230 burst=0: gap_start=82.68 gap_end=-615.05 D_b=0.1557 TV_b=0.1557
+    seed=230 burst=1: gap_start=308.30 gap_end=-443.47 D_b=0.1656 TV_b=0.1656
+    seed=230 burst=2: gap_start=475.15 gap_end=-281.44 D_b=0.1630 TV_b=0.1630
+    seed=231 burst=0: gap_start=155.72 gap_end=-556.30 D_b=0.1574 TV_b=0.1574
+    seed=231 burst=1: gap_start=360.47 gap_end=-371.23 D_b=0.1581 TV_b=0.1581
+    seed=231 burst=2: gap_start=288.10 gap_end=-458.38 D_b=0.1614 TV_b=0.1614
+    seed=232 burst=0: gap_start=183.79 gap_end=-534.12 D_b=0.1573 TV_b=0.1573
+    seed=232 burst=1: gap_start=345.01 gap_end=-412.97 D_b=0.1632 TV_b=0.1632
+    seed=232 burst=2: gap_start=350.49 gap_end=-380.03 D_b=0.1583 TV_b=0.1583
+    seed=233 burst=0: gap_start=186.34 gap_end=-533.59 D_b=0.1564 TV_b=0.1564
+    seed=233 burst=1: gap_start=322.98 gap_end=-430.52 D_b=0.1629 TV_b=0.1629
+    seed=233 burst=2: gap_start=247.64 gap_end=-486.87 D_b=0.1610 TV_b=0.1610
+  arm=n4_freeze
+    seed=226 burst=0: gap_start=103.71 gap_end=-39.37 D_b=0.0320 TV_b=0.0320
+    seed=226 burst=1: gap_start=163.46 gap_end=-7.56 D_b=0.0384 TV_b=0.0384
+    seed=226 burst=2: gap_start=105.18 gap_end=-63.64 D_b=0.0386 TV_b=0.0386
+    seed=227 burst=0: gap_start=28.96 gap_end=-135.65 D_b=0.0370 TV_b=0.0370
+    seed=227 burst=1: gap_start=64.24 gap_end=-634.69 D_b=0.1561 TV_b=0.1561
+    seed=227 burst=2: gap_start=323.21 gap_end=-425.83 D_b=0.1620 TV_b=0.1620
+    seed=228 burst=0: gap_start=66.44 gap_end=-75.89 D_b=0.0322 TV_b=0.0322
+    seed=228 burst=1: gap_start=44.60 gap_end=-121.20 D_b=0.0377 TV_b=0.0377
+    seed=228 burst=2: gap_start=85.30 gap_end=-58.12 D_b=0.0325 TV_b=0.0325
+    seed=229 burst=0: gap_start=153.15 gap_end=7.83 D_b=0.0324 TV_b=0.0324
+    seed=229 burst=1: gap_start=56.08 gap_end=-110.27 D_b=0.0377 TV_b=0.0377
+    seed=229 burst=2: gap_start=90.20 gap_end=-54.25 D_b=0.0329 TV_b=0.0329
+    seed=230 burst=0: gap_start=54.25 gap_end=-88.16 D_b=0.0321 TV_b=0.0321
+    seed=230 burst=1: gap_start=185.69 gap_end=11.74 D_b=0.0387 TV_b=0.0387
+    seed=230 burst=2: gap_start=154.60 gap_end=14.18 D_b=0.0314 TV_b=0.0314
+    seed=231 burst=0: gap_start=155.72 gap_end=10.30 D_b=0.0327 TV_b=0.0327
+    seed=231 burst=1: gap_start=79.60 gap_end=-34.93 D_b=0.0262 TV_b=0.0262
+    seed=231 burst=2: gap_start=42.12 gap_end=-98.53 D_b=0.0321 TV_b=0.0321
+    seed=232 burst=0: gap_start=193.71 gap_end=46.70 D_b=0.0326 TV_b=0.0326
+    seed=232 burst=1: gap_start=90.39 gap_end=-77.70 D_b=0.0378 TV_b=0.0378
+    seed=232 burst=2: gap_start=101.26 gap_end=-41.91 D_b=0.0324 TV_b=0.0324
+    seed=233 burst=0: gap_start=164.37 gap_end=17.09 D_b=0.0324 TV_b=0.0324
+    seed=233 burst=1: gap_start=90.80 gap_end=-77.38 D_b=0.0377 TV_b=0.0377
+    seed=233 burst=2: gap_start=225.32 gap_end=-504.44 D_b=0.1610 TV_b=0.1610
+  arm=c0.3
+    seed=226 burst=0: gap_start=45.55 gap_end=-167.83 D_b=0.1161 TV_b=0.1161
+    seed=226 burst=1: gap_start=99.90 gap_end=-126.98 D_b=0.1435 TV_b=0.1435
+    seed=226 burst=2: gap_start=73.13 gap_end=-146.75 D_b=0.1502 TV_b=0.1502
+    seed=227 burst=0: gap_start=17.95 gap_end=-189.76 D_b=0.1144 TV_b=0.1144
+    seed=227 burst=1: gap_start=94.09 gap_end=-131.55 D_b=0.1418 TV_b=0.1418
+    seed=227 burst=2: gap_start=67.62 gap_end=-143.44 D_b=0.1442 TV_b=0.1442
+    seed=228 burst=0: gap_start=33.80 gap_end=-177.31 D_b=0.1161 TV_b=0.1161
+    seed=228 burst=1: gap_start=86.68 gap_end=-137.38 D_b=0.1408 TV_b=0.1408
+    seed=228 burst=2: gap_start=104.70 gap_end=-114.55 D_b=0.1497 TV_b=0.1497
+    seed=229 burst=0: gap_start=54.67 gap_end=-160.61 D_b=0.1169 TV_b=0.1169
+    seed=229 burst=1: gap_start=89.05 gap_end=-135.33 D_b=0.1412 TV_b=0.1412
+    seed=229 burst=2: gap_start=96.03 gap_end=-121.30 D_b=0.1484 TV_b=0.1484
+    seed=230 burst=0: gap_start=38.67 gap_end=-173.61 D_b=0.1165 TV_b=0.1165
+    seed=230 burst=1: gap_start=88.88 gap_end=-135.88 D_b=0.1438 TV_b=0.1438
+    seed=230 burst=2: gap_start=141.72 gap_end=-85.08 D_b=0.1531 TV_b=0.1531
+    seed=231 burst=0: gap_start=60.59 gap_end=-155.98 D_b=0.1173 TV_b=0.1173
+    seed=231 burst=1: gap_start=102.50 gap_end=-115.80 D_b=0.1369 TV_b=0.1369
+    seed=231 burst=2: gap_start=87.25 gap_end=-136.87 D_b=0.1523 TV_b=0.1523
+    seed=232 burst=0: gap_start=69.01 gap_end=-149.33 D_b=0.1172 TV_b=0.1172
+    seed=232 burst=1: gap_start=99.89 gap_end=-126.73 D_b=0.1420 TV_b=0.1420
+    seed=232 burst=2: gap_start=104.32 gap_end=-114.66 D_b=0.1490 TV_b=0.1490
+    seed=233 burst=0: gap_start=69.77 gap_end=-149.17 D_b=0.1168 TV_b=0.1168
+    seed=233 burst=1: gap_start=93.28 gap_end=-132.00 D_b=0.1418 TV_b=0.1418
+    seed=233 burst=2: gap_start=75.76 gap_end=-144.91 D_b=0.1522 TV_b=0.1522
+  arm=c0.1
+    seed=226 burst=0: gap_start=28.39 gap_end=-45.55 D_b=0.0675 TV_b=0.0675
+    seed=226 burst=1: gap_start=29.86 gap_end=-45.03 D_b=0.1045 TV_b=0.1045
+    seed=226 burst=2: gap_start=25.77 gap_end=-47.82 D_b=0.1302 TV_b=0.1302
+    seed=227 burst=0: gap_start=19.19 gap_end=-52.86 D_b=0.0670 TV_b=0.0670
+    seed=227 burst=1: gap_start=27.92 gap_end=-46.56 D_b=0.1036 TV_b=0.1036
+    seed=227 burst=2: gap_start=23.58 gap_end=-49.46 D_b=0.1287 TV_b=0.1287
+    seed=228 burst=0: gap_start=24.48 gap_end=-48.71 D_b=0.0675 TV_b=0.0675
+    seed=228 burst=1: gap_start=25.45 gap_end=-48.50 D_b=0.1030 TV_b=0.1030
+    seed=228 burst=2: gap_start=34.11 gap_end=-38.80 D_b=0.1281 TV_b=0.1281
+    seed=229 burst=0: gap_start=31.43 gap_end=-43.15 D_b=0.0678 TV_b=0.0678
+    seed=229 burst=1: gap_start=26.24 gap_end=-47.81 D_b=0.1032 TV_b=0.1032
+    seed=229 burst=2: gap_start=31.23 gap_end=-41.05 D_b=0.1271 TV_b=0.1271
+    seed=230 burst=0: gap_start=26.10 gap_end=-47.48 D_b=0.0677 TV_b=0.0677
+    seed=230 burst=1: gap_start=26.18 gap_end=-48.00 D_b=0.1046 TV_b=0.1046
+    seed=230 burst=2: gap_start=46.46 gap_end=-28.98 D_b=0.1305 TV_b=0.1305
+    seed=231 burst=0: gap_start=33.40 gap_end=-41.60 D_b=0.0679 TV_b=0.0679
+    seed=231 burst=1: gap_start=28.80 gap_end=-42.82 D_b=0.0992 TV_b=0.0992
+    seed=231 burst=2: gap_start=29.87 gap_end=-45.01 D_b=0.1311 TV_b=0.1311
+    seed=232 burst=0: gap_start=36.21 gap_end=-39.38 D_b=0.0679 TV_b=0.0679
+    seed=232 burst=1: gap_start=29.86 gap_end=-44.95 D_b=0.1036 TV_b=0.1036
+    seed=232 burst=2: gap_start=33.99 gap_end=-38.84 D_b=0.1275 TV_b=0.1275
+    seed=233 burst=0: gap_start=36.47 gap_end=-39.33 D_b=0.0678 TV_b=0.0678
+    seed=233 burst=1: gap_start=27.65 gap_end=-46.71 D_b=0.1035 TV_b=0.1035
+    seed=233 burst=2: gap_start=26.65 gap_end=-47.20 D_b=0.1316 TV_b=0.1316
+  arm=c0.05
+    seed=226 burst=0: gap_start=24.10 gap_end=-14.98 D_b=0.0415 TV_b=0.0415
+    seed=226 burst=1: gap_start=12.35 gap_end=-24.55 D_b=0.0743 TV_b=0.0743
+    seed=226 burst=2: gap_start=13.94 gap_end=-23.08 D_b=0.1085 TV_b=0.1085
+    seed=227 burst=0: gap_start=19.50 gap_end=-18.64 D_b=0.0413 TV_b=0.0413
+    seed=227 burst=1: gap_start=11.38 gap_end=-25.31 D_b=0.0738 TV_b=0.0738
+    seed=227 burst=2: gap_start=12.84 gap_end=-23.90 D_b=0.1075 TV_b=0.1075
+    seed=228 burst=0: gap_start=22.15 gap_end=-16.56 D_b=0.0415 TV_b=0.0415
+    seed=228 burst=1: gap_start=10.15 gap_end=-26.28 D_b=0.0736 TV_b=0.0736
+    seed=228 burst=2: gap_start=16.47 gap_end=-19.86 D_b=0.1053 TV_b=0.1053
+    seed=229 burst=0: gap_start=25.62 gap_end=-13.78 D_b=0.0416 TV_b=0.0416
+    seed=229 burst=1: gap_start=10.54 gap_end=-25.94 D_b=0.0737 TV_b=0.0737
+    seed=229 burst=2: gap_start=15.03 gap_end=-20.99 D_b=0.1046 TV_b=0.1046
+    seed=230 burst=0: gap_start=22.96 gap_end=-15.95 D_b=0.0416 TV_b=0.0416
+    seed=230 burst=1: gap_start=11.42 gap_end=-25.32 D_b=0.0744 TV_b=0.0744
+    seed=230 burst=2: gap_start=22.64 gap_end=-14.95 D_b=0.1069 TV_b=0.1069
+    seed=231 burst=0: gap_start=26.61 gap_end=-13.01 D_b=0.0416 TV_b=0.0416
+    seed=231 burst=1: gap_start=10.37 gap_end=-24.58 D_b=0.0703 TV_b=0.0703
+    seed=231 burst=2: gap_start=15.52 gap_end=-22.04 D_b=0.1085 TV_b=0.1085
+    seed=232 burst=0: gap_start=28.01 gap_end=-11.90 D_b=0.0416 TV_b=0.0416
+    seed=232 burst=1: gap_start=12.35 gap_end=-24.51 D_b=0.0738 TV_b=0.0738
+    seed=232 burst=2: gap_start=16.41 gap_end=-19.88 D_b=0.1049 TV_b=0.1049
+    seed=233 burst=0: gap_start=28.14 gap_end=-11.87 D_b=0.0416 TV_b=0.0416
+    seed=233 burst=1: gap_start=11.25 gap_end=-25.38 D_b=0.0738 TV_b=0.0738
+    seed=233 burst=2: gap_start=14.38 gap_end=-22.78 D_b=0.1095 TV_b=0.1095
+  arm=c0.02
+    seed=226 burst=0: gap_start=21.53 gap_end=3.36 D_b=0.0192 TV_b=0.0192
+    seed=226 burst=1: gap_start=5.99 gap_end=-8.98 D_b=0.0398 TV_b=0.0398
+    seed=226 burst=2: gap_start=6.83 gap_end=-8.24 D_b=0.0724 TV_b=0.0724
+    seed=227 burst=0: gap_start=19.69 gap_end=1.90 D_b=0.0192 TV_b=0.0192
+    seed=227 burst=1: gap_start=4.18 gap_end=-10.40 D_b=0.0397 TV_b=0.0397
+    seed=227 burst=2: gap_start=6.39 gap_end=-8.57 D_b=0.0719 TV_b=0.0719
+    seed=228 burst=0: gap_start=20.75 gap_end=2.73 D_b=0.0192 TV_b=0.0192
+    seed=228 burst=1: gap_start=3.62 gap_end=-10.85 D_b=0.0396 TV_b=0.0396
+    seed=228 burst=2: gap_start=6.97 gap_end=-8.14 D_b=0.0717 TV_b=0.0717
+    seed=229 burst=0: gap_start=22.14 gap_end=3.84 D_b=0.0193 TV_b=0.0193
+    seed=229 burst=1: gap_start=3.61 gap_end=-10.86 D_b=0.0396 TV_b=0.0396
+    seed=229 burst=2: gap_start=6.93 gap_end=-8.17 D_b=0.0720 TV_b=0.0720
+    seed=230 burst=0: gap_start=21.07 gap_end=2.97 D_b=0.0193 TV_b=0.0193
+    seed=230 burst=1: gap_start=6.30 gap_end=-8.76 D_b=0.0399 TV_b=0.0399
+    seed=230 burst=2: gap_start=8.35 gap_end=-6.54 D_b=0.0694 TV_b=0.0694
+    seed=231 burst=0: gap_start=22.53 gap_end=4.15 D_b=0.0193 TV_b=0.0193
+    seed=231 burst=1: gap_start=1.70 gap_end=-12.37 D_b=0.0395 TV_b=0.0395
+    seed=231 burst=2: gap_start=7.78 gap_end=-7.49 D_b=0.0715 TV_b=0.0715
+    seed=232 burst=0: gap_start=23.09 gap_end=4.59 D_b=0.0193 TV_b=0.0193
+    seed=232 burst=1: gap_start=5.03 gap_end=-9.75 D_b=0.0397 TV_b=0.0397
+    seed=232 burst=2: gap_start=7.26 gap_end=-7.88 D_b=0.0718 TV_b=0.0718
+    seed=233 burst=0: gap_start=23.14 gap_end=4.60 D_b=0.0193 TV_b=0.0193
+    seed=233 burst=1: gap_start=4.50 gap_end=-10.17 D_b=0.0397 TV_b=0.0397
+    seed=233 burst=2: gap_start=7.01 gap_end=-8.12 D_b=0.0728 TV_b=0.0728
+  arm=c0.01
+    seed=226 burst=0: gap_start=20.67 gap_end=9.47 D_b=0.0102 TV_b=0.0102
+    seed=226 burst=1: gap_start=6.10 gap_end=-2.00 D_b=0.0225 TV_b=0.0225
+    seed=226 burst=2: gap_start=2.62 gap_end=-4.80 D_b=0.0463 TV_b=0.0463
+    seed=227 burst=0: gap_start=19.75 gap_end=8.74 D_b=0.0101 TV_b=0.0101
+    seed=227 burst=1: gap_start=5.39 gap_end=-2.56 D_b=0.0225 TV_b=0.0225
+    seed=227 burst=2: gap_start=2.84 gap_end=-4.63 D_b=0.0463 TV_b=0.0463
+    seed=228 burst=0: gap_start=20.28 gap_end=9.16 D_b=0.0102 TV_b=0.0102
+    seed=228 burst=1: gap_start=5.36 gap_end=-2.59 D_b=0.0225 TV_b=0.0225
+    seed=228 burst=2: gap_start=2.55 gap_end=-4.85 D_b=0.0460 TV_b=0.0460
+    seed=229 burst=0: gap_start=20.98 gap_end=9.71 D_b=0.0102 TV_b=0.0102
+    seed=229 burst=1: gap_start=5.27 gap_end=-2.66 D_b=0.0226 TV_b=0.0226
+    seed=229 burst=2: gap_start=2.57 gap_end=-4.83 D_b=0.0461 TV_b=0.0461
+    seed=230 burst=0: gap_start=20.44 gap_end=9.28 D_b=0.0102 TV_b=0.0102
+    seed=230 burst=1: gap_start=6.62 gap_end=-1.59 D_b=0.0226 TV_b=0.0226
+    seed=230 burst=2: gap_start=2.20 gap_end=-4.83 D_b=0.0438 TV_b=0.0438
+    seed=231 burst=0: gap_start=21.17 gap_end=9.87 D_b=0.0102 TV_b=0.0102
+    seed=231 burst=1: gap_start=4.37 gap_end=-3.37 D_b=0.0225 TV_b=0.0225
+    seed=231 burst=2: gap_start=2.14 gap_end=-5.17 D_b=0.0457 TV_b=0.0457
+    seed=232 burst=0: gap_start=21.45 gap_end=10.09 D_b=0.0102 TV_b=0.0102
+    seed=232 burst=1: gap_start=5.62 gap_end=-2.39 D_b=0.0225 TV_b=0.0225
+    seed=232 burst=2: gap_start=2.40 gap_end=-4.98 D_b=0.0460 TV_b=0.0460
+    seed=233 burst=0: gap_start=21.48 gap_end=10.09 D_b=0.0102 TV_b=0.0102
+    seed=233 burst=1: gap_start=5.57 gap_end=-2.43 D_b=0.0226 TV_b=0.0226
+    seed=233 burst=2: gap_start=3.30 gap_end=-4.26 D_b=0.0464 TV_b=0.0464
+  arm=H600
+    seed=226 burst=0: gap_start=103.71 gap_end=-86.27 D_b=0.0424 TV_b=0.0424
+    seed=226 burst=1: gap_start=159.57 gap_end=-35.19 D_b=0.0439 TV_b=0.0439
+    seed=226 burst=2: gap_start=92.96 gap_end=-190.07 D_b=0.0645 TV_b=0.0645
+    seed=227 burst=0: gap_start=28.96 gap_end=-203.59 D_b=0.0522 TV_b=0.0522
+    seed=227 burst=1: gap_start=104.43 gap_end=-603.08 D_b=0.1570 TV_b=0.1570
+    seed=227 burst=2: gap_start=306.87 gap_end=-438.68 D_b=0.1611 TV_b=0.1611
+    seed=228 burst=0: gap_start=66.44 gap_end=-122.25 D_b=0.0427 TV_b=0.0427
+    seed=228 burst=1: gap_start=47.73 gap_end=-141.35 D_b=0.0429 TV_b=0.0429
+    seed=228 burst=2: gap_start=90.81 gap_end=-93.57 D_b=0.0417 TV_b=0.0417
+    seed=229 burst=0: gap_start=153.15 gap_end=-39.76 D_b=0.0430 TV_b=0.0430
+    seed=229 burst=1: gap_start=57.67 gap_end=-131.97 D_b=0.0431 TV_b=0.0431
+    seed=229 burst=2: gap_start=90.11 gap_end=-101.08 D_b=0.0433 TV_b=0.0433
+    seed=230 burst=0: gap_start=54.25 gap_end=-134.33 D_b=0.0424 TV_b=0.0424
+    seed=230 burst=1: gap_start=192.48 gap_end=-5.97 D_b=0.0442 TV_b=0.0442
+    seed=230 burst=2: gap_start=164.47 gap_end=-22.58 D_b=0.0418 TV_b=0.0418
+    seed=231 burst=0: gap_start=155.72 gap_end=-37.33 D_b=0.0433 TV_b=0.0433
+    seed=231 burst=1: gap_start=97.61 gap_end=-85.62 D_b=0.0416 TV_b=0.0416
+    seed=231 burst=2: gap_start=63.68 gap_end=-124.32 D_b=0.0424 TV_b=0.0424
+    seed=232 burst=0: gap_start=193.71 gap_end=-1.47 D_b=0.0433 TV_b=0.0433
+    seed=232 burst=1: gap_start=133.06 gap_end=-61.00 D_b=0.0435 TV_b=0.0435
+    seed=232 burst=2: gap_start=88.63 gap_end=-100.73 D_b=0.0428 TV_b=0.0428
+    seed=233 burst=0: gap_start=164.37 gap_end=-30.65 D_b=0.0428 TV_b=0.0428
+    seed=233 burst=1: gap_start=89.69 gap_end=-101.87 D_b=0.0431 TV_b=0.0431
+    seed=233 burst=2: gap_start=189.41 gap_end=-7.66 D_b=0.0443 TV_b=0.0443
+  arm=H900
+    seed=226 burst=0: gap_start=103.71 gap_end=32.31 D_b=0.0161 TV_b=0.0161
+    seed=226 burst=1: gap_start=172.70 gap_end=124.12 D_b=0.0109 TV_b=0.0109
+    seed=226 burst=2: gap_start=114.71 gap_end=114.71 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=0: gap_start=28.96 gap_end=28.96 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=1: gap_start=99.02 gap_end=-601.79 D_b=0.1565 TV_b=0.1565
+    seed=227 burst=2: gap_start=342.76 gap_end=-416.58 D_b=0.1649 TV_b=0.1649
+    seed=228 burst=0: gap_start=66.44 gap_end=-5.03 D_b=0.0161 TV_b=0.0161
+    seed=228 burst=1: gap_start=16.96 gap_end=-52.69 D_b=0.0160 TV_b=0.0160
+    seed=228 burst=2: gap_start=23.62 gap_end=-47.48 D_b=0.0162 TV_b=0.0162
+    seed=229 burst=0: gap_start=153.15 gap_end=80.56 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=1: gap_start=70.67 gap_end=-1.60 D_b=0.0164 TV_b=0.0164
+    seed=229 burst=2: gap_start=46.41 gap_end=-25.20 D_b=0.0163 TV_b=0.0163
+    seed=230 burst=0: gap_start=54.25 gap_end=-17.59 D_b=0.0162 TV_b=0.0162
+    seed=230 burst=1: gap_start=193.71 gap_end=144.26 D_b=0.0109 TV_b=0.0109
+    seed=230 burst=2: gap_start=23.34 gap_end=-66.45 D_b=0.0205 TV_b=0.0205
+    seed=231 burst=0: gap_start=155.72 gap_end=83.10 D_b=0.0164 TV_b=0.0164
+    seed=231 burst=1: gap_start=43.18 gap_end=-25.25 D_b=0.0156 TV_b=0.0156
+    seed=231 burst=2: gap_start=65.20 gap_end=-5.50 D_b=0.0162 TV_b=0.0162
+    seed=232 burst=0: gap_start=193.71 gap_end=120.32 D_b=0.0164 TV_b=0.0164
+    seed=232 burst=1: gap_start=102.90 gap_end=-18.24 D_b=0.0270 TV_b=0.0270
+    seed=232 burst=2: gap_start=87.47 gap_end=16.34 D_b=0.0164 TV_b=0.0164
+    seed=233 burst=0: gap_start=164.37 gap_end=114.75 D_b=0.0109 TV_b=0.0109
+    seed=233 burst=1: gap_start=102.37 gap_end=5.01 D_b=0.0218 TV_b=0.0218
+    seed=233 burst=2: gap_start=214.14 gap_end=-517.09 D_b=0.1600 TV_b=0.1600
+  arm=H1200
+    seed=226 burst=0: gap_start=103.71 gap_end=32.31 D_b=0.0161 TV_b=0.0161
+    seed=226 burst=1: gap_start=179.19 gap_end=105.52 D_b=0.0165 TV_b=0.0165
+    seed=226 burst=2: gap_start=115.15 gap_end=115.15 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=0: gap_start=28.96 gap_end=28.96 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=1: gap_start=84.02 gap_end=-10.97 D_b=0.0216 TV_b=0.0216
+    seed=227 burst=2: gap_start=144.30 gap_end=45.03 D_b=0.0223 TV_b=0.0223
+    seed=228 burst=0: gap_start=66.44 gap_end=-5.03 D_b=0.0161 TV_b=0.0161
+    seed=228 burst=1: gap_start=60.88 gap_end=-33.53 D_b=0.0215 TV_b=0.0215
+    seed=228 burst=2: gap_start=36.54 gap_end=-34.00 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=0: gap_start=153.15 gap_end=80.56 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=1: gap_start=77.59 gap_end=5.16 D_b=0.0164 TV_b=0.0164
+    seed=229 burst=2: gap_start=41.62 gap_end=-29.89 D_b=0.0163 TV_b=0.0163
+    seed=230 burst=0: gap_start=54.25 gap_end=-17.59 D_b=0.0162 TV_b=0.0162
+    seed=230 burst=1: gap_start=213.57 gap_end=163.83 D_b=0.0109 TV_b=0.0109
+    seed=230 burst=2: gap_start=26.25 gap_end=-63.63 D_b=0.0205 TV_b=0.0205
+    seed=231 burst=0: gap_start=155.72 gap_end=83.10 D_b=0.0164 TV_b=0.0164
+    seed=231 burst=1: gap_start=42.72 gap_end=-48.47 D_b=0.0208 TV_b=0.0208
+    seed=231 burst=2: gap_start=58.48 gap_end=-12.07 D_b=0.0162 TV_b=0.0162
+    seed=232 burst=0: gap_start=193.71 gap_end=120.32 D_b=0.0164 TV_b=0.0164
+    seed=232 burst=1: gap_start=136.47 gap_end=87.54 D_b=0.0108 TV_b=0.0108
+    seed=232 burst=2: gap_start=50.88 gap_end=-20.34 D_b=0.0162 TV_b=0.0162
+    seed=233 burst=0: gap_start=164.37 gap_end=114.75 D_b=0.0109 TV_b=0.0109
+    seed=233 burst=1: gap_start=98.19 gap_end=0.96 D_b=0.0218 TV_b=0.0218
+    seed=233 burst=2: gap_start=200.41 gap_end=100.39 D_b=0.0222 TV_b=0.0222
+  arm=H1800
+    seed=226 burst=0: gap_start=103.71 gap_end=32.31 D_b=0.0161 TV_b=0.0161
+    seed=226 burst=1: gap_start=179.19 gap_end=105.52 D_b=0.0165 TV_b=0.0165
+    seed=226 burst=2: gap_start=115.15 gap_end=115.15 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=0: gap_start=28.96 gap_end=28.96 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=1: gap_start=84.02 gap_end=-10.97 D_b=0.0216 TV_b=0.0216
+    seed=227 burst=2: gap_start=144.30 gap_end=45.03 D_b=0.0223 TV_b=0.0223
+    seed=228 burst=0: gap_start=66.44 gap_end=-5.03 D_b=0.0161 TV_b=0.0161
+    seed=228 burst=1: gap_start=60.88 gap_end=-33.53 D_b=0.0215 TV_b=0.0215
+    seed=228 burst=2: gap_start=36.54 gap_end=-34.00 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=0: gap_start=153.15 gap_end=80.56 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=1: gap_start=77.59 gap_end=5.16 D_b=0.0164 TV_b=0.0164
+    seed=229 burst=2: gap_start=41.62 gap_end=-29.89 D_b=0.0163 TV_b=0.0163
+    seed=230 burst=0: gap_start=54.25 gap_end=-17.59 D_b=0.0162 TV_b=0.0162
+    seed=230 burst=1: gap_start=213.57 gap_end=163.83 D_b=0.0109 TV_b=0.0109
+    seed=230 burst=2: gap_start=26.25 gap_end=-63.63 D_b=0.0205 TV_b=0.0205
+    seed=231 burst=0: gap_start=155.72 gap_end=83.10 D_b=0.0164 TV_b=0.0164
+    seed=231 burst=1: gap_start=42.72 gap_end=-48.47 D_b=0.0208 TV_b=0.0208
+    seed=231 burst=2: gap_start=58.48 gap_end=-12.07 D_b=0.0162 TV_b=0.0162
+    seed=232 burst=0: gap_start=193.71 gap_end=120.32 D_b=0.0164 TV_b=0.0164
+    seed=232 burst=1: gap_start=136.47 gap_end=87.54 D_b=0.0108 TV_b=0.0108
+    seed=232 burst=2: gap_start=50.88 gap_end=-20.34 D_b=0.0162 TV_b=0.0162
+    seed=233 burst=0: gap_start=164.37 gap_end=114.75 D_b=0.0109 TV_b=0.0109
+    seed=233 burst=1: gap_start=98.19 gap_end=0.96 D_b=0.0218 TV_b=0.0218
+    seed=233 burst=2: gap_start=200.41 gap_end=100.39 D_b=0.0222 TV_b=0.0222
+  arm=H2400
+    seed=226 burst=0: gap_start=103.71 gap_end=32.31 D_b=0.0161 TV_b=0.0161
+    seed=226 burst=1: gap_start=179.19 gap_end=105.52 D_b=0.0165 TV_b=0.0165
+    seed=226 burst=2: gap_start=115.15 gap_end=115.15 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=0: gap_start=28.96 gap_end=28.96 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=1: gap_start=84.02 gap_end=-10.97 D_b=0.0216 TV_b=0.0216
+    seed=227 burst=2: gap_start=144.30 gap_end=45.03 D_b=0.0223 TV_b=0.0223
+    seed=228 burst=0: gap_start=66.44 gap_end=-5.03 D_b=0.0161 TV_b=0.0161
+    seed=228 burst=1: gap_start=60.88 gap_end=-33.53 D_b=0.0215 TV_b=0.0215
+    seed=228 burst=2: gap_start=36.54 gap_end=-34.00 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=0: gap_start=153.15 gap_end=80.56 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=1: gap_start=77.59 gap_end=5.16 D_b=0.0164 TV_b=0.0164
+    seed=229 burst=2: gap_start=41.62 gap_end=-29.89 D_b=0.0163 TV_b=0.0163
+    seed=230 burst=0: gap_start=54.25 gap_end=-17.59 D_b=0.0162 TV_b=0.0162
+    seed=230 burst=1: gap_start=213.57 gap_end=163.83 D_b=0.0109 TV_b=0.0109
+    seed=230 burst=2: gap_start=26.25 gap_end=-63.63 D_b=0.0205 TV_b=0.0205
+    seed=231 burst=0: gap_start=155.72 gap_end=83.10 D_b=0.0164 TV_b=0.0164
+    seed=231 burst=1: gap_start=42.72 gap_end=-48.47 D_b=0.0208 TV_b=0.0208
+    seed=231 burst=2: gap_start=58.48 gap_end=-12.07 D_b=0.0162 TV_b=0.0162
+    seed=232 burst=0: gap_start=193.71 gap_end=120.32 D_b=0.0164 TV_b=0.0164
+    seed=232 burst=1: gap_start=136.47 gap_end=87.54 D_b=0.0108 TV_b=0.0108
+    seed=232 burst=2: gap_start=50.88 gap_end=-20.34 D_b=0.0162 TV_b=0.0162
+    seed=233 burst=0: gap_start=164.37 gap_end=114.75 D_b=0.0109 TV_b=0.0109
+    seed=233 burst=1: gap_start=98.19 gap_end=0.96 D_b=0.0218 TV_b=0.0218
+    seed=233 burst=2: gap_start=200.41 gap_end=100.39 D_b=0.0222 TV_b=0.0222
+  arm=H3000
+    seed=226 burst=0: gap_start=103.71 gap_end=32.31 D_b=0.0161 TV_b=0.0161
+    seed=226 burst=1: gap_start=179.19 gap_end=105.52 D_b=0.0165 TV_b=0.0165
+    seed=226 burst=2: gap_start=115.15 gap_end=115.15 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=0: gap_start=28.96 gap_end=28.96 D_b=0.0000 TV_b=0.0000
+    seed=227 burst=1: gap_start=84.02 gap_end=-10.97 D_b=0.0216 TV_b=0.0216
+    seed=227 burst=2: gap_start=144.30 gap_end=45.03 D_b=0.0223 TV_b=0.0223
+    seed=228 burst=0: gap_start=66.44 gap_end=-5.03 D_b=0.0161 TV_b=0.0161
+    seed=228 burst=1: gap_start=60.88 gap_end=-33.53 D_b=0.0215 TV_b=0.0215
+    seed=228 burst=2: gap_start=36.54 gap_end=-34.00 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=0: gap_start=153.15 gap_end=80.56 D_b=0.0163 TV_b=0.0163
+    seed=229 burst=1: gap_start=77.59 gap_end=5.16 D_b=0.0164 TV_b=0.0164
+    seed=229 burst=2: gap_start=41.62 gap_end=-29.89 D_b=0.0163 TV_b=0.0163
+    seed=230 burst=0: gap_start=54.25 gap_end=-17.59 D_b=0.0162 TV_b=0.0162
+    seed=230 burst=1: gap_start=213.57 gap_end=163.83 D_b=0.0109 TV_b=0.0109
+    seed=230 burst=2: gap_start=26.25 gap_end=-63.63 D_b=0.0205 TV_b=0.0205
+    seed=231 burst=0: gap_start=155.72 gap_end=83.10 D_b=0.0164 TV_b=0.0164
+    seed=231 burst=1: gap_start=42.72 gap_end=-48.47 D_b=0.0208 TV_b=0.0208
+    seed=231 burst=2: gap_start=58.48 gap_end=-12.07 D_b=0.0162 TV_b=0.0162
+    seed=232 burst=0: gap_start=193.71 gap_end=120.32 D_b=0.0164 TV_b=0.0164
+    seed=232 burst=1: gap_start=136.47 gap_end=87.54 D_b=0.0108 TV_b=0.0108
+    seed=232 burst=2: gap_start=50.88 gap_end=-20.34 D_b=0.0162 TV_b=0.0162
+    seed=233 burst=0: gap_start=164.37 gap_end=114.75 D_b=0.0109 TV_b=0.0109
+    seed=233 burst=1: gap_start=98.19 gap_end=0.96 D_b=0.0218 TV_b=0.0218
+    seed=233 burst=2: gap_start=200.41 gap_end=100.39 D_b=0.0222 TV_b=0.0222
+
+Live-vs-frozen mismatch summary (RESIST events, diagnostic only):
+  [n4_freeze Phase W]: 57 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=650 label=concession
+    seed=226 entry=9075 frozen_steps=625 label=concession
+    seed=226 entry=9900 frozen_steps=200 label=transient
+  [n4_freeze Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=650 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=675 label=concession
+  [H600 Phase W]: 64 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=600 label=concession
+    seed=226 entry=6900 frozen_steps=200 label=transient
+    seed=226 entry=9075 frozen_steps=600 label=concession
+  [H600 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=600 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=600 label=concession
+  [H900 Phase W]: 48 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=900 label=concession
+    seed=226 entry=9050 frozen_steps=900 label=concession
+    seed=226 entry=11900 frozen_steps=900 label=concession
+  [H900 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=900 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=900 label=concession
+  [H1200 Phase W]: 41 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1050 label=transient
+    seed=226 entry=9075 frozen_steps=1025 label=transient
+    seed=226 entry=11900 frozen_steps=1200 label=transient
+  [H1200 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1200 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=1200 label=concession
+  [H1800 Phase W]: 41 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1050 label=transient
+    seed=226 entry=9075 frozen_steps=1025 label=transient
+    seed=226 entry=11900 frozen_steps=1200 label=transient
+  [H1800 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1800 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=1800 label=concession
+  [H2400 Phase W]: 41 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1050 label=transient
+    seed=226 entry=9075 frozen_steps=1025 label=transient
+    seed=226 entry=11900 frozen_steps=1200 label=transient
+  [H2400 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=2400 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=2400 label=concession
+  [H3000 Phase W]: 41 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=1050 label=transient
+    seed=226 entry=9075 frozen_steps=1025 label=transient
+    seed=226 entry=11900 frozen_steps=1200 label=transient
+  [H3000 Phase R]: 19 event(s)
+    seed=226 entry=2600 frozen_steps=275 label=transient
+    seed=226 entry=6075 frozen_steps=3000 label=concession
+    seed=227 entry=5550 frozen_steps=200 label=transient
+    seed=227 entry=5950 frozen_steps=3000 label=concession
+
+m_bar frozen-during-RESIST assertion:
+  OK — m_bar update code path is NORMAL-state-only (structural; no RESIST path updates m_bar)
+
+m_bar contamination during Phase R (n4_freeze arm — monitor adaptation to regime):
+  seed=226: n_snaps=290, early=['16.6812', '16.8279', '16.9835', '16.9966', '6.6013'], late=['1.9643', '1.9497', '1.9352', '1.9207', '1.9064']
+  seed=227: n_snaps=290, early=['6.6436', '6.7575', '6.8702', '6.9829', '7.0945'], late=['1.9186', '1.9043', '1.8901', '1.8760', '1.8620']
+  seed=228: n_snaps=290, early=['14.8779', '14.8779', '15.2132', '15.4427', '6.5704'], late=['1.9551', '1.9406', '1.9261', '1.9117', '1.8975']
+  seed=229: n_snaps=286, early=['6.6408', '6.7547', '6.8674', '6.9801', '7.0916'], late=['1.9762', '1.9614', '1.9468', '1.9323', '1.9179']
+  seed=230: n_snaps=286, early=['6.5506', '6.6629', '6.7740', '6.8852', '6.9952'], late=['1.9493', '1.9347', '1.9203', '1.9060', '1.8918']
+  seed=231: n_snaps=290, early=['12.6411', '12.6411', '12.7615', '12.8426', '6.6553'], late=['1.9804', '1.9657', '1.9510', '1.9365', '1.9220']
+  seed=232: n_snaps=290, early=['12.3355', '12.4215', '12.4445', '12.4676', '6.6936'], late=['1.9918', '1.9770', '1.9622', '1.9476', '1.9331']
+  seed=233: n_snaps=290, early=['16.6547', '16.7620', '16.7806', '6.6850', '6.7997'], late=['1.9744', '1.9596', '1.9450', '1.9305', '1.9161']
+
+=== ORACLE Phase-W recovery table (DIAGNOSTIC — excluded from all properties) ===
+ seed   b0   b1   b2  n_rec  passes
+-----------------------------------
+  226    Y    Y    Y      3    PASS
+  227    Y    Y    Y      3    PASS
+  228    Y    Y    Y      3    PASS
+  229    Y    Y    Y      3    PASS
+  230    Y    Y    Y      3    PASS
+  231    Y    Y    Y      3    PASS
+  232    Y    Y    Y      3    PASS
+  233    Y    Y    Y      3    PASS
+(Oracle excluded from P5/P6/P7 verdict)
+
+=== PRECONDITIONS ===
+PC1 + PC2' + PC3: all PASS
+
+PC2' table (baseline arm, Phase W, per fork per window):
+ seed  win  bstart       tv   ok?
+---------------------------------
+  226    0    6000  0.00790    ok
+  227    0    6000  0.00135    ok
+  228    0    6000  0.02078    ok
+  229    0    6000  0.00356    ok
+  230    0    6000  0.00684    ok
+  231    0    6000  0.00502    ok
+  232    0    6000  0.00585    ok
+  233    0    6000  0.03311    ok
+  226    1    9000  0.04699    ok
+  227    1    9000  0.02626    ok
+  228    1    9000  0.02444    ok
+  229    1    9000  0.02652    ok
+  230    1    9000  0.03546    ok
+  231    1    9000  0.02328    ok
+  232    1    9000  0.02547    ok
+  233    1    9000  0.02324    ok
+  226    2   12000  0.04041    ok
+  227    2   12000  0.02350    ok
+  228    2   12000  0.02045    ok
+  229    2   12000  0.02500    ok
+  230    2   12000  0.02309    ok
+  231    2   12000  0.03353    ok
+  232    2   12000  0.01636    ok
+  233    2   12000  0.04473    ok
+
+================================================================================
+EVALUATION TABLES
+================================================================================
+
+Phase W — P5 recovery table (per arm per fork):
+           arm  seed   b0   b1   b2  n_rec  passes
+--------------------------------------------------
+      baseline   226    n    n    n      0    fail
+      baseline   227    n    n    n      0    fail
+      baseline   228    n    n    n      0    fail
+      baseline   229    n    n    n      0    fail
+      baseline   230    n    n    n      0    fail
+      baseline   231    n    n    n      0    fail
+      baseline   232    n    n    n      0    fail
+      baseline   233    n    n    n      0    fail
+  baseline TOTAL: 0/8 forks pass P5
+     n4_freeze   226    Y    n    Y      2    PASS
+     n4_freeze   227    n    n    n      0    fail
+     n4_freeze   228    n    n    n      0    fail
+     n4_freeze   229    Y    n    n      1    fail
+     n4_freeze   230    Y    n    n      1    fail
+     n4_freeze   231    n    n    n      0    fail
+     n4_freeze   232    Y    n    n      1    fail
+     n4_freeze   233    Y    Y    n      2    PASS
+  n4_freeze TOTAL: 2/8 forks pass P5
+          c0.3   226    n    n    n      0    fail
+          c0.3   227    n    n    n      0    fail
+          c0.3   228    n    n    n      0    fail
+          c0.3   229    n    n    n      0    fail
+          c0.3   230    n    n    n      0    fail
+          c0.3   231    n    n    n      0    fail
+          c0.3   232    n    n    n      0    fail
+          c0.3   233    n    n    n      0    fail
+  c0.3 TOTAL: 0/8 forks pass P5
+          c0.1   226    n    n    n      0    fail
+          c0.1   227    n    n    n      0    fail
+          c0.1   228    n    n    n      0    fail
+          c0.1   229    n    n    n      0    fail
+          c0.1   230    n    n    n      0    fail
+          c0.1   231    n    n    n      0    fail
+          c0.1   232    n    n    n      0    fail
+          c0.1   233    n    n    n      0    fail
+  c0.1 TOTAL: 0/8 forks pass P5
+         c0.05   226    n    n    n      0    fail
+         c0.05   227    n    n    n      0    fail
+         c0.05   228    n    n    n      0    fail
+         c0.05   229    n    n    n      0    fail
+         c0.05   230    n    n    n      0    fail
+         c0.05   231    n    n    n      0    fail
+         c0.05   232    n    n    n      0    fail
+         c0.05   233    n    n    n      0    fail
+  c0.05 TOTAL: 0/8 forks pass P5
+         c0.02   226    Y    n    n      1    fail
+         c0.02   227    Y    n    n      1    fail
+         c0.02   228    Y    n    n      1    fail
+         c0.02   229    Y    n    n      1    fail
+         c0.02   230    Y    n    n      1    fail
+         c0.02   231    Y    n    n      1    fail
+         c0.02   232    Y    n    n      1    fail
+         c0.02   233    Y    n    n      1    fail
+  c0.02 TOTAL: 0/8 forks pass P5
+         c0.01   226    Y    n    n      1    fail
+         c0.01   227    Y    n    n      1    fail
+         c0.01   228    Y    n    n      1    fail
+         c0.01   229    Y    n    n      1    fail
+         c0.01   230    Y    n    n      1    fail
+         c0.01   231    Y    n    n      1    fail
+         c0.01   232    Y    n    n      1    fail
+         c0.01   233    Y    Y    n      2    PASS
+  c0.01 TOTAL: 1/8 forks pass P5
+          H600   226    n    n    n      0    fail
+          H600   227    n    n    n      0    fail
+          H600   228    n    n    n      0    fail
+          H600   229    n    n    n      0    fail
+          H600   230    Y    n    n      1    fail
+          H600   231    n    n    n      0    fail
+          H600   232    Y    n    n      1    fail
+          H600   233    Y    Y    Y      3    PASS
+  H600 TOTAL: 1/8 forks pass P5
+          H900   226    Y    Y    Y      3    PASS
+          H900   227    Y    n    n      1    fail
+          H900   228    Y    Y    n      2    PASS
+          H900   229    Y    n    n      1    fail
+          H900   230    Y    Y    n      2    PASS
+          H900   231    Y    n    Y      2    PASS
+          H900   232    Y    Y    Y      3    PASS
+          H900   233    Y    Y    n      2    PASS
+  H900 TOTAL: 6/8 forks pass P5
+         H1200   226    Y    Y    Y      3    PASS
+         H1200   227    Y    Y    n      2    PASS
+         H1200   228    Y    Y    n      2    PASS
+         H1200   229    Y    n    n      1    fail
+         H1200   230    Y    Y    n      2    PASS
+         H1200   231    Y    n    Y      2    PASS
+         H1200   232    Y    Y    n      2    PASS
+         H1200   233    Y    Y    Y      3    PASS
+  H1200 TOTAL: 7/8 forks pass P5
+         H1800   226    Y    Y    Y      3    PASS
+         H1800   227    Y    Y    n      2    PASS
+         H1800   228    Y    Y    n      2    PASS
+         H1800   229    Y    n    n      1    fail
+         H1800   230    Y    Y    n      2    PASS
+         H1800   231    Y    n    Y      2    PASS
+         H1800   232    Y    Y    n      2    PASS
+         H1800   233    Y    Y    Y      3    PASS
+  H1800 TOTAL: 7/8 forks pass P5
+         H2400   226    Y    Y    Y      3    PASS
+         H2400   227    Y    Y    n      2    PASS
+         H2400   228    Y    Y    n      2    PASS
+         H2400   229    Y    n    n      1    fail
+         H2400   230    Y    Y    n      2    PASS
+         H2400   231    Y    n    Y      2    PASS
+         H2400   232    Y    Y    n      2    PASS
+         H2400   233    Y    Y    Y      3    PASS
+  H2400 TOTAL: 7/8 forks pass P5
+         H3000   226    Y    Y    Y      3    PASS
+         H3000   227    Y    Y    n      2    PASS
+         H3000   228    Y    Y    n      2    PASS
+         H3000   229    Y    n    n      1    fail
+         H3000   230    Y    Y    n      2    PASS
+         H3000   231    Y    n    Y      2    PASS
+         H3000   232    Y    Y    n      2    PASS
+         H3000   233    Y    Y    Y      3    PASS
+  H3000 TOTAL: 7/8 forks pass P5
+
+Phase R — P6 revision latency table (per arm per fork):
+           arm  seed   latency   bl_lat      tol  within?
+---------------------------------------------------------
+      baseline   226       110      110     3000     PASS
+      baseline   227        28       28     3000     PASS
+      baseline   228        69       69     3000     PASS
+      baseline   229       141      141     3000     PASS
+      baseline   230        85       85     3000     PASS
+      baseline   231       160      160     3000     PASS
+      baseline   232       188      188     3000     PASS
+      baseline   233       189      189     3000     PASS
+  baseline TOTAL: 8/8 within tolerance, 0/8 never adopted
+     n4_freeze   226       758      110     3000     PASS
+     n4_freeze   227       655       28     3000     PASS
+     n4_freeze   228        69       69     3000     PASS
+     n4_freeze   229       808      141     3000     PASS
+     n4_freeze   230        56       85     3000     PASS
+     n4_freeze   231       810      160     3000     PASS
+     n4_freeze   232       848      188     3000     PASS
+     n4_freeze   233       817      189     3000     PASS
+  n4_freeze TOTAL: 8/8 within tolerance, 0/8 never adopted
+          c0.3   226       156      110     3000     PASS
+          c0.3   227        62       28     3000     PASS
+          c0.3   228       116       69     3000     PASS
+          c0.3   229       187      141     3000     PASS
+          c0.3   230       132       85     3000     PASS
+          c0.3   231       206      160     3000     PASS
+          c0.3   232       234      188     3000     PASS
+          c0.3   233       235      189     3000     PASS
+  c0.3 TOTAL: 8/8 within tolerance, 0/8 never adopted
+          c0.1   226       286      110     3000     PASS
+          c0.1   227       195       28     3000     PASS
+          c0.1   228       247       69     3000     PASS
+          c0.1   229       315      141     3000     PASS
+          c0.1   230       262       85     3000     PASS
+          c0.1   231       333      160     3000     PASS
+          c0.1   232       360      188     3000     PASS
+          c0.1   233       361      189     3000     PASS
+  c0.1 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         c0.05   226       471      110     3000     PASS
+         c0.05   227       385       28     3000     PASS
+         c0.05   228       434       69     3000     PASS
+         c0.05   229       498      141     3000     PASS
+         c0.05   230       448       85     3000     PASS
+         c0.05   231       516      160     3000     PASS
+         c0.05   232       541      188     3000     PASS
+         c0.05   233       542      189     3000     PASS
+  c0.05 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         c0.02   226       970      110     3000     PASS
+         c0.02   227       897       28     3000     PASS
+         c0.02   228       939       69     3000     PASS
+         c0.02   229       994      141     3000     PASS
+         c0.02   230       951       85     3000     PASS
+         c0.02   231      1010      160     3000     PASS
+         c0.02   232      1031      188     3000     PASS
+         c0.02   233      1032      189     3000     PASS
+  c0.02 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         c0.01   226      1666      110     3000     PASS
+         c0.01   227      1606       28     3000     PASS
+         c0.01   228      1640       69     3000     PASS
+         c0.01   229      1686      141     3000     PASS
+         c0.01   230      1650       85     3000     PASS
+         c0.01   231      1698      160     3000     PASS
+         c0.01   232      1715      188     3000     PASS
+         c0.01   233      1716      189     3000     PASS
+  c0.01 TOTAL: 8/8 within tolerance, 0/8 never adopted
+          H600   226       708      110     3000     PASS
+          H600   227       580       28     3000     PASS
+          H600   228        69       69     3000     PASS
+          H600   229       758      141     3000     PASS
+          H600   230        56       85     3000     PASS
+          H600   231       760      160     3000     PASS
+          H600   232       798      188     3000     PASS
+          H600   233       767      189     3000     PASS
+  H600 TOTAL: 8/8 within tolerance, 0/8 never adopted
+          H900   226      1008      110     3000     PASS
+          H900   227       880       28     3000     PASS
+          H900   228        69       69     3000     PASS
+          H900   229      1058      141     3000     PASS
+          H900   230        56       85     3000     PASS
+          H900   231      1060      160     3000     PASS
+          H900   232      1098      188     3000     PASS
+          H900   233      1067      189     3000     PASS
+  H900 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         H1200   226      1308      110     3000     PASS
+         H1200   227      1180       28     3000     PASS
+         H1200   228        69       69     3000     PASS
+         H1200   229      1358      141     3000     PASS
+         H1200   230        56       85     3000     PASS
+         H1200   231      1360      160     3000     PASS
+         H1200   232      1398      188     3000     PASS
+         H1200   233      1367      189     3000     PASS
+  H1200 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         H1800   226      1908      110     3000     PASS
+         H1800   227      1780       28     3000     PASS
+         H1800   228        69       69     3000     PASS
+         H1800   229      1958      141     3000     PASS
+         H1800   230        56       85     3000     PASS
+         H1800   231      1960      160     3000     PASS
+         H1800   232      1998      188     3000     PASS
+         H1800   233      1967      189     3000     PASS
+  H1800 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         H2400   226      2508      110     3000     PASS
+         H2400   227      2380       28     3000     PASS
+         H2400   228        69       69     3000     PASS
+         H2400   229      2558      141     3000     PASS
+         H2400   230        56       85     3000     PASS
+         H2400   231      2560      160     3000     PASS
+         H2400   232      2598      188     3000     PASS
+         H2400   233      2567      189     3000     PASS
+  H2400 TOTAL: 8/8 within tolerance, 0/8 never adopted
+         H3000   226      3108      110     3000     PASS
+         H3000   227      2980       28     3000     PASS
+         H3000   228        69       69     3000     PASS
+         H3000   229      3158      141     3000     fail
+         H3000   230        56       85     3000     PASS
+         H3000   231      3160      160     3000     PASS
+         H3000   232      3198      188     3000     fail
+         H3000   233      3167      189     3000     PASS
+  H3000 TOTAL: 6/8 within tolerance, 0/8 never adopted
+
+P7 frontier: ALL constant arms (write-gain + fixed-H) — P5 forks vs P6 within-tolerance:
+       arm   p5_forks  p6_within  med_latency  kills_P7?
+--------------------------------------------------------
+      c0.3          0          8          171         no
+      c0.1          0          8          300         no
+     c0.05          0          8          484         no
+     c0.02          0          8          982         no
+     c0.01          1          8         1676         no
+      H600          1          8          733         no
+      H900          6          8         1033         no
+     H1200          7          8         1333       KILL
+     H1800          7          8         1933       KILL
+     H2400          7          8         2533       KILL
+     H3000          7          6         3133       KILL
+
+================================================================================
+CONJUNCT SUMMARY + VERDICT
+================================================================================
+
+P5 (resistance/recovery, Phase W):
+  n4_freeze forks passing: 2/8 (need >= 7) => fail
+  Baseline forks passing: 0/8 (need <= 2 for deficit) => deficit exists
+  P5 overall: FALSIFIER F5
+
+P6 (revision, Phase R):
+  n4_freeze forks within tolerance (latency <= baseline+3000): 8/8 (need >= 6)
+  n4_freeze forks never adopting: 0/8 (rigidity if >= 3)
+  P6 overall: PASS
+
+P7 (kill test — no write-gain OR fixed-H constant arm matches both P5 and P6):
+  FAIL (FALSIFIER F7) — constant arms matching both: ['H1200', 'H1800', 'H2400', 'H3000']
+  => NEGATIVE-config: a fixed horizon suffices; evidence-based concession is ornament, not layer
+
+VERDICT: NEGATIVE  (NEGATIVE (no-resistance) — n4_freeze fails whipsaw resistance (F5); freeze-gate control surface insufficient)
+
+================================================================================
+Rows written to /Users/mirro/Projects/active-loop/experiments/outputs/exp183_rows.json
+Verdict written to /Users/mirro/Projects/active-loop/experiments/outputs/exp183_verdict.json
