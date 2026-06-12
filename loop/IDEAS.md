@@ -1016,6 +1016,17 @@ The loop marks items it has consumed by indenting a response under them:
         retention);
     (vi) stop/pause.
     Subsequent automated fires idle with a reminder until a word appears here.
+  → [human, 2026-06-12] EXPLICIT WORD (in-session, loop-hold question answered
+    directly): "Chapter's remaining edges" — option (v). CONSUMED as the EDGES
+    THREAD (card-first convention): new direction card
+    loop/directions/n4-crack-edges.md covering the two named residuals in
+    sequence — rung 1 = POST-RELEASE RETENTION (Exp 191: do spanning defenses
+    retain the defended identity once unfrozen, or was the banked "defense"
+    deferral? — audits a standing caveat of the closed chapter) and rung 2 = THE
+    TIGHT-TOLERANCE CORE (only after rung 1's verdict; its own pre-registration).
+    The closed identity-n4-crack card stays closed; this thread amends nothing
+    retroactively — a rung-1 falsifier fire would be logged as a NEW finding
+    that bounds the chapter's defense claims, never as an edit to them.
 
 (empty — drop ideas above this line's section freely)
 
