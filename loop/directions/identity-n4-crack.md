@@ -484,10 +484,64 @@ learning could finally bind — the Exp 173 multi-tempo move at the identity lev
 (ii) the tight-tolerance core (no surface ever tried covers); (iii) post-release
 retention (spanning arms still frozen at the scoring window).
 
-**CHAPTER CLOSED (2026-06-12).** Synthesis at `docs/research/n4-crack-chapter.md`
+**CHAPTER CLOSED (2026-06-12), then RE-OPENED at rung 6 on the human's word "a"
+(variable-L geometry).** Synthesis at `docs/research/n4-crack-chapter.md`
 (fact-checked by three parallel blinded readers, ~46 claims, 1 correction folded).
-The closing consult is posted in loop/IDEAS.md; the loop HOLDS — re-opens only on
-an explicit word there (variable-L geometry / the tight core / post-release
-retention / return to standing consults / stop).
 
-**STATUS.** state: closed-positive (the crack was real — 9 confirmed cells; closed constructively on the continuity clock; the regulated-controller question answered at exact parity; chapter synthesis committed) · latest: Exp 188 + the chapter synthesis · depends-on: identity-n4 (closed-negative), Exp 183–188 artifacts · reusable: the equivalence-gated schedule runner, continuity-surface concession modes (C / gated-E / REG-TB), the interval laws on both surfaces, the single-stretch ambiguity bound, the margin-ledger instruments, the sufficient-surface law (three levels) · why: the question the human reopened is fully graded — crack real, closed by the right clock, regulation ties it; three exactly-named open edges await words · next-falsifiable: ON A WORD — variable-L geometry (where tempo learning must bind), the tight-tolerance core, or post-release retention · latest: Exp 187 (MIXED — constructive closure at normal tolerance + the continuous-stretch interval law) · depends-on: identity-n4 (closed-negative), Exp 183–186 artifacts · reusable: the INT runner (continuity-surface concession, parameterized), the continuous-stretch interval law (C ∈ (L+window, tolerance]), the sufficient-surface law at the concession level, everything in rungs 1–4 · why: the crack chapter has its constructive answer at normal tolerance and an exactly-characterized residual boundary at tight · next-falsifiable: ON A WORD — the pressure-gated E-form (untested as pre-registered), or the tight-mode core (no surface covers), or post-release retention · latest: Exp 186 (BREAKTHROUGH — crack confirmed, 9 cells) · depends-on: identity-n4 (closed-negative), Exp 183–185 artifacts · reusable: everything in the rung-1–4 toolkit + the confirmed crack-cell set · why: defense and revision provably separate in the confirmed cells while the oracle defends — the first regime where a discriminating controller could beat every constant · next-falsifiable: Exp 187 — does ANY realizable controller pass both bars in the confirmed cells (and does it beat the constants honestly, same-schedule, fresh seeds)? · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
+**EXP 189 — PRE-REGISTRATION (rung 6: the variable-L separation test; the human's
+word "a", 2026-06-12; committed BEFORE any data).**
+
+- **Question.** Does online tempo learning finally BIND — and beat every constant —
+  where burst lengths vary such that no revision-safe constant covers? The
+  controller is REG-TB VERBATIM from Exp 188 (κ = 1.5, T₀ = 2800; pressure-gated;
+  NO retuning — the same controller that tied constants at fixed-L).
+- **THE κ-REACH LAW (predeclared shape).** REG-TB defends a train iff (i) its FIRST
+  burst stretch ≤ T₀ = 2800 and (ii) every subsequent burst stretch ≤ κ × the
+  longest COMPLETED stretch so far (stretch ≈ L + ~125 pressure-window tail).
+  Tempo learning extends the hold only for foreshadowed lengths; first encounters
+  stay budget-bounded (the ambiguity bound's per-encounter form).
+- **Cells (6; settle 6000, tail 2500, exogenous attack color verbatim).**
+  E1 escalating: L-seq (1200, 2400, 3200), G=600 — REG-TB PASS predicted (each
+  step ≤ ×1.5; final stretch 3325 < κ·2525 = 3787).
+  E2 doubling-jump: (800, 1600, 3200), G=600 — REG-TB FAIL predicted (3325 >
+  max(κ·1725 = 2587, 2800)).
+  E3 escalating, wider gaps: (1200, 2400, 3200), G=1200 — REG-TB PASS predicted.
+  E4 doubling train: (600, 1200, 2400, 4800), G=600 — REG-TB FAIL predicted
+  (4925 > κ·2525).
+  D1 descending: (3200, 2400, 1200), G=600 — REG-TB FAIL predicted
+  (first burst 3325 > T₀ = 2800; first-encounter ambiguity).
+  C1 fixed control: (2400, 2400, 2400), G=600 — REG-TB and C2900 BOTH pass
+  predicted (the Exp 188 parity regime; sanity anchor).
+- **Arms (6).** baseline; oracle (exact-train freeze, witness); C2900 (the
+  revision-safe constant — predicted to concede mid-3200/4800 bursts and fail
+  defense in E1–E4, pass C1); C3500 (the deliberately super-tolerance constant —
+  predicted to DEFEND E1/E3 (3325 < 3500) but FAIL revision (latency ~3575 >
+  baseline + 3000): the constant's dilemma made visible); CALM2600-H3000 (the best
+  frozen-time arm — predicted to concede mid-train everywhere the train exceeds
+  3000 frozen steps); REG-TB.
+- **Seeds.** FRESH 280–287. W: 6 × 6 × 8 = 288; R: 5 non-oracle arms × 8 = 40.
+  Bars VERBATIM Exp 186/188 (defense ≥ 6/8; revision ≥ 6/8 at normal +3000;
+  tight/loose secondary; oracle ≥ 7/8; deficit ≥ 7/8; PC1 gated; no mid-run
+  adjustments). Variable-L uses the runner's existing window-list parameter — the
+  freeze machinery is untouched; equivalence gate re-run with evidence table (L15).
+- **Predictions + falsifiers.**
+  P1 (THE SEPARATION): in ≥ 2 cells (predicted: E1, E3) REG-TB passes BOTH bars
+  while NO constant arm passes both. F1: zero separation cells — the ambiguity
+  bound extends to variable-L; regulation loses everywhere it could have won (a
+  clean negative for the chapter's last open hope for judgment).
+  P2 (revision invariance): REG-TB Phase-R latency ≈ T₀ + trigger ≈ 2875 ≤
+  baseline + 3000 (no completed stretches in a changed world → threshold stays
+  T₀). F2: REG-TB fails revision — tempo learning contaminates concession.
+  P3 (the κ-reach law): REG-TB's six cell-level defense signs land exactly as
+  predicted (E1✓ E3✓ C1✓ E2✗ E4✗ D1✗). F3: ≥ 2 cells off — the law is wrong.
+- **Verdict semantics.** P1+P3 → REGULATION EARNS ITS KEEP for the first time in
+  the program: a controller that no constant matches, exactly where the chapter's
+  laws predicted, with its failure boundary (κ-reach, first-encounter) honestly
+  mapped — the N4-chapter question gets its constructive postscript. F1 → the
+  ambiguity bound is geometry-general at this richness; the chapter's negative is
+  total; close. Either way: synthesis appendix + consult, then HOLD.
+- **Build.** exp188 runner verbatim (variable windows via the existing parameter);
+  outputs exp189_rows.json / exp189.txt; script
+  experiments/exp189_n4_variable_length.py.
+
+**STATUS.** state: active (rung 6 = Exp 189, the variable-L separation test, re-opened on the human's word "a" 2026-06-12; previously closed-positive — 9 confirmed cells; closed constructively on the continuity clock; the regulated-controller question answered at exact parity; chapter synthesis committed) · latest: Exp 188 + the chapter synthesis · depends-on: identity-n4 (closed-negative), Exp 183–188 artifacts · reusable: the equivalence-gated schedule runner, continuity-surface concession modes (C / gated-E / REG-TB), the interval laws on both surfaces, the single-stretch ambiguity bound, the margin-ledger instruments, the sufficient-surface law (three levels) · why: the question the human reopened is fully graded — crack real, closed by the right clock, regulation ties it; three exactly-named open edges await words · next-falsifiable: ON A WORD — variable-L geometry (where tempo learning must bind), the tight-tolerance core, or post-release retention · latest: Exp 187 (MIXED — constructive closure at normal tolerance + the continuous-stretch interval law) · depends-on: identity-n4 (closed-negative), Exp 183–186 artifacts · reusable: the INT runner (continuity-surface concession, parameterized), the continuous-stretch interval law (C ∈ (L+window, tolerance]), the sufficient-surface law at the concession level, everything in rungs 1–4 · why: the crack chapter has its constructive answer at normal tolerance and an exactly-characterized residual boundary at tight · next-falsifiable: ON A WORD — the pressure-gated E-form (untested as pre-registered), or the tight-mode core (no surface covers), or post-release retention · latest: Exp 186 (BREAKTHROUGH — crack confirmed, 9 cells) · depends-on: identity-n4 (closed-negative), Exp 183–185 artifacts · reusable: everything in the rung-1–4 toolkit + the confirmed crack-cell set · why: defense and revision provably separate in the confirmed cells while the oracle defends — the first regime where a discriminating controller could beat every constant · next-falsifiable: Exp 187 — does ANY realizable controller pass both bars in the confirmed cells (and does it beat the constants honestly, same-schedule, fresh seeds)? · latest: Exp 185 (classification, blind-verified CONFIRMED) · depends-on: identity-n4 (closed-negative), Exp 183/184 artifacts · reusable: parameterized THETA/CALM runner (exp185), CALM2600 gap-spanning config (dissolved 24 pairs), the unified coverage law H ≥ K·L+(K−1)·G−75, the latency = H + baseline revision law, the A/B/D/V classification instruments · why: the surviving core (6 normal / 35 tight / 3 loose cells) is where no constant in the extended family covers while the oracle defends — the candidate regime where regulated commitment could finally beat config · next-falsifiable: rung 4 (ON A WORD) — fresh seeds × more seeds/cell on the surviving core: do the A/B cells replicate, and does a discriminating controller beat every constant there? · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation

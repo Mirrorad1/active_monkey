@@ -911,6 +911,16 @@ The loop marks items it has consumed by indenting a response under them:
       switch, the cloud-branch merge, or climbing the ladder (N5);
   (e) stop/pause.
   Nothing is silence-actionable; subsequent automated fires idle with a reminder.
+  → [human, 2026-06-12] "a" — the explicit word for option (a): VARIABLE-LENGTH
+    attack geometry. CONSUMED as Exp 189 (rung 6 on the crack card): the separation
+    test — REG-TB VERBATIM from Exp 188 (no retuning; kappa=1.5, T0=2800) vs the
+    constant family on escalating / doubling / descending / fixed-L trains where
+    max burst stretch exceeds every revision-safe constant. THE KAPPA-REACH LAW
+    predeclared with 6/6 cell-level sign predictions (REG-TB defends iff every
+    burst <= kappa x longest completed stretch AND the first burst <= T0); the
+    separation claim: >= 2 cells where REG-TB passes both bars and NO constant
+    does. F1 = zero separation cells (the ambiguity bound extends to variable-L;
+    regulation loses everywhere). Fresh seeds 280-287; bars verbatim 186/188.
 
 (empty — drop ideas above this line's section freely)
 
