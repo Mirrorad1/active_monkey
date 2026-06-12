@@ -86,13 +86,24 @@ step 0.
   (option (a) of the Exp 183 consult); the seed-229/variable-length crack is DEFERRED,
   logged as a future crack only. Full synthesis:
   `docs/research/n4-identity-commitment-chapter.md`.
-- **THE LOOP IS PAUSED (2026-06-11, human's word): it resumes only on the next explicit
-  direction in loop/IDEAS.md.** Standing options there (each needs its own word): M4a
-  increment 1c (the "talk to it" path, halted since Exp 128 — the most direct path to the
-  moonshot goal); nira's normalized-predictive switch (standing consult from Exp 154); the
-  cloud-branch merge (renumber-on-merge plan); the deferred seed-229 crack; climbing the
-  ladder past N4 given a config verdict there.
-- Suite ~217 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+- **The identity-n4-crack chapter (Exp 183 addendum + Exp 184–186, ACTIVE — reopened
+  on the human's explicit word, 2026-06-12):** the deferred seed-229 crack became a
+  full crack hunt. The autopsy pinned the mechanism (the ~75-step detection-head dose
+  vs the margin ledger; repetition NOT the discriminant); the exploratory squeeze map
+  (184) showed commitment-as-config does not extend across attack-schedule space
+  (freeze-spanning law found); the classification + dissolution check (185) dissolved
+  most of the map (CALM2600 gap-spanning config) but left a hard core; and the
+  fresh-seed confirmation (186, BREAKTHROUGH, blind-verified) confirmed it 6/6 + 3
+  more from the variance sample: **NINE attack schedules where no constant can both
+  defend and revise, while the oracle defends everywhere — the crack is REAL at this
+  body.** Exp 187 (the licensed controller re-test, exactly in the confirmed cells,
+  kill-test discipline binding) is the active next step. Card:
+  `loop/directions/identity-n4-crack.md`.
+- Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
+  "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
+  goal); nira's normalized-predictive switch (standing consult from Exp 154); the
+  cloud-branch merge (renumber-on-merge plan).
+- Suite ~220 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

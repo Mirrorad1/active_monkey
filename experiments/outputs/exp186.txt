@@ -1,0 +1,442 @@
+================================================================================
+EXP 186 — N4 CORE CONFIRMATION (CONFIRMATION-grade)
+PRE-REGISTERED loop/directions/identity-n4-crack.md (commit e3e282e)
+Runtime: 5.5 min | Seeds: [250, 251, 252, 253, 254, 255, 256, 257]
+14 cells x 16 arms x 8 seeds = 1792 W | 15 arms x 8 seeds = 120 R
+================================================================================
+
+V-SAMPLE CELL SELECTION TRACE
+------------------------------------------------------------
+Rule: four (1200,1,G) cells (G in 200/600/1200/2400) PLUS
+      first four OTHER normal-mode V cells by cell_idx (excl. 1200,1,*)
+      from committed exp185 classification.
+
+(1200,1,G) group:
+  cell_idx=32 L=1200 K=1 G=200
+  cell_idx=33 L=1200 K=1 G=600
+  cell_idx=34 L=1200 K=1 G=1200
+  cell_idx=35 L=1200 K=1 G=2400
+
+Other normal-V (first 4 by cell_idx):
+  cell_idx=5 L=400 K=2 G=600
+  cell_idx=13 L=400 K=4 G=600
+  cell_idx=15 L=400 K=4 G=2400
+  cell_idx=29 L=800 K=4 G=600
+
+EQUIVALENCE GATE (L15)
+------------------------------------------------------------
+EQUIVALENCE GATE: PASS
+
+=== arm=baseline seed=229 ===
+  b0 gap_start      got=135.99937835015726                       committed=135.99937835015726                       OK
+  b0 gap_end        got=-571.7363522432429                       committed=-571.7363522432429                       OK
+  b0 d_b            got=0.15664036565125683                      committed=0.15664036565125683                      OK
+  b0 tv_b           got=0.15664036565125675                      committed=0.15664036565125675                      OK
+  b0 recovered      got=False                                    committed=False                                    OK
+  b0 n_events       got=0                                        committed=0                                        OK
+  b1 gap_start      got=308.8677728920327                        committed=308.8677728920327                        OK
+  b1 gap_end        got=-441.6128408201637                       committed=-441.6128408201637                       OK
+  b1 d_b            got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 tv_b           got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=0                                        committed=0                                        OK
+  b2 gap_start      got=322.85746017635324                       committed=322.85746017635324                       OK
+  b2 gap_end        got=-402.18131405053043                      committed=-402.18131405053043                      OK
+  b2 d_b            got=0.15775393082799233                      committed=0.15775393082799233                      OK
+  b2 tv_b           got=0.15775393082799238                      committed=0.15775393082799238                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=0                                        committed=0                                        OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start      got=153.15192102308868                       committed=153.15192102308868                       OK
+  b0 gap_end        got=80.55582599896172                        committed=80.55582599896172                        OK
+  b0 d_b            got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 tv_b           got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 recovered      got=True                                     committed=True                                     OK
+  b0 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b1 gap_start      got=77.59197443713458                        committed=77.59197443713458                        OK
+  b1 gap_end        got=5.162418152138571                        committed=5.162418152138571                        OK
+  b1 d_b            got=0.016416619393121945                     committed=0.016416619393121945                     OK
+  b1 tv_b           got=0.016416619393121917                     committed=0.016416619393121917                     OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b2 gap_start      got=41.6153816086221                         committed=41.6153816086221                         OK
+  b2 gap_end        got=-29.89416352514172                       committed=-29.89416352514172                       OK
+  b2 d_b            got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 tv_b           got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  gate arm=H1200 seed=229: PASS
+
+PHASE-R LATENCY TABLE (15 non-oracle arms x 8 seeds)
+------------------------------------------------------------
+  arm                       s250 s251 s252 s253 s254 s255 s256 s257
+  baseline                  117 96 213 44 65 259 209 47
+  H600                         695    696    187     48     53    859    817    684
+  H900                         995    996    187     48     53   1159   1117    984
+  H1200                       1295   1296    187     48     53   1459   1417   1284
+  H1800                       1895   1896    187     48     53   2058   2017   1884
+  H2400                       2495   2496    187     48     53   2658   2617   2484
+  H3000                       3094   3096    187     48     53   3258   3217   3084
+  H4200                       4294   4296    187     48     53   4458   4417   4284
+  H6000                       6094   6096    187     48     53   6258   6216   6084
+  n4_freeze                    745    746    187     48     53    909    867    759
+  CALM2600-H1200              1432   1334    349   1221    349   1459    834     38
+  CALM2600-H3000              3255   2237    630   1484   2149   3258   2634   1811
+  CALM2600-H6000              6255   5236   3630   4484   5149   6258   5633   4811
+  THETA3-H1200                  74   1307   1342    911   1180   1479   1427   1151
+  THETA3-H3000                  74   3107   3142   2711   2980   3279   3227   2950
+
+REVISION PASS TABLE (arm x mode; primary = normal +3000)
+------------------------------------------------------------
+  arm                       normal   tight    loose   
+  baseline                  PASS     PASS     PASS    
+  H600                      PASS     PASS     PASS    
+  H900                      PASS     PASS     PASS    
+  H1200                     PASS     PASS     PASS    
+  H1800                     PASS     fail     PASS    
+  H2400                     PASS     fail     PASS    
+  H3000                     PASS     fail     PASS    
+  H4200                     fail     fail     PASS    
+  H6000                     fail     fail     PASS    
+  n4_freeze                 PASS     PASS     PASS    
+  CALM2600-H1200            PASS     PASS     PASS    
+  CALM2600-H3000            PASS     fail     PASS    
+  CALM2600-H6000            fail     fail     PASS    
+  THETA3-H1200              PASS     PASS     PASS    
+  THETA3-H3000              fail     fail     PASS    
+
+================================================================================
+CORE CELL CONFIRMATION TABLE (primary mode = normal +3000)
+================================================================================
+
+Cell (1600,2,200) cell_idx=52  exp185_class=A
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            0/8      PASS       fail          0/8          0/8
+  H3000                            0/8      PASS       fail          0/8          0/8
+  H4200                            4/8      fail       fail          4/8          4/8
+  H6000                            4/8      fail       fail          4/8          4/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H6000                   8/8      fail       fail          8/8          8/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     0/8      fail       fail          0/8          0/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=False
+
+  => VERDICT: CONFIRMED  A/B relabel: A
+
+------------------------------------------------------------
+Cell (1600,3,200) cell_idx=56  exp185_class=A
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            0/8      PASS       fail          0/8          0/8
+  H3000                            0/8      PASS       fail          0/8          0/8
+  H4200                            0/8      fail       fail          0/8          0/8
+  H6000                            4/8      fail       fail          4/8          4/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   1/8      PASS       fail          1/8          1/8
+  CALM2600-H6000                   4/8      fail       fail          4/8          4/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     0/8      fail       fail          0/8          0/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=True
+
+  => VERDICT: CONFIRMED  A/B relabel: B
+
+------------------------------------------------------------
+Cell (1600,4,200) cell_idx=60  exp185_class=B
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            0/8      PASS       fail          0/8          0/8
+  H3000                            0/8      PASS       fail          0/8          0/8
+  H4200                            0/8      fail       fail          0/8          0/8
+  H6000                            0/8      fail       fail          0/8          0/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H6000                   1/8      fail       fail          1/8          1/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     0/8      fail       fail          0/8          0/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=True
+
+  => VERDICT: CONFIRMED  A/B relabel: B
+
+------------------------------------------------------------
+Cell (2400,3,200) cell_idx=72  exp185_class=A
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            3/8      PASS       fail          3/8          3/8
+  H3000                            0/8      PASS       fail          0/8          0/8
+  H4200                            0/8      fail       fail          0/8          0/8
+  H6000                            0/8      fail       fail          0/8          0/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H6000                   1/8      fail       fail          1/8          1/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     0/8      fail       fail          0/8          0/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=True
+
+  => VERDICT: CONFIRMED  A/B relabel: B
+
+------------------------------------------------------------
+Cell (2400,4,200) cell_idx=76  exp185_class=B
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            2/8      PASS       fail          2/8          2/8
+  H3000                            0/8      PASS       fail          0/8          0/8
+  H4200                            0/8      fail       fail          0/8          0/8
+  H6000                            0/8      fail       fail          0/8          0/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H6000                   1/8      fail       fail          1/8          1/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     0/8      fail       fail          0/8          0/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=True
+
+  => VERDICT: CONFIRMED  A/B relabel: B
+
+------------------------------------------------------------
+Cell (2400,4,600) cell_idx=77  exp185_class=B
+  Oracle defense:    8/8  (conjunct ii: PASS)
+  Baseline fail:     8/8  (conjunct iii: PASS)
+
+  Per-arm table (defense_count/8 | rev_pass_normal | both_pass_normal):
+  arm                        def_n/8  rev_norm  both_norm  def_tight  def_loose
+  baseline                         0/8      PASS       fail          0/8          0/8
+  H600                             0/8      PASS       fail          0/8          0/8
+  H900                             0/8      PASS       fail          0/8          0/8
+  H1200                            0/8      PASS       fail          0/8          0/8
+  H1800                            0/8      PASS       fail          0/8          0/8
+  H2400                            2/8      PASS       fail          2/8          2/8
+  H3000                            2/8      PASS       fail          2/8          2/8
+  H4200                            2/8      fail       fail          2/8          2/8
+  H6000                            2/8      fail       fail          2/8          2/8
+  n4_freeze                        0/8      PASS       fail          0/8          0/8
+  CALM2600-H1200                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H3000                   0/8      PASS       fail          0/8          0/8
+  CALM2600-H6000                   1/8      fail       fail          1/8          1/8
+  THETA3-H1200                     0/8      PASS       fail          0/8          0/8
+  THETA3-H3000                     7/8      fail       fail          7/8          7/8
+  oracle (diag)                    8/8  [not in family]
+
+  Conjunct i (no-arm-covers): normal=True  tight=True  loose=False
+
+  => VERDICT: CONFIRMED  A/B relabel: A
+
+------------------------------------------------------------
+
+================================================================================
+V-SAMPLE TABLE
+================================================================================
+
+  cell_idx     L   K     G  best_def  oracle  bl_fail verdict
+        32  1200   1   200         8/8       8/8        8/8 covered
+        33  1200   1   600         8/8       8/8        8/8 covered
+        34  1200   1  1200         8/8       8/8        8/8 covered
+        35  1200   1  2400         8/8       8/8        8/8 covered
+         5   400   2   600         8/8       8/8        8/8 covered
+        13   400   4   600         8/8       8/8        8/8 crack
+        15   400   4  2400         7/8       8/8        8/8 crack
+        29   800   4   600         6/8       8/8        8/8 crack
+
+================================================================================
+REPLICATION VERDICT
+================================================================================
+
+  Core cells: 6
+  Excluded (F2/F3): 0
+  Confirmed: 6/6
+  REPLICATION THRESHOLD: >= 4/6
+
+  => REPLICATION VERDICT: 6/6  REPLICATES
+
+================================================================================
+FALSIFIER STATUS
+================================================================================
+
+  F1 (core < 4/6 -> NEGATIVE):            not fired
+     confirmed=6/6, threshold=4
+  F2 (oracle fails >= 2/8 in core cell):  not fired
+  F3 (baseline deficit absent in core):   not fired
+  PC1 (ahat_drift gate, per-session):      0/1792 sessions flagged ahat_drift >= 0.15
+
+================================================================================
+SECONDARY TIGHT/LOOSE DIAGNOSTICS (conjunct_i per core cell)
+  (same arm-coverage check; different revision tolerance)
+================================================================================
+
+                            cell   normal   tight   loose
+             (1600,2,200) idx=52     True    True   False
+             (1600,3,200) idx=56     True    True    True
+             (1600,4,200) idx=60     True    True    True
+             (2400,3,200) idx=72     True    True    True
+             (2400,4,200) idx=76     True    True    True
+             (2400,4,600) idx=77     True    True   False
+
+================================================================================
+SUMMARY
+================================================================================
+
+  Gate:                PASS
+  Seeds:               [250, 251, 252, 253, 254, 255, 256, 257]
+  Core cells:          6
+  Confirmed:           6/6
+  Excluded:            0
+  Replication:         REPLICATES  (6/6 >= 4/6 required)
+
+  Core confirmations:
+    (1600,2,200) idx=52: CONFIRMED  relabel=A
+    (1600,3,200) idx=56: CONFIRMED  relabel=B
+    (1600,4,200) idx=60: CONFIRMED  relabel=B
+    (2400,3,200) idx=72: CONFIRMED  relabel=B
+    (2400,4,200) idx=76: CONFIRMED  relabel=B
+    (2400,4,600) idx=77: CONFIRMED  relabel=A
+
+  V-sample verdicts:
+    (1200,1,200) idx=32: covered
+    (1200,1,600) idx=33: covered
+    (1200,1,1200) idx=34: covered
+    (1200,1,2400) idx=35: covered
+    (400,2,600) idx=5: covered
+    (400,4,600) idx=13: crack
+    (400,4,2400) idx=15: crack
+    (800,4,600) idx=29: crack
+
+  Falsifier status:
+    F1: not fired
+    F2: not fired
+    F3: not fired
+    PC1: 0/1792 sessions flagged ahat_drift >= 0.15
+
+  Runtime: 5.5 min
+
+  NOTE: CONFIRMATION-grade. Pre-registered commit e3e282e.
+  CRACK REPLICATES: Exp 187 controller re-test licensed in confirmed cells.
+================================================================================

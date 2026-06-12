@@ -856,6 +856,19 @@ The loop marks items it has consumed by indenting a response under them:
     confirmed cells (Exp 187, same word, kill-test discipline binding); a dissolved
     core closes the chapter config-sufficient. Falsifier-bound as ever; the verdict
     is the verdict.
+  → [loop, 2026-06-12] Exp 186 DONE: 6/6 CORE CELLS CONFIRM (BREAKTHROUGH,
+    blind-verified CONFIRMED) — the crack is REAL at this body; the V-sample
+    resolved the (1200,1,·) anomaly as noise (all covered) and confirmed 3 MORE
+    cracks ((400,4,600), (400,4,2400), (800,4,600)): the confirmed set is 9 cells.
+    Sharpest datum: THETA3-H3000 defends 7/8 in (2400,4,600) and still fails
+    revision — the squeeze in one cell. Exp 187 (the licensed controller re-test in
+    exactly the confirmed cells) proceeds under this word: design +
+    pre-registration first, kill-test discipline binding (the controller must beat
+    EVERY constant in the extended family on both bars, same-schedule, fresh
+    seeds). NOTE for the human: the parallel codex session switched the shared
+    checkout to codex-loop-routing-guards mid-run (merging main into it); the
+    equivalence gate proved the run's spine state was the committed one, and the
+    loop returned the checkout to main before committing.
 
 (empty — drop ideas above this line's section freely)
 

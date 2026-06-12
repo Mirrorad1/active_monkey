@@ -6736,3 +6736,71 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: CONSULT posted in loop/IDEAS.md — rung-4 fresh-seed confirmation of the
   surviving core (the recommended option), or close the crack chapter here, or
   redirect. The loop HOLDS until a word.
+
+## Exp 186 — identity-n4-crack rung 4, the fresh-seed core confirmation (pre-registered e3e282e): 6/6 CORE CELLS CONFIRM — THE CRACK IS REAL AT THIS BODY (BREAKTHROUGH; blind-verified CONFIRMED, every conjunct recomputed from rows): no arm in the extended config family passes both bars in any core cell while the oracle defends 8/8 and the baseline deficit holds 8/8 everywhere; the V-sample resolved the (1200,1,·) anomaly as noise AND found 3 more cracks; the sharpest single datum: THETA3-H3000 defends 7/8 in (2400,4,600) yet still fails revision — the two-inequality squeeze in one cell
+
+- Plain: the surviving hard core was retested properly — eight fresh seeds per cell,
+  every defense the family has (eight stopwatches, the evidence-conceder, the
+  gap-spanning rule, the hair trigger), bars fixed in advance. All six cells
+  confirmed: in each one, NO setting both defends and stays adaptable, while the
+  perfectly-informed defense wins every seed and the undefended creature loses every
+  seed. The cells we suspected were coin-flip noise were noise (all five came back
+  covered); three cells we'd triaged as marginal came back as cracks too — the
+  confirmed crack set is nine schedules wide. The single sharpest fact: in one cell
+  the hair-trigger defense gets seven of eight seeds — the closest any constant
+  comes — and that exact arm still fails the adaptation requirement. Defending and
+  adapting genuinely cannot be had together there by anything without judgment.
+- Question (pre-registered e3e282e BEFORE any data): do the 6 surviving core cells
+  confirm at confirmation grade — per cell: (i) NO non-oracle arm passes defense
+  >= 6/8 AND revision >= 6/8 (same-seed baseline + 3000), (ii) oracle defends
+  >= 7/8, (iii) baseline fails >= 7/8 — with core replication iff >= 4/6, fresh
+  seeds 250-257, no mid-run adjustments; V-resolution sample of 8 cells.
+- Setup: experiments/exp186_n4_core_confirmation.py reusing the exp185 parameterized
+  runner; equivalence gate re-run through the exp186 code path with the full
+  evidence table (bit-exact; doubly load-bearing this run — the parallel session
+  switched the shared checkout to codex-loop-routing-guards mid-run and merged main
+  into it, and the gate PROVES the spine state the sessions loaded was the committed
+  one); 1792 W + 128 R sessions, 5.5 min; PC1 0/1792 flagged; V-sample selection
+  rule-derived and verifier-reproduced.
+- Result (committed exp186.txt + exp186_rows.json): REPLICATION 6/6 (needed 4/6) —
+  F1/F2/F3 none fired. Per-cell: (1600,2,200) A (CALM2600-H6000 defends 8/8 but
+  fails revision — route-1 emptiness with the spanning config at its best);
+  (1600,3,200) B (exp185's A label was 3-seed noise: H6000 2/3 -> 4/8); (1600,4,200)
+  B (best 1/8); (2400,3,200) B (best 3/8); (2400,4,200) B (best 2/8); (2400,4,600) A
+  (THETA3-H3000 defends 7/8, fails revision). Oracle 8/8 and baseline-fail 8/8 in
+  EVERY core cell. V-sample: all four (1200,1,G) cells + (400,2,600) COVERED (the
+  rung-1 election-variance reading vindicated — the anomaly was seed noise);
+  (400,4,600), (400,4,2400), (800,4,600) are CRACKS at the confirmation bar (all
+  three conjuncts) — the confirmed crack set is 9 cells. Secondary tolerances: 4/6
+  core cells hold at ALL three tolerances; (1600,2,200) and (2400,4,600) dissolve
+  under loose (+6000).
+- Verifier: blinded adversarial subagent: CONFIRMED — gate rows bit-exact (quoted);
+  V-sample selection re-derived from exp185 artifacts and matched exactly; every
+  core cell's three conjuncts recomputed from rows arm-by-arm (the no-arm-covers
+  conjunct checked per arm — defense counts and revision statuses independently
+  tallied); the replication count, A/B relabels, and V verdicts all reproduced.
+  Integrity: only the expected new files; prior artifacts and spines untouched.
+- Implication: the universal-constant law now has its first CONFIRMED boundary —
+  at this body there exist attack schedules (heavy trains: K>=4 at any tested L;
+  K>=2-3 at L>=1600 with short gaps) where commitment-as-config is impossible BY
+  ARITHMETIC (route 1: coverage needs H > tolerance) or BY DOSE (route 2: no arm
+  reaches the defense bar at all), while defense remains mechanically possible
+  (oracle 8/8). Per the pre-registration, Exp 187 — ONE controller re-test in
+  exactly these confirmed cells — is LICENSED: regulated commitment gets its retest
+  precisely where regulation is provably necessary, against the full extended
+  constant family, kill-test discipline binding. Generalizability tier:
+  functional-form (the two inequalities are body-parameterized and now
+  seed-grade-confirmed).
+- Honest caveat: "real at this body" means this creature, this trigger family,
+  these provided tolerances — the inequalities' CONSTANTS are body-specific even
+  though their form is general; the confirmed set's boundary is still
+  exploratory-grade outside the 14 retested cells; n4_freeze (E*=600) was a family
+  member here and covered nothing — but Exp 187's controller is a DESIGN question
+  and this confirmation does not pre-judge it; two core cells are
+  tolerance-relative (dissolve under loose); all instruments PROVIDED.
+- Verdict: POSITIVE / NEW INSIGHT — core REPLICATES 6/6; crack set 9 cells.
+  Self-grade: BREAKTHROUGH (the chapter's central negative now has a confirmed
+  boundary, and the controller question is reopened on its strongest possible
+  ground).
+- Next: Exp 187 (licensed by this result under the standing word "a"): the
+  controller re-test in the confirmed cells — design + pre-registration first.
