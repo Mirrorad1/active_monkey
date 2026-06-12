@@ -4,7 +4,6 @@ window.AM_LAB_STATUS = {
   tally: { total: 183, positive: 105, negative: 48, mixed: 26, breakthroughs: 4 },
   directions: [
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
-    { name: "identity-n4", state: "halted (rung 3 closed by double falsifier F5+F7; chapter-grading consult in loop/IDEAS.md awaits a word; loop paused on the human's word)", latest: "Exp 183", next: "TBD-human (consult: grade the chapter as recommended, or hunt the seed-229 repeated-color crack with the Exp 173 dissolution warning attached)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },
@@ -15,6 +14,7 @@ window.AM_LAB_STATUS = {
     { name: "social-emergence", state: "exploratory", latest: "TBD-human", next: "Rung 1 clade infrastructure: fork mirro into second committed line, verify lineage records shared-ancestor hash, both independently resumable, trunk byte-identical" },
     { name: "transfer", state: "exploratory", latest: "TBD-human", next: "Rung 1 same world, new geometry: creature with learned 4x4 map dropped into different 4x4 layout; FAIL = no difference vs fresh creature" },
     { name: "continuous-substrate", state: "closed-positive", latest: "Exp 138–140", next: "TBD-human" },
+    { name: "identity-n4", state: "closed-negative", latest: "Exp 183", next: "TBD-human (re-opens only on a word: the seed-229/variable-length crack, or the untried anchor form)" },
   ],
   flagship: { title: "Agents That Know When Their Worldview Is Too Small", page: "docs/flagship/worldview-too-small.md" }
 };

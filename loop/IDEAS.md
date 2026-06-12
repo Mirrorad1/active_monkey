@@ -725,6 +725,29 @@ The loop marks items it has consumed by indenting a response under them:
       crack hunt, with Exp 173's dissolution warning attached (such cracks have
       so far always dissolved under the program's own taxonomy).
   (c) Other / stop.
+  → [loop, 2026-06-11] HUMAN RESUMPTION (the /loop command re-issued with this
+    consult posted, no redirection) — per the ratified pattern (the M4b / Exp 154
+    precedents) this authorizes the RECOMMENDED OPTION ONLY: (a) the chapter is
+    GRADED and CLOSED. Executed as consolidation-grade work: synthesis written at
+    docs/research/n4-identity-chapter.md (rungs graded: 1 VERIFIED / 2 REAL /
+    3 CONFIG / 4 unreached; nine laws; bridge claims bounded; open edges named);
+    the card loop/directions/identity-n4.md -> closed-negative; RESUME §3b folded.
+    No new experiment was run; no falsifier was at stake in this step.
+    THE LOOP NOW HOLDS — every remaining path is a direction choice needing its
+    own explicit word (none is silence-actionable; the fences below are standing):
+    (i) the seed-229/variable-length crack at the rung-3 verdict (option (b)
+        above, with the Exp 173 dissolution warning and the human's own standing
+        criterion: pursue only if it introduces genuinely new regime geometry);
+    (ii) M4a increment 1c — the talk-to-it timing re-wire (halted since Exp 128,
+        its own fence; still the most direct path to the moonshot's conversation
+        goal — the loop's suggestion if asked, as a suggestion only);
+    (iii) nira's normalized-predictive switch (standing consult from Exp 154);
+    (iv) the cloud-branch merge/renumber (META flag above);
+    (v) climbing the ladder past N4 (docs/specs/n-order-self-modeling.md — what
+        the spec's anti-regress discipline says about building on a config rung
+        is itself part of that decision);
+    (vi) stop/pause.
+    Subsequent automated fires idle with a reminder until a word appears here.
 
 (empty — drop ideas above this line's section freely)
 
