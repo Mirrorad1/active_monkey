@@ -51,8 +51,9 @@ def _make_repo(
     n: int = 200,
     output: bool = True,
     verifier: str = "agree",
+    verdict: str = "POSITIVE / NEW INSIGHT",
 ) -> pathlib.Path:
-    _write(root / "EXPERIMENTS.md", _entry(n, verifier=verifier))
+    _write(root / "EXPERIMENTS.md", _entry(n, verifier=verifier, verdict=verdict))
     _write(root / "experiments" / f"exp{n}_synthetic.py", DOCSTRING)
     if output:
         _write(root / "experiments" / "outputs" / f"exp{n}.txt", "metric = 1.000\n")
@@ -183,6 +184,26 @@ def test_collector_detects_verifier_agree_and_disagreed(tmp_path):
     assert agree.entry.verifier_status == "agree"
     assert disagreed.entry.verifier_status == "disagreed"
     assert "verifier_disagreement" in disagreed.process.likely_risks
+
+
+def test_collector_reads_mixed_verdict_from_verdict_prefix(tmp_path):
+    root = _make_repo(
+        tmp_path,
+        verifier="agree",
+        verdict=(
+            "MIXED / NEW INSIGHT. POSITIVE subconditions held, "
+            "NEGATIVE subconditions also fired."
+        ),
+    )
+
+    episode = collect_episode(
+        root,
+        200,
+        collected_at_utc="2026-01-01T00:00:00Z",
+        commit_sha=None,
+    )
+
+    assert episode.entry.claimed_verdict == "MIXED"
 
 
 def test_report_handles_empty_episodes_directory(tmp_path):

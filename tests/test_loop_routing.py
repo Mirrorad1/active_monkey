@@ -12,6 +12,9 @@ def test_compose_includes_model_routing_card():
     prompt = compose(direction="identity-n4", persona="default", idea=None)
 
     assert "loop/ROUTING.md" in prompt
+    assert "meta_monkey.preflight" in prompt
+    assert "meta_monkey.collect_iteration" in prompt
+    assert "ADVISORY ONLY" in prompt
     assert "highest-thinking" in prompt
     assert "Codex" in prompt
     assert "high-fast" in prompt

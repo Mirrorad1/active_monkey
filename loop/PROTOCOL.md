@@ -5,6 +5,11 @@ several half-experiments. Open `loop/LESSONS.md` (the distilled rules card) at t
 start of every iteration — it is the one-page digest of every incident-derived rule;
 the full stories stay in EXPERIMENTS.md. Steps:
 
+**Session bootstrap (once per `/loop` session, before the first iteration):**
+run `uv run --python .venv python -m meta_monkey.preflight`. Treat its checklist as
+ADVISORY ONLY: passive process memory, not a controller, not a verdict-grader, and
+not permission to weaken `loop/VALIDATION.md`.
+
 0. **Inbox.** Read `loop/IDEAS.md`. If a human dropped an idea/redirection, it outranks
    your own queue: address it (run it, or log in IDEAS.md why it's deferred — never
    silently ignore it). Mark items you've consumed.
@@ -152,6 +157,14 @@ the full stories stay in EXPERIMENTS.md. Steps:
    count, that every entry carries a non-empty `plain` field, and that
    `trace.script` / `trace.output` exist on disk; a skipped site update
    will fail CI and must be fixed before the commit lands.
+
+6.5. **Record passive process memory.** Immediately AFTER the experiment commit lands,
+   write the passive Meta Monkey episode record:
+   `uv run --python .venv python -m meta_monkey.collect_iteration --latest --write`
+   This is loop-scaffolding evidence, not the scientific verdict: it records the
+   completed iteration's process state under `meta/episodes/expNN.json` so later
+   sessions can consult the process record without scraping prose. It must not edit
+   `EXPERIMENTS.md`, choose the next experiment, or overrule `loop/VALIDATION.md`.
 
 7. **Reflect.** If the last ~3 entries are all consolidation, say so to the human and
    suggest either a direction switch (other cards), a harder edge, or stopping — a

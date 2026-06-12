@@ -53,6 +53,9 @@ The JSON serializer uses sorted keys, two-space indentation, and a trailing newl
 - `loop/META.md` remains the rule for fixing recurring process failures.
 - `loop/LESSONS.md` remains the compressed incident-derived rules card.
 - `loop/check_iteration.py` remains the mechanical checker; Meta Monkey records its output.
+- Default loop integration is light-touch: run `python -m meta_monkey.preflight` once at
+  the start of a `/loop` session, then `python -m meta_monkey.collect_iteration --latest --write`
+  after each completed experiment commit.
 
 ## Future directions
 

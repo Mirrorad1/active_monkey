@@ -70,10 +70,8 @@ def _honest_caveat_line(entry: str) -> str | None:
 def _claimed_verdict(verdict_line: str | None) -> str | None:
     if not verdict_line:
         return None
-    for verdict in ("POSITIVE", "NEGATIVE", "MIXED"):
-        if re.search(rf"\b{verdict}\b", verdict_line):
-            return verdict
-    return None
+    match = re.match(r"^- Verdict:\s*(POSITIVE|NEGATIVE|MIXED)\b", verdict_line)
+    return match.group(1) if match else None
 
 
 def _insight_tag(entry: str) -> str | None:

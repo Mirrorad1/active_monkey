@@ -37,7 +37,10 @@ uv run --python .venv python loop/compose.py --list
 
 Paste the output into a fresh Claude session (it is a `/loop` command). The session will
 read `RESUME.md` + `EXPERIMENTS.md`, then iterate under the chosen direction/persona,
-honoring `VALIDATION.md` and checking `IDEAS.md` each wake.
+honoring `VALIDATION.md` and checking `IDEAS.md` each wake. At the start of the session,
+run `uv run --python .venv python -m meta_monkey.preflight` as an advisory checklist;
+after each completed experiment commit, write the passive process record with
+`uv run --python .venv python -m meta_monkey.collect_iteration --latest --write`.
 
 ## Extending
 
