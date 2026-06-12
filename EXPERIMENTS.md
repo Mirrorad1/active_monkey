@@ -7136,3 +7136,93 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   the standing consults; (b) attempt a form OUTSIDE the named channels (the
   measured inversion predicts failure; needs its own design-time diagnostic);
   (c) redirect / stop.
+
+## Exp 191 — n4-crack-edges rung 1, post-release retention (pre-registered 55e7705; the human's word "Chapter's remaining edges"): NEGATIVE — F1 fired as predeclared, DECOMPOSED by the instrument check: the C-B fires are wholly tail-truncation (every measured seed retained, 3/3) but C-C fails even measured-only (3/4 < 5/6) on ONE genuine deferral — seed 301, both controllers identically: a settle-phase spanning freeze defends the whole train, releases at bend+2,725, and the displacement expresses FULLY post-release (w1=w2=1.0); P2/P3 clean (baseline displaced 8/8 in every cell; oracle retains 7/8 and 7/7); two NEW dynamics found: the post-release RE-FREEZE CYCLE (defended seeds re-trigger 325-600 steps after release; final release up to bend+6,550 — my 6,600 tail was undersized, 9/20 controller defense-seats unmeasured) and settle-phase false-alarm freezes (which mechanically explain CALM-H6000's precondition swing); blind-verified (NEGATIVE / NEW INSIGHT)
+
+- Plain: the closed chapter's defenses were always scored while the shield was still
+  up — this experiment finally watches what happens after the shield comes down. The
+  background result is reassuring twice over: attacks really do stick (every
+  undefended creature stays displaced long after the attack ends), and the perfect
+  defender really does keep its identity after unfreezing. But the verdict bar failed,
+  for a split reason. Half the failure is our ruler being too short: the defenders
+  turn out to re-raise their shield in the quiet aftermath (a re-freeze echo), pushing
+  the true "shield down" moment past the end of the recording in nearly half the
+  sessions — those tell us nothing about retention either way. The other half is real:
+  in one fully-measured case, a defense that held through the entire attack let the
+  displacement flood in the moment the shield dropped — defense that was actually
+  deferral. One seed, both controllers, unambiguous. The follow-up needs a longer
+  recording and an explanation for why that one case surrendered while its twin held.
+- Question (pre-registered 55e7705 BEFORE any data): do gap-spanning defenses RETAIN
+  the defended identity once unfrozen, or did the banked defense bar measure deferral?
+  P1: retention_rate >= 5/6 in every covered pair; F1: any covered pair <= 1/2.
+  P2: baseline stays displaced (>= 6/8 per cell); F2: self-healing. P3: oracle
+  retains >= 5/6. Covered pairs predeclared; windows W1=[release+1000,+1500),
+  W2=[release+3000,+3500); retained = expr_frac(attack) < 0.5 in both.
+- Setup: experiments/exp191_n4_post_release_retention.py (runner =
+  run_fork_schedule_190 at hysteresis_snaps=0, the bit-match-proven exp188 path;
+  equivalence gate PASS with evidence); 3 confirmed crack cells with tails extended
+  2,500 -> 6,600 (C-A (1600,2,200) n=16000, C-B (2400,4,600) n=24000, C-C (400,4,2400)
+  n=21400); arms baseline / oracle / INT-C2900 / REG-TB / CALM2600-H6000; FRESH seeds
+  296-303; 120 W sessions, 0.5 min; W-only (revision banked, not re-graded).
+- Result (committed exp191.txt + exp191_rows.json): frozen defense: oracle 8/7/6,
+  INT-C2900 6/7/7, REG-TB 6/7/7 (per cell A/B/C; the two seeds failing everywhere are
+  296/299 — margin class), CALM2600-H6000 5/1/5 (C-A 5/8 vs banked 8/8, FLAGGED — see
+  the false-alarm finding). STRICT predeclared rates: controllers 4/6 (C-A, MIXED
+  zone), 3/7 (C-B), 3/7 (C-C) -> F1 FIRED in four pairs. INSTRUMENT DECOMPOSITION
+  (L13: a fired falsifier is an instrument reading): C-B's four not-retained seats are
+  ALL WINDOW_OVERRUN (unmeasured — release past n_steps-3,500); measured-only C-B =
+  3/3 = 1.000 for both arms; C-A measured-only 4/4. C-C = truncation (3 seats) PLUS
+  ONE GENUINE MEASURED DEFERRAL: seed 301, identical in both controllers — single
+  transient freeze entry 2,025 (settle-phase false alarm, PRE-attack), exit 17,525
+  (frozen 15,500 steps, spans all 4 bursts), frozen-defense TRUE, then w1 = w2 = 1.0:
+  full displacement within 1,000 steps of release. Measured-only C-C = 3/4 = 0.75 <
+  5/6 -> P1 fails on measured data there; the strict NEGATIVE stands either way. The
+  puzzle logged, not explained: structural twin s297 C-C (single spanning freeze,
+  entry 6,075 at first-burst onset, same exit 17,525) retained 0.0/0.0. P2 PASS:
+  baseline displaced W1 8/8 in ALL cells — displacement durability now confirmed at
+  +4,500-6,600-step tails (stronger than the banked 2,500). P3 PASS: oracle 7/8 (C-A;
+  the one miss is s303: w1 0.882, w2 0.694, final_expr_frac 0.0 — a transient
+  post-release excursion that SELF-CORRECTS) and 7/7 (C-B). NEW DYNAMICS: (1) THE
+  RE-FREEZE CYCLE — on defended seeds the monitor re-triggers 325-600 steps after the
+  first release (secondary transient freezes of ~2,600-3,575 steps; final release up
+  to bend+6,550); the "release" is not an event but a damped cycle. (2) SETTLE-PHASE
+  FALSE ALARMS — freezes entering at steps 1,225-4,475 before any attack (seeds
+  299-303 classes), which chain into the train; these consume a fixed-H budget
+  pre-attack and mechanically explain CALM-H6000's C-A swing (5/8 vs banked 8/8).
+  PC1 0/120.
+- Verifier: agree — blinded adversarial subagent (docstring + committed outputs only):
+  recomputed every frozen-defense count (exact match), every retention rate in both
+  strict and measured-only form, verified every WINDOW_OVERRUN flag arithmetically
+  (release_step > n_steps-3,500; no labeling errors), identified s301 as the only
+  genuine measured deferral and characterized both late-release patterns from the
+  event chains independently. Verdict NEGATIVE (strict F1), with the C-B fires
+  explicitly attributed to instrument truncation, not deferral — adopted in full.
+- Implication: the chapter's frozen-window defense caveat (§5) is now a measured
+  phenomenon, not a hypothetical: post-release retention CANNOT be assumed — one
+  fully-measured spanning defense surrendered everything at release. But it is also
+  not the rule: every other measured seat retained perfectly (10/11 measured seats
+  across covered controller pairs), the oracle retains, and displacement durability
+  (the stakes premise) is confirmed at long tails. The retention question is now
+  exactly localized: WHAT distinguishes s301 from its structural twin s297 (entry
+  timing — pre-attack vs at-onset — is the visible difference; the monitor reference
+  or the at-entry v state are the candidates), and the instrument for answering it
+  needs tails sized to the re-freeze cycle (>= ~12,000) with unmeasured-handling
+  predeclared. Generalizability tier: existence (deferral occurs) + instrument-design
+  (the release-cycle dynamics), not yet a rate claim.
+- Honest caveat: the strict F1 fire is carried 9-parts-truncation, 1-part-deferral —
+  both readings are reported and the stricter verdict is taken; no retention-rate
+  claim in C-B is licensed in either direction (3 measured seats is too few). The
+  deferral is a single seed (one schedule, both controllers — the controllers share
+  the freeze machinery, so this is ONE event observed twice, not two). The re-freeze
+  cycle's trigger ("residual attack-color expression pressure" per the verifier's
+  event-chain reading) is inferred from event timing, not from a dedicated
+  instrument. Oracle C-C (6/8) fell below its own covered bar — this seed block is
+  rough (s296/s299 fail everywhere). All constants PROVIDED.
+- Verdict: NEGATIVE / NEW INSIGHT (F1 fired as predeclared; one genuine deferral
+  instance; two new release-dynamics findings; P2/P3 clean).
+- Next: Exp 192 under the standing edges-thread word — rung 1 completed with a
+  correctly-sized instrument: tails >= 12,000 (sized to the measured release
+  distribution), unmeasured seats excluded from BOTH numerator and denominator with
+  a predeclared >= 6-measurable validity gate per pair, plus the s301-vs-s297
+  mechanism diagnostic (v-state at entry/release; monitor reference) — the deferral
+  existence is banked here; 192 prices its RATE and mechanism.

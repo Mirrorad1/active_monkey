@@ -1,0 +1,283 @@
+================================================================================
+EXP 191 -- N4 POST-RELEASE RETENTION (RUNG 1)
+PRE-REGISTERED in loop/directions/n4-crack-edges.md (commit 55e7705) BEFORE any data
+Seeds: [296, 297, 298, 299, 300, 301, 302, 303] | 3 cells x 5 arms x 8 seeds = 120 W sessions
+Runner: run_fork_schedule_190 with hysteresis_snaps=0 (exp188-verbatim code path)
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+
+================================================================================
+STEP 1: EQUIVALENCE GATE (exp183 replay through exp190 runner)
+================================================================================
+EQUIVALENCE GATE: exp183 replay
+
+=== arm=baseline seed=229 ===
+  b0 gap_start    got=135.99937835015726                           committed=135.99937835015726                           OK
+  b0 gap_end      got=-571.7363522432429                           committed=-571.7363522432429                           OK
+  b0 d_b          got=0.15664036565125683                          committed=0.15664036565125683                          OK
+  b0 tv_b         got=0.15664036565125675                          committed=0.15664036565125675                          OK
+  b0 recovered    got=false                                        committed=false                                        OK
+  b0 n_events     got=0                                            committed=0                                            OK
+  b1 gap_start    got=308.8677728920327                            committed=308.8677728920327                            OK
+  b1 gap_end      got=-441.6128408201637                           committed=-441.6128408201637                           OK
+  b1 d_b          got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 tv_b         got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=0                                            committed=0                                            OK
+  b2 gap_start    got=322.85746017635324                           committed=322.85746017635324                           OK
+  b2 gap_end      got=-402.18131405053043                          committed=-402.18131405053043                          OK
+  b2 d_b          got=0.15775393082799233                          committed=0.15775393082799233                          OK
+  b2 tv_b         got=0.15775393082799238                          committed=0.15775393082799238                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=0                                            committed=0                                            OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start    got=153.15192102308868                           committed=153.15192102308868                           OK
+  b0 gap_end      got=80.55582599896172                            committed=80.55582599896172                            OK
+  b0 d_b          got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 tv_b         got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 recovered    got=true                                         committed=true                                         OK
+  b0 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b1 gap_start    got=77.59197443713458                            committed=77.59197443713458                            OK
+  b1 gap_end      got=5.162418152138571                            committed=5.162418152138571                            OK
+  b1 d_b          got=0.016416619393121945                         committed=0.016416619393121945                         OK
+  b1 tv_b         got=0.016416619393121917                         committed=0.016416619393121917                         OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b2 gap_start    got=41.6153816086221                             committed=41.6153816086221                             OK
+  b2 gap_end      got=-29.89416352514172                           committed=-29.89416352514172                           OK
+  b2 d_b          got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 tv_b         got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  gate arm=H1200 seed=229: PASS
+
+EQUIVALENCE GATE PASS -- proceeding to grid.
+
+================================================================================
+STEP 2: W SESSIONS (3 cells x 5 arms x 8 seeds = 120 sessions)
+================================================================================
+
+
+W grid done: 0.5 min (120 sessions)
+
+================================================================================
+STEP 3: ANALYSIS
+================================================================================
+
+FROZEN-DEFENSE COUNT TABLE (count/8 per (arm, cell))
+----------------------------------------------------------------------
+  arm                          C-A       C-B       C-C
+----------------------------------------------------------------------
+  baseline                      0/8        0/8        0/8
+  oracle                        8/8        7/8        6/8
+  INT-C2900                     6/8        7/8        7/8
+  REG-TB                        6/8        7/8        7/8
+  CALM2600-H6000                5/8        1/8        5/8
+
+Covered non-oracle pairs (frozen_def >= 6/8): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+Oracle covered pairs (frozen_def >= 7/8):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+
+PRECONDITION CHECK (fresh-seed frozen-defense vs banked levels, +-2 tolerance):
+  INT-C2900              C-A      banked=8/8 fresh=6/8 swing=2 OK
+  INT-C2900              C-B      banked=8/8 fresh=7/8 swing=1 OK
+  INT-C2900              C-C      banked=8/8 fresh=7/8 swing=1 OK
+  REG-TB                 C-A      banked=8/8 fresh=6/8 swing=2 OK
+  REG-TB                 C-B      banked=8/8 fresh=7/8 swing=1 OK
+  REG-TB                 C-C      banked=8/8 fresh=7/8 swing=1 OK
+  CALM2600-H6000         C-A      banked=8/8 fresh=5/8 swing=3 FLAGGED (swing > 2)
+
+RETENTION ANALYSIS PER COVERED PAIR
+  retention_rate = #(frozen_defense AND retained) / #(frozen_defense)
+--------------------------------------------------------------------------------
+  INT-C2900              x C-A     : retained=4/6 retention_rate=0.667
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True      None      None       None        WINDOW_OVERRUN
+       298        True     0.000     0.000       True                      
+       299       False      None      None       None  MID_TRAIN_CONCESSION,WINDOW_OVERRUN
+       300        True     0.000     0.000       True                      
+       301        True     0.028     0.000       True                      
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True     0.000     0.000       True                      
+    MIXED-ZONE: INT-C2900 x C-A rate=0.667 (1/2 < rate < 5/6)
+
+  INT-C2900              x C-B     : retained=3/7 retention_rate=0.429
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True     0.000     0.000       True                      
+       300        True      None      None       None        WINDOW_OVERRUN
+       301        True      None      None       None        WINDOW_OVERRUN
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True      None      None       None        WINDOW_OVERRUN
+    *** F1 FIRED: INT-C2900 x C-B retention_rate=0.429 <= 1/2 ***
+
+  INT-C2900              x C-C     : retained=3/7 retention_rate=0.429
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True      None      None       None        WINDOW_OVERRUN
+       300        True      None      None       None        WINDOW_OVERRUN
+       301        True     1.000     1.000      False                      
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True     0.000     0.000       True                      
+    *** F1 FIRED: INT-C2900 x C-C retention_rate=0.429 <= 1/2 ***
+
+  REG-TB                 x C-A     : retained=4/6 retention_rate=0.667
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True      None      None       None        WINDOW_OVERRUN
+       298        True     0.000     0.000       True                      
+       299       False      None      None       None  MID_TRAIN_CONCESSION,WINDOW_OVERRUN
+       300        True     0.000     0.000       True                      
+       301        True     0.028     0.000       True                      
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True     0.000     0.000       True                      
+    MIXED-ZONE: REG-TB x C-A rate=0.667 (1/2 < rate < 5/6)
+
+  REG-TB                 x C-B     : retained=3/7 retention_rate=0.429
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True     0.000     0.000       True                      
+       300        True      None      None       None        WINDOW_OVERRUN
+       301        True      None      None       None        WINDOW_OVERRUN
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True      None      None       None        WINDOW_OVERRUN
+    *** F1 FIRED: REG-TB x C-B retention_rate=0.429 <= 1/2 ***
+
+  REG-TB                 x C-C     : retained=3/7 retention_rate=0.429
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296       False      None      None       None        WINDOW_OVERRUN
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True      None      None       None        WINDOW_OVERRUN
+       300        True      None      None       None        WINDOW_OVERRUN
+       301        True     1.000     1.000      False                      
+       302        True      None      None       None        WINDOW_OVERRUN
+       303        True     0.000     0.000       True                      
+    *** F1 FIRED: REG-TB x C-C retention_rate=0.429 <= 1/2 ***
+
+  oracle                 x C-A     : retained=7/8 retention_rate=0.875
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296        True     0.000     0.000       True                      
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True     0.000     0.000       True                      
+       300        True     0.000     0.000       True                      
+       301        True     0.000     0.000       True                      
+       302        True     0.000     0.000       True                      
+       303        True     0.882     0.694      False                      
+
+  oracle                 x C-B     : retained=7/7 retention_rate=1.000
+      seed  frozen_def   w1_frac   w2_frac   retained                 flags
+       296        True     0.000     0.142       True                      
+       297        True     0.000     0.000       True                      
+       298        True     0.000     0.000       True                      
+       299        True     0.000     0.000       True                      
+       300        True     0.000     0.000       True                      
+       301        True     0.000     0.000       True                      
+       302        True     0.000     0.000       True                      
+       303       False     1.000     1.000      False                      
+
+P2: BASELINE W1 DISPLACED COUNT PER CELL (w1_frac >= 0.5 = still displaced)
+------------------------------------------------------------
+  cell       w1_displaced/8     P2_cell
+------------------------------------------------------------
+  C-A                8/8        PASS
+  C-B                8/8        PASS
+  C-C                8/8        PASS
+
+
+PC1 flagged: 0/120 sessions with ahat_drift >= 0.15
+
+================================================================================
+VERDICT LINES
+================================================================================
+
+P1 (retention >= 5/6 in every covered pair):
+  Covered pairs (non-oracle): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  Covered pairs (oracle):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+  INT-C2900              x C-A     : rate=0.667 -> MIXED
+  INT-C2900              x C-B     : rate=0.429 -> F1
+  INT-C2900              x C-C     : rate=0.429 -> F1
+  REG-TB                 x C-A     : rate=0.667 -> MIXED
+  REG-TB                 x C-B     : rate=0.429 -> F1
+  REG-TB                 x C-C     : rate=0.429 -> F1
+  oracle                 x C-A     : rate=0.875 -> >= 5/6
+  oracle                 x C-B     : rate=1.000 -> >= 5/6
+  F1 fired (any covered pair <= 1/2): True
+  MIXED-zone pairs (1/2 < rate < 5/6): [('INT-C2900', 'C-A'), ('REG-TB', 'C-A')]
+  => P1 VERDICT: NEGATIVE -- F1 FIRED. Deferral detected in covered pair(s).
+
+P2 (baseline W1 displaced >= 6/8 per cell):
+  C-A: W1_displaced=8/8
+  C-B: W1_displaced=8/8
+  C-C: W1_displaced=8/8
+  F2 fired (< 0.5 in >= 4/8 anywhere): False
+  => P2 VERDICT: PASS -- baseline stays displaced post-release in all cells.
+
+P3 (oracle retention_rate >= 5/6 in every covered oracle cell):
+  oracle x C-A: rate=0.875
+  oracle x C-B: rate=1.000
+  => P3 VERDICT: PASS -- oracle retention_rate >= 5/6 in all covered cells.
+
+================================================================================
+SUMMARY
+================================================================================
+
+  Gate:              PASS
+  Seeds:             [296, 297, 298, 299, 300, 301, 302, 303]
+  Runtime:           0.5 min
+  Sessions:          120 W
+
+  P1 (retention >= 5/6 every covered pair): NEGATIVE (F1)
+  P2 (baseline W1 displaced >= 6/8 every cell): PASS
+  P3 (oracle retention >= 5/6 every covered cell): PASS
+
+  F1 (any covered pair retention <= 1/2): True
+  F2 (baseline self-heals in any cell):   False
+
+================================================================================

@@ -83,4 +83,22 @@ data).**
   bounded at long tails. Any outcome → rung-2 design consult (the tight core) with
   rung-1's verdict in hand.
 
-**STATUS.** state: active · latest: (pre-registration) · depends-on: identity-n4-crack (closed, read-only), Exp 183–190 artifacts · reusable: the exp190 gated runner, the banked defense instrument, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 191 (P1/P2/P3 vs F1/F2 above)
+**RUNG 1 RESULT (Exp 191, 2026-06-12 — blind-verified, the stricter verdict taken):
+NEGATIVE (F1 fired as predeclared), decomposed by the L13 instrument check.** The
+C-B fires are wholly tail-truncation (the 6,600 tail was undersized for the
+DISCOVERED release dynamics; every measured seat retained, 3/3 both arms); C-A
+measured-only 4/4; but C-C fails even measured-only (3/4 < 5/6) on ONE genuine
+deferral: seed 301, both controllers identically (one event observed twice) — a
+settle-phase false-alarm freeze (entry 2,025, pre-attack) spans the whole train,
+defends it, releases at bend+2,725, and the displacement expresses FULLY within
+1,000 steps (w1=w2=1.0). Its structural twin s297 (same single spanning freeze,
+entry at first-burst onset, same exit step) retained 0.0/0.0 — the mechanism
+question is exactly that contrast. P2 PASS (baseline displaced 8/8 in all cells —
+durability confirmed at long tails); P3 PASS (oracle 7/8, 7/7; the one miss is a
+transient self-correcting excursion). NEW DYNAMICS: the post-release RE-FREEZE
+CYCLE (defended seeds re-trigger 325–600 steps after release; final release up to
+bend+6,550) and settle-phase false alarms (which consume fixed-H budgets pre-attack
+— CALM-H6000's C-A precondition swing explained). Deferral EXISTENCE is banked;
+its RATE and mechanism are not yet priced.
+
+**STATUS.** state: active · latest: Exp 191 (rung-1 NEGATIVE — deferral exists; instrument undersized for the discovered release cycle) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration

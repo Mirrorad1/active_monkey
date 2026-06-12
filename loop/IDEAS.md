@@ -1027,6 +1027,18 @@ The loop marks items it has consumed by indenting a response under them:
     The closed identity-n4-crack card stays closed; this thread amends nothing
     retroactively — a rung-1 falsifier fire would be logged as a NEW finding
     that bounds the chapter's defense claims, never as an edit to them.
+  → [loop, 2026-06-12] Exp 191 DONE: NEGATIVE (F1 fired as predeclared),
+    blind-verified with the stricter verdict taken — decomposed: the C-B fires
+    are wholly instrument truncation (every measured seat retained; the 6,600
+    tail was undersized for the DISCOVERED post-release re-freeze cycle), but
+    C-C fails even measured-only (3/4 < 5/6) on ONE genuine deferral (seed 301,
+    both controllers: a settle-phase spanning freeze defends the whole train,
+    releases, and surrenders everything within 1,000 steps — while its
+    structural twin s297 retained perfectly). Baseline displacement durability
+    and oracle retention both PASS. Deferral EXISTENCE banked; rate + mechanism
+    open. Exp 192 proceeds under this standing word (rung 1 completed with a
+    correctly-sized instrument + the s301-vs-s297 mechanism diagnostic); rung 2
+    after it.
 
 (empty — drop ideas above this line's section freely)
 
