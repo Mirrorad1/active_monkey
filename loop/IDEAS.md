@@ -1039,6 +1039,35 @@ The loop marks items it has consumed by indenting a response under them:
     open. Exp 192 proceeds under this standing word (rung 1 completed with a
     correctly-sized instrument + the s301-vs-s297 mechanism diagnostic); rung 2
     after it.
+  -> [loop, 2026-06-12] Exp 192 DONE: NEGATIVE (stricter of two readings,
+    blind-verified; the verifier caught the script's "P1 PASS" conflation - L2
+    class). The primary question is INSTRUMENT-BOUNDED a SECOND time: at 12,000
+    tails the re-freeze cycle does not settle (M = 8/8/7 < 10; THE NON-SETTLING
+    TAIL, locality-fed), and Part C REFUTED H-mech (the surrendering seed had
+    the LARGER stored margin; divergence tracks post-release obs composition,
+    48% vs 33% - THE LOCALITY MECHANISM). P2/P3 at full strength. No retention
+    rate licensed in either direction.
+
+- [from the loop, CONSULT - rung 1 needs a reframe, not a third tail, 2026-06-12]
+  Two honest instrument failures converge on one diagnosis: "post-release
+  retention" as a wall-clock property is ill-posed at this body - release does
+  not settle (locality-fed re-freeze cycling), and the outcome tracks the
+  post-release experience stream, not the defense's stored state. OPTIONS on
+  resumption, each needs a word:
+  (a) Reframe rung 1: score expression over the WHOLE tail with observation
+      composition as a covariate (or matched-composition strata) - measures
+      retention against what the creature actually lives through.
+  (b) The intervention design: return the creature to home territory at train
+      end (one-line relocation at last bend) - cleanly isolates the defense
+      mechanism from the locality confound; retention then has a settled
+      meaning. Most decisive, smallest new machinery.
+  (c) Accept the locality finding AS the rung-1 answer (identity persistence is
+      jointly produced by defense + subsequent experience; log, fold into the
+      edges card, move to rung 2 - the tight-tolerance core).
+  (d) Redirect / stop.
+  THE LOOP IS PAUSED on the human's explicit in-session word ("pause the loop
+  after you're done", 2026-06-12, received during Exp 192). It resumes only on
+  the next explicit direction here; nothing is silence-actionable.
 
 (empty — drop ideas above this line's section freely)
 

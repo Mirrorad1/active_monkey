@@ -156,4 +156,22 @@ standing edges-thread word; committed BEFORE any data).**
   experiments/outputs/exp192.txt + exp192_rows.json. One iteration; blinded verify
   (PROTOCOL 4.5); no mid-run bar adjustments.
 
-**STATUS.** state: active · latest: Exp 191 (rung-1 NEGATIVE — deferral exists; instrument undersized for the discovered release cycle) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
+**EXP 192 RESULT (2026-06-12 — blind-verified, the stricter verdict taken):
+NEGATIVE — the primary question is INSTRUMENT-BOUNDED A SECOND TIME, and the
+mechanism hypothesis is REFUTED.** Even at 12,000-step tails the re-freeze cycle
+does not settle: 36/82 defended controller seats unmeasurable (M = 8/8/7 vs the
+predeclared >= 10 gate; tail freezes 2,600 → 9,300+ steps; 3 sessions/arm
+effectively unreleased at session end) — THE NON-SETTLING TAIL, fed by
+post-captivity LOCALITY (the creature roams attacked-color territory and pressure
+keeps re-asserting). Part C refuted H-mech: the surrendering seed carries the
+LARGER at-release margin (92.4 vs 87.6); the divergence tracks post-release
+observation composition (48% vs 33% attack-color) — THE LOCALITY MECHANISM:
+retention is a property of the post-release experience stream, not of the
+defense's stored state. P2 at full strength (baseline w1 = 1.0 in 48/48); P3
+clean (oracle 14/15, 14/14). Ungated raw controller rates 7/8, 5/8, 6/7
+(exploratory only). The rung-1 question needs REFRAMING, not a third tail
+extension: candidate reframes — stream-conditioned scoring (obs composition as
+covariate), matched-composition strata, or the return-home intervention at train
+end (isolating defense from locality).
+
+**STATUS.** state: halted (PAUSED on the human's explicit word after Exp 192; CONSULT in loop/IDEAS.md — rung-1 reframe options / rung 2 / redirect, each needs its own word) · latest: Exp 192 (rung-1 instrument-bounded twice; H-mech refuted; the locality mechanism + non-settling tail named) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
