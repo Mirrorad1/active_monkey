@@ -2,7 +2,7 @@
   "schema_version": 1,
   "experiment": "exp181",
   "verdict": "NEGATIVE",
-  "halted": false,
+  "halted": true,
   "arms": {
     "P5_resistance_recovery": {
       "pass": false,
@@ -17,5 +17,7 @@
       "reason": "no fixed constant arm matches both P5 and P6 criteria"
     }
   },
-  "notes": "N4 rung 3 controller. PRE-REGISTERED in loop/directions/identity-n4.md (commit 3a8bce0) BEFORE any data. Controller form provided, content self-formed. 7 arms x 2 phases x 8 seeds = 112 sessions. Operationalization: expressed_arr[bend+1500:bend+2000] all == pre_fav (simpler equivalent of >= 500 consecutive steps holding at bend+2000). Verdict map: POSITIVE iff P5 AND P6 AND P7; NEGATIVE-config iff P5 AND P6 AND NOT P7; NEGATIVE-no-resistance iff F5; NEGATIVE-rigidity iff P5 AND F6; MIXED otherwise."
+  "notes": "N4 rung 3 controller. PRE-REGISTERED in loop/directions/identity-n4.md (commit 3a8bce0) BEFORE any data. Controller form provided, content self-formed. 7 arms x 2 phases x 8 seeds = 112 sessions. Operationalization: expressed_arr[bend+1500:bend+2000] all == pre_fav (simpler equivalent of >= 500 consecutive steps holding at bend+2000). Verdict map: POSITIVE iff P5 AND P6 AND P7; NEGATIVE-config iff P5 AND P6 AND NOT P7; NEGATIVE-no-resistance iff F5; NEGATIVE-rigidity iff P5 AND F6; MIXED otherwise. METADATA PATCH (post-run, no scientific change): halted=true + consult_required=true \u2014 falsifier F5 fired, so the thread HALTED per discipline and a consult was posted in loop/IDEAS.md (resolved by the human's word authorizing Exp 182, the freeze-gate surface). tier added for downstream tooling.",
+  "consult_required": true,
+  "tier": "no-resistance"
 }
