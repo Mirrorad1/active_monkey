@@ -7226,3 +7226,90 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   a predeclared >= 6-measurable validity gate per pair, plus the s301-vs-s297
   mechanism diagnostic (v-state at entry/release; monitor reference) — the deferral
   existence is banked here; 192 prices its RATE and mechanism.
+
+## Exp 192 — n4-crack-edges rung 1 completion attempt (pre-registered a2e1e1b): NEGATIVE (the stricter of two readings, blind-verified) — the PRIMARY question is INSTRUMENT-BOUNDED A SECOND TIME: even at 12,000-step tails the re-freeze cycle does not settle (36/82 defended controller seats still unmeasurable; tail freezes run 2,600 -> 9,300+ steps; 3 sessions/arm effectively unreleased at session end), so all 6 controller pairs fail the predeclared M>=10 gate and no retention rate is licensed; H-mech REFUTED in Part C (the surrendering seed carries the LARGER at-release margin, 92.4 vs 87.6 — the divergence tracks post-release observation composition, 48% vs 33% attack-color: THE LOCALITY MECHANISM); P2/P3 emphatically clean (baseline displacement total, w1=1.0 in 48/48 sessions; oracle retains 14/15 and 14/14); the rung-1 question needs REFRAMING, not a third tail extension — consult posted, loop PAUSED on the human's word (NEGATIVE / NEW INSIGHT)
+
+- Plain: we rebuilt the retention experiment with recordings nearly twice as long,
+  sized to everything the last run measured — and the system outran the ruler again.
+  The defenders do not settle down after an attack: they keep cycling in and out of
+  their defensive freeze for thousands of steps, because the world itself will not go
+  quiet — after captivity ends, the creature is left wandering territory where the
+  attacked color keeps appearing, and the alarm keeps re-tripping. The deep lesson
+  came from the two-seed autopsy: the defense that surrendered did NOT have a weaker
+  stored identity than its twin that held — if anything it was stronger. What
+  differed was what the world showed each of them right after release: the
+  surrendering one saw the attack color half the time, the retaining one a third.
+  Identity retention, at this body, is not a property of the defense mechanism — it
+  is a property of what you live through next. Measuring it against a stopwatch
+  ("1,000 steps after release") was the wrong instrument twice; the follow-up must
+  measure against the experience stream instead. Paused here at the human's word.
+- Question (pre-registered a2e1e1b BEFORE any data): the retention RATE with tails
+  sized to Exp 191's measured release distribution (6,600 -> 12,000), unmeasured
+  seats excluded both sides behind an M>=10 validity gate, two pooled seed blocks
+  (296-303 completion + FRESH 304-311); bars P1 >= 5/6 every covered pair / F1 <=
+  2/3; P2 durability >= 12/16; P3 oracle; plus Part C: the s301-vs-s297 mechanism
+  diagnostic with H-mech = the at-entry-margin hypothesis.
+- Setup: experiments/exp192_n4_retention_priced.py; 3 cells x 4 arms x 16 seeds =
+  192 W sessions + 2 diagnostic re-runs, 1.0 min; G1 (exp183 equivalence) PASS and
+  G2 (the Block-1 prefix bit-match license: every committed exp191 quantity
+  reproduced on the shared prefix) PASS, 0 mismatches in either evidence table.
+- Result (committed exp192.txt + exp192_rows.json): frozen defense pooled: oracle
+  15/14/13, controllers 13/14/14 per cell (identical between INT-C2900 and REG-TB —
+  shared freeze machinery), baseline 0/16 everywhere. THE INSTRUMENT FAILED ITS OWN
+  GATE AGAIN: M = 8/8/7 per controller pair (gate >= 10) — 36 of 82 defended
+  controller seats WINDOW_OVERRUN at the doubled tail. The release distribution is
+  the finding: tail re-freezes now run 2,600 -> 9,300+ steps; releases reach
+  bend+12,000; per arm, 2 C-B + 1 C-C sessions sit within 600 steps of session end
+  (effectively unreleased). THE NON-SETTLING TAIL: the freeze cycling is fed by
+  post-captivity LOCALITY — the creature roams attacked-color territory, pressure
+  keeps re-asserting, and "release" is not a settled state of this system at any
+  tested horizon. Ungated raw rates (exploratory, M < 10, NOT graded): 7/8, 5/8,
+  6/7 per controller per cell — the C-B 5/8 = 0.625 sits below F1's 2/3 line, a
+  flag not a finding. P2 PASS at full strength: baseline w1_frac = 1.0 in ALL 48
+  baseline sessions (displacement expression is total at the 12k horizon). P3 PASS:
+  oracle retains 14/15 = 0.933 (C-A; the one miss is the s303 transient excursion
+  class) and 14/14 = 1.000 (C-B); oracle C-C 13/16 missed its own coverage bar.
+  PART C (bit-match-gated, both seeds reproduce exp191 exactly): H-MECH REFUTED —
+  at-release margins are comparable and INVERTED vs the hypothesis (retaining s297:
+  87.649; surrendering s301: 92.356 — the bigger stored margin surrendered); s301's
+  argmax flips to the attack color within 500 steps of release (margin -13.82); the
+  post-release observation streams diverge exactly as the locality reading
+  predicts: frac_attack over [release, release+1000) = 0.480 (s301, surrendered)
+  vs 0.331 (s297, retained). n=2, diagnostic-grade.
+- Verifier: disagreed -> stricter taken. The blinded verifier (docstring + outputs
+  only) recomputed every count (all match), confirmed both gates at 0 mismatches,
+  caught the script's "P1 PASS" line as conflating oracle validation with the
+  ungraded controller pairs (L2 class — adopted), adjudicated H-mech REFUTED, and
+  returned NEGATIVE (primary question unanswered by the instrument + the
+  pre-registered mechanism hypothesis falsified) where the conductor read MIXED
+  (P2/P3 pass; P1 ungraded by its own predeclared gate; no falsifier formally
+  fired). The pre-registration genuinely did not define the overall verdict for an
+  instrument-failed primary — both readings recorded, NEGATIVE stands.
+- Implication: two iterations, two honest instrument failures, one converging
+  picture — "post-release retention" as a wall-clock property is ILL-POSED at this
+  body: (1) release does not settle (the locality-fed re-freeze cycle), and (2)
+  retention outcome tracks the post-release experience stream, not the defense's
+  stored state (H-mech refuted; the locality mechanism). The constructive reframe
+  candidates for rung 1: score expression over the WHOLE tail with observation
+  composition as a covariate; score at matched obs-composition strata; or
+  intervene — return the creature to home territory at train end, isolating the
+  defense from the locality confound. The FEP-flavored reading, stated as
+  interpretation not result: identity persistence here is jointly produced by the
+  defense AND by what the world keeps showing the creature afterward.
+  Generalizability tier: instrument/dynamics characterization + one refuted
+  mechanism hypothesis; no rate claim at any tier.
+- Honest caveat: the NEGATIVE is an instrument-and-hypothesis negative, not a
+  deferral-is-common claim — the ungated 0.625 in C-B is exploratory (M=8) and the
+  pooled blocks share the Block-1 seeds with Exp 191 (only Block 2 is fresh); the
+  locality mechanism rests on n=2 diagnostic sessions plus event-chain reading;
+  the non-settling-tail claim is bounded to 12,000-step tails (a third extension
+  might find settling — but chasing it is exactly the instrument loop the consult
+  proposes to exit); controllers' identical per-seed dynamics mean the two arms
+  are one observation stream, not two; all constants PROVIDED.
+- Verdict: NEGATIVE / NEW INSIGHT (instrument-bounded primary, second consecutive;
+  H-mech refuted; the locality mechanism + the non-settling tail named; P2/P3
+  clean at full strength).
+- Next: PAUSED on the human's explicit in-session word ("pause the loop after
+  you're done"). CONSULT posted in loop/IDEAS.md: rung-1 reframe options (stream-
+  conditioned scoring / matched-composition strata / the return-home intervention),
+  rung 2 (the tight core), or redirect — each needs its own word on resumption.

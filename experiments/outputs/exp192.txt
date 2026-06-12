@@ -1,0 +1,658 @@
+================================================================================
+EXP 192 -- N4 RETENTION PRICED (RUNG 1 COMPLETED WITH CORRECTLY-SIZED INSTRUMENT)
+PRE-REGISTERED in loop/directions/n4-crack-edges.md (commit a2e1e1b) BEFORE any data
+Seeds: Block1=[296, 297, 298, 299, 300, 301, 302, 303], Block2=[304, 305, 306, 307, 308, 309, 310, 311]
+3 cells x 4 arms x 16 seeds = 192 W sessions
+Runner: run_fork_schedule_190 with hysteresis_snaps=0 (exp188-verbatim code path)
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+
+================================================================================
+STEP 1: G1 -- EQUIVALENCE GATE (exp183 replay through exp190 runner)
+================================================================================
+EQUIVALENCE GATE: exp183 replay
+
+=== arm=baseline seed=229 ===
+  b0 gap_start    got=135.99937835015726                           committed=135.99937835015726                           OK
+  b0 gap_end      got=-571.7363522432429                           committed=-571.7363522432429                           OK
+  b0 d_b          got=0.15664036565125683                          committed=0.15664036565125683                          OK
+  b0 tv_b         got=0.15664036565125675                          committed=0.15664036565125675                          OK
+  b0 recovered    got=false                                        committed=false                                        OK
+  b0 n_events     got=0                                            committed=0                                            OK
+  b1 gap_start    got=308.8677728920327                            committed=308.8677728920327                            OK
+  b1 gap_end      got=-441.6128408201637                           committed=-441.6128408201637                           OK
+  b1 d_b          got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 tv_b         got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=0                                            committed=0                                            OK
+  b2 gap_start    got=322.85746017635324                           committed=322.85746017635324                           OK
+  b2 gap_end      got=-402.18131405053043                          committed=-402.18131405053043                          OK
+  b2 d_b          got=0.15775393082799233                          committed=0.15775393082799233                          OK
+  b2 tv_b         got=0.15775393082799238                          committed=0.15775393082799238                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=0                                            committed=0                                            OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start    got=153.15192102308868                           committed=153.15192102308868                           OK
+  b0 gap_end      got=80.55582599896172                            committed=80.55582599896172                            OK
+  b0 d_b          got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 tv_b         got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 recovered    got=true                                         committed=true                                         OK
+  b0 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b1 gap_start    got=77.59197443713458                            committed=77.59197443713458                            OK
+  b1 gap_end      got=5.162418152138571                            committed=5.162418152138571                            OK
+  b1 d_b          got=0.016416619393121945                         committed=0.016416619393121945                         OK
+  b1 tv_b         got=0.016416619393121917                         committed=0.016416619393121917                         OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b2 gap_start    got=41.6153816086221                             committed=41.6153816086221                             OK
+  b2 gap_end      got=-29.89416352514172                           committed=-29.89416352514172                           OK
+  b2 d_b          got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 tv_b         got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  gate arm=H1200 seed=229: PASS
+
+G1 PASS -- proceeding.
+
+Loaded 120 exp191 session rows for G2 comparisons.
+
+================================================================================
+STEP 2: BLOCK-1 SESSIONS (seeds 296-303) + G2 PREFIX BIT-MATCH GATE
+================================================================================
+
+G2 EVIDENCE TABLE (one line per compared field):
+  G2 C-A/baseline/296: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/296: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/296: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/297: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/297: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/297: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/298: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/298: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/298: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/299: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/299: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/299: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/300: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/300: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/300: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/301: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/301: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/301: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/302: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/302: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/302: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/baseline/303: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-A/baseline/303: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-A/baseline/303: exp191=1.0 exp192=1.0 -> OK
+  G2 C-A/oracle/296: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/296: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/296: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/297: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/297: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/297: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/298: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/298: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/298: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/299: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/299: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/299: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/300: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/300: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/300: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/301: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/301: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/301: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/302: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/302: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/oracle/302: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/oracle/303: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-A/oracle/303: exp191=0.882 exp192=0.882 -> OK
+    G2 w2_frac C-A/oracle/303: exp191=0.694 exp192=0.694 -> OK
+  G2 C-A/INT-C2900/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-A/INT-C2900/296: label=transient/transient entry=6075/6075 exit=12075/12075 -> OK
+    G2 event[1] C-A/INT-C2900/296: label=transient/transient entry=12425/12425 exit=15025/15025 -> OK
+  G2 C-A/INT-C2900/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/297: label=transient/transient entry=6075/6075 exit=12125/12125 -> OK
+    G2 event[1] C-A/INT-C2900/297: label=transient/transient entry=12450/12450 exit=15825/15825 -> OK
+  G2 C-A/INT-C2900/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/298: label=transient/transient entry=6075/6075 exit=12125/12125 -> OK
+    G2 w1_frac C-A/INT-C2900/298: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/INT-C2900/298: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/INT-C2900/299: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-A/INT-C2900/299: label=concession/concession entry=4475/4475 exit=9100/9100 -> OK
+    G2 event[1] C-A/INT-C2900/299: label=transient/transient entry=9475/9475 exit=12600/12600 -> OK
+    G2 C-A/INT-C2900/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/INT-C2900/299: release moved exp191=12600 -> exp192=20350 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/INT-C2900/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-A/INT-C2900/300: label=transient/transient entry=5025/5025 exit=12100/12100 -> OK
+    G2 C-A/INT-C2900/300: exp192 has 2 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/INT-C2900/300: release moved exp191=12100 -> exp192=20300 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/INT-C2900/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/301: label=transient/transient entry=2025/2025 exit=12150/12150 -> OK
+    G2 w1_frac C-A/INT-C2900/301: exp191=0.028 exp192=0.028 -> OK
+    G2 w2_frac C-A/INT-C2900/301: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/INT-C2900/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-A/INT-C2900/302: label=transient/transient entry=5275/5275 exit=12100/12100 -> OK
+    G2 event[2] C-A/INT-C2900/302: label=transient/transient entry=12700/12700 exit=15300/15300 -> OK
+    G2 C-A/INT-C2900/302: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/INT-C2900/302: release moved exp191=15300 -> exp192=18675 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/INT-C2900/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/INT-C2900/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-A/INT-C2900/303: label=transient/transient entry=4375/4375 exit=12075/12075 -> OK
+    G2 C-A/INT-C2900/303: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/INT-C2900/303: release moved exp191=12075 -> exp192=18150 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/REG-TB/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-A/REG-TB/296: label=transient/transient entry=6075/6075 exit=12075/12075 -> OK
+    G2 event[1] C-A/REG-TB/296: label=transient/transient entry=12425/12425 exit=15025/15025 -> OK
+  G2 C-A/REG-TB/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/297: label=transient/transient entry=6075/6075 exit=12125/12125 -> OK
+    G2 event[1] C-A/REG-TB/297: label=transient/transient entry=12450/12450 exit=15825/15825 -> OK
+  G2 C-A/REG-TB/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/298: label=transient/transient entry=6075/6075 exit=12125/12125 -> OK
+    G2 w1_frac C-A/REG-TB/298: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-A/REG-TB/298: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/REG-TB/299: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-A/REG-TB/299: label=concession/concession entry=4475/4475 exit=9025/9025 -> OK
+    G2 event[1] C-A/REG-TB/299: label=transient/transient entry=9475/9475 exit=12600/12600 -> OK
+    G2 C-A/REG-TB/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/REG-TB/299: release moved exp191=12600 -> exp192=20350 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/REG-TB/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-A/REG-TB/300: label=transient/transient entry=5025/5025 exit=12100/12100 -> OK
+    G2 C-A/REG-TB/300: exp192 has 2 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/REG-TB/300: release moved exp191=12100 -> exp192=20300 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/REG-TB/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/301: label=transient/transient entry=2025/2025 exit=12150/12150 -> OK
+    G2 w1_frac C-A/REG-TB/301: exp191=0.028 exp192=0.028 -> OK
+    G2 w2_frac C-A/REG-TB/301: exp191=0.0 exp192=0.0 -> OK
+  G2 C-A/REG-TB/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-A/REG-TB/302: label=transient/transient entry=5275/5275 exit=12100/12100 -> OK
+    G2 event[2] C-A/REG-TB/302: label=transient/transient entry=12700/12700 exit=15300/15300 -> OK
+    G2 C-A/REG-TB/302: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/REG-TB/302: release moved exp191=15300 -> exp192=18675 (new tail events) -- w-frac compare SKIPPED
+  G2 C-A/REG-TB/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-A/REG-TB/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-A/REG-TB/303: label=transient/transient entry=4375/4375 exit=12075/12075 -> OK
+    G2 C-A/REG-TB/303: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-A/REG-TB/303: release moved exp191=12075 -> exp192=18150 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/baseline/296: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/296: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/296: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/297: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/297: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/297: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/298: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/298: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/298: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/299: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/299: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/299: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/300: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/300: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/300: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/301: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/301: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/301: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/302: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/302: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/302: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/baseline/303: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/baseline/303: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/baseline/303: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/oracle/296: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/296: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/296: exp191=0.142 exp192=0.142 -> OK
+  G2 C-B/oracle/297: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/297: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/297: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/298: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/298: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/298: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/299: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/299: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/299: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/300: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/300: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/300: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/301: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/301: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/301: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/302: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-B/oracle/302: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-B/oracle/302: exp191=0.0 exp192=0.0 -> OK
+  G2 C-B/oracle/303: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-B/oracle/303: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-B/oracle/303: exp191=1.0 exp192=1.0 -> OK
+  G2 C-B/INT-C2900/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-B/INT-C2900/296: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 event[1] C-B/INT-C2900/296: label=transient/transient entry=20325/20325 exit=22925/22925 -> OK
+  G2 C-B/INT-C2900/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/297: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 C-B/INT-C2900/297: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/INT-C2900/297: release moved exp191=20125 -> exp192=24275 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/INT-C2900/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/298: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 C-B/INT-C2900/298: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/INT-C2900/298: release moved exp191=20125 -> exp192=26800 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/INT-C2900/299: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/299: label=transient/transient entry=4475/4475 exit=20350/20350 -> OK
+    G2 C-B/INT-C2900/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/INT-C2900/299: release moved exp191=20350 -> exp192=24750 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/INT-C2900/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-B/INT-C2900/300: label=transient/transient entry=5025/5025 exit=20100/20100 -> OK
+    G2 event[2] C-B/INT-C2900/300: label=transient/transient entry=20575/20575 exit=23875/23875 -> OK
+  G2 C-B/INT-C2900/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/301: label=transient/transient entry=2025/2025 exit=21575/21575 -> OK
+  G2 C-B/INT-C2900/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-B/INT-C2900/302: label=transient/transient entry=5275/5275 exit=20100/20100 -> OK
+    G2 event[2] C-B/INT-C2900/302: label=transient/transient entry=20375/20375 exit=23950/23950 -> OK
+  G2 C-B/INT-C2900/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/INT-C2900/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-B/INT-C2900/303: label=transient/transient entry=4375/4375 exit=20125/20125 -> OK
+    G2 event[2] C-B/INT-C2900/303: label=transient/transient entry=20725/20725 exit=23325/23325 -> OK
+    G2 C-B/INT-C2900/303: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/INT-C2900/303: release moved exp191=23325 -> exp192=27575 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/REG-TB/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-B/REG-TB/296: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 event[1] C-B/REG-TB/296: label=transient/transient entry=20325/20325 exit=22925/22925 -> OK
+  G2 C-B/REG-TB/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/297: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 C-B/REG-TB/297: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/REG-TB/297: release moved exp191=20125 -> exp192=24275 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/REG-TB/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/298: label=transient/transient entry=6075/6075 exit=20125/20125 -> OK
+    G2 C-B/REG-TB/298: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/REG-TB/298: release moved exp191=20125 -> exp192=26800 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/REG-TB/299: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/299: label=transient/transient entry=4475/4475 exit=20350/20350 -> OK
+    G2 C-B/REG-TB/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/REG-TB/299: release moved exp191=20350 -> exp192=24750 (new tail events) -- w-frac compare SKIPPED
+  G2 C-B/REG-TB/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-B/REG-TB/300: label=transient/transient entry=5025/5025 exit=20100/20100 -> OK
+    G2 event[2] C-B/REG-TB/300: label=transient/transient entry=20575/20575 exit=23875/23875 -> OK
+  G2 C-B/REG-TB/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/301: label=transient/transient entry=2025/2025 exit=21575/21575 -> OK
+  G2 C-B/REG-TB/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-B/REG-TB/302: label=transient/transient entry=5275/5275 exit=20100/20100 -> OK
+    G2 event[2] C-B/REG-TB/302: label=transient/transient entry=20375/20375 exit=23950/23950 -> OK
+  G2 C-B/REG-TB/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-B/REG-TB/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-B/REG-TB/303: label=transient/transient entry=4375/4375 exit=20125/20125 -> OK
+    G2 event[2] C-B/REG-TB/303: label=transient/transient entry=20725/20725 exit=23325/23325 -> OK
+    G2 C-B/REG-TB/303: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-B/REG-TB/303: release moved exp191=23325 -> exp192=27575 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/baseline/296: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/296: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/296: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/297: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/297: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/297: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/298: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/298: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/298: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/299: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/299: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/299: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/300: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/300: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/300: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/301: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/301: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/301: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/302: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/302: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/302: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/baseline/303: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/baseline/303: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/baseline/303: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/oracle/296: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/296: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/296: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/oracle/297: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/297: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/297: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/oracle/298: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/298: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/298: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/oracle/299: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/oracle/299: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/oracle/299: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/oracle/300: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/300: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/300: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/oracle/301: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/301: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/301: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/oracle/302: frozen_defense exp191=True exp192=True -> OK
+    G2 w1_frac C-C/oracle/302: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/oracle/302: exp191=0.68 exp192=0.68 -> OK
+  G2 C-C/oracle/303: frozen_defense exp191=False exp192=False -> OK
+    G2 w1_frac C-C/oracle/303: exp191=1.0 exp192=1.0 -> OK
+    G2 w2_frac C-C/oracle/303: exp191=1.0 exp192=1.0 -> OK
+  G2 C-C/INT-C2900/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-C/INT-C2900/296: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 event[1] C-C/INT-C2900/296: label=transient/transient entry=17725/17725 exit=20325/20325 -> OK
+  G2 C-C/INT-C2900/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/297: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 C-C/INT-C2900/297: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/297: release moved exp191=17525 -> exp192=24275 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/298: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 C-C/INT-C2900/298: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/298: release moved exp191=17525 -> exp192=26800 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/299: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/299: label=transient/transient entry=4475/4475 exit=20350/20350 -> OK
+    G2 C-C/INT-C2900/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/299: release moved exp191=20350 -> exp192=24750 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-C/INT-C2900/300: label=transient/transient entry=5025/5025 exit=17500/17500 -> OK
+    G2 event[2] C-C/INT-C2900/300: label=transient/transient entry=17700/17700 exit=20300/20300 -> OK
+    G2 C-C/INT-C2900/300: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/300: release moved exp191=20300 -> exp192=23875 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/301: label=transient/transient entry=2025/2025 exit=17525/17525 -> OK
+    G2 C-C/INT-C2900/301: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/301: release moved exp191=17525 -> exp192=21575 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-C/INT-C2900/302: label=transient/transient entry=5275/5275 exit=17500/17500 -> OK
+    G2 event[2] C-C/INT-C2900/302: label=transient/transient entry=17775/17775 exit=20375/20375 -> OK
+    G2 C-C/INT-C2900/302: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/INT-C2900/302: release moved exp191=20375 -> exp192=23950 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/INT-C2900/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/INT-C2900/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-C/INT-C2900/303: label=transient/transient entry=4375/4375 exit=17475/17475 -> OK
+    G2 w1_frac C-C/INT-C2900/303: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/INT-C2900/303: exp191=0.0 exp192=0.0 -> OK
+  G2 C-C/REG-TB/296: frozen_defense exp191=False exp192=False -> OK
+    G2 event[0] C-C/REG-TB/296: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 event[1] C-C/REG-TB/296: label=transient/transient entry=17725/17725 exit=20325/20325 -> OK
+  G2 C-C/REG-TB/297: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/297: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 C-C/REG-TB/297: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/297: release moved exp191=17525 -> exp192=24275 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/298: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/298: label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+    G2 C-C/REG-TB/298: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/298: release moved exp191=17525 -> exp192=26800 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/299: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/299: label=transient/transient entry=4475/4475 exit=20350/20350 -> OK
+    G2 C-C/REG-TB/299: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/299: release moved exp191=20350 -> exp192=24750 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/300: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/300: label=transient/transient entry=1225/1225 exit=4800/4800 -> OK
+    G2 event[1] C-C/REG-TB/300: label=transient/transient entry=5025/5025 exit=17500/17500 -> OK
+    G2 event[2] C-C/REG-TB/300: label=transient/transient entry=17700/17700 exit=20300/20300 -> OK
+    G2 C-C/REG-TB/300: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/300: release moved exp191=20300 -> exp192=23875 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/301: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/301: label=transient/transient entry=2025/2025 exit=17525/17525 -> OK
+    G2 C-C/REG-TB/301: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/301: release moved exp191=17525 -> exp192=21575 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/302: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/302: label=transient/transient entry=2475/2475 exit=5075/5075 -> OK
+    G2 event[1] C-C/REG-TB/302: label=transient/transient entry=5275/5275 exit=17500/17500 -> OK
+    G2 event[2] C-C/REG-TB/302: label=transient/transient entry=17775/17775 exit=20375/20375 -> OK
+    G2 C-C/REG-TB/302: exp192 has 1 additional tail event(s) beyond exp191 -- allowed
+    G2 w-frac C-C/REG-TB/302: release moved exp191=20375 -> exp192=23950 (new tail events) -- w-frac compare SKIPPED
+  G2 C-C/REG-TB/303: frozen_defense exp191=True exp192=True -> OK
+    G2 event[0] C-C/REG-TB/303: label=transient/transient entry=1500/1500 exit=4100/4100 -> OK
+    G2 event[1] C-C/REG-TB/303: label=transient/transient entry=4375/4375 exit=17475/17475 -> OK
+    G2 w1_frac C-C/REG-TB/303: exp191=0.0 exp192=0.0 -> OK
+    G2 w2_frac C-C/REG-TB/303: exp191=0.0 exp192=0.0 -> OK
+
+G2 PASS -- all Block-1 prefixes match exp191 committed rows.
+
+================================================================================
+STEP 3: BLOCK-2 SESSIONS (fresh seeds 304-311)
+================================================================================
+
+
+Block-2 done: 0.5 min (96 sessions)
+
+================================================================================
+STEP 4: PART C -- MECHANISM DIAGNOSTIC
+C-C x INT-C2900 x seeds {297, 301} at ORIGINAL exp191 n_steps=21400
+================================================================================
+
+--- Part C: C-C / INT-C2900 / seed=297 at n_steps=21400 ---
+  Bit-match frozen_defense: exp191=True exp192=True -> OK
+  Bit-match events: exp191=1 exp192=1 -> OK
+  Bit-match w1_frac: exp191=0.0 exp192=0.0 diff=0.0 -> OK
+  Bit-match w2_frac: exp191=0.0 exp192=0.0 diff=0.0 -> OK
+  attack_color=1
+  release_step=17525
+
+  checkpoint             step  argmax    margin  v_vector
+  ----------------------------------------------------------------------
+  freeze_entry           6100       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst1_start           6000       2  162.0044  [955.3669 914.0340 1076.0384]
+  burst1_end             6400       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst2_start           8800       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst2_end             9200       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst3_start          11600       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst3_end            12000       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst4_start          14400       2   87.6494  [934.1080 964.4449 1052.0944]
+  burst4_end            14800       2   87.6494  [934.1080 964.4449 1052.0944]
+  release               17500       2   87.6494  [934.1080 964.4449 1052.0944]
+  release+500           18000       2  115.1912  [926.0502 955.5912 1070.7824]
+  release+1000          18500       2  115.1912  [926.0502 955.5912 1070.7824]
+
+  Post-release obs composition [release, release+1000): frac_attack=0.3310 (331/1000 obs == attack_color)
+
+--- Part C: C-C / INT-C2900 / seed=301 at n_steps=21400 ---
+  Bit-match frozen_defense: exp191=True exp192=True -> OK
+  Bit-match events: exp191=1 exp192=1 -> OK
+  Bit-match w1_frac: exp191=1.0 exp192=1.0 diff=0.0 -> OK
+  Bit-match w2_frac: exp191=1.0 exp192=1.0 diff=0.0 -> OK
+  attack_color=2
+  release_step=17525
+
+  checkpoint             step  argmax    margin  v_vector
+  ----------------------------------------------------------------------
+  freeze_entry           2000       0  108.9706  [1095.2068 1043.8288 986.2362]
+  burst1_start           6000       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst1_end             6400       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst2_start           8800       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst2_end             9200       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst3_start          11600       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst3_end            12000       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst4_start          14400       0   92.3558  [1089.4906 1036.6777 997.1349]
+  burst4_end            14800       0   92.3558  [1089.4906 1036.6777 997.1349]
+  release               17500       0   92.3558  [1089.4906 1036.6777 997.1349]
+  release+500           18000       2  -13.8175  [1048.6573 1001.6031 1062.4747]
+  release+1000          18500       2  -13.8175  [1048.6573 1001.6031 1062.4747]
+
+  Post-release obs composition [release, release+1000): frac_attack=0.4800 (480/1000 obs == attack_color)
+
+H-MECH CHECK (falsifiable expectation):
+  s297 at-release margin (entry 6075, post-settle):    87.64940719828337
+  s301 at-release margin (entry 2025, pre-settle):     92.35578191315881
+  H-mech NOT CONFIRMED: s297 margin (87.6494) <= s301 margin (92.3558) -- divergence from post-release dynamics; absorption/locality candidate
+
+================================================================================
+STEP 5: ANALYSIS OVER POOLED 16 SEEDS
+================================================================================
+
+FROZEN-DEFENSE COUNT TABLE (count/16 per (arm, cell))
+--------------------------------------------------------------------------------
+  arm                           C-A        C-B        C-C
+--------------------------------------------------------------------------------
+  baseline                       0/16         0/16         0/16
+  oracle                        15/16        14/16        13/16
+  INT-C2900                     13/16        14/16        14/16
+  REG-TB                        13/16        14/16        14/16
+
+Covered non-oracle pairs (frozen_def >= 12/16): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+Oracle covered pairs (frozen_def >= 14/16):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+
+RETENTION ANALYSIS PER COVERED PAIR
+  M = measured defended seats (frozen_defense AND NOT overrun)
+  Validity: M >= 10 else INSTRUMENT-FAILED
+  retention_rate = retained / M
+------------------------------------------------------------------------------------------
+  INT-C2900              x C-A     : INSTRUMENT-FAILED (M=8 < 10) (defended=13/16, measured=8/16)
+
+  INT-C2900              x C-B     : INSTRUMENT-FAILED (M=8 < 10) (defended=14/16, measured=8/16)
+
+  INT-C2900              x C-C     : INSTRUMENT-FAILED (M=7 < 10) (defended=14/16, measured=7/16)
+
+  REG-TB                 x C-A     : INSTRUMENT-FAILED (M=8 < 10) (defended=13/16, measured=8/16)
+
+  REG-TB                 x C-B     : INSTRUMENT-FAILED (M=8 < 10) (defended=14/16, measured=8/16)
+
+  REG-TB                 x C-C     : INSTRUMENT-FAILED (M=7 < 10) (defended=14/16, measured=7/16)
+
+  oracle                 x C-A     : defended=15/16 M=15 retained=14/15 retention_rate=0.933
+     block   seed  frozen_def   release   w1_frac   w2_frac   retained                           flags
+        B1    296        True      9400     0.000     0.000       True                                
+        B1    297        True      9400     0.000     0.000       True                                
+        B1    298        True      9400     0.000     0.000       True                                
+        B1    299        True      9400     0.000     0.000       True                                
+        B1    300        True      9400     0.000     0.000       True                                
+        B1    301        True      9400     0.000     0.000       True                                
+        B1    302        True      9400     0.000     0.000       True                                
+        B1    303        True      9400     0.882     0.694      False                                
+        B2    304        True      9400     0.000     0.000       True                                
+        B2    305       False      9400     1.000     1.000      False                                
+        B2    306        True      9400     0.000     0.000       True                                
+        B2    307        True      9400     0.000     0.000       True                                
+        B2    308        True      9400     0.000     0.000       True                                
+        B2    309        True      9400     0.000     0.000       True                                
+        B2    310        True      9400     0.000     0.000       True                                
+        B2    311        True      9400     0.000     0.000       True                                
+
+  oracle                 x C-B     : defended=14/16 M=14 retained=14/14 retention_rate=1.000
+     block   seed  frozen_def   release   w1_frac   w2_frac   retained                           flags
+        B1    296        True     17400     0.000     0.142       True                                
+        B1    297        True     17400     0.000     0.000       True                                
+        B1    298        True     17400     0.000     0.000       True                                
+        B1    299        True     17400     0.000     0.000       True                                
+        B1    300        True     17400     0.000     0.000       True                                
+        B1    301        True     17400     0.000     0.000       True                                
+        B1    302        True     17400     0.000     0.000       True                                
+        B1    303       False     17400     1.000     1.000      False                                
+        B2    304        True     17400     0.000     0.000       True                                
+        B2    305       False     17400     1.000     1.000      False                                
+        B2    306        True     17400     0.000     0.000       True                                
+        B2    307        True     17400     0.000     0.000       True                                
+        B2    308        True     17400     0.000     0.000       True                                
+        B2    309        True     17400     0.000     0.000       True                                
+        B2    310        True     17400     0.000     0.000       True                                
+        B2    311        True     17400     0.000     0.000       True                                
+
+P2: BASELINE W1 DISPLACED COUNT PER CELL (w1_frac >= 0.5 = still displaced)
+------------------------------------------------------------
+  cell       w1_displaced/16     P2_cell
+------------------------------------------------------------
+  C-A                16/16        PASS
+  C-B                16/16        PASS
+  C-C                16/16        PASS
+
+
+PC1 flagged: 0/192 sessions with ahat_drift >= 0.15
+
+================================================================================
+VERDICT LINES
+================================================================================
+
+P1 (retention >= 5/6 in every covered pair):
+  Covered pairs (non-oracle): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  Covered pairs (oracle):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+  Instrument-failed pairs:    [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  INT-C2900              x C-A     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  INT-C2900              x C-B     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  INT-C2900              x C-C     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  REG-TB                 x C-A     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  REG-TB                 x C-B     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  REG-TB                 x C-C     : rate=INSTRUMENT-FAILED -> INSTRUMENT-FAILED
+  oracle                 x C-A     : rate=0.933 -> >= 5/6
+  oracle                 x C-B     : rate=1.000 -> >= 5/6
+  F1 fired (any covered pair <= 2/3): False
+  MIXED-zone pairs (2/3 < rate < 5/6): []
+  => P1 VERDICT: PASS -- retention_rate >= 5/6 in every covered pair.
+
+P2 (baseline W1 displaced >= 12/16 per cell):
+  C-A: W1_displaced=16/16
+  C-B: W1_displaced=16/16
+  C-C: W1_displaced=16/16
+  F2 fired (w1_frac < 0.5 in >= 8/16 anywhere): False
+  => P2 VERDICT: PASS -- baseline stays displaced post-release in all cells.
+
+P3 (oracle retention_rate >= 5/6 in every covered oracle cell):
+  oracle x C-A: rate=0.933
+  oracle x C-B: rate=1.000
+  => P3 VERDICT: PASS -- oracle retention_rate >= 5/6 in all covered cells.
+
+================================================================================
+SUMMARY
+================================================================================
+
+  G1:                PASS
+  G2:                PASS (Block-1 prefix bit-match verified)
+  Seeds:             Block1=[296, 297, 298, 299, 300, 301, 302, 303] Block2=[304, 305, 306, 307, 308, 309, 310, 311]
+  Runtime:           1.0 min
+  Sessions:          192 W
+
+  P1 (retention >= 5/6 every covered pair): PASS
+  P2 (baseline W1 displaced >= 12/16 every cell): PASS
+  P3 (oracle retention >= 5/6 every covered cell): PASS
+
+  F1 (any covered pair retention <= 2/3): False
+  F2 (baseline self-heals in any cell):   False
+
+  Instrument-failed pairs: [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  PC1 flagged: 0/192
+
+  H-mech check:
+    s297 at-release margin: 87.64940719828337
+    s301 at-release margin: 92.35578191315881
+================================================================================
