@@ -6493,3 +6493,84 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   documented); (b) attempt the seed-229-class crack (variable-length /
   repeated-color attack schedules where no single H covers — the Exp 173
   playbook, with its dissolution warning); (c) other.
+
+## Addendum (2026-06-12) — Exp 183 seed-229 autopsy (diagnostic only; identity-n4-crack rung 1, plan Part 1): mechanism PINNED — every failing burst pays its erosion entirely in the ~75-step detection head (head_frac 1.000, frozen plateau bit-constant), repetition is NOT the discriminant (refuter d: seeds 227/228/233 share 229's [1,1,0] schedule and PASS), and recovery DECOUPLES from burst-end gap (fails at +5.2 and +45.0; passes at +1.0 and −33.5) — the margin LEDGER vs an H-independent dose is the operative mechanism (NEW INSIGHT, blind-verified PARTIAL: all 19 number checks pass; two narrative overstatements corrected here)
+
+- Plain: we re-ran 17 of Exp 183's sessions deterministically — every number matched
+  the committed rows to 1e-9, so the reconstruction IS the experiment — then read the
+  step-streams the rows don't keep. The story changed shape. Seed 229 doesn't lose
+  because the same color attacks twice: every H1200 seed has repeated burst colors,
+  and three seeds with 229's exact schedule all survive. It loses because each burst's
+  first ~75 steps are undetectable (the alarm needs that long to fire) and in that
+  window the attack writes ~72 points onto its color — a toll NO horizon can refuse,
+  paid before any freeze starts. And whether the creature recovers afterwards is not
+  decided by the score when the burst ends: it's decided by where it wanders in the
+  quiet after release. A margin of ~80+ at burst end survived in every observed case;
+  below that, outcomes went both ways.
+- Question (predeclared in the script docstring; docs/research/n4-fixed-h-squeeze-plan.md
+  Part 1): pin seed 229's H-arm failure mechanism among {trigger latency, release too
+  early, repeated-color accumulation, insufficient refractory, revision-bar conflict,
+  other}. Pre-data hypothesis: repeated-color cumulation of the irreducible
+  trigger-latency dose; refuters (a)-(d) predeclared.
+- Setup: experiments/exp183_seed229_autopsy.py — 17 deterministic Phase-W re-runs
+  (H1200 x seeds 226-233; seed 229 x {baseline, n4_freeze, H600, H900, H1800, H2400,
+  H3000, oracle}; H900 x 227) via exp183_n4_freeze_gate2.run_fork on a DETACHED
+  deepcopy of the mirro spine (bio appends no-op; spine bit-untouched, git-clean
+  verified by a separate integrity agent). BIT-MATCH GATE 17/17 PASS (row quantities +
+  all event fields to atol 1e-9). One measurement fix post-first-run, pre-commit,
+  disclosed: gap-at-freeze-entry is read from the frozen plateau (the 100-step snap
+  cadence floor-snapped a 75-step head to the pre-burst snapshot, making
+  erosion_head = 0 by construction and firing refuter (b) as an artifact); the read is
+  licensed by an asserted frozen-plateau constancy check (v bit-constant across all
+  in-freeze snapshots; doubles as a freeze-leak check — 0 leaks in 17 sessions).
+- Result (committed outputs exp183_seed229_autopsy.{txt,json}): refuters (a) CLEAR
+  (coverage 725/800 = 0.9062 in every failing H>=1200 burst; zero early releases),
+  (b) CLEAR after the fix (head_frac = 1.000 everywhere — 100% of erosion in the
+  unfrozen head; seed 229 doses 72.6/72.4/71.5 units at trig_lat 75; cross-seed head
+  erosion ~50-97 tracking trigger latency ~0.94-1.0 units/step), (c) CLEAR for the
+  subject scope, (d) FIRED — ALL 8 H1200 seeds have repeats, 7/8 pass; 227/228/233
+  share [1,1,0] and pass. HYPOTHESIS AS PREDECLARED: REFUTED as the discriminant
+  (repetition is a real operating mechanism — b0's dose pre-erodes b1's same-color
+  margin 153.2 -> 77.6 -> 5.2 — but it does not separate 229 from its passing peers).
+  Recovery decoupling: fails at gap_end +5.2 (expr 1.0) and +45.0 (227 b2, expr
+  0.706); passes at +1.0 (233 b1) and -33.5 (228 b1); every burst with gap_end >= ~80
+  recovered. H-arms H900-H3000 share IDENTICAL event tables on seed 229 (the head
+  dose is H-independent). Found object: 227 b0 was frozen-at-onset by a stray
+  pre-burst alarm (unfrozen head 0; gap untouched 29.0 throughout) — accidental
+  existence proof that freeze-at-onset pays zero dose (the oracle property as config
+  luck). Phase-R rows: revision-bar conflict REFUTED (separate sessions). Mechanism
+  verdict: TRIGGER-LATENCY DOSE vs the MARGIN LEDGER, with post-release expression
+  dynamics deciding sub-~80 margins; repeated-color accumulation demoted to
+  non-discriminant contributor; early-release/refractory/revision REFUTED.
+- Verifier: blinded adversarial subagent on the FINAL artifact: PARTIAL — bit-match
+  licensing sound (RESIST semantics confirm the plateau read), refuter table
+  confirmed, 19/19 number checks pass, classification licensed; two narrative
+  overstatements flagged and CORRECTED here: (1) the artifact's "near-tie election"
+  phrasing is wrong — the causal variable is expr_frac, not gap_end (dissociations
+  run both ways, incl. a +45.0 failure outside the subject scope); (2)
+  repeated_color_accumulation listed as co-primary overstates a non-discriminant.
+  Earlier same-day verification of the pre-fix artifact had challenged the dose
+  mechanism with a "frozen-body accumulation" alternative — refuted by direct
+  measurement (the frozen plateau is bit-constant; all erosion sits in the one snap
+  interval containing the unfrozen head).
+- Implication (for Exp 184, the exploratory squeeze map): the crack has TWO candidate
+  routes, not one — route 1 = the card's fixed-H interval emptiness
+  (max_b(L_b - d_b) > min_r(T_r), class A); route 2 = H-INDEPENDENT dose-ledger
+  exhaustion: cells where K x dose outpaces margin + regrowth(G) fail for EVERY
+  H >= L - d while the zero-dose oracle defends (class B carried by class C's floor) —
+  predicted geometry K >= 2 same-color x small G, any H. Exp 184 must log per-burst
+  gap_start/gap_end AND expr_frac (sub-~80 margins carry outcome variance gap_end
+  does not predict), use exogenous schedules (the repeat/recovered cross-tab is
+  selection-confounded when colors are endogenous: defense keeps argmin on the
+  attacked color), and add pre-armed/lower-THETA freezing as a named class-D
+  dissolution arm (the seed-227 accident, promoted to config). Generalizability tier:
+  failure-mode level (one body, one trigger family).
+- Caveat (autopsy): diagnostic only — no falsifier was gated and the N4 chapter
+  verdict is untouched; all instruments PROVIDED; the ~80-unit recovery threshold is
+  an observed regularity across 24 bursts x 8 seeds on ONE arm family, not a tested
+  law; the artifact's Q2 cross-tab and "near-tie" narrative carry the two flagged
+  overstatements (kept as-committed per the artifact-vs-entry rule; corrections live
+  here and in the card); sub-~80 outcome variance is attributed to post-release
+  occupancy dynamics by elimination, not by a positive mechanism test.
+- Next: Exp 184 — the exploratory fixed-H squeeze map (plan Part 2), with the rung-1
+  refinements folded into its predeclaration.

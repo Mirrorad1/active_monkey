@@ -106,4 +106,49 @@ mirro/vela/nira untouched; FROZEN untouched; M4a increment 1c stays halted behin
 fence; the N4 chapter doc is amended only by APPENDING a crack-resolution section, never
 by editing its verdict.
 
-**STATUS.** state: active (predesign committed; autopsy next) · latest: — (opens at the seed-229 autopsy, then Exp 184 exploratory) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: Exp 183 freeze machinery + sliding trigger, rung-2 monitor (180), displacement regime (176), detection-floor law (F), surrender-schedule law (G), universal-constant kill test (173) · why: the human's explicit word (2026-06-11) reopens the deferred seed-229 crack as a NEW investigation; the closed chapter verdict is untouched · next-falsifiable: seed-229 autopsy (mechanism pinnable from committed artifacts?), then Exp 184 (does any schedule cell empty the fixed-H interval?)
+**RUNG 1 RESULT (Exp 183 addendum, 2026-06-12 — the seed-229 autopsy; diagnostic,
+bit-match licensed 17/17, blind-verified).** Mechanism PINNED; the pre-data hypothesis
+PARTIALLY refuted, and the refinement reshapes Exp 184's predictions:
+
+- **The dose component is CONFIRMED.** Every failing burst pays its erosion entirely in
+  the ~75-step unfrozen detection head: head_frac = 1.000 with a frozen-plateau
+  constancy assertion (v bit-constant across all in-freeze snapshots — also a freeze
+  leak check, 0 leaks in 17 sessions); coverage 725/800 with zero early releases;
+  refractory and revision-bar candidates REFUTED. Seed 229's per-burst head dose:
+  72.6 / 72.4 / 71.5 units. Across seeds the head erosion runs ~72–97 (w-weighted; NOT
+  uniform — bounds stated, no uniformity claim).
+- **Repetition-as-discriminant is REFUTED (refuter d fired).** ALL 8 H1200 seeds have
+  repeated burst colors; seeds 227/228/233 share seed 229's exact [1,1,0] schedule and
+  PASS. The pooled repeat-vs-recovered cross-tab even inverts (failure 48% with repeats
+  vs 96% without) — a selection artifact: successful defense keeps argmin(v) on the
+  attacked color, so repeats are the DEFENDER's signature; displaced favorites rotate
+  argmin. Exp 184's exogenous schedules de-confound this.
+- **The operative discriminant is the margin ledger + post-release expression
+  dynamics — NOT the gap at burst end.** Recovery (expr_frac < 0.5 over
+  [bend+1500, bend+2000)) DECOUPLES from gap_end in both directions: 229 b1 FAILS at
+  gap_end +5.2 and 227 b2 FAILS at +45.0, while 233 b1 PASSES at +1.0 and 228 b1
+  PASSES at −33.5. Every observed burst with gap_end ≥ ~80 (≈ one head dose of slack)
+  recovered; below that, post-release occupancy dynamics decide, with no deterministic
+  gap threshold (blinded-verifier corrected framing — "near-tie lottery" was wrong;
+  the causal variable is expr_frac). H is irrelevant to the head dose: H900–H3000
+  share identical event tables on seed 229. Repetition is a real operating mechanism
+  (b0's dose pre-erodes b1's same-color margin) but NON-DISCRIMINANT; the
+  load-bearing mechanism is the trigger-latency dose against the margin ledger.
+- **Found object:** seed 227 b0 was frozen-at-onset by a stray pre-burst alarm
+  (unfrozen head = 0; gap untouched 29.0 → 29.0 → 29.0) — an accidental existence proof
+  that freeze-at-onset pays zero dose (the oracle property, reached by config luck).
+- **The card's first question answered:** seed 229 is NOT itself a crack instance of
+  the interval-emptiness form — its failures defeat every H equally (the head dose is
+  H-independent), so no H-interval arithmetic is implicated. Whether a ROBUST
+  no-fixed-H regime is constructible from this mechanism is exactly Exp 184's question.
+- **Exp 184 refinements (carry into its predeclaration):** (i) a SECOND crack route
+  beyond interval-emptiness — H-INDEPENDENT dose-ledger exhaustion: cells where
+  K·dose outpaces margin + regrowth(G) fail for EVERY H ≥ L−d_trigger while the oracle
+  defends (class B carried by class C's floor); predicted geometry: K ≥ 2 same-color ×
+  small G, any H. (ii) Log per-burst gap_start/gap_end AND expr_frac as diagnostics —
+  cells whose post-dose margins fall below ~80 carry outcome variance that gap_end does
+  not predict; seeds-per-cell must price it. (iii) The class-D dissolution check gains
+  a named candidate: pre-armed / lower-THETA freezing (the seed-227 accident, promoted
+  to a config arm).
+
+**STATUS.** state: active (rung 1 done — autopsy mechanism pinned; Exp 184 next) · latest: Exp 183 addendum (seed-229 autopsy, 2026-06-12) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: Exp 183 freeze machinery + sliding trigger, rung-2 monitor (180), displacement regime (176), detection-floor law (F), surrender-schedule law (G), universal-constant kill test (173), the autopsy's margin-ledger/election instruments · why: the human's explicit word (2026-06-11) reopens the deferred seed-229 crack as a NEW investigation; autopsy pinned the mechanism (head dose vs margin ledger; repetition not the discriminant; H-independent) · next-falsifiable: Exp 184 exploratory squeeze map — is a robust no-fixed-H regime constructible from the dose-ledger mechanism (route 2), or does any cell empty the fixed-H interval (route 1)?
