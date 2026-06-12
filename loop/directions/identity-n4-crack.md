@@ -151,4 +151,61 @@ PARTIALLY refuted, and the refinement reshapes Exp 184's predictions:
   a named candidate: pre-armed / lower-THETA freezing (the seed-227 accident, promoted
   to a config arm).
 
+**EXP 184 — PRE-REGISTRATION (the exploratory fixed-H squeeze map; plan Part 2;
+committed BEFORE any data).**
+
+- **Status: EXPLORATORY** (3 seeds/cell; predeclared SHAPE predictions per the ratified
+  sweep rules; registered boundaries get fresh-seed confirmation at rung 4 ONLY for
+  candidates surviving the Part-3 classification incl. the class-D dissolution check).
+- **Runner.** `run_fork_schedule` adapted from `exp183_n4_freeze_gate2.run_fork` with
+  the burst schedule parameterized (window list + exogenous color); the trigger/freeze
+  machinery VERBATIM. **EQUIVALENCE GATE (licenses the grid):** configured to Exp 183's
+  exact schedule (bursts 6000–6800/9000–9800/12000–12800, endogenous argmin-at-onset
+  color mode, relocation rng 160000+seed), the new runner must bit-match the committed
+  exp183 rows for (baseline × s229) and (H1200 × s229) — quantities + event fields,
+  atol 1e-9. Spine safety per L14 (detached deepcopy); plateau dose reads per L13.
+- **Grid (the plan's, verbatim).** L ∈ {400, 800, 1200, 1600, 2400}; K ∈ {1,2,3,4};
+  G ∈ {200, 600, 1200, 2400}; H ∈ {600, 900, 1200, 1800, 2400, 3000, 4200, 6000};
+  revision-tolerance modes normal/tight/loose = +3000/+1500/+6000 steps over the
+  same-seed baseline latency — modes are EVALUATION BARS on the same Phase-R runs, not
+  separate dynamics. Cells enumerated lexicographically by (L, K, G), cell_idx 0–79.
+- **Sessions.** W: settle 6000 (attack color = argmin(v) at step 6000, FIXED for all K
+  bursts — exogenous, the rung-1 de-confound) + K bursts of length L with gaps G +
+  2500-step tail; length = 6000 + K·L + (K−1)·G + 2500 (max ≈ 25.3k). Captivity
+  mechanics verbatim exp183; relocation rng default_rng(190000 + 1000·cell_idx + seed).
+  R: verbatim exp183 Phase R (permanent relocation from 6000), arms baseline + H-sweep
+  + n4-ref, latency criterion verbatim.
+- **Arms.** baseline; the 8-H sweep; n4 evidence-concession E*=600 (REFERENCE only,
+  never in exists_H_both); oracle exact-train freeze (DIAGNOSTIC, the
+  defense-mechanically-possible witness). W-sessions 80 × 11 × 3 = 2640; R-sessions 30.
+- **Seeds.** FRESH 240–242. Smoke: cell (L=800, K=3, G=2400), all arms, seed 240,
+  disclosed.
+- **Primary quantities.** defense(arm, cell, seed) = FINAL-window displacement-
+  rejection: expr_frac(attack color) < 0.5 over [last_bend+1500, last_bend+2000) —
+  per-burst windows collide with following bursts at G < 2000, so per-burst recovery is
+  DIAGNOSTIC-only (gap ledger, plateau-read head dose, per-burst expr where the window
+  fits in quiet). defense_pass(arm, cell) = ≥ 2/3 seeds. revision_pass(H, mode) =
+  latency ≤ baseline + tolerance in ≥ 2/3 seeds. both_pass = defense ∧ revision.
+  exists_H_both(cell, mode) = any H. **Candidate crack cells:** ¬exists_H_both while
+  the oracle defends (≥ 2/3 seeds).
+- **Shape predictions + falsifiers (the sweep binds the SHAPE).**
+  P1 (dose route, rung 1): among H-arms with H ≥ L − 75, defense is H-INVARIANT (the
+  head dose is paid regardless); failures concentrate at high K × small G. F1: defense
+  improves monotonically with H within the H ≥ L stratum — the dose model is
+  wrong/incomplete. P2 (interval route, arithmetic): (L=2400, tight) cells are
+  interval-empty — defense needs H ≳ 2325, tight revision allows H ≲ 1650; predicted
+  ¬exists_H_both there via route 1's arithmetic alone. F2: some H passes both. P3:
+  the oracle defends every cell (≥ 2/3 seeds). F3: an oracle-failed cell (class-E
+  territory, flagged, not tuned). F4 (map validity): a degenerate map (trigger silent
+  off the Exp-183 geometry, or everything passes everywhere) is a logged result — no
+  inline tuning.
+- **PC gates (light, exploratory).** PC1 ahat_drift < 0.15 per session (gated); settle
+  TV(pi) over [5000, 6000) logged and flagged > 0.05, NOT gated; argmin ≠ argmax at
+  step 6000 asserted (the attack must target a non-favorite).
+- **Outputs.** experiments/outputs/exp184_rows.json (JSONL: per arm × cell × seed
+  defense quantities, final gaps, dose ledger, events, flags), exp184.txt
+  (exists_H_both heat maps per mode, candidate-cell list, per-prediction verdicts),
+  script experiments/exp184_n4_fixed_h_squeeze_map.py. The Part-3 classification runs
+  NEXT iteration on these outputs; no crack claim without rung-4 confirmation.
+
 **STATUS.** state: active (rung 1 done — autopsy mechanism pinned; Exp 184 next) · latest: Exp 183 addendum (seed-229 autopsy, 2026-06-12) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: Exp 183 freeze machinery + sliding trigger, rung-2 monitor (180), displacement regime (176), detection-floor law (F), surrender-schedule law (G), universal-constant kill test (173), the autopsy's margin-ledger/election instruments · why: the human's explicit word (2026-06-11) reopens the deferred seed-229 crack as a NEW investigation; autopsy pinned the mechanism (head dose vs margin ledger; repetition not the discriminant; H-independent) · next-falsifiable: Exp 184 exploratory squeeze map — is a robust no-fixed-H regime constructible from the dose-ledger mechanism (route 2), or does any cell empty the fixed-H interval (route 1)?
