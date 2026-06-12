@@ -30,11 +30,12 @@ the full stories stay in EXPERIMENTS.md. Steps:
    Fixed seed by default; if you try multiple seeds, report ALL of them.
    Write the script at `experiments/expNN_<slug>.py` inside the repo — never `/tmp` or
    any path outside the repo — so it is committed with the entry (see step 6).
-   **Division of labor:** follow `loop/ROUTING.md`. The main model ideates, designs,
-   and validates; the CODING is dispatched to a Sonnet subagent (`Agent` tool,
-   `model: "sonnet"`) with a tight spec — files, expected behavior, exact
-   verification command. The main model reviews the returned code against the spec
-   and VALIDATION.md before running the experiment.
+   **Division of labor:** follow `loop/ROUTING.md`. Claude ideates, designs, and
+   validates; the CODING is dispatched to a Codex plugin worker on the `codex
+   high-fast` profile (explicit fallback: `gpt-5.4-mini` with high reasoning)
+   with a tight spec — files, expected behavior, exact verification command. The
+   main model reviews the returned code against the spec and VALIDATION.md before
+   running the experiment.
    Review must include the verdict logic conjunct-by-conjunct: the printed verdict
    line is the coder's claim, not the experiment's result, and "not a falsifier"
    never counts toward POSITIVE (L1, L2 in `loop/LESSONS.md`). Step 4.5's blinded
@@ -44,8 +45,9 @@ the full stories stay in EXPERIMENTS.md. Steps:
    interpreting anything.
 
 4.5. **Blinded verify (binding, added 2026-06-10 — independent verdict before logging).**
-   Before writing the entry, dispatch a VERIFIER subagent (`Agent` tool,
-   `model: "sonnet"`) that is blinded to your interpretation. It receives ONLY:
+   Before writing the entry, dispatch a separate Codex plugin VERIFIER worker
+   (`codex high-fast`, or `gpt-5.4-mini` with high reasoning) that is blinded to
+   your interpretation. It receives ONLY:
    (a) the script's predeclared docstring (hypothesis / predictions / falsifiers), and
    (b) the committed raw output (`experiments/outputs/expNN.txt`) — never the main
    session's reading, never the draft entry. Instruct it to IGNORE any verdict/summary

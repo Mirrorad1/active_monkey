@@ -1,10 +1,12 @@
-# ROUTING - model and subagent budget discipline for loop B
+# ROUTING - Claude conductor / Codex worker discipline for loop B
 
 This file is the cost-control layer for the Claude `/loop` research loop. It does
 not weaken `loop/PROTOCOL.md` or `loop/VALIDATION.md`; it says who should do which
-kind of work.
+kind of work. Current experiment: keep Claude as the high-level research conductor,
+but route bounded subagent work through the Codex plugin on a fast/high-reasoning
+profile.
 
-## Main model: highest-thinking conductor
+## Main model: highest-thinking Claude conductor
 
 Use the highest-thinking model for:
 
@@ -18,9 +20,13 @@ Use the highest-thinking model for:
 
 The main model may ask for help, but it owns the scientific claim.
 
-## Coder subagent: Sonnet
+## Coder subagent: Codex high-fast
 
-Use a Sonnet coding subagent when implementation is bounded and the spec is tight.
+Use a Codex plugin worker when implementation is bounded and the spec is tight.
+Preferred profile: `codex high-fast`. If the plugin needs explicit fields instead
+of that profile name, use a Codex worker with `model = "gpt-5.4-mini"` and
+`model_reasoning_effort = "high"`.
+
 Give it:
 
 - exact files it may edit
@@ -32,9 +38,11 @@ Default write scope: one `experiments/expNN_<slug>.py` script, or one small help
 module plus its focused tests. The coder does not edit `EXPERIMENTS.md`,
 `experiments-data.js`, `creature/state/`, `RESUME.md`, or git history.
 
-## Verifier subagent: Sonnet
+## Verifier subagent: Codex high-fast
 
-Use a Sonnet verifier for `loop/PROTOCOL.md` step 4.5. It receives only:
+Use a separate Codex plugin worker for `loop/PROTOCOL.md` step 4.5. Use the same
+preferred profile (`codex high-fast`; explicit fallback `gpt-5.4-mini` with high
+reasoning). It receives only:
 
 - the script's predeclared hypothesis / prediction / falsifier
 - the committed raw output at `experiments/outputs/expNN.txt`
@@ -43,17 +51,18 @@ It must ignore verdict claims printed by the script and recompute the verdict fr
 raw numbers. It returns POSITIVE / NEGATIVE / MIXED plus the conjunct-by-conjunct
 mapping.
 
-## Clerk subagent: Haiku
+## Clerk subagent: Codex explorer
 
-Use Haiku only for low-risk mechanical help:
+Use a Codex explorer for low-risk mechanical help. Prefer `gpt-5.4-mini` with
+low or medium reasoning for cheap read-only work:
 
 - read-only grep or file inventory
 - summarizing raw tables without assigning verdicts
 - checking whether generated files look stale
 - drafting non-binding notes for main-model review
 
-Haiku does not write experiment code, does not write the research log, and does not
-grade results.
+The clerk does not write experiment code, does not write the research log, and
+does not grade results.
 
 ## Fan-out rules
 
