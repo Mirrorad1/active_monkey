@@ -686,6 +686,19 @@ The loop marks items it has consumed by indenting a response under them:
       central hypothesis honestly (detection without defense) and close or
       redirect the chapter.
   (d) Other / stop.
+  → CONSUMED 2026-06-11: the human chose (a) UPGRADED by direct word — Exp 181
+    stays a clean NEGATIVE for write-channel gain control (no retuning, no P5
+    weakening, no P7 reinterpretation). Cleanup done: exp181_verdict.json patched
+    (halted=true, consult_required=true, tier=no-resistance — metadata only) and
+    the deterministic dynamics audit committed (exp181_dynamics_audit.py +
+    txt/json; SELF-VALIDATION PASS against the committed leak record; first-100-
+    step exposure 44–96 units at pre-onset g≈1; g re-opens to ~0.8 within 2-3
+    snapshots — absorption visible in real time; baseline unresisted leak ~765).
+    Exp 182 = whole-dynamics FREEZE-GATE with frozen monitor reference +
+    evidence-based concession (E_STAR), vs the retained write-gain sweep AND a
+    fixed-horizon sweep H∈{600..3000} (NEGATIVE-config live), plus an oracle
+    upper-bound diagnostic; full pre-registration in loop/directions/identity-n4.md
+    BEFORE any data; seeds 218-225.
 
 (empty — drop ideas above this line's section freely)
 

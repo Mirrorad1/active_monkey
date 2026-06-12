@@ -263,4 +263,78 @@ later bursts). The write-gating recovery/revision frontier is DEGENERATE. P6 pas
 cleanly (revision within 25–465 of baseline — no rigidity); P7 vacuous. The central
 hypothesis is 0-for-1 at its load-bearing rung. A predeclared falsifier fired.
 
-**STATUS.** state: halted (rung 3 attempt 1 NEGATIVE at F5; consult in loop/IDEAS.md awaits a word) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181: absorption leak + maintenance starvation), same-schedule-arms protocol (170), universal-constant kill test (173) · why: a falsifier fired — the thread holds per discipline · next-falsifiable: TBD-human (consult options: freeze-gate + frozen-reference + concession horizon — recommended; anchor regularization; accept the rung-3 negative as chapter verdict)
+**RUNG 3, ATTEMPT 2 — PRE-REGISTRATION (Exp 182, the FREEZE-GATE; committed before
+any data; authorized by the human's word resolving the F5 consult, 2026-06-11).**
+Exp 181 remains NEGATIVE for write-channel gain control — this attempt changes the
+CONTROL SURFACE, not the parameters. The two verified failure mechanisms are each
+addressed structurally: freezing the WHOLE dynamics removes both decay-erosion and
+leaked writes; freezing the monitor's REFERENCE removes absorption-reopening.
+
+- **State machine (declared).**
+  NORMAL: ordinary update v <- lambda*v + w*e_obs; rung-2 monitor mismatch m_k at
+  snapshot cadence (EVAL=100); m_bar = median of trailing 30; anomaly ratio
+  r_k = m_k / max(m_bar, eps). Enter RESIST when r_k >= THETA = 2.0 at one snapshot
+  (immediate — the 100-step onset lag is known and audited), only once >= 10
+  mismatch samples exist.
+  RESIST: v FROZEN (v_{t+1} = v_t — no decay, no writes; value_counts untouched);
+  perception (qs, pA) continues normally. v_ref = v at entry; pi_ref = pi(v_ref);
+  m_bar FROZEN at entry (the resistance decision never uses the live adapting
+  baseline). A live mismatch is still logged (diagnostic only). Blocked-evidence
+  bookkeeping per step: blocked_w_by_color[obs] += w; c_star = argmax(blocked_w);
+  E_blocked = blocked_w_by_color[c_star]. Directional pressure score logged:
+  dot(e_obs - pi_ref, e_cstar - pi_ref). PRESSURE statistic: fraction of the last
+  200 steps' observations equal to c_star; ACTIVE iff >= 0.6.
+  RELEASE rules: (A) TRANSIENT — pressure INACTIVE at 2 consecutive snapshot
+  checks => unfreeze to NORMAL with v == v_ref preserved (recovery by
+  construction if the trigger caught the burst). (B) CONCESSION (n4_freeze arm)
+  — E_blocked >= E_STAR = 600 expected-units (declared; ~750 steps of coherent
+  pressure at w~0.8) while pressure ACTIVE => accept the new regime: unfreeze,
+  resume NORMAL writes. On ANY release/concession the mismatch history is CLEARED
+  (m_bar re-forms over 10 snapshots; the re-forming window is a declared
+  vulnerability — no trigger possible inside it).
+- **Arms (same-snapshot, same-schedule per phase; Exp 170 binding).**
+  (1) baseline (no freeze, full write); (2) n4_freeze (as above);
+  (3) write-gain constants c in {0.3, 0.1, 0.05, 0.02, 0.01} retained verbatim
+  from Exp 181 for continuity (expected to keep failing); (4) fixed-horizon sweep:
+  same trigger + same transient release, but CONCESSION at total-frozen-time >= H,
+  H in {600, 900, 1200, 1800, 2400, 3000} steps (TIME-based vs n4's
+  EVIDENCE-based concession — the universal-constant kill test); (5)
+  oracle_freeze_exact_burst (Phase W only, DIAGNOSTIC, excluded from P5/P6/P7):
+  freezes exactly during the known burst windows — the upper bound showing the
+  surface can defend when timed perfectly. 13 verdict-relevant arms + oracle.
+- **Phases.** Verbatim Exp 181: Phase W (bursts 6000-6800/9000-9800/12000-12800,
+  color = argmin v at onset, rng 160000+seed); Phase R (permanent relocation from
+  6000, color = argmin v at onset, rng 165000+seed). 15000 steps. FRESH seeds
+  218-225; smoke 218 disclosed.
+- **Preconditions (gate verdict).** PC1 ahat_drift < 0.15 (all sessions); PC2'
+  vector gate verbatim (baseline arm, Phase-W windows); PC3 confinement >= 0.90.
+  The Exp 181 audit's value-dynamics quantities (gap_start/gap_end, D_b, TV_b,
+  discounted leak / blocked-evidence integral) are LOGGED as diagnostics, never
+  gated; argmax remains an outcome, not a precondition.
+- **Properties / falsifiers (ALL required for POSITIVE).**
+  P5 (recovery; criterion VERBATIM Exp 181): expressed == pre-burst favorite over
+  [bend+1500, bend+2000) for >= 2/3 bursts in >= 7/8 n4_freeze forks AND baseline
+  passes in <= 2/8. F5: n4_freeze passes in <= 4/8.
+  P6 (revision; verbatim): Phase-R adoption latency <= baseline + 3000 in >= 6/8
+  forks. F6 (rigidity): never-adopt in >= 3/8 forks, or over-tolerance in >= 4/8.
+  Pure permanent freezing MUST fail here.
+  P7 (kill test): NO write-gain constant AND NO fixed-H constant satisfies both
+  the P5 bar (>= 7/8) and the P6 bar (>= 6/8) on its own arms. F7: some constant
+  arm does => NEGATIVE-config (a fixed horizon suffices at this richness — the
+  honest kill; n4's evidence-based concession would be ornament, not layer).
+- **Verdict map.** POSITIVE (load-bearing) iff P5 AND P6 AND P7. NEGATIVE-config
+  iff P5 AND P6 AND NOT P7. NEGATIVE-rigidity iff P5 AND F6. NEGATIVE-no-resistance
+  iff F5. NO VERDICT iff PC1/PC2'/PC3 fail. MIXED otherwise. Oracle never counts.
+- **Diagnostics (printed, never gated).** State transitions (NORMAL->RESIST->
+  TRANSIENT-RELEASE/CONCESSION) with timestamps; freeze duration and E_blocked and
+  c_star per event; transient-vs-concession label; gap preservation (gap_start vs
+  gap_end); TV(pi_end, pi_start); D_b; live vs frozen-reference mismatch; m_bar
+  contamination avoided or not; the P5/P6/P7 frontier across ALL constant arms.
+- **Honest caveats (pre-registered).** THETA, E_STAR, the 0.6 pressure bar, the
+  200-step pressure window, and the 2-snapshot release rule are PROVIDED; the
+  100-step trigger lag persists by design (bounded exposure, audited at ~85
+  units); the cleared-history re-forming window is a declared vulnerability;
+  E_STAR-vs-H may not separate at this richness — NEGATIVE-config is a live and
+  acceptable outcome; the revision regime remains diet-driven captivity.
+
+**STATUS.** state: active (rung 3, attempt 2 — pre-registered, build next) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181), the Exp 181 dynamics audit instrumentation, same-schedule-arms protocol (170), universal-constant kill test (173) · why: the human's word converts the F5 consult into the freeze-gate surface with frozen reference + concession horizon · next-falsifiable: Exp 182 as pre-registered above (seeds 218-225, smoke 218; P5/P6/P7 with NEGATIVE-config as a live outcome)
