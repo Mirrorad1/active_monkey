@@ -13,9 +13,12 @@ def test_compose_includes_model_routing_card():
 
     assert "loop/ROUTING.md" in prompt
     assert "highest-thinking" in prompt
-    assert "Sonnet" in prompt
-    assert "Haiku" in prompt
+    assert "Codex" in prompt
+    assert "high-fast" in prompt
+    assert "gpt-5.4-mini" in prompt
     assert "blinded verifier" in prompt
+    assert "Sonnet" not in prompt
+    assert "Haiku" not in prompt
 
 
 def test_agents_doc_uses_builtin_loop_not_ruflo():

@@ -22,6 +22,6 @@ Standing rules for ALL work here:
 - Experiment scripts + raw outputs are committed under `experiments/` in the same commit
   as their EXPERIMENTS.md entry; never write experiment scripts to /tmp.
 - Self-healing: when you find a noteworthy non-research issue or a reusable insight, follow `loop/META.md` — fix it AND add a durable guard (a fast test, a loop-module rule, or a skill via `/claudeception`) so it can't recur. A fix without a guard is incomplete.
-- Subagent routing for Loop B lives in `loop/ROUTING.md`: highest-thinking model owns research
-  design and verdicts; cheaper subagents may code, verify, or clerk only inside their assigned
-  file scope.
+- Subagent routing for Loop B lives in `loop/ROUTING.md`: the highest-thinking Claude loop owns
+  research design and verdicts; Codex plugin workers may code, verify, or clerk only inside
+  their assigned file scope.
