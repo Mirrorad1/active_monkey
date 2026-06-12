@@ -427,4 +427,23 @@ both phases, 15000 steps).
   refractory plus fast transient release bound the cost); the bar-sensitivity flag
   from Exp 182 carries (the majority bar stands on the pre-data oracle table).
 
+**EXP 183 PRE-DATA AMENDMENT (probe-justified, committed before the full run): the
+DETECTION FLOOR.** The disclosed calibration probe (seeds 226-228, never-triggering
+dynamics, committed numbers): at the 25-step horizon, quiet ratio P99.5 = 2.56-3.19
+(max 2.68-3.32) while burst-onset max ratios are 1.82-3.02 — NO SEPARATION exists at
+the fine horizon (the burst signal integrates ~linearly with horizon; slope-estimate
+noise shrinks slower), so Delta 1 as pre-registered yields a silent trigger (smoke:
+n_events=0 everywhere) or an alarm storm at any THETA that fires. NAMED FINDING (the
+detection floor): ~75-100 steps of onset dose is detection-theoretically irreducible
+for a mismatch-ratio trigger at this body's noise. Delta 1 REVISED: sliding
+100-STEP-HORIZON checks at 25-step STRIDE — v_hat(t) predicted from the fine
+snapshot at t-100 with slope over the trailing 1000 steps (shortened during
+re-forming, >= 2 intervals), m at the SAME scale as Exp 182's mismatch (THETA=3.5
+carries legitimately; onset crosses ~3.5 at ~75 steps of exposure per the probe
+arithmetic), m_bar = median of trailing 120 stride-mismatches; arming ~175 steps
+post-release. Delta 2 (floor guard + refractory) unchanged — it addressed the
+dead-zone failures (seeds 221/224 class) and stands on its own. Expected honest
+outcomes: dead-zone fixes alone may lift n4 AND the H-arms to ~7/8 together —
+NEGATIVE-config is squarely live; or the stride gain + guard reach P5 with n4 only.
+
 **STATUS.** state: active (rung 3, attempt 3 — pre-registered, build next) · latest: Exp 182 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (five clean blocks), the wrong-control-surface law (181), the SUFFICIENT freeze surface + oracle bound (182), majority displacement-rejection criterion (182), same-schedule-arms protocol (170), universal-constant kill test (173) · why: both Exp 182 shortfalls are instrument-grade and the fixes are surgical · next-falsifiable: Exp 183 as pre-registered above (seeds 226-233, smoke 226; P5/P6/P7 and verdict map verbatim)
