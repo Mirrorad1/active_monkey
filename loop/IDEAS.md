@@ -756,6 +756,23 @@ The loop marks items it has consumed by indenting a response under them:
         is itself part of that decision);
     (vi) stop/pause.
     Subsequent automated fires idle with a reminder until a word appears here.
+  → [human, 2026-06-11] EXPLICIT WORD received (full directive, in-session): option (a)
+    CONFIRMED — accept NEGATIVE-config as the rung-3 verdict; write the synthesis; close
+    the card honestly. Do NOT start Exp 184; do NOT pursue the seed-229 crack except as
+    a logged future crack; do not retune E_STAR / weaken P5 / reinterpret via P6; the
+    correct claim is "N4 commitment control is unsupported at this body/richness;
+    fixed-H config suffices here" — never "N4 is false in general". F5/no-resistance is
+    the binding tier; F7/config is reportable as second-order.
+    EXECUTED: the synthesis is re-issued to the human's spec at
+    docs/research/n4-identity-commitment-chapter.md (supersedes the resumption-pattern
+    draft n4-identity-chapter.md, removed in the same commit; numbers re-extracted from
+    the committed scripts/outputs/rows JSON by four independent readers — three
+    attribution refinements folded in: E*=600 with ~703-step concession arithmetic,
+    H900's two P5 misses are seeds 227+229, H3000's second P6 miss is seed 232). Card
+    closed with "no further N4 rung-3 experiment without a new human direction";
+    RESUME §3b updated. SEED-229 CRACK: DEFERRED/future, not active (synthesis §6,
+    Exp 173 caution attached). THE LOOP IS PAUSED: it resumes only after the next
+    explicit direction here. No new experiment was run.
 
 (empty — drop ideas above this line's section freely)
 
