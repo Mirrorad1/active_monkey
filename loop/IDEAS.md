@@ -459,6 +459,14 @@ The loop marks items it has consumed by indenting a response under them:
     noise-vs-structural classifier, then prereq re-confirmation — N3 rung 1 only after that.
     Card STATUS updated (meta-calibration-n3: state active, prereq build).
 
+- [from the loop, META flag for the human, 2026-06-11] The unmerged branch
+  `codex-loop-routing-guards` (1cb1f10, pushed) carries the loop-routing/autosync
+  hardening AND a RESUME.md §3b hunk written at the Exp-183 halted state. Main's
+  RESUME §3b has since been updated past it (N4 chapter closed, e6c38e0), so the PR
+  will conflict on RESUME.md at merge — resolve in favor of MAIN's newer §3b text;
+  the branch's other files (PROTOCOL/ROUTING/autosync/tests) don't overlap. Noted so
+  the conflict reads as expected, not as a collision.
+
 - [from the loop, META flag for the human, 2026-06-11] Unmerged cloud branch
   `claude/n3-bounded-map-design-7705gt` (fetched on your "pull in the latest main" word;
   main itself was already up to date) carries TWO commits: an N3 bounded-map/open-world
