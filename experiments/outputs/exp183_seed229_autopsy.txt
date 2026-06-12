@@ -1,0 +1,161 @@
+EXP 183 ADDENDUM -- SEED-229 AUTOPSY
+================================================================================
+
+BIT-MATCH GATE
+----------------------------------------
+  arm=H1200 seed=226: PASS
+  arm=H1200 seed=227: PASS
+  arm=H1200 seed=228: PASS
+  arm=H1200 seed=229: PASS
+  arm=H1200 seed=230: PASS
+  arm=H1200 seed=231: PASS
+  arm=H1200 seed=232: PASS
+  arm=H1200 seed=233: PASS
+  arm=baseline seed=229: PASS
+  arm=n4_freeze seed=229: PASS
+  arm=H600 seed=229: PASS
+  arm=H900 seed=229: PASS
+  arm=H1800 seed=229: PASS
+  arm=H2400 seed=229: PASS
+  arm=H3000 seed=229: PASS
+  arm=oracle seed=229: PASS
+  arm=H900 seed=227: PASS
+
+BIT-MATCH: PASS
+
+Q1: BURST COLORS
+----------------------------------------
+H1200 burst colors:
+   seed   b0   b1   b2  pfav0  pfav1  pfav2  repeat
+    226    1    0    1      2      2      2     YES
+    227    1    1    0      0      2      2     YES
+    228    1    1    0      2      2      2     YES
+    229    1    1    0      2      2      2     YES
+    230    1    1    2      0      2      0     YES
+    231    1    2    1      2      0      2     YES
+    232    1    0    1      2      2      2     YES
+    233    1    1    0      2      2      2     YES
+
+Q2: REPEAT PATTERNS vs RECOVERED
+----------------------------------------
+  repeat=True,  recovered=True:  134
+  repeat=True,  recovered=False: 124
+  repeat=False, recovered=True:  3
+  repeat=False, recovered=False: 75
+  Failure rate WITH repeat:    124/258 = 0.481
+  Failure rate WITHOUT repeat: 75/78 = 0.962
+
+Q3: VALUE VECTORS v BEFORE/AFTER EACH BURST (seed 229 H1200)
+----------------------------------------
+  burst 0 (6000-6800):
+    v_start: ['956.18', '915.46', '1068.61']
+    v_end:   ['934.90', '965.04', '1045.60']
+  burst 1 (9000-9800):
+    v_start: ['951.63', '940.01', '1017.61']
+    v_end:   ['930.46', '989.80', '994.96']
+  burst 2 (12000-12800):
+    v_start: ['945.26', '966.15', '986.88']
+    v_end:   ['994.81', '945.55', '964.92']
+
+Q4: pi_t AT BURST BOUNDARIES (seed 229 H1200)
+----------------------------------------
+  burst 0: pi_start=['0.3252', '0.3114', '0.3634']  pi_end=['0.3174', '0.3276', '0.3550']
+  burst 1: pi_start=['0.3271', '0.3231', '0.3498']  pi_end=['0.3192', '0.3395', '0.3413']
+  burst 2: pi_start=['0.3261', '0.3334', '0.3405']  pi_end=['0.3424', '0.3255', '0.3321']
+
+Q5/Q6: D_b AND TV_b CROSS-CHECK (seed 229 H1200)
+----------------------------------------
+   burst   recomp_d_b     comm_d_b   match  recomp_tv_b    comm_tv_b   match
+       0       0.0163       0.0163      OK       0.0163       0.0163      OK
+       1       0.0164       0.0164      OK       0.0164       0.0164      OK
+       2       0.0163       0.0163      OK       0.0163       0.0163      OK
+
+Q7: CUMULATION LEDGER (seed 229 H1200)
+----------------------------------------
+   bi  bc  gap_start gap_freeze   gap_bend  erosion_H  erosion_T  H_frac  coverage   rec  expr_frac
+    0   1   153.1519    80.5558    80.5558    72.5961    72.5961   1.000    0.9062     Y     0.0000
+    1   1    77.5920     5.1624     5.1624    72.4296    72.4296   1.000    0.9062     n     1.0000
+    2   0    41.6154   -29.8942   -29.8942    71.5095    71.5095   1.000    0.9062     n     1.0000
+
+REFUTER TESTS:
+  (a) freeze coverage incomplete: CLEAR | ['arm=H1200 b=1 cov=0.9062', 'arm=H1200 b=2 cov=0.9062', 'arm=H1800 b=1 cov=0.9062', 'arm=H1800 b=2 cov=0.9062', 'arm=H2400 b=1 cov=0.9062', 'arm=H2400 b=2 cov=0.9062', 'arm=H3000 b=1 cov=0.9062', 'arm=H3000 b=2 cov=0.9062']
+  (b) erosion not in head: CLEAR | ['arm=H1200 b=1 head_frac=1.000', 'arm=H1200 b=2 head_frac=1.000', 'arm=H1800 b=1 head_frac=1.000', 'arm=H1800 b=2 head_frac=1.000', 'arm=H2400 b=1 head_frac=1.000', 'arm=H2400 b=2 head_frac=1.000', 'arm=H3000 b=1 head_frac=1.000', 'arm=H3000 b=2 head_frac=1.000']
+  (c) strong positive gap_end at failure: CLEAR | ['arm=H1200 b=1 gap_end=5.1624', 'arm=H1200 b=2 gap_end=-29.8942', 'arm=H1800 b=1 gap_end=5.1624', 'arm=H1800 b=2 gap_end=-29.8942', 'arm=H2400 b=1 gap_end=5.1624', 'arm=H2400 b=2 gap_end=-29.8942', 'arm=H3000 b=1 gap_end=5.1624', 'arm=H3000 b=2 gap_end=-29.8942']
+  (d) passing seed with equal repeat dose: FIRED | ["seed=226 colors=[1, 0, 1] gs=['103.7', '179.2', '115.2'] passes=True", "seed=227 colors=[1, 1, 0] gs=['29.0', '84.0', '144.3'] passes=True", "seed=228 colors=[1, 1, 0] gs=['66.4', '60.9', '36.5'] passes=True", "seed=230 colors=[1, 1, 2] gs=['54.2', '213.6', '26.2'] passes=True", "seed=231 colors=[1, 2, 1] gs=['155.7', '42.7', '58.5'] passes=True", "seed=232 colors=[1, 0, 1] gs=['193.7', '136.5', '50.9'] passes=True", "seed=233 colors=[1, 1, 0] gs=['164.4', '98.2', '200.4'] passes=True"]
+
+  HYPOTHESIS STANDS: False
+
+Q7 Cross-seed H1200 table:
+   seed          colors  repeat      gs0      gs1      gs2      ge0      ge1      ge2       rec  pass
+    226       [1, 0, 1]     YES    103.7    179.2    115.2     32.3    105.5    115.2       YYY  PASS
+    227       [1, 1, 0]     YES     29.0     84.0    144.3     29.0    -11.0     45.0       YYn  PASS
+    228       [1, 1, 0]     YES     66.4     60.9     36.5     -5.0    -33.5    -34.0       YYn  PASS
+    229       [1, 1, 0]     YES    153.2     77.6     41.6     80.6      5.2    -29.9       Ynn  fail
+    230       [1, 1, 2]     YES     54.2    213.6     26.2    -17.6    163.8    -63.6       YYn  PASS
+    231       [1, 2, 1]     YES    155.7     42.7     58.5     83.1    -48.5    -12.1       YnY  PASS
+    232       [1, 0, 1]     YES    193.7    136.5     50.9    120.3     87.5    -20.3       YYn  PASS
+    233       [1, 1, 0]     YES    164.4     98.2    200.4    114.8      1.0    100.4       YYY  PASS
+
+Q8: MECHANISM CLASSIFICATION
+----------------------------------------
+
+  trigger_latency: SUPPORTED
+    All burst triggers for seed 229 H1200 fire at latency 75 (b0,b1) or 75 (b2). The 75-step 
+    unfrozen head absorbs bc observations before freeze engages, eroding gap_start by ~72 units 
+    (b0: 153->81, erosion_head~72; b1: 78->5, erosion~73; b2: 42->-30, erosion~72). This is the 
+    irreducible detection floor. tl_evidence: ['arm=H1200 seed=229 entry=6075 trigger_latency=75', 
+    'arm=H1200 seed=229 entry=9075 trigger_latency=75', 'arm=H1200 seed=229 entry=12075 
+    trigger_latency=75', 'arm=H1800 seed=229 entry=6075 trigger_latency=75', 'arm=H1800 seed=229 
+    entry=9075 trigger_latency=75', 'arm=H1800 seed=229 entry=12075 trigger_latency=75'] 
+
+  release_too_early: REFUTED
+    No freeze released before burst end in any failing H1200+ burst for seed 229. Coverage info: 
+    ['arm=H1200 seed=229 burst=1 coverage=0.906 n_frozen=725/800', 'arm=H1200 seed=229 burst=2 
+    coverage=0.906 n_frozen=725/800', 'arm=H1800 seed=229 burst=1 coverage=0.906 n_frozen=725/800', 
+    'arm=H1800 seed=229 burst=2 coverage=0.906 n_frozen=725/800', 'arm=H2400 seed=229 burst=1 
+    coverage=0.906 n_frozen=725/800', 'arm=H2400 seed=229 burst=2 coverage=0.906 n_frozen=725/800', 
+    'arm=H3000 seed=229 burst=1 coverage=0.906 n_frozen=725/800', 'arm=H3000 seed=229 burst=2 
+    coverage=0.906 n_frozen=725/800']. H1200 events show frozen_steps ~1025-1050 >> 800-step burst 
+    length; all releases are transient AFTER burst end (exit_step > bend). early_release_events: 
+    (none) 
+
+  repeated_color_accumulation: SUPPORTED
+    arm=H1200 seed=229 burst_colors=[1, 1, 0] | seed 229 burst_colors=[1, 1, 0] has_repeat=True | 
+    H1200 passing seeds (>=2/3 bursts): [226, 227, 228, 230, 231, 232, 233] | H1200 failing seeds 
+    (<2/3 bursts): [229] | All H1200 seed colors: {226: [1, 0, 1], 227: [1, 1, 0], 228: [1, 1, 0], 
+    229: [1, 1, 0], 230: [1, 1, 2], 231: [1, 2, 1], 232: [1, 0, 1], 233: [1, 1, 0]} 
+
+  insufficient_refractory: REFUTED
+    Trigger latencies are 75 steps (within refractory of 200 steps only if triggered from a prior 
+    release within 200 steps). For seed 229 H1200: all three burst triggers fire at 75 steps. No 
+    evidence of trigger misses due to refractory blocking. Refractory window (200 steps) would only 
+    delay triggers from burst onset to ~200 steps if a release just occurred, but H1200 freeze 
+    durations are ~1025+ steps, well beyond refractory. Events: ['arm=H1200 burst=0 tl=75 
+    entry=6075', 'arm=H1200 burst=1 tl=75 entry=9075', 'arm=H1200 burst=2 tl=75 entry=12075', 
+    'arm=H1800 burst=0 tl=75 entry=6075', 'arm=H1800 burst=1 tl=75 entry=9075', 'arm=H1800 burst=2 
+    tl=75 entry=12075', 'arm=H2400 burst=0 tl=75 entry=6075', 'arm=H2400 burst=1 tl=75 entry=9075', 
+    'arm=H2400 burst=2 tl=75 entry=12075', 'arm=H3000 burst=0 tl=75 entry=6075', 'arm=H3000 burst=1 
+    tl=75 entry=9075', 'arm=H3000 burst=2 tl=75 entry=12075'] 
+
+  revision_bar_conflict: REFUTED
+    Phase-W defense misses for seed 229 H1200 are about P5 (whipsaw), not P6 (revision). The 
+    revision bar (Phase R) is for PERMANENT captivity, not burst defense. Phase-R data for seed 
+    229: ['arm=baseline latency=141 n_events=0', 'arm=n4_freeze latency=808 n_events=2', 'arm=c0.3 
+    latency=187 n_events=0', 'arm=c0.1 latency=315 n_events=0', 'arm=c0.05 latency=498 
+    n_events=0']. There is no mechanism by which the P6 revision bar conflicts with burst defense 
+    in Phase-W sessions (they are separate sessions). 
+
+  other: REFUTED
+    All failing bursts show complete coverage (no early release), appropriate trigger timing, and 
+    gap erosion concentrated in the latency head. The primary mechanism is fully explained by 
+    trigger latency + repeated-color accumulation. 
+
+  PRIMARY MECHANISM: trigger_latency, repeated_color_accumulation
+  HYPOTHESIS STANDS: False
+
+SEED 229 H1200 EXPRESSION FRACTIONS:
+  burst 0: 0.0000
+  burst 1: 1.0000
+  burst 2: 1.0000
+
+Runtime: 4.0s
