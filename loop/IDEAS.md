@@ -991,6 +991,31 @@ The loop marks items it has consumed by indenting a response under them:
   (c) Redirect / stop.
   Per the ratified pattern (L8), resumption without redirection authorizes the
   RECOMMENDED option (a) only, falsifier-bound as ever.
+  → [loop, 2026-06-12] RECOMMENDED OPTION (a) EXECUTED under the ratified
+    resumption pattern (automated wake, no redirection): the rung-6 postscript
+    is folded into docs/research/n4-crack-chapter.md §8 (Exp 189 + Exp 190 + the
+    three laws: kappa-reach / flicker tax / timescale overlap; append-only — the
+    chapter verdict untouched), blinded-fact-checked against the committed raw
+    outputs (31 claims audited; 1 correction folded: pre-stretch count is up to
+    4 per seed, not "1–5" — the Exp 189 entry over-counted by one, corrected in
+    the postscript per the Exp 145 precedent, the entry itself left verbatim per
+    append-only; the ~39% pressure-density figure now shown with its derivation
+    from committed numbers). The identity-n4-crack card is CLOSED; RESUME §3b
+    folded. No new experiment was run; no falsifier was at stake in this step
+    (consolidation-grade doc work).
+    THE LOOP NOW HOLDS — the remaining paths are direction choices, each needing
+    its own explicit word (none silence-actionable; the standing fences hold):
+    (i) M4a increment 1c — the talk-to-it timing re-wire (halted since Exp 128;
+        still the most direct path to the moonshot's conversation goal — the
+        loop's suggestion if asked, as a suggestion only);
+    (ii) nira's normalized-predictive switch (standing consult from Exp 154);
+    (iii) the cloud-branch merge/renumber;
+    (iv) climbing the ladder past N4 (N5 fence: the interoceptive economy card
+        only on its own word);
+    (v) the chapter's remaining open edges (tight-tolerance core, post-release
+        retention);
+    (vi) stop/pause.
+    Subsequent automated fires idle with a reminder until a word appears here.
 
 (empty — drop ideas above this line's section freely)
 

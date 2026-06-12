@@ -112,10 +112,23 @@ step 0.
   never bound a decision). Open edges, exactly named: variable-L geometry, the
   tight-tolerance core, post-release retention. THE CHAPTER IS CLOSED
   (closed-positive, 2026-06-12): synthesis at `docs/research/n4-crack-chapter.md`
-  (fact-checked, ~46 claims, 1 correction folded); the closing consult is posted in
-  loop/IDEAS.md — the loop HOLDS, and every path (variable-L geometry, the tight
-  core, post-release retention, the standing consults, stop) needs its own word.
-  Card: `loop/directions/identity-n4-crack.md`.
+  (fact-checked, ~46 claims, 1 correction folded). The variable-L edge then got
+  its word ("a") and CLOSED as the rung-6 postscript (chapter §8, fact-checked,
+  1 correction folded): Exp 189 — NEGATIVE with THE KAPPA-REACH LAW confirmed 6/6
+  (REG-TB defends escalating trains no constant survives, E1/E3 8/8, but loses
+  the separation on its own revision 5/8 via THE FLICKER TAX: onset pressure-
+  flicker resets the continuity clock); Exp 190 — the one authorized repair
+  attempt, NEGATIVE AT DESIGN TIME (total-active-time refuted by arithmetic;
+  de-assert hysteresis refuted by measurement + a complete counterfactual sweep:
+  revision floor h>=36 vs defense ceiling h<=20, 0/19 buildable) — THE
+  TIMESCALE-OVERLAP LAW: changed-world onset intermittency (25–2,600 steps)
+  spans the attack-gap scale (525–1,175), so the flicker tax is structural to
+  the reset surface. The chapter's final shape: regulation ties the constant at
+  fixed-L (the ambiguity bound), uniquely defends at variable-L (kappa-reach),
+  and cannot revise in time there (the flicker tax, unrepairable on the named
+  channels — the timescale overlap). Card CLOSED (2026-06-12); the remaining
+  edges (the tight-tolerance core, post-release retention) re-open only on a
+  word. Card: `loop/directions/identity-n4-crack.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the
