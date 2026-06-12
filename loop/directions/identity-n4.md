@@ -359,4 +359,20 @@ exp181 criterion is retained as a LOGGED diagnostic on every fork. The baseline
 deficit conjunct and all bars are unchanged (baseline expresses the burst color
 throughout the window — it fails displacement-rejection identically).
 
+**FINAL P5 OPERATIONALIZATION (last pre-data adjustment; whatever the full run
+yields under it is the verdict).** The quantified smoke table (seed 218, committed
+here as justification): bc-expression fraction over [bend+1500, bend+2000) =
+baseline [1.0, 1.0, 1.0]; n4_freeze [1.0, 0.356, 0.782]; oracle [0.008, 0.0, 0.0].
+The never-expressed form over-corrects — even the oracle (bit-identical v through
+every burst) touches bc for 4 steps of natural wander in one window and would fail
+its own upper bound. RECOVERED iff the bc-expression fraction over
+[bend+1500, bend+2000) is < 0.5 (the imposed color does not capture the MAJORITY of
+expression; displaced forks sit at 1.0, defended at 0.0-0.36). Note carried
+honestly: under this bar the n4 trigger-lag dose (~85-110 units written in the
+100 steps before the first in-burst snapshot) remains fully exposed — seed 218's
+n4 bursts score [fail, pass, fail] while the oracle scores [pass, pass, pass]; if
+the full run lands F5 with the oracle clean, the verdict's mechanism is the
+SNAPSHOT-CADENCE RACE, not the freeze surface. Strict exp181 criterion and the
+never-expressed form both retained as logged diagnostics.
+
 **STATUS.** state: active (rung 3, attempt 2 — pre-registered, build next) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181), the Exp 181 dynamics audit instrumentation, same-schedule-arms protocol (170), universal-constant kill test (173) · why: the human's word converts the F5 consult into the freeze-gate surface with frozen reference + concession horizon · next-falsifiable: Exp 182 as pre-registered above (seeds 218-225, smoke 218; P5/P6/P7 with NEGATIVE-config as a live outcome)
