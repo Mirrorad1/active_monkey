@@ -79,3 +79,14 @@ Ground rules for this file:
   not a bare PASS line: the blinded verifier can only audit what the artifact shows,
   and a bare assertion is graded UNVERIFIABLE (Exp 184's gate, closed by the
   committed exp184_gate_audit.txt appendix, 60 fields). [PROTOCOL 4.5; kin of L1/L13]
+- **L16 (Exp 190, 2026-06-12).** A source-patching builder (load source →
+  str.replace → exec) is an INSTRUMENT with a silent failure mode: an unmatched
+  target no-ops and the absent feature is invisible to every gate that only
+  exercises the default branch (Exp 190's h=0 bit-match gates passed while the
+  trace recorder and only-the-default path were live). Two-part rule: (i) every
+  patch uses must-replace semantics — hard error when the target does not match
+  (pattern: exp190_n4_flicker_hysteresis.py::_must_replace); (ii) the gate suite
+  must exercise BOTH branches of any new parameter, or assert the feature's
+  output is non-trivial (an empty trace alongside a non-empty stretch_log is a
+  contradiction an assert can catch). Caught because the measured zero
+  contradicted a committed invariant — the L13 move. [kin of L13/L15]

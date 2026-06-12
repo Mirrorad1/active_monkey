@@ -7040,3 +7040,99 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (a) ONE pre-registered attempt at a flicker-robust concession form (the named
   crack); (b) close the chapter with the negative + both confirmed laws; (c)
   redirect/stop. The loop holds for a word.
+
+## Exp 190 — identity-n4-crack rung-6 coda, the flicker-robust concession attempt (the human's explicit word "(a)", 2026-06-12): NEGATIVE AT DESIGN TIME — both named flicker-robust forms refuted BEFORE any fresh-seed run: total-active-time by arithmetic (defending E1 needs a budget covering ~7,175 active steps, revision allows ~2,900 — interval empty by >4,000), de-assert hysteresis by measurement + a complete counterfactual sweep through the real runner (defense ceiling h<=20 snaps, revision floor h>=36, E1 already lost at h=21 — 0/19 h values buildable, the >=2-cell separation bar unreachable at ANY h); THE TIMESCALE-OVERLAP LAW: changed-world onset de-assert runs (25-2,600 steps) SPAN the attack-train gap scale (525-1,175 steps) — the flicker tax is structural to the reset surface, not tunable away; blind-verified CONFIRMED (NEGATIVE / NEW INSIGHT)
+
+- Plain: last experiment ended with a hopeful diagnosis: the self-regulating defense
+  lost by a hair only because noise blips restart its patience clock, so maybe a
+  clock that ignores short blips would win. Before running the big test, we measured
+  the blips on the already-committed data — and they are not short. When a world
+  genuinely changes, its arrival stutters in pauses up to 2,600 steps long, which is
+  the same size as (and bigger than) the real pauses between attack waves. A clock
+  that ignores blips long enough to adapt on time necessarily also ignores the gaps
+  between attacks — and then the defense collapses mid-train. We swept every possible
+  tolerance setting through the real machinery: the settings that fix adaptation and
+  the settings that keep the defense do not overlap, with a 400-step gulf between
+  them. The repair candidates are dead; the trade-off is a property of the world's
+  noise, not of the controller.
+- Question (the Exp 189 consult's option (a), the human's word): is a flicker-robust
+  concession form buildable — keeping the gap-reset's defense benefit without the
+  revision tax, no oracle knowledge? Two named candidates: total-active-time since
+  freeze entry; de-assert hysteresis (a de-assert run <= h snaps does not reset).
+  Predeclared (in the build spec, before any trace data): the bit-match-gated trace
+  instrument; the h-admissibility rule (max R-side run <= h/2 AND min W-side gap run
+  >= 2h); the STEP-4 buildability bar (some h with revision diff <= +3000 in >= 6/8
+  committed seeds AND E1+E3 defense intact). Falsifier-bound: no admissible/buildable
+  h closes option (a) as refuted-as-buildable.
+- Setup: experiments/exp190_n4_flicker_hysteresis.py (runner = exp188 verbatim via
+  _must_replace source-patching + hysteresis_snaps + pressure trace; exp183
+  equivalence gate AND a new exp189 h=0 regression gate, both evidence-emitting) +
+  experiments/exp190_flicker_diagnostic.py (the design-time instrument; raw output
+  experiments/outputs/exp190.txt). Sessions: committed exp189 sessions replayed
+  bit-exact (gates 72+17+48 evidence lines, 0 mismatches), then the counterfactual
+  sweep through the REAL runner on committed seeds 280-287: 19 h-values x 8 R
+  sessions + 8 h-values x 3 cells (E1/E3/C1) x 2 seeds W probes. Spine safety L14;
+  total-active-time dismissed by arithmetic (no run).
+- Result (committed exp190.txt): MEASUREMENT — R-side de-assert runs while frozen
+  (the "flickers"): s280 [1,9,27,28], s281 [1,28,93,33], s282 [13], s283 [58],
+  s284 [98,1,23], s285 [], s286 [4,2,84,23,76], s287 [2,104] snaps; max 104 snaps =
+  2,600 steps (the calm-release cap). W-side gap runs: E1 21-23 snaps (525-575
+  steps), E3 46-47 (1,150-1,175); in-burst runs 5-6/session (burst-onset trigger
+  latency). The distributions OVERLAP: no h satisfies the predeclared margins
+  (admissibility: 0 of h in [2,20]). SWEEP — revision pass count climbs 5/8 (h<=32)
+  -> 6/8 (h=36) -> 7/8 (h=58) -> 8/8 (h=76): minimal rescuing h per failing seed
+  36/58/76; defense decays through the SAME parameter: E1 LOST at h>=21 (2 mid-train
+  concessions per session), C1 LOST at h>=21-24, E3 LOST at h>=46. Buildability
+  conjunction (rev >= 6/8 AND E1+E3 intact): 0/19 h values — the revision floor
+  (h=36) exceeds the defense ceiling (h=20) by 16 snaps = 400 steps, and E1 dies at
+  h=21 so the >=2-cell separation bar is unreachable everywhere.
+- Instrument note (META, L13-class -> new L16): the first build's trace recorder
+  silently no-opped (source patches with wrong indentation; str.replace passes
+  through unmatched targets), yielding empty traces and a vacuous "NO ADMISSIBLE h"
+  for the WRONG reason — caught in review because a de-assert count of 0 contradicts
+  the committed stretch_log (4 completed stretches require >= 3 frozen de-asserts).
+  Repaired with _must_replace (a patch that hard-fails on mismatch); all gates
+  re-passed; the fixed instrument reached the same headline for the RIGHT reason.
+  Guard distilled as L16 (gates must exercise BOTH branches of a new parameter).
+- Verifier: agree — blinded adversarial subagent (predeclaration docstring + raw
+  output only): recounted all gate evidence (72/17/48 OK, 0 mismatches); recomputed
+  the admissibility table (0 admissible); recounted every rev_pass count (19/19
+  match); applied the buildability rule independently (no h satisfies it); checked
+  the conclusion survives WITHOUT the defense-monotonicity assumption (the smallest
+  rev>=6/8 h, 36, already exceeds the smallest defense-loss probe, 21); verified the
+  total-active-time arithmetic. Verdict NEGATIVE, zero discrepancies.
+- Implication: THE TIMESCALE-OVERLAP LAW — at this body, a genuinely changed world
+  announces itself INTERMITTENTLY, with onset de-assert runs (25-2,600 steps,
+  calm-capped) that span and exceed the gaps between attack bursts (525-1,175
+  steps). Any concession clock that classifies transient-vs-sustained by de-assert
+  run length therefore faces a structural confound: bridging the flickers bridges
+  the gaps. The Exp 189 flicker tax is not a tunable artifact of REG-TB — it is
+  what the reset surface costs, because the reset that buys train defense and the
+  reset that taxes revision are the same event class at overlapping timescales.
+  Regulation's defense half (the kappa-reach law) stands proven; its revision half
+  cannot be repaired on the de-assert channel. Generalizability tier:
+  parameter-level impossibility at this body (complete sweep, both named channels).
+- Honest caveat: the sweep is SAME-SEED (committed 280-287) by design — the
+  controller's best case (h chosen with the answer key); the negative is a fortiori
+  for fresh seeds, and no fresh-seed run was conducted (deliberately: no parameter
+  exists to test). W defense probed at 2 seeds/cell x 3 cells (mid-train concession
+  after gap-bridging is threshold arithmetic, and the probes show the concession
+  events directly), not the full 8-seed bar. The refutation is bounded to the two
+  NAMED channels (total-active budget; de-assert run length) — other functionals
+  (duty-cycle windows, leaky integrators) are untested, though the measured
+  structure points the same way (s286's changed-world freeze is only ~39% pressure-
+  active vs near-continuous within-train pressure: the attack trains are DENSER in
+  pressure than the changed world's onset — an inversion that any monotone
+  occupancy statistic inherits; observation, not a graded claim). The 104-snap max
+  R-run is right at the calm-release cap (a longer run would have released the
+  freeze) — the overlap conclusion does not depend on it (runs of 28-98 already
+  exceed every defense-safe h).
+- Verdict: NEGATIVE / NEW INSIGHT (option (a) closed refuted-as-buildable at design
+  time; the timescale-overlap law named; the kappa-reach + flicker-tax laws stand).
+- Next: per the consult's own terms a falsifier fire CLOSES the question. CONSULT
+  posted in loop/IDEAS.md: (a) RECOMMENDED — fold the rung-6 postscript (the
+  Exp 189 negative + three laws + this refutation) into
+  docs/research/n4-crack-chapter.md, close the identity-n4-crack card, return to
+  the standing consults; (b) attempt a form OUTSIDE the named channels (the
+  measured inversion predicts failure; needs its own design-time diagnostic);
+  (c) redirect / stop.

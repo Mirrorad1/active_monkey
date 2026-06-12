@@ -1,0 +1,282 @@
+================================================================================
+EXP 190 — N4 FLICKER HYSTERESIS DIAGNOSTIC
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+
+================================================================================
+STEP 1: GATE CHECKS
+================================================================================
+EQUIVALENCE GATE: exp183 replay
+
+=== arm=baseline seed=229 ===
+  b0 gap_start    got=135.99937835015726                           committed=135.99937835015726                           OK
+  b0 gap_end      got=-571.7363522432429                           committed=-571.7363522432429                           OK
+  b0 d_b          got=0.15664036565125683                          committed=0.15664036565125683                          OK
+  b0 tv_b         got=0.15664036565125675                          committed=0.15664036565125675                          OK
+  b0 recovered    got=false                                        committed=false                                        OK
+  b0 n_events     got=0                                            committed=0                                            OK
+  b1 gap_start    got=308.8677728920327                            committed=308.8677728920327                            OK
+  b1 gap_end      got=-441.6128408201637                           committed=-441.6128408201637                           OK
+  b1 d_b          got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 tv_b         got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=0                                            committed=0                                            OK
+  b2 gap_start    got=322.85746017635324                           committed=322.85746017635324                           OK
+  b2 gap_end      got=-402.18131405053043                          committed=-402.18131405053043                          OK
+  b2 d_b          got=0.15775393082799233                          committed=0.15775393082799233                          OK
+  b2 tv_b         got=0.15775393082799238                          committed=0.15775393082799238                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=0                                            committed=0                                            OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start    got=153.15192102308868                           committed=153.15192102308868                           OK
+  b0 gap_end      got=80.55582599896172                            committed=80.55582599896172                            OK
+  b0 d_b          got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 tv_b         got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 recovered    got=true                                         committed=true                                         OK
+  b0 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b1 gap_start    got=77.59197443713458                            committed=77.59197443713458                            OK
+  b1 gap_end      got=5.162418152138571                            committed=5.162418152138571                            OK
+  b1 d_b          got=0.016416619393121945                         committed=0.016416619393121945                         OK
+  b1 tv_b         got=0.016416619393121917                         committed=0.016416619393121917                         OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b2 gap_start    got=41.6153816086221                             committed=41.6153816086221                             OK
+  b2 gap_end      got=-29.89416352514172                           committed=-29.89416352514172                           OK
+  b2 d_b          got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 tv_b         got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  gate arm=H1200 seed=229: PASS
+
+EXP189 REGRESSION GATE: hysteresis=0
+W E1 REG-TB seed=280 defense            got=true                                         committed=true                                         OK
+W E1 REG-TB seed=280 final_expr_frac    got=0.0                                          committed=0.0                                          OK
+W E1 REG-TB seed=280 final_gap          got=155.99400183346154                           committed=155.99400183346154                           OK
+W E1 REG-TB seed=280 stretch_log        got=[25.0, 150.0, 75.0, 1175.0, 2450.0, 3225.0]  committed=[25.0, 150.0, 75.0, 1175.0, 2450.0, 3225.0]  OK
+W E1 REG-TB seed=280 S_max_final        got=3225.0                                       committed=3225.0                                       OK
+W E1 REG-TB seed=280 max_current_stretch got=3225.0                                       committed=3225.0                                       OK
+W E1 REG-TB seed=280 n_events           got=0                                            committed=0                                            OK
+R REG-TB seed=281 latency            got=3227                                         committed=3227                                         OK
+R REG-TB seed=281 n_resets           got=0                                            committed=0                                            OK
+R REG-TB seed=281 n_completed_stretches got=0                                            committed=0                                            OK
+R REG-TB seed=281 stretch_log        got=[75.0, 50.0, 100.0, 2825.0]                  committed=[75.0, 50.0, 100.0, 2825.0]                  OK
+R REG-TB seed=281 n_events           got=1                                            committed=1                                            OK
+R REG-TB seed=281 committed row has no events_summary; event list printed from the fresh run only.
+R REG-TB seed=281 fresh_events=[{"E_blocked": 3978.265556689318, "c_star": 1, "directional_pressure_acc": 2069.770895796039, "e600_active_steps": null, "entry_step": 2225, "exit_step": 9150, "frozen_steps": 6925, "int_acc_at_release": 0.0, "label": "concession", "n_resets_at_release": 0, "reg_S_max_at_release": 2825.0, "reg_n_completed_at_release": 4, "trigger_latency": null}]
+R INT-C2900 seed=286 latency            got=3403                                         committed=3403                                         OK
+R INT-C2900 seed=286 n_resets           got=4                                            committed=4                                            OK
+R INT-C2900 seed=286 n_completed_stretches got=0                                            committed=0                                            OK
+R INT-C2900 seed=286 stretch_log        got=[]                                           committed=[]                                           OK
+R INT-C2900 seed=286 n_events           got=1                                            committed=1                                            OK
+R INT-C2900 seed=286 committed row has no events_summary; event list printed from the fresh run only.
+R INT-C2900 seed=286 fresh_events=[{"E_blocked": 4338.108843266876, "c_star": 1, "directional_pressure_acc": 2179.873063582803, "e600_active_steps": null, "entry_step": 1475, "exit_step": 9325, "frozen_steps": 7850, "int_acc_at_release": 2900.0, "label": "concession", "n_resets_at_release": 4, "reg_S_max_at_release": null, "reg_n_completed_at_release": null, "trigger_latency": null}]
+
+GATE CHECKS PASS.
+
+================================================================================
+STEP 2: PRESSURE TRACE COLLECTION
+================================================================================
+R seed=280 latency            got=3133                                         committed=3133                                         OK
+R seed=280 n_resets           got=0                                            committed=0                                            OK
+R seed=280 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=280 stretch_log        got=[25.0, 150.0, 75.0, 2825.0]                  committed=[25.0, 150.0, 75.0, 2825.0]                  OK
+R seed=281 latency            got=3227                                         committed=3227                                         OK
+R seed=281 n_resets           got=0                                            committed=0                                            OK
+R seed=281 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=281 stretch_log        got=[75.0, 50.0, 100.0, 2825.0]                  committed=[75.0, 50.0, 100.0, 2825.0]                  OK
+R seed=282 latency            got=2920                                         committed=2920                                         OK
+R seed=282 n_resets           got=0                                            committed=0                                            OK
+R seed=282 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=282 stretch_log        got=[2825.0]                                     committed=[2825.0]                                     OK
+R seed=283 latency            got=3084                                         committed=3084                                         OK
+R seed=283 n_resets           got=0                                            committed=0                                            OK
+R seed=283 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=283 stretch_log        got=[125.0, 2825.0]                              committed=[125.0, 2825.0]                              OK
+R seed=284 latency            got=3105                                         committed=3105                                         OK
+R seed=284 n_resets           got=0                                            committed=0                                            OK
+R seed=284 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=284 stretch_log        got=[75.0, 25.0, 2825.0]                         committed=[75.0, 25.0, 2825.0]                         OK
+R seed=285 latency            got=2975                                         committed=2975                                         OK
+R seed=285 n_resets           got=0                                            committed=0                                            OK
+R seed=285 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=285 stretch_log        got=[2825.0]                                     committed=[2825.0]                                     OK
+R seed=286 latency            got=3328                                         committed=3328                                         OK
+R seed=286 n_resets           got=0                                            committed=0                                            OK
+R seed=286 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=286 stretch_log        got=[25.0, 125.0, 25.0, 50.0, 2825.0]            committed=[25.0, 125.0, 25.0, 50.0, 2825.0]            OK
+R seed=287 latency            got=2979                                         committed=2979                                         OK
+R seed=287 n_resets           got=0                                            committed=0                                            OK
+R seed=287 n_completed_stretches got=0                                            committed=0                                            OK
+R seed=287 stretch_log        got=[75.0, 2825.0]                               committed=[75.0, 2825.0]                               OK
+W E1 seed=280 stretch_log        got=[25.0, 150.0, 75.0, 1175.0, 2450.0, 3225.0]  committed=[25.0, 150.0, 75.0, 1175.0, 2450.0, 3225.0]  OK
+W E1 seed=280 S_max_final        got=3225.0                                       committed=3225.0                                       OK
+W E1 seed=280 max_current_stretch got=3225.0                                       committed=3225.0                                       OK
+W E1 seed=280 defense            got=true                                         committed=true                                         OK
+W E1 seed=286 stretch_log        got=[25.0, 125.0, 25.0, 50.0, 900.0, 2475.0, 3250.0] committed=[25.0, 125.0, 25.0, 50.0, 900.0, 2475.0, 3250.0] OK
+W E1 seed=286 S_max_final        got=3250.0                                       committed=3250.0                                       OK
+W E1 seed=286 max_current_stretch got=3250.0                                       committed=3250.0                                       OK
+W E1 seed=286 defense            got=true                                         committed=true                                         OK
+W E3 seed=280 stretch_log        got=[25.0, 150.0, 75.0, 1175.0, 2425.0, 3200.0]  committed=[25.0, 150.0, 75.0, 1175.0, 2425.0, 3200.0]  OK
+W E3 seed=280 S_max_final        got=3200.0                                       committed=3200.0                                       OK
+W E3 seed=280 max_current_stretch got=3200.0                                       committed=3200.0                                       OK
+W E3 seed=280 defense            got=true                                         committed=true                                         OK
+W E3 seed=286 stretch_log        got=[25.0, 125.0, 25.0, 50.0, 875.0, 2450.0, 3225.0] committed=[25.0, 125.0, 25.0, 50.0, 875.0, 2450.0, 3225.0] OK
+W E3 seed=286 S_max_final        got=3225.0                                       committed=3225.0                                       OK
+W E3 seed=286 max_current_stretch got=3225.0                                       committed=3225.0                                       OK
+W E3 seed=286 defense            got=true                                         committed=true                                         OK
+
+TRACE BIT-MATCH PASS.
+
+================================================================================
+STEP 3: RUN-LENGTH ANALYSIS
+================================================================================
+R seed=280 run_lengths=[1, 9, 27, 28] global_max=28
+R seed=281 run_lengths=[1, 28, 93, 33] global_max=93
+R seed=282 run_lengths=[13] global_max=13
+R seed=283 run_lengths=[58] global_max=58
+R seed=284 run_lengths=[98, 1, 23] global_max=98
+R seed=285 run_lengths=[] global_max=0
+R seed=286 run_lengths=[4, 2, 84, 23, 76] global_max=84
+R seed=287 run_lengths=[2, 104] global_max=104
+R global max flicker snaps = 104
+
+W E1 seed=280 in_burst_count=5 gap_run_lengths=[21, 23] min_gap=21
+W E1 seed=286 in_burst_count=6 gap_run_lengths=[21, 22] min_gap=21
+W E3 seed=280 in_burst_count=5 gap_run_lengths=[46, 47] min_gap=46
+W E3 seed=286 in_burst_count=6 gap_run_lengths=[47, 46] min_gap=46
+
+min W gap run snaps = 21
+
+================================================================================
+h-ADMISSIBILITY CHECK
+================================================================================
+h=8 snaps (200 steps): global_max_R=104 <= 4.0 and min_W_gap=21 >= 16 => INADMISSIBLE
+
+SEARCHING h in [2, 20]...
+  h= 2 -> NO (R margin 104 <= 1.0, W margin 21 >= 4)
+  h= 3 -> NO (R margin 104 <= 1.5, W margin 21 >= 6)
+  h= 4 -> NO (R margin 104 <= 2.0, W margin 21 >= 8)
+  h= 5 -> NO (R margin 104 <= 2.5, W margin 21 >= 10)
+  h= 6 -> NO (R margin 104 <= 3.0, W margin 21 >= 12)
+  h= 7 -> NO (R margin 104 <= 3.5, W margin 21 >= 14)
+  h= 8 -> NO (R margin 104 <= 4.0, W margin 21 >= 16)
+  h= 9 -> NO (R margin 104 <= 4.5, W margin 21 >= 18)
+  h=10 -> NO (R margin 104 <= 5.0, W margin 21 >= 20)
+  h=11 -> NO (R margin 104 <= 5.5, W margin 21 >= 22)
+  h=12 -> NO (R margin 104 <= 6.0, W margin 21 >= 24)
+  h=13 -> NO (R margin 104 <= 6.5, W margin 21 >= 26)
+  h=14 -> NO (R margin 104 <= 7.0, W margin 21 >= 28)
+  h=15 -> NO (R margin 104 <= 7.5, W margin 21 >= 30)
+  h=16 -> NO (R margin 104 <= 8.0, W margin 21 >= 32)
+  h=17 -> NO (R margin 104 <= 8.5, W margin 21 >= 34)
+  h=18 -> NO (R margin 104 <= 9.0, W margin 21 >= 36)
+  h=19 -> NO (R margin 104 <= 9.5, W margin 21 >= 38)
+  h=20 -> NO (R margin 104 <= 10.0, W margin 21 >= 40)
+NO ADMISSIBLE h — the hysteresis form is unbuildable at this body
+
+================================================================================
+STEP 4: COUNTERFACTUAL h SWEEP (real runner, committed seeds 280-287)
+  buildable iff SOME h: revision diff <= +3000 in >= 6/8 seeds AND
+  E1 and E3 defense both intact at the probed seeds
+================================================================================
+
+committed baseline latencies: {280: 220, 281: 220, 282: 37, 283: 45, 284: 200, 285: 150, 286: 261, 287: 190}
+committed REG-TB (h=0) latencies: {280: 3133, 281: 3227, 282: 2920, 283: 3084, 284: 3105, 285: 2975, 286: 3328, 287: 2979}
+
+--- R side (revision) ---
+  h=  4: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2905 s285:2825 s286:3067 s287:2789
+  h=  8: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2905 s285:2825 s286:3067 s287:2789
+  h= 12: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2905 s285:2825 s286:3067 s287:2789
+  h= 16: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2905 s285:2825 s286:3067 s287:2789
+  h= 20: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2905 s285:2825 s286:3067 s287:2789
+  h= 24: rev_pass=5/8  diffs: s280:2913 s281:3007 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 28: rev_pass=5/8  diffs: s280:2663 s281:3007 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 32: rev_pass=5/8  diffs: s280:2663 s281:3007 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 36: rev_pass=6/8  diffs: s280:2663 s281:2907 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 40: rev_pass=6/8  diffs: s280:2663 s281:2907 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 46: rev_pass=6/8  diffs: s280:2663 s281:2907 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 52: rev_pass=6/8  diffs: s280:2663 s281:2907 s282:2883 s283:3039 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 58: rev_pass=7/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 64: rev_pass=7/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 70: rev_pass=7/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:3067 s287:2789
+  h= 76: rev_pass=8/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:2992 s287:2789
+  h= 84: rev_pass=8/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:2842 s287:2789
+  h= 92: rev_pass=8/8  diffs: s280:2663 s281:2907 s282:2883 s283:2914 s284:2805 s285:2825 s286:2842 s287:2789
+  h=104: rev_pass=8/8  diffs: s280:2663 s281:2782 s282:2883 s283:2914 s284:2805 s285:2825 s286:2842 s287:2789
+
+--- W side (defense) ---
+  h=  8: E1/s280:def=T,conc=0  E1/s286:def=T,conc=0  E3/s280:def=T,conc=0  E3/s286:def=T,conc=0  C1/s280:def=T,conc=0  C1/s286:def=T,conc=0
+  h= 20: E1/s280:def=T,conc=0  E1/s286:def=T,conc=0  E3/s280:def=T,conc=0  E3/s286:def=T,conc=0  C1/s280:def=T,conc=0  C1/s286:def=T,conc=0
+  h= 21: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=T,conc=0  E3/s286:def=T,conc=0  C1/s280:def=T,conc=0  C1/s286:def=F,conc=1
+  h= 24: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=T,conc=0  E3/s286:def=T,conc=0  C1/s280:def=F,conc=1  C1/s286:def=F,conc=1
+  h= 33: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=T,conc=0  E3/s286:def=T,conc=0  C1/s280:def=F,conc=1  C1/s286:def=F,conc=1
+  h= 46: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=F,conc=2  E3/s286:def=F,conc=1  C1/s280:def=F,conc=1  C1/s286:def=F,conc=1
+  h= 58: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=F,conc=2  E3/s286:def=F,conc=2  C1/s280:def=F,conc=1  C1/s286:def=F,conc=1
+  h= 76: E1/s280:def=F,conc=2  E1/s286:def=F,conc=2  E3/s280:def=F,conc=2  E3/s286:def=F,conc=2  C1/s280:def=F,conc=1  C1/s286:def=F,conc=1
+
+--- BUILDABILITY TABLE (decision rule from the docstring) ---
+     h  rev_pass   E1_def   E3_def   C1_def   BUILDABLE
+     4        5/8       OK       OK       OK          no
+     8        5/8       OK       OK       OK          no
+    12        5/8       OK       OK       OK          no
+    16        5/8       OK       OK       OK          no
+    20        5/8       OK       OK       OK          no
+    24        5/8     LOST       OK     LOST          no
+    28        5/8     LOST       OK     LOST          no
+    32        5/8     LOST       OK     LOST          no
+    36        6/8     LOST       OK     LOST          no
+    40        6/8     LOST       OK     LOST          no
+    46        6/8     LOST     LOST     LOST          no
+    52        6/8     LOST     LOST     LOST          no
+    58        7/8     LOST     LOST     LOST          no
+    64        7/8     LOST     LOST     LOST          no
+    70        7/8     LOST     LOST     LOST          no
+    76        8/8     LOST     LOST     LOST          no
+    84        8/8     LOST     LOST     LOST          no
+    92        8/8     LOST     LOST     LOST          no
+   104        8/8     LOST     LOST     LOST          no
+
+STEP 4 VERDICT: NO h IS BUILDABLE — revision rescue requires bridging
+de-assert runs at or above the W gap-run scale; the de-assert-run-length
+channel cannot separate changed-world onset from attack-train gaps at
+this body. THE HYSTERESIS FORM IS REFUTED-AS-BUILDABLE AT DESIGN TIME.
+

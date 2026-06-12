@@ -941,6 +941,56 @@ The loop marks items it has consumed by indenting a response under them:
         ladder, cloud merge).
     (c) Redirect / stop.
     Nothing is silence-actionable; automated fires idle with a reminder.
+  → [human, 2026-06-12] "(a) Flicker-robust attempt" — the explicit word for option
+    (a), given in-session (loop-start question, answered directly). CONSUMED as
+    Exp 190: ONE pre-registered attempt at a flicker-robust concession form.
+    Form FIXED at design time: DE-ASSERT HYSTERESIS (a de-assert run shorter than
+    h steps does not reset the continuity clock; active-only counting unchanged —
+    no quiet accumulation). The alternative total-active-time form is REFUTED BY
+    ARITHMETIC before any run: defending E1 needs a budget covering the train's
+    total active time (~7000+ steps) while revision needs <= ~2900 — the interval
+    is empty by >4000 steps; logged here as the design-time dismissal, not tested.
+    Design-time flicker diagnostic on the COMMITTED exp189 sessions (bit-match
+    gated per L14/L15) fixes h BEFORE the fresh-seed run; kill family extended to
+    the hysteresis surface (INT-C2900-H) plus minimal pairs (REG-TB vs REG-TB-H,
+    C2900 vs C2900-H); cells/bars verbatim exp189; FRESH seeds 288-295. If it
+    passes, the separation claim is re-tested at the same bars (>= 2 cells); a
+    falsifier fire closes the question as refuted-as-buildable. Pre-registration
+    in loop/directions/identity-n4-crack.md before any grid data.
+  → [loop, 2026-06-12] Exp 190 DONE: NEGATIVE AT DESIGN TIME, blind-verified —
+    the fresh-seed grid was never licensed. The design-time diagnostic (predeclared
+    rules, bit-match-gated 137/137 evidence lines) measured the de-assert runs:
+    changed-world onset runs span 25-2,600 steps, attack-train gaps 525-1,175 —
+    FULL OVERLAP, no admissible h; the counterfactual sweep through the real
+    runner shows revision needs h>=36 while E1 defense dies at h>=21 (0/19 h
+    buildable; the floor exceeds the ceiling by 400 steps). Option (a) is CLOSED
+    refuted-as-buildable per its own terms. THE TIMESCALE-OVERLAP LAW named: the
+    flicker tax is structural to the reset surface. Entry: EXPERIMENTS.md Exp 190.
+
+- [from the loop, CONSULT — option (a) closed refuted-as-buildable, 2026-06-12]
+  Exp 190 (design-time, blind-verified): both named flicker-robust forms are
+  dead — total-active-time by arithmetic, de-assert hysteresis by measurement +
+  a complete counterfactual sweep (no h both defends and revises; the revision
+  floor h>=36 exceeds the defense ceiling h<=20; E1 lost from h=21). The rung-6
+  ledger now holds three laws: THE KAPPA-REACH LAW (defense, proven), THE FLICKER
+  TAX (revision, named at Exp 189), THE TIMESCALE-OVERLAP LAW (the tax is
+  structural; flickers and gaps live on the same clock). OPTIONS:
+  (a) RECOMMENDED — consolidation: fold the rung-6 postscript (Exp 189 negative +
+      Exp 190 refutation + the three laws) into docs/research/n4-crack-chapter.md,
+      close the identity-n4-crack card (the crack chapter is then fully graded:
+      crack real -> closed constructively -> regulation ties at fixed-L -> defends
+      uniquely at variable-L but cannot revise -> unrepairable on the named
+      channels), and return to the standing consults (M4a increment 1c — still
+      the most direct path to the moonshot's "talk to it" goal; nira's
+      normalized-predictive switch; the cloud-branch merge; the ladder; stop).
+  (b) ONE more attempt OUTSIDE the named channels (duty-cycle / leaky-integrator
+      functionals) — honestly disfavored: the measured pressure-density inversion
+      (attack trains are DENSER in pressure than the changed world's onset)
+      predicts monotone occupancy functionals fail the same way; would need its
+      own design-time diagnostic with predeclared admissibility before any run.
+  (c) Redirect / stop.
+  Per the ratified pattern (L8), resumption without redirection authorizes the
+  RECOMMENDED option (a) only, falsifier-bound as ever.
 
 (empty — drop ideas above this line's section freely)
 
