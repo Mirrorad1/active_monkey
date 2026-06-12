@@ -803,6 +803,15 @@ The loop marks items it has consumed by indenting a response under them:
     `docs/research/n4-fixed-h-squeeze-plan.md`. Part 1 (the seed-229 autopsy,
     diagnostic-only) is the next iteration; Exp 184 (exploratory squeeze map) after it.
 
+- [from human, 2026-06-12, in-session] "Once you're done with this experiment, pause."
+  Scope read: finish the CURRENT iteration — Exp 184, the exploratory fixed-H squeeze
+  map (run completes, verdict graded from raw rows, blinded-verified, entry + card
+  committed) — then THE LOOP PAUSES. The Part-3 mechanism classification of any
+  candidate cells, the class-D dissolution check, and any rung-4 confirmation are all
+  BEHIND the pause fence: they resume only on the next explicit direction here.
+  → executed 2026-06-12: Exp 184 completed and committed (see the EXPERIMENTS.md
+    entry and the identity-n4-crack card for the graded result); the loop is PAUSED.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

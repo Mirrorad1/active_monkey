@@ -208,4 +208,23 @@ committed BEFORE any data).**
   script experiments/exp184_n4_fixed_h_squeeze_map.py. The Part-3 classification runs
   NEXT iteration on these outputs; no crack claim without rung-4 confirmation.
 
-**STATUS.** state: active (rung 1 done — autopsy mechanism pinned; Exp 184 next) · latest: Exp 183 addendum (seed-229 autopsy, 2026-06-12) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: Exp 183 freeze machinery + sliding trigger, rung-2 monitor (180), displacement regime (176), detection-floor law (F), surrender-schedule law (G), universal-constant kill test (173), the autopsy's margin-ledger/election instruments · why: the human's explicit word (2026-06-11) reopens the deferred seed-229 crack as a NEW investigation; autopsy pinned the mechanism (head dose vs margin ledger; repetition not the discriminant; H-independent) · next-falsifiable: Exp 184 exploratory squeeze map — is a robust no-fixed-H regime constructible from the dose-ledger mechanism (route 2), or does any cell empty the fixed-H interval (route 1)?
+**RUNG 2 RESULT (Exp 184, 2026-06-12 — the exploratory squeeze map; equivalence-gated
+17→2640+30 sessions, blind-verified with both flagged gaps closed/logged).** The
+commitment-as-config verdict does NOT extend across attack-schedule space: 36/80
+cells (normal tolerance), 57/80 (tight), 32/80 (loose) have NO fixed H passing
+defense+revision, while the oracle defends ALL 80 cells 3/3 (defense is mechanically
+possible everywhere the constant fails). Both crack routes are REAL STRUCTURE: route 1
+(tolerance-bound) confirmed exactly at (L=2400, tight) — the Phase-R law is clean,
+latency = H + baseline, so the revision ceiling IS the tolerance, and the interval
+empties when K·L + (K−1)·G − 75 > tol; route 2 (dose-bound) = the 32 loose-mode
+persisters (e.g. L=400 K=4 G=2400 fails at EVERY H — long gaps release the freeze, K
+full doses land). NEW LAW (P1's informative falsification, 8 cells): FREEZE-SPANNING —
+against trains with short gaps a long H sleeps through the gaps and pays ONE detection
+dose for several bursts; H controls the dose COUNT, interacting with G. Flagged:
+(L=1200, K=1) candidates are seed-margin failures (election-variance class), and 3
+seeds/cell makes the 2/3 bar single-flip — candidates are NOT cracks. Part-3
+classification (A–E + the class-D dissolution arms: pre-armed / lower-THETA trigger)
+and rung-4 confirmation are REQUIRED before any claim — both PAUSED on the human's
+word (2026-06-12).
+
+**STATUS.** state: halted (PAUSED on the human's explicit word, 2026-06-12, "once you're done with this experiment, pause" — rungs 1–2 complete; resumes only on the next explicit direction in loop/IDEAS.md) · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation

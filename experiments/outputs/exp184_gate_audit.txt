@@ -1,0 +1,73 @@
+Exp 184 EQUIVALENCE-GATE AUDIT appendix (deterministic re-execution, 2026-06-12).
+
+Why: the blinded verifier (PROTOCOL 4.5) flagged that exp184.txt asserts
+'EQUIVALENCE GATE: PASS' without numeric evidence. This appendix re-executes the two
+gate sessions through exp184's run_fork_schedule (exp183-equivalence configuration)
+and prints EVERY compared field, got vs committed, so the license is auditable.
+Deterministic; writes only this file; spine untouched (detached deepcopy).
+
+=== arm=baseline seed=229 ===
+  b0 gap_start  got=135.99937835015726           committed=135.99937835015726           OK
+  b0 gap_end    got=-571.7363522432429           committed=-571.7363522432429           OK
+  b0 d_b        got=0.15664036565125683          committed=0.15664036565125683          OK
+  b0 tv_b       got=0.15664036565125675          committed=0.15664036565125675          OK
+  b0 recovered  got=False                        committed=False                        OK
+  b0 n_events   got=0                            committed=0                            OK
+  b1 gap_start  got=308.8677728920327            committed=308.8677728920327            OK
+  b1 gap_end    got=-441.6128408201637           committed=-441.6128408201637           OK
+  b1 d_b        got=0.16213754946837328          committed=0.16213754946837328          OK
+  b1 tv_b       got=0.16213754946837328          committed=0.16213754946837328          OK
+  b1 recovered  got=False                        committed=False                        OK
+  b1 n_events   got=0                            committed=0                            OK
+  b2 gap_start  got=322.85746017635324           committed=322.85746017635324           OK
+  b2 gap_end    got=-402.18131405053043          committed=-402.18131405053043          OK
+  b2 d_b        got=0.15775393082799233          committed=0.15775393082799233          OK
+  b2 tv_b       got=0.15775393082799238          committed=0.15775393082799238          OK
+  b2 recovered  got=False                        committed=False                        OK
+  b2 n_events   got=0                            committed=0                            OK
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start  got=153.15192102308868           committed=153.15192102308868           OK
+  b0 gap_end    got=80.55582599896172            committed=80.55582599896172            OK
+  b0 d_b        got=0.016273820926243687         committed=0.016273820926243687         OK
+  b0 tv_b       got=0.016273820926243687         committed=0.016273820926243687         OK
+  b0 recovered  got=True                         committed=True                         OK
+  b0 n_events   got=4                            committed=4                            OK
+  b1 gap_start  got=77.59197443713458            committed=77.59197443713458            OK
+  b1 gap_end    got=5.162418152138571            committed=5.162418152138571            OK
+  b1 d_b        got=0.016416619393121945         committed=0.016416619393121945         OK
+  b1 tv_b       got=0.016416619393121917         committed=0.016416619393121917         OK
+  b1 recovered  got=False                        committed=False                        OK
+  b1 n_events   got=4                            committed=4                            OK
+  b2 gap_start  got=41.6153816086221             committed=41.6153816086221             OK
+  b2 gap_end    got=-29.89416352514172           committed=-29.89416352514172           OK
+  b2 d_b        got=0.01627021211409152          committed=0.01627021211409152          OK
+  b2 tv_b       got=0.01627021211409152          committed=0.01627021211409152          OK
+  b2 recovered  got=False                        committed=False                        OK
+  b2 n_events   got=4                            committed=4                            OK
+  ev0 label            got='transient'              committed='transient'              OK
+  ev0 entry_step       got=5400                     committed=5400                     OK
+  ev0 frozen_steps     got=200                      committed=200                      OK
+  ev0 c_star           got=0                        committed=0                        OK
+  ev0 trigger_latency  got=None                     committed=None                     OK
+  ev0 E_blocked        got=64.986140480224          committed=64.986140480224          OK
+  ev1 label            got='transient'              committed='transient'              OK
+  ev1 entry_step       got=6075                     committed=6075                     OK
+  ev1 frozen_steps     got=1050                     committed=1050                     OK
+  ev1 c_star           got=1                        committed=1                        OK
+  ev1 trigger_latency  got=75                       committed=75                       OK
+  ev1 E_blocked        got=793.044621648603         committed=793.044621648603         OK
+  ev2 label            got='transient'              committed='transient'              OK
+  ev2 entry_step       got=9075                     committed=9075                     OK
+  ev2 frozen_steps     got=1025                     committed=1025                     OK
+  ev2 c_star           got=1                        committed=1                        OK
+  ev2 trigger_latency  got=75                       committed=75                       OK
+  ev2 E_blocked        got=771.588886011883         committed=771.588886011883         OK
+  ev3 label            got='transient'              committed='transient'              OK
+  ev3 entry_step       got=12075                    committed=12075                    OK
+  ev3 frozen_steps     got=1025                     committed=1025                     OK
+  ev3 c_star           got=0                        committed=0                        OK
+  ev3 trigger_latency  got=75                       committed=75                       OK
+  ev3 E_blocked        got=786.226643690621         committed=786.226643690621         OK
+
+GATE AUDIT OVERALL: PASS — every field matches committed exp183 rows

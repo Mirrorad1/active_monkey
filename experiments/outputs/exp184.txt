@@ -1,0 +1,376 @@
+================================================================================
+EXP 184 — N4 FIXED-H SQUEEZE MAP (EXPLORATORY)
+PRE-REGISTERED loop/directions/identity-n4-crack.md (commit c220d2c)
+Runtime: 7.2 min | Seeds: [240, 241, 242] | Grid: 80 cells
+================================================================================
+
+EQUIVALENCE GATE
+----------------------------------------
+EQUIVALENCE GATE: PASS
+  gate arm=baseline seed=229: PASS
+  gate arm=H1200 seed=229: PASS
+
+PC1 / PRECONDITIONS
+----------------------------------------
+PC1 PASS: all ahat_drift < 0.15
+Settle TV: no flags (all <= 0.05)
+
+SMOKE RESULTS — cell (L=800,K=3,G=2400), seed 240, all 11 arms
+----------------------------------------
+  arm=baseline      defense=fail  frac=1.000     attack_color=1  n_events=0  ahat_drift=0.01515
+  arm=n4_freeze     defense=fail  frac=1.000     attack_color=1  n_events=7  ahat_drift=0.01515
+  arm=H600          defense=fail  frac=1.000     attack_color=1  n_events=9  ahat_drift=0.01515
+  arm=H900          defense=fail  frac=1.000     attack_color=1  n_events=10  ahat_drift=0.01515
+  arm=H1200         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=H1800         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=H2400         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=H3000         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=H4200         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=H6000         defense=fail  frac=1.000     attack_color=1  n_events=8  ahat_drift=0.01515
+  arm=oracle        defense=PASS  frac=0.000     attack_color=1  n_events=0  ahat_drift=0.01515
+
+PHASE-R LATENCY TABLE (10 arms x 3 seeds)
+----------------------------------------
+  arm            s240 s241 s242  [bl:75/235/173]
+  baseline           75    235    173
+  n4_freeze         725    885    811
+  H600              675    835    761
+  H900              975   1135   1061
+  H1200            1275   1434   1361
+  H1800            1875   2034   1961
+  H2400            2475   2634   2561
+  H3000            3075   3234   3161
+  H4200            4275   4434   4361
+  H6000            6075   6234   6160
+
+REVISION PASS TABLE (H_arm x mode)
+----------------------------------------
+  arm            normal   tight    loose   
+  H600           PASS     PASS     PASS    
+  H900           PASS     PASS     PASS    
+  H1200          PASS     PASS     PASS    
+  H1800          PASS     fail     PASS    
+  H2400          PASS     fail     PASS    
+  H3000          PASS     fail     PASS    
+  H4200          fail     fail     PASS    
+  H6000          fail     fail     PASS    
+
+EXISTS_H_BOTH MAP — mode=normal (tolerance=3000)
+  Rows=L, Cols=G; K sub-rows; mark C=crack candidate (oracle defends, no H passes both)
+------------------------------------------------------------
+  L      K    | G=  200 G=  600 G= 1200 G= 2400
+  --------------------------------------------------
+  L=  400 K=1 |       Y       Y       Y       Y
+  L=  400 K=2 |       Y       C       C       Y
+  L=  400 K=3 |       Y       Y       Y       C
+  L=  400 K=4 |       Y       C       C       C
+  L=  800 K=1 |       Y       Y       Y       Y
+  L=  800 K=2 |       Y       Y       Y       Y
+  L=  800 K=3 |       Y       Y       Y       C
+  L=  800 K=4 |       Y       C       C       C
+  L= 1200 K=1 |       C       C       C       C
+  L= 1200 K=2 |       Y       Y       Y       Y
+  L= 1200 K=3 |       C       Y       Y       C
+  L= 1200 K=4 |       C       C       C       C
+  L= 1600 K=1 |       Y       Y       Y       Y
+  L= 1600 K=2 |       C       Y       Y       Y
+  L= 1600 K=3 |       C       C       C       Y
+  L= 1600 K=4 |       C       C       C       C
+  L= 2400 K=1 |       Y       Y       Y       Y
+  L= 2400 K=2 |       Y       Y       C       C
+  L= 2400 K=3 |       C       C       Y       C
+  L= 2400 K=4 |       C       C       Y       C
+
+EXISTS_H_BOTH MAP — mode=tight (tolerance=1500)
+  Rows=L, Cols=G; K sub-rows; mark C=crack candidate (oracle defends, no H passes both)
+------------------------------------------------------------
+  L      K    | G=  200 G=  600 G= 1200 G= 2400
+  --------------------------------------------------
+  L=  400 K=1 |       Y       Y       Y       Y
+  L=  400 K=2 |       Y       C       C       Y
+  L=  400 K=3 |       Y       Y       Y       C
+  L=  400 K=4 |       C       C       C       C
+  L=  800 K=1 |       Y       Y       Y       Y
+  L=  800 K=2 |       C       Y       Y       Y
+  L=  800 K=3 |       C       Y       Y       C
+  L=  800 K=4 |       C       C       C       C
+  L= 1200 K=1 |       C       C       C       C
+  L= 1200 K=2 |       Y       C       Y       Y
+  L= 1200 K=3 |       C       Y       Y       C
+  L= 1200 K=4 |       C       C       C       C
+  L= 1600 K=1 |       C       C       C       C
+  L= 1600 K=2 |       C       C       C       C
+  L= 1600 K=3 |       C       C       C       C
+  L= 1600 K=4 |       C       C       C       C
+  L= 2400 K=1 |       C       C       C       C
+  L= 2400 K=2 |       C       C       C       C
+  L= 2400 K=3 |       C       C       C       C
+  L= 2400 K=4 |       C       C       C       C
+
+EXISTS_H_BOTH MAP — mode=loose (tolerance=6000)
+  Rows=L, Cols=G; K sub-rows; mark C=crack candidate (oracle defends, no H passes both)
+------------------------------------------------------------
+  L      K    | G=  200 G=  600 G= 1200 G= 2400
+  --------------------------------------------------
+  L=  400 K=1 |       Y       Y       Y       Y
+  L=  400 K=2 |       Y       C       C       Y
+  L=  400 K=3 |       Y       Y       Y       C
+  L=  400 K=4 |       Y       C       C       C
+  L=  800 K=1 |       Y       Y       Y       Y
+  L=  800 K=2 |       Y       Y       Y       Y
+  L=  800 K=3 |       Y       Y       Y       C
+  L=  800 K=4 |       Y       C       C       C
+  L= 1200 K=1 |       C       C       C       C
+  L= 1200 K=2 |       Y       Y       Y       Y
+  L= 1200 K=3 |       Y       Y       Y       C
+  L= 1200 K=4 |       Y       C       C       C
+  L= 1600 K=1 |       Y       Y       Y       Y
+  L= 1600 K=2 |       Y       Y       Y       Y
+  L= 1600 K=3 |       Y       C       C       Y
+  L= 1600 K=4 |       C       C       C       C
+  L= 2400 K=1 |       Y       Y       Y       Y
+  L= 2400 K=2 |       Y       Y       C       C
+  L= 2400 K=3 |       C       C       Y       C
+  L= 2400 K=4 |       C       C       Y       C
+
+P1 — H-INVARIANCE CHECK (H >= L-75 stratum)
+----------------------------------------
+F1 EVIDENCE: 8 cell(s) show monotone H improvement:
+  cell_idx=4 L=400 K=2 G=200: [(600, 0), (900, 2), (1200, 2), (1800, 2), (2400, 2), (3000, 2), (4200, 2), (6000, 2)]
+  cell_idx=10 L=400 K=3 G=1200: [(600, 1), (900, 2), (1200, 2), (1800, 2), (2400, 2), (3000, 2), (4200, 2), (6000, 2)]
+  cell_idx=20 L=800 K=2 G=200: [(900, 0), (1200, 0), (1800, 2), (2400, 3), (3000, 3), (4200, 3), (6000, 3)]
+  cell_idx=37 L=1200 K=2 G=600: [(1200, 1), (1800, 2), (2400, 2), (3000, 2), (4200, 2), (6000, 2)]
+  cell_idx=38 L=1200 K=2 G=1200: [(1200, 2), (1800, 3), (2400, 3), (3000, 3), (4200, 3), (6000, 3)]
+  cell_idx=52 L=1600 K=2 G=200: [(1800, 0), (2400, 0), (3000, 0), (4200, 3), (6000, 3)]
+  cell_idx=56 L=1600 K=3 G=200: [(1800, 0), (2400, 0), (3000, 0), (4200, 0), (6000, 2)]
+  cell_idx=69 L=2400 K=2 G=600: [(2400, 2), (3000, 3), (4200, 3), (6000, 3)]
+
+P2 — (L=2400, tight) INTERVAL-EMPTY CHECK
+----------------------------------------
+Predicted: NOT exists_H_both for all L=2400 cells in tight mode
+(defense needs H >~ 2325; tight allows H <~ 1650)
+
+  cell_idx=64 K=1 G=200: PASS (no H)
+  cell_idx=65 K=1 G=600: PASS (no H)
+  cell_idx=66 K=1 G=1200: PASS (no H)
+  cell_idx=67 K=1 G=2400: PASS (no H)
+  cell_idx=68 K=2 G=200: PASS (no H)
+  cell_idx=69 K=2 G=600: PASS (no H)
+  cell_idx=70 K=2 G=1200: PASS (no H)
+  cell_idx=71 K=2 G=2400: PASS (no H)
+  cell_idx=72 K=3 G=200: PASS (no H)
+  cell_idx=73 K=3 G=600: PASS (no H)
+  cell_idx=74 K=3 G=1200: PASS (no H)
+  cell_idx=75 K=3 G=2400: PASS (no H)
+  cell_idx=76 K=4 G=200: PASS (no H)
+  cell_idx=77 K=4 G=600: PASS (no H)
+  cell_idx=78 K=4 G=1200: PASS (no H)
+  cell_idx=79 K=4 G=2400: PASS (no H)
+
+P2 VERDICT: interval-empty for all L=2400 tight cells (prediction holds)
+
+P3 — ORACLE TABLE
+----------------------------------------
+P3 PASS: oracle defends all 80 cells at >=2/3 seeds
+
+Oracle defense counts (n_seeds_passing / 3 per cell):
+  L      K    | G=  200 G=  600 G= 1200 G= 2400
+  L=  400 K=1 |       3       3       3       3
+  L=  400 K=2 |       3       3       3       3
+  L=  400 K=3 |       3       3       3       3
+  L=  400 K=4 |       3       3       3       3
+  L=  800 K=1 |       3       3       3       3
+  L=  800 K=2 |       3       3       3       3
+  L=  800 K=3 |       3       3       3       3
+  L=  800 K=4 |       3       3       3       3
+  L= 1200 K=1 |       3       3       3       3
+  L= 1200 K=2 |       3       3       3       3
+  L= 1200 K=3 |       3       3       3       3
+  L= 1200 K=4 |       3       3       3       3
+  L= 1600 K=1 |       3       3       3       3
+  L= 1600 K=2 |       3       3       3       3
+  L= 1600 K=3 |       3       3       3       3
+  L= 1600 K=4 |       3       3       3       3
+  L= 2400 K=1 |       3       3       3       3
+  L= 2400 K=2 |       3       3       3       3
+  L= 2400 K=3 |       3       3       3       3
+  L= 2400 K=4 |       3       3       3       3
+
+F4 — DEGENERATE MAP CHECK
+----------------------------------------
+  Total freeze events (all non-baseline, non-oracle, W arms): 12534
+  Trigger silent (0 events): False
+  All cells pass any mode: False
+  F4 degenerate: False
+
+CANDIDATE CRACK CELLS (NOT exists_H_both AND oracle defends)
+----------------------------------------
+  mode=normal (tolerance=3000): 36 candidates
+    cell_idx=5 L=400 K=2 G=600
+    cell_idx=6 L=400 K=2 G=1200
+    cell_idx=11 L=400 K=3 G=2400
+    cell_idx=13 L=400 K=4 G=600
+    cell_idx=14 L=400 K=4 G=1200
+    cell_idx=15 L=400 K=4 G=2400
+    cell_idx=27 L=800 K=3 G=2400
+    cell_idx=29 L=800 K=4 G=600
+    cell_idx=30 L=800 K=4 G=1200
+    cell_idx=31 L=800 K=4 G=2400
+    cell_idx=32 L=1200 K=1 G=200
+    cell_idx=33 L=1200 K=1 G=600
+    cell_idx=34 L=1200 K=1 G=1200
+    cell_idx=35 L=1200 K=1 G=2400
+    cell_idx=40 L=1200 K=3 G=200
+    cell_idx=43 L=1200 K=3 G=2400
+    cell_idx=44 L=1200 K=4 G=200
+    cell_idx=45 L=1200 K=4 G=600
+    cell_idx=46 L=1200 K=4 G=1200
+    cell_idx=47 L=1200 K=4 G=2400
+    cell_idx=52 L=1600 K=2 G=200
+    cell_idx=56 L=1600 K=3 G=200
+    cell_idx=57 L=1600 K=3 G=600
+    cell_idx=58 L=1600 K=3 G=1200
+    cell_idx=60 L=1600 K=4 G=200
+    cell_idx=61 L=1600 K=4 G=600
+    cell_idx=62 L=1600 K=4 G=1200
+    cell_idx=63 L=1600 K=4 G=2400
+    cell_idx=70 L=2400 K=2 G=1200
+    cell_idx=71 L=2400 K=2 G=2400
+    cell_idx=72 L=2400 K=3 G=200
+    cell_idx=73 L=2400 K=3 G=600
+    cell_idx=75 L=2400 K=3 G=2400
+    cell_idx=76 L=2400 K=4 G=200
+    cell_idx=77 L=2400 K=4 G=600
+    cell_idx=79 L=2400 K=4 G=2400
+  mode=tight (tolerance=1500): 57 candidates
+    cell_idx=5 L=400 K=2 G=600
+    cell_idx=6 L=400 K=2 G=1200
+    cell_idx=11 L=400 K=3 G=2400
+    cell_idx=12 L=400 K=4 G=200
+    cell_idx=13 L=400 K=4 G=600
+    cell_idx=14 L=400 K=4 G=1200
+    cell_idx=15 L=400 K=4 G=2400
+    cell_idx=20 L=800 K=2 G=200
+    cell_idx=24 L=800 K=3 G=200
+    cell_idx=27 L=800 K=3 G=2400
+    cell_idx=28 L=800 K=4 G=200
+    cell_idx=29 L=800 K=4 G=600
+    cell_idx=30 L=800 K=4 G=1200
+    cell_idx=31 L=800 K=4 G=2400
+    cell_idx=32 L=1200 K=1 G=200
+    cell_idx=33 L=1200 K=1 G=600
+    cell_idx=34 L=1200 K=1 G=1200
+    cell_idx=35 L=1200 K=1 G=2400
+    cell_idx=37 L=1200 K=2 G=600
+    cell_idx=40 L=1200 K=3 G=200
+    cell_idx=43 L=1200 K=3 G=2400
+    cell_idx=44 L=1200 K=4 G=200
+    cell_idx=45 L=1200 K=4 G=600
+    cell_idx=46 L=1200 K=4 G=1200
+    cell_idx=47 L=1200 K=4 G=2400
+    cell_idx=48 L=1600 K=1 G=200
+    cell_idx=49 L=1600 K=1 G=600
+    cell_idx=50 L=1600 K=1 G=1200
+    cell_idx=51 L=1600 K=1 G=2400
+    cell_idx=52 L=1600 K=2 G=200
+    cell_idx=53 L=1600 K=2 G=600
+    cell_idx=54 L=1600 K=2 G=1200
+    cell_idx=55 L=1600 K=2 G=2400
+    cell_idx=56 L=1600 K=3 G=200
+    cell_idx=57 L=1600 K=3 G=600
+    cell_idx=58 L=1600 K=3 G=1200
+    cell_idx=59 L=1600 K=3 G=2400
+    cell_idx=60 L=1600 K=4 G=200
+    cell_idx=61 L=1600 K=4 G=600
+    cell_idx=62 L=1600 K=4 G=1200
+  mode=loose (tolerance=6000): 32 candidates
+    cell_idx=5 L=400 K=2 G=600
+    cell_idx=6 L=400 K=2 G=1200
+    cell_idx=11 L=400 K=3 G=2400
+    cell_idx=13 L=400 K=4 G=600
+    cell_idx=14 L=400 K=4 G=1200
+    cell_idx=15 L=400 K=4 G=2400
+    cell_idx=27 L=800 K=3 G=2400
+    cell_idx=29 L=800 K=4 G=600
+    cell_idx=30 L=800 K=4 G=1200
+    cell_idx=31 L=800 K=4 G=2400
+    cell_idx=32 L=1200 K=1 G=200
+    cell_idx=33 L=1200 K=1 G=600
+    cell_idx=34 L=1200 K=1 G=1200
+    cell_idx=35 L=1200 K=1 G=2400
+    cell_idx=43 L=1200 K=3 G=2400
+    cell_idx=45 L=1200 K=4 G=600
+    cell_idx=46 L=1200 K=4 G=1200
+    cell_idx=47 L=1200 K=4 G=2400
+    cell_idx=57 L=1600 K=3 G=600
+    cell_idx=58 L=1600 K=3 G=1200
+    cell_idx=60 L=1600 K=4 G=200
+    cell_idx=61 L=1600 K=4 G=600
+    cell_idx=62 L=1600 K=4 G=1200
+    cell_idx=63 L=1600 K=4 G=2400
+    cell_idx=70 L=2400 K=2 G=1200
+    cell_idx=71 L=2400 K=2 G=2400
+    cell_idx=72 L=2400 K=3 G=200
+    cell_idx=73 L=2400 K=3 G=600
+    cell_idx=75 L=2400 K=3 G=2400
+    cell_idx=76 L=2400 K=4 G=200
+    cell_idx=77 L=2400 K=4 G=600
+    cell_idx=79 L=2400 K=4 G=2400
+
+K=1 G-DEGENERACY NOTE
+----------------------------------------
+K=1 cells are G-replicates of one schedule (only one burst, no gap used).
+Pooled K=1 defense table (L x arm, pooled across G and seeds):
+  L      |   baseline   n4_freez       H600       H900      H1200      H1800      H2400      H3000      H4200      H6000     oracle
+  L=  400 |    0/12    8/12    8/12    8/12    8/12    8/12    8/12    8/12    8/12    8/12   12/12
+  L=  800 |    0/12    4/12    4/12    8/12    8/12    8/12    8/12    8/12    8/12    8/12   12/12
+  L= 1200 |    0/12    0/12    0/12    4/12    4/12    4/12    4/12    4/12    4/12    4/12   12/12
+  L= 1600 |    0/12    0/12    0/12    0/12    0/12    8/12    8/12    8/12    8/12    8/12   12/12
+  L= 2400 |    0/12    0/12    0/12    0/12    0/12    0/12   12/12   12/12   12/12   12/12   12/12
+
+REVISION PASS DETAILS PER SEED
+----------------------------------------
+  Mode=normal (tolerance=3000):
+    H600    : PASS   s240:675(ok)  s241:835(ok)  s242:761(ok)
+    H900    : PASS   s240:975(ok)  s241:1135(ok)  s242:1061(ok)
+    H1200   : PASS   s240:1275(ok)  s241:1434(ok)  s242:1361(ok)
+    H1800   : PASS   s240:1875(ok)  s241:2034(ok)  s242:1961(ok)
+    H2400   : PASS   s240:2475(ok)  s241:2634(ok)  s242:2561(ok)
+    H3000   : PASS   s240:3075(ok)  s241:3234(ok)  s242:3161(ok)
+    H4200   : fail   s240:4275(FAIL)  s241:4434(FAIL)  s242:4361(FAIL)
+    H6000   : fail   s240:6075(FAIL)  s241:6234(FAIL)  s242:6160(FAIL)
+  Mode=tight (tolerance=1500):
+    H600    : PASS   s240:675(ok)  s241:835(ok)  s242:761(ok)
+    H900    : PASS   s240:975(ok)  s241:1135(ok)  s242:1061(ok)
+    H1200   : PASS   s240:1275(ok)  s241:1434(ok)  s242:1361(ok)
+    H1800   : fail   s240:1875(FAIL)  s241:2034(FAIL)  s242:1961(FAIL)
+    H2400   : fail   s240:2475(FAIL)  s241:2634(FAIL)  s242:2561(FAIL)
+    H3000   : fail   s240:3075(FAIL)  s241:3234(FAIL)  s242:3161(FAIL)
+    H4200   : fail   s240:4275(FAIL)  s241:4434(FAIL)  s242:4361(FAIL)
+    H6000   : fail   s240:6075(FAIL)  s241:6234(FAIL)  s242:6160(FAIL)
+  Mode=loose (tolerance=6000):
+    H600    : PASS   s240:675(ok)  s241:835(ok)  s242:761(ok)
+    H900    : PASS   s240:975(ok)  s241:1135(ok)  s242:1061(ok)
+    H1200   : PASS   s240:1275(ok)  s241:1434(ok)  s242:1361(ok)
+    H1800   : PASS   s240:1875(ok)  s241:2034(ok)  s242:1961(ok)
+    H2400   : PASS   s240:2475(ok)  s241:2634(ok)  s242:2561(ok)
+    H3000   : PASS   s240:3075(ok)  s241:3234(ok)  s242:3161(ok)
+    H4200   : PASS   s240:4275(ok)  s241:4434(ok)  s242:4361(ok)
+    H6000   : PASS   s240:6075(ok)  s241:6234(ok)  s242:6160(ok)
+
+================================================================================
+SUMMARY
+================================================================================
+  mode=normal: 44/80 cells pass (exists_H_both), 36/80 fail, 36 candidate crack cells
+  mode=tight: 23/80 cells pass (exists_H_both), 57/80 fail, 57 candidate crack cells
+  mode=loose: 48/80 cells pass (exists_H_both), 32/80 fail, 32 candidate crack cells
+
+  P1 H-invariance: F1 exceptions: 8 cells
+  P2 (L=2400 tight): interval-empty (prediction holds)
+  P3 oracle: all 80 cells defended
+  F4 degenerate: False (trigger events: 12534)
+  PC1: PASS
+  Runtime: 7.2 min
+
+NOTE: No crack CLAIM. Candidate cells require Part-3 classification.
+================================================================================

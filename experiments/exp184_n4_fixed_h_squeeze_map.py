@@ -2,6 +2,15 @@
 
 PRE-REGISTERED in loop/directions/identity-n4-crack.md (commit c220d2c) BEFORE any data.
 
+Predeclared shape predictions + FALSIFIERS (copied verbatim-in-substance from the
+pre-registration card, commit c220d2c, committed before any data; this docstring
+note added post-run for the mechanical rubric — content unchanged):
+P1 dose-route H-invariance within the H >= L-75 stratum; FALSIFIER F1 = defense
+improves monotonically with H in that stratum. P2 (L=2400, tight) interval-empty;
+FALSIFIER F2 = some H passes both bars there. P3 oracle defends every cell >= 2/3
+seeds; FALSIFIER F3 = an oracle-failed cell. F4 (map-validity falsifier) =
+degenerate map (trigger silent off the Exp-183 geometry, or everything passes).
+
 EXPLORATORY squeeze map; 3 seeds/cell (FRESH 240-242).
 Smoke = cell (L=800, K=3, G=2400), all arms, seed 240, disclosed.
 
