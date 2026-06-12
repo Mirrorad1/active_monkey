@@ -337,4 +337,26 @@ leaked writes; freezing the monitor's REFERENCE removes absorption-reopening.
   E_STAR-vs-H may not separate at this richness — NEGATIVE-config is a live and
   acceptable outcome; the revision regime remains diet-driven captivity.
 
+**EXP 182 SMOKE-STAGE AMENDMENTS (declared and committed BEFORE the full run; no
+full-run data exists).** The disclosed smoke (seed 218) plus the oracle diagnostic
+exposed two instrument miscalibrations, both diagnosed from COMMITTED prior blocks:
+(1) THETA 2.0 -> 3.5 — quiet m/m_bar ratios reach ~2-3 (exp177/180 committed
+mismatch statistics), so 2.0 fires spuriously in the settle (smoke events at
+2300/5300), and each spurious release clears the history, creating the declared
+vulnerability window exactly where burst 0 and the Phase-R onset land (Phase R then
+never engages the machinery at all — every freeze arm adopted at 149 steps with the
+trigger silent). Burst-onset ratios are ~4-5; 3.5 separates.
+(2) P5's recovery operationalization is RE-AIMED at displacement-rejection:
+RECOVERED iff expressed != burst_color for ALL of [bend+1500, bend+2000). Rationale
+(the oracle's purpose fulfilled): the exact-burst oracle freeze preserved v
+BIT-IDENTICALLY through all three bursts yet failed the strict argmax-hold criterion
+0/3, because successful defense returns the creature to the quiet near-tied
+equilibrium where its favorite naturally wanders on the check horizon (margins ~2-4
+units — the Exp 174/177 near-tie at the outcome level). The chapter's verified
+deficit (Exp 176: the imposed color captures the identity, 72/72) is what defense
+must prevent; the Exp 178 granularity law applies to outcomes too. The strict
+exp181 criterion is retained as a LOGGED diagnostic on every fork. The baseline
+deficit conjunct and all bars are unchanged (baseline expresses the burst color
+throughout the window — it fails displacement-rejection identically).
+
 **STATUS.** state: active (rung 3, attempt 2 — pre-registered, build next) · latest: Exp 181 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (four clean blocks), the wrong-control-surface law (181), the Exp 181 dynamics audit instrumentation, same-schedule-arms protocol (170), universal-constant kill test (173) · why: the human's word converts the F5 consult into the freeze-gate surface with frozen reference + concession horizon · next-falsifiable: Exp 182 as pre-registered above (seeds 218-225, smoke 218; P5/P6/P7 with NEGATIVE-config as a live outcome)
