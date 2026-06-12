@@ -227,4 +227,52 @@ classification (A–E + the class-D dissolution arms: pre-armed / lower-THETA tr
 and rung-4 confirmation are REQUIRED before any claim — both PAUSED on the human's
 word (2026-06-12).
 
-**STATUS.** state: halted (PAUSED on the human's explicit word, 2026-06-12, "once you're done with this experiment, pause" — rungs 1–2 complete; resumes only on the next explicit direction in loop/IDEAS.md) · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation
+**EXP 185 — PRE-REGISTRATION (Part-3 classification + the class-D dissolution check;
+committed BEFORE any data; authorized by the human's "continue" on the recommended
+option, 2026-06-12).**
+
+- **Question.** Classify every Exp 184 candidate cell into the plan's classes and
+  decide dissolution: A (route-1 interval-empty — PROVABLE by the latency = H +
+  baseline law: emptiness is exact arithmetic, no constant H can rescue), B
+  (route-2 dose-bound, undissolved by every simple config), D (dissolved — a simple
+  config covers the cell after all), V (seed-variance at the 3-seed bar — unresolved,
+  needs rung-4 seeds), with E excluded (oracle 80/80) and pure C excluded (min L=400
+  ≫ d=75; the floor contributes via dose only).
+- **New simple-config arms (the class-D check), run on ALL 80 cells × seeds 240–242
+  (SAME seeds/schedules as Exp 184 — the Exp 170 same-schedule lesson; this is
+  diagnosis, not confirmation):** (i) H9000 (wider constant — predicted to fail
+  revision in EVERY mode by the latency law: 9000 > 6000 = loose ceiling; included to
+  test the law at scale and the defense side); (ii) THETA3.0 × {H1200, H3000}
+  (pre-arm-prone trigger: quiet-tail false alarms are cheap and sometimes pre-arm
+  bursts — the seed-227 b0 accident as config); (iii) CALM2600 × {H1200, H3000,
+  H6000} (release-calm lengthened past max G — the freeze SPANS all gaps by
+  construction, converting dose-bound cells into coverage-bound cells). 6 configs ×
+  80 cells × 3 seeds = 1440 W-sessions + 18 Phase-R sessions (each new config needs
+  its own revision latencies).
+- **Predeclared shape predictions + falsifiers.**
+  P1 (the unified coverage law under spanning): with CALM2600, defense_pass(cell, H)
+  iff H ≥ K·L + (K−1)·G − 75 (one dose per train; the train is one coverage problem).
+  F1: > 20% of CALM2600 cell×H outcomes land on the wrong side of that line — the
+  spanning model is wrong.
+  P2 (the latency law at scale): H9000 Phase-R latency = 9000 + baseline ± 50; it
+  fails revision in all three modes. F2: deviation > 50 steps — the law breaks.
+  P3 (no config regression): the new configs do not break formerly-covered cells.
+  F3: > 5 cells flip from exists_H_both to no-H when the new arms are ADDED to the
+  sweep (they can only add options, so F3 = bookkeeping error or interaction bug).
+  F-cls: any candidate cell left without a class is a classification failure — log it.
+- **Verdict semantics (predeclared).** A cell DISSOLVES (class D) if any simple-config
+  arm passes BOTH bars in that cell × mode. Surviving A cells = route-1 crack
+  candidates CONFIRMED-at-this-seed-grade (no constant in the family covers, provably;
+  a discriminating controller could — n4-ref revises at ~725–885 while defending
+  nothing: defense and revision separate exactly there). Surviving B cells = route-2
+  crack candidates. V cells go to rung 4 unresolved. NO crack CLAIM at any grade
+  without rung-4 fresh-seed confirmation — which needs its own word; after this
+  classification the loop posts the consult and HOLDS.
+- **Build.** Extend the exp184 runner with THETA and RELEASE_CALM as parameters
+  (defaults unchanged); the equivalence gate re-runs through the new code path with an
+  emitted evidence table (L15). Spine safety per L14. Outputs:
+  experiments/outputs/exp185_rows.json, exp185.txt (per-candidate-cell class table +
+  dissolution map + P1/P2/P3 verdicts), script
+  experiments/exp185_n4_crack_classification.py.
+
+**STATUS.** state: active (rung 3 = Part-3 classification, authorized by the human's "continue" 2026-06-12; after it the loop posts the crack-or-dissolved consult and HOLDS — rung-4 confirmation needs its own word) · latest: Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy) · depends-on: identity-n4 (closed-negative; read-only inputs), Exp 183 artifacts · reusable: the equivalence-gated generalized schedule runner (exp184), Exp 183 freeze machinery, rung-2 monitor (180), displacement regime (176), detection-floor law (F), the margin-ledger/election instruments, the freeze-spanning/dose-count law, the latency = H + baseline revision law · why: the map shows config-sufficiency is a property of benign attack geometry — candidate crack cells exist on both routes with the oracle clean; classification + confirmation pending · next-falsifiable: ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation

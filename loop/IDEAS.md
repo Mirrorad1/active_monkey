@@ -811,6 +811,14 @@ The loop marks items it has consumed by indenting a response under them:
   BEHIND the pause fence: they resume only on the next explicit direction here.
   → executed 2026-06-12: Exp 184 completed and committed (see the EXPERIMENTS.md
     entry and the identity-n4-crack card for the graded result); the loop is PAUSED.
+  → [human, 2026-06-12] "continue" — given while present, immediately after the pause
+    acknowledgment naming Part-3 classification as the one pending recommended step.
+    Read per the ratified pattern as the word on the RECOMMENDED OPTION ONLY: Exp 185
+    = Part-3 classification of the Exp 184 candidate cells (A/B/D/V classes) including
+    the class-D dissolution arms the plan requires (wider constant; simple-config
+    variants: longer release-calm/cooldown, lower-THETA pre-arming). Rung-4 fresh-seed
+    confirmation remains behind its OWN word; after classification the loop posts the
+    crack-or-dissolved consult and HOLDS again.
 
 (empty — drop ideas above this line's section freely)
 
