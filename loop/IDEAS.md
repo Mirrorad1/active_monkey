@@ -774,6 +774,35 @@ The loop marks items it has consumed by indenting a response under them:
     Exp 173 caution attached). THE LOOP IS PAUSED: it resumes only after the next
     explicit direction here. No new experiment was run.
 
+- [from human, 2026-06-11] REOPEN the identity-N4 line as a NEW crack investigation —
+  explicitly NOT a rescue of Exp 183 and NOT a reinterpretation of the closed chapter
+  (rung 1 positive, rung 2 positive, rung 3 negative-config STAND; Exp 183 outputs and
+  verdicts read-only; the commitment-as-config result is not removed or weakened).
+  NEW QUESTION: does the seed-229 repeated-burst-color failure point to a regime where
+  no single fixed horizon H can defend transient attacks while still revising under
+  sustained evidence — i.e., is the fixed-H interval
+  `max_b(L_attack_b − d_trigger_b) ≤ H ≤ min_r(T_revision_tolerance_r)` EMPTIED (or
+  defeated by repeated-color cumulation across all fixed-H arms)?
+  Program: (1) seed-229 autopsy, diagnostic only (exp183_seed229_autopsy.py — burst
+  colors/repeats, pre/post v, pi = v/Σv, directed drift D_b, TV_b, cross-burst
+  accumulation, mechanism class); (2) exploratory fixed-H squeeze map (Exp 184,
+  EXPLORATORY: L_attack × K_repeat × G × H × revision-mode grid, 3–4 seeds/cell; arms =
+  baseline, fixed-H sweep, n4-concession as reference only, oracle diagnostic; per cell
+  report exists_H_both); (3) crack classification per candidate cell (A length squeeze /
+  B repeated-color cumulation / C trigger floor / D config triviality / E impossible
+  body; a valid crack needs fixed-H fail + defense mechanically possible + not
+  detection-floor + not rescued by a wider constant); (4) N5 stays CLOSED unless fixed-H
+  fails only under internal deadlines/costs; (5) logs appended, card updated, and NO
+  success claim without a later fresh-seed confirmation. Core discipline: the question
+  is not "can we make N4 pass?" but "does this regime remove the fixed-H interval that
+  made Exp 183 config?" — if not, the chapter stays closed-negative.
+  Full directive captured at `docs/research/n4-fixed-h-squeeze-plan.md`.
+  → taken up 2026-06-11 (card-first convention): direction card committed at
+    `loop/directions/identity-n4-crack.md` (validity requirements, ladder, N5 fence,
+    outcome map, scope guards all predeclared); predesign note at
+    `docs/research/n4-fixed-h-squeeze-plan.md`. Part 1 (the seed-229 autopsy,
+    diagnostic-only) is the next iteration; Exp 184 (exploratory squeeze map) after it.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

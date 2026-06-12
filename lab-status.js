@@ -3,6 +3,7 @@ window.AM_LAB_STATUS = {
   latest_exp: { n: 183, title: "N4 rung 3 attempt 3 (fast-trigger freeze-gate, pre-registered + the detection-floor amendment): NEGATIVE — BOTH falsifiers fire.", tag: "NEGATIVE" },
   tally: { total: 183, positive: 105, negative: 48, mixed: 26, breakthroughs: 4 },
   directions: [
+    { name: "identity-n4-crack", state: "active (predesign committed; autopsy next)", latest: "— (opens at the seed-229 autopsy, then Exp 184 exploratory)", next: "seed-229 autopsy (mechanism pinnable from committed artifacts?), then Exp 184 (does any schedule cell empty the fixed-H interval?)" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
