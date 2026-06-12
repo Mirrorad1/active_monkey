@@ -90,3 +90,10 @@ Ground rules for this file:
   output is non-trivial (an empty trace alongside a non-empty stretch_log is a
   contradiction an assert can catch). Caught because the measured zero
   contradicted a committed invariant — the L13 move. [kin of L13/L15]
+- **L17 (Exp 191 commit slip + Exp 190/191 site test, 2026-06-12).** Two recurrences
+  in one day: (i) the L11 trap fired again — an experiment commit was chained with
+  `;` after pytest instead of `&&`, letting a red suite land (caught and fixed
+  forward within the turn; the gate must be `&& uv run --python .venv pytest -q &&`
+  BARE, always); (ii) site metric `unit` strings are CAPTIONS, <= 80 chars
+  (test_metric_units_are_captions_not_sentences) — write them short at authoring
+  time instead of paying a fixup commit. Kin of L11.
