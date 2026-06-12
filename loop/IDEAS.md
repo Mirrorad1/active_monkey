@@ -921,6 +921,26 @@ The loop marks items it has consumed by indenting a response under them:
     separation claim: >= 2 cells where REG-TB passes both bars and NO constant
     does. F1 = zero separation cells (the ambiguity bound extends to variable-L;
     regulation loses everywhere). Fresh seeds 280-287; bars verbatim 186/188.
+  → [loop, 2026-06-12] Exp 189 DONE: NEGATIVE by F1+F2 — with THE KAPPA-REACH LAW
+    CONFIRMED 6/6 (REG-TB defends the escalating trains E1/E3 at 8/8, exactly as
+    predicted, where NO constant passes both bars) and a NEW obstruction named:
+    THE FLICKER TAX (onset pressure-flicker resets the continuity clock; REG-TB's
+    revision fell to 5/8 — seeds over by 7/39/67 steps; the tax also hit C2900 on
+    this seed block). The defense half of regulation's case is PROVEN; the
+    separation died on the revision tax. HALTED on the fired falsifiers.
+    OPTIONS, each needs a word:
+    (a) ONE pre-registered attempt at a flicker-robust concession form — the named
+        crack: e.g. concede on TOTAL active time since freeze entry (immune to
+        resets) or de-assert hysteresis (a flicker shorter than h steps does not
+        reset) — keeping the reset's defense benefit without the revision tax; if
+        it passes, the separation claim is re-tested at the same bars; another
+        falsifier fire closes the question as refuted-as-buildable.
+    (b) Close the chapter here: the negative + two confirmed laws (kappa-reach,
+        flicker tax) folded into docs/research/n4-crack-chapter.md as the rung-6
+        postscript; return to the standing consults (M4a 1c, nira's switch, the
+        ladder, cloud merge).
+    (c) Redirect / stop.
+    Nothing is silence-actionable; automated fires idle with a reminder.
 
 (empty — drop ideas above this line's section freely)
 

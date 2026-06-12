@@ -1,0 +1,387 @@
+================================================================================
+EXP 189 — N4 VARIABLE-LENGTH SEPARATION TEST (RUNG-6 FALSIFIABLE)
+PRE-REGISTERED loop/directions/identity-n4-crack.md (commit 5818b22)
+Runtime: 1.3 min | Seeds: [280, 281, 282, 283, 284, 285, 286, 287]
+6 cells x 6 arms x 8 seeds = 288 W | 5 arms x 8 seeds = 40 R
+REG-TB VERBATIM exp188: KAPPA=1.5, T0=2800, calm_snaps=104
+================================================================================
+
+EQUIVALENCE GATE (L15)
+------------------------------------------------------------
+EQUIVALENCE GATE: PASS
+
+=== arm=baseline seed=229 ===
+  b0 gap_start      got=135.99937835015726                       committed=135.99937835015726                       OK
+  b0 gap_end        got=-571.7363522432429                       committed=-571.7363522432429                       OK
+  b0 d_b            got=0.15664036565125683                      committed=0.15664036565125683                      OK
+  b0 tv_b           got=0.15664036565125675                      committed=0.15664036565125675                      OK
+  b0 recovered      got=False                                    committed=False                                    OK
+  b0 n_events       got=0                                        committed=0                                        OK
+  b1 gap_start      got=308.8677728920327                        committed=308.8677728920327                        OK
+  b1 gap_end        got=-441.6128408201637                       committed=-441.6128408201637                       OK
+  b1 d_b            got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 tv_b           got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=0                                        committed=0                                        OK
+  b2 gap_start      got=322.85746017635324                       committed=322.85746017635324                       OK
+  b2 gap_end        got=-402.18131405053043                      committed=-402.18131405053043                      OK
+  b2 d_b            got=0.15775393082799233                      committed=0.15775393082799233                      OK
+  b2 tv_b           got=0.15775393082799238                      committed=0.15775393082799238                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=0                                        committed=0                                        OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start      got=153.15192102308868                       committed=153.15192102308868                       OK
+  b0 gap_end        got=80.55582599896172                        committed=80.55582599896172                        OK
+  b0 d_b            got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 tv_b           got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 recovered      got=True                                     committed=True                                     OK
+  b0 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b1 gap_start      got=77.59197443713458                        committed=77.59197443713458                        OK
+  b1 gap_end        got=5.162418152138571                        committed=5.162418152138571                        OK
+  b1 d_b            got=0.016416619393121945                     committed=0.016416619393121945                     OK
+  b1 tv_b           got=0.016416619393121917                     committed=0.016416619393121917                     OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b2 gap_start      got=41.6153816086221                         committed=41.6153816086221                         OK
+  b2 gap_end        got=-29.89416352514172                       committed=-29.89416352514172                       OK
+  b2 d_b            got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 tv_b           got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  gate arm=H1200 seed=229: PASS
+
+CELLS (6 variable-length cells)
+------------------------------------------------------------
+  name  L_seq                           G       n_steps   regtb_pred
+-----------------------------------------------------------------
+  E1    [1200, 2400, 3200]                 600     16500  pass      
+  E2    [800, 1600, 3200]                  600     15300  fail      
+  E3    [1200, 2400, 3200]                1200     17700  pass      
+  E4    [600, 1200, 2400, 4800]            600     19300  fail      
+  D1    [3200, 2400, 1200]                 600     16500  fail      
+  C1    [2400, 2400, 2400]                 600     16900  pass      
+
+PHASE-R LATENCY TABLE (5 non-oracle arms x 8 seeds)
+------------------------------------------------------------
+  arm                       s280 s281 s282 s283 s284 s285 s286 s287
+  baseline                  220 220 37 45 200 150 261 190
+  INT-C2900                   3208   3302   2995   3159   3180   3050   3403   3054
+  INT-C3500                   3808   3902   3595   3759   3780   3650   4003   3654
+  CALM2600-H3000              1434   3150   2770   1684    130   3150   2877   3154
+  REG-TB                      3133   3227   2920   3084   3105   2975   3328   2979
+
+REVISION PASS TABLE (arm x mode; primary = normal +3000)
+------------------------------------------------------------
+  arm                       normal   tight    loose   
+  baseline                  PASS     PASS     PASS    
+  INT-C2900                 fail     fail     PASS    
+  INT-C3500                 fail     fail     PASS    
+  CALM2600-H3000            PASS     fail     PASS    
+  REG-TB                    fail     fail     PASS    
+
+================================================================================
+PER-CELL x PER-ARM DEFENSE/REVISION TABLE (primary mode = normal +3000)
+================================================================================
+
+                            cell                   arm   def_n/8   rev_norm   both_norm   both_tight   both_loose
+--------------------------------------------------------------------------------------------------------------
+       E1:[1200, 2400, 3200]G600              baseline         0/8       PASS        fail         fail         fail
+       E1:[1200, 2400, 3200]G600                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+       E1:[1200, 2400, 3200]G600             INT-C2900         0/8       fail        fail         fail         fail
+       E1:[1200, 2400, 3200]G600             INT-C3500         8/8       fail        fail         fail         PASS
+       E1:[1200, 2400, 3200]G600        CALM2600-H3000         0/8       PASS        fail         fail         fail
+       E1:[1200, 2400, 3200]G600                REG-TB         8/8       fail        fail         fail         PASS
+--------------------------------------------------------------------------------------------------------------
+        E2:[800, 1600, 3200]G600              baseline         0/8       PASS        fail         fail         fail
+        E2:[800, 1600, 3200]G600                oracle         7/8     (diag)      (diag)       (diag)       (diag)
+        E2:[800, 1600, 3200]G600             INT-C2900         0/8       fail        fail         fail         fail
+        E2:[800, 1600, 3200]G600             INT-C3500         8/8       fail        fail         fail         PASS
+        E2:[800, 1600, 3200]G600        CALM2600-H3000         0/8       PASS        fail         fail         fail
+        E2:[800, 1600, 3200]G600                REG-TB         0/8       fail        fail         fail         fail
+--------------------------------------------------------------------------------------------------------------
+      E3:[1200, 2400, 3200]G1200              baseline         0/8       PASS        fail         fail         fail
+      E3:[1200, 2400, 3200]G1200                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+      E3:[1200, 2400, 3200]G1200             INT-C2900         0/8       fail        fail         fail         fail
+      E3:[1200, 2400, 3200]G1200             INT-C3500         8/8       fail        fail         fail         PASS
+      E3:[1200, 2400, 3200]G1200        CALM2600-H3000         0/8       PASS        fail         fail         fail
+      E3:[1200, 2400, 3200]G1200                REG-TB         8/8       fail        fail         fail         PASS
+--------------------------------------------------------------------------------------------------------------
+  E4:[600, 1200, 2400, 4800]G600              baseline         0/8       PASS        fail         fail         fail
+  E4:[600, 1200, 2400, 4800]G600                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+  E4:[600, 1200, 2400, 4800]G600             INT-C2900         0/8       fail        fail         fail         fail
+  E4:[600, 1200, 2400, 4800]G600             INT-C3500         0/8       fail        fail         fail         fail
+  E4:[600, 1200, 2400, 4800]G600        CALM2600-H3000         0/8       PASS        fail         fail         fail
+  E4:[600, 1200, 2400, 4800]G600                REG-TB         0/8       fail        fail         fail         fail
+--------------------------------------------------------------------------------------------------------------
+       D1:[3200, 2400, 1200]G600              baseline         0/8       PASS        fail         fail         fail
+       D1:[3200, 2400, 1200]G600                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+       D1:[3200, 2400, 1200]G600             INT-C2900         2/8       fail        fail         fail         fail
+       D1:[3200, 2400, 1200]G600             INT-C3500         8/8       fail        fail         fail         PASS
+       D1:[3200, 2400, 1200]G600        CALM2600-H3000         1/8       PASS        fail         fail         fail
+       D1:[3200, 2400, 1200]G600                REG-TB         1/8       fail        fail         fail         fail
+--------------------------------------------------------------------------------------------------------------
+       C1:[2400, 2400, 2400]G600              baseline         0/8       PASS        fail         fail         fail
+       C1:[2400, 2400, 2400]G600                oracle         8/8     (diag)      (diag)       (diag)       (diag)
+       C1:[2400, 2400, 2400]G600             INT-C2900         8/8       fail        fail         fail         PASS
+       C1:[2400, 2400, 2400]G600             INT-C3500         8/8       fail        fail         fail         PASS
+       C1:[2400, 2400, 2400]G600        CALM2600-H3000         0/8       PASS        fail         fail         fail
+       C1:[2400, 2400, 2400]G600                REG-TB         8/8       fail        fail         fail         PASS
+--------------------------------------------------------------------------------------------------------------
+
+================================================================================
+CONJUNCT TABLE (oracle/deficit per cell)
+================================================================================
+
+                       cell   oracle_n/8   oracle_ok   bl_fail_n/8   deficit_ok
+----------------------------------------------------------------------
+  E1:[1200, 2400, 3200]G600            8/8          OK             8/8           OK
+   E2:[800, 1600, 3200]G600            7/8          OK             8/8           OK
+  E3:[1200, 2400, 3200]G1200            8/8          OK             8/8           OK
+  E4:[600, 1200, 2400, 4800]G600            8/8          OK             8/8           OK
+  D1:[3200, 2400, 1200]G600            8/8          OK             8/8           OK
+  C1:[2400, 2400, 2400]G600            8/8          OK             8/8           OK
+
+================================================================================
+SEPARATION TABLE — P1: cells where REG-TB passes both, no constant does
+  Constant arms: INT-C2900, INT-C3500, CALM2600-H3000
+================================================================================
+
+                       cell   REG-TB_both   C2900_both   C3500_both   CALM2600-H3000_both   separated
+----------------------------------------------------------------------------------------------------
+  E1:[1200, 2400, 3200]G600          fail         fail         fail                  fail          no
+   E2:[800, 1600, 3200]G600          fail         fail         fail                  fail          no
+  E3:[1200, 2400, 3200]G1200          fail         fail         fail                  fail          no
+  E4:[600, 1200, 2400, 4800]G600          fail         fail         fail                  fail          no
+  D1:[3200, 2400, 1200]G600          fail         fail         fail                  fail          no
+  C1:[2400, 2400, 2400]G600          fail         fail         fail                  fail          no
+
+  Separation cells: [] (n=0)
+
+================================================================================
+REG-TB STRETCH / THRESHOLD TRACES PER CELL
+  KAPPA=1.5, T0=2800
+  Stretch ~ L + ~125 pressure-window tail per burst
+  Threshold = max(KAPPA * S_max_completed, T0)
+================================================================================
+
+  E1: L_seq=[1200, 2400, 3200] G=600 pred=pass
+    max_stretch_per_seed: ['3225', '3250', '3275', '3250', '3225', '3275', '3250', '3225']
+    mean_S_max_final: 3247  max_of_max: 3275
+    n_seeds_with_concession: 0/8
+    kappa-reach: expected_stretches~[1325, 2525, 3325]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=1200: defended (no concessions)
+    burst[1] L=2400: defended (no concessions)
+    burst[2] L=3200: defended (no concessions)
+
+  E2: L_seq=[800, 1600, 3200] G=600 pred=fail
+    max_stretch_per_seed: ['2825', '2825', '2825', '2825', '2825', '2825', '2825', '2825']
+    mean_S_max_final: 100  max_of_max: 2825
+    n_seeds_with_concession: 8/8
+    kappa-reach: expected_stretches~[925, 1725, 3325]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=800: 2 concessions; int_acc~['0', '0']; S_max@concede~['2825', '2825']
+    burst[1] L=1600: defended (no concessions)
+    burst[2] L=3200: defended (no concessions)
+
+  E3: L_seq=[1200, 2400, 3200] G=1200 pred=pass
+    max_stretch_per_seed: ['3200', '3250', '3300', '3225', '3250', '3275', '3225', '3400']
+    mean_S_max_final: 3266  max_of_max: 3400
+    n_seeds_with_concession: 0/8
+    kappa-reach: expected_stretches~[1325, 2525, 3325]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=1200: defended (no concessions)
+    burst[1] L=2400: defended (no concessions)
+    burst[2] L=3200: defended (no concessions)
+
+  E4: L_seq=[600, 1200, 2400, 4800] G=600 pred=fail
+    max_stretch_per_seed: ['3700', '3625', '3700', '3625', '3650', '3650', '3700', '3650']
+    mean_S_max_final: 25  max_of_max: 3700
+    n_seeds_with_concession: 8/8
+    kappa-reach: expected_stretches~[725, 1325, 2525, 4925]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=600: 2 concessions; int_acc~['0', '0']; S_max@concede~['3650', '3650']
+    burst[1] L=1200: defended (no concessions)
+    burst[2] L=2400: defended (no concessions)
+    burst[3] L=4800: defended (no concessions)
+
+  D1: L_seq=[3200, 2400, 1200] G=600 pred=fail
+    max_stretch_per_seed: ['2825', '2825', '2825', '2825', '2825', '2825', '2825', '2825']
+    mean_S_max_final: 2450  max_of_max: 2825
+    n_seeds_with_concession: 8/8
+    kappa-reach: expected_stretches~[3325, 2525, 1325]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=3200: 2 concessions; int_acc~['0', '0']; S_max@concede~['2825', '2825']
+    burst[1] L=2400: defended (no concessions)
+    burst[2] L=1200: defended (no concessions)
+
+  C1: L_seq=[2400, 2400, 2400] G=600 pred=pass
+    max_stretch_per_seed: ['2450', '2450', '2500', '2425', '2450', '2450', '2450', '2575']
+    mean_S_max_final: 2469  max_of_max: 2575
+    n_seeds_with_concession: 0/8
+    kappa-reach: expected_stretches~[2525, 2525, 2525]
+    threshold at each burst: T0=2800, kappa*S_max grows with each completed burst
+    burst[0] L=2400: defended (no concessions)
+    burst[1] L=2400: defended (no concessions)
+    burst[2] L=2400: defended (no concessions)
+
+================================================================================
+KAPPA-REACH LAW AUDIT (P3)
+  REG-TB defends iff (i) first burst stretch <= T0=2800 AND
+  (ii) every later burst stretch <= KAPPA x longest COMPLETED stretch so far
+================================================================================
+
+      cell   predicted   actual_def   def_count   correct
+------------------------------------------------------------
+        E1        pass         pass           8/8        OK
+        E2        fail         fail           0/8        OK
+        E3        pass         pass           8/8        OK
+        E4        fail         fail           0/8        OK
+        D1        fail         fail           1/8        OK
+        C1        pass         pass           8/8        OK
+
+  Cells wrong: 0/6  (F3 threshold: >= 2)
+
+================================================================================
+PHASE-R REG-TB CONCESSION DETAILS
+================================================================================
+
+     seed   baseline_lat   regtb_lat      diff
+---------------------------------------------
+      280            220        3133      2913
+      281            220        3227      3007
+      282             37        2920      2883
+      283             45        3084      3039
+      284            200        3105      2905
+      285            150        2975      2825
+      286            261        3328      3067
+      287            190        2979      2789
+
+================================================================================
+VERDICT LINES
+================================================================================
+
+P1 (THE SEPARATION): in >= 2 cells REG-TB passes both bars while no constant does.
+    Separation cells found: 0 (predicted >= 2; predicted: E1, E3)
+    Separation cell names: []
+    F1 fired (zero separation cells): True
+    => P1 VERDICT: NEGATIVE — F1 FIRED. Zero separation cells.
+       The ambiguity bound extends to variable-L geometry at this richness.
+
+P2 (revision invariance): REG-TB Phase-R latency <= baseline + 3000.
+    REG-TB revision (normal): False (5/8 seeds pass)
+    REG-TB revision (tight):  False
+    REG-TB revision (loose):  True
+    Phase-R latencies: [3133, 3227, 2920, 3084, 3105, 2975, 3328, 2979]
+    Baseline latencies: [220, 220, 37, 45, 200, 150, 261, 190]
+    F2 fired (REG-TB fails revision): True
+    => P2 VERDICT: NEGATIVE — F2 FIRED. REG-TB fails revision.
+
+P3 (kappa-reach law): REG-TB's 6 cell defense signs land as predicted.
+    Cells correct: 6/6 (F3 threshold: < 2 wrong)
+    E1: predicted=pass  actual=pass  def=8/8  OK
+    E2: predicted=fail  actual=fail  def=0/8  OK
+    E3: predicted=pass  actual=pass  def=8/8  OK
+    E4: predicted=fail  actual=fail  def=0/8  OK
+    D1: predicted=fail  actual=fail  def=1/8  OK
+    C1: predicted=pass  actual=pass  def=8/8  OK
+    F3 fired (>= 2 wrong): False
+    => P3 VERDICT: CONFIRMED — kappa-reach law lands correctly (6/6 cells).
+
+PC1: 0/288 sessions flagged ahat_drift >= 0.15
+
+================================================================================
+SUMMARY
+================================================================================
+
+  Gate:              PASS
+  Seeds:             [280, 281, 282, 283, 284, 285, 286, 287]
+  Runtime:           1.3 min
+
+  P1 (separation: REG-TB beats all constants in >= 2 cells): NEGATIVE
+     separation_cells: []  n=0
+  P2 (revision invariance): NEGATIVE
+     rev_normal: False (5/8)
+  P3 (kappa-reach law): CONFIRMED
+     cells_correct: 6/6
+
+  F1 (zero separation):  True
+  F2 (REG-TB fails rev): True
+  F3 (>= 2 cells wrong): False
+
+  OVERALL: F2 FIRED — REG-TB fails revision; tempo learning contaminates concession.
+================================================================================

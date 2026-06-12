@@ -6966,3 +6966,77 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Next: the crack-chapter synthesis (consolidation-grade, sanctioned), folding
   the Exp 183 addendum + 184-188 into the chapter close with the three named
   open edges; then the closing CONSULT and the loop HOLDS.
+
+## Exp 189 — identity-n4-crack rung 6, the variable-L separation test (pre-registered 5818b22): NEGATIVE by F1+F2 with THE KAPPA-REACH LAW CONFIRMED 6/6 — REG-TB (verbatim, no retuning) DEFENDS the escalating trains no constant survives (E1/E3 8/8, exactly as predicted) but loses the separation on its OWN revision bar (5/8, three seeds over by 7/39/67 steps) via a NEW mechanism: THE FLICKER TAX — onset pressure-flicker resets the continuity clock and delays concession; the reset that buys train defense taxes changed-world revision (it hit the constant C2900 on this seed block too, 5/8); blind-verified CONFIRMED (NEGATIVE / NEW INSIGHT)
+
+- Plain: the self-regulating defense did the impossible half exactly as predicted —
+  it rode escalating attack trains that no constant can survive, holding longer for
+  attack lengths it had seen complete, six cell-predictions out of six landing on
+  the right side. And then it lost the prize on the other half by a hair: in the
+  changed-world test, the pressure flickers as the new world settles in, every
+  flicker restarts the controller's "how long has this been unbroken" clock, and
+  three of eight seeds conceded 7 to 67 steps past the deadline — one seed short of
+  the bar. The same flicker even tripped the previously-winning constant on these
+  seeds. The mechanism that makes the defense work — resetting on every pause — is
+  exactly what makes the adaptation late when a new world arrives noisily.
+- Question (pre-registered 5818b22 BEFORE any data): does tempo learning BIND and
+  beat every constant at variable-L geometry? P1 separation >= 2 cells; P2 REG-TB
+  revision invariance; P3 the kappa-reach law (6 cell-level signs). REG-TB VERBATIM
+  from Exp 188 (kappa=1.5, T0=2800; no retuning). Arms: baseline, oracle, C2900,
+  C3500 (the dilemma arm), CALM2600-H3000, REG-TB. Fresh seeds 280-287; bars
+  verbatim 186/188.
+- Setup: experiments/exp189_n4_variable_length.py (exp188 runner verbatim; variable
+  windows via the existing parameter); equivalence gate PASS (evidence table,
+  bit-exact); 288 W + 40 R sessions, 1.3 min; PC1 0/288; oracle >= 7/8 and deficit
+  8/8 in all 6 cells.
+- Result (committed exp189.txt + exp189_rows.json): P3 CONFIRMED 6/6 (F3 silent) —
+  E1 pass 8/8 (final stretch 3325 < kappa*S_max 3787; zero concessions), E3 pass
+  8/8, C1 pass 8/8 (the parity anchor), E2 fail 0/8 (concedes on burst 0 at ~2825
+  with S_max=0 — the doubling jump outruns kappa), E4 fail 0/8 (same), D1 fail 1/8
+  (first burst 3325 > T0 — first-encounter ambiguity). The constants behaved
+  exactly as predicted: C2900 defends nothing variable (0/8 E1-E4), C3500 defends
+  E1/E2/E3/D1/C1 8/8 and fails revision 0/8 (latencies 3595-4003 — the dilemma
+  made visible), CALM2600-H3000 defends nothing long. P1 NEGATIVE (F1): ZERO
+  separation cells — REG-TB's defense was there (E1/E3 8/8 where NO constant
+  passes both bars) but REG-TB ITSELF failed normal revision 5/8 (diffs 2789-3067;
+  seeds 281/283/286 over +3000 by 7/39/67). P2 NEGATIVE (F2), same mechanism, and
+  it is NEW: in permanent pressure the onset FLICKERS (the pressure fraction dips
+  below 0.6 transiently as the regime settles), each de-assert RESETS the current
+  continuous stretch, and the T0 crossing is delayed by the accumulated pre-stretch
+  overhead (1-5 small completed stretches per seed) — THE FLICKER TAX. The tax is
+  a property of the reset-based continuity surface itself: C2900's revision also
+  fell to 5/8 on this seed block (it was 7/8 on seeds 270-277 in Exp 188).
+- Verifier: blinded adversarial subagent: CONFIRMED — defense counts recomputed
+  from all 288 W rows (exact match); the separation conjunct audited constant-by-
+  constant in every cell; the kappa-reach signs and stretch/threshold traces
+  verified per burst (PASS cells held under kappa*S_max, not T0; FAIL cells
+  conceded at the predicted bounds); REG-TB params verified untouched (kappa=1.5,
+  T0=2800); revision computed against same-seed baselines. Integrity: clean, only
+  expected files.
+- Implication (two layers): (1) THE KAPPA-REACH LAW is now a confirmed,
+  exactly-calibrated law of tempo-learning defense: online regulation extends
+  identity defense to foreshadowed escalations (within kappa per step, first
+  encounter budget-bounded) — a capability NO constant in any family tried has;
+  its boundary (doubling jumps, descents) is mapped. (2) THE FLICKER TAX is the
+  new obstruction: reset-based concession pays latency under noisy regime onset,
+  and at the +3000 bar that tax costs the separation. The fight is now exactly
+  localized: a flicker-robust concession form (e.g. total-active-time-since-entry
+  rather than current-stretch, or de-assert hysteresis) is the named crack — it
+  must keep the reset's defense benefit while not paying the tax; whether that is
+  possible without oracle knowledge is precisely the next falsifiable question.
+  Generalizability tier: failure-mode (the tax mechanism) + functional-form (the
+  kappa-reach law).
+- Honest caveat: the revision failure is marginal (one seed short, worst miss 67
+  steps) and seed-block-sensitive (the same surface scored 7/8 on the previous
+  block) — the bars are the bars, no retuning (T0=2750 would likely flip it and is
+  exactly the post-data tuning VALIDATION forbids); the flicker-tax mechanism is
+  read from per-seed stretch traces (1-5 pre-stretches), not yet isolated by a
+  dedicated control; CALM2600-H3000's two Phase-R outliers (1434/130) are noted
+  unexplained; all constants PROVIDED; the separation claim remains open, not
+  refuted-in-principle — refuted AS BUILT at these bars.
+- Verdict: NEGATIVE / NEW INSIGHT (F1+F2 fired; the kappa-reach law confirmed 6/6;
+  the flicker tax named). Self-grade: NEGATIVE.
+- Next: HALTED — predeclared falsifiers fired. CONSULT posted in loop/IDEAS.md:
+  (a) ONE pre-registered attempt at a flicker-robust concession form (the named
+  crack); (b) close the chapter with the negative + both confirmed laws; (c)
+  redirect/stop. The loop holds for a word.
