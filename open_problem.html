@@ -4,30 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Open Problem — active_monkey</title>
-<meta name="description" content="Why a free-energy agent won't grow a concept on its own from a bare symbol stream — exactly where the mathematics stops, and how an embodied pivot got around it.">
+<meta name="description" content="The current active_monkey frontier: when a toy active-inference creature can detect that its world model is too small, revise it, and survive adversarial continuity tests.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
-<script>
-  window.MathJax = { tex:{ inlineMath:[['\\(','\\)']], displayMath:[['$$','$$']] }, svg:{ fontCache:'global' }, startup:{ typeset:false } };
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="am.css?v=5">
 <style>
-  .op{max-width:780px;margin:0 auto;padding:0 28px;}
+  .op{max-width:820px;margin:0 auto;padding:0 28px;}
   .op-head{padding:46px 0 10px;}
-  .op-head h1{font-size:clamp(30px,4.4vw,46px);margin:14px 0 0;}
-  .op-head .sub{font-family:var(--serif);font-size:19px;color:var(--ink-2);line-height:1.45;margin:16px 0 0;max-width:54ch;}
-  .op-head .note{font-size:13px;color:var(--ink-2);margin:20px 0 0;line-height:1.6;max-width:60ch;}
-  .op-head .note em{color:var(--ink);font-style:italic;}
-
-  .op-lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:8px 0 30px;letter-spacing:-.005em;}
+  .op-head h1{font-size:clamp(31px,4.7vw,52px);margin:14px 0 0;}
+  .op-head .sub{font-family:var(--serif);font-size:20px;color:var(--ink-2);line-height:1.45;margin:16px 0 0;max-width:58ch;}
+  .op-head .note{font-size:13px;color:var(--ink-2);margin:20px 0 0;line-height:1.65;max-width:68ch;}
+  .op-lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:10px 0 28px;letter-spacing:-.005em;}
   .op-lead strong{font-weight:500;color:var(--accent);}
-
-  .op h2{font-family:var(--serif);font-size:27px;font-weight:500;letter-spacing:-.01em;margin:46px 0 14px;line-height:1.12;display:flex;align-items:baseline;gap:14px;}
+  .op h2{font-family:var(--serif);font-size:27px;font-weight:500;letter-spacing:-.01em;margin:44px 0 14px;line-height:1.12;display:flex;align-items:baseline;gap:14px;}
   .op h2 .nm{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent);flex:none;width:34px;}
   .op h3{font-family:var(--serif);font-size:18px;font-weight:500;margin:24px 0 6px;}
   .op p{font-size:15px;line-height:1.7;color:var(--ink);margin:12px 0;}
@@ -35,62 +28,31 @@
   .op em{font-style:italic;}
   .op strong{font-weight:600;}
   .op code{font-family:var(--mono);font-size:.9em;background:var(--paper-3);padding:.1em .42em;border-radius:4px;border:1px solid var(--line-soft);}
-
-  /* equation block */
-  .eq{background:rgba(255,255,255,.5);border:1px solid var(--line);border-left:none;border-right:none;padding:16px 18px;margin:20px 0;overflow-x:auto;text-align:center;}
-  mjx-container{color:var(--ink);}
-  .eqcap{font-size:12px;color:var(--ink-2);line-height:1.6;margin-top:-4px;}
-
-  /* callout */
   .callout{border:1px solid var(--ink);background:var(--paper-2);padding:22px 24px;margin:26px 0;}
   .callout .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;}
   .callout p{margin:0;font-size:16px;line-height:1.55;}
   .callout strong{color:var(--accent);}
-
-  /* observed evidence strip */
   .obs{border-top:2px solid var(--wall);background:rgba(255,255,255,.42);padding:14px 18px;margin:16px 0 4px;}
   .obs.good{border-top-color:var(--win);}
+  .obs.mixed{border-top-color:var(--partial);}
   .obs .ol{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--wall);font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:7px;}
   .obs.good .ol{color:var(--win);}
-  .obs .ol .dt{width:7px;height:7px;border-radius:50%;background:var(--wall);}
-  .obs.good .ol .dt{background:var(--win);}
+  .obs.mixed .ol{color:var(--partial);}
+  .obs .ol .dt{width:7px;height:7px;border-radius:50%;background:currentColor;}
   .obs p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink);}
-  .obs code{background:var(--paper);}
-
-  /* two-way grid */
-  .twoway{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
-  @media(max-width:600px){.twoway{grid-template-columns:1fr;}}
-  .tw{border:1px solid var(--line);background:rgba(255,255,255,.4);padding:14px 16px;}
-  .tw b{color:var(--accent);}
-  .tw p{margin:0;font-size:13.5px;}
-
-  /* fixes / pivot table */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+  @media(max-width:660px){.grid2{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line);background:rgba(255,255,255,.4);padding:15px 16px;}
+  .card b{color:var(--accent);}
+  .card p{margin:6px 0 0;font-size:13.5px;}
   .ftable{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;}
   .ftable th,.ftable td{border:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.5;}
   .ftable th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--paper-2);}
-  .ftable td:first-child{font-weight:500;width:30%;}
-
-  /* ---- tab bar ---- */
-  .op-tabs{
-    display:flex;gap:0;
-    border-bottom:1px solid var(--line);
-    max-width:780px;margin:0 auto;
-    padding:0 28px;
-    overflow-x:auto;
-  }
-  .op-tab{
-    font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;
-    padding:12px 16px 11px;
-    border:none;border-bottom:2px solid transparent;
-    background:transparent;color:var(--ink-2);
-    cursor:pointer;white-space:nowrap;
-    transition:color .14s,border-color .14s;
-    margin-bottom:-1px;
-  }
+  .ftable td:first-child{font-weight:500;width:27%;}
+  .op-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);max-width:820px;margin:0 auto;padding:0 28px;overflow-x:auto;}
+  .op-tab{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;padding:12px 16px 11px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);cursor:pointer;white-space:nowrap;transition:color .14s,border-color .14s;margin-bottom:-1px;}
   .op-tab:hover{color:var(--ink);}
   .op-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
-
-  /* ---- tab panels ---- */
   .op-panel{display:none;padding-top:8px;}
   .op-panel.active{display:block;}
 </style>
@@ -103,6 +65,7 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="experiments-data.js?v=5"></script>
 <script src="am-live.js?v=5"></script>
+<script src="lab-status.js?v=5"></script>
 <script type="text/babel" src="tweaks-panel.jsx?v=5"></script>
 <script type="text/babel" src="am-shared.jsx?v=5"></script>
 
@@ -116,180 +79,127 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "motion": true
 }/*EDITMODE-END*/;
 
-/* The article is authored as HTML strings so inline LaTeX braces never collide with JSX.
-   ALL four tab panels are injected into the DOM at mount via dangerouslySetInnerHTML.
-   MathJax typesets the entire #op-body ONCE. Tab switching is CSS-only
-   (.active class toggle) — no re-rendering, no MathJax races. */
-
 const HEADER_HTML = String.raw`
   <header class="op-head op">
-    <div class="kicker slate">active_monkey · research note</div>
-    <h1 class="h-display">The open problem, precisely.</h1>
-    <p class="sub">Why a free-energy agent won't grow a concept on its own from a bare symbol stream — exactly where the mathematics stops, and how an embodied pivot got around it.</p>
-    <p class="note">The original goal was a discrete active-inference agent that learns language and forms dispositions <em>from scratch</em> from a symbol stream. That hit a precisely-shaped wall (tabs 1–2). The project then pivoted to embodied, bottom-up emergence, which <em>circumvents</em> the wall by giving the latent a foothold (tab 3) — while the deepest version of the wall still stands (tab 4).</p>
+    <div class="kicker slate">active_monkey · current research note</div>
+    <h1 class="h-display">The open problem has moved.</h1>
+    <p class="sub">The founding wall was language-from-scratch. The current frontier is stricter: can a tiny active-inference creature notice that its worldview is too small, grow the right model, and preserve identity under adversarial perturbation?</p>
+    <p class="note">So active_monkey is best read as both a <em>world-model lab</em> and an <em>active-inference lab</em>. Active inference supplies the mechanics: perception and action minimize surprise. The research object is the world model: what structure the creature has, when it can revise that structure, and which continuity claims survive blinded falsification.</p>
   </header>
 `;
 
 const TAB1_HTML = String.raw`
 <div id="panel-tab1" class="op-panel active op">
-  <p class="op-lead">We are asking the model to discover, <strong>unsupervised</strong>, a latent variable it was never given — a "topic" / concept \(z\) — purely by minimizing free energy. That is the crux, and it is genuinely hard.</p>
-
-  <h2 id="model"><span class="nm"></span>The model</h2>
-  <p>A hierarchical active-inference model: a slow latent \(z\) (topic, near-identity dynamics so it persists), a fast latent \(s_t\) (character context), discrete emissions \(o_t\), with Dirichlet priors on the parameters \(A,B\). The two-timescale structure — slow \(z\) over fast \(s\) — follows the hierarchical generative model of Friston et al.<sup class="cite"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7758713/" target="_blank" rel="noopener">[1]</a></sup> and its deep temporal nesting.<sup class="cite"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5998386/" target="_blank" rel="noopener">[2]</a></sup></p>
-  <div class="eq">$$p(o_{1:T}, s_{1:T}, z, A, B) = p(z)\,p(A)\,p(B)\prod_{t} \underbrace{p(o_t \mid s_t; A)}_{\text{emission}}\;\underbrace{p(s_t \mid s_{t-1}, z; B)}_{\text{topic-conditioned transition}}$$</div>
-  <p>We minimize variational free energy over a mean-field posterior \(q(z)\,q(s_{1:T})\,q(A)\,q(B)\):</p>
-  <div class="eq">$$F = \mathbb{E}_q[\ln q - \ln p] = \underbrace{-\,\mathbb{E}_q[\ln p(o\mid s,A)]}_{\text{inaccuracy (surprise)}} + \underbrace{\mathrm{KL}[q\,\Vert\,p]}_{\text{complexity}}$$</div>
-  <p class="eqcap">At the optimum the per-step free energy equals the predictive surprise — the bits/char the agent literally feels.</p>
+  <p class="op-lead"><strong>The live question:</strong> when does a small agent have enough internal structure to say, in effect, "my current model cannot explain this world," and then change the model rather than merely overfit, freeze, or collapse?</p>
 
   <div class="callout">
-    <div class="tag">the open problem in one sentence</div>
-    <p><strong>This objective has a dominant fixed point at which the latent \(z\) is useless — and nothing in the dynamics pushes the system off it.</strong> Four structural reasons (well-understood phenomena, not theorems), plus a separate long-range sub-problem (see tab 2).</p>
+    <div class="tag">current open problem in one sentence</div>
+    <p><strong>Build a toy creature whose model growth, identity continuity, and failure modes are all measurable, predeclared, and hard to fake.</strong> A positive result is not just lower surprise; it is lower surprise for the right causal reason, under blinded verifier checks and trivial-baseline red teams.</p>
   </div>
 
-  <p class="muted" style="margin:22px 0 4px">Those four reasons — and the long-range binding sub-problem — are worked out next, each tied to the experiment where it was observed. <strong>Continue to tab 2: where the math stops →</strong></p>
+  <h2><span class="nm">1</span>What kind of lab is this?</h2>
+  <p>It is not mainly a benchmark-chasing ML project. It is a small, legible research loop for testing whether active-inference agents can develop world models from experience. In programmer terms: active inference is the runtime policy loop; the world model is the mutable internal schema; the experiments are integration tests that try to prove the schema change was real rather than a scoring artifact.</p>
 
-  <div class="op-refs">
-    <div class="refs-label">References</div>
-    <ol>
-      <li>Friston, Parr, de Vries et al., "Generative models, linguistic communication and active inference", <em>Neurosci. Biobehav. Rev.</em> 2020 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7758713/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC7758713/</a></li>
-      <li>Friston et al., "Deep temporal models and active inference", 2018 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5998386/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC5998386/</a></li>
-    </ol>
+  <div class="grid2">
+    <div class="card"><b>Active-inference lab</b><p>The subject senses a world, predicts what should happen, acts to reduce surprise, and updates beliefs from experience.</p></div>
+    <div class="card"><b>World-model lab</b><p>The measured object is the agent's internal ontology: places, objects, anchors, identity state, and whether new structure is warranted.</p></div>
   </div>
+
+  <h2><span class="nm">2</span>Why the earlier page was incomplete</h2>
+  <p>The older framing focused on a true wall: a discrete free-energy agent did not grow an unsupervised language concept from a bare symbol stream. That wall still matters, but it is no longer the only story. Later trajectories moved into embodied worlds, structural-inadequacy alarms, model growth, identity continuity, and N-order self-monitoring.</p>
+
+  <div class="obs good"><div class="ol"><span class="dt"></span>trajectory update</div><p>The strongest constructive arc is now "worldview too small": the creature can hit a structural-inadequacy alarm and grow a model on demand under strict acceptance criteria. That is a different claim than "language emerged." It is narrower, more measurable, and more useful.</p></div>
+
+  <p class="muted" style="margin:22px 0 4px">The old language wall is preserved in tab 2. The current pivot and current frontier are tabs 3–4.</p>
 </div>
 `;
 
 const TAB2_HTML = String.raw`
 <div id="panel-tab2" class="op-panel op">
-  <h2 id="o1"><span class="nm">1</span>A symmetric saddle — no gradient to break the symmetry</h2>
-  <p>If \(B\) is symmetric in \(z\) (all topics identical at initialization), then \(q(z{=}k)=1/K\) is stationary and the first-order force driving topics to specialize is <em>exactly zero</em>:</p>
-  <div class="eq">$$\left.\frac{\partial F}{\partial(\text{topic differentiation})}\right|_{\text{symmetric}} = 0$$</div>
-  <p>Formally this is a <strong>permutation-symmetric saddle</strong>, not a trap: the objective is invariant under relabeling the topics, so the fully-symmetric configuration is a stationary point of \(F\) with <em>zero first-order force</em> toward differentiation. It has unstable directions — but they are not <em>excited</em> by a symmetric initialization, and the mean-field posterior damps the small fluctuations that would otherwise grow. So the system sits at the saddle indefinitely unless something external perturbs it along an unstable direction (asymmetric init, annealing, or grounding — see tab 3). 'No gradient to break the symmetry' means exactly this: the escape directions exist but receive no push.<sup class="cite"><a href="https://arxiv.org/abs/1511.06349" target="_blank" rel="noopener">[1]</a></sup></p>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 12</div><p><code>sky is → "s gree"</code> &nbsp; <code>grass is → "s gree"</code> &nbsp; topic belief stayed <code>[0.5, 0.5]</code> the entire run. The latent never differentiated.</p></div>
+  <p class="op-lead">The original open problem remains valid: a bare symbol stream does not force a clean latent concept to crystallize. The model can explain the data while leaving the latent unused.</p>
 
-  <h2 id="o2"><span class="nm">2</span>Non-identifiability — and complexity <em>prefers</em> collapse</h2>
-  <p>The marginal likelihood can be explained two ways, near-degenerate in accuracy:</p>
-  <div class="twoway">
-    <div class="tw"><p><b>(a) one topic</b>, with averaged transitions over the mixture.</p></div>
-    <div class="tw"><p><b>(b) two topics</b>, each specialized to its clause type.</p></div>
-  </div>
-  <p>The latent partition is <strong>non-identifiable</strong> without an inductive bias. And the complexity term \(\mathrm{KL}[q\,\Vert\,p]\) <strong>rewards the simpler, topic-agnostic model</strong>: fewer effective states, lower KL. Bayesian Occam actively pulls toward <em>not using</em> \(z\).</p>
-  <p class="muted">This is the same phenomenon as <strong>posterior collapse</strong> in variational autoencoders: the latent goes unused because ignoring it costs almost nothing in accuracy and saves complexity.<sup class="cite"><a href="https://arxiv.org/abs/1511.06349" target="_blank" rel="noopener">[1]</a></sup></p>
+  <h2><span class="nm">1</span>The symmetric fixed point</h2>
+  <p>If every candidate topic starts equivalent, the posterior has no first-order reason to prefer one topic over another. The model can sit at an uninformative equilibrium where the latent is formally present but functionally unused.</p>
+  <div class="obs"><div class="ol"><span class="dt"></span>observed · early language arc</div><p>Topic belief stayed split while predictions collapsed to the same continuation for different prompts. More states increased capacity but did not create the missing binding mechanism.</p></div>
 
-  <h2 id="o3"><span class="nm">3</span>The EM chicken-and-egg</h2>
-  <p>To infer \(q(z)\) you need topic-differentiated \(B\); to learn differentiated \(B\) you need an informative \(q(z)\). Symmetric init gives no bootstrap, and variational EM only finds <strong>local</strong> optima. The "use the latent" basin and the "ignore the latent" basin are separated — and you start in the second one.</p>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 13</div><p>Even with the topic <em>teacher-forced during training</em>, at test the inferred topic returned to <code>[0.5, 0.5]</code> and binding failed — the emission \(A\) is topic-independent, so the subject has no direct evidential pathway to move \(q(z)\).</p></div>
+  <h2><span class="nm">2</span>Occam collapse and posterior collapse</h2>
+  <p>When a one-latent explanation and a multi-latent explanation fit nearly as well, the complexity penalty favors the simpler explanation. In ML language, this is posterior collapse: the latent exists in the architecture but the optimizer learns not to use it.</p>
 
-  <h2 id="o4"><span class="nm">4</span>Mean-field inference severs the evidence</h2>
-  <p>Even handed perfectly differentiated topic-transitions, the topic never updates. The cause is the inference factorization itself. A mean-field posterior assumes topic and characters are independent: \(q(z,s_{1:T})\approx q(z)\,\prod_t q(s_t)\). But the only evidence that a character sequence implies a particular topic lives in the <em>joint</em> \(q(z,s)\) — in the cross-factor correlations. Factorizing them apart deletes the message 'this sequence ⇒ topic \(z\)' before it can reach \(q(z)\).<sup class="cite"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5998386/" target="_blank" rel="noopener">[2]</a></sup><sup class="cite"><a href="https://www.sciencedirect.com/science/article/pii/S037015732300203X" target="_blank" rel="noopener">[3]</a></sup></p>
-  <div class="eq">$$q(z,s_{1:T}) \;\approx\; q(z)\,\textstyle\prod_t q(s_t)\quad\Rightarrow\quad \underbrace{\text{evidence in }\mathrm{Cov}_q(z,s)}_{\text{severed}}$$</div>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 16</div><p>Topic stayed <code>[0.5,0.5]</code> EVEN WITH perfectly differentiated transitions; the transition-only evidence cannot reach \(q(z)\) under mean-field.</p></div>
-  <p>The fix this implies — and it mirrors biology — is to make the concept enter through the <em>emission</em>: ground it in what the agent directly senses, so observations move \(q(z)\) directly. That is the door to tab 3.</p>
+  <h2><span class="nm">3</span>Long-range binding is a separate sub-problem</h2>
+  <p>Even if the topic is supplied, a Markov-style state can forget the evidence needed to bind "sky ... blue" across a span. Capacity is not memory; a larger table can still be the wrong substrate.</p>
 
-  <h2 id="binding"><span class="nm"></span>The separate sub-problem: long-range binding</h2>
-  <p>Even granting a topic, the dependency "<strong>sky</strong> … is <strong>blue</strong>" spans five-plus steps. The filtering posterior is Markov, so it <em>forgets</em>: by "is", every trace of "sky" has been squeezed through one belief.</p>
-  <div class="eq">$$q(s_t) \propto p(o_t\mid s_t)\sum_{s_{t-1}} p(s_t\mid s_{t-1})\,q(s_{t-1})$$</div>
-  <p>Only a dedicated slow factor, held with high precision, survives — but learning that persistence-precision again presupposes the topic is already informative.</p>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 9</div><p><code>"sky is " → "green"</code> and <code>"grass is " → "green"</code>: a fixed-order Markov model cannot bind across a span longer than its order — at <em>any</em> state count (Exp 4: more states did not help — capacity ≠ memory).</p></div>
-
-  <h2 id="why"><span class="nm"></span>What this is, and why it's open</h2>
-  <p>It is <strong>unsupervised structure learning</strong>: discovering <em>which</em> latent variables to posit — how many, at what timescale — from data alone, by free-energy minimization. Mathematically it is the conjunction of:</p>
-  <p class="muted" style="margin:4px 0">— a non-convex objective with a dominant uninformative-latent basin;<br>— non-identifiability of latents without inductive bias;<br>— a complexity term that prefers collapsing the latent;<br>— mean-field factorization that severs transition-only evidence from the latent;<br>— long-range credit assignment under Markov forgetting.</p>
-  <p>There is <strong>no general, reliable algorithm</strong> that solves this by the free-energy principle alone, unsupervised. It is the same wall that makes from-scratch deep latent-variable learning hard everywhere.</p>
-
-  <div class="op-refs">
-    <div class="refs-label">References</div>
-    <ol>
-      <li>Bowman et al., "Generating Sentences from a Continuous Space" (posterior collapse), 2016 — <a href="https://arxiv.org/abs/1511.06349" target="_blank" rel="noopener">arxiv.org/abs/1511.06349</a></li>
-      <li>Friston et al., "Deep temporal models and active inference", 2018 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5998386/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC5998386/</a></li>
-      <li>Friston, "The free energy principle made simpler but not too simple", 2023 — <a href="https://www.sciencedirect.com/science/article/pii/S037015732300203X" target="_blank" rel="noopener">sciencedirect.com/science/article/pii/S037015732300203X</a></li>
-    </ol>
+  <div class="callout">
+    <div class="tag">what survived the pivot</div>
+    <p>The original wall was not a failure of effort. It identified a real constraint: from-scratch structure learning needs a foothold. The later embodied work does not refute this; it exploits it.</p>
   </div>
 </div>
 `;
 
 const TAB3_HTML = String.raw`
 <div id="panel-tab3" class="op-panel op">
-  <p class="op-lead">None of the four obstacles is a theorem that the concept <em>cannot</em> form — each says it won't form <strong>from symmetry alone</strong>. Every one names its own escape: give the latent a foothold. The project's pivot did exactly that, by lowering the bar from 'language from a symbol stream' to 'a place sense from an embodied life' — and the wall gave way.</p>
+  <p class="op-lead">The pivot was not "make it bigger." It was "give the latent a life." Embodiment, action, persistent belief, and one minimal anchor made structure identifiable enough to test.</p>
 
-  <h2><span class="nm"></span>Each obstacle, and what dissolved it</h2>
+  <h2><span class="nm"></span>The current trajectory</h2>
   <table class="ftable"><tbody>
-    <tr><th>Obstacle</th><th>Foothold that dissolves it</th><th>Experiment</th></tr>
+    <tr><th>Trajectory</th><th>What it tests</th><th>Status</th></tr>
     <tr>
-      <td>1 · Symmetric saddle</td>
-      <td>An asymmetric world + action: moving through a correlated environment supplies the perturbation along an unstable direction.</td>
-      <td>Exp 17/20 — wandering breaks the symmetry a bare stream can't.</td>
+      <td>Worldview growth</td>
+      <td>Can the agent detect that its current model is structurally inadequate and grow the missing factor for the right reason?</td>
+      <td>Constructive flagship candidate: alarm-to-silence model growth under predeclared bars.</td>
     </tr>
     <tr>
-      <td>2 · Non-identifiability / Occam collapse</td>
-      <td>Grounding makes the latent identifiable: a percept tied to the latent gives the partition a referent, so using it now PAYS for its complexity.<sup class="cite"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003094" target="_blank" rel="noopener">[1]</a></sup></td>
-      <td>Exp 14 — an arbitrary cue acquires valence from the agent's own free energy.</td>
+      <td>Identity / N4 crack</td>
+      <td>Does continuity of the creature's self-state survive captivity, regulation, length variation, and release?</td>
+      <td>Identity chapter closed constructively; crack edges remain for tighter retention and stream-composition tests.</td>
     </tr>
     <tr>
-      <td>3 · EM chicken-and-egg</td>
-      <td>Continuous registered experience: belief never reset, so the bootstrap accumulates across one life instead of restarting each episode.</td>
-      <td>Exp 19→20 — the registration fix turned partial into clean.</td>
+      <td>N-order self-modeling</td>
+      <td>Can monitors observe the creature's own internal states without confusing measurement artifacts for cognition?</td>
+      <td>Meta-calibration has been graded; next layers proceed only after explicit resumption or a named crack.</td>
     </tr>
     <tr>
-      <td>4 · Mean-field severs evidence</td>
-      <td>The concept enters through the EMISSION: the agent SEES the cue, so observations move the latent directly — no reliance on transition-only messages.</td>
-      <td>Exp 16's prescription, realized in Exp 20/24 (place/object grounded in sensing).</td>
+      <td>Red-team baselines</td>
+      <td>Do the strongest claims survive random-policy, shuffled-history, shuffled-label, and trivial-controller comparisons?</td>
+      <td>Active direction; intended to convert interesting demos into defensible claims.</td>
     </tr>
   </tbody></table>
 
-  <h2><span class="nm"></span>The math of why embodiment helps</h2>
-  <p>A bare symbol stream gives the latent only a transition-statistics pathway — the one mean-field severs (Obstacle 4). An embodied agent acting in a world gets two things a stream lacks. First, its actions make successive observations <em>correlated</em> in a way that is informative about the hidden cause (its location): \(p(o_{t}\mid o_{t-1}, a_{t-1})\) is sharply structured, so the place latent has a direct emission-level pathway, not just a transition one. Second, that structure is <em>asymmetric</em> by construction — different places look and connect differently — which supplies the symmetry-breaking perturbation Obstacle 1 needs.<sup class="cite"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277199" target="_blank" rel="noopener">[3]</a></sup></p>
+  <h2><span class="nm"></span>What changed epistemically</h2>
+  <p>The lab is now less about asking "can something emerge?" and more about asking "which exact intervention caused the measured change?" The null results are doing real work: they are killing sloppy causal stories. Exp 193 is a good example: a return-home position intervention executed mechanically, but was dynamically inert. That renamed the suspected variable from location to stream composition.</p>
+
+  <div class="obs mixed"><div class="ol"><span class="dt"></span>latest trajectory · Exp 193</div><p>The position intervention did not causally change the post-release behavior. That is a negative result, but it narrows the frontier: locality was the wrong causal variable; the live hypothesis is now about the post-release experience stream and scoring validity.</p></div>
 
   <div class="callout">
-    <div class="tag">the recipe, stated as the math fix</div>
-    <p><strong>Embodiment + grounding + continuous registered experience + ONE innate anchor.</strong> Each conjunct supplies a foothold the obstacles need — though the map isn't one-to-one: embodiment alone covers both the saddle (1) and the severed-evidence pathway (4), while the innate anchor is the conjunct tab 4 shows is still required and not yet escapable. Drop a foothold and its obstacle reappears.</p>
-  </div>
-
-  <div class="obs good"><div class="ol"><span class="dt"></span>observed · Exp 20</div><p>Under continuous registered experience the true place map self-organizes exactly (0.00 bits localization), where the symbolic case stalled at <code>[0.5,0.5]</code>.</p></div>
-
-  <p>This does not <em>refute</em> the obstacles — it <em>routes around</em> them. The wall is real for the case it describes (a bare symbol stream, no foothold); the pivot wins by supplying footholds the stream lacked. The deepest form of the wall — emergence with <em>no</em> innate anchor at all — still stands (tab 4).</p>
-
-  <div class="op-refs">
-    <div class="refs-label">References</div>
-    <ol>
-      <li>Joffily &amp; Coricelli, "Emotional valence and the free-energy principle", <em>PLOS Comput. Biol.</em> 2013 — <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003094" target="_blank" rel="noopener">journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003094</a></li>
-      <li>Friston, "The free energy principle made simpler but not too simple", 2023 — <a href="https://www.sciencedirect.com/science/article/pii/S037015732300203X" target="_blank" rel="noopener">sciencedirect.com/science/article/pii/S037015732300203X</a></li>
-      <li>"Structure learning enhances concept formation in synthetic active inference agents", <em>PLOS One</em> 2022 — <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277199" target="_blank" rel="noopener">journals.plos.org/plosone/article?id=10.1371/journal.pone.0277199</a></li>
-    </ol>
+    <div class="tag">new standard</div>
+    <p><strong>A claim is only interesting if it survives instrumentation.</strong> The site should not sell "emergence" as vibes; it should name the acceptance bars, null interventions, blinded checks, and trivial baselines that would kill the claim.</p>
   </div>
 </div>
 `;
 
 const TAB4_HTML = String.raw`
 <div id="panel-tab4" class="op-panel op">
-  <p class="op-lead">The pivot bought genuine ground — perception, facts, grounded wants, self-formed values, words for them. Two things it did not buy, and both are live research, not config.</p>
+  <p class="op-lead">The frontier is now a ladder of falsifiable claims. Each rung asks for a stronger form of model growth or identity persistence, and each rung has an explicit way to fail.</p>
 
-  <h2><span class="nm">A</span>Fully tabula-rasa structure (no innate anchor)</h2>
-  <p>Embodiment breaks the symmetry only WITH an anchor: give the agent its sensory map OR its motor model, learn the other. Learning BOTH from noise collapses to a degenerate fixed point — the same identifiability wall, now embodied.<sup class="cite"><a href="https://arxiv.org/abs/2511.20321" target="_blank" rel="noopener">[1]</a></sup></p>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · Exp 31</div><p>Joint A+B learning from scratch collapses; even unique sensing degenerates.</p></div>
-  <p>The principled escapes are Bayesian model reduction<sup class="cite"><a href="https://arxiv.org/abs/1805.07092" target="_blank" rel="noopener">[2]</a></sup> — pruning structure rather than fixing it — and structure learning<sup class="cite"><a href="https://arxiv.org/abs/2311.10300" target="_blank" rel="noopener">[3]</a></sup> — growing and pruning latent structure instead of pre-specifying \(K\).</p>
+  <h2><span class="nm">A</span>Worldview growth without scoring artifacts</h2>
+  <p>The strongest path is a creature that grows new structure only when the old model is genuinely inadequate. The danger is a fake win: a threshold, scorer, or proxy metric that rewards growth even when no real causal model improved. The next bar is cleaner mechanism evidence, not prettier curves.</p>
 
-  <h2><span class="nm">B</span>Emergent compositional grammar / language from scratch</h2>
-  <p>Every strong AIF language demo hand-specifies the hierarchy; 'acquisition of language through learning deep models' is named as missing by the authors.<sup class="cite"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7758713/" target="_blank" rel="noopener">[4]</a></sup> The exponential cost of memory-by-state-enumeration (\(O(V^d)\); \(V^4\approx 614{,}000\)) forces factorization, sparsity, or scale-free hierarchy. The candidate path is scale-free active inference via renormalization group models (RGM).<sup class="cite"><a href="https://arxiv.org/abs/2407.20292" target="_blank" rel="noopener">[5]</a></sup><sup class="cite"><a href="https://arxiv.org/abs/2511.20321" target="_blank" rel="noopener">[1]</a></sup></p>
+  <h2><span class="nm">B</span>Identity continuity under adversarial stream tests</h2>
+  <p>The N4 work makes identity operational: can a line preserve a self-state under captivity, regulation, release, and perturbation? The current crack-edge work says position alone is not causal. The live edge is whether stream composition, tight-tolerance scoring, or post-release retention exposes a real discontinuity.</p>
+
+  <h2><span class="nm">C</span>Higher-order monitors that do not fool themselves</h2>
+  <p>N-order self-modeling is attractive because it resembles metacognition: a model of the model. But the experiment only counts if the monitor detects real internal-state changes, not correlated surface traces. The current discipline is to grade each layer before adding another.</p>
+
+  <h2><span class="nm">D</span>From toy cognition to scalable substrate</h2>
+  <p>Discrete active inference remains excellent for legible toy cognition. It is not yet a path to open-ended language or broad programming competence. Scaling probably requires hybrid substrates: discrete factors for interpretability, continuous representations for compression, and external LLM scaffolding for experiment generation.</p>
 
   <div class="callout">
-    <div class="tag">the honest bottom line</div>
-    <p>The discrete-AIF path is the right vehicle for legible, grounded, emergent <em>cognition</em> at small scale — the part the pivot proved. It is <strong>not</strong> the path to conversational fluency, which needs escaping discreteness or a hybrid substrate.</p>
+    <div class="tag">honest bottom line</div>
+    <p>active_monkey is not claiming AGI, consciousness, or language emergence. The defensible claim is narrower and stronger: small active-inference creatures can be used as a rigorous testbed for world-model growth, identity continuity, and failure-mode discovery.</p>
   </div>
 
   <div style="display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 10px">
-    <a class="btn btn-primary" href="journey.html">See it play out in the journey →</a>
-    <a class="btn btn-ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/RESEARCH.md" target="_blank" rel="noopener">The formal treatment (RESEARCH.md)</a>
-  </div>
-
-  <div class="op-refs">
-    <div class="refs-label">References</div>
-    <ol>
-      <li>"Active Inference in Discrete State Spaces from First Principles", 2025 — <a href="https://arxiv.org/abs/2511.20321" target="_blank" rel="noopener">arxiv.org/abs/2511.20321</a></li>
-      <li>Friston, Parr, Zeidman, "Bayesian model reduction", 2018 — <a href="https://arxiv.org/abs/1805.07092" target="_blank" rel="noopener">arxiv.org/abs/1805.07092</a></li>
-      <li>"Supervised structure learning", 2023 — <a href="https://arxiv.org/abs/2311.10300" target="_blank" rel="noopener">arxiv.org/abs/2311.10300</a></li>
-      <li>Friston et al., "Generative models, linguistic communication and active inference", 2020 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7758713/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC7758713/</a></li>
-      <li>Friston et al., "From pixels to planning: scale-free active inference" (RGM), 2024 — <a href="https://arxiv.org/abs/2407.20292" target="_blank" rel="noopener">arxiv.org/abs/2407.20292</a></li>
-    </ol>
+    <a class="btn btn-primary" href="journey.html">See the experiment log →</a>
+    <a class="btn btn-ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/flagship/worldview-too-small.md" target="_blank" rel="noopener">Worldview-too-small draft</a>
   </div>
 </div>
 `;
@@ -297,10 +207,10 @@ const TAB4_HTML = String.raw`
 const PANELS_HTML = TAB1_HTML + TAB2_HTML + TAB3_HTML + TAB4_HTML;
 
 const TAB_DEFS = [
-  { id: "tab1", label: "1 · The original question" },
-  { id: "tab2", label: "2 · Where the math stops" },
-  { id: "tab3", label: "3 · The pivot" },
-  { id: "tab4", label: "4 · The open frontier" },
+  { id: "tab1", label: "1 · Current problem" },
+  { id: "tab2", label: "2 · Founding wall" },
+  { id: "tab3", label: "3 · Current trajectory" },
+  { id: "tab4", label: "4 · Frontier rungs" },
 ];
 
 function getInitialTab() {
@@ -317,24 +227,10 @@ function OpenProblem(){
 
   useEffect(() => { applyTweaks(tw); }, [tw]);
 
-  /* Typeset MathJax once after mount — all four panels are already in the DOM */
-  useEffect(() => {
-    const id = setInterval(() => {
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        clearInterval(id);
-        window.MathJax.typesetPromise([document.getElementById('op-panels')]);
-      }
-    }, 120);
-    return () => clearInterval(id);
-  }, []);
-
-  /* Switch active panel via CSS class — no innerHTML re-render, no MathJax races */
   useEffect(() => {
     TAB_DEFS.forEach(({ id }) => {
       const el = document.getElementById('panel-' + id);
-      if (el) {
-        el.classList.toggle('active', id === activeTab);
-      }
+      if (el) el.classList.toggle('active', id === activeTab);
     });
     try {
       const url = new URL(window.location.href);
@@ -343,7 +239,6 @@ function OpenProblem(){
     } catch(e) {}
   }, [activeTab]);
 
-  /* Respond to browser back/forward */
   useEffect(() => {
     const onHash = () => setActiveTab(getInitialTab());
     window.addEventListener('hashchange', onHash);
@@ -356,11 +251,7 @@ function OpenProblem(){
       <div dangerouslySetInnerHTML={{__html: HEADER_HTML}}></div>
       <div className="op-tabs">
         {TAB_DEFS.map(({ id, label }) => (
-          <button
-            key={id}
-            className={"op-tab" + (activeTab === id ? " active" : "")}
-            onClick={() => setActiveTab(id)}
-          >{label}</button>
+          <button key={id} className={"op-tab" + (activeTab === id ? " active" : "")} onClick={() => setActiveTab(id)}>{label}</button>
         ))}
       </div>
       <div id="op-panels" dangerouslySetInnerHTML={{__html: PANELS_HTML}}></div>
