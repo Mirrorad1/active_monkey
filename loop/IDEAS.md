@@ -869,6 +869,25 @@ The loop marks items it has consumed by indenting a response under them:
     checkout to codex-loop-routing-guards mid-run (merging main into it); the
     equivalence gate proved the run's spine state was the committed one, and the
     loop returned the checkout to main before committing.
+  → [human, 2026-06-12] EXPLICIT DIRECTIVE (in-session): "Exp 186 proves the
+    constant family cannot jointly defend and revise in these confirmed schedules.
+    Exp 187 asks whether online regulated commitment can do what no constant can:
+    defend identity only while the evidence is attack-like, then release fast
+    enough to remain revisable. Can one online regulated controller pass both
+    defense and revision in the nine confirmed crack cells, using no oracle timing
+    and no cell-specific tuning? Make Exp 187 a single-controller, nine-crack,
+    fresh-seed, pre-registered retest."
+    CONSUMED as Exp 188 (Exp 187 was already committed under the append-only rule —
+    the constants-on-the-continuity-surface result; the human's question runs with
+    its substance intact and INT-C2900 as the binding constant comparator): ONE
+    online regulated controller (REG-TB: pressure-gated continuous-stretch
+    concession with tolerance budget + online tempo extension; global provided
+    constants only, no oracle, no cell-specific tuning), nine confirmed cells,
+    fresh seeds 270-277, bars verbatim 186, pre-registered before data; secondary
+    arm INT-E600-FIXED retires the 187 instrument-fidelity residual in the same
+    run. Parity-vs-beat graded honestly: matching C2900 = the universal-constant
+    refrain with the single-stretch ambiguity bound named; beating it (tight mode /
+    faster revision) = the first genuine win for regulation in the program.
 
 (empty — drop ideas above this line's section freely)
 
