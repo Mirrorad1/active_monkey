@@ -6,10 +6,11 @@
 This repo contains TWO loops — don't confuse them (RESUME.md §4):
 - **Loop A** (code-mutating autopilot): `run_loop.py` machinery, governed by `MISSION.md` +
   `policy.md` + the `FROZEN` manifest. Never edit FROZEN paths.
-- **Loop B** (Codex-driven research): you designing/running experiments. Governed by
+- **Loop B** (Claude `/loop`-driven research): you designing/running experiments. Governed by
   `loop/PROTOCOL.md` (iteration discipline) and `loop/VALIDATION.md` (honesty rules —
   non-negotiable). The modular prompt system lives in `loop/` — directions, personas, and the
-  human's `loop/IDEAS.md` inbox.
+  human's `loop/IDEAS.md` inbox. Use the built-in `/loop` command with the composed prompt from
+  `loop/compose.py`; no external swarm MCP tools are expected for this repo.
 
 Standing rules for ALL work here:
 - Honest research only. Negative results are results; log them. Never reframe a failure as a
@@ -21,3 +22,6 @@ Standing rules for ALL work here:
 - Experiment scripts + raw outputs are committed under `experiments/` in the same commit
   as their EXPERIMENTS.md entry; never write experiment scripts to /tmp.
 - Self-healing: when you find a noteworthy non-research issue or a reusable insight, follow `loop/META.md` — fix it AND add a durable guard (a fast test, a loop-module rule, or a skill via `/claudeception`) so it can't recur. A fix without a guard is incomplete.
+- Subagent routing for Loop B lives in `loop/ROUTING.md`: highest-thinking model owns research
+  design and verdicts; cheaper subagents may code, verify, or clerk only inside their assigned
+  file scope.

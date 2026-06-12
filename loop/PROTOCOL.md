@@ -30,10 +30,11 @@ the full stories stay in EXPERIMENTS.md. Steps:
    Fixed seed by default; if you try multiple seeds, report ALL of them.
    Write the script at `experiments/expNN_<slug>.py` inside the repo — never `/tmp` or
    any path outside the repo — so it is committed with the entry (see step 6).
-   **Division of labor:** the main model ideates, designs, and validates; the CODING is
-   dispatched to a Sonnet subagent (`Agent` tool, `model: "sonnet"`) with a tight spec —
-   files, expected behavior, exact verification command. The main model reviews the
-   returned code against the spec and VALIDATION.md before running the experiment.
+   **Division of labor:** follow `loop/ROUTING.md`. The main model ideates, designs,
+   and validates; the CODING is dispatched to a Sonnet subagent (`Agent` tool,
+   `model: "sonnet"`) with a tight spec — files, expected behavior, exact
+   verification command. The main model reviews the returned code against the spec
+   and VALIDATION.md before running the experiment.
    Review must include the verdict logic conjunct-by-conjunct: the printed verdict
    line is the coder's claim, not the experiment's result, and "not a falsifier"
    never counts toward POSITIVE (L1, L2 in `loop/LESSONS.md`). Step 4.5's blinded
