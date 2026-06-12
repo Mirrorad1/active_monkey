@@ -548,3 +548,30 @@ def test_experiment_numbers_are_unique():
         "a parallel branch's expNN must be renumbered to the next free "
         "number at merge time (script, outputs, entry, and site data all move together)"
     )
+
+
+# ---------------------------------------------------------------------------
+# Shell-escape leak guard (Exp 191-era incident, 2026-06-12). Curated entries
+# written to experiments-data.js through a shell pipeline leaked POSIX
+# single-quote escapes ("'\''") into the file content; in a JS double-quoted
+# string the embedded \' collapses to ' at parse time, so the public cards
+# rendered possessives as triple apostrophes ("CALM-H6000'''s"). The site JS
+# uses double-quoted strings throughout, so a backslash-apostrophe sequence
+# is NEVER legitimate — its presence means a writer escaped for the wrong
+# layer. Write these files from Python (or the site_data generators), not
+# via single-quoted shell programs.
+# ---------------------------------------------------------------------------
+
+
+def test_site_js_has_no_shell_quote_escape_leaks():
+    for fname in ("experiments-data.js", "lab-status.js"):
+        text = _read(fname)
+        leaks = [
+            f"{fname}:{i}: …{line.strip()[:90]}"
+            for i, line in enumerate(text.splitlines(), 1)
+            if "\\'" in line
+        ]
+        assert not leaks, (
+            "backslash-apostrophe (shell-escape leak) in site JS — fix the "
+            "content AND the writer that produced it:\n" + "\n".join(leaks)
+        )
