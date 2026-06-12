@@ -459,4 +459,14 @@ Constructive positive inside the negative: identity defense IS achievable on thi
 body (fixed-horizon freeze on a mismatch trigger). Detection-floor law also banked:
 ~75-100 steps of onset dose is irreducible for ratio triggers (probe, 874998c).
 
-**STATUS.** state: halted (rung 3 closed by double falsifier F5+F7; chapter-grading consult in loop/IDEAS.md awaits a word; loop paused on the human's word) · latest: Exp 183 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (six clean blocks), wrong-control-surface law (181), sufficient freeze surface + oracle bound (182), detection-floor law (183), surrender-schedule law (183), commitment-as-config (183), universal-constant kill test (173 — first kill) · why: the central hypothesis failed its load-bearing rung at its own pre-registered kill test · next-falsifiable: TBD-human (consult: grade the chapter as recommended, or hunt the seed-229 repeated-color crack with the Exp 173 dissolution warning attached)
+**CHAPTER GRADED AND CLOSED (2026-06-11, on the Exp 183 consult's recommended option
+via the ratified resumption pattern).** Rung 1 displacement regime VERIFIED (176);
+rung 2 identity monitor REAL (180: sensitive, specific, label-independent); rung 3
+commitment control = CONFIG (183: fixed-horizon freeze suffices; regulation strictly
+worse); rung 4 never reached. The central hypothesis is UNSUPPORTED at this richness;
+the constructive positive: identity defense IS achievable by a dumb mechanism. Full
+synthesis: `docs/research/n4-identity-chapter.md`. This card re-opens only on an
+explicit human word (the named candidate: the seed-229 repeated-color / variable-length
+crack, with the Exp 173 dissolution warning attached).
+
+**STATUS.** state: closed-negative · latest: Exp 183 · depends-on: meta-calibration-n3 (N3 SUPPORTED), persistent-creature, functional-emergence · reusable: the verified displacement regime (176), the rung-2 monitor (180), PC2' vector gate (six clean blocks), wrong-control-surface law (181), sufficient freeze surface + oracle bound (182), detection-floor law (183), surrender-schedule law (183), commitment-as-config (183), universal-constant kill test (173 — first kill), synthesis docs/research/n4-identity-chapter.md · why: the central hypothesis (regulated commitment beats any constant) failed its load-bearing rung at its own pre-registered kill test; chapter graded with monitor real and defense-as-config documented · next-falsifiable: TBD-human (re-opens only on a word: the seed-229/variable-length crack, or the untried anchor form)

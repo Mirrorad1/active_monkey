@@ -73,21 +73,24 @@ step 0.
   constant-convergence); self-REGULATION is rejected at its own gate (THE UNIVERSAL-CONSTANT
   LAW: regulation is only necessary where no feasible constant covers all regimes — not
   constructible on this body). Chapter doc §11.
-- **The N4 identity chapter (Exp 174–183, halted-negative at rung 3):** rung 1 found a
-  displacement gate (captivity rewrites identity without a layer); rung 2 built a real
-  read-only monitor (sensitive and specific after the per-burst-matched control); rung 3
-  failed as a layer. Write-gating was the wrong surface (Exp 181), freeze-gating showed
-  the surface is sufficient but timing-limited (Exp 182), and the fast-trigger attempt
-  killed the controller hypothesis (Exp 183): the regulated E* concession becomes a
-  surrender schedule, while fixed-H freeze arms defend 7/8 and revise within tolerance.
-  **Verdict at current richness:** N4 monitoring is real, but commitment control is CONFIG,
-  not agency-over-identity. The thread is HALTED on a consult in `loop/IDEAS.md`.
-- **OPEN at a direction choice (loop/IDEAS.md, each needs an explicit word):** accept and
-  synthesize the N4 negative-config verdict, try the seed-229/variable-length crack, return
-  to M4a increment 1c (the "talk to it" path, halted since Exp 128), apply nira's
-  normalized-predictive switch (standing consult from Exp 154), or handle the cloud-branch
-  merge/renumber plan.
-- Suite ~221 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+- **The N4 identity chapter (Exp 174–183, CLOSED-NEGATIVE, graded 2026-06-11):** rung 1
+  found a displacement gate (captivity rewrites identity without a layer; no whipsaw —
+  overwrite); rung 2 built a real read-only identity monitor (sensitive and specific after
+  the per-burst-matched control); rung 3 failed as a layer three ways — write-gating was
+  the wrong surface (Exp 181), freeze-gating showed the surface is sufficient but
+  timing-limited (Exp 182), and the fast-trigger attempt killed the controller hypothesis
+  (Exp 183): the regulated E* concession becomes a surrender schedule, while fixed-H freeze
+  arms defend 7/8 and revise within tolerance. **Chapter verdict:** N4 monitoring is real,
+  but commitment control is CONFIG, not agency-over-identity — detection without defense;
+  defense, where achievable, needs only a stopwatch. Nine laws banked. Full synthesis:
+  `docs/research/n4-identity-chapter.md`.
+- **OPEN at a direction choice (loop/IDEAS.md, each needs an explicit word):** the
+  seed-229/variable-length crack at the N4 rung 3 verdict (Exp 173 dissolution warning
+  attached); M4a increment 1c (the "talk to it" path, halted since Exp 128 — the most
+  direct path to the moonshot goal); nira's normalized-predictive switch (standing consult
+  from Exp 154); the cloud-branch merge (renumber-on-merge plan); climbing the ladder past
+  N4 given a config verdict there.
+- Suite ~217 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
