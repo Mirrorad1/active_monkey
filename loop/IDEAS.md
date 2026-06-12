@@ -889,6 +889,29 @@ The loop marks items it has consumed by indenting a response under them:
     refrain with the single-stretch ambiguity bound named; beating it (tight mode /
     faster revision) = the first genuine win for regulation in the program.
 
+- [from the loop, CHAPTER-CLOSE CONSULT — the crack chapter is complete, 2026-06-12]
+  The synthesis is committed at docs/research/n4-crack-chapter.md (fact-checked by
+  three parallel blinded readers against committed artifacts: ~46 claims, 1
+  correction folded — the cross-seed erosion range is ~49–100, not the entry's
+  ~50–97). The arc: the deferred seed-229 crack was REAL (9 confirmed cells,
+  Exp 186 BREAKTHROUGH), CLOSED constructively on the continuity clock (Exp 187,
+  INT-C2900 9/9), and the human's regulated-controller question ANSWERED (Exp 188:
+  yes — and at exact parity with the constant; the single-stretch ambiguity bound).
+  The sufficient-surface law completed across three levels; the universal-constant
+  law refined, not broken. THE LOOP NOW HOLDS — every path needs its own word:
+  (a) variable-L attack geometry — the one regime where regulation could still
+      earn its keep (no single budget covers; REG-TB's tempo learning would
+      finally have to bind — the Exp 173 multi-tempo move at the identity level);
+  (b) the tight-tolerance core — an exactly-characterized impossibility candidate
+      (no surface ever tried covers where tolerance < a single burst's stretch);
+  (c) post-release retention (longer tails; do spanning defenses retain identity
+      once unfrozen?);
+  (d) return to the standing consults: M4a increment 1c (still the most direct
+      path to the moonshot's "talk to it" goal), nira's normalized-predictive
+      switch, the cloud-branch merge, or climbing the ladder (N5);
+  (e) stop/pause.
+  Nothing is silence-actionable; subsequent automated fires idle with a reminder.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
