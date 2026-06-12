@@ -104,8 +104,14 @@ step 0.
   universal-constant law refined, not broken). Residuals (each needs a word): the
   pressure-gated E-form (untested as pre-registered — instrument-fidelity gap), the
   tight-mode core (no surface tried covers where tolerance < a single burst), and
-  post-release retention. Chapter synthesis is the active next step. Card:
-  `loop/directions/identity-n4-crack.md`.
+  post-release retention. Exp 188 (the human's single-regulated-controller retest)
+  then ANSWERED the reopened question: YES — one online regulated controller
+  (REG-TB, no oracle, no cell-specific tuning) passes both bars in 9/9 cells — at
+  EXACT defense parity with the constant INT-C2900 (the single-stretch ambiguity
+  bound: at fixed-L geometry regulation ties the right clock; its tempo learning
+  never bound a decision). Open edges, exactly named: variable-L geometry, the
+  tight-tolerance core, post-release retention. Chapter synthesis is the active
+  next step. Card: `loop/directions/identity-n4-crack.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

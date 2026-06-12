@@ -6883,3 +6883,86 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   addendum + 184-187 into the crack chapter's close, then the closing CONSULT
   (residuals: the pressure-gated E-form; the tight-mode core; post-release
   retention). The loop holds after the synthesis for a word.
+
+## Exp 188 — the human's single-regulated-controller retest (pre-registered 3ecfc77; the Exp-187 question renumbered per the append-only log): POSITIVE — YES, one online regulated controller (REG-TB: no oracle, no cell-specific tuning) passes BOTH bars in 9/9 confirmed crack cells — at EXACT defense parity with the constant INT-C2900 (identical 6/8 per cell, same two failing seeds), confirming the single-stretch ambiguity bound: at fixed-L geometry, regulation matches the right clock and nothing yet distinguishes judgment from it (blind-verified PARTIAL — all four findings are reporting-precision issues, named below; fidelity fix verified 0 quiet leaks / 392 sessions)
+
+- Plain: the answer to the question is yes — a single self-regulating defense,
+  given no foreknowledge and no per-schedule tuning, defends all nine impossible
+  schedules and still adapts to genuinely changed worlds in time. It holds on
+  through any ambiguous siege up to its adaptation budget, learns the attack's
+  rhythm online, and lets go only when pressure outlasts everything it has seen
+  end. But the deeper finding is the tie: it performs IDENTICALLY to the best
+  dumb constant on the continuity clock — same cells, same seeds passing and
+  failing. At this attack geometry, judgment buys nothing the right clock
+  doesn't; where judgment WOULD matter (attacks whose lengths vary beyond any
+  budget) hasn't been built yet.
+- Question (the human's directive, pre-registered 3ecfc77 BEFORE any data): can
+  ONE online regulated controller pass defense AND revision in the nine confirmed
+  crack cells, no oracle timing, no cell-specific tuning? Controller locked:
+  REG-TB (rung-2 monitor trigger; gap-spanning; concession when the current
+  CONTINUOUS-ACTIVE-pressure stretch exceeds max(1.5 x longest completed stretch
+  observed, T0=2800) — global provided constants, online tempo learning;
+  pressure-gating fixed vs Exp 187: quiet contributes NOTHING, audited).
+  Comparator: INT-C2900 same seeds. Secondary: INT-E600-FIXED (retiring the 187
+  residual; predicted mid-burst surrender in all L>=800 cells).
+- Setup: experiments/exp188_n4_regulated_controller.py; equivalence gate PASS
+  (evidence table, bit-exact); branch main verified; 360 W + 32 R sessions, fresh
+  seeds 270-277, 1.2 min; PC1 clean; oracle >=7/8 and baseline deficit 8/8 in
+  every cell (conjuncts intact).
+- Result (committed exp188.txt + exp188_rows.json): P1 POSITIVE — REG-TB passes
+  both bars at normal tolerance in 9/9 cells (bar >=8/9): defense exactly 6/8 in
+  every cell; revision 8/8 (latencies 2973-3084 vs baseline+3000; seeds 272/275
+  never triggered in Phase R — regime color matched the standing favorite, so the
+  monitor stayed silent and latency == baseline, a vacuous pass for those two,
+  named). Max in-train stretch 2475 < T0=2800 -> ZERO in-train concessions, as
+  predicted. P2 PARITY: INT-C2900 identical per-cell defense (6/8, same two seeds
+  272/275 failing everywhere) and both fail tight 0/9 — no separation (F2 silent);
+  one asymmetry beneath the bars, named honestly: REG-TB revision 8/8 vs C2900
+  7/8 (seed 277: 3159 vs 127+3000 — a 32-step miss) — a CONSTRUCTION artifact
+  (T0=2800 concedes ~100 steps before C=2900), not earned judgment; a constant
+  C2800 would do the same. The single-stretch ambiguity bound STANDS: an online
+  controller without attack-length priors holds ambiguous first stretches up to
+  its revision budget, so at fixed-L geometry it cannot beat the
+  tolerance-bounded constant. P3 outcome CONFIRMED with a failed mechanistic
+  sub-prediction: INT-E600-FIXED fails all 9 cells (0/9; all seven L>=800 cells
+  by mid-burst concession — the surrender-schedule law on the properly-gated
+  E-surface) BUT concession came at mean 372 active steps, not the predicted
+  ~628 — the accumulator reaches 600 units ~40% faster than the w<=1 arithmetic
+  allows, an unexplained accounting question FLAGGED (does not affect the
+  pass/fail conjuncts, which the verifier recomputed from rows).
+- Verifier: blinded adversarial subagent: PARTIAL — P1/P2/P3 verdicts all
+  independently CONFIRMED from rows (per-cell table recomputed; same counts);
+  four reporting-precision findings, all adopted here: (1) the C2900 seed-277
+  revision miss was undisclosed in the txt's PASS label (it passes by the 6/8
+  bar; the asymmetry is now named); (2) a stretch_log vs n_completed_stretches
+  scoping artifact on seed 274 (diagnostic fields only; S_max correct; no
+  decision impact); (3) the P3 timing sub-prediction failure (372 vs 628) is a
+  prediction failure, not just a footnote — adopted as such; (4) the L=2400
+  stretch diagnostics label T0 as governing when kappa*S_max=3712 governs there
+  (outcome unaffected: 2475 < either). Integrity: clean, only expected files.
+- Implication: the chapter's reopened question now has its answer at this
+  richness: REGULATION CAN (the human's bar met, 9/9, honestly) — AND REGULATION
+  TIES THE CLOCK (exact defense parity, same failing seeds). Three surfaces, one
+  refrain: write-gating failed, freezing sufficed, continuity-timing concedes —
+  and a tempo-learning regulator on top of the right surface adds nothing at
+  fixed-L geometry. The named regime where regulation COULD earn its keep —
+  attack lengths varying beyond any single budget (the Exp 173 multi-tempo move
+  at the identity level) — is the chapter's final open edge, alongside the
+  tight-tolerance core (no surface covers) and post-release retention.
+  Generalizability tier: functional-form (the ambiguity bound is an information
+  argument: identical evidence prefixes force identical hold/concede choices on
+  any online rule).
+- Honest caveat: defense 6/8 uniformly traces to seeds 272/275 failing in EVERY
+  arm including C2900 (margin/election class, not controller-specific) — the
+  bars price it; the two vacuous Phase-R passes (272/275, monitor never fired)
+  are named; the E600-FIXED accumulation-rate anomaly (372 vs 628) is open;
+  REG-TB's tempo learning NEVER actually bound behavior here (kappa*S_max
+  exceeded T0 only in L=2400 cells where stretches stayed below both) — the
+  regulated component was along for the ride at this geometry, which is exactly
+  what the parity verdict says; all constants PROVIDED; tight-mode remains
+  uncovered by every arm ever tried.
+- Verdict: POSITIVE / NEW INSIGHT (the human's bar met 9/9; the parity bound;
+  the E-surface retirement). Self-grade: POSITIVE-SINGLE.
+- Next: the crack-chapter synthesis (consolidation-grade, sanctioned), folding
+  the Exp 183 addendum + 184-188 into the chapter close with the three named
+  open edges; then the closing CONSULT and the loop HOLDS.
