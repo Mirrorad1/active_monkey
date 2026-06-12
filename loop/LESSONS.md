@@ -74,3 +74,8 @@ Ground rules for this file:
   clean), and MUST gate every analysis behind a bit-match against the committed rows
   (quantities + event fields, atol 1e-9) — an unmatched reconstruction is a different
   experiment. [PROTOCOL; pattern: exp183_seed229_autopsy.py]
+- **L15 (Exp 184, 2026-06-12).** A gate that LICENSES a run (equivalence gate,
+  bit-match gate) must EMIT its evidence — the got-vs-committed table per field —
+  not a bare PASS line: the blinded verifier can only audit what the artifact shows,
+  and a bare assertion is graded UNVERIFIABLE (Exp 184's gate, closed by the
+  committed exp184_gate_audit.txt appendix, 60 fields). [PROTOCOL 4.5; kin of L1/L13]
