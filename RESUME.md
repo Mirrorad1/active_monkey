@@ -129,6 +129,22 @@ step 0.
   channels — the timescale overlap). Card CLOSED (2026-06-12); the remaining
   edges (the tight-tolerance core, post-release retention) re-open only on a
   word. Card: `loop/directions/identity-n4-crack.md`.
+- **The n4-crack-edges thread (Exp 191-193, ACTIVE-PAUSED, 2026-06-12):** opened on
+  the human's word ("Chapter's remaining edges"). Rung 1 (post-release retention)
+  produced three honest instrument failures that outline a wall: Exp 191 (NEGATIVE
+  - deferral EXISTS: one fully-measured spanning defense surrendered everything at
+  release while 10/11 measured seats retained; the post-release RE-FREEZE CYCLE
+  discovered), Exp 192 (NEGATIVE - instrument-bounded again at 12,000-step tails:
+  THE NON-SETTLING TAIL; H-mech refuted: the surrendering seed had the LARGER
+  stored margin - divergence tracks post-release obs composition), Exp 193 (the
+  return-home intervention, NEGATIVE - A NULL INTERVENTION: 186/192 sessions
+  byte-identical to no-treatment, 0/192 defense changes - THE POSITION NULL: at
+  this 25-cell body position is not a causal lever; "locality" re-named STREAM
+  COMPOSITION, seed-fated). Baseline displacement durability and oracle retention
+  held at full strength throughout. The corrected causal design (the QUIET-CHAMBER
+  stream-level intervention) is the posted consult's recommended option; rung 2
+  (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
+  `loop/directions/n4-crack-edges.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

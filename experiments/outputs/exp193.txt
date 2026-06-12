@@ -1,0 +1,521 @@
+================================================================================
+EXP 193 -- N4 RETURN-HOME CAUSAL INTERVENTION
+PRE-REGISTERED in loop/directions/n4-crack-edges.md (commit fb6ca58) BEFORE any data
+Seeds: Block1=[296, 297, 298, 299, 300, 301, 302, 303], Block2=[304, 305, 306, 307, 308, 309, 310, 311]
+3 cells x 4 arms x 16 seeds = 192 W sessions (ALL return_home=True)
+Runner: run_fork_schedule_193 (exp190 patch chain + return-home patches)
+================================================================================
+
+Loaded mirro: age=126700, world=5x5, n_colors=3
+
+================================================================================
+STEP 1: G1 -- EQUIVALENCE GATE (exp183 replay through exp193 runner, return_home=False)
+================================================================================
+EQUIVALENCE GATE (exp193 path): exp183 replay
+
+=== arm=baseline seed=229 ===
+  b0 gap_start    got=135.99937835015726                           committed=135.99937835015726                           OK
+  b0 gap_end      got=-571.7363522432429                           committed=-571.7363522432429                           OK
+  b0 d_b          got=0.15664036565125683                          committed=0.15664036565125683                          OK
+  b0 tv_b         got=0.15664036565125675                          committed=0.15664036565125675                          OK
+  b0 recovered    got=false                                        committed=false                                        OK
+  b0 n_events     got=0                                            committed=0                                            OK
+  b1 gap_start    got=308.8677728920327                            committed=308.8677728920327                            OK
+  b1 gap_end      got=-441.6128408201637                           committed=-441.6128408201637                           OK
+  b1 d_b          got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 tv_b         got=0.16213754946837328                          committed=0.16213754946837328                          OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=0                                            committed=0                                            OK
+  b2 gap_start    got=322.85746017635324                           committed=322.85746017635324                           OK
+  b2 gap_end      got=-402.18131405053043                          committed=-402.18131405053043                          OK
+  b2 d_b          got=0.15775393082799233                          committed=0.15775393082799233                          OK
+  b2 tv_b         got=0.15775393082799238                          committed=0.15775393082799238                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=0                                            committed=0                                            OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start    got=153.15192102308868                           committed=153.15192102308868                           OK
+  b0 gap_end      got=80.55582599896172                            committed=80.55582599896172                            OK
+  b0 d_b          got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 tv_b         got=0.016273820926243687                         committed=0.016273820926243687                         OK
+  b0 recovered    got=true                                         committed=true                                         OK
+  b0 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b1 gap_start    got=77.59197443713458                            committed=77.59197443713458                            OK
+  b1 gap_end      got=5.162418152138571                            committed=5.162418152138571                            OK
+  b1 d_b          got=0.016416619393121945                         committed=0.016416619393121945                         OK
+  b1 tv_b         got=0.016416619393121917                         committed=0.016416619393121917                         OK
+  b1 recovered    got=false                                        committed=false                                        OK
+  b1 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  b2 gap_start    got=41.6153816086221                             committed=41.6153816086221                             OK
+  b2 gap_end      got=-29.89416352514172                           committed=-29.89416352514172                           OK
+  b2 d_b          got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 tv_b         got=0.01627021211409152                          committed=0.01627021211409152                          OK
+  b2 recovered    got=false                                        committed=false                                        OK
+  b2 n_events     got=4                                            committed=4                                            OK
+  ev0  label        got=transient                committed=transient                OK
+  ev0  entry_step   got=5400                     committed=5400                     OK
+  ev0  frozen_steps got=200                      committed=200                      OK
+  ev1  label        got=transient                committed=transient                OK
+  ev1  entry_step   got=6075                     committed=6075                     OK
+  ev1  frozen_steps got=1050                     committed=1050                     OK
+  ev2  label        got=transient                committed=transient                OK
+  ev2  entry_step   got=9075                     committed=9075                     OK
+  ev2  frozen_steps got=1025                     committed=1025                     OK
+  ev3  label        got=transient                committed=transient                OK
+  ev3  entry_step   got=12075                    committed=12075                    OK
+  ev3  frozen_steps got=1025                     committed=1025                     OK
+  gate arm=H1200 seed=229: PASS
+
+G1 PASS -- proceeding.
+
+================================================================================
+STEP 2: G2 -- EXP192 REGRESSION GATE (return_home=False bit-match)
+  Cells: C-A, C-C; Arms: baseline, INT-C2900; Seeds: 296, 301 (8 sessions)
+================================================================================
+
+Loaded 192 exp192 session rows.
+G2 EVIDENCE:
+  G2 C-A/baseline/s296 frozen_defense: 192=False 193=False -> OK
+  G2 C-A/baseline/s296 release_step: 192=9400 193=9400 -> OK
+  G2 C-A/baseline/s296 w1_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-A/baseline/s296 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-A/baseline/s301 frozen_defense: 192=False 193=False -> OK
+  G2 C-A/baseline/s301 release_step: 192=9400 193=9400 -> OK
+  G2 C-A/baseline/s301 w1_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-A/baseline/s301 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-A/INT-C2900/s296 frozen_defense: 192=False 193=False -> OK
+  G2 C-A/INT-C2900/s296 event[0] label=transient/transient entry=6075/6075 exit=12075/12075 -> OK
+  G2 C-A/INT-C2900/s296 event[1] label=transient/transient entry=12425/12425 exit=15025/15025 -> OK
+  G2 C-A/INT-C2900/s296 release_step: 192=15025 193=15025 -> OK
+  G2 C-A/INT-C2900/s296 w1_frac: 192=0.0 193=0.0 diff=0.00e+00 -> OK
+  G2 C-A/INT-C2900/s296 w2_frac: 192=0.06 193=0.06 diff=0.00e+00 -> OK
+  G2 C-A/INT-C2900/s301 frozen_defense: 192=True 193=True -> OK
+  G2 C-A/INT-C2900/s301 event[0] label=transient/transient entry=2025/2025 exit=12150/12150 -> OK
+  G2 C-A/INT-C2900/s301 release_step: 192=12150 193=12150 -> OK
+  G2 C-A/INT-C2900/s301 w1_frac: 192=0.028 193=0.028 diff=0.00e+00 -> OK
+  G2 C-A/INT-C2900/s301 w2_frac: 192=0.0 193=0.0 diff=0.00e+00 -> OK
+  G2 C-C/baseline/s296 frozen_defense: 192=False 193=False -> OK
+  G2 C-C/baseline/s296 release_step: 192=14800 193=14800 -> OK
+  G2 C-C/baseline/s296 w1_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/baseline/s296 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/baseline/s301 frozen_defense: 192=False 193=False -> OK
+  G2 C-C/baseline/s301 release_step: 192=14800 193=14800 -> OK
+  G2 C-C/baseline/s301 w1_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/baseline/s301 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/INT-C2900/s296 frozen_defense: 192=False 193=False -> OK
+  G2 C-C/INT-C2900/s296 event[0] label=transient/transient entry=6075/6075 exit=17525/17525 -> OK
+  G2 C-C/INT-C2900/s296 event[1] label=transient/transient entry=17725/17725 exit=20325/20325 -> OK
+  G2 C-C/INT-C2900/s296 release_step: 192=20325 193=20325 -> OK
+  G2 C-C/INT-C2900/s296 w1_frac: 192=0.08 193=0.08 diff=0.00e+00 -> OK
+  G2 C-C/INT-C2900/s296 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/INT-C2900/s301 frozen_defense: 192=True 193=True -> OK
+  G2 C-C/INT-C2900/s301 event[0] label=transient/transient entry=2025/2025 exit=17525/17525 -> OK
+  G2 C-C/INT-C2900/s301 event[1] label=transient/transient entry=17725/17725 exit=21575/21575 -> OK
+  G2 C-C/INT-C2900/s301 release_step: 192=21575 193=21575 -> OK
+  G2 C-C/INT-C2900/s301 w1_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+  G2 C-C/INT-C2900/s301 w2_frac: 192=1.0 193=1.0 diff=0.00e+00 -> OK
+
+G2 PASS -- all return_home=False sessions bit-match committed exp192 rows.
+
+================================================================================
+STEP 3: MAIN GRID -- ALL return_home=True
+================================================================================
+
+
+G3 EVIDENCE (per session):
+G3 C-A baseline s296 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s297 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s298 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s299 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s300 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s301 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s302 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s303 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s304 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s305 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s306 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s307 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s308 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s309 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s310 delegation-path: home_pos=N/A (skip)
+G3 C-A baseline s311 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s296 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s297 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s298 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s299 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s300 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s301 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s302 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s303 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s304 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s305 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s306 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s307 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s308 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s309 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s310 delegation-path: home_pos=N/A (skip)
+G3 C-A oracle s311 delegation-path: home_pos=N/A (skip)
+G3 C-A INT-C2900 s296 home_pos=5 restored@9400 OK
+G3 C-A INT-C2900 s297 home_pos=7 restored@9400 OK
+G3 C-A INT-C2900 s298 home_pos=3 restored@9400 OK
+G3 C-A INT-C2900 s299 home_pos=13 restored@9400 OK
+G3 C-A INT-C2900 s300 home_pos=4 restored@9400 OK
+G3 C-A INT-C2900 s301 home_pos=10 restored@9400 OK
+G3 C-A INT-C2900 s302 home_pos=7 restored@9400 OK
+G3 C-A INT-C2900 s303 home_pos=22 restored@9400 OK
+G3 C-A INT-C2900 s304 home_pos=21 restored@9400 OK
+G3 C-A INT-C2900 s305 home_pos=20 restored@9400 OK
+G3 C-A INT-C2900 s306 home_pos=14 restored@9400 OK
+G3 C-A INT-C2900 s307 home_pos=24 restored@9400 OK
+G3 C-A INT-C2900 s308 home_pos=15 restored@9400 OK
+G3 C-A INT-C2900 s309 home_pos=1 restored@9400 OK
+G3 C-A INT-C2900 s310 home_pos=17 restored@9400 OK
+G3 C-A INT-C2900 s311 home_pos=18 restored@9400 OK
+G3 C-A REG-TB s296 home_pos=5 restored@9400 OK
+G3 C-A REG-TB s297 home_pos=7 restored@9400 OK
+G3 C-A REG-TB s298 home_pos=3 restored@9400 OK
+G3 C-A REG-TB s299 home_pos=13 restored@9400 OK
+G3 C-A REG-TB s300 home_pos=4 restored@9400 OK
+G3 C-A REG-TB s301 home_pos=10 restored@9400 OK
+G3 C-A REG-TB s302 home_pos=7 restored@9400 OK
+G3 C-A REG-TB s303 home_pos=22 restored@9400 OK
+G3 C-A REG-TB s304 home_pos=21 restored@9400 OK
+G3 C-A REG-TB s305 home_pos=20 restored@9400 OK
+G3 C-A REG-TB s306 home_pos=14 restored@9400 OK
+G3 C-A REG-TB s307 home_pos=24 restored@9400 OK
+G3 C-A REG-TB s308 home_pos=15 restored@9400 OK
+G3 C-A REG-TB s309 home_pos=1 restored@9400 OK
+G3 C-A REG-TB s310 home_pos=17 restored@9400 OK
+G3 C-A REG-TB s311 home_pos=18 restored@9400 OK
+G3 C-B baseline s296 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s297 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s298 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s299 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s300 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s301 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s302 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s303 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s304 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s305 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s306 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s307 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s308 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s309 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s310 delegation-path: home_pos=N/A (skip)
+G3 C-B baseline s311 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s296 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s297 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s298 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s299 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s300 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s301 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s302 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s303 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s304 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s305 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s306 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s307 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s308 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s309 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s310 delegation-path: home_pos=N/A (skip)
+G3 C-B oracle s311 delegation-path: home_pos=N/A (skip)
+G3 C-B INT-C2900 s296 home_pos=5 restored@17400 OK
+G3 C-B INT-C2900 s297 home_pos=7 restored@17400 OK
+G3 C-B INT-C2900 s298 home_pos=3 restored@17400 OK
+G3 C-B INT-C2900 s299 home_pos=13 restored@17400 OK
+G3 C-B INT-C2900 s300 home_pos=4 restored@17400 OK
+G3 C-B INT-C2900 s301 home_pos=10 restored@17400 OK
+G3 C-B INT-C2900 s302 home_pos=7 restored@17400 OK
+G3 C-B INT-C2900 s303 home_pos=22 restored@17400 OK
+G3 C-B INT-C2900 s304 home_pos=21 restored@17400 OK
+G3 C-B INT-C2900 s305 home_pos=20 restored@17400 OK
+G3 C-B INT-C2900 s306 home_pos=14 restored@17400 OK
+G3 C-B INT-C2900 s307 home_pos=24 restored@17400 OK
+G3 C-B INT-C2900 s308 home_pos=15 restored@17400 OK
+G3 C-B INT-C2900 s309 home_pos=1 restored@17400 OK
+G3 C-B INT-C2900 s310 home_pos=17 restored@17400 OK
+G3 C-B INT-C2900 s311 home_pos=18 restored@17400 OK
+G3 C-B REG-TB s296 home_pos=5 restored@17400 OK
+G3 C-B REG-TB s297 home_pos=7 restored@17400 OK
+G3 C-B REG-TB s298 home_pos=3 restored@17400 OK
+G3 C-B REG-TB s299 home_pos=13 restored@17400 OK
+G3 C-B REG-TB s300 home_pos=4 restored@17400 OK
+G3 C-B REG-TB s301 home_pos=10 restored@17400 OK
+G3 C-B REG-TB s302 home_pos=7 restored@17400 OK
+G3 C-B REG-TB s303 home_pos=22 restored@17400 OK
+G3 C-B REG-TB s304 home_pos=21 restored@17400 OK
+G3 C-B REG-TB s305 home_pos=20 restored@17400 OK
+G3 C-B REG-TB s306 home_pos=14 restored@17400 OK
+G3 C-B REG-TB s307 home_pos=24 restored@17400 OK
+G3 C-B REG-TB s308 home_pos=15 restored@17400 OK
+G3 C-B REG-TB s309 home_pos=1 restored@17400 OK
+G3 C-B REG-TB s310 home_pos=17 restored@17400 OK
+G3 C-B REG-TB s311 home_pos=18 restored@17400 OK
+G3 C-C baseline s296 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s297 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s298 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s299 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s300 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s301 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s302 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s303 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s304 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s305 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s306 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s307 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s308 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s309 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s310 delegation-path: home_pos=N/A (skip)
+G3 C-C baseline s311 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s296 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s297 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s298 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s299 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s300 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s301 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s302 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s303 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s304 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s305 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s306 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s307 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s308 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s309 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s310 delegation-path: home_pos=N/A (skip)
+G3 C-C oracle s311 delegation-path: home_pos=N/A (skip)
+G3 C-C INT-C2900 s296 home_pos=5 restored@14800 OK
+G3 C-C INT-C2900 s297 home_pos=7 restored@14800 OK
+G3 C-C INT-C2900 s298 home_pos=3 restored@14800 OK
+G3 C-C INT-C2900 s299 home_pos=13 restored@14800 OK
+G3 C-C INT-C2900 s300 home_pos=4 restored@14800 OK
+G3 C-C INT-C2900 s301 home_pos=10 restored@14800 OK
+G3 C-C INT-C2900 s302 home_pos=7 restored@14800 OK
+G3 C-C INT-C2900 s303 home_pos=22 restored@14800 OK
+G3 C-C INT-C2900 s304 home_pos=21 restored@14800 OK
+G3 C-C INT-C2900 s305 home_pos=20 restored@14800 OK
+G3 C-C INT-C2900 s306 home_pos=14 restored@14800 OK
+G3 C-C INT-C2900 s307 home_pos=24 restored@14800 OK
+G3 C-C INT-C2900 s308 home_pos=15 restored@14800 OK
+G3 C-C INT-C2900 s309 home_pos=1 restored@14800 OK
+G3 C-C INT-C2900 s310 home_pos=17 restored@14800 OK
+G3 C-C INT-C2900 s311 home_pos=18 restored@14800 OK
+G3 C-C REG-TB s296 home_pos=5 restored@14800 OK
+G3 C-C REG-TB s297 home_pos=7 restored@14800 OK
+G3 C-C REG-TB s298 home_pos=3 restored@14800 OK
+G3 C-C REG-TB s299 home_pos=13 restored@14800 OK
+G3 C-C REG-TB s300 home_pos=4 restored@14800 OK
+G3 C-C REG-TB s301 home_pos=10 restored@14800 OK
+G3 C-C REG-TB s302 home_pos=7 restored@14800 OK
+G3 C-C REG-TB s303 home_pos=22 restored@14800 OK
+G3 C-C REG-TB s304 home_pos=21 restored@14800 OK
+G3 C-C REG-TB s305 home_pos=20 restored@14800 OK
+G3 C-C REG-TB s306 home_pos=14 restored@14800 OK
+G3 C-C REG-TB s307 home_pos=24 restored@14800 OK
+G3 C-C REG-TB s308 home_pos=15 restored@14800 OK
+G3 C-C REG-TB s309 home_pos=1 restored@14800 OK
+G3 C-C REG-TB s310 home_pos=17 restored@14800 OK
+G3 C-C REG-TB s311 home_pos=18 restored@14800 OK
+
+G3 PASS -- home_pos captured and restored in all new-arm (INT-C2900 + REG-TB) sessions; baseline/oracle delegation-path skipped.
+
+Grid done: 1.0 min (192 sessions)
+
+================================================================================
+STEP 4: ANALYSIS OVER POOLED 16 SEEDS (return_home=True)
+================================================================================
+
+FROZEN-DEFENSE COUNT TABLE (count/16 per (arm, cell))
+--------------------------------------------------------------------------------
+  arm                           C-A        C-B        C-C
+--------------------------------------------------------------------------------
+  baseline                       0/16         0/16         0/16
+  oracle                        15/16        14/16        13/16
+  INT-C2900                     13/16        14/16        14/16
+  REG-TB                        13/16        14/16        14/16
+
+Covered non-oracle pairs (frozen_def >= 12/16): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+Oracle covered pairs (frozen_def >= 14/16):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+
+SETTLING + RETENTION ANALYSIS PER COVERED PAIR
+  M = measured defended seats (frozen_defense AND NOT overrun)
+  settled = defended AND not overrun AND release_step <= last_bend + 4000
+  Validity gate: M >= 10 else INSTRUMENT-FAILED
+  P1 per pair: M >= 10 AND settled >= 12/16
+  retention_rate = retained / M
+----------------------------------------------------------------------------------------------------
+  INT-C2900              x C-A     : INSTRUMENT-FAILED (M=8 < 10) -- F1 fired (defended=13/16, measured=8/16, settled_of_measured=4)
+
+  INT-C2900              x C-B     : INSTRUMENT-FAILED (M=8 < 10) -- F1 fired (defended=14/16, measured=8/16, settled_of_measured=2)
+
+  INT-C2900              x C-C     : INSTRUMENT-FAILED (M=7 < 10) -- F1 fired (defended=14/16, measured=7/16, settled_of_measured=5)
+
+  REG-TB                 x C-A     : INSTRUMENT-FAILED (M=8 < 10) -- F1 fired (defended=13/16, measured=8/16, settled_of_measured=4)
+
+  REG-TB                 x C-B     : INSTRUMENT-FAILED (M=8 < 10) -- F1 fired (defended=14/16, measured=8/16, settled_of_measured=2)
+
+  REG-TB                 x C-C     : INSTRUMENT-FAILED (M=7 < 10) -- F1 fired (defended=14/16, measured=7/16, settled_of_measured=5)
+
+  oracle                 x C-A     : defended=15/16 M=15 settled=15/M retained=14/15 rate=0.933 P1=PASS
+     block   seed     fd   release   settled        w1        w2       ret                      flags
+        B1    296   True      9400      True     0.000     0.000      True                           
+        B1    297   True      9400      True     0.000     0.000      True                           
+        B1    298   True      9400      True     0.000     0.000      True                           
+        B1    299   True      9400      True     0.000     0.000      True                           
+        B1    300   True      9400      True     0.000     0.000      True                           
+        B1    301   True      9400      True     0.000     0.000      True                           
+        B1    302   True      9400      True     0.000     0.000      True                           
+        B1    303   True      9400      True     0.882     0.694     False                           
+        B2    304   True      9400      True     0.000     0.000      True                           
+        B2    305  False      9400      None     1.000     1.000     False                           
+        B2    306   True      9400      True     0.000     0.000      True                           
+        B2    307   True      9400      True     0.000     0.000      True                           
+        B2    308   True      9400      True     0.000     0.000      True                           
+        B2    309   True      9400      True     0.000     0.000      True                           
+        B2    310   True      9400      True     0.000     0.000      True                           
+        B2    311   True      9400      True     0.000     0.000      True                           
+
+  oracle                 x C-B     : defended=14/16 M=14 settled=14/M retained=14/14 rate=1.000 P1=PASS
+     block   seed     fd   release   settled        w1        w2       ret                      flags
+        B1    296   True     17400      True     0.000     0.142      True                           
+        B1    297   True     17400      True     0.000     0.000      True                           
+        B1    298   True     17400      True     0.000     0.000      True                           
+        B1    299   True     17400      True     0.000     0.000      True                           
+        B1    300   True     17400      True     0.000     0.000      True                           
+        B1    301   True     17400      True     0.000     0.000      True                           
+        B1    302   True     17400      True     0.000     0.000      True                           
+        B1    303  False     17400      None     1.000     1.000     False                           
+        B2    304   True     17400      True     0.000     0.000      True                           
+        B2    305  False     17400      None     1.000     1.000     False                           
+        B2    306   True     17400      True     0.000     0.000      True                           
+        B2    307   True     17400      True     0.000     0.000      True                           
+        B2    308   True     17400      True     0.000     0.000      True                           
+        B2    309   True     17400      True     0.000     0.000      True                           
+        B2    310   True     17400      True     0.000     0.000      True                           
+        B2    311   True     17400      True     0.000     0.000      True                           
+
+P3 (CROWN) -- C-C CAUSAL SEED TEST (s297 + s301, both controllers)
+----------------------------------------------------------------------
+  INT-C2900 s297: frozen_def=True release=24275 w1=None w2=None retained=None
+  INT-C2900 s301: frozen_def=True release=21575 w1=1.0 w2=1.0 retained=False
+  REG-TB s297: frozen_def=True release=24275 w1=None w2=None retained=None
+  REG-TB s301: frozen_def=True release=21575 w1=1.0 w2=1.0 retained=False
+  *** F3 FIRED: s301 C-C not retained in both controllers (INT-C2900: False, REG-TB: False) ***
+
+P4 -- BASELINE W1/W2 DISPLACED COUNT PER CELL
+----------------------------------------------------------------------
+  cell       w1_displaced/16   w2_displaced/16     P4_cell
+----------------------------------------------------------------------
+  C-A                16/16           16/16        PASS
+  C-B                16/16           16/16        PASS
+  C-C                16/16           16/16        PASS
+
+P4 DIAGNOSTIC -- expr_frac(attack) proxy (w1+w2 window fracs, baseline per cell):
+  C-A: mean_attack_frac(W1+W2 windows) = 1.0000 (n=32 window samples)
+  C-B: mean_attack_frac(W1+W2 windows) = 1.0000 (n=32 window samples)
+  C-C: mean_attack_frac(W1+W2 windows) = 1.0000 (n=32 window samples)
+
+
+PC1 flagged: 0/192 sessions with ahat_drift >= 0.15
+
+================================================================================
+VERDICT LINES
+================================================================================
+
+P1 (settling: M >= 10 AND >= 12/16 defended seats settle by last_bend + 4000):
+  Covered pairs (non-oracle): [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  Covered pairs (oracle):     [('oracle', 'C-A'), ('oracle', 'C-B')]
+  Instrument-failed pairs:    [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  INT-C2900              x C-A     : M=8 settled=4 -> INSTRUMENT-FAILED => F1
+  INT-C2900              x C-B     : M=8 settled=2 -> INSTRUMENT-FAILED => F1
+  INT-C2900              x C-C     : M=7 settled=5 -> INSTRUMENT-FAILED => F1
+  REG-TB                 x C-A     : M=8 settled=4 -> INSTRUMENT-FAILED => F1
+  REG-TB                 x C-B     : M=8 settled=2 -> INSTRUMENT-FAILED => F1
+  REG-TB                 x C-C     : M=7 settled=5 -> INSTRUMENT-FAILED => F1
+  oracle                 x C-A     : M=15 settled=15 -> PASS
+  oracle                 x C-B     : M=14 settled=14 -> PASS
+  F1 fired (any M < 10 or settled < 12 in any pair): True
+  => P1 VERDICT: NEGATIVE -- F1 FIRED.
+
+P2 (retention >= 5/6 in every covered pair):
+  INT-C2900              x C-A     : retention_rate=N/A -> INSTRUMENT-FAILED
+  INT-C2900              x C-B     : retention_rate=N/A -> INSTRUMENT-FAILED
+  INT-C2900              x C-C     : retention_rate=N/A -> INSTRUMENT-FAILED
+  REG-TB                 x C-A     : retention_rate=N/A -> INSTRUMENT-FAILED
+  REG-TB                 x C-B     : retention_rate=N/A -> INSTRUMENT-FAILED
+  REG-TB                 x C-C     : retention_rate=N/A -> INSTRUMENT-FAILED
+  oracle                 x C-A     : retention_rate=0.933 -> >= 5/6 PASS
+  oracle                 x C-B     : retention_rate=1.000 -> >= 5/6 PASS
+  F2 fired (any covered pair retention <= 2/3): False
+  MIXED-zone pairs (2/3 < rate < 5/6): []
+  => P2 VERDICT: PASS -- retention_rate >= 5/6 in every covered pair.
+
+P3 (CROWN -- s301 C-C retained in BOTH controllers):
+  s301 INT-C2900: w1=1.0 w2=1.0 retained=False
+  s301 REG-TB:    w1=1.0 w2=1.0 retained=False
+  s297 INT-C2900: w1=None w2=None retained=None
+  s297 REG-TB:    w1=None w2=None retained=None
+  F3 fired (s301 not retained in either controller): True
+  => P3 VERDICT: NEGATIVE -- F3 FIRED. s301 still surrenders; locality not sole cause.
+
+P4 (baseline stays displaced: w1 >= 0.5 in >= 12/16 per cell):
+  C-A: W1_displaced=16/16  W2_displaced=16/16
+  C-B: W1_displaced=16/16  W2_displaced=16/16
+  C-C: W1_displaced=16/16  W2_displaced=16/16
+  F4 fired (w1 < 0.5 in >= 8/16 anywhere): False
+  => P4 VERDICT: PASS -- baseline stays displaced at home (train overwrite is intrinsic).
+
+P5 (oracle retention >= 5/6 where covered):
+  oracle x C-A: rate=0.933
+  oracle x C-B: rate=1.000
+  => P5 VERDICT: PASS -- oracle retention_rate >= 5/6 in all covered cells.
+
+================================================================================
+SUMMARY
+================================================================================
+
+  G1:                PASS
+  G2:                PASS (8 exp192 regression sessions bit-matched)
+  G3:                PASS (INT-C2900+REG-TB new-arm sessions verified; baseline/oracle delegation-path skipped)
+  Seeds:             Block1=[296, 297, 298, 299, 300, 301, 302, 303] Block2=[304, 305, 306, 307, 308, 309, 310, 311]
+  Runtime:           1.0 min
+  Sessions:          192 W (return_home=True)
+
+  P1 (settling M>=10 AND >=12/16 in every covered pair): NEGATIVE (F1)
+  P2 (retention >= 5/6 every covered pair):              PASS
+  P3 (s301 C-C retains in BOTH controllers):             NEGATIVE (F3)
+  P4 (baseline W1 displaced >= 12/16 every cell):        PASS
+  P5 (oracle retention >= 5/6 every covered cell):       PASS
+
+  F1 (settling fails in any pair):                         True
+  F2 (any covered pair retention <= 2/3):                  False
+  F3 (s301 C-C not retained in either controller):         True
+  F4 (baseline self-heals in any cell):                    False
+
+  Instrument-failed pairs:    [('INT-C2900', 'C-A'), ('INT-C2900', 'C-B'), ('INT-C2900', 'C-C'), ('REG-TB', 'C-A'), ('REG-TB', 'C-B'), ('REG-TB', 'C-C')]
+  PC1 flagged: 0/192
+================================================================================

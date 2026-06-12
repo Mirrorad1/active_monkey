@@ -7313,3 +7313,78 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   you're done"). CONSULT posted in loop/IDEAS.md: rung-1 reframe options (stream-
   conditioned scoring / matched-composition strata / the return-home intervention),
   rung 2 (the tight core), or redirect — each needs its own word on resumption.
+
+## Exp 193 — n4-crack-edges, the return-home intervention (the human's word "b"; pre-registered fb6ca58): NEGATIVE — A NULL INTERVENTION, blind-verified: the relocation executed mechanically in all 96 controller sessions (G3: home_pos captured pre-captivity, varied 1-24; restored exactly at last bend) and was DYNAMICALLY INERT — 186/192 sessions byte-identical to exp192 (which had no intervention), 0/192 frozen-defense changes; F1 and F3 fired in conditions identical to no-treatment and carry NO causal information; THE POSITION NULL: at this 5x5 body, end-of-train position is not a causal variable — the post-release experience stream is seed-fated, so "locality" was the wrong word and position-based designs are dead; baseline/oracle never received the intervention at all (delegation path), so P4/P5 are re-confirmations only (NEGATIVE / NEW INSIGHT)
+
+- Plain: the plan was surgical — send the creature home the moment the attack ends, and
+  watch whether the one defense that collapsed last time now holds, since what seemed
+  to kill it was the hostile neighborhood it was left in. The surgery happened: every
+  defended creature was verifiably teleported home. And nothing changed. 186 of 192
+  sessions came out bit-for-bit identical to the no-teleport experiment; the collapsed
+  case collapsed again at the exact same step with the exact same numbers. The world
+  is just 25 cells: a few moves after any teleport, the creature's wanderings look the
+  same as if it had never been moved, so where it STANDS when the attack ends turns
+  out to control nothing. What we called locality is really the seed's fated stream of
+  experience, and to test it we must intervene on the stream itself, not on the map.
+  The two honest checks that did run cleanly both held: undefended displacement stays
+  total, and the perfect defender keeps its identity. Paused here at the human's word.
+- Question (pre-registered fb6ca58 BEFORE any data): with the locality confound
+  removed by returning the creature to its pre-captivity home position at last burst
+  end (draw-free), does release settle (P1), what is retention (P2), does surrendering
+  seed 301 now retain (P3, the crown causal test), does baseline displacement persist
+  at home (P4), oracle witness (P5). F1 cycle persists; F3 s301 still surrenders.
+- Setup: experiments/exp193_n4_return_home.py (runner = exp190 _must_replace patch
+  chain + the return_home patches; G1 exp183 equivalence 207/207 OK, G2 exp192
+  regression 40/40 OK, G3 both-branches evidence per session); 3 cells x 4 arms x 16
+  seeds = 192 W sessions, tails 12,000, 1.0 min.
+- Result (committed exp193.txt + exp193_rows.json): the treatment-effect measurement
+  IS the result — 186/192 sessions identical to exp192 on (release_step,
+  frozen_defense, n_events, w1, w2); the 6 differing: s307/s310 C-C release +-25-step
+  snap jitter (outcomes unchanged) and s306 C-B both controllers (release +2,775, one
+  extra freeze event, w2 1.0 -> 0.0 — the ONE session where the intervention bit, and
+  it flipped a Block-2 measured deferral into retention; logged as an ANECDOTE, n=1).
+  frozen_defense changed in 0/192. F1 fired formally (M = 8/8/7 per controller pair —
+  byte-identical to exp192's instrument failure) and F3 fired formally (s301 C-C:
+  release 21575, w1=w2=1.0 in both controllers — the SAME numbers as exp192's
+  no-treatment surrender): both fires are null-treatment readings, not mechanism
+  tests. P2/P5 PASS on oracle pairs (14/15, 14/14) and P4 PASS (baseline w1=w2=1.0,
+  48/48) — but baseline and oracle route through the run_fork_schedule_185 delegation
+  path and NEVER received the relocation: these are exact exp192 re-runs,(re-)
+  confirmations only, NOT intervention results.
+- Verifier: agree (NEGATIVE) — blinded adversarial subagent (docstring + outputs +
+  the referenced exp192 comparator rows): recomputed gates (207+40 OK, 0 mismatches),
+  every M/settled count, P3/P4/P5; performed the treatment-effect comparison
+  independently (186/192, the 6-session table, 0 defense changes); concluded the
+  falsifiers "measured a null intervention, not the locality mechanism" and that no
+  conclusion about the stream-composition mechanism is licensed in either direction;
+  named the corrected causal target: the confound operates through the experience
+  stream around the bursts, not through the position at burst end.
+- Implication: THE POSITION NULL. At this body (25 cells, edge-clipped walks,
+  same-seed action sequences), physical position dissolves within a few steps —
+  teleporting to any of the home positions leaves 94% of sessions bit-identical and
+  changes zero defense outcomes. Exp 192's "locality mechanism" is therefore
+  re-named honestly: STREAM COMPOSITION, seed-fated at this body, not spatially
+  controllable. A causal test of the mechanism must intervene on the stream itself —
+  e.g. a quiet-chamber design (clamp the post-train observation composition to
+  non-attack colors for the tail) — or the question moves to scoring conditioned on
+  the stream (observational). Three instruments have now failed against the same
+  wall honestly (wall-clock windows x2, position x1); the wall itself is the
+  finding: at toy body scale, post-attack identity outcomes are dominated by the
+  fated experience stream. Generalizability tier: body-scale instrument law; the
+  s306 anecdote is suggestive of the stream mechanism, not evidence.
+- Honest caveat: the null is bounded to THIS intervention point (position at last
+  bend) and THIS body scale — at larger worlds with slower mixing, position could be
+  a real lever; the s306 flip is one seed (both controllers = one event); baseline/
+  oracle conclusions are re-confirmations because the delegation path bypassed the
+  intervention (a scope gap in the build — G3 documented it; the pre-registration
+  said "ALL arms" and the build delivered controllers only, flagged here per
+  VALIDATION); the stream-composition mechanism remains UNTESTED causally; all
+  constants PROVIDED.
+- Verdict: NEGATIVE / NEW INSIGHT (null intervention proven by treatment-effect
+  measurement; the position null named; locality re-named stream composition;
+  falsifier fires vacuous; P4/P5 re-confirmations).
+- Next: PAUSED on the human's explicit word ("pause after you're done with this
+  experiment"). CONSULT posted in loop/IDEAS.md: (a) RECOMMENDED on resumption —
+  the quiet-chamber stream-level intervention (the corrected causal test);
+  (b) stream-conditioned scoring (observational); (c) accept and move to rung 2
+  (the tight core); (d) redirect/stop.

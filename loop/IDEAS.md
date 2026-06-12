@@ -1081,6 +1081,34 @@ The loop marks items it has consumed by indenting a response under them:
     locality-fed - a major threat-model reframe, reportable with both hands.
     Pre-registration in loop/directions/n4-crack-edges.md before any data;
     seeds pooled 296-311 (301 required for P3); bars predeclared.
+  -> [loop, 2026-06-12] Exp 193 DONE: NEGATIVE - A NULL INTERVENTION,
+    blind-verified: the relocation executed (G3) and changed nothing - 186/192
+    sessions byte-identical to exp192, 0/192 defense changes; F1/F3 fired at
+    the same steps with the same numbers as no-treatment (vacuous fires). THE
+    POSITION NULL: at this 25-cell body position dissolves in steps; locality
+    is re-named STREAM COMPOSITION (seed-fated). One anecdote (n=1): the single
+    session the treatment bit flipped a deferral into retention. Baseline/
+    oracle bypassed the intervention (delegation path, flagged). Entry: Exp 193.
+
+- [from the loop, CONSULT - the stream is the variable, 2026-06-12] Three
+  instruments have failed honestly against the same wall (wall-clock windows
+  twice, position once): post-attack identity outcomes at this body are
+  dominated by the seed-fated experience stream. OPTIONS on resumption:
+  (a) RECOMMENDED - the QUIET-CHAMBER intervention (the corrected causal test):
+      clamp the post-train observation composition directly (force non-attack
+      obs for the tail) - intervenes on the stream itself, the variable the
+      mechanism names; predicts s301 retains and the re-freeze cycle stops;
+      falsifiable both ways with the same retention bars.
+  (b) Stream-conditioned SCORING (observational): retention vs measured obs
+      composition across all committed rows - no new dynamics, prices the
+      mechanism correlationally.
+  (c) Accept the stream finding as rung 1's answer; fold the edges card's
+      retention rung; move to rung 2 (the tight-tolerance core).
+  (d) Redirect / stop.
+  THE LOOP IS PAUSED on the human's explicit word ("pause after you're done
+  with this experiment", 2026-06-12, received during Exp 193). Per the
+  ratified pattern, a bare resumption without redirection authorizes the
+  RECOMMENDED option (a) only; any other path needs its own word.
 
 (empty — drop ideas above this line's section freely)
 

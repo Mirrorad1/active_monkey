@@ -227,4 +227,20 @@ end (isolating defense from locality).
   entries written through Python only (the SITE-WRITER RULE, 2026-06-12); no
   mid-run adjustments.
 
-**STATUS.** state: active (RESUMED on the human's word "b" — Exp 193, the return-home causal test) · latest: Exp 192 (rung-1 instrument-bounded twice; H-mech refuted; the locality mechanism + non-settling tail named) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration
+**EXP 193 RESULT (2026-06-12 — blind-verified agree): NEGATIVE — A NULL
+INTERVENTION.** The relocation executed in all 96 controller sessions (G3:
+home_pos varied 1-24, restored exactly at last bend) and was dynamically inert:
+186/192 sessions byte-identical to exp192, 0/192 frozen-defense changes; the F1/F3
+fires occurred at the same steps with the same numbers as the no-treatment
+experiment and carry no causal information. THE POSITION NULL: at this 25-cell
+body, end-of-train position is not a causal variable — walks re-mix within steps;
+exp192's "locality mechanism" is re-named STREAM COMPOSITION (seed-fated at this
+body). The one session where the treatment bit (C-B s306: defense extended +2,775
+steps) flipped a measured deferral into retention — anecdote, n=1, suggestive of
+the stream mechanism. Baseline/oracle never received the intervention (delegation
+path; scope gap flagged): P4/P5 are exp192 re-confirmations. Three instruments
+have now failed against the same wall (wall-clock x2, position x1); the corrected
+causal design is STREAM-LEVEL: the quiet-chamber (clamp post-train obs
+composition).
+
+**STATUS.** state: halted (PAUSED on the human's word after Exp 193; CONSULT in loop/IDEAS.md — (a) RECOMMENDED quiet-chamber stream intervention / (b) stream-conditioned scoring / (c) accept + rung 2 / (d) redirect) · latest: Exp 193 (the position null; locality re-named stream composition; falsifier fires vacuous) · depends-on: identity-n4-crack (closed, read-only), Exp 183–191 artifacts · reusable: the exp190 gated runner, the retention instrument (windows-from-final-release), the re-freeze-cycle finding, the confirmed crack-cell set · why: the two named residuals of the closed chapter, opened on the human's word · next-falsifiable: Exp 192 — rung 1 completed with tails >= 12,000, unmeasured seats excluded from numerator AND denominator behind a >= 6-measurable validity gate, plus the s301-vs-s297 mechanism diagnostic; then rung 2 (the tight core) on its own pre-registration

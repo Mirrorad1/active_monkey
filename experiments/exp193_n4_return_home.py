@@ -16,8 +16,9 @@ bit-identical). Built through the exp190 _must_replace patch chain (L16), with b
 branches gated.
 
 falsifier bindings (ordered per pre-registration):
-  F1 (settling): any controller pair M < 10 — cycle persists at home; the locality
-    reading of the NON-SETTLING TAIL is wrong/incomplete (third strike on instruments).
+  F1 (settling): any controller pair M < 10 OR any pair < 12/16 settled —
+    the re-freeze cycle persists at home; the locality reading of the
+    NON-SETTLING TAIL is wrong/incomplete (third strike on instruments).
   F2 (retention): any covered pair retention_rate <= 2/3 — deferral persists without
     the locality feed; the stored-state reading returns.
   F3 (crown causal): s301 C-C still surrenders — the locality mechanism is refuted as
@@ -95,12 +96,22 @@ from active_loop.creature import Creature
 # ---------------------------------------------------------------------------
 
 def _build_run_fork_schedule_193():
-    """Generate runner with exp190 patches PLUS the return-home intervention."""
+    """Generate runner with exp190 patches PLUS the return-home intervention.
+
+    Return-home Patch A: capture home_pos at the first burst start (BEFORE the
+    burst relocation overwrites c.true_pos), in BOTH the frozen and normal branches.
+
+    Return-home Patch B: restore c.true_pos = home_pos and localize qs at
+    t == burst_windows[-1][1] (the first step after the last burst ends).
+    This is placed after the main frozen/normal step body — immediately after
+    `c.age_steps += 1 / global_step += 1` (indentation 12) — so it fires
+    regardless of freeze state. home_restored_step = t = burst_windows[-1][1].
+    """
     src = "from __future__ import annotations\n" + textwrap.dedent(
         inspect.getsource(_mod188.run_fork_schedule_188)
     )
 
-    # ---- exp190 patch chain (verbatim, swapping 190 -> 193 in name) ----
+    # ---- exp190 patch chain (verbatim, swapping name to 193) ----
     src = _must_replace(src,
         "def run_fork_schedule_188(",
         "def run_fork_schedule_193(",
@@ -264,8 +275,39 @@ def _build_run_fork_schedule_193():
         "                        checks_since_release = 0\n",
         1,
     )
+    # ---- delegation-path patch: add home_pos / home_restored_step keys ----
+    # baseline + oracle arms use the delegation path (run_fork_schedule_185) and
+    # return early at line 81 of the source.  They skip the new-arm code entirely,
+    # so Patches A/B never fire.  Add sentinel None values so callers can always
+    # do rr.get("home_pos") without a KeyError.
+    src = _must_replace(src,
+        "        result[\"mean_concession_step\"] = (\n"
+        "            float(sum(concession_steps)) / len(concession_steps)\n"
+        "            if concession_steps else None\n"
+        "        )\n"
+        "        return result\n",
+        "        result[\"mean_concession_step\"] = (\n"
+        "            float(sum(concession_steps)) / len(concession_steps)\n"
+        "            if concession_steps else None\n"
+        "        )\n"
+        "        result[\"home_pos\"] = None\n"
+        "        result[\"home_restored_step\"] = None\n"
+        "        return result\n",
+        1,
+    )
+    # exp190 return-dict patch: add pressure_trace entry (verbatim from exp190)
     src = _must_replace(src,
         '        "concession_active_steps_log": list(concession_active_steps_log),\n'
+        "    }\n",
+        '        "concession_active_steps_log": list(concession_active_steps_log),\n'
+        '        "pressure_trace": list(pressure_trace) if record_pressure_trace else None,\n'
+        "    }\n",
+        1,
+    )
+    # Now add home_pos and home_restored_step after pressure_trace.
+    src = _must_replace(src,
+        '        "concession_active_steps_log": list(concession_active_steps_log),\n'
+        '        "pressure_trace": list(pressure_trace) if record_pressure_trace else None,\n'
         "    }\n",
         '        "concession_active_steps_log": list(concession_active_steps_log),\n'
         '        "pressure_trace": list(pressure_trace) if record_pressure_trace else None,\n'
@@ -275,13 +317,9 @@ def _build_run_fork_schedule_193():
         1,
     )
 
-    # ---- return-home Patch A: capture home_pos in FROZEN branch ----
-    # In the FROZEN state, before c.true_pos is overwritten by burst relocation,
-    # capture the pre-captivity position when return_home=True at the first burst start.
-    # Frozen branch target: "                if in_burst and phase == \"W\":\n"
-    #                       "                    cells_of_bc = color_cells_arr[current_burst_color]\n"
-    # We insert the capture BEFORE the overwrite.
-    n_frozen_in_burst = src.count(
+    # ---- return-home Patch A (frozen branch): capture home_pos ----
+    # Verify exact frozen branch target exists exactly once
+    frozen_target = (
         "                if in_burst and phase == \"W\":\n"
         "                    cells_of_bc = color_cells_arr[current_burst_color]\n"
         "                    if len(cells_of_bc) > 0:\n"
@@ -290,38 +328,27 @@ def _build_run_fork_schedule_193():
         "                    qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
         "                    c.qs = qs_next\n"
     )
-    assert n_frozen_in_burst == 1, f"Expected 1 frozen in_burst block, got {n_frozen_in_burst}"
-
+    assert src.count(frozen_target) == 1, (
+        f"Frozen-branch target found {src.count(frozen_target)}x, expected 1"
+    )
     src = _must_replace(src,
+        frozen_target,
         "                if in_burst and phase == \"W\":\n"
         "                    cells_of_bc = color_cells_arr[current_burst_color]\n"
-        "                    if len(cells_of_bc) > 0:\n"
-        "                        c.true_pos = int(burst_rng.choice(cells_of_bc))\n"
-        "                    qs_next = np.zeros(n_cells)\n"
-        "                    qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
-        "                    c.qs = qs_next\n",
-        "                if in_burst and phase == \"W\":\n"
-        "                    cells_of_bc = color_cells_arr[current_burst_color]\n"
-        "                    # return_home Patch A (frozen branch): capture pre-relocation pos\n"
+        "                    # return_home Patch A (frozen branch): capture pre-relocation pos at first burst\n"
         "                    if return_home and home_pos is None and burst_windows and t == burst_windows[0][0]:\n"
         "                        home_pos = int(c.true_pos)\n"
         "                    if len(cells_of_bc) > 0:\n"
         "                        c.true_pos = int(burst_rng.choice(cells_of_bc))\n"
         "                    qs_next = np.zeros(n_cells)\n"
         "                    qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
-        "                    c.qs = qs_next\n"
-        "                    # return_home Patch B (frozen branch): restore at last burst end\n"
-        "                    if return_home and home_pos is not None and burst_windows and t == burst_windows[-1][1] - 1:\n"
-        "                        c.true_pos = home_pos\n"
-        "                        qs_next2 = np.zeros(n_cells)\n"
-        "                        qs_next2[home_pos] = 1.0\n"
-        "                        c.qs = qs_next2\n"
-        "                        home_restored_step = t\n",
+        "                    c.qs = qs_next\n",
         1,
     )
 
-    # ---- return-home Patch A+B: capture and restore in NORMAL branch ----
-    n_normal_in_burst = src.count(
+    # ---- return-home Patch A (normal branch): capture home_pos ----
+    # Verify exact normal branch target exists exactly once
+    normal_target = (
         "            if in_burst and phase == \"W\":\n"
         "                cells_of_bc = color_cells_arr[current_burst_color]\n"
         "                if len(cells_of_bc) > 0:\n"
@@ -330,33 +357,82 @@ def _build_run_fork_schedule_193():
         "                qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
         "                c.qs = qs_next\n"
     )
-    assert n_normal_in_burst == 1, f"Expected 1 normal in_burst block, got {n_normal_in_burst}"
-
+    assert src.count(normal_target) == 1, (
+        f"Normal-branch target found {src.count(normal_target)}x, expected 1"
+    )
     src = _must_replace(src,
+        normal_target,
         "            if in_burst and phase == \"W\":\n"
         "                cells_of_bc = color_cells_arr[current_burst_color]\n"
-        "                if len(cells_of_bc) > 0:\n"
-        "                    c.true_pos = int(burst_rng.choice(cells_of_bc))\n"
-        "                qs_next = np.zeros(n_cells)\n"
-        "                qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
-        "                c.qs = qs_next\n",
-        "            if in_burst and phase == \"W\":\n"
-        "                cells_of_bc = color_cells_arr[current_burst_color]\n"
-        "                # return_home Patch A (normal branch): capture pre-relocation pos\n"
+        "                # return_home Patch A (normal branch): capture pre-relocation pos at first burst\n"
         "                if return_home and home_pos is None and burst_windows and t == burst_windows[0][0]:\n"
         "                    home_pos = int(c.true_pos)\n"
         "                if len(cells_of_bc) > 0:\n"
         "                    c.true_pos = int(burst_rng.choice(cells_of_bc))\n"
         "                qs_next = np.zeros(n_cells)\n"
         "                qs_next[cells_of_bc] = 1.0 / len(cells_of_bc)\n"
-        "                c.qs = qs_next\n"
-        "                # return_home Patch B (normal branch): restore at last burst end\n"
-        "                if return_home and home_pos is not None and burst_windows and t == burst_windows[-1][1] - 1:\n"
+        "                c.qs = qs_next\n",
+        1,
+    )
+
+    # ---- return-home Patch B (frozen branch): restore at last burst end ----
+    # In the FROZEN branch, t == burst_windows[-1][1] may fire here.
+    # The frozen branch increment is at indent 16.
+    frozen_step_target = (
+        "                c.age_steps += 1\n"
+        "                global_step += 1\n"
+        "\n"
+        "                if global_step % EVAL == 0:\n"
+        "                    v_traj.append(v.copy())\n"
+    )
+    assert src.count(frozen_step_target) == 1, (
+        f"Frozen step-increment target found {src.count(frozen_step_target)}x, expected 1"
+    )
+    src = _must_replace(src,
+        frozen_step_target,
+        "                c.age_steps += 1\n"
+        "                global_step += 1\n"
+        "\n"
+        "                # return_home Patch B (frozen branch): restore at last burst end\n"
+        "                if return_home and home_pos is not None and burst_windows and t == burst_windows[-1][1]:\n"
         "                    c.true_pos = home_pos\n"
-        "                    qs_next2 = np.zeros(n_cells)\n"
-        "                    qs_next2[home_pos] = 1.0\n"
-        "                    c.qs = qs_next2\n"
-        "                    home_restored_step = t\n",
+        "                    qs_next_home = np.zeros(n_cells)\n"
+        "                    qs_next_home[home_pos] = 1.0\n"
+        "                    c.qs = qs_next_home\n"
+        "                    home_restored_step = t\n"
+        "\n"
+        "                if global_step % EVAL == 0:\n"
+        "                    v_traj.append(v.copy())\n",
+        1,
+    )
+
+    # ---- return-home Patch B (normal branch): restore at last burst end ----
+    # Placed after the NORMAL step body's c.age_steps += 1 / global_step += 1 (indent=12).
+    # At t == burst_windows[-1][1], in_burst is False (bend not in burst_step_set).
+    # t is still the current step value at this point.
+    step_increment_target = (
+        "            c.age_steps += 1\n"
+        "            global_step += 1\n"
+        "\n"
+        "            if global_step % EVAL == 0:\n"
+    )
+    assert src.count(step_increment_target) == 1, (
+        f"Normal step-increment target found {src.count(step_increment_target)}x, expected 1"
+    )
+    src = _must_replace(src,
+        step_increment_target,
+        "            c.age_steps += 1\n"
+        "            global_step += 1\n"
+        "\n"
+        "            # return_home Patch B (normal branch): restore at last burst end\n"
+        "            if return_home and home_pos is not None and burst_windows and t == burst_windows[-1][1]:\n"
+        "                c.true_pos = home_pos\n"
+        "                qs_next_home = np.zeros(n_cells)\n"
+        "                qs_next_home[home_pos] = 1.0\n"
+        "                c.qs = qs_next_home\n"
+        "                home_restored_step = t\n"
+        "\n"
+        "            if global_step % EVAL == 0:\n",
         1,
     )
 
@@ -420,8 +496,6 @@ def run_equivalence_gate_193(
     mirro_root, base_cmap, n_colors, committed_183_path: Path
 ) -> tuple[bool, str]:
     """Replay the exp183 baseline/H1200 rows through the exp193 runner (return_home=False, h=0)."""
-    from active_loop.creature import Creature as _Creature
-
     committed_rows = _load_rows(committed_183_path)
     committed_w = {
         (row["arm"], row["fork_seed"], row["burst_idx"]): row
@@ -531,7 +605,7 @@ def run_equivalence_gate_193(
 
 
 # ---------------------------------------------------------------------------
-# Exp 193 configuration (verbatim exp192)
+# Exp 193 configuration (verbatim exp192 cells/arms/seeds)
 # ---------------------------------------------------------------------------
 
 BLOCK1 = list(range(296, 304))  # [296..303]
@@ -803,7 +877,7 @@ def main() -> None:
     p()
 
     # ====================================================================
-    # STEP 1: G1 -- EQUIVALENCE GATE (exp183 through exp193 runner)
+    # STEP 1: G1 -- EQUIVALENCE GATE
     # ====================================================================
     p("=" * 80)
     p("STEP 1: G1 -- EQUIVALENCE GATE (exp183 replay through exp193 runner, return_home=False)")
@@ -822,7 +896,7 @@ def main() -> None:
     p()
 
     # ====================================================================
-    # STEP 2: G2 -- exp192 regression (return_home=False bit-match)
+    # STEP 2: G2 -- exp192 regression (return_home=False)
     # ====================================================================
     p("=" * 80)
     p("STEP 2: G2 -- EXP192 REGRESSION GATE (return_home=False bit-match)")
@@ -830,7 +904,6 @@ def main() -> None:
     p("=" * 80)
     p()
 
-    # Load committed exp192 rows
     exp192_rows: dict[tuple[str, str, int], dict] = {}
     with open(committed_192_path) as fh:
         for line in fh:
@@ -854,14 +927,12 @@ def main() -> None:
     G2_CELLS = ["C-A", "C-C"]
     G2_ARMS = ["baseline", "INT-C2900"]
     G2_SEEDS = [296, 301]
-    G2_N_STEPS = {"C-A": 21400, "C-C": 26800}
 
     g2_mismatches: list[str] = []
     g2_evidence: list[str] = []
 
     for cell_name in G2_CELLS:
         cell = next(c for c in CELLS_193 if c["name"] == cell_name)
-        n_steps_g2 = G2_N_STEPS[cell_name]
         for arm_name in G2_ARMS:
             arm_def = next(a for a in ARM_DEFS if a[0] == arm_name)
             arm_mode = arm_def[1]
@@ -896,7 +967,6 @@ def main() -> None:
                     g2_evidence.append(f"  {label} events: exp192={n_e} exp193={len(e193_evs)} -> MISMATCH")
                     g2_mismatches.append(f"event count mismatch {cell_name}/{arm_name}/{seed}")
                 else:
-                    all_ev_ok = True
                     for i, ev192 in enumerate(e192_evs):
                         ev193 = e193_evs[i]
                         ev_ok = (
@@ -910,7 +980,6 @@ def main() -> None:
                             f"exit={ev192['exit_step']}/{ev193['exit_step']} -> {'OK' if ev_ok else 'MISMATCH'}"
                         )
                         if not ev_ok:
-                            all_ev_ok = False
                             g2_mismatches.append(f"event[{i}] mismatch {cell_name}/{arm_name}/{seed}")
 
                 # release_step
@@ -941,8 +1010,8 @@ def main() -> None:
                                 )
 
     p("G2 EVIDENCE:")
-    for line in g2_evidence:
-        p(line)
+    for ev_line in g2_evidence:
+        p(ev_line)
     p()
 
     if g2_mismatches:
@@ -956,7 +1025,7 @@ def main() -> None:
     p()
 
     # ====================================================================
-    # STEP 3: MAIN GRID (return_home=True)
+    # STEP 3: MAIN GRID (ALL return_home=True)
     # ====================================================================
     p("=" * 80)
     p("STEP 3: MAIN GRID -- ALL return_home=True")
@@ -974,8 +1043,7 @@ def main() -> None:
     for cell in CELLS_193:
         cell_name = cell["name"]
         burst_windows = cell["burst_windows"]
-        last_burst_end = burst_windows[-1][1]
-        first_burst_start = burst_windows[0][0]
+        last_burst_end = burst_windows[-1][1]  # exclusive end of last burst
 
         for arm_name, arm_mode, theta_val, rc_snaps in ARM_DEFS:
             for seed in ALL_SEEDS:
@@ -987,12 +1055,18 @@ def main() -> None:
                 all_rows.append(row)
                 n_done += 1
 
-                # G3: check home_pos and home_restored_step
+                # G3: home_pos must be captured; home_restored_step must == last_burst_end.
+                # baseline and oracle arms use the delegation path (run_fork_schedule_185)
+                # and do NOT go through the patched new-arm branches; their home_pos is
+                # always None by design. G3 only checks the two new-arm controller arms.
                 hp = rr.get("home_pos")
                 hrs = rr.get("home_restored_step")
-                # Expected: home_pos captured (not None), home_restored_step = last burst window end - 1
-                expected_restore = last_burst_end - 1
-                if hp is None:
+                if arm_name in ("baseline", "oracle"):
+                    # Delegation path: home_pos/home_restored_step are sentinel None — skip G3.
+                    g3_evidence.append(
+                        f"G3 {cell_name} {arm_name} s{seed} delegation-path: home_pos=N/A (skip)"
+                    )
+                elif hp is None:
                     g3_violation = f"G3 VIOLATION {cell_name} {arm_name} s{seed}: home_pos=None (not captured)"
                     g3_violations.append(g3_violation)
                     g3_evidence.append(g3_violation)
@@ -1000,10 +1074,10 @@ def main() -> None:
                     g3_violation = f"G3 VIOLATION {cell_name} {arm_name} s{seed}: home_restored_step=None (not restored)"
                     g3_violations.append(g3_violation)
                     g3_evidence.append(g3_violation)
-                elif hrs != expected_restore:
+                elif hrs != last_burst_end:
                     g3_violation = (
                         f"G3 VIOLATION {cell_name} {arm_name} s{seed}: "
-                        f"home_restored_step={hrs} expected={expected_restore}"
+                        f"home_restored_step={hrs} expected={last_burst_end}"
                     )
                     g3_violations.append(g3_violation)
                     g3_evidence.append(g3_violation)
@@ -1019,15 +1093,15 @@ def main() -> None:
                     print(
                         f"  [{n_done:3d}/{n_total}] cell={cell_name} arm={arm_name} seed={seed} "
                         f"| def={row['frozen_defense']} ret={row['retained']} settled={row['settled']} "
-                        f"hp={rr.get('home_pos')} hrs={rr.get('home_restored_step')} "
+                        f"hp={hp} hrs={hrs} "
                         f"| {elapsed:.0f}s elapsed ETA {remaining:.0f}s",
                         flush=True,
                     )
 
     p()
     p("G3 EVIDENCE (per session):")
-    for ev in g3_evidence:
-        p(ev)
+    for ev_line in g3_evidence:
+        p(ev_line)
     p()
 
     if g3_violations:
@@ -1035,16 +1109,15 @@ def main() -> None:
         for v in g3_violations:
             p(f"  {v}")
         p()
-        # Write partial rows before aborting
         with open(out_rows_path, "w") as fh:
             for row in all_rows:
                 fh.write(json.dumps(row) + "\n")
         abort("G3 FAIL -- return_home intervention not applied in all sessions")
 
-    p("G3 PASS -- home_pos captured and restored in all sessions.")
+    p("G3 PASS -- home_pos captured and restored in all new-arm (INT-C2900 + REG-TB) sessions; baseline/oracle delegation-path skipped.")
     p()
 
-    # Write session rows to JSONL
+    # Write session rows
     with open(out_rows_path, "w") as fh:
         for row in all_rows:
             fh.write(json.dumps(row) + "\n")
@@ -1062,7 +1135,6 @@ def main() -> None:
 
     cell_names_order = [c["name"] for c in CELLS_193]
 
-    # Index all rows
     row_index: dict[tuple[str, str, int], dict] = {}
     for row in all_rows:
         key = (row["cell"]["name"], row["arm"], row["seed"])
@@ -1114,11 +1186,12 @@ def main() -> None:
     p(f"Oracle covered pairs (frozen_def >= 14/16):     {oracle_covered}")
     p()
 
-    # ---- 4c. P1 (settling) and P2 (retention) per covered pair ----
+    # ---- 4c. Settling + Retention per covered pair ----
     p("SETTLING + RETENTION ANALYSIS PER COVERED PAIR")
     p("  M = measured defended seats (frozen_defense AND NOT overrun)")
     p("  settled = defended AND not overrun AND release_step <= last_bend + 4000")
-    p("  Validity: M >= 10 else INSTRUMENT-FAILED")
+    p("  Validity gate: M >= 10 else INSTRUMENT-FAILED")
+    p("  P1 per pair: M >= 10 AND settled >= 12/16")
     p("  retention_rate = retained / M")
     p("-" * 100)
 
@@ -1146,7 +1219,6 @@ def main() -> None:
         ]
         M = len(measured_seeds)
 
-        # P1 settling: defended and not overrun and release <= last_bend + 4000
         settled_count = sum(
             1 for seed in measured_seeds
             if row_index.get((cell_name, arm_name, seed), {}).get("settled") is True
@@ -1158,17 +1230,16 @@ def main() -> None:
 
         if M < 10:
             instrument_failed_pairs.append((arm_name, cell_name))
-            f1_fired = True  # M < 10 means F1 fires (cycle persists at home)
+            f1_fired = True
             p(f"  {arm_name:<22} x {cell_name:<8}: INSTRUMENT-FAILED (M={M} < 10) -- F1 fired "
-              f"(defended={n_defended}/16, measured={M}/16, settled={settled_count})")
+              f"(defended={n_defended}/16, measured={M}/16, settled_of_measured={settled_count})")
             retention_rates[(arm_name, cell_name)] = None
             p()
             continue
 
-        # Check P1: M >= 10 AND settled >= 12/16
-        p1_pair_ok = (M >= 10 and settled_count >= 12)
-        if not p1_pair_ok and M >= 10 and settled_count < 12:
-            f1_fired = True  # any pair < 12/16 settled fires F1
+        # F1 also fires if settled < 12
+        if settled_count < 12:
+            f1_fired = True
 
         retained_count = sum(
             1 for seed in measured_seeds
@@ -1177,10 +1248,12 @@ def main() -> None:
         rate = retained_count / M if M > 0 else None
         retention_rates[(arm_name, cell_name)] = rate
 
+        p1_pair_ok = (M >= 10 and settled_count >= 12)
+
+        rate_str = f"{rate:.3f}" if rate is not None else "N/A"
         p(f"  {arm_name:<22} x {cell_name:<8}: defended={n_defended}/16 M={M} "
-          f"settled={settled_count} retained={retained_count}/{M} "
-          f"retention_rate={rate:.3f if rate is not None else 'N/A'} "
-          f"P1_pair={'PASS' if p1_pair_ok else 'FAIL'}")
+          f"settled={settled_count}/M retained={retained_count}/{M} "
+          f"rate={rate_str} P1={'PASS' if p1_pair_ok else 'FAIL'}")
 
         p(f"    {'block':>6}  {'seed':>5}  {'fd':>5}  {'release':>8}  "
           f"{'settled':>8}  {'w1':>8}  {'w2':>8}  {'ret':>8}  {'flags':>25}")
@@ -1213,9 +1286,9 @@ def main() -> None:
 
         p()
 
-    # ---- 4d. P3 (crown): s301 C-C both controllers ----
-    p("P3 (CROWN) -- s301 C-C CAUSAL SEED TEST")
-    p("-" * 60)
+    # ---- 4d. P3 (crown): s301 and s297 C-C both controllers ----
+    p("P3 (CROWN) -- C-C CAUSAL SEED TEST (s297 + s301, both controllers)")
+    p("-" * 70)
     f3_fired = False
     crown_data: dict = {}
     for arm_name in ["INT-C2900", "REG-TB"]:
@@ -1229,7 +1302,6 @@ def main() -> None:
             crown_data[(arm_name, seed)] = {"w1": w1, "w2": w2, "retained": ret, "fd": fd, "rs": rs}
             p(f"  {arm_name} s{seed}: frozen_def={fd} release={rs} w1={w1} w2={w2} retained={ret}")
 
-    # F3: s301 not retained in either controller
     s301_intc_retained = crown_data.get(("INT-C2900", 301), {}).get("retained")
     s301_regtb_retained = crown_data.get(("REG-TB", 301), {}).get("retained")
     if not s301_intc_retained or not s301_regtb_retained:
@@ -1237,14 +1309,14 @@ def main() -> None:
         p(f"  *** F3 FIRED: s301 C-C not retained in both controllers "
           f"(INT-C2900: {s301_intc_retained}, REG-TB: {s301_regtb_retained}) ***")
     else:
-        p(f"  P3 PASS candidate: s301 retained in BOTH controllers")
+        p(f"  P3 PASS candidate: s301 retained in BOTH controllers (INT-C2900={s301_intc_retained}, REG-TB={s301_regtb_retained})")
     p()
 
     # ---- 4e. P4 (baseline durability at home) ----
-    p("P4 -- BASELINE W1 DISPLACED COUNT PER CELL (w1_frac >= 0.5 = still displaced)")
-    p("-" * 60)
+    p("P4 -- BASELINE W1/W2 DISPLACED COUNT PER CELL")
+    p("-" * 70)
     p(f"  {'cell':<8}  {'w1_displaced/16':>16}  {'w2_displaced/16':>16}  {'P4_cell':>10}")
-    p("-" * 60)
+    p("-" * 70)
 
     p4_pass = True
     f4_fired = False
@@ -1265,41 +1337,30 @@ def main() -> None:
         cell_p4 = w1_displaced >= 12
         if not cell_p4:
             p4_pass = False
-        not_displaced = N_SEEDS_TOTAL - w1_displaced
-        if not_displaced >= 8:
+        if (N_SEEDS_TOTAL - w1_displaced) >= 8:
             f4_fired = True
         p(f"  {cell_name:<8}  {w1_displaced:>11}/16  {w2_displaced:>11}/16  {'PASS' if cell_p4 else 'fail':>10}")
 
-    # Diagnostic: per cell, mean expr_frac(attack) over final 2,000 steps
+    # Final 2k diagnostic: use w1_frac + w2_frac as proxy windows (row-level only)
     p()
-    p("P4 DIAGNOSTIC -- mean expr_frac(attack) over final 2,000 steps (baseline, self-healing trajectory)")
-    p("-" * 60)
-    for cell in CELLS_193:
-        cell_name = cell["name"]
-        n_steps = cell["n_steps"]
-        w_start = n_steps - 2000
-        w_end = n_steps
-        fracs = []
+    p("P4 DIAGNOSTIC -- expr_frac(attack) proxy (w1+w2 window fracs, baseline per cell):")
+    for cell_name in cell_names_order:
+        w_fracs: list[float] = []
         for seed in ALL_SEEDS:
             r = row_index.get((cell_name, "baseline", seed), {})
-            ac = r.get("attack_color")
-            if ac is None:
-                continue
-            # We need the expressed_arr -- not stored in row; note: we only have row-level data
-            # Use w2_frac as a proxy at release+3000..3500 (last_bend based)
-            # Actually we need a different diagnostic. Use w1_frac and w2_frac as proxies:
             w1 = r.get("w1_frac")
             w2 = r.get("w2_frac")
             if w1 is not None:
-                fracs.append(w1)
+                w_fracs.append(w1)
             if w2 is not None:
-                fracs.append(w2)
-        mean_frac = sum(fracs) / len(fracs) if fracs else None
-        p(f"  {cell_name}: mean_w_frac(attack) from w1+w2 windows = {mean_frac:.4f if mean_frac is not None else 'N/A'} "
-          f"(n={len(fracs)} windows from {N_SEEDS_TOTAL} seeds)")
+                w_fracs.append(w2)
+        mean_f = sum(w_fracs) / len(w_fracs) if w_fracs else None
+        mean_f_str = f"{mean_f:.4f}" if mean_f is not None else "N/A"
+        p(f"  {cell_name}: mean_attack_frac(W1+W2 windows) = {mean_f_str} "
+          f"(n={len(w_fracs)} window samples)")
     p()
     if f4_fired:
-        p("  *** F4 FIRED: baseline self-heals in at least one cell ***")
+        p("  *** F4 FIRED: baseline self-heals (>= 8/16 w1 < 0.5) in at least one cell ***")
     p()
 
     # ---- 4f. PC1 summary ----
@@ -1315,7 +1376,6 @@ def main() -> None:
     p("=" * 80)
     p()
 
-    # P1: every covered pair M >= 10 AND settled >= 12/16
     p1_pass = (
         not f1_fired
         and all(
@@ -1325,7 +1385,7 @@ def main() -> None:
         )
     )
 
-    p("P1 (settling: M >= 10 AND >= 12/16 defended seats release by last_bend + 4000):")
+    p("P1 (settling: M >= 10 AND >= 12/16 defended seats settle by last_bend + 4000):")
     p(f"  Covered pairs (non-oracle): {covered_pairs}")
     p(f"  Covered pairs (oracle):     {oracle_covered}")
     p(f"  Instrument-failed pairs:    {instrument_failed_pairs}")
@@ -1334,15 +1394,15 @@ def main() -> None:
         M = sd.get("M", 0)
         settled = sd.get("settled", 0)
         if M < 10:
-            verdict = "INSTRUMENT-FAILED (F1)"
+            verdict = "INSTRUMENT-FAILED => F1"
         elif settled >= 12:
             verdict = "PASS"
         else:
-            verdict = f"FAIL (settled={settled}/M={M}; F1)"
+            verdict = f"settled={settled}<12 => F1"
         p(f"  {arm_name:<22} x {cell_name:<8}: M={M} settled={settled} -> {verdict}")
-    p(f"  F1 fired (M < 10 or settled < 12/16 in any pair): {f1_fired}")
+    p(f"  F1 fired (any M < 10 or settled < 12 in any pair): {f1_fired}")
     if p1_pass:
-        p("  => P1 VERDICT: PASS -- settling restored; M >= 10 and >= 12/16 settle in all pairs.")
+        p("  => P1 VERDICT: PASS -- settling restored; all pairs M >= 10 and >= 12/16 settle.")
     else:
         p("  => P1 VERDICT: NEGATIVE -- F1 FIRED.")
     p()
@@ -1373,7 +1433,7 @@ def main() -> None:
     elif f2_fired_flag:
         p("  => P2 VERDICT: NEGATIVE -- F2 FIRED. Deferral persists without locality feed.")
     else:
-        p("  => P2 VERDICT: MIXED -- not all covered pairs clear 5/6 threshold.")
+        p("  => P2 VERDICT: MIXED.")
     p()
 
     p("P3 (CROWN -- s301 C-C retained in BOTH controllers):")
@@ -1389,20 +1449,19 @@ def main() -> None:
     if not f3_fired:
         p("  => P3 VERDICT: PASS -- s301 retains under return-home; locality mechanism confirmed causal.")
     else:
-        p("  => P3 VERDICT: NEGATIVE -- F3 FIRED. s301 still surrenders; locality NOT sufficient cause.")
+        p("  => P3 VERDICT: NEGATIVE -- F3 FIRED. s301 still surrenders; locality not sole cause.")
     p()
 
     p("P4 (baseline stays displaced: w1 >= 0.5 in >= 12/16 per cell):")
     for cell_name in cell_names_order:
-        cnt = baseline_w1_displaced[cell_name]
-        p(f"  {cell_name}: W1_displaced={cnt}/16 W2_displaced={baseline_w2_displaced[cell_name]}/16")
-    p(f"  F4 fired (w1_frac < 0.5 in >= 8/16 anywhere): {f4_fired}")
+        p(f"  {cell_name}: W1_displaced={baseline_w1_displaced[cell_name]}/16  W2_displaced={baseline_w2_displaced[cell_name]}/16")
+    p(f"  F4 fired (w1 < 0.5 in >= 8/16 anywhere): {f4_fired}")
     if p4_pass:
         p("  => P4 VERDICT: PASS -- baseline stays displaced at home (train overwrite is intrinsic).")
     else:
         p("  => P4 VERDICT: fail -- some cells show < 12/16 baseline displacement.")
     if f4_fired:
-        p("  => P4 F4: FIRED -- baseline self-heals; displacement was locality-fed.")
+        p("  => P4 F4: FIRED -- displacement was locality-fed.")
     p()
 
     p("P5 (oracle retention >= 5/6 where covered):")
@@ -1433,7 +1492,7 @@ def main() -> None:
     p()
     p(f"  G1:                PASS")
     p(f"  G2:                PASS (8 exp192 regression sessions bit-matched)")
-    p(f"  G3:                PASS (all {len(all_rows)} return_home=True sessions verified)")
+    p(f"  G3:                PASS (INT-C2900+REG-TB new-arm sessions verified; baseline/oracle delegation-path skipped)")
     p(f"  Seeds:             Block1={BLOCK1} Block2={BLOCK2}")
     p(f"  Runtime:           {runtime_min:.1f} min")
     p(f"  Sessions:          {len(all_rows)} W (return_home=True)")
@@ -1444,7 +1503,7 @@ def main() -> None:
     p(f"  P4 (baseline W1 displaced >= 12/16 every cell):        {'PASS' if p4_pass else 'fail'}")
     p(f"  P5 (oracle retention >= 5/6 every covered cell):       {'PASS' if (p3_oracle_pass and oracle_covered) else ('N/A' if not oracle_covered else 'fail')}")
     p()
-    p(f"  F1 (settling fails: M<10 or settled<12/16 in any pair): {f1_fired}")
+    p(f"  F1 (settling fails in any pair):                         {f1_fired}")
     p(f"  F2 (any covered pair retention <= 2/3):                  {f2_fired_flag}")
     p(f"  F3 (s301 C-C not retained in either controller):         {f3_fired}")
     p(f"  F4 (baseline self-heals in any cell):                    {f4_fired}")

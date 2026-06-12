@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp193.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp193_n4_return_home.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"186/192\" quoted in entry not found in experiments/outputs/exp193.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"207/207\" quoted in entry not found in experiments/outputs/exp193.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"40/40\" quoted in entry not found in experiments/outputs/exp193.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"48/48\" quoted in entry not found in experiments/outputs/exp193.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"8/8\" quoted in entry not found in experiments/outputs/exp193.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-12T22:01:06Z",
+  "commit_sha": "3a849fdafc7a00f86ffd7409f45be98d2dfb2f42",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 193,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
