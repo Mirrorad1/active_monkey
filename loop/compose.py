@@ -73,9 +73,10 @@ def compose(direction: str, persona: str, idea: str | None) -> str:
         "mid-task, continue across wakes. Keep responses lightweight. When insight",
         "flattens for ~3 iterations, say so and gently suggest a direction switch or a",
         "natural stop.",
-        "Follow loop/ROUTING.md for model budget: the highest-thinking model owns",
-        "research design/verdicts; Sonnet handles bounded coding and blinded verifier",
-        "work; Haiku is only for low-risk read-only or clerking tasks.",
+        "Follow loop/ROUTING.md for model budget: the highest-thinking Claude loop owns",
+        "research design/verdicts; Codex high-fast handles bounded coding and blinded verifier",
+        "work (explicit fallback: gpt-5.4-mini with high reasoning); Codex explorer handles",
+        "low-risk read-only or clerking tasks.",
         "loop/META.md is also BINDING: when you find a noteworthy non-research issue or a"
         " reusable insight, institutionalize a durable guard (test / loop-module rule / skill"
         " via /claudeception) — don't just patch the instance.",
