@@ -6659,3 +6659,80 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   experiment, pause") — the loop holds; Part-3 classification of the 36/57/32
   candidate sets, the class-D dissolution arms, and any rung-4 confirmation resume
   only on the next explicit direction in loop/IDEAS.md.
+
+## Exp 185 — identity-n4-crack rung 3, the Part-3 classification + class-D dissolution check (pre-registered 8cc5cdb): the crack MOSTLY dissolVES into config and seed noise, but a HARD CORE SURVIVES — normal mode: 36 candidates → 8 dissolved (CALM2600 the dominant dissolver: the freeze-spanning law as config), 22 seed-variance, 6 surviving (3 route-1 A + 3 route-2 B, all at L≥1600 × K≥2 × G≤600); tight keeps 35 (25 A + 10 B); loose keeps 3; blind-verified CONFIRMED — every dissolution audited against both bars (POSITIVE-exploratory classification)
+
+- Plain: we attacked our own crack map with the simple fixes a defender could
+  actually configure — a longer stopwatch, a hair-trigger alarm that sometimes
+  pre-arms, and a "stay frozen through the gaps" rule built from the freeze-spanning
+  discovery. Most of the map gave way: the gap-spanning rule alone rescued 24
+  cell-mode pairs (turning repeated attacks back into one coverable attack), and a
+  large fraction of the remaining "failures" turned out to hinge on a single seed —
+  noise at this exploratory grain, sent to confirmation. What did NOT give way is a
+  hard core of heavy schedules — long captivities, repeated three or four times,
+  with short breathing room — where the arithmetic itself forbids any constant:
+  defending needs holding longer than the adaptation requirement allows. In tight
+  mode that core is 35 schedules wide. Defense remains possible everywhere (the
+  oracle is clean) — just not by any constant in this family.
+- Question (pre-registered in the card, commit 8cc5cdb, BEFORE any data): classify
+  every Exp 184 candidate cell as A (route-1 interval-empty: some H defends but every
+  defending H fails revision — provable by the latency = H + baseline law) / B
+  (route-2 dose-bound: NO arm in the widened sweep defends) / D (dissolved: a simple
+  config passes both bars) / V (hinges on a single seed flip); dissolution arms =
+  H9000, THETA3.0×{H1200,H3000}, CALM2600×{H1200,H3000,H6000} on ALL 80 cells × the
+  same seeds 240–242 (same-schedule diagnosis, NOT confirmation); falsifiers F1
+  (spanning law misfit > 20%), F2 (latency-law deviation > 50), F3 (config
+  regression > 5 cells), F-cls (unclassified candidate).
+- Setup: experiments/exp185_n4_crack_classification.py — exp184 runner with THETA and
+  release-calm as parameters (defaults identical); equivalence gate re-run through
+  the new code path with the FULL got-vs-committed evidence table (L15; lines 7–123
+  of exp185.txt, verifier-quoted); 1440 W + 21 R sessions, 4.7 min; sanity check
+  reproduced the exp184 candidate sets exactly (36/57/32).
+- Result (committed exp185.txt + exp185_rows.json, 1462 rows): normal 36 → A=3 B=3
+  D=8 V=22 (surviving 6); tight 57 → A=25 B=10 D=2 V=20 (surviving 35); loose 32 →
+  A=1 B=2 D=17 V=12 (surviving 3). Dissolvers: CALM2600-H3000 12 pairs,
+  CALM2600-H6000 9, CALM2600-H1200 3, THETA3.0-H1200 3; H9000 and THETA3.0-H3000
+  ZERO (H9000 fails revision in every mode as the latency law predicts). P1 PASS:
+  the unified coverage law under spanning (defense iff H ≥ K·L+(K−1)·G−75) misfits
+  15.8% (38/240; main pattern: K=1 cells where spanning is irrelevant and the head
+  dose + margin decide — consistent with the rung-1 election-variance class). P2
+  PASS-indirect with an honest limitation: H9000 NEVER CONCEDES within the
+  15000-step Phase-R session (max measurable latency ~7000), so the ±50 direct test
+  is unverifiable at this session length — the law is supported by H9000 failing
+  revision everywhere, as predicted. P3 PASS (0 regressions, structurally
+  impossible). F-cls PASS (every candidate classed). The surviving normal-mode
+  core: A = (1600,2,200), (1600,3,200), (2400,3,200); B = (1600,4,200),
+  (2400,4,200), (2400,4,600). The tight core spans all (2400, K, G) plus most
+  (1600, K, G). V dominates normal mode (22/36) — the 3-seed bar is single-flip
+  noisy, exactly as Exp 184 flagged.
+- Verifier: blinded adversarial subagent: CONFIRMED (first of the chapter) — gate
+  evidence table present and quoted; candidate sets independently recomputed from
+  exp184 rows (36/57/32 exact); 6 random cells re-derived to the same class; ALL 27
+  listed D cell×mode pairs audited — every named dissolving config passes BOTH bars
+  from rows, zero failures; P1 misfit recomputed 38/240 = 0.158 exactly; P3 zero.
+  Integrity: only expected new files; exp183/exp184 artifacts and spines untouched.
+- Implication: at this body and seed grade, THE CRACK IS REAL BUT NARROW — and its
+  shape is exactly the anti-regress shape this program hunts: the surviving core is
+  where defense REQUIRES holding longer than any allowed constant (route 1) or
+  paying more dose than any margin affords (route 2), while n4-style evidence
+  concession revises at ~725–885 (fast) and the oracle defends everything — i.e.
+  the regime where a discriminating controller could finally EARN its keep over
+  every constant. The freeze-spanning law upgraded to config (CALM2600) is the
+  classification's constructive product: it alone dissolved 24 pairs. The
+  universal-constant law survives in refined form: constants cover everything
+  except schedules that outlast the revision tolerance or out-dose the margin.
+  Generalizability tier: functional-form (the two surviving-core conditions are
+  body-parameterized inequalities, verified in-map).
+- Honest caveat: same-seed diagnosis — survivors are NOT confirmed cracks (rung-4
+  fresh-seed confirmation with more seeds/cell is the required gate, behind its own
+  word); the V class (54 cell×mode pairs) is unresolved at 3 seeds by construction;
+  P2's direct latency test needs a ≥20k-step Phase-R session; THETA3.0's
+  dissolutions ride on stochastic pre-arming (mechanism logged, not guaranteed);
+  CALM2600's quiet-time cost (freezes linger after false alarms) was not separately
+  priced; all instruments PROVIDED.
+- Verdict: classification COMPLETE on every conjunct, falsifiers F1–F3 + F-cls all
+  clear. Self-grade: POSITIVE-exploratory (NEW INSIGHT: the dissolution map + the
+  surviving hard core's two-inequality shape).
+- Next: CONSULT posted in loop/IDEAS.md — rung-4 fresh-seed confirmation of the
+  surviving core (the recommended option), or close the crack chapter here, or
+  redirect. The loop HOLDS until a word.

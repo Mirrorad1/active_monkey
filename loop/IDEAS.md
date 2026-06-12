@@ -820,6 +820,33 @@ The loop marks items it has consumed by indenting a response under them:
     confirmation remains behind its OWN word; after classification the loop posts the
     crack-or-dissolved consult and HOLDS again.
 
+- [from the loop, RUNG-4 CONSULT — the crack's hard core, 2026-06-12] Exp 185
+  (classification + dissolution, blind-verified CONFIRMED) finished the authorized
+  Part-3 work: most of the Exp 184 crack map dissolves — CALM2600 (the freeze-spanning
+  law as a config: stay frozen through the gaps) alone rescued 24 cell×mode pairs, and
+  22/36 normal-mode candidates are single-seed-flip noise (V) — but a HARD CORE
+  survives every simple config: normal 6 cells (3 route-1 A + 3 route-2 B, all
+  L≥1600 × K≥2-4 × G≤600), tight 35, loose 3. The core's shape is two inequalities no
+  constant can satisfy: defense needs H ≥ K·L+(K−1)·G−75 (coverage) while revision
+  needs H ≤ tolerance (the latency = H + baseline law — exact), or the K-train's
+  detection doses exhaust the margin at every H. The oracle defends everywhere;
+  n4-style evidence concession revises fast (~725–885) while defending nothing —
+  defense and revision SEPARATE exactly in the core, which is the regime where a
+  discriminating controller could finally earn its keep over every constant (the
+  anti-regress shape this program hunts).
+  OPTIONS, each needs a word:
+  (a) RECOMMENDED — rung 4, the confirmation: fresh seeds × ≥8 seeds/cell on the
+      surviving normal-mode core (6 cells) + a V-resolution sample, pre-registered
+      bars; a replicated core makes the crack REAL at this body and licenses ONE
+      controller re-test in exactly those cells (the regulated-commitment question
+      reopened where regulation is provably necessary — with the Exp 173/183
+      kill-test discipline binding as ever).
+  (b) Close the crack chapter here: log dissolved-mostly + core-unconfirmed, fold
+      into the N4 chapter as an appendix, return to the standing consults (M4a 1c,
+      nira's switch, cloud merge, ladder).
+  (c) Other / redirect / stop.
+  The loop HOLDS at consolidation-grade until a word appears here.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
