@@ -1,8 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 183, title: "N4 rung 3 attempt 3 (fast-trigger freeze-gate, pre-registered + the detection-floor amendment): NEGATIVE — BOTH falsifiers fire.", tag: "NEGATIVE" },
-  tally: { total: 183, positive: 105, negative: 48, mixed: 26, breakthroughs: 4 },
+  latest_exp: { n: 185, title: "identity-n4-crack rung 3, the Part-3 classification + class-D dissolution check (pre-registered 8cc5cdb): the crack MOSTLY dissolVES into config and seed noise, but a HARD CORE SURVIVES — normal mode: 36 candidates → 8 dissolved (CALM2600 the dominant dissolver: the freeze-spanning law as config), 22 seed-variance, 6 surviving (3 route-1 A + 3 route-2 B, all at L≥1600 × K≥2 × G≤600); tight keeps 35 (25 A + 10 B); loose keeps 3; blind-verified CONFIRMED — every dissolution audited against both bars", tag: "POSITIVE" },
+  tally: { total: 185, positive: 107, negative: 48, mixed: 26, breakthroughs: 4 },
   directions: [
+    { name: "identity-n4-crack", state: "active (rung 4 = core confirmation, authorized by \"a\" 2026-06-12; Exp 187 controller re-test licensed ONLY by a replicated core)", latest: "Exp 184 (exploratory squeeze map) + Exp 183 addendum (seed-229 autopsy)", next: "ON RESUMPTION — Part-3 classification of the candidate sets (is any candidate a REAL crack after the class-D dissolution check?), then rung-4 fresh-seed confirmation" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },

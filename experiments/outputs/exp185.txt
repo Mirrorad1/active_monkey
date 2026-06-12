@@ -1,0 +1,426 @@
+================================================================================
+EXP 185 — N4 CRACK CLASSIFICATION (EXPLORATORY-classification)
+PRE-REGISTERED loop/directions/identity-n4-crack.md (commit 8cc5cdb)
+Runtime: 4.7 min | Seeds: [240, 241, 242] | 6 new configs x 80 cells x 3 seeds
+================================================================================
+
+EQUIVALENCE GATE (L15)
+------------------------------------------------------------
+EQUIVALENCE GATE: PASS
+
+=== arm=baseline seed=229 ===
+  b0 gap_start      got=135.99937835015726                       committed=135.99937835015726                       OK
+  b0 gap_end        got=-571.7363522432429                       committed=-571.7363522432429                       OK
+  b0 d_b            got=0.15664036565125683                      committed=0.15664036565125683                      OK
+  b0 tv_b           got=0.15664036565125675                      committed=0.15664036565125675                      OK
+  b0 recovered      got=False                                    committed=False                                    OK
+  b0 n_events       got=0                                        committed=0                                        OK
+  b1 gap_start      got=308.8677728920327                        committed=308.8677728920327                        OK
+  b1 gap_end        got=-441.6128408201637                       committed=-441.6128408201637                       OK
+  b1 d_b            got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 tv_b           got=0.16213754946837328                      committed=0.16213754946837328                      OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=0                                        committed=0                                        OK
+  b2 gap_start      got=322.85746017635324                       committed=322.85746017635324                       OK
+  b2 gap_end        got=-402.18131405053043                      committed=-402.18131405053043                      OK
+  b2 d_b            got=0.15775393082799233                      committed=0.15775393082799233                      OK
+  b2 tv_b           got=0.15775393082799238                      committed=0.15775393082799238                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=0                                        committed=0                                        OK
+  gate arm=baseline seed=229: PASS
+
+=== arm=H1200 seed=229 ===
+  b0 gap_start      got=153.15192102308868                       committed=153.15192102308868                       OK
+  b0 gap_end        got=80.55582599896172                        committed=80.55582599896172                        OK
+  b0 d_b            got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 tv_b           got=0.016273820926243687                     committed=0.016273820926243687                     OK
+  b0 recovered      got=True                                     committed=True                                     OK
+  b0 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b1 gap_start      got=77.59197443713458                        committed=77.59197443713458                        OK
+  b1 gap_end        got=5.162418152138571                        committed=5.162418152138571                        OK
+  b1 d_b            got=0.016416619393121945                     committed=0.016416619393121945                     OK
+  b1 tv_b           got=0.016416619393121917                     committed=0.016416619393121917                     OK
+  b1 recovered      got=False                                    committed=False                                    OK
+  b1 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  b2 gap_start      got=41.6153816086221                         committed=41.6153816086221                         OK
+  b2 gap_end        got=-29.89416352514172                       committed=-29.89416352514172                       OK
+  b2 d_b            got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 tv_b           got=0.01627021211409152                      committed=0.01627021211409152                      OK
+  b2 recovered      got=False                                    committed=False                                    OK
+  b2 n_events       got=4                                        committed=4                                        OK
+  ev0 label          got=transient                                committed=transient                                OK
+  ev0 entry_step     got=5400                                     committed=5400                                     OK
+  ev0 frozen_steps   got=200                                      committed=200                                      OK
+  ev0 c_star         got=0                                        committed=0                                        OK
+  ev0 trigger_latency got=None                                     committed=None                                     OK
+  ev0 E_blocked      got=64.98614048022374                        committed=64.98614048022374                        OK
+  ev1 label          got=transient                                committed=transient                                OK
+  ev1 entry_step     got=6075                                     committed=6075                                     OK
+  ev1 frozen_steps   got=1050                                     committed=1050                                     OK
+  ev1 c_star         got=1                                        committed=1                                        OK
+  ev1 trigger_latency got=75                                       committed=75                                       OK
+  ev1 E_blocked      got=793.0446216486031                        committed=793.0446216486031                        OK
+  ev2 label          got=transient                                committed=transient                                OK
+  ev2 entry_step     got=9075                                     committed=9075                                     OK
+  ev2 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev2 c_star         got=1                                        committed=1                                        OK
+  ev2 trigger_latency got=75                                       committed=75                                       OK
+  ev2 E_blocked      got=771.5888860118827                        committed=771.5888860118827                        OK
+  ev3 label          got=transient                                committed=transient                                OK
+  ev3 entry_step     got=12075                                    committed=12075                                    OK
+  ev3 frozen_steps   got=1025                                     committed=1025                                     OK
+  ev3 c_star         got=0                                        committed=0                                        OK
+  ev3 trigger_latency got=75                                       committed=75                                       OK
+  ev3 E_blocked      got=786.2266436906207                        committed=786.2266436906207                        OK
+  gate arm=H1200 seed=229: PASS
+
+SANITY CHECK — EXP 184 CANDIDATE COUNTS (reproduced from committed rows)
+------------------------------------------------------------
+  normal: 36 (expected 36) OK
+  tight:  57 (expected 57) OK
+  loose:  32 (expected 32) OK
+  Overall: SANITY PASS
+
+PHASE-R LATENCY TABLE — NEW CONFIGS (7 arms x 3 seeds)
+------------------------------------------------------------
+  arm                    s240 s241 s242  [baseline: 75/235/173]
+  baseline                     75      235      173
+  H9000                      None     None     None
+  THETA3-H1200               1275     1434      162
+  THETA3-H3000               3075     3234      162
+  CALM2600-H1200             1275     1434      153
+  CALM2600-H3000             3075     3234      475
+  CALM2600-H6000             6075     6234     3475
+
+REVISION PASS TABLE — NEW CONFIGS (arm x mode)
+------------------------------------------------------------
+  arm                    normal   tight    loose   
+  H9000                  fail     fail     fail    
+  THETA3-H1200           PASS     PASS     PASS    
+  THETA3-H3000           PASS     fail     PASS    
+  CALM2600-H1200         PASS     PASS     PASS    
+  CALM2600-H3000         PASS     fail     PASS    
+  CALM2600-H6000         fail     fail     PASS    
+
+P1 — CALM2600 COVERAGE LAW CHECK
+  Predicted: defense_pass(cell, H) iff H >= K*L + (K-1)*G - 75
+------------------------------------------------------------
+  Total CALM2600 cell x H outcomes: 240
+  Misfits: 38 (0.158)
+  F1 threshold: >20% misfits
+  P1 VERDICT: PASS — spanning model holds
+  Misfit cells (up to 20):
+    config=CALM2600-H1200 cell_idx=0 L=400 K=1 G=200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=1 L=400 K=1 G=600 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=2 L=400 K=1 G=1200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=3 L=400 K=1 G=2400 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=4 L=400 K=2 G=200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=10 L=400 K=3 G=1200 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=16 L=800 K=1 G=200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=17 L=800 K=1 G=600 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=18 L=800 K=1 G=1200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=19 L=800 K=1 G=2400 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=23 L=800 K=2 G=2400 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=26 L=800 K=3 G=1200 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=27 L=800 K=3 G=2400 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=32 L=1200 K=1 G=200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=33 L=1200 K=1 G=600 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=34 L=1200 K=1 G=1200 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=35 L=1200 K=1 G=2400 H=1200: predicted=True actual=False
+    config=CALM2600-H1200 cell_idx=38 L=1200 K=2 G=1200 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=41 L=1200 K=3 G=600 H=1200: predicted=False actual=True
+    config=CALM2600-H1200 cell_idx=42 L=1200 K=3 G=1200 H=1200: predicted=False actual=True
+
+P2 — H9000 LATENCY LAW CHECK
+  Predicted: H9000 Phase-R latency = 9000 + baseline +- 50; fails all modes
+------------------------------------------------------------
+  s240: baseline=75 H9000=None (cannot check)
+  s241: baseline=235 H9000=None (cannot check)
+  s242: baseline=173 H9000=None (cannot check)
+  H9000 revision_pass(normal, tol=3000): False (expected False by law)
+  H9000 revision_pass(tight, tol=1500): False (expected False by law)
+  H9000 revision_pass(loose, tol=6000): False (expected False by law)
+  P2 VERDICT: PASS — law holds
+
+P3 — NO CONFIG REGRESSION CHECK
+  F3 threshold: >5 cells flip exists_H_both true->false
+------------------------------------------------------------
+  Regressions: 0 (PASS)
+  (none — structurally impossible as new arms can only add options)
+
+CLASSIFICATION TABLE — PER MODE, PER CANDIDATE CELL
+  V rule: V assigned (overriding A/B, not D) when any revision-passing arm has
+          defense count == 1 in the combined sweep (one flip changes status)
+  A rule: some H defends; none pass both bars (interval-empty, provable by latency law)
+  B rule: no H defends in full combined sweep (dose-bound)
+  D rule: some new simple-config arm passes BOTH bars
+------------------------------------------------------------
+
+Mode=normal (tolerance=3000):
+  Class counts: A=3 B=3 D=8 V=22 total=36
+  cell_idx     L   K     G  class         dissolved_by
+         5   400   2   600      V                     
+         6   400   2  1200      D       CALM2600-H3000
+        11   400   3  2400      D         THETA3-H1200
+        13   400   4   600      V                     
+        14   400   4  1200      D       CALM2600-H3000
+        15   400   4  2400      V                     
+        27   800   3  2400      D       CALM2600-H1200
+        29   800   4   600      V                     
+        30   800   4  1200      V                     
+        31   800   4  2400      V                     
+        32  1200   1   200      D       CALM2600-H3000
+        33  1200   1   600      D       CALM2600-H3000
+        34  1200   1  1200      D       CALM2600-H3000
+        35  1200   1  2400      D       CALM2600-H3000
+        40  1200   3   200      V                     
+        43  1200   3  2400      V                     
+        44  1200   4   200      V                     
+        45  1200   4   600      V                     
+        46  1200   4  1200      V                     
+        47  1200   4  2400      V                     
+        52  1600   2   200      A                     
+        56  1600   3   200      A                     
+        57  1600   3   600      V                     
+        58  1600   3  1200      V                     
+        60  1600   4   200      B                     
+        61  1600   4   600      V                     
+        62  1600   4  1200      V                     
+        63  1600   4  2400      V                     
+        70  2400   2  1200      V                     
+        71  2400   2  2400      V                     
+        72  2400   3   200      A                     
+        73  2400   3   600      V                     
+        75  2400   3  2400      V                     
+        76  2400   4   200      B                     
+        77  2400   4   600      B                     
+        79  2400   4  2400      V                     
+
+Mode=tight (tolerance=1500):
+  Class counts: A=25 B=10 D=2 V=20 total=57
+  cell_idx     L   K     G  class         dissolved_by
+         5   400   2   600      V                     
+         6   400   2  1200      V                     
+        11   400   3  2400      D         THETA3-H1200
+        12   400   4   200      V                     
+        13   400   4   600      V                     
+        14   400   4  1200      V                     
+        15   400   4  2400      V                     
+        20   800   2   200      A                     
+        24   800   3   200      A                     
+        27   800   3  2400      D       CALM2600-H1200
+        28   800   4   200      A                     
+        29   800   4   600      V                     
+        30   800   4  1200      V                     
+        31   800   4  2400      V                     
+        32  1200   1   200      V                     
+        33  1200   1   600      V                     
+        34  1200   1  1200      V                     
+        35  1200   1  2400      V                     
+        37  1200   2   600      V                     
+        40  1200   3   200      V                     
+        43  1200   3  2400      V                     
+        44  1200   4   200      V                     
+        45  1200   4   600      V                     
+        46  1200   4  1200      V                     
+        47  1200   4  2400      V                     
+        48  1600   1   200      A                     
+        49  1600   1   600      A                     
+        50  1600   1  1200      A                     
+        51  1600   1  2400      A                     
+        52  1600   2   200      A                     
+        53  1600   2   600      A                     
+        54  1600   2  1200      A                     
+        55  1600   2  2400      A                     
+        56  1600   3   200      A                     
+        57  1600   3   600      A                     
+        58  1600   3  1200      B                     
+        59  1600   3  2400      A                     
+        60  1600   4   200      B                     
+        61  1600   4   600      B                     
+        62  1600   4  1200      B                     
+        63  1600   4  2400      A                     
+        64  2400   1   200      A                     
+        65  2400   1   600      A                     
+        66  2400   1  1200      A                     
+        67  2400   1  2400      A                     
+        68  2400   2   200      A                     
+        69  2400   2   600      A                     
+        70  2400   2  1200      A                     
+        71  2400   2  2400      B                     
+        72  2400   3   200      A                     
+        73  2400   3   600      B                     
+        74  2400   3  1200      A                     
+        75  2400   3  2400      B                     
+        76  2400   4   200      B                     
+        77  2400   4   600      B                     
+        78  2400   4  1200      A                     
+        79  2400   4  2400      B                     
+
+Mode=loose (tolerance=6000):
+  Class counts: A=1 B=2 D=17 V=12 total=32
+  cell_idx     L   K     G  class         dissolved_by
+         5   400   2   600      D       CALM2600-H6000
+         6   400   2  1200      D       CALM2600-H3000
+        11   400   3  2400      D         THETA3-H1200
+        13   400   4   600      D       CALM2600-H6000
+        14   400   4  1200      D       CALM2600-H3000
+        15   400   4  2400      D       CALM2600-H6000
+        27   800   3  2400      D       CALM2600-H1200
+        29   800   4   600      D       CALM2600-H6000
+        30   800   4  1200      V                     
+        31   800   4  2400      D       CALM2600-H6000
+        32  1200   1   200      D       CALM2600-H3000
+        33  1200   1   600      D       CALM2600-H3000
+        34  1200   1  1200      D       CALM2600-H3000
+        35  1200   1  2400      D       CALM2600-H3000
+        43  1200   3  2400      D       CALM2600-H6000
+        45  1200   4   600      V                     
+        46  1200   4  1200      V                     
+        47  1200   4  2400      V                     
+        57  1600   3   600      D       CALM2600-H6000
+        58  1600   3  1200      V                     
+        60  1600   4   200      V                     
+        61  1600   4   600      V                     
+        62  1600   4  1200      V                     
+        63  1600   4  2400      D       CALM2600-H6000
+        70  2400   2  1200      D       CALM2600-H6000
+        71  2400   2  2400      V                     
+        72  2400   3   200      A                     
+        73  2400   3   600      V                     
+        75  2400   3  2400      V                     
+        76  2400   4   200      B                     
+        77  2400   4   600      B                     
+        79  2400   4  2400      V                     
+
+DISSOLUTION MAP (config -> n cell x mode pairs dissolved)
+------------------------------------------------------------
+  H9000                 : 0 cell x mode pairs dissolved
+  THETA3-H1200          : 3 cell x mode pairs dissolved
+  THETA3-H3000          : 0 cell x mode pairs dissolved
+  CALM2600-H1200        : 3 cell x mode pairs dissolved
+  CALM2600-H3000        : 12 cell x mode pairs dissolved
+  CALM2600-H6000        : 9 cell x mode pairs dissolved
+
+SURVIVING CRACK CANDIDATES (A and B classes only)
+------------------------------------------------------------
+
+Mode=normal: 6 surviving (A+B)
+  cell_idx=52 L=1600 K=2 G=200 class=A
+  cell_idx=56 L=1600 K=3 G=200 class=A
+  cell_idx=60 L=1600 K=4 G=200 class=B
+  cell_idx=72 L=2400 K=3 G=200 class=A
+  cell_idx=76 L=2400 K=4 G=200 class=B
+  cell_idx=77 L=2400 K=4 G=600 class=B
+
+Mode=tight: 35 surviving (A+B)
+  cell_idx=20 L=800 K=2 G=200 class=A
+  cell_idx=24 L=800 K=3 G=200 class=A
+  cell_idx=28 L=800 K=4 G=200 class=A
+  cell_idx=48 L=1600 K=1 G=200 class=A
+  cell_idx=49 L=1600 K=1 G=600 class=A
+  cell_idx=50 L=1600 K=1 G=1200 class=A
+  cell_idx=51 L=1600 K=1 G=2400 class=A
+  cell_idx=52 L=1600 K=2 G=200 class=A
+  cell_idx=53 L=1600 K=2 G=600 class=A
+  cell_idx=54 L=1600 K=2 G=1200 class=A
+  cell_idx=55 L=1600 K=2 G=2400 class=A
+  cell_idx=56 L=1600 K=3 G=200 class=A
+  cell_idx=57 L=1600 K=3 G=600 class=A
+  cell_idx=58 L=1600 K=3 G=1200 class=B
+  cell_idx=59 L=1600 K=3 G=2400 class=A
+  cell_idx=60 L=1600 K=4 G=200 class=B
+  cell_idx=61 L=1600 K=4 G=600 class=B
+  cell_idx=62 L=1600 K=4 G=1200 class=B
+  cell_idx=63 L=1600 K=4 G=2400 class=A
+  cell_idx=64 L=2400 K=1 G=200 class=A
+  cell_idx=65 L=2400 K=1 G=600 class=A
+  cell_idx=66 L=2400 K=1 G=1200 class=A
+  cell_idx=67 L=2400 K=1 G=2400 class=A
+  cell_idx=68 L=2400 K=2 G=200 class=A
+  cell_idx=69 L=2400 K=2 G=600 class=A
+  cell_idx=70 L=2400 K=2 G=1200 class=A
+  cell_idx=71 L=2400 K=2 G=2400 class=B
+  cell_idx=72 L=2400 K=3 G=200 class=A
+  cell_idx=73 L=2400 K=3 G=600 class=B
+  cell_idx=74 L=2400 K=3 G=1200 class=A
+  cell_idx=75 L=2400 K=3 G=2400 class=B
+  cell_idx=76 L=2400 K=4 G=200 class=B
+  cell_idx=77 L=2400 K=4 G=600 class=B
+  cell_idx=78 L=2400 K=4 G=1200 class=A
+  cell_idx=79 L=2400 K=4 G=2400 class=B
+
+Mode=loose: 3 surviving (A+B)
+  cell_idx=72 L=2400 K=3 G=200 class=A
+  cell_idx=76 L=2400 K=4 G=200 class=B
+  cell_idx=77 L=2400 K=4 G=600 class=B
+
+F-CLS CHECK (any candidate unclassified?)
+------------------------------------------------------------
+  F-cls: PASS — all cells classified
+
+================================================================================
+SUMMARY
+================================================================================
+  Gate: PASS
+  Sanity: PASS (36/36 normal, 57/57 tight, 32/32 loose)
+  mode=normal: A=3 B=3 D=8 V=22 | surviving=6
+  mode=tight: A=25 B=10 D=2 V=20 | surviving=35
+  mode=loose: A=1 B=2 D=17 V=12 | surviving=3
+  P1 CALM2600 spanning law: PASS (0.158 misfit fraction)
+  P2 H9000 latency law: PASS
+  P3 no regression: PASS (0 regressions)
+  F-cls: PASS
+  Runtime: 4.7 min
+
+NOTE: EXPLORATORY-classification. No crack CLAIM.
+Surviving A/B cells are candidates pending rung-4 fresh-seed confirmation.
+================================================================================

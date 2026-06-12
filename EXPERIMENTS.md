@@ -6493,3 +6493,246 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   documented); (b) attempt the seed-229-class crack (variable-length /
   repeated-color attack schedules where no single H covers — the Exp 173
   playbook, with its dissolution warning); (c) other.
+
+## Addendum (2026-06-12) — Exp 183 seed-229 autopsy (diagnostic only; identity-n4-crack rung 1, plan Part 1): mechanism PINNED — every failing burst pays its erosion entirely in the ~75-step detection head (head_frac 1.000, frozen plateau bit-constant), repetition is NOT the discriminant (refuter d: seeds 227/228/233 share 229's [1,1,0] schedule and PASS), and recovery DECOUPLES from burst-end gap (fails at +5.2 and +45.0; passes at +1.0 and −33.5) — the margin LEDGER vs an H-independent dose is the operative mechanism (NEW INSIGHT, blind-verified PARTIAL: all 19 number checks pass; two narrative overstatements corrected here)
+
+- Plain: we re-ran 17 of Exp 183's sessions deterministically — every number matched
+  the committed rows to 1e-9, so the reconstruction IS the experiment — then read the
+  step-streams the rows don't keep. The story changed shape. Seed 229 doesn't lose
+  because the same color attacks twice: every H1200 seed has repeated burst colors,
+  and three seeds with 229's exact schedule all survive. It loses because each burst's
+  first ~75 steps are undetectable (the alarm needs that long to fire) and in that
+  window the attack writes ~72 points onto its color — a toll NO horizon can refuse,
+  paid before any freeze starts. And whether the creature recovers afterwards is not
+  decided by the score when the burst ends: it's decided by where it wanders in the
+  quiet after release. A margin of ~80+ at burst end survived in every observed case;
+  below that, outcomes went both ways.
+- Question (predeclared in the script docstring; docs/research/n4-fixed-h-squeeze-plan.md
+  Part 1): pin seed 229's H-arm failure mechanism among {trigger latency, release too
+  early, repeated-color accumulation, insufficient refractory, revision-bar conflict,
+  other}. Pre-data hypothesis: repeated-color cumulation of the irreducible
+  trigger-latency dose; refuters (a)-(d) predeclared.
+- Setup: experiments/exp183_seed229_autopsy.py — 17 deterministic Phase-W re-runs
+  (H1200 x seeds 226-233; seed 229 x {baseline, n4_freeze, H600, H900, H1800, H2400,
+  H3000, oracle}; H900 x 227) via exp183_n4_freeze_gate2.run_fork on a DETACHED
+  deepcopy of the mirro spine (bio appends no-op; spine bit-untouched, git-clean
+  verified by a separate integrity agent). BIT-MATCH GATE 17/17 PASS (row quantities +
+  all event fields to atol 1e-9). One measurement fix post-first-run, pre-commit,
+  disclosed: gap-at-freeze-entry is read from the frozen plateau (the 100-step snap
+  cadence floor-snapped a 75-step head to the pre-burst snapshot, making
+  erosion_head = 0 by construction and firing refuter (b) as an artifact); the read is
+  licensed by an asserted frozen-plateau constancy check (v bit-constant across all
+  in-freeze snapshots; doubles as a freeze-leak check — 0 leaks in 17 sessions).
+- Result (committed outputs exp183_seed229_autopsy.{txt,json}): refuters (a) CLEAR
+  (coverage 725/800 = 0.9062 in every failing H>=1200 burst; zero early releases),
+  (b) CLEAR after the fix (head_frac = 1.000 everywhere — 100% of erosion in the
+  unfrozen head; seed 229 doses 72.6/72.4/71.5 units at trig_lat 75; cross-seed head
+  erosion ~50-97 tracking trigger latency ~0.94-1.0 units/step), (c) CLEAR for the
+  subject scope, (d) FIRED — ALL 8 H1200 seeds have repeats, 7/8 pass; 227/228/233
+  share [1,1,0] and pass. HYPOTHESIS AS PREDECLARED: REFUTED as the discriminant
+  (repetition is a real operating mechanism — b0's dose pre-erodes b1's same-color
+  margin 153.2 -> 77.6 -> 5.2 — but it does not separate 229 from its passing peers).
+  Recovery decoupling: fails at gap_end +5.2 (expr 1.0) and +45.0 (227 b2, expr
+  0.706); passes at +1.0 (233 b1) and -33.5 (228 b1); every burst with gap_end >= ~80
+  recovered. H-arms H900-H3000 share IDENTICAL event tables on seed 229 (the head
+  dose is H-independent). Found object: 227 b0 was frozen-at-onset by a stray
+  pre-burst alarm (unfrozen head 0; gap untouched 29.0 throughout) — accidental
+  existence proof that freeze-at-onset pays zero dose (the oracle property as config
+  luck). Phase-R rows: revision-bar conflict REFUTED (separate sessions). Mechanism
+  verdict: TRIGGER-LATENCY DOSE vs the MARGIN LEDGER, with post-release expression
+  dynamics deciding sub-~80 margins; repeated-color accumulation demoted to
+  non-discriminant contributor; early-release/refractory/revision REFUTED.
+- Verifier: blinded adversarial subagent on the FINAL artifact: PARTIAL — bit-match
+  licensing sound (RESIST semantics confirm the plateau read), refuter table
+  confirmed, 19/19 number checks pass, classification licensed; two narrative
+  overstatements flagged and CORRECTED here: (1) the artifact's "near-tie election"
+  phrasing is wrong — the causal variable is expr_frac, not gap_end (dissociations
+  run both ways, incl. a +45.0 failure outside the subject scope); (2)
+  repeated_color_accumulation listed as co-primary overstates a non-discriminant.
+  Earlier same-day verification of the pre-fix artifact had challenged the dose
+  mechanism with a "frozen-body accumulation" alternative — refuted by direct
+  measurement (the frozen plateau is bit-constant; all erosion sits in the one snap
+  interval containing the unfrozen head).
+- Implication (for Exp 184, the exploratory squeeze map): the crack has TWO candidate
+  routes, not one — route 1 = the card's fixed-H interval emptiness
+  (max_b(L_b - d_b) > min_r(T_r), class A); route 2 = H-INDEPENDENT dose-ledger
+  exhaustion: cells where K x dose outpaces margin + regrowth(G) fail for EVERY
+  H >= L - d while the zero-dose oracle defends (class B carried by class C's floor) —
+  predicted geometry K >= 2 same-color x small G, any H. Exp 184 must log per-burst
+  gap_start/gap_end AND expr_frac (sub-~80 margins carry outcome variance gap_end
+  does not predict), use exogenous schedules (the repeat/recovered cross-tab is
+  selection-confounded when colors are endogenous: defense keeps argmin on the
+  attacked color), and add pre-armed/lower-THETA freezing as a named class-D
+  dissolution arm (the seed-227 accident, promoted to config). Generalizability tier:
+  failure-mode level (one body, one trigger family).
+- Caveat (autopsy): diagnostic only — no falsifier was gated and the N4 chapter
+  verdict is untouched; all instruments PROVIDED; the ~80-unit recovery threshold is
+  an observed regularity across 24 bursts x 8 seeds on ONE arm family, not a tested
+  law; the artifact's Q2 cross-tab and "near-tie" narrative carry the two flagged
+  overstatements (kept as-committed per the artifact-vs-entry rule; corrections live
+  here and in the card); sub-~80 outcome variance is attributed to post-release
+  occupancy dynamics by elimination, not by a positive mechanism test.
+- Next: Exp 184 — the exploratory fixed-H squeeze map (plan Part 2), with the rung-1
+  refinements folded into its predeclaration.
+
+## Exp 184 — identity-n4-crack rung 2, the EXPLORATORY fixed-H squeeze map (pre-registered c220d2c; plan Part 2): the commitment-as-config verdict does NOT extend across attack-schedule space — 36/80 cells (normal tolerance) have NO fixed H passing defense+revision while the oracle defends ALL 80 cells 3/3; P2's interval-emptiness arithmetic confirmed exactly at (L=2400, tight); P1's H-invariance falsified in 8 cells by a new mechanism (freeze-spanning: H sets the dose COUNT in trains); 32 dose-bound cells persist under loose tolerance (EXPLORATORY; candidates only — no crack claim; blind-verified PARTIAL with both gaps closed/logged)
+
+- Plain: we took the stopwatch defense that beat Exp 183's single attacks and threw
+  the whole attack-schedule space at it — longer captivities, repeated same-color
+  captivities, different spacings, with a wider stopwatch range and three strictnesses
+  of the "must still adapt to real change" requirement. The dumb stopwatch stops
+  working across large regions of that space: under the standard adaptation
+  requirement, 36 of 80 attack schedules have NO stopwatch setting that both defends
+  and adapts — while the perfectly-informed defense still wins everywhere, so defense
+  is possible; the stopwatch just can't deliver it. The map also taught us something
+  the autopsy missed: against burst TRAINS with short gaps, a LONGER stopwatch helps
+  not by outlasting one burst but by sleeping through the gaps — paying one detection
+  toll for several bursts.
+- Question (pre-registered in loop/directions/identity-n4-crack.md, commit c220d2c,
+  BEFORE any data): for each attack-schedule cell (L x K x G) and revision-tolerance
+  mode, does any fixed horizon H pass both defense (final-window displacement-
+  rejection) and revision (latency <= baseline + tolerance)? Candidate crack cells =
+  no-H-passes while the oracle defends. Shape predictions P1 (dose-route
+  H-invariance), P2 ((L=2400, tight) interval-empty by arithmetic), P3 (oracle
+  defends everywhere), F4 (degenerate map).
+- Setup: experiments/exp184_n4_fixed_h_squeeze_map.py — generalized runner with the
+  Exp 183 freeze machinery VERBATIM (minimal surgical diffs), licensed by the
+  EQUIVALENCE GATE: configured back to Exp 183's exact schedule it bit-matches the
+  committed exp183 rows for (baseline x s229) and (H1200 x s229) — full per-field
+  audit table (60 comparisons, 0 mismatches) in
+  experiments/outputs/exp184_gate_audit.txt. Grid: 80 cells x 11 arms x 3 fresh seeds
+  (240-242) = 2640 W-sessions + 30 R-sessions, 7.2 min; exogenous attack color
+  (argmin(v) at settle end, fixed for all K bursts — the rung-1 de-confound); smoke
+  (L=800, K=3, G=2400; seed 240) disclosed. PC1 PASS (max ahat_drift 0.029 < 0.15);
+  settle TV no flags; F4 non-degenerate (12,534 freeze events).
+- Result (committed exp184.txt + exp184_rows.json, 2670 rows): exists_H_both fails in
+  36/80 cells (normal, tol +3000), 57/80 (tight, +1500), 32/80 (loose, +6000) — ALL
+  with oracle defending 3/3 (P3 PASS 80/80), so defense is mechanically possible
+  everywhere the constant fails. P2 HOLDS exactly: all 16 (L=2400, tight) cells
+  interval-empty — and the Phase-R table gives the clean law: H-arm revision latency
+  = H + baseline EXACTLY (675=600+75, 835=600+235, ...), so the revision ceiling IS
+  the tolerance (normal caps H at 3000 — H3000 passes by 0-1 steps; tight at ~1200;
+  loose admits H6000). P1 FALSIFIED in 8/80 cells (F1): defense improves monotonically
+  with H in multi-burst short-gap cells (sharpest: L=1600 K=2 G=200 — H1800-H3000
+  0/3, H4200-H6000 3/3) — the freeze-spanning mechanism: a long H sleeps through
+  short gaps and pays ONE detection dose for several bursts, so H controls the dose
+  COUNT in trains (the autopsy's per-burst dose picture was incomplete). 32 candidate
+  cells PERSIST under loose tolerance (the dose-bound route-2 class: e.g. L=400 K=4
+  G=2400 fails at EVERY H incl. 6000 — each long gap releases the freeze, K full
+  doses land, no horizon helps). Flagged anomaly: (L=1200, K=1) is a candidate in all
+  modes from seed-margin failures (only seed 242 defends at any H; single burst, no
+  repetition) — likely the autopsy's sub-margin election-variance class, for
+  classification. K=1 cells are G-replicates (pooled table logged).
+- Verifier: blinded adversarial subagent: PARTIAL -> both findings resolved. (1) The
+  equivalence gate was asserted without numbers in exp184.txt — closed by the
+  committed per-field audit appendix (exp184_gate_audit.txt, 60/60 OK). (2) The
+  tight-mode candidate LIST is truncated at 40/57 entries (display bug; the MAP and
+  the count are correct — the verifier recomputed all 240 cell x mode values from
+  rows with 240/240 agreement, all candidate counts exact, P1's 8 cells confirmed
+  with no unlisted qualifier, P2 all 16 confirmed, P3 80/80, summary counts exact).
+  Integrity agent: only expected new files; exp183 artifacts and spines untouched.
+- Implication: the universal-constant law's first mapped BOUNDARY at the identity
+  level — commitment-as-config (Exp 183, law H) is a property of BENIGN attack
+  geometry, not of the body: single bursts shorter than the revision tolerance. Where
+  trains repeat (K x dose vs margin + regrowth) or bursts outlast the tolerance
+  ceiling (K*L + (K-1)*G - 75 > tol), no constant covers, while perfect timing always
+  does. Two crack routes confirmed as REAL STRUCTURE in the map (route 1
+  tolerance-bound: candidates appear as tolerance tightens; route 2 dose-bound: 32
+  cells persist under loose). The freeze-spanning law is new and config-relevant:
+  the dose-count channel means H interacts with G, which a Part-3 class-D check must
+  price (a pre-armed/lower-THETA trigger is the named dissolution candidate).
+  Generalizability tier: functional-form (the interval arithmetic and dose-count
+  relations are body-parameterized formulas, confirmed in-map).
+- Honest caveat: EXPLORATORY — 3 seeds/cell makes the >=2/3 defense bar a single-flip
+  boundary (several candidates incl. all (L=1200, K=1) and marginal K=2 cells are
+  seed-sensitive); per-burst frozen-plateau head doses were NOT computed in this run
+  (per_burst gap_plateau placeholder None — a diagnostic gap vs the pre-registration;
+  the dose-count mechanism is inferred from defense patterns + event tables, not
+  per-burst dose ledgers); the tight-list truncation stands in the committed txt (the
+  map is authoritative); candidate cells are NOT cracks — Part-3 classification
+  (A-E, incl. the class-D dissolution check) and rung-4 fresh-seed confirmation are
+  required, and both are PAUSED on the human's word.
+- Verdict: EXPLORATORY map COMPLETE, non-degenerate, predictions 2-confirmed +
+  1-informatively-falsified (NEW INSIGHT: freeze-spanning / dose-count law;
+  route-1/route-2 structure real). Self-grade: POSITIVE-exploratory.
+- Next: PAUSED on the human's explicit word (2026-06-12, "Once you're done with this
+  experiment, pause") — the loop holds; Part-3 classification of the 36/57/32
+  candidate sets, the class-D dissolution arms, and any rung-4 confirmation resume
+  only on the next explicit direction in loop/IDEAS.md.
+
+## Exp 185 — identity-n4-crack rung 3, the Part-3 classification + class-D dissolution check (pre-registered 8cc5cdb): the crack MOSTLY dissolVES into config and seed noise, but a HARD CORE SURVIVES — normal mode: 36 candidates → 8 dissolved (CALM2600 the dominant dissolver: the freeze-spanning law as config), 22 seed-variance, 6 surviving (3 route-1 A + 3 route-2 B, all at L≥1600 × K≥2 × G≤600); tight keeps 35 (25 A + 10 B); loose keeps 3; blind-verified CONFIRMED — every dissolution audited against both bars (POSITIVE-exploratory classification)
+
+- Plain: we attacked our own crack map with the simple fixes a defender could
+  actually configure — a longer stopwatch, a hair-trigger alarm that sometimes
+  pre-arms, and a "stay frozen through the gaps" rule built from the freeze-spanning
+  discovery. Most of the map gave way: the gap-spanning rule alone rescued 24
+  cell-mode pairs (turning repeated attacks back into one coverable attack), and a
+  large fraction of the remaining "failures" turned out to hinge on a single seed —
+  noise at this exploratory grain, sent to confirmation. What did NOT give way is a
+  hard core of heavy schedules — long captivities, repeated three or four times,
+  with short breathing room — where the arithmetic itself forbids any constant:
+  defending needs holding longer than the adaptation requirement allows. In tight
+  mode that core is 35 schedules wide. Defense remains possible everywhere (the
+  oracle is clean) — just not by any constant in this family.
+- Question (pre-registered in the card, commit 8cc5cdb, BEFORE any data): classify
+  every Exp 184 candidate cell as A (route-1 interval-empty: some H defends but every
+  defending H fails revision — provable by the latency = H + baseline law) / B
+  (route-2 dose-bound: NO arm in the widened sweep defends) / D (dissolved: a simple
+  config passes both bars) / V (hinges on a single seed flip); dissolution arms =
+  H9000, THETA3.0×{H1200,H3000}, CALM2600×{H1200,H3000,H6000} on ALL 80 cells × the
+  same seeds 240–242 (same-schedule diagnosis, NOT confirmation); falsifiers F1
+  (spanning law misfit > 20%), F2 (latency-law deviation > 50), F3 (config
+  regression > 5 cells), F-cls (unclassified candidate).
+- Setup: experiments/exp185_n4_crack_classification.py — exp184 runner with THETA and
+  release-calm as parameters (defaults identical); equivalence gate re-run through
+  the new code path with the FULL got-vs-committed evidence table (L15; lines 7–123
+  of exp185.txt, verifier-quoted); 1440 W + 21 R sessions, 4.7 min; sanity check
+  reproduced the exp184 candidate sets exactly (36/57/32).
+- Result (committed exp185.txt + exp185_rows.json, 1462 rows): normal 36 → A=3 B=3
+  D=8 V=22 (surviving 6); tight 57 → A=25 B=10 D=2 V=20 (surviving 35); loose 32 →
+  A=1 B=2 D=17 V=12 (surviving 3). Dissolvers: CALM2600-H3000 12 pairs,
+  CALM2600-H6000 9, CALM2600-H1200 3, THETA3.0-H1200 3; H9000 and THETA3.0-H3000
+  ZERO (H9000 fails revision in every mode as the latency law predicts). P1 PASS:
+  the unified coverage law under spanning (defense iff H ≥ K·L+(K−1)·G−75) misfits
+  15.8% (38/240; main pattern: K=1 cells where spanning is irrelevant and the head
+  dose + margin decide — consistent with the rung-1 election-variance class). P2
+  PASS-indirect with an honest limitation: H9000 NEVER CONCEDES within the
+  15000-step Phase-R session (max measurable latency ~7000), so the ±50 direct test
+  is unverifiable at this session length — the law is supported by H9000 failing
+  revision everywhere, as predicted. P3 PASS (0 regressions, structurally
+  impossible). F-cls PASS (every candidate classed). The surviving normal-mode
+  core: A = (1600,2,200), (1600,3,200), (2400,3,200); B = (1600,4,200),
+  (2400,4,200), (2400,4,600). The tight core spans all (2400, K, G) plus most
+  (1600, K, G). V dominates normal mode (22/36) — the 3-seed bar is single-flip
+  noisy, exactly as Exp 184 flagged.
+- Verifier: blinded adversarial subagent: CONFIRMED (first of the chapter) — gate
+  evidence table present and quoted; candidate sets independently recomputed from
+  exp184 rows (36/57/32 exact); 6 random cells re-derived to the same class; ALL 27
+  listed D cell×mode pairs audited — every named dissolving config passes BOTH bars
+  from rows, zero failures; P1 misfit recomputed 38/240 = 0.158 exactly; P3 zero.
+  Integrity: only expected new files; exp183/exp184 artifacts and spines untouched.
+- Implication: at this body and seed grade, THE CRACK IS REAL BUT NARROW — and its
+  shape is exactly the anti-regress shape this program hunts: the surviving core is
+  where defense REQUIRES holding longer than any allowed constant (route 1) or
+  paying more dose than any margin affords (route 2), while n4-style evidence
+  concession revises at ~725–885 (fast) and the oracle defends everything — i.e.
+  the regime where a discriminating controller could finally EARN its keep over
+  every constant. The freeze-spanning law upgraded to config (CALM2600) is the
+  classification's constructive product: it alone dissolved 24 pairs. The
+  universal-constant law survives in refined form: constants cover everything
+  except schedules that outlast the revision tolerance or out-dose the margin.
+  Generalizability tier: functional-form (the two surviving-core conditions are
+  body-parameterized inequalities, verified in-map).
+- Honest caveat: same-seed diagnosis — survivors are NOT confirmed cracks (rung-4
+  fresh-seed confirmation with more seeds/cell is the required gate, behind its own
+  word); the V class (54 cell×mode pairs) is unresolved at 3 seeds by construction;
+  P2's direct latency test needs a ≥20k-step Phase-R session; THETA3.0's
+  dissolutions ride on stochastic pre-arming (mechanism logged, not guaranteed);
+  CALM2600's quiet-time cost (freezes linger after false alarms) was not separately
+  priced; all instruments PROVIDED.
+- Verdict: classification COMPLETE on every conjunct, falsifiers F1–F3 + F-cls all
+  clear. Self-grade: POSITIVE-exploratory (NEW INSIGHT: the dissolution map + the
+  surviving hard core's two-inequality shape).
+- Next: CONSULT posted in loop/IDEAS.md — rung-4 fresh-seed confirmation of the
+  surviving core (the recommended option), or close the crack chapter here, or
+  redirect. The loop HOLDS until a word.

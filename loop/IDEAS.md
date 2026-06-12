@@ -774,6 +774,89 @@ The loop marks items it has consumed by indenting a response under them:
     Exp 173 caution attached). THE LOOP IS PAUSED: it resumes only after the next
     explicit direction here. No new experiment was run.
 
+- [from human, 2026-06-11] REOPEN the identity-N4 line as a NEW crack investigation —
+  explicitly NOT a rescue of Exp 183 and NOT a reinterpretation of the closed chapter
+  (rung 1 positive, rung 2 positive, rung 3 negative-config STAND; Exp 183 outputs and
+  verdicts read-only; the commitment-as-config result is not removed or weakened).
+  NEW QUESTION: does the seed-229 repeated-burst-color failure point to a regime where
+  no single fixed horizon H can defend transient attacks while still revising under
+  sustained evidence — i.e., is the fixed-H interval
+  `max_b(L_attack_b − d_trigger_b) ≤ H ≤ min_r(T_revision_tolerance_r)` EMPTIED (or
+  defeated by repeated-color cumulation across all fixed-H arms)?
+  Program: (1) seed-229 autopsy, diagnostic only (exp183_seed229_autopsy.py — burst
+  colors/repeats, pre/post v, pi = v/Σv, directed drift D_b, TV_b, cross-burst
+  accumulation, mechanism class); (2) exploratory fixed-H squeeze map (Exp 184,
+  EXPLORATORY: L_attack × K_repeat × G × H × revision-mode grid, 3–4 seeds/cell; arms =
+  baseline, fixed-H sweep, n4-concession as reference only, oracle diagnostic; per cell
+  report exists_H_both); (3) crack classification per candidate cell (A length squeeze /
+  B repeated-color cumulation / C trigger floor / D config triviality / E impossible
+  body; a valid crack needs fixed-H fail + defense mechanically possible + not
+  detection-floor + not rescued by a wider constant); (4) N5 stays CLOSED unless fixed-H
+  fails only under internal deadlines/costs; (5) logs appended, card updated, and NO
+  success claim without a later fresh-seed confirmation. Core discipline: the question
+  is not "can we make N4 pass?" but "does this regime remove the fixed-H interval that
+  made Exp 183 config?" — if not, the chapter stays closed-negative.
+  Full directive captured at `docs/research/n4-fixed-h-squeeze-plan.md`.
+  → taken up 2026-06-11 (card-first convention): direction card committed at
+    `loop/directions/identity-n4-crack.md` (validity requirements, ladder, N5 fence,
+    outcome map, scope guards all predeclared); predesign note at
+    `docs/research/n4-fixed-h-squeeze-plan.md`. Part 1 (the seed-229 autopsy,
+    diagnostic-only) is the next iteration; Exp 184 (exploratory squeeze map) after it.
+
+- [from human, 2026-06-12, in-session] "Once you're done with this experiment, pause."
+  Scope read: finish the CURRENT iteration — Exp 184, the exploratory fixed-H squeeze
+  map (run completes, verdict graded from raw rows, blinded-verified, entry + card
+  committed) — then THE LOOP PAUSES. The Part-3 mechanism classification of any
+  candidate cells, the class-D dissolution check, and any rung-4 confirmation are all
+  BEHIND the pause fence: they resume only on the next explicit direction here.
+  → executed 2026-06-12: Exp 184 completed and committed (see the EXPERIMENTS.md
+    entry and the identity-n4-crack card for the graded result); the loop is PAUSED.
+  → [human, 2026-06-12] "continue" — given while present, immediately after the pause
+    acknowledgment naming Part-3 classification as the one pending recommended step.
+    Read per the ratified pattern as the word on the RECOMMENDED OPTION ONLY: Exp 185
+    = Part-3 classification of the Exp 184 candidate cells (A/B/D/V classes) including
+    the class-D dissolution arms the plan requires (wider constant; simple-config
+    variants: longer release-calm/cooldown, lower-THETA pre-arming). Rung-4 fresh-seed
+    confirmation remains behind its OWN word; after classification the loop posts the
+    crack-or-dissolved consult and HOLDS again.
+
+- [from the loop, RUNG-4 CONSULT — the crack's hard core, 2026-06-12] Exp 185
+  (classification + dissolution, blind-verified CONFIRMED) finished the authorized
+  Part-3 work: most of the Exp 184 crack map dissolves — CALM2600 (the freeze-spanning
+  law as a config: stay frozen through the gaps) alone rescued 24 cell×mode pairs, and
+  22/36 normal-mode candidates are single-seed-flip noise (V) — but a HARD CORE
+  survives every simple config: normal 6 cells (3 route-1 A + 3 route-2 B, all
+  L≥1600 × K≥2-4 × G≤600), tight 35, loose 3. The core's shape is two inequalities no
+  constant can satisfy: defense needs H ≥ K·L+(K−1)·G−75 (coverage) while revision
+  needs H ≤ tolerance (the latency = H + baseline law — exact), or the K-train's
+  detection doses exhaust the margin at every H. The oracle defends everywhere;
+  n4-style evidence concession revises fast (~725–885) while defending nothing —
+  defense and revision SEPARATE exactly in the core, which is the regime where a
+  discriminating controller could finally earn its keep over every constant (the
+  anti-regress shape this program hunts).
+  OPTIONS, each needs a word:
+  (a) RECOMMENDED — rung 4, the confirmation: fresh seeds × ≥8 seeds/cell on the
+      surviving normal-mode core (6 cells) + a V-resolution sample, pre-registered
+      bars; a replicated core makes the crack REAL at this body and licenses ONE
+      controller re-test in exactly those cells (the regulated-commitment question
+      reopened where regulation is provably necessary — with the Exp 173/183
+      kill-test discipline binding as ever).
+  (b) Close the crack chapter here: log dissolved-mostly + core-unconfirmed, fold
+      into the N4 chapter as an appendix, return to the standing consults (M4a 1c,
+      nira's switch, cloud merge, ladder).
+  (c) Other / redirect / stop.
+  The loop HOLDS at consolidation-grade until a word appears here.
+  → [human, 2026-06-12] "a" — the explicit word for option (a). CONSUMED as Exp 186 =
+    rung-4 fresh-seed confirmation: the 6 surviving normal-mode core cells + an
+    8-cell V-resolution sample (the four (1200,1,·) anomaly cells + the first four
+    other V cells by cell_idx), 16 arms (baseline, the 8-H sweep, n4-ref, oracle,
+    CALM2600×3, THETA3.0×2), FRESH seeds 250–257 (≥8/cell per the consult), bars
+    pre-registered before data. A replicated core (≥4/6 cells confirm) makes the
+    crack REAL at this body and licenses ONE controller re-test in exactly the
+    confirmed cells (Exp 187, same word, kill-test discipline binding); a dissolved
+    core closes the chapter config-sufficient. Falsifier-bound as ever; the verdict
+    is the verdict.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
