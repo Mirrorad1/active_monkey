@@ -1,0 +1,422 @@
+[
+  {
+    "t": 250,
+    "living": {
+      "active_fraction": 0.8333333333333334,
+      "mean_intensity": 0.11122421503617957,
+      "mean_inefficiency": 0.9781029001352779,
+      "mean_tolerance": 0.1014306724505279,
+      "pop": 30
+    },
+    "newborn": {
+      "active_fraction": 0.9269662921348315,
+      "mean_intensity": 0.14301265890589876,
+      "count": 178
+    },
+    "age_stratified": {
+      "young": 0.1253344570469875,
+      "mid": 0.0942938582373617,
+      "old": 0.11404432982418959
+    },
+    "food": 2.9861111111111116
+  },
+  {
+    "t": 500,
+    "living": {
+      "active_fraction": 0.5569620253164557,
+      "mean_intensity": 0.07753273742418486,
+      "mean_inefficiency": 0.9668120173086229,
+      "mean_tolerance": 0.13133667241609545,
+      "pop": 79
+    },
+    "newborn": {
+      "active_fraction": 0.6330645161290323,
+      "mean_intensity": 0.09146026861780318,
+      "count": 248
+    },
+    "age_stratified": {
+      "young": 0.09796781491196002,
+      "mid": 0.06345839982356492,
+      "old": 0.07140758049581312
+    },
+    "food": 0.9071983738030247
+  },
+  {
+    "t": 750,
+    "living": {
+      "active_fraction": 0.2125984251968504,
+      "mean_intensity": 0.031060558546895885,
+      "mean_inefficiency": 0.9526524376489426,
+      "mean_tolerance": 0.13722523702475192,
+      "pop": 127
+    },
+    "newborn": {
+      "active_fraction": 0.3431372549019608,
+      "mean_intensity": 0.045748223998839224,
+      "count": 306
+    },
+    "age_stratified": {
+      "young": 0.02912696308530784,
+      "mid": 0.018504381309963874,
+      "old": 0.04521335978731083
+    },
+    "food": 0.3873611111111111
+  },
+  {
+    "t": 1000,
+    "living": {
+      "active_fraction": 0.15343915343915343,
+      "mean_intensity": 0.02372968859222033,
+      "mean_inefficiency": 0.9442409403151482,
+      "mean_tolerance": 0.13982666994202408,
+      "pop": 189
+    },
+    "newborn": {
+      "active_fraction": 0.2931596091205212,
+      "mean_intensity": 0.03363380517817639,
+      "count": 307
+    },
+    "age_stratified": {
+      "young": 0.024163499405758612,
+      "mid": 0.016380181933995524,
+      "old": 0.030645384436906856
+    },
+    "food": 0.29094988192384785
+  },
+  {
+    "t": 1250,
+    "living": {
+      "active_fraction": 0.12608695652173912,
+      "mean_intensity": 0.02100546211493256,
+      "mean_inefficiency": 0.9377869290786099,
+      "mean_tolerance": 0.13091857736122803,
+      "pop": 230
+    },
+    "newborn": {
+      "active_fraction": 0.2920962199312715,
+      "mean_intensity": 0.03359866362562328,
+      "count": 291
+    },
+    "age_stratified": {
+      "young": 0.023357959031413425,
+      "mid": 0.015421291222620152,
+      "old": 0.024267687998770354
+    },
+    "food": 0.24051057218001778
+  },
+  {
+    "t": 1500,
+    "living": {
+      "active_fraction": 0.10074626865671642,
+      "mean_intensity": 0.019109508425202763,
+      "mean_inefficiency": 0.9516507208932373,
+      "mean_tolerance": 0.1377531906569058,
+      "pop": 268
+    },
+    "newborn": {
+      "active_fraction": 0.26153846153846155,
+      "mean_intensity": 0.03017706420864884,
+      "count": 325
+    },
+    "age_stratified": {
+      "young": 0.02054731629910155,
+      "mid": 0.014053664976942782,
+      "old": 0.022687343604293274
+    },
+    "food": 0.24166666666666664
+  },
+  {
+    "t": 1750,
+    "living": {
+      "active_fraction": 0.0694006309148265,
+      "mean_intensity": 0.01668881604292025,
+      "mean_inefficiency": 0.9497958894502495,
+      "mean_tolerance": 0.13548509274427514,
+      "pop": 317
+    },
+    "newborn": {
+      "active_fraction": 0.21813031161473087,
+      "mean_intensity": 0.027853797888943026,
+      "count": 353
+    },
+    "age_stratified": {
+      "young": 0.01960783840726014,
+      "mid": 0.012147782337789603,
+      "old": 0.018338365330544393
+    },
+    "food": 0.22666918271115366
+  },
+  {
+    "t": 2000,
+    "living": {
+      "active_fraction": 0.06818181818181818,
+      "mean_intensity": 0.01662320547484743,
+      "mean_inefficiency": 0.9450541361691694,
+      "mean_tolerance": 0.13553977408415474,
+      "pop": 352
+    },
+    "newborn": {
+      "active_fraction": 0.2562674094707521,
+      "mean_intensity": 0.030121949088384777,
+      "count": 359
+    },
+    "age_stratified": {
+      "young": 0.020778119549020004,
+      "mid": 0.010651448566820529,
+      "old": 0.0184246513355335
+    },
+    "food": 0.2201435453357851
+  },
+  {
+    "t": 2250,
+    "living": {
+      "active_fraction": 0.050397877984084884,
+      "mean_intensity": 0.01466587793500982,
+      "mean_inefficiency": 0.9549104463628819,
+      "mean_tolerance": 0.13535255978915917,
+      "pop": 377
+    },
+    "newborn": {
+      "active_fraction": 0.26063829787234044,
+      "mean_intensity": 0.029627481979603375,
+      "count": 376
+    },
+    "age_stratified": {
+      "young": 0.016500416252252462,
+      "mid": 0.011531067014680213,
+      "old": 0.015980710366011404
+    },
+    "food": 0.23041666666666666
+  },
+  {
+    "t": 2500,
+    "living": {
+      "active_fraction": 0.04481132075471698,
+      "mean_intensity": 0.01445903949138166,
+      "mean_inefficiency": 0.9462755375872495,
+      "mean_tolerance": 0.13362626790126103,
+      "pop": 424
+    },
+    "newborn": {
+      "active_fraction": 0.22894736842105262,
+      "mean_intensity": 0.026931233758782154,
+      "count": 380
+    },
+    "age_stratified": {
+      "young": 0.01589724621133529,
+      "mid": 0.01201670499356335,
+      "old": 0.015456095946867017
+    },
+    "food": 0.21513888888888888
+  },
+  {
+    "t": 2750,
+    "living": {
+      "active_fraction": 0.03881278538812785,
+      "mean_intensity": 0.01403019868427303,
+      "mean_inefficiency": 0.9557515642283463,
+      "mean_tolerance": 0.13682154381300668,
+      "pop": 438
+    },
+    "newborn": {
+      "active_fraction": 0.27034120734908135,
+      "mean_intensity": 0.031189273073324735,
+      "count": 381
+    },
+    "age_stratified": {
+      "young": 0.0150303454175999,
+      "mid": 0.01158973386515708,
+      "old": 0.015470516770062113
+    },
+    "food": 0.21305555555555558
+  },
+  {
+    "t": 3000,
+    "living": {
+      "active_fraction": 0.04670912951167728,
+      "mean_intensity": 0.01419269859698679,
+      "mean_inefficiency": 0.9184548174796288,
+      "mean_tolerance": 0.1313769623407286,
+      "pop": 471
+    },
+    "newborn": {
+      "active_fraction": 0.28346456692913385,
+      "mean_intensity": 0.0318991923887335,
+      "count": 381
+    },
+    "age_stratified": {
+      "young": 0.01639373958896478,
+      "mid": 0.010872907528229581,
+      "old": 0.015311448673766005
+    },
+    "food": 0.21666666666666665
+  },
+  {
+    "t": 3250,
+    "living": {
+      "active_fraction": 0.031512605042016806,
+      "mean_intensity": 0.01319499403059166,
+      "mean_inefficiency": 0.9401143490149519,
+      "mean_tolerance": 0.1329556752109036,
+      "pop": 476
+    },
+    "newborn": {
+      "active_fraction": 0.2552083333333333,
+      "mean_intensity": 0.02983141795192461,
+      "count": 384
+    },
+    "age_stratified": {
+      "young": 0.01304588621281361,
+      "mid": 0.011111585717889089,
+      "old": 0.015426572376054805
+    },
+    "food": 0.20694444444444443
+  },
+  {
+    "t": 3500,
+    "living": {
+      "active_fraction": 0.031496062992125984,
+      "mean_intensity": 0.013999792414151203,
+      "mean_inefficiency": 0.9408078459209902,
+      "mean_tolerance": 0.1347157109192872,
+      "pop": 508
+    },
+    "newborn": {
+      "active_fraction": 0.27034120734908135,
+      "mean_intensity": 0.030933835506061765,
+      "count": 381
+    },
+    "age_stratified": {
+      "young": 0.01562509328175631,
+      "mid": 0.011143904594044948,
+      "old": 0.015223140619872937
+    },
+    "food": 0.2122222222222222
+  },
+  {
+    "t": 3750,
+    "living": {
+      "active_fraction": 0.04046242774566474,
+      "mean_intensity": 0.014561883932604255,
+      "mean_inefficiency": 0.9550474439154274,
+      "mean_tolerance": 0.13499502231018495,
+      "pop": 519
+    },
+    "newborn": {
+      "active_fraction": 0.2755905511811024,
+      "mean_intensity": 0.03186077474138405,
+      "count": 381
+    },
+    "age_stratified": {
+      "young": 0.017998855019812486,
+      "mid": 0.01078045110595043,
+      "old": 0.014906345672049851
+    },
+    "food": 0.20138888888888887
+  },
+  {
+    "t": 4000,
+    "living": {
+      "active_fraction": 0.040968342644320296,
+      "mean_intensity": 0.014042940628826368,
+      "mean_inefficiency": 0.9473581218680646,
+      "mean_tolerance": 0.136490318379264,
+      "pop": 537
+    },
+    "newborn": {
+      "active_fraction": 0.24744897959183673,
+      "mean_intensity": 0.029535905854284932,
+      "count": 392
+    },
+    "age_stratified": {
+      "young": 0.016674877536200877,
+      "mid": 0.010913910713483618,
+      "old": 0.0145400336367946
+    },
+    "food": 0.20555555555555555
+  },
+  {
+    "t": 4250,
+    "living": {
+      "active_fraction": 0.041353383458646614,
+      "mean_intensity": 0.014026384835926109,
+      "mean_inefficiency": 0.9348973157910522,
+      "mean_tolerance": 0.13783033880078552,
+      "pop": 532
+    },
+    "newborn": {
+      "active_fraction": 0.2612137203166227,
+      "mean_intensity": 0.030687223773184953,
+      "count": 379
+    },
+    "age_stratified": {
+      "young": 0.016950806269759373,
+      "mid": 0.010798765214663867,
+      "old": 0.014327879662751553
+    },
+    "food": 0.20555555555555555
+  },
+  {
+    "t": 4500,
+    "living": {
+      "active_fraction": 0.03435114503816794,
+      "mean_intensity": 0.013649046175046458,
+      "mean_inefficiency": 0.9249332174392821,
+      "mean_tolerance": 0.13636083438982552,
+      "pop": 524
+    },
+    "newborn": {
+      "active_fraction": 0.2416452442159383,
+      "mean_intensity": 0.0285061172653055,
+      "count": 389
+    },
+    "age_stratified": {
+      "young": 0.0160293341023803,
+      "mid": 0.010611983917965594,
+      "old": 0.014319422150092532
+    },
+    "food": 0.20833333333333334
+  },
+  {
+    "t": 4750,
+    "living": {
+      "active_fraction": 0.04119850187265917,
+      "mean_intensity": 0.014072739049600493,
+      "mean_inefficiency": 0.9475968974442878,
+      "mean_tolerance": 0.13445861309531532,
+      "pop": 534
+    },
+    "newborn": {
+      "active_fraction": 0.2438423645320197,
+      "mean_intensity": 0.03043461353210103,
+      "count": 406
+    },
+    "age_stratified": {
+      "young": 0.01794634843268979,
+      "mid": 0.010134134958293245,
+      "old": 0.014137733757818445
+    },
+    "food": 0.20277777777777775
+  },
+  {
+    "t": 5000,
+    "living": {
+      "active_fraction": 0.02912621359223301,
+      "mean_intensity": 0.01278171252442554,
+      "mean_inefficiency": 0.9338812279446798,
+      "mean_tolerance": 0.13588917730899455,
+      "pop": 515
+    },
+    "newborn": {
+      "active_fraction": 0.2770780856423174,
+      "mean_intensity": 0.030441699253466886,
+      "count": 397
+    },
+    "age_stratified": {
+      "young": 0.013713852757099812,
+      "mid": 0.010686711251420464,
+      "old": 0.013949992984713755
+    },
+    "food": 0.20680555555555555
+  }
+]

@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-12, state as of Exp 196)
+### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 197)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,7 +145,7 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
-- **The population-ecology direction (Exp 194–196, ACTIVE — a NEW parallel line on the
+- **The population-ecology direction (Exp 194–197, ACTIVE — a NEW parallel line on the
   human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
   substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
   DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
@@ -161,8 +161,15 @@ step 0.
   aging DEPRESSES the standing population's complexity below a matched senescence-OFF control
   (gap 0.09–0.28, 5/5 fresh seeds, emerging only after ~t=2000) — Exp 195's selection null
   was a HORIZON limit; mechanism under-claimed (heritable selection vs survivor bias — a
-  newborn-complexity tracker is the named follow-up). Card:
-  `loop/directions/population-ecology.md`.
+  newborn-complexity tracker is the named follow-up). **Exp 197 (POSITIVE-MIXED, on branch
+  `exp197-maintenance-cost` → PR)** — the human's mechanism REVISION: complexity = EXPRESSED-
+  MACHINERY cost (a costed, evolvable THERMOSENSE organ under temperature), NOT a scalar
+  "complexity bad" penalty. Temperature ON (treatment) vs OFF (control), with thermal tolerance
+  ALSO costed + a drifting comfort zone (no free escapes). Thermosense is RETAINED under
+  temperature (living active-fraction ~0.52 vs ~0.06; tolerance stays low → adapts by SENSING)
+  but the newborn tracker shows it's survivor-bias-DOMINATED with only a WEAK heritable shift →
+  POSITIVE-MIXED, blind-verified 5/5 fresh seeds. Lessons L20 (remove cheap escapes before
+  testing whether a costed capability pays its way). Card: `loop/directions/population-ecology.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

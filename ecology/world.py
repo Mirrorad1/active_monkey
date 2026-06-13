@@ -29,6 +29,17 @@ class GridWorld:
     resource: np.ndarray          # shape (rows*cols,), dtype float64, >= 0
     capacity: float
     regen_rate: float
+    # Exp 197: optional temperature field (None when enable_temperature=False)
+    temperature: "np.ndarray | None" = None   # shape (rows*cols,) float64, [0,1]
+    # Thermal policy parameters (used by creature.py; stored here to avoid cfg threading)
+    temperature_comfort: float = 0.5
+    # current_comfort: dynamic comfort center (updated by Ecology.step() each tick).
+    # Initialised to temperature_comfort; when comfort_amplitude==0 it never changes.
+    # creature.py and temperature_stress() read this field rather than the static cfg value.
+    current_comfort: float = 0.5
+    thermosense_noise_base: float = 0.5
+    thermal_avoidance_weight: float = 1.0
+    thermosense_active_threshold: float = 0.05
 
     # ------------------------------------------------------------------
     # Indexing helpers
@@ -103,6 +114,26 @@ class GridWorld:
         return result
 
     # ------------------------------------------------------------------
+    # Exp 197: temperature stress query
+    # ------------------------------------------------------------------
+    def temperature_stress(
+        self, pos: int, tolerance: float, stress_scale: float
+    ) -> float:
+        """Return the thermal stress energy drain at pos.
+
+        If the temperature field is absent, returns 0.0 (OFF path — no cost).
+        Uses self.current_comfort as the comfort center (updated each tick by
+        Ecology.step(); equals temperature_comfort when comfort_amplitude==0).
+        Stress = stress_scale * max(0, |temperature[pos] - current_comfort| - tolerance).
+        A creature within its tolerance band of the comfort zone incurs 0 stress.
+        """
+        if self.temperature is None:
+            return 0.0
+        return stress_scale * max(
+            0.0, abs(float(self.temperature[pos]) - self.current_comfort) - tolerance
+        )
+
+    # ------------------------------------------------------------------
     # Construction
     # ------------------------------------------------------------------
     @classmethod
@@ -114,20 +145,47 @@ class GridWorld:
         regen_rate: float,
         initial_resource: float,
         rng: np.random.Generator,
+        *,
+        enable_temperature: bool = False,
+        temperature_comfort: float = 0.5,
+        thermosense_noise_base: float = 0.5,
+        thermal_avoidance_weight: float = 1.0,
+        thermosense_active_threshold: float = 0.05,
     ) -> "GridWorld":
-        """Build initial resource field.
+        """Build initial resource field and optional temperature gradient.
 
         initial_resource is the fraction of capacity each cell starts at
         (0.0 = empty, 1.0 = full).  A tiny uniform perturbation is added
         to break symmetry while remaining deterministic with rng.
+
+        If enable_temperature is True, a STATIC deterministic left-to-right
+        gradient is built: temperature[r*cols + c] = c / (cols - 1).
+        The gradient requires no rng draws, so the resource-perturbation rng
+        stream is unchanged relative to the no-temperature case (regression safe).
         """
         base = capacity * max(0.0, min(1.0, initial_resource))
         perturb = rng.uniform(-0.05 * capacity, 0.05 * capacity, size=rows * cols)
         resource = np.clip(base + perturb, 0.0, capacity)
+
+        temperature: np.ndarray | None = None
+        if enable_temperature:
+            # Static left-to-right gradient: 0.0 at left column, 1.0 at right.
+            # Pure arithmetic, no rng — resource rng stream unchanged.
+            temperature = np.array(
+                [c / max(cols - 1, 1) for r in range(rows) for c in range(cols)],
+                dtype=np.float64,
+            )
+
         return cls(
             rows=rows,
             cols=cols,
             resource=resource,
             capacity=capacity,
             regen_rate=regen_rate,
+            temperature=temperature,
+            temperature_comfort=temperature_comfort,
+            current_comfort=temperature_comfort,  # initialised to static value; updated per-tick
+            thermosense_noise_base=thermosense_noise_base,
+            thermal_avoidance_weight=thermal_avoidance_weight,
+            thermosense_active_threshold=thermosense_active_threshold,
         )

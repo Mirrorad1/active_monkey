@@ -117,3 +117,13 @@ Ground rules for this file:
   explosion guard truncated the abundant regime before any creature aged out; verify every
   compared condition CAN show the measured quantity before predeclaring. [VALIDATION;
   PROTOCOL step 2; kin of L13/L16/L18]
+- **L20 (Exp 197, 2026-06-13).** To test whether a COSTED adaptation/capability is selected
+  FOR, you must first remove the CHEAPER alternatives — free traits and static refuges — or the
+  population takes the free route and the costed capability looks selected-against for the wrong
+  reason. Exp 197's first pilot: a costed thermosense organ decayed even under temperature because
+  the population escaped heat for FREE (it widened the free `temperature_tolerance` trait and
+  settled in the STATIC comfort band); only after COSTING tolerance (robustness is expressed
+  machinery too) AND making the comfort zone DRIFT (no fixed refuge) did thermosense get a fair
+  test. Corollary: always run a pilot that checks for a cheaper escape route before concluding a
+  costed feature "doesn't pay." Disclose the escape-removing design choices — the result is
+  conditional on them. [VALIDATION; METHODOLOGY confound audit; kin of L19]
