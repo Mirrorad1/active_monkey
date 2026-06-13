@@ -146,3 +146,20 @@ Ground rules for this file:
   population dynamics — always verify selection at the GENE-POOL (newborn/heritable) level, not via a
   forced/behavioral comparison; the two answer different questions (does-it-help vs is-it-selected-for).
   Kin of the survivor-bias-vs-heritable distinction (Exp 196/197). [VALIDATION; METHODOLOGY]
+- **L23 (Exp 201, 2026-06-13).** PILOT (and measure the end-window metric) at the FULL verdict horizon —
+  a population metric can be NON-MONOTONIC, so a short-horizon pilot mis-states the equilibrium in EITHER
+  direction. Exp 201's gene-pool intensity peaked ~t=2000 then DECAYED: a horizon-4000 pilot read FAST ~0.18
+  (would have predicted MIXED) while the horizon-12000 pilot read ~0.13 (the true low equilibrium, NEGATIVE);
+  the inverse of Exp 196, where a too-SHORT horizon HID a signal that only emerged after ~t=2000. Rule: run
+  pilots at the same horizon as the verdict and confirm the metric has PLATEAUED (not a transient peak or a
+  late-emerging rise) before fixing the regime or reading the result. Corollary for "increasing-returns"
+  claims: convex GEOMETRY does not guarantee a convex realised SELECTION gradient — measure the benefit curve
+  empirically (a frozen-trait returns probe: intake(p) at pinned intensity p, cost handled analytically), as
+  the convexity can collapse to concave + cost-dominated at engine/grid resolution. [VALIDATION; METHODOLOGY;
+  kin of L13 instrument-resolution]
+- **L24 (Exp 202, 2026-06-13).** REAL interference competition for a contested DEPLETING resource is NOT
+  automatically a Red-Queen escape — it can select AGAINST a costed precision organ: a crowded scarce band
+  makes the upkeep more lethal and a fair queue (id-order neutralised by shuffle) does not rescue precision,
+  so COMPETE DECAYED below the founder. Verify the band genuinely depletes (strip>0) so the test is valid,
+  AND beware drift: high trait values at small/collapsed populations (corr(pop,trait) strongly negative) are
+  founder/drift artifacts, not selection — predeclare a healthy-population floor. [VALIDATION; METHODOLOGY]

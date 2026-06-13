@@ -1,0 +1,48 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp202.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp202_n5_interference_competition.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.08\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.10\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0276/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0283/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0290/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0297/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0914/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1530/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2303/0\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/5\" quoted in entry not found in experiments/outputs/exp202.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T19:11:00Z",
+  "commit_sha": "1b6afa342de2e8a53056a5a0c142d027877fe590",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 202,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

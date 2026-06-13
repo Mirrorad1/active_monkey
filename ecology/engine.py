@@ -169,6 +169,43 @@ class EcologyConfig:
     food_concentration: float = 1.0
     thermosense_forage_mode: bool = False
 
+    # ------------------------------------------------------------------
+    # Exp 201: band-staleness foraging + clamped-learning-rate confound control.
+    # ALL defaults preserve Exp 194-200 byte-identical behaviour.
+    #
+    # enable_band_staleness: when True (and thermosense_forage_mode True), the
+    #   forage policy steers toward each creature's PRIVATE EMA estimate of the
+    #   drifting band center instead of reading world.current_food_optimal for
+    #   free.  Precision (thermosense_intensity) keys the tracker responsiveness
+    #   and reading noise — so precision finally buys tracking quality of a moving
+    #   target.  Requires enable_food_coupling AND enable_temperature (asserted).
+    # band_responsiveness: scales the tracker EMA alpha = clamp(intensity*resp,0,1).
+    # freeze_learning_rate: confound-killer arm — pins learning_rate to the founder
+    #   value so the learned resource map cannot substitute for the costed organ.
+    # ------------------------------------------------------------------
+    enable_band_staleness: bool = False
+    band_responsiveness: float = 1.0
+    freeze_learning_rate: bool = False
+
+    # ------------------------------------------------------------------
+    # Exp 202: interference-competition / frequency-dependence escape.
+    # ALL defaults preserve Exp 194-201 byte-identical behaviour.
+    #
+    # shuffle_creature_order: when True, alive creatures are processed in a
+    #   RANDOMISED order each step (rng.shuffle, drawing ONLY in this gated ON
+    #   branch) instead of ascending creature_id. This neutralises the id-order
+    #   "eat-first" confound (low-id creatures otherwise win every contested cell
+    #   regardless of skill; new high-id mutants are structurally disadvantaged),
+    #   so interference competition at a genuinely-depleting band is keyed to
+    #   navigation skill, not birth order. consume() is UNCHANGED — this is the
+    #   only id-order fix that survives the no-hidden-evaluator invariant cleanly.
+    # track_band_strip: gated telemetry (NO rng, NOT in events_hash) recording how
+    #   much of the food band is depleted WITHIN a step (before regen) — the
+    #   go/no-go that the band is genuinely contested (exp201 failed here, strip~0).
+    # ------------------------------------------------------------------
+    shuffle_creature_order: bool = False
+    track_band_strip: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -211,15 +248,36 @@ class Ecology:
             enable_food_coupling=cfg.enable_food_coupling,
             food_band_width=cfg.food_band_width,
             food_concentration=cfg.food_concentration,
+            enable_band_staleness=cfg.enable_band_staleness,
+            band_responsiveness=cfg.band_responsiveness,
         )
+
+        # Exp 201 guard: band-staleness needs a drifting food band to track, which
+        # requires both the food-coupling regen concentration and the temperature
+        # field.  Fail loudly rather than silently no-op or None-deref.
+        if cfg.enable_band_staleness:
+            assert cfg.enable_food_coupling and cfg.enable_temperature, (
+                "enable_band_staleness requires enable_food_coupling AND "
+                "enable_temperature (a drifting thermal food band to track)"
+            )
 
         self.t: int = 0
         self.next_id: int = 0
         self.events: list[dict[str, Any]] = []
         self.exploded: bool = False
+        # Exp 202: band-strip telemetry (NOT in events_hash; populated only when
+        # cfg.track_band_strip is True). A plain attribute, so the OFF path is
+        # byte-identical to Exp 194-201.
+        self.strip_log: list[dict[str, Any]] = []
 
         # Creatures stored in a list; we always iterate in ascending id order.
+        # _creatures accumulates EVERY creature ever born (dead included — needed by the
+        # final newborn/lineage summary). _alive_list holds ONLY currently-alive creatures
+        # and is maintained incrementally so the per-step _alive() scan is O(alive), not
+        # O(total-ever-born) (the latter dominated long high-turnover runs). Determinism-safe:
+        # _alive() still returns the SAME sorted-by-id order, so events_hash is unchanged.
         self._creatures: list[Creature] = []
+        self._alive_list: list[Creature] = []
 
         # Place initial_population founders at deterministic spread positions
         n_cells = cfg.rows * cfg.cols
@@ -239,6 +297,7 @@ class Ecology:
                 n_cells=n_cells,
             )
             self._creatures.append(c)
+            self._alive_list.append(c)
             self.events.append(self._event("birth", c, details={"founder": True}))
             self.next_id += 1
 
@@ -246,11 +305,13 @@ class Ecology:
     # Internal helpers
     # ------------------------------------------------------------------
     def _alive(self) -> list[Creature]:
-        """Return alive creatures sorted by ascending creature_id (deterministic)."""
-        return sorted(
-            (c for c in self._creatures if c.is_alive()),
-            key=lambda c: c.creature_id,
-        )
+        """Return alive creatures sorted by ascending creature_id (deterministic).
+
+        Scans self._alive_list (only currently-alive creatures), maintained incrementally
+        by step(); identical result to filtering self._creatures but O(alive) not
+        O(total-ever-born). The sorted-by-id order is unchanged, so events_hash is unchanged.
+        """
+        return sorted(self._alive_list, key=lambda c: c.creature_id)
 
     def _event(self, event_type: str, c: Creature, details: dict | None = None) -> dict:
         g = c.genotype
@@ -378,7 +439,8 @@ class Ecology:
                 child_pos = min(neighbors) if neighbors else new_pos
 
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
-                                    mutate_thermosense=cfg.enable_thermosense)
+                                    mutate_thermosense=cfg.enable_thermosense,
+                                    freeze_learning_rate=cfg.freeze_learning_rate)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,
@@ -487,12 +549,43 @@ class Ecology:
                 * math.sin(2.0 * math.pi * self.t / self.cfg.food_optimal_period)
             )
 
-        # Process alive creatures in ascending id order (deterministic)
-        for c in self._alive():
+        # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
+        # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
+        # shuffle_creature_order is True, a RANDOMISED order each step (rng.shuffle, drawing
+        # ONLY in this gated ON branch) neutralises the id-order eat-first confound so that
+        # interference competition at a contested cell is keyed to navigation skill, not birth
+        # order. consume() is UNCHANGED.
+        order = self._alive()
+        if self.cfg.shuffle_creature_order:
+            self.rng.shuffle(order)
+
+        # Exp 202: band-strip validity instrumentation (gated; NO rng draw, NOT in events_hash) —
+        # the go/no-go that the food band is GENUINELY depleted within a step (exp201: strip~0).
+        _band_before = None
+        if self.cfg.track_band_strip and self.world.temperature is not None and self.world.enable_food_coupling:
+            _mask = np.abs(self.world.temperature - self.world.current_food_optimal) <= self.world.food_band_width
+            _band_before = float(np.sum(self.world.resource[_mask]))
+
+        for c in order:
             self._step_one_creature(c, pending_children)
+
+        if _band_before is not None:
+            _band_after = float(np.sum(self.world.resource[_mask]))
+            _n_occ = sum(1 for c in order if bool(_mask[c.phenotype.pos]))
+            self.strip_log.append({
+                "t": self.t,
+                "strip": max(0.0, _band_before - _band_after),
+                "band_before": _band_before,
+                "occupants": _n_occ,
+            })
 
         # Add pending children (born creatures act from next step)
         self._creatures.extend(pending_children)
+        # Maintain the incremental alive-list (perf; determinism-safe): drop creatures that
+        # died this step, append the new children. O(alive), replacing the old per-step
+        # O(total-ever-born) full scan of self._creatures.
+        self._alive_list = [c for c in self._alive_list if c.phenotype.alive]
+        self._alive_list.extend(pending_children)
 
         # World regeneration
         self.world.step_regen()
@@ -513,8 +606,9 @@ class Ecology:
                 "details": {},
             })
 
-        # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler
-        alive_count = sum(1 for c in self._creatures if c.is_alive())
+        # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler.
+        # len(self._alive_list) — same value as the old full scan of self._creatures, O(1).
+        alive_count = len(self._alive_list)
         if alive_count > self.cfg.max_population:
             self.exploded = True
             self.events.append({
@@ -536,8 +630,7 @@ class Ecology:
     def run(self) -> dict[str, Any]:
         """Run until horizon, extinction, or explosion.  Return summary dict."""
         while True:
-            alive = [c for c in self._creatures if c.is_alive()]
-            if len(alive) == 0:
+            if len(self._alive_list) == 0:   # extinction (O(1), was a full self._creatures scan)
                 break
             if self.exploded:
                 break

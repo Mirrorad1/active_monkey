@@ -102,6 +102,12 @@ class HomeostaticPolicy:
         # Optimistic prior: assume all cells have some resource
         self.m: np.ndarray = np.full(n_cells, _OPTIMISTIC_PRIOR, dtype=np.float64)
         self.visit_t: np.ndarray = np.full(n_cells, -1, dtype=np.int64)
+        # Exp 201: private EMA tracker of the drifting food-band center.  None until
+        # the band-staleness branch first runs (which only happens when
+        # enable_band_staleness=True); a pure attribute, NEVER in events_hash, so the
+        # OFF path is byte-identical to exp194-200.  Lazily initialised to
+        # world.food_optimal_base (a neutral start, not the moving true value).
+        self.band_estimate: float | None = None
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -157,6 +163,61 @@ class HomeostaticPolicy:
                     creature.phenotype.steps_explored += 1
                     return target
                 return pos  # stay and eat
+
+        elif world.forage_mode and world.enable_band_staleness:
+            # ----------------------------------------------------------------
+            # Exp 201: BAND-STALENESS forage — the drifting band center is NOT
+            # handed to the policy for free (that was exp200's fatal flaw).  The
+            # creature must privately ESTIMATE it via an EMA tracker whose
+            # responsiveness (alpha) and reading-noise are both keyed to
+            # thermosense_intensity.  The static spatial gradient stays known
+            # (neighbor temps read true); only the drifting CENTER is tracked, so
+            # a crude tracker chronically lags a fast band into already-depleted
+            # cells while a precise tracker locks on.  This sub-branch is gated on
+            # enable_band_staleness and returns within itself, so the exp200 forage
+            # path below is reached with IDENTICAL rng draws when the flag is OFF.
+            #
+            # CRITICAL L19 GUARD: food intake is NEVER written as reward=f(intensity).
+            # Intensity affects ONLY the tracker's alpha and reading noise; the food a
+            # creature gets falls out of where it steps and the unchanged consume()
+            # depletion race.  The SLOW-band null arm is the binding falsifier: if
+            # selection appears when the band barely drifts (lag harmless), the
+            # relation was imposed, not earned — discard the positive.
+            intensity = creature.genotype.thermosense_intensity
+            forage_weight = world.thermal_avoidance_weight
+
+            # Lazy neutral init (food_optimal_base, NOT the moving current_food_optimal).
+            if self.band_estimate is None:
+                self.band_estimate = world.food_optimal_base
+
+            # ONE rng draw: a noisy observation of the drifting TRUE center, quality
+            # keyed to intensity; then an intensity-keyed EMA step toward it.
+            noise_sd = max(0.0, world.thermosense_noise_base * (1.0 - intensity))
+            noisy_center = world.current_food_optimal + rng.normal(0.0, noise_sd)
+            alpha = min(1.0, max(0.0, intensity * world.band_responsiveness))
+            self.band_estimate += alpha * (noisy_center - self.band_estimate)
+            est = self.band_estimate
+
+            current_resource = world.resource_at(pos)
+            if current_resource < _DEPLETION_THRESHOLD:
+                target = max(
+                    neighbors,
+                    key=lambda n: (self.m[n] - forage_weight * abs(float(world.temperature[n]) - est), -n),
+                )
+                return target
+            else:
+                best_neighbor = max(
+                    neighbors,
+                    key=lambda n: (self.m[n] - forage_weight * abs(float(world.temperature[n]) - est), -n),
+                )
+                stay_score = self.m[pos] - forage_weight * abs(float(world.temperature[pos]) - est)
+                move_score = (
+                    self.m[best_neighbor]
+                    - forage_weight * abs(float(world.temperature[best_neighbor]) - est)
+                )
+                if move_score > stay_score:
+                    return best_neighbor
+                return pos
 
         elif world.forage_mode:
             # ----------------------------------------------------------------

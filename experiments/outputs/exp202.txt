@@ -1,0 +1,28 @@
+============================================================================
+EXP 202 — N5: INTERFERENCE-COMPETITION ESCAPE (shuffled fair queue) — SUMMARY
+============================================================================
+
+Arm          seed38  seed39  seed40  seed41  seed42      mean  strip%  maxpop
+----------------------------------------------------------------------------
+COMPETE       0.0297   0.0276   0.0283   0.0290   0.0281    0.0285    100%    1080
+NO_SHUFFLE    0.1530   0.0914   0.2303   0.0532   0.1234    0.1303    100%     461
+CLAMPED_LR    0.0286   0.0276   0.0294   0.0284   0.0278    0.0284    100%    1117
+USELESS       0.0283   0.0273   0.0276   0.0273   0.0273    0.0276    nan%     534
+
+FINAL POPULATIONS:
+Arm          seed38  seed39  seed40  seed41  seed42
+COMPETE        1033    1080    1074    1042    1045
+NO_SHUFFLE      350     378     214     461     367
+CLAMPED_LR     1117    1067    1091     957    1057
+USELESS         527     524     505     495     534
+
+EVALUATIONS:
+  P1 determinism: PASS
+  P2 validity (>=4/5 + strip>0.5): PASS  (COMPETE strip_frac=1.00)
+  COMPETE mean=0.0285  drift corr(pop,intensity)=-0.82
+  P3 functional-healthy (>0.30 at pop>=300 in >=4/5): NO
+  drift-flagged: NO
+
+VERDICT: NEGATIVE (ceiling general even under real interference competition) (repo token: NEGATIVE)
+
+runtime: 210s

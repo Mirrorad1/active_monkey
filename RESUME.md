@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 200)
+### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 202)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,7 +145,7 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
-- **The population-ecology direction (Exp 194–200, ACTIVE — a NEW parallel line on the
+- **The population-ecology direction (Exp 194–202, ACTIVE — a NEW parallel line on the
   human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
   substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
   DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
@@ -196,11 +196,40 @@ step 0.
   precision is too small / too noisy to out-breed its cost. A forced/behavioral benefit test does NOT
   predict evolvability (→ L22). On branch `exp200-foraging-sense` → PR. Card:
   `loop/directions/population-ecology.md`.
+  **Exp 201 (NEGATIVE / NEW INSIGHT — a WALL, unanimously blind-verified 3/3 — the human's pick "a": the
+  INCREASING-RETURNS escape, TESTED and FAILED).** The one untested escape from the no-Goldilocks-gradient
+  ceiling: a regime where precision's marginal value GROWS. A 9-agent design+adversarial-audit workflow
+  found three engine confounds defeat most such designs (resource-memory free-ride, creature-id-ordered
+  competition, free-trait substitution); the survivor is a MOVING band each creature must privately TRACK.
+  exp200 read the band centre for FREE (its fatal flaw); exp201 (`enable_band_staleness`, gated, exp194-200
+  byte-identical / hash-verified, full exp200 hash 502e0539 reproduces) replaces it with a per-creature EMA
+  tracker whose responsiveness + reading-noise key to thermosense_intensity. RESULT (fresh seeds {33-37},
+  6 arms): FAST gene-pool newborn intensity 0.128 (4/5 <0.15, 0/5 >0.30 functional), MEDIUM 0.116, SLOW null
+  0.108, SATURATING free-read 0.083, USELESS 0.053; P1+P2 hold, 0 extinct, internal degeneracy clean →
+  NEGATIVE. A REAL but SUB-THRESHOLD speed-gated gradient exists (FAST>MEDIUM>SLOW; FAST tracked > SATURATING
+  free-read — the FIRST non-flat null in the arc) but never pays: a frozen-precision returns probe shows the
+  benefit of precision is CONCAVE (marginal +0.043→+0.018) and dominated by the linear cost, and the moving
+  band LOWERS everyone's intake (FAST < SLOW at every p) — so 'increasing-returns geometry' did NOT produce
+  increasing RETURNS. NO GOLDILOCKS GRADIENT, a third time. CLAMPED-LR ≈ FAST → the weak climb is genuine
+  thermosense, not memory substitution (LR-confound flag triggered but MOOT, no positive). The primitive-
+  sensor ceiling is now GENERAL across avoidance (199) + foraging (200) + increasing-returns (201). L23
+  (pilot at the full verdict horizon; a transient peak over-states — caught by the v2 full-horizon pilot).
+  On branch `exp201-increasing-returns` → PR.
+  **Exp 202 (NEGATIVE / NEW INSIGHT — a WALL, unanimously blind-verified AGREE).** The interference-competition
+  escape FAILED. COMPETE (depleting band + shuffle neutralising id-order confound) decayed to mean 0.0285 BELOW
+  the 0.10 founder at healthy populations (1033-1080), strip_frac=1.00 certifying the test was genuinely
+  interference-competitive (unlike exp201's strip≈0). CLAMPED_LR ≈ COMPETE (0.0284) confirms genuine
+  thermosense suppression, not resource-memory substitution. NO_SHUFFLE mean 0.130 is higher but only at
+  drift-prone collapsed populations (214-461, corr(pop,intensity)=-0.82 — predeclared drift artifact, not
+  selection). The primitive-sensor ceiling is now MAXIMALLY GENERAL across FOUR distinct regimes: avoidance
+  (199), foraging (200), increasing-returns (201), and real interference competition (202); competition SUPPRESSES
+  the organ below founder. On branch exp202-... → PR. AWAITING HUMAN STEER on next direction.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the
   cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+- Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

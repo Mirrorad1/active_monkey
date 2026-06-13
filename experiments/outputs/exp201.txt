@@ -1,0 +1,37 @@
+============================================================================
+EXP 201 — N5: INCREASING-RETURNS ESCAPE (band-staleness tracker) — SUMMARY
+============================================================================
+
+Arm          seed33  seed34  seed35  seed36  seed37      mean      max   nb_lr  n_ext
+----------------------------------------------------------------------------
+FAST          0.1491   0.1644   0.1122   0.1453   0.0683    0.1279    0.633   0.382      0
+MEDIUM        0.1062   0.1219   0.1237   0.1262   0.1041    0.1164    0.690   0.348      0
+SLOW          0.1069   0.0777   0.1113   0.1202   0.1242    0.1081    0.462   0.344      0
+CLAMPED_LR    0.0820   0.1287   0.1046   0.2186   0.1014    0.1271    0.739   0.300      0
+SATURATING    0.1023   0.0795   0.0839   0.0550   0.0953    0.0832    0.867   0.262      0
+USELESS       0.0536   0.0471   0.0512   0.0445   0.0683    0.0529    0.549   0.244      0
+
+FINAL POPULATIONS per arm/seed:
+Arm          seed33  seed34  seed35  seed36  seed37
+------------------------------------------------------------
+FAST            624     562     558     620     629
+MEDIUM          642     655     511     558     607
+SLOW            522     558     471     507     542
+CLAMPED_LR      613     625     601     516     625
+SATURATING      706     619     713     675     586
+USELESS         500     518     515     540     505
+
+PREDICTION / FALSIFIER EVALUATIONS:
+  P1 determinism (FAST+USELESS seed 33):     PASS
+  P2 validity (FAST valid >=4/5):                 PASS
+  FAST mean=0.1279  SLOW mean=0.1081  USELESS mean=0.0529
+  speed-gating (FAST>SLOW & SLOW<0.15):           YES
+  FAST functional (>0.30 in >=4/5):               NO
+  CLAMPED_LR functional (>0.30 in >=4/5):         NO
+  internal degeneracy falsifier fired:            NO
+  learning_rate confound flagged:                 YES
+  P3 CORE (functional+speed-gated+clamped-clean):  NO
+
+VERDICT: NEGATIVE (ceiling general even under increasing returns) (repo token: NEGATIVE)
+
+runtime: 2292s

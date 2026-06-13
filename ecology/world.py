@@ -58,6 +58,21 @@ class GridWorld:
     food_band_width: float = 0.15
     food_concentration: float = 1.0
 
+    # Exp 201: band-staleness foraging — the food-optimal temperature DRIFTS and is
+    # no longer handed to the policy for free (exp200 read current_food_optimal
+    # directly).  Each creature must privately ESTIMATE the drifting center via an
+    # EMA tracker whose responsiveness (alpha) and reading-noise are keyed to
+    # thermosense_intensity.  All defaults are no-ops (byte-identical to exp194-200).
+    #
+    # enable_band_staleness: gates the new forage sub-branch in creature.py.
+    # band_responsiveness: scales the tracker EMA alpha = clamp(intensity*resp, 0, 1).
+    # food_optimal_base: the STATIC drift center; the tracker is lazily initialised
+    #   here (a neutral start, NOT the moving current_food_optimal) so a crude tracker
+    #   does not get a free accurate starting point.
+    enable_band_staleness: bool = False
+    band_responsiveness: float = 1.0
+    food_optimal_base: float = 0.5
+
     # ------------------------------------------------------------------
     # Indexing helpers
     # ------------------------------------------------------------------
@@ -213,6 +228,9 @@ class GridWorld:
         enable_food_coupling: bool = False,
         food_band_width: float = 0.15,
         food_concentration: float = 1.0,
+        # Exp 201: band-staleness parameters — all default to OFF (no-op).
+        enable_band_staleness: bool = False,
+        band_responsiveness: float = 1.0,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -260,4 +278,8 @@ class GridWorld:
             enable_food_coupling=enable_food_coupling,
             food_band_width=food_band_width,
             food_concentration=food_concentration,
+            # Exp 201 band-staleness fields — defaults are no-ops.
+            enable_band_staleness=enable_band_staleness,
+            band_responsiveness=band_responsiveness,
+            food_optimal_base=food_optimal_base,  # stored for neutral tracker init
         )

@@ -1,0 +1,5 @@
+{
+  "mechanism_name": "Gated randomised processing order + a genuinely depleting concentrated band (shuffle-order interference competition)",
+  "one_line": "Add a gated per-step rng-shuffle of the processing order so that arrival at a genuinely-depleting concentrated food band is decided by precision (who locates the band) instead of by birth-order, making precision pay MORE as more rivals also sense.",
+  "core_idea": "ok"
+}
