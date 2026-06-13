@@ -23,7 +23,7 @@ from typing import Any
 
 import numpy as np
 
-from ecology.genotype import Genotype, mutate, is_valid
+from ecology.genotype import Genotype, mutate, is_valid, complexity as genotype_complexity
 from ecology.world import GridWorld
 from ecology.creature import Creature, Phenotype
 
@@ -48,6 +48,39 @@ class EcologyConfig:
     log_moves: bool = False          # per-step move events are bulk, reproducible-from-seed
                                      # telemetry — OFF by default so committed event logs stay
                                      # small (birth/death/reproduction/resource_tick always log)
+
+    # ------------------------------------------------------------------
+    # Senescence model (Exp 195) — OFF by default; OFF is byte-identical to Exp 194
+    #
+    # Faithful tuning (disclosed; tuning documented in exp195 script):
+    #   onset0=155, onset_frailty=0.65 -> onset range:
+    #     low-c (0.26): onset~129; high-c (0.57): onset~98 (31-step spread).
+    #   base=0.002 (moderate) so damage accumulates over MANY steps past onset --
+    #     post-onset survival: well-fed 45-56 steps, starving 13-21 steps.
+    #     Death age is onset + a multi-step, energy-modulated, super-linear integral.
+    #     (The old base=10.0 made creatures die within 1-2 steps -- degenerate.)
+    #   exp=1.5 (>1) is genuinely operative: shapes the accumulation curve over
+    #     tens of steps rather than being bypassed by instant death.
+    #   maintenance=1.0 and energy-dependent: a well-fed creature (energy~capacity)
+    #     offsets early degradation and RESISTS aging; a starving creature of the
+    #     same age+complexity senesces ~30-40 steps sooner.
+    #   rate_f=2.0 adds a complexity multiplier on degradation.
+    # ------------------------------------------------------------------
+    enable_senescence: bool = False
+    # Base degradation rate -- moderate so damage integrates over many steps past onset
+    senescence_base: float = 0.002
+    # Exponent >1 so degradation accelerates super-linearly with age past onset
+    senescence_exp: float = 1.5
+    # Onset age (at complexity=0); complex creatures age earlier
+    senescence_onset0: float = 155.0
+    # Fraction by which complexity shifts onset earlier (k')
+    senescence_onset_frailty: float = 0.65
+    # Rate multiplier from complexity for degradation accumulation (k)
+    senescence_rate_frailty: float = 2.0
+    # Well-fed creatures resist damage (energy-dependent self-maintenance)
+    senescence_self_maintenance: float = 1.5
+    # Damage threshold at which creature dies of senescence
+    senescence_damage_death: float = 1.0
 
 
 # ---------------------------------------------------------------------------
@@ -169,18 +202,12 @@ class Ecology:
     def _reproduction_cost(self, c: Creature) -> tuple[float, float]:
         """Return (transfer, overhead) for reproduction.
         Complexity penalty: higher-capacity / higher-sensor lineages pay MORE.
+        Uses the single canonical genotype_complexity() helper (shared with senescence).
         """
         g = c.genotype
         ph = c.phenotype
         transfer = ph.energy * g.reproduction_energy_transfer_fraction
-        # Complexity: normalized blend of energy_capacity, sensor_precision, memory_length
-        max_cap, min_cap = 50.0, 5.0
-        max_mem, min_mem = 20.0, 1.0
-        norm_cap = (g.energy_capacity - min_cap) / (max_cap - min_cap)
-        norm_sensor = (g.sensor_precision - 0.5) / 0.5        # [0..1]
-        norm_mem = (g.memory_length - min_mem) / (max_mem - min_mem)
-        complexity = (norm_cap + norm_sensor + norm_mem) / 3.0  # ~[0,1]
-        overhead = ph.energy * g.reproduction_cost_fraction * (1.0 + complexity)
+        overhead = ph.energy * g.reproduction_cost_fraction * (1.0 + genotype_complexity(g))
         return transfer, overhead
 
     def _step_one_creature(
@@ -264,13 +291,52 @@ class Ecology:
                 }))
                 assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
 
-        # 7. Death: starvation (homeostatic cause only; no ranking)
+        # 7a. Senescence degradation — ONLY when enable_senescence is True.
+        #     Deterministic (no rng draws), so OFF path is byte-identical to Exp 194.
+        #     Uses genotype_complexity() — the same helper used by reproduction overhead,
+        #     so the two paths cannot diverge.
+        if cfg.enable_senescence:
+            _c = genotype_complexity(g)
+            onset = cfg.senescence_onset0 * (1.0 - cfg.senescence_onset_frailty * _c)
+            if ph.age > onset:
+                deg = (
+                    cfg.senescence_base
+                    * (1.0 + cfg.senescence_rate_frailty * _c)
+                    * (ph.age - onset) ** cfg.senescence_exp
+                )
+                maintenance = cfg.senescence_self_maintenance * (ph.energy / g.energy_capacity)
+                ph.damage += max(0.0, deg - maintenance)
+
+        # 7b. Death precedence: starvation first (acute), then senescence.
+        #     Causes are mutually exclusive; senescence path only active when flag is True.
+        #
+        #     CRITICAL (L16 no-op guard): when enable_senescence is False, we emit the
+        #     EXACT same event dict as Exp 194 (no extra keys) to preserve the hash.
         if ph.energy <= 0.0:
             ph.alive = False
-            ph.cause_of_death = "starvation"  # homeostatic: ran out of energy
+            ph.cause_of_death = "starvation"
+            if cfg.enable_senescence:
+                # Treatment arm: include complexity in death event for P3/P5 verifiability
+                self.events.append(self._event("death", c, details={
+                    "cause": "starvation",
+                    "age": ph.age,
+                    "complexity": genotype_complexity(g),
+                    "offspring_count": ph.offspring_count,
+                }))
+            else:
+                # Control arm: byte-identical to Exp 194 (no complexity key)
+                self.events.append(self._event("death", c, details={
+                    "cause": "starvation",
+                    "age": ph.age,
+                    "offspring_count": ph.offspring_count,
+                }))
+        elif cfg.enable_senescence and ph.damage >= cfg.senescence_damage_death:
+            ph.alive = False
+            ph.cause_of_death = "senescence"
             self.events.append(self._event("death", c, details={
-                "cause": "starvation",
+                "cause": "senescence",
                 "age": ph.age,
+                "complexity": genotype_complexity(g),
                 "offspring_count": ph.offspring_count,
             }))
 
@@ -356,14 +422,14 @@ class Ecology:
         # Measures what fraction of all creatures ever born died; in a scarce environment
         # more of the cohort dies, fewer survive.  EXPLORATORY / POST-HOC metric.
         #
-        # starvation_death_fraction: the PREDECLARED P5 metric from the docstring —
-        # starvation_deaths / total_deaths.  Since starvation is the only death cause
-        # in this engine, this is ≡ 1.0 wherever deaths > 0.  Reported for honesty;
-        # the predeclared +0.15 conjunct is ill-posed (see experiment disclosure).
+        # starvation_death_fraction: starvation_deaths / total_deaths.
+        # senescence_death_fraction: senescence_deaths / total_deaths (Exp 195 P5 metric).
         total_deaths = len(dead)
         starvation_deaths = cod_tally.get("starvation", 0)
+        senescence_deaths = cod_tally.get("senescence", 0)
         cohort_mortality = starvation_deaths / len(all_c) if len(all_c) > 0 else 0.0
         starvation_death_fraction = starvation_deaths / max(1, total_deaths) if total_deaths > 0 else 0.0
+        senescence_death_fraction = senescence_deaths / max(1, total_deaths) if total_deaths > 0 else 0.0
 
         # Births and max generation
         births = len(all_c)
@@ -402,6 +468,7 @@ class Ecology:
             "cause_of_death_tally": cod_tally,
             "cohort_mortality": round(cohort_mortality, 6),
             "starvation_death_fraction": round(starvation_death_fraction, 6),
+            "senescence_death_fraction": round(senescence_death_fraction, 6),
             "max_generation": max_generation,
             "reproduction_count": repro_count,
             "mean_lifespan": round(mean_lifespan, 4),

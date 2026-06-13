@@ -1,0 +1,39 @@
+{
+  "scenario": "balanced",
+  "seed": 0,
+  "horizon": 600,
+  "steps_run": 600,
+  "final_pop": 170,
+  "total_creatures": 628,
+  "births": 628,
+  "deaths": 458,
+  "cause_of_death_tally": {
+    "starvation": 458
+  },
+  "cohort_mortality": 0.729299,
+  "starvation_death_fraction": 1.0,
+  "senescence_death_fraction": 0.0,
+  "max_generation": 12,
+  "reproduction_count": 616,
+  "mean_lifespan": 39.6376,
+  "total_resource": 50.4642,
+  "mean_resource": 0.350446,
+  "extinction": false,
+  "explosion": false,
+  "last_gen_trait_means": {
+    "movement_cost": 0.04187837619380683,
+    "baseline_metabolic_cost": 0.023566030290623118,
+    "energy_capacity": 24.270455751522846,
+    "reproduction_energy_threshold": 13.882497705640402,
+    "reproduction_energy_transfer_fraction": 0.38477420964330455,
+    "reproduction_cost_fraction": 0.10836466680187287,
+    "maturity_age": 3.5,
+    "aging_cost": 0.027556123002963073,
+    "exploration_bias": 0.593517415580231,
+    "learning_rate": 0.3351545027160383,
+    "memory_length": 7.0,
+    "temperature_tolerance": 0.7546611450422759,
+    "sensor_precision": 0.9192349048868824
+  },
+  "events_hash": "fc19d23fefede56aa3c751281db9e74da8520f449e4198bb2237910613304ae4"
+}

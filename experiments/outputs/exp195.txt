@@ -1,0 +1,109 @@
+======================================================================
+Exp 195 — N5 Senescence: aging as a complexity-scaled second death cause
+======================================================================
+
+--- Running all arms ---
+  control/balanced/seed0: fp=170, births=628, deaths=458, strv=458, senes=0, sf=0.000, max_gen=12, hash=fc19d23fefed...
+  control/balanced/seed1: fp=155, births=622, deaths=467, strv=467, senes=0, sf=0.000, max_gen=10, hash=7dd4566665e5...
+  control/balanced/seed2: fp=155, births=509, deaths=354, strv=354, senes=0, sf=0.000, max_gen=8, hash=37c00f1c7b1c...
+  control/scarce/seed0: fp=0, births=12, deaths=12, strv=12, senes=0, sf=0.000, max_gen=0, hash=daeaedd977c6...
+  control/scarce/seed1: fp=7, births=79, deaths=72, strv=72, senes=0, sf=0.000, max_gen=5, hash=4b67c68fdd86...
+  control/scarce/seed2: fp=0, births=12, deaths=12, strv=12, senes=0, sf=0.000, max_gen=0, hash=914cbe4aa90d...
+  control/overabundant/seed0: fp=202, births=862, deaths=660, strv=660, senes=0, sf=0.000, max_gen=6, hash=a93faecdd77a...
+  control/overabundant/seed1: fp=202, births=608, deaths=406, strv=406, senes=0, sf=0.000, max_gen=8, hash=c5ca0235a583...
+  control/overabundant/seed2: fp=204, births=717, deaths=513, strv=513, senes=0, sf=0.000, max_gen=7, hash=c8f8217d66d3...
+  treatment/balanced/seed0: fp=97, births=572, deaths=475, strv=346, senes=129, sf=0.272, max_gen=14, hash=aaaba09b066f...
+  treatment/balanced/seed1: fp=110, births=708, deaths=598, strv=454, senes=144, sf=0.241, max_gen=11, hash=f03724be0672...
+  treatment/balanced/seed2: fp=109, births=601, deaths=492, strv=350, senes=142, sf=0.289, max_gen=11, hash=b91203db76b3...
+  treatment/scarce/seed0: fp=0, births=12, deaths=12, strv=12, senes=0, sf=0.000, max_gen=0, hash=8934c3f7f59c...
+  treatment/scarce/seed1: fp=9, births=62, deaths=53, strv=49, senes=4, sf=0.075, max_gen=6, hash=0f26440ae3ab...
+  treatment/scarce/seed2: fp=0, births=12, deaths=12, strv=12, senes=0, sf=0.000, max_gen=0, hash=39f24b75433d...
+  treatment/overabundant/seed0: fp=201, births=862, deaths=661, strv=660, senes=1, sf=0.002, max_gen=6, hash=ea7dcb533b97...
+  treatment/overabundant/seed1: fp=202, births=608, deaths=406, strv=406, senes=0, sf=0.000, max_gen=8, hash=757d21a3b529...
+  treatment/overabundant/seed2: fp=204, births=717, deaths=513, strv=513, senes=0, sf=0.000, max_gen=7, hash=8b797689f0c6...
+
+--- Determinism reruns ---
+  control/balanced/seed0: PASS (hash fc19d23fefed...)
+  control/scarce/seed0: PASS (hash daeaedd977c6...)
+  control/overabundant/seed0: PASS (hash a93faecdd77a...)
+  treatment/balanced/seed0: PASS (hash aaaba09b066f...)
+  treatment/scarce/seed0: PASS (hash 8934c3f7f59c...)
+  treatment/overabundant/seed0: PASS (hash ea7dcb533b97...)
+
+======================================================================
+SUMMARY
+======================================================================
+
+-- PREDICTIONS --
+P1 determinism: PASS
+   control/balanced/seed0: ok
+   control/scarce/seed0: ok
+   control/overabundant/seed0: ok
+   treatment/balanced/seed0: ok
+   treatment/scarce/seed0: ok
+   treatment/overabundant/seed0: ok
+
+P2 senescence real & distinct: PASS
+   any_senes_in_treatment=True, any_starvation_in_treatment=True, any_coexist_regime=True, control_has_senes=False
+   treatment/balanced/seed0: strv=346, senes=129, sf=0.272
+   treatment/balanced/seed1: strv=454, senes=144, sf=0.241
+   treatment/balanced/seed2: strv=350, senes=142, sf=0.289
+   treatment/scarce/seed0: strv=12, senes=0, sf=0.000
+   treatment/scarce/seed1: strv=49, senes=4, sf=0.075
+   treatment/scarce/seed2: strv=12, senes=0, sf=0.000
+   treatment/overabundant/seed0: strv=660, senes=1, sf=0.002
+   treatment/overabundant/seed1: strv=406, senes=0, sf=0.000
+   treatment/overabundant/seed2: strv=513, senes=0, sf=0.000
+
+P3 complexity->shorter lifespan (CORE): PASS
+   seed=0: n=130, rho=-0.8647 (<=−0.15: True), gap=31.2 (>=15: True), bot_mean=157.6, top_mean=126.3, P3_PASS=True
+   seed=1: n=148, rho=-0.6774 (<=−0.15: True), gap=15.7 (>=15: True), bot_mean=154.3, top_mean=138.6, P3_PASS=True
+   seed=2: n=142, rho=-0.6704 (<=−0.15: True), gap=16.0 (>=15: True), bot_mean=151.9, top_mean=136.0, P3_PASS=True
+
+P4 not-fixed (supporting): FAIL (>= 2/3 seeds)
+   seed=0: cv=0.1134 (>=0.10: True)
+   seed=1: cv=0.0703 (>=0.10: False)
+   seed=2: cv=0.0788 (>=0.10: False)
+
+P5 cause-mix varies by regime: FAIL
+   seed=0: abundant_sf=0.002, scarce_sf=0.000, diff=0.002 (>=0.15: False)
+   seed=1: abundant_sf=0.000, scarce_sf=0.075, diff=-0.075 (>=0.15: False)
+   seed=2: abundant_sf=0.000, scarce_sf=0.000, diff=0.000 (>=0.15: False)
+   NOTE: P5 fails because thin-survival scarce/seed1 creatures
+   live 90-100+ steps and senesce (onset~90 for their complexity),
+   while overabundant is cut short by the explosion guard at ~100-200 steps.
+
+P6 complexity selection (supporting): FAIL
+   seed=0: n_regimes_ok=0/3, ok=False
+     balanced: treatment=0.5280, control=0.5293, diff=0.0013 (>=0.03: False)
+     overabundant: treatment=0.4149, control=0.4151, diff=0.0002 (>=0.03: False)
+   seed=1: n_regimes_ok=0/3, ok=False
+     balanced: treatment=0.4347, control=0.4238, diff=-0.0109 (>=0.03: False)
+     scarce: treatment=0.4974, control=0.4747, diff=-0.0227 (>=0.03: False)
+     overabundant: treatment=0.4218, control=0.4218, diff=0.0000 (>=0.03: False)
+   seed=2: n_regimes_ok=0/3, ok=False
+     balanced: treatment=0.5083, control=0.5128, diff=0.0045 (>=0.03: False)
+     overabundant: treatment=0.4161, control=0.4161, diff=0.0000 (>=0.03: False)
+
+P7 substrate intact: PASS
+   treatment/balanced/seed0: fp=97, max_gen=14 (fp>0: True, max_gen>=3: True)
+   treatment/balanced/seed1: fp=110, max_gen=11 (fp>0: True, max_gen>=3: True)
+   treatment/balanced/seed2: fp=109, max_gen=11 (fp>0: True, max_gen>=3: True)
+   senescence-OFF balanced/seed0: fp=170, births=628, deaths=458, hash_match=True
+
+-- FALSIFIERS --
+F1 non-determinism: CLEAR
+F2 senescence inert: CLEAR
+F3 (CORE) complexity-independent: CLEAR
+F4 fixed lifespan (fires iff every seed CV<0.03): CLEAR (CVs: [0.113, 0.07, 0.079])
+F5 cause-mix degenerate: CLEAR
+F6 regression break: CLEAR
+
+VERDICT: MIXED
+   P3 passes (complexity -> shorter senescence lifespan confirmed).
+   P5 fails: the overabundant-vs-scarce cause-mix prediction is violated.
+   The explosion guard cuts overabundant short; thin-survival scarce/seed1
+   has long-lived creatures that senesce. The regime-difference direction
+   is reversed from the prediction. This is an honest null on P5.
+
+runtime: 2.5s

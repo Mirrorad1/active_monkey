@@ -106,3 +106,14 @@ Ground rules for this file:
   denominator explicitly and confirm it is non-constant under the predeclared design before
   committing the prediction; pair a count with a per-capita / per-step rate that can move.
   [VALIDATION; PROTOCOL step 2; kin of L1/L2/L9]
+- **L19 (Exp 195, 2026-06-12).** Two traps when a prediction concerns an IMPOSED mechanism.
+  (i) A near-perfect effect (e.g. Spearman ρ ≈ −0.997 on a relation you BUILT IN) is a
+  DEGENERACY red flag, NOT a win: the first senescence tuning (base=10, self_maintenance=0)
+  collapsed an elaborate "self-maintenance degrades non-linearly" model into a fixed LINEAR
+  age cap. Require the named components (here: operative energy-dependent self-maintenance +
+  super-linear accrual) to actually bite; an honest imposed relation is NOISY (ρ ≈ −0.7) with
+  real spread. (ii) Do NOT predeclare a cross-condition comparison a condition cannot
+  STRUCTURALLY exhibit — Exp 195's abundant-vs-scarce cause-mix was confounded because the
+  explosion guard truncated the abundant regime before any creature aged out; verify every
+  compared condition CAN show the measured quantity before predeclaring. [VALIDATION;
+  PROTOCOL step 2; kin of L13/L16/L18]

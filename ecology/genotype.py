@@ -105,6 +105,24 @@ def mutate(g: Genotype, rng: np.random.Generator, rate: float) -> Genotype:
     return result
 
 
+def complexity(g: Genotype) -> float:
+    """Return the normalised complexity blend [0, 1] for a genotype.
+
+    This is the SINGLE canonical definition shared by both the reproduction-overhead
+    path and the senescence-degradation path.  Changing the blend here propagates
+    automatically to both — the two paths cannot diverge.
+
+    Complexity = mean of three normalised traits:
+      - energy_capacity  in [5, 50]  -> [0, 1]
+      - sensor_precision in [0.5, 1] -> [0, 1]
+      - memory_length    in [1, 20]  -> [0, 1]
+    """
+    norm_cap    = (g.energy_capacity    - 5.0) / 45.0
+    norm_sensor = (g.sensor_precision   - 0.5) / 0.5
+    norm_mem    = (g.memory_length      - 1.0) / 19.0
+    return (norm_cap + norm_sensor + norm_mem) / 3.0
+
+
 def founder() -> Genotype:
     """The base ancestor used for all Exp 194 scenarios.
 

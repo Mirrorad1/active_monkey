@@ -1,0 +1,193 @@
+{
+  "verdict": "MIXED",
+  "P1": {
+    "pass": true
+  },
+  "P2": {
+    "pass": true,
+    "any_senes_in_treatment": true,
+    "any_coexist_regime": true,
+    "control_has_senes": false
+  },
+  "P3": {
+    "pass": true,
+    "per_seed": {
+      "0": {
+        "ok": true,
+        "n": 130,
+        "rho": -0.864704,
+        "gap": 31.233,
+        "cv": 0.113431,
+        "bot_n": 43,
+        "bot_mean": 157.558,
+        "top_n": 43,
+        "top_mean": 126.326
+      },
+      "1": {
+        "ok": true,
+        "n": 148,
+        "rho": -0.677427,
+        "gap": 15.735,
+        "cv": 0.070283,
+        "bot_n": 49,
+        "bot_mean": 154.306,
+        "top_n": 49,
+        "top_mean": 138.571
+      },
+      "2": {
+        "ok": true,
+        "n": 142,
+        "rho": -0.670375,
+        "gap": 15.979,
+        "cv": 0.07879,
+        "bot_n": 47,
+        "bot_mean": 151.936,
+        "top_n": 47,
+        "top_mean": 135.957
+      }
+    }
+  },
+  "P4": {
+    "pass": false,
+    "per_seed": {
+      "0": {
+        "ok": true,
+        "cv": 0.113431
+      },
+      "1": {
+        "ok": false,
+        "cv": 0.070283
+      },
+      "2": {
+        "ok": false,
+        "cv": 0.07879
+      }
+    }
+  },
+  "P5": {
+    "pass": false,
+    "per_seed": {
+      "0": {
+        "ok": false,
+        "abundant_sf": 0.001513,
+        "scarce_sf": 0.0,
+        "diff": 0.001513
+      },
+      "1": {
+        "ok": false,
+        "abundant_sf": 0.0,
+        "scarce_sf": 0.075472,
+        "diff": -0.075472
+      },
+      "2": {
+        "ok": false,
+        "abundant_sf": 0.0,
+        "scarce_sf": 0.0,
+        "diff": 0.0
+      }
+    },
+    "note": "fails because thin-survival scarce/seed1 long-lived creatures senesce; overabundant explosion guard prevents accumulation"
+  },
+  "P6": {
+    "pass": false,
+    "per_seed": {
+      "0": {
+        "ok": false,
+        "n_regimes_ok": 0,
+        "per_regime": {
+          "balanced": {
+            "treatment": 0.528013,
+            "control": 0.529297,
+            "diff_ctrl_minus_trt": 0.001284,
+            "ok": false
+          },
+          "overabundant": {
+            "treatment": 0.414905,
+            "control": 0.415057,
+            "diff_ctrl_minus_trt": 0.000152,
+            "ok": false
+          }
+        }
+      },
+      "1": {
+        "ok": false,
+        "n_regimes_ok": 0,
+        "per_regime": {
+          "balanced": {
+            "treatment": 0.434666,
+            "control": 0.423787,
+            "diff_ctrl_minus_trt": -0.010879,
+            "ok": false
+          },
+          "scarce": {
+            "treatment": 0.497427,
+            "control": 0.474682,
+            "diff_ctrl_minus_trt": -0.022746,
+            "ok": false
+          },
+          "overabundant": {
+            "treatment": 0.421758,
+            "control": 0.421758,
+            "diff_ctrl_minus_trt": 0.0,
+            "ok": false
+          }
+        }
+      },
+      "2": {
+        "ok": false,
+        "n_regimes_ok": 0,
+        "per_regime": {
+          "balanced": {
+            "treatment": 0.508287,
+            "control": 0.512779,
+            "diff_ctrl_minus_trt": 0.004493,
+            "ok": false
+          },
+          "overabundant": {
+            "treatment": 0.416081,
+            "control": 0.416081,
+            "diff_ctrl_minus_trt": 0.0,
+            "ok": false
+          }
+        }
+      }
+    }
+  },
+  "P7": {
+    "pass": true,
+    "balanced_persists": true,
+    "regression_match": true,
+    "off_fp": 170,
+    "off_births": 628,
+    "off_deaths": 458,
+    "off_hash_match": true
+  },
+  "F1": {
+    "fires": false
+  },
+  "F2": {
+    "fires": false
+  },
+  "F3": {
+    "fires": false
+  },
+  "F4": {
+    "fires": false
+  },
+  "F5": {
+    "fires": false
+  },
+  "F6": {
+    "fires": false
+  },
+  "senescence_constants": {
+    "enable_senescence": true,
+    "senescence_onset0": 155.0,
+    "senescence_onset_frailty": 0.65,
+    "senescence_rate_frailty": 2.0,
+    "senescence_base": 0.002,
+    "senescence_self_maintenance": 1.5,
+    "senescence_exp": 1.5
+  },
+  "runtime_s": 2.5
+}

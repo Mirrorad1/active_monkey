@@ -1,0 +1,28 @@
+[
+  {
+    "t": 141,
+    "event_type": "death",
+    "creature_id": 23,
+    "parent_id": 11,
+    "generation": 1,
+    "location": 10,
+    "energy": 2.812024,
+    "genotype": {
+      "movement_cost": 0.3871024138443476,
+      "baseline_metabolic_cost": 0.4593202129165813,
+      "energy_capacity": 19.94398493189332,
+      "reproduction_energy_threshold": 17.91063838717799,
+      "aging_cost": 0.013392658506207876,
+      "sensor_precision": 0.8707729754624496,
+      "maturity_age": 6,
+      "exploration_bias": 0.41099735300099316,
+      "learning_rate": 0.25737005424017273
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 137,
+      "complexity": 0.4455974665679383,
+      "offspring_count": 4
+    }
+  }
+]

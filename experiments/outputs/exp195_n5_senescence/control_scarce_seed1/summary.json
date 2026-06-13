@@ -1,0 +1,39 @@
+{
+  "scenario": "scarce",
+  "seed": 1,
+  "horizon": 600,
+  "steps_run": 600,
+  "final_pop": 7,
+  "total_creatures": 79,
+  "births": 79,
+  "deaths": 72,
+  "cause_of_death_tally": {
+    "starvation": 72
+  },
+  "cohort_mortality": 0.911392,
+  "starvation_death_fraction": 1.0,
+  "senescence_death_fraction": 0.0,
+  "max_generation": 5,
+  "reproduction_count": 67,
+  "mean_lifespan": 33.9861,
+  "total_resource": 216.64,
+  "mean_resource": 1.504444,
+  "extinction": false,
+  "explosion": false,
+  "last_gen_trait_means": {
+    "movement_cost": 0.01,
+    "baseline_metabolic_cost": 0.6486890495954527,
+    "energy_capacity": 19.427627976827562,
+    "reproduction_energy_threshold": 19.427627976827562,
+    "reproduction_energy_transfer_fraction": 0.45056598906776796,
+    "reproduction_cost_fraction": 0.13125902602781128,
+    "maturity_age": 8.0,
+    "aging_cost": 0.007427891887026238,
+    "exploration_bias": 0.27430158046390035,
+    "learning_rate": 0.17829161218816653,
+    "memory_length": 7.0,
+    "temperature_tolerance": 0.5442244829164136,
+    "sensor_precision": 0.8902111584994181
+  },
+  "events_hash": "4b67c68fdd86c6373821c8f8137b115fb26d308dbabfa1a64d2a018c665766be"
+}

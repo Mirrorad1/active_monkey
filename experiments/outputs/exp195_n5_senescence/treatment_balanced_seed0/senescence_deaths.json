@@ -1,0 +1,3356 @@
+[
+  {
+    "t": 175,
+    "event_type": "death",
+    "creature_id": 38,
+    "parent_id": 32,
+    "generation": 3,
+    "location": 76,
+    "energy": 14.05039,
+    "genotype": {
+      "movement_cost": 0.31000747204086443,
+      "baseline_metabolic_cost": 0.22317374936020523,
+      "energy_capacity": 22.1879667263039,
+      "reproduction_energy_threshold": 17.46857412663605,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8374998116389276,
+      "maturity_age": 4,
+      "exploration_bias": 0.3655079143389558,
+      "learning_rate": 0.3619193555952778
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 157,
+      "complexity": 0.45758130436738415,
+      "offspring_count": 13
+    }
+  },
+  {
+    "t": 186,
+    "event_type": "death",
+    "creature_id": 30,
+    "parent_id": 13,
+    "generation": 2,
+    "location": 47,
+    "energy": 9.120509,
+    "genotype": {
+      "movement_cost": 0.25482596518543876,
+      "baseline_metabolic_cost": 0.40635435663808883,
+      "energy_capacity": 13.866137940132704,
+      "reproduction_energy_threshold": 13.866137940132704,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.846557125856929,
+      "maturity_age": 4,
+      "exploration_bias": 0.36160696295594624,
+      "learning_rate": 0.3773810103687207
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 174,
+      "complexity": 0.3493447587048226,
+      "offspring_count": 13
+    }
+  },
+  {
+    "t": 198,
+    "event_type": "death",
+    "creature_id": 43,
+    "parent_id": 39,
+    "generation": 3,
+    "location": 24,
+    "energy": 14.473138,
+    "genotype": {
+      "movement_cost": 0.10715772894173399,
+      "baseline_metabolic_cost": 0.429844352305424,
+      "energy_capacity": 19.660454926794678,
+      "reproduction_energy_threshold": 16.513553753158558,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.863832404899341,
+      "maturity_age": 6,
+      "exploration_bias": 0.3948940022054164,
+      "learning_rate": 0.2288358508171322
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 170,
+      "complexity": 0.3862386183185076,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 218,
+    "event_type": "death",
+    "creature_id": 58,
+    "parent_id": 51,
+    "generation": 3,
+    "location": 7,
+    "energy": 3.354561,
+    "genotype": {
+      "movement_cost": 0.34378385162960684,
+      "baseline_metabolic_cost": 0.3592509656063174,
+      "energy_capacity": 14.101336132534838,
+      "reproduction_energy_threshold": 14.101336132534838,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8401187976192008,
+      "maturity_age": 6,
+      "exploration_bias": 0.34051184993170364,
+      "learning_rate": 0.4908364230698169
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 156,
+      "complexity": 0.3467947487122789,
+      "offspring_count": 14
+    }
+  },
+  {
+    "t": 229,
+    "event_type": "death",
+    "creature_id": 69,
+    "parent_id": 38,
+    "generation": 4,
+    "location": 6,
+    "energy": 4.073109,
+    "genotype": {
+      "movement_cost": 0.2260618702581606,
+      "baseline_metabolic_cost": 0.09848010764844214,
+      "energy_capacity": 23.856344714900253,
+      "reproduction_energy_threshold": 13.635865156020797,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8540698809654087,
+      "maturity_age": 4,
+      "exploration_bias": 0.31680893008521094,
+      "learning_rate": 0.37938107511277475
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 133,
+      "complexity": 0.4985302323719118,
+      "offspring_count": 16
+    }
+  },
+  {
+    "t": 237,
+    "event_type": "death",
+    "creature_id": 62,
+    "parent_id": 43,
+    "generation": 4,
+    "location": 76,
+    "energy": 9.235116,
+    "genotype": {
+      "movement_cost": 0.07623333559486742,
+      "baseline_metabolic_cost": 0.35829116998160204,
+      "energy_capacity": 19.55995823920806,
+      "reproduction_energy_threshold": 17.705517510844196,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8695274568990774,
+      "maturity_age": 10,
+      "exploration_bias": 0.40951473192697124,
+      "learning_rate": 0.27119252180070763
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 155,
+      "complexity": 0.42437861904186175,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 248,
+    "event_type": "death",
+    "creature_id": 78,
+    "parent_id": 38,
+    "generation": 4,
+    "location": 98,
+    "energy": 4.300345,
+    "genotype": {
+      "movement_cost": 0.2624669360472369,
+      "baseline_metabolic_cost": 0.35073382321610075,
+      "energy_capacity": 20.783290913224835,
+      "reproduction_energy_threshold": 18.318614957887043,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8619574830334362,
+      "maturity_age": 7,
+      "exploration_bias": 0.2579959627364342,
+      "learning_rate": 0.28496438944088465
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 140,
+      "complexity": 0.4810252722567048,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 257,
+    "event_type": "death",
+    "creature_id": 70,
+    "parent_id": 44,
+    "generation": 4,
+    "location": 2,
+    "energy": 6.042799,
+    "genotype": {
+      "movement_cost": 0.05341108283684398,
+      "baseline_metabolic_cost": 0.3475323467354404,
+      "energy_capacity": 16.121396080815856,
+      "reproduction_energy_threshold": 15.203287599876383,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.7985938982291514,
+      "maturity_age": 4,
+      "exploration_bias": 0.41642294413590725,
+      "learning_rate": 0.36478011076978767
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 160,
+      "complexity": 0.35161874912567254,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 261,
+    "event_type": "death",
+    "creature_id": 79,
+    "parent_id": 44,
+    "generation": 4,
+    "location": 101,
+    "energy": 4.400943,
+    "genotype": {
+      "movement_cost": 0.12812760057236883,
+      "baseline_metabolic_cost": 0.28053395673922704,
+      "energy_capacity": 14.740179263675474,
+      "reproduction_energy_threshold": 14.52802290076532,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8622908135466939,
+      "maturity_age": 2,
+      "exploration_bias": 0.4493556781848031,
+      "learning_rate": 0.317310947621342
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 153,
+      "complexity": 0.40139598330396903,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 273,
+    "event_type": "death",
+    "creature_id": 86,
+    "parent_id": 72,
+    "generation": 6,
+    "location": 99,
+    "energy": 12.325629,
+    "genotype": {
+      "movement_cost": 0.07863307556285613,
+      "baseline_metabolic_cost": 0.38935358442751755,
+      "energy_capacity": 22.7712124834907,
+      "reproduction_energy_threshold": 19.73146605703478,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9325674338636832,
+      "maturity_age": 9,
+      "exploration_bias": 0.5122861038964669,
+      "learning_rate": 0.3499222024862836
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 148,
+      "complexity": 0.4726484791786439,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 278,
+    "event_type": "death",
+    "creature_id": 90,
+    "parent_id": 38,
+    "generation": 4,
+    "location": 65,
+    "energy": 6.566269,
+    "genotype": {
+      "movement_cost": 0.2510800822909127,
+      "baseline_metabolic_cost": 0.25368936785616275,
+      "energy_capacity": 22.323811758693378,
+      "reproduction_energy_threshold": 12.878724244103383,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8498863245851263,
+      "maturity_age": 4,
+      "exploration_bias": 0.37282499107823497,
+      "learning_rate": 0.3261564012844959
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 146,
+      "complexity": 0.43175751986578564,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 288,
+    "event_type": "death",
+    "creature_id": 121,
+    "parent_id": 116,
+    "generation": 6,
+    "location": 15,
+    "energy": 4.234229,
+    "genotype": {
+      "movement_cost": 0.07239093407180577,
+      "baseline_metabolic_cost": 0.12582434612840912,
+      "energy_capacity": 27.769480200703136,
+      "reproduction_energy_threshold": 10.046843517280648,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8637878954428265,
+      "maturity_age": 3,
+      "exploration_bias": 0.40460699921142773,
+      "learning_rate": 0.4679032104938986
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 120,
+      "complexity": 0.569082816772161,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 290,
+    "event_type": "death",
+    "creature_id": 101,
+    "parent_id": 38,
+    "generation": 4,
+    "location": 80,
+    "energy": 13.486168,
+    "genotype": {
+      "movement_cost": 0.33250565475231375,
+      "baseline_metabolic_cost": 0.15551184285806133,
+      "energy_capacity": 23.393716297565625,
+      "reproduction_energy_threshold": 18.48870405057211,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8315160365267703,
+      "maturity_age": 7,
+      "exploration_bias": 0.4290625382951939,
+      "learning_rate": 0.30831311266603345
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 146,
+      "complexity": 0.4800674589140445,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 292,
+    "event_type": "death",
+    "creature_id": 87,
+    "parent_id": 38,
+    "generation": 4,
+    "location": 2,
+    "energy": 16.170462,
+    "genotype": {
+      "movement_cost": 0.2186119601589554,
+      "baseline_metabolic_cost": 0.10455579426060008,
+      "energy_capacity": 19.059589280172368,
+      "reproduction_energy_threshold": 18.806645718571513,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8762264479665118,
+      "maturity_age": 3,
+      "exploration_bias": 0.2885493867642021,
+      "learning_rate": 0.3676240428266046
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 164,
+      "complexity": 0.46022589565146593,
+      "offspring_count": 6
+    }
+  },
+  {
+    "t": 299,
+    "event_type": "death",
+    "creature_id": 108,
+    "parent_id": 86,
+    "generation": 7,
+    "location": 51,
+    "energy": 12.159658,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.04805856056208768,
+      "energy_capacity": 22.15235310771528,
+      "reproduction_energy_threshold": 21.465592560685465,
+      "aging_cost": 0.007924708934117498,
+      "sensor_precision": 0.9218082507624624,
+      "maturity_age": 9,
+      "exploration_bias": 0.5260480747841493,
+      "learning_rate": 0.3256402393331799
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 145,
+      "complexity": 0.5310669855167256,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 300,
+    "event_type": "death",
+    "creature_id": 110,
+    "parent_id": 66,
+    "generation": 5,
+    "location": 18,
+    "energy": 8.603066,
+    "genotype": {
+      "movement_cost": 0.379102200914943,
+      "baseline_metabolic_cost": 0.04005338027501113,
+      "energy_capacity": 23.08046429517956,
+      "reproduction_energy_threshold": 16.371981207332375,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.836249744785155,
+      "maturity_age": 2,
+      "exploration_bias": 0.37987789252641246,
+      "learning_rate": 0.45570616912126194
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 143,
+      "complexity": 0.4809028792167746,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 301,
+    "event_type": "death",
+    "creature_id": 116,
+    "parent_id": 69,
+    "generation": 5,
+    "location": 13,
+    "energy": 4.142546,
+    "genotype": {
+      "movement_cost": 0.018855773940247955,
+      "baseline_metabolic_cost": 0.04618261556039694,
+      "energy_capacity": 26.584312832402116,
+      "reproduction_energy_threshold": 9.964380358711301,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8636853040772969,
+      "maturity_age": 3,
+      "exploration_bias": 0.277221282296223,
+      "learning_rate": 0.4217036504194901
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 136,
+      "complexity": 0.5426915453363813,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 333,
+    "event_type": "death",
+    "creature_id": 149,
+    "parent_id": 116,
+    "generation": 6,
+    "location": 132,
+    "energy": 6.539209,
+    "genotype": {
+      "movement_cost": 0.12486723444552554,
+      "baseline_metabolic_cost": 0.02264907253543952,
+      "energy_capacity": 26.093915937475163,
+      "reproduction_energy_threshold": 9.70100939426032,
+      "aging_cost": 0.0047236534911400604,
+      "sensor_precision": 0.9041497055197588,
+      "maturity_age": 3,
+      "exploration_bias": 0.2533612272964916,
+      "learning_rate": 0.4134557841049377
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 122,
+      "complexity": 0.5835791030217604,
+      "offspring_count": 8
+    }
+  },
+  {
+    "t": 334,
+    "event_type": "death",
+    "creature_id": 137,
+    "parent_id": 127,
+    "generation": 6,
+    "location": 75,
+    "energy": 5.257088,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.09268732454128809,
+      "energy_capacity": 25.98281769555879,
+      "reproduction_energy_threshold": 13.054737878225792,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8645472435281334,
+      "maturity_age": 6,
+      "exploration_bias": 0.25831094022927165,
+      "learning_rate": 0.3334402438418009
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 139,
+      "complexity": 0.4510913538591521,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 337,
+    "event_type": "death",
+    "creature_id": 142,
+    "parent_id": 69,
+    "generation": 5,
+    "location": 79,
+    "energy": 4.666495,
+    "genotype": {
+      "movement_cost": 0.03380689546043805,
+      "baseline_metabolic_cost": 0.08623569162904994,
+      "energy_capacity": 22.474026122639415,
+      "reproduction_energy_threshold": 11.569105081298021,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8667194819450948,
+      "maturity_age": 2,
+      "exploration_bias": 0.24120330839181725,
+      "learning_rate": 0.3883945275565481
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 133,
+      "complexity": 0.4967239027119927,
+      "offspring_count": 8
+    }
+  },
+  {
+    "t": 340,
+    "event_type": "death",
+    "creature_id": 128,
+    "parent_id": 62,
+    "generation": 5,
+    "location": 40,
+    "energy": 9.292983,
+    "genotype": {
+      "movement_cost": 0.06801247334316526,
+      "baseline_metabolic_cost": 0.31873204658788706,
+      "energy_capacity": 18.113314946816804,
+      "reproduction_energy_threshold": 18.113314946816804,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8218357534864634,
+      "maturity_age": 11,
+      "exploration_bias": 0.3585094920800473,
+      "learning_rate": 0.2590907283487674
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 163,
+      "complexity": 0.3643244142110611,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 340,
+    "event_type": "death",
+    "creature_id": 144,
+    "parent_id": 141,
+    "generation": 6,
+    "location": 6,
+    "energy": 4.222066,
+    "genotype": {
+      "movement_cost": 0.3131427434508609,
+      "baseline_metabolic_cost": 0.0925870112248052,
+      "energy_capacity": 21.834851018087726,
+      "reproduction_energy_threshold": 16.173352681952874,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8494758290759493,
+      "maturity_age": 4,
+      "exploration_bias": 0.2870058631544901,
+      "learning_rate": 0.31210553370917143
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 134,
+      "complexity": 0.48049350372847566,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 343,
+    "event_type": "death",
+    "creature_id": 141,
+    "parent_id": 69,
+    "generation": 5,
+    "location": 71,
+    "energy": 4.356771,
+    "genotype": {
+      "movement_cost": 0.28210104511549566,
+      "baseline_metabolic_cost": 0.010089884245734773,
+      "energy_capacity": 22.883855381305796,
+      "reproduction_energy_threshold": 15.191421852965114,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8514063667498448,
+      "maturity_age": 3,
+      "exploration_bias": 0.32123938871074564,
+      "learning_rate": 0.27876297924082954
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 140,
+      "complexity": 0.48955093153491025,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 358,
+    "event_type": "death",
+    "creature_id": 145,
+    "parent_id": 69,
+    "generation": 5,
+    "location": 9,
+    "energy": 15.540362,
+    "genotype": {
+      "movement_cost": 0.1857273717319306,
+      "baseline_metabolic_cost": 0.08034690000806902,
+      "energy_capacity": 25.637113918428557,
+      "reproduction_energy_threshold": 12.620900534958162,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8372783774139599,
+      "maturity_age": 5,
+      "exploration_bias": 0.34850624851873835,
+      "learning_rate": 0.3455539320475363
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 151,
+      "complexity": 0.48298292001092163,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 365,
+    "event_type": "death",
+    "creature_id": 134,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 107,
+    "energy": 15.286295,
+    "genotype": {
+      "movement_cost": 0.019517719314771975,
+      "baseline_metabolic_cost": 0.26681952615452204,
+      "energy_capacity": 15.28629489392631,
+      "reproduction_energy_threshold": 13.364787558117637,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8629783733630992,
+      "maturity_age": 2,
+      "exploration_bias": 0.4978022690104932,
+      "learning_rate": 0.3564350362637518
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 177,
+      "complexity": 0.4058996574797269,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 366,
+    "event_type": "death",
+    "creature_id": 162,
+    "parent_id": 137,
+    "generation": 7,
+    "location": 71,
+    "energy": 6.223433,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.012835414043113058,
+      "energy_capacity": 28.690830483783138,
+      "reproduction_energy_threshold": 14.635910522924682,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8317128951083823,
+      "maturity_age": 3,
+      "exploration_bias": 0.23714135366084316,
+      "learning_rate": 0.3231920006246041
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 140,
+      "complexity": 0.4492611422328318,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 367,
+    "event_type": "death",
+    "creature_id": 166,
+    "parent_id": 160,
+    "generation": 7,
+    "location": 38,
+    "energy": 7.601684,
+    "genotype": {
+      "movement_cost": 0.0897609467845664,
+      "baseline_metabolic_cost": 0.01977590105391404,
+      "energy_capacity": 29.414713816320422,
+      "reproduction_energy_threshold": 15.901742890544954,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8231648875712898,
+      "maturity_age": 6,
+      "exploration_bias": 0.3526017129913828,
+      "learning_rate": 0.3222462476416329
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 138,
+      "complexity": 0.4489245693009722,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 369,
+    "event_type": "death",
+    "creature_id": 155,
+    "parent_id": 87,
+    "generation": 5,
+    "location": 108,
+    "energy": 5.090448,
+    "genotype": {
+      "movement_cost": 0.3140487918242696,
+      "baseline_metabolic_cost": 0.06338302007757939,
+      "energy_capacity": 16.029732084175865,
+      "reproduction_energy_threshold": 16.029732084175865,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8818924487440579,
+      "maturity_age": 3,
+      "exploration_bias": 0.20060780610943496,
+      "learning_rate": 0.38999789189919004
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 151,
+      "complexity": 0.4240159832170294,
+      "offspring_count": 11
+    }
+  },
+  {
+    "t": 370,
+    "event_type": "death",
+    "creature_id": 165,
+    "parent_id": 108,
+    "generation": 8,
+    "location": 108,
+    "energy": 15.691824,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.10013769926954352,
+      "energy_capacity": 26.437218899517347,
+      "reproduction_energy_threshold": 23.31211073147526,
+      "aging_cost": 0.0025088286054305124,
+      "sensor_precision": 0.8999133328633369,
+      "maturity_age": 12,
+      "exploration_bias": 0.553130984029355,
+      "learning_rate": 0.27380192209937126
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 141,
+      "complexity": 0.5482101201899164,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 371,
+    "event_type": "death",
+    "creature_id": 160,
+    "parent_id": 145,
+    "generation": 6,
+    "location": 37,
+    "energy": 18.089455,
+    "genotype": {
+      "movement_cost": 0.10218875298217735,
+      "baseline_metabolic_cost": 0.011799597381600746,
+      "energy_capacity": 30.501995116395868,
+      "reproduction_energy_threshold": 12.880100487704173,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8545852810714264,
+      "maturity_age": 4,
+      "exploration_bias": 0.41143224495007746,
+      "learning_rate": 0.2446613570470447
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 146,
+      "complexity": 0.5130131531554233,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 373,
+    "event_type": "death",
+    "creature_id": 161,
+    "parent_id": 69,
+    "generation": 5,
+    "location": 5,
+    "energy": 10.564781,
+    "genotype": {
+      "movement_cost": 0.15518778955596288,
+      "baseline_metabolic_cost": 0.1576920769894298,
+      "energy_capacity": 21.070425257931255,
+      "reproduction_energy_threshold": 13.384185455696864,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8576782287104261,
+      "maturity_age": 3,
+      "exploration_bias": 0.38923192915977306,
+      "learning_rate": 0.3087669273602646
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 147,
+      "complexity": 0.4802993571132641,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 373,
+    "event_type": "death",
+    "creature_id": 167,
+    "parent_id": 87,
+    "generation": 5,
+    "location": 112,
+    "energy": 9.158313,
+    "genotype": {
+      "movement_cost": 0.2649654602037791,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 20.309076758224556,
+      "reproduction_energy_threshold": 20.309076758224556,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9427327128803278,
+      "maturity_age": 2,
+      "exploration_bias": 0.3161691468797118,
+      "learning_rate": 0.3603173000462305
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 142,
+      "complexity": 0.47873114909615094,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 379,
+    "event_type": "death",
+    "creature_id": 173,
+    "parent_id": 116,
+    "generation": 6,
+    "location": 33,
+    "energy": 4.129981,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.10642321198299348,
+      "energy_capacity": 26.254189708590765,
+      "reproduction_energy_threshold": 14.250859806993589,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8624868540370991,
+      "maturity_age": 3,
+      "exploration_bias": 0.24598288994797401,
+      "learning_rate": 0.418070684908037
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 133,
+      "complexity": 0.5394472221702394,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 380,
+    "event_type": "death",
+    "creature_id": 158,
+    "parent_id": 87,
+    "generation": 5,
+    "location": 121,
+    "energy": 14.606142,
+    "genotype": {
+      "movement_cost": 0.11624471383977812,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 18.531167568923895,
+      "reproduction_energy_threshold": 17.3917267842844,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8669758605116176,
+      "maturity_age": 1,
+      "exploration_bias": 0.3327486006634937,
+      "learning_rate": 0.3686963651844298
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 159,
+      "complexity": 0.43260074280094346,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 385,
+    "event_type": "death",
+    "creature_id": 139,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 42,
+    "energy": 11.383465,
+    "genotype": {
+      "movement_cost": 0.07853297640969435,
+      "baseline_metabolic_cost": 0.1623771157667264,
+      "energy_capacity": 11.424375171453693,
+      "reproduction_energy_threshold": 11.424375171453693,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8426261910010061,
+      "maturity_age": 2,
+      "exploration_bias": 0.4397441287333321,
+      "learning_rate": 0.38263844813547215
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 183,
+      "complexity": 0.36372472314594173,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 386,
+    "event_type": "death",
+    "creature_id": 179,
+    "parent_id": 116,
+    "generation": 6,
+    "location": 21,
+    "energy": 4.908967,
+    "genotype": {
+      "movement_cost": 0.06711280731999117,
+      "baseline_metabolic_cost": 0.12646732648378384,
+      "energy_capacity": 26.7358278782079,
+      "reproduction_energy_threshold": 8.620996282162753,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8296913208951472,
+      "maturity_age": 3,
+      "exploration_bias": 0.28486029381782485,
+      "learning_rate": 0.47500220343915894
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 129,
+      "complexity": 0.5211512235542503,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 393,
+    "event_type": "death",
+    "creature_id": 174,
+    "parent_id": 160,
+    "generation": 7,
+    "location": 44,
+    "energy": 4.122766,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.07877073640303286,
+      "energy_capacity": 29.33920054221504,
+      "reproduction_energy_threshold": 8.062813863405859,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8606612851645608,
+      "maturity_age": 3,
+      "exploration_bias": 0.3727761648550789,
+      "learning_rate": 0.17575916667498542
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 147,
+      "complexity": 0.5084505294087659,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 393,
+    "event_type": "death",
+    "creature_id": 178,
+    "parent_id": 90,
+    "generation": 5,
+    "location": 28,
+    "energy": 0.913172,
+    "genotype": {
+      "movement_cost": 0.05837951306881026,
+      "baseline_metabolic_cost": 0.23174863494632386,
+      "energy_capacity": 22.68787671947643,
+      "reproduction_energy_threshold": 11.565250362021425,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8474609704896693,
+      "maturity_age": 6,
+      "exploration_bias": 0.4023456297090559,
+      "learning_rate": 0.3143790114307205
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 136,
+      "complexity": 0.3802058156753944,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 402,
+    "event_type": "death",
+    "creature_id": 170,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 13,
+    "energy": 8.021723,
+    "genotype": {
+      "movement_cost": 0.14498847514065083,
+      "baseline_metabolic_cost": 0.28753665478968427,
+      "energy_capacity": 16.161724251750037,
+      "reproduction_energy_threshold": 15.256389088444324,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8364481050284784,
+      "maturity_age": 3,
+      "exploration_bias": 0.4380717927701542,
+      "learning_rate": 0.3670050129776028
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 159,
+      "complexity": 0.39469747383311843,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 405,
+    "event_type": "death",
+    "creature_id": 190,
+    "parent_id": 174,
+    "generation": 8,
+    "location": 63,
+    "energy": 5.308509,
+    "genotype": {
+      "movement_cost": 0.027980292671612943,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 29.342233172380634,
+      "reproduction_energy_threshold": 6.619967880972981,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8780145908750271,
+      "maturity_age": 2,
+      "exploration_bias": 0.390902991091278,
+      "learning_rate": 0.1934593175713226
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 135,
+      "complexity": 0.5024980041604399,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 408,
+    "event_type": "death",
+    "creature_id": 175,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 102,
+    "energy": 5.068561,
+    "genotype": {
+      "movement_cost": 0.08494060031820608,
+      "baseline_metabolic_cost": 0.1383760781095657,
+      "energy_capacity": 11.576715824383026,
+      "reproduction_energy_threshold": 11.576715824383026,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8649719867371415,
+      "maturity_age": 1,
+      "exploration_bias": 0.4535007056408066,
+      "learning_rate": 0.2941963079794909
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 160,
+      "complexity": 0.37975036958432334,
+      "offspring_count": 8
+    }
+  },
+  {
+    "t": 408,
+    "event_type": "death",
+    "creature_id": 189,
+    "parent_id": 108,
+    "generation": 8,
+    "location": 113,
+    "energy": 16.050179,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.2134434830949948,
+      "energy_capacity": 25.25454127950038,
+      "reproduction_energy_threshold": 22.501957111085748,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9230694740518199,
+      "maturity_age": 8,
+      "exploration_bias": 0.38951494097351635,
+      "learning_rate": 0.35600950010446164
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 138,
+      "complexity": 0.5548869726858164,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 413,
+    "event_type": "death",
+    "creature_id": 188,
+    "parent_id": 142,
+    "generation": 6,
+    "location": 74,
+    "energy": 8.316591,
+    "genotype": {
+      "movement_cost": 0.01725700501931333,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 19.665385181668633,
+      "reproduction_energy_threshold": 10.037922114865264,
+      "aging_cost": 0.0020101761819104782,
+      "sensor_precision": 0.8661625219002048,
+      "maturity_age": 6,
+      "exploration_bias": 0.2564273810387857,
+      "learning_rate": 0.33124760150119203
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 144,
+      "complexity": 0.4755478483045046,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 414,
+    "event_type": "death",
+    "creature_id": 181,
+    "parent_id": 164,
+    "generation": 6,
+    "location": 50,
+    "energy": 5.084632,
+    "genotype": {
+      "movement_cost": 0.13610410940880335,
+      "baseline_metabolic_cost": 0.1652897226576328,
+      "energy_capacity": 20.262702345057118,
+      "reproduction_energy_threshold": 20.262702345057118,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8923233251536536,
+      "maturity_age": 6,
+      "exploration_bias": 0.3244677495084528,
+      "learning_rate": 0.515872593824356
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 155,
+      "complexity": 0.5325006746857048,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 416,
+    "event_type": "death",
+    "creature_id": 177,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 67,
+    "energy": 4.612521,
+    "genotype": {
+      "movement_cost": 0.244515108819339,
+      "baseline_metabolic_cost": 0.12318700777034086,
+      "energy_capacity": 15.13303825779952,
+      "reproduction_energy_threshold": 15.13303825779952,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8787047239891871,
+      "maturity_age": 4,
+      "exploration_bias": 0.4142380852659052,
+      "learning_rate": 0.2912663227370261
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 160,
+      "complexity": 0.41524865688877227,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 419,
+    "event_type": "death",
+    "creature_id": 186,
+    "parent_id": 165,
+    "generation": 9,
+    "location": 31,
+    "energy": 22.957704,
+    "genotype": {
+      "movement_cost": 0.0334025563103555,
+      "baseline_metabolic_cost": 0.2205595156580113,
+      "energy_capacity": 24.053513574409358,
+      "reproduction_energy_threshold": 24.053513574409358,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8573618829118621,
+      "maturity_age": 13,
+      "exploration_bias": 0.5063396817500818,
+      "learning_rate": 0.34727010407088943
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 156,
+      "complexity": 0.5372731297048975,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 421,
+    "event_type": "death",
+    "creature_id": 193,
+    "parent_id": 108,
+    "generation": 8,
+    "location": 18,
+    "energy": 10.980742,
+    "genotype": {
+      "movement_cost": 0.09069847416149025,
+      "baseline_metabolic_cost": 0.04736172678241384,
+      "energy_capacity": 21.21514002164326,
+      "reproduction_energy_threshold": 21.21514002164326,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9109450186927803,
+      "maturity_age": 9,
+      "exploration_bias": 0.5085117594334642,
+      "learning_rate": 0.34918407422723485
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 143,
+      "complexity": 0.5168825116475152,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 423,
+    "event_type": "death",
+    "creature_id": 182,
+    "parent_id": 79,
+    "generation": 5,
+    "location": 58,
+    "energy": 4.717645,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.1633252642342854,
+      "energy_capacity": 13.420718413327016,
+      "reproduction_energy_threshold": 11.72987543695917,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8358691771190732,
+      "maturity_age": 4,
+      "exploration_bias": 0.4560448305503021,
+      "learning_rate": 0.3542561939546858
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 162,
+      "complexity": 0.35646391529311044,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 425,
+    "event_type": "death",
+    "creature_id": 211,
+    "parent_id": 116,
+    "generation": 6,
+    "location": 38,
+    "energy": 6.121286,
+    "genotype": {
+      "movement_cost": 0.028198060208520552,
+      "baseline_metabolic_cost": 0.06570876998923589,
+      "energy_capacity": 27.97454193006016,
+      "reproduction_energy_threshold": 6.941131169429664,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8797725556378132,
+      "maturity_age": 6,
+      "exploration_bias": 0.3652468573949044,
+      "learning_rate": 0.48328500725217743
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 125,
+      "complexity": 0.5461705133769216,
+      "offspring_count": 6
+    }
+  },
+  {
+    "t": 430,
+    "event_type": "death",
+    "creature_id": 203,
+    "parent_id": 181,
+    "generation": 7,
+    "location": 123,
+    "energy": 6.399621,
+    "genotype": {
+      "movement_cost": 0.16129421776859587,
+      "baseline_metabolic_cost": 0.06342455165296594,
+      "energy_capacity": 22.8139791566836,
+      "reproduction_energy_threshold": 22.8139791566836,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8965336997074118,
+      "maturity_age": 6,
+      "exploration_bias": 0.3876832368140818,
+      "learning_rate": 0.507758269618467
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 139,
+      "complexity": 0.5542059378076657,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 431,
+    "event_type": "death",
+    "creature_id": 209,
+    "parent_id": 162,
+    "generation": 8,
+    "location": 83,
+    "energy": 10.394535,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.07359572386664266,
+      "energy_capacity": 29.934220702253032,
+      "reproduction_energy_threshold": 19.99044564316808,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.858781251936215,
+      "maturity_age": 1,
+      "exploration_bias": 0.17064577306387307,
+      "learning_rate": 0.3373673849995101
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 137,
+      "complexity": 0.5116047306642243,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 436,
+    "event_type": "death",
+    "creature_id": 208,
+    "parent_id": 142,
+    "generation": 6,
+    "location": 72,
+    "energy": 4.106738,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.0901794489659394,
+      "energy_capacity": 22.320306355982375,
+      "reproduction_energy_threshold": 12.345179477102803,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8605569924032773,
+      "maturity_age": 3,
+      "exploration_bias": 0.24997950225800505,
+      "learning_rate": 0.39279151433347853
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 142,
+      "complexity": 0.5090207710617034,
+      "offspring_count": 6
+    }
+  },
+  {
+    "t": 441,
+    "event_type": "death",
+    "creature_id": 201,
+    "parent_id": 145,
+    "generation": 6,
+    "location": 20,
+    "energy": 17.94137,
+    "genotype": {
+      "movement_cost": 0.15055626082972237,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 24.759792980396643,
+      "reproduction_energy_threshold": 13.762981190493898,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8653341707770187,
+      "maturity_age": 3,
+      "exploration_bias": 0.34766699140220836,
+      "learning_rate": 0.36671990888021905
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 152,
+      "complexity": 0.4951881086379097,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 445,
+    "event_type": "death",
+    "creature_id": 218,
+    "parent_id": 190,
+    "generation": 9,
+    "location": 88,
+    "energy": 9.722287,
+    "genotype": {
+      "movement_cost": 0.017389080702812705,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 29.8725334910861,
+      "reproduction_energy_threshold": 5.765407190573531,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8585711813226972,
+      "maturity_age": 3,
+      "exploration_bias": 0.33856406468323347,
+      "learning_rate": 0.17883589910976225
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 133,
+      "complexity": 0.4934638816344827,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 447,
+    "event_type": "death",
+    "creature_id": 207,
+    "parent_id": 141,
+    "generation": 6,
+    "location": 77,
+    "energy": 4.532861,
+    "genotype": {
+      "movement_cost": 0.24015939614400403,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 19.140471828453947,
+      "reproduction_energy_threshold": 13.591409699810379,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8687098432037301,
+      "maturity_age": 2,
+      "exploration_bias": 0.3010660992265373,
+      "learning_rate": 0.19956169346166194
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 153,
+      "complexity": 0.47335781544600525,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 449,
+    "event_type": "death",
+    "creature_id": 243,
+    "parent_id": 149,
+    "generation": 7,
+    "location": 110,
+    "energy": 6.922561,
+    "genotype": {
+      "movement_cost": 0.02654243673517731,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 28.86367397253204,
+      "reproduction_energy_threshold": 11.873295431448849,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9085997679822568,
+      "maturity_age": 3,
+      "exploration_bias": 0.26706126308767664,
+      "learning_rate": 0.373788633252754
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 118,
+      "complexity": 0.6070625375156989,
+      "offspring_count": 10
+    }
+  },
+  {
+    "t": 450,
+    "event_type": "death",
+    "creature_id": 225,
+    "parent_id": 149,
+    "generation": 7,
+    "location": 49,
+    "energy": 11.969704,
+    "genotype": {
+      "movement_cost": 0.09585991728370723,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 24.017625588238104,
+      "reproduction_energy_threshold": 8.551729355204907,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.923955814481388,
+      "maturity_age": 2,
+      "exploration_bias": 0.24219690810846184,
+      "learning_rate": 0.3502256536599939
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 131,
+      "complexity": 0.5989471067991023,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 457,
+    "event_type": "death",
+    "creature_id": 235,
+    "parent_id": 149,
+    "generation": 7,
+    "location": 69,
+    "energy": 11.708126,
+    "genotype": {
+      "movement_cost": 0.2230809817267444,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 25.98247618666256,
+      "reproduction_energy_threshold": 10.68974188634079,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8909411113909866,
+      "maturity_age": 6,
+      "exploration_bias": 0.2483361631680786,
+      "learning_rate": 0.4250468270991739
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 131,
+      "complexity": 0.5739478939669301,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 459,
+    "event_type": "death",
+    "creature_id": 245,
+    "parent_id": 149,
+    "generation": 7,
+    "location": 15,
+    "energy": 4.250515,
+    "genotype": {
+      "movement_cost": 0.07485732525721606,
+      "baseline_metabolic_cost": 0.012032286210487486,
+      "energy_capacity": 27.996203577696523,
+      "reproduction_energy_threshold": 10.066803348041752,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8786015260473541,
+      "maturity_age": 2,
+      "exploration_bias": 0.20193657329896103,
+      "learning_rate": 0.3295283474978946
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 126,
+      "complexity": 0.5806380029306859,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 460,
+    "event_type": "death",
+    "creature_id": 252,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 75,
+    "energy": 10.605495,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.08794771227743185,
+      "energy_capacity": 28.13319405487877,
+      "reproduction_energy_threshold": 13.287358284506233,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9133975832265059,
+      "maturity_age": 4,
+      "exploration_bias": 0.2785444421569414,
+      "learning_rate": 0.38208847260709705
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 123,
+      "complexity": 0.6223939783080006,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 461,
+    "event_type": "death",
+    "creature_id": 221,
+    "parent_id": 160,
+    "generation": 7,
+    "location": 38,
+    "energy": 13.580587,
+    "genotype": {
+      "movement_cost": 0.12961757631727944,
+      "baseline_metabolic_cost": 0.07262443839083084,
+      "energy_capacity": 27.73116989972968,
+      "reproduction_energy_threshold": 12.923471794158596,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8378609993653235,
+      "maturity_age": 3,
+      "exploration_bias": 0.32598622838544994,
+      "learning_rate": 0.26288883679839065
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 147,
+      "complexity": 0.481339000783457,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 462,
+    "event_type": "death",
+    "creature_id": 230,
+    "parent_id": 142,
+    "generation": 6,
+    "location": 12,
+    "energy": 8.482291,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.1312798156472576,
+      "energy_capacity": 21.676943680271453,
+      "reproduction_energy_threshold": 11.928249823626787,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8686633197639072,
+      "maturity_age": 3,
+      "exploration_bias": 0.37372787066683044,
+      "learning_rate": 0.45143038628762494
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 138,
+      "complexity": 0.5096593398524129,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 464,
+    "event_type": "death",
+    "creature_id": 253,
+    "parent_id": 211,
+    "generation": 7,
+    "location": 121,
+    "energy": 8.308141,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.1399327663857346,
+      "energy_capacity": 26.653079213325988,
+      "reproduction_energy_threshold": 8.238564318406507,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9042273552947742,
+      "maturity_age": 7,
+      "exploration_bias": 0.32057287835711135,
+      "learning_rate": 0.5453585325961814
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 125,
+      "complexity": 0.5702289600808021,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 465,
+    "event_type": "death",
+    "creature_id": 223,
+    "parent_id": 137,
+    "generation": 7,
+    "location": 97,
+    "energy": 4.943136,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.15931845514879062,
+      "energy_capacity": 29.121140413969286,
+      "reproduction_energy_threshold": 14.382840144331261,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8761276344296277,
+      "maturity_age": 6,
+      "exploration_bias": 0.3186860671818803,
+      "learning_rate": 0.2580801168385497
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 148,
+      "complexity": 0.4645145897622143,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 465,
+    "event_type": "death",
+    "creature_id": 228,
+    "parent_id": 167,
+    "generation": 6,
+    "location": 34,
+    "energy": 9.799795,
+    "genotype": {
+      "movement_cost": 0.2652243077353446,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.751923038001376,
+      "reproduction_energy_threshold": 21.38783573317344,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9103207014332722,
+      "maturity_age": 2,
+      "exploration_bias": 0.2754470319618339,
+      "learning_rate": 0.321983869175106
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 144,
+      "complexity": 0.4853547513344723,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 470,
+    "event_type": "death",
+    "creature_id": 234,
+    "parent_id": 204,
+    "generation": 7,
+    "location": 47,
+    "energy": 4.046776,
+    "genotype": {
+      "movement_cost": 0.0695812411552383,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.18088756487721,
+      "reproduction_energy_threshold": 17.342408898472584,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8304105204104495,
+      "maturity_age": 1,
+      "exploration_bias": 0.25851634883445507,
+      "learning_rate": 0.3609332291278655
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 145,
+      "complexity": 0.5506584224696045,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 472,
+    "event_type": "death",
+    "creature_id": 217,
+    "parent_id": 167,
+    "generation": 6,
+    "location": 17,
+    "energy": 18.520694,
+    "genotype": {
+      "movement_cost": 0.18351136692132455,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 22.641049838810304,
+      "reproduction_energy_threshold": 19.01465000982888,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.935482177920001,
+      "maturity_age": 1,
+      "exploration_bias": 0.353148374274001,
+      "learning_rate": 0.3072913487719957
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 160,
+      "complexity": 0.4736274741444824,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 474,
+    "event_type": "death",
+    "creature_id": 220,
+    "parent_id": 155,
+    "generation": 6,
+    "location": 32,
+    "energy": 4.559637,
+    "genotype": {
+      "movement_cost": 0.11956163131031639,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 16.760388279124772,
+      "reproduction_energy_threshold": 16.760388279124772,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8574097752812992,
+      "maturity_age": 4,
+      "exploration_bias": 0.2521418166783167,
+      "learning_rate": 0.4460127063346625
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 161,
+      "complexity": 0.4131064690192563,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 477,
+    "event_type": "death",
+    "creature_id": 227,
+    "parent_id": 162,
+    "generation": 8,
+    "location": 96,
+    "energy": 12.706641,
+    "genotype": {
+      "movement_cost": 0.025090842282806426,
+      "baseline_metabolic_cost": 0.1661911010801514,
+      "energy_capacity": 24.212356500670985,
+      "reproduction_energy_threshold": 13.769062696421969,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8302196596889629,
+      "maturity_age": 6,
+      "exploration_bias": 0.2073217364306456,
+      "learning_rate": 0.31764267004416324
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 156,
+      "complexity": 0.4150917705968325,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 477,
+    "event_type": "death",
+    "creature_id": 238,
+    "parent_id": 236,
+    "generation": 7,
+    "location": 51,
+    "energy": 4.902625,
+    "genotype": {
+      "movement_cost": 0.2787132249818195,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 15.377416103554634,
+      "reproduction_energy_threshold": 15.377416103554634,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8620574889733564,
+      "maturity_age": 3,
+      "exploration_bias": 0.18082541518739115,
+      "learning_rate": 0.3603054247566838
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 149,
+      "complexity": 0.40596070647640453,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 480,
+    "event_type": "death",
+    "creature_id": 263,
+    "parent_id": 218,
+    "generation": 10,
+    "location": 30,
+    "energy": 1.297237,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 26.302161480222562,
+      "reproduction_energy_threshold": 7.96272030410453,
+      "aging_cost": 0.0034589792756458586,
+      "sensor_precision": 0.8713009351811097,
+      "maturity_age": 3,
+      "exploration_bias": 0.32468466495312875,
+      "learning_rate": 0.21746883892887403
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 128,
+      "complexity": 0.47550318412628706,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 481,
+    "event_type": "death",
+    "creature_id": 249,
+    "parent_id": 162,
+    "generation": 8,
+    "location": 28,
+    "energy": 10.580686,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 24.437680344703516,
+      "reproduction_energy_threshold": 15.399332330616277,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8353876131141107,
+      "maturity_age": 3,
+      "exploration_bias": 0.17860350287112944,
+      "learning_rate": 0.34204248754608796
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 146,
+      "complexity": 0.45529385768986197,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 486,
+    "event_type": "death",
+    "creature_id": 277,
+    "parent_id": 245,
+    "generation": 8,
+    "location": 85,
+    "energy": 5.046199,
+    "genotype": {
+      "movement_cost": 0.0800766377782825,
+      "baseline_metabolic_cost": 0.04068080966522411,
+      "energy_capacity": 29.387941545689877,
+      "reproduction_energy_threshold": 8.490065696269617,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9118787971670488,
+      "maturity_age": 1,
+      "exploration_bias": 0.17463486206959186,
+      "learning_rate": 0.3649930285048758
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 119,
+      "complexity": 0.595588160827977,
+      "offspring_count": 9
+    }
+  },
+  {
+    "t": 487,
+    "event_type": "death",
+    "creature_id": 265,
+    "parent_id": 208,
+    "generation": 7,
+    "location": 51,
+    "energy": 4.775566,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.03985895749010354,
+      "energy_capacity": 22.211317778848766,
+      "reproduction_energy_threshold": 18.432151789131602,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8893647802060367,
+      "maturity_age": 3,
+      "exploration_bias": 0.2718480574142388,
+      "learning_rate": 0.5209335437449791
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 132,
+      "complexity": 0.5098747804875047,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 488,
+    "event_type": "death",
+    "creature_id": 213,
+    "parent_id": 175,
+    "generation": 6,
+    "location": 50,
+    "energy": 11.205549,
+    "genotype": {
+      "movement_cost": 0.09538467758008365,
+      "baseline_metabolic_cost": 0.021785359189740894,
+      "energy_capacity": 11.205549186578626,
+      "reproduction_energy_threshold": 11.205549186578626,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8754729089095424,
+      "maturity_age": 3,
+      "exploration_bias": 0.4909809573107674,
+      "learning_rate": 0.24403255818623362
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 180,
+      "complexity": 0.38400160186366916,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 497,
+    "event_type": "death",
+    "creature_id": 288,
+    "parent_id": 259,
+    "generation": 10,
+    "location": 16,
+    "energy": 4.015913,
+    "genotype": {
+      "movement_cost": 0.15619933110165005,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 20.970513707208653,
+      "reproduction_energy_threshold": 4.275204356549372,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9667500023212707,
+      "maturity_age": 1,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.3602388705605165
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 119,
+      "complexity": 0.6049053662402875,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 499,
+    "event_type": "death",
+    "creature_id": 269,
+    "parent_id": 240,
+    "generation": 8,
+    "location": 89,
+    "energy": 14.382521,
+    "genotype": {
+      "movement_cost": 0.09676238485320737,
+      "baseline_metabolic_cost": 0.058937471843800236,
+      "energy_capacity": 25.260302649185665,
+      "reproduction_energy_threshold": 3.8965008995005808,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8839093069309124,
+      "maturity_age": 1,
+      "exploration_bias": 0.236594355129556,
+      "learning_rate": 0.4821831727524416
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 141,
+      "complexity": 0.5463667310668179,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 500,
+    "event_type": "death",
+    "creature_id": 233,
+    "parent_id": 158,
+    "generation": 6,
+    "location": 74,
+    "energy": 16.736096,
+    "genotype": {
+      "movement_cost": 0.20068134019698608,
+      "baseline_metabolic_cost": 0.05371408229192733,
+      "energy_capacity": 16.79049127139751,
+      "reproduction_energy_threshold": 13.349589287802784,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8840878543134627,
+      "maturity_age": 1,
+      "exploration_bias": 0.3305798258198788,
+      "learning_rate": 0.3414262206440155
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 175,
+      "complexity": 0.413570980519522,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 500,
+    "event_type": "death",
+    "creature_id": 267,
+    "parent_id": 222,
+    "generation": 7,
+    "location": 100,
+    "energy": 6.666646,
+    "genotype": {
+      "movement_cost": 0.18771745788162658,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 23.58309840557938,
+      "reproduction_energy_threshold": 17.923792282593887,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8149983074340017,
+      "maturity_age": 3,
+      "exploration_bias": 0.23789338428734336,
+      "learning_rate": 0.4715453339324345
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 144,
+      "complexity": 0.41782689100122855,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 501,
+    "event_type": "death",
+    "creature_id": 271,
+    "parent_id": 240,
+    "generation": 8,
+    "location": 25,
+    "energy": 13.190124,
+    "genotype": {
+      "movement_cost": 0.06598505221149793,
+      "baseline_metabolic_cost": 0.07843239926220487,
+      "energy_capacity": 25.97075889711363,
+      "reproduction_energy_threshold": 5.936398246797237,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.881556140448973,
+      "maturity_age": 1,
+      "exploration_bias": 0.2960498386843644,
+      "learning_rate": 0.3347013168306366
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 141,
+      "complexity": 0.5325167326366093,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 502,
+    "event_type": "death",
+    "creature_id": 280,
+    "parent_id": 225,
+    "generation": 8,
+    "location": 82,
+    "energy": 5.95282,
+    "genotype": {
+      "movement_cost": 0.14787667616440875,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 26.161853702626857,
+      "reproduction_energy_threshold": 6.827349814944927,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.882978713494144,
+      "maturity_age": 3,
+      "exploration_bias": 0.22404225785131365,
+      "learning_rate": 0.2774275227616679
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 131,
+      "complexity": 0.5699683510428446,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 504,
+    "event_type": "death",
+    "creature_id": 302,
+    "parent_id": 252,
+    "generation": 9,
+    "location": 65,
+    "energy": 5.731909,
+    "genotype": {
+      "movement_cost": 0.05494458094549554,
+      "baseline_metabolic_cost": 0.09529769355626616,
+      "energy_capacity": 29.798205298962383,
+      "reproduction_energy_threshold": 16.59352396978881,
+      "aging_cost": 0.0022618558334047633,
+      "sensor_precision": 0.9286707489996872,
+      "maturity_age": 6,
+      "exploration_bias": 0.23380044669373307,
+      "learning_rate": 0.4039585926148544
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 114,
+      "complexity": 0.6449095054462964,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 507,
+    "event_type": "death",
+    "creature_id": 270,
+    "parent_id": 158,
+    "generation": 6,
+    "location": 108,
+    "energy": 8.68171,
+    "genotype": {
+      "movement_cost": 0.0615962820312897,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.953145270570896,
+      "reproduction_energy_threshold": 21.74864161588328,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8701493685028902,
+      "maturity_age": 1,
+      "exploration_bias": 0.41116155643615776,
+      "learning_rate": 0.3267787194019104
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 148,
+      "complexity": 0.477608257419411,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 507,
+    "event_type": "death",
+    "creature_id": 274,
+    "parent_id": 162,
+    "generation": 8,
+    "location": 39,
+    "energy": 4.511089,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 24.518770269903133,
+      "reproduction_energy_threshold": 11.652449365333709,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8419630963564246,
+      "maturity_age": 1,
+      "exploration_bias": 0.254836416414279,
+      "learning_rate": 0.35346243676562167
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 144,
+      "complexity": 0.4427343196482049,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 510,
+    "event_type": "death",
+    "creature_id": 296,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 49,
+    "energy": 5.535971,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.06976537075623307,
+      "energy_capacity": 23.987091943090576,
+      "reproduction_energy_threshold": 9.786586419384136,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9211229165495318,
+      "maturity_age": 3,
+      "exploration_bias": 0.3421163365502426,
+      "learning_rate": 0.37153444719167206
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 126,
+      "complexity": 0.5442007540812556,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 517,
+    "event_type": "death",
+    "creature_id": 293,
+    "parent_id": 208,
+    "generation": 7,
+    "location": 21,
+    "energy": 4.689141,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.029384167185151258,
+      "energy_capacity": 21.628511114781908,
+      "reproduction_energy_threshold": 14.404870993366904,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9002908979624201,
+      "maturity_age": 3,
+      "exploration_bias": 0.2518347425823781,
+      "learning_rate": 0.4978182861288444
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 134,
+      "complexity": 0.512841772591265,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 517,
+    "event_type": "death",
+    "creature_id": 300,
+    "parent_id": 259,
+    "generation": 10,
+    "location": 6,
+    "energy": 7.221397,
+    "genotype": {
+      "movement_cost": 0.18404200017571715,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 23.71931043917491,
+      "reproduction_energy_threshold": 7.53977192393423,
+      "aging_cost": 0.0003263778610600489,
+      "sensor_precision": 0.9113591599819489,
+      "maturity_age": 3,
+      "exploration_bias": 0.031963624602738744,
+      "learning_rate": 0.36804382236403504
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 128,
+      "complexity": 0.5707957356387742,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 518,
+    "event_type": "death",
+    "creature_id": 308,
+    "parent_id": 271,
+    "generation": 9,
+    "location": 61,
+    "energy": 4.451145,
+    "genotype": {
+      "movement_cost": 0.12788842969753506,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 27.830194350050977,
+      "reproduction_energy_threshold": 10.984221521447747,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8660136134102917,
+      "maturity_age": 1,
+      "exploration_bias": 0.388294703898025,
+      "learning_rate": 0.23261497887561566
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 126,
+      "complexity": 0.5359286438918391,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 526,
+    "event_type": "death",
+    "creature_id": 294,
+    "parent_id": 217,
+    "generation": 7,
+    "location": 62,
+    "energy": 5.486618,
+    "genotype": {
+      "movement_cost": 0.24491584346783596,
+      "baseline_metabolic_cost": 0.013824570891991782,
+      "energy_capacity": 19.064884859618545,
+      "reproduction_energy_threshold": 19.064884859618545,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8913029764274691,
+      "maturity_age": 1,
+      "exploration_bias": 0.3707558297843907,
+      "learning_rate": 0.22081957020125106
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 143,
+      "complexity": 0.43522842184160804,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 531,
+    "event_type": "death",
+    "creature_id": 317,
+    "parent_id": 211,
+    "generation": 7,
+    "location": 99,
+    "energy": 7.434888,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.19583498317115342,
+      "energy_capacity": 28.230964339403666,
+      "reproduction_energy_threshold": 12.114085957420418,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.899354262747167,
+      "maturity_age": 8,
+      "exploration_bias": 0.3091165960568092,
+      "learning_rate": 0.5666704773916011
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 127,
+      "complexity": 0.5786682696866765,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 532,
+    "event_type": "death",
+    "creature_id": 310,
+    "parent_id": 203,
+    "generation": 8,
+    "location": 0,
+    "energy": 13.73656,
+    "genotype": {
+      "movement_cost": 0.1902711763275231,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 24.291445146740017,
+      "reproduction_energy_threshold": 24.291445146740017,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9317215749358322,
+      "maturity_age": 4,
+      "exploration_bias": 0.36508456749902746,
+      "learning_rate": 0.5268730543457895
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 134,
+      "complexity": 0.6061525734613386,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 537,
+    "event_type": "death",
+    "creature_id": 261,
+    "parent_id": 175,
+    "generation": 6,
+    "location": 22,
+    "energy": 9.908346,
+    "genotype": {
+      "movement_cost": 0.04015326324226351,
+      "baseline_metabolic_cost": 0.1231955583251778,
+      "energy_capacity": 9.908346384188276,
+      "reproduction_energy_threshold": 9.908346384188276,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8541738174507361,
+      "maturity_age": 5,
+      "exploration_bias": 0.47187024903701774,
+      "learning_rate": 0.27321915048003304
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 186,
+      "complexity": 0.3426494382613396,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 537,
+    "event_type": "death",
+    "creature_id": 313,
+    "parent_id": 189,
+    "generation": 9,
+    "location": 83,
+    "energy": 9.078963,
+    "genotype": {
+      "movement_cost": 0.0477003972481475,
+      "baseline_metabolic_cost": 0.2597831218863432,
+      "energy_capacity": 23.943801012189862,
+      "reproduction_energy_threshold": 17.923405574128026,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9295580991782669,
+      "maturity_age": 6,
+      "exploration_bias": 0.3938411305605823,
+      "learning_rate": 0.34241273537700984
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 136,
+      "complexity": 0.5144158163066058,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 537,
+    "event_type": "death",
+    "creature_id": 323,
+    "parent_id": 225,
+    "generation": 8,
+    "location": 57,
+    "energy": 4.128236,
+    "genotype": {
+      "movement_cost": 0.1334589957580599,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 22.118054660453854,
+      "reproduction_energy_threshold": 6.989506561530046,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9593364011090503,
+      "maturity_age": 2,
+      "exploration_bias": 0.27974954860473267,
+      "learning_rate": 0.3350037413540162
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 127,
+      "complexity": 0.5909194091403895,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 543,
+    "event_type": "death",
+    "creature_id": 324,
+    "parent_id": 230,
+    "generation": 7,
+    "location": 110,
+    "energy": 4.246557,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.1425356149813914,
+      "energy_capacity": 22.460305873181795,
+      "reproduction_energy_threshold": 11.212071672792876,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8769967253576432,
+      "maturity_age": 5,
+      "exploration_bias": 0.35469644608804857,
+      "learning_rate": 0.442310943753131
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 132,
+      "complexity": 0.53856148614114,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 544,
+    "event_type": "death",
+    "creature_id": 315,
+    "parent_id": 190,
+    "generation": 9,
+    "location": 92,
+    "energy": 4.337502,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 28.345488507859717,
+      "reproduction_energy_threshold": 9.228903958028194,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.886084871290672,
+      "maturity_age": 1,
+      "exploration_bias": 0.4652542198801884,
+      "learning_rate": 0.1831432408504485
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 141,
+      "complexity": 0.5180387569420599,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 544,
+    "event_type": "death",
+    "creature_id": 330,
+    "parent_id": 211,
+    "generation": 7,
+    "location": 7,
+    "energy": 7.601732,
+    "genotype": {
+      "movement_cost": 0.054182158686577775,
+      "baseline_metabolic_cost": 0.178505724107838,
+      "energy_capacity": 28.73891589687042,
+      "reproduction_energy_threshold": 10.88964894018969,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8727006984142113,
+      "maturity_age": 5,
+      "exploration_bias": 0.3829604033506714,
+      "learning_rate": 0.527146042825389
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 127,
+      "complexity": 0.5646618309274226,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 554,
+    "event_type": "death",
+    "creature_id": 309,
+    "parent_id": 175,
+    "generation": 6,
+    "location": 23,
+    "energy": 4.522461,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.030425979222912472,
+      "energy_capacity": 12.381119472408562,
+      "reproduction_energy_threshold": 7.795486979826644,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.831166590698329,
+      "maturity_age": 1,
+      "exploration_bias": 0.4218723868796649,
+      "learning_rate": 0.30856973296185364
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 159,
+      "complexity": 0.36317198443271154,
+      "offspring_count": 10
+    }
+  },
+  {
+    "t": 554,
+    "event_type": "death",
+    "creature_id": 345,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 115,
+    "energy": 9.206846,
+    "genotype": {
+      "movement_cost": 0.027503357018386687,
+      "baseline_metabolic_cost": 0.10064549916535173,
+      "energy_capacity": 32.01258729955902,
+      "reproduction_energy_threshold": 11.69518404640075,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9337421137105889,
+      "maturity_age": 2,
+      "exploration_bias": 0.21717795252491295,
+      "learning_rate": 0.31254199884162676
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 119,
+      "complexity": 0.6296055255893678,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 559,
+    "event_type": "death",
+    "creature_id": 339,
+    "parent_id": 209,
+    "generation": 9,
+    "location": 45,
+    "energy": 8.515543,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.23865720262201906,
+      "energy_capacity": 29.732771828149733,
+      "reproduction_energy_threshold": 18.8544669061144,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8744989359853694,
+      "maturity_age": 3,
+      "exploration_bias": 0.16318921122667585,
+      "learning_rate": 0.3487453319824058
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 131,
+      "complexity": 0.5205909728147472,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 561,
+    "event_type": "death",
+    "creature_id": 299,
+    "parent_id": 182,
+    "generation": 6,
+    "location": 85,
+    "energy": 5.812401,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.08790635890720115,
+      "energy_capacity": 16.79870975192401,
+      "reproduction_energy_threshold": 16.79870975192401,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8562168517461963,
+      "maturity_age": 4,
+      "exploration_bias": 0.5197128256362888,
+      "learning_rate": 0.3497874922657527
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 172,
+      "complexity": 0.4125950494239969,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 561,
+    "event_type": "death",
+    "creature_id": 350,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 10,
+    "energy": 11.688383,
+    "genotype": {
+      "movement_cost": 0.05359052679458945,
+      "baseline_metabolic_cost": 0.1555060527962821,
+      "energy_capacity": 31.115008988192997,
+      "reproduction_energy_threshold": 11.977969804237196,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.904526741992253,
+      "maturity_age": 4,
+      "exploration_bias": 0.20675261733043412,
+      "learning_rate": 0.4216540188881587
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 123,
+      "complexity": 0.6210237425272591,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 567,
+    "event_type": "death",
+    "creature_id": 358,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 80,
+    "energy": 12.982615,
+    "genotype": {
+      "movement_cost": 0.03775829954886483,
+      "baseline_metabolic_cost": 0.07911336360753553,
+      "energy_capacity": 32.94584939449092,
+      "reproduction_energy_threshold": 6.329161930754085,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9051908160816186,
+      "maturity_age": 2,
+      "exploration_bias": 0.18759236077149904,
+      "learning_rate": 0.3750896729244065
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 124,
+      "complexity": 0.6174843797251054,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 567,
+    "event_type": "death",
+    "creature_id": 360,
+    "parent_id": 243,
+    "generation": 8,
+    "location": 33,
+    "energy": 4.811708,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 31.419366163244973,
+      "reproduction_energy_threshold": 15.332545378534967,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9493645545731473,
+      "maturity_age": 4,
+      "exploration_bias": 0.3050344276464123,
+      "learning_rate": 0.3371940861059261
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 122,
+      "complexity": 0.670713974823289,
+      "offspring_count": 6
+    }
+  },
+  {
+    "t": 570,
+    "event_type": "death",
+    "creature_id": 342,
+    "parent_id": 203,
+    "generation": 8,
+    "location": 127,
+    "energy": 5.89989,
+    "genotype": {
+      "movement_cost": 0.2511061320533291,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.340518917879926,
+      "reproduction_energy_threshold": 21.340518917879926,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8770066768896077,
+      "maturity_age": 5,
+      "exploration_bias": 0.38921802813183803,
+      "learning_rate": 0.4122318066685654
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 140,
+      "complexity": 0.5302734023083616,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 571,
+    "event_type": "death",
+    "creature_id": 328,
+    "parent_id": 177,
+    "generation": 6,
+    "location": 135,
+    "energy": 5.23925,
+    "genotype": {
+      "movement_cost": 0.1892790820907747,
+      "baseline_metabolic_cost": 0.042492714252001115,
+      "energy_capacity": 13.785087626331736,
+      "reproduction_energy_threshold": 13.785087626331736,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8694654523149727,
+      "maturity_age": 6,
+      "exploration_bias": 0.3685082633169521,
+      "learning_rate": 0.2864066326582131
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 155,
+      "complexity": 0.3815604632978193,
+      "offspring_count": 9
+    }
+  },
+  {
+    "t": 572,
+    "event_type": "death",
+    "creature_id": 335,
+    "parent_id": 274,
+    "generation": 9,
+    "location": 85,
+    "energy": 4.783306,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.45584425458819,
+      "reproduction_energy_threshold": 12.210492380007867,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8050987561285747,
+      "maturity_age": 1,
+      "exploration_bias": 0.22315172482470078,
+      "learning_rate": 0.33274711188917916
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 151,
+      "complexity": 0.3779258923263307,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 572,
+    "event_type": "death",
+    "creature_id": 366,
+    "parent_id": 300,
+    "generation": 11,
+    "location": 78,
+    "energy": 6.065304,
+    "genotype": {
+      "movement_cost": 0.15230245753659583,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 23.721787160410486,
+      "reproduction_energy_threshold": 5.221718095609704,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9186592789000636,
+      "maturity_age": 5,
+      "exploration_bias": 0.06928377442373443,
+      "learning_rate": 0.4477407851590732
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 125,
+      "complexity": 0.6107685469656562,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 572,
+    "event_type": "death",
+    "creature_id": 384,
+    "parent_id": 382,
+    "generation": 12,
+    "location": 24,
+    "energy": 0.734944,
+    "genotype": {
+      "movement_cost": 0.07318840880878154,
+      "baseline_metabolic_cost": 0.20869882864975917,
+      "energy_capacity": 22.043955276094206,
+      "reproduction_energy_threshold": 14.899199200942341,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9595169518213527,
+      "maturity_age": 2,
+      "exploration_bias": 0.042106723983224244,
+      "learning_rate": 0.2046081972258068
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 112,
+      "complexity": 0.5904908919533345,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 575,
+    "event_type": "death",
+    "creature_id": 320,
+    "parent_id": 175,
+    "generation": 6,
+    "location": 21,
+    "energy": 9.451359,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.24681318773590283,
+      "energy_capacity": 13.364847595107822,
+      "reproduction_energy_threshold": 9.445154540331213,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8752074875485277,
+      "maturity_age": 2,
+      "exploration_bias": 0.4324905440051136,
+      "learning_rate": 0.36578217345954667
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 168,
+      "complexity": 0.38227559766667873,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 575,
+    "event_type": "death",
+    "creature_id": 341,
+    "parent_id": 265,
+    "generation": 8,
+    "location": 8,
+    "energy": 15.436564,
+    "genotype": {
+      "movement_cost": 0.12292202955587017,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 23.140227858642575,
+      "reproduction_energy_threshold": 19.62625978572249,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8864106993758675,
+      "maturity_age": 2,
+      "exploration_bias": 0.289730091720236,
+      "learning_rate": 0.5147452906579378
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 146,
+      "complexity": 0.5323300683223947,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 577,
+    "event_type": "death",
+    "creature_id": 390,
+    "parent_id": 277,
+    "generation": 9,
+    "location": 101,
+    "energy": 8.258641,
+    "genotype": {
+      "movement_cost": 0.1062082286963191,
+      "baseline_metabolic_cost": 0.12160078789829819,
+      "energy_capacity": 34.55425858356862,
+      "reproduction_energy_threshold": 11.418473154517898,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9679395197502771,
+      "maturity_age": 2,
+      "exploration_bias": 0.20224020957087438,
+      "learning_rate": 0.4304096792958767
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 111,
+      "complexity": 0.6712309909788606,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 578,
+    "event_type": "death",
+    "creature_id": 334,
+    "parent_id": 182,
+    "generation": 6,
+    "location": 13,
+    "energy": 4.363555,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.06966971614642152,
+      "energy_capacity": 13.24471163498112,
+      "reproduction_energy_threshold": 9.379353893240198,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8374272454328548,
+      "maturity_age": 3,
+      "exploration_bias": 0.5015742848328644,
+      "learning_rate": 0.40987798858199465
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 157,
+      "complexity": 0.356198873588625,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 578,
+    "event_type": "death",
+    "creature_id": 367,
+    "parent_id": 300,
+    "generation": 11,
+    "location": 80,
+    "energy": 5.619484,
+    "genotype": {
+      "movement_cost": 0.19991665368513814,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 21.25067074094457,
+      "reproduction_energy_threshold": 11.141458940321943,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.920785927200487,
+      "maturity_age": 3,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.33480616792326107
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 130,
+      "complexity": 0.5412501674817854,
+      "offspring_count": 7
+    }
+  },
+  {
+    "t": 579,
+    "event_type": "death",
+    "creature_id": 377,
+    "parent_id": 373,
+    "generation": 12,
+    "location": 79,
+    "energy": 5.243507,
+    "genotype": {
+      "movement_cost": 0.02241149077749463,
+      "baseline_metabolic_cost": 0.09032521065650959,
+      "energy_capacity": 20.053859226688516,
+      "reproduction_energy_threshold": 8.711446156567554,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9800629006729233,
+      "maturity_age": 1,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.3236856703795687
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 124,
+      "complexity": 0.6069905986190177,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 580,
+    "event_type": "death",
+    "creature_id": 381,
+    "parent_id": 277,
+    "generation": 9,
+    "location": 41,
+    "energy": 11.035739,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 30.865974797804505,
+      "reproduction_energy_threshold": 3.8383509302295566,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9317570026164588,
+      "maturity_age": 1,
+      "exploration_bias": 0.12405174580117659,
+      "learning_rate": 0.2830337525531741
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 122,
+      "complexity": 0.6197886922543586,
+      "offspring_count": 5
+    }
+  },
+  {
+    "t": 583,
+    "event_type": "death",
+    "creature_id": 314,
+    "parent_id": 220,
+    "generation": 7,
+    "location": 62,
+    "energy": 13.585604,
+    "genotype": {
+      "movement_cost": 0.17853292345847732,
+      "baseline_metabolic_cost": 0.022260040754014693,
+      "energy_capacity": 13.586396464727935,
+      "reproduction_energy_threshold": 13.586396464727935,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8476666749192461,
+      "maturity_age": 4,
+      "exploration_bias": 0.2062265974651654,
+      "learning_rate": 0.3166586371495595
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 182,
+      "complexity": 0.36555615865175106,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 584,
+    "event_type": "death",
+    "creature_id": 343,
+    "parent_id": 249,
+    "generation": 9,
+    "location": 6,
+    "energy": 13.887225,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.06801336295634498,
+      "energy_capacity": 23.84821640481238,
+      "reproduction_energy_threshold": 18.58633129617803,
+      "aging_cost": 0.0011956212049456546,
+      "sensor_precision": 0.821586025076157,
+      "maturity_age": 3,
+      "exploration_bias": 0.19122974633550194,
+      "learning_rate": 0.3187595774974522
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 153,
+      "complexity": 0.45927025909226654,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 584,
+    "event_type": "death",
+    "creature_id": 373,
+    "parent_id": 303,
+    "generation": 11,
+    "location": 68,
+    "energy": 4.403903,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 19.054115184393755,
+      "reproduction_energy_threshold": 10.681102523236788,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9519252408205894,
+      "maturity_age": 1,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.36242002100703535
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 130,
+      "complexity": 0.5808266472930562,
+      "offspring_count": 8
+    }
+  },
+  {
+    "t": 584,
+    "event_type": "death",
+    "creature_id": 376,
+    "parent_id": 303,
+    "generation": 11,
+    "location": 51,
+    "energy": 5.102934,
+    "genotype": {
+      "movement_cost": 0.05446741709479732,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 19.720277144229886,
+      "reproduction_energy_threshold": 10.057035660272291,
+      "aging_cost": 0.0032720564294116045,
+      "sensor_precision": 0.9603845393433339,
+      "maturity_age": 2,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.360234052805909
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 129,
+      "complexity": 0.5563129933791301,
+      "offspring_count": 9
+    }
+  },
+  {
+    "t": 584,
+    "event_type": "death",
+    "creature_id": 385,
+    "parent_id": 366,
+    "generation": 12,
+    "location": 9,
+    "energy": 4.042235,
+    "genotype": {
+      "movement_cost": 0.11615365052640672,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 25.5652511931415,
+      "reproduction_energy_threshold": 6.0154007125254765,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9740342069736829,
+      "maturity_age": 7,
+      "exploration_bias": 0.027723337334876696,
+      "learning_rate": 0.4307908474038029
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 123,
+      "complexity": 0.6437965951636203,
+      "offspring_count": 2
+    }
+  },
+  {
+    "t": 584,
+    "event_type": "death",
+    "creature_id": 405,
+    "parent_id": 400,
+    "generation": 10,
+    "location": 113,
+    "energy": 5.145918,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 31.26006474920598,
+      "reproduction_energy_threshold": 6.583820741707501,
+      "aging_cost": 0.0025850595493561584,
+      "sensor_precision": 0.9719038444290055,
+      "maturity_age": 2,
+      "exploration_bias": 0.133573610643478,
+      "learning_rate": 0.3825949663959134
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 111,
+      "complexity": 0.6494724382879192,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 585,
+    "event_type": "death",
+    "creature_id": 382,
+    "parent_id": 303,
+    "generation": 11,
+    "location": 46,
+    "energy": 9.247738,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.10071220953749027,
+      "energy_capacity": 24.47490171588964,
+      "reproduction_energy_threshold": 11.576784409303762,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9367409762709041,
+      "maturity_age": 2,
+      "exploration_bias": 0.0,
+      "learning_rate": 0.29120436558258683
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 127,
+      "complexity": 0.5933139189181867,
+      "offspring_count": 4
+    }
+  },
+  {
+    "t": 586,
+    "event_type": "death",
+    "creature_id": 351,
+    "parent_id": 218,
+    "generation": 10,
+    "location": 38,
+    "energy": 13.159021,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.08162770258159889,
+      "energy_capacity": 28.8180673857073,
+      "reproduction_energy_threshold": 8.507066077138463,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.849307929030207,
+      "maturity_age": 2,
+      "exploration_bias": 0.26592083331666067,
+      "learning_rate": 0.30374458637806695
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 147,
+      "complexity": 0.46193366041719014,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 586,
+    "event_type": "death",
+    "creature_id": 359,
+    "parent_id": 269,
+    "generation": 9,
+    "location": 98,
+    "energy": 15.568584,
+    "genotype": {
+      "movement_cost": 0.12662652400292138,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 28.108146192056502,
+      "reproduction_energy_threshold": 3.853738837622599,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.8204447652625637,
+      "maturity_age": 1,
+      "exploration_bias": 0.17509596282841083,
+      "learning_rate": 0.49116185533590023
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 143,
+      "complexity": 0.5251521739758509,
+      "offspring_count": 0
+    }
+  },
+  {
+    "t": 586,
+    "event_type": "death",
+    "creature_id": 378,
+    "parent_id": 296,
+    "generation": 9,
+    "location": 120,
+    "energy": 7.606281,
+    "genotype": {
+      "movement_cost": 0.03525778798958821,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 23.988228278264188,
+      "reproduction_energy_threshold": 6.107600404411439,
+      "aging_cost": 0.003535436852201578,
+      "sensor_precision": 0.9469520338597718,
+      "maturity_age": 3,
+      "exploration_bias": 0.3659310373839735,
+      "learning_rate": 0.41739499218888776
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 130,
+      "complexity": 0.5614285829189978,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 591,
+    "event_type": "death",
+    "creature_id": 372,
+    "parent_id": 303,
+    "generation": 11,
+    "location": 75,
+    "energy": 7.504088,
+    "genotype": {
+      "movement_cost": 0.05035672768621431,
+      "baseline_metabolic_cost": 0.05823120731959015,
+      "energy_capacity": 18.584111738726957,
+      "reproduction_energy_threshold": 8.539902863043164,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9012119964697561,
+      "maturity_age": 1,
+      "exploration_bias": 0.02799366317175707,
+      "learning_rate": 0.3991421705409982
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 138,
+      "complexity": 0.5084485914226492,
+      "offspring_count": 3
+    }
+  },
+  {
+    "t": 592,
+    "event_type": "death",
+    "creature_id": 379,
+    "parent_id": 245,
+    "generation": 8,
+    "location": 50,
+    "energy": 9.621665,
+    "genotype": {
+      "movement_cost": 0.01,
+      "baseline_metabolic_cost": 0.025664739511582907,
+      "energy_capacity": 29.191513540356894,
+      "reproduction_energy_threshold": 9.471210503099389,
+      "aging_cost": 0.001415724839499122,
+      "sensor_precision": 0.8787602743080962,
+      "maturity_age": 2,
+      "exploration_bias": 0.13978320181909482,
+      "learning_rate": 0.22995045459001123
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 135,
+      "complexity": 0.5194225443795811,
+      "offspring_count": 1
+    }
+  },
+  {
+    "t": 594,
+    "event_type": "death",
+    "creature_id": 399,
+    "parent_id": 277,
+    "generation": 9,
+    "location": 72,
+    "energy": 5.554024,
+    "genotype": {
+      "movement_cost": 0.042119091927652376,
+      "baseline_metabolic_cost": 0.01,
+      "energy_capacity": 26.56477565940601,
+      "reproduction_energy_threshold": 3.7747898896616574,
+      "aging_cost": 0.0,
+      "sensor_precision": 0.9308666017789753,
+      "maturity_age": 1,
+      "exploration_bias": 0.13418245155058847,
+      "learning_rate": 0.32647946934555383
+    },
+    "details": {
+      "cause": "senescence",
+      "age": 124,
+      "complexity": 0.587334357337529,
+      "offspring_count": 4
+    }
+  }
+]

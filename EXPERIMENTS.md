@@ -7492,3 +7492,102 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (random-policy and/or zero-mutation cohort), and (c) for any adaptation claim, run a
   counterfactual fork/cohort control. Lesson folded to loop/LESSONS.md (L18: predeclare
   ratio metrics with denominators that can actually vary).
+
+## Exp 195 — N5 senescence: aging as a complexity-scaled SECOND death cause — age now kills, lifespan shrinks with complexity (variable, non-linear), against a senescence-off control (MIXED / NEW INSIGHT)
+
+- Plain: We gave the creatures a second way to die: old age. Self-maintenance — the work
+  of staying alive — degrades as a creature ages, and how fast it degrades scales with the
+  creature's complexity (its capability traits), so a more complex creature ages out sooner,
+  and even a well-fed creature eventually cannot keep itself going. We turned this on against
+  an otherwise-identical control with aging off (which exactly reproduces the previous
+  experiment). Aging works as asked: it is a real, distinct cause of death that coexists with
+  starvation, and lifespan genuinely shrinks with complexity — but with real spread, not a
+  fixed number, and faster when you are starving than when you are well-fed. The grade is
+  mixed for two honest reasons that are NOT about the aging mechanism: one pre-registered
+  yardstick compared the wrong two worlds (the over-rich world ends early when the population
+  hits the safety cap, before anyone is old enough to age out, so it could not show the aging
+  deaths we predicted), and over this short run aging did not measurably push the population
+  toward simpler creatures versus the control. The aging feature itself does what you asked:
+  variable, complexity-scaled, not fixed, not linear.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit d7544f2, BEFORE
+  any data): adding complexity-scaled senescence — age-accelerated degradation of
+  self-maintenance, onset earlier and rate higher for more-complex creatures (the SAME
+  capability blend that prices reproduction) — makes age a death cause DISTINCT from
+  starvation, killing even a well-fed creature at a complexity-dependent, non-fixed,
+  non-linear age; against a senescence-OFF control this yields a non-degenerate two-cause
+  death mix that varies by regime and shortens lifespan with complexity, reproducibly.
+  Predeclared P1..P7 / F1..F6 / verdict rule in the script docstring and the card.
+- Setup: experiments/exp195_n5_senescence.py on the ecology/ engine + a new senescence model
+  behind enable_senescence (OFF = the Exp 194 model, byte-identical). Per step past a
+  complexity-shortened onset (onset = 155*(1 - 0.65*complexity)), damage accrues
+  super-linearly (deg = base 0.002 * (1 + 2.0*complexity) * (age-onset)^1.5), offset by
+  self-maintenance proportional to energy/energy_capacity (well-fed resists, but deg outgrows
+  it); death cause senescence at damage >= 1; starvation (energy<=0) takes precedence. Two
+  ARMS on the SAME seeds/scenarios: CONTROL (off = the baseline Exp 194 lacked) vs TREATMENT
+  (on). 3 scenarios x 3 seeds x 2 arms + determinism reruns. Senescence is rng-free
+  (deterministic). complexity() extracted as one helper used by BOTH the reproduction and
+  senescence paths. runtime 2.5s.
+- Result (committed exp195.txt + experiments/outputs/exp195_n5_senescence/): P1 determinism
+  PASS (6/6 reruns identical). P2 senescence real & distinct PASS (treatment balanced:
+  senescence deaths 129/144/142 alongside starvation 346/454/350, senescence-fraction
+  0.272/0.241/0.289 in (0.05,0.95); control 0 senescence everywhere). P3 (THE CORE)
+  complexity -> shorter senescence lifespan PASS 3/3: Spearman rho(complexity, age-at-death)
+  = -0.8647/-0.6774/-0.6704 (a real graded relationship, NOT the -0.997 of the first,
+  degenerate tuning), top-third-complexity cohort dies younger than bottom-third by
+  31.2/15.7/16.0 steps. P4 not-fixed (supporting) FAIL on the strong bar (CV
+  0.1134/0.0703/0.0788; >=0.10 in 1/3) BUT NOT fixed (F4 CLEAR; CVs ~0.07-0.11, and a unit
+  test confirms a well-fed creature outlives a starving same-age/complexity twin -
+  self-maintenance is operative). P5 cause-mix-by-regime FAIL as predeclared (abundant vs
+  scarce senescence-fraction diff 0.002/-0.075/0.000, all < 0.15). P6 controlled selection
+  (supporting) FAIL (treatment-vs-control final complexity diffs 0.000-0.023, all < 0.03 -
+  an honest null). P7 substrate intact PASS (treatment balanced persists fp 97/110/109, max
+  gen 14/11/11; senescence-OFF balanced/seed0 reproduces Exp 194 170/628/458 with events_hash
+  MATCH - the L16 no-op guard). F1-F6 all CLEAR (F3 the core falsifier did NOT fire). THE
+  FAILURE is NOT the aging mechanism: P5 is a CONFOUNDED predeclaration - the overabundant
+  regime is truncated by the explosion guard at ~100-200 steps, before creatures reach
+  senescence onset, so the predicted abundant>scarce ordering cannot appear there; the
+  well-posed contrast is BALANCED vs scarce (senescence-fraction ~0.27 vs ~0.02, diff
+  >0.15), but that pair was NOT predeclared, so per VALIDATION it is reported as a DISCLOSED
+  exploratory observation only, not swapped in to rescue P5.
+- Verifier: agree (MIXED) - blinded subagent (docstring + raw exp195.txt only, ignoring the
+  printed verdict) recomputed P1..P7/F1..F6: confirmed P3 genuinely supported and NOT
+  tautological (rho -0.67 to -0.87, CV 0.07-0.11 spread), F4 CLEAR (CVs far from ~0), and
+  that grading P5 a FAIL as predeclared - rather than swapping to the passing balanced-vs-
+  scarce pair - is the honest call; returned MIXED.
+- Implication: age is now a genuine, distinct, COMPLEXITY-SCALED cause of death in the
+  ecology - a more-complex creature ages out sooner, even when well-fed, at a non-fixed,
+  energy-modulated, super-linearly-accruing age (the human's spec: variable, not linear, not
+  fixed - delivered). With the senescence-OFF control (the baseline Exp 194 lacked) the new
+  mechanism is cleanly isolated and the OFF arm is byte-identical to Exp 194. Two honest
+  nulls bound the claim: (P6) over 600 steps / ~14 generations senescence does NOT measurably
+  select the population toward lower complexity beyond the control - the individual-level
+  trade-off does not yet move population composition at this horizon; and (P5, as predeclared)
+  the regime cause-mix ordering was confounded by the explosion-guard truncation. The
+  two-cause death mix DOES fix Exp 194's L18 ill-posed cause-fraction (senescence-fraction is
+  now non-degenerate, 0.24-0.29 in balanced). Generalizability tier: substrate/functional -
+  a faithful, reproducible aging mechanism; selection consequences unproven at this horizon.
+- Honest caveat: the senescence DIRECTION (complexity -> frailty/shorter life) is IMPOSED by
+  the model, disclosed - P3 verifies the imposed relation is realized at the population level
+  WITH spread, it is not a discovery that complexity matters. The first tuning was DEGENERATE
+  (base=10, maintenance=0 collapsed the model to a near-fixed linear age cap, rho ~ -0.997);
+  it was rejected and re-tuned to a faithful process (operative self-maintenance + multi-step
+  super-linear accrual) before logging - the constants are tuned to an observable regime
+  (disclosed; mechanics/metrics/falsifiers fixed first). P4's strong-spread bar (CV>=0.10) is
+  met in only 1/3 seeds because mutation/selection narrows complexity diversity in seeds 1-2
+  (an emergent dynamic, not a fixed lifespan). P5 was a confounded predeclaration (regime
+  truncation); P6 is a clean null. Policy still PROVIDED; complexity is a derived blend, not
+  pymdp. No no-senescence longevity baseline beyond the control arm.
+- Verdict: MIXED / NEW INSIGHT - the senescence mechanism the human asked for WORKS and meets
+  the spec (P1,P2,P3,P7 PASS; age kills, distinct from starvation, scales with complexity,
+  variable and non-linear; OFF==Exp 194); the MIXED reflects a CONFOUNDED predeclared regime
+  comparison (P5, explosion-guard truncation) and a selection null (P6) - neither a failure of
+  aging. NEW INSIGHT = a second, complexity-scaled death cause + the now-well-posed cause-mix;
+  the senescence->mortality biology is expected.
+- Next: options (each needs a word) - (a) re-pose the regime cause-mix on the BALANCED vs
+  scarce contrast and/or remove the explosion-guard truncation confound (raise the cap or
+  end abundant on extinction not explosion) so P5 is well-posed; (b) test the selection
+  consequence at a LONGER horizon / more generations (does the complexity-frailty trade-off
+  eventually shift population complexity vs control?); (c) proceed to Exp 196 (temperature).
+  Lesson folded to loop/LESSONS.md (L19: a near-perfect correlation on an IMPOSED relation is
+  a degeneracy red flag, not a win; and don't predeclare a cross-regime comparison a regime
+  cannot exhibit for structural/guard reasons).
