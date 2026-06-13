@@ -29,9 +29,15 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     "memory_length":                    (1,    20),      # int
     "temperature_tolerance":            (0.0,   1.0),    # UNUSED (reserved Exp195)
     "sensor_precision":                 (0.5,   1.0),
+    # Exp 197: thermosense organ traits — defaults produce zero-organ founders.
+    "thermosense_intensity":            (0.0,   1.0),    # 0 = organ absent
+    "thermosense_inefficiency":         (0.2,   1.0),    # upkeep multiplier; 0.2 = floor
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length"})
+
+# Thermosense trait names — used to gate rng draws in mutate() (regression guard).
+THERMOSENSE_TRAITS: frozenset[str] = frozenset({"thermosense_intensity", "thermosense_inefficiency"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -59,6 +65,11 @@ class Genotype:
 
     temperature_tolerance is carried but UNUSED in Exp 194; it is reserved for
     Exp 195 to add environment temperature stress.
+
+    thermosense_intensity / thermosense_inefficiency (Exp 197): the evolvable
+    thermosense organ.  Defaults to 0.0 / 1.0 so founders have no active organ
+    (intensity=0 ⇒ inactive, upkeep=0).  Both fields are LAST with defaults so
+    that existing Genotype(...) construction without them still works.
     """
     movement_cost: float
     baseline_metabolic_cost: float
@@ -73,6 +84,9 @@ class Genotype:
     memory_length: int
     temperature_tolerance: float                  # UNUSED (reserved)
     sensor_precision: float
+    # Exp 197 thermosense organ — LAST, WITH DEFAULTS (regression-safe)
+    thermosense_intensity: float = 0.0            # 0.0 = organ absent (inactive)
+    thermosense_inefficiency: float = 1.0         # upkeep multiplier; evolved down ⇒ cheaper
 
 
 def is_valid(g: Genotype) -> bool:
@@ -87,14 +101,31 @@ def is_valid(g: Genotype) -> bool:
     return True
 
 
-def mutate(g: Genotype, rng: np.random.Generator, rate: float) -> Genotype:
+def mutate(
+    g: Genotype,
+    rng: np.random.Generator,
+    rate: float,
+    mutate_thermosense: bool = False,
+) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
     Result always satisfies is_valid().
+
+    REGRESSION GUARD: when mutate_thermosense=False (the default), thermosense
+    traits are copied unchanged WITHOUT any rng draw, so the rng stream for all
+    base traits is byte-identical to the pre-Exp-197 behaviour.  When
+    mutate_thermosense=True, draws are made AFTER all base-trait draws (in field
+    order) — the base-trait stream is unaffected.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
     for k, v in d.items():
+        # Thermosense traits: skip rng draw when mutation is disabled — this is
+        # THE regression guard.  No rng.normal call is made, so the stream for
+        # all base traits before these fields is untouched.
+        if k in THERMOSENSE_TRAITS and not mutate_thermosense:
+            new_d[k] = v
+            continue
         lo, hi = TRAIT_BOUNDS[k]
         sigma = rate * (hi - lo)
         perturbed = v + rng.normal(0.0, sigma)
@@ -139,6 +170,8 @@ def founder() -> Genotype:
       maturity_age=5, aging_cost=0.02,
       exploration_bias=0.4, learning_rate=0.3, memory_length=5,
       temperature_tolerance=0.5 (unused, reserved Exp195), sensor_precision=0.85.
+      thermosense_intensity=0.0, thermosense_inefficiency=1.0 (no organ; must emerge
+      by mutation under enable_thermosense treatment).
     """
     d = {
         "movement_cost": 0.3,
@@ -154,8 +187,41 @@ def founder() -> Genotype:
         "memory_length": 5,
         "temperature_tolerance": 0.5,
         "sensor_precision": 0.85,
+        # Exp 197: no thermosense organ at founding; must emerge by mutation.
+        "thermosense_intensity": 0.0,
+        "thermosense_inefficiency": 1.0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)
     assert is_valid(g), f"founder() produced invalid genotype: {g}"
     return g
+
+
+# ---------------------------------------------------------------------------
+# Exp 197: thermosense organ helpers
+# ---------------------------------------------------------------------------
+
+def thermosense_active(g: Genotype, threshold: float) -> bool:
+    """Return True if the thermosense organ is expressed (intensity above threshold)."""
+    return g.thermosense_intensity > threshold
+
+
+def thermosense_upkeep(g: Genotype, floor: float, threshold: float) -> float:
+    """Return the energy upkeep cost of the expressed thermosense organ.
+
+    Upkeep = floor + inefficiency_multiplier * intensity.
+    When inactive (intensity <= threshold), returns 0.0.
+    The floor > 0 and inefficiency >= 0.2 guarantee the organ is never free.
+    """
+    if not thermosense_active(g, threshold):
+        return 0.0
+    return floor + g.thermosense_inefficiency * g.thermosense_intensity
+
+
+def expressed_complexity(g: Genotype, threshold: float) -> float:
+    """Return expressed phenotypic complexity: base body (1 unit) + active thermosense.
+
+    This is a READOUT of active machinery; it does NOT feed into the existing
+    complexity() blend (which governs reproduction overhead and senescence).
+    """
+    return 1.0 + (g.thermosense_intensity if thermosense_active(g, threshold) else 0.0)

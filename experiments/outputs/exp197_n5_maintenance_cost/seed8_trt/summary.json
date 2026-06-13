@@ -1,0 +1,28 @@
+{
+  "seed": 8,
+  "temp_on": true,
+  "steps_run": 5000,
+  "reached_horizon": true,
+  "extinct": false,
+  "exploded": false,
+  "final_pop": 67,
+  "final_food": 0.6279314691001494,
+  "living_end": {
+    "active_fraction": 0.5223880597014925,
+    "mean_intensity": 0.04784294559539326,
+    "mean_inefficiency": 0.93853247997599,
+    "mean_tolerance": 0.014791385421759859,
+    "pop": 67
+  },
+  "newborn_end": {
+    "active_fraction": 0.3581780538302277,
+    "mean_intensity": 0.04218562843369986,
+    "count": 483
+  },
+  "age_strat_end": {
+    "young": 0.03834358233196115,
+    "mid": 0.03607364676160324,
+    "old": 0.06818688325360575
+  },
+  "events_hash": "a0fbe734bf7e70ba71644b498fb2a2d0b1cede60c0bdf5a3dc9bb7d648e03f65"
+}

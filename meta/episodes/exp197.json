@@ -1,0 +1,51 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp197.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp197_n5_maintenance_cost.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.009\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.028\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.057\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.230\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.53\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0088/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0142/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0222/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.5\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4252/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4638/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4714/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4732/0\" quoted in entry not found in experiments/outputs/exp197.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T04:11:40Z",
+  "commit_sha": "1895eef2f6f00e7e88ad88334f1cd6e2b2308761",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 197,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

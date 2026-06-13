@@ -1,0 +1,65 @@
+========================================================================
+Exp 197 — N5: costed evolvable THERMOSENSE organ under temperature
+Seeds: [8, 9, 10, 11, 12]  |  ctrl=temp_OFF  trt=temp_ON
+Horizon: 5000  |  max_pop: 5000  |  checkpoint stride: 250
+Founder: thermosense_intensity=0.20, temperature_tolerance=0.10
+========================================================================
+
+Running seed 8...
+  ctrl (temp_OFF): pop=525  reached=True  active_frac=0.0971  nb_intensity=0.0334
+  trt  (temp_ON):  pop=67  reached=True  active_frac=0.5224  nb_intensity=0.0422
+
+Running seed 9...
+  ctrl (temp_OFF): pop=524  reached=True  active_frac=0.0553  nb_intensity=0.0320
+  trt  (temp_ON):  pop=70  reached=True  active_frac=0.5286  nb_intensity=0.0462
+
+Running seed 10...
+  ctrl (temp_OFF): pop=541  reached=True  active_frac=0.0481  nb_intensity=0.0277
+  trt  (temp_ON):  pop=77  reached=True  active_frac=0.5195  nb_intensity=0.0500
+
+Running seed 11...
+  ctrl (temp_OFF): pop=515  reached=True  active_frac=0.0291  nb_intensity=0.0300
+  trt  (temp_ON):  pop=71  reached=True  active_frac=0.4930  nb_intensity=0.0420
+
+Running seed 12...
+  ctrl (temp_OFF): pop=518  reached=True  active_frac=0.0734  nb_intensity=0.0305
+  trt  (temp_ON):  pop=68  reached=True  active_frac=0.5000  nb_intensity=0.0435
+
+--- P1 Determinism check (rerunning seed 8 for both arms) ---
+  ctrl seed8 hash match: True  (14501734c7ce9f57...)
+  trt  seed8 hash match: True  (a0fbe734bf7e70ba...)
+  P1 PASS: True
+
+Valid seeds (both arms reach t=5000): [8, 9, 10, 11, 12]
+
+--- Per-seed metrics (t=5000) ---
+ Seed  ctrl_livAF  trt_livAF  ctrl_livMI  trt_livMI  ctrl_nbI   trt_nbI   liv_gap   new_gap  ctrl_tol   trt_tol  valid
+    8      0.0971     0.5224      0.0210     0.0478    0.0334    0.0422    0.4252    0.0088    0.1130    0.0148   True
+    9      0.0553     0.5286      0.0163     0.0474    0.0320    0.0462    0.4732    0.0142    0.1470    0.0179   True
+   10      0.0481     0.5195      0.0139     0.0544    0.0277    0.0500    0.4714    0.0222    0.2295    0.0344   True
+   11      0.0291     0.4930      0.0128     0.0448    0.0300    0.0420    0.4638    0.0119    0.1359    0.0145   True
+   12      0.0734     0.5000      0.0158     0.0434    0.0305    0.0435    0.4266    0.0130    0.0568    0.0166   True
+
+--- Tolerance + population + food diagnostic (ctrl vs trt, final) ---
+ Seed   ctrl_pop   trt_pop   ctrl_food   trt_food  ctrl_tol   trt_tol
+    8        525        67     0.20638    0.62793    0.1130    0.0148
+    9        524        70     0.21308    1.02908    0.1470    0.0179
+   10        541        77     0.21250    0.61528    0.2295    0.0344
+   11        515        71     0.20681    0.75695    0.1359    0.0145
+   12        518        68     0.21111    0.69607    0.0568    0.0166
+
+--- Age-stratified thermosense table (seed 8, t=5000) ---
+  ctrl: young=0.0202  mid=0.0125  old=0.0304
+  trt: young=0.0383  mid=0.0361  old=0.0682
+
+--- Predictions ---
+  P1 (determinism):                         True
+  P2 (validity >=4/5):                      True  [5/5 valid]
+  P3 (liv_gap>=0.15, >=4/5):                True  [5/5 seeds pass]
+  P4 (new_gap>=0.008, >=4/5):               True  [5/5 seeds pass]
+  P5 (both gaps>0, all valid):              True  [liv>0: 5/5, nb>0: 5/5]
+  SB (liv_gap>=0.30 >=3/5 AND new_gap<0.02 >=3/5): True  [liv>=0.30: 5/5, nb<0.02: 4/5]
+
+VERDICT: POSITIVE-MIXED (repo token: POSITIVE)
+
+runtime: 64.6s
