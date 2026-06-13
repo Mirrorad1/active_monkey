@@ -1,0 +1,42 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp203.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp203_n5_sense_gradient_audit.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0/0\" quoted in entry not found in experiments/outputs/exp203.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"06/0\" quoted in entry not found in experiments/outputs/exp203.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"200/202\" quoted in entry not found in experiments/outputs/exp203.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9.4\" quoted in entry not found in experiments/outputs/exp203.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T21:48:24Z",
+  "commit_sha": "fafa9d32cb398846bfb3c70e5dcd3b14359a3b44",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 203,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
