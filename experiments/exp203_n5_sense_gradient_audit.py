@@ -325,9 +325,13 @@ def main() -> None:
     pf = RB.preflight(reps, horizon=HORIZON, n_jobs=len(specs), max_workers=SA._audit_workers(),
                       probe_steps=1000, time_budget_s=2400, require_safe=True)
     print(RB.format_report(pf) + "\n")
+    # Use the MEMORY-SAFE worker count the pre-flight recommends (avoids parallel-batch SWAP,
+    # the dominant cause of runaway wall-clock at scale).
+    workers = pf["recommended_workers"]
 
-    print(f"Exp 203 sense-gradient audit: {len(specs)} parallel jobs (horizon {HORIZON}) ...")
-    res = SA.run_audit_batch(specs)
+    print(f"Exp 203 sense-gradient audit: {len(specs)} parallel jobs (horizon {HORIZON}, "
+          f"{workers} workers) ...")
+    res = SA.run_audit_batch(specs, max_workers=workers)
     v = compute_verdict(res)
 
     L = ["=" * 80, "EXP 203 — N5 SELECTION-GRADIENT AUDIT — SUMMARY", "=" * 80, ""]

@@ -73,6 +73,9 @@ class GridWorld:
     band_responsiveness: float = 1.0
     food_optimal_base: float = 0.5
 
+    # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
+    _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
+
     # ------------------------------------------------------------------
     # Indexing helpers
     # ------------------------------------------------------------------
@@ -171,18 +174,36 @@ class GridWorld:
         """Von-Neumann neighbors (up/down/left/right), wall-clamped, no wrap.
         Returned in a fixed deterministic order: up, down, left, right
         (only included when within bounds).
+
+        PERF: the grid is static, so the neighbor table is identical every step. It is
+        built ONCE (lazily) and returned by lookup — byte-identical values/order to the
+        old per-call computation, but eliminates ~1.8M redundant recomputations per run
+        (it was ~10% of run time at large populations). Callers read the list read-only
+        (verified: choose_action/reproduction only iterate / max / min over it), so the
+        cached list is returned directly (no copy).
         """
-        r, c = self._rc(pos)
-        result: list[int] = []
-        if r > 0:
-            result.append(self._pos(r - 1, c))
-        if r < self.rows - 1:
-            result.append(self._pos(r + 1, c))
-        if c > 0:
-            result.append(self._pos(r, c - 1))
-        if c < self.cols - 1:
-            result.append(self._pos(r, c + 1))
-        return result
+        cache = self._neighbor_table
+        if cache is None:
+            cache = self._neighbor_table = self._build_neighbor_table()
+        return cache[pos]
+
+    def _build_neighbor_table(self) -> list[list[int]]:
+        """Precompute the von-Neumann neighbor list for every cell, in up/down/left/right
+        order — identical to the old neighbors() output for each pos."""
+        table: list[list[int]] = []
+        for pos in range(self.rows * self.cols):
+            r, c = self._rc(pos)
+            nb: list[int] = []
+            if r > 0:
+                nb.append(self._pos(r - 1, c))
+            if r < self.rows - 1:
+                nb.append(self._pos(r + 1, c))
+            if c > 0:
+                nb.append(self._pos(r, c - 1))
+            if c < self.cols - 1:
+                nb.append(self._pos(r, c + 1))
+            table.append(nb)
+        return table
 
     # ------------------------------------------------------------------
     # Exp 197: temperature stress query

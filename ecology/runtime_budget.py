@@ -21,6 +21,7 @@ factors. Run it on the EXPERIMENT'S OWN configs, not a toy.
 """
 from __future__ import annotations
 
+import os
 import time
 from dataclasses import dataclass
 from typing import Any
@@ -48,7 +49,7 @@ class ProbeResult:
         return self.pops[-1] if self.pops else 0
 
 
-def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 800) -> ProbeResult:
+def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 1200) -> ProbeResult:
     """Run ONE short probe; sample population per QUARTER (to see growth deceleration) and the
     per-creature-step cost in each half (to catch a worse-than-O(alive) inner loop)."""
     eco = Ecology(cfg, seed=seed)
@@ -58,7 +59,7 @@ def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 8
     t_first = t_second = 0.0
     cs_first = cs_second = 0
     while eco.t < probe_steps and not eco.exploded:
-        n = len(eco._alive())
+        n = eco.alive_count()
         t0 = time.perf_counter()
         eco.step()
         dt = time.perf_counter() - t0
@@ -68,8 +69,8 @@ def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 8
             t_second += dt; cs_second += n
         for i, q in enumerate(qs):
             if eco.t == q:
-                pops[i] = len(eco._alive())
-        if not eco._alive():
+                pops[i] = eco.alive_count()
+        if not eco.has_alive():
             break
     # growth factor per quarter (guard against zero)
     def _gf(a: int, b: int) -> float:
@@ -114,18 +115,40 @@ def _project_pop(pr: ProbeResult, horizon: int, guard: int) -> tuple[float, bool
     return min(proj, float(guard)), proj >= 0.8 * guard
 
 
+def total_ram_gb() -> float:
+    """Total physical RAM in GB (portable via os.sysconf; conservative default on failure)."""
+    try:
+        return os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 1e9
+    except (ValueError, OSError, AttributeError):
+        return 16.0
+
+
+def _proj_peak_rss_mb(proj_pop: float, horizon: int) -> float:
+    """Estimate a single run's peak resident memory (MB) from its projected plateau population
+    and horizon. Calibrated to the engine post dead-policy-free (645 MB at pop≈630, horizon
+    12000): RSS ≈ base + plateau_pop · (horizon/1000) · k. Memory grows with total-ever-born
+    (retained dead creatures + the event log) ≈ plateau_pop · horizon / lifespan, ∝ pop·horizon.
+    Rough but right-order-of-magnitude — the point is to catch parallel-batch SWAP before it
+    thrashes (the dominant cause of runaway wall-clock at scale)."""
+    return 150.0 + max(0.0, proj_pop) * (horizon / 1000.0) * 0.07
+
+
 def preflight(configs: list[tuple[str, EcologyConfig, int]], *, horizon: int, n_jobs: int,
-              max_workers: int, probe_steps: int = 800, time_budget_s: float = 2400.0,
-              require_safe: bool = False) -> dict[str, Any]:
+              max_workers: int, probe_steps: int = 1200, time_budget_s: float = 2400.0,
+              mem_budget_gb: float | None = None, require_safe: bool = False) -> dict[str, Any]:
     """Pre-flight a planned batch. `configs` are REPRESENTATIVE (label, cfg, seed) — one per
     distinct regime (the cheapest / highest-regen, most explosion-prone arms).
 
-    Returns a report dict with per-config projections + a `safe` bool + `flags`. With
-    require_safe=True it raises AssertionError on any flag (BLOCKING pre-flight).
-    """
+    Returns a report dict with per-config projections + a `safe` bool + `flags` + a
+    `recommended_workers` (capped so the parallel batch does not exceed the memory budget and
+    SWAP). With require_safe=True it raises AssertionError on any flag (BLOCKING pre-flight).
+    mem_budget_gb defaults to 60% of physical RAM (leaves headroom for the OS + other apps)."""
+    if mem_budget_gb is None:
+        mem_budget_gb = 0.60 * total_ram_gb()
     reports: list[dict[str, Any]] = []
     flags: list[str] = []
     worst_per_job_s = 0.0
+    worst_per_job_mb = 0.0
     for label, cfg, seed in configs:
         pr = probe_config(label, cfg, seed, probe_steps)
         proj_pop, runaway = _project_pop(pr, horizon, cfg.max_population)
@@ -134,6 +157,8 @@ def preflight(configs: list[tuple[str, EcologyConfig, int]], *, horizon: int, n_
         avg_pop = max(pr.pop_end, proj_pop)
         per_job_s = (pr.per_creature_us_late / 1e6) * avg_pop * horizon
         worst_per_job_s = max(worst_per_job_s, per_job_s)
+        per_job_mb = _proj_peak_rss_mb(proj_pop, horizon)
+        worst_per_job_mb = max(worst_per_job_mb, per_job_mb)
         superlinear = pr.per_creature_us_late > 2.0 * max(1e-9, pr.per_creature_us_early) and pr.pop_end > 50
         r = {"label": label, "pops": pr.pops, "growth_first": round(pr.growth_first, 3),
              "growth_last": round(pr.growth_last, 3), "decelerating": pr.decelerating,
@@ -141,7 +166,8 @@ def preflight(configs: list[tuple[str, EcologyConfig, int]], *, horizon: int, n_
              "us_per_creature_early": round(pr.per_creature_us_early, 3),
              "us_per_creature_late": round(pr.per_creature_us_late, 3),
              "superlinear": superlinear, "explosion_risk": runaway,
-             "proj_per_job_s": round(per_job_s, 1), "exploded": pr.exploded}
+             "proj_per_job_s": round(per_job_s, 1), "proj_peak_rss_mb": round(per_job_mb),
+             "exploded": pr.exploded}
         reports.append(r)
         if runaway:
             flags.append(f"EXPLOSION[{label}]: proj_pop {int(proj_pop)} -> guard {cfg.max_population} "
@@ -150,28 +176,43 @@ def preflight(configs: list[tuple[str, EcologyConfig, int]], *, horizon: int, n_
         if superlinear:
             flags.append(f"SUPERLINEAR[{label}]: per-creature cost {pr.per_creature_us_early:.2f}->"
                          f"{pr.per_creature_us_late:.2f} us (inner loop worse than O(alive)?)")
-    proj_total_s = (n_jobs / max(1, max_workers)) * worst_per_job_s
+    # MEMORY: cap workers so peak parallel RSS fits the budget (avoids SWAP — the dominant
+    # cause of runaway wall-clock at scale: ~workers × per-job RSS thrashes a too-small machine).
+    budget_mb = mem_budget_gb * 1000.0
+    recommended_workers = max(1, min(max_workers, int(budget_mb // max(1.0, worst_per_job_mb))))
+    if recommended_workers < max_workers:
+        flags.append(f"MEM_PRESSURE: {max_workers} workers × ~{worst_per_job_mb/1000:.1f} GB/job ≈ "
+                     f"{max_workers*worst_per_job_mb/1000:.1f} GB > {mem_budget_gb:.1f} GB budget — "
+                     f"would SWAP; cap workers to {recommended_workers} (run uses this automatically).")
+    # project wall-clock at the RECOMMENDED (memory-safe) worker count, not the nominal one
+    eff_workers = recommended_workers
+    proj_total_s = (n_jobs / max(1, eff_workers)) * worst_per_job_s
     if proj_total_s > time_budget_s:
         flags.append(f"OVER_BUDGET: projected {proj_total_s/60:.1f} min > budget {time_budget_s/60:.1f} min")
-    report = {"safe": len(flags) == 0, "flags": flags, "configs": reports,
-              "n_jobs": n_jobs, "max_workers": max_workers, "horizon": horizon,
+    report = {"safe": len([f for f in flags if not f.startswith("MEM_PRESSURE")]) == 0,
+              "flags": flags, "configs": reports, "n_jobs": n_jobs, "max_workers": max_workers,
+              "recommended_workers": recommended_workers, "mem_budget_gb": round(mem_budget_gb, 1),
+              "worst_per_job_rss_mb": round(worst_per_job_mb), "horizon": horizon,
               "proj_total_min": round(proj_total_s / 60, 1)}
-    if require_safe and flags:
-        raise AssertionError("runtime pre-flight FAILED:\n  " + "\n  ".join(flags))
+    # MEM_PRESSURE is advisory (auto-handled by capping workers); only HARD flags block.
+    hard = [f for f in flags if not f.startswith("MEM_PRESSURE")]
+    if require_safe and hard:
+        raise AssertionError("runtime pre-flight FAILED:\n  " + "\n  ".join(hard))
     return report
 
 
 def format_report(report: dict[str, Any]) -> str:
     """One-screen human summary of a preflight() report."""
     L = [f"RUNTIME PRE-FLIGHT — {'SAFE' if report['safe'] else 'FLAGS RAISED'} "
-         f"(jobs={report['n_jobs']}, workers={report['max_workers']}, horizon={report['horizon']}, "
-         f"proj~{report['proj_total_min']} min)"]
+         f"(jobs={report['n_jobs']}, workers={report['max_workers']}->{report.get('recommended_workers', report['max_workers'])}, "
+         f"horizon={report['horizon']}, proj~{report['proj_total_min']} min, "
+         f"mem≤{report.get('mem_budget_gb','?')}GB @ ~{report.get('worst_per_job_rss_mb','?')}MB/job)"]
     L.append(f"  {'regime':<14}{'pop_end':>8}{'g1->gN':>12}{'decel':>7}{'proj_pop':>9}"
-             f"{'us/cr early':>12}{'us/cr late':>11}{'~per-job s':>11}")
+             f"{'rss MB':>8}{'us/cr late':>11}{'~per-job s':>11}")
     for r in report["configs"]:
         L.append(f"  {r['label']:<14}{r['pops'][-1]:>8}"
                  f"{(str(r['growth_first'])+'->'+str(r['growth_last'])):>12}{str(r['decelerating']):>7}"
-                 f"{r['proj_pop']:>9}{r['us_per_creature_early']:>12}{r['us_per_creature_late']:>11}"
+                 f"{r['proj_pop']:>9}{r.get('proj_peak_rss_mb','?'):>8}{r['us_per_creature_late']:>11}"
                  f"{r['proj_per_job_s']:>11}")
     if report["flags"]:
         L.append("  FLAGS:")

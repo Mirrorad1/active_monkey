@@ -157,6 +157,16 @@ Ground rules for this file:
   empirically (a frozen-trait returns probe: intake(p) at pinned intensity p, cost handled analytically), as
   the convexity can collapse to concave + cost-dominated at engine/grid resolution. [VALIDATION; METHODOLOGY;
   kin of L13 instrument-resolution]
+- **L26 (perf analysis, 2026-06-13).** ECOLOGY RUNTIME = c·Σ_t pop(t)·arms·seeds, c≈4–5 µs/creature-step
+  of GIL-bound pure Python (distributed across ~10 ops — NO single hot spot). It grew because pop (×10)
+  AND horizon (×20) grew. The TWO failure modes that produce HOURS are (i) runaway growth → the L25
+  guard, and (ii) memory→SWAP (~815 MB/run × workers; the dead-creature belief maps were the big heap —
+  freed on death, RSS −27%; the pre-flight now caps workers to fit RAM). Per-creature CPU is ~irreducible:
+  the bit-exact `events_hash` determinism contract blocks vectorisation (sequential consume() race + rng
+  order) and rng-batching. Real levers: right-size HORIZON (~linear) and GRID→pop (8×8≈3× faster than
+  12×12) and seeds; vectorisation/PyPy are big-but-major. PROFILING CAVEAT: cProfile `tottime`
+  over-weights million-call cheap functions (neighbors/max) — confirm any hot spot with a clean
+  wall-clock A/B before optimising. Full analysis: docs/research/ecology-performance.md. [METHODOLOGY]
 - **L25 (human request, 2026-06-13).** RUN A RUNTIME / ALGORITHMIC-COMPLEXITY PRE-FLIGHT before launching
   any full experiment batch — a bug (unbounded population, an accidental super-linear per-step cost, a
   no-scarcity regime growing toward the runaway cap) can quietly burn hours of compute. The Exp 202
