@@ -1,0 +1,3751 @@
+{
+  "abstraction_barrier": {
+    "latent": {
+      "calibration_error": 0.0,
+      "compute_cost_per_success": 1.0,
+      "coordination_overhead": 0.0,
+      "holdout_regression": 0.0,
+      "map_accuracy": 1.0,
+      "object_place_binding_accuracy": 1.0,
+      "preference_satisfaction": 1.0,
+      "sample_efficiency": 0.3333,
+      "seed_robustness": 1.0,
+      "task_success": 1.0,
+      "transition_model_error": 0.0
+    },
+    "surface_only": {
+      "calibration_error": 0.25,
+      "compute_cost_per_success": 8.0,
+      "coordination_overhead": 0.0,
+      "holdout_regression": 0.875,
+      "map_accuracy": 0.375,
+      "object_place_binding_accuracy": 0.375,
+      "preference_satisfaction": 0.125,
+      "sample_efficiency": 0.0417,
+      "seed_robustness": 0.4,
+      "task_success": 0.125,
+      "transition_model_error": 0.875
+    }
+  },
+  "population_sweep": [
+    {
+      "N": 1,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 22.2222,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.5485,
+        "object_place_binding_accuracy": 0.575,
+        "preference_satisfaction": 0.45,
+        "sample_efficiency": 0.2475,
+        "seed_robustness": 0.6975,
+        "task_success": 0.45,
+        "transition_model_error": 0.7525
+      },
+      "mode": "isolated"
+    },
+    {
+      "N": 1,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 22.2222,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.5485,
+        "object_place_binding_accuracy": 0.575,
+        "preference_satisfaction": 0.45,
+        "sample_efficiency": 0.2475,
+        "seed_robustness": 0.6975,
+        "task_success": 0.45,
+        "transition_model_error": 0.7525
+      },
+      "mode": "shared_trajectory_archive"
+    },
+    {
+      "N": 1,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 22.2222,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.5485,
+        "object_place_binding_accuracy": 0.575,
+        "preference_satisfaction": 0.45,
+        "sample_efficiency": 0.2475,
+        "seed_robustness": 0.6975,
+        "task_success": 0.45,
+        "transition_model_error": 0.7525
+      },
+      "mode": "shared_transition_model"
+    },
+    {
+      "N": 1,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 22.2222,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.5485,
+        "object_place_binding_accuracy": 0.575,
+        "preference_satisfaction": 0.45,
+        "sample_efficiency": 0.2475,
+        "seed_robustness": 0.6975,
+        "task_success": 0.45,
+        "transition_model_error": 0.7525
+      },
+      "mode": "coordinator"
+    },
+    {
+      "N": 2,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 20.0,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.5815,
+        "object_place_binding_accuracy": 0.6,
+        "preference_satisfaction": 0.5,
+        "sample_efficiency": 0.3025,
+        "seed_robustness": 0.6975,
+        "task_success": 0.5,
+        "transition_model_error": 0.6975
+      },
+      "mode": "isolated"
+    },
+    {
+      "N": 2,
+      "metrics": {
+        "calibration_error": 0.23,
+        "compute_cost_per_success": 19.4451,
+        "coordination_overhead": 0.0075,
+        "holdout_regression": 0.2815,
+        "map_accuracy": 0.5935,
+        "object_place_binding_accuracy": 0.6091,
+        "preference_satisfaction": 0.5174,
+        "sample_efficiency": 0.3225,
+        "seed_robustness": 0.7175,
+        "task_success": 0.5181,
+        "transition_model_error": 0.6775
+      },
+      "mode": "shared_trajectory_archive"
+    },
+    {
+      "N": 2,
+      "metrics": {
+        "calibration_error": 0.21,
+        "compute_cost_per_success": 18.9277,
+        "coordination_overhead": 0.015,
+        "holdout_regression": 0.263,
+        "map_accuracy": 0.6055,
+        "object_place_binding_accuracy": 0.6181,
+        "preference_satisfaction": 0.5348,
+        "sample_efficiency": 0.3425,
+        "seed_robustness": 0.7375,
+        "task_success": 0.5363,
+        "transition_model_error": 0.6575
+      },
+      "mode": "shared_transition_model"
+    },
+    {
+      "N": 2,
+      "metrics": {
+        "calibration_error": 0.2,
+        "compute_cost_per_success": 19.3968,
+        "coordination_overhead": 0.045,
+        "holdout_regression": 0.259,
+        "map_accuracy": 0.6115,
+        "object_place_binding_accuracy": 0.6194,
+        "preference_satisfaction": 0.5343,
+        "sample_efficiency": 0.3525,
+        "seed_robustness": 0.7475,
+        "task_success": 0.5388,
+        "transition_model_error": 0.6475
+      },
+      "mode": "coordinator"
+    },
+    {
+      "N": 4,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 18.1818,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.6145,
+        "object_place_binding_accuracy": 0.625,
+        "preference_satisfaction": 0.55,
+        "sample_efficiency": 0.3575,
+        "seed_robustness": 0.6975,
+        "task_success": 0.55,
+        "transition_model_error": 0.6425
+      },
+      "mode": "isolated"
+    },
+    {
+      "N": 4,
+      "metrics": {
+        "calibration_error": 0.21,
+        "compute_cost_per_success": 17.3134,
+        "coordination_overhead": 0.015,
+        "holdout_regression": 0.263,
+        "map_accuracy": 0.6385,
+        "object_place_binding_accuracy": 0.6431,
+        "preference_satisfaction": 0.5848,
+        "sample_efficiency": 0.3975,
+        "seed_robustness": 0.7375,
+        "task_success": 0.5863,
+        "transition_model_error": 0.6025
+      },
+      "mode": "shared_trajectory_archive"
+    },
+    {
+      "N": 4,
+      "metrics": {
+        "calibration_error": 0.17,
+        "compute_cost_per_success": 16.5462,
+        "coordination_overhead": 0.03,
+        "holdout_regression": 0.226,
+        "map_accuracy": 0.6625,
+        "object_place_binding_accuracy": 0.6613,
+        "preference_satisfaction": 0.6195,
+        "sample_efficiency": 0.4375,
+        "seed_robustness": 0.7775,
+        "task_success": 0.6225,
+        "transition_model_error": 0.5625
+      },
+      "mode": "shared_transition_model"
+    },
+    {
+      "N": 4,
+      "metrics": {
+        "calibration_error": 0.15,
+        "compute_cost_per_success": 17.3705,
+        "coordination_overhead": 0.09,
+        "holdout_regression": 0.218,
+        "map_accuracy": 0.6745,
+        "object_place_binding_accuracy": 0.6638,
+        "preference_satisfaction": 0.6185,
+        "sample_efficiency": 0.4575,
+        "seed_robustness": 0.7975,
+        "task_success": 0.6275,
+        "transition_model_error": 0.5425
+      },
+      "mode": "coordinator"
+    },
+    {
+      "N": 8,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 16.6667,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.6475,
+        "object_place_binding_accuracy": 0.65,
+        "preference_satisfaction": 0.6,
+        "sample_efficiency": 0.4125,
+        "seed_robustness": 0.6975,
+        "task_success": 0.6,
+        "transition_model_error": 0.5875
+      },
+      "mode": "isolated"
+    },
+    {
+      "N": 8,
+      "metrics": {
+        "calibration_error": 0.19,
+        "compute_cost_per_success": 15.6256,
+        "coordination_overhead": 0.0225,
+        "holdout_regression": 0.2445,
+        "map_accuracy": 0.6835,
+        "object_place_binding_accuracy": 0.6772,
+        "preference_satisfaction": 0.6521,
+        "sample_efficiency": 0.4725,
+        "seed_robustness": 0.7575,
+        "task_success": 0.6544,
+        "transition_model_error": 0.5275
+      },
+      "mode": "shared_trajectory_archive"
+    },
+    {
+      "N": 8,
+      "metrics": {
+        "calibration_error": 0.13,
+        "compute_cost_per_success": 14.7443,
+        "coordination_overhead": 0.045,
+        "holdout_regression": 0.189,
+        "map_accuracy": 0.7195,
+        "object_place_binding_accuracy": 0.7044,
+        "preference_satisfaction": 0.7043,
+        "sample_efficiency": 0.5325,
+        "seed_robustness": 0.8175,
+        "task_success": 0.7088,
+        "transition_model_error": 0.4675
+      },
+      "mode": "shared_transition_model"
+    },
+    {
+      "N": 8,
+      "metrics": {
+        "calibration_error": 0.1,
+        "compute_cost_per_success": 15.8464,
+        "coordination_overhead": 0.135,
+        "holdout_regression": 0.177,
+        "map_accuracy": 0.7375,
+        "object_place_binding_accuracy": 0.7081,
+        "preference_satisfaction": 0.7028,
+        "sample_efficiency": 0.5625,
+        "seed_robustness": 0.8475,
+        "task_success": 0.7163,
+        "transition_model_error": 0.4375
+      },
+      "mode": "coordinator"
+    },
+    {
+      "N": 16,
+      "metrics": {
+        "calibration_error": 0.25,
+        "compute_cost_per_success": 15.3846,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.3,
+        "map_accuracy": 0.6805,
+        "object_place_binding_accuracy": 0.675,
+        "preference_satisfaction": 0.65,
+        "sample_efficiency": 0.4675,
+        "seed_robustness": 0.6975,
+        "task_success": 0.65,
+        "transition_model_error": 0.5325
+      },
+      "mode": "isolated"
+    },
+    {
+      "N": 16,
+      "metrics": {
+        "calibration_error": 0.17,
+        "compute_cost_per_success": 14.2561,
+        "coordination_overhead": 0.03,
+        "holdout_regression": 0.226,
+        "map_accuracy": 0.7285,
+        "object_place_binding_accuracy": 0.7112,
+        "preference_satisfaction": 0.7195,
+        "sample_efficiency": 0.5475,
+        "seed_robustness": 0.7775,
+        "task_success": 0.7225,
+        "transition_model_error": 0.4525
+      },
+      "mode": "shared_trajectory_archive"
+    },
+    {
+      "N": 16,
+      "metrics": {
+        "calibration_error": 0.09,
+        "compute_cost_per_success": 13.3333,
+        "coordination_overhead": 0.06,
+        "holdout_regression": 0.152,
+        "map_accuracy": 0.7765,
+        "object_place_binding_accuracy": 0.7475,
+        "preference_satisfaction": 0.789,
+        "sample_efficiency": 0.6275,
+        "seed_robustness": 0.8575,
+        "task_success": 0.795,
+        "transition_model_error": 0.3725
+      },
+      "mode": "shared_transition_model"
+    },
+    {
+      "N": 16,
+      "metrics": {
+        "calibration_error": 0.05,
+        "compute_cost_per_success": 14.6584,
+        "coordination_overhead": 0.18,
+        "holdout_regression": 0.136,
+        "map_accuracy": 0.8005,
+        "object_place_binding_accuracy": 0.7525,
+        "preference_satisfaction": 0.787,
+        "sample_efficiency": 0.6675,
+        "seed_robustness": 0.8975,
+        "task_success": 0.805,
+        "transition_model_error": 0.3325
+      },
+      "mode": "coordinator"
+    }
+  ],
+  "recursive_distillation": {
+    "baseline_low_budget": {
+      "calibration_error": 0.4301,
+      "compute_cost_per_success": 16.0,
+      "coordination_overhead": 0.0,
+      "holdout_regression": 0.4711,
+      "map_accuracy": 0.4301,
+      "object_place_binding_accuracy": 0.3871,
+      "preference_satisfaction": 0.4301,
+      "sample_efficiency": 0.215,
+      "seed_robustness": 0.9671,
+      "task_success": 0.0,
+      "transition_model_error": 0.5699
+    },
+    "distilled": {
+      "calibration_error": 0.1199,
+      "compute_cost_per_success": 8.0,
+      "coordination_overhead": 0.0,
+      "holdout_regression": 0.0211,
+      "map_accuracy": 0.8801,
+      "object_place_binding_accuracy": 0.7921,
+      "preference_satisfaction": 0.8801,
+      "sample_efficiency": 0.44,
+      "seed_robustness": 0.9671,
+      "task_success": 1.0,
+      "transition_model_error": 0.1199
+    },
+    "distilled_priors": {
+      "right_then_use": 0.44999999999999996
+    },
+    "high_budget_planner": {
+      "calibration_error": 0.088,
+      "compute_cost_per_success": 32.0,
+      "coordination_overhead": 0.0,
+      "holdout_regression": 0.0,
+      "map_accuracy": 0.912,
+      "object_place_binding_accuracy": 0.8208,
+      "preference_satisfaction": 0.912,
+      "sample_efficiency": 0.114,
+      "seed_robustness": 0.995,
+      "task_success": 1.0,
+      "transition_model_error": 0.088
+    },
+    "selected_trajectories": 3
+  },
+  "replay_modes": {
+    "metrics_by_mode": {
+      "action_conditioned": {
+        "calibration_error": 0.4286,
+        "compute_cost_per_success": 1.75,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.2,
+        "map_accuracy": 1.0,
+        "object_place_binding_accuracy": 0.95,
+        "preference_satisfaction": 0.5714,
+        "sample_efficiency": 0.5714,
+        "seed_robustness": 0.95,
+        "task_success": 0.5714,
+        "transition_model_error": 0.0
+      },
+      "observation_only": {
+        "calibration_error": 0.0,
+        "compute_cost_per_success": 7.0,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.2,
+        "map_accuracy": 0.0,
+        "object_place_binding_accuracy": 0.35,
+        "preference_satisfaction": 0.0,
+        "sample_efficiency": 0.0,
+        "seed_robustness": 0.95,
+        "task_success": 0.0,
+        "transition_model_error": 1.0
+      },
+      "self_generated": {
+        "calibration_error": 0.4286,
+        "compute_cost_per_success": 1.75,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.05,
+        "map_accuracy": 1.0,
+        "object_place_binding_accuracy": 0.95,
+        "preference_satisfaction": 0.5714,
+        "sample_efficiency": 0.5714,
+        "seed_robustness": 0.95,
+        "task_success": 0.5714,
+        "transition_model_error": 0.0
+      },
+      "third_party_with_actions": {
+        "calibration_error": 0.0,
+        "compute_cost_per_success": 7.0,
+        "coordination_overhead": 0.0,
+        "holdout_regression": 0.45,
+        "map_accuracy": 0.0,
+        "object_place_binding_accuracy": 0.35,
+        "preference_satisfaction": 0.0,
+        "sample_efficiency": 0.0,
+        "seed_robustness": 0.95,
+        "task_success": 0.0,
+        "transition_model_error": 1.0
+      }
+    },
+    "trajectories": [
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "watch",
+        "agent_id": "observation_only-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "observation_only-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "observation_only",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "watch",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1831
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.3848
+      },
+      {
+        "action": "pickup",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5916
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9948
+      },
+      {
+        "action": "use",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9898
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9919
+      },
+      {
+        "action": "finish",
+        "agent_id": "action_conditioned-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9843
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1973
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.3831
+      },
+      {
+        "action": "pickup",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5847
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9949
+      },
+      {
+        "action": "use",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9901
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.991
+      },
+      {
+        "action": "finish",
+        "agent_id": "action_conditioned-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.987
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1809
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.381
+      },
+      {
+        "action": "pickup",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5989
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9983
+      },
+      {
+        "action": "use",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9833
+      },
+      {
+        "action": "right",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9853
+      },
+      {
+        "action": "finish",
+        "agent_id": "action_conditioned-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "action_conditioned-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "action_conditioned",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9866
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1831
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.3848
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5916
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9948
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9898
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9919
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-0",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-0",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 0,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9843
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1973
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.3831
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5847
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9949
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9901
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.991
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-1",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-1",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 1,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.987
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 1,
+          "position_belief": 1
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.5,
+          "epistemic_value": 0.2,
+          "risk": 0.75
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 1,
+          "updated": true
+        },
+        "verifier_score": 0.1809
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 2,
+          "position_belief": 2
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.3333,
+          "epistemic_value": 0.2,
+          "risk": 0.5
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-3",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 1,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 1,
+          "to": 2,
+          "updated": true
+        },
+        "verifier_score": 0.381
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 3,
+          "position_belief": 3
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.25,
+          "epistemic_value": 0.2,
+          "risk": 0.25
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-4",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": false
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 2,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 2,
+          "to": 3,
+          "updated": true
+        },
+        "verifier_score": 0.5989
+      },
+      {
+        "action": "right",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.2,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 3,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 3,
+          "to": 4,
+          "updated": true
+        },
+        "verifier_score": 0.9983
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9833
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9853
+      },
+      {
+        "action": "finish",
+        "agent_id": "self_generated-agent-2",
+        "belief_state": {
+          "learned_edges": 4,
+          "position_belief": 4
+        },
+        "env_id": "toy-corridor-v1",
+        "expected_free_energy_terms": {
+          "ambiguity": 0.2,
+          "epistemic_value": 0.05,
+          "risk": 0.0
+        },
+        "fork_id": "self_generated-fork-2",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": true,
+          "success": true
+        },
+        "policy": {
+          "mode": "self_generated",
+          "planner_budget": 2
+        },
+        "seed": 2,
+        "state": {
+          "position": 4,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 4,
+          "to": 4,
+          "updated": false
+        },
+        "verifier_score": 0.9866
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "pickup",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "use",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "finish",
+        "agent_id": "third_party_with_actions-agent-0",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-0",
+        "observation": {
+          "marker": "room-0",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 0,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "pickup",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "use",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "finish",
+        "agent_id": "third_party_with_actions-agent-1",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-1",
+        "observation": {
+          "marker": "room-1",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 1,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 0
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 1
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "pickup",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "pickup"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 2
+        },
+        "transition_update": {
+          "action": "pickup",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 3
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "use",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "use"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 4
+        },
+        "transition_update": {
+          "action": "use",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "right",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "right"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 5
+        },
+        "transition_update": {
+          "action": "right",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      },
+      {
+        "action": "finish",
+        "agent_id": "third_party_with_actions-agent-2",
+        "belief_state": {
+          "learned_edges": 0,
+          "position_belief": 0
+        },
+        "env_id": "toy-corridor-shifted",
+        "expected_free_energy_terms": {
+          "ambiguity": 1.0,
+          "epistemic_value": 0.05,
+          "risk": 1.0
+        },
+        "fork_id": "third_party_with_actions-fork-2",
+        "observation": {
+          "marker": "room-2",
+          "source_action": "finish"
+        },
+        "outcome": {
+          "causal_contact": false,
+          "success": false
+        },
+        "policy": {
+          "mode": "third_party_with_actions",
+          "planner_budget": 0
+        },
+        "seed": 2,
+        "state": {
+          "position": 0,
+          "t": 6
+        },
+        "transition_update": {
+          "action": "finish",
+          "from": 0,
+          "to": 0,
+          "updated": false
+        },
+        "verifier_score": 0.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "recursive_distillation",
+  "description": "Run a high-budget toy planner, keep verified successful traces, distill them into priors, then evaluate lower-budget held-out runs.",
+  "seeds": [0, 1, 2, 20, 21],
+  "horizon": 8,
+  "metrics": [
+    "task_success",
+    "sample_efficiency",
+    "map_accuracy",
+    "object_place_binding_accuracy",
+    "transition_model_error",
+    "preference_satisfaction",
+    "calibration_error",
+    "seed_robustness",
+    "compute_cost_per_success",
+    "coordination_overhead",
+    "holdout_regression"
+  ]
+}

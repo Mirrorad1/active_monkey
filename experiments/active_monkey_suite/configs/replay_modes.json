@@ -1,0 +1,25 @@
+{
+  "name": "replay_modes",
+  "description": "Compare observation-only replay, action-conditioned replay, self-generated intervention, and third-party traces with actions in a toy corridor.",
+  "seeds": [0, 1, 2],
+  "horizon": 7,
+  "replay_modes": [
+    "observation_only",
+    "action_conditioned",
+    "self_generated",
+    "third_party_with_actions"
+  ],
+  "metrics": [
+    "task_success",
+    "sample_efficiency",
+    "map_accuracy",
+    "object_place_binding_accuracy",
+    "transition_model_error",
+    "preference_satisfaction",
+    "calibration_error",
+    "seed_robustness",
+    "compute_cost_per_success",
+    "coordination_overhead",
+    "holdout_regression"
+  ]
+}
