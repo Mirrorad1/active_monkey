@@ -228,6 +228,31 @@ class EcologyConfig:
     freeze_thermosense: bool = False
     founder_mix: tuple[tuple["Genotype", int], ...] | None = None
 
+    # ------------------------------------------------------------------
+    # Exp 204: residue / false-positive discrimination bridge.
+    # ALL defaults preserve Exp 194-203 byte-identical behaviour (enable_residue
+    # False ⇒ the eat step in _step_one_creature is the EXACT unconditional consume,
+    # no extra rng draw, no residue field allocated).
+    #
+    # The mechanic (ON-branch only): eaten food leaves a misleading TRACE
+    # (residue += eaten*residue_yield), decaying residue_decay/step.  At the eat
+    # step the creature reads a NOISY freshness percept f_hat = f + N(0, sigma) of
+    # the true fresh fraction f = R/(R+residue), with sigma = residue_confusion*(1-h)
+    # (h = thermosense_intensity; residue_confusion = the signature-gap difficulty).
+    # It EATS iff f_hat >= residue_eat_threshold; if it ate an actually
+    # residue-dominated cell (f < residue_fp_threshold) it paid a FALSE POSITIVE
+    # (energy -= residue_loss).  ANTI-CHEAT (binding): intake is the UNCHANGED
+    # consume(); h keys ONLY the percept noise; residue_loss is an ACTION cost,
+    # identical regardless of h — never a reward written as f(h).
+    # ------------------------------------------------------------------
+    enable_residue: bool = False
+    residue_yield: float = 1.0           # residue produced per unit of food eaten
+    residue_decay: float = 0.05          # per-step residue decay fraction
+    residue_loss: float = 0.5            # energy cost of a false positive (eating residue)
+    residue_eat_threshold: float = 0.5   # perceived fresh-fraction at/above which it eats
+    residue_fp_threshold: float = 0.5    # true fresh-fraction below which an eat is a false positive
+    residue_confusion: float = 0.6       # signature-gap difficulty; percept noise sd = confusion*(1-h)
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -282,6 +307,12 @@ class Ecology:
                 "enable_band_staleness requires enable_food_coupling AND "
                 "enable_temperature (a drifting thermal food band to track)"
             )
+
+        # Exp 204: allocate the residue trace field ONLY when the mechanic is enabled.
+        # When OFF, world.residue stays None and the eat step is byte-identical (no field,
+        # no extra rng draw). The field is pure state, never entering events_hash.
+        if cfg.enable_residue:
+            self.world.residue = np.zeros(cfg.rows * cfg.cols, dtype=np.float64)
 
         self.t: int = 0
         self.next_id: int = 0
@@ -485,10 +516,41 @@ class Ecology:
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
-        if deficit > 0:
-            eaten = self.world.consume(new_pos, deficit)
-            ph.energy += eaten
-            ph.resource_eaten += eaten
+        if cfg.enable_residue and self.world.residue is not None:
+            # Exp 204: residue / false-positive discrimination. ONE rng draw, made ONLY
+            # in this gated ON branch and ONLY when deficit > 0 (exactly when the OFF path
+            # consumes) — so the OFF path (enable_residue=False) keeps the EXACT
+            # unconditional-consume rng stream and is byte-identical to exp194-203.
+            # ANTI-CHEAT: intake is the UNCHANGED consume(); thermosense_intensity (h) keys
+            # ONLY the percept noise sigma; residue_loss is charged by the ACTION of eating
+            # a residue-dominated cell, identical regardless of h — never a reward on h.
+            if deficit > 0:
+                avail = self.world.resource_at(new_pos)
+                res_here = float(self.world.residue[new_pos])
+                f = avail / (avail + res_here + 1e-9)          # true fresh fraction at the cell
+                h = g.thermosense_intensity
+                sigma = max(0.0, cfg.residue_confusion * (1.0 - h))
+                f_hat = f + self.rng.normal(0.0, sigma)        # the noisy freshness PERCEPT
+                if f_hat >= cfg.residue_eat_threshold:
+                    eaten = self.world.consume(new_pos, deficit)
+                    ph.energy += eaten
+                    ph.resource_eaten += eaten
+                    self.world.residue[new_pos] += eaten * cfg.residue_yield
+                    if f < cfg.residue_fp_threshold:
+                        ph.energy -= cfg.residue_loss          # false positive: ate residue
+                        ph.fp_count += 1
+                    else:
+                        ph.tp_count += 1                       # true positive: ate fresh
+                else:
+                    if f >= cfg.residue_fp_threshold:
+                        ph.fn_count += 1                       # false negative: skipped fresh
+                    else:
+                        ph.tn_count += 1                       # true negative: skipped residue
+        else:
+            if deficit > 0:
+                eaten = self.world.consume(new_pos, deficit)
+                ph.energy += eaten
+                ph.resource_eaten += eaten
         ph.energy = min(ph.energy, g.energy_capacity)
         ph.age += 1
 
@@ -679,6 +741,12 @@ class Ecology:
 
         # World regeneration
         self.world.step_regen()
+
+        # Exp 204: residue decay (ON-branch only; no rng, not in events_hash). Placed here
+        # rather than inside step_regen() so it runs regardless of which step_regen() path
+        # (food-coupling vs plain) executed. OFF path never touches residue → byte-identical.
+        if self.cfg.enable_residue and self.world.residue is not None:
+            self.world.residue *= (1.0 - self.cfg.residue_decay)
 
         # Log resource tick every 50 steps (reduce event volume)
         if self.t % 50 == 0:

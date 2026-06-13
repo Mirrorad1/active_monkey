@@ -73,6 +73,14 @@ class GridWorld:
     band_responsiveness: float = 1.0
     food_optimal_base: float = 0.5
 
+    # Exp 204: residue / false-positive discrimination — the field where eaten food
+    # leaves a misleading trace.  None (default) ⇒ the residue mechanic is OFF and the
+    # engine's eat step is byte-identical to exp194-203.  When enable_residue is True the
+    # engine allocates a zeros(rows*cols) array here, accumulates residue on eating, and
+    # decays it each step.  A pure state array (NOT in events_hash); the discrimination
+    # logic + params live in the engine (cfg) so the world only holds the trace field.
+    residue: "np.ndarray | None" = None
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 

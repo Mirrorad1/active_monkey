@@ -58,6 +58,15 @@ class Phenotype:
     birth_t: int = 0                    # Exp 197: timestep the creature was created;
                                         # founders keep the default 0 (t=0 at __init__);
                                         # NOT emitted in any event dict / events_hash.
+    # Exp 204: residue/false-positive discrimination counters — lifetime tallies of the
+    # eat decision (true/false positive = eat fresh/residue; false/true negative = skip
+    # fresh/residue). Pure phenotype telemetry, NEVER emitted in any event dict /
+    # events_hash, so they do not affect determinism. Default 0 ⇒ untouched when the
+    # residue mechanic is OFF (the counters simply never increment).
+    tp_count: int = 0                   # ate an actually-fresh cell (correct eat)
+    fp_count: int = 0                   # ate an actually-residue cell (costly mistake)
+    fn_count: int = 0                   # skipped an actually-fresh cell (missed food)
+    tn_count: int = 0                   # skipped an actually-residue cell (correct skip)
 
 
 # ---------------------------------------------------------------------------
