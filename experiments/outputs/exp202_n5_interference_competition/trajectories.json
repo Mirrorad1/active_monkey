@@ -1,0 +1,1482 @@
+{
+  "COMPETE_seed38": [
+    {
+      "t": 1000,
+      "pop": 243,
+      "newborn_mean_intensity": 0.15513715468366512,
+      "max_intensity": 0.4831548546343476
+    },
+    {
+      "t": 2000,
+      "pop": 438,
+      "newborn_mean_intensity": 0.1047201968960041,
+      "max_intensity": 0.36221719811021913
+    },
+    {
+      "t": 3000,
+      "pop": 636,
+      "newborn_mean_intensity": 0.05440637068567483,
+      "max_intensity": 0.2598863199891967
+    },
+    {
+      "t": 4000,
+      "pop": 813,
+      "newborn_mean_intensity": 0.03586231554435624,
+      "max_intensity": 0.16936961716463445
+    },
+    {
+      "t": 5000,
+      "pop": 940,
+      "newborn_mean_intensity": 0.0338344084611472,
+      "max_intensity": 0.18114621360482958
+    },
+    {
+      "t": 6000,
+      "pop": 975,
+      "newborn_mean_intensity": 0.03020613920274857,
+      "max_intensity": 0.1336005603514962
+    },
+    {
+      "t": 7000,
+      "pop": 977,
+      "newborn_mean_intensity": 0.028554789662083423,
+      "max_intensity": 0.1354093790069226
+    },
+    {
+      "t": 8000,
+      "pop": 1039,
+      "newborn_mean_intensity": 0.029184816646780104,
+      "max_intensity": 0.13440038192094983
+    },
+    {
+      "t": 9000,
+      "pop": 1014,
+      "newborn_mean_intensity": 0.028792129395231743,
+      "max_intensity": 0.13698058341207658
+    },
+    {
+      "t": 10000,
+      "pop": 1010,
+      "newborn_mean_intensity": 0.029074940926051507,
+      "max_intensity": 0.1557542580892909
+    },
+    {
+      "t": 11000,
+      "pop": 1052,
+      "newborn_mean_intensity": 0.03060126147933802,
+      "max_intensity": 0.15279519520979973
+    },
+    {
+      "t": 12000,
+      "pop": 1033,
+      "newborn_mean_intensity": 0.02862303621595048,
+      "max_intensity": 0.14634290389898805
+    }
+  ],
+  "COMPETE_seed39": [
+    {
+      "t": 1000,
+      "pop": 257,
+      "newborn_mean_intensity": 0.08954294477667694,
+      "max_intensity": 0.2501697882918184
+    },
+    {
+      "t": 2000,
+      "pop": 598,
+      "newborn_mean_intensity": 0.055282058116999766,
+      "max_intensity": 0.3250617325506793
+    },
+    {
+      "t": 3000,
+      "pop": 798,
+      "newborn_mean_intensity": 0.03914766678338207,
+      "max_intensity": 0.17276254108065436
+    },
+    {
+      "t": 4000,
+      "pop": 902,
+      "newborn_mean_intensity": 0.02966496544581154,
+      "max_intensity": 0.1867505884910475
+    },
+    {
+      "t": 5000,
+      "pop": 1009,
+      "newborn_mean_intensity": 0.028087160078609383,
+      "max_intensity": 0.12556812249371468
+    },
+    {
+      "t": 6000,
+      "pop": 1005,
+      "newborn_mean_intensity": 0.027824488781890987,
+      "max_intensity": 0.12905873621904845
+    },
+    {
+      "t": 7000,
+      "pop": 1024,
+      "newborn_mean_intensity": 0.02750235147354914,
+      "max_intensity": 0.13011880552093233
+    },
+    {
+      "t": 8000,
+      "pop": 1043,
+      "newborn_mean_intensity": 0.027206127740532774,
+      "max_intensity": 0.12941814982360778
+    },
+    {
+      "t": 9000,
+      "pop": 1042,
+      "newborn_mean_intensity": 0.02730991910424854,
+      "max_intensity": 0.12588875075214764
+    },
+    {
+      "t": 10000,
+      "pop": 1040,
+      "newborn_mean_intensity": 0.026511618771545526,
+      "max_intensity": 0.11132648311604754
+    },
+    {
+      "t": 11000,
+      "pop": 1069,
+      "newborn_mean_intensity": 0.027471028516365566,
+      "max_intensity": 0.14454969385265348
+    },
+    {
+      "t": 12000,
+      "pop": 1080,
+      "newborn_mean_intensity": 0.027772807939137632,
+      "max_intensity": 0.12820297780541154
+    }
+  ],
+  "COMPETE_seed40": [
+    {
+      "t": 1000,
+      "pop": 249,
+      "newborn_mean_intensity": 0.10113577515184814,
+      "max_intensity": 0.33001931783452576
+    },
+    {
+      "t": 2000,
+      "pop": 628,
+      "newborn_mean_intensity": 0.07185968050082504,
+      "max_intensity": 0.2353934762991332
+    },
+    {
+      "t": 3000,
+      "pop": 831,
+      "newborn_mean_intensity": 0.04229087536887135,
+      "max_intensity": 0.162290292812675
+    },
+    {
+      "t": 4000,
+      "pop": 943,
+      "newborn_mean_intensity": 0.03276489936979907,
+      "max_intensity": 0.18676882477313136
+    },
+    {
+      "t": 5000,
+      "pop": 1015,
+      "newborn_mean_intensity": 0.030410751055259564,
+      "max_intensity": 0.19026449510084548
+    },
+    {
+      "t": 6000,
+      "pop": 1021,
+      "newborn_mean_intensity": 0.03009010740453505,
+      "max_intensity": 0.13825606911104424
+    },
+    {
+      "t": 7000,
+      "pop": 1048,
+      "newborn_mean_intensity": 0.02841513407281156,
+      "max_intensity": 0.1232680373528291
+    },
+    {
+      "t": 8000,
+      "pop": 1058,
+      "newborn_mean_intensity": 0.029192752877602056,
+      "max_intensity": 0.16246973768105993
+    },
+    {
+      "t": 9000,
+      "pop": 1052,
+      "newborn_mean_intensity": 0.027966533975908776,
+      "max_intensity": 0.10857550468845628
+    },
+    {
+      "t": 10000,
+      "pop": 1057,
+      "newborn_mean_intensity": 0.028481994622952436,
+      "max_intensity": 0.1487008196367882
+    },
+    {
+      "t": 11000,
+      "pop": 1075,
+      "newborn_mean_intensity": 0.027753943169421823,
+      "max_intensity": 0.12078657161227785
+    },
+    {
+      "t": 12000,
+      "pop": 1074,
+      "newborn_mean_intensity": 0.02875769947894206,
+      "max_intensity": 0.11264987390253385
+    }
+  ],
+  "COMPETE_seed41": [
+    {
+      "t": 1000,
+      "pop": 212,
+      "newborn_mean_intensity": 0.14212369135542938,
+      "max_intensity": 0.3733534228089475
+    },
+    {
+      "t": 2000,
+      "pop": 430,
+      "newborn_mean_intensity": 0.08367625702279692,
+      "max_intensity": 0.27875986435377637
+    },
+    {
+      "t": 3000,
+      "pop": 568,
+      "newborn_mean_intensity": 0.04753619405627327,
+      "max_intensity": 0.22334067713792133
+    },
+    {
+      "t": 4000,
+      "pop": 716,
+      "newborn_mean_intensity": 0.036638850784466284,
+      "max_intensity": 0.18952157192729696
+    },
+    {
+      "t": 5000,
+      "pop": 868,
+      "newborn_mean_intensity": 0.03222552718931477,
+      "max_intensity": 0.15183163881236633
+    },
+    {
+      "t": 6000,
+      "pop": 946,
+      "newborn_mean_intensity": 0.027992468690338147,
+      "max_intensity": 0.1148726273888273
+    },
+    {
+      "t": 7000,
+      "pop": 941,
+      "newborn_mean_intensity": 0.0276626045975635,
+      "max_intensity": 0.12847428615790185
+    },
+    {
+      "t": 8000,
+      "pop": 1034,
+      "newborn_mean_intensity": 0.026715296294637553,
+      "max_intensity": 0.1902244330046162
+    },
+    {
+      "t": 9000,
+      "pop": 974,
+      "newborn_mean_intensity": 0.02804251866664801,
+      "max_intensity": 0.1331070100833636
+    },
+    {
+      "t": 10000,
+      "pop": 1006,
+      "newborn_mean_intensity": 0.028442795911177512,
+      "max_intensity": 0.1601002233530417
+    },
+    {
+      "t": 11000,
+      "pop": 1040,
+      "newborn_mean_intensity": 0.029014748073442304,
+      "max_intensity": 0.16208348645719042
+    },
+    {
+      "t": 12000,
+      "pop": 1042,
+      "newborn_mean_intensity": 0.028999091452069636,
+      "max_intensity": 0.1897727288109783
+    }
+  ],
+  "COMPETE_seed42": [
+    {
+      "t": 1000,
+      "pop": 181,
+      "newborn_mean_intensity": 0.1459030422415205,
+      "max_intensity": 0.41583076016079634
+    },
+    {
+      "t": 2000,
+      "pop": 358,
+      "newborn_mean_intensity": 0.10221617359303914,
+      "max_intensity": 0.3020825628409319
+    },
+    {
+      "t": 3000,
+      "pop": 488,
+      "newborn_mean_intensity": 0.06592878774383779,
+      "max_intensity": 0.2714332525586282
+    },
+    {
+      "t": 4000,
+      "pop": 640,
+      "newborn_mean_intensity": 0.04089303595725497,
+      "max_intensity": 0.22856930457537278
+    },
+    {
+      "t": 5000,
+      "pop": 839,
+      "newborn_mean_intensity": 0.03203968941227781,
+      "max_intensity": 0.23964476682624863
+    },
+    {
+      "t": 6000,
+      "pop": 870,
+      "newborn_mean_intensity": 0.028845285646800917,
+      "max_intensity": 0.15178974532309641
+    },
+    {
+      "t": 7000,
+      "pop": 936,
+      "newborn_mean_intensity": 0.0286109053531382,
+      "max_intensity": 0.15178974532309641
+    },
+    {
+      "t": 8000,
+      "pop": 997,
+      "newborn_mean_intensity": 0.029331801681184124,
+      "max_intensity": 0.1437386147200788
+    },
+    {
+      "t": 9000,
+      "pop": 965,
+      "newborn_mean_intensity": 0.028529424115880615,
+      "max_intensity": 0.1248058820869791
+    },
+    {
+      "t": 10000,
+      "pop": 966,
+      "newborn_mean_intensity": 0.026665403848305385,
+      "max_intensity": 0.11065105611804371
+    },
+    {
+      "t": 11000,
+      "pop": 1038,
+      "newborn_mean_intensity": 0.027676243690654436,
+      "max_intensity": 0.11118558608956361
+    },
+    {
+      "t": 12000,
+      "pop": 1045,
+      "newborn_mean_intensity": 0.02861347958410164,
+      "max_intensity": 0.12698316601449505
+    }
+  ],
+  "NO_SHUFFLE_seed38": [
+    {
+      "t": 1000,
+      "pop": 138,
+      "newborn_mean_intensity": 0.19321243638295849,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 2000,
+      "pop": 179,
+      "newborn_mean_intensity": 0.21340674135663268,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 3000,
+      "pop": 214,
+      "newborn_mean_intensity": 0.20568856096026775,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 4000,
+      "pop": 245,
+      "newborn_mean_intensity": 0.18787040367455812,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 5000,
+      "pop": 295,
+      "newborn_mean_intensity": 0.18805859838353126,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 6000,
+      "pop": 294,
+      "newborn_mean_intensity": 0.18367617049645865,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 7000,
+      "pop": 330,
+      "newborn_mean_intensity": 0.16740342122511515,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 8000,
+      "pop": 328,
+      "newborn_mean_intensity": 0.16133700696602848,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 9000,
+      "pop": 332,
+      "newborn_mean_intensity": 0.15534341710340943,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 10000,
+      "pop": 332,
+      "newborn_mean_intensity": 0.14992603724355855,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 11000,
+      "pop": 349,
+      "newborn_mean_intensity": 0.15611410686936167,
+      "max_intensity": 0.42503736014854376
+    },
+    {
+      "t": 12000,
+      "pop": 350,
+      "newborn_mean_intensity": 0.14969832078685072,
+      "max_intensity": 0.42503736014854376
+    }
+  ],
+  "NO_SHUFFLE_seed39": [
+    {
+      "t": 1000,
+      "pop": 245,
+      "newborn_mean_intensity": 0.10667137021132471,
+      "max_intensity": 0.2576168733770532
+    },
+    {
+      "t": 2000,
+      "pop": 329,
+      "newborn_mean_intensity": 0.10495882468604001,
+      "max_intensity": 0.23933987378568514
+    },
+    {
+      "t": 3000,
+      "pop": 365,
+      "newborn_mean_intensity": 0.09881653811275594,
+      "max_intensity": 0.2848598105570006
+    },
+    {
+      "t": 4000,
+      "pop": 359,
+      "newborn_mean_intensity": 0.0949008571451052,
+      "max_intensity": 0.25097327521988316
+    },
+    {
+      "t": 5000,
+      "pop": 390,
+      "newborn_mean_intensity": 0.0911974418505937,
+      "max_intensity": 0.2454423617300024
+    },
+    {
+      "t": 6000,
+      "pop": 352,
+      "newborn_mean_intensity": 0.09068384176389789,
+      "max_intensity": 0.3181617235897612
+    },
+    {
+      "t": 7000,
+      "pop": 351,
+      "newborn_mean_intensity": 0.09055512163809044,
+      "max_intensity": 0.26978717377054917
+    },
+    {
+      "t": 8000,
+      "pop": 385,
+      "newborn_mean_intensity": 0.09353542933760448,
+      "max_intensity": 0.24084858126544378
+    },
+    {
+      "t": 9000,
+      "pop": 361,
+      "newborn_mean_intensity": 0.08984329292580738,
+      "max_intensity": 0.2321940443245882
+    },
+    {
+      "t": 10000,
+      "pop": 351,
+      "newborn_mean_intensity": 0.08808902294376372,
+      "max_intensity": 0.31947239450279163
+    },
+    {
+      "t": 11000,
+      "pop": 370,
+      "newborn_mean_intensity": 0.09412105835033685,
+      "max_intensity": 0.253175670928375
+    },
+    {
+      "t": 12000,
+      "pop": 378,
+      "newborn_mean_intensity": 0.08857634847425065,
+      "max_intensity": 0.2113071664842065
+    }
+  ],
+  "NO_SHUFFLE_seed40": [
+    {
+      "t": 1000,
+      "pop": 113,
+      "newborn_mean_intensity": 0.26195617293520124,
+      "max_intensity": 0.43889187999883383
+    },
+    {
+      "t": 2000,
+      "pop": 147,
+      "newborn_mean_intensity": 0.2703734868619409,
+      "max_intensity": 0.42348692662844156
+    },
+    {
+      "t": 3000,
+      "pop": 151,
+      "newborn_mean_intensity": 0.25724548363845,
+      "max_intensity": 0.3563074979177084
+    },
+    {
+      "t": 4000,
+      "pop": 161,
+      "newborn_mean_intensity": 0.25557534258621123,
+      "max_intensity": 0.41731347491322707
+    },
+    {
+      "t": 5000,
+      "pop": 185,
+      "newborn_mean_intensity": 0.24529637231080378,
+      "max_intensity": 0.3927033974423033
+    },
+    {
+      "t": 6000,
+      "pop": 184,
+      "newborn_mean_intensity": 0.24207446838856858,
+      "max_intensity": 0.35517666071081105
+    },
+    {
+      "t": 7000,
+      "pop": 189,
+      "newborn_mean_intensity": 0.2384515784703988,
+      "max_intensity": 0.3870040994771443
+    },
+    {
+      "t": 8000,
+      "pop": 203,
+      "newborn_mean_intensity": 0.236240509431831,
+      "max_intensity": 0.40539730163238824
+    },
+    {
+      "t": 9000,
+      "pop": 207,
+      "newborn_mean_intensity": 0.22976643624333393,
+      "max_intensity": 0.3812701786161588
+    },
+    {
+      "t": 10000,
+      "pop": 206,
+      "newborn_mean_intensity": 0.22646298881746396,
+      "max_intensity": 0.5039633905236999
+    },
+    {
+      "t": 11000,
+      "pop": 231,
+      "newborn_mean_intensity": 0.23004658437255068,
+      "max_intensity": 0.38443936232982917
+    },
+    {
+      "t": 12000,
+      "pop": 214,
+      "newborn_mean_intensity": 0.23056580695709264,
+      "max_intensity": 0.422570701283686
+    }
+  ],
+  "NO_SHUFFLE_seed41": [
+    {
+      "t": 1000,
+      "pop": 236,
+      "newborn_mean_intensity": 0.09357808850641999,
+      "max_intensity": 0.2578865470339631
+    },
+    {
+      "t": 2000,
+      "pop": 421,
+      "newborn_mean_intensity": 0.06005009490099588,
+      "max_intensity": 0.3069927913712552
+    },
+    {
+      "t": 3000,
+      "pop": 426,
+      "newborn_mean_intensity": 0.056241145956235646,
+      "max_intensity": 0.24372572678015272
+    },
+    {
+      "t": 4000,
+      "pop": 437,
+      "newborn_mean_intensity": 0.05580701733788155,
+      "max_intensity": 0.27246569508580154
+    },
+    {
+      "t": 5000,
+      "pop": 453,
+      "newborn_mean_intensity": 0.05775322248800258,
+      "max_intensity": 0.23094007561248242
+    },
+    {
+      "t": 6000,
+      "pop": 432,
+      "newborn_mean_intensity": 0.05783314870063737,
+      "max_intensity": 0.25937871841574767
+    },
+    {
+      "t": 7000,
+      "pop": 450,
+      "newborn_mean_intensity": 0.05733843405305306,
+      "max_intensity": 0.2626533251192831
+    },
+    {
+      "t": 8000,
+      "pop": 453,
+      "newborn_mean_intensity": 0.056733673888966364,
+      "max_intensity": 0.24936811890561283
+    },
+    {
+      "t": 9000,
+      "pop": 444,
+      "newborn_mean_intensity": 0.056060592609680646,
+      "max_intensity": 0.23094007561248242
+    },
+    {
+      "t": 10000,
+      "pop": 473,
+      "newborn_mean_intensity": 0.055084471550672656,
+      "max_intensity": 0.23094007561248242
+    },
+    {
+      "t": 11000,
+      "pop": 455,
+      "newborn_mean_intensity": 0.05481799254687286,
+      "max_intensity": 0.3184439227669812
+    },
+    {
+      "t": 12000,
+      "pop": 461,
+      "newborn_mean_intensity": 0.05161535851638684,
+      "max_intensity": 0.23708402736863768
+    }
+  ],
+  "NO_SHUFFLE_seed42": [
+    {
+      "t": 1000,
+      "pop": 115,
+      "newborn_mean_intensity": 0.21148133891236473,
+      "max_intensity": 0.36447370754892106
+    },
+    {
+      "t": 2000,
+      "pop": 161,
+      "newborn_mean_intensity": 0.21955758060902908,
+      "max_intensity": 0.37884783291774965
+    },
+    {
+      "t": 3000,
+      "pop": 193,
+      "newborn_mean_intensity": 0.1956451725894417,
+      "max_intensity": 0.34399415637205866
+    },
+    {
+      "t": 4000,
+      "pop": 257,
+      "newborn_mean_intensity": 0.17380810103702884,
+      "max_intensity": 0.34823558339304017
+    },
+    {
+      "t": 5000,
+      "pop": 336,
+      "newborn_mean_intensity": 0.15544430508628507,
+      "max_intensity": 0.41084010115343567
+    },
+    {
+      "t": 6000,
+      "pop": 336,
+      "newborn_mean_intensity": 0.15571544955679134,
+      "max_intensity": 0.42268282402000856
+    },
+    {
+      "t": 7000,
+      "pop": 364,
+      "newborn_mean_intensity": 0.14560314827979193,
+      "max_intensity": 0.3449326861336189
+    },
+    {
+      "t": 8000,
+      "pop": 364,
+      "newborn_mean_intensity": 0.14901344752046436,
+      "max_intensity": 0.40569310052887586
+    },
+    {
+      "t": 9000,
+      "pop": 359,
+      "newborn_mean_intensity": 0.1305973995198558,
+      "max_intensity": 0.32764939538145765
+    },
+    {
+      "t": 10000,
+      "pop": 351,
+      "newborn_mean_intensity": 0.13109343947030216,
+      "max_intensity": 0.40369507491310364
+    },
+    {
+      "t": 11000,
+      "pop": 371,
+      "newborn_mean_intensity": 0.12958429239560382,
+      "max_intensity": 0.4386990211856171
+    },
+    {
+      "t": 12000,
+      "pop": 367,
+      "newborn_mean_intensity": 0.11700899873930265,
+      "max_intensity": 0.31244994962826933
+    }
+  ],
+  "CLAMPED_LR_seed38": [
+    {
+      "t": 1000,
+      "pop": 172,
+      "newborn_mean_intensity": 0.14139884846191234,
+      "max_intensity": 0.38976531477752346
+    },
+    {
+      "t": 2000,
+      "pop": 375,
+      "newborn_mean_intensity": 0.13624613737403837,
+      "max_intensity": 0.29508359910414933
+    },
+    {
+      "t": 3000,
+      "pop": 519,
+      "newborn_mean_intensity": 0.0859024617040923,
+      "max_intensity": 0.32818404479610913
+    },
+    {
+      "t": 4000,
+      "pop": 677,
+      "newborn_mean_intensity": 0.056555611189778865,
+      "max_intensity": 0.2139505997220651
+    },
+    {
+      "t": 5000,
+      "pop": 883,
+      "newborn_mean_intensity": 0.04193956297677525,
+      "max_intensity": 0.20792068509256934
+    },
+    {
+      "t": 6000,
+      "pop": 980,
+      "newborn_mean_intensity": 0.03357271186000791,
+      "max_intensity": 0.17541375664429598
+    },
+    {
+      "t": 7000,
+      "pop": 1066,
+      "newborn_mean_intensity": 0.030879995677955647,
+      "max_intensity": 0.157803116560426
+    },
+    {
+      "t": 8000,
+      "pop": 1124,
+      "newborn_mean_intensity": 0.02946358027968126,
+      "max_intensity": 0.13809457798449215
+    },
+    {
+      "t": 9000,
+      "pop": 1101,
+      "newborn_mean_intensity": 0.030517217713021624,
+      "max_intensity": 0.12209471025460167
+    },
+    {
+      "t": 10000,
+      "pop": 1130,
+      "newborn_mean_intensity": 0.028306758671698327,
+      "max_intensity": 0.12449748936372756
+    },
+    {
+      "t": 11000,
+      "pop": 1147,
+      "newborn_mean_intensity": 0.02803799824094581,
+      "max_intensity": 0.12809354547426383
+    },
+    {
+      "t": 12000,
+      "pop": 1117,
+      "newborn_mean_intensity": 0.029195520064532493,
+      "max_intensity": 0.11036268362555383
+    }
+  ],
+  "CLAMPED_LR_seed39": [
+    {
+      "t": 1000,
+      "pop": 219,
+      "newborn_mean_intensity": 0.17393701913690268,
+      "max_intensity": 0.560662515181398
+    },
+    {
+      "t": 2000,
+      "pop": 396,
+      "newborn_mean_intensity": 0.0970195970645922,
+      "max_intensity": 0.3417521660047781
+    },
+    {
+      "t": 3000,
+      "pop": 558,
+      "newborn_mean_intensity": 0.057899035841379766,
+      "max_intensity": 0.23814331623439544
+    },
+    {
+      "t": 4000,
+      "pop": 710,
+      "newborn_mean_intensity": 0.04551739740021853,
+      "max_intensity": 0.2747011863094958
+    },
+    {
+      "t": 5000,
+      "pop": 844,
+      "newborn_mean_intensity": 0.03543282419020908,
+      "max_intensity": 0.1661299838217829
+    },
+    {
+      "t": 6000,
+      "pop": 932,
+      "newborn_mean_intensity": 0.03376445673217466,
+      "max_intensity": 0.18268814333342018
+    },
+    {
+      "t": 7000,
+      "pop": 981,
+      "newborn_mean_intensity": 0.03234458932657006,
+      "max_intensity": 0.1873489346517642
+    },
+    {
+      "t": 8000,
+      "pop": 1047,
+      "newborn_mean_intensity": 0.028004608269922664,
+      "max_intensity": 0.17415761393037818
+    },
+    {
+      "t": 9000,
+      "pop": 1017,
+      "newborn_mean_intensity": 0.02942598606534207,
+      "max_intensity": 0.14282551056416126
+    },
+    {
+      "t": 10000,
+      "pop": 1052,
+      "newborn_mean_intensity": 0.028803865121148516,
+      "max_intensity": 0.1578573436714117
+    },
+    {
+      "t": 11000,
+      "pop": 1061,
+      "newborn_mean_intensity": 0.026236643634256488,
+      "max_intensity": 0.1502979711005623
+    },
+    {
+      "t": 12000,
+      "pop": 1067,
+      "newborn_mean_intensity": 0.029063240557058386,
+      "max_intensity": 0.19081512437409748
+    }
+  ],
+  "CLAMPED_LR_seed40": [
+    {
+      "t": 1000,
+      "pop": 155,
+      "newborn_mean_intensity": 0.2945557995184366,
+      "max_intensity": 0.6907232862288004
+    },
+    {
+      "t": 2000,
+      "pop": 275,
+      "newborn_mean_intensity": 0.19175098713835081,
+      "max_intensity": 0.4401019986157196
+    },
+    {
+      "t": 3000,
+      "pop": 417,
+      "newborn_mean_intensity": 0.0964630213628618,
+      "max_intensity": 0.48641851266725916
+    },
+    {
+      "t": 4000,
+      "pop": 579,
+      "newborn_mean_intensity": 0.05657661088380576,
+      "max_intensity": 0.23705310761768494
+    },
+    {
+      "t": 5000,
+      "pop": 768,
+      "newborn_mean_intensity": 0.04342307727902718,
+      "max_intensity": 0.17340713472916136
+    },
+    {
+      "t": 6000,
+      "pop": 869,
+      "newborn_mean_intensity": 0.038622765280297074,
+      "max_intensity": 0.16625738874997947
+    },
+    {
+      "t": 7000,
+      "pop": 979,
+      "newborn_mean_intensity": 0.03200908926687548,
+      "max_intensity": 0.13054216161125154
+    },
+    {
+      "t": 8000,
+      "pop": 1040,
+      "newborn_mean_intensity": 0.030013782712125313,
+      "max_intensity": 0.15298125296304274
+    },
+    {
+      "t": 9000,
+      "pop": 1042,
+      "newborn_mean_intensity": 0.03022805647036534,
+      "max_intensity": 0.14746830008236253
+    },
+    {
+      "t": 10000,
+      "pop": 1060,
+      "newborn_mean_intensity": 0.029207420429103154,
+      "max_intensity": 0.17254987544555853
+    },
+    {
+      "t": 11000,
+      "pop": 1100,
+      "newborn_mean_intensity": 0.029308829174788602,
+      "max_intensity": 0.14695448481835707
+    },
+    {
+      "t": 12000,
+      "pop": 1091,
+      "newborn_mean_intensity": 0.02950285514859683,
+      "max_intensity": 0.16976654607248232
+    }
+  ],
+  "CLAMPED_LR_seed41": [
+    {
+      "t": 1000,
+      "pop": 262,
+      "newborn_mean_intensity": 0.14396114127164178,
+      "max_intensity": 0.3875252332986945
+    },
+    {
+      "t": 2000,
+      "pop": 475,
+      "newborn_mean_intensity": 0.07998615104280388,
+      "max_intensity": 0.26836339505816653
+    },
+    {
+      "t": 3000,
+      "pop": 643,
+      "newborn_mean_intensity": 0.05104239448153814,
+      "max_intensity": 0.28886066425570006
+    },
+    {
+      "t": 4000,
+      "pop": 764,
+      "newborn_mean_intensity": 0.036225657835430976,
+      "max_intensity": 0.19095456738345604
+    },
+    {
+      "t": 5000,
+      "pop": 839,
+      "newborn_mean_intensity": 0.03206570167394089,
+      "max_intensity": 0.16580005221967237
+    },
+    {
+      "t": 6000,
+      "pop": 895,
+      "newborn_mean_intensity": 0.03037599359059204,
+      "max_intensity": 0.1231332464333622
+    },
+    {
+      "t": 7000,
+      "pop": 900,
+      "newborn_mean_intensity": 0.029803539806207317,
+      "max_intensity": 0.1501539789089589
+    },
+    {
+      "t": 8000,
+      "pop": 927,
+      "newborn_mean_intensity": 0.028480938635298596,
+      "max_intensity": 0.13497870934834497
+    },
+    {
+      "t": 9000,
+      "pop": 913,
+      "newborn_mean_intensity": 0.02918895480274482,
+      "max_intensity": 0.14670827923620888
+    },
+    {
+      "t": 10000,
+      "pop": 889,
+      "newborn_mean_intensity": 0.028213720482152267,
+      "max_intensity": 0.15405156493596517
+    },
+    {
+      "t": 11000,
+      "pop": 953,
+      "newborn_mean_intensity": 0.02771379449144736,
+      "max_intensity": 0.13672105847145122
+    },
+    {
+      "t": 12000,
+      "pop": 957,
+      "newborn_mean_intensity": 0.02921400260532547,
+      "max_intensity": 0.12300517238991178
+    }
+  ],
+  "CLAMPED_LR_seed42": [
+    {
+      "t": 1000,
+      "pop": 235,
+      "newborn_mean_intensity": 0.1721962342397554,
+      "max_intensity": 0.49402075347369623
+    },
+    {
+      "t": 2000,
+      "pop": 583,
+      "newborn_mean_intensity": 0.0696973515548963,
+      "max_intensity": 0.2508444597208211
+    },
+    {
+      "t": 3000,
+      "pop": 762,
+      "newborn_mean_intensity": 0.04058349748491095,
+      "max_intensity": 0.214448138679803
+    },
+    {
+      "t": 4000,
+      "pop": 917,
+      "newborn_mean_intensity": 0.031453100081808544,
+      "max_intensity": 0.1811883373125131
+    },
+    {
+      "t": 5000,
+      "pop": 1002,
+      "newborn_mean_intensity": 0.02967288019014572,
+      "max_intensity": 0.12568211650592237
+    },
+    {
+      "t": 6000,
+      "pop": 1008,
+      "newborn_mean_intensity": 0.029366437877588726,
+      "max_intensity": 0.12825428092822638
+    },
+    {
+      "t": 7000,
+      "pop": 1007,
+      "newborn_mean_intensity": 0.02795487433605169,
+      "max_intensity": 0.13081966191428535
+    },
+    {
+      "t": 8000,
+      "pop": 1052,
+      "newborn_mean_intensity": 0.028376009452772,
+      "max_intensity": 0.15332077415683115
+    },
+    {
+      "t": 9000,
+      "pop": 1045,
+      "newborn_mean_intensity": 0.0285511089722768,
+      "max_intensity": 0.14309312984487546
+    },
+    {
+      "t": 10000,
+      "pop": 1043,
+      "newborn_mean_intensity": 0.02850869668352399,
+      "max_intensity": 0.1260868939328655
+    },
+    {
+      "t": 11000,
+      "pop": 1091,
+      "newborn_mean_intensity": 0.02778970824010428,
+      "max_intensity": 0.14216904086806886
+    },
+    {
+      "t": 12000,
+      "pop": 1057,
+      "newborn_mean_intensity": 0.02788979446721805,
+      "max_intensity": 0.11803958001556705
+    }
+  ],
+  "USELESS_seed38": [
+    {
+      "t": 1000,
+      "pop": 91,
+      "newborn_mean_intensity": 0.06949737800911857,
+      "max_intensity": 0.25748335055765326
+    },
+    {
+      "t": 2000,
+      "pop": 188,
+      "newborn_mean_intensity": 0.03226771507360856,
+      "max_intensity": 0.21597398037596902
+    },
+    {
+      "t": 3000,
+      "pop": 276,
+      "newborn_mean_intensity": 0.0278257759202129,
+      "max_intensity": 0.1595023473013015
+    },
+    {
+      "t": 4000,
+      "pop": 358,
+      "newborn_mean_intensity": 0.02594575959947686,
+      "max_intensity": 0.09903184486557115
+    },
+    {
+      "t": 5000,
+      "pop": 392,
+      "newborn_mean_intensity": 0.028390338796945996,
+      "max_intensity": 0.09732078706353056
+    },
+    {
+      "t": 6000,
+      "pop": 454,
+      "newborn_mean_intensity": 0.026555143041855606,
+      "max_intensity": 0.09418310028571816
+    },
+    {
+      "t": 7000,
+      "pop": 488,
+      "newborn_mean_intensity": 0.02960483223482586,
+      "max_intensity": 0.062322176475174365
+    },
+    {
+      "t": 8000,
+      "pop": 515,
+      "newborn_mean_intensity": 0.026000508094308542,
+      "max_intensity": 0.09229622628120761
+    },
+    {
+      "t": 9000,
+      "pop": 522,
+      "newborn_mean_intensity": 0.029576067738731383,
+      "max_intensity": 0.0557800206350024
+    },
+    {
+      "t": 10000,
+      "pop": 514,
+      "newborn_mean_intensity": 0.025710174459034354,
+      "max_intensity": 0.062386845585272355
+    },
+    {
+      "t": 11000,
+      "pop": 527,
+      "newborn_mean_intensity": 0.027916817009670105,
+      "max_intensity": 0.11473822692389324
+    },
+    {
+      "t": 12000,
+      "pop": 527,
+      "newborn_mean_intensity": 0.02868609220495956,
+      "max_intensity": 0.08296958381392752
+    }
+  ],
+  "USELESS_seed39": [
+    {
+      "t": 1000,
+      "pop": 60,
+      "newborn_mean_intensity": 0.1470421840371565,
+      "max_intensity": 0.1928022201045963
+    },
+    {
+      "t": 2000,
+      "pop": 142,
+      "newborn_mean_intensity": 0.05614714401391519,
+      "max_intensity": 0.24263430690831117
+    },
+    {
+      "t": 3000,
+      "pop": 237,
+      "newborn_mean_intensity": 0.03239904321263891,
+      "max_intensity": 0.16888741237409702
+    },
+    {
+      "t": 4000,
+      "pop": 301,
+      "newborn_mean_intensity": 0.02792354406620346,
+      "max_intensity": 0.16800274761717565
+    },
+    {
+      "t": 5000,
+      "pop": 370,
+      "newborn_mean_intensity": 0.02587194565025508,
+      "max_intensity": 0.13915197753855163
+    },
+    {
+      "t": 6000,
+      "pop": 403,
+      "newborn_mean_intensity": 0.02613244547144768,
+      "max_intensity": 0.11735860985726776
+    },
+    {
+      "t": 7000,
+      "pop": 439,
+      "newborn_mean_intensity": 0.025369666980107983,
+      "max_intensity": 0.07805670959723633
+    },
+    {
+      "t": 8000,
+      "pop": 474,
+      "newborn_mean_intensity": 0.02505108951676939,
+      "max_intensity": 0.1255620193660961
+    },
+    {
+      "t": 9000,
+      "pop": 501,
+      "newborn_mean_intensity": 0.02453671280966903,
+      "max_intensity": 0.13403278690600792
+    },
+    {
+      "t": 10000,
+      "pop": 518,
+      "newborn_mean_intensity": 0.027258794816820177,
+      "max_intensity": 0.09198037823480179
+    },
+    {
+      "t": 11000,
+      "pop": 532,
+      "newborn_mean_intensity": 0.02499637818555648,
+      "max_intensity": 0.0921581898731621
+    },
+    {
+      "t": 12000,
+      "pop": 524,
+      "newborn_mean_intensity": 0.029697676930468687,
+      "max_intensity": 0.07018966887231144
+    }
+  ],
+  "USELESS_seed40": [
+    {
+      "t": 1000,
+      "pop": 83,
+      "newborn_mean_intensity": 0.1364718530738087,
+      "max_intensity": 0.3243513958818519
+    },
+    {
+      "t": 2000,
+      "pop": 147,
+      "newborn_mean_intensity": 0.060993544953335165,
+      "max_intensity": 0.2522879677215898
+    },
+    {
+      "t": 3000,
+      "pop": 217,
+      "newborn_mean_intensity": 0.03653109956328307,
+      "max_intensity": 0.2522879677215898
+    },
+    {
+      "t": 4000,
+      "pop": 260,
+      "newborn_mean_intensity": 0.028208890715438164,
+      "max_intensity": 0.14966767370781384
+    },
+    {
+      "t": 5000,
+      "pop": 299,
+      "newborn_mean_intensity": 0.023929552719077533,
+      "max_intensity": 0.1057815672498762
+    },
+    {
+      "t": 6000,
+      "pop": 344,
+      "newborn_mean_intensity": 0.02451057984576802,
+      "max_intensity": 0.1257549047337884
+    },
+    {
+      "t": 7000,
+      "pop": 376,
+      "newborn_mean_intensity": 0.02447357433774234,
+      "max_intensity": 0.06539058495084774
+    },
+    {
+      "t": 8000,
+      "pop": 415,
+      "newborn_mean_intensity": 0.02775327099135108,
+      "max_intensity": 0.09648465329916568
+    },
+    {
+      "t": 9000,
+      "pop": 437,
+      "newborn_mean_intensity": 0.024753668136494,
+      "max_intensity": 0.0749862196472674
+    },
+    {
+      "t": 10000,
+      "pop": 473,
+      "newborn_mean_intensity": 0.02478431594308518,
+      "max_intensity": 0.09352963899357583
+    },
+    {
+      "t": 11000,
+      "pop": 489,
+      "newborn_mean_intensity": 0.025268133354115367,
+      "max_intensity": 0.08818141585337946
+    },
+    {
+      "t": 12000,
+      "pop": 505,
+      "newborn_mean_intensity": 0.030517259888454218,
+      "max_intensity": 0.12591109006122564
+    }
+  ],
+  "USELESS_seed41": [
+    {
+      "t": 1000,
+      "pop": 66,
+      "newborn_mean_intensity": 0.07226407274087228,
+      "max_intensity": 0.22181145495962057
+    },
+    {
+      "t": 2000,
+      "pop": 168,
+      "newborn_mean_intensity": 0.04452237066675696,
+      "max_intensity": 0.16047510045362584
+    },
+    {
+      "t": 3000,
+      "pop": 243,
+      "newborn_mean_intensity": 0.034901868939497836,
+      "max_intensity": 0.1804231129691009
+    },
+    {
+      "t": 4000,
+      "pop": 289,
+      "newborn_mean_intensity": 0.030488333797827886,
+      "max_intensity": 0.15187616786350905
+    },
+    {
+      "t": 5000,
+      "pop": 335,
+      "newborn_mean_intensity": 0.03019514157779968,
+      "max_intensity": 0.14348923792400703
+    },
+    {
+      "t": 6000,
+      "pop": 366,
+      "newborn_mean_intensity": 0.027700590385397978,
+      "max_intensity": 0.09550898710481107
+    },
+    {
+      "t": 7000,
+      "pop": 389,
+      "newborn_mean_intensity": 0.031270464027409114,
+      "max_intensity": 0.12031547091452789
+    },
+    {
+      "t": 8000,
+      "pop": 420,
+      "newborn_mean_intensity": 0.026330748454856445,
+      "max_intensity": 0.10823840639167814
+    },
+    {
+      "t": 9000,
+      "pop": 443,
+      "newborn_mean_intensity": 0.026475924889607972,
+      "max_intensity": 0.11683173205048333
+    },
+    {
+      "t": 10000,
+      "pop": 473,
+      "newborn_mean_intensity": 0.027569408010307415,
+      "max_intensity": 0.0534217820587941
+    },
+    {
+      "t": 11000,
+      "pop": 482,
+      "newborn_mean_intensity": 0.029082320598178564,
+      "max_intensity": 0.13194807909778858
+    },
+    {
+      "t": 12000,
+      "pop": 495,
+      "newborn_mean_intensity": 0.025162533604671883,
+      "max_intensity": 0.08799189896663864
+    }
+  ],
+  "USELESS_seed42": [
+    {
+      "t": 1000,
+      "pop": 81,
+      "newborn_mean_intensity": 0.12927005021065613,
+      "max_intensity": 0.2931389106003662
+    },
+    {
+      "t": 2000,
+      "pop": 181,
+      "newborn_mean_intensity": 0.04358286568807742,
+      "max_intensity": 0.1837730947970847
+    },
+    {
+      "t": 3000,
+      "pop": 273,
+      "newborn_mean_intensity": 0.02936020708631508,
+      "max_intensity": 0.1413824068591642
+    },
+    {
+      "t": 4000,
+      "pop": 322,
+      "newborn_mean_intensity": 0.02634337451442087,
+      "max_intensity": 0.10422246098506821
+    },
+    {
+      "t": 5000,
+      "pop": 381,
+      "newborn_mean_intensity": 0.025378942798684672,
+      "max_intensity": 0.10176372540309438
+    },
+    {
+      "t": 6000,
+      "pop": 412,
+      "newborn_mean_intensity": 0.025632734032185606,
+      "max_intensity": 0.06344939397618801
+    },
+    {
+      "t": 7000,
+      "pop": 449,
+      "newborn_mean_intensity": 0.02552120567761633,
+      "max_intensity": 0.09684574929803412
+    },
+    {
+      "t": 8000,
+      "pop": 488,
+      "newborn_mean_intensity": 0.027259380396160236,
+      "max_intensity": 0.07994794848500164
+    },
+    {
+      "t": 9000,
+      "pop": 503,
+      "newborn_mean_intensity": 0.026236960465241266,
+      "max_intensity": 0.06429054535919647
+    },
+    {
+      "t": 10000,
+      "pop": 505,
+      "newborn_mean_intensity": 0.023180200319376155,
+      "max_intensity": 0.13398996627984538
+    },
+    {
+      "t": 11000,
+      "pop": 526,
+      "newborn_mean_intensity": 0.027884488913105562,
+      "max_intensity": 0.15518179590353526
+    },
+    {
+      "t": 12000,
+      "pop": 534,
+      "newborn_mean_intensity": 0.0266941261848719,
+      "max_intensity": 0.05848618414735765
+    }
+  ]
+}

@@ -8132,3 +8132,87 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   with REAL frequency dependence (precision pays MORE as rivals also sense; interference competition was
   weak here, strip≈0) is the last untested sensing escape. Predicting the escape (the human's hypothesis),
   reporting NEGATIVE (pilot-suggested), is an honest test; unanimously blind-verified 3/3.
+
+## Exp 202 — N5 the INTERFERENCE-COMPETITION escape: forcing real frequency-dependent competition on a DEPLETING band (id-order confound NEUTRALISED by shuffle) does NOT cross the valley — the costed precision-organ is ACTIVELY SUPPRESSED below the founder; the primitive-sensor ceiling is now MAXIMALLY GENERAL across FOUR distinct regimes (NEGATIVE / NEW INSIGHT)
+
+- Plain: Three walls (Exp 199 avoidance, 200 foraging, 201 increasing-returns) left one last sensing escape:
+  REAL interference competition, where precision pays MORE as rivals also sense (a Red-Queen dynamic). Exp 201
+  had only weak competition (strip≈0, the band was not depleted within a step); Exp 202 tests a genuinely
+  depleting band where contested cells are won by navigation skill, not birth order. A new gated engine change
+  (shuffle_creature_order, rng.shuffle, ON-branch only) neutralises the ascending creature-id "eat-first"
+  confound — designed by TWO independent runtimes (Codex diagnosis + Claude 3-design+3-audit) that converged
+  on the same fix and rejected the same alternatives. RESULT: still NO — and more decisively. Genuine
+  interference competition (strip 100%, UNLIKE exp201's strip≈0) SUPPRESSED the organ BELOW the 0.10 founder
+  (COMPETE mean 0.0285 at healthy populations 1033-1080, well above the 300 drift-floor). The ceiling is not
+  just a ceiling anymore: under real competition, the costed organ is actively selected against. The
+  primitive-sensor ceiling is now general across FOUR distinct regimes.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 413f6f9, BEFORE any
+  verdict-seed data): the INTERFERENCE-COMPETITION escape — a depleting band where the id-order confound is
+  neutralised by shuffle_creature_order so contested cells are won by tracking skill not birth order, giving
+  precision a frequency-dependent payoff (precision pays MORE as rivals also sense, a Red-Queen dynamic) —
+  allows a FUNCTIONAL organ to evolve de-novo (gene-pool newborn mean intensity > 0.30). (Predicting the
+  escape; disclosed pilots SUGGEST NEGATIVE — an honest test.)
+- Setup: experiments/exp202_n5_interference_competition.py on the ecology/ engine + a NEW gated
+  shuffle_creature_order mechanic (branch exp202-...; committed): rng.shuffle randomises per-step processing
+  order (ON-branch only), neutralising the ascending-id eat-first confound so a contested cell is won by
+  navigation skill; consume() UNCHANGED. track_band_strip is a gated validity auditor (no rng, not in
+  events_hash). Designed by TWO independent runtimes that CONVERGED (Codex diagnosis + Claude 3-design+3-audit),
+  both choosing shuffle, both rejecting alternatives (precision-weighted split, precision-ordering, mixed-founders).
+  exp194-201 byte-identical (exp194 hash + exp200 WIDE seed23 502e0539 reproduce; guards in
+  tests/test_exp202_competition.py). 4 arms (founder intensity 0.10, fresh seeds {38,39,40,41,42}, horizon 12000,
+  conc 14/band 0.08/regen 0.08): COMPETE (depleting + shuffle, primary test), NO_SHUFFLE (id-order ON, confound
+  check), CLAMPED_LR (learning_rate frozen, confound-killer), USELESS (no coupling, organ pure cost). Disclosed:
+  pilots {130,131,140-147} (strip-gate go/no-go); ABUNDANT arm DROPPED in disclosed pre-verdict amendment
+  (no-scarcity regen 0.8 → population explosion → runtime + explosion-invalidity; role covered by USELESS).
+  Performance: O(alive) engine optimization + dropping ABUNDANT cut runtime from ~20 min to 210s.
+- Result (committed exp202.txt + experiments/outputs/exp202_n5_interference_competition/): VERDICT NEGATIVE
+  (ceiling general even under real interference competition), unanimously blind-verified AGREE (independent
+  grader recomputed and confirmed). Per-seed COMPETE: 0.0297/0.0276/0.0283/0.0290/0.0281, mean 0.0285,
+  healthy pops 1033-1080, strip_frac 100%. NO_SHUFFLE mean 0.1303 (per-seed 0.1530/0.0914/0.2303/0.0532/
+  0.1234), smaller pops 214-461. CLAMPED_LR mean 0.0284, pops ~1057. USELESS mean 0.0276, pops ~520.
+  P1 determinism PASS; P2 validity PASS (COMPETE valid 5/5 AND strip_frac=1.00 = GENUINE interference
+  competition, UNLIKE exp201's strip≈0); P3 (functional >0.30 at healthy pop) NO; drift-flagged NO;
+  corr(pop,intensity) = -0.82.
+  Key findings: (i) COMPETE DECAYED to ~0.028 — BELOW the 0.10 founder — at HEALTHY populations (1033-1080,
+  well above the 300 drift-floor). Genuine interference competition (strip 100%) did not merely fail to help
+  precision; it ACTIVELY SUPPRESSED the organ below baseline. More decisive than a borderline negative.
+  (ii) CLAMPED_LR ~= COMPETE (0.0284 ≈ 0.0285) -> the decay is genuine thermosense, NOT resource-memory
+  substitution. (iii) NO_SHUFFLE mean 0.1303 is HIGHER than COMPETE 0.028, but at SMALLER drift-prone pops
+  (214-461); corr(pop,intensity) = -0.82 (high intensity only at low pop = DRIFT); this is NOT a clean
+  selection datum and does NOT contradict NEGATIVE — it is the same drift signature the design predeclared.
+  (iv) The STRIP-GATE PASSED (strip 100%, genuine competition) so this is a VALID negative, not an
+  inert/untested escape (exp201's failure mode where strip≈0).
+- Verifier: AGREE (NEGATIVE), unanimously blind-verified (independent grader recomputed and confirmed).
+  Key verification points: (i) COMPETE below founder at healthy pop = NEGATIVE is the honest call, more
+  decisive than exp199-201; (ii) NO_SHUFFLE higher values are DRIFT at collapsed pop — corr(pop,intensity)
+  -0.82 — not selection, and the design predeclared this; (iii) CLAMPED_LR ≈ COMPETE confirms genuine
+  thermosense suppression, not memory substitution; (iv) STRIP-GATE PASSED (100%), validating the test as
+  genuinely testing interference competition (not an inert exp201-style null).
+- Implication: the primitive-sensor ceiling is now MAXIMALLY GENERAL across FOUR distinct regimes —
+  avoidance (Exp 199), foraging (Exp 200), increasing-returns/moving-target tracking (Exp 201), and REAL
+  interference competition (Exp 202). More than general: under real competition the organ is ACTIVELY
+  SUPPRESSED below baseline (a crowded scarce depleting band makes the upkeep MORE lethal; a fair queue
+  does not rescue precision). The ceiling is not merely a valley: it is selection AGAINST the organ. The
+  NO_SHUFFLE (id-order ON) arm shows high values only at drift-prone collapsed populations — corr -0.82 —
+  confirming that "more competition" without the id-order fix was a drift artifact, not a Red-Queen signal.
+  The STRIP-GATE PASSED (100%) certifies the test was valid (the band was genuinely contested and depleted),
+  unlike exp201's strip≈0 which left the Red-Queen question open. Scope: not proven universal across ALL
+  cost structures / sensing topologies, but the FOUR-regime span is the strongest publishable form of the
+  wall; the question "can a costed thermosense organ evolve functional in any of these four benefit
+  structures?" is answered NO, more decisively with each experiment.
+- Verdict: NEGATIVE / NEW INSIGHT — the INTERFERENCE-COMPETITION escape FAILS: real frequency-dependent
+  competition on a depleting band (id-order confound neutralised by shuffle) does not cross the valley —
+  it ACTIVELY SUPPRESSES the organ below the founder. The primitive-sensor ceiling is now MAXIMALLY GENERAL
+  across FOUR distinct regimes: avoidance (199), foraging (200), increasing-returns (201), and real
+  interference competition (202). Competition is not a Red-Queen rescue; under these conditions it is an
+  additional selective pressure AGAINST the costed organ.
+- Honest caveat: NEGATIVE is the decisive general finding. COMPETE decaying to 0.028 BELOW the 0.10 founder
+  at healthy populations (1033-1080, well above the 300 drift-floor) is more decisive than exp199-201; this
+  is NOT a borderline result. Do NOT interpret NO_SHUFFLE mean 0.130 as a selection signal for precision —
+  it occurs at drift-prone collapsed populations (214-461), corr(pop,intensity) = -0.82 (high intensity only
+  at low pop = founder/drift artifact), predeclared. CLAMPED_LR ≈ COMPETE confirms genuine thermosense
+  suppression. The STRIP-GATE PASSED (strip_frac=1.00) certifies the test was valid: this is a genuine
+  interference-competition negative, not an inert null (exp201's failure mode). Scope: FOUR tested benefit
+  structures closed; universality not proven across ALL cost structures / sensing topologies — but the
+  four-regime span is the strongest publishable form of the wall. Unanimously blind-verified AGREE
+  (independent grader recomputed and confirmed).

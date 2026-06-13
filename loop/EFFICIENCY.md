@@ -25,6 +25,11 @@ keep wall-clock and context cost bounded WITHOUT degrading experiment integrity.
   bit-identical to sequential. The per-step time loop stays sequential (it cannot parallelize).
 - Sequentially-dependent seed chains (seed k seeded from run k-1) use `sequential=True`; only the
   independent outer seeds parallelize.
+- Right-size populations: per-step cost is O(alive) (pure Python), so a run's wall-clock scales with
+  population x steps. Keep populations in the low hundreds via concentration/regen/band geometry; a
+  no-scarcity regime (high regen) has NOTHING to bound its population and runs toward the runaway cap —
+  never use it as a baseline. self._creatures keeps every creature ever born; _alive() scans only
+  self._alive_list (O(alive)) — do not re-introduce full-list scans on the hot path.
 
 ## Output commits: slim (exp202+)
 - Commit `verdict.json` (per-arm-seed summary + hashes + end metrics) + `<exp>.txt` (the human summary)

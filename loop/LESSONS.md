@@ -157,3 +157,9 @@ Ground rules for this file:
   empirically (a frozen-trait returns probe: intake(p) at pinned intensity p, cost handled analytically), as
   the convexity can collapse to concave + cost-dominated at engine/grid resolution. [VALIDATION; METHODOLOGY;
   kin of L13 instrument-resolution]
+- **L24 (Exp 202, 2026-06-13).** REAL interference competition for a contested DEPLETING resource is NOT
+  automatically a Red-Queen escape — it can select AGAINST a costed precision organ: a crowded scarce band
+  makes the upkeep more lethal and a fair queue (id-order neutralised by shuffle) does not rescue precision,
+  so COMPETE DECAYED below the founder. Verify the band genuinely depletes (strip>0) so the test is valid,
+  AND beware drift: high trait values at small/collapsed populations (corr(pop,trait) strongly negative) are
+  founder/drift artifacts, not selection — predeclare a healthy-population floor. [VALIDATION; METHODOLOGY]
