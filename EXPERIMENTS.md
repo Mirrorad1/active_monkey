@@ -7933,3 +7933,90 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   can then cross the valley (the cleanest follow-up the ceiling mechanism points to); (b) sweep the
   OTHER valley axes (organ-cost structure, stress topology) to test universality of the ceiling; (c)
   move on to niche/species archive or mate choice (Exp 200+).
+
+## Exp 200 — N5 the FORAGING escape: a non-saturating foraging benefit does NOT cross the valley either — the primitive-sensor ceiling holds across BOTH avoidance and foraging, and a benefit that is real in ISOLATION is invisible in evolution (NEGATIVE / NEW INSIGHT)
+
+- Plain: Last experiment found the heat sensor stuck primitive because a sensor used to AVOID a hazard
+  self-limits (a little sensing reaches safety; then more is dead weight). The fix we tried: make the
+  sensor pay for something you never stop needing - finding FOOD. We concentrated the food in a thermal
+  band that drifts, and let the sensor be used to forage (track the food band) instead of to avoid.
+  First the good news: a strong forager handed the organ for free reproduces about 4 times more than a
+  creature with no organ - so foraging-sense is genuinely, hugely useful. But evolution still does NOT
+  build a strong organ: across fresh worlds, with the sensor free to evolve, the gene pool stays
+  primitive (~0.08), barely above a control where the sensor does nothing (~0.06), and nowhere near
+  functional. Strong-sensor individuals keep appearing (up to 0.56-0.66) but are always weeded out. So
+  the ceiling is not specific to avoidance - it holds for foraging too. The deep, surprising point: a
+  benefit can be real and large when you HAND someone the organ, yet still be invisible to evolution -
+  because a crude sensor already grabs the easy part of the benefit, and the extra payoff for a better
+  sensor is too small and too noisy to reliably out-breed its cost. There is no Goldilocks gradient.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 2b14459, BEFORE any data):
+  the ESCAPE from Exp 199's ceiling - a NON-saturating foraging benefit (food in a DRIFTING thermal
+  band; thermosense used to FORAGE - you always need food) lets a FUNCTIONAL thermosense organ EVOLVE
+  (gene-pool mean intensity climbs > 0.30), crossing the valley. (Predicting POSITIVE - the human's
+  escape hypothesis; the disclosed pilots suggested NEGATIVE - an honest test.)
+- Setup: experiments/exp200_n5_foraging_escape.py on the ecology/ engine + a NEW gated FORAGING-SENSE
+  mechanic (branch exp200-foraging-sense): enable_food_coupling concentrates resource regen in a
+  drifting thermal band; thermosense_forage_mode steers the policy toward the food-optimal temperature
+  (finding food) instead of away from stress; temperature_stress_scale 0 (the ONLY benefit is
+  foraging). exp194-199 byte-identical (hash-verified); the engine behavioral test confirms a forced
+  strong forager (intensity 0.8) reproduces ~4x more than a no-organ creature. Arms (temp ON, stress 0,
+  cheap efficient organ inefficiency 0.20/floor 0, founder intensity 0.10, fresh seeds {23,24,25,26,27},
+  horizon 12000): WIDE forage (band 0.15, amp 0.3, period 1500), NARROW/precision forage (band 0.05,
+  amp 0.4, period 600), CONTROL (no food coupling -> thermosense useless). Metric = NEWBORN (gene-pool)
+  mean thermosense intensity, end = born in [10000,12000]; L21 validity. Pilots {100,101} disclosed
+  (no crossing); thresholds FIXED pre-run. runtime 908s.
+- Result (committed exp200.txt + experiments/outputs/exp200_n5_foraging_escape/): VERDICT NEGATIVE
+  (escape FAILS; ceiling general across the tested coupling regimes), blind-verified. P3 (the escape:
+  some foraging arm gene-pool mean > 0.30 in >=4/5 seeds) FAIL - WIDE per-seed end intensities
+  0.0783/0.0947/0.0971/0.0348/0.1072 (mean 0.0824), NARROW 0.0554/0.0866/0.0939/0.0549/0.1478 (mean
+  0.0877) - NO seed in either foraging arm exceeds 0.15, let alone 0.30. The NEGATIVE falsifier (both
+  foraging arms primitive < 0.15 in a majority) FIRES 5/5 in both. P1 determinism PASS; P2 validity PASS
+  (15/15 arm-seeds measurable, no extinctions). The CONTROL (thermosense useless) equilibrates at 0.0625
+  - so foraging raises the gene-pool intensity only WEAKLY above useless (~0.08 vs ~0.06; WIDE > control
+  in 4/5 seeds, NARROW in 3/5): a real but shallow directional signal, far too weak to cross. Max
+  individual intensity reaches 0.56-0.66 in ALL arms (incl. the control) - high-intensity individuals
+  arise by mutation but NEVER fix; the gene pool can PRODUCE them but the selection gradient cannot
+  sweep them.
+- Verifier: agree (NEGATIVE) - blinded subagent (docstring + raw exp200.txt only) recomputed P1..P3 +
+  the falsifier from the per-arm/seed numbers and confirmed NEGATIVE; sharpened the reading: (i) the
+  foraging arms ARE weakly above the useless control (foraging gives SOME selection for intensity, just
+  far too little - note it), (ii) high-intensity individuals (0.56-0.66) exist in every arm but never
+  fix - the gene pool harbors the variation, the gradient is too weak to convert it, (iii) the KEY
+  tension is that the benefit is REAL and LARGE in ISOLATION (the forced-forager 4x reproduction) yet
+  INVISIBLE in population dynamics - "benefit real in isolation, invisible in evolution" is the precise
+  finding, a REGIME problem not an absence-of-benefit; (iv) scope "general" to "general across the
+  tested coupling regimes (avoidance + foraging)", not proven universal.
+- Implication: the primitive-sensor ceiling is GENERAL across the two tested benefit types (avoidance,
+  Exp 199; foraging, here) - a costed precision-organ does not evolve functional regardless of whether
+  sensing avoids a hazard or finds food. The mechanism is now sharper than Exp 199's "avoidance
+  saturates": there is NO GOLDILOCKS GRADIENT - a crude sensor captures the EASY part of any findable
+  benefit (so the marginal benefit of precision is small), while a harder/narrower benefit is too
+  STOCHASTIC at the individual level to reliably out-breed the precision cost (narrower bands gave LOWER
+  intensity in pilots). The deepest point, named by the verifier: a benefit demonstrably LARGE when the
+  organ is imposed (4x reproduction) can be INVISIBLE to selection in the evolving population - so a
+  forced/behavioral benefit test does NOT predict evolvability (-> L22). Generalizability tier:
+  structural within the avoidance + foraging coupling regimes; universality across all couplings
+  (different cost structures, sensing topologies, frequency-dependence) untested.
+- Honest caveat: NEGATIVE is the INTERESTING general finding, not a failed experiment; predicting
+  POSITIVE (the human's escape hypothesis) and reporting NEGATIVE is an honest test. The claim is scoped
+  to the TESTED coupling regimes (avoidance + foraging) - "general" means "across both tested benefit
+  types," NOT proven universal across all cost structures / sensing topologies / frequency-dependent
+  regimes (a named limit). The foraging arms DO trend weakly above the useless control (foraging is not
+  irrelevant - it provides a shallow gradient); the entry does not claim foraging is useless, only that
+  its selection gradient is too weak to cross. The base regime is FAVORABLE (cheap efficient organ,
+  strong isolated benefit) so the NEGATIVE is strong. Pilots {100,101} disclosed (showed no crossing);
+  fresh seeds {23-27}. Engine gated; exp194-199 byte-identical. Founders + costs PROVIDED.
+- Verdict: NEGATIVE / NEW INSIGHT - the foraging escape FAILS: a non-saturating foraging benefit does
+  NOT let a functional thermosense organ evolve (gene-pool mean stays ~0.08, < the 0.30 line, 5/5 both
+  foraging arms), so the primitive-sensor ceiling is GENERAL across the tested coupling regimes
+  (avoidance + foraging). The mechanism: no Goldilocks gradient + a benefit real-in-isolation but
+  invisible-in-evolution. Blind-verified; scoped honestly (universality untested).
+- Next: options (each needs a word) - (a) accept the ceiling as a documented structural wall of this
+  sensing model and MOVE ON to a different N5 axis - niche/species archive (cluster the trait/behavior
+  space; the evaluator RECORDS, never selects) or mate choice; (b) test universality by sweeping the
+  OTHER couplings (frequency-dependent benefit, a step/threshold benefit with INCREASING returns, a
+  different cost structure) to find whether ANY regime evolves a functional organ; (c) revisit the
+  moonshot's main line (the talk-to-it path). Lesson folded to loop/LESSONS.md (L22: a forced/behavioral
+  benefit test - "organ X helps when imposed" - does NOT predict that X will be SELECTED for; verify
+  selection at the GENE-POOL level, because the marginal gradient can be too weak even when the isolated
+  benefit is large).

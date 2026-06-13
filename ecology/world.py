@@ -41,6 +41,23 @@ class GridWorld:
     thermal_avoidance_weight: float = 1.0
     thermosense_active_threshold: float = 0.05
 
+    # Exp 200: foraging-sense — food concentrated in a drifting thermal band.
+    # All new fields have defaults that preserve previous behaviour exactly.
+    #
+    # forage_mode: when True, the policy thermal branch steers TOWARD food (the
+    #   food-optimal temperature) rather than AWAY from thermal stress.
+    # current_food_optimal: drifting food-optimal temperature; updated by
+    #   Ecology.step() when enable_food_coupling is True. Initialised to
+    #   food_optimal_base (set via from_config).
+    # enable_food_coupling: gates the in-band regen concentration in step_regen().
+    #   When False, step_regen() is EXACTLY the old code (byte-identical).
+    # food_band_width / food_concentration: parameters for the regen boost.
+    forage_mode: bool = False
+    current_food_optimal: float = 0.5
+    enable_food_coupling: bool = False
+    food_band_width: float = 0.15
+    food_concentration: float = 1.0
+
     # ------------------------------------------------------------------
     # Indexing helpers
     # ------------------------------------------------------------------
@@ -73,7 +90,46 @@ class GridWorld:
         applies ONLY when regen_rate == 0 and the cell is still exactly 0 after
         adding regen_rate (preventing permanent dead-cell lock-in).
         See module docstring for the formal rule.
+
+        Exp 200 food-coupling extension: when enable_food_coupling is True AND a
+        temperature field is present, cells within food_band_width of
+        current_food_optimal get regen_rate * food_concentration; out-of-band
+        cells get regen_rate * out_factor, where out_factor is chosen so total
+        regen is approximately conserved.  Deterministic (no rng).
+        When enable_food_coupling is False, this method is byte-identical to before.
         """
+        # Exp 200 food-coupling: concentrated regen — only when enabled AND temperature
+        # field is present (temperature carries the spatial gradient for the band).
+        if self.enable_food_coupling and self.temperature is not None:
+            n_cells = self.rows * self.cols
+            in_band = np.abs(self.temperature - self.current_food_optimal) <= self.food_band_width
+            n_in = int(np.sum(in_band))
+            n_out = n_cells - n_in
+
+            # Choose out_factor so total regen ≈ n_cells * regen_rate (conserved).
+            # Total regen with boost = n_in * regen_rate * food_concentration
+            #                        + n_out * regen_rate * out_factor
+            # Setting equal to n_cells * regen_rate and solving for out_factor:
+            #   out_factor = (n_cells - n_in * food_concentration) / max(1, n_out)
+            # Clamped to >= 0 so we never give negative regen.
+            if n_out > 0:
+                out_factor = max(0.0, (n_cells - n_in * self.food_concentration) / n_out)
+            else:
+                out_factor = 0.0
+
+            depleted = self.resource == 0.0
+            # Apply per-cell regen in-place using vectorised arithmetic.
+            regen_amounts = np.where(in_band, self.regen_rate * self.food_concentration,
+                                     self.regen_rate * out_factor)
+            self.resource += regen_amounts
+            self.resource = np.clip(self.resource, 0.0, self.capacity)
+            # Floor bump for cells that were depleted AND are still zero.
+            still_zero = depleted & (self.resource == 0.0)
+            if np.any(still_zero):
+                self.resource[still_zero] = min(_FLOOR_REGEN, self.capacity)
+            return
+
+        # --- Original path (byte-identical when enable_food_coupling is False) ---
         depleted = self.resource == 0.0
         self.resource += self.regen_rate
         self.resource = np.clip(self.resource, 0.0, self.capacity)
@@ -151,6 +207,12 @@ class GridWorld:
         thermosense_noise_base: float = 0.5,
         thermal_avoidance_weight: float = 1.0,
         thermosense_active_threshold: float = 0.05,
+        # Exp 200: foraging-sense parameters — all default to OFF (no-op).
+        forage_mode: bool = False,
+        food_optimal_base: float = 0.5,
+        enable_food_coupling: bool = False,
+        food_band_width: float = 0.15,
+        food_concentration: float = 1.0,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -162,6 +224,10 @@ class GridWorld:
         gradient is built: temperature[r*cols + c] = c / (cols - 1).
         The gradient requires no rng draws, so the resource-perturbation rng
         stream is unchanged relative to the no-temperature case (regression safe).
+
+        Exp 200 foraging parameters are stored in the world so step_regen() and
+        creature.py can read them without threading cfg through every call.
+        All defaults are no-ops — byte-identical to Exp 194–199 when not set.
         """
         base = capacity * max(0.0, min(1.0, initial_resource))
         perturb = rng.uniform(-0.05 * capacity, 0.05 * capacity, size=rows * cols)
@@ -188,4 +254,10 @@ class GridWorld:
             thermosense_noise_base=thermosense_noise_base,
             thermal_avoidance_weight=thermal_avoidance_weight,
             thermosense_active_threshold=thermosense_active_threshold,
+            # Exp 200 foraging fields — set from config; defaults are no-ops.
+            forage_mode=forage_mode,
+            current_food_optimal=food_optimal_base,  # initialised to static value; updated per-tick
+            enable_food_coupling=enable_food_coupling,
+            food_band_width=food_band_width,
+            food_concentration=food_concentration,
         )

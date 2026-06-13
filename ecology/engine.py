@@ -138,6 +138,37 @@ class EcologyConfig:
     comfort_amplitude: float = 0.0       # 0 = static comfort zone (byte-identical)
     comfort_period: float = 1000.0       # period of the sinusoidal drift in steps
 
+    # ------------------------------------------------------------------
+    # Exp 200: foraging-sense — food concentrated in a drifting thermal band.
+    # ALL defaults preserve Exp 194–199 byte-identical behaviour.
+    #
+    # enable_food_coupling: when True, regen is concentrated where the cell
+    #   temperature is near current_food_optimal (the drifting food band).
+    #   When False, regen is EXACTLY as before (byte-identical).
+    #
+    # food_optimal_base / amplitude / period: the food-optimal temperature drifts
+    #   food_opt(t) = food_optimal_base + food_optimal_amplitude*sin(2π t / period).
+    #   amplitude=0 → constant band (food_optimal_base); byte-identical to static.
+    #
+    # food_band_width: half-width of the in-band region around food_opt.
+    #   Cells within this distance get regen_rate * food_concentration;
+    #   out-of-band cells get a conserved-regen out_factor (≥ 0).
+    #
+    # food_concentration: boost multiplier for in-band cells (1.0 = uniform).
+    #   Higher values concentrate food more tightly in the band.
+    #
+    # thermosense_forage_mode: when True AND thermosense is active, the policy
+    #   steers TOWARD current_food_optimal (where food is) rather than away from
+    #   thermal stress.  When False, the existing avoid-mode logic runs unchanged.
+    # ------------------------------------------------------------------
+    enable_food_coupling: bool = False
+    food_optimal_base: float = 0.5
+    food_optimal_amplitude: float = 0.0
+    food_optimal_period: float = 1500.0
+    food_band_width: float = 0.15
+    food_concentration: float = 1.0
+    thermosense_forage_mode: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -175,6 +206,11 @@ class Ecology:
             thermosense_noise_base=cfg.thermosense_noise_base,
             thermal_avoidance_weight=cfg.thermal_avoidance_weight,
             thermosense_active_threshold=cfg.thermosense_active_threshold,
+            forage_mode=cfg.thermosense_forage_mode,
+            food_optimal_base=cfg.food_optimal_base,
+            enable_food_coupling=cfg.enable_food_coupling,
+            food_band_width=cfg.food_band_width,
+            food_concentration=cfg.food_concentration,
         )
 
         self.t: int = 0
@@ -439,6 +475,16 @@ class Ecology:
                 self.cfg.temperature_comfort
                 + self.cfg.comfort_amplitude
                 * math.sin(2.0 * math.pi * self.t / self.cfg.comfort_period)
+            )
+
+        # Exp 200: update food-optimal temperature BEFORE processing creatures.
+        # When enable_food_coupling is False this block never runs — byte-identical.
+        # When food_optimal_amplitude == 0 the result is constant (food_optimal_base).
+        if self.cfg.enable_food_coupling:
+            self.world.current_food_optimal = (
+                self.cfg.food_optimal_base
+                + self.cfg.food_optimal_amplitude
+                * math.sin(2.0 * math.pi * self.t / self.cfg.food_optimal_period)
             )
 
         # Process alive creatures in ascending id order (deterministic)

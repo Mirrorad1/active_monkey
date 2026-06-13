@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 199)
+### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 200)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,7 +145,7 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
-- **The population-ecology direction (Exp 194–199, ACTIVE — a NEW parallel line on the
+- **The population-ecology direction (Exp 194–200, ACTIVE — a NEW parallel line on the
   human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
   substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
   DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
@@ -183,8 +183,19 @@ step 0.
   or drives extinction (2/5); high-intensity mutants arise (max 0.4–1.0) but are always culled — a
   genuine selective valley. Mechanism = benefit-SATURATION (a little sensing suffices to reach safety;
   once safe, more organ is pure cost). Scoped to THIS avoidance regime (only noise swept). The pointed
-  escape (named, untested): a FUNCTIONAL organ needs a NON-saturating benefit — sensing for FORAGING,
-  not avoidance. Card: `loop/directions/population-ecology.md`.
+  escape (named): a FUNCTIONAL organ needs a NON-saturating benefit — sensing for FORAGING, not avoidance.
+  **Exp 200 (NEGATIVE / NEW INSIGHT — a WALL)** — that foraging escape, TESTED and FAILED: food regen
+  concentrated in a DRIFTING thermal band, thermosense steers toward it (FORAGE mode), no temperature
+  stress so foraging is the ONLY benefit. The benefit is real and LARGE in isolation — a forced strong
+  forager reproduces ~4× more than a no-organ creature — yet INVISIBLE to evolution: across fresh seeds
+  {23–27} the gene-pool newborn intensity stays primitive (WIDE ~0.082, NARROW ~0.088), only WEAKLY above
+  a useless-thermosense CONTROL (~0.063), never any seed >0.15, nowhere near functional (>0.30). High-
+  intensity individuals (max 0.56–0.66) keep arising in every arm including control but never fix. So the
+  primitive-sensor ceiling is GENERAL across BOTH avoidance (199) and foraging (200): NO GOLDILOCKS
+  GRADIENT — a crude sensor grabs the easy part of any findable benefit, and the marginal payoff of
+  precision is too small / too noisy to out-breed its cost. A forced/behavioral benefit test does NOT
+  predict evolvability (→ L22). On branch `exp200-foraging-sense` → PR. Card:
+  `loop/directions/population-ecology.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

@@ -1,0 +1,184 @@
+{
+  "experiment": "exp200",
+  "seeds": [
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "per_arm_seed": {
+    "WIDE": {
+      "23": {
+        "valid": true,
+        "end_newborn_intensity": 0.07833944606089574,
+        "final_pop": 671,
+        "extinct": false,
+        "max_ever_intensity": 0.5622093552315378,
+        "steps_run": 12000,
+        "events_hash": "502e053989c703616931e4edf7d4ffbc171fcf1a1adc597e33bd9f0b0ec01124"
+      },
+      "24": {
+        "valid": true,
+        "end_newborn_intensity": 0.09468404960666034,
+        "final_pop": 646,
+        "extinct": false,
+        "max_ever_intensity": 0.4552125187719992,
+        "steps_run": 12000,
+        "events_hash": "119389de216e21aae6cda53ca1be89ab1d7d0af09ea43f932d40340f51e3746b"
+      },
+      "25": {
+        "valid": true,
+        "end_newborn_intensity": 0.09711244075166714,
+        "final_pop": 593,
+        "extinct": false,
+        "max_ever_intensity": 0.4617653992076863,
+        "steps_run": 12000,
+        "events_hash": "ed2cb90298a8d4286b92562a67b1c9b87ae18d3c1add0ccb44f6723c0cb1a883"
+      },
+      "26": {
+        "valid": true,
+        "end_newborn_intensity": 0.034768993772004576,
+        "final_pop": 797,
+        "extinct": false,
+        "max_ever_intensity": 0.34616492753491324,
+        "steps_run": 12000,
+        "events_hash": "000409d5ad2d2c4f64ce4a9946fecdd6598d585cbbb28598e3d01bda08fca9cb"
+      },
+      "27": {
+        "valid": true,
+        "end_newborn_intensity": 0.10718069342711088,
+        "final_pop": 624,
+        "extinct": false,
+        "max_ever_intensity": 0.48725835839053966,
+        "steps_run": 12000,
+        "events_hash": "e4ddc7be9b877c07cb6d1532797cfda3f5aa65a30cc4358b1e22c2d937b78257"
+      }
+    },
+    "NARROW": {
+      "23": {
+        "valid": true,
+        "end_newborn_intensity": 0.055427664676589196,
+        "final_pop": 505,
+        "extinct": false,
+        "max_ever_intensity": 0.489631519856234,
+        "steps_run": 12000,
+        "events_hash": "a186a1dd4c5987cd697ddff88abf1db01b1305e3394c662c6b2d572c301fe1be"
+      },
+      "24": {
+        "valid": true,
+        "end_newborn_intensity": 0.08657740357174944,
+        "final_pop": 473,
+        "extinct": false,
+        "max_ever_intensity": 0.5612495672538442,
+        "steps_run": 12000,
+        "events_hash": "8f3b4b29345cff322010ae208d85806024a81300f40fb2ac52bbb7f006f3c5c9"
+      },
+      "25": {
+        "valid": true,
+        "end_newborn_intensity": 0.09390524088349157,
+        "final_pop": 425,
+        "extinct": false,
+        "max_ever_intensity": 0.3865024924078111,
+        "steps_run": 12000,
+        "events_hash": "423b524f061a0efcd12036d0a7e55926018ed86e3f07fb817f0a01b77b676947"
+      },
+      "26": {
+        "valid": true,
+        "end_newborn_intensity": 0.05494876983674263,
+        "final_pop": 441,
+        "extinct": false,
+        "max_ever_intensity": 0.39833405157434476,
+        "steps_run": 12000,
+        "events_hash": "64d7a84a2f3ea4ba3222feb30b04430a809410156c8ff292d31ab926cb8f5c86"
+      },
+      "27": {
+        "valid": true,
+        "end_newborn_intensity": 0.14782358595558034,
+        "final_pop": 398,
+        "extinct": false,
+        "max_ever_intensity": 0.5274960666243987,
+        "steps_run": 12000,
+        "events_hash": "6473eda4ac365bd6b64618774eb242eb4fa8500e92e3ba0fc9c297e2810e4b2a"
+      }
+    },
+    "CONTROL": {
+      "23": {
+        "valid": true,
+        "end_newborn_intensity": 0.03932070614894058,
+        "final_pop": 503,
+        "extinct": false,
+        "max_ever_intensity": 0.4630420417770863,
+        "steps_run": 12000,
+        "events_hash": "5630391a46940db5474ace61365631d2758940cbb27aa7f1fc03bbb30b549c11"
+      },
+      "24": {
+        "valid": true,
+        "end_newborn_intensity": 0.06485165401768613,
+        "final_pop": 482,
+        "extinct": false,
+        "max_ever_intensity": 0.43165309085453124,
+        "steps_run": 12000,
+        "events_hash": "90d28f5249f51985a3b01f6affd4d8599ae969418b2748ceb563b9a9a0d7f4b0"
+      },
+      "25": {
+        "valid": true,
+        "end_newborn_intensity": 0.06972006360508486,
+        "final_pop": 497,
+        "extinct": false,
+        "max_ever_intensity": 0.6562957553287502,
+        "steps_run": 12000,
+        "events_hash": "4638b0effda17c0ff46f060351d6db251a4cda1ed30c73a0657feb9662c17917"
+      },
+      "26": {
+        "valid": true,
+        "end_newborn_intensity": 0.0906201999503179,
+        "final_pop": 481,
+        "extinct": false,
+        "max_ever_intensity": 0.5889335269497573,
+        "steps_run": 12000,
+        "events_hash": "c549e1b79e4ec0fada19b68e677adfa5f5b84d2276c763c73ff7ee42e23d32d0"
+      },
+      "27": {
+        "valid": true,
+        "end_newborn_intensity": 0.04798479548771386,
+        "final_pop": 538,
+        "extinct": false,
+        "max_ever_intensity": 0.3587388780764048,
+        "steps_run": 12000,
+        "events_hash": "affce6592a57a9c84bbc5b2fa1232d09aa68b76fcc5f3f34b4046c8e54535533"
+      }
+    }
+  },
+  "end_nb": {
+    "WIDE": {
+      "23": 0.07833944606089574,
+      "24": 0.09468404960666034,
+      "25": 0.09711244075166714,
+      "26": 0.034768993772004576,
+      "27": 0.10718069342711088
+    },
+    "NARROW": {
+      "23": 0.055427664676589196,
+      "24": 0.08657740357174944,
+      "25": 0.09390524088349157,
+      "26": 0.05494876983674263,
+      "27": 0.14782358595558034
+    },
+    "CONTROL": {
+      "23": 0.03932070614894058,
+      "24": 0.06485165401768613,
+      "25": 0.06972006360508486,
+      "26": 0.0906201999503179,
+      "27": 0.04798479548771386
+    }
+  },
+  "predictions": {
+    "P1": true,
+    "P2": true,
+    "P3": false,
+    "neg": true
+  },
+  "verdict": "NEGATIVE (escape FAILS; ceiling general)",
+  "token": "NEGATIVE"
+}
