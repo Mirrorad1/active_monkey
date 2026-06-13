@@ -27,7 +27,7 @@ from typing import Protocol, TYPE_CHECKING
 
 import numpy as np
 
-from ecology.genotype import Genotype
+from ecology.genotype import Genotype, thermosense_active
 
 if TYPE_CHECKING:
     from ecology.world import GridWorld
@@ -119,32 +119,89 @@ class HomeostaticPolicy:
         if not neighbors:
             return pos  # trapped (shouldn't happen on 12x12 but handle it)
 
-        current_resource = world.resource_at(pos)
+        # Exp 197: thermal-aware branch — ONLY when temperature field is present AND
+        # the creature has an active thermosense organ.  When use_thermo is False,
+        # the exact existing logic below runs with IDENTICAL rng draws (regression guard).
+        use_thermo = (
+            world.temperature is not None
+            and thermosense_active(creature.genotype, world.thermosense_active_threshold)
+        )
 
-        # Decide explore vs exploit
-        if current_resource < _DEPLETION_THRESHOLD:
-            # Resource depleted here — consider moving
-            if rng.random() < self.exploration_bias:
-                # EXPLORE: go to least-recently-visited neighbor
-                # Sort by visit_t ascending (oldest / never visited first),
-                # tie-break by lowest cell index (deterministic)
-                target = min(neighbors, key=lambda c: (self.visit_t[c], c))
-                creature.phenotype.steps_explored += 1
+        if not use_thermo:
+            # ----------------------------------------------------------------
+            # EXACT existing logic — verbatim, unchanged — rng stream identical
+            # ----------------------------------------------------------------
+            current_resource = world.resource_at(pos)
+
+            # Decide explore vs exploit
+            if current_resource < _DEPLETION_THRESHOLD:
+                # Resource depleted here — consider moving
+                if rng.random() < self.exploration_bias:
+                    # EXPLORE: go to least-recently-visited neighbor
+                    # Sort by visit_t ascending (oldest / never visited first),
+                    # tie-break by lowest cell index (deterministic)
+                    target = min(neighbors, key=lambda c: (self.visit_t[c], c))
+                    creature.phenotype.steps_explored += 1
+                    return target
+                else:
+                    # EXPLOIT: go to neighbor with highest expected resource
+                    # tie-break by lowest cell index
+                    target = max(neighbors, key=lambda c: (self.m[c], -c))
+                    # Negate c so larger index loses ties: max by (m, -c) means
+                    # higher m wins; equal m -> lower c wins (since -c is larger)
+                    return target
+            else:
+                # Resource plentiful here; occasionally explore, else stay
+                if rng.random() < self.exploration_bias * 0.3:
+                    target = min(neighbors, key=lambda c: (self.visit_t[c], c))
+                    creature.phenotype.steps_explored += 1
+                    return target
+                return pos  # stay and eat
+
+        else:
+            # ----------------------------------------------------------------
+            # Thermal-aware branch (Exp 197) — runs ONLY in treatment arm where
+            # temperature is on AND the creature has an active thermosense organ.
+            # This branch may consume rng differently; that is intentional and
+            # safe because it never executes in control/regression conditions.
+            # ----------------------------------------------------------------
+            comfort = world.current_comfort
+            tolerance = creature.genotype.temperature_tolerance
+            intensity = creature.genotype.thermosense_intensity
+            avoidance = world.thermal_avoidance_weight
+
+            # Noise decreases with higher intensity (better organ = better signal).
+            noise_sd = max(0.0, world.thermosense_noise_base * (1.0 - intensity))
+
+            # Estimate thermal stress at each neighbor via noisy temperature reading.
+            stress_est: dict[int, float] = {}
+            for n in neighbors:
+                noisy = float(world.temperature[n]) + rng.normal(0.0, noise_sd)
+                stress_est[n] = max(0.0, abs(noisy - comfort) - tolerance)
+
+            # Estimate stress at current cell (no rng draw — use true value for stability).
+            current_temp_stress = max(
+                0.0, abs(float(world.temperature[pos]) - comfort) - tolerance
+            )
+
+            # If the current cell is highly stressed (above tolerance), prefer moving
+            # to the lowest-stress neighbor regardless of resource.
+            if current_temp_stress > 0.0:
+                target = min(neighbors, key=lambda n: (stress_est[n], n))
+                return target
+
+            # Otherwise: balance resource and thermal stress (exploit with stress penalty).
+            current_resource = world.resource_at(pos)
+            if current_resource < _DEPLETION_THRESHOLD:
+                # Resource depleted — move to best neighbor (high resource, low stress).
+                target = max(
+                    neighbors,
+                    key=lambda n: (self.m[n] - avoidance * stress_est[n], -n),
+                )
                 return target
             else:
-                # EXPLOIT: go to neighbor with highest expected resource
-                # tie-break by lowest cell index
-                target = max(neighbors, key=lambda c: (self.m[c], -c))
-                # Negate c so larger index loses ties: max by (m, -c) means
-                # higher m wins; equal m -> lower c wins (since -c is larger)
-                return target
-        else:
-            # Resource plentiful here; occasionally explore, else stay
-            if rng.random() < self.exploration_bias * 0.3:
-                target = min(neighbors, key=lambda c: (self.visit_t[c], c))
-                creature.phenotype.steps_explored += 1
-                return target
-            return pos  # stay and eat
+                # Resource plentiful here; stay unless thermally stressed (handled above).
+                return pos
 
 
 # ---------------------------------------------------------------------------

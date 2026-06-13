@@ -18,12 +18,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from dataclasses import dataclass
 from typing import Any
 
 import numpy as np
 
-from ecology.genotype import Genotype, mutate, is_valid, complexity as genotype_complexity
+from ecology.genotype import (
+    Genotype, mutate, is_valid, complexity as genotype_complexity,
+    thermosense_active, thermosense_upkeep,
+)
 from ecology.world import GridWorld
 from ecology.creature import Creature, Phenotype
 
@@ -95,6 +99,45 @@ class EcologyConfig:
     # ------------------------------------------------------------------
     complexity_cost_scale: float = 0.0   # 0 = off (byte-identical to Exp 194/196)
 
+    # ------------------------------------------------------------------
+    # Exp 197: temperature field + evolvable thermosense organ — OFF by default.
+    # All defaults preserve Exp 194/195/196 byte-identical behaviour.
+    #
+    # enable_temperature: builds the static thermal gradient in GridWorld.
+    # enable_thermosense: gates the policy thermal branch + mutate flag.
+    # temperature_stress_scale=0.0 ⇒ even with enable_temperature the field
+    #   is built but imposes 0 energy drain (safe for control arm piloting).
+    # thermosense_upkeep_floor=0.0 ⇒ upkeep = inefficiency * intensity only
+    #   (floor > 0 adds a fixed cost on top, enforcing the "never free" property
+    #    even at minimum evolved inefficiency).
+    # ------------------------------------------------------------------
+    enable_temperature: bool = False
+    enable_thermosense: bool = False
+    temperature_comfort: float = 0.5
+    temperature_stress_scale: float = 0.0
+    thermosense_upkeep_floor: float = 0.0
+    thermosense_active_threshold: float = 0.05
+    thermosense_noise_base: float = 0.5
+    thermal_avoidance_weight: float = 1.0
+
+    # ------------------------------------------------------------------
+    # Exp 197 extensions: thermal tolerance cost + dynamic comfort zone.
+    # Both OFF by default (scale=0, amplitude=0) → byte-identical to the
+    # static thermosense implementation above.
+    #
+    # tolerance_cost_scale: energy drain per tick = scale * temperature_tolerance.
+    #   A wider tolerable band (more robustness) costs proportionally more.
+    #   Gated on scale != 0.0 (L16 guard) so the OFF path is byte-identical.
+    #
+    # comfort_amplitude / comfort_period: the comfort center drifts as
+    #   comfort(t) = temperature_comfort + comfort_amplitude * sin(2π t / period).
+    #   amplitude=0 keeps current_comfort == temperature_comfort for all t
+    #   → byte-identical to the static comfort implementation.
+    # ------------------------------------------------------------------
+    tolerance_cost_scale: float = 0.0    # 0 = off (byte-identical)
+    comfort_amplitude: float = 0.0       # 0 = static comfort zone (byte-identical)
+    comfort_period: float = 1000.0       # period of the sinusoidal drift in steps
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -127,6 +170,11 @@ class Ecology:
             regen_rate=cfg.regen_rate,
             initial_resource=cfg.initial_resource,
             rng=world_rng,
+            enable_temperature=cfg.enable_temperature,
+            temperature_comfort=cfg.temperature_comfort,
+            thermosense_noise_base=cfg.thermosense_noise_base,
+            thermal_avoidance_weight=cfg.thermal_avoidance_weight,
+            thermosense_active_threshold=cfg.thermosense_active_threshold,
         )
 
         self.t: int = 0
@@ -253,6 +301,22 @@ class Ecology:
         if cfg.complexity_cost_scale != 0.0:
             ph.energy -= cfg.complexity_cost_scale * genotype_complexity(g)
 
+        # Exp 197: temperature stress at the new cell — energy-mediated (death stays "starvation").
+        # OFF when temperature is None (enable_temperature=False).
+        if self.world.temperature is not None:
+            ph.energy -= self.world.temperature_stress(
+                new_pos, g.temperature_tolerance, cfg.temperature_stress_scale,
+            )
+            # Tolerance upkeep: wider tolerable band = more expressed machinery = higher cost.
+            # Gated on scale != 0.0 (L16 guard) — OFF path is byte-identical.
+            if cfg.tolerance_cost_scale != 0.0:
+                ph.energy -= cfg.tolerance_cost_scale * g.temperature_tolerance
+
+        # Exp 197: thermosense upkeep — cost of the EXPRESSED capability (floored, never free).
+        # OFF when enable_thermosense=False (default) or organ inactive (intensity <= threshold).
+        if cfg.enable_thermosense and thermosense_active(g, cfg.thermosense_active_threshold):
+            ph.energy -= thermosense_upkeep(g, cfg.thermosense_upkeep_floor, cfg.thermosense_active_threshold)
+
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
         if deficit > 0:
@@ -277,7 +341,8 @@ class Ecology:
                 neighbors = self.world.neighbors(new_pos)
                 child_pos = min(neighbors) if neighbors else new_pos
 
-                child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate)
+                child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
+                                    mutate_thermosense=cfg.enable_thermosense)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,
@@ -365,6 +430,16 @@ class Ecology:
     def step(self) -> None:
         """Execute ONE timestep for all alive creatures, then regenerate world."""
         pending_children: list[Creature] = []
+
+        # Dynamic comfort zone: update current_comfort BEFORE processing creatures.
+        # When comfort_amplitude == 0, sin term == 0 → current_comfort == temperature_comfort
+        # for all t → byte-identical to the static comfort implementation.
+        if self.world.temperature is not None:
+            self.world.current_comfort = (
+                self.cfg.temperature_comfort
+                + self.cfg.comfort_amplitude
+                * math.sin(2.0 * math.pi * self.t / self.cfg.comfort_period)
+            )
 
         # Process alive creatures in ascending id order (deterministic)
         for c in self._alive():

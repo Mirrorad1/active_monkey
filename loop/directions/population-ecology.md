@@ -62,16 +62,18 @@ Selection emerges from the environment, never from an external ranking.
   the senescence-on population's mean complexity does NOT diverge measurably below the control
   even at long horizon (the P6 null is then a real absence, not a horizon artifact), or the
   divergence does not GROW with time, or it is in the wrong direction.
-- **Exp 197 — complexity as MAINTENANCE COST + heritable-selection controls** (the human's
-  mechanism revision + the Exp 196 disentangle). Replace direct complexity-death (Exp 195
-  senescence) with a resource-mediated channel: more-complex creatures burn MORE energy per
-  tick (upkeep = base + cost_scale·complexity); death stays energy-mediated ("starvation"),
-  NEVER a complexity-death rule. Matched control (cost_scale=0) vs treatment, long horizon,
-  fresh seeds, with NEWBORN/genotype complexity instrumented separately from the standing
-  population to disentangle heritable selection / survivor bias / density. FAILURE: neither
-  standing nor newborn complexity shifts reliably; or the effect is an unstable/density
-  confound. (Only call it "heritable selection" if NEWBORN complexity shifts down vs control.)
-- **Exp 198 — temperature as a hidden viability pressure** (isolated behind a config flag).
+- **Exp 197 — complexity = EXPRESSED-MACHINERY cost: a costed, evolvable THERMOSENSE organ under
+  temperature** (the human's mechanism revision — complexity emerges from expressed capabilities,
+  cost attaches to active machinery with nonzero floors, NOT a scalar "complexity bad" penalty;
+  temperature pulled forward as the pressure that makes thermosense useful). Thermosense gives
+  noisy thermal info the policy uses to flee stress, at upkeep = floor + inefficiency·intensity;
+  thermal tolerance is ALSO costed and the comfort zone DRIFTS (no free escapes); death stays
+  energy-mediated ("starvation"). Temperature ON (treatment) vs OFF (control); NEWBORN vs standing
+  thermosense separates heritable selection from survivor bias. FAILURE: thermosense is NOT retained
+  under temperature even among the living (doesn't pay even when useful); or unstable/confounded.
+  ("Heritable selection FOR efficient capability" only if NEWBORN thermosense shifts vs control.)
+- **Exp 198 — temperature as a hidden viability pressure** (folded into Exp 197; reserved for
+  refinements — e.g. temperature × thermosense-locked controls, dynamic thermal regimes).
   FAILURE: temperature changes nothing measurable about survival/lineages.
 - **Exp 199 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
   when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
@@ -289,71 +291,100 @@ committed BEFORE any data).**
 
 ---
 
-**EXP 197 — PRE-REGISTRATION (complexity as MAINTENANCE COST + heritable-selection controls;
-committed BEFORE any data).**
+**EXP 197 — PRE-REGISTRATION (REVISED 2026-06-13 — SUPERSEDES the scalar version below; complexity
+as EXPRESSED-MACHINERY cost via a costed, evolvable THERMOSENSE organ under temperature; committed
+BEFORE the fresh-seed run).**
 
-- **Hypothesis (one sentence).** Modeling complexity as a MAINTENANCE COST — more-complex
-  creatures burn more baseline energy per tick (upkeep = base + cost_scale·complexity), with
-  death emerging ONLY through energy exhaustion ("starvation"), never a direct complexity-death
-  rule — produces a resource-mediated pressure that depresses the STANDING population's
-  complexity over a long horizon; AND if the NEWBORN (genotype / gene-pool) complexity also
-  shifts down vs a matched control, that pressure is HERITABLE selection (lower-maintenance
-  lineages out-reproduce), not merely survivor bias.
+- **Mechanism-revision note.** The human corrected the scalar `complexity_cost_scale` framing
+  (committed e6c259e, now RETIRED as the mechanism): cost must attach to EXPRESSED MACHINERY, not a
+  global complexity label. Realized complexity is a READOUT (base body + active capabilities,
+  intensity-weighted); each active capability pays `upkeep = floor + inefficiency·intensity`
+  (nonzero floor — efficiency can't make it free); death stays energy-mediated. Temperature is
+  pulled forward (it was the next ladder rung) because thermosense is meaningless without it.
 
-- **Mechanism (PROVIDED; `complexity_cost_scale`, default 0 = matched control).** Per tick,
-  after baseline+aging metabolism, a creature pays `cost_scale · complexity(genotype)` extra
-  energy; energy ≤ 0 → "starvation". complexity = the existing blend (energy_capacity,
-  sensor_precision, memory_length). Senescence (the Exp 195 direct-death channel) is OFF in
-  BOTH arms — this experiment isolates the maintenance-cost channel. The matched CONTROL is
-  identical (same world, food, seeds, cap, horizon, senescence off) with `cost_scale = 0`.
+- **Hypothesis (one sentence).** A costed, expressed, evolvable THERMOSENSE organ (gives noisy
+  temperature-gradient info the policy uses to flee thermal stress, at a floored per-tick upkeep)
+  is RETAINED under temperature — where its information value offsets its metabolic burden — and
+  selected AWAY without temperature (pure cost); and because thermal tolerance is ALSO costed and
+  the safe zone DRIFTS (no free refuge), the population must adapt through machinery, so
+  thermosense's fate tests whether EFFICIENT capability-bearing complexity is selected FOR when it
+  pays its way. NEWBORN/gene-pool thermosense (vs the standing population) separates heritable
+  selection from survivor bias.
 
-- **Disclosed pilot (per L7).** A 2-seed pilot (seeds {100,101}; deleted, not committed) at
-  horizon 5000, cap 5000, swept cost_scale ∈ {0.2,0.5,1,2}: cost_scale=0.5 keeps both arms
-  persisting (treatment pop ~130–180) with a clear effect, and showed BOTH living (~0.48→~0.25)
-  AND newborn (~0.48→~0.28) complexity dropping in treatment. **cost_scale is FIXED at 0.5** and
-  thresholds set from the pilot; the final verdict runs on FRESH seeds {8,9,10,11,12} never used
-  in the pilot.
+- **Mechanism (PROVIDED).** Genotype: thermosense_intensity (0 = absent), thermosense_inefficiency
+  (efficiency multiplier, floor 0.2). Intensity > 0.05 ⇒ organ ACTIVE: noisy thermal reading (noise
+  ↓ with intensity) → policy steers toward low-stress cells; upkeep = floor 0.02 + inefficiency·
+  intensity. Temperature = a static left→right gradient [0,1] whose COMFORT CENTER drifts (sin,
+  amplitude 0.4, period 1500) so there is no fixed refuge; outside its temperature_tolerance band a
+  creature pays stress energy (scale 1.0) → "starvation". Thermal tolerance is COSTED
+  (tolerance_cost_scale 1.5 · tolerance/tick) — robustness is machinery too, so immunity isn't free.
+  CONTROL = temperature OFF (no stress, no tolerance cost, no drift → thermosense is pure cost).
+  TREATMENT = temperature ON. BOTH arms enable_thermosense (it can evolve in both). Founder SEEDS a
+  primitive organ (intensity 0.20) + narrow tolerance (0.10): the test is RETENTION/loss of a seeded
+  primitive capability, NOT de-novo emergence (infeasible at this horizon — disclosed). Regression-
+  safe: thermosense traits skip rng when enable_thermosense off ⇒ exp194-196 byte-identical.
 
-- **Setup.** Balanced regime, max_population 5000 (equilibrate at resource carrying capacity, not
-  the safety guard — the L19 fix), horizon 5000, cost_scale 0.5 (treatment) vs 0 (control), fresh
-  seeds {8,9,10,11,12}. Instrumented at checkpoints + end: standing living complexity; **NEWBORN
-  complexity** (mean complexity of creatures born per window, via birth_t); parent complexity at
-  reproduction; age-stratified living complexity (young/mid/old); deaths by cause + complexity
-  bucket; lifespan by complexity bucket; reproduction count by complexity bucket; population size;
-  mean energy by complexity bucket; food availability. Maintenance cost is deterministic (rng-free).
+- **Disclosed pilots (per L7).** Pilots on seeds {100,101} (deleted, not committed) FIXED the regime:
+  temperature_stress_scale 1.0, tolerance_cost_scale 1.5, comfort amplitude 0.4 / period 1500, upkeep
+  floor 0.02, thermal_avoidance_weight 2.5, noise_base 0.2; founder intensity 0.20, tolerance 0.10. At
+  t=5000 both pilot seeds: thermosense LIVING active-fraction ~0.52–0.55 (temp-ON) vs ~0.06–0.10
+  (temp-OFF); NEWBORN intensity ~0.045–0.051 (ON) vs ~0.034–0.036 (OFF); tolerance stays LOW under
+  temperature (~0.02). A first pilot exposed the cheap escapes (free tolerance + static refuge) that
+  the costed-tolerance + drifting-comfort design removed. ALL params FIXED here; the final verdict
+  runs on FRESH seeds {8,9,10,11,12} never used in any pilot.
 
-- **Predictions if TRUE** (5 fresh seeds, report ALL). Per seed: `living_gap = control_living −
-  treatment_living` (end-window mean); `newborn_gap = control_newborn − treatment_newborn`;
-  `survivor_component = living_gap − newborn_gap`; `age_strat = treatment(young-bin − old-bin)`.
+- **Setup.** Balanced regime, max_population 5000, horizon 5000, fresh seeds {8,9,10,11,12}, temp-ON
+  (treatment) vs temp-OFF (control). Instrumented at checkpoints + end: LIVING thermosense
+  active-fraction + mean intensity + mean inefficiency; NEWBORN (per birth_t window) thermosense
+  active-fraction + intensity; mean temperature_tolerance (living + newborn); age-stratified living
+  thermosense; deaths by cause; population; food. (end = t=5000; newborn = creatures born in
+  [4000,5000].)
+
+- **Predictions if TRUE** (5 fresh seeds, report ALL):
   - **P1 determinism.** Same seed → identical event hash, both arms.
-  - **P2 validity (input gate).** Both arms reach t=5000 without explosion/extinction, ≥4/5 seeds.
-  - **P3 standing effect (L).** living_gap ≥ 0.05 in ≥4/5 seeds (treatment standing below control).
-  - **P4 heritable signal (H).** newborn_gap ≥ 0.05 in ≥4/5 seeds (treatment NEWBORN/gene-pool
-    complexity below control) — the upgrade-to-heritable test.
-  - **P5 stability.** newborn_gap has the SAME sign (control > treatment) in 5/5 seeds (no flips).
+  - **P2 validity.** Both arms persist to t=5000 (no extinction/explosion), ≥4/5 seeds.
+  - **P3 STANDING retention (L).** treatment living active-fraction − control ≥ 0.15, ≥4/5 seeds
+    (thermosense retained among the living under temperature). [pilot ~0.45]
+  - **P4 HERITABLE retention (H).** treatment NEWBORN mean intensity − control ≥ 0.008 (treatment >
+    control), ≥4/5 seeds (gene pool retains thermosense ⇒ heritable, not pure survivor bias).
+    [pilot ~0.012]
+  - **P5 stability.** treatment > control holds in 5/5 seeds for BOTH living active-fraction and
+    newborn intensity.
+  - Supporting: under temperature, mean temperature_tolerance stays LOW (treatment < control) — the
+    population adapts via SENSING, not by buying robustness.
 
-- **Verdict taxonomy (predeclared; the human's labels).** Let SB := (survivor_component ≥ 0.03 in
-  ≥3/5 seeds AND age_strat ≥ 0.02 in ≥3/5 treatment seeds) — the survivor-bias signature (living
-  drops MORE than the gene pool / living complex creatures don't reach old age).
-  - **F1** non-determinism → NEGATIVE. **F2** arms fail to persist in a majority → INCONCLUSIVE.
-  - **NEGATIVE** if NOT P3 and NOT P4 (neither standing nor newborn complexity shifts reliably).
-  - **INCONCLUSIVE** if NOT P5 (sign flips / unstable) or a density confound dominates the read.
-  - **POSITIVE-HERITABLE** if P4 (H) and NOT SB.
-  - **POSITIVE-MIXED** if P4 (H) and SB (heritable selection AND survivor bias both present).
-  - **POSITIVE-SURVIVOR-BIAS** if P3 (L) and NOT P4 (standing drops, gene pool does not).
+- **Verdict taxonomy (predeclared).** SB (strong survivor bias) := (living active-frac gap ≥ 0.30 in
+  ≥3/5 seeds) AND (newborn intensity gap < 0.02 in ≥3/5 seeds).
+  - **F1** non-determinism → NEGATIVE. **F2** arms fail to persist (majority) → INCONCLUSIVE.
+  - **NEGATIVE** if NOT P3 (thermosense not retained under temperature even among the living ⇒
+    doesn't pay even when useful).
+  - **INCONCLUSIVE** if NOT P5 (sign flips) or a density confound dominates.
+  - **POSITIVE-HERITABLE** if P3 AND P4 AND NOT SB (gene pool clearly shifts; not survivor-dominated).
+  - **POSITIVE-MIXED** if P3 AND P4 AND SB (heritable retention AND strong survivor bias — the
+    pilot-expected outcome).
+  - **POSITIVE-SURVIVOR-BIAS** if P3 AND NOT P4 (living retains thermosense, the gene pool does not).
   - Repo token on the `- Verdict:` line: POSITIVE for any POSITIVE-* label, NEGATIVE, or MIXED for
-    INCONCLUSIVE — plus the fine-grained label spelled out.
+    INCONCLUSIVE — plus the fine-grained label.
 
-- **Interpretation discipline (binding — the human's language).** Baseline claim: "complexity-linked
-  maintenance cost creates a resource-mediated pressure that can depress STANDING-population
-  complexity over long horizons." Upgrade to "heritable selection toward lower complexity" ONLY if
-  NEWBORN complexity also shifts down (P4 / H).
+- **Interpretation discipline (binding — the human's language).** Baseline claim: "a costed expressed
+  capability (thermosense) is RETAINED among the living under temperature where its info value offsets
+  its cost." Upgrade to "heritable selection FOR efficient capability-bearing complexity" ONLY if
+  NEWBORN thermosense also shifts (P4). The point: under temperature, complexity (the organ) is NOT
+  uniformly selected against — the capability that pays its way is kept; useless capability
+  (thermosense under temp-OFF) is shed; and tolerance staying low shows the adaptation is sensing, not
+  bought robustness.
 
-- **Honesty stakes (written before data).** cost_scale tuned on the disclosed pilot and FIXED before
-  the fresh-seed run; thresholds predeclared here, not tuned after results. Death is energy-mediated
-  (NO complexity_death). Senescence OFF in both arms (maintenance cost is the sole treatment
-  variable). The matched control (same food/cap/seeds, cost_scale 0) controls the regime; treatment's
-  lower equilibrium population is a CONSEQUENCE of the treatment (part of the causal path), reported as
-  a density diagnostic, not pre-corrected. Policy PROVIDED; complexity a derived blend.
+- **Honesty stakes (written before data).** All mechanism + world params tuned on the disclosed pilots
+  and FIXED before the fresh-seed run; thresholds predeclared here, not tuned after results. Founder
+  SEEDS a primitive organ (intensity 0.20) ⇒ this is RETENTION/loss, NOT de-novo emergence (disclosed).
+  Death is energy-mediated (no thermosense_death / complexity_death). Thermal tolerance is costed and
+  comfort drifts — disclosed design choices that removed the cheap escapes a first pilot exposed.
+  Treatment's much lower equilibrium population (~70 vs ~500) is a CONSEQUENCE of the temperature
+  pressure, reported as a density diagnostic. Policy + founder PROVIDED; complexity is a readout from
+  expressed machinery.
 
-**STATUS.** state: active · latest: Exp 196 (POSITIVE / NEW INSIGHT, POSITIVE-SINGLE — over a LONG horizon (5000 steps) aging DOES depress the standing population's mean complexity below a matched senescence-OFF control: gap 0.09–0.28 in 5/5 fresh seeds, progressive, emerging only after ~t=2000 — Exp 195's P6 selection null was a HORIZON limit, not an absence; blind-verified. Mechanism under-claimed: standing-population metric conflates heritable selection with survivor bias + density — newborn-complexity tracker is the named follow-up) · depends-on: ecology/ substrate (Exp 194–196) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 197 (pre-registered, on branch exp197-maintenance-cost) — recast complexity as a MAINTENANCE COST (more complex = burns more energy/tick; death stays energy-mediated, senescence OFF in both arms), matched control (cost_scale 0) vs treatment (0.5, fixed on a disclosed pilot), fresh seeds {8,9,10,11,12}, with NEWBORN/genotype complexity instrumented separately from the standing population. POSITIVE-HERITABLE only if NEWBORN complexity shifts down vs control (P4); else POSITIVE-SURVIVOR-BIAS (standing only) / POSITIVE-MIXED / NEGATIVE / INCONCLUSIVE per the predeclared taxonomy.
+  _(SUPERSEDED scalar version, retained for the record: complexity_cost_scale · complexity(genotype)
+  flat per-tick penalty, matched control cost_scale 0, fresh seeds {8,9,10,11,12} — replaced 2026-06-13
+  by the expressed-machinery thermosense mechanism above on the human's correction.)_
+
+**STATUS.** state: active · latest: Exp 196 (POSITIVE / NEW INSIGHT, POSITIVE-SINGLE — over a LONG horizon (5000 steps) aging DOES depress the standing population's mean complexity below a matched senescence-OFF control: gap 0.09–0.28 in 5/5 fresh seeds, progressive, emerging only after ~t=2000 — Exp 195's P6 selection null was a HORIZON limit, not an absence; blind-verified. Mechanism under-claimed: standing-population metric conflates heritable selection with survivor bias + density — newborn-complexity tracker is the named follow-up) · depends-on: ecology/ substrate (Exp 194–196) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 197 (pre-registered REVISED, branch exp197-maintenance-cost) — complexity = EXPRESSED-machinery cost: a costed, evolvable THERMOSENSE organ (floor + inefficiency·intensity) under temperature ON (treatment) vs OFF (control), with thermal tolerance ALSO costed + a drifting comfort zone (no free escapes), fresh seeds {8,9,10,11,12}. Does thermosense pay its way (RETAINED under temperature, shed without)? NEWBORN vs standing thermosense separates heritable selection from survivor bias. POSITIVE-HERITABLE only if NEWBORN thermosense shifts (P4); else POSITIVE-SURVIVOR-BIAS / -MIXED / NEGATIVE / INCONCLUSIVE per the predeclared taxonomy. (Scalar complexity_cost_scale mechanism SUPERSEDED.)
