@@ -55,16 +55,23 @@ Selection emerges from the environment, never from an external ranking.
   or kills everyone before reproduction, or age-at-death does NOT scale with complexity (the
   core requirement), or the two-cause death mix stays degenerate. (Also fixes Exp 194's L18
   ill-posed cause-fraction: two causes make the cause-of-death fraction well-posed.)
-- **Exp 196 — temperature as a hidden viability pressure** (isolated behind a config flag).
+- **Exp 196 — does senescence's complexity-frailty trade-off SELECT against complexity over a
+  LONGER horizon?** (Exp 195 P6 was a null at 600 steps.) Senescence-OFF (control, flat
+  complexity) vs ON, balanced regime with the safety cap raised so it equilibrates at its
+  resource carrying capacity (no truncation — the L19 fix), 5000 steps, FRESH seeds. FAILURE:
+  the senescence-on population's mean complexity does NOT diverge measurably below the control
+  even at long horizon (the P6 null is then a real absence, not a horizon artifact), or the
+  divergence does not GROW with time, or it is in the wrong direction.
+- **Exp 197 — temperature as a hidden viability pressure** (isolated behind a config flag).
   FAILURE: temperature changes nothing measurable about survival/lineages.
-- **Exp 197 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
+- **Exp 198 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
   when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
   whether or not temperature is a pressure.
-- **Exp 198 — niche / species archive** from trait + behavior clustering (the evaluator
+- **Exp 199 — niche / species archive** from trait + behavior clustering (the evaluator
   RECORDS clusters, never selects them). FAILURE: no separable clusters under pressure.
-- **Exp 199 — self-selection / mate choice** on observed traits, only after viability
+- **Exp 200 — self-selection / mate choice** on observed traits, only after viability
   ecology works. FAILURE: mate choice changes no lineage outcome vs random pairing.
-- **Exp 200 — neural Bθ / deep active-inference transition models inside lineages.**
+- **Exp 201 — neural Bθ / deep active-inference transition models inside lineages.**
 
 **Stop condition.** Exhausted when either (a) the ladder reaches a documented wall
 (e.g. toy gridworld stops supplying discriminating viability failures — the same
@@ -214,4 +221,61 @@ synthesis in EXPERIMENTS.md and flip STATUS to closed-positive / closed-negative
   (disclosed, like Exp 194's resource tuning; mechanics/metrics/falsifiers fixed before
   tuning). The policy is still PROVIDED; complexity is a derived blend, not pymdp.
 
-**STATUS.** state: active · latest: Exp 195 (MIXED / NEW INSIGHT — senescence as a complexity-scaled SECOND death cause WORKS: age kills distinct from starvation, lifespan shrinks with complexity ρ −0.67..−0.86 with real spread, variable/non-linear, OFF==Exp 194 byte-identical; MIXED from a confounded predeclared regime cause-mix (P5, explosion-guard truncation) + a selection null (P6), not from the aging mechanism; blind-verified) · depends-on: ecology/ substrate (Exp 194–195) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 196 — temperature as a hidden viability pressure (behind a flag); OR re-pose Exp 195's cause-mix on a non-truncated regime pair / test the senescence selection signal at a longer horizon. FAILURE (196) = temperature changes nothing measurable about survival or lineages.
+---
+
+**EXP 196 — PRE-REGISTRATION (does senescence select against complexity at a longer horizon;
+committed BEFORE any data).**
+
+- **Hypothesis (one sentence).** Exp 195 found NO complexity-selection from senescence at 600
+  steps (P6 null); the hypothesis is that this was a HORIZON limit, not an absence — over many
+  more generations, senescence's complexity-frailty trade-off progressively selects the
+  population toward LOWER complexity, so against a senescence-OFF control (whose mean complexity
+  stays ~flat) the senescence-ON population's mean complexity diverges measurably and
+  progressively below it.
+
+- **Reconnaissance disclosed (per L7).** A throwaway 2-seed probe (seeds 0,1; not committed) at
+  horizon 5000 with the cap raised showed control complexity flat (~0.54 / ~0.43) and treatment
+  complexity drifting down to ~0.34 / ~0.29 (a 0.13–0.20 gap by t=5000, vs <0.03 at t=600). The
+  claim is FIXED from the probe and TESTED on FRESH seeds {3,4,5,6,7} never used in the probe.
+
+- **Setup.** Balanced regime with the safety cap RAISED (max_population ~5000) so the population
+  equilibrates at its RESOURCE carrying capacity (~530) instead of halting at the safety guard —
+  a disclosed design change that removes the artificial truncation (the L19 fix) and lets both
+  arms run full-length. horizon 5000; both ARMS (senescence OFF = control, ON = treatment) on
+  the SAME fresh seeds {3,4,5,6,7}; sample population mean complexity every 500 steps (a
+  trajectory per arm/seed); senescence rng-free (deterministic).
+
+- **Predictions if TRUE** (5 seeds, report ALL):
+  - **P1 determinism.** Same seed → identical event hash, both arms.
+  - **P2 validity (INPUT gate, L5).** Both arms reach t=5000 WITHOUT explosion or extinction, in
+    ≥4/5 seeds (the comparison is valid; tests the run completed, not the outcome).
+  - **P3 (CORE) selection emerges.** At the horizon, treatment mean complexity < control mean
+    complexity by ≥ 0.05, in ≥4/5 seeds (effect size + count, L6; probe showed 0.13–0.20).
+  - **P4 progressive / emergent.** The gap (control − treatment complexity) at t=5000 exceeds the
+    gap at t=600 (Exp 195's horizon) by ≥ 0.05, in ≥4/5 seeds — the signal GROWS with time; AND
+    control mean complexity stays ~flat (|control(5000) − control(600)| < 0.05).
+  - **P5 direction.** Treatment < control at the horizon in ALL valid seeds.
+
+- **Falsifiers.**
+  - **F1.** Non-determinism → NEGATIVE.
+  - **F2 (CORE).** No emergence: treatment−control gap < 0.05 at horizon in a majority of valid
+    seeds → senescence does NOT select against complexity even at long horizon → NEGATIVE (Exp
+    195's P6 null is then a real absence, not a horizon artifact).
+  - **F3.** Not progressive: the horizon gap does not exceed the t=600 gap by ≥0.05 in a majority
+    → the divergence is not a horizon effect → MIXED.
+  - **F4.** Wrong direction: treatment complexity > control in any valid seed → NEGATIVE.
+  - **F5.** Invalid: arms fail to persist full-length (explosion/extinction) in a majority of
+    seeds → NO_VERDICT (validity fails — re-tune the cap/regime).
+
+- **Verdict rule.** POSITIVE iff P1 ∧ P2 ∧ P3 ∧ P4 ∧ P5 and none of F1/F4/F5 fire. F2 (P3 fail)
+  → NEGATIVE. F3 (P4 fail, not progressive) → MIXED.
+
+- **Honesty stakes (written before data).** The raised cap is a DISCLOSED design change that
+  removes Exp 194/195's artificial safety-cap truncation so the balanced regime reaches its
+  resource equilibrium (the L19 fix), NOT tuning-to-a-metric. The selection DIRECTION (frailty
+  costs complexity → selection against it) is EXPECTED from the imposed cost, but the MAGNITUDE,
+  TIMESCALE, and whether it overcomes complexity's foraging BENEFITS is the emergent, falsifiable
+  question — Exp 195's 600-step null made it live. The control arm isolates senescence's effect
+  from drift. Probe seeds (0,1) disclosed; tested on fresh seeds {3,4,5,6,7}.
+
+**STATUS.** state: active · latest: Exp 195 (MIXED / NEW INSIGHT — senescence as a complexity-scaled SECOND death cause WORKS: age kills distinct from starvation, lifespan shrinks with complexity ρ −0.67..−0.86 with real spread, variable/non-linear, OFF==Exp 194 byte-identical; MIXED from a confounded predeclared regime cause-mix (P5, explosion-guard truncation) + a selection null (P6), not from the aging mechanism; blind-verified) · depends-on: ecology/ substrate (Exp 194–195) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 196 (pre-registered) — does senescence's complexity-frailty trade-off SELECT against complexity at a LONGER horizon (5000 steps, cap raised to the resource carrying capacity, fresh seeds {3,4,5,6,7}, vs a senescence-OFF control)? FAILURE = the treatment population's mean complexity does not diverge below the control even at long horizon, or the divergence does not grow with time, or it is reversed.
