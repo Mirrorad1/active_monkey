@@ -21,9 +21,11 @@ forage mode, conc 14, band 0.08, period 1500, amp 0.3; horizon 12000; fresh seed
   COMPETE    : depleting band (regen 0.08) + shuffle ON + strip auditor — the primary de-novo CLIMB test.
   NO_SHUFFLE : = COMPETE but shuffle OFF (id-order ON) — isolates whether the fair queue matters at all.
   CLAMPED_LR : = COMPETE but learning_rate FROZEN — kills the resource-memory substitution confound.
-  ABUNDANT   : = COMPETE geometry but high regen (0.8) so the band is NOT depleted (strip~0) — the
-               NO-COMPETITION baseline (COMPETE must not merely match this).
   USELESS    : enable_food_coupling=False (organ pure cost) — the primitive anchor (~0.05).
+  (DISCLOSED pre-verdict amendment: an ABUNDANT regen-0.8 no-competition arm was DROPPED — a no-scarcity
+   regime has nothing to bound its population, so it grew toward the runaway cap (~6000): the runtime
+   bottleneck AND an explosion-invalidity risk. Its no-selection-without-competition role is covered by
+   USELESS. Amendment committed BEFORE the verdict run; no verdict data existed at amendment time.)
 Metric = NEWBORN (gene-pool) mean thermosense_intensity, end = born in [10000,12000]; L21 validity.
 
 Disclosed pilots (per L7): seeds {130,131,140-147}. The STRIP-GATE PASSES (strip_frac 100%, ~170
@@ -105,11 +107,14 @@ def _cfg(*, regen, shuffle, coupling=True, freeze_lr=False, track=False) -> Ecol
     )
 
 
+# ABUNDANT (regen 0.8 no-competition baseline) was DROPPED in a disclosed pre-verdict
+# amendment: a no-scarcity regime has nothing to bound its population, so it grew toward
+# the runaway cap (pop ~6000) — both the runtime bottleneck and an explosion-invalidity
+# risk. Its "no-selection without competition" role is covered by USELESS (organ pure cost).
 _ARMS: dict[str, EcologyConfig] = {
     "COMPETE":    _cfg(regen=DEPLETE_REGEN,  shuffle=True,  track=True),
     "NO_SHUFFLE": _cfg(regen=DEPLETE_REGEN,  shuffle=False, track=True),
     "CLAMPED_LR": _cfg(regen=DEPLETE_REGEN,  shuffle=True,  track=True, freeze_lr=True),
-    "ABUNDANT":   _cfg(regen=ABUNDANT_REGEN, shuffle=True,  track=True),
     "USELESS":    _cfg(regen=DEPLETE_REGEN,  shuffle=True,  coupling=False),
 }
 ARMS = list(_ARMS)
