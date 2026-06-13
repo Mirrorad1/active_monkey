@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp201.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp201_n5_increasing_returns.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.018\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.02\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.043\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.070\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.089\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.094\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.13\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.138\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.18\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.20\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.60\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.80\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.87\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0/5\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.0\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1122/0\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1453/0\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1491/0\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1644/0\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"199/200\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3/3\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"30/30\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/5\" quoted in entry not found in experiments/outputs/exp201.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T16:15:34Z",
+  "commit_sha": "168773a1cd67cdcbe3a67f4a845030e8c647b004",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 201,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
