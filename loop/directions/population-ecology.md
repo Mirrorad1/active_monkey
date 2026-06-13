@@ -576,4 +576,84 @@ committed BEFORE the fresh-seed run).**
   Pilots {100,101} disclosed (they showed no crossing); the experiment tests on FRESH seeds {23–27}.
   Engine changes gated; exp194–199 byte-identical (hash-verified). Founders + costs PROVIDED.
 
-**STATUS.** state: active · latest: Exp 200 (NEGATIVE / NEW INSIGHT — a WALL, blind-verified AGREE, branch exp200-foraging-sense → PR #33 — the FORAGING escape TESTED and FAILED: the primitive-sensor ceiling is GENERAL across BOTH avoidance (199) and foraging (200). Food in a DRIFTING thermal band + thermosense forages; the benefit is real and LARGE in isolation (a forced strong forager reproduces ~4× more) yet INVISIBLE in evolution — across fresh seeds {23–27} the gene-pool newborn intensity stays primitive (WIDE 0.082, NARROW 0.088), only WEAKLY above a useless CONTROL (0.063), never any seed >0.15; max individual 0.56–0.66 in all arms but never fixes. Mechanism = NO GOLDILOCKS GRADIENT: a crude sensor grabs the easy part of any findable benefit, precision's marginal payoff too small/noisy to out-breed its cost. A forced/behavioral benefit test does NOT predict evolvability → L22) · depends-on: ecology/ substrate (Exp 194–200) · reusable: ecology engine (+ temperature / costed tolerance / costed-expressed-evolvable thermosense organ + foraging-sense, food-coupled drifting band) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: AWAITING HUMAN STEER — the 199+200 wall closes the "does a costed precision-organ evolve functional" question for avoidance+foraging. Options: (a) sweep for a regime with INCREASING returns to precision (frequency-dependent / competitive benefit — the only untested escape from the no-gradient mechanism); (b) accept the wall, move to a different N5 axis (niche/species archive, mate choice); (c) re-run Exp 198 with the L21 validity fix to clean-grade the attractor POSITIVE; (d) neural Bθ; (e) redirect to the moonshot main line.
+**EXP 201 — PRE-REGISTRATION (the INCREASING-RETURNS escape: does a convex / speed-gated benefit
+cross the valley? committed BEFORE the fresh-seed run).**
+
+- **Motivation.** Exp 199 (avoidance) + Exp 200 (foraging) found the primitive-sensor ceiling GENERAL:
+  a crude sensor grabs the easy part of any *saturating* benefit, so precision's marginal payoff is too
+  small to out-breed its cost (NO GOLDILOCKS GRADIENT). The ONE untested escape (the human's pick "a"):
+  a regime with INCREASING returns to precision — where the marginal value of precision GROWS. A
+  9-agent design+adversarial-audit workflow found that three engine features defeat most such designs
+  (the lifetime resource-memory map lets crude sensors free-ride to known cells; competition is resolved
+  by creature-id order not precision; free traits like learning_rate substitute for the costed organ).
+  The one mechanism surviving all three: a MOVING target precision must TRACK — a moving band cannot be
+  memorised as a static attractor or won by birth-order.
+
+- **Mechanism (new engine, gated; exp194-200 byte-identical, hash-verified — exp200 WIDE seed23 hash
+  502e0539… reproduces exactly).** exp200's fatal flaw was ONE line: the forage policy read the band
+  centre `world.current_food_optimal` for FREE, so precision bought nothing. Exp 201 (`enable_band_
+  staleness`) replaces that free read with a per-creature EMA tracker `band_estimate`: alpha =
+  clamp(intensity·responsiveness, 0, 1) and reading-noise = noise_base·(1−intensity), so a crude tracker
+  chronically LAGS a fast-drifting band into already-depleted cells while a precise tracker locks on.
+  **L19 GUARD (binding):** intensity keys ONLY the tracker's alpha and reading-noise; food intake is
+  NEVER written as reward=f(intensity) — it falls out of where the creature steps and the unchanged
+  consume() depletion. Liveness verified: a precise tracker (0.80) holds mean error 0.070 to the centre
+  vs a crude tracker's (0.10) 0.120.
+
+- **Hypothesis (the increasing-returns escape).** Under the fast-band tracking regime a FUNCTIONAL
+  thermosense organ evolves de-novo: gene-pool NEWBORN mean intensity crosses 0.30 in the FAST arm.
+
+- **Arms** (temp ON for food coupling, stress 0, cheap efficient organ inefficiency 0.20 / floor 0,
+  founder intensity 0.10, enable_thermosense, forage mode, food_concentration 8, forage weight 4,
+  noise 0.5, band_width 0.12, regen 0.20, responsiveness 1.0; horizon 12000; fresh seeds {33,34,35,36,37}):
+  - **FAST** (primary treatment): food_optimal_period 60 — the de-novo CLIMB test (>0.30 ⇒ POSITIVE).
+  - **MEDIUM** (diagnostic): period 120 — predeclared to land BETWEEN SLOW and FAST (graded speed-gating).
+  - **SLOW** (NULL control, binding L19 falsifier): period 2400 — band barely drifts, a crude tracker keeps
+    up ⇒ must stay <0.15. If SLOW also climbs, the relation was IMPOSED, not earned — discard the positive.
+  - **CLAMPED_LR** (confound-killer): = FAST but learning_rate FROZEN at the founder value ⇒ the climb
+    cannot be resource-memory substitution. A POSITIVE requires CLAMPED_LR to also cross 0.30.
+  - **SATURATING** (within-experiment exp200 baseline): = FAST geometry but `enable_band_staleness=False`
+    (the free read) ⇒ predeclared primitive (~0.08); FAST-vs-SATURATING isolates exactly tracked-vs-free.
+  - **USELESS** (primitive anchor): enable_food_coupling=False (organ pure cost) ⇒ predeclared ~0.06.
+  Metric = NEWBORN (gene-pool) mean thermosense intensity, end = born in [10000,12000]; L21 validity
+  (pop ≥ 10 + a newborn cohort).
+
+- **Disclosed pilots (per L7).** Pilot seeds {110,111}. A REAL speed-gated climb exists (fast band ~0.18
+  at t=4000 vs slow null ~0.10) — UNLIKE the flat avoidance/foraging gradients of exp199/200 — but at full
+  horizon it is a TRANSIENT peaking ~t=2000 then DECAYING to a low equilibrium: the chosen FAST regime
+  settled 0.13 / 0.20 (the best, most reliable of a swept set; scarcity/narrow/low-responsiveness variants
+  were equal-or-lower and higher-variance, transient peaks up to 0.32 but all decaying ≤0.21). `strip≈0`:
+  the band is NOT depleted within a step, so interference competition does NOT bite — the signal is pure
+  convex tracking-threshold geometry, NOT frequency dependence (disclosed scoping). The regime was fixed
+  BEFORE the fresh-seed run; pilots SUGGEST MIXED/NEGATIVE (no sustained crossing of 0.30).
+
+- **Returns-curve probe (diagnostic, separate seeds {120,121}, run + committed BEFORE the verdict).**
+  Gross per-capita intake(p) at FROZEN intensity p (enable_thermosense=False pins p, organ active, NO
+  upkeep) vs the known linear cost 0.2·p — convexity of the benefit resolved separately in [0.10,0.30] and
+  [0.30,0.50] (must persist above 0.25 to reach functional), FAST vs SLOW. Diagnostic of the landscape;
+  the VERDICT is the evolving gene-pool metric (L22).
+
+- **Predictions if TRUE** (5 fresh seeds): **P1 determinism**; **P2 validity** (FAST valid ≥4/5);
+  **P3 (CORE)** FAST end gene-pool mean > 0.30 in ≥4/5 valid seeds AND speed-gating (FAST_mean > SLOW_mean
+  AND SLOW_mean < 0.15) AND CLAMPED_LR also > 0.30 in ≥4/5 ⇒ POSITIVE.
+
+- **Falsifiers.** PRIMARY → NEGATIVE (the stronger, more general wall): FAST end mean < 0.15 in a majority
+  of valid seeds ⇒ the ceiling survives INCREASING-RETURNS-to-precision. MIXED: FAST in [0.15, 0.30]
+  (a real speed-gated climb above primitive but not functional — the predeclared 'convexity flattens above
+  the threshold' outcome). INTERNAL DEGENERACY (⇒ any positive DISCARDED): SLOW_mean ≥ 0.30 OR USELESS_mean
+  ≥ 0.15. CONFOUND (⇒ POSITIVE uninterpretable): FAST > 0.30 but CLAMPED_LR not, OR newborn learning_rate
+  rises in FAST vs USELESS. F1 non-determinism → NEGATIVE; regression OFF-path hash mismatch → NEGATIVE (infra).
+
+- **Verdict rule.** NEGATIVE if not P1; else DEGENERATE-NEGATIVE if the internal falsifier fires; else
+  POSITIVE iff P3 and no LR confound; else NEGATIVE iff FAST majority-primitive; else MIXED. Token
+  POSITIVE/NEGATIVE/MIXED.
+
+- **Honesty stakes.** The regime is chosen to give the escape its best fair shot (the most reliable climber
+  of a disclosed sweep, natural responsiveness 1.0), fixed before the verdict. Predicting the escape FAILS
+  to SUSTAIN functional (pilots show a transient climb decaying to ~0.13–0.20) — the human's increasing-
+  returns hypothesis tested on FRESH seeds {33–37}. The band tracker is a PROVIDED heuristic (not learned);
+  the interference-competition / frequency-dependence component turned out weak (strip≈0) — disclosed, so
+  the test is of the convex tracking-threshold, not Red-Queen dynamics. Engine gated; exp194–200 byte-
+  identical (hash-verified, durable guards added). Founders + costs PROVIDED.
+
+**STATUS.** state: active · latest: Exp 200 (NEGATIVE / NEW INSIGHT — a WALL, blind-verified AGREE, branch exp200-foraging-sense → PR #33 — the FORAGING escape TESTED and FAILED: the primitive-sensor ceiling is GENERAL across BOTH avoidance (199) and foraging (200). Food in a DRIFTING thermal band + thermosense forages; the benefit is real and LARGE in isolation (a forced strong forager reproduces ~4× more) yet INVISIBLE in evolution — across fresh seeds {23–27} the gene-pool newborn intensity stays primitive (WIDE 0.082, NARROW 0.088), only WEAKLY above a useless CONTROL (0.063), never any seed >0.15; max individual 0.56–0.66 in all arms but never fixes. Mechanism = NO GOLDILOCKS GRADIENT: a crude sensor grabs the easy part of any findable benefit, precision's marginal payoff too small/noisy to out-breed its cost. A forced/behavioral benefit test does NOT predict evolvability → L22) · depends-on: ecology/ substrate (Exp 194–200) · reusable: ecology engine (+ temperature / costed tolerance / costed-expressed-evolvable thermosense organ + foraging-sense, food-coupled drifting band) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 201 (PRE-REGISTERED, the human's pick "a" — the INCREASING-RETURNS escape; the one untested mechanism from the no-gradient ceiling). A 9-agent design+adversarial-audit workflow found three engine confounds defeat most increasing-returns designs (resource-memory free-ride, creature-id-ordered competition, free-trait substitution); the survivor is a MOVING band each creature must privately TRACK. exp200 read the band centre for FREE; exp201 (`enable_band_staleness`, gated, exp194-200 byte-identical / hash-verified) forces a per-creature intensity-keyed EMA tracker, so a crude tracker lags a fast band into depleted cells. 6 arms (FAST / MEDIUM / SLOW null = binding L19 falsifier / CLAMPED-LR confound-killer / SATURATING exp200-replica / USELESS anchor), fresh seeds {33-37}, metric = newborn gene-pool mean intensity, POSITIVE iff FAST >0.30 in ≥4/5 + speed-gated + CLAMPED-LR clean. Disclosed pilots {110,111}: a REAL speed-gated climb (FAST ~0.165 vs SLOW null ~0.091) that is a TRANSIENT decaying to a LOW equilibrium — SUGGEST MIXED/NEGATIVE (no sustained crossing of 0.30); strip≈0 so the signal is convex tracking-threshold geometry, not Red-Queen frequency dependence (disclosed scoping).

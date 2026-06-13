@@ -196,6 +196,18 @@ step 0.
   precision is too small / too noisy to out-breed its cost. A forced/behavioral benefit test does NOT
   predict evolvability (→ L22). On branch `exp200-foraging-sense` → PR. Card:
   `loop/directions/population-ecology.md`.
+  **Exp 201 (PRE-REGISTERED, IN PROGRESS — the human's pick "a": the INCREASING-RETURNS escape).** The
+  one untested escape from the no-Goldilocks-gradient ceiling: a regime where precision's marginal value
+  GROWS. A 9-agent design+adversarial-audit workflow found three engine confounds defeat most such designs
+  (resource-memory free-ride, creature-id-ordered competition, free-trait substitution); the one mechanism
+  surviving all three is a MOVING band each creature must privately TRACK. exp200 read the band centre for
+  FREE (its fatal flaw); exp201 (`enable_band_staleness`, gated, exp194-200 byte-identical / hash-verified)
+  replaces it with a per-creature EMA tracker whose responsiveness + reading-noise key to thermosense_
+  intensity, so a crude tracker lags a fast band into depleted cells. 6 arms (FAST/MEDIUM/SLOW null/
+  CLAMPED-LR confound-killer/SATURATING exp200-replica/USELESS anchor), fresh seeds {33-37}, the SLOW null
+  the binding L19 falsifier. Disclosed pilots {110,111}: a REAL speed-gated climb (FAST ~0.165 vs SLOW null
+  ~0.091) that is a TRANSIENT decaying to a LOW equilibrium — pilots SUGGEST MIXED/NEGATIVE (no sustained
+  crossing of functional 0.30). Pre-registration commit precedes the verdict run.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

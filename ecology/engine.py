@@ -169,6 +169,24 @@ class EcologyConfig:
     food_concentration: float = 1.0
     thermosense_forage_mode: bool = False
 
+    # ------------------------------------------------------------------
+    # Exp 201: band-staleness foraging + clamped-learning-rate confound control.
+    # ALL defaults preserve Exp 194-200 byte-identical behaviour.
+    #
+    # enable_band_staleness: when True (and thermosense_forage_mode True), the
+    #   forage policy steers toward each creature's PRIVATE EMA estimate of the
+    #   drifting band center instead of reading world.current_food_optimal for
+    #   free.  Precision (thermosense_intensity) keys the tracker responsiveness
+    #   and reading noise — so precision finally buys tracking quality of a moving
+    #   target.  Requires enable_food_coupling AND enable_temperature (asserted).
+    # band_responsiveness: scales the tracker EMA alpha = clamp(intensity*resp,0,1).
+    # freeze_learning_rate: confound-killer arm — pins learning_rate to the founder
+    #   value so the learned resource map cannot substitute for the costed organ.
+    # ------------------------------------------------------------------
+    enable_band_staleness: bool = False
+    band_responsiveness: float = 1.0
+    freeze_learning_rate: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -211,7 +229,18 @@ class Ecology:
             enable_food_coupling=cfg.enable_food_coupling,
             food_band_width=cfg.food_band_width,
             food_concentration=cfg.food_concentration,
+            enable_band_staleness=cfg.enable_band_staleness,
+            band_responsiveness=cfg.band_responsiveness,
         )
+
+        # Exp 201 guard: band-staleness needs a drifting food band to track, which
+        # requires both the food-coupling regen concentration and the temperature
+        # field.  Fail loudly rather than silently no-op or None-deref.
+        if cfg.enable_band_staleness:
+            assert cfg.enable_food_coupling and cfg.enable_temperature, (
+                "enable_band_staleness requires enable_food_coupling AND "
+                "enable_temperature (a drifting thermal food band to track)"
+            )
 
         self.t: int = 0
         self.next_id: int = 0
@@ -378,7 +407,8 @@ class Ecology:
                 child_pos = min(neighbors) if neighbors else new_pos
 
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
-                                    mutate_thermosense=cfg.enable_thermosense)
+                                    mutate_thermosense=cfg.enable_thermosense,
+                                    freeze_learning_rate=cfg.freeze_learning_rate)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,

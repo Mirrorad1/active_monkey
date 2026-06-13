@@ -106,6 +106,7 @@ def mutate(
     rng: np.random.Generator,
     rate: float,
     mutate_thermosense: bool = False,
+    freeze_learning_rate: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -116,6 +117,14 @@ def mutate(
     base traits is byte-identical to the pre-Exp-197 behaviour.  When
     mutate_thermosense=True, draws are made AFTER all base-trait draws (in field
     order) — the base-trait stream is unaffected.
+
+    Exp 201 confound-killer: freeze_learning_rate=True PINS learning_rate to the
+    parent value so the learned resource map cannot be sharpened as a non-thermal
+    substitute for the costed thermosense organ.  The rng draw for learning_rate
+    STILL happens (the perturbation is computed then DISCARDED), so the rng stream
+    for every trait after learning_rate is identical to an ordinary mutation —
+    only the learning_rate RESULT is pinned.  Default False ⇒ byte-identical to
+    Exp 194-200.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -129,6 +138,11 @@ def mutate(
         lo, hi = TRAIT_BOUNDS[k]
         sigma = rate * (hi - lo)
         perturbed = v + rng.normal(0.0, sigma)
+        # Exp 201: pin learning_rate to the parent value but KEEP the rng draw
+        # above so the downstream stream is unchanged (gated; default no-op).
+        if k == "learning_rate" and freeze_learning_rate:
+            new_d[k] = v
+            continue
         new_d[k] = perturbed
     clamped = clamp_traits(new_d)
     result = Genotype(**clamped)
