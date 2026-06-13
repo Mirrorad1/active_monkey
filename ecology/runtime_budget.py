@@ -59,7 +59,7 @@ def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 1
     t_first = t_second = 0.0
     cs_first = cs_second = 0
     while eco.t < probe_steps and not eco.exploded:
-        n = len(eco._alive())
+        n = eco.alive_count()
         t0 = time.perf_counter()
         eco.step()
         dt = time.perf_counter() - t0
@@ -69,8 +69,8 @@ def probe_config(label: str, cfg: EcologyConfig, seed: int, probe_steps: int = 1
             t_second += dt; cs_second += n
         for i, q in enumerate(qs):
             if eco.t == q:
-                pops[i] = len(eco._alive())
-        if not eco._alive():
+                pops[i] = eco.alive_count()
+        if not eco.has_alive():
             break
     # growth factor per quarter (guard against zero)
     def _gf(a: int, b: int) -> float:

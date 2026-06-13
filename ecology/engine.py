@@ -335,20 +335,52 @@ class Ecology:
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
-    def _alive(self) -> list[Creature]:
-        """Return alive creatures in ascending creature_id order (deterministic).
+    def alive_count(self) -> int:
+        """Number of currently-alive creatures.  O(1); allocates nothing.
 
-        self._alive_list is maintained incrementally by step() and is ALREADY in ascending
-        creature_id order: founders are appended 0..N at init, and each step the survivors
-        (a stable filter preserves order) are followed by that step's pending_children, whose
-        ids are next_id, next_id+1, … — all strictly greater than every existing id. So the
-        list is sorted by construction and the old per-step `sorted(...)` (O(alive log alive),
-        every step) was pure overhead. We return a COPY so callers that mutate the result (the
-        shuffle path does `rng.shuffle(order)`) cannot corrupt the maintained list.
-        Byte-identical to the old sorted() output (events_hash unchanged, shuffle AND
-        non-shuffle paths); guarded by tests/test_perf_optimizations.py.
+        Equivalent to ``len(self._alive())`` but WITHOUT building the throwaway copy —
+        prefer this at count call sites (the old ``len(eco._alive())`` paid an O(alive)
+        list copy just to read a length).
+        """
+        return len(self._alive_list)
+
+    def has_alive(self) -> bool:
+        """True iff at least one creature is currently alive.  O(1); allocates nothing.
+
+        Equivalent to ``bool(self._alive())`` without the copy — prefer this at emptiness
+        checks (the old ``if not eco._alive():`` copied the whole list just to test a bool).
+        """
+        return bool(self._alive_list)
+
+    def alive_snapshot(self) -> list[Creature]:
+        """A FRESH list copy of the alive creatures in ascending creature_id order.
+
+        Use this when the caller iterates the living creatures or needs an independent,
+        mutable list it can reorder/append to (e.g. step()'s shuffle path).  For a pure
+        count or emptiness test use alive_count()/has_alive() — they do not allocate.
+
+        Determinism / ordering invariant: self._alive_list is maintained incrementally by
+        step() and is ALREADY in ascending creature_id order — founders are appended 0..N at
+        init, and each step the survivors (a stable filter preserves order) are followed by
+        that step's pending_children, whose ids (next_id, next_id+1, …) are strictly greater
+        than every existing id.  So the list is sorted by construction and the old per-step
+        ``sorted(...)`` (O(alive log alive), every step) was pure overhead.  The returned copy
+        is byte-identical to that old sorted() output, so events_hash is unchanged.  Returning
+        a COPY means a caller that mutates it (``rng.shuffle(order)``) cannot corrupt the
+        maintained list.  Guarded by tests/test_perf_optimizations.py.
         """
         return list(self._alive_list)
+
+    def _alive(self) -> list[Creature]:
+        """Backward-compatible alias for alive_snapshot() — returns a private COPY.
+
+        Retained so existing callers keep working unchanged; new code should call the
+        accessor that matches intent — alive_count()/has_alive() for count/emptiness,
+        alive_snapshot() when an independent list of the living is actually needed.  Do NOT
+        expose the raw self._alive_list to external callers (mutating it corrupts engine
+        bookkeeping); use alive_snapshot() for a safe, independent copy.
+        """
+        return self.alive_snapshot()
 
     def _event(self, event_type: str, c: Creature, details: dict | None = None) -> dict:
         g = c.genotype
@@ -603,9 +635,19 @@ class Ecology:
         # ONLY in this gated ON branch) neutralises the id-order eat-first confound so that
         # interference competition at a contested cell is keyed to navigation skill, not birth
         # order. consume() is UNCHANGED.
-        order = self._alive()
+        #
+        # PERF (byte-identical): only the shuffle path needs a private, mutable copy to reorder.
+        # The OFF path iterates the maintained _alive_list DIRECTLY — _step_one_creature never
+        # mutates _alive_list (children go to pending_children; the list is rebuilt only BELOW,
+        # after this loop and the band-strip read both finish), so aliasing it here is safe and
+        # saves an O(alive) list copy every step. The visited creatures and their order are
+        # identical to the old `order = self._alive()` copy, so events_hash is unchanged
+        # (guarded by the committed-hash regression tests + tests/test_perf_optimizations.py).
         if self.cfg.shuffle_creature_order:
+            order = self.alive_snapshot()
             self.rng.shuffle(order)
+        else:
+            order = self._alive_list
 
         # Exp 202: band-strip validity instrumentation (gated; NO rng draw, NOT in events_hash) —
         # the go/no-go that the food band is GENUINELY depleted within a step (exp201: strip~0).
@@ -655,14 +697,14 @@ class Ecology:
             })
 
         # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler.
-        # len(self._alive_list) — same value as the old full scan of self._creatures, O(1).
-        alive_count = len(self._alive_list)
-        if alive_count > self.cfg.max_population:
+        # alive_count() is O(1) — same value as the old full scan of self._creatures.
+        n_alive = self.alive_count()
+        if n_alive > self.cfg.max_population:
             self.exploded = True
             self.events.append({
                 "t": self.t,
                 "event_type": "explosion",
-                "alive_count": alive_count,
+                "alive_count": n_alive,
                 "max_population": self.cfg.max_population,
                 "creature_id": None,
                 "parent_id": None,
@@ -678,7 +720,7 @@ class Ecology:
     def run(self) -> dict[str, Any]:
         """Run until horizon, extinction, or explosion.  Return summary dict."""
         while True:
-            if len(self._alive_list) == 0:   # extinction (O(1), was a full self._creatures scan)
+            if not self.has_alive():         # extinction (O(1), was a full self._creatures scan)
                 break
             if self.exploded:
                 break

@@ -87,7 +87,7 @@ def run_one(spec: RunSpec) -> dict[str, Any]:
     while eco.t < horizon and not eco.exploded:
         eco.step()
         if eco.t in checkpoints:
-            alive = eco._alive()
+            alive = eco.alive_snapshot()                       # iterated below for max() + len()
             nb = _newborn_mean(eco._creatures, eco.t - spec.checkpoint_stride, eco.t, spec.max_trait)
             mx = max((getattr(c.genotype, spec.max_trait) for c in alive), default=float("nan"))
             trajectory.append({
@@ -95,24 +95,24 @@ def run_one(spec: RunSpec) -> dict[str, Any]:
                 "newborn_mean_intensity": float("nan") if math.isnan(nb) else nb,
                 "max_intensity": float("nan") if math.isnan(mx) else mx,
             })
-        if not eco._alive():
+        if not eco.has_alive():
             break
 
-    alive = eco._alive()
+    n_alive = eco.alive_count()                                # count/emptiness only — no copy
     end_means = {a: _newborn_mean(eco._creatures, spec.window_start, horizon, a) for a in spec.trait_means}
     all_vals = [getattr(c.genotype, spec.max_trait) for c in eco._creatures]
     max_ever = max(all_vals) if all_vals else float("nan")
     primary = spec.trait_means[0]
     valid = (eco.t >= horizon and not eco.exploded
-             and len(alive) >= spec.min_valid_pop
+             and n_alive >= spec.min_valid_pop
              and not math.isnan(end_means[primary]))
 
     out = {
         "key": spec.key, "seed": spec.seed, "steps_run": eco.t,
         "reached_horizon": eco.t >= horizon and not eco.exploded,
-        "extinct": len(alive) == 0, "exploded": eco.exploded, "final_pop": len(alive),
+        "extinct": n_alive == 0, "exploded": eco.exploded, "final_pop": n_alive,
         "end_means": end_means, "max_ever": max_ever, "valid": valid,
-        "extinction_step": eco.t if len(alive) == 0 else None,
+        "extinction_step": eco.t if n_alive == 0 else None,
         "events_hash": eco.events_hash(), "trajectory": trajectory,
     }
     # Exp 202: band-strip validity summary (only present when cfg.track_band_strip populated it).

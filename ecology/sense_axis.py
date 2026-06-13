@@ -245,7 +245,7 @@ def run_gradient_audit(cfg: EcologyConfig, seed: int, *, grid: tuple[float, ...]
     while eco.t < cfg.horizon and not eco.exploded:
         eco.step()
         if eco.t in cps:
-            alive = eco._alive()
+            alive = eco.alive_snapshot()                       # iterated below for bucketing + len()
             counts: dict[float, int] = {g: 0 for g in grid}
             for c in alive:
                 b = _bucket_h(c.genotype.thermosense_intensity, grid)
@@ -259,7 +259,7 @@ def run_gradient_audit(cfg: EcologyConfig, seed: int, *, grid: tuple[float, ...]
                     alive_steps[g] += counts[g] * checkpoint_stride
             traj.append({"t": eco.t, "pop": len(alive),
                          "counts": {f"{g:.2f}": counts[g] for g in grid}})
-        if not eco._alive():
+        if not eco.has_alive():
             break
 
     # births in-window per clamp (secondary readout) + the PER-INDIVIDUAL realized
@@ -321,14 +321,14 @@ def run_gradient_audit(cfg: EcologyConfig, seed: int, *, grid: tuple[float, ...]
             "alive_end": traj[-1]["counts"][f"{g:.2f}"] if traj else 0,
         }
 
-    alive_end = eco._alive()
+    n_alive_end = eco.alive_count()                            # count/emptiness only — no copy
     return {
         "seed": seed,
         "per_clamp": per_clamp,
         "start_temp_mean": start_temp_mean,        # decorrelation audit (≈equal across clamps)
         "trajectory": traj,
-        "final_pop": len(alive_end),
-        "extinct": len(alive_end) == 0,
+        "final_pop": n_alive_end,
+        "extinct": n_alive_end == 0,
         "exploded": eco.exploded,
         "steps_run": eco.t,
         "other_intensities": other_intensities,   # MUST be 0 (clamp integrity)
@@ -372,8 +372,8 @@ def run_intrinsic_growth(cfg: EcologyConfig, h: float, seed: int, *,
     while eco.t < cfg2.horizon and not eco.exploded:
         eco.step()
         if eco.t in cps and w_lo <= eco.t <= w_hi:
-            series.append((eco.t, len(eco._alive())))
-        if not eco._alive():
+            series.append((eco.t, eco.alive_count()))
+        if not eco.has_alive():
             break
     pts = [(t, c) for t, c in series if c >= 1]
     if len(pts) < 3:
@@ -516,28 +516,29 @@ def run_carrying_capacity(cfg: EcologyConfig, h: float, seed: int, *,
     births = 0
     alive_steps = 0
     while eco.t < cfg2.horizon and not eco.exploded:
-        n_before = len(eco._alive())
+        n_before = eco.alive_count()
         eco.step()
         if eco.t > cfg2.horizon - late:
             alive_steps += n_before
             # count reproduction events this step via population bookkeeping is awkward;
             # use the standing pop + resource sampled on a stride (the equilibrium readout)
             if eco.t % stride == 0:
-                pops.append(len(eco._alive()))
+                pops.append(eco.alive_count())
                 res.append(float(np.mean(eco.world.resource)))
-        if not eco._alive():
+        if not eco.has_alive():
             break
     # per-capita reproduction over the late window from the event log (cheap final scan)
     repro = sum(1 for e in eco.events if e["event_type"] == "reproduction" and e["t"] > cfg2.horizon - late)
-    intake = float(np.mean([c.phenotype.resource_eaten / max(1, c.phenotype.age) for c in eco._alive()])) \
-        if eco._alive() else float("nan")
+    alive = eco.alive_snapshot()                               # one copy: iterated + len()/empty below
+    intake = float(np.mean([c.phenotype.resource_eaten / max(1, c.phenotype.age) for c in alive])) \
+        if alive else float("nan")
     return {
         "N_star": float(np.mean(pops)) if pops else 0.0,
         "R_star": float(np.mean(res)) if res else float("nan"),
         "intake_on": intake,
         "repro_rate": (repro / alive_steps) if alive_steps > 0 else float("nan"),
-        "final_pop": len(eco._alive()),
-        "extinct": len(eco._alive()) == 0,
+        "final_pop": len(alive),
+        "extinct": len(alive) == 0,
     }
 
 
@@ -570,16 +571,17 @@ def run_pairwise_competition(cfg: EcologyConfig, h_res: float, h_inv: float, see
     while eco.t < cfg2.horizon and not eco.exploded:
         eco.step()
         if eco.t in cps and w_lo <= eco.t <= w_hi:
-            n_res = sum(1 for c in eco._alive() if abs(c.genotype.thermosense_intensity - h_res) < 1e-6)
-            n_inv = sum(1 for c in eco._alive() if abs(c.genotype.thermosense_intensity - h_inv) < 1e-6)
+            alive_now = eco.alive_snapshot()                   # one copy, iterated twice below
+            n_res = sum(1 for c in alive_now if abs(c.genotype.thermosense_intensity - h_res) < 1e-6)
+            n_inv = sum(1 for c in alive_now if abs(c.genotype.thermosense_intensity - h_inv) < 1e-6)
             tot = n_res + n_inv
             if tot >= 1:
                 fracs.append(n_inv / tot)
             if n_res >= 1 and n_inv >= 1:
                 series.append((eco.t, math.log(n_inv / n_res)))
-        if not eco._alive():
+        if not eco.has_alive():
             break
-    alive = eco._alive()
+    alive = eco.alive_snapshot()
     n_res_f = sum(1 for c in alive if abs(c.genotype.thermosense_intensity - h_res) < 1e-6)
     n_inv_f = sum(1 for c in alive if abs(c.genotype.thermosense_intensity - h_inv) < 1e-6)
     inv_frac_final = (n_inv_f / (n_res_f + n_inv_f)) if (n_res_f + n_inv_f) > 0 else float("nan")
@@ -613,9 +615,9 @@ def run_installed_benefit(cfg_costoff: EcologyConfig, h: float, seed: int, *,
     while eco.t < cfg.horizon and not eco.exploded:
         eco.step()
         if eco.t > cfg.horizon - window and eco.t % stride == 0:
-            rates = [c.phenotype.resource_eaten / max(1, c.phenotype.age) for c in eco._alive()]
+            rates = [c.phenotype.resource_eaten / max(1, c.phenotype.age) for c in eco.alive_snapshot()]
             if rates:
                 samples.append(float(np.mean(rates)))
-        if not eco._alive():
+        if not eco.has_alive():
             break
     return float(np.mean(samples)) if samples else float("nan")

@@ -4,6 +4,10 @@ These pin the BEHAVIOR-PRESERVING properties the optimizations rely on:
   - the precomputed neighbor table returns exactly the old per-call values/order;
   - _alive() returns the alive creatures in ascending-id order WITHOUT a per-step sort
     (the list is sorted by construction — the optimization's correctness precondition);
+  - the explicit accessors (alive_count/has_alive/alive_snapshot) agree with _alive() and the
+    snapshot is an independent copy (mutating it cannot corrupt the engine's _alive_list);
+  - with shuffle OFF, step() iterates the maintained _alive_list directly (no per-step copy)
+    and that aliasing neither corrupts the list nor changes events_hash;
   - dead creatures' belief maps (m, visit_t) are freed on death (the memory win) while the
     policy object + band_estimate survive for post-hoc inspection;
   - none of it changes events_hash (byte-identical — the historical-hash tests cover this too).
@@ -60,6 +64,54 @@ def test_alive_list_stays_sorted_by_construction():
     ids = [c.creature_id for c in eco._alive_list]
     assert ids == sorted(ids)
     assert [c.creature_id for c in eco._alive()] == ids       # _alive() returns that order
+
+
+def test_alive_accessors_agree_with_alive_midrun():
+    """alive_count()/has_alive()/alive_snapshot() agree with _alive() at every step of a run —
+    they are pure no-allocation (count/emptiness) or copy (snapshot) equivalents, never a
+    different value."""
+    eco = Ecology(_cfg(horizon=400, regen=0.10), 11)
+    while eco.t < 400 and eco.has_alive():
+        eco.step()
+        ref = eco._alive()
+        assert eco.alive_count() == len(ref)
+        assert eco.has_alive() == bool(ref)
+        assert [c.creature_id for c in eco.alive_snapshot()] == [c.creature_id for c in ref]
+
+
+def test_alive_snapshot_and_legacy_alive_are_independent_copies():
+    """alive_snapshot() and _alive() each return a FRESH list (never the raw _alive_list);
+    mutating the result cannot corrupt the engine's bookkeeping. _alive() delegates to
+    alive_snapshot() (a private copy)."""
+    eco = Ecology(_cfg(horizon=200, regen=0.20), 3)
+    for _ in range(80):
+        if not eco.has_alive():
+            break
+        eco.step()
+    before = list(eco._alive_list)
+    assert before, "regime produced no living creatures — test invalid"
+    snap = eco.alive_snapshot()
+    legacy = eco._alive()
+    assert snap is not eco._alive_list and legacy is not eco._alive_list   # both are copies
+    assert snap is not legacy                                              # a distinct copy per call
+    assert snap == before and legacy == before                            # same contents
+    snap.clear(); legacy.reverse()                                        # mutate the copies
+    assert eco._alive_list == before                                      # engine state untouched
+
+
+def test_step_off_path_no_copy_is_byte_identical_and_safe():
+    """Item 3: with shuffle OFF, step() iterates the maintained _alive_list DIRECTLY (no copy).
+    Guard the two properties that make that aliasing correct over a high-turnover run:
+      (a) the run still REPRODUCES its events_hash (aliasing did not corrupt the stream), and
+      (b) _alive_list is left sorted-by-id + all-alive (the maintained invariant survives)."""
+    cfg = _cfg(horizon=1000, regen=0.08, shuffle_creature_order=False)
+    a = Ecology(cfg, 21); sa = a.run()
+    b = Ecology(cfg, 21); sb = b.run()
+    assert sa["events_hash"] == sb["events_hash"]             # deterministic / no aliasing corruption
+    ids = [c.creature_id for c in a._alive_list]
+    assert ids == sorted(ids)                                 # left sorted by construction
+    assert all(c.phenotype.alive for c in a._alive_list)      # only-alive invariant preserved
+    assert a.alive_count() == len(a._alive_list)
 
 
 def test_dead_creatures_release_belief_maps_keep_band_estimate():

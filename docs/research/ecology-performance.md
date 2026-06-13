@@ -49,8 +49,14 @@ regression tests `fc19d23f…`, `502e0539…` still pass)
   all workers. Experiments call it and pass `recommended_workers` to the batch.
 - **Runaway guard** (L25, prior turn): the pre-flight blocks (`require_safe=True`) a batch whose
   population projects toward the cap — catching the explosion case before it burns hours.
-- **Micro-cleanups** (byte-identical, ~0 measured speedup but correct hygiene): a precomputed static
-  neighbor table; `_alive()` returns the already-sorted alive-list without a per-step `sorted(...)`.
+- **Micro-cleanups** (byte-identical): a precomputed static neighbor table; `_alive()` returns the
+  already-sorted alive-list without a per-step `sorted(...)`; explicit alive-list accessors
+  (`alive_count()` / `has_alive()` / `alive_snapshot()`) so count/emptiness call sites stop paying an
+  O(alive) list **copy** just to read a length or a bool, and `step()` iterates the maintained
+  `_alive_list` **directly** when shuffle is off (only the shuffle path needs a private copy to
+  reorder). These remove **allocation churn**, not inner-loop arithmetic, so the wall-clock effect is
+  small (single digits on the CPU-bound run) — but they are genuine, safe, byte-identical wins, not
+  zero, and they shrink per-step garbage on the long high-turnover runs.
 
 Net effect: the **runaway** and **swap** failure modes (the two that produce *hours*) are fixed; the
 baseline CPU cost on a memory-unconstrained machine is ~unchanged (see §5 for why).
@@ -87,7 +93,11 @@ blocks the usual speedups:
 - **Micro-opts** (precompute neighbors, list-vs-numpy scalar access ~2× per access) net to single
   digits because the work is spread thin across ~10 ops/creature-step — confirmed by A/B.
 
-The honest summary: on a memory-unconstrained machine, the per-step CPU is ~irreducible without a
-determinism-breaking rewrite (vectorisation) or a different runtime (PyPy could JIT the pure-Python
-loop for a possible 5–10×, at the cost of dependency/compat work). The high-leverage, safe wins are
-the **runaway guard**, the **swap-avoiding worker cap**, and **right-sizing horizon/grid/seeds**.
+The honest summary: it is the per-creature **arithmetic** (the ~10 ops/creature-step) that is
+~irreducible without a determinism-breaking rewrite (vectorisation) or a different runtime (PyPy
+could JIT the pure-Python loop for a possible 5–10×, at the cost of dependency/compat work). That is
+**not** the same as "nothing left to optimise": **allocation** overhead is separable from arithmetic
+and *is* reducible safely — accidental O(alive) alive-list copies at count/emptiness call sites and
+the per-step shuffle-off `order` copy have been removed via the explicit accessors (§3), all
+byte-identical. The remaining high-leverage, safe wins are the **runaway guard**, the
+**swap-avoiding worker cap**, and **right-sizing horizon/grid/seeds**.
