@@ -187,6 +187,25 @@ class EcologyConfig:
     band_responsiveness: float = 1.0
     freeze_learning_rate: bool = False
 
+    # ------------------------------------------------------------------
+    # Exp 202: interference-competition / frequency-dependence escape.
+    # ALL defaults preserve Exp 194-201 byte-identical behaviour.
+    #
+    # shuffle_creature_order: when True, alive creatures are processed in a
+    #   RANDOMISED order each step (rng.shuffle, drawing ONLY in this gated ON
+    #   branch) instead of ascending creature_id. This neutralises the id-order
+    #   "eat-first" confound (low-id creatures otherwise win every contested cell
+    #   regardless of skill; new high-id mutants are structurally disadvantaged),
+    #   so interference competition at a genuinely-depleting band is keyed to
+    #   navigation skill, not birth order. consume() is UNCHANGED — this is the
+    #   only id-order fix that survives the no-hidden-evaluator invariant cleanly.
+    # track_band_strip: gated telemetry (NO rng, NOT in events_hash) recording how
+    #   much of the food band is depleted WITHIN a step (before regen) — the
+    #   go/no-go that the band is genuinely contested (exp201 failed here, strip~0).
+    # ------------------------------------------------------------------
+    shuffle_creature_order: bool = False
+    track_band_strip: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -246,6 +265,10 @@ class Ecology:
         self.next_id: int = 0
         self.events: list[dict[str, Any]] = []
         self.exploded: bool = False
+        # Exp 202: band-strip telemetry (NOT in events_hash; populated only when
+        # cfg.track_band_strip is True). A plain attribute, so the OFF path is
+        # byte-identical to Exp 194-201.
+        self.strip_log: list[dict[str, Any]] = []
 
         # Creatures stored in a list; we always iterate in ascending id order.
         self._creatures: list[Creature] = []
@@ -517,9 +540,35 @@ class Ecology:
                 * math.sin(2.0 * math.pi * self.t / self.cfg.food_optimal_period)
             )
 
-        # Process alive creatures in ascending id order (deterministic)
-        for c in self._alive():
+        # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
+        # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
+        # shuffle_creature_order is True, a RANDOMISED order each step (rng.shuffle, drawing
+        # ONLY in this gated ON branch) neutralises the id-order eat-first confound so that
+        # interference competition at a contested cell is keyed to navigation skill, not birth
+        # order. consume() is UNCHANGED.
+        order = self._alive()
+        if self.cfg.shuffle_creature_order:
+            self.rng.shuffle(order)
+
+        # Exp 202: band-strip validity instrumentation (gated; NO rng draw, NOT in events_hash) —
+        # the go/no-go that the food band is GENUINELY depleted within a step (exp201: strip~0).
+        _band_before = None
+        if self.cfg.track_band_strip and self.world.temperature is not None and self.world.enable_food_coupling:
+            _mask = np.abs(self.world.temperature - self.world.current_food_optimal) <= self.world.food_band_width
+            _band_before = float(np.sum(self.world.resource[_mask]))
+
+        for c in order:
             self._step_one_creature(c, pending_children)
+
+        if _band_before is not None:
+            _band_after = float(np.sum(self.world.resource[_mask]))
+            _n_occ = sum(1 for c in order if bool(_mask[c.phenotype.pos]))
+            self.strip_log.append({
+                "t": self.t,
+                "strip": max(0.0, _band_before - _band_after),
+                "band_before": _band_before,
+                "occupants": _n_occ,
+            })
 
         # Add pending children (born creatures act from next step)
         self._creatures.extend(pending_children)

@@ -107,7 +107,7 @@ def run_one(spec: RunSpec) -> dict[str, Any]:
              and len(alive) >= spec.min_valid_pop
              and not math.isnan(end_means[primary]))
 
-    return {
+    out = {
         "key": spec.key, "seed": spec.seed, "steps_run": eco.t,
         "reached_horizon": eco.t >= horizon and not eco.exploded,
         "extinct": len(alive) == 0, "exploded": eco.exploded, "final_pop": len(alive),
@@ -115,6 +115,14 @@ def run_one(spec: RunSpec) -> dict[str, Any]:
         "extinction_step": eco.t if len(alive) == 0 else None,
         "events_hash": eco.events_hash(), "trajectory": trajectory,
     }
+    # Exp 202: band-strip validity summary (only present when cfg.track_band_strip populated it).
+    if eco.strip_log:
+        late = [s["strip"] for s in eco.strip_log if s["t"] >= horizon - 1000]
+        occ = [s["occupants"] for s in eco.strip_log if s["t"] >= horizon - 1000]
+        out["strip_late_mean"] = float(np.mean(late)) if late else 0.0
+        out["strip_late_frac_pos"] = float(np.mean([x > 0 for x in late])) if late else 0.0
+        out["occ_late_mean"] = float(np.mean(occ)) if occ else 0.0
+    return out
 
 
 def run_batch(specs: list[RunSpec], *, max_workers: int | None = None,

@@ -656,5 +656,36 @@ cross the valley? committed BEFORE the fresh-seed run).**
   the test is of the convex tracking-threshold, not Red-Queen dynamics. Engine gated; exp194–200 byte-
   identical (hash-verified, durable guards added). Founders + costs PROVIDED.
 
-**STATUS.** state: active · latest: Exp 201 (NEGATIVE/NEW INSIGHT — WALL 3/3 blind-verified; increasing-returns escape FAILED; precision benefit CONCAVE; NO GOLDILOCKS GRADIENT third time; ceiling general: avoidance+foraging+increasing-returns; L23) · depends-on: ecology/ substrate (Exp 194–201) · reusable: ecology engine + band-staleness tracker + frozen-precision returns probe · why: population axis parallel to locked ladder; "N5 pop-ecology" = ladder-N7 territory · next-falsifiable: AWAITING HUMAN STEER — (a) real frequency dependence/interference competition; (b) different N5 axis (sympatric divergence/mate choice); (c) re-run Exp 198 with L21 fix; (d) neural Bθ; (e) redirect
+**EXP 202 — PRE-REGISTRATION (the INTERFERENCE-COMPETITION escape; committed BEFORE the verdict run; full
+binding predeclaration in experiments/exp202_n5_interference_competition.py docstring).**
+- **Motivation.** Three walls (199 avoidance, 200 foraging, 201 increasing-returns) leave ONE sensing escape:
+  REAL positive frequency dependence — precision pays MORE as the trait spreads — via interference
+  competition at a GENUINELY DEPLETING band. exp201's competition was inert (strip≈0); exp202 makes the band
+  deplete AND neutralises the engine's ascending-creature_id "eat-first" confound.
+- **Mechanism (gated; exp194-201 byte-identical, hash-verified).** `shuffle_creature_order` randomises the
+  per-step processing order (rng.shuffle, ON-branch only) so a contested cell is won by navigation skill, not
+  birth order — `consume()` UNCHANGED. `track_band_strip` is a gated validity auditor (no rng, not in
+  events_hash). An independent **Codex diagnosis AND a Claude design workflow BOTH converged on shuffle** and
+  BOTH rejected the alternatives: precision-weighted split (= a smuggled cross-creature genotype evaluator,
+  invariant violation), precision-ordering (= forbidden global ranking), mixed-founders (re-correlates id with
+  precision mid-run). Durable guards: tests/test_exp202_competition.py.
+- **Arms** (founder intensity 0.10, fresh seeds {38-42}, horizon 12000, conc 14 / band 0.08 / regen 0.08):
+  COMPETE (depleting + shuffle, primary) · NO_SHUFFLE (id-order ON, isolates the fair queue) · CLAMPED_LR
+  (learning_rate frozen, confound-killer) · ABUNDANT (regen 0.8, no scarcity = no-competition baseline) ·
+  USELESS (no coupling, organ pure cost). Metric = NEWBORN gene-pool mean intensity in [10000,12000].
+- **Disclosed pilots {130,131,140-147}.** STRIP-GATE PASSES (strip_frac 100%, ~170 contested in-band
+  occupants — genuine depletion, UNLIKE exp201). But the de-novo climb DECAYS to ~0.03 (organ selected
+  AGAINST); a lone v_narrow seed hit 0.736 at a COLLAPSED pop (101), and an 8-seed characterisation gave 0/8
+  functional with corr(pop,intensity) = -0.92 (high intensity ONLY at collapse = DRIFT). Regime FIXED pre-run.
+- **Predictions.** P1 determinism; P2 validity (COMPETE valid ≥4/5 AND strip_frac>0.5 = genuine competition);
+  P3 (CORE → POSITIVE): COMPETE mean >0.30 in ≥4/5 valid seeds AT HEALTHY pop (≥300; functional at pop<300 is
+  DRIFT-flagged) AND CLAMPED_LR also >0.30.
+- **Falsifiers.** PRIMARY → NEGATIVE (MAXIMALLY general wall): COMPETE <0.15 majority. MIXED: [0.15,0.30].
+  DRIFT (positive DISCARDED): functional only at collapsed pops. INERT (pause-and-consult, NOT negative): strip
+  ≤0.5 (band didn't deplete). F1 non-determinism / OFF-hash mismatch → NEGATIVE (infra).
+- **Honesty stakes.** Pilots SUGGEST NEGATIVE; predicting the human's escape, tested on FRESH seeds. A NEGATIVE
+  here is the strongest publishable form of the wall (the ceiling survives even real Red-Queen competition with
+  the id-order confound removed). Engine gated; scheduler + founders + costs PROVIDED.
+
+**STATUS.** state: active · latest: Exp 201 (NEGATIVE/NEW INSIGHT — WALL 3/3 blind-verified; increasing-returns escape FAILED; precision benefit CONCAVE; NO GOLDILOCKS GRADIENT third time; ceiling general: avoidance+foraging+increasing-returns; L23) · depends-on: ecology/ substrate (Exp 194–201) · reusable: ecology engine + band-staleness tracker + frozen-precision returns probe · why: population axis parallel to locked ladder; "N5 pop-ecology" = ladder-N7 territory · next-falsifiable: Exp 202 (PRE-REGISTERED — interference-competition escape: a gated SHUFFLED order neutralises the id-order confound at a depleting band; fresh seeds {38-42}; pilots SUGGEST NEGATIVE (strip-gate PASSES, intensity decays, lone functional=DRIFT); full pre-reg in EXP 202 section)
 
