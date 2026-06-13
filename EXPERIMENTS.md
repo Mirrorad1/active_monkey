@@ -7424,7 +7424,7 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Reproduction is asexual: child = mutated parent genotype, child energy = parent energy x
   transfer_fraction 0.45, parent pays transfer + a complexity-scaled overhead, only if it
   stays above min_survival_energy; gated on the creature's OWN maturity_age and OWN
-  reproduction_energy_threshold. Death = energy <= 0 (cause starvation). runtime 8.3s.
+  reproduction_energy_threshold. Death = energy <= 0 (cause starvation). runtime 2.6s.
 - Result (committed exp194.txt + experiments/outputs/exp194_n5_homeostatic_population/):
   P1 determinism PASS (9/9 same-seed reruns byte-identical, distinct hashes across seeds).
   P2 PASS (balanced final pop 170/155/155 <= pop_cap 200, explosion=False, persists to
