@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp196.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp196_n5_senescence_selection.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.013\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.09\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0869/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1270/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1349/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1805/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1863/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1920/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"194/195\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2578/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2844/0\" quoted in entry not found in experiments/outputs/exp196.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T02:38:09Z",
+  "commit_sha": "df73a1c66140d447f68c2a737d200dd4b6ffda6c",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 196,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
