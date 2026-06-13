@@ -114,6 +114,15 @@ class HomeostaticPolicy:
         self.m[pos] += self.learning_rate * (observed - self.m[pos])
         self.visit_t[pos] = t
 
+    def release_maps(self) -> None:
+        """PERF (memory): drop the two n_cells belief maps (m, visit_t) — the dominant per-
+        creature heap. Called by the engine when a creature DIES: a dead creature's maps are
+        never read again (sense()/act() run only on the living; the summary uses genotype +
+        phenotype; band_estimate — a single float — is kept for post-hoc inspection). Frees
+        ~2.3 KB/creature, ~175 MB on a long high-turnover run, without changing any result."""
+        self.m = None              # type: ignore[assignment]
+        self.visit_t = None        # type: ignore[assignment]
+
     def choose_action(
         self,
         creature: "Creature",

@@ -336,13 +336,19 @@ class Ecology:
     # Internal helpers
     # ------------------------------------------------------------------
     def _alive(self) -> list[Creature]:
-        """Return alive creatures sorted by ascending creature_id (deterministic).
+        """Return alive creatures in ascending creature_id order (deterministic).
 
-        Scans self._alive_list (only currently-alive creatures), maintained incrementally
-        by step(); identical result to filtering self._creatures but O(alive) not
-        O(total-ever-born). The sorted-by-id order is unchanged, so events_hash is unchanged.
+        self._alive_list is maintained incrementally by step() and is ALREADY in ascending
+        creature_id order: founders are appended 0..N at init, and each step the survivors
+        (a stable filter preserves order) are followed by that step's pending_children, whose
+        ids are next_id, next_id+1, … — all strictly greater than every existing id. So the
+        list is sorted by construction and the old per-step `sorted(...)` (O(alive log alive),
+        every step) was pure overhead. We return a COPY so callers that mutate the result (the
+        shuffle path does `rng.shuffle(order)`) cannot corrupt the maintained list.
+        Byte-identical to the old sorted() output (events_hash unchanged, shuffle AND
+        non-shuffle paths); guarded by tests/test_perf_optimizations.py.
         """
-        return sorted(self._alive_list, key=lambda c: c.creature_id)
+        return list(self._alive_list)
 
     def _event(self, event_type: str, c: Creature, details: dict | None = None) -> dict:
         g = c.genotype
@@ -553,6 +559,16 @@ class Ecology:
                 "complexity": genotype_complexity(g),
                 "offspring_count": ph.offspring_count,
             }))
+
+        # PERF (memory; byte-identical): a dead creature's two n_cells belief maps (m, visit_t)
+        # are NEVER read again — sense()/act() run only on ALIVE creatures, and the summary +
+        # newborn analysis read only genotype + phenotype. Dropping the maps on death keeps the
+        # heap from growing with total-ever-born — on a long high-turnover run ~75k dead
+        # creatures × 2 maps is ~175 MB of otherwise-retained numpy buffers, the dominant
+        # per-run RSS and the parallel-batch swap risk. The policy object + band_estimate (a
+        # float) are KEPT for post-hoc inspection; events_hash + all results are unchanged.
+        if not ph.alive and c.policy is not None:
+            c.policy.release_maps()
 
     # ------------------------------------------------------------------
     # Step / Run
