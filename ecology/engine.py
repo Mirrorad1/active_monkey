@@ -271,7 +271,13 @@ class Ecology:
         self.strip_log: list[dict[str, Any]] = []
 
         # Creatures stored in a list; we always iterate in ascending id order.
+        # _creatures accumulates EVERY creature ever born (dead included — needed by the
+        # final newborn/lineage summary). _alive_list holds ONLY currently-alive creatures
+        # and is maintained incrementally so the per-step _alive() scan is O(alive), not
+        # O(total-ever-born) (the latter dominated long high-turnover runs). Determinism-safe:
+        # _alive() still returns the SAME sorted-by-id order, so events_hash is unchanged.
         self._creatures: list[Creature] = []
+        self._alive_list: list[Creature] = []
 
         # Place initial_population founders at deterministic spread positions
         n_cells = cfg.rows * cfg.cols
@@ -291,6 +297,7 @@ class Ecology:
                 n_cells=n_cells,
             )
             self._creatures.append(c)
+            self._alive_list.append(c)
             self.events.append(self._event("birth", c, details={"founder": True}))
             self.next_id += 1
 
@@ -298,11 +305,13 @@ class Ecology:
     # Internal helpers
     # ------------------------------------------------------------------
     def _alive(self) -> list[Creature]:
-        """Return alive creatures sorted by ascending creature_id (deterministic)."""
-        return sorted(
-            (c for c in self._creatures if c.is_alive()),
-            key=lambda c: c.creature_id,
-        )
+        """Return alive creatures sorted by ascending creature_id (deterministic).
+
+        Scans self._alive_list (only currently-alive creatures), maintained incrementally
+        by step(); identical result to filtering self._creatures but O(alive) not
+        O(total-ever-born). The sorted-by-id order is unchanged, so events_hash is unchanged.
+        """
+        return sorted(self._alive_list, key=lambda c: c.creature_id)
 
     def _event(self, event_type: str, c: Creature, details: dict | None = None) -> dict:
         g = c.genotype
@@ -572,6 +581,11 @@ class Ecology:
 
         # Add pending children (born creatures act from next step)
         self._creatures.extend(pending_children)
+        # Maintain the incremental alive-list (perf; determinism-safe): drop creatures that
+        # died this step, append the new children. O(alive), replacing the old per-step
+        # O(total-ever-born) full scan of self._creatures.
+        self._alive_list = [c for c in self._alive_list if c.phenotype.alive]
+        self._alive_list.extend(pending_children)
 
         # World regeneration
         self.world.step_regen()
@@ -592,8 +606,9 @@ class Ecology:
                 "details": {},
             })
 
-        # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler
-        alive_count = sum(1 for c in self._creatures if c.is_alive())
+        # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler.
+        # len(self._alive_list) — same value as the old full scan of self._creatures, O(1).
+        alive_count = len(self._alive_list)
         if alive_count > self.cfg.max_population:
             self.exploded = True
             self.events.append({
@@ -615,8 +630,7 @@ class Ecology:
     def run(self) -> dict[str, Any]:
         """Run until horizon, extinction, or explosion.  Return summary dict."""
         while True:
-            alive = [c for c in self._creatures if c.is_alive()]
-            if len(alive) == 0:
+            if len(self._alive_list) == 0:   # extinction (O(1), was a full self._creatures scan)
                 break
             if self.exploded:
                 break
