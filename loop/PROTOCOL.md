@@ -35,6 +35,16 @@ not permission to weaken `loop/VALIDATION.md`.
    Fixed seed by default; if you try multiple seeds, report ALL of them.
    Write the script at `experiments/expNN_<slug>.py` inside the repo — never `/tmp` or
    any path outside the repo — so it is committed with the entry (see step 6).
+   **Runtime / complexity pre-flight (binding, L25 — human request 2026-06-13):** BEFORE
+   launching any full batch, do an algorithmic-complexity / runtime check so a bug cannot
+   quietly burn hours of compute. Verify the inner loop is bounded (`O(alive)`/`O(cells)`,
+   not `O(total-ever-born)` or `O(alive²)`); verify population is bounded (no no-scarcity
+   regime growing toward the runaway cap — the Exp 202 ABUNDANT lesson); and project the
+   wall-clock. For ecology runs use `ecology/runtime_budget.preflight(...)` (a logistic-aware
+   probe that flags EXPLOSION / SUPERLINEAR / OVER_BUDGET) and call it with
+   `require_safe=True` at the top of the experiment's `main()` so the batch refuses to launch
+   on a flagged config. For non-ecology runs, do the equivalent back-of-envelope (jobs ×
+   horizon × work/step) and a short smoke-timed extrapolation before the full run.
    **Division of labor:** follow `loop/ROUTING.md`. Claude ideates, designs, and
    validates; the CODING is dispatched to a Codex plugin worker on the `codex
    high-fast` profile (explicit fallback: `gpt-5.4-mini` with high reasoning)
