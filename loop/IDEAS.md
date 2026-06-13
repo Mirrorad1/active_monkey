@@ -1158,6 +1158,13 @@ The loop marks items it has consumed by indenting a response under them:
         is the honest characterization of why the organ can't climb) — write the synthesis, hold.
     (e) Other / redirect / stop.
     Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
+  → [human, 2026-06-13, in-session] EXPLICIT WORD: "a continue" — option (a), the recommended
+    one: Exp 204 (freshness/residue false-positive bridge). CONSUMED: the full Exp 204
+    pre-registration is written into loop/directions/population-ecology.md BEFORE any data
+    (expanding the staged sketch into binding predictions/falsifiers/verdict). Falsifier-bound
+    per VALIDATION; a failed predeclared test HALTS for a word. Engine feature `enable_residue`
+    is gated/default-OFF ⇒ exp194-203 byte-identical (hash-guarded); no direct-h-reward (asserted
+    + blinded-verified). 205/206 remain staged behind their own post-204 consult.
 
 (empty — drop ideas above this line's section freely)
 
