@@ -230,6 +230,7 @@ step 0.
   cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 - Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
+- Fork/replay/restore as first-class primitives: `ecology/runtime.py` (+ `ecology/RUNTIME.md`) — lossless snapshot/restore (bit-identical pause/resume), counterfactual `fork`, `replay` with a bit-match gate, and `distill` (a founder genotype from successful runs — closes the replay_or_distill gap). The `creature/` spine has its own `Creature.fork()` + `growth.replay_nll()`. A unified cross-substrate AgentState is the documented next step.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
