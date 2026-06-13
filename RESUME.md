@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 198)
+### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 199)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,7 +145,7 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
-- **The population-ecology direction (Exp 194–198, ACTIVE — a NEW parallel line on the
+- **The population-ecology direction (Exp 194–199, ACTIVE — a NEW parallel line on the
   human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
   substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
   DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
@@ -176,7 +176,15 @@ step 0.
   CONFIRMING Exp 197's heritable signal is real; it converges to the same low ATTRACTOR from above
   (seeded 0.20) and below (0), and never runs away to a functional organ (a FITNESS VALLEY caps it).
   MIXED only on a predeclaration validity gap (seed-17 seeded arm collapsed to pop 1 → unmeasurable
-  NaN → L21), not a runaway. Card: `loop/directions/population-ecology.md`.
+  NaN → L21), not a runaway. **Exp 199 (NEGATIVE / NEW INSIGHT — a WALL)** — the fitness-valley sweep:
+  is the primitive-sensor ceiling FUNDAMENTAL? YES. Under a deck deliberately stacked FOR a functional
+  organ (cheap efficient organ, near-perfect info, strong steering, harsh stress), a primitive sensor
+  never climbs (all ~0.05, noise sweep FLAT) and a seeded-functional organ (0.50) decays to primitive
+  or drives extinction (2/5); high-intensity mutants arise (max 0.4–1.0) but are always culled — a
+  genuine selective valley. Mechanism = benefit-SATURATION (a little sensing suffices to reach safety;
+  once safe, more organ is pure cost). Scoped to THIS avoidance regime (only noise swept). The pointed
+  escape (named, untested): a FUNCTIONAL organ needs a NON-saturating benefit — sensing for FORAGING,
+  not avoidance. Card: `loop/directions/population-ecology.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

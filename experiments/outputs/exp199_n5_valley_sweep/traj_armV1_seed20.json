@@ -1,0 +1,18 @@
+{
+  "arm": "V1",
+  "seed": 20,
+  "trajectory": [],
+  "summary": {
+    "seed": 20,
+    "steps_run": 162,
+    "reached_horizon": false,
+    "extinct": true,
+    "exploded": false,
+    "final_pop": 0,
+    "end_newborn_intensity": NaN,
+    "max_ever_intensity": 0.24158224388297986,
+    "valid": false,
+    "extinction_step": 162,
+    "events_hash": "181df72a3efa5ddbd7094e0fb9ca8a9456298ecae8efd19d40bf9910bc3c395e"
+  }
+}

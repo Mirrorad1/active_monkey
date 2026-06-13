@@ -7851,3 +7851,85 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   gate must require the metric to be MEASURABLE - an arm/condition that survives but collapses below
   the cohort needed to compute the metric is INVALID, not a metric violation; predeclare a minimum
   measurable-cohort size, and define how NaN/undefined cells are handled in the verdict rule).
+
+## Exp 199 — N5 fitness-valley sweep: the primitive-sensor ceiling is FUNDAMENTAL (in this avoidance regime) — even the best-case shallow valley can't grow a functional thermosense organ, and a seeded functional organ decays or drives extinction (NEGATIVE / NEW INSIGHT)
+
+- Plain: We asked the decisive question about the heat sensor: can it ever become a STRONG, functional
+  organ, or is it stuck primitive forever? We stacked the deck in the organ's favor - made it cheap to
+  run, gave it near-perfect information (almost no noise), made it steer hard toward comfort, and made
+  the heat punishing so good sensing should really pay. Then two tests: (1) start with a weak sensor and
+  see if it grows; (2) start with a strong sensor and see if it stays. Both fail. Across every noise
+  level the weak sensor stays weak (~0.05, nowhere near functional), and - tellingly - making the
+  information cleaner does not help at all, so it is not a noise problem. And a strong sensor (handed to
+  the population for free) DECAYS right back to weak, or crashes the population entirely (2 of 5 worlds
+  went extinct under the weight of carrying it). Strong-sensor individuals keep appearing by mutation
+  but always get weeded out. So the primitive ceiling is fundamental, at least in this kind of world: a
+  sensor used to AVOID a hazard self-limits, because a little sensing is enough to reach safety - and
+  once you are safe, more sensor is just dead weight. The likely escape, for next time: make sensing pay
+  for something you never stop needing, like finding FOOD, instead of avoiding a hazard you can outrun.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 879f60e, BEFORE any data):
+  the primitive-sensor ceiling (Exp 197/198: thermosense pinned at ~0.045) is FUNDAMENTAL - even under
+  aggressively shallow-valley regimes the organ does NOT evolve functional (gene-pool equilibrium stays
+  < 0.15 at every depth) AND a seeded-functional organ (0.50) is NOT retained (decays toward primitive
+  or drives extinction) - because the benefit SATURATES (a little sensing suffices to reach safety)
+  while the cost keeps rising with intensity, so the functional state is selected against from both
+  directions. A NEGATIVE here is the SCIENTIFICALLY INTERESTING outcome (a structural ceiling), not a
+  failure. Falsifiers (-> POSITIVE): any primitive arm climbs > 0.30, or the functional arm retains > 0.30.
+- Setup: experiments/exp199_n5_valley_sweep.py on the ecology/ engine (temperature + thermosense organ).
+  Base regime deliberately FAVORABLE to a functional organ: cheap efficient organ (inefficiency 0.20,
+  upkeep_floor 0.0), strong steering (thermal_avoidance_weight 8.0), harsh stress (scale 3.0), drifting
+  comfort, horizon 12000, temperature ON, founder tolerance 0.10. Arms (fresh seeds {18,19,20,21,22}):
+  NOISE SWEEP V1-V4 (founder intensity 0.10, "can a primitive organ CLIMB?") noise 0.20/0.10/0.05/0.02;
+  RETENTION F (founder 0.50, "is a functional organ STABLE?") noise 0.02. Metric = NEWBORN (gene-pool)
+  mean thermosense intensity, end = mean over creatures born in [10000,12000]; validity per L21 (arm
+  measurable iff reached horizon with pop >= 10 and a newborn cohort; extinct/collapsed arms INVALID,
+  reported as extinctions). Pilots {100,101} disclosed; thresholds FIXED pre-run. runtime 153s.
+- Result (committed exp199.txt + experiments/outputs/exp199_n5_valley_sweep/): VERDICT NEGATIVE (ceiling
+  FUNDAMENTAL), blind-verified. P3 (no climbing) PASS - every measurable noise-sweep arm ends PRIMITIVE:
+  V1 mean 0.0619, V2 0.0559, V3 0.0505, V4 0.0558 (all per-seed values 0.044-0.068, << the 0.15 bar and
+  the 0.30 functional line). P4 (no retention) PASS - the seeded-functional arm F (founder 0.50) DECAYS
+  to 0.0845/0.0562/0.1119 (all < 0.20, back to primitive) in its 3 measurable seeds and goes EXTINCT in
+  2/5 (the 0.50 organ's upkeep is unsustainable). FP1 (a primitive arm climbs > 0.30) and FP2 (F retains
+  > 0.30) both NO. P1 determinism PASS; P2 validity PASS (V1-V4 measurable >= 4/5). The NOISE SWEEP is
+  FLAT (V4 0.0558 ~ V1 0.0619; P5-monotone FAILED, supporting) - cleaner information does NOT help, so
+  the ceiling is NOT a noise/signal-quality problem. High-intensity mutants arise transiently (max
+  individual up to 0.41-0.55 in V arms, 1.00 in F) but NEVER fix in the gene pool - the variance is
+  actively CULLED, the signature of a genuine selective fitness valley (not a mutation-supply problem).
+- Verifier: agree (NEGATIVE) - blinded subagent (docstring + raw exp199.txt only) recomputed P1..P4/
+  FP1/FP2 from the per-arm/seed numbers, confirmed the extinct arms are correctly handled as INVALID
+  (not 0/NaN), and judged the framing honest and STRONG: the deliberately favorable regime makes
+  NEGATIVE the stronger conclusion (the organ fails even when the deck is stacked for it); the FLAT
+  noise sweep strengthens it (not noise-limited); the culled high-intensity mutants confirm a genuine
+  valley. It flagged one precision point (honored): scope the claim to "fundamental in THIS
+  avoidance-based regime, robust to the noise sweep" - only noise was swept, not organ cost / stress /
+  sensing topology - so universality across all parameterizations is not established.
+- Implication: a costed sensing organ used for AVOIDANCE self-limits to a PRIMITIVE sensor - the
+  functional state is both UNREACHABLE (a primitive organ never climbs, at any swept noise) and
+  UNSTABLE (a seeded functional organ decays or dies) - because the benefit saturates (a little sensing
+  suffices to reach safety; once safe, more organ is pure cost) while the cost grows with intensity. So
+  the Exp 197/198 primitive ceiling is a STRUCTURAL evolutionary constraint, not a tuning artifact (it
+  holds even under the best-case favorable regime, and even with near-perfect information). The pointed
+  next direction: a FUNCTIONAL organ likely needs a NON-saturating benefit - sensing for FORAGING (you
+  always need food) rather than for avoiding a hazard you can simply outrun. Generalizability tier:
+  functional/structural within the avoidance-based sensing model; universality untested (noise swept,
+  not all parameters).
+- Honest caveat: NEGATIVE is the INTENDED, interesting finding (a structural ceiling), not a failed
+  experiment. The claim is scoped to THIS avoidance-based regime and is robust to the NOISE sweep + the
+  favorable-regime stress test, but only NOISE was swept - organ-cost structure, stress scale, and
+  sensing topology were held at favorable-but-fixed values, so "FUNDAMENTAL" means "robust within the
+  tested space + the best-case stacking," not proven universal. The functional-seed arm's 2/5
+  extinctions are real evidence (the organ is maladaptively heavy) but reduce F's measurable n to 3.
+  P5 (monotone) failed - the sweep is flat, which strengthens (not weakens) the ceiling. The escape
+  hypothesis (foraging-based, non-saturating benefit) is UNTESTED - a named next experiment, not a claim.
+  Founders + costs + the favorable regime all PROVIDED. Pilots {100,101} disclosed; thresholds fixed.
+- Verdict: NEGATIVE / NEW INSIGHT - the primitive-thermosense ceiling is a FUNDAMENTAL structural limit
+  in this avoidance-based ecology: a functional organ is neither reachable (no climbing, at any swept
+  noise) nor stable (seeded-functional decays/extincts), and the result is robust to near-perfect
+  information and a deck stacked in the organ's favor. The mechanism is benefit-saturation (avoidance is
+  self-limiting). Blind-verified; scoped honestly (universality untested beyond the noise sweep).
+- Next: options (each needs a word) - (a) THE FORAGING TEST: make thermosense (or a new sense) pay for a
+  NON-saturating benefit - e.g. food concentrated in thermally-defined zones, so sensing helps you keep
+  FINDING food (a need that never ends) rather than avoid a hazard - and ask whether a FUNCTIONAL organ
+  can then cross the valley (the cleanest follow-up the ceiling mechanism points to); (b) sweep the
+  OTHER valley axes (organ-cost structure, stress topology) to test universality of the ceiling; (c)
+  move on to niche/species archive or mate choice (Exp 200+).

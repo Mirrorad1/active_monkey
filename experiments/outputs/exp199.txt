@@ -1,0 +1,40 @@
+========================================================================
+EXP 199 — N5: FITNESS-VALLEY SWEEP — SUMMARY
+========================================================================
+
+NOISE SWEEP (founder 0.10): can the primitive organ CLIMB?
+Arm   noise     seed18  seed19  seed20  seed21  seed22      mean  max_indiv  n_ext
+------------------------------------------------------------------------
+V1    0.20       0.0575   0.0632  EXTINCT   0.0604   0.0665    0.0619     0.4557      1
+V2    0.10       0.0675   0.0440   0.0643   0.0539   0.0495    0.0559     0.4423      0
+V3    0.05       0.0479   0.0617   0.0469  EXTINCT   0.0456    0.0505     0.5437      1
+V4    0.02       0.0555   0.0615   0.0484   0.0628   0.0507    0.0558     0.4047      0
+
+RETENTION (founder 0.50): is a functional organ STABLE?
+Arm   noise     seed18  seed19  seed20  seed21  seed22      mean  max_indiv  n_ext
+------------------------------------------------------------------------
+F     0.02       0.0845  EXTINCT  EXTINCT   0.0562   0.1119    0.0842     1.0000      2
+
+FINAL POPULATIONS per arm/seed:
+Arm     seed18  seed19  seed20  seed21  seed22
+--------------------------------------------------
+V1          50      50       0      51      50
+V2          57      58      56      60      61
+V3          58      51      59       0      62
+V4          56      56      58      52      58
+F           50       0       0      56      53
+
+PREDICTION EVALUATIONS:
+  P1  determinism (V4+F seed 18 rerun):      PASS
+  P2  V1-V4 validity (>=4/5 each):           PASS
+  P3  no climbing (all V end < 0.15):         PASS
+  P4  no retention (F<0.20 or F ext>=3):      PASS
+  P5  monotone-but-capped (V4>=V1, F ext>V):  FAIL
+  FP1 V arm end > 0.30 in >=4/5 seeds:       NO
+  FP2 F retains >0.30 in >=4/5 meas seeds:   NO
+  F arm measurable seeds: 3/5;  extinct: 2/5
+  V1 mean = 0.0619;  V4 mean = 0.0558
+
+VERDICT: NEGATIVE (ceiling FUNDAMENTAL) (repo token: NEGATIVE)
+
+runtime: 160s

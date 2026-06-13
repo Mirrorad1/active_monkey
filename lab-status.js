@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 198, title: "N5 thermosense attractor + clean de-novo emergence: from ZERO, temperature heritably raises the gene-pool sensor (Exp 197's signal CONFIRMED real, survivor-bias-free) — to a LOW convergent equilibrium, never a functional organ", tag: "POSITIVE" },
-  tally: { total: 198, positive: 113, negative: 53, mixed: 28, breakthroughs: 7 },
+  latest_exp: { n: 199, title: "N5 fitness-valley sweep: the primitive-sensor ceiling is FUNDAMENTAL (in this avoidance regime) — even the best-case shallow valley can't grow a functional thermosense organ, and a seeded functional organ decays or drives extinction", tag: "NEGATIVE" },
+  tally: { total: 199, positive: 113, negative: 54, mixed: 28, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "population-ecology", state: "active", latest: "Exp 198 (MIXED / NEW INSIGHT, core-POSITIVE, blind-verified, on main — CLEAN de-novo heritable emergence: from intensity 0 (survivor-bias impossible), temperature heritably grows the gene-pool sensor (~0.045 vs ~0.029, 5/5), confirming Exp 197's heritable signal is real; a CONVERGENT ATTRACTOR (de-novo-from-0 ≈ seeded-0.20) capped LOW by a FITNESS VALLEY; MIXED only on a predeclaration validity gap, seed-17 seeded arm collapsed → unmeasurable NaN → L21)", next: "Exp 199 (pre-registered) — is the primitive-sensor ceiling FUNDAMENTAL? a fitness-valley NOISE SWEEP (founder 0.10, V1–V4 noise 0.20→0.02) + a functional-RETENTION arm (founder 0.50), all under the BEST-CASE shallow valley, fresh seeds {18–22}." },
