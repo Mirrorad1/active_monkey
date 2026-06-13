@@ -1,0 +1,19 @@
+{
+  "name": "abstraction_barrier",
+  "description": "Toy worlds where raw features vary across seeds while hidden affordance classes determine which actions transfer.",
+  "seeds": [0, 1, 2, 30, 31],
+  "horizon": 8,
+  "metrics": [
+    "task_success",
+    "sample_efficiency",
+    "map_accuracy",
+    "object_place_binding_accuracy",
+    "transition_model_error",
+    "preference_satisfaction",
+    "calibration_error",
+    "seed_robustness",
+    "compute_cost_per_success",
+    "coordination_overhead",
+    "holdout_regression"
+  ]
+}

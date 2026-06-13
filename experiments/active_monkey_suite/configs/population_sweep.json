@@ -1,0 +1,26 @@
+{
+  "name": "population_sweep",
+  "description": "Sweep 1, 2, 4, 8, and 16 agents or forks across isolated, archive-sharing, transition-sharing, and coordinator modes.",
+  "seeds": [0, 1],
+  "horizon": 10,
+  "population_sizes": [1, 2, 4, 8, 16],
+  "population_modes": [
+    "isolated",
+    "shared_trajectory_archive",
+    "shared_transition_model",
+    "coordinator"
+  ],
+  "metrics": [
+    "task_success",
+    "sample_efficiency",
+    "map_accuracy",
+    "object_place_binding_accuracy",
+    "transition_model_error",
+    "preference_satisfaction",
+    "calibration_error",
+    "seed_robustness",
+    "compute_cost_per_success",
+    "coordination_overhead",
+    "holdout_regression"
+  ]
+}
