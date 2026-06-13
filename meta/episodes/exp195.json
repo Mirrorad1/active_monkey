@@ -1,0 +1,62 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp195.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp195_n5_senescence.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.023\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.05\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.29\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.65\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.87\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.95\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.997\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0703/0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"075/0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.5\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/3\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1134/0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"129/144\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"14/11\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"170/628\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2.0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2/15\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"241/0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"272/0\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3/3\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"346/454\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/6\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"7/16\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"97/110\" quoted in entry not found in experiments/outputs/exp195.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T01:11:49Z",
+  "commit_sha": "18e0e3302a0e7abf36d8c10cd9828fb32e8a1695",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 195,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
