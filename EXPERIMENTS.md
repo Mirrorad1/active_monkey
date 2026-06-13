@@ -8216,3 +8216,104 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   structures closed; universality not proven across ALL cost structures / sensing topologies — but the
   four-regime span is the strongest publishable form of the wall. Unanimously blind-verified AGREE
   (independent grader recomputed and confirmed).
+
+## Exp 203 — N5 SENSE-EVOLUTION sub-arc: the SELECTION-GRADIENT AUDIT — measuring the LOCAL gradient g(h) instead of running another evolution finds, for the FIRST time in the arc, a POSITIVE local gradient at the resident — but PURELY COMPETITIVE and weak, narrowly below the strict POSITIVE bar (MIXED / NEW INSIGHT)
+
+- Plain: The four walls (Exp 199-202) showed a costed heat-sensor never evolves into a strong organ.
+  Instead of running yet another evolution and getting another NO, this experiment asks the sharper
+  question directly: if you stand a creature at the typical sensor level (0.10) and give it a slightly
+  better sensor (0.15), does that better sensor actually win MORE babies in head-to-head competition?
+  That local slope -- not the headline benefit of a gifted strong sensor -- is what decides whether
+  evolution climbs. The answer, in the regime where the sensor really matters (a fast-moving food band
+  each creature must privately track), is YES: a step from 0.10 to 0.15 beats the resident in 7 of 8
+  worlds, and it is genuine sensing (it still wins with the learned-map frozen). This is the FIRST time
+  anything in the arc has shown a positive local gradient -- it explains why an earlier experiment saw a
+  brief climb. But three caveats keep it from a clean win: the advantage is purely about beating rivals
+  (a lone strong sensor grows no faster, and a whole population of them supports FEWER creatures, because
+  the sensor is pure metabolic cost when everyone has it); it is weak; and the strictest cheat-check
+  (does it still win 7/8 with the learned map frozen?) comes in at 6/8, one world short. So the verdict
+  is MIXED -- a real but fragile, purely-competitive gradient, not a gifted population-level benefit.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit d7883e4, BEFORE any data;
+  design hardened by a 2-agent adversarial red-team, amendment disclosed below): in the four existing
+  ecologies the installed benefit B(h) is real while the LOCAL realized selection gradient near the
+  resident h=0.10 is <= 0 -- a gift that exists but cannot be earned, because B(h) is concave and
+  cost-dominated. (Predicting NEGATIVE_GRADIENT; the result REFUTED that prediction in the band-staleness
+  regime -- an honest surprise.)
+- Setup: experiments/exp203_n5_sense_gradient_audit.py on the ecology/ engine + TWO new gated, byte-
+  identical engine features (tests/test_exp203_sense_axis.py: exp194/200/202 hashes reproduce):
+  freeze_thermosense (a clamped sensor value BREEDS TRUE while upkeep stays CHARGED -- the unit of a
+  realized-fitness-at-fixed-h measurement; mirrors freeze_learning_rate) and founder_mix (one shared
+  world seeded from an explicit polymorphic genotype list). The reusable ecology/sense_axis.py treats a
+  sense as a generic axis (h, C_h, z, P(s|z,h), theta, a=pi(s,theta), rho, w) and exposes three
+  density-robust, cold-start-free gradient estimators that triangulate (the engine's harsh founder
+  mortality makes naive cohort growth-rate noisy): (1) N*(h)/R*(h) monomorphic carrying capacity (the
+  population-level / Tilman diagnostic); (2) the PAIRWISE selection signal s(0.10 vs h') -- an
+  equal-founder head-to-head competition, the cold-start differences out, the invader-WIN fraction over
+  8 seeds is the gradient sign; (3) B(h)=r_costOFF and r_costON, DENSITY-INDEPENDENT intrinsic growth
+  from a small seed (the installed benefit, NOT washed out by equilibrium/herding). Clamp grid
+  {0.00,0.03,0.06,0.10,0.15,0.20,0.30,0.45,0.60}; ecologies FORAGE (the exp201 band-staleness regime --
+  precision must PRIVATELY TRACK a fast-drifting band), COMPETE (exp202 depleting+shuffle), AVOID
+  (exp199 stress), NULL (no coupling = organ pure cost, the g<=0 anchor); fresh seeds {50-57} (8 for the
+  >=7/8 bar); cost ON for the verdict, shuffle ON, placement decorrelated per seed; no direct-h-reward
+  (assert_no_direct_h_reward; the engine charges only the ordinary upkeep). DISCLOSED red-team amendment
+  (committed BEFORE the verdict run; strengthens the design, weakens no falsifier): the non-circularity
+  B'(h)-vs-C'(h) decomposition + a low_cost arm; the pairwise instrument; per-seed placement
+  decorrelation + per-clamp health gates; switching FORAGE from the exp200 free-band-read regime (where
+  a first run found the sensor has NO benefit at all -- the band centre was read for free) to the exp201
+  band-staleness regime where precision genuinely buys tracking. RUNTIME PRE-FLIGHT (L25, new this
+  iteration; ecology/runtime_budget.py, require_safe=True at the top of main()) gated the run as bounded
+  (proj ~9.4 min, all regimes decelerating; actual 356s). 382 parallel jobs.
+- Result (committed exp203.txt + exp203_n5_sense_gradient_audit/verdict.json): VERDICT MIXED, blind-
+  verified AGREE (independent grader recomputed conjunct-by-conjunct, took the stricter reading). PAIRWISE
+  (FORAGE band-staleness): 0.10 vs 0.15 invader_won 7/8, auc 0.872, s_mean +0.01035 (a step UP from the
+  resident PAYS); 0.10 vs 0.06 won 2/8, auc 0.250 (a step DOWN is disfavoured); 0.10 vs 0.30 won 6/8, auc
+  0.749; 0.10 vs 0.45 won 7/8, auc 0.875; CLAMPED_LR 0.10 vs 0.15 won 6/8, auc 0.749 (the gradient
+  SURVIVES the learning-rate freeze -- genuine thermosense -- but slightly weaker, one seed short of the
+  strict >=7/8 bar). N*(h) monotone DECREASING in FORAGE (1518.2 -> 279.0; argmax h*N=0.0) and in every
+  ecology (h*N 0.0/0.06/0.06/0.0) -- pure cost at the population level. DENSITY-INDEPENDENT benefit FLAT/
+  negative: gift B(0.60)-B(0.00) = -0.00159, dB/dh@0.10 = -0.00511, realized r_on slope@0.10 = -0.00662.
+  Gates: pw_015_won=7/8, clr_015_won=6/8, gift_real=False, mono_optima_low_all_eco=True, collapse=False,
+  p1=True. By the predeclared three-way rule: NOT POSITIVE_GRADIENT (the CLAMPED_LR confound control is
+  6/8 < the strict 7/8 bar, so the positive gradient cannot be fully certified as non-memory); NOT
+  NEGATIVE_GRADIENT (gift_real False AND the resident slope is clearly POSITIVE, 7/8, refuting the
+  prediction); => MIXED.
+- Verifier: AGREE (MIXED), independently recomputed. Mapping: POSITIVE fails on C3 (CLAMPED_LR 6/8 < 7/8,
+  stricter reading taken); NEGATIVE fails on D1 (gift -0.00159 not > 0) AND D2 (resident slope positive
+  7/8, not <= 0); the verifier flagged the same structural peculiarity (positive pairwise + absent
+  density-independent gift + N* pure-cost = the benefit is PURELY competitive).
+- Implication (generalizability tier: functional-form, scoped to this engine/regime): the four walls were
+  NOT all gradient-negative. The audit's reframe pays off -- it MEASURES what four evolutions could not:
+  in the moving-target (band-staleness) regime there is a REAL positive LOCAL selection gradient at the
+  resident (the FIRST in the arc), and it is genuine information-use (survives the learning-rate control,
+  no direct-h-reward, sustained auc 0.872 not a fixation lottery). This explains exp201's transient climb
+  (a real gradient was pushing up) AND why exp201 never reached functional (the gradient is PURELY
+  competitive -- it vanishes density-independently and the population-level carrying capacity falls with h
+  -- so it is weak [s~0.01], it is negative-frequency-dependent in spirit [the advantage is only over
+  rivals, so it erodes as the trait spreads], and it competes against drift + the rising linear cost). The
+  reusable meta-lesson (kin of L22): a benefit can be invisible at equilibrium AND density-independently
+  yet still produce a positive RELATIVE gradient -- only the head-to-head competitive assay reveals it; and
+  a positive local gradient is necessary but NOT sufficient for a trait to climb to functional (it must
+  also be strong enough to beat drift/cost and not erode as it spreads).
+- Verdict: MIXED / NEW INSIGHT -- the SELECTION-GRADIENT AUDIT found the first positive local gradient of
+  the arc (band-staleness FORAGE: 0.10->0.15 wins 7/8, auc 0.872, surviving the LR-freeze control 6/8 =
+  genuine thermosense), refuting the predicted NEGATIVE_GRADIENT; but the gradient is PURELY competitive
+  (N* falls with h; density-independent benefit flat, gift -0.00159), weak, and narrowly below the strict
+  POSITIVE bar (CLAMPED_LR 6/8 < 7/8). A real-but-fragile relational gradient, not a gifted population
+  benefit.
+- Honest caveat: this is a MIXED that LEANS positive on the headline (resident slope 7/8) but cannot be
+  called POSITIVE -- the strict confound control (CLAMPED_LR) is 6/8, one seed short, so a small
+  learning-rate component cannot be fully ruled out (clamping LR shrank the win 7/8->6/8 and the auc
+  0.872->0.749). The positive gradient is scoped to the band-staleness FORAGE regime; the static
+  free-band-read regime (a disclosed first run) showed NO benefit at all, and N*/density-independent
+  measures show the organ is pure cost outside competition. The pairwise win-fraction over 8 seeds is the
+  selection sign with the founder lottery averaged out, but it conflates establishment-survival with
+  steady-state advantage; the s_mean log-slope is noisier (0.45 has auc 0.875 yet s_mean -0.00356). This
+  does NOT overturn the four walls' conclusion that a FUNCTIONAL organ does not evolve -- it refines WHY:
+  the gradient near the resident is positive but too weak/relational to reach functional. Founders +
+  policy + costs PROVIDED. The B(h) instrument was corrected mid-iteration (equilibrium intake is
+  herding/replacement-washed -> density-independent intrinsic growth), disclosed.
+- Next: post-203 CONSULT (loop/IDEAS.md) -- the positive-but-weak relational gradient REFRAMES the staged
+  bridges from "create a gradient from scratch" to "STRENGTHEN / SUSTAIN this weak relational one": 204
+  (residue false-positives -- make precision reduce costly mistakes, a steeper relational payoff), 205
+  (barcode niches -- let a high-sensor lineage escape the herding that erodes the relational advantage),
+  206 (sensor-controller co-adaptation). Each pre-registered in the card, staged behind the human's word.

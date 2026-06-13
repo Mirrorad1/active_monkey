@@ -157,6 +157,17 @@ Ground rules for this file:
   empirically (a frozen-trait returns probe: intake(p) at pinned intensity p, cost handled analytically), as
   the convexity can collapse to concave + cost-dominated at engine/grid resolution. [VALIDATION; METHODOLOGY;
   kin of L13 instrument-resolution]
+- **L25 (human request, 2026-06-13).** RUN A RUNTIME / ALGORITHMIC-COMPLEXITY PRE-FLIGHT before launching
+  any full experiment batch — a bug (unbounded population, an accidental super-linear per-step cost, a
+  no-scarcity regime growing toward the runaway cap) can quietly burn hours of compute. The Exp 202
+  ABUNDANT arm was dropped for exactly this (no-scarcity → population explosion → runtime + invalidity).
+  Mechanical guard: `ecology/runtime_budget.preflight(reps, horizon, n_jobs, max_workers, require_safe=True)`
+  probes the most explosion-prone arms (lowest-cost / highest-regen), is LOGISTIC-AWARE (distinguishes
+  exponential-then-plateau from true runaway by growth deceleration across quarters — a naive geometric
+  extrapolation cries wolf on every healthy logistic run), and flags EXPLOSION / SUPERLINEAR (per-creature
+  cost rising ⇒ inner loop worse than O(alive)) / OVER_BUDGET. Call it at the top of `main()` so the batch
+  REFUSES to launch on a flagged config; for non-ecology runs do the back-of-envelope equivalent + a
+  smoke-timed extrapolation. [PROTOCOL step 3]
 - **L24 (Exp 202, 2026-06-13).** REAL interference competition for a contested DEPLETING resource is NOT
   automatically a Red-Queen escape — it can select AGAINST a costed precision organ: a crowded scarce band
   makes the upkeep more lethal and a fair queue (id-order neutralised by shuffle) does not rescue precision,

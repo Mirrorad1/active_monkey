@@ -107,6 +107,7 @@ def mutate(
     rate: float,
     mutate_thermosense: bool = False,
     freeze_learning_rate: bool = False,
+    freeze_thermosense: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -125,6 +126,15 @@ def mutate(
     for every trait after learning_rate is identical to an ordinary mutation —
     only the learning_rate RESULT is pinned.  Default False ⇒ byte-identical to
     Exp 194-200.
+
+    Exp 203 selection-gradient audit: freeze_thermosense=True PINS the thermosense
+    organ traits (intensity + inefficiency) to the PARENT value so a clamped sensor
+    value BREEDS TRUE across generations while upkeep is STILL CHARGED (cost on).
+    Like freeze_learning_rate it keeps the rng draw and DISCARDS the perturbation,
+    so the stream for every later trait is identical to an ordinary thermosense
+    mutation — only the result is pinned.  Only meaningful when mutate_thermosense
+    is True (otherwise the traits already skip the draw); default False ⇒
+    byte-identical to Exp 194-202.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -141,6 +151,12 @@ def mutate(
         # Exp 201: pin learning_rate to the parent value but KEEP the rng draw
         # above so the downstream stream is unchanged (gated; default no-op).
         if k == "learning_rate" and freeze_learning_rate:
+            new_d[k] = v
+            continue
+        # Exp 203: pin the thermosense organ traits to the parent value but KEEP
+        # the rng draw above so the downstream stream is unchanged (gated; default
+        # no-op).  This makes a clamped sensor value breed true with cost ON.
+        if k in THERMOSENSE_TRAITS and freeze_thermosense:
             new_d[k] = v
             continue
         new_d[k] = perturbed

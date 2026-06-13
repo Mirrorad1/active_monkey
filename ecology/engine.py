@@ -206,6 +206,28 @@ class EcologyConfig:
     shuffle_creature_order: bool = False
     track_band_strip: bool = False
 
+    # ------------------------------------------------------------------
+    # Exp 203: selection-gradient audit — clamp a sensor value and breed it true
+    # while cost stays ON, and seed a polymorphic common-garden of clamp values.
+    # ALL defaults preserve Exp 194-202 byte-identical behaviour.
+    #
+    # freeze_thermosense: when True, offspring inherit the PARENT's thermosense
+    #   intensity + inefficiency UNMUTATED (the perturbation is drawn then
+    #   discarded — rng stream unchanged), so a clamped sensor value breeds true
+    #   across generations.  Upkeep is STILL charged (this is NOT cost-off): it is
+    #   the unit of a realized-fitness-at-fixed-h measurement.  Mirrors
+    #   freeze_learning_rate.  Default False ⇒ byte-identical.
+    # founder_mix: when not None, an ((Genotype, count), ...) tuple seeding the
+    #   initial population from EXPLICIT genotypes (a polymorphic common garden:
+    #   resident + a grid of clamp values in ONE shared world) instead of
+    #   initial_population copies of cfg.founder.  None ⇒ the existing
+    #   single-founder seeding, byte-identical.  NO direct-h-reward: founder_mix
+    #   only SEEDS genotypes; survival/reproduction read only each creature's own
+    #   state (the no-hidden-evaluator invariant is untouched).
+    # ------------------------------------------------------------------
+    freeze_thermosense: bool = False
+    founder_mix: tuple[tuple["Genotype", int], ...] | None = None
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -279,20 +301,29 @@ class Ecology:
         self._creatures: list[Creature] = []
         self._alive_list: list[Creature] = []
 
-        # Place initial_population founders at deterministic spread positions
+        # Place founders at deterministic spread positions.
+        # Exp 203: founder_mix (when not None) seeds an EXPLICIT polymorphic
+        # population — a common garden of clamp values in one shared world —
+        # expanded from ((Genotype, count), ...).  None ⇒ initial_population
+        # copies of cfg.founder, BYTE-IDENTICAL to Exp 194-202 (founders list is
+        # [cfg.founder]*initial_population, so step/pos/genotype are unchanged).
         n_cells = cfg.rows * cfg.cols
         total = cfg.rows * cfg.cols
-        step = max(1, total // cfg.initial_population)
-        for i in range(cfg.initial_population):
+        if cfg.founder_mix is None:
+            founders = [cfg.founder] * cfg.initial_population
+        else:
+            founders = [g for g, cnt in cfg.founder_mix for _ in range(int(cnt))]
+        step = max(1, total // max(1, len(founders)))
+        for i, geno in enumerate(founders):
             pos = (i * step) % total
-            start_energy = cfg.founder.energy_capacity * 0.75
+            start_energy = geno.energy_capacity * 0.75
             ph = Phenotype(energy=start_energy, age=0, pos=pos)
             c = Creature(
                 creature_id=self.next_id,
                 parent_id=None,
                 generation=0,
                 lineage_root=self.next_id,
-                genotype=cfg.founder,
+                genotype=geno,
                 phenotype=ph,
                 n_cells=n_cells,
             )
@@ -440,7 +471,8 @@ class Ecology:
 
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
                                     mutate_thermosense=cfg.enable_thermosense,
-                                    freeze_learning_rate=cfg.freeze_learning_rate)
+                                    freeze_learning_rate=cfg.freeze_learning_rate,
+                                    freeze_thermosense=cfg.freeze_thermosense)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,

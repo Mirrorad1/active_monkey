@@ -687,5 +687,197 @@ binding predeclaration in experiments/exp202_n5_interference_competition.py docs
   here is the strongest publishable form of the wall (the ceiling survives even real Red-Queen competition with
   the id-order confound removed). Engine gated; scheduler + founders + costs PROVIDED.
 
-**STATUS.** state: active · latest: Exp 202 (NEGATIVE — interference-competition escape FAILED; COMPETE 0.028 < 0.10 founder at healthy pops; strip=1.00; competition SUPPRESSES organ; ceiling GENERAL across 4 regimes: 199+200+201+202; L24) · depends-on: ecology/ substrate (Exp 194–202) · reusable: ecology engine + shuffle_creature_order + strip-gate · why: N5 pop-ecology = ladder-N7 territory · next-falsifiable: AWAITING HUMAN STEER — four-wall ceiling (avoidance 199, foraging 200, increasing-returns 201, interference-competition 202) closes costed-precision sensing; options: (a) new N5 axis (niche archive/mate choice); (b) re-run Exp 198 L21 fix; (c) neural Bθ; (d) moonshot redirect
+---
+
+# THE SENSE-EVOLUTION SUB-ARC (Exp 203–206) — the human's steer, 2026-06-13
+
+**The reframe.** Exp 199–202 closed four walls (avoidance / foraging / increasing-returns /
+interference-competition), all NEGATIVE: a costed thermosense organ never becomes functional
+and, under competition, is actively suppressed. The question is no longer *"make thermosense
+win."* It is the reusable meta-question:
+
+> **What environmental, informational, and evolutionary conditions are REQUIRED for a costed
+> sense-like trait to become increasingly selected over generations — to become organ-like
+> rather than merely useful when gifted?** — phrased so the answer transfers from thermosense
+> to sight, hearing, localization, and eventually communication.
+
+**The central distinction (the load-bearing one).** A *forced/installed* benefit probe can show
+`B(0.60) − B(0.00) ≫ 0` (a gifted strong sensor reproduces far more) while evolution still fails,
+because the *local* marginal benefit at the current trait value is below the marginal cost:
+`B'(0.08) − C'(0.08) ≤ 0`. Exp 200 already logged this as L22 (a 4× forced benefit, invisible to
+evolution). The whole sub-arc instruments the **local slope**, not the endpoint advantage.
+
+**Hard anti-cheat constraints (binding on every experiment here; extend the no-hidden-evaluator
+invariant).** Do NOT directly reward high h. No rule `if intensity > θ: bonus`. Food/fitness is
+NEVER written as `f(intensity)` (the L19 guard from exp201, now generalized). Any advantage must
+emerge through the creature's interaction with the world: sensing hidden structure, choosing
+actions, avoiding mistakes, exploiting niches. Costs stay ON for every verdict; cost-off is a
+DIAGNOSTIC only (the B(h) overlay), never the verdict. The niche archive (Exp 205) must not
+preserve high h directly — only ecological roles. These are asserted in code and re-checked by
+the blinded verifier.
+
+**Definitions (the human's terms + their programmer translation).**
+- **Selection gradient** `g(h) = dE[w|h]/dh` — local slope of reproductive fitness w.r.t. the
+  trait. *Translation:* the optimizer (mutation+selection) only accepts a small +Δh if that Δh
+  improves realized deployment fitness at the CURRENT population state.
+- **Affordance** — an action opportunity opened by the sensor↔environment↔policy coupling.
+  *Translation:* the sensor exposes a NEW usable API, not a higher-resolution version of an
+  already-solved call.
+- **Concavity** — diminishing returns: each extra unit of h gives less benefit than the last
+  (β₂ < 0 in the fit). The four walls were all concave + cost-dominated.
+- **Red-Queen dynamic** — my trait grows MORE valuable as rivals improve: `∂²B/∂h_i ∂(mean h_rivals) > 0`.
+  *Translation:* an arms race, not a stampede toward one shared resource (exp202 got the stampede).
+- **Sympatric divergence** — one population self-partitions into specialized subtypes without
+  physical separation. *Translation:* one shared service cluster splits into specialized
+  configs because different workloads reward different settings.
+- **Mutual information** `I(h; niche)` — how much knowing h reduces uncertainty about which
+  niche/lineage an agent occupies. *Translation:* does the trait actually PREDICT the role?
+
+**General fitness form** (the instrument all four bridges share):
+`w_i = B(a_i, z, h_i, θ_i, ρ) − C_h(h_i) − C_θ(θ_i)`, with `h`=sensor precision/intensity,
+`θ`=controller/policy ability to USE the sensor, `z`=hidden world state, `s_i ~ P(s|z,h_i)` the
+observation, `a_i = π(s_i, θ_i)` the action, `ρ`=ecological state (density/depletion/residue/
+niche occupancy). Gradual organ growth requires `dB/dh > dC/dh + drift/noise/transmission erosion`
+near the resident — the bar every bridge must clear.
+
+**Failure modes being addressed (from 199–202; tagged in the script docstrings).** Avoidance
+saturation (199); foraging installed-benefit vs evolvable-benefit mismatch (200, L22); moving-band
+concavity (201, L23); competition herding not Red-Queen (202, L24); id-order / birth-order confound
+(neutralized by `shuffle_creature_order`, exp202); population-collapse / drift confound (healthy-pop
+floor + corr(pop,trait), L24); cheap-trait / memory substitution (`freeze_learning_rate`, L19);
+sensor not coupled to a policy that can exploit precision (the Exp 206 hypothesis).
+
+**Reusable abstraction (Phase 1, `ecology/sense_axis.py`).** A `SenseAxis` treats a sense as a
+generic instance of (h, C_h, z, P(s|z,h), θ, a=π(s,θ), ρ, w) plus diagnostics for B(h), C(h),
+the local slope, and the realized selection gradient. Thermosense is the first instance; the
+docstring maps sight / hearing / communication onto the same fields (Phase 6). Meta-principle:
+*a sense is evolvable when it exposes private actionable information whose marginal value stays
+positive across small heritable improvements.*
+
+**Gated engine features this sub-arc adds (all default-OFF ⇒ exp194–202 byte-identical, hash-guarded).**
+- `freeze_thermosense` — pins `thermosense_intensity` + `thermosense_inefficiency` to the PARENT
+  value across mutation while STILL charging upkeep (cost ON). Mirrors `freeze_learning_rate`
+  exactly (draw-then-discard the perturbation so the rng stream is unchanged). Lets a clamp value
+  breed true with cost on — the unit of a gradient audit.
+- `founder_mix` — seed the initial population from an explicit `((genotype, count), …)` list
+  instead of one founder (None ⇒ existing single-founder seeding, byte-identical). Lets a single
+  shared world host a polymorphic common-garden (resident + clamp grid).
+
+---
+
+**EXP 203 — PRE-REGISTRATION (the SELECTION-GRADIENT AUDIT; committed BEFORE the verdict run).**
+
+- **Motivation.** Before building a new ecology to MAKE the gradient positive, MEASURE whether the
+  four existing ecologies even contain a positive local gradient. This unifies the four walls into
+  one diagnostic: does installed benefit B(h) > 0 coexist with realized gradient g(h_resident) ≤ 0?
+
+- **Hypothesis (one sentence).** In all four existing ecologies (avoidance, foraging, competition,
+  null), the installed-benefit curve B(h) is strongly increasing in the foraging/competition arms
+  (a gifted strong sensor out-reproduces a no-sensor one) while the LOCAL realized selection
+  gradient near the founder/resident value (h≈0.10) is ≤ 0 — i.e., the gift is real but un-earnable,
+  because B(h) is concave and cost-dominated (β₂ < 0, dB/dh − dC/dh ≤ 0 at the resident).
+
+- **Method (two complementary measures; cost ON for the verdict, shuffle ON, h breeds true via
+  `freeze_thermosense`; the clamp grid is h ∈ {0.00, 0.03, 0.06, 0.10, 0.15, 0.20, 0.30, 0.45, 0.60}).**
+  1. **COMMON-GARDEN selection coefficient (PRIMARY — the realized gradient).** One shared world
+     seeded EQUALLY across the clamp grid (`founder_mix`, all inefficiency 0.20, all breeding true).
+     Cost ON, shuffle ON. Measure each clamp's realized per-capita reproduction over a window (after a
+     burn-in, while multiple clamps remain present) → the realized fitness curve w(h). The relative
+     reproduction across clamps IS the selection differential; its local slope at h≈0.10 is g. Report
+     the per-clamp frequency trajectory too (which clamps grow/shrink). A `CLAMPED_LR` variant
+     (learning_rate frozen) rules out memory substitution.
+  2. **MONOMORPHIC benefit/cost curves (DIAGNOSTIC — the B(h) overlay).** Per clamp h, a monomorphic
+     population: gross per-capita intake B(h) with cost OFF (`enable_thermosense=False` pins h, organ
+     active, no upkeep — the exp201 returns-probe pattern) AND realized reproduction with cost ON. Makes
+     the `B(0.60) − B(0.00) ≫ 0` vs `g(0.10) ≤ 0` distinction explicit.
+
+- **Ecologies (arms).** FORAGE (exp200/201 drifting band — clearest gift), COMPETE (exp202 depleting
+  band + shuffle), AVOID (exp199 avoidance/stress), NULL (no coupling — organ pure cost; g ≤ 0 by
+  construction, the sanity anchor). Fresh seeds {50–57} (8, to satisfy the ≥7/8 slope criterion);
+  monomorphic diagnostic on {60–62}; horizon 6000; balanced regime.
+
+- **Regression.** Fit `w = α_seed + β₁·h + β₂·h² + β₃·(h·density) + ε` on the common-garden per-clamp
+  reproduction. Report β₁, β₂ (concavity), β₃, optimum h*, local slope at h≈{0.03, 0.10, 0.20},
+  per-seed sign of the slope at the resident, the fraction of seeds with a positive resident slope,
+  and bootstrapped uncertainty where cheap.
+
+- **Metrics (per clamp/seed).** clamped_h, lifetime_food (resource_eaten), reproduction/offspring
+  count, age_at_death, movement_distance (steps_moved) + movement_cost, sensor_cost_paid (upkeep·life),
+  fresh_food_visits / depleted_visits (resource above/below a threshold at the visited cell), local
+  density, population_size, extinction flag, per-clamp realized reproduction (the parent-weighted
+  contribution). FALSE/TRUE positives are undefined without residue → they arrive with Exp 204
+  (disclosed).
+
+- **Predeclared verdict (three-way, the human's pass/fail).**
+  - **POSITIVE_GRADIENT** (a candidate evolvable ecology exists) iff, in SOME ecology: estimated
+    optimum h* > 0.30 AND the local slope at the resident (h≈0.10) is > 0 in ≥7/8 seeds AND no
+    population collapse AND no id-order confound AND no cheap-trait/memory substitution (CLAMPED_LR
+    agrees) AND no direct-h-reward (asserted). [This would be the FIRST positive in the arc — surprising.]
+  - **NEGATIVE_GRADIENT** iff the installed high-h benefit is real (FORAGE B(0.60) − B(0.00) > 0,
+    confirming the gift) BUT the local resident slope is ≤ 0 in a majority of seeds in EVERY ecology
+    — the gift exists and is un-earnable. [The expected, foundational result that explains all four walls.]
+  - **NO_VERDICT** iff populations collapse, the common garden fixes before the measurement window, or
+    the instrument otherwise fails to deliver a measurable per-clamp reproduction curve (L21).
+  - Repo token: POSITIVE for POSITIVE_GRADIENT; NEGATIVE for NEGATIVE_GRADIENT; MIXED for NO_VERDICT /
+    ambiguous (e.g. a positive slope only in collapsed/drift populations, or non-monotone across seeds).
+
+- **Falsifiers / confounds.** A positive slope appearing ONLY in collapsed populations (corr(pop,
+  reproduction) strongly negative) ⇒ DRIFT, discard (L24). A positive slope that vanishes when
+  CLAMPED_LR ⇒ memory substitution, discard (L19). Non-determinism (same seed → different hash with
+  flags off) ⇒ NEGATIVE (infra). The regression β₁ alone is not the verdict — the per-seed local-slope
+  sign at the resident is (L1/L2: every conjunct checked).
+
+- **Honesty stakes.** Predicting NEGATIVE_GRADIENT (the four walls predict it). This is a DIAGNOSTIC,
+  not a new escape — its value is reframing the arc from "run another evolution → NEGATIVE" to "here is
+  the measured gradient that explains all four walls, and here is the exact bar a bridge must clear."
+  Founders + policy + costs PROVIDED. Cost-off is used ONLY for the B(h) overlay. Engine features gated;
+  exp194/exp200/exp202 hashes reproduce (guards in tests).
+
+---
+
+**EXP 204 — PRE-REGISTRATION SKETCH (FRESHNESS/RESIDUE FALSE-POSITIVE BRIDGE; staged behind the
+post-203 consult — full predeclaration committed before its own verdict run).**
+
+- **Motivation.** Exp 202's competition sent everyone to the same depleted band (herding, not
+  Red-Queen). The bridge: make competition increase the value of DISTINGUISHING fresh food from
+  misleading traces, so precision REDUCES FALSE POSITIVES (not just misses).
+- **World.** Eaten food leaves RESIDUE with a thermal signature close to fresh food. Low-h sensors
+  ALIAS fresh vs residue; high-h sensors discriminate. Competition raises residue (rivals deplete),
+  so as competition rises the marginal value of precision should RISE: `w(h) = R·P_TP(h) − L·P_FP(h)
+  − C_h(h)`; test `d/dh[R·P_TP − L·P_FP] > dC_h/dh` near the resident, and the Red-Queen derivative
+  `∂²B/∂h_i ∂(mean h_rivals) > 0`. A difficulty sweep (residue/fresh signature gap) so no single magic
+  number. Controls: no-residue, residue-but-no-competition (low density), no-shuffle (artifact check),
+  the Exp-203 clamp-grid embedded, cost-off diagnostic.
+- **Predeclared pass.** Cost ON + shuffle ON: pop healthy; mean/parent-weighted h rises above founder
+  and stays elevated; a stable lineage exceeds h>0.30; the clamp grid shows a POSITIVE local resident
+  slope (the Exp-203 instrument); FP-rate decreases with h; the reproduction advantage is MEDIATED by
+  fewer false positives; effect across most seeds. **Fail (NEGATIVE):** h stays primitive, or high h
+  only at collapse, or only cost-off, or via id-order/reward-leak, or competition suppresses h (as 202).
+
+**EXP 205 — PRE-REGISTRATION SKETCH (THERMAL-BARCODE NICHE / SYMPATRIC DIVERGENCE; staged).**
+- **Motivation.** A single global band makes all chase one resource. A stronger sensor may need to
+  unlock a DIFFERENT, less-crowded niche rather than compete harder for the same one.
+- **World.** Resource classes with overlapping thermal signatures: niche A (easy, low reward, crowded),
+  B (medium precision, medium/high reward), C (high precision, rare/high reward), + optional decoys.
+  `w_i = Σ_j p_j(h_i,θ_i)·R_j/(1+N_j) − C_h − C_θ` (frequency-dependent: crowding N_j discounts a
+  niche). A niche/lineage archive RECORDS occupied roles (never rewards h). Controls: single-niche,
+  barcode-shuffled (signatures don't map to value), cost-off, archive-off, the clamp-grid audit.
+- **Predeclared pass (NICHE_BRANCH_POSITIVE / LINEAGE_ONLY_POSITIVE allowed — global mean may stay
+  moderate).** A stable high-sensor lineage with h>0.30; niche occupancy predicted by h (`I(h;niche)>0`);
+  sensor knockout hurts that lineage; parent-weighted h elevated within the niche. A lineage-only
+  positive counts ONLY if stable, heritable, ecological, and knockout-sensitive. **Fail:** no separable
+  niches, or branch erased by global averaging with archive on, or only via confound.
+
+**EXP 206 — PRE-REGISTRATION SKETCH (SENSOR–CONTROLLER CO-ADAPTATION BUNDLE; OPTIONAL, staged).**
+- **Motivation.** A stronger sensor may fail because the policy θ cannot exploit it: if θ≈0,
+  `dw/dh ≈ −C_h'(h)` (selected against even though useful with the right θ).
+  `w(h,θ) = R·σ(k·h·θ − d) − C_h(h) − C_θ(θ)`. Test θ-mutation alone / h alone / both independent /
+  both bundled (correlated mutation raises the chance mutually-dependent partial traits co-occur — it
+  must NOT guarantee success). **Pass:** h AND θ jointly rise; the h·θ interaction predicts
+  reproduction; knockout of either damages the lineage; across seeds without collapse. **Fail:** h alone
+  or θ alone explains it, or no joint rise.
+
+---
+
+**STATUS.** state: active · latest: Exp 203 (MIXED / NEW INSIGHT — the SELECTION-GRADIENT AUDIT found the FIRST positive local gradient in the arc: in the band-staleness regime a step 0.10→0.15 beats the resident 7/8 seeds [auc 0.872], surviving the LR-freeze control 6/8 = genuine thermosense; but PURELY competitive [N* falls with h, density-indep benefit flat] and weak [s~0.01], missing the strict POSITIVE bar; the moving-target regime makes a real-but-weak relational gradient evolution can't sustain) · sub-arc SENSE-EVOLUTION (203–206); ecology/sense_axis.py + runtime_budget (L25) · next-falsifiable: post-203 CONSULT — strengthen the relational gradient (204 residue / 205 niches / 206 controller) or accept it
 

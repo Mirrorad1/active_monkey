@@ -1110,6 +1110,55 @@ The loop marks items it has consumed by indenting a response under them:
   ratified pattern, a bare resumption without redirection authorizes the
   RECOMMENDED option (a) only; any other path needs its own word.
 
+- [from human, 2026-06-13, in-session] STEER on the population-ecology / thermosense arc
+  (a NEW sub-arc, distinct from the PAUSED n4-crack-edges QUIET-CHAMBER consult above —
+  that thread stays paused behind its own word). After the four-wall ceiling (Exp 199–202:
+  avoidance / foraging / increasing-returns / interference-competition all NEGATIVE), the
+  question is reframed from "make thermosense win" to: **what environmental, informational,
+  and evolutionary conditions are REQUIRED for a costed sense to become evolvable instead of
+  merely useful when gifted?** Hard constraints (anti-cheat): no direct h reward; no
+  `if sensor>θ give bonus`; any advantage must emerge through world interaction; measure the
+  LOCAL selection gradient g(h)=dE[w|h]/dh, not only the endpoint installed benefit
+  B(0.6)−B(0). Directive phases: (0) ground in 199–202; (1) build a reusable sense-axis
+  diagnostic abstraction (generic over thermosense→sight→hearing→communication); (2) Exp 203
+  = the SELECTION-GRADIENT AUDIT (clamp-grid E[w|h], cost on, shuffle, slope near founder);
+  (3) Exp 204 = freshness/residue false-positive competition bridge; (4) Exp 205 = thermal-
+  barcode niche / sympatric divergence bridge; (5) optional Exp 206 = sensor–controller
+  co-adaptation bundle; (6) generalization notes; (7) full reporting + final summary.
+  → taken up 2026-06-13 (card-first + one-experiment-per-iteration discipline): the Exp 203
+    gradient audit is built + run THIS iteration; the bridges (204/205/206) are PRE-REGISTERED
+    as designs in loop/directions/population-ecology.md and STAGED behind a post-203 CONSULT —
+    each bridge is informed by what the gradient map shows and runs one at a time per PROTOCOL.
+    Pre-registrations + term definitions committed to the direction card BEFORE the Exp 203
+    verdict run. The reusable abstraction lives at ecology/sense_axis.py; the gated, byte-
+    identical engine features it needs (freeze_thermosense, founder_mix) carry regression
+    guards. No direct-h-reward anywhere (asserted in code + checked by the blinded verifier).
+  → [loop, 2026-06-13] Exp 203 DONE (MIXED / NEW INSIGHT, blind-verified AGREE) and the runtime
+    pre-flight guard (L25, the human's parallel request) built + wired. The audit REFUTED its own
+    NEGATIVE_GRADIENT prediction: in the band-staleness FORAGE regime there IS a positive local
+    gradient at the resident (0.10→0.15 wins 7/8, auc 0.872, surviving the LR-freeze control 6/8 =
+    genuine thermosense) — the FIRST positive gradient in the arc, explaining exp201's transient
+    climb. But it is PURELY competitive (N* falls with h; density-independent benefit flat, gift
+    −0.0016) and weak (s~0.01), one seed short of the strict POSITIVE bar (CLAMPED_LR 6/8<7/8).
+  → [loop, POST-203 CONSULT, 2026-06-13] The result REFRAMES the staged bridges from "create a
+    gradient from scratch" to "STRENGTHEN / SUSTAIN the weak relational one just found." OPTIONS,
+    each needs a word:
+    (a) RECOMMENDED — Exp 204 (freshness/residue false-positive bridge): make precision reduce
+        COSTLY MISTAKES (eating misleading residue), a relational payoff that is STEEPER and
+        compounds (avoiding a loss, not just grabbing slightly more food) — the direct test of
+        whether a stronger relational benefit pushes the gradient hard enough to reach functional.
+        Pre-registered sketch in loop/directions/population-ecology.md; binding falsifier as written
+        (h stays primitive / only at collapse / via id-order or reward-leak / competition suppresses).
+    (b) Exp 205 (barcode niches): let a high-sensor lineage ESCAPE the herding that erodes the
+        relational advantage as it spreads (attacks the negative-frequency-dependence directly).
+    (c) Cheap confirmation FIRST: re-run the CLAMPED_LR 0.10-vs-0.15 with ≥8 more fresh seeds to
+        resolve whether the 6/8 (one short of the strict bar) is genuine fragility or sampling
+        noise — i.e. whether the gradient is a clean POSITIVE. Low cost, high clarity.
+    (d) ACCEPT the finding as the sub-arc answer (a positive-but-weak purely-relational gradient
+        is the honest characterization of why the organ can't climb) — write the synthesis, hold.
+    (e) Other / redirect / stop.
+    Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
