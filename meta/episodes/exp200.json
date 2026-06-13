@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp200.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp200_n5_foraging_escape.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.20\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.4\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.66\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.8\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0348/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0549/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0554/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0783/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0866/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0939/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0947/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0971/0\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"15/15\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/5\" quoted in entry not found in experiments/outputs/exp200.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T06:49:43Z",
+  "commit_sha": "8f50c360876c074944b0b167dd8ec66b2423ab22",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 200,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
