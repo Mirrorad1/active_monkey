@@ -78,9 +78,14 @@ Selection emerges from the environment, never from an external ranking.
   trait starts at 0), and do seeded-high and de-novo-from-0 CONVERGE to the same low equilibrium
   (an attractor)? FAILURE: no clean temp-ON vs temp-OFF gap from zero (Exp 197's heritable signal
   was survivor bias / noise); or no convergence; or runaway to a functional organ.
-- **Exp 199 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
-  when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
-  whether or not temperature is a pressure.
+- **Exp 199 — is the primitive-sensor ceiling FUNDAMENTAL? (the fitness-valley sweep).** Exp 197/198
+  found thermosense pinned at a low primitive equilibrium (~0.045). Can a FUNCTIONAL organ evolve under
+  a shallower valley (lower sensing noise, cheaper organ, stronger steering, harsher stress)? Sweep the
+  valley depth (founder primitive 0.10) + a functional-RETENTION arm (founder 0.50). FAILURE (= the
+  finding, NEGATIVE): the equilibrium stays primitive (<0.15) at every depth AND a seeded-functional
+  organ decays / drives extinction — i.e. the functional state is selected against from both directions
+  (benefit saturates: a little sensing suffices to reach safety, cost keeps rising). POSITIVE only if a
+  functional organ (mean >0.30) evolves or is retained at the shallowest valley.
 - **Exp 200 — niche / species archive** from trait + behavior clustering (the evaluator
   RECORDS clusters, never selects them). FAILURE: no separable clusters under pressure.
 - **Exp 201 — self-selection / mate choice** on observed traits, only after viability
@@ -448,4 +453,65 @@ committed BEFORE the fresh-seed run).**
   NOT a functional organ — honest about the fitness-valley ceiling. temp-ON arms persist at low
   population (~70–90) vs temp-OFF (~500), a density consequence. Policy + founder + costs PROVIDED.
 
-**STATUS.** state: active · latest: Exp 197 (POSITIVE-MIXED, blind-verified, merged via PR #32 — complexity = EXPRESSED-MACHINERY cost: a costed evolvable THERMOSENSE organ is RETAINED under temperature (living active-fraction ~0.52 vs ~0.06; tolerance stays low → adapts by SENSING not bought robustness) but survivor-bias-DOMINATED with only a WEAK heritable shift; the human's mechanism revision — cost attaches to expressed machinery with floors, not a scalar penalty; → L20) · depends-on: ecology/ substrate (Exp 194–197) · reusable: ecology engine (+ temperature / drifting comfort / costed tolerance / costed-expressed-evolvable thermosense organ) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 198 (pre-registered) — the thermosense ATTRACTOR + clean de-novo emergence: 2×2 temperature × seeding (founder intensity 0 vs 0.20), fresh seeds {13–17}. Does thermosense EMERGE from zero under temperature (a survivor-bias-FREE heritable test that resolves Exp 197's ambiguity), and do seeded-high + de-novo-from-0 CONVERGE to the same low equilibrium? POSITIVE iff the clean A(temp-ON,0) − C(temp-OFF,0) gap ≥ 0.008 (P3) + convergence (P4) + no runaway (P5); else NEGATIVE / MIXED.
+---
+
+**EXP 199 — PRE-REGISTRATION (is the primitive-sensor ceiling FUNDAMENTAL? the fitness-valley sweep;
+committed BEFORE the fresh-seed run).**
+
+- **Motivation.** Exp 197/198 pinned thermosense at a low primitive equilibrium (~0.045, near the
+  activation threshold), never a functional organ. Is that ceiling FUNDAMENTAL, or just the deep-valley
+  regime? This sweeps the valley depth AND tests whether a functional organ, if SEEDED, is even stable.
+
+- **Hypothesis.** The primitive-sensor ceiling is FUNDAMENTAL: even under aggressively shallow-valley
+  regimes (low sensing noise, cheap efficient organ, strong steering, harsh stress), thermosense does
+  NOT evolve into a functional organ — the equilibrium rises only weakly with shallower valley but stays
+  primitive (<0.15), AND a seeded-functional organ (0.50) is NOT retained (it decays toward primitive or
+  drives extinction) — because the benefit SATURATES (a little sensing suffices to reach safety) while
+  the cost keeps rising with intensity, so the functional state is selected against from both directions.
+
+- **Arms** (all temperature ON, founder tolerance 0.10, CHEAP efficient organ: inefficiency 0.20,
+  upkeep_floor 0.0, strong steering thermal_avoidance_weight 8.0, harsh stress temperature_stress_scale
+  3.0, comfort amp 0.4/period 1500, active_threshold 0.05; horizon 12000; fresh seeds {18,19,20,21,22}):
+  - **NOISE SWEEP** (founder intensity 0.10 — "can a primitive organ CLIMB?"): V1 noise 0.20, V2 0.10,
+    V3 0.05, V4 0.02 (shallowest).
+  - **RETENTION** (founder intensity 0.50 — "is a functional organ STABLE?"): F noise 0.02 (best case).
+  Metric = NEWBORN (gene-pool) mean thermosense intensity, end = mean over creatures born in [10000,12000].
+
+- **Disclosed pilots (per L7).** Pilots {100,101} (deleted): the noise sweep moved the gene-pool mean
+  only 0.05→0.067 (never functional; max individual ~0.31); a seeded 0.50 organ DECAYED (0.41→0.10) or
+  went EXTINCT (0.80 worse). Params/thresholds FIXED; final on FRESH seeds {18–22}.
+
+- **Predictions if TRUE** (5 fresh seeds; L21-compliant validity = arm reached horizon with a
+  MEASURABLE newborn cohort, pop ≥ 10; extinct/collapsed arms are INVALID for the intensity metric and
+  reported as extinctions):
+  - **P1 determinism.** Same seed → identical event hash (V4 + F on seed 18).
+  - **P2 validity.** The noise-sweep arms (V1–V4, primitive founder) persist measurably in ≥4/5 seeds.
+  - **P3 (CORE) no climbing.** Across V1–V4, every arm's end gene-pool mean intensity < 0.15 (primitive)
+    in ≥4/5 seeds — a primitive organ does not climb to functional at ANY swept depth.
+  - **P4 (CORE) no retention.** Arm F (founder 0.50) end intensity < 0.20 in its measurable runs (decays
+    from 0.50) OR F goes extinct in a majority — the functional state is not stable even in the best case.
+  - **P5 monotone-but-capped (supporting).** The sweep equilibrium rises weakly as noise drops (V4 ≥ V1)
+    but stays < 0.15. Supporting: arm F has HIGHER extinction than the V arms.
+
+- **Falsifiers (these would make it POSITIVE — the valley IS crossable):** FP1 any V arm end mean
+  intensity > 0.30 in ≥4/5 seeds → a primitive organ CLIMBED → POSITIVE. FP2 arm F retains end intensity
+  > 0.30 in ≥4/5 measurable seeds → functional state stable → POSITIVE. F1 non-determinism → NEGATIVE (infra).
+
+- **Verdict rule.** NEGATIVE (= the finding: ceiling FUNDAMENTAL) iff P3 ∧ P4 and neither FP1 nor FP2
+  fires. POSITIVE iff FP1 or FP2 (a functional organ evolves or is retained). MIXED if ambiguous
+  (partial climbing / non-monotone / unstable). Repo token POSITIVE/NEGATIVE/MIXED. NOTE: NEGATIVE here
+  is the SCIENTIFICALLY INTERESTING outcome (a structural ceiling), not a failure.
+
+- **Interpretation.** If NEGATIVE (expected): costed sensing organs in an AVOIDANCE-based ecology
+  self-limit to a primitive sensor — the functional state is unreachable AND unstable — because the
+  benefit saturates once safety is reached while the cost grows with intensity. Structural evolutionary
+  constraint; points the next direction (a functional organ may need a NON-saturating benefit, e.g.
+  sensing for FORAGING rather than avoidance).
+
+- **Honesty stakes.** The base regime is deliberately FAVORABLE to a functional organ (cheap efficient
+  organ, strong steering, harsh stress, low noise) — so a NEGATIVE is the STRONG conclusion (even the
+  best case fails). The functional-seed arm's extinctions are handled per L21 (invalid for the metric,
+  reported as extinctions = evidence). Pilots disclosed; thresholds FIXED pre-run; founders + costs
+  PROVIDED. The result is conditional on this avoidance-based sensing model.
+
+**STATUS.** state: active · latest: Exp 198 (MIXED / NEW INSIGHT, core-POSITIVE, blind-verified, on main — CLEAN de-novo heritable emergence: from intensity 0 (survivor-bias impossible), temperature heritably grows the gene-pool sensor (~0.045 vs ~0.029, 5/5), confirming Exp 197's heritable signal is real; a CONVERGENT ATTRACTOR (de-novo-from-0 ≈ seeded-0.20) capped LOW by a FITNESS VALLEY; MIXED only on a predeclaration validity gap, seed-17 seeded arm collapsed → unmeasurable NaN → L21) · depends-on: ecology/ substrate (Exp 194–198) · reusable: ecology engine (+ temperature / drifting comfort / costed tolerance / costed-expressed-evolvable thermosense organ) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 199 (pre-registered) — is the primitive-sensor ceiling FUNDAMENTAL? a fitness-valley NOISE SWEEP (founder 0.10, V1–V4 noise 0.20→0.02) + a functional-RETENTION arm (founder 0.50), all under the BEST-CASE shallow valley, fresh seeds {18–22}. NEGATIVE (= the finding: ceiling fundamental) iff no V arm climbs >0.30 (P3) AND the seeded-functional organ is not retained / goes extinct (P4); POSITIVE iff a functional organ (mean >0.30) evolves or is retained.
