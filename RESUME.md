@@ -221,6 +221,7 @@ step 0.
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the
   cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+- Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
