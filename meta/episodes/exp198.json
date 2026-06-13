@@ -1,0 +1,60 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp198.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp198_n5_thermosense_attractor.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.06\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.22\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0009/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0016/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0022/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0023/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0040/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0051/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0053/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0130/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0166/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0173/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0185/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0286/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0290/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0299/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0303/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0416/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0456/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0472/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0488/0\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6.3\" quoted in entry not found in experiments/outputs/exp198.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-13T05:01:22Z",
+  "commit_sha": "cfdaed8625c7d30e5ff11a3a96613b26d88447d9",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 198,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
