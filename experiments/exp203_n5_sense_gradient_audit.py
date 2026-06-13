@@ -73,6 +73,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from ecology import sense_axis as SA
+from ecology import runtime_budget as RB
 from ecology.engine import Ecology, EcologyConfig
 from ecology.scenarios import SCENARIOS, FOUNDER
 
@@ -80,8 +81,11 @@ GRID = SA.CLAMP_GRID
 PRIMARY_SEEDS = [50, 51, 52, 53, 54, 55, 56, 57]
 CONFIRM_SEEDS = [50, 51, 52, 53]
 DIAG_SEEDS = [50, 51, 52]
+GROWTH_SEEDS = [50, 51, 52, 53, 54, 55]
 HORIZON = 3500
 LATE = 1200
+GROWTH_HORIZON = 1500
+GROWTH_WINDOW = (100, 700)
 
 
 # ---------------------------------------------------------------------------
@@ -96,12 +100,19 @@ def _scn(**kw) -> EcologyConfig:
 
 
 def forage_cfg(costoff: bool = False) -> EcologyConfig:
+    # FORAGE = the exp201 BAND-STALENESS regime: the drifting band centre is NOT read for free
+    # (exp200's fatal flaw, which left precision with NO real benefit — confirmed by a flat
+    # intrinsic-growth probe); each creature must PRIVATELY TRACK it via an EMA whose quality
+    # keys to thermosense_intensity, so precision genuinely buys a real (concave) foraging
+    # benefit (exp201 returns probe: marginal +0.043->+0.018). This is the substrate where the
+    # gradient question is non-trivial.
     return _scn(regen_rate=0.20, enable_thermosense=(not costoff), enable_temperature=True,
                 temperature_stress_scale=0.0, thermosense_upkeep_floor=0.0,
                 thermosense_active_threshold=0.05, thermosense_noise_base=0.5,
                 thermal_avoidance_weight=4.0, food_optimal_base=0.5, food_optimal_amplitude=0.3,
-                food_optimal_period=1500.0, food_concentration=8.0, food_band_width=0.15,
-                enable_food_coupling=True, thermosense_forage_mode=True)
+                food_optimal_period=60.0, food_concentration=8.0, food_band_width=0.12,
+                enable_food_coupling=True, thermosense_forage_mode=True,
+                enable_band_staleness=True, band_responsiveness=1.0)
 
 
 def compete_cfg() -> EcologyConfig:
@@ -168,12 +179,18 @@ def build_specs() -> list[dict[str, Any]]:
     for s in PRIMARY_SEEDS:
         specs.append({"kind": "pairwise", "key": ("pw_clr", 0.15, s), "cfg": pw_clr, "seed": s,
                       "h_res": 0.10, "h_inv": 0.15, "count_each": 50, "window": (150, 2200)})
-    # (3) FORAGE installed benefit B(h) (cost OFF) + the low-cost net overlay is analytic
-    boff = D.replace(forage_cfg(costoff=True), horizon=3000)
+    # (3) FORAGE installed benefit via DENSITY-INDEPENDENT intrinsic growth r(h) — the proper
+    #     gift measure (equilibrium intake is herding-/replacement-washed). cost-OFF = pure
+    #     benefit B(h); cost-ON = realized fitness whose local slope is the density-independent
+    #     gradient (complements the pairwise relative gradient).
+    g_off = D.replace(forage_cfg(costoff=True), horizon=GROWTH_HORIZON)
+    g_on = D.replace(forage_cfg(costoff=False), horizon=GROWTH_HORIZON)
     for h in GRID:
-        for s in DIAG_SEEDS:
-            specs.append({"kind": "benefit", "key": ("B", h, s), "cfg": boff, "seed": s,
-                          "h": h, "bwindow": 1000})
+        for s in GROWTH_SEEDS:
+            specs.append({"kind": "growth", "key": ("goff", h, s), "cfg": g_off, "seed": s,
+                          "h": h, "window": GROWTH_WINDOW})
+            specs.append({"kind": "growth", "key": ("gon", h, s), "cfg": g_on, "seed": s,
+                          "h": h, "window": GROWTH_WINDOW})
     return specs
 
 
@@ -222,15 +239,18 @@ def compute_verdict(res: dict[Any, dict[str, Any]]) -> dict[str, Any]:
     pw["clr_0.15_auc_mean"] = _amean([res[("pw_clr", 0.15, s)]["inv_frac_auc"] for s in PRIMARY_SEEDS])
     out["pairwise"] = pw
 
-    # --- installed benefit + decomposition (FORAGE) ---
-    Bcurve = {h: _amean([res[("B", h, s)]["B"] for s in DIAG_SEEDS]) for h in GRID}
+    # --- installed benefit B(h)=r_costoff + realized r_coston (DENSITY-INDEPENDENT intrinsic
+    #     growth; the equilibrium-intake B was herding-/replacement-washed) ---
+    Bcurve = {h: _amean([res[("goff", h, s)]["r"] for s in GROWTH_SEEDS]) for h in GRID}
+    Roncurve = {h: _amean([res[("gon", h, s)]["r"] for s in GROWTH_SEEDS]) for h in GRID}
     dB_010 = (Bcurve[0.15] - Bcurve[0.06]) / 0.09          # central dB/dh at the resident
     dB_003 = (Bcurve[0.06] - Bcurve[0.00]) / 0.06
     dB_020 = (Bcurve[0.30] - Bcurve[0.15]) / 0.15
     gift = Bcurve[0.60] - Bcurve[0.00]
-    out["benefit"] = {"B": Bcurve, "gift_B060_minus_B000": gift,
+    r_on_slope_010 = (Roncurve[0.15] - Roncurve[0.06]) / 0.09   # density-indep realized gradient
+    out["benefit"] = {"B": Bcurve, "r_on": Roncurve, "gift_B060_minus_B000": gift,
                       "dB_dh_at_0.10": dB_010, "dB_dh_at_0.03": dB_003, "dB_dh_at_0.20": dB_020,
-                      "C_prime_0.20cost": 0.20, "C_prime_0.05cost": 0.05}
+                      "r_on_slope_at_0.10": r_on_slope_010, "C_prime_0.20cost": 0.20}
 
     # --- low_cost competitive optimum (does cheaper organ shift h* up?) ---
     Nlc = {h: _amean([res[("cap_lc", "FORAGE", h, s)]["N_star"] for s in DIAG_SEEDS]) for h in GRID}
@@ -284,6 +304,8 @@ def compute_verdict(res: dict[Any, dict[str, Any]]) -> dict[str, Any]:
     out["gates"] = {"pw_015_won": f"{s015['won_frac']}/{n_pri}", "pw_015_auc": round(s015["auc_mean"], 3),
                     "pw_030_won": f"{s030['won_frac']}/{n_pri}", "pw_045_won": f"{s045['won_frac']}/{n_pri}",
                     "clr_015_won": f"{pw['clr_0.15_won_frac']}/{n_pri}", "gift_real": gift_real,
+                    "gift_B": round(gift, 4), "dB_dh_0.10": round(out["benefit"]["dB_dh_at_0.10"], 4),
+                    "r_on_slope_0.10": round(out["benefit"]["r_on_slope_at_0.10"], 5),
                     "resident_nonpositive": resident_nonpositive, "mono_optima_low_all_eco": mono_optima_low,
                     "h_star_N_FORAGE": forage["h_star_N"], "collapse": collapse, "p1": out["p1_determinism"]}
     return out
@@ -294,6 +316,16 @@ def main() -> None:
     out_dir = _REPO / "experiments" / "outputs" / "exp203_n5_sense_gradient_audit"
     out_dir.mkdir(parents=True, exist_ok=True)
     specs = build_specs()
+
+    # RUNTIME PRE-FLIGHT (binding, PROTOCOL step 3; human request 2026-06-13): probe the most
+    # explosion-prone arms (lowest-cost h=0 of each regime) and confirm population + wall-clock
+    # are bounded BEFORE launching the full batch — a bug cannot quietly burn hours.
+    reps = [(name, D.replace(cfg, founder=D.replace(cfg.founder, thermosense_intensity=0.0)), 50)
+            for name, cfg in ECOLOGIES.items()]
+    pf = RB.preflight(reps, horizon=HORIZON, n_jobs=len(specs), max_workers=SA._audit_workers(),
+                      probe_steps=1000, time_budget_s=2400, require_safe=True)
+    print(RB.format_report(pf) + "\n")
+
     print(f"Exp 203 sense-gradient audit: {len(specs)} parallel jobs (horizon {HORIZON}) ...")
     res = SA.run_audit_batch(specs)
     v = compute_verdict(res)
@@ -320,12 +352,15 @@ def main() -> None:
              f"  auc={v['pairwise']['clr_0.15_auc_mean']:.3f}")
     L.append("")
     b = v["benefit"]
-    L.append("INSTALLED BENEFIT B(h) (cost OFF) + decomposition (the NON-circularity check):")
+    L.append("INSTALLED BENEFIT B(h)=r_costOFF + realized r_costON (density-independent intrinsic growth;")
+    L.append("the NON-circularity decomposition — equilibrium intake was herding/replacement-washed):")
+    L.append(f"  {'h':>5}  {'B=r_off':>9}  {'r_on':>9}")
     for h in GRID:
-        L.append(f"  h={h:.2f}  B={b['B'][h]:.4f}")
-    L.append(f"  gift B(0.60)-B(0.00) = {b['gift_B060_minus_B000']:+.4f}  (gift real if >0)")
-    L.append(f"  dB/dh @0.03={b['dB_dh_at_0.03']:+.4f}  @0.10={b['dB_dh_at_0.10']:+.4f}  "
-             f"@0.20={b['dB_dh_at_0.20']:+.4f}   vs C'=0.20 (std) / 0.05 (low_cost)")
+        L.append(f"  {h:>5.2f}  {b['B'][h]:>9.5f}  {b['r_on'][h]:>9.5f}")
+    L.append(f"  gift B(0.60)-B(0.00) = {b['gift_B060_minus_B000']:+.5f}  (gift real if >0)")
+    L.append(f"  dB/dh @0.03={b['dB_dh_at_0.03']:+.5f}  @0.10={b['dB_dh_at_0.10']:+.5f}  "
+             f"@0.20={b['dB_dh_at_0.20']:+.5f}")
+    L.append(f"  realized r_on slope @0.10 = {b['r_on_slope_at_0.10']:+.5f}  (the density-independent gradient)")
     L.append(f"  low_cost (ineff 0.05) competitive optimum h*N = {v['low_cost']['h_star_N']}")
     L.append(f"  CLAMPED_LR competitive optimum h*N        = {v['clamped_lr']['h_star_N']}")
     L.append("")
@@ -348,10 +383,12 @@ def main() -> None:
                               "h_star_N": v["landscape"][e]["h_star_N"],
                               "h_star_R": v["landscape"][e]["h_star_R"]} for e in ECOLOGIES},
             "pairwise": {str(k): vv for k, vv in v["pairwise"].items()},
-            "benefit": {"B": _ser(v["benefit"]["B"]), "gift": v["benefit"]["gift_B060_minus_B000"],
+            "benefit": {"B": _ser(v["benefit"]["B"]), "r_on": _ser(v["benefit"]["r_on"]),
+                        "gift": v["benefit"]["gift_B060_minus_B000"],
                         "dB_dh_at_0.10": v["benefit"]["dB_dh_at_0.10"],
                         "dB_dh_at_0.03": v["benefit"]["dB_dh_at_0.03"],
-                        "dB_dh_at_0.20": v["benefit"]["dB_dh_at_0.20"]},
+                        "dB_dh_at_0.20": v["benefit"]["dB_dh_at_0.20"],
+                        "r_on_slope_at_0.10": v["benefit"]["r_on_slope_at_0.10"]},
             "low_cost_h_star": v["low_cost"]["h_star_N"], "clamped_lr_h_star": v["clamped_lr"]["h_star_N"]}
     (out_dir / "verdict.json").write_text(json.dumps(dump, indent=2))
     print(f"[saved {out_dir}/verdict.json]")
