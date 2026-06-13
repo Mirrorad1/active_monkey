@@ -7591,3 +7591,82 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Lesson folded to loop/LESSONS.md (L19: a near-perfect correlation on an IMPOSED relation is
   a degeneracy red flag, not a win; and don't predeclare a cross-regime comparison a regime
   cannot exhibit for structural/guard reasons).
+
+## Exp 196 — N5 senescence selection: over a long horizon, aging DOES depress the standing population's complexity below a matched control — Exp 195's selection null was a horizon limit (POSITIVE / NEW INSIGHT)
+
+- Plain: We asked whether old age, over many generations, actually pushes the population
+  toward simpler creatures. The last experiment said no at 600 steps; this one runs ten times
+  longer (5000 steps) on fresh worlds, with the population cap raised so the world settles at
+  its natural food-limited size instead of hitting an artificial ceiling. The answer is yes,
+  clearly: with aging on, the living population's average complexity slides steadily downward,
+  ending far below an identical aging-off control whose complexity stays flat — a gap of about
+  0.09 to 0.28 across all five worlds, in the same direction every time. And it is a slow burn:
+  almost nothing happens for the first ~2000 steps, then the gap opens up, which is exactly why
+  the short run saw nothing. One honest caution: our yardstick is the average complexity of the
+  creatures alive at a moment, and that can fall for two different reasons — either simpler
+  family lines genuinely out-breed complex ones (true evolutionary selection), or complex
+  creatures just die younger so fewer are alive to count at any instant (a sampling effect).
+  The data fit either story; telling them apart needs a follow-up that tracks the complexity of
+  newborns, not just the living. So aging measurably simplifies the standing population over the
+  long run — whether that is selection or survivor bias is the next question.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 01be7a4, BEFORE
+  any data): Exp 195's no-complexity-selection result (P6 null at 600 steps) was a HORIZON limit,
+  not an absence — over many more generations senescence's complexity-frailty trade-off
+  progressively drives the population's mean complexity below a senescence-OFF control (whose
+  complexity stays flat). Predeclared P1..P5 / F1..F5 / verdict rule in the script docstring and
+  the card.
+- Setup: experiments/exp196_n5_senescence_selection.py. Balanced regime with max_population
+  RAISED to 5000 so the population equilibrates at its resource carrying capacity (~530) instead
+  of halting at the safety guard (a DISCLOSED design change removing Exp 194/195's artificial
+  truncation - the L19 fix). horizon 5000; two ARMS (senescence OFF = control vs ON = treatment)
+  on the SAME FRESH seeds {3,4,5,6,7} (a throwaway 2-seed probe used seeds 0,1 and is disclosed -
+  the claim was fixed from it and tested out-of-sample per L7); population mean complexity sampled
+  every 500 steps; senescence rng-free. runtime 101.0s.
+- Result (committed exp196.txt + experiments/outputs/exp196_n5_senescence_selection/): P1
+  determinism PASS (seed3 both arms byte-identical on rerun). P2 validity PASS (5/5 seeds both
+  arms reach t=5000, no explosion/extinction). P3 (CORE) selection emerges PASS 5/5: treatment
+  final mean complexity below control by gap@5000 = 0.2844/0.0869/0.1863/0.1920/0.1860 (all >=
+  0.05; control ~0.42-0.48 vs treatment ~0.16-0.33). P4 progressive PASS 5/5: gap@5000 exceeds
+  gap@600 by prog_gap = 0.2578/0.1270/0.1805/0.1349/0.1717 (all >= 0.05), and control complexity
+  is FLAT in all (|control@5000-control@600| < 0.013). P5 direction PASS (treatment < control at
+  horizon in 5/5). F1-F5 all CLEAR. The trajectory (seed3) is the key shape: gap ~0 through
+  t=2000 (0.0240 at t=2000), then opens sharply (0.1178 at t=2500, 0.2844 at t=5000) - the
+  divergence EMERGES late, directly explaining Exp 195's 600-step null (gap@600 there/here was
+  near-zero or even reversed, e.g. seed4 -0.0401). The senescence-OFF control, same raised cap and
+  horizon, stays flat - isolating senescence (not the cap/regime change) as the driver.
+- Verifier: agree (POSITIVE) - blinded subagent (docstring + raw exp196.txt only) recomputed all
+  P1..P5/F1..F5 from the per-seed numbers and confirmed POSITIVE on the predeclared metric;
+  independently raised the SAME survivor-bias caveat (below) and added that the treatment
+  equilibrates at a lower population (~400) than control (~530), so part of the path may be
+  density-mediated. It recommended logging this as a senescence-driven complexity depression of
+  the STANDING population, not definitively established heritable selection. Agreed.
+- Implication: the population/ecology now exhibits, against a proper control, a viability pressure
+  (senescence) measurably reshaping the standing population's trait composition over generations -
+  and the effect is HORIZON-DEPENDENT (absent at 600 steps, large by 5000), which retro-explains
+  Exp 195's P6 null as undersampling, not absence. This is the first time in the program a
+  population's composition is shown to move under an environmental viability pressure with a
+  matched counterfactual. Generalizability tier: functional/parameter-level on THIS body and the
+  balanced regime; the MECHANISM is deliberately under-claimed (see caveat).
+- Honest caveat: the metric is mean complexity of the ALIVE (standing) population, which conflates
+  (a) heritable SELECTION (simpler lineages out-reproducing because they live longer) with (b)
+  SURVIVOR BIAS (complex creatures die younger by construction, so are underrepresented among the
+  living at any instant) and (c) a DENSITY-mediated path (treatment's lower equilibrium population
+  ~400 vs ~530 changes competition). The predeclared claim - standing-population complexity
+  diverges below control, progressively - holds cleanly either way, but "selection" in the
+  heritable sense is NOT established here; disentangling it needs a follow-up tracking NEWBORN /
+  lineage complexity (and age-stratified complexity) vs the standing snapshot. The selection
+  DIRECTION (frailty costs complexity) is IMPOSED, and a 2-seed probe (seeds 0,1, disclosed)
+  foreshadowed the effect before the fresh-seed test - so this is an expected-direction
+  confirmation at a longer horizon, not a surprising capability. Raised cap is a disclosed design
+  change. Policy PROVIDED; complexity a derived blend.
+- Verdict: POSITIVE / NEW INSIGHT, POSITIVE-SINGLE - the predeclared, controlled, multi-seed claim
+  (senescence depresses the standing population's complexity below a flat control, progressively,
+  emerging only at long horizon) holds in 5/5 fresh seeds, blind-verified; it resolves Exp 195's
+  P6 null as a horizon limit. POSITIVE-SINGLE not BREAKTHROUGH: the direction was imposed and
+  probe-foreshadowed, and the mechanism (heritable selection vs survivor bias vs density) is
+  deliberately left open.
+- Next: options (each needs a word) - (a) DISENTANGLE selection from survivor bias: track newborn/
+  lineage mean complexity and age-stratified complexity over the long horizon (the clean follow-up
+  the verifier and caveat name); (b) Exp 197 - temperature as a hidden viability pressure; (c)
+  longer/parameter sweeps on where the divergence onsets (~t=2000) and how it scales with the
+  senescence cost.

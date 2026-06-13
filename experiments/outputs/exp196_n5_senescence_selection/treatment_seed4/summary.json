@@ -1,0 +1,11 @@
+{
+  "arm": "treatment",
+  "seed": 4,
+  "reached_horizon": true,
+  "exploded": false,
+  "extinct": false,
+  "final_pop": 424,
+  "mc_at_600": 0.4567777796014819,
+  "mc_at_final": 0.33165151948106364,
+  "events_hash": "eaee625e2d50694b03bc99809ebe9a0016e2a9977384d0a923935d5f67b55912"
+}

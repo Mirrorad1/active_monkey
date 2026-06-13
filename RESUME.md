@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-11, state as of Exp 183)
+### 3b. Where we are NOW (folded 2026-06-12, state as of Exp 196)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,11 +145,29 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
+- **The population-ecology direction (Exp 194–196, ACTIVE — a NEW parallel line on the
+  human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
+  substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
+  DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
+  kept separately numbered). **Exp 194 (MIXED)** — the homeostatic substrate: energy /
+  finite regenerating resources / reproduction with inherited mutated traits / homeostatic
+  death, environment-as-selector (a verified design invariant); scarcity crashes the
+  population 95–100% (the predeclared P5 starvation-fraction was ill-posed → L18).
+  **Exp 195 (MIXED)** — senescence / aging as a complexity-scaled SECOND death cause (behind
+  `enable_senescence`; OFF == Exp 194 byte-identical): age kills distinct from starvation,
+  lifespan shrinks with complexity (variable, non-linear; ρ −0.67..−0.86); MIXED from a
+  confounded regime cause-mix + a 600-step selection null, not the mechanism (→ L19).
+  **Exp 196 (POSITIVE)** — over a long horizon (5000 steps, cap raised to carrying capacity)
+  aging DEPRESSES the standing population's complexity below a matched senescence-OFF control
+  (gap 0.09–0.28, 5/5 fresh seeds, emerging only after ~t=2000) — Exp 195's selection null
+  was a HORIZON limit; mechanism under-claimed (heritable selection vs survivor bias — a
+  newborn-complexity tracker is the named follow-up). Card:
+  `loop/directions/population-ecology.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the
   cloud-branch merge (renumber-on-merge plan).
-- Suite ~220 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
+- Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

@@ -1,0 +1,11 @@
+{
+  "arm": "control",
+  "seed": 6,
+  "reached_horizon": true,
+  "exploded": false,
+  "extinct": false,
+  "final_pop": 532,
+  "mc_at_600": 0.41234929187659564,
+  "mc_at_final": 0.42435541607738686,
+  "events_hash": "3cc156c076f3a376365a0c39d7ddf2645c55cce6900c4664798fc3a94f144382"
+}
