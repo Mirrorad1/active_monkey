@@ -1,0 +1,86 @@
+{
+  "0": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "1": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "10": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 10,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "11": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 11,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "2": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "3": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 3,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "4": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 4,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "5": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 5,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "6": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "7": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 7,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "8": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 8,
+    "offspring_count": 0,
+    "parent_id": null
+  },
+  "9": {
+    "children": [],
+    "generation": 0,
+    "lineage_root": 9,
+    "offspring_count": 0,
+    "parent_id": null
+  }
+}

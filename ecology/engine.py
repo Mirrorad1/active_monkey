@@ -1,0 +1,421 @@
+"""ecology/engine.py — EcologyConfig, Ecology (step/run loop).
+
+NO-HIDDEN-EVALUATOR INVARIANT:
+  There is NO code path in this module where survival or reproduction reads any
+  global ranking, sorted-fitness, top-K, or cross-creature comparison.
+  Survival/reproduction decisions read ONLY the individual creature's own
+  genotype/phenotype and its local cell's resource.
+  Population-level operations are exactly: append (new creature), mark-dead
+  (set alive=False on one creature), and iteration (ascending id order).
+  This invariant is tested in test_no_global_fitness_selection.
+
+RNG discipline:
+  All randomness flows through numpy.random.default_rng with deterministically
+  derived sub-seeds.  No set iteration or wall-clock enters the event stream.
+  Creatures are processed in ascending creature_id order each step.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from dataclasses import dataclass
+from typing import Any
+
+import numpy as np
+
+from ecology.genotype import Genotype, mutate, is_valid
+from ecology.world import GridWorld
+from ecology.creature import Creature, Phenotype
+
+
+# ---------------------------------------------------------------------------
+# Config
+# ---------------------------------------------------------------------------
+@dataclass
+class EcologyConfig:
+    rows: int
+    cols: int
+    horizon: int
+    initial_population: int
+    founder: Genotype
+    mutation_rate: float
+    capacity: float
+    regen_rate: float
+    initial_resource: float          # fraction of capacity (0..1)
+    max_population: int              # runaway guard threshold (safety, NOT a culler)
+    min_survival_energy: float       # parent must stay above this after paying for child
+    name: str
+    log_moves: bool = False          # per-step move events are bulk, reproducible-from-seed
+                                     # telemetry — OFF by default so committed event logs stay
+                                     # small (birth/death/reproduction/resource_tick always log)
+
+
+# ---------------------------------------------------------------------------
+# Ecology
+# ---------------------------------------------------------------------------
+class Ecology:
+    """Single simulation instance.  Deterministic given cfg + seed.
+
+    Usage:
+      eco = Ecology(cfg, seed=42)
+      summary = eco.run()
+    """
+
+    def __init__(self, cfg: EcologyConfig, seed: int) -> None:
+        self.cfg = cfg
+        self.seed = seed
+
+        # Deterministically derive sub-seeds so world and creature RNG are
+        # independent but fully reproducible.
+        master_rng = np.random.default_rng(seed)
+        world_seed = int(master_rng.integers(0, 2**31))
+        main_seed = int(master_rng.integers(0, 2**31))
+
+        self.rng = np.random.default_rng(main_seed)
+        world_rng = np.random.default_rng(world_seed)
+
+        self.world = GridWorld.from_config(
+            rows=cfg.rows,
+            cols=cfg.cols,
+            capacity=cfg.capacity,
+            regen_rate=cfg.regen_rate,
+            initial_resource=cfg.initial_resource,
+            rng=world_rng,
+        )
+
+        self.t: int = 0
+        self.next_id: int = 0
+        self.events: list[dict[str, Any]] = []
+        self.exploded: bool = False
+
+        # Creatures stored in a list; we always iterate in ascending id order.
+        self._creatures: list[Creature] = []
+
+        # Place initial_population founders at deterministic spread positions
+        n_cells = cfg.rows * cfg.cols
+        total = cfg.rows * cfg.cols
+        step = max(1, total // cfg.initial_population)
+        for i in range(cfg.initial_population):
+            pos = (i * step) % total
+            start_energy = cfg.founder.energy_capacity * 0.75
+            ph = Phenotype(energy=start_energy, age=0, pos=pos)
+            c = Creature(
+                creature_id=self.next_id,
+                parent_id=None,
+                generation=0,
+                lineage_root=self.next_id,
+                genotype=cfg.founder,
+                phenotype=ph,
+                n_cells=n_cells,
+            )
+            self._creatures.append(c)
+            self.events.append(self._event("birth", c, details={"founder": True}))
+            self.next_id += 1
+
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
+    def _alive(self) -> list[Creature]:
+        """Return alive creatures sorted by ascending creature_id (deterministic)."""
+        return sorted(
+            (c for c in self._creatures if c.is_alive()),
+            key=lambda c: c.creature_id,
+        )
+
+    def _event(self, event_type: str, c: Creature, details: dict | None = None) -> dict:
+        g = c.genotype
+        return {
+            "t": self.t,
+            "event_type": event_type,
+            "creature_id": c.creature_id,
+            "parent_id": c.parent_id,
+            "generation": c.generation,
+            "location": c.phenotype.pos,
+            "energy": round(c.phenotype.energy, 6),
+            "genotype": {
+                "movement_cost": g.movement_cost,
+                "baseline_metabolic_cost": g.baseline_metabolic_cost,
+                "energy_capacity": g.energy_capacity,
+                "reproduction_energy_threshold": g.reproduction_energy_threshold,
+                "aging_cost": g.aging_cost,
+                "sensor_precision": g.sensor_precision,
+                "maturity_age": g.maturity_age,
+                "exploration_bias": g.exploration_bias,
+                "learning_rate": g.learning_rate,
+            },
+            "details": details or {},
+        }
+
+    # ------------------------------------------------------------------
+    # Per-creature step logic (each reads ONLY its own state + local cell)
+    # NO GLOBAL RANKING: reproduction/death eligibility are evaluated
+    # per-creature in isolation, using only that creature's own
+    # genotype thresholds and its local cell's resource value.
+    # ------------------------------------------------------------------
+    def _is_reproduction_eligible(self, c: Creature) -> bool:
+        """Check reproduction eligibility using ONLY this creature's own state.
+        No cross-creature comparison or global ranking involved.
+        """
+        ph = c.phenotype
+        g = c.genotype
+        if not ph.alive:
+            return False
+        if ph.age < g.maturity_age:
+            return False
+        if ph.energy < g.reproduction_energy_threshold:
+            return False
+        return True
+
+    def _reproduction_cost(self, c: Creature) -> tuple[float, float]:
+        """Return (transfer, overhead) for reproduction.
+        Complexity penalty: higher-capacity / higher-sensor lineages pay MORE.
+        """
+        g = c.genotype
+        ph = c.phenotype
+        transfer = ph.energy * g.reproduction_energy_transfer_fraction
+        # Complexity: normalized blend of energy_capacity, sensor_precision, memory_length
+        max_cap, min_cap = 50.0, 5.0
+        max_mem, min_mem = 20.0, 1.0
+        norm_cap = (g.energy_capacity - min_cap) / (max_cap - min_cap)
+        norm_sensor = (g.sensor_precision - 0.5) / 0.5        # [0..1]
+        norm_mem = (g.memory_length - min_mem) / (max_mem - min_mem)
+        complexity = (norm_cap + norm_sensor + norm_mem) / 3.0  # ~[0,1]
+        overhead = ph.energy * g.reproduction_cost_fraction * (1.0 + complexity)
+        return transfer, overhead
+
+    def _step_one_creature(
+        self, c: Creature, pending_children: list[Creature]
+    ) -> None:
+        """Execute one timestep for a single creature.  Reads only c + local cell.
+        NO global ranking, NO cross-creature comparison.
+        """
+        ph = c.phenotype
+        g = c.genotype
+        cfg = self.cfg
+
+        # 1. Sense + update learned map
+        _observed = c.sense(self.world, self.rng)
+
+        # 2. Choose + execute action; pay movement_cost only if cell changed
+        old_pos = ph.pos
+        new_pos = c.act(self.world, self.rng)
+        if new_pos != old_pos:
+            ph.energy -= g.movement_cost
+            if self.cfg.log_moves:
+                self.events.append(self._event("move", c, details={"from": old_pos, "to": new_pos}))
+
+        # 3. Pay metabolic + aging cost
+        ph.energy -= g.baseline_metabolic_cost + g.aging_cost * ph.age
+
+        # 4. Eat resource at new cell; cap energy at energy_capacity
+        deficit = g.energy_capacity - ph.energy
+        if deficit > 0:
+            eaten = self.world.consume(new_pos, deficit)
+            ph.energy += eaten
+            ph.resource_eaten += eaten
+        ph.energy = min(ph.energy, g.energy_capacity)
+        ph.age += 1
+
+        # 5. Update stress as EMA of energy deficit fraction (0 = full, 1 = empty)
+        deficit_frac = max(0.0, 1.0 - ph.energy / g.energy_capacity)
+        ph.stress = 0.9 * ph.stress + 0.1 * deficit_frac  # EMA, bounded [0,1]
+
+        # 6. REPRODUCTION — reads only this creature + local cell; no ranking
+        if self._is_reproduction_eligible(c):
+            transfer, overhead = self._reproduction_cost(c)
+            # Capture energy at the reproduction decision point (post-eat, pre-payment)
+            energy_at_repro = ph.energy
+            # Only reproduce if parent stays above min_survival_energy
+            if energy_at_repro - transfer - overhead > cfg.min_survival_energy:
+                # Child placement: lowest-indexed neighbor (deterministic), or parent cell
+                neighbors = self.world.neighbors(new_pos)
+                child_pos = min(neighbors) if neighbors else new_pos
+
+                child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate)
+                child_ph = Phenotype(energy=transfer, age=0, pos=child_pos)
+                child = Creature(
+                    creature_id=self.next_id,
+                    parent_id=c.creature_id,
+                    generation=c.generation + 1,
+                    lineage_root=c.lineage_root,
+                    genotype=child_geno,
+                    phenotype=child_ph,
+                    n_cells=cfg.rows * cfg.cols,
+                )
+                self.next_id += 1
+                ph.energy -= (transfer + overhead)
+                ph.offspring_count += 1
+                pending_children.append(child)
+                self.events.append(self._event("reproduction", c, details={
+                    "transfer": round(transfer, 6),
+                    "overhead": round(overhead, 6),
+                    "child_id": child.creature_id,
+                    # F4-verifiable fields: parent state at the decision point.
+                    # energy_at_repro is the exact float (not rounded) so F4 checks
+                    # can compare it accurately against reproduction_energy_threshold.
+                    "parent_age_at_repro": ph.age,
+                    "parent_energy_at_repro": energy_at_repro,
+                    "parent_maturity_age": g.maturity_age,
+                    "parent_repro_energy_threshold": g.reproduction_energy_threshold,
+                }))
+                self.events.append(self._event("birth", child, details={
+                    "founder": False,
+                    "parent_id": c.creature_id,
+                }))
+                assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
+
+        # 7. Death: starvation (homeostatic cause only; no ranking)
+        if ph.energy <= 0.0:
+            ph.alive = False
+            ph.cause_of_death = "starvation"  # homeostatic: ran out of energy
+            self.events.append(self._event("death", c, details={
+                "cause": "starvation",
+                "age": ph.age,
+                "offspring_count": ph.offspring_count,
+            }))
+
+    # ------------------------------------------------------------------
+    # Step / Run
+    # ------------------------------------------------------------------
+    def step(self) -> None:
+        """Execute ONE timestep for all alive creatures, then regenerate world."""
+        pending_children: list[Creature] = []
+
+        # Process alive creatures in ascending id order (deterministic)
+        for c in self._alive():
+            self._step_one_creature(c, pending_children)
+
+        # Add pending children (born creatures act from next step)
+        self._creatures.extend(pending_children)
+
+        # World regeneration
+        self.world.step_regen()
+
+        # Log resource tick every 50 steps (reduce event volume)
+        if self.t % 50 == 0:
+            total_res = float(np.sum(self.world.resource))
+            self.events.append({
+                "t": self.t,
+                "event_type": "resource_tick",
+                "total_resource": round(total_res, 4),
+                "creature_id": None,
+                "parent_id": None,
+                "generation": None,
+                "location": None,
+                "energy": None,
+                "genotype": {},
+                "details": {},
+            })
+
+        # RUNAWAY GUARD: safety assertion only, NEVER a fitness culler
+        alive_count = sum(1 for c in self._creatures if c.is_alive())
+        if alive_count > self.cfg.max_population:
+            self.exploded = True
+            self.events.append({
+                "t": self.t,
+                "event_type": "explosion",
+                "alive_count": alive_count,
+                "max_population": self.cfg.max_population,
+                "creature_id": None,
+                "parent_id": None,
+                "generation": None,
+                "location": None,
+                "energy": None,
+                "genotype": {},
+                "details": {"message": "Population exceeded max_population. Run stopped (safety guard, not a culler)."},
+            })
+
+        self.t += 1
+
+    def run(self) -> dict[str, Any]:
+        """Run until horizon, extinction, or explosion.  Return summary dict."""
+        while True:
+            alive = [c for c in self._creatures if c.is_alive()]
+            if len(alive) == 0:
+                break
+            if self.exploded:
+                break
+            if self.t >= self.cfg.horizon:
+                break
+            self.step()
+
+        return self._compute_summary()
+
+    def _compute_summary(self) -> dict[str, Any]:
+        alive = [c for c in self._creatures if c.is_alive()]
+        dead = [c for c in self._creatures if not c.is_alive()]
+        all_c = self._creatures
+
+        # Cause of death tally
+        cod_tally: dict[str, int] = {}
+        for c in dead:
+            cause = c.phenotype.cause_of_death or "unknown"
+            cod_tally[cause] = cod_tally.get(cause, 0) + 1
+
+        # cohort_mortality: starvation_deaths / total_births (honest descriptive metric).
+        # Measures what fraction of all creatures ever born died; in a scarce environment
+        # more of the cohort dies, fewer survive.  EXPLORATORY / POST-HOC metric.
+        #
+        # starvation_death_fraction: the PREDECLARED P5 metric from the docstring —
+        # starvation_deaths / total_deaths.  Since starvation is the only death cause
+        # in this engine, this is ≡ 1.0 wherever deaths > 0.  Reported for honesty;
+        # the predeclared +0.15 conjunct is ill-posed (see experiment disclosure).
+        total_deaths = len(dead)
+        starvation_deaths = cod_tally.get("starvation", 0)
+        cohort_mortality = starvation_deaths / len(all_c) if len(all_c) > 0 else 0.0
+        starvation_death_fraction = starvation_deaths / max(1, total_deaths) if total_deaths > 0 else 0.0
+
+        # Births and max generation
+        births = len(all_c)
+        max_generation = max((c.generation for c in all_c), default=0)
+
+        # Mean lifespan of dead
+        lifespans = [c.phenotype.age for c in dead]
+        mean_lifespan = float(np.mean(lifespans)) if lifespans else 0.0
+
+        # Reproduction events
+        repro_count = sum(1 for e in self.events if e["event_type"] == "reproduction")
+
+        # Resource stats
+        total_resource = float(np.sum(self.world.resource))
+        mean_resource = float(np.mean(self.world.resource))
+
+        # Last-generation trait means (mean over all creatures in max generation)
+        max_gen_creatures = [c for c in all_c if c.generation == max_generation]
+        last_gen_trait_means: dict[str, float] = {}
+        if max_gen_creatures:
+            from dataclasses import asdict
+            trait_keys = list(asdict(max_gen_creatures[0].genotype).keys())
+            for k in trait_keys:
+                vals = [getattr(c.genotype, k) for c in max_gen_creatures]
+                last_gen_trait_means[k] = float(np.mean(vals))
+
+        return {
+            "scenario": self.cfg.name,
+            "seed": self.seed,
+            "horizon": self.cfg.horizon,
+            "steps_run": self.t,
+            "final_pop": len(alive),
+            "total_creatures": len(all_c),
+            "births": births,
+            "deaths": total_deaths,
+            "cause_of_death_tally": cod_tally,
+            "cohort_mortality": round(cohort_mortality, 6),
+            "starvation_death_fraction": round(starvation_death_fraction, 6),
+            "max_generation": max_generation,
+            "reproduction_count": repro_count,
+            "mean_lifespan": round(mean_lifespan, 4),
+            "total_resource": round(total_resource, 4),
+            "mean_resource": round(mean_resource, 6),
+            "extinction": len(alive) == 0,
+            "explosion": self.exploded,
+            "last_gen_trait_means": last_gen_trait_means,
+            "events_hash": self.events_hash(),
+        }
+
+    def events_hash(self) -> str:
+        """SHA-256 over canonical JSON of events (no wall-clock, sorted keys).
+        This is the determinism fingerprint.
+        """
+        canonical = json.dumps(self.events, sort_keys=True, ensure_ascii=True)
+        return hashlib.sha256(canonical.encode("utf-8")).hexdigest()

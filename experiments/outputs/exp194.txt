@@ -1,0 +1,117 @@
+======================================================================
+Exp 194 — N5 Homeostatic Population Ecology
+======================================================================
+Seeds: [0, 1, 2]
+Scenarios: ['balanced', 'scarce', 'overabundant']
+Mutation rate: 0.05
+Founder: {'movement_cost': 0.3, 'baseline_metabolic_cost': 0.5, 'energy_capacity': 20.0, 'reproduction_energy_threshold': 17.0, 'reproduction_energy_transfer_fraction': 0.45, 'reproduction_cost_fraction': 0.15, 'maturity_age': 5, 'aging_cost': 0.02, 'exploration_bias': 0.4, 'learning_rate': 0.3, 'memory_length': 5, 'temperature_tolerance': 0.5, 'sensor_precision': 0.85}
+
+--- Scenario: balanced (res_cap=10.0, regen=0.2, init_resource=0.7) ---
+  seed=0: final_pop=170, births=628, deaths=458, max_gen=12, cohort_mortality=0.729, starvation_death_frac=1.000, extinction=False, explosion=False, steps=600, hash=fc19d23fefed...
+  seed=1: final_pop=155, births=622, deaths=467, max_gen=10, cohort_mortality=0.751, starvation_death_frac=1.000, extinction=False, explosion=False, steps=600, hash=7dd4566665e5...
+  seed=2: final_pop=155, births=509, deaths=354, max_gen=8, cohort_mortality=0.695, starvation_death_frac=1.000, extinction=False, explosion=False, steps=600, hash=37c00f1c7b1c...
+--- Scenario: scarce (res_cap=3.5, regen=0.04, init_resource=0.2) ---
+  seed=0: final_pop=0, births=12, deaths=12, max_gen=0, cohort_mortality=1.000, starvation_death_frac=1.000, extinction=True, explosion=False, steps=32, hash=daeaedd977c6...
+  seed=1: final_pop=7, births=79, deaths=72, max_gen=5, cohort_mortality=0.911, starvation_death_frac=1.000, extinction=False, explosion=False, steps=600, hash=4b67c68fdd86...
+  seed=2: final_pop=0, births=12, deaths=12, max_gen=0, cohort_mortality=1.000, starvation_death_frac=1.000, extinction=True, explosion=False, steps=32, hash=914cbe4aa90d...
+--- Scenario: overabundant (res_cap=25.0, regen=2.0, init_resource=0.9) ---
+  seed=0: final_pop=202, births=862, deaths=660, max_gen=6, cohort_mortality=0.766, starvation_death_frac=1.000, extinction=False, explosion=True, steps=142, hash=a93faecdd77a...
+  seed=1: final_pop=202, births=608, deaths=406, max_gen=8, cohort_mortality=0.668, starvation_death_frac=1.000, extinction=False, explosion=True, steps=104, hash=c5ca0235a583...
+  seed=2: final_pop=204, births=717, deaths=513, max_gen=7, cohort_mortality=0.715, starvation_death_frac=1.000, extinction=False, explosion=True, steps=127, hash=c8f8217d66d3...
+
+--- Determinism checks ---
+  balanced seed=0: PASS
+  balanced seed=1: PASS
+  balanced seed=2: PASS
+  scarce seed=0: PASS
+  scarce seed=1: PASS
+  scarce seed=2: PASS
+  overabundant seed=0: PASS
+  overabundant seed=1: PASS
+  overabundant seed=2: PASS
+
+======================================================================
+SUMMARY
+======================================================================
+
+-- PREDICTIONS --
+P1 determinism: PASS
+   balanced seed=0: ok
+   balanced seed=1: ok
+   balanced seed=2: ok
+   scarce seed=0: ok
+   scarce seed=1: ok
+   scarce seed=2: ok
+   overabundant seed=0: ok
+   overabundant seed=1: ok
+   overabundant seed=2: ok
+P2 bounded persistence (balanced): PASS
+   seed=0: final_pop=170 <= pop_cap=200, explosion=False, ok=True
+   seed=1: final_pop=155 <= pop_cap=200, explosion=False, ok=True
+   seed=2: final_pop=155 <= pop_cap=200, explosion=False, ok=True
+P3 multi-generation lineage (balanced): PASS
+   seed=0: births=628, max_gen=12, ok=True
+   seed=1: births=622, max_gen=10, ok=True
+   seed=2: births=509, max_gen=8, ok=True
+P4 homeostatic death only: PASS
+   total_deaths=1279, starvation=1279, other=0
+   some_deaths=True, all_homeostatic=True
+P5 scarcity bites (effect size): FAIL
+  P5 population sub-metric (well-posed): scarce mean final pop lower than balanced by >=25%
+   seed=0: balanced_pop=170, scarce_pop=0, pop_reduction=100.00%, pop_ok=True
+   seed=1: balanced_pop=155, scarce_pop=7, pop_reduction=95.48%, pop_ok=True
+   seed=2: balanced_pop=155, scarce_pop=0, pop_reduction=100.00%, pop_ok=True
+  P5 population sub-metric result: PASS (3/3 seeds)
+
+  P5 starvation-death-fraction (deaths/total_deaths) — PREDECLARED metric (starvation_death_fraction):
+  NOTE: starvation is the ONLY death cause => this metric ≡ 1.0 wherever deaths>0
+  => diff is always 0.000 (or 0 if extinct-no-deaths); +0.15 conjunct UNSATISFIABLE
+   seed=0: balanced_starvation_death_frac=1.000, scarce_starvation_death_frac=1.000, diff=+0.000, ok(>=0.15)=False
+   seed=1: balanced_starvation_death_frac=1.000, scarce_starvation_death_frac=1.000, diff=+0.000, ok(>=0.15)=False
+   seed=2: balanced_starvation_death_frac=1.000, scarce_starvation_death_frac=1.000, diff=+0.000, ok(>=0.15)=False
+  P5 starvation-death-fraction result: ILL-POSED (single death cause; +0.15 unsatisfiable) => FAIL
+
+  P5 cohort-mortality (deaths/total_births) — EXPLORATORY, post-hoc, NOT the predeclared standard:
+   seed=0: balanced_cohort_mortality=0.729, scarce_cohort_mortality=1.000, diff=+0.271
+   seed=1: balanced_cohort_mortality=0.751, scarce_cohort_mortality=0.911, diff=+0.161
+   seed=2: balanced_cohort_mortality=0.695, scarce_cohort_mortality=1.000, diff=+0.304
+P6 traits not frozen: PASS
+   balanced/seed0/movement_cost: founder=0.3000, last_gen=0.0419, diff=0.2581 >= sigma=0.0995
+   balanced/seed0/baseline_metabolic_cost: founder=0.5000, last_gen=0.0236, diff=0.4764 >= sigma=0.0995
+   balanced/seed0/energy_capacity: founder=20.0000, last_gen=24.2705, diff=4.2705 >= sigma=2.2500
+   balanced/seed0/reproduction_energy_threshold: founder=17.0000, last_gen=13.8825, diff=3.1175 >= sigma=2.4000
+   balanced/seed0/reproduction_energy_transfer_fraction: founder=0.4500, last_gen=0.3848, diff=0.0652 >= sigma=0.0275
+   ... (60 total evidence items)
+P7 regimes separate: PASS
+   all_extinct=False, all_exploded=False, bounded_persistent_exists=True
+
+-- FALSIFIERS --
+F1 non-determinism: CLEAR
+F2 trivial dynamics: CLEAR
+   balanced_all_exploded=False, all_scenarios_all_extinct=False
+F3 homeostatic constraint inert: CLEAR
+   total_deaths_balanced=1279
+F4 reproduction unconstrained: CLEAR
+   F4: CLEAR (3941 reproduction events across all scenarios/seeds, 0 violations of age<maturity or energy<threshold)
+F5 unsafe mutation: CLEAR
+   structural: mutate() asserts is_valid(); 200-seed fuzz passed
+F6 hidden evaluator: CLEAR
+   structural: _step_one_creature reads only (c, local_cell), no population arg
+F7 scarcity inert: CLEAR
+   seeds_where_population_bites=3/3 (well-posed metric)
+
+VERDICT: MIXED
+Reason: P1–P4 PASS; scarcity bites overwhelmingly on the well-posed population sub-metric (PASS 3/3); the predeclared P5 starvation-death-fraction sub-metric is ILL-POSED (single death cause ⇒ ≡1.0); no hard falsifier fires ⇒ MIXED.
+P6_supporting: True (60 evidence items)
+P7_supporting: True
+
+DISCLOSURES (honest record):
+- Policy is a PROVIDED homeostatic heuristic (resource-seeking value map), NOT pymdp active inference.
+- "No external evaluator selects" is a VERIFIED DESIGN INVARIANT (code-inspected: survival/reproduction read only the creature's own genotype/phenotype + local cell), not an empirical discovery.
+- Scenario resource params AND the founder genotype were TUNED to place each regime (environment design only; mechanics/metrics/falsifiers fixed). Founder revised once (repro threshold 12->17) because the original exploded. Audit trail in ecology/scenarios.py.
+- No baseline (random-policy / zero-mutation) was run.
+- P6 trait shifts are drift/variation; some are large (e.g. metabolic cost ~0.50->~0.02) and consistent with directional selection, but NO counterfactual control was run, so drift vs selection is NOT distinguished.
+- Overabundant shows ~70% cohort mortality despite abundant resources because the population explodes to the runaway cap and crowds (per-cell depletion), not because resources are scarce.
+
+runtime: 2.6s
+======================================================================

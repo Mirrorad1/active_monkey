@@ -1,0 +1,4179 @@
+{
+  "0": {
+    "children": [
+      12,
+      24
+    ],
+    "generation": 0,
+    "lineage_root": 0,
+    "offspring_count": 2,
+    "parent_id": null
+  },
+  "1": {
+    "children": [
+      13,
+      27
+    ],
+    "generation": 0,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": null
+  },
+  "10": {
+    "children": [
+      22
+    ],
+    "generation": 0,
+    "lineage_root": 10,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "100": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 67
+  },
+  "101": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "102": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "103": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "104": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "105": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "106": {
+    "children": [
+      125,
+      127,
+      128,
+      163,
+      227,
+      485
+    ],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 6,
+    "parent_id": 38
+  },
+  "107": {
+    "children": [
+      113
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 44
+  },
+  "108": {
+    "children": [
+      221,
+      225
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 78
+  },
+  "109": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "11": {
+    "children": [
+      23
+    ],
+    "generation": 0,
+    "lineage_root": 11,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "110": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "111": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "112": {
+    "children": [
+      176,
+      272,
+      305,
+      321,
+      361,
+      418
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 6,
+    "parent_id": 67
+  },
+  "113": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 107
+  },
+  "114": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "115": {
+    "children": [
+      188,
+      226,
+      255,
+      385,
+      481
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 75
+  },
+  "116": {
+    "children": [
+      145,
+      191,
+      206,
+      218,
+      257,
+      281,
+      340,
+      448,
+      507
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 9,
+    "parent_id": 96
+  },
+  "117": {
+    "children": [
+      212,
+      263,
+      275
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 68
+  },
+  "118": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "119": {
+    "children": [
+      175,
+      198,
+      213,
+      219,
+      245,
+      327,
+      347,
+      358,
+      383
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 9,
+    "parent_id": 48
+  },
+  "12": {
+    "children": [
+      28,
+      38,
+      41,
+      42
+    ],
+    "generation": 1,
+    "lineage_root": 0,
+    "offspring_count": 4,
+    "parent_id": 0
+  },
+  "120": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "121": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "122": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "123": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "124": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "125": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 106
+  },
+  "126": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "127": {
+    "children": [
+      149,
+      158,
+      194,
+      215,
+      229,
+      242,
+      260,
+      299,
+      330,
+      381,
+      401,
+      412,
+      431,
+      482,
+      494
+    ],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 15,
+    "parent_id": 106
+  },
+  "128": {
+    "children": [
+      200,
+      268,
+      390,
+      464
+    ],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 4,
+    "parent_id": 106
+  },
+  "129": {
+    "children": [
+      146,
+      177,
+      216,
+      239,
+      267,
+      278,
+      300,
+      325,
+      356,
+      404,
+      435,
+      469
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 12,
+    "parent_id": 48
+  },
+  "13": {
+    "children": [
+      30,
+      32,
+      33,
+      44
+    ],
+    "generation": 1,
+    "lineage_root": 1,
+    "offspring_count": 4,
+    "parent_id": 1
+  },
+  "130": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "131": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 88
+  },
+  "132": {
+    "children": [
+      224,
+      231,
+      234,
+      235,
+      236,
+      241,
+      250,
+      252
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 8,
+    "parent_id": 48
+  },
+  "133": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "134": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "135": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "136": {
+    "children": [
+      160,
+      196,
+      243,
+      264,
+      302,
+      326,
+      392
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 7,
+    "parent_id": 68
+  },
+  "137": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "138": {
+    "children": [
+      270
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 90
+  },
+  "139": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "14": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": 2
+  },
+  "140": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "141": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "142": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "143": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "144": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "145": {
+    "children": [
+      233,
+      246
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 116
+  },
+  "146": {
+    "children": [
+      207,
+      228,
+      249,
+      258,
+      315,
+      387,
+      426,
+      475
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 8,
+    "parent_id": 129
+  },
+  "147": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "148": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "149": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "15": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 3,
+    "offspring_count": 0,
+    "parent_id": 3
+  },
+  "150": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "151": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "152": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "153": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "154": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "155": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "156": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 97
+  },
+  "157": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "158": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "159": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "16": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 4,
+    "offspring_count": 0,
+    "parent_id": 4
+  },
+  "160": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "161": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "162": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 88
+  },
+  "163": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 106
+  },
+  "164": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  },
+  "165": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "166": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 67
+  },
+  "167": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "168": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "169": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "17": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 5,
+    "offspring_count": 0,
+    "parent_id": 5
+  },
+  "170": {
+    "children": [
+      223,
+      253,
+      265,
+      274,
+      277,
+      307,
+      364,
+      413,
+      467
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 9,
+    "parent_id": 96
+  },
+  "171": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "172": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "173": {
+    "children": [
+      217,
+      276,
+      295,
+      369,
+      447
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 81
+  },
+  "174": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "175": {
+    "children": [
+      244,
+      285,
+      290
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 119
+  },
+  "176": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "177": {
+    "children": [
+      247,
+      273,
+      342,
+      357,
+      438
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 129
+  },
+  "178": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "179": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "18": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 6
+  },
+  "180": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "181": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "182": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 88
+  },
+  "183": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "184": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "185": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "186": {
+    "children": [
+      261,
+      408
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 68
+  },
+  "187": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 90
+  },
+  "188": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 115
+  },
+  "189": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "19": {
+    "children": [
+      34,
+      36,
+      39
+    ],
+    "generation": 1,
+    "lineage_root": 7,
+    "offspring_count": 3,
+    "parent_id": 7
+  },
+  "190": {
+    "children": [
+      289,
+      316
+    ],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 2,
+    "parent_id": 89
+  },
+  "191": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "192": {
+    "children": [
+      284
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 68
+  },
+  "193": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "194": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "195": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 88
+  },
+  "196": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "197": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  },
+  "198": {
+    "children": [
+      222,
+      240,
+      269,
+      303,
+      353,
+      377,
+      396,
+      415,
+      441,
+      462,
+      486
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 11,
+    "parent_id": 119
+  },
+  "199": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "2": {
+    "children": [
+      14,
+      37,
+      40,
+      43
+    ],
+    "generation": 0,
+    "lineage_root": 2,
+    "offspring_count": 4,
+    "parent_id": null
+  },
+  "20": {
+    "children": [
+      31
+    ],
+    "generation": 1,
+    "lineage_root": 8,
+    "offspring_count": 1,
+    "parent_id": 8
+  },
+  "200": {
+    "children": [
+      355,
+      453
+    ],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 2,
+    "parent_id": 128
+  },
+  "201": {
+    "children": [
+      266,
+      471
+    ],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 2,
+    "parent_id": 41
+  },
+  "202": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 90
+  },
+  "203": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "204": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "205": {
+    "children": [
+      292,
+      310,
+      317
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 97
+  },
+  "206": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "207": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 146
+  },
+  "208": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 89
+  },
+  "209": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  },
+  "21": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 9,
+    "offspring_count": 0,
+    "parent_id": 9
+  },
+  "210": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "211": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "212": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 117
+  },
+  "213": {
+    "children": [
+      271,
+      293,
+      301,
+      320,
+      332,
+      442,
+      505
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 7,
+    "parent_id": 119
+  },
+  "214": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "215": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "216": {
+    "children": [
+      251,
+      288,
+      313,
+      328,
+      336,
+      371,
+      432
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 7,
+    "parent_id": 129
+  },
+  "217": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 173
+  },
+  "218": {
+    "children": [
+      337,
+      429,
+      497
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 116
+  },
+  "219": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 119
+  },
+  "22": {
+    "children": [
+      29
+    ],
+    "generation": 1,
+    "lineage_root": 10,
+    "offspring_count": 1,
+    "parent_id": 10
+  },
+  "220": {
+    "children": [
+      294,
+      333
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 67
+  },
+  "221": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 108
+  },
+  "222": {
+    "children": [
+      259,
+      280,
+      322,
+      346,
+      380,
+      399,
+      457,
+      477
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 8,
+    "parent_id": 198
+  },
+  "223": {
+    "children": [
+      296,
+      306,
+      318,
+      406,
+      450
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 170
+  },
+  "224": {
+    "children": [
+      297,
+      343
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 132
+  },
+  "225": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 108
+  },
+  "226": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 115
+  },
+  "227": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 106
+  },
+  "228": {
+    "children": [
+      351
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 146
+  },
+  "229": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "23": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 11,
+    "offspring_count": 0,
+    "parent_id": 11
+  },
+  "230": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 67
+  },
+  "231": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "232": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 97
+  },
+  "233": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 145
+  },
+  "234": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "235": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "236": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "237": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "238": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "239": {
+    "children": [
+      291,
+      335,
+      367,
+      394,
+      405,
+      430,
+      474,
+      500
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 8,
+    "parent_id": 129
+  },
+  "24": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 0
+  },
+  "240": {
+    "children": [
+      256,
+      279,
+      329,
+      360,
+      393,
+      420,
+      452,
+      490
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 8,
+    "parent_id": 198
+  },
+  "241": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "242": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "243": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "244": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 175
+  },
+  "245": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 119
+  },
+  "246": {
+    "children": [
+      423
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 145
+  },
+  "247": {
+    "children": [
+      344
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 177
+  },
+  "248": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "249": {
+    "children": [
+      298,
+      365,
+      421,
+      483
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 4,
+    "parent_id": 146
+  },
+  "25": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 5,
+    "offspring_count": 0,
+    "parent_id": 5
+  },
+  "250": {
+    "children": [
+      311,
+      348,
+      370
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 132
+  },
+  "251": {
+    "children": [
+      282,
+      314,
+      345,
+      400,
+      433,
+      478
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 6,
+    "parent_id": 216
+  },
+  "252": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 132
+  },
+  "253": {
+    "children": [
+      286,
+      319,
+      349,
+      391,
+      425,
+      458,
+      499
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 7,
+    "parent_id": 170
+  },
+  "254": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "255": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 115
+  },
+  "256": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "257": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "258": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 146
+  },
+  "259": {
+    "children": [
+      341
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 222
+  },
+  "26": {
+    "children": [
+      50,
+      51,
+      56,
+      70,
+      72,
+      73,
+      74,
+      82,
+      111,
+      122,
+      123,
+      130,
+      139,
+      143,
+      150,
+      153
+    ],
+    "generation": 1,
+    "lineage_root": 6,
+    "offspring_count": 16,
+    "parent_id": 6
+  },
+  "260": {
+    "children": [
+      323,
+      352,
+      388,
+      409,
+      427,
+      445,
+      476
+    ],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 7,
+    "parent_id": 127
+  },
+  "261": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 186
+  },
+  "262": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "263": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 117
+  },
+  "264": {
+    "children": [
+      312,
+      350,
+      375,
+      424,
+      495
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 136
+  },
+  "265": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "266": {
+    "children": [
+      334,
+      373,
+      440,
+      491
+    ],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 4,
+    "parent_id": 201
+  },
+  "267": {
+    "children": [
+      331,
+      366
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 129
+  },
+  "268": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 128
+  },
+  "269": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "27": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 1
+  },
+  "270": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 138
+  },
+  "271": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "272": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "273": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 177
+  },
+  "274": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "275": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 117
+  },
+  "276": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 173
+  },
+  "277": {
+    "children": [
+      359
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 170
+  },
+  "278": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "279": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "28": {
+    "children": [
+      35
+    ],
+    "generation": 2,
+    "lineage_root": 0,
+    "offspring_count": 1,
+    "parent_id": 12
+  },
+  "280": {
+    "children": [
+      354,
+      389,
+      419,
+      465,
+      498
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 222
+  },
+  "281": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "282": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 251
+  },
+  "283": {
+    "children": [
+      382,
+      407,
+      459
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 97
+  },
+  "284": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 192
+  },
+  "285": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 175
+  },
+  "286": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "287": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 88
+  },
+  "288": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 216
+  },
+  "289": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 190
+  },
+  "29": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 10,
+    "offspring_count": 0,
+    "parent_id": 22
+  },
+  "290": {
+    "children": [
+      374
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 175
+  },
+  "291": {
+    "children": [
+      410,
+      492
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 239
+  },
+  "292": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 205
+  },
+  "293": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "294": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 220
+  },
+  "295": {
+    "children": [
+      362,
+      428
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 173
+  },
+  "296": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 223
+  },
+  "297": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 224
+  },
+  "298": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 249
+  },
+  "299": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "3": {
+    "children": [
+      15
+    ],
+    "generation": 0,
+    "lineage_root": 3,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "30": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 13
+  },
+  "300": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "301": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "302": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "303": {
+    "children": [
+      376
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 198
+  },
+  "304": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "305": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "306": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 223
+  },
+  "307": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "308": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "309": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "31": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 8,
+    "offspring_count": 0,
+    "parent_id": 20
+  },
+  "310": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 205
+  },
+  "311": {
+    "children": [
+      363,
+      411,
+      461
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 250
+  },
+  "312": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 264
+  },
+  "313": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 216
+  },
+  "314": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 251
+  },
+  "315": {
+    "children": [
+      402,
+      434
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 146
+  },
+  "316": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 190
+  },
+  "317": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 205
+  },
+  "318": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 223
+  },
+  "319": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "32": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 13
+  },
+  "320": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "321": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "322": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 222
+  },
+  "323": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "324": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 78
+  },
+  "325": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "326": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "327": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 119
+  },
+  "328": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 216
+  },
+  "329": {
+    "children": [
+      395,
+      506
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 240
+  },
+  "33": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 13
+  },
+  "330": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "331": {
+    "children": [
+      414
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 267
+  },
+  "332": {
+    "children": [
+      468
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 213
+  },
+  "333": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 220
+  },
+  "334": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 266
+  },
+  "335": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "336": {
+    "children": [
+      372,
+      503
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 216
+  },
+  "337": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 218
+  },
+  "338": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  },
+  "339": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 81
+  },
+  "34": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 7,
+    "offspring_count": 0,
+    "parent_id": 19
+  },
+  "340": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "341": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 259
+  },
+  "342": {
+    "children": [
+      443,
+      496
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 177
+  },
+  "343": {
+    "children": [
+      397,
+      466
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 224
+  },
+  "344": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 247
+  },
+  "345": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 251
+  },
+  "346": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 222
+  },
+  "347": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 119
+  },
+  "348": {
+    "children": [
+      378,
+      416,
+      454,
+      472
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 4,
+    "parent_id": 250
+  },
+  "349": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "35": {
+    "children": [
+      54,
+      57,
+      58,
+      59,
+      63
+    ],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 5,
+    "parent_id": 28
+  },
+  "350": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 264
+  },
+  "351": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 228
+  },
+  "352": {
+    "children": [
+      417,
+      449,
+      493
+    ],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 3,
+    "parent_id": 260
+  },
+  "353": {
+    "children": [
+      444,
+      501
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 198
+  },
+  "354": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 280
+  },
+  "355": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 200
+  },
+  "356": {
+    "children": [
+      484
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 129
+  },
+  "357": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 177
+  },
+  "358": {
+    "children": [
+      437,
+      489
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 119
+  },
+  "359": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 277
+  },
+  "36": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 7,
+    "offspring_count": 0,
+    "parent_id": 19
+  },
+  "360": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "361": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "362": {
+    "children": [
+      487
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 295
+  },
+  "363": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 311
+  },
+  "364": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "365": {
+    "children": [
+      488
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 249
+  },
+  "366": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 267
+  },
+  "367": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "368": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "369": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 173
+  },
+  "37": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": 2
+  },
+  "370": {
+    "children": [
+      398,
+      456,
+      502
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 250
+  },
+  "371": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 216
+  },
+  "372": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 336
+  },
+  "373": {
+    "children": [
+      439
+    ],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 1,
+    "parent_id": 266
+  },
+  "374": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 290
+  },
+  "375": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 264
+  },
+  "376": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 303
+  },
+  "377": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "378": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 348
+  },
+  "379": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 67
+  },
+  "38": {
+    "children": [
+      53,
+      61,
+      69,
+      71,
+      76,
+      77,
+      79,
+      80,
+      83,
+      85,
+      89,
+      91,
+      101,
+      105,
+      106
+    ],
+    "generation": 2,
+    "lineage_root": 0,
+    "offspring_count": 15,
+    "parent_id": 12
+  },
+  "380": {
+    "children": [
+      451
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 222
+  },
+  "381": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "382": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 283
+  },
+  "383": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 119
+  },
+  "384": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 97
+  },
+  "385": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 115
+  },
+  "386": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 75
+  },
+  "387": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 146
+  },
+  "388": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "389": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 280
+  },
+  "39": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 7,
+    "offspring_count": 0,
+    "parent_id": 19
+  },
+  "390": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 128
+  },
+  "391": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "392": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 136
+  },
+  "393": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "394": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "395": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 329
+  },
+  "396": {
+    "children": [
+      470
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 198
+  },
+  "397": {
+    "children": [
+      460
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 343
+  },
+  "398": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 370
+  },
+  "399": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 222
+  },
+  "4": {
+    "children": [
+      16
+    ],
+    "generation": 0,
+    "lineage_root": 4,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "40": {
+    "children": [],
+    "generation": 1,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": 2
+  },
+  "400": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 251
+  },
+  "401": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "402": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 315
+  },
+  "403": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "404": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "405": {
+    "children": [
+      463
+    ],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 239
+  },
+  "406": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 223
+  },
+  "407": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 283
+  },
+  "408": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 186
+  },
+  "409": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "41": {
+    "children": [
+      52,
+      64,
+      134,
+      201,
+      237,
+      304,
+      436
+    ],
+    "generation": 2,
+    "lineage_root": 0,
+    "offspring_count": 7,
+    "parent_id": 12
+  },
+  "410": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 291
+  },
+  "411": {
+    "children": [
+      504
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 311
+  },
+  "412": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "413": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "414": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 331
+  },
+  "415": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "416": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 348
+  },
+  "417": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 352
+  },
+  "418": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 112
+  },
+  "419": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 280
+  },
+  "42": {
+    "children": [
+      46,
+      55,
+      60,
+      62,
+      65,
+      66,
+      87
+    ],
+    "generation": 2,
+    "lineage_root": 0,
+    "offspring_count": 7,
+    "parent_id": 12
+  },
+  "420": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "421": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 249
+  },
+  "422": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  },
+  "423": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 246
+  },
+  "424": {
+    "children": [
+      479
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 264
+  },
+  "425": {
+    "children": [
+      473
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 253
+  },
+  "426": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 146
+  },
+  "427": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "428": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 295
+  },
+  "429": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 218
+  },
+  "43": {
+    "children": [
+      45,
+      47
+    ],
+    "generation": 1,
+    "lineage_root": 2,
+    "offspring_count": 2,
+    "parent_id": 2
+  },
+  "430": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "431": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "432": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 216
+  },
+  "433": {
+    "children": [
+      508
+    ],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 1,
+    "parent_id": 251
+  },
+  "434": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 315
+  },
+  "435": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "436": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "437": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 358
+  },
+  "438": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 177
+  },
+  "439": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 373
+  },
+  "44": {
+    "children": [
+      48,
+      49,
+      67,
+      75,
+      78,
+      81,
+      84,
+      86,
+      90,
+      93,
+      94,
+      95,
+      98,
+      102,
+      107,
+      109,
+      110,
+      133,
+      135,
+      137,
+      142,
+      147,
+      152,
+      161
+    ],
+    "generation": 2,
+    "lineage_root": 1,
+    "offspring_count": 24,
+    "parent_id": 13
+  },
+  "440": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 266
+  },
+  "441": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "442": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "443": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 342
+  },
+  "444": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 353
+  },
+  "445": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "446": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 97
+  },
+  "447": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 173
+  },
+  "448": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "449": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 352
+  },
+  "45": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": 43
+  },
+  "450": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 223
+  },
+  "451": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 380
+  },
+  "452": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "453": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 200
+  },
+  "454": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 348
+  },
+  "455": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 68
+  },
+  "456": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 370
+  },
+  "457": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 222
+  },
+  "458": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "459": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 283
+  },
+  "46": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "460": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 397
+  },
+  "461": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 311
+  },
+  "462": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "463": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 405
+  },
+  "464": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 128
+  },
+  "465": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 280
+  },
+  "466": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 343
+  },
+  "467": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 170
+  },
+  "468": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 332
+  },
+  "469": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 129
+  },
+  "47": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 2,
+    "offspring_count": 0,
+    "parent_id": 43
+  },
+  "470": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 396
+  },
+  "471": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 201
+  },
+  "472": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 348
+  },
+  "473": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 425
+  },
+  "474": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "475": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 146
+  },
+  "476": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 260
+  },
+  "477": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 222
+  },
+  "478": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 251
+  },
+  "479": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 424
+  },
+  "48": {
+    "children": [
+      68,
+      92,
+      97,
+      114,
+      118,
+      119,
+      121,
+      124,
+      126,
+      129,
+      132,
+      144,
+      151,
+      157,
+      159
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 15,
+    "parent_id": 44
+  },
+  "480": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 96
+  },
+  "481": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 115
+  },
+  "482": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "483": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 249
+  },
+  "484": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 356
+  },
+  "485": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 106
+  },
+  "486": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 198
+  },
+  "487": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 362
+  },
+  "488": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 365
+  },
+  "489": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 358
+  },
+  "49": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "490": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 240
+  },
+  "491": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 266
+  },
+  "492": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 291
+  },
+  "493": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 352
+  },
+  "494": {
+    "children": [],
+    "generation": 5,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 127
+  },
+  "495": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 264
+  },
+  "496": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 342
+  },
+  "497": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 218
+  },
+  "498": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 280
+  },
+  "499": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 253
+  },
+  "5": {
+    "children": [
+      17,
+      25
+    ],
+    "generation": 0,
+    "lineage_root": 5,
+    "offspring_count": 2,
+    "parent_id": null
+  },
+  "50": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "500": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 239
+  },
+  "501": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 353
+  },
+  "502": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 370
+  },
+  "503": {
+    "children": [],
+    "generation": 7,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 336
+  },
+  "504": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 411
+  },
+  "505": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 213
+  },
+  "506": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 329
+  },
+  "507": {
+    "children": [],
+    "generation": 6,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 116
+  },
+  "508": {
+    "children": [],
+    "generation": 8,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 433
+  },
+  "51": {
+    "children": [
+      99,
+      164,
+      197,
+      209,
+      338,
+      422
+    ],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 6,
+    "parent_id": 26
+  },
+  "52": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "53": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "54": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 35
+  },
+  "55": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "56": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "57": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 35
+  },
+  "58": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 35
+  },
+  "59": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 35
+  },
+  "6": {
+    "children": [
+      18,
+      26
+    ],
+    "generation": 0,
+    "lineage_root": 6,
+    "offspring_count": 2,
+    "parent_id": null
+  },
+  "60": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "61": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "62": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "63": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 35
+  },
+  "64": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 41
+  },
+  "65": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "66": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "67": {
+    "children": [
+      100,
+      112,
+      166,
+      220,
+      230,
+      379
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 6,
+    "parent_id": 44
+  },
+  "68": {
+    "children": [
+      88,
+      103,
+      117,
+      120,
+      136,
+      141,
+      148,
+      154,
+      165,
+      168,
+      169,
+      171,
+      172,
+      174,
+      178,
+      181,
+      183,
+      185,
+      186,
+      192,
+      262,
+      455
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 22,
+    "parent_id": 48
+  },
+  "69": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "7": {
+    "children": [
+      19
+    ],
+    "generation": 0,
+    "lineage_root": 7,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "70": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "71": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "72": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "73": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "74": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "75": {
+    "children": [
+      115,
+      155,
+      167,
+      193,
+      238,
+      248,
+      386
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 7,
+    "parent_id": 44
+  },
+  "76": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "77": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "78": {
+    "children": [
+      108,
+      324
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 2,
+    "parent_id": 44
+  },
+  "79": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "8": {
+    "children": [
+      20
+    ],
+    "generation": 0,
+    "lineage_root": 8,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "80": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "81": {
+    "children": [
+      96,
+      104,
+      140,
+      173,
+      179,
+      184,
+      189,
+      203,
+      204,
+      210,
+      211,
+      308,
+      339
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 13,
+    "parent_id": 44
+  },
+  "82": {
+    "children": [],
+    "generation": 2,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 26
+  },
+  "83": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "84": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "85": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "86": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "87": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 42
+  },
+  "88": {
+    "children": [
+      131,
+      162,
+      182,
+      195,
+      287
+    ],
+    "generation": 5,
+    "lineage_root": 1,
+    "offspring_count": 5,
+    "parent_id": 68
+  },
+  "89": {
+    "children": [
+      190,
+      208
+    ],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 2,
+    "parent_id": 38
+  },
+  "9": {
+    "children": [
+      21
+    ],
+    "generation": 0,
+    "lineage_root": 9,
+    "offspring_count": 1,
+    "parent_id": null
+  },
+  "90": {
+    "children": [
+      138,
+      187,
+      202
+    ],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 3,
+    "parent_id": 44
+  },
+  "91": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 0,
+    "offspring_count": 0,
+    "parent_id": 38
+  },
+  "92": {
+    "children": [],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 48
+  },
+  "93": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "94": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "95": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "96": {
+    "children": [
+      116,
+      170,
+      180,
+      199,
+      214,
+      254,
+      309,
+      368,
+      403,
+      480
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 10,
+    "parent_id": 81
+  },
+  "97": {
+    "children": [
+      156,
+      205,
+      232,
+      283,
+      384,
+      446
+    ],
+    "generation": 4,
+    "lineage_root": 1,
+    "offspring_count": 6,
+    "parent_id": 48
+  },
+  "98": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 1,
+    "offspring_count": 0,
+    "parent_id": 44
+  },
+  "99": {
+    "children": [],
+    "generation": 3,
+    "lineage_root": 6,
+    "offspring_count": 0,
+    "parent_id": 51
+  }
+}

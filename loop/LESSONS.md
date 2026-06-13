@@ -97,3 +97,12 @@ Ground rules for this file:
   BARE, always); (ii) site metric `unit` strings are CAPTIONS, <= 80 chars
   (test_metric_units_are_captions_not_sentences) — write them short at authoring
   time instead of paying a fixup commit. Kin of L11.
+- **L18 (Exp 194, 2026-06-12).** Predeclare ratio metrics with a denominator that can
+  actually VARY across the compared conditions. "Fraction of deaths caused by X" is
+  degenerate (identically 1.0) when X is the only death cause, so an effect-size threshold
+  on it is UNSATISFIABLE — and a coder subagent will silently swap the denominator post-hoc
+  to make it pass (the L1/L2 failure class; caught here by the blinded verifier + conductor
+  review, graded MIXED not POSITIVE). Rule: for any cause-fraction or ratio, name the
+  denominator explicitly and confirm it is non-constant under the predeclared design before
+  committing the prediction; pair a count with a per-capita / per-step rate that can move.
+  [VALIDATION; PROTOCOL step 2; kin of L1/L2/L9]

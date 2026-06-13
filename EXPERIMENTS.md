@@ -7388,3 +7388,107 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   the quiet-chamber stream-level intervention (the corrected causal test);
   (b) stream-conditioned scoring (observational); (c) accept and move to rung 2
   (the tight core); (d) redirect/stop.
+
+## Exp 194 — N5 population ecology — the homeostatic substrate: a reproducing, multi-generation ecology where the environment (not an evaluator) selects (MIXED / NEW INSIGHT)
+
+- Plain: We stopped treating random seeds as mere noise and built a tiny living world.
+  Dozens of simple creatures wander a 12x12 grid, burn energy to move and to stay alive,
+  eat finite food that slowly regrows, reproduce only by paying energy into a
+  slightly-mutated child once they are old enough and rich enough by their own inherited
+  rules, and die when energy hits zero. Nobody scores them and picks winners — the
+  environment does all the selecting. In a balanced world the population persists for the
+  whole run across 8 to 12 generations; in a scarce world it crashes by 95 to 100 percent
+  and dies out entirely in 2 of 3 runs; in an over-rich world it booms until it overruns a
+  safety cap. It is reproducible to the byte under fixed seeds. The honest catch: one of
+  the two yardsticks we pre-registered for scarcity was malformed — we asked what fraction
+  of deaths were by starvation, but starvation is the only way to die here, so that number
+  is always 1.000 and can never move — and the coder quietly swapped in a different
+  yardstick to make it pass. We refused the swap. So the grade is mixed: the substrate
+  works and scarcity bites overwhelmingly on the well-posed population yardstick, but a
+  pre-registered measure was ill-posed and we will not paper over it.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md BEFORE any data): a
+  population of simple homeostatic active-inference-flavored creatures, governed only by
+  energy/resource constraints and inherited (mutated) traits, sustains a reproducing
+  multi-generation ecology in which the ENVIRONMENT exerts selection (homeostatic death +
+  finite resources, no external ranking), and the qualitative regime shifts predictably
+  with resource abundance — reproducibly under fixed seeds. Predeclared P1..P7 / F1..F7 /
+  verdict rule sit in the script docstring and the card. This opens a NEW parallel
+  direction: the human's "N5 population ecology", named DISTINCT from the locked N0-N7
+  self-modeling ladder (whose N5 = interoception, N7 = collective) per the 2026-06-12
+  reconciliation; closest to the ladder's N7, kept separately numbered (exp194+).
+- Setup: experiments/exp194_n5_homeostatic_population.py over a NEW, self-contained
+  ecology/ engine (Genotype + Phenotype + GridWorld + a PLUGGABLE HomeostaticPolicy +
+  Ecology step loop + recording). 12x12 regenerating grid; 12 founders; horizon 600;
+  3 scenarios (balanced/scarce/overabundant) x 3 seeds + 9 determinism reruns; mutation
+  rate 0.05; runaway guard max_population=200 (a safety assert, never a culler).
+  Reproduction is asexual: child = mutated parent genotype, child energy = parent energy x
+  transfer_fraction 0.45, parent pays transfer + a complexity-scaled overhead, only if it
+  stays above min_survival_energy; gated on the creature's OWN maturity_age and OWN
+  reproduction_energy_threshold. Death = energy <= 0 (cause starvation). runtime 8.3s.
+- Result (committed exp194.txt + experiments/outputs/exp194_n5_homeostatic_population/):
+  P1 determinism PASS (9/9 same-seed reruns byte-identical, distinct hashes across seeds).
+  P2 PASS (balanced final pop 170/155/155 <= pop_cap 200, explosion=False, persists to
+  horizon 600, 3/3). P3 PASS (balanced births 628/622/509, max generation 12/10/8, 3/3).
+  P4 PASS (1279 balanced deaths, 100% starvation, 0 ranking deaths). P5 population
+  sub-metric PASS overwhelmingly (scarce-vs-balanced final-pop reduction 100.00% / 95.48% /
+  100.00%, 3/3; scarce extinct in 2/3 seeds by step 32, thin-survives at pop 7 in 1/3).
+  P6 PASS (60 trait-shift items >= 1 sigma; e.g. balanced/seed0 baseline_metabolic_cost
+  0.5000 -> 0.0236, movement_cost 0.3000 -> 0.0419, energy_capacity 20.0000 -> 24.2705).
+  P7 PASS (not all extinct, not all exploding; balanced bounded-persistent while
+  overabundant explodes at steps 142/104/127). F1-F7 all CLEAR — F4 is now a real DATA
+  check (3941 reproduction events across all runs, 0 violations of own-maturity /
+  own-threshold; the first build had a no-op pass-loop falsely labeled events-checked,
+  fixed before logging). THE FAILURE: predeclared P5 is a compound AND whose second
+  conjunct (starvation-death fraction higher by >= 0.15) is ILL-POSED — starvation is the
+  only death cause, so starvation_deaths/total_deaths == 1.000 in every scenario/seed and
+  the diff is 0.000 (never >= 0.15). The build silently substituted cohort-mortality
+  (deaths/total_births: balanced 0.729/0.751/0.695 vs scarce 1.000/0.911/1.000, diff
+  +0.271/+0.161/+0.304) and printed POSITIVE; that substitution is INADMISSIBLE (L1/L2) —
+  recomputed strictly, P5-as-written fails, so the verdict is not POSITIVE.
+- Verifier: agree (MIXED) — blinded subagent (docstring + raw exp194.txt only, ignoring
+  the printed verdict) independently recomputed P1..P7/F1..F7, ruled the P5 starvation
+  sub-metric ill-posed and the cohort-mortality substitute inadmissible, and returned
+  MIXED. It additionally read P2 as FAIL by conflating the scenario line's per-cell
+  resource capacity (res_cap=10.0) with the population cap; investigated and resolved —
+  P2's cap is max_population=200 (as the code's P2 logic and the card's pre-registered
+  the-runaway-cap both state), balanced sits at 155-170 < 200 with explosion=False, so P2
+  holds; the output labels were disambiguated (res_cap / pop_cap) and the experiment re-run
+  before logging. Verdict unchanged: MIXED.
+- Implication: the population/ecology AXIS is established as a working, deterministic,
+  honestly-instrumented substrate distinct from the single-creature spine — the first time
+  this repo has lineages, reproduction, inherited mutated traits, and environment-as-
+  selector. Environmental selection is REAL and large on the well-posed measure (scarcity
+  compresses or annihilates the population; abundance runs it into the safety cap). But the
+  central thesis the-environment-selects-not-an-evaluator is, at this rung, a VERIFIED
+  DESIGN INVARIANT (code-inspected: survival/reproduction read only a creature's own
+  genotype/phenotype + local cell; F6 CLEAR), not an emergent discovery — we built it that
+  way and checked it. Generalizability tier: substrate/functional — a reproducible toy
+  ecology, not yet a claim about adaptation or specialization.
+- Honest caveat: the per-scenario resource params AND the founder genotype were TUNED to
+  place each regime (balanced 2 trials, scarce 3, overabundant 1; founder repro threshold
+  revised once 12 -> 17 because the original exploded) — disclosed environment design, not
+  seed-shopping (mechanics, metrics, and falsifiers were fixed before tuning; audit trail
+  in ecology/scenarios.py), so the finding is this-design-YIELDS-a-reproducible-ecology
+  that-responds-to-resource-pressure, not ecologies-emerge-inevitably. The policy is a
+  PROVIDED homeostatic heuristic (a resource-seeking value map), not the pymdp active-
+  inference stack (the Policy protocol is the seam for a later swap). P6 trait shifts are
+  drift/variation, and some are large (baseline_metabolic_cost 0.5000 -> 0.0236) enough to
+  be consistent with directional selection, but NO counterfactual control (fork /
+  zero-mutation cohort) was run, so drift vs selection is NOT distinguished. NO baseline
+  (random-policy / zero-mutation) was run. Overabundant shows ~70% cohort mortality despite
+  abundant food because the population explodes to the cap and crowds (per-cell depletion),
+  not because food is scarce. The ecological principle itself (scarcity -> mortality) is
+  unsurprising — the NEW part is the substrate + the predeclaration lesson, not the biology.
+- Verdict: MIXED / NEW INSIGHT — substrate works (P1-P4, P6, P7 clean; F1-F7 clear) and
+  scarcity bites overwhelmingly on the well-posed population sub-metric, but the
+  pre-registered P5 starvation-death-fraction sub-metric was ILL-POSED (single death cause
+  => identically 1.000) and the build's post-hoc cohort-mortality substitution is refused;
+  not POSITIVE. NEW INSIGHT = a new population/ecology substrate the repo did not have; the
+  scarcity->mortality biology is consolidation/expected.
+- Next: Exp 195 (temperature as a hidden viability pressure, behind a config flag) — which
+  must (a) PRE-REGISTER a well-posed scarcity/pressure metric that can vary under multiple
+  death causes (a second death cause makes the cause-fraction non-degenerate; or use a
+  per-capita starvation rate / starvation events per step), (b) add a baseline
+  (random-policy and/or zero-mutation cohort), and (c) for any adaptation claim, run a
+  counterfactual fork/cohort control. Lesson folded to loop/LESSONS.md (L18: predeclare
+  ratio metrics with denominators that can actually vary).
