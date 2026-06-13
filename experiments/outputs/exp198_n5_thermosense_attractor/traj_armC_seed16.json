@@ -1,0 +1,76 @@
+{
+  "arm": "C",
+  "seed": 16,
+  "trajectory": [
+    {
+      "t": 1000,
+      "pop": 157,
+      "newborn_mean_intensity": 0.04181019511336125
+    },
+    {
+      "t": 2000,
+      "pop": 322,
+      "newborn_mean_intensity": 0.031652188150329566
+    },
+    {
+      "t": 3000,
+      "pop": 456,
+      "newborn_mean_intensity": 0.029188142475647313
+    },
+    {
+      "t": 4000,
+      "pop": 488,
+      "newborn_mean_intensity": 0.028595684201496243
+    },
+    {
+      "t": 5000,
+      "pop": 503,
+      "newborn_mean_intensity": 0.030555835228739295
+    },
+    {
+      "t": 6000,
+      "pop": 493,
+      "newborn_mean_intensity": 0.030571479455538886
+    },
+    {
+      "t": 7000,
+      "pop": 516,
+      "newborn_mean_intensity": 0.03059494334210724
+    },
+    {
+      "t": 8000,
+      "pop": 518,
+      "newborn_mean_intensity": 0.029592361199237683
+    },
+    {
+      "t": 9000,
+      "pop": 492,
+      "newborn_mean_intensity": 0.029271792671507816
+    },
+    {
+      "t": 10000,
+      "pop": 508,
+      "newborn_mean_intensity": 0.03075227295416953
+    },
+    {
+      "t": 11000,
+      "pop": 496,
+      "newborn_mean_intensity": 0.02850250315021117
+    },
+    {
+      "t": 12000,
+      "pop": 512,
+      "newborn_mean_intensity": 0.029568124932534374
+    }
+  ],
+  "summary": {
+    "seed": 16,
+    "steps_run": 12000,
+    "reached_horizon": true,
+    "extinct": false,
+    "exploded": false,
+    "final_pop": 512,
+    "end_newborn_intensity": 0.029037984772656792,
+    "events_hash": "7136c24307ab301c237351fe14bbb5126f9c648ac51c146d7d2d56838cc1e417"
+  }
+}

@@ -1,0 +1,47 @@
+========================================================================
+EXP 198 SUMMARY — N5: thermosense intensity ATTRACTOR + de-novo emergence
+========================================================================
+Seeds: [13, 14, 15, 16, 17]  |  Valid seeds: [13, 14, 15, 16, 17]  |  Horizon: 12000
+
+Per-seed end newborn thermosense_intensity (born in [10000,12000]):
+    Seed   A(ON/0.0)  B(ON/0.20)  C(OFF/0.0)  D(OFF/0.20)   A-C gap    |A-B|    |C-D|   valid?
+      13      0.0488      0.0479      0.0303      0.0287    0.0185   0.0009   0.0016      YES
+      14      0.0416      0.0395      0.0286      0.0339    0.0130   0.0022   0.0053      YES
+      15      0.0472      0.0421      0.0299      0.0277    0.0173   0.0051   0.0023      YES
+      16      0.0456      0.0418      0.0290      0.0331    0.0166   0.0038   0.0040      YES
+      17      0.0516         nan      0.0280      0.0314    0.0236      nan   0.0034      YES
+
+Final populations per arm/seed:
+    Seed         A         B         C         D
+      13        88        85       548       524
+      14        85        83       516       523
+      15        86        86       496       496
+      16        93        94       512       506
+      17        89         1       555       517
+
+Representative trajectory (seed 13): arm A vs C newborn mean intensity over time:
+       t     A newborn     C newborn     A pop     C pop
+    1000        0.0550        0.0455        60       220
+    2000        0.0432        0.0309        65       459
+    3000        0.0451        0.0299        83       543
+    4000        0.0555        0.0287        77       549
+    5000        0.0481        0.0300        75       532
+    6000        0.0442        0.0292        89       561
+    7000        0.0471        0.0296        79       540
+    8000        0.0468        0.0295        71       538
+    9000        0.0454        0.0306        89       545
+   10000        0.0482        0.0300        85       553
+   11000        0.0515        0.0307        76       536
+   12000        0.0463        0.0299        88       548
+
+Predictions:
+  P1 (determinism, seed 13 arms A+C):  PASS
+  P2 (validity >=4/5 seeds all arms):  PASS  (valid seeds: [13, 14, 15, 16, 17])
+  P3 (CORE de-novo A-C>=0.008, A>0.02, >=4/5 valid): PASS
+  P4 (attractor |A-B|<=0.02 & |C-D|<=0.02, >=4/5):  PASS
+  P5 (ceiling all arms <0.10, 5/5):   FAIL
+  Runaway flag (any arm >0.15):        False
+
+VERDICT: REINTERPRET-RUNAWAY (repo token: MIXED)
+========================================================================
+runtime: 381.1s
