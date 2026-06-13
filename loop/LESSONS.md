@@ -127,3 +127,13 @@ Ground rules for this file:
   test. Corollary: always run a pilot that checks for a cheaper escape route before concluding a
   costed feature "doesn't pay." Disclose the escape-removing design choices — the result is
   conditional on them. [VALIDATION; METHODOLOGY confound audit; kin of L19]
+- **L21 (Exp 198, 2026-06-13).** A validity gate must require the metric to be MEASURABLE, not just
+  that the arm/condition "didn't go extinct." Exp 198 graded MIXED on a technicality: a predeclared
+  P2 ("all arms persist") + P5 ("all arms < 0.10, 5/5") let a seeded arm that survived but COLLAPSED
+  to pop=1 (no newborns in the measurement window) slip through as "valid," then produced a NaN that
+  the literal 5/5 ceiling check could not satisfy — mis-firing a "runaway" branch when there was no
+  runaway (all measured values < 0.06). Rule: predeclare a MINIMUM measurable-cohort size (e.g. arm
+  pop >= 10 / >= N newborns in the window) as part of validity, AND define explicitly how
+  NaN/undefined cells are handled in the verdict rule (an unmeasurable cell is INVALID, not a metric
+  violation — exclude it, don't let it fail a ceiling/threshold conjunct). [VALIDATION; PROTOCOL step 2;
+  kin of L18/L19]

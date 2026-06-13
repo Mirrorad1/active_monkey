@@ -7763,3 +7763,91 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   choice. Lesson folded to loop/LESSONS.md (L20: to test whether a COSTED adaptation is selected for,
   remove the CHEAPER alternatives - free traits, static refuges - or the population takes the free route
   and the costed capability looks selected-against for the wrong reason).
+
+## Exp 198 — N5 thermosense attractor + clean de-novo emergence: from ZERO, temperature heritably raises the gene-pool sensor (Exp 197's signal CONFIRMED real, survivor-bias-free) — to a LOW convergent equilibrium, never a functional organ (MIXED / NEW INSIGHT)
+
+- Plain: We removed the one doubt hanging over the last experiment. Last time the heat sensor
+  looked kept-under-heat, but we could not be sure whether the GENES were actually passed on more,
+  or whether sensing creatures just lived longer and piled up among the living (survivor bias). The
+  fix: start the creatures with NO sensor at all (intensity zero). A trait nobody has cannot be
+  survivor-biased - so if the sensor shows up in the BABIES, that can only be genuine inheritance.
+  It does: in all five fresh worlds, with heat on the gene pool climbs from zero to a small but real
+  sensor level, clearly above the heat-off worlds. So the last experiment's heritable signal was
+  real, not a mirage. Two more things fall out: whether we start the sensor at zero or seed it high,
+  the population converges to the SAME low level (a stable attractor) - and that level is LOW, just
+  around the sensor's switch-on threshold; it never grows into a strong organ, because a primitive
+  sensor is too noisy to be worth much and a strong one costs too much (a fitness valley). The grade
+  is mixed only on a technicality: in one of the five worlds the high-seeded arm happened to crash to
+  a single creature (a seeded sensor is expensive to carry under heat), leaving its gene pool
+  unmeasurable - not a runaway, just a hole in our bookkeeping our pre-registered checklist did not
+  anticipate. The real result is clean: de-novo heritable emergence of a primitive sensor under heat.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 5b09427, BEFORE any
+  data): under temperature the thermosense organ EMERGES de novo from intensity 0 to a low gene-pool
+  equilibrium (CLEAN heritable selection - no survivor-bias confound, since a trait nobody has cannot
+  be survivor-biased), reaching the SAME convergent attractor a seeded-high founder (0.20) RELAXES
+  down to - a low, near-activation-threshold equilibrium that never runs away to a functional organ
+  (the fitness valley + neutral-sub-threshold drift cap it); without temperature the equilibrium is
+  lower. Resolves Exp 197's survivor-bias confound (which used a seeded founder).
+- Setup: experiments/exp198_n5_thermosense_attractor.py on the ecology/ engine (temperature +
+  drifting comfort + costed tolerance + costed/expressed/evolvable thermosense organ from Exp 197,
+  now on main via PR #32). 2x2 temperature x seeding, fresh seeds {13,14,15,16,17}, horizon 12000,
+  the Exp 197 regime: A=temp-ON founder intensity 0.0 (de-novo), B=temp-ON founder 0.20 (seeded),
+  C=temp-OFF founder 0.0, D=temp-OFF founder 0.20. Metric = NEWBORN (gene-pool) mean thermosense
+  intensity, end = mean over creatures born in [10000,12000]. Pilots {100,101} disclosed; thresholds
+  FIXED pre-run. runtime 381s (6.3 min; temp-OFF arms have ~500 pop).
+- Result (committed exp198.txt + experiments/outputs/exp198_n5_thermosense_attractor/): the CORE,
+  P3 (clean de-novo heritable temperature effect, A_end - C_end >= 0.008 AND A_end > 0.02), PASSES
+  5/5 - A (temp-ON, from 0) end newborn intensity 0.0488/0.0416/0.0472/0.0456/0.0516 vs C (temp-OFF,
+  from 0) 0.0303/0.0286/0.0299/0.0290/0.0280, A-C gaps 0.0185/0.0130/0.0173/0.0166/0.0236 (all >>
+  0.008). BOTH A and C start at intensity 0, so this gap is PURE heritable (no survivor bias
+  possible) - Exp 197's weak heritable signal is CONFIRMED real. P4 attractor (|A-B| <= 0.02 AND
+  |C-D| <= 0.02): A (rose from 0) ~ B (fell from 0.20) with |A-B| 0.0009/0.0022/0.0051/0.0038/nan and
+  |C-D| 0.0016/0.0053/0.0023/0.0040/0.0034 - convergence from BOTH directions to the same low
+  equilibrium, 4/5 (seed 17 B undefined). P5 primitive ceiling (all arms < 0.10, 5/5): every MEASURED
+  value is in [0.0277, 0.0516] (max ~0.05, no runaway - the organ never expands into a functional
+  sensor), but FAILS the strict 5/5 because seed 17 arm B collapsed to pop=1 (a seeded-high organ is
+  heavily costed under temperature - upkeep ~0.22/tick at intensity 0.20 - and that lineage
+  near-extincted, leaving no newborns in the window -> NaN). P1 determinism PASS (seed 13 arms A,C
+  byte-identical). P2 validity: 4/5 seeds have all 4 arms viable (seed 17 B pop=1 is functional
+  extinction).
+- Verifier: agree (MIXED, stricter reading) - blinded subagent (docstring + raw exp198.txt only)
+  recomputed P1..P5: confirmed P3 robustly PASS 5/5 (min gap 0.0130 >> 0.008, clean, no B-arm
+  dependence) and the headline "Exp 197's heritable signal confirmed real, survivor-bias-free" as
+  honest; ruled the seed-17-B NaN a VALIDITY/measurability failure (collapse to pop 1), NOT a runaway
+  (no value approaches 0.10), and the script's printed REINTERPRET-RUNAWAY label WRONG; gave both
+  readings - STRICT (NaN fails P5's 5/5 -> MIXED) and CORRECTED-VALIDITY (exclude the non-viable
+  seed-17-B arm -> P1..P5 all pass -> POSITIVE) - and recommended MIXED as the conservative honest
+  tag. Agreed: MIXED, core-positive.
+- Implication: the population/ecology shows CLEAN de-novo heritable emergence of a costed expressed
+  capability - starting from zero (where survivor bias is impossible by construction), temperature
+  heritably raises the gene-pool thermosense equilibrium (A 0.045 vs C 0.029, ~0.016, 5/5) - which
+  RESOLVES Exp 197's central ambiguity: its weak heritable signal was REAL heritable selection, not an
+  artifact of survivor bias. Two structural findings: (1) the equilibrium is a CONVERGENT ATTRACTOR -
+  de-novo-from-0 (rising) and seeded-0.20 (falling) reach the same low level, so the "retention" in
+  Exp 197 was relaxation to the attractor; (2) the attractor is LOW (~0.045, near the 0.05 activation
+  threshold) and never runs away to a functional organ - a FITNESS VALLEY (a primitive sensor is too
+  noisy to pay, a strong one too costly) plus neutral sub-threshold drift cap it. Generalizability
+  tier: functional/parameter-level on this regime; the heritable effect is small (~0.016) but clean.
+- Honest caveat: the verdict is MIXED only because of a PREDECLARATION VALIDITY GAP - P2/P5 required
+  arms to "persist" and "be < 0.10" but did not require a MEASURABLE newborn cohort, so seed 17 arm B
+  collapsing to pop=1 produced a NaN that the literal P5 (5/5) cannot satisfy. This is NOT a runaway
+  and NOT a failure of the hypothesis (all measured values < 0.06); the CORE de-novo heritable claim
+  (P3) is robustly positive 5/5 and independent of arm B. The heritable temperature effect is SMALL
+  (~0.016) - a primitive sensor, not a strong organ. The seed-17-B collapse is an n=1 anecdote
+  (suggestive that a seeded-high organ is maladaptively costly under temperature, but one seed). All
+  params/thresholds tuned on disclosed pilots {100,101} and FIXED pre-run. temp-ON arms persist lean
+  (~85-93) vs temp-OFF (~500), a density consequence. Policy + founder + costs PROVIDED. Lesson L21.
+- Verdict: MIXED / NEW INSIGHT - the CORE finding (clean de-novo heritable emergence of thermosense
+  under temperature, A vs C both from 0, 5/5; resolving Exp 197's survivor-bias confound) is robustly
+  POSITIVE, plus the convergent-attractor and fitness-valley/primitive-ceiling characterization; the
+  MIXED tag reflects ONLY a predeclaration validity-gap (seed-17-B collapse -> unmeasurable NaN ->
+  strict P5 5/5 unmet), taken as the stricter reading per VALIDATION, NOT a runaway or a hypothesis
+  failure. Both readings recorded; corrected-validity reading is POSITIVE.
+- Next: options (each needs a word) - (a) re-run with the validity gate fixed (require a measurable
+  newborn cohort, e.g. arm pop >= 10) to retire the NaN technicality and clean-grade the attractor;
+  (b) why is the heritable effect so SMALL - sweep the sensing noise / floor to test whether a
+  shallower fitness valley lets a stronger organ evolve (cross the valley); (c) move on to
+  niche/species archive (Exp 199) or mate choice. Lesson folded to loop/LESSONS.md (L21: a validity
+  gate must require the metric to be MEASURABLE - an arm/condition that survives but collapses below
+  the cohort needed to compute the metric is INVALID, not a metric violation; predeclare a minimum
+  measurable-cohort size, and define how NaN/undefined cells are handled in the verdict rule).

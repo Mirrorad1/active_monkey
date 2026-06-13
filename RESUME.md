@@ -51,7 +51,7 @@ step 0.
 - **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
-### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 197)
+### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 198)
 
 - **Continuous-substrate chapter (Exp 133–140, closed-positive):** the tabular substrate was
   not load-bearing for the collapse finding but IS brittle under out-of-model input; phase
@@ -145,7 +145,7 @@ step 0.
   stream-level intervention) is the posted consult's recommended option; rung 2
   (the tight-tolerance core) waits behind it. PAUSED on the human's word; card:
   `loop/directions/n4-crack-edges.md`.
-- **The population-ecology direction (Exp 194–197, ACTIVE — a NEW parallel line on the
+- **The population-ecology direction (Exp 194–198, ACTIVE — a NEW parallel line on the
   human's word, 2026-06-12):** the human's "N5 population ecology" — a fresh `ecology/`
   substrate (genotype/phenotype/regenerating GridWorld/pluggable HomeostaticPolicy),
   DISTINCT from the locked N0–N7 ladder's N5 (= interoception; this is ladder-N7 territory,
@@ -168,8 +168,15 @@ step 0.
   ALSO costed + a drifting comfort zone (no free escapes). Thermosense is RETAINED under
   temperature (living active-fraction ~0.52 vs ~0.06; tolerance stays low → adapts by SENSING)
   but the newborn tracker shows it's survivor-bias-DOMINATED with only a WEAK heritable shift →
-  POSITIVE-MIXED, blind-verified 5/5 fresh seeds. Lessons L20 (remove cheap escapes before
-  testing whether a costed capability pays its way). Card: `loop/directions/population-ecology.md`.
+  POSITIVE-MIXED, blind-verified 5/5 fresh seeds (PR #32, MERGED to main). Lessons L20 (remove cheap
+  escapes before testing whether a costed capability pays its way). **Exp 198 (MIXED, core-positive)**
+  — the survivor-bias-FREE follow-up on main: start the organ at intensity 0 (a trait nobody has can't
+  be survivor-biased), 2×2 temperature × seeding, fresh seeds {13–17}. CLEAN de-novo heritable
+  emergence — from zero, temperature heritably grows the gene-pool sensor (~0.045 vs ~0.029, 5/5),
+  CONFIRMING Exp 197's heritable signal is real; it converges to the same low ATTRACTOR from above
+  (seeded 0.20) and below (0), and never runs away to a functional organ (a FITNESS VALLEY caps it).
+  MIXED only on a predeclaration validity gap (seed-17 seeded arm collapsed to pop 1 → unmeasurable
+  NaN → L21), not a runaway. Card: `loop/directions/population-ecology.md`.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

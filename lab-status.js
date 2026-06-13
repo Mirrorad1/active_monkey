@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 197, title: "N5 complexity = EXPRESSED-MACHINERY cost: a costed thermosense organ is RETAINED under temperature (it pays its way) but MOSTLY by survivor bias with only a weak heritable shift — and the population adapts by SENSING, not bought robustness", tag: "POSITIVE" },
-  tally: { total: 197, positive: 112, negative: 53, mixed: 28, breakthroughs: 7 },
+  latest_exp: { n: 198, title: "N5 thermosense attractor + clean de-novo emergence: from ZERO, temperature heritably raises the gene-pool sensor (Exp 197's signal CONFIRMED real, survivor-bias-free) — to a LOW convergent equilibrium, never a functional organ", tag: "POSITIVE" },
+  tally: { total: 198, positive: 113, negative: 53, mixed: 28, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "population-ecology", state: "active", latest: "Exp 197 (POSITIVE-MIXED, blind-verified, merged via PR #32 — complexity = EXPRESSED-MACHINERY cost: a costed evolvable THERMOSENSE organ is RETAINED under temperature (living active-fraction ~0.52 vs ~0.06; tolerance stays low → adapts by SENSING not bought robustness) but survivor-bias-DOMINATED with only a WEAK heritable shift; the human's mechanism revision — cost attaches to expressed machinery with floors, not a scalar penalty; → L20)", next: "Exp 198 (pre-registered) — the thermosense ATTRACTOR + clean de-novo emergence: 2×2 temperature × seeding (founder intensity 0 vs 0.20), fresh seeds {13–17}." },
