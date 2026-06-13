@@ -1110,6 +1110,30 @@ The loop marks items it has consumed by indenting a response under them:
   ratified pattern, a bare resumption without redirection authorizes the
   RECOMMENDED option (a) only; any other path needs its own word.
 
+- [from human, 2026-06-13, in-session] STEER on the population-ecology / thermosense arc
+  (a NEW sub-arc, distinct from the PAUSED n4-crack-edges QUIET-CHAMBER consult above —
+  that thread stays paused behind its own word). After the four-wall ceiling (Exp 199–202:
+  avoidance / foraging / increasing-returns / interference-competition all NEGATIVE), the
+  question is reframed from "make thermosense win" to: **what environmental, informational,
+  and evolutionary conditions are REQUIRED for a costed sense to become evolvable instead of
+  merely useful when gifted?** Hard constraints (anti-cheat): no direct h reward; no
+  `if sensor>θ give bonus`; any advantage must emerge through world interaction; measure the
+  LOCAL selection gradient g(h)=dE[w|h]/dh, not only the endpoint installed benefit
+  B(0.6)−B(0). Directive phases: (0) ground in 199–202; (1) build a reusable sense-axis
+  diagnostic abstraction (generic over thermosense→sight→hearing→communication); (2) Exp 203
+  = the SELECTION-GRADIENT AUDIT (clamp-grid E[w|h], cost on, shuffle, slope near founder);
+  (3) Exp 204 = freshness/residue false-positive competition bridge; (4) Exp 205 = thermal-
+  barcode niche / sympatric divergence bridge; (5) optional Exp 206 = sensor–controller
+  co-adaptation bundle; (6) generalization notes; (7) full reporting + final summary.
+  → taken up 2026-06-13 (card-first + one-experiment-per-iteration discipline): the Exp 203
+    gradient audit is built + run THIS iteration; the bridges (204/205/206) are PRE-REGISTERED
+    as designs in loop/directions/population-ecology.md and STAGED behind a post-203 CONSULT —
+    each bridge is informed by what the gradient map shows and runs one at a time per PROTOCOL.
+    Pre-registrations + term definitions committed to the direction card BEFORE the Exp 203
+    verdict run. The reusable abstraction lives at ecology/sense_axis.py; the gated, byte-
+    identical engine features it needs (freeze_thermosense, founder_mix) carry regression
+    guards. No direct-h-reward anywhere (asserted in code + checked by the blinded verifier).
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
