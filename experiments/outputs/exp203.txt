@@ -4,54 +4,57 @@ EXP 203 — N5 SELECTION-GRADIENT AUDIT — SUMMARY
 
 COMPETITIVE FITNESS N*(h) per ecology (cost ON; argmax N* = competitive optimum h*):
       h     FORAGE    COMPETE      AVOID       NULL
-   0.00     1857.3      547.5      378.1      764.0
-   0.03     1857.3      547.5      378.1      764.0
-   0.06     1338.2      596.8      450.8      681.8
-   0.10     1095.8      513.0      412.7      546.0
-   0.15      877.2      406.7      378.9      491.9
-   0.20      736.7      340.8      319.8      392.8
-   0.30      550.6      239.9      281.6      301.5
-   0.45      414.9      165.5      207.5      211.2
-   0.60      336.6      132.1      171.5      159.7
+   0.00     1518.2      547.5      378.1      764.0
+   0.03     1518.2      547.5      378.1      764.0
+   0.06      959.7      596.8      450.8      681.8
+   0.10      856.8      513.0      412.7      546.0
+   0.15      717.5      406.7      378.9      491.9
+   0.20      636.8      340.8      319.8      392.8
+   0.30      478.4      239.9      281.6      301.5
+   0.45      349.9      165.5      207.5      211.2
+   0.60      279.0      132.1      171.5      159.7
   ----------------------------------------------------
   h*N         0.0       0.06       0.06        0.0
-  h*R        0.15        0.0        0.0        0.0
+  h*R         0.0        0.0        0.0        0.0
 
 R*(h) standing resource (Tilman: argmin R* = competitively dominant):
-   0.00      0.502      0.213      0.211      0.202
-   0.03      0.502      0.213      0.211      0.202
-   0.06      0.502      0.213      0.247      0.206
-   0.10      0.502      0.213      0.312      0.211
-   0.15      0.502      0.213      0.257      0.216
-   0.20      0.502      0.213      0.269      0.228
-   0.30      0.502      0.214      0.250      0.257
-   0.45      0.502      0.215      0.333      0.379
-   0.60      0.503      0.216      0.330      0.545
+   0.00      0.394      0.213      0.211      0.202
+   0.03      0.394      0.213      0.211      0.202
+   0.06      0.494      0.213      0.247      0.206
+   0.10      0.423      0.213      0.312      0.211
+   0.15      0.396      0.213      0.257      0.216
+   0.20      0.394      0.213      0.269      0.228
+   0.30      0.395      0.214      0.250      0.257
+   0.45      0.396      0.215      0.333      0.379
+   0.60      0.396      0.216      0.330      0.545
 
 PAIRWISE competition, invader h' vs resident 0.10  [won>4/8 & auc>0.5 => step to h' pays]:
-  0.10 vs 0.06:  invader_won=4/8  auc(mean inv frac)=0.497  s_mean=-0.00146
-  0.10 vs 0.15:  invader_won=3/8  auc(mean inv frac)=0.525  s_mean=+0.00153
-  0.10 vs 0.30:  invader_won=1/8  auc(mean inv frac)=0.298  s_mean=-0.01206
-  0.10 vs 0.45:  invader_won=3/8  auc(mean inv frac)=0.448  s_mean=+0.00210
-  CLAMPED_LR 0.10 vs 0.15: invader_won=2/8  auc=0.330
+  0.10 vs 0.06:  invader_won=2/8  auc(mean inv frac)=0.250  s_mean=+0.00983
+  0.10 vs 0.15:  invader_won=7/8  auc(mean inv frac)=0.872  s_mean=+0.01035
+  0.10 vs 0.30:  invader_won=6/8  auc(mean inv frac)=0.749  s_mean=+0.00965
+  0.10 vs 0.45:  invader_won=7/8  auc(mean inv frac)=0.875  s_mean=-0.00356
+  CLAMPED_LR 0.10 vs 0.15: invader_won=6/8  auc=0.749
 
-INSTALLED BENEFIT B(h) (cost OFF) + decomposition (the NON-circularity check):
-  h=0.00  B=0.0607
-  h=0.03  B=0.0607
-  h=0.06  B=0.0439
-  h=0.10  B=0.0471
-  h=0.15  B=0.0431
-  h=0.20  B=0.0429
-  h=0.30  B=0.0430
-  h=0.45  B=0.0419
-  h=0.60  B=0.0414
-  gift B(0.60)-B(0.00) = -0.0192  (gift real if >0)
-  dB/dh @0.03=-0.2793  @0.10=-0.0092  @0.20=-0.0008   vs C'=0.20 (std) / 0.05 (low_cost)
+INSTALLED BENEFIT B(h)=r_costOFF + realized r_costON (density-independent intrinsic growth;
+the NON-circularity decomposition — equilibrium intake was herding/replacement-washed):
+      h    B=r_off       r_on
+   0.00    0.00480    0.00468
+   0.03    0.00480    0.00468
+   0.06    0.00371    0.00375
+   0.10    0.00377    0.00346
+   0.15    0.00325    0.00316
+   0.20    0.00326    0.00316
+   0.30    0.00368    0.00258
+   0.45    0.00360    0.00242
+   0.60    0.00321    0.00226
+  gift B(0.60)-B(0.00) = -0.00159  (gift real if >0)
+  dB/dh @0.03=-0.01822  @0.10=-0.00511  @0.20=+0.00284
+  realized r_on slope @0.10 = -0.00662  (the density-independent gradient)
   low_cost (ineff 0.05) competitive optimum h*N = 0.0
   CLAMPED_LR competitive optimum h*N        = 0.0
 
-GATES: pw_015_won=3/8  pw_015_auc=0.525  pw_030_won=1/8  pw_045_won=3/8  clr_015_won=2/8  gift_real=False  resident_nonpositive=False  mono_optima_low_all_eco=True  h_star_N_FORAGE=0.0  collapse=False  p1=True
+GATES: pw_015_won=7/8  pw_015_auc=0.872  pw_030_won=6/8  pw_045_won=7/8  clr_015_won=6/8  gift_real=False  gift_B=-0.0016  dB_dh_0.10=-0.0051  r_on_slope_0.10=-0.00662  resident_nonpositive=False  mono_optima_low_all_eco=True  h_star_N_FORAGE=0.0  collapse=False  p1=True
 
 VERDICT: MIXED / NO_VERDICT (a real but partial competitive gradient: see pairwise s)  (repo token: MIXED)
 
-runtime: 545s
+runtime: 356s

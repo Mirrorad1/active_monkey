@@ -1,8 +1,0 @@
-RUNTIME PRE-FLIGHT — SAFE (jobs=382, workers=11, horizon=3500, proj~9.4 min)
-  regime         pop_end      g1->gN  decel proj_pop us/cr early us/cr late ~per-job s
-  FORAGE             6592.947->1.402   True     1302       3.892      3.578       16.3
-  COMPETE              0    1.0->1.0   True        0       5.323        0.0        0.0
-  AVOID              1241.947->1.204   True      204       4.876      3.482        2.5
-  NULL               2972.583->1.492   True      820       4.201      4.469       12.8
-
-Exp 203 sense-gradient audit: 382 parallel jobs (horizon 3500) ...
