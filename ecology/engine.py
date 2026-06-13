@@ -82,6 +82,19 @@ class EcologyConfig:
     # Damage threshold at which creature dies of senescence
     senescence_damage_death: float = 1.0
 
+    # ------------------------------------------------------------------
+    # Exp 197: complexity-linked maintenance cost — OFF by default;
+    # OFF (scale=0.0) is byte-identical to Exp 194/196.
+    #
+    # Upkeep per tick = baseline_metabolic_cost + aging_cost*age
+    #                   + complexity_cost_scale * genotype_complexity(g)
+    # The last term is gated (L16 guard): when scale==0.0 the code path is
+    # never reached, so no floating-point drift vs. the Exp 194 baseline.
+    # Death still flows through the existing energy<=0 -> "starvation" path;
+    # there is NO direct complexity-death rule.
+    # ------------------------------------------------------------------
+    complexity_cost_scale: float = 0.0   # 0 = off (byte-identical to Exp 194/196)
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -234,6 +247,12 @@ class Ecology:
         # 3. Pay metabolic + aging cost
         ph.energy -= g.baseline_metabolic_cost + g.aging_cost * ph.age
 
+        # Exp 197: complexity-linked maintenance cost. More complex creatures cost more
+        # energy per tick to keep alive (upkeep = base + complexity_cost_scale * complexity).
+        # Gated on scale != 0.0 so the OFF path is byte-identical to Exp 194/196 (L16 guard).
+        if cfg.complexity_cost_scale != 0.0:
+            ph.energy -= cfg.complexity_cost_scale * genotype_complexity(g)
+
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
         if deficit > 0:
@@ -259,7 +278,7 @@ class Ecology:
                 child_pos = min(neighbors) if neighbors else new_pos
 
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate)
-                child_ph = Phenotype(energy=transfer, age=0, pos=child_pos)
+                child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,
                     parent_id=c.creature_id,

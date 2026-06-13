@@ -62,16 +62,25 @@ Selection emerges from the environment, never from an external ranking.
   the senescence-on population's mean complexity does NOT diverge measurably below the control
   even at long horizon (the P6 null is then a real absence, not a horizon artifact), or the
   divergence does not GROW with time, or it is in the wrong direction.
-- **Exp 197 — temperature as a hidden viability pressure** (isolated behind a config flag).
+- **Exp 197 — complexity as MAINTENANCE COST + heritable-selection controls** (the human's
+  mechanism revision + the Exp 196 disentangle). Replace direct complexity-death (Exp 195
+  senescence) with a resource-mediated channel: more-complex creatures burn MORE energy per
+  tick (upkeep = base + cost_scale·complexity); death stays energy-mediated ("starvation"),
+  NEVER a complexity-death rule. Matched control (cost_scale=0) vs treatment, long horizon,
+  fresh seeds, with NEWBORN/genotype complexity instrumented separately from the standing
+  population to disentangle heritable selection / survivor bias / density. FAILURE: neither
+  standing nor newborn complexity shifts reliably; or the effect is an unstable/density
+  confound. (Only call it "heritable selection" if NEWBORN complexity shifts down vs control.)
+- **Exp 198 — temperature as a hidden viability pressure** (isolated behind a config flag).
   FAILURE: temperature changes nothing measurable about survival/lineages.
-- **Exp 198 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
+- **Exp 199 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
   when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
   whether or not temperature is a pressure.
-- **Exp 199 — niche / species archive** from trait + behavior clustering (the evaluator
+- **Exp 200 — niche / species archive** from trait + behavior clustering (the evaluator
   RECORDS clusters, never selects them). FAILURE: no separable clusters under pressure.
-- **Exp 200 — self-selection / mate choice** on observed traits, only after viability
+- **Exp 201 — self-selection / mate choice** on observed traits, only after viability
   ecology works. FAILURE: mate choice changes no lineage outcome vs random pairing.
-- **Exp 201 — neural Bθ / deep active-inference transition models inside lineages.**
+- **Exp 202 — neural Bθ / deep active-inference transition models inside lineages.**
 
 **Stop condition.** Exhausted when either (a) the ladder reaches a documented wall
 (e.g. toy gridworld stops supplying discriminating viability failures — the same
@@ -278,4 +287,73 @@ committed BEFORE any data).**
   question — Exp 195's 600-step null made it live. The control arm isolates senescence's effect
   from drift. Probe seeds (0,1) disclosed; tested on fresh seeds {3,4,5,6,7}.
 
-**STATUS.** state: active · latest: Exp 196 (POSITIVE / NEW INSIGHT, POSITIVE-SINGLE — over a LONG horizon (5000 steps) aging DOES depress the standing population's mean complexity below a matched senescence-OFF control: gap 0.09–0.28 in 5/5 fresh seeds, progressive, emerging only after ~t=2000 — Exp 195's P6 selection null was a HORIZON limit, not an absence; blind-verified. Mechanism under-claimed: standing-population metric conflates heritable selection with survivor bias + density — newborn-complexity tracker is the named follow-up) · depends-on: ecology/ substrate (Exp 194–196) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: disentangle selection vs survivor bias by tracking NEWBORN / lineage + age-stratified complexity over the long horizon (does the gene pool, not just the standing snapshot, shift?); OR Exp 197 — temperature as a hidden viability pressure. FAILURE (disentangle) = newborn complexity does NOT fall with the standing population ⇒ the long-horizon effect was survivor bias, not heritable selection.
+---
+
+**EXP 197 — PRE-REGISTRATION (complexity as MAINTENANCE COST + heritable-selection controls;
+committed BEFORE any data).**
+
+- **Hypothesis (one sentence).** Modeling complexity as a MAINTENANCE COST — more-complex
+  creatures burn more baseline energy per tick (upkeep = base + cost_scale·complexity), with
+  death emerging ONLY through energy exhaustion ("starvation"), never a direct complexity-death
+  rule — produces a resource-mediated pressure that depresses the STANDING population's
+  complexity over a long horizon; AND if the NEWBORN (genotype / gene-pool) complexity also
+  shifts down vs a matched control, that pressure is HERITABLE selection (lower-maintenance
+  lineages out-reproduce), not merely survivor bias.
+
+- **Mechanism (PROVIDED; `complexity_cost_scale`, default 0 = matched control).** Per tick,
+  after baseline+aging metabolism, a creature pays `cost_scale · complexity(genotype)` extra
+  energy; energy ≤ 0 → "starvation". complexity = the existing blend (energy_capacity,
+  sensor_precision, memory_length). Senescence (the Exp 195 direct-death channel) is OFF in
+  BOTH arms — this experiment isolates the maintenance-cost channel. The matched CONTROL is
+  identical (same world, food, seeds, cap, horizon, senescence off) with `cost_scale = 0`.
+
+- **Disclosed pilot (per L7).** A 2-seed pilot (seeds {100,101}; deleted, not committed) at
+  horizon 5000, cap 5000, swept cost_scale ∈ {0.2,0.5,1,2}: cost_scale=0.5 keeps both arms
+  persisting (treatment pop ~130–180) with a clear effect, and showed BOTH living (~0.48→~0.25)
+  AND newborn (~0.48→~0.28) complexity dropping in treatment. **cost_scale is FIXED at 0.5** and
+  thresholds set from the pilot; the final verdict runs on FRESH seeds {8,9,10,11,12} never used
+  in the pilot.
+
+- **Setup.** Balanced regime, max_population 5000 (equilibrate at resource carrying capacity, not
+  the safety guard — the L19 fix), horizon 5000, cost_scale 0.5 (treatment) vs 0 (control), fresh
+  seeds {8,9,10,11,12}. Instrumented at checkpoints + end: standing living complexity; **NEWBORN
+  complexity** (mean complexity of creatures born per window, via birth_t); parent complexity at
+  reproduction; age-stratified living complexity (young/mid/old); deaths by cause + complexity
+  bucket; lifespan by complexity bucket; reproduction count by complexity bucket; population size;
+  mean energy by complexity bucket; food availability. Maintenance cost is deterministic (rng-free).
+
+- **Predictions if TRUE** (5 fresh seeds, report ALL). Per seed: `living_gap = control_living −
+  treatment_living` (end-window mean); `newborn_gap = control_newborn − treatment_newborn`;
+  `survivor_component = living_gap − newborn_gap`; `age_strat = treatment(young-bin − old-bin)`.
+  - **P1 determinism.** Same seed → identical event hash, both arms.
+  - **P2 validity (input gate).** Both arms reach t=5000 without explosion/extinction, ≥4/5 seeds.
+  - **P3 standing effect (L).** living_gap ≥ 0.05 in ≥4/5 seeds (treatment standing below control).
+  - **P4 heritable signal (H).** newborn_gap ≥ 0.05 in ≥4/5 seeds (treatment NEWBORN/gene-pool
+    complexity below control) — the upgrade-to-heritable test.
+  - **P5 stability.** newborn_gap has the SAME sign (control > treatment) in 5/5 seeds (no flips).
+
+- **Verdict taxonomy (predeclared; the human's labels).** Let SB := (survivor_component ≥ 0.03 in
+  ≥3/5 seeds AND age_strat ≥ 0.02 in ≥3/5 treatment seeds) — the survivor-bias signature (living
+  drops MORE than the gene pool / living complex creatures don't reach old age).
+  - **F1** non-determinism → NEGATIVE. **F2** arms fail to persist in a majority → INCONCLUSIVE.
+  - **NEGATIVE** if NOT P3 and NOT P4 (neither standing nor newborn complexity shifts reliably).
+  - **INCONCLUSIVE** if NOT P5 (sign flips / unstable) or a density confound dominates the read.
+  - **POSITIVE-HERITABLE** if P4 (H) and NOT SB.
+  - **POSITIVE-MIXED** if P4 (H) and SB (heritable selection AND survivor bias both present).
+  - **POSITIVE-SURVIVOR-BIAS** if P3 (L) and NOT P4 (standing drops, gene pool does not).
+  - Repo token on the `- Verdict:` line: POSITIVE for any POSITIVE-* label, NEGATIVE, or MIXED for
+    INCONCLUSIVE — plus the fine-grained label spelled out.
+
+- **Interpretation discipline (binding — the human's language).** Baseline claim: "complexity-linked
+  maintenance cost creates a resource-mediated pressure that can depress STANDING-population
+  complexity over long horizons." Upgrade to "heritable selection toward lower complexity" ONLY if
+  NEWBORN complexity also shifts down (P4 / H).
+
+- **Honesty stakes (written before data).** cost_scale tuned on the disclosed pilot and FIXED before
+  the fresh-seed run; thresholds predeclared here, not tuned after results. Death is energy-mediated
+  (NO complexity_death). Senescence OFF in both arms (maintenance cost is the sole treatment
+  variable). The matched control (same food/cap/seeds, cost_scale 0) controls the regime; treatment's
+  lower equilibrium population is a CONSEQUENCE of the treatment (part of the causal path), reported as
+  a density diagnostic, not pre-corrected. Policy PROVIDED; complexity a derived blend.
+
+**STATUS.** state: active · latest: Exp 196 (POSITIVE / NEW INSIGHT, POSITIVE-SINGLE — over a LONG horizon (5000 steps) aging DOES depress the standing population's mean complexity below a matched senescence-OFF control: gap 0.09–0.28 in 5/5 fresh seeds, progressive, emerging only after ~t=2000 — Exp 195's P6 selection null was a HORIZON limit, not an absence; blind-verified. Mechanism under-claimed: standing-population metric conflates heritable selection with survivor bias + density — newborn-complexity tracker is the named follow-up) · depends-on: ecology/ substrate (Exp 194–196) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 197 (pre-registered, on branch exp197-maintenance-cost) — recast complexity as a MAINTENANCE COST (more complex = burns more energy/tick; death stays energy-mediated, senescence OFF in both arms), matched control (cost_scale 0) vs treatment (0.5, fixed on a disclosed pilot), fresh seeds {8,9,10,11,12}, with NEWBORN/genotype complexity instrumented separately from the standing population. POSITIVE-HERITABLE only if NEWBORN complexity shifts down vs control (P4); else POSITIVE-SURVIVOR-BIAS (standing only) / POSITIVE-MIXED / NEGATIVE / INCONCLUSIVE per the predeclared taxonomy.

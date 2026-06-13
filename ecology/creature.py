@@ -55,6 +55,9 @@ class Phenotype:
     alive: bool = True
     cause_of_death: str | None = None  # free string; "starvation" used here;
                                         # Exp 195 may add "temperature", "damage", etc.
+    birth_t: int = 0                    # Exp 197: timestep the creature was created;
+                                        # founders keep the default 0 (t=0 at __init__);
+                                        # NOT emitted in any event dict / events_hash.
 
 
 # ---------------------------------------------------------------------------
