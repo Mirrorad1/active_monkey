@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 199, title: "N5 fitness-valley sweep: the primitive-sensor ceiling is FUNDAMENTAL (in this avoidance regime) — even the best-case shallow valley can't grow a functional thermosense organ, and a seeded functional organ decays or drives extinction", tag: "NEGATIVE" },
-  tally: { total: 199, positive: 113, negative: 54, mixed: 28, breakthroughs: 7 },
+  latest_exp: { n: 200, title: "N5 the FORAGING escape: a non-saturating foraging benefit does NOT cross the valley either — the primitive-sensor ceiling holds across BOTH avoidance and foraging, and a benefit that is real in ISOLATION is invisible in evolution", tag: "NEGATIVE" },
+  tally: { total: 200, positive: 113, negative: 55, mixed: 28, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "population-ecology", state: "active", latest: "Exp 199 (NEGATIVE / NEW INSIGHT — a WALL, blind-verified, on main — the primitive-sensor ceiling is FUNDAMENTAL in this avoidance regime: under a deck stacked FOR a functional organ, a primitive sensor never climbs (noise sweep FLAT) and a seeded-functional organ (0.50) decays to primitive or drives extinction; high-intensity mutants culled — a genuine selective valley; mechanism = benefit-SATURATION; pointed escape = a non-saturating FORAGING benefit → Exp 200)", next: "Exp 200 (pre-registered, branch exp200-foraging-sense) — the FORAGING escape: food concentrated in a DRIFTING thermal band + thermosense used to FORAGE (a non-saturating benefit), fresh seeds {23–27}." },

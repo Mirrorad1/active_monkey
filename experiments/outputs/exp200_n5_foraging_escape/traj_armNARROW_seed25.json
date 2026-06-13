@@ -1,0 +1,91 @@
+{
+  "arm": "NARROW",
+  "seed": 25,
+  "trajectory": [
+    {
+      "t": 1000,
+      "pop": 188,
+      "newborn_mean_intensity": 0.11621062085263337,
+      "max_intensity": 0.3130160355782243
+    },
+    {
+      "t": 2000,
+      "pop": 289,
+      "newborn_mean_intensity": 0.11914173015516469,
+      "max_intensity": 0.31728225739168825
+    },
+    {
+      "t": 3000,
+      "pop": 358,
+      "newborn_mean_intensity": 0.10756213957142646,
+      "max_intensity": 0.28176641697527083
+    },
+    {
+      "t": 4000,
+      "pop": 390,
+      "newborn_mean_intensity": 0.10030427946290381,
+      "max_intensity": 0.288490750235163
+    },
+    {
+      "t": 5000,
+      "pop": 401,
+      "newborn_mean_intensity": 0.10053707230560065,
+      "max_intensity": 0.3356786974695472
+    },
+    {
+      "t": 6000,
+      "pop": 469,
+      "newborn_mean_intensity": 0.0921081156048945,
+      "max_intensity": 0.3274991867430729
+    },
+    {
+      "t": 7000,
+      "pop": 443,
+      "newborn_mean_intensity": 0.09038204481265459,
+      "max_intensity": 0.27357438400917794
+    },
+    {
+      "t": 8000,
+      "pop": 427,
+      "newborn_mean_intensity": 0.08979237165094878,
+      "max_intensity": 0.27773414995988394
+    },
+    {
+      "t": 9000,
+      "pop": 442,
+      "newborn_mean_intensity": 0.095421479603279,
+      "max_intensity": 0.303519763327333
+    },
+    {
+      "t": 10000,
+      "pop": 431,
+      "newborn_mean_intensity": 0.09388964122033445,
+      "max_intensity": 0.2858645417196463
+    },
+    {
+      "t": 11000,
+      "pop": 426,
+      "newborn_mean_intensity": 0.09319134446335406,
+      "max_intensity": 0.2652407509135427
+    },
+    {
+      "t": 12000,
+      "pop": 425,
+      "newborn_mean_intensity": 0.0946194949671662,
+      "max_intensity": 0.256246018458954
+    }
+  ],
+  "summary": {
+    "seed": 25,
+    "steps_run": 12000,
+    "reached_horizon": true,
+    "extinct": false,
+    "exploded": false,
+    "final_pop": 425,
+    "end_newborn_intensity": 0.09390524088349157,
+    "max_ever_intensity": 0.3865024924078111,
+    "valid": true,
+    "extinction_step": null,
+    "events_hash": "423b524f061a0efcd12036d0a7e55926018ed86e3f07fb817f0a01b77b676947"
+  }
+}

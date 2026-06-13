@@ -137,3 +137,12 @@ Ground rules for this file:
   NaN/undefined cells are handled in the verdict rule (an unmeasurable cell is INVALID, not a metric
   violation — exclude it, don't let it fail a ceiling/threshold conjunct). [VALIDATION; PROTOCOL step 2;
   kin of L18/L19]
+- **L22 (Exp 200, 2026-06-13).** A FORCED / behavioral benefit test ("organ X helps when you IMPOSE it")
+  does NOT predict that X will be SELECTED FOR in the evolving population. Exp 200's engine test showed a
+  forced strong forager reproduces ~4x more than a no-organ creature, yet across fresh seeds the gene
+  pool never evolved the organ above primitive (~0.08) — the marginal selection gradient on the trait was
+  too weak (a crude version captures the easy part of the benefit; the precise version's extra payoff is
+  small and stochastic relative to its cost). Rule: a large benefit in ISOLATION can be INVISIBLE in
+  population dynamics — always verify selection at the GENE-POOL (newborn/heritable) level, not via a
+  forced/behavioral comparison; the two answer different questions (does-it-help vs is-it-selected-for).
+  Kin of the survivor-bias-vs-heritable distinction (Exp 196/197). [VALIDATION; METHODOLOGY]

@@ -1,0 +1,28 @@
+========================================================================
+EXP 200 — N5: FORAGING ESCAPE — SUMMARY
+========================================================================
+
+Arm       seed23  seed24  seed25  seed26  seed27      mean  max_indiv  n_ext
+------------------------------------------------------------------------
+WIDE       0.0783   0.0947   0.0971   0.0348   0.1072    0.0824     0.5622      0
+NARROW     0.0554   0.0866   0.0939   0.0549   0.1478    0.0877     0.5612      0
+CONTROL    0.0393   0.0649   0.0697   0.0906   0.0480    0.0625     0.6563      0
+
+FINAL POPULATIONS per arm/seed:
+Arm       seed23  seed24  seed25  seed26  seed27
+--------------------------------------------------
+WIDE         671     646     593     797     624
+NARROW       505     473     425     441     398
+CONTROL      503     482     497     481     538
+
+CONTROL equilibrium (thermosense useless -> should be low): mean=0.0625
+
+PREDICTION EVALUATIONS:
+  P1  determinism (WIDE+CONTROL seed 23 rerun):    PASS
+  P2  validity (>=4/5 each arm):                   PASS
+  P3  CORE escape (some forage arm >0.30 in 4/5):  FAIL
+  neg falsifier (both forage arms <0.15 in 3/5):   YES
+
+VERDICT: NEGATIVE (escape FAILS; ceiling general) (repo token: NEGATIVE)
+
+runtime: 908s
