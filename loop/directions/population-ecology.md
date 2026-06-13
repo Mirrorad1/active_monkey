@@ -47,16 +47,24 @@ Selection emerges from the environment, never from an external ranking.
   under fixed seed; trivial dynamics (explodes unbounded, or extinct in all settings);
   homeostatic constraint inert (nothing starves); unconstrained reproduction; unsafe
   mutation; or scarcity exerts no measurable pressure.
-- **Exp 195 — temperature as a hidden viability pressure** (isolated behind a config
-  flag). FAILURE: temperature changes nothing measurable about survival/lineages.
-- **Exp 196 — costly thermosense organ.** A sensor that costs energy becomes useful
-  ONLY when temperature matters. FAILURE: the costly sensor is favored (or disfavored)
-  identically whether or not temperature is a pressure.
-- **Exp 197 — niche / species archive** from trait + behavior clustering (the evaluator
+- **Exp 195 — senescence / aging as a SECOND death cause** (behind an `enable_senescence`
+  flag; off preserves Exp 194 exactly). Self-maintenance efficacy degrades with age and the
+  degradation is COMPLEXITY-SCALED (more-complex creatures age out earlier/faster) — so age
+  kills even a well-fed creature, at a complexity-dependent, non-fixed, non-linear age. Run
+  senescence-OFF (the Exp 194 model = control) vs senescence-ON. FAILURE: aging never kills,
+  or kills everyone before reproduction, or age-at-death does NOT scale with complexity (the
+  core requirement), or the two-cause death mix stays degenerate. (Also fixes Exp 194's L18
+  ill-posed cause-fraction: two causes make the cause-of-death fraction well-posed.)
+- **Exp 196 — temperature as a hidden viability pressure** (isolated behind a config flag).
+  FAILURE: temperature changes nothing measurable about survival/lineages.
+- **Exp 197 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
+  when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
+  whether or not temperature is a pressure.
+- **Exp 198 — niche / species archive** from trait + behavior clustering (the evaluator
   RECORDS clusters, never selects them). FAILURE: no separable clusters under pressure.
-- **Exp 198 — self-selection / mate choice** on observed traits, only after viability
+- **Exp 199 — self-selection / mate choice** on observed traits, only after viability
   ecology works. FAILURE: mate choice changes no lineage outcome vs random pairing.
-- **Exp 199 — neural Bθ / deep active-inference transition models inside lineages.**
+- **Exp 200 — neural Bθ / deep active-inference transition models inside lineages.**
 
 **Stop condition.** Exhausted when either (a) the ladder reaches a documented wall
 (e.g. toy gridworld stops supplying discriminating viability failures — the same
@@ -131,6 +139,79 @@ synthesis in EXPERIMENTS.md and flip STATUS to closed-positive / closed-negative
   to resource pressure," NOT "ecologies emerge inevitably." The policy is a simplified,
   PROVIDED homeostatic heuristic (resource-seeking value map), not the full pymdp active
   inference stack — named as provided. Trait change (P6) is drift/variation, not
-  demonstrated adaptation; specialization/niches are deferred to Exp 197.
+  demonstrated adaptation; specialization/niches are deferred to Exp 198.
 
-**STATUS.** state: active · latest: Exp 194 (MIXED / NEW INSIGHT — ecology substrate established, blind-verified; predeclared P5 starvation-death-fraction sub-metric ill-posed, post-hoc substitution refused) · depends-on: ecology/ substrate (new) · reusable: ecology engine (genotype/phenotype/world/policy, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 195 — temperature as a hidden viability pressure behind a config flag, with a WELL-POSED pressure metric (a denominator that varies / a second death cause), a baseline (random-policy or zero-mutation cohort), and a counterfactual control; FAILURE = temperature changes nothing measurable about survival or lineages.
+---
+
+**EXP 195 — PRE-REGISTRATION (senescence / aging death; committed BEFORE any data).**
+
+- **Hypothesis (one sentence).** Adding complexity-scaled senescence — age-accelerated
+  degradation of self-maintenance, with onset earlier and rate higher for more-complex
+  creatures (the SAME capability-blend complexity that already prices reproduction) — makes
+  age a genuine death cause DISTINCT from starvation, killing even a well-fed creature at a
+  complexity-dependent, non-fixed, non-linear age; and against a senescence-OFF control this
+  yields a non-degenerate two-cause death mix that varies by resource regime and shortens
+  lifespan with complexity — reproducibly under fixed seeds.
+
+- **Model (PROVIDED, behind `enable_senescence`; OFF reproduces Exp 194 byte-for-byte).**
+  `complexity ∈ [0,1]` = the existing blend of (energy_capacity, sensor_precision,
+  memory_length). Each step past a complexity-shortened onset age, a `damage` variable
+  accrues by `deg = base · (1 + k·complexity) · (age − onset)^p` (p > 1, super-linear),
+  offset by self-maintenance `∝ energy/energy_capacity` (a well-fed creature resists, but
+  `deg` eventually outgrows any maintenance — self-maintenance becomes impossible); death by
+  cause `senescence` when `damage ≥ 1`. `onset = onset0 · (1 − k'·complexity)` so complex
+  creatures begin aging out earlier. The senescence DIRECTION (complexity → frailty) is
+  IMPOSED, not discovered; the constants are chosen only to place senescence in an OBSERVABLE
+  regime (both causes occur, population still reproduces) — disclosed mechanism design.
+
+- **Design.** Two arms on the SAME seeds/scenarios: **CONTROL** (senescence OFF = the Exp 194
+  model — the baseline Exp 194 lacked) vs **TREATMENT** (senescence ON). 3 scenarios × 3 seeds
+  × 2 arms + determinism reruns.
+
+- **Predictions if TRUE** (≥3 seeds; report ALL):
+  - **P1 determinism.** Same seed → identical event hash, both arms, every scenario.
+  - **P2 senescence real & distinct.** Treatment: senescence deaths > 0 AND starvation deaths
+    > 0 in ≥1 regime; the cause-of-death fraction is strictly in (0,1) — non-degenerate (the
+    L18 fix). Control: 0 senescence deaths (by construction).
+  - **P3 complexity → shorter senescence lifespan (THE CORE).** In treatment, age-at-
+    senescence-death is negatively associated with complexity: top-third-complexity cohort
+    mean senescence-age < bottom-third by ≥ a predeclared margin (effect size), OR Spearman
+    ρ ≤ −0.2, in ≥3/3 seeds.
+  - **P4 not-fixed / variable.** Senescence-death ages have real spread (coefficient of
+    variation ≥ a predeclared threshold) — not a single fixed lifespan.
+  - **P5 cause-mix varies by regime (WELL-POSED; the Exp 194 replacement).** Senescence-death
+    fraction (senescence / total deaths) differs between the abundant and scarce regimes by
+    ≥ a predeclared effect size (abundant → higher senescence fraction; scarce → lower),
+    ≥3/3 seeds.
+  - **P6 controlled selection signal (supporting).** Treatment mean population complexity
+    diverges from the CONTROL (same seeds) by ≥ a predeclared effect size by horizon end in
+    ≥1 regime (direction: senescence selects against complexity → lower in treatment).
+  - **P7 substrate intact (regression).** Treatment still persists/reproduces/multi-gen in
+    balanced; senescence-OFF reproduces Exp 194 (balanced 170/155/155, births 628/622/509).
+
+- **Falsifiers.**
+  - **F1.** Non-determinism (any arm/scenario) ⇒ NEGATIVE.
+  - **F2.** Senescence inert OR lethal-degenerate: 0 senescence deaths anywhere, OR senescence
+    kills before any reproduction in all regimes ⇒ NEGATIVE.
+  - **F3 (THE CORE).** Complexity-independent: P3 fails (no complexity↔senescence-age relation
+    at the effect size) ⇒ "scales with complexity" FALSE ⇒ NEGATIVE.
+  - **F4.** Fixed lifespan: senescence ages have ~zero spread ⇒ "not fixed" FALSE ⇒ NEGATIVE.
+  - **F5.** Cause-mix degenerate: senescence fraction ≈ 0 or ≈ 1 everywhere / no regime
+    difference ⇒ MIXED (the well-posed-metric goal unmet).
+  - **F6.** Regression break: senescence-OFF no longer reproduces Exp 194 numbers, OR adding
+    senescence collapses the balanced ecology ⇒ NEGATIVE.
+  - Reproduction gates / mutation safety / no-evaluator invariant preserved (regression).
+
+- **Verdict rule (conjunct-by-conjunct).** POSITIVE iff P1 ∧ P2 ∧ P3 ∧ P5 ∧ P7 and none of
+  F1/F2/F3/F4/F6 fire. P3 fail ⇒ NEGATIVE (complexity-scaling is the human's core
+  requirement). If senescence is real & complexity-scaled (P2,P3) but the regime cause-mix
+  (P5) or the selection signal (P6) is null ⇒ MIXED. P4/P6 supporting.
+
+- **Honesty stakes (written before data).** The senescence direction (complexity → frailty)
+  is IMPOSED by the model, disclosed — what is TESTED is the emergent, regime- and complexity-
+  dependent consequences + the controlled selection signal, none of which the imposed
+  direction directly forces. Senescence constants are tuned only to an observable regime
+  (disclosed, like Exp 194's resource tuning; mechanics/metrics/falsifiers fixed before
+  tuning). The policy is still PROVIDED; complexity is a derived blend, not pymdp.
+
+**STATUS.** state: active · latest: Exp 194 (MIXED / NEW INSIGHT — ecology substrate established, blind-verified; predeclared P5 starvation-death-fraction sub-metric ill-posed, post-hoc substitution refused) · depends-on: ecology/ substrate (Exp 194) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 195 — senescence as a SECOND death cause (complexity-scaled, behind a flag), senescence-OFF vs ON on the same seeds: a non-degenerate two-cause death mix (P2), age-at-death scaling with complexity (P3, the core), a regime-varying cause-fraction (P5, the L18 fix), substrate intact (P7); FAILURE = aging never kills, kills all before reproduction, or age-at-death does NOT scale with complexity.
