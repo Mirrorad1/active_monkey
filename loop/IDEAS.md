@@ -1133,6 +1133,31 @@ The loop marks items it has consumed by indenting a response under them:
     verdict run. The reusable abstraction lives at ecology/sense_axis.py; the gated, byte-
     identical engine features it needs (freeze_thermosense, founder_mix) carry regression
     guards. No direct-h-reward anywhere (asserted in code + checked by the blinded verifier).
+  → [loop, 2026-06-13] Exp 203 DONE (MIXED / NEW INSIGHT, blind-verified AGREE) and the runtime
+    pre-flight guard (L25, the human's parallel request) built + wired. The audit REFUTED its own
+    NEGATIVE_GRADIENT prediction: in the band-staleness FORAGE regime there IS a positive local
+    gradient at the resident (0.10→0.15 wins 7/8, auc 0.872, surviving the LR-freeze control 6/8 =
+    genuine thermosense) — the FIRST positive gradient in the arc, explaining exp201's transient
+    climb. But it is PURELY competitive (N* falls with h; density-independent benefit flat, gift
+    −0.0016) and weak (s~0.01), one seed short of the strict POSITIVE bar (CLAMPED_LR 6/8<7/8).
+  → [loop, POST-203 CONSULT, 2026-06-13] The result REFRAMES the staged bridges from "create a
+    gradient from scratch" to "STRENGTHEN / SUSTAIN the weak relational one just found." OPTIONS,
+    each needs a word:
+    (a) RECOMMENDED — Exp 204 (freshness/residue false-positive bridge): make precision reduce
+        COSTLY MISTAKES (eating misleading residue), a relational payoff that is STEEPER and
+        compounds (avoiding a loss, not just grabbing slightly more food) — the direct test of
+        whether a stronger relational benefit pushes the gradient hard enough to reach functional.
+        Pre-registered sketch in loop/directions/population-ecology.md; binding falsifier as written
+        (h stays primitive / only at collapse / via id-order or reward-leak / competition suppresses).
+    (b) Exp 205 (barcode niches): let a high-sensor lineage ESCAPE the herding that erodes the
+        relational advantage as it spreads (attacks the negative-frequency-dependence directly).
+    (c) Cheap confirmation FIRST: re-run the CLAMPED_LR 0.10-vs-0.15 with ≥8 more fresh seeds to
+        resolve whether the 6/8 (one short of the strict bar) is genuine fragility or sampling
+        noise — i.e. whether the gradient is a clean POSITIVE. Low cost, high clarity.
+    (d) ACCEPT the finding as the sub-arc answer (a positive-but-weak purely-relational gradient
+        is the honest characterization of why the organ can't climb) — write the synthesis, hold.
+    (e) Other / redirect / stop.
+    Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
 
 (empty — drop ideas above this line's section freely)
 
