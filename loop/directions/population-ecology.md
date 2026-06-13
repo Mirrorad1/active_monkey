@@ -72,9 +72,12 @@ Selection emerges from the environment, never from an external ranking.
   thermosense separates heritable selection from survivor bias. FAILURE: thermosense is NOT retained
   under temperature even among the living (doesn't pay even when useful); or unstable/confounded.
   ("Heritable selection FOR efficient capability" only if NEWBORN thermosense shifts vs control.)
-- **Exp 198 — temperature as a hidden viability pressure** (folded into Exp 197; reserved for
-  refinements — e.g. temperature × thermosense-locked controls, dynamic thermal regimes).
-  FAILURE: temperature changes nothing measurable about survival/lineages.
+- **Exp 198 — the thermosense intensity ATTRACTOR + clean de-novo emergence** (resolves Exp 197's
+  survivor-bias confound). 2×2 temperature × seeding (founder intensity 0 vs 0.20): does thermosense
+  EMERGE from zero under temperature (a pure heritable signal — no survivor bias possible when the
+  trait starts at 0), and do seeded-high and de-novo-from-0 CONVERGE to the same low equilibrium
+  (an attractor)? FAILURE: no clean temp-ON vs temp-OFF gap from zero (Exp 197's heritable signal
+  was survivor bias / noise); or no convergence; or runaway to a functional organ.
 - **Exp 199 — costly thermosense organ.** A sensor that costs energy becomes useful ONLY
   when temperature matters. FAILURE: the costly sensor is favored (or disfavored) identically
   whether or not temperature is a pressure.
@@ -387,4 +390,62 @@ BEFORE the fresh-seed run).**
   flat per-tick penalty, matched control cost_scale 0, fresh seeds {8,9,10,11,12} — replaced 2026-06-13
   by the expressed-machinery thermosense mechanism above on the human's correction.)_
 
-**STATUS.** state: active · latest: Exp 196 (POSITIVE / NEW INSIGHT, POSITIVE-SINGLE — over a LONG horizon (5000 steps) aging DOES depress the standing population's mean complexity below a matched senescence-OFF control: gap 0.09–0.28 in 5/5 fresh seeds, progressive, emerging only after ~t=2000 — Exp 195's P6 selection null was a HORIZON limit, not an absence; blind-verified. Mechanism under-claimed: standing-population metric conflates heritable selection with survivor bias + density — newborn-complexity tracker is the named follow-up) · depends-on: ecology/ substrate (Exp 194–196) · reusable: ecology engine (genotype/phenotype/world/policy + senescence flag, pluggable for pymdp nav) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 197 (pre-registered REVISED, branch exp197-maintenance-cost) — complexity = EXPRESSED-machinery cost: a costed, evolvable THERMOSENSE organ (floor + inefficiency·intensity) under temperature ON (treatment) vs OFF (control), with thermal tolerance ALSO costed + a drifting comfort zone (no free escapes), fresh seeds {8,9,10,11,12}. Does thermosense pay its way (RETAINED under temperature, shed without)? NEWBORN vs standing thermosense separates heritable selection from survivor bias. POSITIVE-HERITABLE only if NEWBORN thermosense shifts (P4); else POSITIVE-SURVIVOR-BIAS / -MIXED / NEGATIVE / INCONCLUSIVE per the predeclared taxonomy. (Scalar complexity_cost_scale mechanism SUPERSEDED.)
+---
+
+**EXP 198 — PRE-REGISTRATION (the thermosense intensity ATTRACTOR + clean de-novo emergence;
+committed BEFORE the fresh-seed run).**
+
+- **Motivation.** Exp 197 found thermosense RETAINED under temperature but mostly by SURVIVOR BIAS,
+  with a WEAK heritable shift — the seeded founder (intensity 0.20) confounds living-enrichment
+  (survivor bias) with gene-pool shift (heritable). Starting the organ at intensity 0 REMOVES the
+  confound: a trait nobody has cannot be survivor-biased, so any rise in the gene pool (newborns) is
+  PURE heritable selection. This runs the clean test + characterizes the equilibrium.
+
+- **Hypothesis (one sentence).** Under temperature the thermosense organ EMERGES de novo from
+  intensity 0 to a low gene-pool equilibrium (clean heritable selection, no survivor-bias confound),
+  reaching the SAME convergent attractor a seeded-high founder (0.20) RELAXES down to — a low,
+  near-activation-threshold equilibrium that never runs away to a functional organ (the fitness valley
+  + neutral-sub-threshold drift cap it); without temperature the equilibrium is lower.
+
+- **Design (2×2 temperature × seeding; fresh seeds {13,14,15,16,17}, horizon 12000, the Exp 197
+  thermosense regime — floor 0.02, active_threshold 0.05, noise 0.2, stress 1.0, tol_cost 1.5, comfort
+  amp 0.4/period 1500, thermal_weight 2.5; founder tolerance 0.10):**
+  - **A** temperature ON, founder intensity 0 (de-novo). **B** ON, founder 0.20 (seeded).
+  - **C** temperature OFF, founder 0. **D** OFF, founder 0.20.
+  Metric = NEWBORN (gene-pool) mean thermosense intensity, end = mean over the last 2000 steps; +
+  the trajectory.
+
+- **Disclosed pilots (per L7).** 2-seed pilots {100,101} (deleted) at horizon 15000: end newborn
+  intensity A 0.040–0.044, B 0.048–0.050, C 0.027–0.030, D 0.033–0.035 ⇒ A>C (temp raises the from-0
+  equilibrium ~0.013), A≈B and C≈D (convergence within ~0.01), all < 0.05 (no runaway). Params +
+  thresholds FIXED here; final on FRESH seeds {13–17} never used in any pilot.
+
+- **Predictions if TRUE** (5 fresh seeds, report ALL):
+  - **P1 determinism.** Same seed → identical event hash, all arms.
+  - **P2 validity.** All 4 arms persist to the horizon (no extinction/explosion), ≥4/5 seeds.
+  - **P3 (CORE) clean de-novo heritable temperature effect.** A end − C end ≥ 0.008 in ≥4/5 seeds,
+    AND A rose from 0 (A end > 0.02). Both A,C start at 0 ⇒ the gap is PURE heritable (no survivor
+    bias). [pilot ~0.013]
+  - **P4 (attractor / convergence).** |A − B| ≤ 0.02 AND |C − D| ≤ 0.02 in ≥4/5 seeds (seeded-high and
+    de-novo-from-0 converge to the same equilibrium, temp-ON and temp-OFF respectively). [pilot ~0.004–0.007]
+  - **P5 (primitive ceiling / no runaway).** All four arms' end newborn intensity < 0.10 in 5/5 seeds —
+    no functional organ evolves. [pilot max ~0.050]
+  - Supporting: A RISES from 0 (≥0.01) while B FALLS from 0.20 (< 0.10) — convergence from opposite directions.
+
+- **Falsifiers.** F1 non-determinism → NEGATIVE. **F2 (CORE)** A−C gap < 0.008 in a majority → no
+  clean heritable temperature boost from zero ⇒ Exp 197's heritable signal was survivor bias / noise →
+  NEGATIVE. F3 |A−B|>0.02 or |C−D|>0.02 in a majority → seeding sets the equilibrium, not an attractor →
+  MIXED. F4 any arm end newborn intensity > 0.15 → a functional organ evolved → reinterpret (POSITIVE
+  surprise). F5 arms fail to persist (majority) → INCONCLUSIVE.
+
+- **Verdict rule.** POSITIVE iff P1 ∧ P2 ∧ P3 ∧ P4 ∧ P5. P3 fail → NEGATIVE (the Exp 197 heritable
+  signal does not survive the survivor-bias-free test). P4 fail → MIXED. P5 fail (runaway) → reinterpret.
+  Repo token: POSITIVE / NEGATIVE / MIXED.
+
+- **Honesty stakes.** All params/thresholds tuned on disclosed pilots {100,101} and FIXED before the
+  fresh-seed run. The temperature heritable effect is SMALL (~0.013) but CLEAN (no survivor-bias
+  confound — both A and C start at 0). The equilibrium is LOW/primitive (near the activation threshold),
+  NOT a functional organ — honest about the fitness-valley ceiling. temp-ON arms persist at low
+  population (~70–90) vs temp-OFF (~500), a density consequence. Policy + founder + costs PROVIDED.
+
+**STATUS.** state: active · latest: Exp 197 (POSITIVE-MIXED, blind-verified, merged via PR #32 — complexity = EXPRESSED-MACHINERY cost: a costed evolvable THERMOSENSE organ is RETAINED under temperature (living active-fraction ~0.52 vs ~0.06; tolerance stays low → adapts by SENSING not bought robustness) but survivor-bias-DOMINATED with only a WEAK heritable shift; the human's mechanism revision — cost attaches to expressed machinery with floors, not a scalar penalty; → L20) · depends-on: ecology/ substrate (Exp 194–197) · reusable: ecology engine (+ temperature / drifting comfort / costed tolerance / costed-expressed-evolvable thermosense organ) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 198 (pre-registered) — the thermosense ATTRACTOR + clean de-novo emergence: 2×2 temperature × seeding (founder intensity 0 vs 0.20), fresh seeds {13–17}. Does thermosense EMERGE from zero under temperature (a survivor-bias-FREE heritable test that resolves Exp 197's ambiguity), and do seeded-high + de-novo-from-0 CONVERGE to the same low equilibrium? POSITIVE iff the clean A(temp-ON,0) − C(temp-OFF,0) gap ≥ 0.008 (P3) + convergence (P4) + no runaway (P5); else NEGATIVE / MIXED.
