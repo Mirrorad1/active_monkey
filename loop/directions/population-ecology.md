@@ -86,11 +86,17 @@ Selection emerges from the environment, never from an external ranking.
   organ decays / drives extinction — i.e. the functional state is selected against from both directions
   (benefit saturates: a little sensing suffices to reach safety, cost keeps rising). POSITIVE only if a
   functional organ (mean >0.30) evolves or is retained at the shallowest valley.
-- **Exp 200 — niche / species archive** from trait + behavior clustering (the evaluator
-  RECORDS clusters, never selects them). FAILURE: no separable clusters under pressure.
-- **Exp 201 — self-selection / mate choice** on observed traits, only after viability
-  ecology works. FAILURE: mate choice changes no lineage outcome vs random pairing.
-- **Exp 202 — neural Bθ / deep active-inference transition models inside lineages.**
+- **Exp 200 — the FORAGING escape: can a non-saturating benefit cross the valley?** (Exp 199's
+  pointed escape.) Food concentrated in a DRIFTING thermal band; thermosense used to FORAGE (find
+  food — a need that never ends) instead of avoid. Does a FUNCTIONAL organ (gene-pool mean >0.30)
+  then evolve? FAILURE (the strong general finding, NEGATIVE): the gene-pool mean stays primitive
+  (<0.15) even under foraging (wide AND narrow/precision-demanding bands) — so the ceiling is general
+  across avoidance AND foraging, not specific to avoidance-saturation.
+- **Exp 201 — niche / species archive** from trait + behavior clustering (the evaluator RECORDS
+  clusters, never selects them). FAILURE: no separable clusters under pressure.
+- **Exp 202 — self-selection / mate choice** on observed traits, only after viability ecology works.
+  FAILURE: mate choice changes no lineage outcome vs random pairing.
+- **Exp 203 — neural Bθ / deep active-inference transition models inside lineages.**
 
 **Stop condition.** Exhausted when either (a) the ladder reaches a documented wall
 (e.g. toy gridworld stops supplying discriminating viability failures — the same
@@ -514,4 +520,60 @@ committed BEFORE the fresh-seed run).**
   reported as extinctions = evidence). Pilots disclosed; thresholds FIXED pre-run; founders + costs
   PROVIDED. The result is conditional on this avoidance-based sensing model.
 
-**STATUS.** state: active · latest: Exp 198 (MIXED / NEW INSIGHT, core-POSITIVE, blind-verified, on main — CLEAN de-novo heritable emergence: from intensity 0 (survivor-bias impossible), temperature heritably grows the gene-pool sensor (~0.045 vs ~0.029, 5/5), confirming Exp 197's heritable signal is real; a CONVERGENT ATTRACTOR (de-novo-from-0 ≈ seeded-0.20) capped LOW by a FITNESS VALLEY; MIXED only on a predeclaration validity gap, seed-17 seeded arm collapsed → unmeasurable NaN → L21) · depends-on: ecology/ substrate (Exp 194–198) · reusable: ecology engine (+ temperature / drifting comfort / costed tolerance / costed-expressed-evolvable thermosense organ) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 199 (pre-registered) — is the primitive-sensor ceiling FUNDAMENTAL? a fitness-valley NOISE SWEEP (founder 0.10, V1–V4 noise 0.20→0.02) + a functional-RETENTION arm (founder 0.50), all under the BEST-CASE shallow valley, fresh seeds {18–22}. NEGATIVE (= the finding: ceiling fundamental) iff no V arm climbs >0.30 (P3) AND the seeded-functional organ is not retained / goes extinct (P4); POSITIVE iff a functional organ (mean >0.30) evolves or is retained.
+---
+
+**EXP 200 — PRE-REGISTRATION (the FORAGING escape: can a non-saturating benefit cross the valley?
+committed BEFORE the fresh-seed run).**
+
+- **Motivation.** Exp 199 found the primitive-sensor ceiling fundamental for AVOIDANCE sensing (a
+  little sensing reaches safety → benefit saturates). The named escape: a NON-saturating benefit —
+  sensing for FORAGING (you always need food). This tests it.
+
+- **Mechanism (new engine, gated; exp194-199 byte-identical, hash-verified).** Food regeneration
+  concentrated in a thermal band that DRIFTS; thermosense in FORAGE mode steers toward the
+  food-optimal temperature (finding food) instead of away from stress; NO temperature stress (the only
+  benefit is foraging). The engine behavioral test confirms a strong forager (intensity 0.8)
+  reproduces ~4x more than a no-organ creature — so foraging-sense is genuinely useful.
+
+- **Hypothesis (the escape, from Exp 199's mechanism).** A non-saturating foraging benefit lets a
+  FUNCTIONAL thermosense organ EVOLVE (gene-pool mean intensity climbs > 0.30), crossing the valley.
+
+- **Arms** (temp ON for food coupling, stress 0, cheap efficient organ inefficiency 0.20 / floor 0,
+  founder intensity 0.10, enable_thermosense, forage mode, food_concentration 8, forage weight 4,
+  noise 0.5; horizon 12000; fresh seeds {23,24,25,26,27}):
+  - **WIDE forage**: food_band_width 0.15, amplitude 0.3, period 1500.
+  - **NARROW (precision) forage**: food_band_width 0.05, amplitude 0.4, period 600.
+  - **CONTROL**: enable_food_coupling=False (uniform food → thermosense useless) — the primitive baseline.
+  Metric = NEWBORN (gene-pool) mean thermosense intensity, end = born in [10000,12000].
+
+- **Disclosed pilots (per L7).** Pilots {100,101} (deleted) — wide + narrow + precision foraging
+  regimes; the gene-pool mean stayed 0.04–0.09 (never functional), max individual 0.3–0.6; NARROWER
+  bands gave LOWER mean. So the pilots SUGGEST the escape FAILS; the experiment formally tests it on
+  FRESH seeds {23–27}.
+
+- **Predictions if TRUE** (5 fresh seeds; L21 validity = measurable cohort):
+  - **P1 determinism.** **P2 validity** (arms persist measurably ≥4/5).
+  - **P3 (CORE escape test).** SOME foraging arm (WIDE or NARROW) end gene-pool mean intensity > 0.30
+    in ≥4/5 seeds → a functional organ evolved under foraging → the escape WORKS → POSITIVE.
+
+- **Falsifier → NEGATIVE (escape fails, ceiling general).** All foraging arms stay primitive (end
+  mean < 0.15) in a majority → the foraging escape FAILS; the primitive ceiling holds across avoidance
+  AND foraging (a stronger, more general finding than Exp 199). F1 non-determinism → NEGATIVE (infra).
+
+- **Diagnostics (reported, not gating).** The engine behavioral test (a strong forager out-reproduces
+  a no-organ one ~4x) confirms foraging IS useful — so a NEGATIVE is NOT because foraging is useless,
+  but because the MARGINAL fitness gradient on intensity is too weak (crude sensing captures the easy
+  benefit; a narrow band is too stochastic to reliably select on — no Goldilocks gradient). Report the
+  max individual intensity reached (a high-intensity individual exists but does not dominate).
+
+- **Verdict rule.** POSITIVE iff P3 (a functional organ evolves under foraging). NEGATIVE iff all
+  foraging arms stay primitive (the escape fails, ceiling general). MIXED if partial (one regime
+  crosses but not robustly, or unstable). Repo token POSITIVE/NEGATIVE/MIXED.
+
+- **Honesty stakes.** The base regime is deliberately FAVORABLE to a functional organ (cheap efficient
+  organ, strong foraging benefit confirmed by the behavioral test). Predicting POSITIVE (the human's
+  escape hypothesis) and getting NEGATIVE (pilot-suggested) is an HONEST negative, not a forced result.
+  Pilots {100,101} disclosed (they showed no crossing); the experiment tests on FRESH seeds {23–27}.
+  Engine changes gated; exp194–199 byte-identical (hash-verified). Founders + costs PROVIDED.
+
+**STATUS.** state: active · latest: Exp 199 (NEGATIVE / NEW INSIGHT — a WALL, blind-verified, on main — the primitive-sensor ceiling is FUNDAMENTAL in this avoidance regime: under a deck stacked FOR a functional organ, a primitive sensor never climbs (noise sweep FLAT) and a seeded-functional organ (0.50) decays to primitive or drives extinction; high-intensity mutants culled — a genuine selective valley; mechanism = benefit-SATURATION; pointed escape = a non-saturating FORAGING benefit → Exp 200) · depends-on: ecology/ substrate (Exp 194–199) · reusable: ecology engine (+ temperature / costed tolerance / costed-expressed-evolvable thermosense organ; foraging-sense added on branch exp200-foraging-sense) · why: opens the population axis distinct from the locked ladder (human's "N5 population ecology" = ladder-N7 territory, kept parallel) · next-falsifiable: Exp 200 (pre-registered, branch exp200-foraging-sense) — the FORAGING escape: food concentrated in a DRIFTING thermal band + thermosense used to FORAGE (a non-saturating benefit), fresh seeds {23–27}. POSITIVE iff a FUNCTIONAL organ (gene-pool mean >0.30) evolves under foraging (escape works); NEGATIVE iff it stays primitive (<0.15) even under foraging (the ceiling is general across avoidance AND foraging — pilot-suggested). The escape hypothesis is the human's; predicting POSITIVE, pilots suggest NEGATIVE.

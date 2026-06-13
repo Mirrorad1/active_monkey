@@ -158,10 +158,58 @@ class HomeostaticPolicy:
                     return target
                 return pos  # stay and eat
 
+        elif world.forage_mode:
+            # ----------------------------------------------------------------
+            # Exp 200: FORAGE mode — steer TOWARD food-optimal temperature.
+            # Runs ONLY when thermosense is active AND world.forage_mode is True.
+            # Avoidance mode is completely bypassed; rng draws happen here only
+            # in this branch so regression conditions are unaffected.
+            # ----------------------------------------------------------------
+            food_opt = world.current_food_optimal
+            intensity = creature.genotype.thermosense_intensity
+            forage_weight = world.thermal_avoidance_weight
+
+            # Noise decreases with higher intensity (better organ = better signal).
+            noise_sd = max(0.0, world.thermosense_noise_base * (1.0 - intensity))
+
+            # Noisy temperature reading at each neighbor; steer toward food_opt.
+            # Score = learned resource estimate - forage_weight * |noisy_temp - food_opt|
+            # Higher score = more food expected AND closer to the food band.
+            noisy_temp: dict[int, float] = {}
+            for n in neighbors:
+                noisy_temp[n] = float(world.temperature[n]) + rng.normal(0.0, noise_sd)
+
+            current_resource = world.resource_at(pos)
+            if current_resource < _DEPLETION_THRESHOLD:
+                # Resource depleted here — move to best neighbor for foraging.
+                target = max(
+                    neighbors,
+                    key=lambda n: (self.m[n] - forage_weight * abs(noisy_temp[n] - food_opt), -n),
+                )
+                return target
+            else:
+                # Resource available here; check if a neighbor is significantly better
+                # (close to food band AND has expected resource).
+                best_neighbor = max(
+                    neighbors,
+                    key=lambda n: (self.m[n] - forage_weight * abs(noisy_temp[n] - food_opt), -n),
+                )
+                stay_score = self.m[pos] - forage_weight * abs(
+                    float(world.temperature[pos]) - food_opt
+                )
+                move_score = (
+                    self.m[best_neighbor]
+                    - forage_weight * abs(noisy_temp[best_neighbor] - food_opt)
+                )
+                if move_score > stay_score:
+                    return best_neighbor
+                return pos
+
         else:
             # ----------------------------------------------------------------
-            # Thermal-aware branch (Exp 197) — runs ONLY in treatment arm where
-            # temperature is on AND the creature has an active thermosense organ.
+            # Thermal-aware branch (Exp 197 avoid-mode) — runs ONLY when
+            # temperature is on AND creature has active thermosense AND
+            # forage_mode is False.
             # This branch may consume rng differently; that is intentional and
             # safe because it never executes in control/regression conditions.
             # ----------------------------------------------------------------
