@@ -285,6 +285,12 @@ Run experiment scripts from the repo root (or `PYTHONPATH=.`) so imports resolve
 **Preferred (modular):** generate the `/loop` prompt from the pluggable modules in `loop/`
 (premise + direction + persona + optional one-off idea):
 
+**Fastest (in-session command):** type `/lab <direction>` in a Claude session — it
+runs `loop/compose.py`, shows the assembled prompt + a one-line summary, and begins
+iterating only after you reply "go" (the human-consent gate). Steer mid-flight with
+`/steer "<idea>"`; answer an open consult with `/steer --resume <word>`. The terminal
+`compose.py` recipe below still works as a fallback.
+
 ```bash
 uv run --python .venv python loop/compose.py --list                      # see modules
 uv run --python .venv python loop/compose.py   # default = current steer: continuous-substrate (Problem 2, docs/research/problem2-continuous-substrate.md)

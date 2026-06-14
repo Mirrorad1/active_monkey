@@ -1,0 +1,16 @@
+# Paths the autosync Stop hook (tools/autosync.sh) may sweep into an auto-sync
+# commit. One path per line; blank lines and #-comments ignored. The loop owns
+# experiment/site artifacts; arbitrary docs/code stay unstaged for intentional
+# commits. Stream B will repoint experiments-data.js / lab-status.js to site/.
+EXPERIMENTS.md
+experiments
+experiments-data.js
+lab-status.js
+DIRECTIONS.md
+loop/IDEAS.md
+loop/directions
+loop/managed-paths.txt
+creature/state
+world_model
+reports
+REPORT.md
