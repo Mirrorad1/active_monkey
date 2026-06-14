@@ -41,7 +41,9 @@ def test_bodies_partition_the_log():
 
 
 def test_every_experiment_has_a_title():
-    assert all(e.title for e in parse(TEXT))
+    exps = parse(TEXT)
+    assert exps, "no experiments parsed"  # all() is vacuously true on []
+    assert all(e.title for e in exps)
 
 
 def test_known_title_exp1():
@@ -57,4 +59,4 @@ def test_by_number_raises_on_duplicate():
 
 def test_load_reads_repo_experiments_md():
     from active_loop.experiments_parser import load
-    assert len(load()) == len(parse(TEXT))
+    assert load() == parse(TEXT)  # content identity, not just count
