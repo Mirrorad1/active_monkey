@@ -19,22 +19,19 @@ if [ -n "$(git status --porcelain)" ]; then
   uv run --python .venv python tools/gen_directions_index.py >/dev/null 2>&1 || true
   uv run --python .venv python -m active_loop.site_data --lab-status >/dev/null 2>&1 || true
 
-  # Keep autosync from sweeping scratch files or parallel-agent edits into a
-  # drive-by commit. The main loop owns experiment/site artifacts; PR work and
-  # arbitrary docs/code changes should be committed intentionally.
-  managed_paths=(
-    "EXPERIMENTS.md"
-    "experiments"
-    "experiments-data.js"
-    "lab-status.js"
-    "DIRECTIONS.md"
-    "loop/IDEAS.md"
-    "loop/directions"
-    "creature/state"
-    "world_model"
-    "reports"
-    "REPORT.md"
-  )
+  # Managed paths are configured in loop/managed-paths.txt (one per line,
+  # # comments allowed). Keeps autosync from sweeping scratch files or
+  # parallel-agent edits; lets a later stream repoint site files without editing
+  # this script. If the file is absent, sweep nothing (safe: leaves the tree for
+  # an intentional commit rather than guessing).
+  managed_paths=()
+  mp_file="loop/managed-paths.txt"
+  if [ -f "$mp_file" ]; then
+    while IFS= read -r p; do
+      case "$p" in ''|\#*) continue ;; esac
+      managed_paths+=("$p")
+    done < "$mp_file"
+  fi
   for path in "${managed_paths[@]}"; do
     [ -e "$path" ] && git add -A -- "$path"
   done
