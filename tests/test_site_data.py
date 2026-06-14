@@ -14,6 +14,14 @@ def _read(name):
     return (ROOT / name).read_text(encoding="utf-8")
 
 
+def _journey_inline_style():
+    """Return the Journey page's inline style block."""
+    text = _read("journey.html")
+    m = re.search(r"<style>\s*(.*?)\s*</style>", text, re.DOTALL)
+    assert m, "journey.html inline <style> block not found"
+    return m.group(1)
+
+
 # ---------------------------------------------------------------------------
 # Parse EXPERIMENTS.md
 # ---------------------------------------------------------------------------
@@ -349,6 +357,22 @@ def test_metric_units_are_captions_not_sentences():
     assert not offenders, (
         "Metric units must stay caption-length (<= 80 chars):\n" + "\n".join(offenders)
     )
+
+
+def test_journey_long_entries_have_reader_width_and_mobile_stack():
+    """The Journey timeline must stay readable for long frontier entries.
+
+    Regression guard for Exp 206-style cards: desktop should give text a real
+    reader width, while narrow screens should stack the header and hide the
+    decorative rail so content does not compress into a thin column.
+    """
+    css = re.sub(r"\s+", "", _journey_inline_style())
+    assert ".tl-inner{max-width:min(1180px,calc(100vw-56px))" in css
+    assert "@media(max-width:640px)" in css
+    assert ".card-head{grid-template-columns:1fr" in css
+    assert ".timeline{padding-top:16px" in css
+    assert ".exp,.beat,.actdiv{padding-left:0" in css
+    assert ".exp.node,.beat.node,.actdiv.node{display:none" in css
 
 
 def _surprise_segments_points():
