@@ -100,6 +100,19 @@ class GridWorld:
     niche_weight: float = 4.0
     niche_read_perm: "np.ndarray | None" = None
 
+    # Exp hidden-state-mode: binary hidden mode + cell-type mask + params.
+    # All default to no-ops — OFF path is byte-identical to exp194-206.
+    # enable_hidden_mode: gates the new step_regen branch and engine mode-switch.
+    # hidden_mode: current mode value {0, 1}; mutated by engine.step() each tick.
+    # cell_type: fixed left/right half mask (None when OFF; pure arithmetic, no rng).
+    # mode_switch_prob: probability of flipping hidden_mode each step (engine draws).
+    # cue_noise: std-dev of the per-step noisy cue observed by creatures.
+    enable_hidden_mode: bool = False
+    hidden_mode: int = 0
+    cell_type: "np.ndarray | None" = None
+    mode_switch_prob: float = 0.02
+    cue_noise: float = 0.5
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -143,6 +156,20 @@ class GridWorld:
         regen is approximately conserved.  Deterministic (no rng).
         When enable_food_coupling is False, this method is byte-identical to before.
         """
+        # Exp hidden-state-mode: gated half-plane regen — ONLY when enable_hidden_mode
+        # is True AND cell_type is allocated.  Regenerate ONLY the cells whose type
+        # matches the current hidden_mode (the "good half"); the other half gets NO
+        # regen and NO floor bump (it depletes).  Returns early so the existing paths
+        # below are NEVER reached when this branch is active — the existing paths are
+        # therefore byte-identical when enable_hidden_mode is False (OFF path ⇒ return
+        # never fires, existing code runs exactly as before).
+        if self.enable_hidden_mode and self.cell_type is not None:
+            match = (self.cell_type == self.hidden_mode)
+            self.resource[match] += self.regen_rate
+            self.resource[match] = np.minimum(self.resource[match], self.capacity)
+            # Non-matching half: no regen, no floor bump — allowed to deplete to 0.
+            return
+
         # Exp 200 food-coupling: concentrated regen — only when enabled AND temperature
         # field is present (temperature carries the spatial gradient for the band).
         if self.enable_food_coupling and self.temperature is not None:
@@ -279,6 +306,10 @@ class GridWorld:
         # Exp 201: band-staleness parameters — all default to OFF (no-op).
         enable_band_staleness: bool = False,
         band_responsiveness: float = 1.0,
+        # Exp hidden-state-mode parameters — all default to OFF (no-op).
+        enable_hidden_mode: bool = False,
+        mode_switch_prob: float = 0.02,
+        cue_noise: float = 0.5,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -308,6 +339,16 @@ class GridWorld:
                 dtype=np.float64,
             )
 
+        # Exp hidden-state-mode: build the fixed left/right half cell-type mask.
+        # Pure arithmetic (NO rng) — the resource-perturbation rng stream is unchanged.
+        # cell_type[i] = 1 if col >= cols//2 else 0 (right half = type 1, left = type 0).
+        cell_type: np.ndarray | None = None
+        if enable_hidden_mode:
+            cell_type = np.array(
+                [1 if c >= cols // 2 else 0 for r in range(rows) for c in range(cols)],
+                dtype=np.int64,
+            )
+
         return cls(
             rows=rows,
             cols=cols,
@@ -330,4 +371,10 @@ class GridWorld:
             enable_band_staleness=enable_band_staleness,
             band_responsiveness=band_responsiveness,
             food_optimal_base=food_optimal_base,  # stored for neutral tracker init
+            # Exp hidden-state-mode fields — defaults are no-ops.
+            enable_hidden_mode=enable_hidden_mode,
+            hidden_mode=0,
+            cell_type=cell_type,
+            mode_switch_prob=mode_switch_prob,
+            cue_noise=cue_noise,
         )

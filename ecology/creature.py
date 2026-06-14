@@ -122,6 +122,10 @@ class HomeostaticPolicy:
         # release_maps() (only m/visit_t are dropped) so the post-hoc I(h;niche)/knockout analysis
         # can read the dead creature's occupancy.  None when the niche mechanic is OFF.
         self.niche_occ: "list[int] | None" = None
+        # Exp hidden-state-mode: rolling cue buffer for belief integration.  None until the
+        # hidden-mode branch first runs (only when enable_hidden_mode=True); a plain attribute,
+        # NEVER in events_hash, so the OFF path is byte-identical to exp194-206.
+        self.cue_buffer: "list[float] | None" = None
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -147,6 +151,33 @@ class HomeostaticPolicy:
         neighbors = world.neighbors(pos)
         if not neighbors:
             return pos  # trapped (shouldn't happen on 12x12 but handle it)
+
+        # Exp hidden-state-mode: HIGHEST-PRIORITY branch — runs ONLY when the hidden mode
+        # is enabled.  ONE rng draw (the noisy cue); NO further draws.  OFF path never runs
+        # this block ⇒ byte-identical to Exp 194-206 (the use_thermo path below is reached
+        # with IDENTICAL rng draws when enable_hidden_mode is False).
+        if world.enable_hidden_mode and world.cell_type is not None:
+            k = max(1, int(creature.genotype.memory_horizon))
+            cue = float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+            if self.cue_buffer is None:
+                self.cue_buffer = []
+            self.cue_buffer.append(cue)
+            if len(self.cue_buffer) > k:
+                self.cue_buffer = self.cue_buffer[-k:]
+            m_hat = 1 if (sum(self.cue_buffer) / len(self.cue_buffer)) >= 0.5 else 0
+
+            # Steer toward the inferred-good half (right if m_hat==1, left if m_hat==0).
+            # Score lexicographically: (in-good-half, believed-resource, -index).
+            # "in-good-half" = 1 if neighbor's cell_type matches m_hat, else 0.
+            # This keeps belief as a meaningful secondary tie-breaker so creatures
+            # don't graze only the extreme edge of the correct half.
+            # No further rng draws; lowest index wins ties.
+            def _score(n: int) -> tuple:
+                toward = 1 if world.cell_type[n] == m_hat else 0
+                belief = float(self.m[n]) if self.m is not None else 0.0
+                return (toward, belief, -n)
+
+            return max(neighbors, key=_score)
 
         # Exp 197: thermal-aware branch — ONLY when temperature field is present AND
         # the creature has an active thermosense organ.  When use_thermo is False,
