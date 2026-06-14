@@ -117,6 +117,11 @@ class HomeostaticPolicy:
         # OFF path is byte-identical to exp194-200.  Lazily initialised to
         # world.food_optimal_base (a neutral start, not the moving true value).
         self.band_estimate: float | None = None
+        # Exp 206: per-creature class-occupancy tally (modal niche occupied), lazily inited to
+        # [0]*K by the engine eat step.  A plain attribute, NEVER in events_hash; KEPT through
+        # release_maps() (only m/visit_t are dropped) so the post-hoc I(h;niche)/knockout analysis
+        # can read the dead creature's occupancy.  None when the niche mechanic is OFF.
+        self.niche_occ: "list[int] | None" = None
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -181,6 +186,48 @@ class HomeostaticPolicy:
                     creature.phenotype.steps_explored += 1
                     return target
                 return pos  # stay and eat
+
+        elif world.enable_niche:
+            # ----------------------------------------------------------------
+            # Exp 206: ROTATING-CLASS NICHE routing — the ONLY site where the sensor h
+            # buys anything.  The creature seeks the UNDER-CROWDED class (read from the
+            # ecological crowding state class_occ_prev — like depletion, an allowed rho,
+            # NOT a fitness ranking) and routes toward neighbours whose CURRENT class it
+            # reads as that target.  h keys ONLY the read accuracy: sigma =
+            # niche_confusion*(1-h).  A precise creature resolves the true current class
+            # and lands on under-crowded cells (low crowding discount at the eat step); a
+            # crude creature misreads and herds.  The class ROTATES (world.class_signal
+            # recomputed each step) so a static learned map cannot substitute (the
+            # non-memorizability fix).  Gated on enable_niche (mutually exclusive with
+            # band-staleness, asserted in engine __init__); returns within itself drawing
+            # ONLY in this ON branch, so the OFF path rng is identical.  No food/fitness is
+            # f(h): h only sharpens the percept; the eat-step crowding discount is h-blind.
+            # ----------------------------------------------------------------
+            intensity = creature.genotype.thermosense_intensity
+            sigma = max(0.0, world.niche_confusion * (1.0 - intensity))
+            K = world.niche_classes
+            target_class = int(np.argmin(world.class_occ_prev))   # least-crowded class to seek
+            read_sig = (world.class_signal if world.niche_read_perm is None
+                        else world.class_signal[world.niche_read_perm])
+            fw = world.niche_weight
+
+            def _cls_read(cell: int) -> int:
+                noisy = (float(read_sig[cell]) + rng.normal(0.0, sigma)) % 1.0
+                cr = int(K * noisy)
+                return K - 1 if cr >= K else cr
+
+            # one rng draw per neighbour, fixed (up/down/left/right) order ⇒ deterministic
+            nb_scores = [(self.m[n] + (fw if _cls_read(n) == target_class else 0.0), -n, n)
+                         for n in neighbors]
+            best_score, _, best = max(nb_scores)
+            current_resource = world.resource_at(pos)
+            if current_resource < _DEPLETION_THRESHOLD:
+                return best
+            else:
+                stay_score = self.m[pos] + (fw if _cls_read(pos) == target_class else 0.0)
+                if best_score > stay_score:
+                    return best
+                return pos
 
         elif world.forage_mode and world.enable_band_staleness:
             # ----------------------------------------------------------------

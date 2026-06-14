@@ -1,0 +1,51 @@
+RUNTIME PRE-FLIGHT — SAFE (jobs=228, workers=11->11, horizon=8000, proj~18.1 min, mem≤23.2GB @ ~1022MB/job)
+  regime         pop_end      g1->gN  decel proj_pop  rss MB us/cr late ~per-job s
+  NICHE_COMPETE      2122.132->1.594   True     1096     764       5.19       45.5
+  STATIC_NICHE       1741.929->1.626   True     1433     953      3.821       43.8
+  NO_CROWDING        939 3.202->1.33   True     1557    1022      4.198       52.3
+
+Exp 206 rotating-class niche: 198 audit + 30 evo jobs (11 workers) ...
+
+================================================================================
+EXP 206 — N5 ROTATING-CLASS NICHE / SYMPATRIC-DIVERGENCE BRIDGE — SUMMARY
+================================================================================
+
+REGIME (fairest-shot, disclosed pilot): crowd=1.5 rot=0.05 conf=0.4 weight=6.0 K=2 regen=0.2
+
+MONOMORPHIC N*(h) (cost ON; argmax = competitive optimum h*):
+      h        N*
+   0.00     267.0
+   0.03     267.0
+   0.06     150.7
+   0.10     171.3
+   0.15     123.7
+   0.20     129.0
+   0.30     115.6
+   0.45      98.4
+   0.60      85.0
+  h*N = 0.0   max_N = 267
+
+PAIRWISE invader h' vs resident 0.10 (NICHE_COMPETE — the relative gradient):
+  0.10 vs 0.06:  won=4/8  auc=0.450
+  0.10 vs 0.15:  won=3/8  auc=0.509
+  0.10 vs 0.30:  won=1/8  auc=0.167
+  0.10 vs 0.45:  won=2/8  auc=0.250
+  controls 0.10v0.15: CLAMPED_LR=5/8  NO_SHUFFLE=4/8  BARCODE_SHUF=4/8  CONFUSION_0=3/8  STATIC=2/8
+
+INSTALLED BENEFIT gift B(0.60)-B(0.00) = +0.00141  (gift real if >0)
+
+EVOLUTION (Mode B) — gene-pool NEWBORN mean h over last 2000 (founder 0.10):
+     NICHE_COMPETE: mean_h=0.0271 funct=0/5 valid=5/5 min_pop=586 max_lineage_h=0.027 per_seed=[0.028, 0.029, 0.027, 0.027, 0.026]
+      SINGLE_NICHE: mean_h=0.0733 funct=0/5 valid=1/5 min_pop=0 max_lineage_h=0.015 per_seed=[None, None, None, None, 0.073]
+      STATIC_NICHE: mean_h=0.0271 funct=0/5 valid=5/5 min_pop=428 max_lineage_h=0.027 per_seed=[0.027, 0.027, 0.03, 0.027, 0.026]
+       NO_CROWDING: mean_h=0.0274 funct=0/5 valid=5/5 min_pop=908 max_lineage_h=0.027 per_seed=[0.028, 0.027, 0.027, 0.026, 0.029]
+  BARCODE_SHUFFLED: mean_h=0.0281 funct=0/5 valid=5/5 min_pop=350 max_lineage_h=0.028 per_seed=[0.028, 0.026, 0.031, 0.028, 0.028]
+        CLAMPED_LR: mean_h=0.0297 funct=0/5 valid=5/5 min_pop=281 max_lineage_h=0.030 per_seed=[0.04, 0.029, 0.027, 0.027, 0.026]
+  NICHE_COMPETE: corr(pop,h)=-0.14604804430393098  I(h;niche)=0.0003 bits
+
+GATES: pw_015_won=3/8  pw_015_auc=0.509  pw_030_won=1/8  h_star_N=0.0  gift_real=True  gift=0.00141  pw_clr_won=5/8  pw_nos_won=4/8  pw_shuf_won=4/8  pw_cz_won=3/8  pw_static_won=2/8  evo_NC_mean_h=0.0271  evo_NC_functional=0/5  evo_NC_min_pop=586  evo_NC_corr_pop_h=-0.146  evo_NC_max_lineage_h=0.027  mi_h_niche=0.0003  evo_SINGLE=0.0733  evo_STATIC=0.0271  evo_NOCROWD=0.0274  evo_SHUF=0.0281  evo_CLAMPLR=0.0297  controls_primitive=True  anticheat_ok=True  survivable=True  drift=False  p1=True
+
+VERDICT: NEGATIVE (the SIXTH wall: precision stays primitive [evo 0.027, h*=0.0, pairwise 3/8] despite a real COST_OFF gift AND a SURVIVABLE population [586] — the herding/negative-frequency-dependence is NOT escapable even with a private, rotating, crowding-discounted niche; no collapse confound)  (repo token: NEGATIVE)
+
+runtime: 104s
+[saved /Users/mirro/Projects/active-loop/experiments/outputs/exp206_n5_rotating_niche/verdict.json]

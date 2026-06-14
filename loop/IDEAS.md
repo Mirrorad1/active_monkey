@@ -1235,6 +1235,40 @@ The loop marks items it has consumed by indenting a response under them:
     (d) Other / redirect / stop.
     Falsifier-bound per VALIDATION. No silence-actionable default — each needs its own word; the loop
     idles with this consult posted until a word appears.
+  → [human, 2026-06-14, in-session] WORD: "Continue with exp 206" — option (a): the BARCODE-NICHE
+    bridge, the last structurally-distinct escape. CONSUMED as Exp 206. Ultracode session ⇒ hardened
+    with a multi-agent design + adversarial-confound-audit workflow BEFORE any code (the precedent that
+    found the engine confounds defeating exp201/202): N diverse niche designs, each audited against the
+    arc's known traps (resource-memory free-ride, id-order, free-trait substitution, drift/collapse,
+    no-direct-h-reward, archive-preserves-h, the L22 evolved-gene-pool verdict), then synthesized into
+    the binding pre-registration. After 206 the structurally-distinct escapes are EXHAUSTED → hold.
+  → [loop, POST-206 CONSULT, 2026-06-14] Exp 206 DONE (NEGATIVE / NEW INSIGHT — the SIXTH wall,
+    cleanest in the arc, unanimously blind-verified 3/3 AGREE). The rotating private niche (the last
+    structurally-distinct escape, 17-agent design+audit-hardened, rotation defeats the memory free-ride)
+    FAILS: precision decays 0.10→0.027 (0/5 functional, h*=0.0, pairwise 3/8) at a SURVIVABLE pop (min
+    586) — so the failure is PURELY the local gradient ≤0, NO collapse confound (unlike 204/205). Six
+    structurally-distinct escapes (199 avoidance / 200 foraging / 201 increasing-returns / 202
+    interference-competition / 203-205 residue / 206 niche) CONVERGE: a costed sense does NOT become a
+    functional organ at this toy substrate, because the local selection gradient at the resident is ≤0
+    — even when a precise population is fitter in bulk AND survives (the maximally-sharp generalised L22).
+    THE STRUCTURALLY-DISTINCT ESCAPES ARE EXHAUSTED. This is the definitive natural stop / synthesis point
+    (and the loop's standing commitment: hold after 206).
+    OPTIONS, each needs an explicit human word (no silence-actionable default; the loop HOLDS):
+    (c) RECOMMENDED — ACCEPT the sub-arc answer and write the synthesis dossier
+        (docs/research/sense-evolution-chapter.md): the local selection gradient is the universal barrier;
+        a costed sense is un-evolvable at this substrate across all six escapes; a bulk/installed/functional-
+        when-gifted/survivable optimum is still un-evolvable when small steps don't pay. The sharpest,
+        best-earned closing statement of the whole population-ecology line; flip the card to closed-negative.
+    (a) Exp 207 sensor-controller co-adaptation: co-evolve h AND the policy θ that uses it (the one
+        remaining NON-niche lever) — though the synthesis flags it as unlikely to differ (θ doesn't change
+        the local-gradient sign).
+    (b) A direct-occupancy-instrument re-run of 206 to bullet-proof the wall (the auditors' one named
+        gap — I(h;niche) was circular; a direct class-occupancy/intake-through-crowding readout would
+        confirm the niche was richly occupied). Low cost, hardens the closing finding.
+    (d) Other / redirect / stop (e.g. step OFF the ecology line entirely — RESUME.md §3b standing options:
+        M4a increment 1c [the talk-to-it path], nira's normalized-predictive switch, climbing the locked
+        N-ladder).
+    Falsifier-bound per VALIDATION. The loop idles with this consult posted until a word appears.
 
 (empty — drop ideas above this line's section freely)
 

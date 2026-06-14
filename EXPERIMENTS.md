@@ -8518,3 +8518,106 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (b) Exp 207 sensor-controller co-adaptation; (c) RECOMMENDED — ACCEPT the sub-arc answer and write the
   synthesis dossier (the valley is the universal barrier; a functional, survivable, bulk-fitter optimum is
   still un-evolvable when small steps don't pay); (d) redirect/stop.
+
+## Exp 206 — N5 SENSE-EVOLUTION sub-arc: the ROTATING-CLASS NICHE / SYMPATRIC-DIVERGENCE BRIDGE — the LAST structurally-distinct escape (a private, time-rotating, crowding-discounted niche) FAILS too: precision stays primitive (h decays 0.10→0.027) at a SURVIVABLE population with NO collapse confound — the cleanest wall of the arc; the local selection gradient is ≤0 even with a private niche (NEGATIVE / NEW INSIGHT — the SIXTH wall, unanimously blind-verified 3/3 AGREE)
+
+- Plain: Five walls showed a costed sensor never evolves strong because a slightly-better sensor doesn't
+  win more babies at the margin, even when a precise population is fitter in bulk. The one untested escape
+  left: a PRIVATE NICHE. Give cells a hidden, time-changing "class", and make a class worth less when many
+  creatures crowd it — so a precise creature could read the current class, dodge into the under-crowded one,
+  and escape the herd (where precision would pay MORE the more rivals pile in). Rotation is essential so the
+  class can't just be memorized by the learned map (the flaw that sank every earlier niche idea). A 17-agent
+  design+audit workflow built the cleanest possible version (the sensor only sharpens the percept; the
+  crowding penalty is blind to the sensor; anti-cheat verified by a test that proves precision does nothing
+  when the percept is perfect). Result: it FAILS like the others — across fresh worlds the sensor decays to
+  near-zero (0.027) and a precise invader does NOT out-reproduce the typical one (wins 3 of 8). But this time
+  the populations stay healthy (~600, no extinction), so the failure is NOT "the cost killed everyone" (the
+  Exp 204/205 trap) — it is purely that a small step toward better sensing doesn't pay even with a private
+  niche on offer. The cleanest wall yet, and the last structurally-distinct escape: six different worlds, one
+  answer — a costed sense does not become a functional organ at this toy scale.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 5d9f136, BEFORE any data, on
+  the human's word "Continue with exp 206"; design synthesized by a 17-agent design + adversarial-confound-
+  audit workflow, dossier committed at experiments/outputs/exp206_design_audit.json): under a rotating
+  two-class niche with crowding-discounted intake, a stable high-sensor lineage escapes into the under-crowded
+  class (LINEAGE_ONLY_POSITIVE) or the gene-pool mean crosses functional (NICHE_BRANCH_POSITIVE), with the
+  realized local resident gradient positive. (Honest prior from the five walls + the synthesis: NEGATIVE; the
+  result CONFIRMS it cleanly.)
+- Setup: experiments/exp206_n5_rotating_niche.py + ONE new gated byte-identical engine feature
+  (tests/test_exp206_niche.py: reproduces the committed EXP194_HASH + niche_* OFF-invariance + exp200-204
+  hashes + full fast suite 179 green): enable_niche. Each cell has a true class j(pos,t)=floor(K·frac(
+  class_phase[pos]+frac(t·niche_rotation))) that ROTATES (defeats the static-map memory free-ride — the
+  confound that sank every prior niche design; the load-bearing fix all four confound-auditors converged on).
+  In ROUTING (creature.choose_action) the creature reads neighbour classes noisily (sd=niche_confusion·(1-h))
+  and steers toward the least-crowded class (read from class_occ_prev); at the EAT step (h-BLIND): kept =
+  consume(deficit)/(1+niche_crowding·class_occ_prev[j_true]). ANTI-CHEAT (guard-tested + blinded-verified):
+  no food/fitness is f(h); h enters only the routing percept noise; the crowding divisor is a creature-COUNT
+  on the TRUE class; at niche_confusion=0 intake is byte-identical across h (test_no_direct_h_reward_
+  confusion_zero). Two modes: A gradient audit (pairwise s + monomorphic N* + B(h) cost-off, NICHE_COMPETE
+  vs controls, seeds {50-57}); B evolution (h from founder 0.10, fresh seeds {90-94}, + I(h;niche), max
+  lineage). Arms: NICHE_COMPETE (primary) · SINGLE_NICHE · STATIC_NICHE (rotation=0, memory-kill) ·
+  NO_CROWDING · BARCODE_SHUFFLED · CLAMPED_LR + pairwise CONFUSION_0/NO_SHUFFLE controls. REGIME FIXED on a
+  DISCLOSED inline pilot {100-107} — the FAIREST-SHOT regime (best relative gradient across a crowding ×
+  rotation × confusion sweep): crowd=1.5, rot=0.05, conf=0.4, weight=6.0, K=2, uniform regen 0.20. Runtime
+  pre-flight (L25, require_safe=True) probed at the ACTUAL founder h=0.10 (NOT forced h=0, exp205 lesson),
+  probe_steps=3000 (L26). Run gated SAFE; 228 jobs, 104s.
+- Result (committed exp206.txt + exp206_n5_rotating_niche/verdict.json): VERDICT NEGATIVE, unanimously
+  blind-verified 3/3 AGREE (a standard recompute + an adversarial skeptic hunting for a missed positive + a
+  validity auditor). EVOLUTION NICHE_COMPETE newborn mean h = 0.0271 (decayed from 0.10; 0/5 functional;
+  per-seed 0.026-0.029), at a SURVIVABLE pop (min 586, 5/5 valid, corr(pop,h)=-0.146 = NOT drift). h*N(N*) =
+  0.0 (precision is pure cost monomorphically). PAIRWISE 0.10 vs 0.15 won 3/8 (auc 0.509 ~neutral); 0.10 vs
+  0.30 won 1/8 (auc 0.167, against); 0.10 vs 0.45 won 2/8 — the relative gradient is neutral-to-negative.
+  gift B(0.60)-B(0.00) = +0.00141 (cost-off gift real but tiny). Controls all primitive: STATIC_NICHE 0.0271
+  (does NOT out-climb → not memory), NO_CROWDING 0.0274, BARCODE_SHUFFLED 0.0281, CLAMPED_LR 0.0297 (≈
+  NICHE_COMPETE → not memory substitution); SINGLE_NICHE 0.0733 but valid=1/5 (a collapse/survivorship
+  artifact, 4 seeds extinct). NICHE_COMPETE (0.0271) does NOT even exceed NO_CROWDING (0.0274) — no
+  sub-functional push. anti-cheat clean: CONFUSION_0 pairwise 3/8, BARCODE_SHUFFLED 4/8 (neither climbs).
+  By the predeclared rule: both positive grades fail (P3 gradient 3/8<<7/8 & h*=0.0; P4 0/5 functional;
+  max_lineage_h 0.027<<0.30); survivable + gift_real + primitive → NEGATIVE (sixth wall); p1=True.
+- Verifier: AGREE (NEGATIVE), 3 independent blinded verifiers (PROTOCOL 4.5, ultracode adversarial pass).
+  (1) Recompute: both positive grades fail conjunct-by-conjunct, no falsifier override → NEGATIVE. (2)
+  Skeptic-for-positive: found NO under-graded signal — NICHE_COMPETE is fractionally BELOW NO_CROWDING, the
+  pairwise gradient is neutral-to-negative (1/8 at 0.30), the only elevated number (SINGLE_NICHE 0.073) is a
+  1/5-valid extinction artifact → NEGATIVE justified. (3) Validity auditor: VALID clean wall — survivable
+  (min_pop 586; the SINGLE_NICHE collapse confirms survival is mechanism-specific), gift real, mechanic
+  non-inert (control deltas STATIC 2/8 vs base 3/8, CLAMPED_LR 5/8 + SINGLE_NICHE collapse prove it bites),
+  no confound → NEGATIVE. Two honest qualifiers folded from the auditors (below).
+- Implication (generalizability tier: functional-form, scoped to this engine/regime): the rotating private
+  niche — the ONE structurally-distinct escape the arc had not cleanly tested, and the FIRST niche design
+  that actually neutralizes the static-class memory free-ride (via rotation) — does NOT flip the local
+  gradient positive. Precision stays primitive (evo 0.027, h*=0.0, pairwise neutral-to-negative) despite a
+  real cost-off gift AND a SURVIVABLE population. This is the CLEANEST wall of the sub-arc: unlike Exp 204/205
+  (where the cost that made precision pay collapsed the population, muddying the verdict to NO_VERDICT/MIXED),
+  here the population is healthy (~600) so the failure is purely the LOCAL GRADIENT being ≤0 — demographic
+  collapse is fully excluded as the cause. Six structurally-distinct escapes (avoidance 199, foraging 200,
+  increasing-returns 201, interference-competition 202, residue/false-positive 203-205, rotating niche 206)
+  now converge on ONE answer: at this toy substrate a costed sense does NOT become a functional organ,
+  because the local selection gradient at the resident is ≤0 — and (the generalised L22, now maximally
+  sharp) a bulk/installed/monomorphic optimum being real, functional-when-gifted, AND demographically
+  affordable is STILL not sufficient for evolvability; only the sign of the local gradient decides, and a
+  private rotating crowding-discounted niche does not change it.
+- Verdict: NEGATIVE / NEW INSIGHT — the SIXTH wall, the cleanest in the arc (no collapse confound). The last
+  structurally-distinct escape fails: a private, time-rotating, crowding-discounted niche does not make a
+  costed sensor evolve (evo h 0.027, 0/5 functional, pairwise 3/8, h*=0.0) at a survivable population.
+  Unanimously blind-verified 3/3 AGREE.
+- Honest caveat: two qualifiers keep this a VALID (not a *strong-effect*) wall, surfaced by the adversarial
+  auditors and folded here: (1) the cost-off gift is TINY (+0.00141) — a real-but-minuscule benefit swamped
+  by cost; the wall is "the benefit is too small to earn at the margin", a legitimate negative but not a
+  dramatic one. (2) I(h;niche)=0.0003 bits is ~0 but CIRCULARLY so — h never left the primitive bucket, so
+  the mutual-information metric MUST read ~0; it is a downstream consequence of the negative, NOT independent
+  proof the niche was richly occupied. Non-inertness of the niche is instead established by (a) the guard
+  test (both classes occupied), (b) the control deltas (STATIC 2/8 vs base 3/8, CLAMPED_LR 5/8) and (c) the
+  SINGLE_NICHE collapse (no escape class → extinction) — the mechanic provably bites. A direct
+  class-occupancy / intake-through-the-crowding-divisor readout is the one named instrument that would make
+  the wall fully bullet-proof (a follow-up if ever reopened). The regime is the disclosed fairest-shot
+  (the best relative gradient found in the pilot sweep); a NEGATIVE at the best case is the strong form.
+  Founders + policy + costs PROVIDED; the sensor is a noisy-percept heuristic. Engine gated; exp194-205
+  hashes reproduce.
+- Next: post-206 CONSULT (loop/IDEAS.md). The structurally-distinct escapes are now EXHAUSTED (six walls).
+  The sub-arc has converged on a clean, strong closing answer. RECOMMENDED: (c) ACCEPT the sub-arc answer and
+  write the synthesis dossier — the local selection gradient is the universal barrier; a costed sense is
+  un-evolvable at this substrate across avoidance/foraging/increasing-returns/competition/residue/niche, even
+  when a precise population is fitter in bulk and survives. Alternatives needing a word: (a) Exp 207
+  sensor-controller co-adaptation (co-evolve h AND the policy θ — the one remaining non-niche lever, though
+  the synthesis flags it as unlikely to differ); (b) a direct-occupancy instrument re-run of 206 to
+  bullet-proof the wall; (d) redirect/stop. Per the loop's standing commitment, the escapes being exhausted,
+  the loop HOLDS for an explicit human word.

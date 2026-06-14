@@ -81,6 +81,25 @@ class GridWorld:
     # logic + params live in the engine (cfg) so the world only holds the trace field.
     residue: "np.ndarray | None" = None
 
+    # Exp 206: rotating-class niche fields — all None/0 (default) ⇒ the niche mechanic is OFF
+    # and behaviour is byte-identical to exp194-205.  Allocated by the engine ONLY when
+    # enable_niche=True.  class_phase = per-cell hidden phase (pure arithmetic, NO rng);
+    # class_signal = frac(class_phase + omega(t)), the ROTATING per-cell class signal recomputed
+    # each step; class_occ_prev/cur = per-class occupancy counts (frozen-prev read by the
+    # crowding discount + routing).  enable_niche/niche_* mirror cfg so creature.py can read them
+    # without threading cfg.  niche_read_perm = the BARCODE_SHUFFLED placebo permutation (None
+    # normally) decorrelating the routing read-class from the true crowding class.  None of these
+    # enter events_hash.
+    class_phase: "np.ndarray | None" = None
+    class_signal: "np.ndarray | None" = None
+    class_occ_prev: "np.ndarray | None" = None
+    class_occ_cur: "np.ndarray | None" = None
+    enable_niche: bool = False
+    niche_classes: int = 2
+    niche_confusion: float = 0.6
+    niche_weight: float = 4.0
+    niche_read_perm: "np.ndarray | None" = None
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 

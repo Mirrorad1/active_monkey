@@ -979,20 +979,121 @@ committed BEFORE any data, on the human's word "continue experimenting" 2026-06-
   wall: precision can be made genuinely valuable at the population level, but the very cost that makes
   it valuable forecloses the demographic room to evolve it.
 
-**EXP 206 — PRE-REGISTRATION SKETCH (THERMAL-BARCODE NICHE / SYMPATRIC DIVERGENCE; staged; was Exp 205
-before the survivable-loss sweep took the 205 slot).**
-- **Motivation.** A single global band makes all chase one resource. A stronger sensor may need to
-  unlock a DIFFERENT, less-crowded niche rather than compete harder for the same one.
-- **World.** Resource classes with overlapping thermal signatures: niche A (easy, low reward, crowded),
-  B (medium precision, medium/high reward), C (high precision, rare/high reward), + optional decoys.
-  `w_i = Σ_j p_j(h_i,θ_i)·R_j/(1+N_j) − C_h − C_θ` (frequency-dependent: crowding N_j discounts a
-  niche). A niche/lineage archive RECORDS occupied roles (never rewards h). Controls: single-niche,
-  barcode-shuffled (signatures don't map to value), cost-off, archive-off, the clamp-grid audit.
-- **Predeclared pass (NICHE_BRANCH_POSITIVE / LINEAGE_ONLY_POSITIVE allowed — global mean may stay
-  moderate).** A stable high-sensor lineage with h>0.30; niche occupancy predicted by h (`I(h;niche)>0`);
-  sensor knockout hurts that lineage; parent-weighted h elevated within the niche. A lineage-only
-  positive counts ONLY if stable, heritable, ecological, and knockout-sensitive. **Fail:** no separable
-  niches, or branch erased by global averaging with archive on, or only via confound.
+**EXP 206 — FULL PRE-REGISTRATION (ROTATING-CLASS NICHE / SYMPATRIC-DIVERGENCE BRIDGE; committed BEFORE
+any data, on the human's word "Continue with exp 206" 2026-06-14; synthesized by a 17-agent design +
+adversarial-confound-audit workflow — Design A's clean spine + the four confound-hunters' non-
+memorizability fix + the anti-cheat/implementability folds; was the staged sketch).**
+
+- **Motivation.** Five walls (199–205) found the local selection gradient at the resident g(0.10) ≤ 0
+  even when a pure precise population is genuinely fitter AND survives (Exp 205, sharpest). The ONE
+  structurally-distinct escape left: positive-frequency-dependence via a private, less-crowded niche a
+  high-h lineage can ONLY access by discriminating an overlapping class signature. Crowding should make
+  precision pay MORE as rivals herd into the common class (Red-Queen sign ∂²B/∂h_i ∂(mean h_rivals) > 0),
+  flipping the local gradient positive.
+
+- **The load-bearing fix (all four confound auditors converged).** A static spatial class (derived from
+  the temperature gradient) is a permanent per-cell property the learned map m[cell] encodes FOR FREE,
+  and freeze_learning_rate does NOT kill it (it pins the EMA rate, the map still updates). So the class
+  signature is carried on a DYNAMIC, time-ROTATING per-cell field (exactly as exp204 residue's
+  fresh-fraction is dynamic/unmemorizable); h keys ONLY a noisy read of the CURRENT class. The
+  STATIC_NICHE control (rotation=0) is predeclared to climb IFF the positive is memory-routed.
+
+- **Hypothesis (one sentence).** Under a rotating two-class niche where precision keys only a noisy read
+  of a cell's CURRENT (time-rotating, non-memorizable) class and crowding on the cell's TRUE class
+  discounts intake, a stable high-sensor lineage escapes into the under-crowded class
+  (LINEAGE_ONLY_POSITIVE) — or the gene-pool mean crosses functional (NICHE_BRANCH_POSITIVE) — with the
+  realized local resident gradient positive, MEDIATED by correct class routing, knockout-sensitive, and
+  not a memory / drift / id-order / anti-cheat confound.
+
+- **Mechanism (PROVIDED, gated `enable_niche`, default OFF ⇒ exp194–205 byte-identical, hash-guarded).**
+  World gains, ON-only: `class_phase[n_cells]` (pure-arithmetic per-cell phase, NO rng, NOT temperature-
+  derived); a DYNAMIC `class_signal` recomputed each step from class_phase + a rotating global offset
+  omega(t)=frac(t·niche_rotation) so a cell's true class j(pos,t)=floor(K·frac(class_phase[pos]+omega(t)))
+  CHANGES over time; per-step `class_occ_prev/cur[K]` counters (telemetry, no rng, NOT in events_hash).
+  At the eat step (ON branch, ONE rng draw, deficit>0 only): c_read = floor(K·frac(class_signal[pos] +
+  N(0, niche_confusion·(1−h)))); intake = UNCHANGED consume(pos,deficit); kept = eaten/(1 +
+  niche_crowding·class_occ_prev[j_true]) (discount on the cell's TRUE class via the FROZEN prev-step
+  count — h-blind); increment class_occ_cur[j_true]. Routing reuses the SAME cached read (no extra rng,
+  no lifetime class EMA, so CLAMPED_LR covers all learned state). K=2, niche_rotation>0 in the verdict.
+
+- **Anti-cheat (PROVIDED, binding).** consume() unchanged; h keys ONLY sigma; the crowding divisor is a
+  creature-COUNT on j_true (never c_read, never h); no access gate, no `if h>θ`, no top-K. Guards
+  (tests/test_exp206_niche.py): test_no_direct_h_reward_confusion_zero (niche_confusion=0 ⇒ kept-intake
+  AND offspring h-independent at the FULL verdict params, NOT a deleted mechanism); test_crowding_is_h_blind
+  (two creatures h=0.0/0.9 same cell same j_true → byte-identical kept); test_niche_off_byte_identical
+  (reproduce EXP194_HASH from SCENARIOS['balanced']+enable_niche=False + events_hash invariant to
+  nonsense niche_* params); test_niche_on_nontrivial; test_niche_on_determinism_under_shuffle (discount
+  reads class_occ_prev frozen pre-loop). ARCHIVE = post-hoc RECORDER (modal class + lineage_root); the
+  ARCHIVE_OFF events_hash must equal ARCHIVE_ON (proves it is inert / no-hidden-evaluator).
+
+- **Two modes (the exp203/204 instrument + evolution confirmation).** MODE A — GRADIENT AUDIT: clamp-grid
+  common garden (founder_mix over CLAMP_GRID, freeze_thermosense, cost ON, shuffle ON, placement-shuffled)
+  + pairwise s(0.10 vs 0.15) + carrying-capacity N*(h) in NICHE_COMPETE vs the controls — the realized
+  local resident gradient. MODE B — EVOLUTION: h evolves freely from founder 0.10 (freeze_thermosense=
+  False) in NICHE_COMPETE; gene-pool newborn mean h + per-lineage h + modal class occupancy.
+
+- **Arms** (founder h=0.10, inefficiency 0.20, cost ON, shuffle ON unless noted; depleting band regen 0.08
+  / conc 14 / band 0.08 as exp202/204): **NICHE_COMPETE** (primary, niche_rotation>0) · **SINGLE_NICHE**
+  (K=1) · **BARCODE_SHUFFLED** (signal↔value decorrelated) · **STATIC_NICHE** (niche_rotation=0, the
+  memory-kill control) · **NO_CROWDING** (niche_crowding=0) · **NO_SHUFFLE** · **CLAMPED_LR** ·
+  **ARCHIVE_OFF** · **COST_OFF** (B(h) overlay) · **CONFUSION_ZERO** (anti-cheat). niche_crowding +
+  niche_confusion + niche_rotation FIXED on a DISCLOSED full-horizon pilot (L23) that MUST exhibit a
+  window with BOTH a separable+occupied niche AND survivable pop, or the experiment is NO_VERDICT (F2),
+  not run on faith.
+
+- **Seeds / horizon.** Audit {50–57} (8, for the ≥7/8 slope bar); diag {50,51,52}; evolution {90–94}
+  (5 FRESH, never used). Audit horizon 3500; evolution horizon 8000 (plateau-verified on the pilot);
+  newborn window [6000,8000]. Runtime pre-flight (RB.preflight, require_safe=True) at the top of main(),
+  probed at the ACTUAL founder h=0.10 (NOT forced h=0 — the exp205 lesson), probe_steps≥3000 (L26).
+
+- **Predeclared verdict (three-way, conjunct-by-conjunct; two positive grades).**
+  - **P2 VALIDITY** (L21/L24): NICHE_COMPETE reaches horizon with final_pop ≥ HEALTHY_FLOOR=30 in ≥4/5
+    seeds, measurable newborn cohort; corr(pop, newborn_h) ≥ −0.4; class B genuinely occupied (mean
+    B-occupants ≥ 3 late-window). Per-NICHE cohort floor: any qualifying lineage must sustain ≥ 15 living
+    members across the stability span with corr(lineage_pop, lineage_h) ≥ −0.4 (sub-population drift guard).
+  - **P3 LOCAL GRADIENT** (Mode A, CORE): pairwise s(0.10→0.15) invader_won ≥ 7/8 AND inv_frac_auc > 0.5
+    AND clamp-grid slope at h0.10 > 0 in ≥7/8 AND competitive optimum h*(N*) > 0.30; CLAMPED_LR agrees
+    (won ≥ 7/8); NO_SHUFFLE does not flip sign.
+  - **P4 EVOLUTION** (Mode B): NICHE_COMPETE newborn mean h > 0.30 in ≥4/5 valid seeds (GLOBAL) — OR
+    LINEAGE: a stable lineage with parent-weighted newborn h > 0.30 persisting ≥ 1500 steps even if global
+    mean stays moderate.
+  - **P5 OCCUPANCY PREDICTED BY h**: I(h_bucket; modal_class) > 0.05 bits in ≥4/5 seeds AND higher-h
+    occupancy skewed toward the under-crowded class; drops to ~0 in BARCODE_SHUFFLED.
+  - **P6 KNOCKOUT-SENSITIVITY** (load-bearing): clamp the evolved high-h lineage's h to ≈0.10 (breed true,
+    same world); its under-crowded-class occupancy collapses AND per-capita intake/reproduction drops ≥ 25%.
+  - **P7 NECESSITY**: SINGLE_NICHE, BARCODE_SHUFFLED, STATIC_NICHE, NO_CROWDING all stay primitive
+    (h* ≤ 0.15 AND evolution < 0.15).
+  - **P8 ANTI-CHEAT**: CONFUSION_ZERO shows the gradient/occupancy-by-h signal VANISHES; STATIC_NICHE does
+    not out-climb NICHE_COMPETE; assert_no_direct_h_reward + no-hidden-evaluator structural tests pass.
+  - **NICHE_BRANCH_POSITIVE** (strongest, FIRST positive in the arc) iff P2 ∧ P3 ∧ P4-global ∧ P5 ∧ P6 ∧
+    P7 ∧ P8. **LINEAGE_ONLY_POSITIVE** iff P4-global FAILS but a lineage is STABLE (≥1500 steps) ∧
+    HERITABLE (newborns carry h>0.30) ∧ ECOLOGICAL (P5 for that lineage) ∧ KNOCKOUT-SENSITIVE (P6) ∧ meets
+    the per-niche cohort floor ∧ P2/P3/P7/P8 hold (if P6 fails → MIXED). **NEGATIVE (the SIXTH wall)** iff
+    despite a real COST_OFF gift, NICHE_COMPETE stays primitive (evolution < 0.15 majority AND/OR h* ≤ 0.15)
+    and no stable knockout-sensitive lineage forms. **MIXED** iff partial ([0.15,0.30], Mode-A-only, lineage
+    heritable but knockout-insensitive, drift-flagged) OR NO_VERDICT (no survivable separable occupied niche
+    = F2). Repo token: POSITIVE for either positive grade; NEGATIVE for the sixth wall; MIXED otherwise.
+
+- **Falsifiers.** F1 non-determinism / OFF-path EXP194_HASH or niche_*-invariance mismatch / determinism-
+  under-shuffle fail → NEGATIVE (infra). F2 no survivable separable occupied niche → NO_VERDICT → MIXED.
+  F3 branch erased by global averaging (transient lineage) → NEGATIVE. F4 positive only via DRIFT
+  (corr(pop,h)<−0.4 / <4/5 valid / below the per-niche cohort floor) → DISCARD → MIXED (L24). F5 MEMORY:
+  positive vanishes under CLAMPED_LR OR STATIC_NICHE ALSO climbs → DISCARD (L19). F6 ID-ORDER: flips under
+  NO_SHUFFLE → DISCARD (L24). F7 ANTI-CHEAT LEAK: positive survives at niche_confusion=0 OR BARCODE_SHUFFLED
+  climbs > 0.30 OR crowding found h-dependent → POSITIVE DISCARDED / INVALID. F8 KNOCKOUT-INSENSITIVE: P6
+  fails → LINEAGE_ONLY downgraded to MIXED.
+
+- **Honesty stakes (written before data).** The five walls + Exp 205 (the local gradient is the sole
+  binding barrier, and at h=0.10→0.15 the sigma improvement 0.54→0.51 is tiny exactly where it must be
+  steep) predict NEGATIVE; a positive is a genuine surprise. niche_rotation/crowding/confusion tuned ONLY
+  on a disclosed pilot and FIXED before the verdict; the pilot MUST exhibit a separable+occupied niche AND
+  survivable pop or it is NO_VERDICT, not faith. The verdict is the EVOLVED gene-pool / realized local
+  gradient (Mode B + A), NEVER the COST_OFF gift (L22). Founders + policy + costs PROVIDED; the sensor is a
+  noisy-percept heuristic. Engine gated; exp194–205 hashes reproduce. A NEGATIVE makes this a clean sixth
+  wall — the strongest, most general form: precision is un-earnable even WITH a private, value-mapped,
+  non-memorizable, crowding-discounted niche. Highest-probability non-finding: NO_VERDICT (the exp204/205
+  collapse trap re-imported on the niche_crowding axis — the disclosed pilot is the binding survivability
+  check).
 
 **EXP 207 — PRE-REGISTRATION SKETCH (SENSOR–CONTROLLER CO-ADAPTATION BUNDLE; OPTIONAL, staged; was
 Exp 206 before the survivable-loss sweep took the 205 slot).**
@@ -1006,5 +1107,5 @@ Exp 206 before the survivable-loss sweep took the 205 slot).**
 
 ---
 
-**STATUS.** state: active · latest: Exp 205 (MIXED / NEW INSIGHT — the SURVIVABLE-LOSS RESIDUE SWEEP resolved Exp 204's NO_VERDICT + REFUTED its own mechanism: at survivable losses [0.8/1.2/1.5, pops ≥4/5 valid] the monomorphic optimum IS functional [h*=0.60] yet evolution STILL stays primitive [0/5 functional, mean 0.04→0.09, pairwise ≤0] — so the FITNESS VALLEY, not demographic collapse, is the sole binding barrier; the L22 forced-vs-evolvable gap in its purest form; blind-verified AGREE) · sub-arc SENSE-EVOLUTION (203–207) · next-falsifiable: post-205 CONSULT — 206 barcode-niches (last structurally-distinct escape) / 207 controller / accept the six-experiment answer
+**STATUS.** state: active (sub-arc CONVERGED — awaiting human steer) · latest: Exp 206 (NEGATIVE / NEW INSIGHT — the SIXTH wall, cleanest in the arc, blind-verified 3/3: the LAST structurally-distinct escape — a private time-ROTATING crowding-discounted NICHE, 17-agent design+audit-hardened — FAILS too; precision decays 0.10→0.027 [0/5 functional, h*=0.0, pairwise 3/8] at a SURVIVABLE pop [min 586], so the failure is PURELY the local gradient ≤0, NO collapse confound; six escapes converge — a costed sense is un-evolvable here) · SENSE-EVOLUTION (203–206), escapes EXHAUSTED · next: post-206 CONSULT — RECOMMENDED (c) accept + synthesize / 207 controller / redirect
 
