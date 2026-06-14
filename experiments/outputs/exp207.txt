@@ -1,0 +1,23 @@
+==============================================================================
+EXP 207 — CONTROLLER CO-ADAPTATION: DESIGN-STAGE CORNER-GRID PRE-FLIGHT
+==============================================================================
+
+regime: exp206 NICHE_COMPETE (crowd=1.5 rot=0.05 conf=0.4 K=2 regen=0.2); theta proxy = niche_weight (routing weight)
+corners: h in (0.1,0.45) x theta in (0.6,6.0); seeds [90, 91, 92, 93, 94]; B = births/step in last 1000 of 3500
+
+B(h, theta) corner grid (mean births/step):
+            theta=0.6     theta=6.0  
+  h=0.1        0.11340      0.26060
+  h=0.45       0.06780      0.21960
+
+CROSS-PARTIAL d2B/dh.dtheta = +0.00460   (premise needs > 0 for a 2-D valley)
+dB/dtheta @ low h           = +0.14720   (theta pays ALONE if strongly >0)
+dB/dh @ high theta          = -0.04100   (does sharper sensor pay when acted on?)
+dB/dh @ low theta           = -0.04560
+
+ANTI-CHEAT GUARD (a) confusion=0 cost-OFF => byte-identical across h: True (eaten 79368.597 vs 79368.597)
+ANTI-CHEAT GUARD (b) niche_weight=0 cost-OFF => byte-identical across h: True (eaten 8310.901 vs 8310.901)
+
+G0 PRE-FLIGHT: NOT-VIABLE (no 2-D valley: cross-partial <= 0 and/or theta pays alone) => DESIGN-STAGE NEGATIVE; do not run the full co-adaptation batch
+
+runtime: 36s

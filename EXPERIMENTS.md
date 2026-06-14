@@ -8621,3 +8621,74 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   the synthesis flags it as unlikely to differ); (b) a direct-occupancy instrument re-run of 206 to
   bullet-proof the wall; (d) redirect/stop. Per the loop's standing commitment, the escapes being exhausted,
   the loop HOLDS for an explicit human word.
+
+## Exp 207 — N5 SENSE-EVOLUTION sub-arc: SENSOR-CONTROLLER CO-ADAPTATION — a design-stage corner-grid PRE-FLIGHT shows the premise is FALSE (no 2-D fitness valley): the controller θ pays ALONE via herd-escape while the sensor h is pure cost at EVERY θ, so co-adaptation cannot occur — the last non-niche lever is ruled out WITHOUT a full batch; this CLOSES the sub-arc (NEGATIVE / NEW INSIGHT — design-stage; blind-verified AGREE + 17-agent design-audit)
+
+- Plain: The six walls all held the creature's POLICY fixed — only the sensor h evolved, into a hard-coded
+  rule. The last idea: maybe precision never paid because the CONTROLLER (the brain that uses the sensor)
+  couldn't exploit it — so co-evolve a controller knob θ alongside h, hoping for a "2-D valley" where
+  neither helps alone but both together do. Before running that big experiment, I measured its premise
+  cheaply: a corner-grid of births at low/high sensor × low/high controller. The premise is FALSE.
+  Turning the controller up pays strongly ALL BY ITSELF (routing harder escapes the crowd even with a
+  blurry sensor), while a sharper sensor LOSES births at every controller setting (it's pure metabolic
+  cost). There's no joint valley to cross — the two traits are pushed apart, not together. So running the
+  full experiment would only re-show "controller climbs alone, sensor decays" (the sixth wall). The cheap
+  pre-flight settled it: the controller lever fails too. With it, the whole sense-evolution sub-arc closes
+  — across seven distinct levers, a costed sense never becomes a functional organ at this toy scale.
+- Hypothesis (the directive's premise): a sensor-controller co-adaptation crosses a 2-D fitness valley —
+  w(h,θ)=R·σ(k·h·θ−d)−C_h(h)−C_θ(θ) — where neither the sensor h nor the controller θ pays ALONE but both
+  jointly climb to functional. (The design pre-flight FALSIFIED the premise; predicted NEGATIVE per the
+  six walls + the design synthesis.)
+- Setup: a 17-agent design + adversarial-confound-audit workflow (4 candidate θ designs × 3 lenses →
+  synthesis; the anti-cheat crux = the h·θ benefit must emerge through ACTIONS, never a written f(h·θ)
+  reward) selected the cleanest anti-cheat-clean θ (= an evolvable, costed routing-weight on the niche
+  read, i.e. the currently-FIXED world.niche_weight) and a BINDING G0 pre-flight gate. The workflow was
+  orchestration-heavy (45 min / 1.9M tokens — see L27). I then REPRODUCED the decisive measurement on
+  committed code: experiments/exp207_corner_grid.py — the corner-grid B(h, niche_weight) at h∈{0.10,0.45}
+  × θ-proxy∈{0.6,6.0} in the committed exp206 NICHE_COMPETE regime (crowd 1.5, rot 0.05, conf 0.4, K=2,
+  regen 0.20), seeds {90-94}, B = births/step in the last 1000 of 3500. NO engine change — θ proxy is the
+  existing niche_weight config param, so there is NO new anti-cheat surface (the committed exp206 guards
+  cover it). G0 = VIABLE only if cross-partial d²B/dh·dθ > 0 AND θ does not pay alone AND h pays at high θ.
+- Result (committed exp207.txt): B grid (births/step) = [h0.10: θ0.6→0.1134, θ6.0→0.2606 | h0.45: θ0.6→0.0678,
+  θ6.0→0.2196]. **cross-partial ≈ 0** (±0.0046 — sign flips with convention, negligible either way, ~32×
+  smaller than the θ-alone effect). **dB/dθ @ low h = +0.147** (θ pays strongly ALONE — routing harder
+  escapes the herd with a crude read). **dB/dh = −0.041 (high θ), −0.046 (low θ)** — the sensor is PURE
+  COST at BOTH controller levels (a sharper sensor never pays, even acted on hard). Anti-cheat guards PASS:
+  confusion=0 cost-OFF → byte-identical across h (eaten 79368.597 = 79368.597); niche_weight=0 cost-OFF →
+  byte-identical across h (8310.901 = 8310.901). G0 FAILS on all three conjuncts → DESIGN-STAGE NEGATIVE.
+- Verifier: AGREE (DESIGN-STAGE-NEGATIVE), independent blinded recompute from exp207.txt (all three
+  viability conditions fail: cross-partial ≈ 0, θ pays alone +0.147 dominant, dB/dh < 0 at both θ; both
+  anti-cheat guards pass → clean trustworthy negative). Independently, the 17-agent design audit MEASURED
+  the same on a throwaway implementation (cross-partial negative across linear/product/K=4/K=6 variants;
+  the product-gate fw=base·h·θ is worse AND breaks the h-blind guard; no anti-cheat-clean θ on the
+  committed niche engine yields a positive cross-partial).
+- Implication (generalizability: functional-form, scoped to this engine/regime): the controller lever —
+  condition (3) of the eight (the controller θ can convert sensor info into better actions) — FAILS
+  STRUCTURALLY. The niche affordance (escape the crowded class) is accessible to a CRUDE reader: under K=2
+  a noisy class read is still informative enough that acting harder on it (high θ) routes you to a
+  less-crowded class often enough to pay, with NO precision required. So θ provides an h-INDEPENDENT
+  herd-escape benefit and h is never controller-gated; the geometry is a θ-ridge with h orthogonally
+  costed, which selection drives APART, not together. The directive's 2-D-valley premise is false here.
+  This CLOSES the sense-evolution sub-arc: seven structurally-distinct levers — avoidance (199), foraging
+  (200), increasing-returns (201), interference-competition (202), residue/false-positive (203–205),
+  rotating niche (206), and now sensor–controller coupling (207) — all fail; a costed sense is
+  un-evolvable at this toy substrate because the local selection gradient at the resident is ≤ 0.
+  Methodological NEW INSIGHT (kin of L25/L26, now L28): pre-flight the SCIENTIFIC PREMISE — measure the
+  cross-partial sign on a cheap monomorphic corner-grid — BEFORE committing a full co-adaptation batch; a
+  ~40-run pre-flight killed a would-be 6-arm × 5-seed × 8000-step + 2-D-audit batch that would only
+  rediscover a known answer.
+- Verdict: NEGATIVE / NEW INSIGHT (DESIGN-STAGE) — the sensor-controller co-adaptation premise (a 2-D
+  valley) is FALSE: θ pays alone via herd-escape (+0.147), h is pure cost at every θ (dB/dh < 0), the
+  cross-partial ≈ 0. The last non-niche lever is ruled out by a cheap, verified, blind-verified corner-grid
+  pre-flight — no full batch run. The sense-evolution sub-arc is CLOSED-NEGATIVE.
+- Honest caveat: this is a DESIGN-STAGE negative — a monomorphic corner-grid B(h,θ) pre-flight, NOT a full
+  evolving co-adaptation experiment. The cross-partial SIGN is the robust signal (negligible/≈0 across the
+  17-agent throwaway measurement AND my committed reproduction; a faithful per-creature pairwise 2-D audit
+  could differ at the margin, but the decisive facts — dB/dh < 0 at both θ, dB/dθ > 0 at low h — are
+  unambiguous). No evolvable controller trait was committed to the engine; θ proxy = the existing
+  niche_weight param (no new anti-cheat surface; committed exp206 guards apply). The 17-agent design
+  workflow was orchestration-heavy (L27). Founders + policy + costs PROVIDED.
+- Next: the sense-evolution sub-arc is CLOSED-NEGATIVE; the population-ecology card flips to closed. Standing
+  options OFF the ecology line (RESUME §3b, each needs its own word): M4a increment 1c (the talk-to-it path
+  toward the moonshot conversation goal), nira's normalized-predictive switch, climbing the locked N-ladder.
+  The loop HOLDS for an explicit human direction.

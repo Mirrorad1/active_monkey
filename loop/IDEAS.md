@@ -1282,6 +1282,21 @@ The loop marks items it has consumed by indenting a response under them:
     consult stays OPEN; the population-ecology card stays "active (CONVERGED — awaiting steer)". The loop
     resumes ONLY on an explicit human /loop re-invocation or a direction word here. (The human then asked
     a clarifying question about what Exp 207 would be — answered in-session, no work started.)
+  → [human, 2026-06-14] "a" then "c": chose Exp 207 (sensor-controller co-adaptation, the last non-niche
+    lever), then — after the result — chose (c) accept+close. DISPOSITION (Exp 207, committed): a 17-agent
+    design+adversarial-audit workflow synthesized the cleanest anti-cheat-clean controller θ (= an
+    evolvable routing-weight on the niche read) + a binding G0 corner-grid PRE-FLIGHT gate; the pre-flight
+    (reproduced on committed code, experiments/exp207_corner_grid.py, blind-verified AGREE) FALSIFIED the
+    premise: no 2-D valley — θ pays ALONE via herd-escape (+0.147), h is pure cost at every θ (dB/dh<0),
+    cross-partial ≈ 0. So a full batch was NOT run (it would only re-show the sixth wall). Logged as Exp 207
+    DESIGN-STAGE NEGATIVE; the SENSE-EVOLUTION sub-arc is CLOSED-NEGATIVE (seven levers, all fail; the local
+    gradient at the resident is the universal barrier). Card flipped closed; synthesis at
+    docs/research/sense-axis-organ-evolution.md. New lessons L27 (workflow-orchestration overhead) + L28
+    (pre-flight the scientific PREMISE, not just runtime). The loop HOLDS for an explicit human direction
+    OFF the ecology line (RESUME §3b: M4a increment 1c / nira's switch / the N-ladder).
+    NOTE (concurrency, 2026-06-14): a parallel session was building the /lab+/steer infra layer on this
+    shared checkout (branch infra/lab-invocation) during this work; the Exp 207 close was based on the
+    latest origin/main to avoid colliding with its pushed site work.
 
 (empty — drop ideas above this line's section freely)
 

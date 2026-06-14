@@ -184,3 +184,24 @@ Ground rules for this file:
   so COMPETE DECAYED below the founder. Verify the band genuinely depletes (strip>0) so the test is valid,
   AND beware drift: high trait values at small/collapsed populations (corr(pop,trait) strongly negative) are
   founder/drift artifacts, not selection — predeclare a healthy-population floor. [VALIDATION; METHODOLOGY]
+- **L27 (exp206/exp207 design workflows, 2026-06-13).** A multi-agent DESIGN+AUDIT workflow's wall-clock is
+  dominated by ORCHESTRATION overhead, NOT the experiment — the ecology sims run in ~100s, but the exp207
+  design workflow took 45 min / 1.9M tokens. Four avoidable costs, all in how the workflow is authored: (i)
+  REDUNDANT GROUNDING — telling all N agents to "read these files first" makes each of ~17 agents re-read
+  the same huge files (EXPERIMENTS.md is 8.6k lines); instead PRE-DIGEST the grounding ONCE (one scout agent,
+  or inline the relevant excerpts + a one-line-per-experiment summary) and pass it inline. (ii) NO MODEL
+  TIERING — reserve the top model for design + synthesis; route routine audit lenses to a cheaper model
+  (agent opts.model). (iii) SCHEMA-RETRY THRASH — rich StructuredOutput schemas (many required fields, long
+  descriptions) cause near-miss-JSON retry loops (one agent burned 10 attempts); keep schemas lean. (iv)
+  STRAGGLER BARRIERS — a parallel phase waits for its slowest agent (26m vs 2m48s here); prefer pipeline()
+  and smaller fan-out. Right-size the fan-out to the stakes. The ecology sim itself is fine — right-size
+  HORIZON/grid/seeds (L26), not the agent swarm. [Workflow authoring; kin of L26]
+- **L28 (Exp 207, 2026-06-14).** PRE-FLIGHT THE SCIENTIFIC PREMISE, not just the runtime (L25). Before
+  committing a full co-adaptation / interaction batch (6-arm × 5-seed × 8000-step + 2-D audit), MEASURE the
+  load-bearing premise cheaply: for a hypothesized 2-D fitness valley (neither trait pays alone, both
+  together do), a ~40-run monomorphic CORNER-GRID B(h,θ) settles it — the experiment is viable only if the
+  discrete cross-partial d²B/dh·dθ > 0 AND neither trait pays strongly ALONE. Exp 207's corner-grid showed
+  cross-partial ≈ 0, θ pays alone (+0.147 via herd-escape), h pure cost at every θ (dB/dh < 0) → DESIGN-STAGE
+  NEGATIVE, no full batch needed (it would only rediscover the sixth wall). A design-stage negative IS a real,
+  loggable, blind-verifiable finding when the corner-grid is run on committed code with the anti-cheat guards
+  passing. [PROTOCOL step 3; kin of L22/L25]
