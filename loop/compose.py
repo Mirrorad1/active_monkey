@@ -5,7 +5,7 @@ Concatenates: header + premise + direction card + persona card + protocol/valida
 pointers + optional one-off human idea. No magic — the cards ARE the modules.
 
 Usage:
-  python loop/compose.py                                  # defaults
+  python loop/compose.py transfer                         # pick a direction (required)
   python loop/compose.py --direction transfer --persona skeptic
   python loop/compose.py --idea "what if the anchor can be weaker?"
   python loop/compose.py --list
@@ -16,8 +16,6 @@ import sys
 from pathlib import Path
 
 LOOP_DIR = Path(__file__).resolve().parent
-
-DEFAULT_DIRECTION = "continuous-substrate"  # current human steer (see loop/IDEAS.md)
 
 # Short ergonomic aliases checked before substring matching. Substring already
 # covers most cases (e.g. "graded" → "graded-uncertainty"); aliases disambiguate
@@ -146,7 +144,12 @@ def main() -> None:
     if args.direction_pos and args.direction:
         sys.exit("error: specify the direction positionally OR with --direction, not both")
 
-    requested = args.direction_pos or args.direction or DEFAULT_DIRECTION
+    requested = args.direction_pos or args.direction
+    if not requested:
+        sys.exit(
+            "error: no direction given — pick one explicitly (no default).\n"
+            "available: " + ", ".join(available("directions"))
+        )
     direction = resolve_direction(requested)
     print(compose(direction, args.persona, args.idea))
 
