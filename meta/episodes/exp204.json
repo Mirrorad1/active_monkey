@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp204.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp204_n5_residue_falsepos.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.55\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.66\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.5\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2.7\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2/5\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3.0\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"7/8\" quoted in entry not found in experiments/outputs/exp204.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-14T00:08:18Z",
+  "commit_sha": "e22d60bf17ea5c4e422a5c12deaf22d557545dd1",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 204,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
