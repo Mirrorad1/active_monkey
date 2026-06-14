@@ -79,6 +79,11 @@ def resolve(ref: str, index: dict | None = None) -> list[pathlib.Path]:
 
 
 def list_index(kind: str | None = None, index: dict | None = None) -> str:
+    if kind and kind not in set(KINDS) | {"experiment"}:
+        sys.exit(
+            f"error: unknown kind '{kind}' "
+            f"(have: {', '.join(list(KINDS) + ['experiment'])})"
+        )
     if index is None:
         index = build_index()
     lines: list[str] = []

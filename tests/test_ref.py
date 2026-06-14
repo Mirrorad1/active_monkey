@@ -65,3 +65,9 @@ def test_list_index_mentions_kinds():
     out = r.list_index()
     assert "@transfer" in out
     assert "experiment" in out
+
+
+def test_list_unknown_kind_exits():
+    r = _load()
+    with pytest.raises(SystemExit):
+        r.list_index("badkind")
