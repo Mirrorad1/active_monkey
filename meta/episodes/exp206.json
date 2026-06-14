@@ -1,0 +1,44 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp206.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp206_n5_rotating_niche.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"204/205\" quoted in entry not found in experiments/outputs/exp206.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3/3\" quoted in entry not found in experiments/outputs/exp206.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4.5\" quoted in entry not found in experiments/outputs/exp206.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"7/8\" quoted in entry not found in experiments/outputs/exp206.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-14T01:30:09Z",
+  "commit_sha": "aee1da0fb63eb7a35f59da79b6148d9029768994",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 206,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
