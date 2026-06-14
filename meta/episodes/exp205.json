@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp205.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp205_n5_survivable_loss.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.042\" quoted in entry not found in experiments/outputs/exp205.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2/1\" quoted in entry not found in experiments/outputs/exp205.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"203/204\" quoted in entry not found in experiments/outputs/exp205.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/0\" quoted in entry not found in experiments/outputs/exp205.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"8/1\" quoted in entry not found in experiments/outputs/exp205.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-14T00:34:16Z",
+  "commit_sha": "93638119e56c53c90d1c0d90095deaec910f48f4",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 205,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

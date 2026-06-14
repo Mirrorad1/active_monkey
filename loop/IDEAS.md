@@ -1200,6 +1200,41 @@ The loop marks items it has consumed by indenting a response under them:
     Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word. No
     silence-actionable default — the sub-arc's per-bridge staging means each needs its own word; the
     loop idles with this consult posted until a word appears.
+  → [human, 2026-06-13, in-session via /loop] WORD: "continue experimenting" — an explicit override of
+    the recommended (d) accept+synthesize (which would STOP experimenting). Read as "keep running
+    experiments on the ladder." Among the experiment options, CONSUMED as Exp 205 = option (c) the
+    survivable-loss residue sweep (the SMALLEST experiment that answers an open question, per persona):
+    it resolves Exp 204's NO_VERDICT by testing whether the collapse-vs-functional-optimum tradeoff is
+    FUNDAMENTAL before escalating to a brand-new bridge. The pre-registered niche/controller bridges
+    renumber to 206/207. Full pre-registration committed to the card BEFORE any data; reuses the
+    committed enable_residue engine (no new feature); fresh seeds {80-84}. If the human wanted the
+    niche bridge (a) instead, a one-word redirect pivots there next iteration.
+  → [loop, POST-205 CONSULT, 2026-06-13] Exp 205 DONE (MIXED / NEW INSIGHT, blind-verified AGREE). The
+    survivable-loss sweep RESOLVED Exp 204's NO_VERDICT and REFUTED my own mechanism hypothesis: at
+    SURVIVABLE losses (0.8/1.2/1.5, pops ≥4/5 valid) the monomorphic optimum IS functional (h*=0.60)
+    yet evolution STILL stays primitive (0/5 functional, mean 0.04→0.09, pairwise ≤0). So demographic
+    collapse was INCIDENTAL — the FITNESS VALLEY (local resident gradient ≤0) is the SOLE binding
+    barrier, operative even when the population survives and a precise population is fitter in bulk.
+    REFLECT (honest, flattening flag): the sense-evolution sub-arc is now SEVEN experiments deep
+    (199-202 NEGATIVE, 203-205 MIXED — the last three all sharpening the SAME wall). Insight has
+    flattened to "each new run re-confirms + localises the fitness-valley barrier"; per the loop
+    discipline this is a NATURAL STOP / SYNTHESIS point. The arc's clean answer: at this toy substrate
+    NO costed sense becomes a functional organ — the local selection gradient at the resident is ≤0
+    across avoidance/foraging/increasing-returns/competition/residue, even when (Exp 204/205) a precise
+    population is genuinely fitter in bulk AND survives. Only the LOCAL gradient decides evolvability;
+    bulk/installed benefit is necessary but not sufficient (the generalised L22).
+    OPTIONS, each needs a word:
+    (a) Exp 206 (barcode niches): the ONE structurally-distinct escape left — a high-sensor lineage
+        ESCAPES the herding into a private niche, the only mechanism that could flip the local gradient
+        POSITIVE via negative-frequency-dependence (precision pays MORE as rivals crowd the common
+        niche). If any escape remains, this is it.
+    (b) Exp 207 (sensor–controller co-adaptation): co-evolve h and the policy θ that uses it.
+    (c) RECOMMENDED — ACCEPT the sub-arc answer and write the synthesis dossier (the fitness valley is
+        the universal barrier; a functional, survivable, bulk-fitter optimum is still un-evolvable when
+        small steps don't pay — the sharpest closing statement, earned over 7 experiments). Natural stop.
+    (d) Other / redirect / stop.
+    Falsifier-bound per VALIDATION. No silence-actionable default — each needs its own word; the loop
+    idles with this consult posted until a word appears.
 
 (empty — drop ideas above this line's section freely)
 

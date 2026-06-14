@@ -1,0 +1,209 @@
+{
+  "experiment": "exp205",
+  "losses": [
+    0.5,
+    0.8,
+    1.0,
+    1.2,
+    1.5
+  ],
+  "evo_seeds": [
+    80,
+    81,
+    82,
+    83,
+    84
+  ],
+  "verdict": "MIXED (a partial/ambiguous picture \u2014 a survivable loss shows a sub-functional push or the optimum/survival pattern is not cleanly separated)",
+  "token": "MIXED",
+  "summary": {
+    "survivable_losses": [
+      0.5,
+      0.8,
+      1.2,
+      1.5
+    ],
+    "functional_optimum_losses": [
+      0.8,
+      1.0,
+      1.2,
+      1.5
+    ],
+    "all_surv_primitive": true,
+    "functional_all_collapse": false,
+    "nr_mean_h": 0.0292,
+    "p1": true
+  },
+  "landscape": {
+    "0.5": {
+      "h_star": 0.1,
+      "max_N": 108.875
+    },
+    "0.8": {
+      "h_star": 0.6,
+      "max_N": 91.625
+    },
+    "1.0": {
+      "h_star": 0.6,
+      "max_N": 85.72916666666667
+    },
+    "1.2": {
+      "h_star": 0.6,
+      "max_N": 79.83333333333333
+    },
+    "1.5": {
+      "h_star": 0.6,
+      "max_N": 72.5
+    }
+  },
+  "pairwise": {
+    "0.5": {
+      "won": 1,
+      "n": 8,
+      "auc": 0.2311579163760652
+    },
+    "0.8": {
+      "won": 3,
+      "n": 8,
+      "auc": 0.3650761276362997
+    },
+    "1.0": {
+      "won": 1,
+      "n": 8,
+      "auc": 0.18768889181642798
+    },
+    "1.2": {
+      "won": 2,
+      "n": 8,
+      "auc": 0.31402094288800014
+    },
+    "1.5": {
+      "won": 2,
+      "n": 8,
+      "auc": 0.3440966983196805
+    }
+  },
+  "evolution": {
+    "NO_RESIDUE": {
+      "mean_h": 0.029225147502266263,
+      "n_valid": 5,
+      "per_seed": [
+        0.03,
+        0.029,
+        0.029,
+        0.027,
+        0.031
+      ]
+    },
+    "0.5": {
+      "mean_h": 0.04180389028068815,
+      "n_valid": 5,
+      "n_functional": 0,
+      "per_seed": [
+        0.034,
+        0.043,
+        0.034,
+        0.03,
+        0.068
+      ],
+      "pops": [
+        126,
+        134,
+        159,
+        124,
+        139
+      ],
+      "min_pop": 124,
+      "survivable": true,
+      "above_control": true
+    },
+    "0.8": {
+      "mean_h": 0.03725206735180848,
+      "n_valid": 4,
+      "n_functional": 0,
+      "per_seed": [
+        0.035,
+        0.037,
+        0.047,
+        0.03,
+        null
+      ],
+      "pops": [
+        102,
+        106,
+        95,
+        91,
+        0
+      ],
+      "min_pop": 0,
+      "survivable": true,
+      "above_control": false
+    },
+    "1.0": {
+      "mean_h": 0.0523193610204672,
+      "n_valid": 2,
+      "n_functional": 0,
+      "per_seed": [
+        null,
+        0.047,
+        null,
+        null,
+        0.057
+      ],
+      "pops": [
+        0,
+        74,
+        0,
+        0,
+        82
+      ],
+      "min_pop": 0,
+      "survivable": false,
+      "above_control": true
+    },
+    "1.2": {
+      "mean_h": 0.07014207017482302,
+      "n_valid": 5,
+      "n_functional": 0,
+      "per_seed": [
+        0.129,
+        0.034,
+        0.065,
+        0.051,
+        0.072
+      ],
+      "pops": [
+        65,
+        89,
+        68,
+        72,
+        63
+      ],
+      "min_pop": 63,
+      "survivable": true,
+      "above_control": true
+    },
+    "1.5": {
+      "mean_h": 0.09340943532306942,
+      "n_valid": 5,
+      "n_functional": 0,
+      "per_seed": [
+        0.117,
+        0.151,
+        0.05,
+        0.044,
+        0.105
+      ],
+      "pops": [
+        59,
+        53,
+        61,
+        60,
+        62
+      ],
+      "min_pop": 53,
+      "survivable": true,
+      "above_control": true
+    }
+  }
+}
