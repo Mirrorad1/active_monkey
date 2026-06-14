@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Math — active_monkey</title>
+<meta name="description" content="All the math behind the experiments — glossary, worked examples, and the real data, with a programmer's-eye addendum on every concept.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
+<link rel="apple-touch-icon" href="assets/monkey-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site/am.css?v=5">
+<style>
+  /* ---------- header ---------- */
+  .mhead{padding:42px 0 26px;}
+  .mhead-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:end;}
+  @media(max-width:880px){.mhead-grid{grid-template-columns:1fr;gap:24px;}}
+  .mhead h1{font-size:clamp(30px,4.4vw,48px);margin:14px 0 0;}
+  .mhead .lead{margin-top:18px;max-width:52ch;font-size:17px;}
+  .mhead-side{display:flex;flex-direction:column;gap:14px;}
+  .mpanel{border:1px solid var(--ink);background:rgba(255,255,255,.45);padding:16px 18px;}
+  .mpanel .ph{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;}
+  .mpanel .flow{font-family:var(--serif);font-size:15px;line-height:1.5;color:var(--ink);}
+  .mpanel .flow b{color:var(--accent);font-weight:600;}
+  .mpanel .flow .arr{color:var(--ink-3);margin:0 5px;}
+  .mcounts{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;}
+
+  /* ---------- control bar (mirrors journey) ---------- */
+  .controls{position:sticky;top:51px;z-index:30;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .controls-in{max-width:var(--maxw);margin:0 auto;padding:13px 28px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+  .cgroup{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .clabel{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+  .fchip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.02em;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .12s;}
+  .fchip:hover{border-color:var(--ink-3);color:var(--ink);}
+  .fchip.on{border-color:var(--ink);color:var(--ink);background:rgba(255,255,255,.55);}
+  .fchip .ct{color:var(--ink-3);font-variant-numeric:tabular-nums;}
+  .fchip .tdot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .spacer{flex:1;}
+  .msearch{font-family:var(--mono);font-size:11.5px;padding:7px 11px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.5);color:var(--ink);width:190px;max-width:42vw;}
+  .msearch::placeholder{color:var(--ink-3);}
+  .msearch:focus{outline:none;border-color:var(--accent);}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.02em;padding:6px 11px;border:1px solid var(--line);border-radius:7px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .12s;}
+  .toggle:hover{border-color:var(--ink-3);color:var(--ink);}
+  .toggle .sw{width:26px;height:15px;border-radius:20px;background:var(--line);position:relative;transition:background .15s;flex:none;}
+  .toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--paper);transition:left .15s;}
+  .toggle.on{border-color:var(--accent);color:var(--accent);}
+  .toggle.on .sw{background:var(--accent);}
+  .toggle.on .sw::after{left:13px;}
+  .txtbtn{font-family:var(--mono);font-size:11px;color:var(--accent);background:none;border:none;cursor:pointer;letter-spacing:.02em;}
+  .txtbtn:hover{text-decoration:underline;}
+
+  /* ---------- body ---------- */
+  .mbody{padding:30px 0 10px;}
+  .mbody-in{max-width:min(1080px,calc(100vw - 56px));margin:0 auto;padding:0 28px;}
+
+  /* topic divider */
+  .topic{margin:34px 0 14px;}
+  .topic:first-child{margin-top:6px;}
+  .topic .tt{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .topic .tdot{width:11px;height:11px;border-radius:50%;flex:none;align-self:center;}
+  .topic h2{font-family:var(--serif);font-size:25px;font-weight:500;margin:0;letter-spacing:-.01em;}
+  .topic .tcount{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.04em;}
+  .topic .tlead{margin:9px 0 0;font-size:13px;line-height:1.6;color:var(--ink-2);max-width:80ch;}
+  .topic .tlead code{font-family:var(--mono);font-size:.92em;background:rgba(255,255,255,.5);padding:1px 4px;border-radius:3px;}
+
+  /* concept card */
+  .concept{margin-bottom:11px;}
+  .ccard{border:1px solid var(--line);background:rgba(255,255,255,.4);transition:border-color .15s,box-shadow .15s,background .15s;}
+  .ccard:hover{border-color:var(--ink-3);}
+  .ccard.open{border-color:var(--ink);background:rgba(255,255,255,.6);box-shadow:0 6px 22px -16px rgba(40,30,10,.5);}
+  .ccard.open{border-left:3px solid var(--accent);}
+  .chead{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:15px 19px;cursor:pointer;}
+  .cmain{min-width:0;}
+  .cterm{font-family:var(--serif);font-size:18.5px;font-weight:500;line-height:1.2;margin:0;letter-spacing:-.005em;}
+  @media(max-width:560px){.cterm{font-size:16px;}}
+  .cprev{margin:5px 0 0;font-size:12.5px;color:var(--ink-2);line-height:1.5;max-width:88ch;}
+  .chev{width:24px;height:24px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--ink-2);font-size:14px;flex:none;transition:transform .2s,border-color .15s,background .15s;}
+  .ccard:hover .chev{border-color:var(--ink-3);}
+  .ccard.open .chev{transform:rotate(45deg);background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  .cbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s cubic-bezier(.4,0,.2,1);}
+  .ccard.open .cbody{grid-template-rows:1fr;}
+  .cbody-in{overflow:hidden;}
+  .cpad{padding:0 19px 18px;}
+  .cpad>.pane:first-child{border-top:1px dashed var(--line);}
+
+  /* a pane = one of Glossary / Example / Data / Programmer */
+  .pane{padding:15px 0 4px;border-bottom:1px dashed var(--line);}
+  .pane:last-child{border-bottom:none;}
+  .pane-label{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px;}
+  .pane-label .b{width:6px;height:6px;border-radius:50%;background:var(--ink-3);}
+  .pane.data .pane-label{color:var(--accent);}
+  .pane.data .pane-label .b{background:var(--accent);}
+  .pane.prog .pane-label{color:var(--break-deep);}
+  .pane.prog .pane-label .b{background:var(--break);}
+  .pane.prog{background:linear-gradient(0deg,rgba(245,237,204,.28),rgba(245,237,204,.05));margin:0 -19px;padding:15px 19px 8px;border-bottom:none;}
+
+  /* ---------- rendered markdown ---------- */
+  .md{font-size:13.5px;line-height:1.62;color:var(--ink);}
+  .md p{margin:0 0 11px;}
+  .md p:last-child{margin-bottom:0;}
+  .md strong{font-weight:600;}
+  .md em{font-style:italic;}
+  .md a{color:var(--accent);text-decoration:none;}
+  .md a:hover{text-decoration:underline;}
+  .md a.explink{color:var(--accent);font-weight:500;border-bottom:1px dotted var(--accent);}
+  .md ul,.md ol{margin:0 0 11px;padding-left:20px;}
+  .md li{margin-bottom:5px;}
+  .md li:last-child{margin-bottom:0;}
+  .md hr{border:none;border-top:1px dashed var(--line);margin:12px 0;}
+  .md code{font-family:var(--mono);font-size:.9em;background:rgba(120,104,72,.1);padding:1.5px 5px;border-radius:4px;}
+  .md pre{margin:0 0 12px;border:1px solid var(--line);border-radius:5px;background:rgba(255,255,255,.62);overflow-x:auto;}
+  .md pre code{display:block;padding:12px 14px;background:none;border-radius:0;font-size:11.5px;line-height:1.55;white-space:pre;color:var(--ink);}
+  @media(max-width:560px){.md pre code{font-size:10.5px;}}
+  .md blockquote{margin:0 0 11px;padding:2px 0 2px 14px;border-left:3px solid var(--line);color:var(--ink-2);font-style:italic;}
+  .md table{border-collapse:collapse;width:100%;margin:0 0 12px;font-size:12px;}
+  .md th,.md td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top;}
+  .md th{background:var(--paper-2);font-weight:600;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);}
+  .md td code{font-size:.86em;}
+
+  .empty{text-align:center;color:var(--ink-2);padding:48px 0;font-size:14px;}
+  .scrolltop{position:fixed;right:22px;bottom:22px;z-index:35;width:42px;height:42px;border-radius:50%;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer;font-size:16px;opacity:0;pointer-events:none;transition:opacity .2s;display:grid;place-items:center;}
+  .scrolltop.show{opacity:1;pointer-events:auto;}
+
+  /* track colors (the legend dots) */
+  .trk-map{background:var(--ink-3);}
+  .trk-active-inference{background:var(--positive);}
+  .trk-foundations{background:var(--wall);}
+  .trk-ecology{background:var(--partial);}
+  .trk-control{background:var(--break);}
+
+  @media(max-width:640px){
+    .mhead{padding:26px 0 18px;}
+    .controls{position:static;}
+    .controls-in{padding:11px 14px;gap:10px;}
+    .spacer{display:none;}
+    .msearch{width:100%;max-width:none;}
+    .mbody-in{max-width:none;padding:0 14px;}
+    .chead{padding:14px 14px;}
+    .cpad{padding:0 14px 16px;}
+    .pane.prog{margin:0 -14px;padding:15px 14px 8px;}
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="math-data.js?v=1"></script>
+<script type="text/babel" src="site/tweaks-panel.jsx?v=5"></script>
+<script type="text/babel" src="site/am-shared.jsx?v=5"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo, useRef } = React;
+
+const TWEAK_DEFAULTS = {
+  "palette": "growth",
+  "fontPair": "editorial",
+  "gridPaper": true,
+  "motion": true,
+};
+
+const TRACK_LABEL = {
+  "map":"Map", "active-inference":"Active inference",
+  "foundations":"Foundations", "ecology":"Evolution", "control":"Control",
+};
+
+/* ---------- markdown rendering ---------- */
+function escapeHtml(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function renderMd(src){
+  if(window.marked && window.marked.parse){
+    try { return window.marked.parse(src || "", {gfm:true, breaks:false}); }
+    catch(e){ /* fall through */ }
+  }
+  return "<pre><code>"+escapeHtml(src||"")+"</code></pre>";
+}
+/* link every "Exp NNN" to its journey card — but never inside code/links */
+function linkifyExp(root){
+  if(!root) return;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(n){
+      let p = n.parentElement;
+      while(p && p!==root){
+        const tag = p.tagName;
+        if(tag==="PRE"||tag==="CODE"||tag==="A") return NodeFilter.FILTER_REJECT;
+        p = p.parentElement;
+      }
+      return /Exp\s+\d+/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const targets = [];
+  while(walker.nextNode()) targets.push(walker.currentNode);
+  targets.forEach(node=>{
+    const s = node.nodeValue;
+    const frag = document.createDocumentFragment();
+    const re = /Exp\s+(\d+)/g;
+    let last = 0, m;
+    while((m = re.exec(s))){
+      if(m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+      const a = document.createElement("a");
+      a.href = "journey.html#exp-" + m[1];
+      a.textContent = m[0];
+      a.className = "explink";
+      a.title = "see " + m[0] + " in The Journey";
+      frag.appendChild(a);
+      last = re.lastIndex;
+    }
+    if(last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+function MD({src, linkExp}){
+  const ref = useRef(null);
+  const html = useMemo(()=>renderMd(src), [src]);
+  useEffect(()=>{ if(linkExp) linkifyExp(ref.current); }, [html, linkExp]);
+  return <div className="md" ref={ref} dangerouslySetInnerHTML={{__html: html}}/>;
+}
+
+/* one-line preview from the glossary text (strip md, first sentence) */
+function preview(gloss){
+  let t = (gloss||"")
+    .replace(/```[\s\S]*?```/g, " ")      // drop fenced blocks
+    .replace(/`[^`]*`/g, "")              // drop inline code
+    .replace(/[*_>#|]/g, "")              // drop md punctuation
+    .replace(/\s+/g, " ")
+    .trim();
+  const dot = t.indexOf(". ");
+  if(dot > 30 && dot < 200) t = t.slice(0, dot+1);
+  if(t.length > 190) t = t.slice(0, 187).trim() + "…";
+  return t;
+}
+
+/* ---------- panes ---------- */
+function Pane({label, kind, src, linkExp}){
+  if(!src) return null;
+  return (
+    <div className={"pane "+(kind||"")}>
+      <div className="pane-label"><span className="b"></span>{label}</div>
+      <MD src={src} linkExp={linkExp}/>
+    </div>
+  );
+}
+
+function ConceptCard({c, fileId, open, onToggle, showProg}){
+  const cid = "m-"+fileId+"-"+c.id;
+  return (
+    <div className="concept" id={cid}>
+      <div className={"ccard"+(open?" open":"")}>
+        <div className="chead" onClick={onToggle}>
+          <div className="cmain">
+            <h3 className="cterm">{c.term}</h3>
+            {!open && <p className="cprev">{preview(c.glossary)}</p>}
+          </div>
+          <span className="chev">+</span>
+        </div>
+        <div className="cbody"><div className="cbody-in"><div className="cpad">
+          <Pane label="Glossary" kind="gloss" src={c.glossary}/>
+          <Pane label="Worked example" kind="ex" src={c.example}/>
+          <Pane label="In the data" kind="data" src={c.data} linkExp={true}/>
+          {showProg && <Pane label="▸ In programmer terms" kind="prog" src={c.programmer} linkExp={true}/>}
+        </div></div></div>
+      </div>
+    </div>
+  );
+}
+
+function TopicDivider({file}){
+  return (
+    <div className="topic" id={"file-"+file.id}>
+      <div className="tt">
+        <span className={"tdot trk-"+file.track}></span>
+        <h2>{file.title}</h2>
+        <span className="tcount">{file.concepts.length} concepts · {TRACK_LABEL[file.track]||file.track} · {file.file}</span>
+      </div>
+      {file.lead && <MD src={file.lead}/>}
+    </div>
+  );
+}
+
+function Math(){
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  useEffect(()=>{ applyTweaks(t); }, [t]);
+
+  const data = window.AM_MATH || {files:[], totalConcepts:0, totalFiles:0};
+  const [topic, setTopic] = useState("all");
+  const [q, setQ] = useState("");
+  const [showProg, setShowProg] = useState(true);
+  const [open, setOpen] = useState(()=>new Set());
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(()=>{
+    const onScroll = ()=>setShowTop(window.scrollY > 700);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    return ()=>window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // honor deep links (#m-<file>-<concept> or #file-<id>)
+  useEffect(()=>{
+    const h = decodeURIComponent(location.hash.replace('#',''));
+    if(h.startsWith('m-')){ setOpen(prev=>{ const s=new Set(prev); s.add(h); return s; });
+      setTimeout(()=>{ const el=document.getElementById(h); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }, 220); }
+    else if(h.startsWith('file-')){ const id=h.slice(5); setTopic(id);
+      setTimeout(()=>{ const el=document.getElementById(h); if(el) el.scrollIntoView({behavior:'smooth'}); }, 120); }
+  }, []);
+
+  const ql = q.trim().toLowerCase();
+  const matchConcept = (c)=> !ql || (
+    c.term.toLowerCase().includes(ql) ||
+    (c.glossary+c.example+c.data+c.programmer).toLowerCase().includes(ql)
+  );
+
+  const visibleFiles = useMemo(()=>{
+    return data.files
+      .filter(f => topic==="all" || f.id===topic)
+      .map(f => ({...f, concepts: f.concepts.filter(matchConcept)}))
+      .filter(f => f.concepts.length > 0);
+  }, [data, topic, ql]);
+
+  const visibleCids = useMemo(()=>{
+    const out = [];
+    visibleFiles.forEach(f => f.concepts.forEach(c => out.push("m-"+f.id+"-"+c.id)));
+    return out;
+  }, [visibleFiles]);
+
+  const cid = (fid, c)=> "m-"+fid+"-"+c.id;
+  const isOpen = (id)=> ql ? true : open.has(id);    // searching auto-opens matches
+  const toggle = (id)=> setOpen(prev=>{ const s=new Set(prev); s.has(id)?s.delete(id):s.add(id); return s; });
+  const allOpen = visibleCids.length>0 && visibleCids.every(id=>open.has(id));
+  const toggleAll = ()=> setOpen(allOpen ? new Set() : new Set(visibleCids));
+
+  const totalShown = visibleFiles.reduce((n,f)=>n+f.concepts.length, 0);
+
+  return (
+    <>
+      <Nav active="math"/>
+      <header className="mhead">
+        <div className="wrap mhead-grid">
+          <div>
+            <div className="kicker">the math · glossary → examples → data</div>
+            <h1 className="h-display">The math behind <em>the data</em>.</h1>
+            <p className="lead">Every number in <a href="journey.html" style={{color:'var(--accent)',textDecoration:'none'}}>The Journey</a> rests on a small amount of math. This page explains all of it — each concept as a plain-language <b>glossary</b>, a <b>worked example</b> you can follow by hand, and the <b>real experiment data</b> it shows up in — with a programmer's-eye addendum on every one. Read it top-to-bottom, or jump to a topic and search.</p>
+            <div className="mcounts">
+              <div className="stat"><b className="tabnum">{data.totalConcepts}</b><span>concepts</span></div>
+              <div className="stat"><b className="tabnum">{data.totalFiles}</b><span>topic files</span></div>
+              <div className="stat win"><b className="tabnum">207</b><span>experiments mapped</span></div>
+            </div>
+          </div>
+          <div className="mhead-side">
+            <div className="mpanel">
+              <div className="ph">every concept, four ways</div>
+              <div className="flow">
+                <b>Glossary</b> — the math, defined<br/>
+                <span className="arr">↓</span><b>Example</b> — worked by hand<br/>
+                <span className="arr">↓</span><b>Data</b> — the real Exp numbers<br/>
+                <span className="arr">↓</span><b>▸ Code</b> — in programmer terms
+              </div>
+            </div>
+            <div style={{fontFamily:'var(--mono)',fontSize:'10.5px',color:'var(--ink-3)',lineHeight:1.6,borderTop:'1px dashed var(--line)',paddingTop:'10px'}}>
+              Source of truth: the <code style={{background:'rgba(255,255,255,.5)',padding:'1px 4px',borderRadius:'3px'}}>math/</code> markdown files. Every figure is grep-checked against <b>EXPERIMENTS.md</b>; "Exp NN" links into the journey.
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="controls">
+        <div className="controls-in">
+          <div className="cgroup">
+            <span className="clabel">Topic</span>
+            <button className={"fchip"+(topic==="all"?" on":"")} onClick={()=>setTopic("all")}>All <span className="ct">{data.totalConcepts}</span></button>
+            {data.files.map(f=>(
+              <button key={f.id} className={"fchip"+(topic===f.id?" on":"")} onClick={()=>setTopic(f.id)}>
+                <span className={"tdot trk-"+f.track}></span>{f.label} <span className="ct">{f.concepts.length}</span>
+              </button>
+            ))}
+          </div>
+          <div className="spacer"></div>
+          <div className="cgroup">
+            <input className="msearch" type="search" placeholder="search concepts…" value={q} onChange={e=>setQ(e.target.value)}/>
+            <button className={"toggle"+(showProg?" on":"")} onClick={()=>setShowProg(v=>!v)} title="show / hide the programmer-terms addendum">
+              <span className="sw"></span>Programmer terms
+            </button>
+            <button className="txtbtn" onClick={toggleAll}>{allOpen?"Collapse all":"Expand all"}</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mbody">
+        <div className="mbody-in">
+          {totalShown===0 && <div className="empty">No concepts match “{q}”.</div>}
+          {visibleFiles.map(f=>(
+            <React.Fragment key={f.id}>
+              <TopicDivider file={f}/>
+              {f.concepts.map(c=>(
+                <ConceptCard key={c.id} c={c} fileId={f.id}
+                  open={isOpen(cid(f.id,c))} onToggle={()=>toggle(cid(f.id,c))} showProg={showProg}/>
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      <Footer/>
+      <button className={"scrolltop"+(showTop?" show":"")} onClick={()=>window.scrollTo({top:0,behavior:'smooth'})} aria-label="Back to top">↑</button>
+
+      <TweaksPanel>
+        <TweakSection label="Palette"/>
+        <TweakRadio label="System" value={t.palette} options={["growth","compass","ember"]} onChange={v=>setTweak('palette',v)}/>
+        <TweakSection label="Type & texture"/>
+        <TweakRadio label="Fonts" value={t.fontPair} options={["editorial","grotesk"]} onChange={v=>setTweak('fontPair',v)}/>
+        <TweakToggle label="Graph paper" value={t.gridPaper} onChange={v=>setTweak('gridPaper',v)}/>
+        <TweakToggle label="Motion" value={t.motion} onChange={v=>setTweak('motion',v)}/>
+      </TweaksPanel>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('app')).render(<Math/>);
+</script>
+</body>
+</html>
