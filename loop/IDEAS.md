@@ -1158,6 +1158,48 @@ The loop marks items it has consumed by indenting a response under them:
         is the honest characterization of why the organ can't climb) — write the synthesis, hold.
     (e) Other / redirect / stop.
     Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
+  → [human, 2026-06-13, in-session] EXPLICIT WORD: "a continue" — option (a), the recommended
+    one: Exp 204 (freshness/residue false-positive bridge). CONSUMED: the full Exp 204
+    pre-registration is written into loop/directions/population-ecology.md BEFORE any data
+    (expanding the staged sketch into binding predictions/falsifiers/verdict). Falsifier-bound
+    per VALIDATION; a failed predeclared test HALTS for a word. Engine feature `enable_residue`
+    is gated/default-OFF ⇒ exp194-203 byte-identical (hash-guarded); no direct-h-reward (asserted
+    + blinded-verified). 205/206 remain staged behind their own post-204 consult.
+  → [loop, POST-204 CONSULT, 2026-06-13] Exp 204 DONE (MIXED / NEW INSIGHT, blind-verified AGREE).
+    The residue/false-positive bridge created the FIRST functional MONOMORPHIC optimum in the whole
+    arc (RESIDUE_COMPETE N* rises to h*=0.60 vs NO_RESIDUE 0.06 — "precision never helps even when
+    gifted" is now FALSE for loss-avoidance) BUT it is still un-earnable: the LOCAL resident gradient
+    is ≤0 (pairwise 0.10→0.15 wins 2/8 — a fitness valley; only the 0.10→0.45 leap pays 5/8),
+    evolution decays to 0.07 (0/5 functional, above NO_RESIDUE's 0.03), the false-positive cost
+    COLLAPSES 2/5 populations (a NEW failure mode — the pressure that selects for precision destroys
+    the demography that would carry the climb), and mediation is cost-dominated (precise = fewer FPs
+    0.88→0.66 but fewer babies 0.94→0.55). The predeclared F2 validity gate fired (evolution arm 3/5
+    valid → NO_VERDICT/MIXED); I did NOT re-tune to a survivable loss to rescue a cleaner verdict
+    (param-shopping). The L22 forced-vs-evolvable gap in its sharpest form yet.
+    REFLECT (honest): the sense-evolution sub-arc is now SIX experiments deep (199 avoidance, 200
+    foraging, 201 increasing-returns, 202 interference-competition — all NEGATIVE; 203 gradient audit
+    + 204 residue — both MIXED). Each still finds a NEW failure mode (not pure consolidation), but the
+    answer is CONVERGING: no costed sense becomes a functional organ at this toy substrate; the
+    fitness valley at the resident + the demographic cost of the selecting pressure are the universal
+    barriers, and a functional installed/monomorphic optimum is necessary but NOT sufficient for
+    evolvability. This is a natural synthesis / stop point.
+    OPTIONS, each needs a word:
+    (a) Exp 205 (barcode niches): a high-sensor lineage ESCAPES the herding/competition into a
+        less-crowded niche — attacks the negative-frequency-dependence AND the demographic-collapse
+        trap from a genuinely different angle (the one remaining structurally-distinct escape).
+    (b) Exp 206 (sensor–controller co-adaptation): maybe the sensor fails because the policy θ can't
+        exploit it; co-evolve h and θ.
+    (c) Cheap clarity FIRST: a survivable-loss re-run of THIS bridge (loss in (0.5,1.5) where pops
+        persist) to resolve whether a clean NEGATIVE or a weak MIXED holds once the demographic
+        confound is removed — low cost, settles whether Exp 204's NO_VERDICT hides a real push.
+    (d) RECOMMENDED — ACCEPT the sub-arc answer (no costed sense becomes functional across five
+        regimes; valley + demographic cost are the universal barriers; functional optimum ≠ evolvable)
+        and write the synthesis dossier, then hold. The sharpest finding (a genuinely functional
+        monomorphic optimum that's still un-earnable) is a strong closing note.
+    (e) Other / redirect / stop.
+    Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word. No
+    silence-actionable default — the sub-arc's per-bridge staging means each needs its own word; the
+    loop idles with this consult posted until a word appears.
 
 (empty — drop ideas above this line's section freely)
 

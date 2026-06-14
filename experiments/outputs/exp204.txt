@@ -1,0 +1,49 @@
+================================================================================
+EXP 204 — N5 RESIDUE / FALSE-POSITIVE BRIDGE — SUMMARY
+================================================================================
+
+COMPETITIVE FITNESS N*(h) (cost ON; argmax N* = competitive optimum h*):
+      h  RESIDUE_COMPETE       NO_RESIDUE
+   0.00             22.3            595.7
+   0.03             15.9            595.7
+   0.06             50.7            629.9
+   0.10             43.8            500.2
+   0.15             37.7            404.5
+   0.20             43.2            338.2
+   0.30             40.6            240.2
+   0.45             38.8            168.3
+   0.60             55.7            133.4
+  h*N               0.6             0.06
+
+PAIRWISE competition, invader h' vs resident 0.10 (RESIDUE_COMPETE, MED difficulty):
+  0.10 vs 0.06:  invader_won=2/8  auc=0.506  s_mean=-0.00028
+  0.10 vs 0.15:  invader_won=2/8  auc=0.344  s_mean=-0.00055
+  0.10 vs 0.30:  invader_won=2/8  auc=0.377  s_mean=-0.00439
+  0.10 vs 0.45:  invader_won=5/8  auc=0.793  s_mean=+0.00269
+  0.10 vs 0.15 controls: NO_RESIDUE won=4/8 (auc 0.496)  CLAMPED_LR won=4/8  NO_SHUFFLE won=1/8
+  difficulty sweep (0.10 vs 0.15): easy won=3/8 (auc 0.414)  med won=2/8  hard won=5/8 (auc 0.714)
+
+INSTALLED BENEFIT B(h) (cost-OFF intrinsic growth) + realized r_on:
+      h    B=r_off       r_on
+   0.00    0.00257   -0.00063
+   0.03    0.00058    0.00795
+   0.06    0.00250    0.00221
+   0.10    0.00352    0.00369
+   0.15    0.00231    0.00346
+   0.20    0.00158    0.00180
+   0.30    0.00174    0.00075
+   0.45    0.00138    0.00066
+   0.60    0.00336    0.00297
+  gift B(0.60)-B(0.00) = +0.00080  (gift real if >0)
+
+EVOLUTION (Mode B) — gene-pool NEWBORN mean intensity over last 2000 steps (founder 0.10):
+     RESIDUE_COMPETE: mean_h=0.0700  functional(>0.30)=0/5  per-seed=[0.081, 0.073, 0.056, nan, nan]  min_pop=0
+          NO_RESIDUE: mean_h=0.0305  functional(>0.30)=0/5  per-seed=[0.031, 0.032, 0.029, 0.03, 0.031]  min_pop=986
+  RESIDUE_NO_COMPETE: mean_h=0.0613  functional(>0.30)=0/5  per-seed=[0.047, 0.033, 0.093, 0.067, 0.067]  min_pop=50
+  MEDIATION (RESIDUE_COMPETE): FP-rate lo-h=0.881 hi-h=0.658  | offspring lo-h=0.941 hi-h=0.547
+
+GATES: pw_015_won=2/8  pw_015_auc=0.344  pw_nr_won=4/8  pw_clr_won=4/8  pw_nos_won=1/8  diff_easy_won=3/8  diff_hard_won=5/8  h_star_N_RC=0.6  gift_real=True  gift_B=0.0008  evo_RC_mean_h=0.07  evo_RC_functional=0/5  evo_NR_mean_h=0.0305  evo_RNC_mean_h=0.0613  fp_lo_h=0.881  fp_hi_h=0.658  off_lo_h=0.941  off_hi_h=0.547  mediated=False  rc_n_valid=3/5  rc_above_control=True  rc_min_pop=0  p1=True
+
+VERDICT: MIXED / NO_VERDICT (RESIDUE_COMPETE under-represented: <4/5 valid seeds — L21; metric not licensed)  (repo token: MIXED)
+
+runtime: 102s

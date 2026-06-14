@@ -835,24 +835,101 @@ positive across small heritable improvements.*
 
 ---
 
-**EXP 204 — PRE-REGISTRATION SKETCH (FRESHNESS/RESIDUE FALSE-POSITIVE BRIDGE; staged behind the
-post-203 consult — full predeclaration committed before its own verdict run).**
+**EXP 204 — FULL PRE-REGISTRATION (FRESHNESS/RESIDUE FALSE-POSITIVE BRIDGE; committed BEFORE any
+data, on the human's explicit word "a continue" 2026-06-13; expands the staged sketch).**
 
-- **Motivation.** Exp 202's competition sent everyone to the same depleted band (herding, not
-  Red-Queen). The bridge: make competition increase the value of DISTINGUISHING fresh food from
-  misleading traces, so precision REDUCES FALSE POSITIVES (not just misses).
-- **World.** Eaten food leaves RESIDUE with a thermal signature close to fresh food. Low-h sensors
-  ALIAS fresh vs residue; high-h sensors discriminate. Competition raises residue (rivals deplete),
-  so as competition rises the marginal value of precision should RISE: `w(h) = R·P_TP(h) − L·P_FP(h)
-  − C_h(h)`; test `d/dh[R·P_TP − L·P_FP] > dC_h/dh` near the resident, and the Red-Queen derivative
-  `∂²B/∂h_i ∂(mean h_rivals) > 0`. A difficulty sweep (residue/fresh signature gap) so no single magic
-  number. Controls: no-residue, residue-but-no-competition (low density), no-shuffle (artifact check),
-  the Exp-203 clamp-grid embedded, cost-off diagnostic.
-- **Predeclared pass.** Cost ON + shuffle ON: pop healthy; mean/parent-weighted h rises above founder
-  and stays elevated; a stable lineage exceeds h>0.30; the clamp grid shows a POSITIVE local resident
-  slope (the Exp-203 instrument); FP-rate decreases with h; the reproduction advantage is MEDIATED by
-  fewer false positives; effect across most seeds. **Fail (NEGATIVE):** h stays primitive, or high h
-  only at collapse, or only cost-off, or via id-order/reward-leak, or competition suppresses h (as 202).
+- **Motivation.** Exp 203 found the FIRST positive local gradient in the arc (0.10→0.15 wins 7/8 in
+  the band-staleness FORAGE regime) but it was PURELY competitive + weak (s~0.01, B(h) actually
+  concave/negative, h*=0.0) — one seed short of POSITIVE. Exp 202's competition was a herding
+  STAMPEDE, not Red-Queen. The bridge changes the PAYOFF STRUCTURE: instead of precision grabbing
+  marginally MORE food (a saturating/concave benefit), precision AVOIDS A COSTLY MISTAKE — eating
+  misleading residue. Avoiding a loss is steeper and compounds; and competition RAISES residue
+  (rivals deplete → traces accumulate), so the marginal value of precision should RISE with rival
+  density (the Red-Queen-via-residue derivative ∂²B/∂h_i ∂ρ > 0).
+
+- **Mechanism (PROVIDED, new gated engine feature `enable_residue`; default-OFF ⇒ exp194–203
+  byte-identical, hash-guarded).** The world carries a `residue` field. When a creature eats `eaten`
+  units of fresh food at a cell, that cell gains `residue += eaten · residue_yield` (eaten food
+  leaves a misleading trace); residue DECAYS each step (`residue *= 1 − residue_decay`). At the eat
+  step (ON-branch only, ONE rng draw — OFF path keeps the exact current unconditional `consume`):
+  let `R = resource[pos]`, `D = residue[pos]`, true fresh fraction `f = R/(R+D+ε)`; the creature
+  reads a NOISY freshness percept `f̂ = f + N(0, σ)` with `σ = residue_confusion · (1 − h)`
+  (`h = thermosense_intensity` = the evolvable sensor precision; `residue_confusion` = the
+  signature-gap DIFFICULTY, higher = more aliasing). If `f̂ ≥ eat_threshold` the creature EATS:
+  `eaten = consume(pos, deficit)` (the UNCHANGED engine intake path) and, if the cell was ACTUALLY
+  residue-dominated (`f < fp_threshold`), it paid a FALSE POSITIVE — energy `-= residue_loss` (the
+  cost of ingesting a misleading trace, a real ecological cost of the ACTION). If `f̂ < eat_threshold`
+  it SKIPS (no gain, no loss; a missed-fresh cell is a false negative). So higher h → fewer FP losses
+  AND fewer missed-fresh, via a better PERCEPT — never via a reward on h.
+
+- **Anti-cheat (binding; extends `assert_no_direct_h_reward`).** Food intake is the unchanged
+  `consume()` — NEVER written as `f(h)`. `h` keys ONLY the perceptual noise `σ`. `residue_loss` is
+  charged by the ACTION of eating a residue-dominated cell, identical regardless of `h`. No rule
+  `if h>θ: bonus`. Cost ON for every verdict (cost-off only for the B(h) overlay). The blinded
+  verifier re-checks the no-direct-h-reward property from the script + raw output.
+
+- **Two measurement modes (the exp203 instrument + an evolution confirmation).**
+  - **MODE A — GRADIENT AUDIT (decisive, cheaper, mirrors Exp 203).** The clamp-grid common garden
+    (`founder_mix`, `freeze_thermosense`, cost ON, shuffle ON) in the RESIDUE_COMPETE ecology:
+    pairwise selection coefficient s(0.10 vs 0.15) [invader-won fraction + AUC], competitive optimum
+    h* (carrying-capacity N*/R*), and the B(h) overlay (cost-off intake) — vs the NO_RESIDUE control,
+    across a difficulty sweep.
+  - **MODE B — EVOLUTION (confirmation).** h evolves freely from the primitive founder (h=0.10,
+    `freeze_thermosense=False`, `mutate_thermosense=True`) in RESIDUE_COMPETE: does the gene-pool
+    NEWBORN mean h climb >0.30 in a stable lineage, MEDIATED by a falling FP-rate?
+
+- **Arms** (founder h=0.10, inefficiency 0.20; cost ON, shuffle ON unless noted; depleting band as
+  Exp 202: regen 0.08, conc 14, band 0.08): **RESIDUE_COMPETE** (primary) · **NO_RESIDUE** (control:
+  `enable_residue=False`, else identical — the no-FP baseline, predeclared primitive as Exp 202) ·
+  **RESIDUE_NO_COMPETE** (control: residue ON but ABUNDANT/low-density, regen 0.8 → little eating →
+  little residue → flat — competition is necessary) · **NO_SHUFFLE** (artifact: residue+compete,
+  id-order ON) · **CLAMPED_LR** (confound: residue+compete, `freeze_learning_rate` — memory can't
+  substitute) · **COST_OFF** (diagnostic B(h) overlay). Difficulty sweep `residue_confusion ∈
+  {easy, medium, hard}` (exact values FIXED on a disclosed pilot). Seeds: audit {50–57} (8, for the
+  ≥7/8 slope bar); evolution {70–74} (5 fresh). Horizons: audit 3500 (Exp-203-matched), evolution at
+  the plateau horizon FIXED on a disclosed full-horizon pilot (L23). Runtime pre-flight
+  (`ecology.runtime_budget.preflight`, L25) at the top of `main()` — the batch refuses to launch on a
+  flagged (EXPLOSION/SUPERLINEAR/OVER_BUDGET) config.
+
+- **Predeclared verdict (three-way, conjunct-by-conjunct; L1/L2 — every conjunct checked).**
+  - **POSITIVE** (the bridge works — would be the FIRST functional sensor in the arc ⇒ candidate
+    BREAKTHROUGH) iff in RESIDUE_COMPETE: **P1** determinism (same seed → identical events_hash);
+    **P2** healthy pop (no collapse; per-arm pop ≥ a predeclared healthy floor, drift-flagged per
+    L24); **P3 (CORE gradient)** pairwise s(0.10→0.15) > 0 AND invader_won ≥ 7/8 AND competitive
+    optimum h* > 0.30; **P4 (CORE evolution)** evolution gene-pool newborn mean h > 0.30 in ≥ 4/5
+    seeds; **P5 (MEDIATION)** FP-rate decreases with h AND the reproduction advantage is MEDIATED by
+    fewer FPs (higher-h creatures show both lower FP-rate and higher realized reproduction); **P6
+    (confound-clean)** CLAMPED_LR agrees (also > 0.30 / positive slope) AND NO_SHUFFLE does not flip
+    the sign AND no direct-h-reward (asserted); **P7 (necessity contrast)** NO_RESIDUE stays
+    primitive (h* ≤ 0.15 AND evolution < 0.15) AND RESIDUE_NO_COMPETE stays primitive.
+  - **NEGATIVE** (the ceiling holds even for false-positive AVOIDANCE — the strongest, most general
+    wall) iff RESIDUE_COMPETE h stays primitive (evolution < 0.15 in a majority AND/OR h* ≤ 0.15)
+    DESPITE a real installed FP-avoidance benefit in the B-overlay (high-h demonstrably avoids the
+    loss when gifted) — the gift exists and is un-earnable, a FIFTH wall.
+  - **MIXED** iff partial: a real positive gradient ABOVE primitive but not functional ([0.15,0.30],
+    the Exp 203 outcome), or positive only in a sub-arm / only Mode A not Mode B, or positive but
+    weakly mediated.
+  - Repo token: POSITIVE / NEGATIVE / MIXED.
+
+- **Falsifiers / confounds (any ⇒ the named disposition).** **F1** non-determinism (same seed →
+  different events_hash with flags off, OR OFF-path regression hash mismatch) → NEGATIVE (infra).
+  **F2** populations collapse / clamps under-represented (L21) → NO_VERDICT → MIXED. **F3** NO_RESIDUE
+  ALSO climbs > 0.30 → the climb is NOT residue-mediated → POSITIVE DISCARDED (confound). **F4** a
+  positive only at collapsed pops (corr(pop,h) strongly negative, L24) → DRIFT, DISCARD. **F5** a
+  positive that vanishes under CLAMPED_LR → memory substitution (L19), DISCARD. **F6** a positive
+  that flips under NO_SHUFFLE → id-order artifact, DISCARD. **F7** h rises but FP-rate does NOT fall
+  / the advantage is not FP-mediated (P5 fails) → the climb is via a different channel than the
+  predeclared mechanism → reinterpret (NOT a clean POSITIVE for this bridge).
+
+- **Honesty stakes (written before data).** The four walls (199–202) predict NEGATIVE, and Exp 203
+  predicts at most MIXED — so a POSITIVE here is a genuine surprise, not a forced result. What is NEW
+  is the PAYOFF STRUCTURE (avoiding a costly mistake, steeper than marginal foraging), which is why
+  the experiment can honestly succeed. Residue params (`residue_yield`, `residue_decay`, `residue_loss`,
+  `eat_threshold`, `fp_threshold`, `residue_confusion` grid) are tuned ONLY on disclosed pilots and
+  FIXED before the verdict run; thresholds predeclared here. Founders + policy + costs PROVIDED; the
+  sensor is a noisy-percept heuristic, not learned pymdp. Engine feature gated; exp194–203 hashes
+  reproduce (regression guard in tests). A NEGATIVE is the strongest publishable form of the wall (the
+  ceiling survives even a loss-avoidance payoff with competition-coupled residue).
 
 **EXP 205 — PRE-REGISTRATION SKETCH (THERMAL-BARCODE NICHE / SYMPATRIC DIVERGENCE; staged).**
 - **Motivation.** A single global band makes all chase one resource. A stronger sensor may need to
@@ -879,5 +956,5 @@ post-203 consult — full predeclaration committed before its own verdict run).*
 
 ---
 
-**STATUS.** state: active · latest: Exp 203 (MIXED / NEW INSIGHT — the SELECTION-GRADIENT AUDIT found the FIRST positive local gradient in the arc: in the band-staleness regime a step 0.10→0.15 beats the resident 7/8 seeds [auc 0.872], surviving the LR-freeze control 6/8 = genuine thermosense; but PURELY competitive [N* falls with h, density-indep benefit flat] and weak [s~0.01], missing the strict POSITIVE bar; the moving-target regime makes a real-but-weak relational gradient evolution can't sustain) · sub-arc SENSE-EVOLUTION (203–206); ecology/sense_axis.py + runtime_budget (L25) · next-falsifiable: post-203 CONSULT — strengthen the relational gradient (204 residue / 205 niches / 206 controller) or accept it
+**STATUS.** state: active · latest: Exp 204 (MIXED / NEW INSIGHT — the RESIDUE/FALSE-POSITIVE bridge: making precision avoid a costly mistake creates the FIRST functional MONOMORPHIC optimum in the arc [N* rises to h*=0.60 vs NO_RESIDUE 0.06], but it is still un-earnable — the LOCAL resident gradient is ≤0 [pairwise 0.10→0.15 wins 2/8, a fitness valley], evolution decays to 0.07 [0/5 functional, above NO_RESIDUE's 0.03], the false-positive cost COLLAPSES 2/5 populations [evolution arm under-licensed, F2], and mediation is cost-dominated [precise = fewer FPs but fewer babies]; blind-verified AGREE) · sub-arc SENSE-EVOLUTION (203–206); enable_residue gated + guarded · next-falsifiable: post-204 CONSULT — 205 niches / 206 controller / survivable-loss re-run / accept the five-regime answer
 
