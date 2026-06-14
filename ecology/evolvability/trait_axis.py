@@ -33,6 +33,15 @@ class TraitAxis:
     cost_floor: float = 0.0
     cost_inefficiency: float = 0.20
     backend: str = "thermosense"
+    # EcologyConfig overrides that FULLY disconnect the trait from outcomes — every
+    # channel the trait feeds into (cost AND every steering/percept term) turned off,
+    # so changing the trait value cannot affect the run. The null-guard battery uses
+    # this to assert byte-identical events across trait values (the anti-cheat test).
+    # Declaring this dict is the key step when ADDING A NEW TRAIT AXIS: enumerate the
+    # config fields that, when set, make the trait causally inert. Empty ⇒ the guard
+    # falls back to {enable_flag: False}, which only removes the COST channel and is
+    # usually insufficient (the percept/steering channels still leak the trait).
+    disconnect_overrides: dict = D.field(default_factory=dict)
 
     # ------------------------------------------------------------------
     # Accessors
@@ -108,6 +117,15 @@ THERMOSENSE_AXIS = TraitAxis(
     mutant_value=0.15,
     low_value=0.0,
     high_value=0.60,
+    # Every channel the thermosense organ feeds into, turned off (verified by probe:
+    # only with ALL of these set are runs byte-identical across thermosense_intensity).
+    disconnect_overrides={
+        "enable_thermosense": False,       # no upkeep cost
+        "enable_food_coupling": False,     # no forage target
+        "thermosense_forage_mode": False,  # no forage steering
+        "thermal_avoidance_weight": 0.0,   # no avoidance steering
+        "enable_temperature": False,       # no temperature field to sense/steer on
+    },
 )
 
 BUILTIN_AXES: dict[str, TraitAxis] = {
