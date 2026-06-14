@@ -10,10 +10,11 @@ Exp 203 instrument).  For any other backend, gates that require engine-specific
 cost-off percept paths raise NotImplementedError with a documented reason:
     - run_gifted_benefit: requires cost-off percept which is engine-specific (thermosense only)
     - run_monomorphic_sweep: same reason (calls run_carrying_capacity from sense_axis)
-    - run_local_pairwise_gradient: delegates to run_pairwise_competition (thermosense only)
     - run_density_independent_growth: delegates to run_intrinsic_growth (thermosense only)
-For generic backends, run_invasion_from_rarity, run_null_guards, run_controller_cross_partial
-use a generic in-module implementation (axis.clamp_founder + axis.get + freeze via freeze_flag).
+For generic backends, run_local_pairwise_gradient uses _run_pairwise_generic (a generic
+common-garden runner that reads/writes the trait via the axis); run_invasion_from_rarity,
+run_null_guards, and run_controller_cross_partial use a generic in-module implementation
+(axis.clamp_founder + axis.get + freeze via freeze_flag).
 
 Anti-cheat / honesty
 ---------------------
@@ -287,6 +288,85 @@ def run_monomorphic_sweep(
 
 
 # ---------------------------------------------------------------------------
+# C-helper) Generic equal-count common-garden runner (Gate C fallback)
+# ---------------------------------------------------------------------------
+
+def _run_pairwise_generic(
+    base_cfg: "EcologyConfig",
+    axis: TraitAxis,
+    h_res: float,
+    h_mut: float,
+    seed: int,
+    *,
+    count_each: int = 50,
+    window: tuple[int, int] = (50, 1500),
+    stride: int = 25,
+) -> dict:
+    """Generic equal-count resident-vs-mutant common garden (Gate C fallback for any
+    TraitAxis backend). Mirrors sense_axis.run_pairwise_competition but reads/writes the
+    trait via the axis (axis.clamp_founder / axis.get) and freezes via _freeze_kwargs(axis)
+    (freeze_flag if the engine supports it, else mutation_rate=0). Returns the SAME dict
+    keys as run_pairwise_competition so the gate logic is backend-agnostic."""
+    res_f = axis.clamp_founder(base_cfg.founder, h_res, axis.inefficiency_value)
+    inv_f = axis.clamp_founder(base_cfg.founder, h_mut, axis.inefficiency_value)
+
+    fm: tuple = tuple([(res_f, 1), (inv_f, 1)] * count_each)
+    cfg = D.replace(
+        base_cfg,
+        founder_mix=_sa._shuffle_founder_mix(fm, seed),
+        **_freeze_kwargs(axis),
+    )
+
+    eco = Ecology(cfg, seed=seed)
+    w_lo, w_hi = window
+
+    fracs: list[float] = []
+    series: list[tuple[float, float]] = []  # (t, ln(n_inv/n_res))
+
+    cps = set(range(stride, cfg.horizon + 1, stride))
+    while eco.t < cfg.horizon and not eco.exploded:
+        eco.step()
+        if eco.t in cps and w_lo <= eco.t <= w_hi:
+            alive_now = eco.alive_snapshot()
+            n_res = sum(1 for c in alive_now if abs(axis.get(c.genotype) - h_res) < 1e-6)
+            n_inv = sum(1 for c in alive_now if abs(axis.get(c.genotype) - h_mut) < 1e-6)
+            total = n_res + n_inv
+            if total >= 1:
+                fracs.append(n_inv / total)
+            if n_res >= 1 and n_inv >= 1:
+                series.append((float(eco.t), math.log(n_inv / n_res)))
+        if not eco.has_alive():
+            break
+
+    alive = eco.alive_snapshot()
+    n_res_final = sum(1 for c in alive if abs(axis.get(c.genotype) - h_res) < 1e-6)
+    n_inv_final = sum(1 for c in alive if abs(axis.get(c.genotype) - h_mut) < 1e-6)
+    total_final = n_res_final + n_inv_final
+    inv_frac_final = (n_inv_final / total_final) if total_final >= 1 else float("nan")
+
+    if len(series) >= 3:
+        ts = np.array([p[0] for p in series]).reshape(-1, 1)
+        ys = np.array([p[1] for p in series])
+        A = np.hstack([ts, np.ones((len(ts), 1))])
+        coeffs, _, _, _ = np.linalg.lstsq(A, ys, rcond=None)
+        s = float(coeffs[0])
+    else:
+        s = float("nan")
+
+    inv_won = 1 if (inv_frac_final == inv_frac_final and inv_frac_final > 0.5) else 0
+
+    return {
+        "s": s,
+        "n_points": len(series),
+        "inv_frac_auc": _nanmean(fracs) if fracs else float("nan"),
+        "inv_frac_final": inv_frac_final,
+        "inv_won": inv_won,
+        "final_pop": len(alive),
+        "extinct": len(alive) == 0,
+    }
+
+
+# ---------------------------------------------------------------------------
 # C) Local pairwise gradient
 # ---------------------------------------------------------------------------
 
@@ -304,14 +384,15 @@ def run_local_pairwise_gradient(
 ) -> GateOutcome:
     """Gate C: local pairwise invasion gradient (resident vs single-step mutant).
 
-    Runs run_pairwise_competition(base_cfg, h_res, h_mut, seed) for each seed.
-    The verdict is based on invader fraction relative to 0.5 (starting share):
-    inv_frac_final > 0.5 means the invader (mutant=h_mut) beat the resident.
+    Runs a 50/50 common-garden competition between resident (h_res) and mutant (h_mut)
+    for each seed.  The verdict is based on invader fraction relative to 0.5 (starting
+    share): inv_frac_final > 0.5 means the invader (mutant=h_mut) beat the resident.
 
-    ONLY backend=='thermosense' is supported (raises NotImplementedError otherwise).
+    For backend=='thermosense', delegates to sense_axis.run_pairwise_competition (the
+    proven Exp 203 instrument).  For any other backend, uses _run_pairwise_generic, a
+    generic common-garden runner that reads/writes the trait via the axis
+    (axis.clamp_founder / axis.get) and returns the same dict keys.
     """
-    _require_thermosense(axis, "local_pairwise_gradient")
-
     h_res = axis.resident_value
     h_mut = axis.mutant_value
 
@@ -322,12 +403,19 @@ def run_local_pairwise_gradient(
     extinct_count = 0
 
     for seed in seeds:
-        d = _sa.run_pairwise_competition(
-            base_cfg, h_res, h_mut, seed,
-            count_each=count_each,
-            window=window,
-            inefficiency=axis.inefficiency_value,
-        )
+        if axis.backend == "thermosense":
+            d = _sa.run_pairwise_competition(
+                base_cfg, h_res, h_mut, seed,
+                count_each=count_each,
+                window=window,
+                inefficiency=axis.inefficiency_value,
+            )
+        else:
+            d = _run_pairwise_generic(
+                base_cfg, axis, h_res, h_mut, seed,
+                count_each=count_each,
+                window=window,
+            )
         valid = (
             _m.is_population_valid(d["final_pop"], d["extinct"], False, min_pop)
             and not math.isnan(d["inv_frac_final"])
