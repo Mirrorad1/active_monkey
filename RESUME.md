@@ -293,7 +293,7 @@ iterating only after you reply "go" (the human-consent gate). Steer mid-flight w
 
 ```bash
 uv run --python .venv python loop/compose.py --list                      # see modules
-uv run --python .venv python loop/compose.py   # default = current steer: continuous-substrate (Problem 2, docs/research/problem2-continuous-substrate.md)
+uv run --python .venv python loop/compose.py <direction>   # pick one explicitly (no default); bare invocation lists the choices
 uv run --python .venv python loop/compose.py --direction transfer --persona default
 uv run --python .venv python loop/compose.py --direction red-team --persona skeptic \
     --idea "anything you want this run to prioritize"

@@ -10,7 +10,7 @@ Do this, in order:
 1. Run `uv run --python .venv python loop/compose.py $ARGUMENTS` via the Bash tool
    (the first positional token is the direction; `--persona` / `--idea` pass through).
    Capture the composed `/loop` prompt it prints.
-2. If it exited non-zero (unknown or ambiguous direction), run
+2. If it exited non-zero (no direction given, or an unknown/ambiguous one), run
    `uv run --python .venv python loop/compose.py --list`, show the options, and ask
    me which direction I meant. Do not guess.
 3. Show a ONE-line summary of what this run will do: direction, persona, and any
