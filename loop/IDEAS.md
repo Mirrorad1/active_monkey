@@ -1277,6 +1277,11 @@ The loop marks items it has consumed by indenting a response under them:
     summary; fact-checked by an independent agent, all CONFIRMED; committed 41d8a87, pushed). The card
     stays "active (CONVERGED — awaiting steer)"; the FORMAL direction decision (close / 207 / direct-
     occupancy re-run / redirect) still awaits an explicit human word. The loop continues to idle.
+  → [human, 2026-06-14] "pause" — LOOP PAUSED on the human's explicit word. Pending self-paced wakeup
+    (cron 516fda70, the next /loop heartbeat) CANCELLED — no further automated fires. The post-206
+    consult stays OPEN; the population-ecology card stays "active (CONVERGED — awaiting steer)". The loop
+    resumes ONLY on an explicit human /loop re-invocation or a direction word here. (The human then asked
+    a clarifying question about what Exp 207 would be — answered in-session, no work started.)
 
 (empty — drop ideas above this line's section freely)
 
