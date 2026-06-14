@@ -41,9 +41,11 @@ def test_research_chapter_unique_substring():
 def test_experiment_glob():
     r = _load()
     got = r.resolve("@exp201")
-    assert len(got) == 1
-    assert str(got[0]).startswith("experiments/exp201_")
-    assert str(got[0]).endswith(".py")
+    assert got, "no exp201 scripts found"
+    assert all(
+        str(p).startswith("experiments/exp201_") and str(p).endswith(".py")
+        for p in got
+    )
 
 
 def test_unknown_exits():

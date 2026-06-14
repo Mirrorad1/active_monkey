@@ -50,7 +50,7 @@ def _experiment(ref: str) -> list[pathlib.Path] | None:
     n = int(m.group(1))
     matches = sorted((ROOT / "experiments").glob(f"exp{n}_*.py"))
     if matches:
-        return matches[:1]
+        return matches
     sys.exit(f"error: no experiment script experiments/exp{n}_*.py")
 
 
