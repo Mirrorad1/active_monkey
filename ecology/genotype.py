@@ -32,12 +32,17 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     # Exp 197: thermosense organ traits — defaults produce zero-organ founders.
     "thermosense_intensity":            (0.0,   1.0),    # 0 = organ absent
     "thermosense_inefficiency":         (0.2,   1.0),    # upkeep multiplier; 0.2 = floor
+    # Exp hidden-state-mode: memory horizon for noisy cue integration.
+    "memory_horizon":                   (0,    12),      # int; 0 = no memory
 }
 
-INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length"})
+INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
 
 # Thermosense trait names — used to gate rng draws in mutate() (regression guard).
 THERMOSENSE_TRAITS: frozenset[str] = frozenset({"thermosense_intensity", "thermosense_inefficiency"})
+
+# Memory trait names — used to gate rng draws in mutate() (regression guard).
+MEMORY_TRAITS: frozenset[str] = frozenset({"memory_horizon"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -87,6 +92,8 @@ class Genotype:
     # Exp 197 thermosense organ — LAST, WITH DEFAULTS (regression-safe)
     thermosense_intensity: float = 0.0            # 0.0 = organ absent (inactive)
     thermosense_inefficiency: float = 1.0         # upkeep multiplier; evolved down ⇒ cheaper
+    # Exp hidden-state-mode: cue integration window — LAST, WITH DEFAULT (regression-safe)
+    memory_horizon: int = 0                        # 0 = no cue buffer; int in [0, 12]
 
 
 def is_valid(g: Genotype) -> bool:
@@ -108,6 +115,7 @@ def mutate(
     mutate_thermosense: bool = False,
     freeze_learning_rate: bool = False,
     freeze_thermosense: bool = False,
+    mutate_memory: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -135,6 +143,13 @@ def mutate(
     mutation — only the result is pinned.  Only meaningful when mutate_thermosense
     is True (otherwise the traits already skip the draw); default False ⇒
     byte-identical to Exp 194-202.
+
+    Hidden-state-mode REGRESSION GUARD: when mutate_memory=False (the default),
+    memory_horizon is copied unchanged WITHOUT any rng draw, so the rng stream for
+    all base + thermosense traits is byte-identical to the pre-hidden-mode behaviour.
+    When mutate_memory=True, the draw is made AFTER all other traits (memory_horizon
+    is LAST in field order) — the upstream stream is unaffected.  Default False ⇒
+    byte-identical to Exp 194-206.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -143,6 +158,12 @@ def mutate(
         # THE regression guard.  No rng.normal call is made, so the stream for
         # all base traits before these fields is untouched.
         if k in THERMOSENSE_TRAITS and not mutate_thermosense:
+            new_d[k] = v
+            continue
+        # Memory traits: skip rng draw when mutation is disabled — mirrors the
+        # thermosense skip guard above.  memory_horizon is LAST in field order
+        # so no upstream trait's draw is affected when the skip fires.
+        if k in MEMORY_TRAITS and not mutate_memory:
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]
@@ -220,6 +241,8 @@ def founder() -> Genotype:
         # Exp 197: no thermosense organ at founding; must emerge by mutation.
         "thermosense_intensity": 0.0,
         "thermosense_inefficiency": 1.0,
+        # Exp hidden-state-mode: no cue memory at founding; must be set explicitly.
+        "memory_horizon": 0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

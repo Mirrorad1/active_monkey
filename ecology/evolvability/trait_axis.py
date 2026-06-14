@@ -128,8 +128,33 @@ THERMOSENSE_AXIS = TraitAxis(
     },
 )
 
+# Phase 3: the first NON-thermosense trait. Uses backend="memory" => the binding gate
+# (local_pairwise_gradient) runs through the GENERIC common garden (Phase 2.5 / PR #49),
+# NOT sense_axis. memory cost lives in the engine (memory_cost_slope), not an inefficiency
+# trait, so inefficiency_trait=None. No engine freeze hook for memory_horizon => freeze_flag
+# None (the gate freezes via mutation_rate=0). disconnect = enable_hidden_mode off (full).
+MEMORY_AXIS = TraitAxis(
+    name="memory_horizon",
+    resident_value=1,
+    mutant_value=2,
+    low_value=0,
+    high_value=8,
+    cost_enabled=True,
+    h_trait="memory_horizon",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,
+    enable_flag="enable_hidden_mode",
+    active_threshold=0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="memory",
+    disconnect_overrides={"enable_hidden_mode": False},
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
+    "memory_horizon": MEMORY_AXIS,
 }
 
 

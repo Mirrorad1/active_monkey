@@ -276,6 +276,33 @@ class EcologyConfig:
     niche_weight: float = 4.0            # routing bias toward the read under-crowded class
     niche_barcode_shuffle: bool = False  # BARCODE_SHUFFLED placebo: decorrelate read-class from value
 
+    # ------------------------------------------------------------------
+    # Exp hidden-state-mode: binary hidden mode with noisy cue + memory integration.
+    # ALL defaults preserve Exp 194-206 byte-identical behaviour (enable_hidden_mode False ⇒
+    # no mode state, no rng draw in step(), no creature cue draw, no memory upkeep).
+    #
+    # enable_hidden_mode: gates the full mechanism (world regen, engine mode-switch, creature
+    #   cue/routing, memory upkeep, memory_horizon mutation).
+    # mode_switch_prob: per-step probability of flipping hidden_mode (ONE rng draw per step).
+    # cue_noise: std-dev of the noisy cue each creature observes each step.
+    # memory_upkeep_floor: fixed energy cost per step when memory_horizon > 0 (gated).
+    # memory_cost_slope: per-unit memory-horizon cost per step (gated).
+    #
+    # ANTI-CHEAT: food intake is the UNCHANGED consume(); memory_horizon keys ONLY (a) how many
+    # cues are averaged and (b) the upkeep cost.  Nothing is written as f(memory_horizon).
+    # ------------------------------------------------------------------
+    enable_hidden_mode: bool = False
+    mode_switch_prob: float = 0.02
+    cue_noise: float = 0.5
+    mode_wrong_regen_factor: float = 0.3   # wrong-half regen factor (milder payoff; 0.0 = harsh gating)
+    # Mode-dependent HAZARD (decouples the inference payoff from carrying capacity): with
+    # mode_wrong_regen_factor=1.0 food is UNIFORM (pops stay healthy) and a creature in a
+    # wrong-type cell (cell_type != hidden_mode) pays mode_hazard_scale energy per step, so
+    # correct inference (avoid the wrong half) pays without gating total food. 0.0 = no hazard.
+    mode_hazard_scale: float = 0.0
+    memory_upkeep_floor: float = 0.0
+    memory_cost_slope: float = 0.01
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -320,6 +347,10 @@ class Ecology:
             food_concentration=cfg.food_concentration,
             enable_band_staleness=cfg.enable_band_staleness,
             band_responsiveness=cfg.band_responsiveness,
+            enable_hidden_mode=cfg.enable_hidden_mode,
+            mode_switch_prob=cfg.mode_switch_prob,
+            cue_noise=cfg.cue_noise,
+            mode_wrong_regen_factor=cfg.mode_wrong_regen_factor,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which
@@ -564,6 +595,20 @@ class Ecology:
         if cfg.enable_thermosense and thermosense_active(g, cfg.thermosense_active_threshold):
             ph.energy -= thermosense_upkeep(g, cfg.thermosense_upkeep_floor, cfg.thermosense_active_threshold)
 
+        # Hidden-state-mode HAZARD: a creature standing in a WRONG-type cell (cell_type !=
+        # current hidden_mode) pays a small survivable energy penalty. Gated (OFF path
+        # byte-identical: no draw, no read). The penalty is on CELL TYPE vs the true mode,
+        # never on memory_horizon — memory only steers where the creature stands (anti-cheat).
+        if (cfg.enable_hidden_mode and cfg.mode_hazard_scale != 0.0
+                and self.world.cell_type is not None
+                and self.world.cell_type[new_pos] != self.world.hidden_mode):
+            ph.energy -= cfg.mode_hazard_scale
+
+        # Exp hidden-state-mode: memory upkeep — cost of maintaining the cue buffer.
+        # OFF when enable_hidden_mode=False or memory_horizon==0 (no buffer) ⇒ byte-identical.
+        if cfg.enable_hidden_mode and g.memory_horizon > 0:
+            ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.memory_horizon
+
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
         if cfg.enable_residue and self.world.residue is not None:
@@ -645,7 +690,8 @@ class Ecology:
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
                                     mutate_thermosense=cfg.enable_thermosense,
                                     freeze_learning_rate=cfg.freeze_learning_rate,
-                                    freeze_thermosense=cfg.freeze_thermosense)
+                                    freeze_thermosense=cfg.freeze_thermosense,
+                                    mutate_memory=cfg.enable_hidden_mode)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,
@@ -776,6 +822,12 @@ class Ecology:
             omega = (self.t * self.cfg.niche_rotation) % 1.0
             self.world.class_signal = np.mod(self.world.class_phase + omega, 1.0)
             self.world.class_occ_cur = np.zeros(self.world.niche_classes, dtype=np.int64)
+
+        # Exp hidden-state-mode: stochastic hidden-mode flip — ONE gated rng draw per step.
+        # OFF path (enable_hidden_mode=False) makes NO rng draw ⇒ byte-identical to Exp 194-206.
+        if self.cfg.enable_hidden_mode:
+            if self.rng.random() < self.cfg.mode_switch_prob:
+                self.world.hidden_mode = 1 - self.world.hidden_mode
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
