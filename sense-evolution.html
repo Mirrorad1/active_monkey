@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When does a costed sense become an organ? — active_monkey</title>
+<meta name="description" content="A closed seven-experiment chapter: a costed sense does not evolve into a functional organ at toy scale, because the local selection gradient at the resident is never positive — even when a precise population is fitter in bulk and survives.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
+<link rel="apple-touch-icon" href="assets/monkey-180.png">
+<meta property="og:title" content="When does a costed sense become an organ? — a closed chapter">
+<meta property="og:description" content="Seven structurally-distinct levers, all walls. A costed sense is un-evolvable here because only the sign of the local gradient decides — not the installed benefit.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mirrorad1.github.io/active_monkey/sense-evolution.html">
+<meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="am.css?v=5">
+<!-- KaTeX for the equations (auto-render \[ \] display and \( \) inline) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+  .page{max-width:900px;margin:0 auto;padding:0 28px;}
+  .topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);}
+  .brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:600;}
+  .links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;}
+  .links a{color:var(--ink-2);text-decoration:none;}.links a:hover{color:var(--accent);}.links a.active{color:var(--accent);font-weight:600;}
+  header{padding:48px 0 30px;} h1{font-size:clamp(32px,4.8vw,54px);margin:14px 0 0;max-width:16ch;line-height:1.08;}
+  .sub{font-family:var(--serif);font-size:20px;line-height:1.45;color:var(--ink-2);max-width:64ch;margin:18px 0 0;}
+  section{padding:38px 0;border-top:1px solid var(--line);} h2{font-family:var(--serif);font-size:30px;font-weight:500;margin:0 0 14px;line-height:1.15;} h3{font-family:var(--serif);font-size:20px;font-weight:500;margin:26px 0 8px;} p{font-size:15px;line-height:1.7;color:var(--ink);}.muted{color:var(--ink-2);}
+  code{font-family:var(--mono);font-size:.88em;background:var(--paper-3);padding:.1em .42em;border:1px solid var(--line-soft);border-radius:4px;}
+  .lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:0 0 22px;}.lead strong{color:var(--accent);font-weight:500;}
+  .callout{border:1px solid var(--ink);background:var(--paper-2);padding:24px;margin:22px 0;}.callout .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;}.callout p{margin:0;font-size:16px;line-height:1.55;}
+  /* equation block + paired intuition */
+  .eq{border:1px solid var(--line);background:rgba(255,255,255,.45);padding:8px 18px;margin:18px 0;overflow-x:auto;}
+  .eqwrap{margin:20px 0;}
+  .intuition{border-left:3px solid var(--accent);padding:4px 0 4px 16px;margin:10px 0 0;}
+  .intuition .lab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .intuition p{margin:4px 0 0;font-size:14.5px;line-height:1.62;color:var(--ink-2);}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13px;} th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;line-height:1.5;} th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--paper-2);} td:first-child{font-weight:600;white-space:nowrap;}
+  td .res{font-family:var(--mono);font-size:11px;}
+  .wall{color:var(--wall);font-weight:600;} .partial{color:var(--partial);font-weight:600;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}@media(max-width:680px){.grid2{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line);background:rgba(255,255,255,.38);padding:16px;}.card b{color:var(--accent);}.card p{font-size:13.5px;line-height:1.55;margin:6px 0 0;color:var(--ink-2);}
+  .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 8px;} footer{padding:40px 0;color:var(--ink-2);font-family:var(--mono);font-size:12px;border-top:1px solid var(--line);}
+  a.exp{color:var(--accent);text-decoration:none;font-family:var(--mono);}a.exp:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="topbar">
+    <a class="brand" href="index.html">active_monkey</a>
+    <div class="links">
+      <a href="index.html">home</a>
+      <a href="journey.html">notebook</a>
+      <a href="open_problem.html">open problem</a>
+      <a href="sense-evolution.html" class="active">sense-evolution</a>
+      <a href="https://github.com/Mirrorad1/active_monkey">github</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="kicker slate">active_monkey · closed chapter · closed-negative</div>
+    <h1 class="h-display">When does a costed sense become an organ?</h1>
+    <p class="sub">A seven-experiment chapter (Exp 199–207) that turned the loose goal "make the heat-sensor win" into one sharp, falsifiable question — and answered it cleanly. The answer is no, and the reason is precise.</p>
+  </header>
+
+  <section>
+    <p class="lead"><strong>The result in one line:</strong> a costed sense does not evolve into a functional organ at this toy scale, because the <em>local selection gradient at the resident</em> is never positive — <em>even when</em> a precise population is genuinely fitter in bulk, demographically affordable, and survives.</p>
+    <div class="eq">\[ \boxed{\;\; g(h_{\text{res}}) \;=\; \frac{d\,\mathbb{E}[\,w \mid h\,]}{dh}\Bigg|_{h=h_{\text{res}}} \;\le\; 0 \quad\text{across all seven levers} \;\;} \]</div>
+    <div class="callout">
+      <div class="tag">why this is a real finding, not a failure</div>
+      <p>Each of the seven attempts had a predeclared falsifier, fixed seeds, honest null arms, and a blinded verifier; none smuggled the answer into the reward. A wall that survives that scrutiny tells you <em>where the barrier actually is</em> — here, the marginal step, not the headline benefit.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The reframe</h2>
+    <p>Four earlier walls (Exp 199–202) showed a costed <code>thermosense</code> organ — a noisy heat reading the policy can act on, at a metabolic upkeep cost — never becomes functional, and under competition is actively suppressed. A <em>gifted</em> strong sensor reproduces far more than a no-sensor creature, so the installed benefit is real; evolution still does not climb. So the question stopped being "make it win" and became the reusable one:</p>
+    <div class="callout">
+      <div class="tag">the question</div>
+      <p>What environmental, informational, and evolutionary conditions are <em>required</em> for a costed sense-like trait to become increasingly selected over generations — to become organ-like rather than merely useful when gifted? Phrased so the answer transfers from heat-sensing to sight, hearing, localization, and communication.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The one distinction that decides everything</h2>
+    <p>Write a creature's realized reproductive fitness as a benefit earned <em>through its actions</em>, minus the upkeep of the machinery it carries:</p>
+    <div class="eqwrap">
+      <div class="eq">\[ w_i \;=\; \underbrace{B\!\left(a_i,\, z,\, h_i,\, \theta_i,\, \rho\right)}_{\text{benefit, via the chosen action }a_i} \;-\; \underbrace{C_h(h_i)}_{\text{sensor upkeep}} \;-\; \underbrace{C_\theta(\theta_i)}_{\text{controller upkeep}} \]</div>
+      <div class="intuition"><div class="lab">intuition</div><p><code>h</code> is sensor precision, <code>θ</code> the controller's ability to use it, <code>z</code> the hidden world state, <code>ρ</code> the ecological state (density, depletion, crowding). Crucially the sensor only changes fitness by changing <em>which action</em> the creature takes — never by a term written directly on <code>h</code>. That "no reward on the representation" rule is what makes any positive result honest.</p></div>
+    </div>
+    <p>A population's mean sensor can only rise when the <strong>local selection gradient</strong> is positive near the current (resident) value — i.e. when a <em>small heritable step</em> already pays for itself:</p>
+    <div class="eqwrap">
+      <div class="eq">\[ \text{a trait climbs} \iff \frac{dB}{dh}\bigg|_{h_{\text{res}}} \;>\; \frac{dC}{dh}\bigg|_{h_{\text{res}}} \;+\; \underbrace{\big(\text{drift} + \text{noise} + \text{erosion}\big)}_{\ge\,0} \]</div>
+    </div>
+    <p>Every wall in this chapter is the same trap: the <em>installed</em> benefit is huge while the <em>marginal</em> benefit at the resident is not:</p>
+    <div class="eqwrap">
+      <div class="eq">\[ \underbrace{B(0.60) - B(0.00) \;\gg\; 0}_{\textbf{the gift is real}} \qquad\text{yet}\qquad \underbrace{B'(h_{\text{res}}) - C'(h_{\text{res}}) \;\le\; 0}_{\textbf{the small step doesn't pay}} \]</div>
+      <div class="intuition"><div class="lab">intuition</div><p>A forced strong sensor out-reproduces a blind one ~4× (Exp 200) — but evolution can only take <em>small</em> steps, and the first small step uphill costs more upkeep than it returns. A crude sensor already grabs the easy part of the benefit; precision's extra payoff is small and stochastic relative to its linear cost. <strong>The endpoint advantage tells you almost nothing about evolvability; only the sign of the slope at the resident does.</strong> This is the chapter's load-bearing lesson (logged as L22).</p></div>
+    </div>
+    <p class="muted">The meta-principle the whole sub-arc tested: <em>a sense is evolvable when it exposes private actionable information whose marginal value stays positive across small heritable improvements.</em> The instrument <code>ecology/sense_axis.py</code> measures exactly that slope — three density-robust estimators (monomorphic carrying capacity \(N^\*(h)\), the head-to-head pairwise selection coefficient \(s\), and density-independent intrinsic growth) — instead of the misleading endpoint gift.</p>
+  </section>
+
+  <section>
+    <h2>The seven levers — every one a wall</h2>
+    <p>Each row is a structurally-distinct way to try to make the marginal step pay. Each links to its committed script and raw output.</p>
+    <table>
+      <tbody>
+        <tr><th>Exp</th><th>Lever it added</th><th>The idea</th><th>Outcome</th></tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp199_n5_valley_sweep.py">199</a></td>
+          <td>Avoidance, shallow valley</td>
+          <td>Flee thermal stress; sweep a deliberately favorable regime (cheap organ, strong steering, harsh stress).</td>
+          <td><span class="wall">WALL</span> — the benefit <em>saturates</em>: a little sensing reaches safety, then more is pure cost.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp200_n5_foraging_escape.py">200</a></td>
+          <td>Foraging (non-saturating need)</td>
+          <td>Food in a drifting band; you always need to eat, so the benefit shouldn't saturate.</td>
+          <td><span class="wall">WALL</span> — a forced forager reproduces ~4× more, yet the gene pool never climbs (L22: forced ≠ evolvable).</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp201_n5_increasing_returns.py">201</a></td>
+          <td>Increasing returns (tracking)</td>
+          <td>Make precision <em>track</em> a fast-moving target, so its marginal value grows.</td>
+          <td><span class="wall">WALL</span> — a transient climb that decays; convex geometry, concave realized returns.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp202_n5_interference_competition.py">202</a></td>
+          <td>Interference competition</td>
+          <td>A genuinely depleting contested resource (id-order neutralized by shuffle).</td>
+          <td><span class="wall">WALL</span> — competition <em>suppresses</em> the organ below the founder (a stampede, not a Red-Queen race).</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp203_n5_sense_gradient_audit.py">203</a></td>
+          <td>Measure the gradient directly</td>
+          <td>Stop running evolutions; measure \(g(h_{\text{res}})\) head-to-head across all four worlds.</td>
+          <td><span class="partial">PARTIAL</span> — the <em>first</em> positive local gradient (0.10→0.15 wins 7/8) — but purely competitive, weak, one seed short.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp204_n5_residue_falsepos.py">204</a></td>
+          <td>Avoid a costly mistake (residue)</td>
+          <td>Precision avoids eating misleading residue — a steeper, loss-avoidance payoff.</td>
+          <td><span class="partial">PARTIAL</span> — first <em>functional</em> monomorphic optimum (h*=0.60!) but un-earnable; the cost collapses the population.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp205_n5_survivable_loss.py">205</a></td>
+          <td>Survivable-cost sweep</td>
+          <td>Is the collapse the barrier? Sweep the cost to where the population survives.</td>
+          <td><span class="partial">PARTIAL</span> — at survivable costs the optimum is still functional yet h stays primitive: the <em>valley</em>, not collapse, is the barrier.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp206_n5_rotating_niche.py">206</a></td>
+          <td>Private rotating niche</td>
+          <td>Escape the herd into a less-crowded class only precision can read (rotating, so it can't be memorized).</td>
+          <td><span class="wall">WALL</span> — the cleanest wall: h decays to 0.027 at a <em>healthy</em> population — failure is purely \(g\le0\), no collapse confound.</td>
+        </tr>
+        <tr>
+          <td><a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/experiments/exp207_corner_grid.py">207</a></td>
+          <td>Sensor–controller co-adaptation</td>
+          <td>Maybe the controller couldn't use the sensor; co-evolve a controller knob θ with h.</td>
+          <td><span class="wall">WALL</span> — design-stage: the 2-D-valley premise is <em>false</em>; θ pays alone, h is pure cost at every θ.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted">Full honest entries (Plain / Setup / Result / Verifier / Implication / Caveat / Verdict) live in <a class="exp" href="https://github.com/Mirrorad1/active_monkey/blob/main/EXPERIMENTS.md">EXPERIMENTS.md</a>; the timeline view is the <a class="exp" href="journey.html">notebook</a>.</p>
+  </section>
+
+  <section>
+    <h2>The three shapes of failure</h2>
+    <p>The walls are not all the same; they map the barrier from different sides.</p>
+    <h3>1 · Saturation &amp; concavity (199–202)</h3>
+    <p>A crude sensor captures the easy part of any <em>saturating</em> benefit, so precision's marginal payoff is too small to out-breed its cost. "No Goldilocks gradient": the curve flattens exactly where a small step would have to pay.</p>
+
+    <h3>2 · Frequency-dependence — and a private niche (206)</h3>
+    <p>Make a class worth less when crowded, so precision pays <em>more</em> as rivals pile in (the hoped-for Red-Queen sign). The kept intake is discounted by a rival count — never by <code>h</code>:</p>
+    <div class="eqwrap">
+      <div class="eq">\[ \text{kept}_i \;=\; \frac{\text{eaten}_i}{1 + \kappa\,N_{c(i)}}, \qquad \underbrace{\frac{\partial^2 B}{\partial h_i\,\partial \bar h_{-i}} > 0}_{\text{Red-Queen, hoped}} \]</div>
+      <div class="intuition"><div class="lab">intuition</div><p>\(N_{c}\) is the number of rivals on the cell's true class, \(\kappa\) the crowding strength; the class <em>rotates</em> over time so a static learned map can't memorize it (the load-bearing anti-cheat fix). The hope: a precise reader dodges to the under-crowded class and pays less. The result: it works for a <em>crude</em> reader too, so precision is never required — h decays at a healthy population. <code>I(h;niche)</code> ≈ 0 because h never varied.</p></div>
+    </div>
+
+    <h3>3 · The controller, and the 2-D valley that wasn't (207)</h3>
+    <p>Maybe a sharper sensor is worthless if the brain can't act on it — so co-evolve a controller gain <code>θ</code> with <code>h</code>, hoping for a valley neither crosses alone:</p>
+    <div class="eqwrap">
+      <div class="eq">\[ w(h,\theta)\;=\;R\,\sigma\!\big(k\,h\,\theta - d\big) - C_h(h) - C_\theta(\theta), \qquad \text{viable}\iff \frac{\partial^2 w}{\partial h\,\partial\theta}\bigg|_{\text{res}} > 0 \]</div>
+      <div class="intuition"><div class="lab">intuition + measured result</div><p>A cheap corner-grid pre-flight measured the cross-partial directly instead of running the full batch. It is <strong>not</strong> positive: \(\partial^2 B/\partial h\,\partial\theta \approx 0\), the controller pays strongly <em>alone</em> (\(dB/d\theta|_{\text{low }h}=+0.147\) — routing harder escapes the herd with a crude read), and a sharper sensor is pure cost at every θ (\(dB/dh<0\)). The geometry is a θ-ridge with h orthogonally costed — selection drives them <em>apart</em>. No valley to cross.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The maximally-sharp lesson</h2>
+    <div class="callout">
+      <div class="tag">the generalised L22</div>
+      <p>A benefit being <em>real</em>, <em>functional-when-gifted</em>, <em>large in bulk</em> (a genuine monomorphic optimum), <em>and</em> demographically affordable (the population survives) is <strong>still not sufficient</strong> for evolvability. Only the sign of the <em>local</em> gradient at the resident decides — and across seven structurally-distinct levers it stays \(\le 0\).</p>
+    </div>
+    <p>What would actually be needed (out of this toy's scope): a <strong>non-saturating, non-relational, locally-steep</strong> affordance — one where a <em>small</em> heritable precision step at the resident already buys a step-change in action value that a crude reader cannot capture. None of the seven toy regimes supplies that, and the obvious "let the controller rescue it" idea was tested and ruled out.</p>
+  </section>
+
+  <section>
+    <h2>Honest scope — what this is and isn't</h2>
+    <div class="grid2">
+      <div class="card"><b>What it is</b><p>A clean, falsifiable characterization of <em>why</em> a costed sense doesn't evolve in this substrate: the marginal slope, not the installed benefit, governs — measured seven ways, every verdict blinded-verified.</p></div>
+      <div class="card"><b>What it isn't</b><p>A claim about real biology or larger models. The policy is a <em>provided</em> heuristic, the sensor a noisy-percept stand-in, the costs hand-set; the gifts that <em>were</em> real were tiny; Exp 207 is a design-stage corner-grid, not a full evolved run.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it was done — and what the method yielded</h2>
+    <p>Two methodological moves did the heavy lifting, and both are now reusable rules:</p>
+    <div class="grid2">
+      <div class="card"><b>Reframe the measurement (Exp 203)</b><p>Measure the local gradient head-to-head instead of running another evolution. A benefit can be invisible at equilibrium yet still produce a positive <em>relative</em> gradient — only the right assay reveals it.</p></div>
+      <div class="card"><b>Pre-flight the premise (Exp 207, L28)</b><p>Before a full co-adaptation batch, measure its load-bearing premise (the cross-partial sign) on a ~40-run corner-grid. It falsified the 2-D valley for the cost of a coffee, not a compute-hour.</p></div>
+    </div>
+    <p class="muted">Other distilled rules from the chapter: <strong>L23</strong> (pilot at the full verdict horizon — population metrics are non-monotone), <strong>L24</strong> (a healthy-population floor + corr(pop,trait) to reject drift), <strong>L25/L26</strong> (a logistic-aware runtime pre-flight; runtime is dominated by population×horizon, not micro-ops), and <strong>L27</strong> (multi-agent design-workflow wall-clock is orchestration overhead — pre-digest grounding, tier models, lean schemas — not experiment complexity). The reusable instrument is <code>ecology/sense_axis.py</code>; the gated, byte-identical engine features (<code>enable_residue</code>, <code>enable_niche</code>) carry regression-hash guards so every wall reproduces exactly.</p>
+    <div class="btnrow">
+      <a class="btn btn-primary" href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/research/sense-axis-organ-evolution.md">Technical dossier (full math + per-experiment findings) →</a>
+      <a class="btn btn-ghost" href="journey.html">The lab notebook</a>
+      <a class="btn btn-ghost" href="index.html">Home</a>
+    </div>
+  </section>
+
+  <footer>active_monkey · sense-evolution chapter · closed-negative (Exp 199–207) · <a href="https://github.com/Mirrorad1/active_monkey">GitHub</a></footer>
+</div>
+</body>
+</html>

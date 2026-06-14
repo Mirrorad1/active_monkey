@@ -80,6 +80,7 @@ function Nav({active}){
           {link("index.html","Home","home")}
           {link("journey.html","The Journey","journey")}
           {link("open_problem.html","The Open Problem","open")}
+          {link("sense-evolution.html","Sense-Evolution","sense")}
           <a className="gh" href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
