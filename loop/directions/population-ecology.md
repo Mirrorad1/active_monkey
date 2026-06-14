@@ -931,7 +931,56 @@ data, on the human's explicit word "a continue" 2026-06-13; expands the staged s
   reproduce (regression guard in tests). A NEGATIVE is the strongest publishable form of the wall (the
   ceiling survives even a loss-avoidance payoff with competition-coupled residue).
 
-**EXP 205 — PRE-REGISTRATION SKETCH (THERMAL-BARCODE NICHE / SYMPATRIC DIVERGENCE; staged).**
+**EXP 205 — FULL PRE-REGISTRATION (SURVIVABLE-LOSS RESIDUE SWEEP — resolving Exp 204's NO_VERDICT;
+committed BEFORE any data, on the human's word "continue experimenting" 2026-06-13).**
+
+- **Motivation.** Exp 204 found the residue/false-positive bridge creates the arc's FIRST functional
+  MONOMORPHIC optimum (N* h*=0.60) at residue_loss=1.5 — but evolution did NOT climb AND 2/5
+  populations COLLAPSED, so the evolution arm was under-licensed (NO_VERDICT/MIXED, F2). The open
+  question (Exp 204's honest caveat, the core claim of its NEGATIVE lean): is there NO regime giving
+  BOTH a functional optimum AND a survivable, climbing population — i.e., is the collapse-vs-functional-
+  optimum tradeoff FUNDAMENTAL? This SWEEPS residue_loss across the survivable range to resolve it.
+  Reuses the committed `enable_residue` engine (NO new feature); only residue_loss varies.
+
+- **Hypothesis (one sentence).** The tradeoff is fundamental: at every SURVIVABLE residue_loss (where
+  >=4/5 RESIDUE_COMPETE populations persist) the sensor stays primitive under evolution (newborn mean
+  h < 0.15) and the local resident gradient is <=0, while the only losses with a FUNCTIONAL monomorphic
+  optimum (h*>0.30) are the ones that COLLAPSE the population — so NO single loss gives both.
+
+- **Design.** residue_confusion=0.6, residue_yield=1.0, residue_decay=0.05 (the Exp 204 med regime);
+  SWEEP residue_loss in {0.5, 0.8, 1.0, 1.2, 1.5} (1.5 = the Exp 204 collapse anchor). Per loss:
+  (1) monomorphic competitive optimum h* (carrying-capacity N*(h) over the clamp grid), RESIDUE_COMPETE
+  — is the optimum functional?; (2) survival = RESIDUE_COMPETE evolution final pops (>=4/5 valid =
+  survivable, L21); (3) evolution gene-pool NEWBORN mean h + functional fraction, RESIDUE_COMPETE vs
+  NO_RESIDUE, fresh seeds {80-84}, horizon 8000 (Exp 204-matched); (4) the local pairwise s(0.10 vs
+  0.15), RESIDUE_COMPETE, + a CLAMPED_LR check at the best-climbing loss. Runtime pre-flight (L25,
+  require_safe=True) at the top of main().
+
+- **Predeclared verdict (conjunct-by-conjunct).**
+  - **POSITIVE** (the bridge works at a survivable loss — would be the FIRST functional EVOLVED sensor
+    in the arc) iff SOME loss with >=4/5 valid RESIDUE_COMPETE pops gives: evolution newborn mean h >
+    0.30 in >=4/5 seeds AND pairwise s(0.10->0.15) won >=7/8 AND CLAMPED_LR agrees AND NO_RESIDUE at
+    that loss stays primitive.
+  - **NEGATIVE** (the tradeoff is FUNDAMENTAL — confirms + sharpens Exp 204 into a clean fifth wall)
+    iff: at every survivable loss (>=4/5 valid) evolution stays primitive (mean h < 0.15) AND every
+    loss whose monomorphic optimum is functional (h*>0.30) collapses the population (<4/5 valid) — no
+    loss gives both functional-optimum AND survivable-climb.
+  - **MIXED** iff a real but sub-functional push at survivable losses (evolution above NO_RESIDUE but
+    < 0.30 — the Exp 203/204 weak-gradient shape), without crossing functional.
+  - **F1** non-determinism (same seed -> different events_hash) -> NEGATIVE (infra). **F2** all swept
+    losses collapse (<4/5 valid everywhere) -> NO_VERDICT/MIXED (no survivable regime to test).
+  - Repo token: POSITIVE / NEGATIVE / MIXED.
+
+- **Honesty stakes.** This RESOLVES the Exp 204 NO_VERDICT (a known loose end I created by choosing the
+  collapse-prone loss=1.5 for the fairest-shot monomorphic optimum) into a clean verdict; predicting
+  NEGATIVE (the tradeoff is fundamental). Reuses the committed, guarded enable_residue engine — no new
+  mechanism, no new degrees of freedom beyond the disclosed loss sweep. Fresh seeds {80-84} never used
+  in Exp 204. Founders + policy + costs PROVIDED. A NEGATIVE makes the residue bridge a clean fifth
+  wall: precision can be made genuinely valuable at the population level, but the very cost that makes
+  it valuable forecloses the demographic room to evolve it.
+
+**EXP 206 — PRE-REGISTRATION SKETCH (THERMAL-BARCODE NICHE / SYMPATRIC DIVERGENCE; staged; was Exp 205
+before the survivable-loss sweep took the 205 slot).**
 - **Motivation.** A single global band makes all chase one resource. A stronger sensor may need to
   unlock a DIFFERENT, less-crowded niche rather than compete harder for the same one.
 - **World.** Resource classes with overlapping thermal signatures: niche A (easy, low reward, crowded),
@@ -945,7 +994,8 @@ data, on the human's explicit word "a continue" 2026-06-13; expands the staged s
   positive counts ONLY if stable, heritable, ecological, and knockout-sensitive. **Fail:** no separable
   niches, or branch erased by global averaging with archive on, or only via confound.
 
-**EXP 206 — PRE-REGISTRATION SKETCH (SENSOR–CONTROLLER CO-ADAPTATION BUNDLE; OPTIONAL, staged).**
+**EXP 207 — PRE-REGISTRATION SKETCH (SENSOR–CONTROLLER CO-ADAPTATION BUNDLE; OPTIONAL, staged; was
+Exp 206 before the survivable-loss sweep took the 205 slot).**
 - **Motivation.** A stronger sensor may fail because the policy θ cannot exploit it: if θ≈0,
   `dw/dh ≈ −C_h'(h)` (selected against even though useful with the right θ).
   `w(h,θ) = R·σ(k·h·θ − d) − C_h(h) − C_θ(θ)`. Test θ-mutation alone / h alone / both independent /

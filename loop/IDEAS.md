@@ -1200,6 +1200,15 @@ The loop marks items it has consumed by indenting a response under them:
     Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word. No
     silence-actionable default — the sub-arc's per-bridge staging means each needs its own word; the
     loop idles with this consult posted until a word appears.
+  → [human, 2026-06-13, in-session via /loop] WORD: "continue experimenting" — an explicit override of
+    the recommended (d) accept+synthesize (which would STOP experimenting). Read as "keep running
+    experiments on the ladder." Among the experiment options, CONSUMED as Exp 205 = option (c) the
+    survivable-loss residue sweep (the SMALLEST experiment that answers an open question, per persona):
+    it resolves Exp 204's NO_VERDICT by testing whether the collapse-vs-functional-optimum tradeoff is
+    FUNDAMENTAL before escalating to a brand-new bridge. The pre-registered niche/controller bridges
+    renumber to 206/207. Full pre-registration committed to the card BEFORE any data; reuses the
+    committed enable_residue engine (no new feature); fresh seeds {80-84}. If the human wanted the
+    niche bridge (a) instead, a one-word redirect pivots there next iteration.
 
 (empty — drop ideas above this line's section freely)
 
