@@ -8317,3 +8317,116 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (residue false-positives -- make precision reduce costly mistakes, a steeper relational payoff), 205
   (barcode niches -- let a high-sensor lineage escape the herding that erodes the relational advantage),
   206 (sensor-controller co-adaptation). Each pre-registered in the card, staged behind the human's word.
+
+## Exp 204 — N5 SENSE-EVOLUTION sub-arc: the FRESHNESS/RESIDUE FALSE-POSITIVE BRIDGE — making precision AVOID a costly mistake (eating misleading residue) creates the FIRST functional MONOMORPHIC optimum in the arc (N* peaks at h*=0.60), but it is still un-earnable: the LOCAL gradient at the resident is <=0 (a fitness valley) AND the false-positive cost COLLAPSES the population, so evolution decays toward primitive and the metric is under-licensed (MIXED / NEW INSIGHT)
+
+- Plain: The four walls plus the Exp 203 audit showed a costed heat-sensor only ever bought marginally
+  MORE food -- a benefit that saturates, so a crude sensor grabs the easy part and precision never pays
+  its upkeep. This experiment changes what precision is FOR: eaten food now leaves a misleading residue
+  that low-precision sensors confuse with fresh food, so precision AVOIDS A COSTLY MISTAKE (eating
+  residue, which hurts). Avoiding a loss is a steeper payoff than grabbing a little more, and crowding
+  raises residue, so precision should matter more under competition. Result: at the FAIREST regime (a
+  false-positive painful enough that a whole population of precise sensors is genuinely fitter -- the
+  FIRST time the population-level optimum is a STRONG sensor, h*=0.60), evolution STILL does not climb.
+  A small step up from the typical sensor (0.10 -> 0.15) loses head-to-head (2 of 8 worlds); only a big
+  leap (0.10 -> 0.45) pays -- a fitness VALLEY a small mutation can't cross. And the very cost that makes
+  precision valuable (the residue penalty) craters the population: 2 of 5 worlds went extinct, so the
+  evolution measurement isn't even clean. Precise creatures DO make fewer mistakes (false-positive rate
+  0.88 -> 0.66) yet still have FEWER babies (0.94 -> 0.55) -- the upkeep + small-numbers dominate. So the
+  sensor stays primitive (evolves to 0.07, barely above the no-residue control's 0.03). The honest
+  verdict is MIXED: at the only regime where precision pays at the population level, the population can't
+  survive the cost long enough to climb the valley.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit 1aa80bf, BEFORE any data,
+  on the human's explicit word "a continue" = post-203 consult option (a)): when precision reduces costly
+  false positives (eating residue) and competition raises residue density, the local selection gradient
+  at the resident becomes positive AND a functional sensor (h>0.30) evolves -- unlike the saturating/
+  concave four walls. (Predicting this COULD honestly succeed, since the payoff structure is genuinely new;
+  the four walls + Exp 203 predict NEGATIVE/MIXED. The result did not reach POSITIVE.)
+- Setup: experiments/exp204_n5_residue_falsepos.py on the ecology/ engine + ONE new gated, byte-identical
+  engine feature (tests/test_exp204_residue.py + exp200-203 hashes reproduce + full fast suite 170 green):
+  enable_residue. Mechanic (ON-branch only, ONE rng draw, OFF path byte-identical to exp194-203): eaten
+  food leaves residue (residue += eaten*yield, decaying); at the eat step the creature reads a NOISY
+  freshness percept f_hat = f + N(0, residue_confusion*(1-h)) of the true fresh fraction f = R/(R+residue),
+  eats iff f_hat >= 0.5, and pays residue_loss if it ate an actually-residue-dominated cell (a false
+  positive). ANTI-CHEAT (guard-tested, blinded-verified): intake is the UNCHANGED consume(); h keys ONLY
+  the percept noise; residue_loss is an ACTION cost identical regardless of h -- never a reward on h
+  (with confusion=0 the percept is perfect for every h, so h is provably irrelevant). TWO modes: A =
+  gradient audit (monomorphic carrying-capacity h*, pairwise s(0.10 vs h') over 8 seeds {50-57}, B(h)
+  cost-off overlay), RESIDUE_COMPETE vs NO_RESIDUE, easy/med/hard difficulty sweep; B = evolution (h
+  evolves from founder 0.10; gene-pool newborn mean h over the last 2000 of 8000 steps; arms
+  RESIDUE_COMPETE / NO_RESIDUE / RESIDUE_NO_COMPETE; fresh seeds {70-74}). DISCLOSED pilots {100,101}
+  (deleted): residue_loss=0.5 too mild (monomorphic optimum stays at h*=0.10); loss=3.0 kills primitive
+  populations (N*(0.10)=0, founder can't survive to climb); loss=1.5 is the FAIR sweet spot (a pure
+  high-h population is genuinely fitter -- N* rises 24->52->76 -- AND primitive pops survive), the deck
+  deliberately STACKED FOR the organ (exp199 philosophy) -- params FIXED before the {50-57}/{70-74} run.
+  The no-competition control was corrected from "abundant regen 0.8" to "uniform food (no band) at
+  bounded regen 0.20" AFTER the RUNTIME PRE-FLIGHT (L25, require_safe=True at the top of main())
+  correctly REFUSED to launch the abundant arm (EXPLOSION toward the 20000 cap -- the Exp 202 ABUNDANT
+  lesson caught mechanically). Final run gated SAFE (proj ~2.7 min; actual 102s; 285 jobs, 11 workers).
+- Result (committed exp204.txt + exp204_n5_residue_falsepos/verdict.json): VERDICT MIXED / NO_VERDICT,
+  blind-verified AGREE. MONOMORPHIC N*(h): RESIDUE_COMPETE RISES 22.3 -> 55.7 across h, competitive
+  optimum h*N = 0.60 (the FIRST FUNCTIONAL monomorphic optimum in the whole arc); NO_RESIDUE DECLINES
+  595.7 -> 133.4, h*N = 0.06 (the pure-cost signature) -- the residue mechanic genuinely makes precision
+  pay at the population level. PAIRWISE (RESIDUE_COMPETE, med difficulty): 0.10 vs 0.15 invader_won 2/8,
+  auc 0.344, s_mean -0.00055 (a small step UP from the resident is DISFAVOURED); 0.10 vs 0.30 won 2/8;
+  0.10 vs 0.45 won 5/8, auc 0.793 (only a BIG leap pays -- a fitness valley). Controls: NO_RESIDUE 0.10
+  vs 0.15 won 4/8 (neutral, as expected); CLAMPED_LR 4/8; NO_SHUFFLE 1/8. Difficulty sweep (0.10 vs
+  0.15): easy 3/8 (auc 0.414), med 2/8, HARD 5/8 (auc 0.714) -- harder discrimination gives the
+  strongest local signal (sub-threshold hint). EVOLUTION (newborn mean h, founder 0.10): RESIDUE_COMPETE
+  0.070 (per-seed [0.081, 0.073, 0.056, nan, nan] -- 2/5 EXTINCT, min_pop 0), NO_RESIDUE 0.0305 (pop
+  ~986), RESIDUE_NO_COMPETE 0.0613 (pop ~50); 0/5 functional in every arm. RESIDUE_COMPETE 0.070 >
+  NO_RESIDUE 0.0305 (rc_above_control True -- a real but sub-functional residue push). MEDIATION
+  (RESIDUE_COMPETE): FP-rate lo-h 0.881 > hi-h 0.658 (precision DOES reduce false positives) BUT
+  offspring lo-h 0.941 > hi-h 0.547 (precise creatures reproduce LESS -- mediated=False, cost-dominated).
+  gift B(0.60)-B(0.00) = +0.0008 (installed FP-avoidance benefit real). Gates: pw_015_won=2/8,
+  h_star_N_RC=0.6, evo_RC_functional=0/5, rc_n_valid=3/5, gift_real=True, mediated=False, p1=True.
+- Verifier: AGREE (MIXED), independently recomputed conjunct-by-conjunct from the raw output (blinded to
+  this reading). Mapping: P1 pass; F2 FIRES (RESIDUE_COMPETE evolution 3/5 valid < 4/5: two nan/collapsed
+  seeds, min_pop 0) -> by the predeclared precedence this yields NO_VERDICT/MIXED BEFORE POSITIVE/NEGATIVE
+  are evaluated; POSITIVE independently dead (P3 pairwise 2/8 << 7/8 & s<0; P4 0/5 functional; P5
+  mediated=False); NEGATIVE cannot be licensed off an arm that failed the validity gate. Stricter of
+  MIXED-vs-NEGATIVE is MIXED.
+- Implication (generalizability tier: functional-form, scoped to this engine/regime): the residue/
+  false-positive payoff is the FIRST mechanism in the arc to make a PURE high-precision population
+  genuinely fitter (a functional monomorphic optimum h*=0.60, absent in all four walls + Exp 203) -- so
+  "precision never helps even when gifted" is now FALSE for loss-avoidance. Yet the functional optimum is
+  un-earnable for three convergent reasons: (1) the LOCAL gradient at the resident is <=0 (a fitness
+  VALLEY: 0.10->0.15 loses 2/8, only the 0.10->0.45 leap pays) -- the L22 forced-vs-evolvable gap in its
+  sharpest form yet (a genuinely functional optimum, still un-reachable by small steps); (2) a NEW failure
+  mode -- the cost that makes precision valuable (the false-positive loss) CRATERS the population (2/5
+  extinct), so the very pressure that would select for precision destroys the demography that would carry
+  the climb (a demographic/Allee-like trap); (3) cost-dominated mediation -- precise creatures DO make
+  fewer false positives but reproduce LESS, so the discrimination benefit never converts to fitness at the
+  resident. A real but sub-functional residue push exists (evo 0.070 > 0.0305; hard-difficulty pairwise
+  5/8) -- the same weak-relational-gradient shape as Exp 203, not strengthened to functional. Reusable
+  meta-lesson (kin of L22/L23): a FUNCTIONAL monomorphic/installed optimum is necessary but NOT sufficient
+  for evolvability -- a fitness valley at the resident AND the demographic cost of the selecting pressure
+  can each independently block the climb; and a pressure strong enough to make precision pay can be strong
+  enough to collapse the population that needs to evolve.
+- Verdict: MIXED / NEW INSIGHT -- the residue/false-positive bridge creates the arc's first functional
+  monomorphic optimum (N* h*=0.60) but does NOT make a functional sensor EVOLVE: the local resident
+  gradient is <=0 (fitness valley; pairwise 0.10->0.15 won 2/8), evolution decays to 0.070 (0/5
+  functional, though above NO_RESIDUE's 0.0305), the false-positive cost collapses 2/5 populations
+  (evolution arm under-licensed, F2), and mediation is cost-dominated (precise = fewer FPs but fewer
+  babies). Predeclared verdict MIXED/NO_VERDICT, blind-verified AGREE.
+- Honest caveat: this MIXED is a NO_VERDICT on the evolution arm forced by a DISCLOSED, FORESEEN
+  consequence of my own regime choice -- I picked the deck-stacked-FOR-the-organ loss=1.5 (where the
+  monomorphic optimum is functional) KNOWING from the pilot it stresses the population; the resulting 2/5
+  collapses mean the evolution metric is not cleanly licensed (L21), so a clean NEGATIVE on Mode B cannot
+  be claimed. What IS clean and convergent across all readings: no functional sensor evolved (0/5 every
+  arm), the local resident gradient is <=0 (pairwise + decay), and the installed/monomorphic benefit is
+  real-but-un-earnable. I deliberately did NOT re-tune to a survivable loss to "rescue" a cleaner verdict
+  (that would be param-shopping); the honest finding is that there is NO regime giving BOTH a functional
+  optimum AND a survivable, valley-free climb. The functional monomorphic optimum is the genuine new
+  positive note; everything else reproduces the arc's ceiling. The HARD-difficulty 5/8 pairwise is a
+  sub-threshold hint (a steeper signature gap may steepen the local gradient) -- a named, unproven follow-
+  up, not a result. Founders + policy + costs PROVIDED; the sensor is a noisy-percept heuristic, not pymdp.
+- Next: post-204 CONSULT (loop/IDEAS.md) -- the bridge neither crossed the valley nor cleanly failed
+  (functional monomorphic optimum + demographic-collapse trap). Options, each needs a word: (a) Exp 205
+  (barcode niches -- a high-sensor lineage ESCAPES the herding/competition, attacking the negative-
+  frequency-dependence + the demographic trap from a different angle); (b) Exp 206 (sensor-controller
+  co-adaptation); (c) a survivable-loss re-run of THIS bridge (loss in (0.5, 1.5) where pops persist) to
+  resolve whether a clean NEGATIVE or a weak MIXED holds when the demographic confound is removed -- the
+  cheap clarity option; (d) accept the sub-arc answer (no costed sense becomes functional across five
+  regimes; the valley + demographic cost are the universal barriers) and write the synthesis; (e) redirect/
+  stop. Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
