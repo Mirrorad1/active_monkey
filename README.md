@@ -1,101 +1,142 @@
 # active_monkey
 
-A documented self-lab for studying how tiny artificial systems become more creature-like under pressure.
+A tiny artificial-life lab for testing when costly traits become worth maintaining
+under ecological pressure.
 
-**Live tracker:** https://mirrorad1.github.io/active_monkey/  
-**Lab notebook:** [EXPERIMENTS.md](EXPERIMENTS.md)  
-**Related work and prior art:** [docs/RELATED_WORK.md](docs/RELATED_WORK.md)
+- **Live tracker:** https://mirrorad1.github.io/active_monkey/
+- **Claims ledger:** [docs/CLAIMS.md](docs/CLAIMS.md)
+- **Experiment map:** [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md)
+- **Lab notebook:** [EXPERIMENTS.md](EXPERIMENTS.md)
 
-## What this is
+## What This Is
 
-active_monkey is a small artificial-life research project. It uses tiny ecologies, fixed seeds, raw outputs, and public experiment notes to ask a narrow question:
+active_monkey is a one-person, LLM-assisted research lab. It uses small artificial
+ecologies, fixed seeds, committed scripts, raw outputs, and falsifier-first notes to
+study when a capability is locally adaptive rather than merely present.
 
-> When does information become meaningful to the system itself?
+The preferred public framing is narrow:
 
-The current research spine is:
+> When do costly capabilities - sensing, memory, belief-like internal state, and
+> eventually communication - become worth maintaining because they improve
+> action-relevant outcomes under pressure?
 
-```text
-ecology pressure
-→ sensing
-→ organ-like persistence
-→ memory
-→ belief
-→ communication
-→ world models
-```
+The project is deliberately toy-scale. Its value is auditability: a skeptical reader
+should be able to trace a claim to the experiment entry, script, raw output, caveat,
+and falsifier.
 
-The point is not to make the smartest agent first. The point is to build the conditions where sensing, memory, and belief have a reason to exist.
+## The Core Question
 
-## Why an ecology?
+The current research program asks when information becomes useful to the system itself.
+In this repo, "useful" means it changes action, survival, reproduction, prediction,
+or persistence in the toy world. A variable does not count as meaningful just because
+it exists in the code or is visible to an outside observer.
 
-A single agent can look interesting for the wrong reason. An ecology gives the experiment pressure: resource limits, depletion, competition, lineage, mutation, and failure.
-
-Food is not just a feature. Food matters because no food means the creature stops continuing. Temperature is not just a column in a dataset. It matters only if it changes action, survival, reproduction, or persistence.
-
-That is why the project keeps asking whether a capability is actually useful, not just present.
-
-## Current framing
-
-The near-term question is not simply "can a sensor appear?"
-
-The cleaner question is:
-
-> Under what conditions does a costly sensor become worth maintaining?
-
-A one-off sensor is not enough. The stronger target is a sensor-to-organ bridge: a capability that persists because it improves action-relevant outcomes under pressure, without direct reward for the capability itself.
-
-From there the next track is first-person state:
+Current spine:
 
 ```text
-third-person state:
-  position, energy, resources, births, deaths, lineage
-
-first-person state:
-  local observations, internal energy, memory, beliefs, uncertainty, prediction error, action
+ecological pressure
+-> costly sensing
+-> organ-like persistence
+-> memory and belief-like state
+-> communication
+-> world-model substrate
 ```
 
-The project does not claim to measure experience. It tries to make belief-like internal state measurable in a controlled world where the outside observer still knows the ground truth.
+## Why Ecology Instead Of A Single Agent
 
-## What this is not
+A single agent can look capable because the evaluator rewards a behavior directly or
+because a shortcut is available. Ecology adds pressure: finite resources, depletion,
+mutation, reproduction, competition, lineage, and death.
+
+That pressure makes a stricter test possible. A costly sensor should not count as
+meaningful because it is gifted to a creature. It should persist only when the local
+evolutionary path pays for its upkeep in this setup.
+
+## Current Research Spine
+
+The early active-inference toys explored language, memory, valence, embodiment, and
+queryable toy opinions. The current public spine is the ecology chapter: can costly
+traits become locally adaptive under pressure?
+
+For the current state of the evidence, start with:
+
+- [docs/CLAIMS.md](docs/CLAIMS.md) - claim-by-claim ledger with caveats and falsifiers.
+- [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md) - chapter map for the 207-entry notebook.
+- [docs/research/sense-axis-organ-evolution.md](docs/research/sense-axis-organ-evolution.md) - current thermosense / sense-evolution synthesis.
+- [sense-evolution.html](sense-evolution.html) - public write-up of the closed-negative sense-evolution chapter.
+
+## Current Strongest Results
+
+Current evidence suggests:
+
+- Costly traits should not count as meaningful just because they exist; in this lab
+  they must improve action-relevant outcomes under pressure.
+- Disembodied symbol streams produced useful early lessons, but fully unsupervised
+  latent structure collapsed in this setup; embodiment, grounding, registered
+  continuous experience, and at least one structural anchor were needed for the
+  stronger toy chain.
+- Live probation was a better acceptance standard than replay-only scoring for
+  structure growth in the continuous-creature chapter; under normalized-density
+  evaluation, the growth wall fell in Exp 154.
+- Several thermosense experiments found that gifted or global usefulness is not
+  enough. A functional sensor can still be un-evolvable when the local selection
+  gradient at the resident is non-positive.
+- Recent work motivates an Evolvability Preflight layer: measure local trait
+  gradients and load-bearing premises before spending compute on full evolution
+  batches.
+
+These are toy-scale claims about this codebase and its current substrates, not claims
+about biology, consciousness, AGI, or inevitable emergence.
+
+## What This Is Not
 
 - Not a consciousness claim.
 - Not AGI.
 - Not a claim that emergence is inevitable.
-- Not a benchmark project.
-- Not a hidden LLM inside the creature.
+- Not a biological realism claim.
+- Not a benchmark suite for general AI systems.
+- Not a hidden LLM inside the agents.
 
-The LLM is part of the research workflow. It helps propose experiments, write code, run checks, and document results. The subject being studied is the small ecology and the agents inside it.
+LLMs are part of the research workflow: they help propose experiments, write code,
+run checks, and document results. The studied system is the committed toy ecology
+and its agents.
 
-## Standard of evidence
+## Evidence Standard
 
-A result is interesting only if the obvious shortcuts are made hard to confuse with the claim.
+Serious results should preserve:
 
-The project tries to preserve:
+- a predeclared question, pass/fail bar, or falsifier where practical;
+- fixed seeds or clearly stated stochastic scope;
+- committed experiment scripts and raw outputs;
+- null results and instrument failures in the append-only log;
+- caveats that say what the result does not show;
+- no direct reward for the representation or trait being claimed.
 
-- fixed seeds and reproducible scripts
-- raw outputs under `experiments/outputs/`
-- predeclared pass/fail bars when a claim is serious
-- null results and honest walls
-- explicit notes about what would kill a hypothesis
-- no direct reward for the thing we are claiming emerged
+The lab notebook is not polished away. Negative results and honest walls remain part
+of the evidence chain.
 
-The lab notebook is part of the artifact. Failed explanations stay visible because they narrow the map.
+## How To Reproduce
 
-## Where deep active inference fits
-
-Deep active inference is not the starting point. It becomes useful later if explicit belief variables stop scaling.
-
-For now, the priority is to keep the substrate legible: ecology first, then sensing, then persistent capabilities, then explicit belief state. Learned latent models can be added once there is enough structure to know what problem they are solving.
-
-## Reproduce
-
-All results were produced inside the committed lockfile environment.
+The default public commands are:
 
 ```bash
 uv sync
 uv run --python .venv pytest -q
 uv run --python .venv python converse_demo.py
-uv run --python .venv python experiments/exp145_m3c_live_probation.py
+uv run --python .venv python experiments/exp154_growth_confirmation.py
+uv run --python .venv python tools/check_docs.py
 ```
 
-Every experiment script is committed together with its raw outputs under `experiments/outputs/`; seeds are fixed in-script; headline numbers can be recomputed from the committed rows where tooling exists.
+Some experiment batches are slow or stochastic. See
+[docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) for representative runs, raw-output
+locations, seed notes, and limitations.
+
+## Reader Map
+
+- New reader: [docs/CLAIMS.md](docs/CLAIMS.md), then [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md).
+- Engineer: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), then [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
+- ML / active-inference reader: [docs/RELATED_WORK.md](docs/RELATED_WORK.md), then [docs/research/problem2-phase-picture.md](docs/research/problem2-phase-picture.md).
+- Artificial-life reader: [docs/research/sense-axis-organ-evolution.md](docs/research/sense-axis-organ-evolution.md), then [ecology/README.md](ecology/README.md).
+- Nontechnical reader: [sense-evolution.html](sense-evolution.html), then [journey.html](journey.html).
+- Term lookup: [docs/GLOSSARY.md](docs/GLOSSARY.md).
+- Future direction: [docs/ROADMAP.md](docs/ROADMAP.md).

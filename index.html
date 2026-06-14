@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>active_monkey — a documented self-lab</title>
-<meta name="description" content="A documented self-lab studying how tiny artificial ecologies move from pressure to sensing, persistent capabilities, belief state, and world models.">
+<title>active_monkey — a tiny artificial-life lab</title>
+<meta name="description" content="A tiny artificial-life lab testing when costly sensing, memory, and belief-like state become locally adaptive under ecological pressure.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
-<meta property="og:title" content="active_monkey — a documented self-lab">
-<meta property="og:description" content="Tiny artificial ecologies, strict falsifiers, and a public lab notebook asking when information becomes useful to the system itself.">
+<meta property="og:title" content="active_monkey — a tiny artificial-life lab">
+<meta property="og:description" content="Tiny artificial ecologies, strict falsifiers, and a public lab notebook testing when costly traits become worth maintaining under pressure.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mirrorad1.github.io/active_monkey/">
 <meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
@@ -32,7 +32,7 @@
   section{padding:46px 0;border-top:1px solid var(--line);}
   .sec-head{max-width:72ch;margin-bottom:26px;}.sec-head h2{font-size:clamp(28px,3.5vw,40px);margin:12px 0 0;}.sec-head p{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink-2);}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);}@media(max-width:820px){.grid3{grid-template-columns:1fr;}}
-  .card{padding:22px;border-right:1px solid var(--line);background:rgba(255,255,255,.28);}.card:last-child{border-right:none;}@media(max-width:820px){.card{border-right:none;border-bottom:1px solid var(--line);}.card:last-child{border-bottom:none;}}
+  .card{padding:22px;border-right:1px solid var(--line);background:rgba(255,255,255,.28);}.card:nth-child(3n),.card:last-child{border-right:none;}.card:nth-child(n+4){border-top:1px solid var(--line);}@media(max-width:820px){.card{border-right:none;border-bottom:1px solid var(--line);}.card:nth-child(n+4){border-top:none;}.card:last-child{border-bottom:none;}}
   .card .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}.card h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:12px 0 8px;}.card p{font-size:13.5px;line-height:1.58;color:var(--ink-2);margin:0;}
   .spine{border:1px solid var(--line);background:rgba(255,255,255,.3);}.row{display:grid;grid-template-columns:68px 1fr;gap:18px;padding:20px 24px;border-top:1px solid var(--line);}.row:first-child{border-top:none;}.num{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--accent);line-height:1;}.row h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 6px;}.row p{font-size:13.5px;line-height:1.58;color:var(--ink-2);margin:0;}
   .callout{border:1px solid var(--ink);background:var(--paper-2);padding:30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}@media(max-width:720px){.callout{grid-template-columns:1fr;}}
@@ -45,6 +45,7 @@
   <nav class="topbar">
     <a class="brand" href="index.html">active_monkey</a>
     <div class="links">
+      <a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/CLAIMS.md">claims</a>
       <a href="journey.html">notebook</a>
       <a href="math.html">the math</a>
       <a href="open_problem.html">open problem</a>
@@ -56,8 +57,8 @@
   <header class="hero">
     <div>
       <div class="kicker">open-source self-lab · artificial life · active inference</div>
-      <h1 class="h-display">When does a system become a creature?</h1>
-      <p class="lead"><b>active_monkey is a documented self-lab for creature-like agency.</b> It uses tiny artificial ecologies to ask when information becomes worth representing inside the system itself: first as sensing, then as organ-like persistence, later as belief, communication, and world models.</p>
+      <h1 class="h-display">When does a costly trait become worth keeping?</h1>
+      <p class="lead"><b>active_monkey is a tiny artificial-life lab.</b> It uses small artificial ecologies to test when costly sensing, memory, belief-like state, and later communication become locally adaptive under pressure.</p>
       <div class="cta">
         <a class="btn btn-primary" href="journey.html">Read the lab notebook →</a>
         <a class="btn btn-ghost" href="open_problem.html">Current open problem</a>
@@ -69,8 +70,8 @@
   <section>
     <div class="sec-head">
       <div class="kicker">The framing</div>
-      <h2 class="h-section">Creaturehood before capability.</h2>
-      <p>Most AI starts with a task and asks how smart the model can get. This lab starts with persistence: a tiny system in a world with resource pressure, sensory limits, competition, memory, and consequences.</p>
+      <h2 class="h-section">Ecology before capability.</h2>
+      <p>Most AI starts with a task and asks how capable the model can get. This lab starts with pressure: a tiny system in a world with finite resources, sensory limits, competition, inheritance, and consequences.</p>
     </div>
     <div class="grid3">
       <div class="card"><div class="eyebrow">world</div><h3>The world has consequence</h3><p>A variable matters only if it changes whether the creature can continue, reproduce, or act better.</p></div>
@@ -83,7 +84,7 @@
     <div class="sec-head">
       <div class="kicker">The research spine</div>
       <h2 class="h-section">Ecology → sensor → organ → belief.</h2>
-      <p>The public story is not experiment 1 versus experiment 3. It is a self-lab with a spine: build minimal conditions where information becomes meaningful to the system itself.</p>
+      <p>The public story is not experiment 1 versus experiment 3. It is a self-lab with a spine: build minimal conditions where costly information-bearing traits have to earn their place.</p>
     </div>
     <div class="spine">
       <div class="row"><div class="num">01</div><div><h3>Ecological pressure</h3><p>Energy, depletion, temperature, competition, and lineage pressure make some information useful and most information ignorable.</p></div></div>
@@ -108,11 +109,27 @@
   </section>
 
   <section>
+    <div class="sec-head">
+      <div class="kicker">Audit trail</div>
+      <h2 class="h-section">Claims, caveats, and where to check them.</h2>
+      <p>The notebook stays append-only. These front-door docs make the current claim surface easier to audit without replacing the raw experiment record.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="eyebrow">claims</div><h3>Current claim ledger</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/CLAIMS.md">CLAIMS.md</a> lists each current claim, evidence, caveat, and falsifier.</p></div>
+      <div class="card"><div class="eyebrow">map</div><h3>Experiment index</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/EXPERIMENT_INDEX.md">EXPERIMENT_INDEX.md</a> groups the notebook into chapters and reader paths.</p></div>
+      <div class="card"><div class="eyebrow">reproduce</div><h3>Reproducibility</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/REPRODUCIBILITY.md">REPRODUCIBILITY.md</a> explains tests, seeds, raw outputs, and limitations.</p></div>
+      <div class="card"><div class="eyebrow">layout</div><h3>Architecture</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md</a> explains the repo layout and evidence-sensitive paths.</p></div>
+      <div class="card"><div class="eyebrow">prior art</div><h3>Related work</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/RELATED_WORK.md">RELATED_WORK.md</a> places the toy lab against established active-inference and artificial-life work.</p></div>
+      <div class="card"><div class="eyebrow">terms</div><h3>Glossary</h3><p><a href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/GLOSSARY.md">GLOSSARY.md</a> keeps project terms short, plain, and claim-limited.</p></div>
+    </div>
+  </section>
+
+  <section>
     <div class="callout">
       <div>
         <div class="kicker slate">The open problem</div>
-        <h2>When does information become meaningful to the system itself?</h2>
-        <p>The current open problem is whether a creature-like loop can develop action-relevant internal structure under pressure, and whether that structure survives falsifiers.</p>
+        <h2>When does a capability pay for its own upkeep?</h2>
+        <p>The current open problem is whether a toy ecology can make an internal capability locally adaptive, and whether that claim survives falsifiers.</p>
       </div>
       <a class="btn btn-primary" href="open_problem.html">Read the current framing →</a>
     </div>

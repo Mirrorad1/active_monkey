@@ -1,7 +1,9 @@
 [project]
+# Public artifact: active_monkey. Package/import names remain active-loop /
+# active_loop for historical compatibility; do not rename casually.
 name = "active-loop"
 version = "0.1.0"
-description = "Autonomous active-inference research loop (M1 inner loop)"
+description = "Toy artificial-life lab for costly traits under ecological pressure"
 requires-python = ">=3.11"
 dependencies = [
     "numpy>=1.19.5",
