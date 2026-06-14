@@ -145,6 +145,36 @@ result, not a failure.
 
 ---
 
+## RUNG-1 PILOT RESULT (2026-06-14, disclosed) — NO_VERDICT (demographic collapse / F4)
+
+The disclosed regime pilot (pilot seeds {100,101,102}, NOT the verdict seeds) found that
+the as-built **mode-gated food mechanism collapses the population** below a drift-safe size,
+so the local-gradient test is not yet valid. Regimes tried (all disclosed; none adopted):
+- R1 fast/cue0.6/cost0.01 (12×12, cap10): FLAT, pops 19–40.
+- R2 slow/cue0.8/cost0.005 + R3 mid/cue0.7/cost0.005: read POSITIVE (3/3, mutant fixates)
+  **but at pops 15–42** — drift-dominated.
+- Raised capacity (cap30, regen1.0) and larger grid (20×20, cap20, slower switch): pops
+  collapsed FURTHER (5–34, several **extinctions** → 0), not up.
+
+**Drift control (decisive):** at `cue_noise=0` (perfect cue ⇒ memory has NO denoising
+benefit, only extra lag+cost) the mutant **still fixated just as often** as under noise.
+A real memory signal must vanish here; it did not ⇒ the apparent "wins" are small-population
+**drift**, not selection (the Exp 202 trap; L21/L24). I did NOT adopt R2/R3's POSITIVE
+(that would be tuning-to-a-positive on a drift artifact).
+
+**Honest verdict: NO_VERDICT (F4 validity).** Mode-gating (only the matching half
+regenerates; the other half starves) halves carrying capacity AND each switch starves the
+previously-good half — too harsh to sustain a common garden.
+
+**Proposed mechanism revision (next iteration, re-piloted):** make the hidden mode a
+MILDER payoff differential — BOTH halves regenerate, the mode-matching half regenerates
+MORE (or the wrong half yields reduced, not zero, food) — so correct inference still PAYS
+but the population survives (the Exp 204→205 survivable-loss lesson). Then re-pilot for a
+drift-safe pop (hundreds), re-confirm the perfect-percept null fixates NEITHER way, and run
+the verdict on fresh seeds. Until then rung-1 has no admissible verdict.
+
+---
+
 ## Build order (each a scoped PR; the engine change is gated + byte-identical OFF)
 1. Engine mechanism (`enable_hidden_mode`: mode dynamics + cell_type + mode-gated food +
    noisy cue + per-creature cue buffer + belief steer + memory upkeep) + `memory_horizon`
