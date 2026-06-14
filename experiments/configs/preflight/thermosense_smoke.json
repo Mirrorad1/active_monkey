@@ -1,6 +1,6 @@
 {
   "slug": "thermosense_smoke",
-  "description": "Tiny smoke-test config for CLI integration tests. 2 seeds, horizon 200.",
+  "description": "CLI PLUMBING ONLY (2 seeds, horizon 200). The verdict here is NOISE-SCALE and NOT scientific: with 2 seeds the win threshold is 2, so two chance-wins spuriously read PASS_LOCAL_GRADIENT. For a meaningful verdict use thermosense_local_gradient.yaml (8 seeds). See docs/evolvability_preflight.md.",
   "base_scenario": "balanced",
   "base_overrides": {
     "enable_thermosense": true,

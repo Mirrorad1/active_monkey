@@ -66,9 +66,13 @@ controller: null
 # that this config generalises.
 
 # ── Seeds ─────────────────────────────────────────────────────────────────────
-# SMOKE default (3 seeds, ~5 s at horizon 1500).
-# For a strict 8-seed batch use: [38, 39, 40, 41, 42, 43, 44, 45]
-seeds: [38, 39, 40]
+# 8-seed batch: the strict 7/8 win-threshold convention. This is the DEFAULT so the
+# canonical command reproduces the real finding (NOT a positive local gradient).
+# A full 5-gate run at this horizon takes several minutes (the monomorphic sweep
+# dominates). For a quick plumbing check use a 2-3 seed subset, but note that with
+# <8 seeds the win threshold is small and a chance PASS is NOT scientifically
+# meaningful — see experiments/configs/preflight/thermosense_smoke.json.
+seeds: [38, 39, 40, 41, 42, 43, 44, 45]
 
 # ── Simulation horizon ────────────────────────────────────────────────────────
 # 1500 steps matches Exp 203; measurement window covers the steady-state phase.
@@ -101,6 +105,6 @@ monomorphic_grid: [0.0, 0.05, 0.10, 0.15, 0.30, 0.45, 0.60]
 cost_values: [0.10, 0.20, 0.40]
 
 # ── Validity thresholds ───────────────────────────────────────────────────────
-# min_valid_seeds: smoke value; raise to 6+ for an 8-seed batch.
-min_valid_seeds: 2
+# min_valid_seeds: with an 8-seed batch, require >=6 valid (non-collapsed) seeds.
+min_valid_seeds: 6
 min_population: 10

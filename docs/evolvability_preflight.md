@@ -246,7 +246,7 @@ than silently clobbering an existing run.
 
 ## How to Run
 
-### YAML config (canonical)
+### YAML config (canonical — the real run)
 
 ```sh
 uv run --python .venv python experiments/run_preflight.py \
@@ -255,7 +255,13 @@ uv run --python .venv python experiments/run_preflight.py \
     [--output-dir results/preflight]
 ```
 
-### JSON config (smoke/CI)
+This runs the 8-seed batch (the strict 7/8 convention) and takes several minutes
+(the monomorphic sweep dominates). It reproduces the closed Exp 203–207 finding:
+the thermosense local gradient is **not** positive → verdict `NO_EFFECT`
+(5/8 wins < 7/8). A committed example run is in
+`experiments/outputs/preflight_thermosense_8seed/`.
+
+### JSON config (CLI plumbing / CI only — NOT a scientific run)
 
 ```sh
 uv run --python .venv python experiments/run_preflight.py \
@@ -263,6 +269,11 @@ uv run --python .venv python experiments/run_preflight.py \
     --output-dir /tmp/smoke \
     --run-id test1
 ```
+
+⚠️ **The smoke config uses only 2 seeds**, so its win threshold is 2 — two
+chance-wins spuriously read `PASS_LOCAL_GRADIENT`. It exists to exercise the CLI
+and artifact plumbing, **not** to produce a meaningful verdict. With fewer than 8
+seeds a `PASS` is noise; always use the 8-seed batch for a real verdict.
 
 ### Module form
 
