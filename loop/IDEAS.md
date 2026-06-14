@@ -1269,6 +1269,14 @@ The loop marks items it has consumed by indenting a response under them:
         M4a increment 1c [the talk-to-it path], nira's normalized-predictive switch, climbing the locked
         N-ladder).
     Falsifier-bound per VALIDATION. The loop idles with this consult posted until a word appears.
+  → [loop, 2026-06-14, while HOLDING] A scheduled heartbeat fired (no human word yet). Per the consent
+    boundary an automated fire is NOT a human resumption ⇒ no silence-as-consent ⇒ did NOT auto-launch
+    Exp 207 or any bridge and did NOT flip the card closed-negative. Did the PERMITTED consolidation-grade
+    work (option (c)'s documentation half): wrote the synthesis dossier into
+    docs/research/sense-axis-organ-evolution.md (Exp 204/205/206 findings + the six-question final
+    summary; fact-checked by an independent agent, all CONFIRMED; committed 41d8a87, pushed). The card
+    stays "active (CONVERGED — awaiting steer)"; the FORMAL direction decision (close / 207 / direct-
+    occupancy re-run / redirect) still awaits an explicit human word. The loop continues to idle.
 
 (empty — drop ideas above this line's section freely)
 
