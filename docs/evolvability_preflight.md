@@ -101,7 +101,11 @@ and mutant.  This is **the binding criterion** for local evolvability.
 **What it does NOT prove**: Stable long-run organ evolution (many-step dynamics,
 frequency dependence, drift, epistasis, etc.).
 
-Backend: thermosense only.
+Backend: **generic** (Phase 2.5).  thermosense delegates to `sense_axis.run_pairwise_competition`
+(the proven Exp 203 instrument); any other backend uses `_run_pairwise_generic`, an
+equal-count common garden built on `axis.clamp_founder` / `axis.get` / the freeze
+mechanism — so the one gate that actually decides evolvability works for future traits
+(memory_horizon, belief_persistence, …) without `NotImplementedError`.
 
 ---
 
@@ -391,10 +395,14 @@ print(result.aggregate_verdict)
      equivalent functions that measure the trait's benefit with the cost switched
      off, or add a generic pathway in `gates.py`.
 
-4. **Gates available for any backend** — Gates D (invasion_from_rarity) and
-   H (controller_cross_partial) use `axis.clamp_founder` and the freeze mechanism
-   and work for any backend.  Gate G (null_guards) is generic except for Guard 2
-   (`no_direct_h_reward`) which requires thermosense + freeze_flag.
+4. **Gates available for any backend** — Gate C (local_pairwise_gradient, **the
+   binding gate**), Gate D (invasion_from_rarity), and Gate H (controller_cross_partial)
+   use `axis.clamp_founder` / `axis.get` and the freeze mechanism and work for any
+   backend.  Gate G (null_guards) is generic except for Guard 2 (`no_direct_h_reward`)
+   which requires thermosense + freeze_flag.  Gates A/B/E/F (gifted/monomorphic/
+   density/cost) still delegate to `sense_axis.py` (thermosense only) — a new trait
+   needs a generic cost-off percept path for those, but **the binding gate C does not
+   block a new trait**.
 
 5. **Write a config file** — see
    `experiments/configs/preflight/thermosense_local_gradient.yaml` as a template.

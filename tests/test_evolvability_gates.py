@@ -431,3 +431,79 @@ def test_gate_outcome_has_required_fields():
     import dataclasses
     field_names = {f.name for f in dataclasses.fields(GateOutcome)}
     assert required_fields <= field_names
+
+
+# ---------------------------------------------------------------------------
+# L) Gate C generic (non-thermosense) backend
+# ---------------------------------------------------------------------------
+
+def test_local_pairwise_gradient_generic_non_thermosense():
+    """Gate C must work for any backend — no NotImplementedError on non-thermosense traits.
+
+    Uses temperature_tolerance as a DUMMY trait: it is a real Genotype field
+    (bounds (0.0, 1.0)) that is INERT in the plain 'balanced' scenario (no temperature
+    enabled), so a resident-vs-mutant garden on it is ~neutral.
+    """
+    from ecology.evolvability.trait_axis import TraitAxis
+    from ecology.evolvability.verdicts import GradientVerdict
+
+    dummy = TraitAxis(
+        name="dummy_tolerance",
+        resident_value=0.20,
+        mutant_value=0.50,
+        low_value=0.0,
+        high_value=1.0,
+        h_trait="temperature_tolerance",
+        inefficiency_trait=None,
+        freeze_flag=None,
+        enable_flag="enable_temperature",
+        backend="generic",
+    )
+    base = D.replace(
+        SCENARIOS["balanced"],
+        horizon=300,
+        max_population=4000,
+        shuffle_creature_order=True,
+    )
+    out = run_local_pairwise_gradient(
+        base, dummy, [38, 39, 40, 41],
+        win_threshold=4, lose_threshold=1, min_valid=2,
+        window=(50, 280), min_pop=5,
+    )
+    # Must RUN (no NotImplementedError) and produce a valid GradientVerdict.
+    assert out.verdict in {v.value for v in GradientVerdict}
+    # A neutral/inert trait must NOT read as a positive local gradient (anti-cheat sanity).
+    assert out.verdict != GradientVerdict.POSITIVE_LOCAL_GRADIENT.value
+    # raw rows carry the resident/mutant trait values for the dummy trait.
+    assert out.raw_rows and out.raw_rows[0]["h_res"] == 0.20 and out.raw_rows[0]["h_mut"] == 0.50
+
+
+def test_local_pairwise_gradient_generic_determinism():
+    """Calling Gate C with a generic backend twice with the same seeds yields identical
+    aggregate wins/n_valid."""
+    from ecology.evolvability.trait_axis import TraitAxis
+
+    dummy = TraitAxis(
+        name="dummy_tolerance",
+        resident_value=0.20,
+        mutant_value=0.50,
+        low_value=0.0,
+        high_value=1.0,
+        h_trait="temperature_tolerance",
+        inefficiency_trait=None,
+        freeze_flag=None,
+        enable_flag="enable_temperature",
+        backend="generic",
+    )
+    base = D.replace(
+        SCENARIOS["balanced"],
+        horizon=300,
+        max_population=4000,
+        shuffle_creature_order=True,
+    )
+    kw = dict(win_threshold=4, lose_threshold=1, min_valid=2,
+              window=(50, 280), min_pop=5)
+    out1 = run_local_pairwise_gradient(base, dummy, [38, 39, 40, 41], **kw)
+    out2 = run_local_pairwise_gradient(base, dummy, [38, 39, 40, 41], **kw)
+    assert out1.aggregate["wins"] == out2.aggregate["wins"]
+    assert out1.aggregate["n_valid"] == out2.aggregate["n_valid"]
