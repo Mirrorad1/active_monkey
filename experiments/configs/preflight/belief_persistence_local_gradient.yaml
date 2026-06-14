@@ -1,0 +1,48 @@
+# Evolvability Preflight — Phase 3 rung 1b: belief_persistence local gradient
+# (pre-registered in loop/directions/hidden-state-memory.md)
+#
+# The CONTINUOUS analog of rung-1's integer memory_horizon. memory_horizon's smallest
+# step is 1->2 (a 100% jump) — NOT a local eps-step, so rung-1's FAIL could in principle
+# have been a granularity artifact. belief_persistence is a continuous EMA weight, so
+# resident 0.5 -> mutant 0.55 is a genuinely small eps step: the FAITHFUL local-gradient
+# test. Same engine mechanism (hidden mode + cue), high-food + mode-hazard regime that
+# sustains drift-safe pops (~150-280). Verdict on FRESH seeds [50-57] with a perfect-percept
+# (cue_noise=0) drift control run alongside (see the card): a real memory signal must beat
+# that control; if noisy ~= control, the residual is drift, not denoising.
+
+slug: belief_persistence_local_gradient
+description: "Phase 3 rung 1b: local gradient of CONTINUOUS belief_persistence (eps-step) under a hidden switching mode."
+
+base_scenario: balanced
+base_overrides:
+  enable_hidden_mode: true
+  mode_wrong_regen_factor: 1.0   # uniform food (carrying capacity intact)
+  mode_hazard_scale: 0.6         # survivable wrong-half penalty = the inference payoff
+  capacity: 50.0
+  regen_rate: 3.0
+  initial_resource: 0.7
+  max_population: 30000
+  mode_switch_prob: 0.05
+  cue_noise: 1.0
+  memory_cost_slope: 0.005
+  memory_upkeep_floor: 0.0
+  shuffle_creature_order: true
+
+trait: belief_persistence        # BELIEF_PERSISTENCE_AXIS: resident 0.50, mutant 0.55, backend memory
+controller: null
+
+seeds: [50, 51, 52, 53, 54, 55, 56, 57]
+horizon: 1500
+measurement_window: [50, 800]
+output_dir: results/preflight
+
+gates:
+  - local_pairwise_gradient
+  - invasion_from_rarity
+  - null_guards
+
+monomorphic_grid: [0.0, 0.25, 0.5, 0.7, 0.9]   # not run (monomorphic_sweep is thermosense-only)
+cost_values: [0.0025, 0.005, 0.01]             # not run (cost_sensitivity is thermosense-only)
+
+min_valid_seeds: 6
+min_population: 80

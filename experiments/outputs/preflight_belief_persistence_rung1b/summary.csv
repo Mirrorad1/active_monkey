@@ -1,0 +1,4 @@
+name,verdict,wins,n_valid,mean_effect,mean_s,optimum_h,above_resident,survivable,mean_delta,mean_delta_r,increase_count,sign_change_cost,unaffordable_cost,cross_partial,B_ll,B_hh,all_pass,n_guards
+local_pairwise_gradient,FLAT_OR_NOISY,6,8,0.24180787161556394,0.002125881634871211,,,,,,,,,,,,,
+invasion_from_rarity,DOES_NOT_INVADE,,8,,,,,,,,0,,,,,,,
+null_guards,,,,,,,,,,,,,,,,,True,7

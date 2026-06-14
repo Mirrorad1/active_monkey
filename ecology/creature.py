@@ -126,6 +126,9 @@ class HomeostaticPolicy:
         # hidden-mode branch first runs (only when enable_hidden_mode=True); a plain attribute,
         # NEVER in events_hash, so the OFF path is byte-identical to exp194-206.
         self.cue_buffer: "list[float] | None" = None
+        # Phase 3 rung-1b: continuous-belief EMA state (lazy; only used when
+        # belief_persistence>0). Plain attribute, NEVER in events_hash.
+        self.belief_ema: "float | None" = None
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -157,14 +160,28 @@ class HomeostaticPolicy:
         # this block ⇒ byte-identical to Exp 194-206 (the use_thermo path below is reached
         # with IDENTICAL rng draws when enable_hidden_mode is False).
         if world.enable_hidden_mode and world.cell_type is not None:
-            k = max(1, int(creature.genotype.memory_horizon))
             cue = float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
-            if self.cue_buffer is None:
-                self.cue_buffer = []
-            self.cue_buffer.append(cue)
-            if len(self.cue_buffer) > k:
-                self.cue_buffer = self.cue_buffer[-k:]
-            m_hat = 1 if (sum(self.cue_buffer) / len(self.cue_buffer)) >= 0.5 else 0
+            rho = float(creature.genotype.belief_persistence)
+            if rho > 0.0:
+                # Phase 3 rung-1b: CONTINUOUS belief — an EMA with persistence rho, so a
+                # genuinely small heritable step (rho -> rho+eps) can be tested. rho=0 would
+                # be "react to current cue only" (== memory_horizon=0). The single cue rng
+                # draw above is identical to the buffer path, so byte-identity is preserved.
+                if self.belief_ema is None:
+                    self.belief_ema = cue
+                else:
+                    self.belief_ema = (1.0 - rho) * cue + rho * self.belief_ema
+                belief = self.belief_ema
+            else:
+                # Integer buffer-mean path (rung-1; unchanged when belief_persistence==0).
+                k = max(1, int(creature.genotype.memory_horizon))
+                if self.cue_buffer is None:
+                    self.cue_buffer = []
+                self.cue_buffer.append(cue)
+                if len(self.cue_buffer) > k:
+                    self.cue_buffer = self.cue_buffer[-k:]
+                belief = sum(self.cue_buffer) / len(self.cue_buffer)
+            m_hat = 1 if belief >= 0.5 else 0
 
             # Steer toward the inferred-good half (right if m_hat==1, left if m_hat==0).
             # Score lexicographically: (in-good-half, believed-resource, -index).
