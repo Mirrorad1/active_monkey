@@ -253,6 +253,29 @@ class EcologyConfig:
     residue_fp_threshold: float = 0.5    # true fresh-fraction below which an eat is a false positive
     residue_confusion: float = 0.6       # signature-gap difficulty; percept noise sd = confusion*(1-h)
 
+    # ------------------------------------------------------------------
+    # Exp 206: rotating-class niche / sympatric-divergence bridge.
+    # ALL defaults preserve Exp 194-205 byte-identical behaviour (enable_niche False ⇒ no
+    # niche state allocated, the eat step is the plain consume, choose_action niche branch
+    # never runs — no rng-stream perturbation anywhere).
+    #
+    # Each cell has a hidden time-ROTATING class j(pos,t)=floor(niche_classes*frac(class_phase[pos]
+    # + frac(t*niche_rotation))). Rotation makes the class non-memorizable by the learned map (the
+    # confound-hunters' load-bearing fix). The sensor (thermosense_intensity h) keys ONLY a noisy
+    # read of a cell's CURRENT class (in routing, creature.py); the EAT step is h-blind and applies
+    # a frequency-dependent crowding discount kept = intake/(1 + niche_crowding*occ_prev[j_true]),
+    # where occ_prev is the FROZEN previous-step count of creatures on that class (h-blind).
+    # ANTI-CHEAT: no food/fitness is f(h); h enters only the routing percept noise sd =
+    # niche_confusion*(1-h); the crowding divisor is a creature-COUNT on the TRUE class.
+    # ------------------------------------------------------------------
+    enable_niche: bool = False
+    niche_classes: int = 2               # K (A=common, B=rarer)
+    niche_rotation: float = 0.0          # per-step class-phase rotation; 0 ⇒ static (STATIC_NICHE control)
+    niche_confusion: float = 0.6         # routing percept noise scale; sd = niche_confusion*(1-h)
+    niche_crowding: float = 0.0          # crowding discount strength (0 ⇒ NO_CROWDING control)
+    niche_weight: float = 4.0            # routing bias toward the read under-crowded class
+    niche_barcode_shuffle: bool = False  # BARCODE_SHUFFLED placebo: decorrelate read-class from value
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -313,6 +336,33 @@ class Ecology:
         # no extra rng draw). The field is pure state, never entering events_hash.
         if cfg.enable_residue:
             self.world.residue = np.zeros(cfg.rows * cfg.cols, dtype=np.float64)
+
+        # Exp 206: allocate the rotating-class niche state ONLY when enabled (OFF ⇒ byte-identical).
+        # class_phase is a PURE-ARITHMETIC low-discrepancy spread of cells across [0,1) (golden-ratio
+        # conjugate) — NO rng, NOT temperature-derived, so the class is not a memorizable spatial
+        # value. The mutual-exclusion guard (kin of the band-staleness assert) prevents the niche and
+        # band-staleness routing branches from silently shadowing each other.
+        if cfg.enable_niche:
+            assert not cfg.enable_band_staleness, (
+                "enable_niche and enable_band_staleness are mutually exclusive routing modes"
+            )
+            n_cells = cfg.rows * cfg.cols
+            _PHI = 0.6180339887498949  # (sqrt(5)-1)/2, low-discrepancy
+            _idx = np.arange(n_cells, dtype=np.float64)
+            self.world.class_phase = np.mod((_idx + 0.5) * _PHI, 1.0)
+            self.world.class_signal = self.world.class_phase.copy()   # t=0: omega=0
+            self.world.class_occ_prev = np.zeros(cfg.niche_classes, dtype=np.int64)
+            self.world.class_occ_cur = np.zeros(cfg.niche_classes, dtype=np.int64)
+            self.world.enable_niche = True
+            self.world.niche_classes = cfg.niche_classes
+            self.world.niche_confusion = cfg.niche_confusion
+            self.world.niche_weight = cfg.niche_weight
+            if cfg.niche_barcode_shuffle:
+                # decorrelate the routing read-class from the true crowding class: a deterministic
+                # coprime-stride permutation (no rng) — reading precisely tells you nothing actionable.
+                self.world.niche_read_perm = (np.arange(n_cells) * 7919) % n_cells
+            else:
+                self.world.niche_read_perm = None
 
         self.t: int = 0
         self.next_id: int = 0
@@ -546,6 +596,29 @@ class Ecology:
                         ph.fn_count += 1                       # false negative: skipped fresh
                     else:
                         ph.tn_count += 1                       # true negative: skipped residue
+        elif cfg.enable_niche and self.world.class_phase is not None:
+            # Exp 206: rotating-class niche. The eat step is fully h-BLIND (no rng here): h's
+            # value is realized in ROUTING (creature.choose_action steers toward the under-crowded
+            # class via an h-keyed noisy read of neighbour classes). Here we only apply the
+            # frequency-dependent CROWDING discount on the cell's TRUE current class.
+            # ANTI-CHEAT: intake = the unchanged consume(); the discount divisor is a creature-COUNT
+            # on j_true via the FROZEN previous-step occupancy snapshot — never c_read, never h.
+            K = self.world.niche_classes
+            j_true = int(K * float(self.world.class_signal[new_pos]))
+            if j_true >= K:                                    # guard the frac==1.0 edge
+                j_true = K - 1
+            self.world.class_occ_cur[j_true] += 1              # occupancy (every alive creature counts)
+            if c.policy.niche_occ is None:
+                c.policy.niche_occ = [0] * K
+            c.policy.niche_occ[j_true] += 1                    # per-creature class telemetry (modal class)
+            if deficit > 0:
+                avail = self.world.resource_at(new_pos)
+                want = min(deficit, avail)
+                occ = float(self.world.class_occ_prev[j_true])  # frozen prev-step count of this class
+                kept = want / (1.0 + cfg.niche_crowding * occ)  # h-blind crowding discount
+                self.world.consume(new_pos, kept)               # deplete only the realized intake
+                ph.energy += kept
+                ph.resource_eaten += kept
         else:
             if deficit > 0:
                 eaten = self.world.consume(new_pos, deficit)
@@ -691,6 +764,19 @@ class Ecology:
                 * math.sin(2.0 * math.pi * self.t / self.cfg.food_optimal_period)
             )
 
+        # Exp 206: recompute the ROTATING class signal + reset this-step occupancy BEFORE
+        # processing. Gated on enable_niche ⇒ OFF path never runs (byte-identical, no rng).
+        # class_signal[pos] = frac(class_phase[pos] + omega(t)), omega = frac(t*niche_rotation):
+        # a cell's true class j(pos,t)=floor(K*class_signal[pos]) ROTATES over time, so a static
+        # learned map cannot memorise it (the non-memorizability fix). class_occ_prev (last step's
+        # per-class occupancy) is FROZEN here and read by the discount + routing this step; the
+        # eat step fills class_occ_cur, which becomes prev after the loop (deterministic,
+        # order-independent ⇒ no eat-first asymmetry under shuffle). No rng; not in events_hash.
+        if self.cfg.enable_niche and self.world.class_phase is not None:
+            omega = (self.t * self.cfg.niche_rotation) % 1.0
+            self.world.class_signal = np.mod(self.world.class_phase + omega, 1.0)
+            self.world.class_occ_cur = np.zeros(self.world.niche_classes, dtype=np.int64)
+
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
         # shuffle_creature_order is True, a RANDOMISED order each step (rng.shuffle, drawing
@@ -720,6 +806,11 @@ class Ecology:
 
         for c in order:
             self._step_one_creature(c, pending_children)
+
+        # Exp 206: freeze this step's occupancy as next step's crowding snapshot (no rng,
+        # not in events_hash). OFF path never runs ⇒ byte-identical.
+        if self.cfg.enable_niche and self.world.class_occ_cur is not None:
+            self.world.class_occ_prev = self.world.class_occ_cur
 
         if _band_before is not None:
             _band_after = float(np.sum(self.world.resource[_mask]))
