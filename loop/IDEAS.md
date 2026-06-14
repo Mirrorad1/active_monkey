@@ -1235,6 +1235,13 @@ The loop marks items it has consumed by indenting a response under them:
     (d) Other / redirect / stop.
     Falsifier-bound per VALIDATION. No silence-actionable default — each needs its own word; the loop
     idles with this consult posted until a word appears.
+  → [human, 2026-06-14, in-session] WORD: "Continue with exp 206" — option (a): the BARCODE-NICHE
+    bridge, the last structurally-distinct escape. CONSUMED as Exp 206. Ultracode session ⇒ hardened
+    with a multi-agent design + adversarial-confound-audit workflow BEFORE any code (the precedent that
+    found the engine confounds defeating exp201/202): N diverse niche designs, each audited against the
+    arc's known traps (resource-memory free-ride, id-order, free-trait substitution, drift/collapse,
+    no-direct-h-reward, archive-preserves-h, the L22 evolved-gene-pool verdict), then synthesized into
+    the binding pre-registration. After 206 the structurally-distinct escapes are EXHAUSTED → hold.
 
 (empty — drop ideas above this line's section freely)
 
