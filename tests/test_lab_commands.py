@@ -30,3 +30,17 @@ def test_lab_command_has_consent_gate():
     assert "go" in text
     assert "confirm" in text or "wait" in text
     assert "vation.md" in text or "consent" in text  # cites the boundary
+
+
+def test_steer_command_exists():
+    assert (CMD / "steer.md").is_file()
+
+
+def test_steer_command_uses_append_script():
+    text = (CMD / "steer.md").read_text(encoding="utf-8")
+    assert "tools/steer_append.py" in text
+
+
+def test_steer_command_marks_human_authorship():
+    text = (CMD / "steer.md").read_text(encoding="utf-8").lower()
+    assert "human" in text  # the bullet must be attributed to the human
