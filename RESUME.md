@@ -224,6 +224,23 @@ step 0.
   selection). The primitive-sensor ceiling is now MAXIMALLY GENERAL across FOUR distinct regimes: avoidance
   (199), foraging (200), increasing-returns (201), and real interference competition (202); competition SUPPRESSES
   the organ below founder. On branch exp202-... → PR. AWAITING HUMAN STEER on next direction.
+- **The SENSE-EVOLUTION sub-arc (Exp 203–205, the human's 2026-06-13 reframe "what conditions make a
+  costed sense EVOLVABLE, not just useful when gifted?"; reusable instrument ecology/sense_axis.py +
+  the enable_residue engine + the L25 runtime pre-flight):** all MIXED/NEW INSIGHT, converging on a
+  clean wall. **Exp 203** (selection-gradient audit) MEASURED the local gradient instead of running
+  another evolution and found the FIRST positive local gradient in the arc (band-staleness FORAGE,
+  0.10→0.15 wins 7/8) — but purely competitive + weak, one seed short of POSITIVE. **Exp 204**
+  (residue / false-positive bridge — precision AVOIDS a costly mistake instead of grabbing more food)
+  created the FIRST functional MONOMORPHIC optimum in the arc (N* h*=0.60) but it was un-earnable;
+  NO_VERDICT because the false-positive cost collapsed 2/5 populations. **Exp 205** (survivable-loss
+  sweep) RESOLVED that NO_VERDICT and REFUTED its own mechanism hypothesis: at survivable losses
+  (0.8/1.2/1.5, pops ≥4/5 valid) the monomorphic optimum IS functional (h*=0.60) yet evolution STILL
+  stays primitive (0/5 functional, local pairwise ≤0) — so the FITNESS VALLEY, not demographic
+  collapse, is the SOLE binding barrier (the L22 forced-vs-evolvable gap in its purest form: a
+  functional, survivable, bulk-fitter optimum still un-evolvable because small steps don't pay). Six
+  experiments (199–205) now converge: no costed sense becomes a functional organ at this substrate.
+  Post-205 CONSULT live in loop/IDEAS.md (206 barcode-niches = the last structurally-distinct escape /
+  207 controller / accept + synthesize). Card: loop/directions/population-ecology.md.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

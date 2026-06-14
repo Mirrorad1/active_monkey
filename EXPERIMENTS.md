@@ -8430,3 +8430,91 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   cheap clarity option; (d) accept the sub-arc answer (no costed sense becomes functional across five
   regimes; the valley + demographic cost are the universal barriers) and write the synthesis; (e) redirect/
   stop. Falsifier-bound per VALIDATION; a failed predeclared test on any bridge HALTS for a word.
+
+## Exp 205 — N5 SENSE-EVOLUTION sub-arc: the SURVIVABLE-LOSS RESIDUE SWEEP — resolving Exp 204's NO_VERDICT REFUTES its own mechanism hypothesis: at survivable false-positive-cost levels the monomorphic optimum IS functional (h*=0.60) AND the population SURVIVES, yet the sensor STILL stays primitive — so the FITNESS VALLEY (local gradient ≤0), NOT demographic collapse, is the binding barrier (MIXED / NEW INSIGHT)
+
+- Plain: Exp 204 found that making precision avoid a costly mistake (eating residue) finally makes a pure
+  precise population genuinely fitter — but evolution didn't climb, and at the cost level tested the
+  population partly went extinct, so it was inconclusive. The open question: is there a GENTLER cost where
+  the population survives AND a precise population is still fitter, so evolution could actually climb? Or is
+  the failure fundamental? This swept the false-positive cost across five levels. The answer is sharper than
+  expected and overturns my own guess: at three survivable cost levels (0.8, 1.2, 1.5) the population
+  survives fine AND a pure precise population would be fitter (the population-level optimum is a strong
+  sensor, h*=0.60) — yet evolution STILL keeps the sensor primitive (it never climbs above ~0.09, vs ~0.03
+  with no residue). So the killer is NOT the population dying (my Exp 204 guess) — it is that a single small
+  step toward better sensing does not pay off head-to-head (a fitness valley): you would have to leap, and
+  evolution only takes small steps. The cost that makes precision valuable in bulk gives no reward at the
+  margin. A real but weak upward push exists (it grows with the cost, 0.04 -> 0.09) but stays far below
+  functional. Verdict MIXED because the result refuted the SPECIFIC mechanism I predeclared (collapse), even
+  though the bridge clearly fails to evolve a functional sensor anywhere.
+- Hypothesis (pre-registered in loop/directions/population-ecology.md, commit d05f89f, BEFORE any data, on
+  the human's word "continue experimenting" = post-204 option (c)): the collapse-vs-functional-optimum
+  tradeoff is FUNDAMENTAL — at every survivable residue_loss the sensor stays primitive AND the only losses
+  with a functional monomorphic optimum (h*>0.30) are the ones that COLLAPSE the population, so NO loss gives
+  both. (Predicting NEGATIVE; the data REFUTED the mechanism — functional optima ARE survivable — an honest
+  surprise that CORRECTS Exp 204's interpretation.)
+- Setup: experiments/exp205_n5_survivable_loss.py REUSING the committed enable_residue engine (NO new
+  feature) + the Exp 204 builders/evo_job. residue_confusion=0.6, yield=1.0, decay=0.05 (Exp 204 med
+  regime); SWEEP residue_loss in {0.5,0.8,1.0,1.2,1.5}. Per loss: (1) monomorphic competitive optimum h*
+  (carrying-capacity N*(h) over the clamp grid, RESIDUE_COMPETE, seeds {50-53}); (2) survival = RC evolution
+  final pops (>=4/5 valid = survivable, L21); (3) evolution gene-pool NEWBORN mean h + functional fraction,
+  RC vs NO_RESIDUE, fresh seeds {80-84}, horizon 8000; (4) local pairwise s(0.10 vs 0.15) over 8 seeds
+  {50-57}. RUNTIME PRE-FLIGHT (L25, require_safe=True): probed at the ACTUAL FOUNDER h=0.10 (not the usual
+  forced-h=0, which is PATHOLOGICAL for the residue mechanic — a population pinned at exactly 0 reads the
+  freshness percept at max noise and eats indiscriminately, exploding; a regime that never occurs in
+  evolution), and used probe_steps=3000 because the band-compete population equilibrates only ~t=2000 (a
+  shorter probe sees only pre-plateau growth and cries wolf — the L26 logistic caveat). Both deviations
+  disclosed + empirically justified (full-horizon-8000 ground-truth trajectories plateau at pop ~60-126
+  across all losses, never exploding). Run gated SAFE; 250 jobs, 77s.
+- Result (committed exp205.txt + exp205_n5_survivable_loss/verdict.json): VERDICT MIXED, blind-verified
+  AGREE. Per-loss (mono h* | evo mean_h, functional/5, valid/5, pw won/8): 0.5 (h*=0.10 | 0.042, 0/5, 5/5,
+  1/8); 0.8 (h*=0.60 | 0.037, 0/5, 4/5, 3/8); 1.0 (h*=0.60 | 0.052, 0/5, 2/5, 1/8); 1.2 (h*=0.60 | 0.070,
+  0/5, 5/5, 2/8); 1.5 (h*=0.60 | 0.093, 0/5, 5/5, 2/8). NO_RESIDUE baseline evolution mean h = 0.029 (5/5).
+  survivable_losses = [0.5, 0.8, 1.2, 1.5]; functional_optimum_losses = [0.8, 1.0, 1.2, 1.5]; their
+  INTERSECTION = {0.8, 1.2, 1.5} is NON-EMPTY — functional optima that ALSO survive. By the predeclared rule:
+  POSITIVE fails (0/5 functional and pw won <=3/8 everywhere); NEGATIVE fails conjunct (ii) (functional
+  optima 0.8/1.2/1.5 do NOT collapse — they persist >=4/5 valid); => MIXED. p1 determinism True.
+- Verifier: AGREE (MIXED), independently recomputed conjunct-by-conjunct (blinded). Load-bearing fact it
+  isolated: functional-optimum losses 0.8/1.2/1.5 are BOTH functional (h*=0.6) AND survivable (>=4/5), so the
+  NEGATIVE rule's "functional optimum => collapse" separation is broken; POSITIVE independently dead (funct
+  0/5 everywhere, max pw won 3/8).
+- Implication (generalizability tier: functional-form, scoped to this engine/regime): this RESOLVES Exp
+  204's NO_VERDICT and CORRECTS its interpretation. Exp 204 attributed the bridge's failure jointly to a
+  fitness valley AND demographic collapse (2/5 extinct at loss=1.5). Exp 205 shows the collapse was
+  INCIDENTAL, not necessary: at survivable losses (0.8/1.2/1.5) where the population persists fine AND a pure
+  precise population would be fitter (functional monomorphic optimum h*=0.60), evolution STILL keeps the
+  sensor primitive (0/5 functional; mean 0.037-0.093; local pairwise gradient <=0, won <=3/8). So the SOLE
+  binding barrier is the FITNESS VALLEY — the local selection gradient at the resident is <=0 even when (a)
+  the population survives and (b) a precise population is genuinely fitter in bulk. This is the L22
+  forced-vs-evolvable gap in its purest, most isolated form: a functional, SURVIVABLE monomorphic optimum
+  that is still un-evolvable purely because small steps toward it do not pay. A real but weak push exists and
+  GROWS monotonically with the loss (0.042 -> 0.093, all above the no-residue control 0.029) — the same
+  weak-relational-gradient shape as Exp 203/204 — but never approaches functional. Reusable meta-lesson
+  (sharpening L22): a benefit being both large-in-bulk (functional monomorphic optimum) AND demographically
+  affordable (survivable) is STILL not sufficient for evolvability — only the sign of the LOCAL gradient at
+  the resident decides, and a bulk/installed optimum tells you nothing about it.
+- Verdict: MIXED / NEW INSIGHT — the survivable-loss sweep REFUTED its own predeclared NEGATIVE mechanism
+  (collapse) and thereby sharpened the finding: at survivable losses with a functional monomorphic optimum
+  (h*=0.60, pops >=4/5 valid) the sensor STILL stays primitive (0/5 functional, pairwise <=0), so the fitness
+  valley — not demographic collapse — is the binding barrier. The residue bridge fails to evolve a functional
+  sensor at every loss; Exp 204's NO_VERDICT is resolved as a clean failure-to-evolve with the mechanism
+  precisely pinned. Blind-verified AGREE.
+- Honest caveat: the token is MIXED only because my predeclared NEGATIVE over-specified the MECHANISM
+  ("functional optima collapse"), which the data refuted — the BRIDGE itself clearly fails (no functional
+  sensor evolves at any survivable loss, 0/5 everywhere, pairwise <=0). This is a NEGATIVE-on-the-bridge with
+  a corrected mechanism, recorded as MIXED per the literal rule (L1/L2). loss=1.0 was under-sampled (2/5
+  valid — a mid-range collapse, excluded per L21); the survivable losses 0.5/0.8/1.2/1.5 carry the verdict.
+  The weak monotone push (0.04->0.09 with loss) is real (above NO_RESIDUE) but far sub-functional and is not
+  claimed as a climb. Two disclosed pre-flight deviations (founder-h=0.10 probe instead of forced-h=0;
+  probe_steps 3000) were empirically justified by committed full-horizon ground-truth trajectories — the L26
+  logistic caveat in action (the guard cried wolf on a healthy plateauing run). Founders + policy + costs
+  PROVIDED; reuses the Exp 204 engine unchanged.
+- Next: post-205 CONSULT (loop/IDEAS.md). The residue bridge is now a CLEAN wall (the fitness valley is the
+  sole binding barrier, isolated from collapse). Six sense-evolution experiments (199-205) converge: no
+  costed sense becomes a functional organ at this substrate; the local gradient at the resident is <=0 even
+  when a precise population is fitter in bulk and survives. Options (each needs a word): (a) Exp 206 barcode
+  niches (the one structurally-distinct escape left — a high-sensor lineage escapes the herding into a
+  private niche, the only mechanism that could create a POSITIVE local gradient via frequency-dependence);
+  (b) Exp 207 sensor-controller co-adaptation; (c) RECOMMENDED — ACCEPT the sub-arc answer and write the
+  synthesis dossier (the valley is the universal barrier; a functional, survivable, bulk-fitter optimum is
+  still un-evolvable when small steps don't pay); (d) redirect/stop.
