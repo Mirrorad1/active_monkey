@@ -3,318 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>active_monkey — a toy world-model lab</title>
-<meta name="description" content="An open-source active-inference research log testing world-model growth, identity continuity, and failure modes in tiny embodied agents.">
+<title>active_monkey — a documented self-lab</title>
+<meta name="description" content="A documented self-lab studying how tiny artificial ecologies move from pressure to sensing, persistent capabilities, belief state, and world models.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
-<meta property="og:title" content="active_monkey — a toy world-model lab">
-<meta property="og:description" content="Tiny active-inference creatures, predeclared falsifiers, blinded checks, and a research log about when a model knows its worldview is too small.">
+<meta property="og:title" content="active_monkey — a documented self-lab">
+<meta property="og:description" content="Tiny artificial ecologies, strict falsifiers, and a public lab notebook asking when information becomes useful to the system itself.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mirrorad1.github.io/active_monkey/">
 <meta property="og:image" content="https://mirrorad1.github.io/active_monkey/assets/monkey-512.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="am.css?v=5">
 <style>
-  .hero{padding:54px 0 28px;}
-  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:end;}
-  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:30px;}}
-  .hero h1{font-size:clamp(34px,5vw,58px);margin:16px 0 0;}
-  .hero .lead{margin-top:22px;max-width:57ch;}
-  .hero .lead b{color:var(--ink);font-weight:500;}
-  .hero-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
-  .hero-side{display:flex;flex-direction:column;gap:18px;}
-  .status-card{border:1px solid var(--ink);background:rgba(255,255,255,.45);padding:20px 22px;}
-  .status-card .label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:10px;}
-  .status-card .latest{font-family:var(--serif);font-size:19px;line-height:1.25;color:var(--ink);}
-  .status-card .latest span{color:var(--accent);font-style:italic;}
-  .status-card .small{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin-top:12px;}
-  .hero-stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);}
-  section{padding:46px 0;}
-  .sec-head{margin-bottom:30px;max-width:66ch;}
-  .sec-head h2{font-size:clamp(26px,3.4vw,38px);margin:12px 0 0;}
-  .sec-head p{margin:16px 0 0;color:var(--ink-2);font-family:var(--serif);font-size:17px;line-height:1.55;}
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
-  @media(max-width:820px){.cards3{grid-template-columns:1fr;}}
-  .card{padding:24px 22px 26px;border-right:1px solid var(--line);background:rgba(255,255,255,.25);}
-  .card:last-child{border-right:none;}
-  @media(max-width:820px){.card{border-right:none;border-bottom:1px solid var(--line);}.card:last-child{border-bottom:none;}}
-  .card .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
-  .card h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:14px 0 8px;letter-spacing:-.01em;}
-  .card p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.58;}
-  .program{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  @media(max-width:760px){.program{grid-template-columns:1fr;}}
-  .track{border:1px solid var(--line);background:rgba(255,255,255,.35);padding:20px 20px 22px;}
-  .track .state{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px;}
-  .track h3{font-family:var(--serif);font-size:20px;font-weight:500;margin:0 0 8px;}
-  .track p{font-size:13px;color:var(--ink-2);line-height:1.55;margin:0;}
-  .track b{color:var(--ink);font-weight:500;}
-  .how{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
-  @media(max-width:760px){.how{grid-template-columns:1fr;}}
-  .how .col{padding:24px 24px 26px;border-right:1px solid var(--line);}
-  .how .col:last-child{border-right:none;}
-  @media(max-width:760px){.how .col{border-right:none;border-bottom:1px solid var(--line);}.how .col:last-child{border-bottom:none;}}
-  .how .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;}
-  .how h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:12px 0 10px;letter-spacing:-.01em;}
-  .how p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6;}
-  .flow{margin-top:16px;border:1px solid var(--line);background:var(--paper-2);padding:15px 20px;}
-  .flow .fl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}
-  .flow .steps{font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.95;}
-  .flow .ar{color:var(--accent);padding:0 2px;}
-  .climb{position:relative;padding-left:34px;}
-  .climb::before{content:"";position:absolute;left:9px;top:8px;bottom:34px;width:2px;background:linear-gradient(var(--accent),var(--line));}
-  .act{position:relative;border-top:1px solid var(--line);padding:20px 0;display:grid;grid-template-columns:54px 1fr auto;gap:20px;align-items:start;text-decoration:none;color:inherit;transition:background .15s;}
-  .act:hover{background:rgba(255,255,255,.4);}
-  .act::before{content:"";position:absolute;left:-29.5px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--paper);}
-  .act .rn{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--ink);line-height:1;padding-top:2px;}
-  .act .q{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:-.01em;margin:0;line-height:1.12;}
-  .act .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px;}
-  .act .sm{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;max-width:58ch;line-height:1.5;}
-  .act .meta{text-align:right;font-size:11px;color:var(--ink-2);white-space:nowrap;padding-top:4px;}
-  .act .meta b{font-family:var(--serif);font-size:25px;font-weight:500;color:var(--ink);display:block;line-height:1;}
-  .dd{border:1px solid var(--ink);background:var(--paper-2);padding:34px 32px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
-  @media(max-width:720px){.dd{grid-template-columns:1fr;}}
-  .dd h2{font-family:var(--serif);font-size:27px;font-weight:500;margin:0;letter-spacing:-.01em;line-height:1.1;}
-  .dd p{margin:12px 0 0;color:var(--ink-2);font-size:14px;max-width:58ch;line-height:1.55;}
-  .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
-  .rv.in{opacity:1;transform:none;}
-  body[data-motion="off"] .rv{opacity:1;transform:none;}
+  .page{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);}
+  .brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:600;}
+  .links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;}
+  .links a{color:var(--ink-2);text-decoration:none;}.links a:hover{color:var(--accent);}
+  .hero{padding:58px 0 42px;display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:end;}
+  @media(max-width:820px){.hero{grid-template-columns:1fr;}}
+  h1{font-size:clamp(38px,5.6vw,66px);margin:16px 0 0;max-width:12ch;}
+  .lead{font-family:var(--serif);font-size:20px;line-height:1.48;color:var(--ink-2);max-width:62ch;margin:22px 0 0;}.lead b{color:var(--ink);font-weight:500;}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
+  section{padding:46px 0;border-top:1px solid var(--line);}
+  .sec-head{max-width:72ch;margin-bottom:26px;}.sec-head h2{font-size:clamp(28px,3.5vw,40px);margin:12px 0 0;}.sec-head p{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink-2);}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);}@media(max-width:820px){.grid3{grid-template-columns:1fr;}}
+  .card{padding:22px;border-right:1px solid var(--line);background:rgba(255,255,255,.28);}.card:last-child{border-right:none;}@media(max-width:820px){.card{border-right:none;border-bottom:1px solid var(--line);}.card:last-child{border-bottom:none;}}
+  .card .eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}.card h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:12px 0 8px;}.card p{font-size:13.5px;line-height:1.58;color:var(--ink-2);margin:0;}
+  .spine{border:1px solid var(--line);background:rgba(255,255,255,.3);}.row{display:grid;grid-template-columns:68px 1fr;gap:18px;padding:20px 24px;border-top:1px solid var(--line);}.row:first-child{border-top:none;}.num{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--accent);line-height:1;}.row h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 6px;}.row p{font-size:13.5px;line-height:1.58;color:var(--ink-2);margin:0;}
+  .callout{border:1px solid var(--ink);background:var(--paper-2);padding:30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}@media(max-width:720px){.callout{grid-template-columns:1fr;}}
+  .callout h2{font-size:28px;margin:0;}.callout p{font-size:14px;line-height:1.55;color:var(--ink-2);margin:12px 0 0;max-width:62ch;}
+  footer{padding:40px 0;color:var(--ink-2);font-family:var(--mono);font-size:12px;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div class="page">
+  <nav class="topbar">
+    <a class="brand" href="index.html">active_monkey</a>
+    <div class="links">
+      <a href="journey.html">notebook</a>
+      <a href="open_problem.html">open problem</a>
+      <a href="https://github.com/Mirrorad1/active_monkey">github</a>
+    </div>
+  </nav>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="experiments-data.js?v=5"></script>
-<script src="am-live.js?v=5"></script>
-<script src="lab-status.js?v=5"></script>
-<script type="text/babel" src="tweaks-panel.jsx?v=5"></script>
-<script type="text/babel" src="am-shared.jsx?v=5"></script>
-
-<script type="text/babel">
-const { useState, useEffect } = React;
-
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": "growth",
-  "fontPair": "editorial",
-  "gridPaper": true,
-  "motion": true
-}/*EDITMODE-END*/;
-
-function Reveal({children, delay=0, className=""}){
-  const [ref,seen] = useInView();
-  return <div ref={ref} className={"rv "+(seen?"in ":"")+className} style={{transitionDelay:(seen?delay:0)+"ms"}}>{children}</div>;
-}
-
-function chapterCount(id, exps){
-  return (exps||AM_EXPERIMENTS).filter(e => e.chapter === id).length;
-}
-
-function Hero({tally}){
-  const s = window.AM_LAB_STATUS;
-  const latest = s?.latest_exp;
-  return (
-    <header className="hero">
-      <div className="wrap hero-grid">
-        <div>
-          <div className="kicker">open-source research log · active inference · world models</div>
-          <h1 className="h-display">A tiny creature, tested until the story breaks.</h1>
-          <p className="lead"><b>active_monkey is a toy world-model lab built on active inference.</b> The subject is not an LLM. It is a small embodied agent that senses, acts, updates beliefs, forms preferences, grows structure, and sometimes fails in useful ways. The point is not to hype emergence; the point is to make every claim falsifiable enough that null results can steer the research.</p>
-          <div className="hero-cta">
-            <a className="btn btn-primary" href="journey.html">Follow the experiment log →</a>
-            <a className="btn btn-ghost" href="open_problem.html">Current open problem</a>
-          </div>
-          <div className="hero-stats">
-            <div className="stat"><b className="tabnum">{tally.total}</b><span>experiments run</span></div>
-            <div className="stat" style={{color:"var(--break)"}}><b className="tabnum" style={{color:"var(--break)"}}>{tally.breakthrough||0}</b><span>breakthroughs</span></div>
-            <div className="stat win"><b className="tabnum">{tally.positive||tally.win||0}</b><span>positives</span></div>
-            <div className="stat"><b className="tabnum">{tally.wall}</b><span>honest walls</span></div>
-          </div>
-          <p style={{marginTop:'22px', fontSize:'15px', color:'var(--ink-2)', fontFamily:"var(--serif)", lineHeight:1.55, maxWidth:'58ch'}}>Every serious result is predeclared against falsifiers, negative results stay in the log, and recent verdicts are checked with blinded verification. <a href="https://github.com/Mirrorad1/active_monkey" target="_blank" rel="noopener" style={{color:'var(--accent)', fontWeight:500}}>Open on GitHub ↗</a></p>
-        </div>
-        <div className="hero-side">
-          <img className="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="160" height="160"/>
-          {latest && <div className="status-card">
-            <div className="label">latest logged experiment</div>
-            <div className="latest"><span>Exp {latest.n}</span> · {latest.title}</div>
-            <div className="small">The current edge is not "does it look intelligent?" It is whether a named causal claim survives null interventions, stream-composition tests, and trivial baselines.</div>
-          </div>}
-        </div>
+  <header class="hero">
+    <div>
+      <div class="kicker">open-source self-lab · artificial life · active inference</div>
+      <h1 class="h-display">When does a system become a creature?</h1>
+      <p class="lead"><b>active_monkey is a documented self-lab for creature-like agency.</b> It uses tiny artificial ecologies to ask when information becomes worth representing inside the system itself: first as sensing, then as organ-like persistence, later as belief, communication, and world models.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="journey.html">Read the lab notebook →</a>
+        <a class="btn btn-ghost" href="open_problem.html">Current open problem</a>
       </div>
-    </header>
-  );
-}
+    </div>
+    <img class="hero-monkey" src="assets/monkey-512.png" alt="active_monkey mascot" width="170" height="170">
+  </header>
 
-function WhatItIs(){
-  return (
-    <section id="idea">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">The framing</div>
-          <h2 className="h-section">Both active-inference lab and world-model lab.</h2>
-          <p>Active inference is the mechanism: prediction, surprise, action, belief update. World-model research is the target: what structure the agent has, how that structure grows, and whether identity survives perturbation.</p>
-        </Reveal>
-        <Reveal className="cards3" delay={80}>
-          <div className="card"><div className="eyebrow">mechanism</div><h3>Active inference</h3><p>The agent acts to reduce expected surprise and updates beliefs from what it senses. Think of it as a tiny runtime that continuously reconciles predictions with observations.</p></div>
-          <div className="card"><div className="eyebrow">object of study</div><h3>World models</h3><p>The experiments ask what the creature thinks exists: places, objects, anchors, self-state, and whether a missing factor should be added.</p></div>
-          <div className="card"><div className="eyebrow">discipline</div><h3>Falsifiable emergence</h3><p>A result only counts when the acceptance bars, trivial baselines, null interventions, and failure conditions are declared before the run.</p></div>
-        </Reveal>
+  <section>
+    <div class="sec-head">
+      <div class="kicker">The framing</div>
+      <h2 class="h-section">Creaturehood before capability.</h2>
+      <p>Most AI starts with a task and asks how smart the model can get. This lab starts with persistence: a tiny system in a world with resource pressure, sensory limits, competition, memory, and consequences.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="eyebrow">world</div><h3>The world has consequence</h3><p>A variable matters only if it changes whether the creature can continue, reproduce, or act better.</p></div>
+      <div class="card"><div class="eyebrow">representation</div><h3>Information has to earn its place</h3><p>The central question is when a world variable becomes worth sensing, remembering, compressing, or communicating from the creature's side.</p></div>
+      <div class="card"><div class="eyebrow">discipline</div><h3>Emergence gets tested</h3><p>A result counts only when direct reward, trivial baselines, seed accidents, and observer-only explanations have been made hard to confuse with the claim.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="kicker">The research spine</div>
+      <h2 class="h-section">Ecology → sensor → organ → belief.</h2>
+      <p>The public story is not experiment 1 versus experiment 3. It is a self-lab with a spine: build minimal conditions where information becomes meaningful to the system itself.</p>
+    </div>
+    <div class="spine">
+      <div class="row"><div class="num">01</div><div><h3>Ecological pressure</h3><p>Energy, depletion, temperature, competition, and lineage pressure make some information useful and most information ignorable.</p></div></div>
+      <div class="row"><div class="num">02</div><div><h3>Sensor</h3><p>A world variable becomes accessible. The test is whether the ecology makes the sensor useful without rewarding the sensor directly.</p></div></div>
+      <div class="row"><div class="num">03</div><div><h3>Organ</h3><p>A sensor becomes persistent, costly, and maintained. The capability has to pay for itself across generations.</p></div></div>
+      <div class="row"><div class="num">04</div><div><h3>Belief</h3><p>The creature carries internal estimates of hidden state: what is nearby, depleted, dangerous, useful, or surprising.</p></div></div>
+      <div class="row"><div class="num">05</div><div><h3>Communication and world models</h3><p>Signals matter when they change another creature's belief or action. Learned world models matter when explicit beliefs stop scaling.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="kicker">The lab right now</div>
+      <h2 class="h-section">A clean self-lab, not a demo reel.</h2>
+      <p>The project is a public notebook for one research direction: how small artificial systems become more creature-like under pressure, and which explanations survive attempts to break them.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="eyebrow">current</div><h3>Sensor-to-organ</h3><p>Find conditions where a costly sensor is not merely expressed but maintained.</p></div>
+      <div class="card"><div class="eyebrow">current</div><h3>First-person state</h3><p>Track what the creature can observe, predict, and update separately from what the outside observer can see.</p></div>
+      <div class="card"><div class="eyebrow">later</div><h3>Deep active inference</h3><p>Use learned latent beliefs when explicit belief variables stop scaling, not as a shortcut around the ecology.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="callout">
+      <div>
+        <div class="kicker slate">The open problem</div>
+        <h2>When does information become meaningful to the system itself?</h2>
+        <p>The current open problem is whether a creature-like loop can develop action-relevant internal structure under pressure, and whether that structure survives falsifiers.</p>
       </div>
-    </section>
-  );
-}
+      <a class="btn btn-primary" href="open_problem.html">Read the current framing →</a>
+    </div>
+  </section>
 
-function HowItWorks(){
-  return (
-    <section id="how">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">How it actually works</div>
-          <h2 className="h-section">The LLM runs the lab. The creature is smaller.</h2>
-          <p>The language model is scaffolding: it proposes experiments, writes code, runs checks, and records verdicts. The subject being studied is the tiny active-inference agent inside those experiments.</p>
-        </Reveal>
-        <Reveal className="how" delay={60}>
-          <div className="col">
-            <div className="lab">The researcher</div>
-            <h3>An automated experiment loop</h3>
-            <p>Hypothesis, implementation, predeclared pass/fail bars, execution, verifier, log entry, next hypothesis. The LLM is useful because it keeps the loop moving, not because it is the mind being evaluated.</p>
-          </div>
-          <div className="col">
-            <div className="lab">The subject</div>
-            <h3>A toy embodied agent</h3>
-            <p>No pretrained language model sits inside the creature. It receives small-world sensory streams, maintains beliefs, acts, and sometimes grows a new model component when the old one cannot explain the world.</p>
-          </div>
-        </Reveal>
-        <Reveal className="flow" delay={100}>
-          <div className="fl">the current standard</div>
-          <div className="steps">claim <span className="ar">→</span> predeclare falsifiers <span className="ar">→</span> run creature <span className="ar">→</span> test trivial baselines <span className="ar">→</span> blind-check verdict <span className="ar">→</span> keep the nulls</div>
-        </Reveal>
+  <section>
+    <div class="callout">
+      <div>
+        <div class="kicker slate">The notebook</div>
+        <h2>The journey still matters.</h2>
+        <p>The experiment log stays because the failures are part of the map. Every serious claim should be traceable back to a script, seed block, output file, and failure condition.</p>
       </div>
-    </section>
-  );
-}
+      <a class="btn btn-ghost" href="journey.html">Open the journey →</a>
+    </div>
+  </section>
 
-function ResearchProgram(){
-  const s = window.AM_LAB_STATUS;
-  const dirs = s?.directions || [];
-  const pick = name => dirs.find(d => d.name === name);
-  const tracks = [
-    { name:"worldview growth", source:pick("continuous-creature"), body:"Can the creature detect that its model is too small and grow the right missing factor under strict bars?" },
-    { name:"identity continuity", source:pick("identity-n4-crack") || pick("n4-crack-edges"), body:"Can an identity state persist through captivity, regulation, release, and adversarial stream tests?" },
-    { name:"red-team baselines", source:pick("red-team"), body:"Can the strongest claims survive random policy, shuffled history, shuffled labels, and trivial-controller comparisons?" },
-    { name:"relational thoughts", source:pick("relational-thoughts"), body:"Can the creature compose learned relations across places, objects, and rooms without co-observing everything at once?" },
-  ];
-  return (
-    <section id="program">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">The lab right now</div>
-          <h2 className="h-section">The current program is about causal claims.</h2>
-          <p>The recent trajectory moved from "look, something emerged" to "which named variable caused the measured change, and what null result would kill that explanation?"</p>
-        </Reveal>
-        <div className="program">
-          {tracks.map((t,i)=>(
-            <Reveal key={t.name} delay={i*50}>
-              <div className="track">
-                <div className="state">{t.source?.state || "exploratory"}</div>
-                <h3>{t.name}</h3>
-                <p><b>{t.source?.latest || "next rung pending"}</b> · {t.body}</p>
-                {t.source?.next && <p style={{marginTop:10}}>Next: {t.source.next}</p>}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Climb({exps}){
-  const summaries = {
-    language:"The founding wall: a bare symbol stream does not make an unsupervised topic latent become useful by magic.",
-    valence:"Surprise becomes affect-like signal: cues can become good or bad from the agent's own experience.",
-    embodiment:"A body gives the model a foothold: place, action, and persistence make structure identifiable.",
-    opinion:"Different histories produce different preferences, making opinion an experienced trajectory rather than a label.",
-    frontier:"The project becomes stricter: what exactly is still open, and what claims are too strong?",
-    growth:"The live frontier: structural-inadequacy alarms, model growth, identity continuity, null interventions, and blinded checks."
-  };
-  return (
-    <section id="climb">
-      <div className="wrap">
-        <Reveal className="sec-head">
-          <div className="kicker">The acts</div>
-          <h2 className="h-section">A small agent, increasingly hard to fool.</h2>
-          <p>The log reads as a sequence of stricter questions. The later acts matter most because they turn emergence claims into causal-instrumentation problems.</p>
-        </Reveal>
-        <div className="climb">
-          {AM_CHAPTERS.map((ch,i)=>(
-            <Reveal key={ch.id} delay={i*50}>
-              <a className="act" href={`journey.html#act-${ch.id}`}>
-                <div className="rn">{ch.act}</div>
-                <div>
-                  <div className="lbl">{ch.label}</div>
-                  <p className="q">{ch.question}</p>
-                  <p className="sm">{summaries[ch.id]}</p>
-                </div>
-                <div className="meta"><b className="tabnum">{String(chapterCount(ch.id, exps)).padStart(2,"0")}</b>experiments</div>
-              </a>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DeepDive(){
-  return (
-    <section id="dd">
-      <div className="wrap">
-        <Reveal className="dd">
-          <div>
-            <div className="kicker slate">The open problem</div>
-            <h2 style={{marginTop:10}}>When does the creature know its worldview is too small?</h2>
-            <p>The old language wall is still documented, but the current research question is sharper: model growth, identity continuity, stream-composition failures, and higher-order monitors under adversarial tests.</p>
-          </div>
-          <a className="btn btn-primary" href="open_problem.html">Read the current framing →</a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function App(){
-  const [t,setTweak] = useTweaks(TWEAK_DEFAULTS);
-  useEffect(()=>{ applyTweaks(t); },[t]);
-  const { exps, tally } = useLiveExperiments();
-  return (
-    <>
-      <Nav active="home"/>
-      <Hero tally={tally}/>
-      <hr className="rule" style={{maxWidth:'var(--maxw)',margin:'0 auto'}}/>
-      <WhatItIs/>
-      <div style={{background:'var(--paper-2)'}}><HowItWorks/></div>
-      <ResearchProgram/>
-      <Climb exps={exps}/>
-      <div style={{background:'var(--paper-2)'}}><DeepDive/></div>
-      <Footer/>
-      <TweaksPanel>
-        <TweakSection label="Palette"/>
-        <TweakRadio label="System" value={t.palette} options={["growth","compass","ember"]} onChange={v=>setTweak('palette',v)}/>
-        <TweakSection label="Type & texture"/>
-        <TweakRadio label="Fonts" value={t.fontPair} options={["editorial","grotesk"]} onChange={v=>setTweak('fontPair',v)}/>
-        <TweakToggle label="Graph paper" value={t.gridPaper} onChange={v=>setTweak('gridPaper',v)}/>
-        <TweakToggle label="Motion" value={t.motion} onChange={v=>setTweak('motion',v)}/>
-      </TweaksPanel>
-    </>
-  );
-}
-ReactDOM.createRoot(document.getElementById('app')).render(<App/>);
-</script>
+  <footer>active_monkey · documented artificial-life self-lab · <a href="https://github.com/Mirrorad1/active_monkey">GitHub</a></footer>
+</div>
 </body>
 </html>
