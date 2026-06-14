@@ -1,0 +1,89 @@
+# Evolvability Preflight — Gate H (controller cross-partial), Exp 207 niche regime
+# Run with:
+#   uv run --python .venv python experiments/run_preflight.py \
+#       --config experiments/configs/preflight/thermosense_controller_crosspartial.yaml
+#
+# This is the generalised, config-driven form of experiments/exp207_corner_grid.py.
+# It measures the 2x2 corner grid of reproductive output over
+#   trait h = thermosense_intensity   in {low_value, high_value}
+#   controller theta = niche_weight   in {low_value, high_value}
+# and classifies the interaction (JOINT_VALLEY_PLAUSIBLE / CONTROLLER_PAYS_ALONE /
+# TRAIT_PAYS_ALONE / NO_INTERACTION / ANTAGONISTIC). Exp 207's committed finding is
+# CONTROLLER_PAYS_ALONE: theta carries the benefit (herd-escape, +0.147), h is a
+# uniform cost at both theta (dB/dh < 0), cross-partial ~ 0 (no 2-D valley) — so a
+# full sensor-controller co-adaptation batch is NOT warranted.
+
+slug: thermosense_controller_crosspartial
+description: "Gate H controller cross-partial for thermosense x niche_weight (Exp 207 niche regime)."
+
+# ── Base scenario: the Exp 206/207 NICHE_COMPETE regime ─────────────────────────
+base_scenario: balanced
+base_overrides:
+  max_population: 20000
+  regen_rate: 0.20
+  shuffle_creature_order: true          # neutralise id-order eat-first confound
+  enable_thermosense: true
+  enable_temperature: true
+  temperature_stress_scale: 0.0
+  thermosense_upkeep_floor: 0.0
+  thermosense_active_threshold: 0.05
+  thermosense_noise_base: 0.5
+  enable_food_coupling: false           # niche routing, not forage band, is the channel
+  thermosense_forage_mode: true
+  # rotating two-class private niche with crowding-discounted intake
+  enable_niche: true
+  niche_classes: 2
+  niche_rotation: 0.05
+  niche_confusion: 0.4
+  niche_crowding: 1.5
+  niche_weight: 6.0                      # overridden at each theta corner by Gate H
+
+founder_overrides:
+  temperature_tolerance: 0.10
+
+# ── Trait axis (override THERMOSENSE_AXIS corners to match Exp 207) ──────────────
+trait:
+  name: thermosense
+  resident_value: 0.10
+  mutant_value: 0.15
+  low_value: 0.10                        # Gate H corner h_lo (Exp 207 H_LO)
+  high_value: 0.45                       # Gate H corner h_hi (Exp 207 H_HI)
+  h_trait: thermosense_intensity
+  inefficiency_trait: thermosense_inefficiency
+  inefficiency_value: 0.20
+  freeze_flag: freeze_thermosense
+  enable_flag: enable_thermosense
+  backend: thermosense
+  # Niche-regime disconnect recipe for the byte-identity anti-cheat guard: a perfect
+  # percept (niche_confusion=0) makes h irrelevant to routing, and cost off removes the
+  # upkeep channel -> runs are byte-identical across h (probe-verified). NOTE this
+  # differs from the forage regime's recipe (the channels a trait feeds are regime-specific).
+  disconnect_overrides:
+    enable_thermosense: false
+    niche_confusion: 0.0
+
+# ── Controller axis (theta = niche routing weight) ──────────────────────────────
+controller:
+  name: niche_weight
+  config_field: niche_weight
+  low_value: 0.6
+  high_value: 6.0
+
+# ── Seeds / horizon (match Exp 207) ─────────────────────────────────────────────
+seeds: [90, 91, 92, 93, 94]
+horizon: 3500
+measurement_window: [50, 800]           # unused by Gate H; it uses last-`window` births
+
+output_dir: results/preflight
+
+# ── Gates ───────────────────────────────────────────────────────────────────────
+gates:
+  - controller_cross_partial
+  - null_guards                         # demonstrates the byte-identity guard in the niche regime
+
+gate_params:
+  controller_cross_partial:
+    window: 1000                        # births counted in the last 1000 of 3500 (Exp 207)
+
+min_valid_seeds: 3
+min_population: 10

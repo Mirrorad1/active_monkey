@@ -8,3 +8,6 @@ __pycache__/
 .playwright-mcp/
 *.jpeg
 serv.log
+
+# evolvability-preflight run artifacts (reproducible from config.json + seeds)
+results/

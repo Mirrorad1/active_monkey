@@ -1,0 +1,41 @@
+{
+  "slug": "thermosense_smoke",
+  "description": "CLI PLUMBING ONLY (2 seeds, horizon 200). The verdict here is NOISE-SCALE and NOT scientific: with 2 seeds the win threshold is 2, so two chance-wins spuriously read PASS_LOCAL_GRADIENT. For a meaningful verdict use thermosense_local_gradient.yaml (8 seeds). See docs/evolvability_preflight.md.",
+  "base_scenario": "balanced",
+  "base_overrides": {
+    "enable_thermosense": true,
+    "enable_temperature": true,
+    "temperature_stress_scale": 0.0,
+    "thermosense_upkeep_floor": 0.0,
+    "thermosense_active_threshold": 0.05,
+    "thermosense_noise_base": 0.5,
+    "thermal_avoidance_weight": 4.0,
+    "food_optimal_base": 0.5,
+    "food_optimal_amplitude": 0.3,
+    "food_optimal_period": 1500.0,
+    "food_concentration": 14.0,
+    "food_band_width": 0.08,
+    "enable_food_coupling": true,
+    "thermosense_forage_mode": true,
+    "regen_rate": 0.20,
+    "max_population": 8000,
+    "shuffle_creature_order": true
+  },
+  "founder_overrides": {
+    "temperature_tolerance": 0.10
+  },
+  "trait": "thermosense",
+  "controller": null,
+  "seeds": [38, 39],
+  "horizon": 200,
+  "measurement_window": [50, 150],
+  "output_dir": "results/preflight",
+  "gates": [
+    "local_pairwise_gradient",
+    "null_guards"
+  ],
+  "monomorphic_grid": [0.0, 0.10, 0.60],
+  "cost_values": [0.20],
+  "min_valid_seeds": 1,
+  "min_population": 5
+}

@@ -1,0 +1,6 @@
+name,verdict,wins,n_valid,mean_effect,mean_s,optimum_h,above_resident,survivable,mean_delta,mean_delta_r,increase_count,sign_change_cost,unaffordable_cost,cross_partial,B_ll,B_hh,all_pass,n_guards
+gifted_benefit,NO_BENEFIT,,,,,,,,-0.15653278816494393,,,,,,,,,
+monomorphic_sweep,,,,,,0.1,False,True,,,,,,,,,,
+local_pairwise_gradient,FLAT_OR_NOISY,5,8,0.09906181449686947,-0.003563967182592621,,,,,,,,,,,,,
+invasion_from_rarity,DOES_NOT_INVADE,,8,,,,,,,,0,,,,,,,
+null_guards,,,,,,,,,,,,,,,,,True,7

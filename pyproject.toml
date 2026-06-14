@@ -15,7 +15,10 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8"]
+# pyyaml is OPTIONAL: it is only needed to load .yaml preflight configs
+# (ecology/evolvability/config.py falls back to JSON when it is absent, and the
+# YAML round-trip test self-skips). It is not a runtime dependency.
+dev = ["pytest>=8", "pyyaml>=6"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "eval"]
