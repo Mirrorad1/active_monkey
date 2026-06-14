@@ -295,6 +295,11 @@ class EcologyConfig:
     mode_switch_prob: float = 0.02
     cue_noise: float = 0.5
     mode_wrong_regen_factor: float = 0.3   # wrong-half regen factor (milder payoff; 0.0 = harsh gating)
+    # Mode-dependent HAZARD (decouples the inference payoff from carrying capacity): with
+    # mode_wrong_regen_factor=1.0 food is UNIFORM (pops stay healthy) and a creature in a
+    # wrong-type cell (cell_type != hidden_mode) pays mode_hazard_scale energy per step, so
+    # correct inference (avoid the wrong half) pays without gating total food. 0.0 = no hazard.
+    mode_hazard_scale: float = 0.0
     memory_upkeep_floor: float = 0.0
     memory_cost_slope: float = 0.01
 
@@ -589,6 +594,15 @@ class Ecology:
         # OFF when enable_thermosense=False (default) or organ inactive (intensity <= threshold).
         if cfg.enable_thermosense and thermosense_active(g, cfg.thermosense_active_threshold):
             ph.energy -= thermosense_upkeep(g, cfg.thermosense_upkeep_floor, cfg.thermosense_active_threshold)
+
+        # Hidden-state-mode HAZARD: a creature standing in a WRONG-type cell (cell_type !=
+        # current hidden_mode) pays a small survivable energy penalty. Gated (OFF path
+        # byte-identical: no draw, no read). The penalty is on CELL TYPE vs the true mode,
+        # never on memory_horizon — memory only steers where the creature stands (anti-cheat).
+        if (cfg.enable_hidden_mode and cfg.mode_hazard_scale != 0.0
+                and self.world.cell_type is not None
+                and self.world.cell_type[new_pos] != self.world.hidden_mode):
+            ph.energy -= cfg.mode_hazard_scale
 
         # Exp hidden-state-mode: memory upkeep — cost of maintaining the cue buffer.
         # OFF when enable_hidden_mode=False or memory_horizon==0 (no buffer) ⇒ byte-identical.

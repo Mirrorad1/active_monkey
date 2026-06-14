@@ -1,0 +1,181 @@
+{
+  "slug": "memory_horizon_local_gradient",
+  "run_id": "rung1",
+  "aggregate_verdict": "FAIL_LOCAL_GRADIENT",
+  "failure_reason": "local gradient is FLAT_OR_NOISY; no compensating signal found",
+  "gates": [
+    {
+      "name": "local_pairwise_gradient",
+      "question": "Does the mutant h=2 invade the resident h=1 in head-to-head competition?",
+      "metric": "invader fraction at end relative to 0.5 neutral start",
+      "verdict": "FLAT_OR_NOISY",
+      "aggregate": {
+        "wins": 6,
+        "n_valid": 8,
+        "mean_effect": 0.17048385908018868,
+        "mean_s": 0.0022912439850170463,
+        "mean_inv_frac_final": 0.6704838590801887
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_valid": 8,
+        "extinct_fraction": 0.0
+      },
+      "interpretation": "Local pairwise gradient verdict: FLAT_OR_NOISY.  wins=6/8 in ambiguous range [4, 6] or mean_effect not positive (mean_effect=0.17048385908018868).  This tests whether a single-step mutant (h=2) can invade a resident (h=1) population \u2014 the direct test of local evolvability.",
+      "raw_path": "raw/local_pairwise_gradient.jsonl"
+    },
+    {
+      "name": "invasion_from_rarity",
+      "question": "Can a rare mutant (h=2, ~5%) increase in a resident background?",
+      "metric": "fraction of seeds where mutant frequency increased over the window",
+      "verdict": "DOES_NOT_INVADE",
+      "aggregate": {
+        "increase_count": 0,
+        "n_valid": 8,
+        "invader_count": 5,
+        "resident_count": 95
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_valid": 8,
+        "extinct_fraction": 0.0
+      },
+      "interpretation": "Invasion from rarity verdict: DOES_NOT_INVADE.  increase_count=0/8 <= lose_threshold=3.  Mutant started at ~5% frequency (invader_count=5).  This is a more stringent test than equal-count pairwise: the mutant must increase when genuinely rare, as required by adaptive dynamics.",
+      "raw_path": "raw/invasion_from_rarity.jsonl"
+    },
+    {
+      "name": "null_guards",
+      "question": "Do all null/anti-cheat guards pass?",
+      "metric": "guard battery status (PASS/FAIL/NOT_IMPLEMENTED/NA)",
+      "verdict": "",
+      "aggregate": {
+        "guards": [
+          {
+            "name": "cost_off_disconnected_byte_identical",
+            "status": "PASS",
+            "reason": "events_hash identical for h=0 and h=8 when trait disconnected"
+          },
+          {
+            "name": "no_direct_h_reward",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "no_direct_h_reward guard requires backend=='thermosense' and a freeze_flag. Got backend='memory', freeze_flag=None."
+          },
+          {
+            "name": "trait_disabled_null",
+            "status": "PASS",
+            "reason": "per-capita intake identical: |13502 - 13502| < 1e-9"
+          },
+          {
+            "name": "population_validity",
+            "status": "PASS",
+            "reason": "pairwise extinct_fraction=0.000 < 0.5"
+          },
+          {
+            "name": "perfect_percept_null",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "perfect_percept_null requires backend=='thermosense' AND enable_niche=True (a confusion knob).  Got backend='memory', enable_niche=False.  Do NOT fake a pass here \u2014 this guard must be left NOT_IMPLEMENTED."
+          },
+          {
+            "name": "frozen_memory_map",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+          },
+          {
+            "name": "shuffle_order",
+            "status": "PASS",
+            "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+          }
+        ],
+        "all_pass": true
+      },
+      "validity_flags": {
+        "n_guards": 7
+      },
+      "interpretation": "Guard battery: PASS=['cost_off_disconnected_byte_identical', 'trait_disabled_null', 'population_validity', 'shuffle_order']; NOT_IMPLEMENTED/NA=['no_direct_h_reward', 'perfect_percept_null', 'frozen_memory_map'].  all_pass=True (counts only PASS/FAIL; NOT_IMPLEMENTED/NA do not fail).  A positive gradient verdict should be treated as an artifact if any guard FAILs.",
+      "raw_path": "raw/null_guards.jsonl"
+    }
+  ],
+  "trait": {
+    "name": "memory_horizon",
+    "resident_value": 1,
+    "mutant_value": 2,
+    "low_value": 0,
+    "high_value": 8,
+    "cost_enabled": true,
+    "h_trait": "memory_horizon",
+    "inefficiency_trait": null,
+    "inefficiency_value": 0.0,
+    "freeze_flag": null,
+    "enable_flag": "enable_hidden_mode",
+    "active_threshold": 0,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.0,
+    "backend": "memory",
+    "disconnect_overrides": {
+      "enable_hidden_mode": false
+    }
+  },
+  "controller": null,
+  "config_hash": "1b59635d5db5001431a9522a612c3dcebf12dfe8785574c29150db9cd846e117",
+  "git_commit": "389f2f132ddc90b20b04ec785b5964015ac6df8f",
+  "artifact_paths": {
+    "run_dir": "results/preflight/memory_horizon_local_gradient/rung1",
+    "config_json": "results/preflight/memory_horizon_local_gradient/rung1/config.json",
+    "summary_json": "results/preflight/memory_horizon_local_gradient/rung1/summary.json",
+    "summary_csv": "results/preflight/memory_horizon_local_gradient/rung1/summary.csv",
+    "report_md": "results/preflight/memory_horizon_local_gradient/rung1/report.md",
+    "raw_dir": "results/preflight/memory_horizon_local_gradient/rung1/raw"
+  },
+  "repro": {
+    "python": "3.12.9",
+    "deterministic": true,
+    "seeds": [
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "n_seeds": 8
+  },
+  "guard_statuses": [
+    {
+      "name": "cost_off_disconnected_byte_identical",
+      "status": "PASS",
+      "reason": "events_hash identical for h=0 and h=8 when trait disconnected"
+    },
+    {
+      "name": "no_direct_h_reward",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "no_direct_h_reward guard requires backend=='thermosense' and a freeze_flag. Got backend='memory', freeze_flag=None."
+    },
+    {
+      "name": "trait_disabled_null",
+      "status": "PASS",
+      "reason": "per-capita intake identical: |13502 - 13502| < 1e-9"
+    },
+    {
+      "name": "population_validity",
+      "status": "PASS",
+      "reason": "pairwise extinct_fraction=0.000 < 0.5"
+    },
+    {
+      "name": "perfect_percept_null",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "perfect_percept_null requires backend=='thermosense' AND enable_niche=True (a confusion knob).  Got backend='memory', enable_niche=False.  Do NOT fake a pass here \u2014 this guard must be left NOT_IMPLEMENTED."
+    },
+    {
+      "name": "frozen_memory_map",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+    },
+    {
+      "name": "shuffle_order",
+      "status": "PASS",
+      "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+    }
+  ]
+}

@@ -4,49 +4,54 @@
 # THE binding test: does a single-step increase in memory/inference capacity
 # (memory_horizon 1 -> 2) win locally under a slowly-switching HIDDEN mode?
 #
-# SCAFFOLD — NOT YET RUNNABLE / NOT YET THE VERDICT REGIME:
-#   1. Requires the GENERIC Gate C (Phase 2.5, PR #49) merged — backend "memory" runs
-#      local_pairwise_gradient through the generic common garden, not sense_axis.
-#      On a main without #49 this raises NotImplementedError (by design).
-#   2. The base_overrides below are the LIVENESS pilot regime (where gifted memory beat
-#      memory-0). The verdict regime must be FIXED on a DISCLOSED pilot BEFORE the
-#      fresh-seed run (VALIDATION), tuned so a single cue is unreliable, the dwell is
-#      long enough that averaging helps, and the memory cost is affordable — NOT tuned
-#      to a positive. Honest expectation: the gifted benefit is WEAK and memory carries
-#      a switch-lag cost, so NEGATIVE/FLAT is a live, first-class outcome (the wall
-#      generalising to information-processing capacity).
+# REGIME FIXED 2026-06-14 on a disclosed pilot (pilot seeds {100,101,102}; the verdict
+# runs on FRESH seeds [50-57]). Key design lessons baked in:
+#   - MODE-DEPENDENT HAZARD, not food-gating: mode_wrong_regen_factor=1.0 => food is
+#     UNIFORM (carrying capacity intact, healthy pops ~150-280), and mode_hazard_scale=0.6
+#     charges a small survivable per-step penalty for sitting in a wrong-type cell. This
+#     decouples the inference payoff from carrying capacity (food-gating collapsed pops to
+#     drift-sized — see the card's NO_VERDICT addenda).
+#   - HIGH FOOD (capacity 50, regen 3.0) so the 100-founder common-garden cold-start
+#     survives (the real cause of the earlier collapses).
+#   - cue_noise=1.0 (single cue unreliable => denoising has value); memory_cost_slope=0.005
+#     (affordable). These give memory its FAIR shot — not tuned to a positive (a disclosed
+#     payoff/noise sweep showed the local gradient is FLAT/sub-threshold across most of the
+#     space; the verdict reports whatever the fresh seeds give).
 
 slug: memory_horizon_local_gradient
-description: "Phase 3 rung 1: local gradient of memory_horizon under a hidden switching mode (SCAFFOLD; needs PR #49 + a disclosed regime pilot)."
+description: "Phase 3 rung 1: local gradient of memory_horizon under a hidden switching mode (mode-dependent hazard, high-food regime)."
 
 base_scenario: balanced
 base_overrides:
   enable_hidden_mode: true
-  mode_switch_prob: 0.2        # PILOT value (fast switching makes denoising matter); finalize on a disclosed pilot
-  cue_noise: 0.6               # single cue unreliable
-  memory_cost_slope: 0.01      # floored memory upkeep (affordable; part of the pilot)
+  mode_wrong_regen_factor: 1.0   # uniform food (carrying capacity intact)
+  mode_hazard_scale: 0.6         # survivable wrong-half energy penalty = the inference payoff
+  capacity: 50.0                 # high food so the cold-start survives
+  regen_rate: 3.0
+  initial_resource: 0.7
+  max_population: 30000
+  mode_switch_prob: 0.05         # slow switch (dwell ~20 steps)
+  cue_noise: 1.0                 # single cue unreliable
+  memory_cost_slope: 0.005       # affordable memory upkeep
   memory_upkeep_floor: 0.0
-  regen_rate: 0.8              # PILOT (liveness regime)
-  initial_resource: 0.3
-  max_population: 8000
   shuffle_creature_order: true
 
-trait: memory_horizon          # resolves to MEMORY_AXIS (resident=1, mutant=2, low=0, high=8, backend=memory)
+trait: memory_horizon            # MEMORY_AXIS: resident=1, mutant=2, low=0, high=8, backend=memory
 controller: null
 
-# SMOKE default; for a strict verdict use the 8-seed batch [50,51,52,53,54,55,56,57].
-seeds: [50, 51, 52]
+# FRESH verdict seeds (pilot used {100,101,102}).
+seeds: [50, 51, 52, 53, 54, 55, 56, 57]
 horizon: 1500
 measurement_window: [50, 800]
 output_dir: results/preflight
 
 gates:
-  - local_pairwise_gradient    # BINDING (generic Gate C from Phase 2.5)
+  - local_pairwise_gradient      # BINDING (generic Gate C)
   - invasion_from_rarity
   - null_guards
 
-monomorphic_grid: [0, 1, 2, 3, 4, 6, 8]   # not run by default (monomorphic_sweep is thermosense-only)
-cost_values: [0.005, 0.01, 0.02]          # for cost_sensitivity (thermosense-only; not in gates above)
+monomorphic_grid: [0, 1, 2, 3, 4, 6, 8]   # not run (monomorphic_sweep is thermosense-only)
+cost_values: [0.0025, 0.005, 0.01]        # for cost_sensitivity (thermosense-only; not in gates)
 
-min_valid_seeds: 2
-min_population: 10
+min_valid_seeds: 6
+min_population: 80

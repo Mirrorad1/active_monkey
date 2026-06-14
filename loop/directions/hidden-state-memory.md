@@ -196,6 +196,38 @@ stays healthy → a drift-safe common garden. Re-pilot, require the perfect-perc
 fixate NEITHER way at healthy pop, then run the verdict on fresh seeds. Awaiting a human word
 on this pivot (food-gating is demographically non-viable here).
 
+### RUNG-1 VERDICT (2026-06-14) — FAIL_LOCAL_GRADIENT (sub-threshold; the wall generalises)
+
+The hazard mechanism (mode_hazard_scale; mode_wrong_regen_factor=1.0 ⇒ UNIFORM food) was
+implemented (byte-identical OFF, full suite 620 passed) and FIXED the demography: the
+high-food regime (capacity 50, regen 3.0) sustains healthy common-garden pops (~150–280).
+The real cause of the earlier collapses was the 100-founder common-garden cold-start
+overwhelming the balanced carrying capacity — NOT the mode mechanism. A disclosed payoff/noise
+sweep (pilot {100,101,102}) set the fair-shot verdict regime (hazard 0.6, cue_noise 1.0,
+slow switch 0.05, cost 0.005) — NOT tuned to a positive (the sweep was mostly FLAT; a
+hazard-0.6 3/3 pilot did NOT replicate on fresh seeds).
+
+VERDICT on FRESH seeds [50-57], healthy pops:
+- local_pairwise_gradient: **FLAT_OR_NOISY, 6/8** (< 7/8 strict bar), mean inv_frac 0.670 vs
+  the perfect-percept control (cue_noise=0, no denoising) 0.508 — a REAL but SUB-THRESHOLD
+  denoising advantage (memory helps a little; not enough to clear the bar; drift-controlled).
+- invasion_from_rarity: **DOES_NOT_INVADE, 0/8** (the stringent rare-mutant test fails outright).
+- null_guards: all_pass (byte-identity-when-disconnected PASS — anti-cheat clean).
+- Aggregate: **FAIL_LOCAL_GRADIENT.** Committed run: results/preflight/memory_horizon_local_gradient/rung1
+  (evidence copied to experiments/outputs/preflight_memory_rung1/).
+
+**Finding (first-class, as pre-registered):** a single heritable step in information-processing
+capacity (memory_horizon 1→2) does NOT robustly invade at this substrate, even given a fair
+regime (uniform food, survivable hazard, unreliable single cue, affordable cost). The
+program's LOCAL-GRADIENT WALL — a costed capability's marginal step doesn't pay near the
+resident — GENERALISES from scalar senses (Exp 199–207) to memory/inference. There is a weak
+sub-threshold denoising signal (memory is not useless), but it falls short of evolvability and
+fails invasion-from-rarity. Per the card, NO full evolution batch is warranted.
+
+STATUS: rung 1 CLOSED (FAIL). Rung 2 (full evolution) NOT run (gated on a POSITIVE rung 1).
+Open follow-ups (each needs a word): a continuous belief_persistence trait; a steeper /
+non-saturating inference payoff; or accept the wall's generalisation as the closing finding.
+
 ---
 
 ## Build order (each a scoped PR; the engine change is gated + byte-identical OFF)
