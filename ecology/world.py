@@ -112,6 +112,12 @@ class GridWorld:
     cell_type: "np.ndarray | None" = None
     mode_switch_prob: float = 0.02
     cue_noise: float = 0.5
+    # Milder-payoff revision (2026-06-14): the non-matching ("wrong") half regenerates at
+    # regen_rate * mode_wrong_regen_factor instead of 0, so a mode switch does not starve
+    # half the world to death (the harsh gating collapsed populations to drift-sized — F4).
+    # The good half still regenerates MORE, so correct inference pays. factor=0.0 reproduces
+    # the original harsh mode-gating (used by the liveness test where the benefit is sharpest).
+    mode_wrong_regen_factor: float = 0.3
 
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
@@ -165,9 +171,14 @@ class GridWorld:
         # never fires, existing code runs exactly as before).
         if self.enable_hidden_mode and self.cell_type is not None:
             match = (self.cell_type == self.hidden_mode)
+            # Good half regenerates fully; the wrong half at a reduced factor (milder
+            # payoff so the population survives a switch — both halves feed, good more).
+            # No floor bump: at factor=0.0 the wrong half depletes to 0 (sharp gating,
+            # the original behaviour); since the mode switches, every cell regenerates
+            # when it is the good half, so no permanent dead-cell lock-in.
             self.resource[match] += self.regen_rate
-            self.resource[match] = np.minimum(self.resource[match], self.capacity)
-            # Non-matching half: no regen, no floor bump — allowed to deplete to 0.
+            self.resource[~match] += self.regen_rate * self.mode_wrong_regen_factor
+            self.resource = np.minimum(self.resource, self.capacity)
             return
 
         # Exp 200 food-coupling: concentrated regen — only when enabled AND temperature
@@ -310,6 +321,7 @@ class GridWorld:
         enable_hidden_mode: bool = False,
         mode_switch_prob: float = 0.02,
         cue_noise: float = 0.5,
+        mode_wrong_regen_factor: float = 0.3,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -377,4 +389,5 @@ class GridWorld:
             cell_type=cell_type,
             mode_switch_prob=mode_switch_prob,
             cue_noise=cue_noise,
+            mode_wrong_regen_factor=mode_wrong_regen_factor,
         )

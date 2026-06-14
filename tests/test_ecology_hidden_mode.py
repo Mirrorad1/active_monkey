@@ -139,13 +139,16 @@ def test_liveness_memory_helps_when_gifted():
     the switch rate is set higher to exercise the memory buffer more aggressively.
     """
     seeds = [40, 41, 42]
+    # mode_wrong_regen_factor=0.0 = the sharp (original) gating where the denoising
+    # benefit is clearest — this is a LIVENESS check (can memory pay when gifted?), not
+    # the verdict regime (the verdict uses the milder factor=0.3 for survivable pops).
     cfg_hi = _hidden_cfg(
-        memory_horizon=8, cue_noise=0.6, mode_switch_prob=0.2,
+        memory_horizon=8, cue_noise=0.6, mode_switch_prob=0.2, mode_wrong_regen_factor=0.0,
         regen_rate=0.8, initial_resource=0.3, initial_population=4,
         memory_cost_slope=0.0, memory_upkeep_floor=0.0, mutation_rate=0,
     )
     cfg_lo = _hidden_cfg(
-        memory_horizon=0, cue_noise=0.6, mode_switch_prob=0.2,
+        memory_horizon=0, cue_noise=0.6, mode_switch_prob=0.2, mode_wrong_regen_factor=0.0,
         regen_rate=0.8, initial_resource=0.3, initial_population=4,
         memory_cost_slope=0.0, memory_upkeep_floor=0.0, mutation_rate=0,
     )

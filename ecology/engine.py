@@ -294,6 +294,7 @@ class EcologyConfig:
     enable_hidden_mode: bool = False
     mode_switch_prob: float = 0.02
     cue_noise: float = 0.5
+    mode_wrong_regen_factor: float = 0.3   # wrong-half regen factor (milder payoff; 0.0 = harsh gating)
     memory_upkeep_floor: float = 0.0
     memory_cost_slope: float = 0.01
 
@@ -344,6 +345,7 @@ class Ecology:
             enable_hidden_mode=cfg.enable_hidden_mode,
             mode_switch_prob=cfg.mode_switch_prob,
             cue_noise=cfg.cue_noise,
+            mode_wrong_regen_factor=cfg.mode_wrong_regen_factor,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which

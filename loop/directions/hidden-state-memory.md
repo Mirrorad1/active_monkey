@@ -173,6 +173,29 @@ but the population survives (the Exp 204→205 survivable-loss lesson). Then re-
 drift-safe pop (hundreds), re-confirm the perfect-percept null fixates NEITHER way, and run
 the verdict on fresh seeds. Until then rung-1 has no admissible verdict.
 
+### MILDER-PAYOFF REVISION RE-PILOT (2026-06-14, disclosed) — STILL NO_VERDICT
+
+Implemented the revision: `mode_wrong_regen_factor` (default 0.3; the wrong half regens at
+0.3·regen instead of 0; factor=0.0 = the original sharp gating, kept for the liveness test).
+Byte-identical OFF; all four guard tests pass. Re-piloted (pilot seeds {100,101,102}) across
+~8 configurations: factor {0.0, 0.3} × capacity {10,20,30,40} × regen {0.4–1.5} × grid
+{12², 20²} × founder {standard, fecund reproduction_energy_threshold=8} × switch {0.05–0.2}.
+**In EVERY configuration the common-garden population collapsed to drift-dominated sizes
+(10–50, several extinctions)**, and the perfect-percept drift control (cue_noise=0) kept
+fixating the mutant ⇒ still drift, not selection. The milder payoff did not rescue the
+demography.
+
+**Root cause (structural):** spatially gating FOOD by the mode caps carrying capacity AND
+each switch starves the previously-good half — the population cannot reach a drift-safe size.
+
+**Next proposed mechanism (decouple payoff from carrying capacity):** a MODE-DEPENDENT
+HAZARD instead of food-gating — both halves regenerate FULLY (carrying capacity intact), but
+being in the wrong-type cell costs a small, survivable per-step energy penalty. Correct
+inference (avoid the wrong half) still pays, but total food is unchanged so the population
+stays healthy → a drift-safe common garden. Re-pilot, require the perfect-percept null to
+fixate NEITHER way at healthy pop, then run the verdict on fresh seeds. Awaiting a human word
+on this pivot (food-gating is demographically non-viable here).
+
 ---
 
 ## Build order (each a scoped PR; the engine change is gated + byte-identical OFF)
