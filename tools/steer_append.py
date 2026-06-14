@@ -34,6 +34,10 @@ def _insert_into_inbox(content: str, bullet: str) -> str:
             break
     if not bullet.endswith("\n"):
         bullet += "\n"
+    # Ensure the preceding line terminates so the bullet starts on its own line
+    # (handles '## Inbox' as the final line with no trailing newline).
+    if end_i > 0 and not lines[end_i - 1].endswith("\n"):
+        lines[end_i - 1] = lines[end_i - 1] + "\n"
     return "".join(lines[:end_i] + [bullet] + lines[end_i:])
 
 

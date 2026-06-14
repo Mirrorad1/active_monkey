@@ -143,6 +143,9 @@ def main() -> None:
         print("personas:  ", ", ".join(available("personas")))
         return
 
+    if args.direction_pos and args.direction:
+        sys.exit("error: specify the direction positionally OR with --direction, not both")
+
     requested = args.direction_pos or args.direction or DEFAULT_DIRECTION
     direction = resolve_direction(requested)
     print(compose(direction, args.persona, args.idea))

@@ -79,3 +79,12 @@ def test_cli_unknown_direction_errors():
     )
     assert r.returncode != 0
     assert "no direction" in (r.stderr + r.stdout).lower()
+
+
+def test_cli_positional_and_flag_conflict_errors():
+    r = subprocess.run(
+        [sys.executable, "loop/compose.py", "transfer", "--direction", "ecology"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    assert r.returncode != 0
+    assert "not both" in (r.stderr + r.stdout).lower()

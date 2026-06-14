@@ -30,6 +30,7 @@ def test_lab_command_has_consent_gate():
     assert "go" in text
     assert "confirm" in text or "wait" in text
     assert "vation.md" in text or "consent" in text  # cites the boundary
+    assert "do not" in text  # explicit prohibition on iterating/committing before "go"
 
 
 def test_steer_command_exists():

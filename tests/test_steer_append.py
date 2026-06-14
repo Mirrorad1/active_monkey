@@ -71,3 +71,14 @@ def test_missing_inbox_section_raises(tmp_path):
     p.write_text("# IDEAS\n\nno inbox header here\n", encoding="utf-8")
     with pytest.raises(ValueError):
         m.append_idea("x", date="2026-06-13", ideas_path=p)
+
+
+def test_append_idea_when_inbox_is_last_line_without_newline(tmp_path):
+    m = _load()
+    p = tmp_path / "IDEAS.md"
+    p.write_text("# IDEAS\n\n## Inbox", encoding="utf-8")  # no trailing newline
+    m.append_idea("x", date="2026-06-13", ideas_path=p)
+    out = p.read_text(encoding="utf-8")
+    assert "## Inbox\n" in out  # header preserved on its own line
+    assert "- [from human, 2026-06-13] x" in out
+    assert "## Inbox- " not in out  # bullet must NOT be glued to the header
