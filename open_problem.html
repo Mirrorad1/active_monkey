@@ -4,270 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Open Problem — active_monkey</title>
-<meta name="description" content="The current active_monkey frontier: when a toy active-inference creature can detect that its world model is too small, revise it, and survive adversarial continuity tests.">
+<meta name="description" content="The current active_monkey framing: when does information become meaningful to a tiny artificial creature under ecological pressure?">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="am.css?v=5">
 <style>
-  .op{max-width:820px;margin:0 auto;padding:0 28px;}
-  .op-head{padding:46px 0 10px;}
-  .op-head h1{font-size:clamp(31px,4.7vw,52px);margin:14px 0 0;}
-  .op-head .sub{font-family:var(--serif);font-size:20px;color:var(--ink-2);line-height:1.45;margin:16px 0 0;max-width:58ch;}
-  .op-head .note{font-size:13px;color:var(--ink-2);margin:20px 0 0;line-height:1.65;max-width:68ch;}
-  .op-lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:10px 0 28px;letter-spacing:-.005em;}
-  .op-lead strong{font-weight:500;color:var(--accent);}
-  .op h2{font-family:var(--serif);font-size:27px;font-weight:500;letter-spacing:-.01em;margin:44px 0 14px;line-height:1.12;display:flex;align-items:baseline;gap:14px;}
-  .op h2 .nm{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent);flex:none;width:34px;}
-  .op h3{font-family:var(--serif);font-size:18px;font-weight:500;margin:24px 0 6px;}
-  .op p{font-size:15px;line-height:1.7;color:var(--ink);margin:12px 0;}
-  .op p .muted, .op .muted{color:var(--ink-2);}
-  .op em{font-style:italic;}
-  .op strong{font-weight:600;}
-  .op code{font-family:var(--mono);font-size:.9em;background:var(--paper-3);padding:.1em .42em;border-radius:4px;border:1px solid var(--line-soft);}
-  .callout{border:1px solid var(--ink);background:var(--paper-2);padding:22px 24px;margin:26px 0;}
-  .callout .tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;}
-  .callout p{margin:0;font-size:16px;line-height:1.55;}
-  .callout strong{color:var(--accent);}
-  .obs{border-top:2px solid var(--wall);background:rgba(255,255,255,.42);padding:14px 18px;margin:16px 0 4px;}
-  .obs.good{border-top-color:var(--win);}
-  .obs.mixed{border-top-color:var(--partial);}
-  .obs .ol{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--wall);font-weight:600;margin-bottom:7px;display:flex;align-items:center;gap:7px;}
-  .obs.good .ol{color:var(--win);}
-  .obs.mixed .ol{color:var(--partial);}
-  .obs .ol .dt{width:7px;height:7px;border-radius:50%;background:currentColor;}
-  .obs p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink);}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
-  @media(max-width:660px){.grid2{grid-template-columns:1fr;}}
-  .card{border:1px solid var(--line);background:rgba(255,255,255,.4);padding:15px 16px;}
-  .card b{color:var(--accent);}
-  .card p{margin:6px 0 0;font-size:13.5px;}
-  .ftable{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;}
-  .ftable th,.ftable td{border:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.5;}
-  .ftable th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--paper-2);}
-  .ftable td:first-child{font-weight:500;width:27%;}
-  .op-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);max-width:820px;margin:0 auto;padding:0 28px;overflow-x:auto;}
-  .op-tab{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;padding:12px 16px 11px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--ink-2);cursor:pointer;white-space:nowrap;transition:color .14s,border-color .14s;margin-bottom:-1px;}
-  .op-tab:hover{color:var(--ink);}
-  .op-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
-  .op-panel{display:none;padding-top:8px;}
-  .op-panel.active{display:block;}
+  .page{max-width:880px;margin:0 auto;padding:0 28px;}
+  .topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);}
+  .brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:600;}
+  .links{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;}
+  .links a{color:var(--ink-2);text-decoration:none;}.links a:hover{color:var(--accent);}
+  header{padding:48px 0 30px;} h1{font-size:clamp(34px,5vw,58px);margin:14px 0 0;max-width:13ch;}.sub{font-family:var(--serif);font-size:20px;line-height:1.45;color:var(--ink-2);max-width:62ch;margin:18px 0 0;}
+  section{padding:38px 0;border-top:1px solid var(--line);} h2{font-family:var(--serif);font-size:30px;font-weight:500;margin:0 0 14px;line-height:1.15;} h3{font-family:var(--serif);font-size:21px;font-weight:500;margin:24px 0 8px;} p{font-size:15px;line-height:1.7;color:var(--ink);}.muted{color:var(--ink-2);} code{font-family:var(--mono);font-size:.9em;background:var(--paper-3);padding:.1em .42em;border:1px solid var(--line-soft);border-radius:4px;}
+  .lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:0 0 22px;}.lead strong{color:var(--accent);font-weight:500;}
+  .callout{border:1px solid var(--ink);background:var(--paper-2);padding:24px;margin:22px 0;}.callout .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px;}.callout p{margin:0;font-size:16px;line-height:1.55;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}@media(max-width:680px){.grid2{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line);background:rgba(255,255,255,.38);padding:16px;}.card b{color:var(--accent);}.card p{font-size:13.5px;line-height:1.55;margin:6px 0 0;color:var(--ink-2);}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;} th,td{border:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.5;} th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:600;background:var(--paper-2);} td:first-child{font-weight:500;width:25%;}
+  .btnrow{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 8px;} footer{padding:40px 0;color:var(--ink-2);font-family:var(--mono);font-size:12px;border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div class="page">
+  <nav class="topbar">
+    <a class="brand" href="index.html">active_monkey</a>
+    <div class="links">
+      <a href="index.html">home</a>
+      <a href="journey.html">notebook</a>
+      <a href="https://github.com/Mirrorad1/active_monkey">github</a>
+    </div>
+  </nav>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="experiments-data.js?v=5"></script>
-<script src="am-live.js?v=5"></script>
-<script src="lab-status.js?v=5"></script>
-<script type="text/babel" src="tweaks-panel.jsx?v=5"></script>
-<script type="text/babel" src="am-shared.jsx?v=5"></script>
-
-<script type="text/babel">
-const { useState, useEffect } = React;
-
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": "growth",
-  "fontPair": "editorial",
-  "gridPaper": true,
-  "motion": true
-}/*EDITMODE-END*/;
-
-const HEADER_HTML = String.raw`
-  <header class="op-head op">
+  <header>
     <div class="kicker slate">active_monkey · current research note</div>
-    <h1 class="h-display">The open problem has moved.</h1>
-    <p class="sub">The founding wall was language-from-scratch. The current frontier is stricter: can a tiny active-inference creature notice that its worldview is too small, grow the right model, and preserve identity under adversarial perturbation?</p>
-    <p class="note">So active_monkey is best read as both a <em>world-model lab</em> and an <em>active-inference lab</em>. Active inference supplies the mechanics: perception and action minimize surprise. The research object is the world model: what structure the creature has, when it can revise that structure, and which continuity claims survive blinded falsification.</p>
+    <h1 class="h-display">The open problem is creaturehood.</h1>
+    <p class="sub">The current question is not whether a small system looks intelligent from the outside. It is whether ecological pressure can make sensing, persistent capability, belief, and communication useful from the system's own side.</p>
   </header>
-`;
 
-const TAB1_HTML = String.raw`
-<div id="panel-tab1" class="op-panel active op">
-  <p class="op-lead"><strong>The live question:</strong> when does a small agent have enough internal structure to say, in effect, "my current model cannot explain this world," and then change the model rather than merely overfit, freeze, or collapse?</p>
+  <section>
+    <p class="lead"><strong>Open problem:</strong> under what conditions does information become meaningful to a tiny artificial creature?</p>
+    <div class="callout">
+      <div class="tag">one sentence version</div>
+      <p>Build a small ecology where a world variable becomes worth sensing, worth maintaining, worth remembering, and eventually worth communicating, without directly rewarding the representation itself.</p>
+    </div>
+    <p>This page used to center an older framing around worldview growth and identity continuity. Those remain useful notes in the notebook, but the cleaner public framing is now more basic: study how creature-like agency begins before trying to bolt on large-scale intelligence.</p>
+  </section>
 
-  <div class="callout">
-    <div class="tag">current open problem in one sentence</div>
-    <p><strong>Build a toy creature whose model growth, identity continuity, and failure modes are all measurable, predeclared, and hard to fake.</strong> A positive result is not just lower surprise; it is lower surprise for the right causal reason, under blinded verifier checks and trivial-baseline red teams.</p>
-  </div>
+  <section>
+    <h2>Why this is not just another agent demo</h2>
+    <p>A demo can make behavior look interesting. A lab has to say what would kill the explanation.</p>
+    <div class="grid2">
+      <div class="card"><b>Third-person state</b><p>Position, resource field, population, lineage, births, deaths, trait distributions, and experiment outcomes.</p></div>
+      <div class="card"><b>First-person state</b><p>Local observations, internal energy, memory, prediction, uncertainty, belief update, and action.</p></div>
+    </div>
+    <p>The bridge between those two views is the core research direction. The outside observer can see the full world. The creature cannot. If the creature starts carrying internal estimates that improve action, then belief-like state becomes something we can measure.</p>
+  </section>
 
-  <h2><span class="nm">1</span>What kind of lab is this?</h2>
-  <p>It is not mainly a benchmark-chasing ML project. It is a small, legible research loop for testing whether active-inference agents can develop world models from experience. In programmer terms: active inference is the runtime policy loop; the world model is the mutable internal schema; the experiments are integration tests that try to prove the schema change was real rather than a scoring artifact.</p>
+  <section>
+    <h2>The research spine</h2>
+    <table>
+      <tbody>
+        <tr><th>Stage</th><th>Question</th><th>Failure mode to avoid</th></tr>
+        <tr><td>Ecology</td><td>Does the world create real pressure: resource limits, depletion, temperature, competition, or lineage effects?</td><td>A toy world where every behavior works because nothing matters.</td></tr>
+        <tr><td>Sensor</td><td>Does a world variable become useful to observe?</td><td>Rewarding the sensor directly and calling that emergence.</td></tr>
+        <tr><td>Organ</td><td>Does the costly capability persist across generations because it improves action-relevant outcomes?</td><td>A one-off mutation that appears but is not maintained.</td></tr>
+        <tr><td>Belief</td><td>Does the creature carry internal estimates of hidden state that change action?</td><td>Confusing observer annotations with the creature's own state.</td></tr>
+        <tr><td>Communication</td><td>Does one creature's signal change another creature's belief or action?</td><td>Counting emitted symbols without showing that they matter.</td></tr>
+        <tr><td>World model</td><td>Can learned compression predict future trajectories or guide action without replacing the ecology as ground truth?</td><td>Training on simulator artifacts and mistaking overfit for intelligence.</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-  <div class="grid2">
-    <div class="card"><b>Active-inference lab</b><p>The subject senses a world, predicts what should happen, acts to reduce surprise, and updates beliefs from experience.</p></div>
-    <div class="card"><b>World-model lab</b><p>The measured object is the agent's internal ontology: places, objects, anchors, identity state, and whether new structure is warranted.</p></div>
-  </div>
+  <section>
+    <h2>Current standard of evidence</h2>
+    <p>A claim should name the causal variable and the thing that would falsify it. For sensor-to-organ work, that means the capability has a cost, the founder baseline is clear, the null arms are honest, and the experiment does not smuggle the answer into the reward.</p>
+    <div class="grid2">
+      <div class="card"><b>Keep</b><p>Fixed seeds, raw outputs, null results, predeclared pass/fail bars, and a clear note about what was ruled out.</p></div>
+      <div class="card"><b>Do not count</b><p>Pretty curves, direct capability rewards, post-hoc thresholds, or success that disappears under trivial baselines.</p></div>
+    </div>
+  </section>
 
-  <h2><span class="nm">2</span>Why the earlier page was incomplete</h2>
-  <p>The older framing focused on a true wall: a discrete free-energy agent did not grow an unsupervised language concept from a bare symbol stream. That wall still matters, but it is no longer the only story. Later trajectories moved into embodied worlds, structural-inadequacy alarms, model growth, identity continuity, and N-order self-monitoring.</p>
+  <section>
+    <h2>Where deep active inference fits</h2>
+    <p>Deep active inference is not the first move. It becomes useful when explicit belief variables stop scaling.</p>
+    <p>For now, the project should keep the substrate legible: ecology first, then sensing, then persistent capability, then belief reconstruction. Learned latent models can enter later as compression for action-relevant state, not as a shortcut around the hard part.</p>
+    <div class="callout">
+      <div class="tag">honest bottom line</div>
+      <p>active_monkey is not claiming AGI, consciousness, or language emergence. The defensible claim is narrower: tiny ecologies can be used to study how sensing, belief-like state, and world models become useful under pressure.</p>
+    </div>
+  </section>
 
-  <div class="obs good"><div class="ol"><span class="dt"></span>trajectory update</div><p>The strongest constructive arc is now "worldview too small": the creature can hit a structural-inadequacy alarm and grow a model on demand under strict acceptance criteria. That is a different claim than "language emerged." It is narrower, more measurable, and more useful.</p></div>
+  <section>
+    <h2>Next useful questions</h2>
+    <table>
+      <tbody>
+        <tr><th>Track</th><th>Question</th></tr>
+        <tr><td>Sensor-to-organ</td><td>What conditions make a costly sensor persist rather than get suppressed?</td></tr>
+        <tr><td>Belief reconstruction</td><td>Can we infer what the creature believed from observations, actions, and outcomes?</td></tr>
+        <tr><td>Observer model</td><td>Can a learned model predict future seeds or early signs of persistence without controlling the ecology?</td></tr>
+        <tr><td>Communication</td><td>Can signals become belief transfer rather than just emitted tokens?</td></tr>
+      </tbody>
+    </table>
+    <div class="btnrow">
+      <a class="btn btn-primary" href="journey.html">Read the lab notebook →</a>
+      <a class="btn btn-ghost" href="index.html">Back to landing page</a>
+    </div>
+  </section>
 
-  <p class="muted" style="margin:22px 0 4px">The old language wall is preserved in tab 2. The current pivot and current frontier are tabs 3–4.</p>
+  <footer>active_monkey · current open problem · <a href="https://github.com/Mirrorad1/active_monkey">GitHub</a></footer>
 </div>
-`;
-
-const TAB2_HTML = String.raw`
-<div id="panel-tab2" class="op-panel op">
-  <p class="op-lead">The original open problem remains valid: a bare symbol stream does not force a clean latent concept to crystallize. The model can explain the data while leaving the latent unused.</p>
-
-  <h2><span class="nm">1</span>The symmetric fixed point</h2>
-  <p>If every candidate topic starts equivalent, the posterior has no first-order reason to prefer one topic over another. The model can sit at an uninformative equilibrium where the latent is formally present but functionally unused.</p>
-  <div class="obs"><div class="ol"><span class="dt"></span>observed · early language arc</div><p>Topic belief stayed split while predictions collapsed to the same continuation for different prompts. More states increased capacity but did not create the missing binding mechanism.</p></div>
-
-  <h2><span class="nm">2</span>Occam collapse and posterior collapse</h2>
-  <p>When a one-latent explanation and a multi-latent explanation fit nearly as well, the complexity penalty favors the simpler explanation. In ML language, this is posterior collapse: the latent exists in the architecture but the optimizer learns not to use it.</p>
-
-  <h2><span class="nm">3</span>Long-range binding is a separate sub-problem</h2>
-  <p>Even if the topic is supplied, a Markov-style state can forget the evidence needed to bind "sky ... blue" across a span. Capacity is not memory; a larger table can still be the wrong substrate.</p>
-
-  <div class="callout">
-    <div class="tag">what survived the pivot</div>
-    <p>The original wall was not a failure of effort. It identified a real constraint: from-scratch structure learning needs a foothold. The later embodied work does not refute this; it exploits it.</p>
-  </div>
-</div>
-`;
-
-const TAB3_HTML = String.raw`
-<div id="panel-tab3" class="op-panel op">
-  <p class="op-lead">The pivot was not "make it bigger." It was "give the latent a life." Embodiment, action, persistent belief, and one minimal anchor made structure identifiable enough to test.</p>
-
-  <h2><span class="nm"></span>The current trajectory</h2>
-  <table class="ftable"><tbody>
-    <tr><th>Trajectory</th><th>What it tests</th><th>Status</th></tr>
-    <tr>
-      <td>Worldview growth</td>
-      <td>Can the agent detect that its current model is structurally inadequate and grow the missing factor for the right reason?</td>
-      <td>Constructive flagship candidate: alarm-to-silence model growth under predeclared bars.</td>
-    </tr>
-    <tr>
-      <td>Identity / N4 crack</td>
-      <td>Does continuity of the creature's self-state survive captivity, regulation, length variation, and release?</td>
-      <td>Identity chapter closed constructively; crack edges remain for tighter retention and stream-composition tests.</td>
-    </tr>
-    <tr>
-      <td>N-order self-modeling</td>
-      <td>Can monitors observe the creature's own internal states without confusing measurement artifacts for cognition?</td>
-      <td>Meta-calibration has been graded; next layers proceed only after explicit resumption or a named crack.</td>
-    </tr>
-    <tr>
-      <td>Red-team baselines</td>
-      <td>Do the strongest claims survive random-policy, shuffled-history, shuffled-label, and trivial-controller comparisons?</td>
-      <td>Active direction; intended to convert interesting demos into defensible claims.</td>
-    </tr>
-  </tbody></table>
-
-  <h2><span class="nm"></span>What changed epistemically</h2>
-  <p>The lab is now less about asking "can something emerge?" and more about asking "which exact intervention caused the measured change?" The null results are doing real work: they are killing sloppy causal stories. Exp 193 is a good example: a return-home position intervention executed mechanically, but was dynamically inert. That renamed the suspected variable from location to stream composition.</p>
-
-  <div class="obs mixed"><div class="ol"><span class="dt"></span>latest trajectory · Exp 193</div><p>The position intervention did not causally change the post-release behavior. That is a negative result, but it narrows the frontier: locality was the wrong causal variable; the live hypothesis is now about the post-release experience stream and scoring validity.</p></div>
-
-  <div class="callout">
-    <div class="tag">new standard</div>
-    <p><strong>A claim is only interesting if it survives instrumentation.</strong> The site should not sell "emergence" as vibes; it should name the acceptance bars, null interventions, blinded checks, and trivial baselines that would kill the claim.</p>
-  </div>
-</div>
-`;
-
-const TAB4_HTML = String.raw`
-<div id="panel-tab4" class="op-panel op">
-  <p class="op-lead">The frontier is now a ladder of falsifiable claims. Each rung asks for a stronger form of model growth or identity persistence, and each rung has an explicit way to fail.</p>
-
-  <h2><span class="nm">A</span>Worldview growth without scoring artifacts</h2>
-  <p>The strongest path is a creature that grows new structure only when the old model is genuinely inadequate. The danger is a fake win: a threshold, scorer, or proxy metric that rewards growth even when no real causal model improved. The next bar is cleaner mechanism evidence, not prettier curves.</p>
-
-  <h2><span class="nm">B</span>Identity continuity under adversarial stream tests</h2>
-  <p>The N4 work makes identity operational: can a line preserve a self-state under captivity, regulation, release, and perturbation? The current crack-edge work says position alone is not causal. The live edge is whether stream composition, tight-tolerance scoring, or post-release retention exposes a real discontinuity.</p>
-
-  <h2><span class="nm">C</span>Higher-order monitors that do not fool themselves</h2>
-  <p>N-order self-modeling is attractive because it resembles metacognition: a model of the model. But the experiment only counts if the monitor detects real internal-state changes, not correlated surface traces. The current discipline is to grade each layer before adding another.</p>
-
-  <h2><span class="nm">D</span>From toy cognition to scalable substrate</h2>
-  <p>Discrete active inference remains excellent for legible toy cognition. It is not yet a path to open-ended language or broad programming competence. Scaling probably requires hybrid substrates: discrete factors for interpretability, continuous representations for compression, and external LLM scaffolding for experiment generation.</p>
-
-  <div class="callout">
-    <div class="tag">honest bottom line</div>
-    <p>active_monkey is not claiming AGI, consciousness, or language emergence. The defensible claim is narrower and stronger: small active-inference creatures can be used as a rigorous testbed for world-model growth, identity continuity, and failure-mode discovery.</p>
-  </div>
-
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 10px">
-    <a class="btn btn-primary" href="journey.html">See the experiment log →</a>
-    <a class="btn btn-ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/flagship/worldview-too-small.md" target="_blank" rel="noopener">Worldview-too-small draft</a>
-  </div>
-</div>
-`;
-
-const PANELS_HTML = TAB1_HTML + TAB2_HTML + TAB3_HTML + TAB4_HTML;
-
-const TAB_DEFS = [
-  { id: "tab1", label: "1 · Current problem" },
-  { id: "tab2", label: "2 · Founding wall" },
-  { id: "tab3", label: "3 · Current trajectory" },
-  { id: "tab4", label: "4 · Frontier rungs" },
-];
-
-function getInitialTab() {
-  try {
-    const m = window.location.hash.match(/[#&]tab=([a-z0-9]+)/);
-    if (m && TAB_DEFS.find(t => t.id === m[1])) return m[1];
-  } catch(e) {}
-  return "tab1";
-}
-
-function OpenProblem(){
-  const [tw, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [activeTab, setActiveTab] = useState(getInitialTab);
-
-  useEffect(() => { applyTweaks(tw); }, [tw]);
-
-  useEffect(() => {
-    TAB_DEFS.forEach(({ id }) => {
-      const el = document.getElementById('panel-' + id);
-      if (el) el.classList.toggle('active', id === activeTab);
-    });
-    try {
-      const url = new URL(window.location.href);
-      url.hash = 'tab=' + activeTab;
-      window.history.replaceState(null, '', url.toString());
-    } catch(e) {}
-  }, [activeTab]);
-
-  useEffect(() => {
-    const onHash = () => setActiveTab(getInitialTab());
-    window.addEventListener('hashchange', onHash);
-    return () => window.removeEventListener('hashchange', onHash);
-  }, []);
-
-  return (
-    <>
-      <Nav active="open"/>
-      <div dangerouslySetInnerHTML={{__html: HEADER_HTML}}></div>
-      <div className="op-tabs">
-        {TAB_DEFS.map(({ id, label }) => (
-          <button key={id} className={"op-tab" + (activeTab === id ? " active" : "")} onClick={() => setActiveTab(id)}>{label}</button>
-        ))}
-      </div>
-      <div id="op-panels" dangerouslySetInnerHTML={{__html: PANELS_HTML}}></div>
-      <Footer/>
-      <TweaksPanel>
-        <TweakSection label="Palette"/>
-        <TweakRadio label="System" value={tw.palette} options={["growth","compass","ember"]} onChange={v => setTweak('palette', v)}/>
-        <TweakSection label="Type & texture"/>
-        <TweakRadio label="Fonts" value={tw.fontPair} options={["editorial","grotesk"]} onChange={v => setTweak('fontPair', v)}/>
-        <TweakToggle label="Graph paper" value={tw.gridPaper} onChange={v => setTweak('gridPaper', v)}/>
-      </TweaksPanel>
-    </>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('app')).render(<OpenProblem/>);
-</script>
 </body>
 </html>
