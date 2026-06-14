@@ -196,10 +196,20 @@ class TestCrosspartialVerdict:
         assert verdict == CrossPartialVerdict.TRAIT_PAYS_ALONE
 
     def test_antagonistic(self):
-        # high-h WORSE at high-theta ⇒ dB_dh_hi_theta < 0
+        # Destructive INTERACTION: cross_partial < 0 (h gets more harmful as theta rises).
+        # cross = 0.5 - 1.5 - 1.5 + 1.0 = -1.5 < 0.
         eff = corner_effects(b_ll=1.0, b_hl=1.5, b_lh=1.5, b_hh=0.5)
         verdict, reason = crosspartial_verdict(eff)
         assert verdict == CrossPartialVerdict.ANTAGONISTIC
+
+    def test_controller_pays_alone_with_h_cost_exp207(self):
+        # REGRESSION (Exp 207 niche regime): theta pays alone (+0.147), h is a UNIFORM
+        # cost at both theta (dB/dh = -0.046 and -0.041), cross_partial ~ +0.005 (NOT a
+        # destructive interaction). Must be CONTROLLER_PAYS_ALONE, NOT ANTAGONISTIC —
+        # "h is a cost at high theta" alone must not trip the antagonistic rule.
+        eff = corner_effects(b_ll=0.1134, b_hl=0.0678, b_lh=0.2606, b_hh=0.2196)
+        verdict, reason = crosspartial_verdict(eff)
+        assert verdict == CrossPartialVerdict.CONTROLLER_PAYS_ALONE
 
     def test_no_interaction_flat(self):
         # Everything flat => cross_partial == 0
@@ -269,6 +279,21 @@ class TestAggregateVerdict:
             guards_all_pass=True,
         )
         assert verdict == AggregateVerdict.CONTROLLER_PAYS_ALONE
+
+    def test_gradient_none_controller_pays_alone(self):
+        # Gate-H-only config (binding local gate NOT run, gradient=None): a
+        # CONTROLLER_PAYS_ALONE cross-partial must SURFACE, not be masked as NO_VERDICT.
+        verdict, reason = aggregate_verdict(
+            gradient=None,
+            crosspartial=CrossPartialVerdict.CONTROLLER_PAYS_ALONE,
+            guards_all_pass=True,
+        )
+        assert verdict == AggregateVerdict.CONTROLLER_PAYS_ALONE
+
+    def test_gradient_none_no_signal_is_no_verdict(self):
+        # Gate not run and nothing else conclusive ⇒ NO_VERDICT (can't pass/fail without it).
+        verdict, reason = aggregate_verdict(gradient=None, guards_all_pass=True)
+        assert verdict == AggregateVerdict.NO_VERDICT
 
     def test_global_benefit_only_from_benefit_verdict(self):
         verdict, reason = aggregate_verdict(

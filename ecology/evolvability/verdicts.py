@@ -249,8 +249,12 @@ def crosspartial_verdict(
     ----------
     1. Any required key is nan
        → NO_VERDICT
-    2. dB_dh_hi_theta < -eps
-       → ANTAGONISTIC  (sharper trait is WORSE when controller is engaged)
+    2. cross_partial < -eps
+       → ANTAGONISTIC  (DESTRUCTIVE interaction: h becomes MORE harmful as theta
+          rises, i.e. the discrete cross-partial is negative.  This is NOT merely
+          "h is a cost at high theta": when theta carries the benefit and h is a
+          uniform cost with cross_partial ~ 0, the verdict is CONTROLLER_PAYS_ALONE,
+          e.g. the Exp 207 niche regime.)
     3. cross_partial > eps AND dB_dh_lo_theta <= eps AND dB_dtheta_lo_h <= eps
        → JOINT_VALLEY_PLAUSIBLE  (neither pays alone; combined pays)
     4. dB_dtheta_lo_h > eps AND dB_dh_lo_theta <= eps AND dB_dh_hi_theta <= eps
@@ -289,11 +293,15 @@ def crosspartial_verdict(
     dh_hi = eff["dB_dh_hi_theta"]
     dt_lo = eff["dB_dtheta_lo_h"]
 
-    # Rule 2: antagonistic
-    if dh_hi < -eps:
+    # Rule 2: antagonistic — the INTERACTION is destructive (h becomes MORE harmful
+    # as theta rises), i.e. the discrete cross-partial is negative.  NOT merely "h is
+    # a cost at high theta": h being a uniform cost while theta carries the benefit
+    # (cross_partial ~ 0) is CONTROLLER_PAYS_ALONE, not ANTAGONISTIC (e.g. Exp 207).
+    if cp < -eps:
         return (
             CrossPartialVerdict.ANTAGONISTIC,
-            f"dB_dh_hi_theta={dh_hi:.4g} < -eps={-eps:.2g}: trait is WORSE when controller engaged",
+            f"cross_partial={cp:.4g} < -eps={-eps:.2g}: h becomes MORE harmful as theta rises "
+            f"(dB/dh: {dh_lo:.4g} at low theta -> {dh_hi:.4g} at high theta)",
         )
     # Rule 3: joint valley plausible
     if cp > eps and dh_lo <= eps and dt_lo <= eps:
@@ -331,7 +339,7 @@ def crosspartial_verdict(
 
 def aggregate_verdict(
     *,
-    gradient: GradientVerdict,
+    gradient: Optional[GradientVerdict],
     benefit: Optional[BenefitVerdict] = None,
     monomorphic_above_resident: Optional[bool] = None,
     monomorphic_survivable: Optional[bool] = None,
@@ -340,8 +348,18 @@ def aggregate_verdict(
 ) -> tuple:
     """Aggregate all sub-verdicts into a single experiment verdict.
 
+    `gradient` is None when the binding local_pairwise_gradient gate was NOT RUN
+    (distinct from NO_VERDICT, which means it ran but the population was invalid).
+    With the binding gate absent, the aggregate can never PASS/FAIL local
+    evolvability — it surfaces the strongest standalone signal that WAS measured.
+
     Precedence (applied in order; first matching rule wins)
     ----------
+    0. gradient is None  (binding gate not run):
+       a. crosspartial == CONTROLLER_PAYS_ALONE       → CONTROLLER_PAYS_ALONE
+       b. mono above-resident + survivable, or benefit==BENEFIT → GLOBAL_BENEFIT_ONLY
+       c. otherwise                                   → NO_VERDICT
+
     1. gradient == NO_VERDICT
        → NO_VERDICT  (population invalid or insufficient data; no pass/fail)
 
@@ -374,6 +392,26 @@ def aggregate_verdict(
     crosspartial             : from crosspartial_verdict(); optional
     guards_all_pass          : True iff all null/cheat guards passed
     """
+    # Rule 0: the binding local-gradient gate was not run at all.
+    if gradient is None:
+        if crosspartial == CrossPartialVerdict.CONTROLLER_PAYS_ALONE:
+            return (
+                AggregateVerdict.CONTROLLER_PAYS_ALONE,
+                "local-gradient gate not run; controller cross-partial shows the controller "
+                "pays alone (trait h is not the causal agent)",
+            )
+        if (monomorphic_above_resident is True and monomorphic_survivable is True) or \
+                benefit == BenefitVerdict.BENEFIT:
+            return (
+                AggregateVerdict.GLOBAL_BENEFIT_ONLY,
+                "local-gradient gate not run; a global/gifted benefit is present but local "
+                "evolvability was not measured",
+            )
+        return (
+            AggregateVerdict.NO_VERDICT,
+            "the binding local_pairwise_gradient gate was not run; no pass/fail possible",
+        )
+
     # Rule 1
     if gradient == GradientVerdict.NO_VERDICT:
         return (

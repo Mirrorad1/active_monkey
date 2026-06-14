@@ -1,0 +1,98 @@
+{
+  "slug": "thermosense_controller_crosspartial",
+  "description": "Gate H controller cross-partial for thermosense x niche_weight (Exp 207 niche regime).",
+  "base_scenario": "balanced",
+  "base_overrides": {
+    "max_population": 20000,
+    "regen_rate": 0.2,
+    "shuffle_creature_order": true,
+    "enable_thermosense": true,
+    "enable_temperature": true,
+    "temperature_stress_scale": 0.0,
+    "thermosense_upkeep_floor": 0.0,
+    "thermosense_active_threshold": 0.05,
+    "thermosense_noise_base": 0.5,
+    "enable_food_coupling": false,
+    "thermosense_forage_mode": true,
+    "enable_niche": true,
+    "niche_classes": 2,
+    "niche_rotation": 0.05,
+    "niche_confusion": 0.4,
+    "niche_crowding": 1.5,
+    "niche_weight": 6.0
+  },
+  "founder_overrides": {
+    "temperature_tolerance": 0.1
+  },
+  "trait": {
+    "name": "thermosense",
+    "resident_value": 0.1,
+    "mutant_value": 0.15,
+    "low_value": 0.1,
+    "high_value": 0.45,
+    "cost_enabled": true,
+    "h_trait": "thermosense_intensity",
+    "inefficiency_trait": "thermosense_inefficiency",
+    "inefficiency_value": 0.2,
+    "freeze_flag": "freeze_thermosense",
+    "enable_flag": "enable_thermosense",
+    "active_threshold": 0.05,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.2,
+    "backend": "thermosense",
+    "disconnect_overrides": {
+      "enable_thermosense": false,
+      "niche_confusion": 0.0
+    }
+  },
+  "controller": {
+    "name": "niche_weight",
+    "low_value": 0.6,
+    "high_value": 6.0,
+    "config_field": "niche_weight"
+  },
+  "seeds": [
+    90,
+    91,
+    92,
+    93,
+    94
+  ],
+  "horizon": 3500,
+  "settle_steps": 0,
+  "measurement_window": [
+    50,
+    800
+  ],
+  "output_dir": "results/preflight",
+  "replicates": 1,
+  "gates": [
+    "controller_cross_partial",
+    "null_guards"
+  ],
+  "gate_params": {
+    "controller_cross_partial": {
+      "window": 1000
+    }
+  },
+  "monomorphic_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.3,
+    0.45,
+    0.6
+  ],
+  "cost_values": [
+    0.1,
+    0.2,
+    0.4
+  ],
+  "win_threshold": null,
+  "lose_threshold": null,
+  "min_valid_seeds": 3,
+  "min_population": 10,
+  "deterministic": true,
+  "null_toggles": {}
+}

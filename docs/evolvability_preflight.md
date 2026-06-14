@@ -196,6 +196,24 @@ TRAIT_PAYS_ALONE, NO_INTERACTION, ANTAGONISTIC, NO_VERDICT.
 Requires `cfg.controller` to be set (a `ControllerAxis`).  If controller is None
 and this gate is listed, it is skipped with a note.
 
+ANTAGONISTIC means a **destructive interaction** (`cross_partial < 0`: h becomes
+*more* harmful as θ rises), NOT merely "h is a cost at high θ" — h being a uniform
+cost while θ carries the benefit (cross_partial ≈ 0) is `CONTROLLER_PAYS_ALONE`.
+
+When a config runs Gate H **without** the binding `local_pairwise_gradient` gate,
+the aggregate cannot PASS/FAIL local evolvability; instead it surfaces the
+controller verdict directly (`gradient=None` path), so a `CONTROLLER_PAYS_ALONE`
+finding is reported rather than masked as `NO_VERDICT`.
+
+Reference config: `experiments/configs/preflight/thermosense_controller_crosspartial.yaml`
+(the Exp 206/207 niche regime). It reproduces Exp 207's finding —
+`CONTROLLER_PAYS_ALONE`: θ (niche_weight) carries the benefit (+0.147), h is a
+uniform cost at both θ, cross_partial ≈ +0.005 — so a full sensor–controller
+co-adaptation batch is **not** warranted. Note the trait's `disconnect_overrides`
+for the niche regime is `{enable_thermosense: false, niche_confusion: 0.0}` (a
+*different* recipe than the forage regime — the channels a trait feeds are
+regime-specific).
+
 Backend: generic.
 
 ---
@@ -274,6 +292,17 @@ uv run --python .venv python experiments/run_preflight.py \
 chance-wins spuriously read `PASS_LOCAL_GRADIENT`. It exists to exercise the CLI
 and artifact plumbing, **not** to produce a meaningful verdict. With fewer than 8
 seeds a `PASS` is noise; always use the 8-seed batch for a real verdict.
+
+### Controller cross-partial (Gate H)
+
+```sh
+uv run --python .venv python experiments/run_preflight.py \
+    --config experiments/configs/preflight/thermosense_controller_crosspartial.yaml
+```
+
+Runs the Exp 206/207 niche regime (5 seeds, horizon 3500) → `CONTROLLER_PAYS_ALONE`
+(θ pays alone, h pure cost, cross_partial ≈ 0). A committed example run is in
+`experiments/outputs/preflight_thermosense_gateH/`.
 
 ### Module form
 

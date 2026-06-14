@@ -1,0 +1,174 @@
+{
+  "slug": "thermosense_controller_crosspartial",
+  "run_id": "gateH_v2",
+  "aggregate_verdict": "CONTROLLER_PAYS_ALONE",
+  "failure_reason": "local-gradient gate not run; controller cross-partial shows the controller pays alone (trait h is not the causal agent)",
+  "gates": [
+    {
+      "name": "controller_cross_partial",
+      "question": "Do trait h and controller niche_weight interact synergistically (cross-partial > 0)?",
+      "metric": "births/step at 4 corners of (thermosense x niche_weight)",
+      "verdict": "CONTROLLER_PAYS_ALONE",
+      "aggregate": {
+        "B_ll": 0.11339999999999999,
+        "B_hl": 0.0678,
+        "B_lh": 0.2604,
+        "B_hh": 0.2192,
+        "h_lo": 0.1,
+        "h_hi": 0.45,
+        "theta_lo": 0.6,
+        "theta_hi": 6.0,
+        "corner_effects": {
+          "cross_partial": 0.004399999999999973,
+          "dB_dh_lo_theta": -0.04559999999999999,
+          "dB_dh_hi_theta": -0.041200000000000014,
+          "dB_dtheta_lo_h": 0.14700000000000002,
+          "dB_dtheta_hi_h": 0.1514
+        }
+      },
+      "validity_flags": {
+        "n_seeds": 5,
+        "n_corners": 4
+      },
+      "interpretation": "Cross-partial verdict: CONTROLLER_PAYS_ALONE.  dB_dtheta_lo_h=0.147 > eps, dB_dh_lo_theta=-0.0456 <= eps, dB_dh_hi_theta=-0.0412 <= eps: controller pays; trait does not.  This is a PREFLIGHT measurement, NOT a full co-adaptation run.  The corners are measured in isolation; actual co-evolutionary dynamics (e.g. the controller evolving to exploit the trait) are not captured here.",
+      "raw_path": "raw/controller_cross_partial.jsonl"
+    },
+    {
+      "name": "null_guards",
+      "question": "Do all null/anti-cheat guards pass?",
+      "metric": "guard battery status (PASS/FAIL/NOT_IMPLEMENTED/NA)",
+      "verdict": "",
+      "aggregate": {
+        "guards": [
+          {
+            "name": "cost_off_disconnected_byte_identical",
+            "status": "PASS",
+            "reason": "events_hash identical for h=0.1 and h=0.45 when trait disconnected"
+          },
+          {
+            "name": "no_direct_h_reward",
+            "status": "PASS",
+            "reason": "assert_no_direct_h_reward passed: enable_thermosense=True, freeze=True, founder_mix set"
+          },
+          {
+            "name": "trait_disabled_null",
+            "status": "PASS",
+            "reason": "per-capita intake identical: |4736.93 - 4736.93| < 1e-9"
+          },
+          {
+            "name": "population_validity",
+            "status": "NA",
+            "reason": "pairwise_extinct_fraction not provided; cannot assess"
+          },
+          {
+            "name": "perfect_percept_null",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "perfect_percept_null requires a matched (null vs non-null) comparison run that this guard does not construct; left NOT_IMPLEMENTED (no spurious PASS). Guard 1 (byte-identity when disconnected) covers the anti-cheat property here."
+          },
+          {
+            "name": "frozen_memory_map",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+          },
+          {
+            "name": "shuffle_order",
+            "status": "PASS",
+            "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+          }
+        ],
+        "all_pass": true
+      },
+      "validity_flags": {
+        "n_guards": 7
+      },
+      "interpretation": "Guard battery: PASS=['cost_off_disconnected_byte_identical', 'no_direct_h_reward', 'trait_disabled_null', 'shuffle_order']; NOT_IMPLEMENTED/NA=['population_validity', 'perfect_percept_null', 'frozen_memory_map'].  all_pass=True (counts only PASS/FAIL; NOT_IMPLEMENTED/NA do not fail).  A positive gradient verdict should be treated as an artifact if any guard FAILs.",
+      "raw_path": "raw/null_guards.jsonl"
+    }
+  ],
+  "trait": {
+    "name": "thermosense",
+    "resident_value": 0.1,
+    "mutant_value": 0.15,
+    "low_value": 0.1,
+    "high_value": 0.45,
+    "cost_enabled": true,
+    "h_trait": "thermosense_intensity",
+    "inefficiency_trait": "thermosense_inefficiency",
+    "inefficiency_value": 0.2,
+    "freeze_flag": "freeze_thermosense",
+    "enable_flag": "enable_thermosense",
+    "active_threshold": 0.05,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.2,
+    "backend": "thermosense",
+    "disconnect_overrides": {
+      "enable_thermosense": false,
+      "niche_confusion": 0.0
+    }
+  },
+  "controller": {
+    "name": "niche_weight",
+    "low_value": 0.6,
+    "high_value": 6.0,
+    "config_field": "niche_weight"
+  },
+  "config_hash": "86db96b3de88955aa90bf283de9d089bcaab7f8806fc0306c52a494640b9476b",
+  "git_commit": "45de8aef308b651dc3634c8960aa54f502526369",
+  "artifact_paths": {
+    "run_dir": "results/preflight/thermosense_controller_crosspartial/gateH_v2",
+    "config_json": "results/preflight/thermosense_controller_crosspartial/gateH_v2/config.json",
+    "summary_json": "results/preflight/thermosense_controller_crosspartial/gateH_v2/summary.json",
+    "summary_csv": "results/preflight/thermosense_controller_crosspartial/gateH_v2/summary.csv",
+    "report_md": "results/preflight/thermosense_controller_crosspartial/gateH_v2/report.md",
+    "raw_dir": "results/preflight/thermosense_controller_crosspartial/gateH_v2/raw"
+  },
+  "repro": {
+    "python": "3.12.9",
+    "deterministic": true,
+    "seeds": [
+      90,
+      91,
+      92,
+      93,
+      94
+    ],
+    "n_seeds": 5
+  },
+  "guard_statuses": [
+    {
+      "name": "cost_off_disconnected_byte_identical",
+      "status": "PASS",
+      "reason": "events_hash identical for h=0.1 and h=0.45 when trait disconnected"
+    },
+    {
+      "name": "no_direct_h_reward",
+      "status": "PASS",
+      "reason": "assert_no_direct_h_reward passed: enable_thermosense=True, freeze=True, founder_mix set"
+    },
+    {
+      "name": "trait_disabled_null",
+      "status": "PASS",
+      "reason": "per-capita intake identical: |4736.93 - 4736.93| < 1e-9"
+    },
+    {
+      "name": "population_validity",
+      "status": "NA",
+      "reason": "pairwise_extinct_fraction not provided; cannot assess"
+    },
+    {
+      "name": "perfect_percept_null",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "perfect_percept_null requires a matched (null vs non-null) comparison run that this guard does not construct; left NOT_IMPLEMENTED (no spurious PASS). Guard 1 (byte-identity when disconnected) covers the anti-cheat property here."
+    },
+    {
+      "name": "frozen_memory_map",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+    },
+    {
+      "name": "shuffle_order",
+      "status": "PASS",
+      "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+    }
+  ]
+}

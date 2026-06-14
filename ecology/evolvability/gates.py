@@ -908,20 +908,17 @@ def run_null_guards(
     # Only meaningful if backend==thermosense AND there is a niche_confusion knob AND
     # enable_niche is active — otherwise NOT_IMPLEMENTED.
     if axis.backend == "thermosense" and getattr(base_cfg, "enable_niche", False):
-        try:
-            # niche_confusion=0 nullifies the percept noise → h stops mattering for routing
-            null_cfg = D.replace(base_cfg, niche_confusion=0.0)
-            eco_null = Ecology(null_cfg, seed=seed0)
-            eco_null.run()
-            g5_status = GS.NOT_IMPLEMENTED
-            g5_reason = (
-                "perfect_percept_null ran but no comparison baseline is configured — "
-                "the guard logic for niche_confusion=0 requires a matching non-null run. "
-                "Status left NOT_IMPLEMENTED to avoid a spurious PASS."
-            )
-        except Exception as e:
-            g5_status = GS.NOT_IMPLEMENTED
-            g5_reason = f"exception attempting perfect_percept_null: {e}"
+        # A niche_confusion=0 percept makes h irrelevant to routing — but verifying that
+        # honestly needs a matched non-null comparison run, which this guard does not
+        # build. Left NOT_IMPLEMENTED rather than running a sim we would only discard
+        # (and never faking a PASS). The byte-identity guard (1) already proves h leaks
+        # nowhere when fully disconnected via the axis disconnect_overrides.
+        g5_status = GS.NOT_IMPLEMENTED
+        g5_reason = (
+            "perfect_percept_null requires a matched (null vs non-null) comparison run "
+            "that this guard does not construct; left NOT_IMPLEMENTED (no spurious PASS). "
+            "Guard 1 (byte-identity when disconnected) covers the anti-cheat property here."
+        )
     else:
         g5_status = GS.NOT_IMPLEMENTED
         g5_reason = (

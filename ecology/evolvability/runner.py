@@ -319,7 +319,10 @@ def run_preflight(
     if local_outcome is not None and local_outcome.verdict:
         gradient = _v.GradientVerdict(local_outcome.verdict)
     else:
-        gradient = _v.GradientVerdict.NO_VERDICT
+        # None (not NO_VERDICT) signals the binding gate was NOT RUN, so the aggregate
+        # surfaces the strongest standalone signal (e.g. CONTROLLER_PAYS_ALONE from Gate H)
+        # rather than masquerading as a collapsed-population NO_VERDICT.
+        gradient = None
 
     gifted_outcome = outcomes.get("gifted_benefit")
     benefit: Optional[_v.BenefitVerdict] = (

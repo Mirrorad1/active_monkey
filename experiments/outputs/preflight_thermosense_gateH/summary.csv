@@ -1,0 +1,3 @@
+name,verdict,wins,n_valid,mean_effect,mean_s,optimum_h,above_resident,survivable,mean_delta,mean_delta_r,increase_count,sign_change_cost,unaffordable_cost,cross_partial,B_ll,B_hh,all_pass,n_guards
+controller_cross_partial,CONTROLLER_PAYS_ALONE,,,,,,,,,,,,,0.004399999999999973,0.11339999999999999,0.2192,,
+null_guards,,,,,,,,,,,,,,,,,True,7

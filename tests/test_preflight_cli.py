@@ -17,7 +17,10 @@ import pytest
 from ecology.evolvability import (
     THERMOSENSE_AXIS,
     AggregateVerdict,
+    ControllerAxis,
+    CrossPartialVerdict,
     PreflightConfig,
+    TraitAxis,
     run_preflight,
 )
 from ecology.evolvability import io
@@ -247,3 +250,58 @@ def test_full_scale_local_gradient_not_positive(tmp_path):
         f"(wins {out.aggregate['wins']}/{out.aggregate['n_valid']}) — "
         f"contradicts the closed Exp 203-207 finding; investigate before trusting the framework"
     )
+
+
+# ---------------------------------------------------------------------------
+# Test 5: Gate H (controller cross-partial) end-to-end, tiny niche regime
+# ---------------------------------------------------------------------------
+
+_NICHE_OVERRIDES = {
+    "max_population": 20000, "regen_rate": 0.20, "shuffle_creature_order": True,
+    "enable_thermosense": True, "enable_temperature": True, "temperature_stress_scale": 0.0,
+    "thermosense_upkeep_floor": 0.0, "thermosense_active_threshold": 0.05,
+    "thermosense_noise_base": 0.5, "enable_food_coupling": False, "thermosense_forage_mode": True,
+    "enable_niche": True, "niche_classes": 2, "niche_rotation": 0.05,
+    "niche_confusion": 0.4, "niche_crowding": 1.5, "niche_weight": 6.0,
+}
+
+
+def test_controller_cross_partial_gate_runs(tmp_path):
+    """Gate H end-to-end in a TINY niche regime (horizon 400, 2 seeds).
+
+    Asserts the gate runs and the aggregate surfaces a controller verdict via the
+    gradient=None path (the binding local gate is not in this config). Does NOT assert
+    a specific cross-partial verdict at tiny scale. The full 5-seed/horizon-3500 config
+    (thermosense_controller_crosspartial.yaml) reproduces Exp 207's CONTROLLER_PAYS_ALONE.
+    """
+    axis = TraitAxis(
+        name="thermosense", resident_value=0.10, mutant_value=0.15,
+        low_value=0.10, high_value=0.45,
+        disconnect_overrides={"enable_thermosense": False, "niche_confusion": 0.0},
+    )
+    cfg = PreflightConfig(
+        slug="thermosense_gateH_smoke",
+        base_scenario="balanced",
+        base_overrides=_NICHE_OVERRIDES,
+        founder_overrides={"temperature_tolerance": 0.10},
+        trait=axis,
+        controller=ControllerAxis(name="niche_weight", low_value=0.6, high_value=6.0,
+                                  config_field="niche_weight"),
+        seeds=(90, 91),
+        horizon=400,
+        output_dir=str(tmp_path),
+        gates=("controller_cross_partial", "null_guards"),
+        gate_params={"controller_cross_partial": {"window": 150}},
+        min_valid_seeds=1,
+        min_population=5,
+    )
+    result = run_preflight(cfg, run_id="gh1")
+    ctrl = next(g for g in result.gates if g["name"] == "controller_cross_partial")
+    assert ctrl["verdict"] in {v.value for v in CrossPartialVerdict}
+    assert result.aggregate_verdict in _VALID_AGGREGATE_VERDICTS
+    raw = tmp_path / "thermosense_gateH_smoke" / "gh1" / "raw" / "controller_cross_partial.jsonl"
+    assert raw.exists()
+    # the byte-identity guard must PASS in the niche regime (disconnect recipe = cost off + confusion 0)
+    guard1 = next(g for g in result.guard_statuses
+                  if g["name"] == "cost_off_disconnected_byte_identical")
+    assert guard1["status"] == "PASS", guard1["reason"]
