@@ -71,3 +71,24 @@ def test_list_unknown_kind_exits():
     r = _load()
     with pytest.raises(SystemExit):
         r.list_index("badkind")
+
+
+def test_cross_kind_collision_exits():
+    r = _load()
+    fake = {
+        "direction": {"dup": ROOT / "loop" / "directions" / "dup.md"},
+        "research": {"dup": ROOT / "docs" / "research" / "dup.md"},
+    }
+    with pytest.raises(SystemExit):
+        r.resolve("@dup", index=fake)  # must NOT silently pick one
+
+
+def test_kind_qualified_resolves_collision():
+    r = _load()
+    fake = {
+        "direction": {"dup": ROOT / "loop" / "directions" / "dup.md"},
+        "research": {"dup": ROOT / "docs" / "research" / "dup.md"},
+    }
+    assert r.resolve("@research:dup", index=fake) == [
+        pathlib.Path("docs/research/dup.md")
+    ]

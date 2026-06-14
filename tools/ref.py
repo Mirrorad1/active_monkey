@@ -9,6 +9,7 @@ Usage:
   python tools/ref.py @exp201            # -> experiments/exp201_<slug>.py
   python tools/ref.py @n4-identity       # -> docs/research/n4-identity-commitment-chapter.md
   python tools/ref.py ecology            # -> loop/directions/population-ecology.md (alias)
+  python tools/ref.py @direction:foo    # qualify a stem shared across kinds
   python tools/ref.py --list             # print the whole index
   python tools/ref.py --list research    # print one kind
 """
@@ -55,27 +56,46 @@ def _experiment(ref: str) -> list[pathlib.Path] | None:
 
 
 def resolve(ref: str, index: dict | None = None) -> list[pathlib.Path]:
-    """Resolve @ref (or ref) to repo-relative Paths. sys.exit on miss/ambiguity."""
+    """Resolve @ref (or ref) to repo-relative Paths. sys.exit on miss/ambiguity.
+
+    Forms: @exp<N> (all matching scripts); a bare key matched by exact stem /
+    alias / unique substring; or a kind-qualified `kind:stem` (e.g.
+    `direction:transfer`) to disambiguate a stem shared across kinds. Never
+    silently picks among competing matches.
+    """
     ref = ref.lstrip("@").strip()
     exp = _experiment(ref)
     if exp is not None:
         return [p.relative_to(ROOT) for p in exp]
     if index is None:
         index = build_index()
-    flat: dict[str, pathlib.Path] = {}  # stem -> path; first kind wins
-    for _kind, d in index.items():
+    # kind-qualified form: "direction:transfer"
+    if ":" in ref:
+        kind, _, stem = ref.partition(":")
+        d = index.get(kind, {})
+        if stem in d:
+            return [d[stem].relative_to(ROOT)]
+        sys.exit(f"error: no {kind} '{stem}' (kinds: {', '.join(index)})")
+    by_stem: dict[str, list[tuple[str, pathlib.Path]]] = {}
+    for kind, d in index.items():
         for stem, path in d.items():
-            flat.setdefault(stem, path)
-    if ref in ALIASES and ALIASES[ref] in flat:
+            by_stem.setdefault(stem, []).append((kind, path))
+    if ref in ALIASES and ALIASES[ref] in by_stem:
         ref = ALIASES[ref]
-    if ref in flat:
-        return [flat[ref].relative_to(ROOT)]
-    subs = sorted((s, p) for s, p in flat.items() if ref.lower() in s.lower())
-    if len(subs) == 1:
-        return [subs[0][1].relative_to(ROOT)]
-    if not subs:
+    if ref in by_stem:
+        stems = [ref]                       # exact stem
+    else:
+        stems = sorted(s for s in by_stem if ref.lower() in s.lower())  # substring
+    hits = [(kind, stem, path) for stem in stems for (kind, path) in by_stem[stem]]
+    if len(hits) == 1:
+        return [hits[0][2].relative_to(ROOT)]
+    if not hits:
         sys.exit(f"error: no match for @{ref}")
-    sys.exit(f"error: @{ref} is ambiguous — matches {', '.join(s for s, _ in subs)}")
+    sys.exit(
+        f"error: @{ref} is ambiguous — matches "
+        + ", ".join(f"{k}:{s}" for k, s, _ in hits)
+        + " (qualify with kind:stem)"
+    )
 
 
 def list_index(kind: str | None = None, index: dict | None = None) -> str:
