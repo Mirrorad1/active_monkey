@@ -1,0 +1,247 @@
+{
+  "slug": "thermosense_local_gradient",
+  "run_id": "validate8seed",
+  "aggregate_verdict": "NO_EFFECT",
+  "failure_reason": "no benefit detected and monomorphic optimum is not above resident \u2014 trait appears to have no evolutionary effect",
+  "gates": [
+    {
+      "name": "gifted_benefit",
+      "question": "Does the trait provide an installed benefit when the cost is waived?",
+      "metric": "mean(B_high - B_low) with cost OFF",
+      "verdict": "NO_BENEFIT",
+      "aggregate": {
+        "mean_delta": -0.15653278816494393,
+        "h_low": 0.0,
+        "h_high": 0.6
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_valid": 8
+      },
+      "interpretation": "A gifted/cost-off benefit (delta=-0.1565 < -eps=-1e-06: high trait underperforms low) shows the feature CAN be useful; it does NOT imply the trait is evolvable.  Evolvability requires a positive LOCAL selection gradient near the resident value, not just a global benefit at high trait values.",
+      "raw_path": "raw/gifted_benefit.jsonl"
+    },
+    {
+      "name": "monomorphic_sweep",
+      "question": "Where does the monomorphic N* landscape peak relative to the resident?",
+      "metric": "mean N*(h) over seeds for each h in grid",
+      "verdict": "",
+      "aggregate": {
+        "optimum_h": 0.1,
+        "optimum_value": 545.6166666666667,
+        "above_resident": false,
+        "survivable": true,
+        "curve_Nstar": {
+          "0.0": 364.76666666666665,
+          "0.05": 364.76666666666665,
+          "0.1": 545.6166666666667,
+          "0.15": 461.95833333333337,
+          "0.3": 335.70833333333337,
+          "0.45": 263.1,
+          "0.6": 221.075
+        },
+        "curve_repro": {
+          "0.0": 0.01058045409149459,
+          "0.05": 0.01058045409149459,
+          "0.1": 0.012107178807895145,
+          "0.15": 0.011373796612174662,
+          "0.3": 0.01877988171385584,
+          "0.45": 0.017849693918412513,
+          "0.6": 0.020621530011284528
+        },
+        "extinct_fraction": {
+          "0.0": 0.0,
+          "0.05": 0.0,
+          "0.1": 0.0,
+          "0.15": 0.0,
+          "0.3": 0.0,
+          "0.45": 0.0,
+          "0.6": 0.0
+        }
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_h": 7
+      },
+      "interpretation": "Monomorphic global optimum at h*=0.1 with mean N*=546. A global/monomorphic optimum above the resident does NOT prove LOCAL evolvability: the resident might be separated from h* by a fitness valley that rare mutants cannot cross.  Local invasion assays (gates C and D) are required to establish a positive selection gradient near the resident.",
+      "raw_path": "raw/monomorphic_sweep.jsonl"
+    },
+    {
+      "name": "local_pairwise_gradient",
+      "question": "Does the mutant h=0.15 invade the resident h=0.1 in head-to-head competition?",
+      "metric": "invader fraction at end relative to 0.5 neutral start",
+      "verdict": "FLAT_OR_NOISY",
+      "aggregate": {
+        "wins": 5,
+        "n_valid": 8,
+        "mean_effect": 0.09906181449686947,
+        "mean_s": -0.003563967182592621,
+        "mean_inv_frac_final": 0.5990618144968695
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_valid": 8,
+        "extinct_fraction": 0.0
+      },
+      "interpretation": "Local pairwise gradient verdict: FLAT_OR_NOISY.  wins=5/8 in ambiguous range [4, 6] or mean_effect not positive (mean_effect=0.09906181449686947).  This tests whether a single-step mutant (h=0.15) can invade a resident (h=0.1) population \u2014 the direct test of local evolvability.",
+      "raw_path": "raw/local_pairwise_gradient.jsonl"
+    },
+    {
+      "name": "invasion_from_rarity",
+      "question": "Can a rare mutant (h=0.15, ~5%) increase in a resident background?",
+      "metric": "fraction of seeds where mutant frequency increased over the window",
+      "verdict": "DOES_NOT_INVADE",
+      "aggregate": {
+        "increase_count": 0,
+        "n_valid": 8,
+        "invader_count": 5,
+        "resident_count": 95
+      },
+      "validity_flags": {
+        "n_seeds": 8,
+        "n_valid": 8,
+        "extinct_fraction": 0.0
+      },
+      "interpretation": "Invasion from rarity verdict: DOES_NOT_INVADE.  increase_count=0/8 <= lose_threshold=3.  Mutant started at ~5% frequency (invader_count=5).  This is a more stringent test than equal-count pairwise: the mutant must increase when genuinely rare, as required by adaptive dynamics.",
+      "raw_path": "raw/invasion_from_rarity.jsonl"
+    },
+    {
+      "name": "null_guards",
+      "question": "Do all null/anti-cheat guards pass?",
+      "metric": "guard battery status (PASS/FAIL/NOT_IMPLEMENTED/NA)",
+      "verdict": "",
+      "aggregate": {
+        "guards": [
+          {
+            "name": "cost_off_disconnected_byte_identical",
+            "status": "PASS",
+            "reason": "events_hash identical for h=0.0 and h=0.6 when trait disconnected"
+          },
+          {
+            "name": "no_direct_h_reward",
+            "status": "PASS",
+            "reason": "assert_no_direct_h_reward passed: enable_thermosense=True, freeze=True, founder_mix set"
+          },
+          {
+            "name": "trait_disabled_null",
+            "status": "PASS",
+            "reason": "per-capita intake identical: |21376.3 - 21376.3| < 1e-9"
+          },
+          {
+            "name": "population_validity",
+            "status": "PASS",
+            "reason": "pairwise extinct_fraction=0.000 < 0.5"
+          },
+          {
+            "name": "perfect_percept_null",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "perfect_percept_null requires backend=='thermosense' AND enable_niche=True (a confusion knob).  Got backend='thermosense', enable_niche=False.  Do NOT fake a pass here \u2014 this guard must be left NOT_IMPLEMENTED."
+          },
+          {
+            "name": "frozen_memory_map",
+            "status": "NOT_IMPLEMENTED",
+            "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+          },
+          {
+            "name": "shuffle_order",
+            "status": "PASS",
+            "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+          }
+        ],
+        "all_pass": true
+      },
+      "validity_flags": {
+        "n_guards": 7
+      },
+      "interpretation": "Guard battery: PASS=['cost_off_disconnected_byte_identical', 'no_direct_h_reward', 'trait_disabled_null', 'population_validity', 'shuffle_order']; NOT_IMPLEMENTED/NA=['perfect_percept_null', 'frozen_memory_map'].  all_pass=True (counts only PASS/FAIL; NOT_IMPLEMENTED/NA do not fail).  A positive gradient verdict should be treated as an artifact if any guard FAILs.",
+      "raw_path": "raw/null_guards.jsonl"
+    }
+  ],
+  "trait": {
+    "name": "thermosense",
+    "resident_value": 0.1,
+    "mutant_value": 0.15,
+    "low_value": 0.0,
+    "high_value": 0.6,
+    "cost_enabled": true,
+    "h_trait": "thermosense_intensity",
+    "inefficiency_trait": "thermosense_inefficiency",
+    "inefficiency_value": 0.2,
+    "freeze_flag": "freeze_thermosense",
+    "enable_flag": "enable_thermosense",
+    "active_threshold": 0.05,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.2,
+    "backend": "thermosense",
+    "disconnect_overrides": {
+      "enable_thermosense": false,
+      "enable_food_coupling": false,
+      "thermosense_forage_mode": false,
+      "thermal_avoidance_weight": 0.0,
+      "enable_temperature": false
+    }
+  },
+  "controller": null,
+  "config_hash": "ff5542b330995283cef1cbfb89d7e2bff98997b1c66b6c66012cc88a32f16681",
+  "git_commit": "b204205cbaf113ad3e1426463b0fc856c1d36f4b",
+  "artifact_paths": {
+    "run_dir": "results/preflight/thermosense_local_gradient/validate8seed",
+    "config_json": "results/preflight/thermosense_local_gradient/validate8seed/config.json",
+    "summary_json": "results/preflight/thermosense_local_gradient/validate8seed/summary.json",
+    "summary_csv": "results/preflight/thermosense_local_gradient/validate8seed/summary.csv",
+    "report_md": "results/preflight/thermosense_local_gradient/validate8seed/report.md",
+    "raw_dir": "results/preflight/thermosense_local_gradient/validate8seed/raw"
+  },
+  "repro": {
+    "python": "3.12.9",
+    "deterministic": true,
+    "seeds": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "n_seeds": 8
+  },
+  "guard_statuses": [
+    {
+      "name": "cost_off_disconnected_byte_identical",
+      "status": "PASS",
+      "reason": "events_hash identical for h=0.0 and h=0.6 when trait disconnected"
+    },
+    {
+      "name": "no_direct_h_reward",
+      "status": "PASS",
+      "reason": "assert_no_direct_h_reward passed: enable_thermosense=True, freeze=True, founder_mix set"
+    },
+    {
+      "name": "trait_disabled_null",
+      "status": "PASS",
+      "reason": "per-capita intake identical: |21376.3 - 21376.3| < 1e-9"
+    },
+    {
+      "name": "population_validity",
+      "status": "PASS",
+      "reason": "pairwise extinct_fraction=0.000 < 0.5"
+    },
+    {
+      "name": "perfect_percept_null",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "perfect_percept_null requires backend=='thermosense' AND enable_niche=True (a confusion knob).  Got backend='thermosense', enable_niche=False.  Do NOT fake a pass here \u2014 this guard must be left NOT_IMPLEMENTED."
+    },
+    {
+      "name": "frozen_memory_map",
+      "status": "NOT_IMPLEMENTED",
+      "reason": "frozen_memory_map is a documented interface (the creature's learned resource map could substitute for sensor skill), but no freeze_learning_rate check or separate no-memory control run is implemented in this gate.  Left NOT_IMPLEMENTED; enable_band_staleness + freeze_learning_rate is the relevant engine knob."
+    },
+    {
+      "name": "shuffle_order",
+      "status": "PASS",
+      "reason": "base_cfg.shuffle_creature_order=True: id-order eat-first confound is neutralised"
+    }
+  ]
+}

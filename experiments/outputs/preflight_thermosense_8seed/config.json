@@ -1,0 +1,98 @@
+{
+  "slug": "thermosense_local_gradient",
+  "description": "Local-gradient preflight for the thermosense organ (Exp 203 forage regime).",
+  "base_scenario": "balanced",
+  "base_overrides": {
+    "enable_thermosense": true,
+    "enable_temperature": true,
+    "temperature_stress_scale": 0.0,
+    "thermosense_upkeep_floor": 0.0,
+    "thermosense_active_threshold": 0.05,
+    "thermosense_noise_base": 0.5,
+    "thermal_avoidance_weight": 4.0,
+    "food_optimal_base": 0.5,
+    "food_optimal_amplitude": 0.3,
+    "food_optimal_period": 1500.0,
+    "food_concentration": 14.0,
+    "food_band_width": 0.08,
+    "enable_food_coupling": true,
+    "thermosense_forage_mode": true,
+    "regen_rate": 0.2,
+    "max_population": 8000,
+    "shuffle_creature_order": true
+  },
+  "founder_overrides": {
+    "temperature_tolerance": 0.1
+  },
+  "trait": {
+    "name": "thermosense",
+    "resident_value": 0.1,
+    "mutant_value": 0.15,
+    "low_value": 0.0,
+    "high_value": 0.6,
+    "cost_enabled": true,
+    "h_trait": "thermosense_intensity",
+    "inefficiency_trait": "thermosense_inefficiency",
+    "inefficiency_value": 0.2,
+    "freeze_flag": "freeze_thermosense",
+    "enable_flag": "enable_thermosense",
+    "active_threshold": 0.05,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.2,
+    "backend": "thermosense",
+    "disconnect_overrides": {
+      "enable_thermosense": false,
+      "enable_food_coupling": false,
+      "thermosense_forage_mode": false,
+      "thermal_avoidance_weight": 0.0,
+      "enable_temperature": false
+    }
+  },
+  "controller": null,
+  "seeds": [
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "horizon": 1500,
+  "settle_steps": 0,
+  "measurement_window": [
+    50,
+    800
+  ],
+  "output_dir": "results/preflight",
+  "replicates": 1,
+  "gates": [
+    "gifted_benefit",
+    "monomorphic_sweep",
+    "local_pairwise_gradient",
+    "invasion_from_rarity",
+    "null_guards"
+  ],
+  "gate_params": {},
+  "monomorphic_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.3,
+    0.45,
+    0.6
+  ],
+  "cost_values": [
+    0.1,
+    0.2,
+    0.4
+  ],
+  "win_threshold": null,
+  "lose_threshold": null,
+  "min_valid_seeds": 6,
+  "min_population": 10,
+  "deterministic": true,
+  "null_toggles": {}
+}
