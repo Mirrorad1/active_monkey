@@ -17,6 +17,40 @@ from pathlib import Path
 
 LOOP_DIR = Path(__file__).resolve().parent
 
+DEFAULT_DIRECTION = "continuous-substrate"  # current human steer (see loop/IDEAS.md)
+
+# Short ergonomic aliases checked before substring matching. Substring already
+# covers most cases (e.g. "graded" → "graded-uncertainty"); aliases disambiguate
+# the common shortcuts the human types.
+ALIASES = {
+    "ecology": "population-ecology",
+    "pop": "population-ecology",
+}
+
+
+def resolve_direction(name: str, candidates: list[str] | None = None) -> str:
+    """Resolve a user-typed direction token to a real card stem.
+
+    Order: exact stem → alias → unique case-insensitive substring → sys.exit.
+    """
+    if candidates is None:
+        candidates = available("directions")
+    if name in candidates:
+        return name
+    if name in ALIASES and ALIASES[name] in candidates:
+        return ALIASES[name]
+    matches = [c for c in candidates if name.lower() in c.lower()]
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        sys.exit(
+            f"error: no direction matches '{name}' "
+            f"(have: {', '.join(candidates)})"
+        )
+    sys.exit(
+        f"error: '{name}' is ambiguous — matches {', '.join(matches)}; be more specific"
+    )
+
 
 def available(kind: str) -> list[str]:
     return sorted(
@@ -92,9 +126,12 @@ def compose(direction: str, persona: str, idea: str | None) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument(
-        "--direction",
-        default="continuous-substrate",  # current human steer (see loop/IDEAS.md 2026-06-10)
-        help="direction card name",
+        "direction_pos", nargs="?", default=None,
+        help="direction card name or short alias (positional; e.g. 'ecology')",
+    )
+    ap.add_argument(
+        "--direction", default=None,
+        help="direction card name (alternative to the positional form)",
     )
     ap.add_argument("--persona", default="default", help="persona card name")
     ap.add_argument("--idea", default=None, help="one-off human idea to inject")
@@ -106,7 +143,9 @@ def main() -> None:
         print("personas:  ", ", ".join(available("personas")))
         return
 
-    print(compose(args.direction, args.persona, args.idea))
+    requested = args.direction_pos or args.direction or DEFAULT_DIRECTION
+    direction = resolve_direction(requested)
+    print(compose(direction, args.persona, args.idea))
 
 
 if __name__ == "__main__":
