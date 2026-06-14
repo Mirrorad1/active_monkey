@@ -38,6 +38,9 @@ def _make_sandbox(tmp_path):
     tools = work / "tools"
     tools.mkdir()
     shutil.copy(SCRIPT, tools / "autosync.sh")
+    loop_dir = work / "loop"
+    loop_dir.mkdir()
+    shutil.copy(ROOT / "loop" / "managed-paths.txt", loop_dir / "managed-paths.txt")
     _git(work, "add", "-A")
     _git(work, "commit", "-m", "seed")
     _git(work, "push", "-u", "origin", "main")

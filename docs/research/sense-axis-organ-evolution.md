@@ -1,9 +1,10 @@
 # When does a costed sense become an organ? — the sense-axis bridge
 
-**Status:** CONVERGED (sense-evolution sub-arc, Exp 203–206 on the four walls 199–202; human steer
-2026-06-13). Six structurally-distinct escapes exhausted — a costed sense is un-evolvable at this
-substrate (`g(h_res) ≤ 0`); the FINAL SUMMARY below is filled. The formal direction decision (close the
-card / Exp 207 / redirect) awaits an explicit human word (post-206 consult, `loop/IDEAS.md`).
+**Status:** CLOSED-NEGATIVE (sense-evolution sub-arc, Exp 199–207; closed 2026-06-14 on the human's
+word "c"). SEVEN structurally-distinct levers exhausted — a costed sense is un-evolvable at this toy
+substrate (`g(h_res) ≤ 0`), even when a precise population is fitter in bulk AND survives. The FINAL
+SUMMARY below is filled; the public closure write-up (equations + intuition + experiment links) is
+`sense-evolution.html`. Re-opens only on an explicit human word.
 **Scope:** a research note for the population-ecology direction (`loop/directions/population-ecology.md`).
 The **FINDINGS** section is filled experiment-by-experiment as the sub-arc runs; the framework
 below is fixed.
@@ -219,15 +220,38 @@ caveats: the gift is tiny, and `I(h;niche)=0.0003 bits` is ~0 *circularly* (h st
 variation), so the niche's non-inertness rests on the control deltas (STATIC 2/8 vs base 3/8, CLAMPED_LR
 5/8) + the SINGLE_NICHE collapse (no escape class → extinction), not on MI.
 
+### Exp 207 — sensor–controller co-adaptation: the SEVENTH lever, ruled out at the DESIGN stage (NEGATIVE / NEW INSIGHT, blind-verified AGREE)
+
+The last non-niche lever, and condition **(3)** of §4 (does a controller `θ` that USES the sensor
+rescue it?). Every prior wall held the policy FIXED — only `h` evolved into a hard-coded rule. The
+hypothesis: precision never paid because the controller could not exploit it, so co-evolving a
+controller knob `θ` with `h` would cross a **2-D fitness valley** `w(h,θ)=R·σ(k·h·θ−d)−C_h(h)−C_θ(θ)`
+where neither pays alone but both jointly climb. A 17-agent design + adversarial-confound-audit
+workflow synthesized the cleanest anti-cheat-clean `θ` (an evolvable, costed routing-weight on the
+niche read) and a **binding G0 pre-flight gate**; the decisive measurement was reproduced on committed
+code (`experiments/exp207_corner_grid.py`) and blind-verified.
+
+**The premise is FALSE.** The corner-grid `B(h,θ)` shows **no 2-D valley**: the cross-partial
+`∂²B/∂h·∂θ ≈ 0` (±0.0046, ~32× smaller than the main effect), the controller **`θ` pays strongly
+ALONE** (`dB/dθ|_{low h}=+0.147` — routing harder escapes the herd with a *crude* read), and a sharper
+sensor is **pure cost at every `θ`** (`dB/dh=−0.041` at high `θ`, `−0.046` at low `θ`). Anti-cheat
+guards pass (at `niche_confusion=0` and `niche_weight=0`, cost-OFF, the run is byte-identical across
+`h`). So the geometry is a **`θ`-ridge with `h` orthogonally costed** — selection drives the two traits
+*apart*, not together. A full evolution batch would only re-show the sixth wall (`θ` climbs alone, `h`
+decays); the cheap pre-flight settled it (no full run — the **L28** discipline: pre-flight the *premise*,
+not just the runtime). The controller does **not** gate the sensor's value when a crude read already
+affords the affordance.
+
 ---
 
-## Final summary (the six directive questions) — the sub-arc CONVERGED
+## Final summary (the seven directive questions) — the sub-arc CLOSED-NEGATIVE
 
-Six structurally-distinct escapes — **avoidance (199), foraging (200), increasing-returns tracking
+Seven structurally-distinct levers — **avoidance (199), foraging (200), increasing-returns tracking
 (201), interference competition (202), the selection-gradient audit + residue/false-positive bridge
-(203–205), and a rotating private niche (206)** — converge on one answer: **a costed sense does not
-become a functional organ at this toy substrate, because the local selection gradient at the resident
-is ≤ 0.** (203 is the band-staleness FORAGE gradient *audit*; 204–205 the residue/false-positive bridge.)
+(203–205), a rotating private niche (206), and sensor–controller co-adaptation (207)** — converge on one
+answer: **a costed sense does not become a functional organ at this toy substrate, because the local
+selection gradient at the resident is ≤ 0.** (203 is the band-staleness FORAGE gradient *audit*; 204–205
+the residue/false-positive bridge; 207 a design-stage corner-grid that falsified the 2-D-valley premise.)
 
 1. **Did any environment create a positive local selection gradient?** Only a WEAK, PURELY RELATIONAL
    one. The band-staleness FORAGE regime (203) showed the first positive local gradient (0.10→0.15 wins
@@ -235,11 +259,12 @@ is ≤ 0.** (203 is the band-staleness FORAGE gradient *audit*; 204–205 the re
    enough to climb. The niche regime (206) was neutral-to-negative (3/8).
 2. **Did full evolution follow that gradient?** NO. Where a weak relational gradient existed (201/203)
    evolution showed only a TRANSIENT climb that DECAYED; everywhere else `h` decayed to primitive
-   (0.027–0.09 across the six escapes).
+   (0.027–0.09 across the seven levers).
 3. **Functional globally, by lineage, or not at all?** NOT AT ALL — 0/5 functional in every verdict arm;
    no stable high-h lineage (206 `max_lineage_h` = 0.027 ≪ 0.30).
 4. **Robust across seeds?** YES — the failure is robust (8-seed audits + 5 fresh-seed evolutions per
-   verdict, all converging on primitive), and blind-verified every time (203–206; 206 thrice).
+   verdict, all converging on primitive), and blind-verified every time (203–207; 206 thrice, 207 by an
+   independent recompute + the 17-agent design audit).
 5. **Information use, not hardcoding/confound?** The weak gradients that existed were GENUINE (survive
    the CLAMPED_LR / STATIC_NICHE / CONFUSION_0 / BARCODE_SHUFFLED controls; no direct-h-reward,
    guard-tested + blind-verified). The FAILURE is real, not a confound — it is `g(h_res) ≤ 0`.
@@ -247,17 +272,20 @@ is ≤ 0.** (203 is the band-staleness FORAGE gradient *audit*; 204–205 the re
    benefit at the resident must exceed the marginal cost. The maximally-sharp generalised **L22**: a
    bulk / installed / functional-when-gifted / **demographically-affordable** optimum is **NOT sufficient**
    for evolvability — only the **sign of `g(h_res)`** decides. For a costed sense to become an organ,
-   precision must pay at the MARGIN, locally; none of the six toy regimes achieved that. The likely
-   missing ingredients, out of this toy's scope: a **non-saturating, non-relational, locally-steep**
-   affordance, and/or a controller `θ` that converts a small precision gain into a step-change in action
-   value (the untested **Exp 207** sensor–controller co-adaptation; the synthesis flags it as unlikely to
-   change the gradient sign).
+   precision must pay at the MARGIN, locally; none of the seven toy regimes achieved that. The controller
+   coupling — the obvious "maybe `θ` rescues `h`" idea — was **tested and ruled out** (Exp 207): the
+   controller pays alone via herd-escape and `h` stays orthogonally costed, so there is no 2-D valley to
+   cross. The likely missing ingredient, out of this toy's scope, is a **non-saturating, non-relational,
+   locally-steep** affordance — one where a *small* heritable precision step at the resident already buys
+   a step-change in action value that a crude reader cannot capture.
 
 **Bottom line.** The sense-axis program turned "make thermosense win" into the reusable, falsifiable
-meta-question of §1 and answered it cleanly at toy scale: across six structurally-distinct worlds, a
+meta-question of §1 and answered it cleanly at toy scale: across seven structurally-distinct levers, a
 costed sense is **un-evolvable** because the local gradient at the resident never turns sufficiently
-positive — even when precision is genuinely valuable in bulk and the population survives. This is the
-strongest, best-earned closing statement of the population-ecology line. **STATUS: CONVERGED** — the
-structurally-distinct escapes are exhausted; the formal direction decision (flip the card closed-negative
-/ run Exp 207 / a direct-occupancy bullet-proofing re-run of 206 / redirect off the ecology line) awaits
-an explicit human word (post-206 consult in `loop/IDEAS.md`).
+positive — even when precision is genuinely valuable in bulk, demographically affordable, and the
+population survives. The decisive instrument was the *reframe* (Exp 203): measure the local gradient
+directly instead of running yet another evolution. The decisive discipline was *pre-flighting the
+premise* (Exp 207): a cheap corner-grid falsified the last lever before a full batch was spent. This is
+the strongest, best-earned closing statement of the population-ecology line. **STATUS: CLOSED-NEGATIVE**
+(2026-06-14) — the public write-up is `sense-evolution.html`; the chapter re-opens only on an explicit
+human word.

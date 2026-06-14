@@ -42,6 +42,31 @@ run `uv run --python .venv python -m meta_monkey.preflight` as an advisory check
 after each completed experiment commit, write the passive process record with
 `uv run --python .venv python -m meta_monkey.collect_iteration --latest --write`.
 
+### In-session commands (preferred over copy-paste)
+
+- `/lab <direction> [--persona NAME] [--idea "..."]` — compose, show a one-line
+  summary, and iterate only after you confirm with "go". Wraps `compose.py`
+  (which now also accepts the direction positionally, e.g. `compose.py ecology`).
+- `/steer "<idea>"` / `/steer --resume <word>` — append a human-marked bullet to
+  `IDEAS.md` without opening the file.
+
+The commands live in `.claude/commands/`. They never start iterating or commit
+before your explicit "go" — that confirm step is the `VALIDATION.md §5` consent gate.
+
+### Referencing (tools/ref.py)
+
+Resolve a short key to a canonical path instead of typing/grepping it:
+
+```bash
+uv run --python .venv python tools/ref.py @exp201            # experiments/exp201_<slug>.py
+uv run --python .venv python tools/ref.py @n4-crack-chapter  # docs/research/...
+uv run --python .venv python tools/ref.py --list            # discover everything
+```
+
+`@<direction>` / `@<persona>` / `@<chapter>` / `@<spec>` resolve by exact stem,
+alias (e.g. `ecology` → `population-ecology`), or unique substring; `@exp<N>`
+globs the experiment script. Computed on demand — never stale.
+
 ## Extending
 
 Add a new direction or persona by copying `_TEMPLATE.md` in the respective folder.
