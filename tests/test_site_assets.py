@@ -15,7 +15,7 @@ import re
 
 ROOT = pathlib.Path(__file__).parent.parent
 MOVED = ["am.css", "am-live.js", "am-shared.jsx", "tweaks-panel.jsx"]
-HTML = ["index.html", "journey.html", "open_problem.html", "sense-evolution.html"]
+HTML = ["index.html", "journey.html", "open_problem.html", "sense-evolution.html", "math.html"]
 
 
 def test_moved_assets_live_under_site_only():

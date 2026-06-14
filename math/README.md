@@ -124,6 +124,7 @@ any file, regenerate:
 python3 math/build_math_data.py     # stdlib only; writes ../math-data.js
 ```
 
-`math.html` reuses the site's shared chrome (`am.css`, `am-shared.jsx`, `tweaks-panel.jsx`) and
-adds a **"The Math"** nav link. To surface that link on the *other* pages too, bump their shared
-asset version (`?v=5` → `?v=6`) so browsers reload the updated `am-shared.jsx`.
+`math.html` reuses the site's shared chrome under `site/` (`site/am.css`, `site/am-shared.jsx`,
+`site/tweaks-panel.jsx`, all at `?v=5` — the Stream B layout guarded by `tests/test_site_assets.py`).
+The **"The Math"** nav link lives in the shared `site/am-shared.jsx`, so it appears on every page
+automatically. `math-data.js` stays at the repo root alongside `experiments-data.js`.
