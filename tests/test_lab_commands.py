@@ -44,3 +44,8 @@ def test_steer_command_uses_append_script():
 def test_steer_command_marks_human_authorship():
     text = (CMD / "steer.md").read_text(encoding="utf-8").lower()
     assert "human" in text  # the bullet must be attributed to the human
+
+
+def test_resume_documents_lab_command():
+    text = (ROOT / "RESUME.md").read_text(encoding="utf-8")
+    assert "/lab" in text
