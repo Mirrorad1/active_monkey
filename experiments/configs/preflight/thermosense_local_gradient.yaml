@@ -1,0 +1,106 @@
+# Evolvability Preflight — thermosense organ, Exp 203 forage regime
+# Canonical example config.  Run with:
+#   uv run --python .venv python experiments/run_preflight.py \
+#       --config experiments/configs/preflight/thermosense_local_gradient.yaml
+#
+# This is the generalised form of the Exp 203 local-gradient test.
+# It probes whether h=0.15 can invade h=0.10 in the forage regime
+# (food coupling + thermal avoidance, no niche controller).
+
+slug: thermosense_local_gradient
+description: "Local-gradient preflight for the thermosense organ (Exp 203 forage regime)."
+
+# ── Base scenario ──────────────────────────────────────────────────────────────
+# Start from the "balanced" scenario template and apply the forage-regime overrides.
+base_scenario: balanced
+
+base_overrides:
+  # Enable thermosense organ
+  enable_thermosense: true
+  enable_temperature: true
+  # Stress is off so the trait signal is purely foraging, not avoidance
+  temperature_stress_scale: 0.0
+  # Cost: upkeep floor off, just inefficiency
+  thermosense_upkeep_floor: 0.0
+  thermosense_active_threshold: 0.05
+  thermosense_noise_base: 0.5
+  # Thermal avoidance weight — creatures steer away from hot zones
+  thermal_avoidance_weight: 4.0
+  # Forage regime: food patch is temperature-coupled
+  food_optimal_base: 0.5
+  food_optimal_amplitude: 0.3
+  food_optimal_period: 1500.0
+  food_concentration: 14.0
+  food_band_width: 0.08
+  enable_food_coupling: true
+  thermosense_forage_mode: true
+  # Ecology parameters
+  regen_rate: 0.20
+  max_population: 8000
+  # Shuffle to neutralise id-order eat-first confound (guard 7)
+  shuffle_creature_order: true
+
+# ── Founder genotype ─────────────────────────────────────────────────────────
+# temperature_tolerance sets the founder's resident trait value.
+founder_overrides:
+  temperature_tolerance: 0.10
+
+# ── Trait axis ───────────────────────────────────────────────────────────────
+# "thermosense" resolves to THERMOSENSE_AXIS:
+#   resident=0.10, mutant=0.15, low=0.0, high=0.60
+trait: thermosense
+
+# ── Controller ───────────────────────────────────────────────────────────────
+# No clean controller in the forage regime; the sensor-only channel is tested
+# without a niche weight knob.
+controller: null
+# To add the controller cross-partial gate (Gate H): switch to the niche regime
+# (enable_niche: true, niche_confusion, niche_crowding) and set:
+#   controller:
+#     name: niche_weight
+#     config_field: niche_weight
+#     low_value: 0.6
+#     high_value: 6.0
+#   and add "controller_cross_partial" to the gates list below.
+# See experiments/exp207_corner_grid.py for the niche-regime corner grid
+# that this config generalises.
+
+# ── Seeds ─────────────────────────────────────────────────────────────────────
+# SMOKE default (3 seeds, ~5 s at horizon 1500).
+# For a strict 8-seed batch use: [38, 39, 40, 41, 42, 43, 44, 45]
+seeds: [38, 39, 40]
+
+# ── Simulation horizon ────────────────────────────────────────────────────────
+# 1500 steps matches Exp 203; measurement window covers the steady-state phase.
+horizon: 1500
+measurement_window: [50, 800]
+
+# ── Output ────────────────────────────────────────────────────────────────────
+output_dir: results/preflight
+
+# ── Gates to run ──────────────────────────────────────────────────────────────
+# Ordered list; runner will dispatch them in canonical order regardless.
+gates:
+  - gifted_benefit
+  - monomorphic_sweep
+  - local_pairwise_gradient
+  - invasion_from_rarity
+  - null_guards
+
+# ── Gate parameters (optional per-gate overrides) ─────────────────────────────
+# gate_params:
+#   local_pairwise_gradient:
+#     count_each: 100   # increase from default 50 for a stricter run
+
+# ── Monomorphic grid ──────────────────────────────────────────────────────────
+# h values at which to measure N*(h) for the monomorphic sweep.
+monomorphic_grid: [0.0, 0.05, 0.10, 0.15, 0.30, 0.45, 0.60]
+
+# ── Cost sweep values ─────────────────────────────────────────────────────────
+# Inefficiency values for cost_sensitivity (Gate F) — not in the default gate list above.
+cost_values: [0.10, 0.20, 0.40]
+
+# ── Validity thresholds ───────────────────────────────────────────────────────
+# min_valid_seeds: smoke value; raise to 6+ for an 8-seed batch.
+min_valid_seeds: 2
+min_population: 10

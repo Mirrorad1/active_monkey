@@ -48,6 +48,7 @@ class PreflightConfig:
     description: str = ""
     base_scenario: str = "balanced"
     base_overrides: dict = D.field(default_factory=dict)
+    founder_overrides: dict = D.field(default_factory=dict)  # Genotype trait overrides for the base founder
     trait: TraitAxis = D.field(default_factory=lambda: make_axis("thermosense"))
     controller: Optional[ControllerAxis] = None
     seeds: tuple = (0, 1, 2)
@@ -123,7 +124,7 @@ class PreflightConfig:
                             "monomorphic_grid", "cost_values"):
                 kw[f.name] = tuple(v) if isinstance(v, list) else v
 
-            elif f.name in ("base_overrides", "gate_params", "null_toggles"):
+            elif f.name in ("base_overrides", "gate_params", "null_toggles", "founder_overrides"):
                 kw[f.name] = dict(v) if v is not None else {}
 
             elif f.name in field_names:
