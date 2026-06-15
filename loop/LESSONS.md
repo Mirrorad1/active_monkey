@@ -237,3 +237,16 @@ Ground rules for this file:
   cheap knobs to the science first (pop/cap — L29; seeds; horizon — L23). Measured factors: cap250 pop
   ~1000 is 5.3× slower/run than cap50 pop ~215; active-sensing probe-draws add ~29% (gated, AS-only).
   [PROTOCOL step 3; kin of L25/L26]
+- **L32 (Exp 211, 2026-06-15).** WORKS-WHEN-IMPOSED ≠ HAS A BENEFIT CEILING TO SELECT ON. A costed
+  capability gated on the agent's OWN internal signal can pass every imposed-mechanism check (beat a
+  budget-matched random control, enrich its action at the targeted states, change the decision more per
+  use) and STILL have a near-zero benefit ceiling — because the cheaply-computable gating signal cannot
+  identify the truly-pivotal states. Exp 211's uncertainty-gated probe (gate on |single-cue belief−0.5|)
+  beat random cost-matched on decision quality yet did NOT beat fixed-rate, because under sensory noise a
+  single cue is often CONFIDENTLY WRONG (large margin, wrong half) — invisible to the margin gate but
+  fixed by indiscriminate probing; gated benefit ceiling 0.0009 vs fixed-rate 0.0186 energy/step ⇒ flat
+  local gradient even at probe_cost=0.0. Rule: when a targeting/gating policy "wins when imposed", measure
+  its BENEFIT CEILING (gifted, cost-waived) against the indiscriminate baseline's BEFORE reading an
+  evolvability verdict — a policy that beats random but not the indiscriminate version has near-zero
+  ceiling, and the local gradient is foreordained flat regardless of cost (verify at probe_cost=0.0 per
+  L30). Kin of L22 (forced/gifted ≠ evolvable) and L30 (cost vs benefit ceiling). [VALIDATION; METHODOLOGY]

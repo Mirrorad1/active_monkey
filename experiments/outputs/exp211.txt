@@ -1,0 +1,55 @@
+================================================================================
+EXP 211 — UNCERTAINTY-GATED active sensing (pre-active-inference bridge)
+Phase 4 / Rung 4: probe ONLY when the creature's own which-half call is ambiguous
+================================================================================
+Regime: Rung A cap50/regen3.0 (decision quality, regime-robust); Rung B cap250/regen10.0 (drift-suppressed, L29).
+cue_noise 1.0, hazard 0.6, probe_n_samples 4, gate threshold 0.15 sensitivity 20.0, FAIR probe_cost 0.01.
+RUNTIME PRE-FLIGHT: safe=True workers->11 proj~0.6 min
+NOT full active inference — costly probing gated by INTERNAL uncertainty only.
+
+--- LIVENESS (cap-250, gifted, cost waived; 3 seeds) ---
+[LIVE] gated gifted (gain1.0)  wrong-cell 0.3989  (rate 0.107, changed 0.471, margin@probe 0.100 vs without 0.991)
+[LIVE] no-probe (gain0.0)       wrong-cell 0.4003
+[LIVE] fixed_rate full (gain1.0) wrong-cell 0.3693  (rate 1.000) [Exp-210-style reference]
+BENEFIT CEILING (gated)      = (drop 0.0014) x hazard 0.6 = 0.0009 energy/step
+BENEFIT CEILING (fixed full) = (drop 0.0310) x hazard 0.6 = 0.0186 energy/step => the GATED ceiling is SMALLER than fixed-rate's (the gate never probes the high-margin-but-WRONG cues that fixed-rate fixes).
+L30: fair probe_cost 0.01 >= the gated ceiling => the BINDING Rung-B arm uses probe_cost=0.0 so cost CANNOT foreordain the negative.  live=True
+
+--- RUNG A: policy intervention (imposed monomorphic gain 0.5, cap-50, 8 seeds) ---
+  budget-matched random_cost_matched_probe_rate = mean gated rate = 0.0533
+  policy               wrong_cell probe_rate  changed  m@probe m_noprobe cost_paid    pop
+  off                      0.4110     0.0000      nan      nan       nan      0.00    171
+  fixed_rate               0.3970     0.4998    0.284    0.896     0.895   1461.67    197
+  uncertainty_gated        0.4071     0.0533    0.474    0.099     0.941    147.54    186
+  random_cost_matched      0.4103     0.0533    0.285    0.894     0.896    143.16    174
+  pure_cost                0.4158     0.0535    0.000    0.099     0.941    139.35    173
+  gate_shuffle             0.4114     0.0537    0.306    0.797     0.901    145.74    180
+  hidden_scramble          0.4098     0.0532    0.487    0.099     0.940    147.28    172
+
+  C1 gated<< random_cost_matched  (wrong 0.4071 vs 0.4103)  => True
+  C2 gated beats fixed at lower budget (wrong 0.4071<= 0.3970 & rate 0.053<0.500) => False
+  C3 pure_cost no advantage (wrong 0.4158 >= gated 0.4071)  => True
+  C4 hidden_scramble removes adv (wrong 0.4098 >= gated 0.4071) => True
+  C5 gate_shuffle removes/weakens (wrong 0.4114 >= gated 0.4071) => True
+  C6 probes enriched at low margin (m@probe 0.099 < without 0.941) => True
+  C7 changed-action > random (gated 0.474 > random 0.285) => True
+
+--- RUNG B: local pairwise gradient, cap-250, 16 seeds (gated gain 0.5->0.55) ---
+[B] uncertainty_gated  (cost 0.0) : wins=5/16 (bar>=14)  mean_s=-0.0031  inv=0.310  [BINDING; cost cannot foreordain]
+[B] CONTROL pure_cost  (cost 0.0) : wins=8/16  mean_s=-0.0006  inv=0.371   (gated trigger, NO information)
+[B] uncertainty_gated  (fair 0.01) : wins=10/16  mean_s=-0.0001  inv=0.542   [Exp-210-comparable cost]
+  gated vs PURE-COST (both cost 0.0): mean_s -0.0031 vs -0.0006 (Δ=-0.0025); wins 5 vs 8 => gated does NOT beat pure-cost, but neither reaches the positive bar (>= 14 & mean_s>0).
+  C8 local gradient POSITIVE (binding, zero cost) => False  (gradient is NEGATIVE_LOCAL_GRADIENT, mean_s ~0 = drift)
+
+--- COST SENSITIVITY (gated vs pure-cost), 8 seeds ---
+  probe_cost=0.0   : gated mean_s=-0.0085 inv=0.10 | pure-cost mean_s=-0.0013 inv=0.25
+  probe_cost=0.005 : gated mean_s=-0.0032 inv=0.32 | pure-cost mean_s=-0.0021 inv=0.36
+  probe_cost=0.02  : gated mean_s=+0.0018 inv=0.53 | pure-cost mean_s=+0.0002 inv=0.37
+
+null_guards all_pass=True  (byte-identity disconnect: PASS)
+[C] invasion-from-rarity SKIPPED — Rung B local gradient did not pass (C8 False); per the protocol it is not meaningful evidence for success without a positive local gradient.
+
+VERDICT (script claim):
+  FAIL_LOCAL_GRADIENT / NEGATIVE — uncertainty-gating WORKS as designed when imposed (C1: gated beats budget-matched random; C6: probes enriched at low margin; C7: probes change the action far more than random; C3/C4/C5: pure-cost / scramble controls do not), BUT it does NOT beat FIXED-rate (C2 False): under cue_noise the single-cue action margin cannot flag the CONFIDENTLY-WRONG reads (large margin, wrong half) that fixed-rate fixes by probing everything, so the gated benefit CEILING is ~0 (much smaller than fixed-rate's). With essentially no benefit to select on, the local heritable step (gain 0.50->0.55) is flat/drift even at probe_cost=0.0 (cost cannot foreordain it) — the gated-vs-pure-cost comparison flips with cost (pure drift noise) and gated never crosses the positive bar. The wasted-fixed-rate-budget hypothesis is REFUTED: those probes were not waste. The local-gradient wall holds for uncertainty-TARGETED active sensing too, and we learn WHY — the creature's own cheaply-available uncertainty signal is too noisy to identify the pivotal states. NOT full active inference.
+  core criteria: C1=True, C2=False, C3=True, C4=True, C5=True, C6=True, C7=True, C8=False; C9(invasion)=False; null_guards=True
+  SEEDS: Rung A/cost [70, 71, 72, 73, 74, 75, 76, 77]; Rung B [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85]; live [70, 71, 72]. benefit_ceiling=0.0009; fair_cost=0.01; rcm_rate=0.0533.

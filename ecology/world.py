@@ -127,6 +127,16 @@ class GridWorld:
     enable_active_sensing: bool = False
     probe_n_samples: int = 4
 
+    # Exp 211: probe-policy abstraction — see EcologyConfig for the policy semantics.
+    # Defaults preserve Exp 210 ("fixed_rate" + OFF gate): creature.choose_action reads
+    # these to branch the probe trigger. None enter events_hash (the OFF/fixed_rate paths
+    # are byte-identical; the new policies are new code paths).
+    probe_policy: str = "fixed_rate"
+    uncertainty_gate_threshold: float = 0.15
+    uncertainty_gate_sensitivity: float = 20.0
+    random_cost_matched_probe_rate: float = 0.0
+    gate_shuffle_buffer: int = 64
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -333,6 +343,12 @@ class GridWorld:
         # Phase 4: active-sensing parameters — all default to OFF (no-op).
         enable_active_sensing: bool = False,
         probe_n_samples: int = 4,
+        # Exp 211: probe-policy parameters — defaults preserve Exp 210 fixed_rate behaviour.
+        probe_policy: str = "fixed_rate",
+        uncertainty_gate_threshold: float = 0.15,
+        uncertainty_gate_sensitivity: float = 20.0,
+        random_cost_matched_probe_rate: float = 0.0,
+        gate_shuffle_buffer: int = 64,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -404,4 +420,10 @@ class GridWorld:
             # Phase 4 active-sensing fields — defaults are no-ops.
             enable_active_sensing=enable_active_sensing,
             probe_n_samples=probe_n_samples,
+            # Exp 211 probe-policy fields — defaults preserve Exp 210 fixed_rate behaviour.
+            probe_policy=probe_policy,
+            uncertainty_gate_threshold=uncertainty_gate_threshold,
+            uncertainty_gate_sensitivity=uncertainty_gate_sensitivity,
+            random_cost_matched_probe_rate=random_cost_matched_probe_rate,
+            gate_shuffle_buffer=gate_shuffle_buffer,
         )

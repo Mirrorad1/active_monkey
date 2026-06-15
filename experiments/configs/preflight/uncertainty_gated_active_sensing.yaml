@@ -1,0 +1,39 @@
+slug: uncertainty_gated_active_sensing
+description: "Exp 211: local gradient of uncertainty-GATED active sensing. Under probe_policy=uncertainty_gated the heritable information_sampling_rate is the probe GAIN/cap under uncertainty (p_probe = gain * sigmoid(sensitivity*(threshold - action_margin))); action_margin = |single-cue belief - 0.5|, the creature's own which-half ambiguity. Resident gain 0.50 -> mutant 0.55 = 'more likely to probe ONLY when uncertain', NOT 'more probe everywhere'. Same drift-suppressed cap-250 regime + FAIR probe_cost as Exp 210 (L29/L30)."
+#
+# REGIME inherited from Exp 210 (DISCLOSED there): drift is a population-size problem (L29),
+# so cap 250 / regen 10 (pops ~950) + read the drift-robust SELECTION SLOPE mean_s; the FAIR
+# probe_cost 0.01 is below the empirical benefit ceiling (L30; the script re-measures the
+# gated ceiling via a gifted run). FRESH seeds 70-85 (vs Exp 210's 50-65) so no seed reuse.
+base_scenario: balanced
+base_overrides:
+  enable_hidden_mode: true
+  enable_active_sensing: true
+  probe_policy: uncertainty_gated
+  uncertainty_gate_threshold: 0.15      # action-margin cutoff (probe when |cue-0.5| < ~this)
+  uncertainty_gate_sensitivity: 20.0    # sigmoid steepness of the gate ramp
+  mode_wrong_regen_factor: 1.0
+  mode_hazard_scale: 0.6
+  capacity: 250.0                       # DRIFT SUPPRESSION (L29)
+  regen_rate: 10.0
+  initial_resource: 0.7
+  max_population: 30000
+  mode_switch_prob: 0.05
+  cue_noise: 1.0
+  memory_cost_slope: 0.005
+  memory_upkeep_floor: 0.0
+  probe_cost: 0.01                      # FAIR: below the benefit ceiling (L30)
+  probe_n_samples: 4
+  shuffle_creature_order: true
+trait: uncertainty_gated_gain           # information_sampling_rate as the gated probe gain (0.50 -> 0.55)
+controller: null
+seeds: [70, 71, 72, 73, 74, 75, 76, 77]
+horizon: 1500
+measurement_window: [50, 800]
+output_dir: results/preflight
+gates:
+  - local_pairwise_gradient
+  - invasion_from_rarity
+  - null_guards
+min_valid_seeds: 6
+min_population: 80

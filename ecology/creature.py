@@ -22,6 +22,7 @@ HomeostaticPolicy heuristic:
 """
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import Protocol, TYPE_CHECKING
 
@@ -35,6 +36,14 @@ if TYPE_CHECKING:
 
 _DEPLETION_THRESHOLD: float = 0.5   # resource below this triggers possible move
 _OPTIMISTIC_PRIOR: float = 1.0      # initial belief about unseen cells' resource
+
+
+def _sigmoid(x: float) -> float:
+    """Numerically-stable logistic sigmoid, 1/(1+e^-x) ∈ (0,1).  Exp 211 gate ramp."""
+    if x >= 0.0:
+        return 1.0 / (1.0 + math.exp(-x))
+    z = math.exp(x)
+    return z / (1.0 + z)
 
 
 # ---------------------------------------------------------------------------
@@ -133,6 +142,31 @@ class HomeostaticPolicy:
         # paid for an active-sensing probe this step.  Read by engine._step_one_creature
         # to charge probe_cost.  Plain attribute, NEVER in events_hash.
         self.probed_this_step: bool = False
+        # Exp 211 (uncertainty-gated active sensing): per-step gate telemetry, all plain
+        # attributes NEVER in events_hash (the new probe policies are new code paths; the
+        # fixed_rate/OFF paths stay byte-identical because these are pure reads/writes).
+        #   last_action_margin       = |provisional_belief - 0.5| this step (None if not set)
+        #   last_probe_changed_action= did the probe flip the which-half decision this step
+        #   _mhat_pre                = no-probe (single-cue) which-half decision, for the above
+        #   margin_buffer            = ring buffer of recent margins (gate_shuffle time-shuffle)
+        self.last_action_margin: "float | None" = None
+        self.last_probe_changed_action: bool = False
+        self._mhat_pre: "int | None" = None
+        self.margin_buffer: "list[float] | None" = None
+
+    def _peek_belief(self, cue: float, rho: float, k: int) -> float:
+        """Provisional belief from the SINGLE (pre-probe) cue, WITHOUT mutating state.
+
+        Mirrors the integration in choose_action exactly (EMA when rho>0, else the
+        memory_horizon buffer-mean) but on the single cue and as a pure read — so the
+        gate's action margin = |this - 0.5| is exactly the no-probe which-half decision
+        quantity, and m_hat_pre/m_hat_post differ iff the probe changed the decision.
+        No rng, no mutation ⇒ computing it leaves the fixed_rate/OFF rng stream identical."""
+        if rho > 0.0:
+            return cue if self.belief_ema is None else (1.0 - rho) * cue + rho * self.belief_ema
+        buf = self.cue_buffer if self.cue_buffer is not None else []
+        window = (buf + [cue])[-k:]
+        return sum(window) / len(window)
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -173,13 +207,74 @@ class HomeostaticPolicy:
             # rng stream is identical across information_sampling_rate values; the trait keys
             # ONLY whether they are averaged in and whether the cost is charged.
             self.probed_this_step = False
-            if world.enable_active_sensing:
-                u = rng.random()
-                extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
-                         for _ in range(world.probe_n_samples)]
-                if u < float(creature.genotype.information_sampling_rate):
-                    cue = (cue + sum(extra)) / (1.0 + len(extra))
-                    self.probed_this_step = True
+            self.last_probe_changed_action = False
+            self.last_action_margin = None
+            self._mhat_pre = None
+            if world.enable_active_sensing and world.probe_policy != "off":
+                policy = world.probe_policy
+                gain = float(creature.genotype.information_sampling_rate)
+                rho_g = float(creature.genotype.belief_persistence)
+                k_g = max(1, int(creature.genotype.memory_horizon))
+                # Action margin = |provisional belief - 0.5|, the creature's OWN ambiguity
+                # about which half to steer to, computed from the SINGLE cue (no rng, no
+                # mutation).  This is the only quantity the uncertainty gate may read.
+                cue0 = cue
+                prov = self._peek_belief(cue0, rho_g, k_g)
+                margin = abs(prov - 0.5)
+                self.last_action_margin = margin
+                self._mhat_pre = 1 if prov >= 0.5 else 0
+                if policy == "fixed_rate":
+                    # EXACT Exp 210 path — BYTE-IDENTICAL (rng draws: u, then probe_n_samples
+                    # extras, in this order; everything above is pure arithmetic / reads).
+                    u = rng.random()
+                    extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+                             for _ in range(world.probe_n_samples)]
+                    if u < gain:
+                        cue = (cue + sum(extra)) / (1.0 + len(extra))
+                        self.probed_this_step = True
+                elif policy in ("uncertainty_gated", "pure_cost", "hidden_scramble"):
+                    # Uncertainty-GATED trigger: probe prob = gain * sigmoid(sensitivity *
+                    # (threshold - margin)) — high only when the which-half call is ambiguous.
+                    gate_w = _sigmoid(world.uncertainty_gate_sensitivity
+                                      * (world.uncertainty_gate_threshold - margin))
+                    if rng.random() < gain * gate_w:
+                        self.probed_this_step = True
+                        if policy == "uncertainty_gated":
+                            extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+                                     for _ in range(world.probe_n_samples)]
+                            cue = (cue + sum(extra)) / (1.0 + len(extra))
+                        elif policy == "hidden_scramble":
+                            # Same trigger + cost, but the extra cues carry a mode DECORRELATED
+                            # from the true hidden_mode ⇒ averaging them in gives no information.
+                            scr = float(int(rng.integers(0, 2)))
+                            extra = [scr + rng.normal(0.0, world.cue_noise)
+                                     for _ in range(world.probe_n_samples)]
+                            cue = (cue + sum(extra)) / (1.0 + len(extra))
+                        # pure_cost: probed (cost charged) but cue NOT sharpened — no information.
+                elif policy == "random_cost_matched":
+                    # Budget-matched random TIMING: fixed prob, same info + cost as gated.
+                    if rng.random() < world.random_cost_matched_probe_rate:
+                        self.probed_this_step = True
+                        extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+                                 for _ in range(world.probe_n_samples)]
+                        cue = (cue + sum(extra)) / (1.0 + len(extra))
+                elif policy == "gate_shuffle":
+                    # Same gate, but read a TIME-SHUFFLED margin: same marginal probe rate,
+                    # timing decorrelated from the CURRENT step's uncertainty (info ON).
+                    if self.margin_buffer is None:
+                        self.margin_buffer = []
+                    self.margin_buffer.append(margin)
+                    if len(self.margin_buffer) > world.gate_shuffle_buffer:
+                        self.margin_buffer = self.margin_buffer[-world.gate_shuffle_buffer:]
+                    j = int(rng.integers(0, len(self.margin_buffer)))
+                    shuf = self.margin_buffer[j]
+                    gate_w = _sigmoid(world.uncertainty_gate_sensitivity
+                                      * (world.uncertainty_gate_threshold - shuf))
+                    if rng.random() < gain * gate_w:
+                        self.probed_this_step = True
+                        extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+                                 for _ in range(world.probe_n_samples)]
+                        cue = (cue + sum(extra)) / (1.0 + len(extra))
             rho = float(creature.genotype.belief_persistence)
             if rho > 0.0:
                 # Phase 3 rung-1b: CONTINUOUS belief — an EMA with persistence rho, so a
@@ -201,6 +296,15 @@ class HomeostaticPolicy:
                     self.cue_buffer = self.cue_buffer[-k:]
                 belief = sum(self.cue_buffer) / len(self.cue_buffer)
             m_hat = 1 if belief >= 0.5 else 0
+
+            # Exp 211 pivotality telemetry (no rng): the probe CHANGED the which-half
+            # decision iff it fired AND the post-probe m_hat differs from the no-probe
+            # (single-cue) m_hat.  Read by engine._step_one_creature into
+            # probe_changed_action_count.  Set only when active sensing is on.
+            if self._mhat_pre is not None:
+                self.last_probe_changed_action = (
+                    self.probed_this_step and (m_hat != self._mhat_pre)
+                )
 
             # Steer toward the inferred-good half (right if m_hat==1, left if m_hat==0).
             # Score lexicographically: (in-good-half, believed-resource, -index).
