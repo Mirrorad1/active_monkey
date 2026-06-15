@@ -223,3 +223,16 @@ Ground rules for this file:
   the negative is "doesn't pay even when it could" rather than "priced out by fiat." Kin of L20 (remove cheaper
   escapes before concluding a costed feature doesn't pay) and L22 (forced/gifted benefit ≠ evolvable).
   [VALIDATION; METHODOLOGY; PROTOCOL step 3]
+- **L31 (perf, human request 2026-06-15).** PARALLELISE INDEPENDENT RUNS, CAP WORKERS TO FIT RAM.
+  Experiment wall-clock = c·(pop·horizon)·(arms·seeds), serial on one core by default — measured: a
+  16-seed×multi-arm preflight is ~150 serial sim-runs (Exp 210 ~25 min). Independent runs (different
+  seeds/arms; each `events_hash` depends only on its own seed ⇒ parallel changes NO result) MUST run
+  in PARALLEL via `ecology/batch.py` (`run_batch`/`default_workers()`), NOT a serial `for seed` loop;
+  the Evolvability Preflight gates still loop serially, so route their per-seed runs through batch.
+  BUT cap `max_workers` so `workers × peak_RSS_per_run ≤ ~60% RAM` — use
+  `ecology.runtime_budget.preflight(...)`'s `recommended_workers` (already memory-sized) as the pool
+  size; over-subscribing → SWAP thrashing → minutes become hours (L26 failure mode #2). Determinism
+  contract still bars vectorising/RNG-batching/consume-reorder (those change the hash). Right-size the
+  cheap knobs to the science first (pop/cap — L29; seeds; horizon — L23). Measured factors: cap250 pop
+  ~1000 is 5.3× slower/run than cap50 pop ~215; active-sensing probe-draws add ~29% (gated, AS-only).
+  [PROTOCOL step 3; kin of L25/L26]

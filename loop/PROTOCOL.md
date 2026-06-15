@@ -45,6 +45,22 @@ not permission to weaken `loop/VALIDATION.md`.
    `require_safe=True` at the top of the experiment's `main()` so the batch refuses to launch
    on a flagged config. For non-ecology runs, do the equivalent back-of-envelope (jobs ×
    horizon × work/step) and a short smoke-timed extrapolation before the full run.
+   **Parallelism & memory (binding, L31 — human request 2026-06-15):** experiment wall-clock is
+   `c · (pop·horizon) · (arms·seeds)`, and the per-run sim is GIL-bound, so a multi-run batch
+   (sweeps, multi-seed gates, multi-arm preflights) MUST run its INDEPENDENT runs in PARALLEL
+   across cores, not in a serial `for seed in seeds:` loop. Independence holds because each run's
+   `events_hash` depends only on its own seed (so parallelism changes NO result — guard with a
+   serial-vs-parallel byte-match where feasible). Use `ecology/batch.py` (`run_batch` /
+   `default_workers()`); for the Evolvability Preflight, dispatch the per-seed/per-arm runs through
+   it rather than the gates' built-in serial loops. **BUT cap workers so memory cannot swap-thrash**
+   (the L26 hours-scale failure mode): `max_workers × peak_RSS_per_run ≤ ~60% physical RAM`. Do NOT
+   hand-set `max_workers` to the core count — pass the runs through
+   `ecology.runtime_budget.preflight(..., max_workers=<cores>)`, which returns a `recommended_workers`
+   already sized to the memory budget, and use THAT as the pool size. Over-subscribing workers (more
+   than RAM fits) turns minutes into hours via swap. Also right-size the cheap knobs to the science
+   first: carrying-capacity/pop (cap50 ≈ 5× cheaper than cap250 — only go big when a drift control
+   actually shows drift, L29), seed count (8 standard; more only for a contested signal), arm set,
+   and horizon (trim once the metric has plateaued, L23).
    **Division of labor:** follow `loop/ROUTING.md`. Claude ideates, designs, and
    validates; the CODING is dispatched to a Codex plugin worker on the `codex
    high-fast` profile (explicit fallback: `gpt-5.4-mini` with high reasoning)
