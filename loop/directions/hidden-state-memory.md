@@ -1,15 +1,136 @@
-# direction: hidden-state-memory (Phase 3)
+# direction: hidden-state-memory (Phase 3 + Phase 4 / Rung 3)
 
-**STATUS:** CLOSED-NEGATIVE (2026-06-14, on the human's word "C"). Rung 1 (integer
-`memory_horizon`) and rung 1b (continuous `belief_persistence`) both = FAIL_LOCAL_GRADIENT:
-a costed information-processing capability has no positive LOCAL selection gradient at this
-substrate, at both discrete and continuous resolution, drift-controlled — even though it pays
-when gifted big. The local-gradient wall GENERALISES from scalar senses (Exp 199–207) to
-memory/inference. Synthesis: `docs/research/local-gradient-wall.md`. Rung 2 (full evolution)
-NOT run (gated on a POSITIVE rung 1). Re-opens only on an explicit human word (the named
-non-saturating-payoff lever remains untried, flagged lower-value/higher-tuning-risk).
-(Original pre-registration design follows, with the rung-1/1b verdict addenda below.)
-Depends on Phase 2.5 (generic Gate C, PR #49) for the binding gate to run on a non-thermosense trait.
+**STATUS:** REOPENED 2026-06-14 (human `/lab` word, Phase 4) for a BOUNDED **Rung 3 —
+active sensing** preflight ONLY (pre-registration below). This is NOT a restart of the
+closed-negative passive memory/belief work — it is a structurally NEW lever: a costed
+information-gathering ACTION (pay to sample an extra cue before acting), not a passive
+integration trait. Prior verdicts stand untouched (append-only).
+- **Rung 1 / 1b (Phase 3): CLOSED-NEGATIVE (2026-06-14).** Integer `memory_horizon` (1→2)
+  and continuous `belief_persistence` (ρ 0.5→0.55) both = FAIL_LOCAL_GRADIENT: a costed
+  information-PROCESSING capability has no positive LOCAL selection gradient at this
+  substrate, at both discrete and continuous resolution, drift-controlled — even though it
+  pays when gifted big. The local-gradient wall GENERALISES from scalar senses (Exp 199–207)
+  to memory/inference. Synthesis: `docs/research/local-gradient-wall.md`. Rung 2 (full
+  evolution) NOT run (gated on a POSITIVE rung). Depends on Phase 2.5 (generic Gate C,
+  PR #49) for the binding gate to run on a non-thermosense trait.
+- **Rung 3 (Phase 4): ACTIVE — Exp 210 (pre-registration below).** Does a costed
+  information-gathering ACTION have a positive local gradient where passive capacity did not?
+
+(Original Phase-3 pre-registration design + rung-1/1b verdict addenda follow the Rung-3
+section below.)
+
+---
+
+## PHASE 4 / RUNG 3 — ACTIVE SENSING (pre-registration, Exp 210; committed BEFORE any data)
+
+**The pre-active-inference bridge (binding framing).** This does NOT claim full active
+inference. It tests ONE thing: whether a costly information-gathering ACTION — paying to
+draw an extra noisy cue (a "probe") before the normal action decision — can be LOCALLY
+ADAPTIVE in a fair common garden. Active inference proper (probing GATED on the agent's own
+uncertainty) is the downstream step; here the probe fires at a fixed heritable RATE, blind to
+the current uncertainty. So this is the minimal, falsifiable predecessor.
+
+**Why it is a genuinely DISCRIMINATING experiment (two theories, opposite signs).** Phase 3
+showed passive memory does not pay locally. Two plausible explanations predict OPPOSITE results
+for active sensing:
+- **Theory A — staleness was the killer.** Memory integrates cues ACROSS time, but the mode
+  switches (prob `mode_switch_prob`), so cues older than ~1 dwell are from the WRONG mode →
+  averaging adds BIAS past the dwell (the interior-optimum structure), capping memory's value.
+  A probe draws extra cues WITHIN the current step — all from the CURRENT mode, ZERO staleness
+  bias, belief variance ~σ²/(1+n). If staleness was the binding limit, active sensing should
+  show a **POSITIVE** local gradient — the FIRST crack in the program's wall.
+- **Theory B — marginal-benefit dilution is the killer (the wall is structural).** A crude
+  single-cue read already gets the EASY decisions right (cue far from 0.5); extra sampling only
+  helps the rare PIVOTAL step (cue near 0.5, just after a switch), a small fraction of steps, so
+  the marginal value of more probing is diluted below its cost — the same no-Goldilocks-gradient
+  structure as all six sense levers + memory. Then active sensing **FAILS** like the rest, and
+  the wall generalises from passive capacity to ACTIVE information-seeking (its strongest form).
+
+**Hypothesis (one sentence).** Under the Phase-3 hidden-mode hazard regime, the heritable
+`information_sampling_rate` has a POSITIVE local gradient at a NON-probing resident — a small
+probing mutant (rate 0.0 → 0.10) invades the resident in a fair common garden in ≥7/8 seeds —
+because within-step sampling sharpens the current-mode belief with NO staleness penalty and the
+hazard it avoids exceeds the probe cost (Theory A).
+
+**Mechanism (PROVIDED; gated `enable_active_sensing`, default OFF ⇒ Exp 194–209 byte-identical,
+hash-guarded — the L16 regression discipline).** Reuses the Phase-3 hidden-mode substrate
+(`enable_hidden_mode`: slowly-switching binary mode `m(t)`, fixed `cell_type`, mode-dependent
+survivable HAZARD, noisy cue `cue = m(t)+N(0,cue_noise)`). NEW:
+- Genotype trait `information_sampling_rate ∈ [0,1]` (LAST field, default 0 ⇒ regression-safe;
+  rng-skipped in `mutate()` unless `mutate_active_sensing`, mirroring the memory/thermosense skip
+  guard). It is a per-step Bernoulli PROBABILITY of probing.
+- Each step in the hidden-mode branch of `choose_action` (ON path only): draw the base cue
+  (1 draw, unchanged), a probe coin `u` (1 draw), and `probe_n_samples` extra cues (ALWAYS drawn
+  when active sensing is ON, so rng-consumption is IDENTICAL across `information_sampling_rate`
+  values — eliminates a rng-length confound; the trait keys only whether the extra cues are
+  AVERAGED IN and whether the cost is charged — the repo's keep-the-draw/discard-the-result idiom,
+  cf. `freeze_learning_rate`). If `u < information_sampling_rate`: belief uses `mean(base ∪ extra)`
+  (variance ~σ²/(1+n)) and the engine charges `probe_cost`; else belief = base cue (as Phase 3).
+- Memory is OFF for the clean test (founder `memory_horizon=0`, `belief_persistence=0` ⇒ belief =
+  the current step's (possibly probe-sharpened) cue), isolating active sensing from integration.
+
+**Anti-cheat (binding; the no-direct-h-reward + byte-identity discipline).**
+- No food/fitness is written as f(`information_sampling_rate`); the trait keys ONLY (a) the
+  belief's sample count this step and (b) the probe cost. The eat step (`consume()`) is untouched.
+- **Disconnect null guard:** `disconnect_overrides={enable_active_sensing: False}` ⇒ no probe
+  draw, no cost ⇒ events byte-identical across `information_sampling_rate` (Gate G guard 1).
+- The probe does NOT move the creature for free, does NOT bypass movement/competition, and does
+  NOT create food — it only changes the belief feeding the SAME steering decision.
+
+**Cost model.** Smallest consistent with the energy-mediated substrate: a configurable per-probe
+energy cost `probe_cost` charged in the engine (like `memory_upkeep`). Energy is the universal
+opportunity cost here (energy spent probing cannot go to reproduction). FIXED on a disclosed pilot.
+
+**Controls (the hidden-state-dependency criterion — acceptance #4).** The probe's advantage must
+depend on decision-relevant hidden-state UNCERTAINTY. Two controls, each must remove/sharply weaken it:
+- **Perfect-percept (`cue_noise=0`).** The single cue is already exact ⇒ extra samples add no
+  information ⇒ probing is PURE COST ⇒ the mutant must NOT win (the Phase-3 drift-control analog).
+- **Hazard-off (`mode_hazard_scale=0`).** The hidden state has no fitness consequence ⇒ the belief
+  is decision-irrelevant ⇒ sharpening it buys nothing ⇒ advantage vanishes.
+
+**Liveness gate (HALT if it fails — mechanism wrong, per build-order discipline).** Gifted check:
+a monomorphic high-probe population (rate 1.0, `probe_n_samples` high, `probe_cost=0` = cost waived)
+must spend a LOWER fraction of steps in wrong-type cells than a no-probe population under high
+`cue_noise`. (Analytic expectation at cue_noise=1: P(wrong m̂) falls ~0.31→0.13 with +4 samples —
+a large, clearly-live effect.) If probing does NOT improve observations, no gradient verdict is valid.
+
+**Predictions if TRUE** (property-level, ≥8 seeds [50–57], report ALL):
+- **P1 determinism.** Same seed → identical events_hash (gated mechanism).
+- **P2 validity.** Common-garden populations valid (not collapsed/exploded) in ≥6/8 seeds (min_pop 80).
+- **P3 (CORE, binding).** `local_pairwise_gradient` = POSITIVE_LOCAL_GRADIENT (mutant 0.10 beats
+  resident 0.0, ≥7/8 wins, mean_effect > 0).
+- **P4 (controls).** Perfect-percept (cue_noise=0) AND hazard-off arms are NOT POSITIVE (advantage
+  vanishes when the hidden state is uninformative / irrelevant).
+- **P5 invasion.** `invasion_from_rarity` = INVADES (a rare probing mutant increases).
+- **P6 liveness (gating).** Gifted high-probe wrong-cell fraction < no-probe (mechanism live).
+
+**Falsifiers (each ⇒ the named outcome; a NEGATIVE here is a first-class result — it extends the
+wall from passive capacity to active information-seeking, supporting Theory B):**
+- **F1.** Non-determinism ⇒ NEGATIVE (infra).
+- **F2 (CORE).** Local gradient NEGATIVE or FLAT (mutant fails to clear 7/8) AND the perfect-percept
+  control wins about as often ⇒ NEGATIVE: even staleness-free active sensing does not pay locally;
+  the residual is drift/cost, not information.
+- **F3 (anti-cheat).** Disconnect byte-identity guard fails (the trait leaks through an undeclared
+  path) ⇒ NO_VERDICT (fix the mechanism first).
+- **F4 validity.** Populations collapse in a majority ⇒ NO_VERDICT (retune the regime, disclosed).
+- **F5 liveness.** Gifted probing does NOT reduce wrong-cell fraction ⇒ HALT (mechanism wrong; no verdict).
+
+**Verdict rule (conjunct-by-conjunct).** POSITIVE (the breakthrough: active sensing is locally
+evolvable here — Theory A) iff P1 ∧ P2 ∧ P3 ∧ P5 ∧ P6 and no anti-cheat guard fails AND the
+controls (P4) behave (advantage is hidden-state-dependent). NEGATIVE iff F2 (the wall generalises —
+Theory B). NO_VERDICT iff F3/F4; HALT iff F5. Only on a POSITIVE preflight is Rung 2 (a full
+evolution batch: does `information_sampling_rate` climb de novo to an optimum and stop?) warranted.
+
+**Honesty stakes (written before data).** The regime is the Phase-3 hazard regime (uniform food,
+survivable hazard, unreliable single cue) tuned FAVOURABLY to information (disclosed pilot, seeds
+{100,101,102}; verdict on FRESH seeds [50–57]) — so a NEGATIVE is the STRONG conclusion. The probe
+is fixed-rate (NOT uncertainty-gated) ⇒ this is explicitly a PRE-active-inference bridge, not full
+active inference. The belief estimator, mode dynamics, cue, payoff coupling, and probe sample-count
+are PROVIDED; the heritable quantity is only the sampling RATE. Predicting POSITIVE (Theory A) and
+getting NEGATIVE (Theory B, the prior) is an honest negative, logged as such. Bridge claim bounded
+to this toy substrate. RESEARCH.md carries the variance/bias derivation (theorist discipline).
+
+---
 
 **Question.** When the world has a slowly-switching HIDDEN state that a single noisy
 observation cannot resolve, does a small heritable increase in *memory / inference
