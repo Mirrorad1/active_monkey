@@ -122,6 +122,31 @@ have a near-zero benefit ceiling because the agent's own honestly-computable gat
 noisy to identify the pivotal states. Named (lower-value) residual levers: a richer/multi-cue uncertainty
 estimate, a lower-cue-noise regime, or mutation-geometry/standing-variation rather than a single step.
 
+**The evolvability-geometry coda (Exp 212–213, CLOSED-NEGATIVE, 2026-06-15 — the wall is a
+benefit-MAGNITUDE wall, not a search-geometry or payoff-shape one).** Exp 211's residual levers pointed
+at the *search geometry* — maybe a useful version of the capability exists across a fitness valley that
+single small steps cannot cross. The `evolvability-geometry` direction made that the object of study and
+falsified it from two angles:
+- **Exp 212 (landscape assay, NO_HIGHER_REGION).** A monomorphic carrying-capacity sweep N\*(rate) of
+  fixed-rate active sensing rises *monotonically* with probe rate (964 → 978, +1.5% at full probing, 8/8
+  seeds, beating a cost-only arm) — but the gain is below the meaningfulness margin and below the drift
+  threshold, and the path is **uphill the whole way: there is no valley.** So there is no reachable fitter
+  region for heavy-tailed mutation / standing variation to climb to.
+- **Exp 213 (affordance audit, GEOMETRY_INDEPENDENT_WALL).** On a *matched* substrate (same world, same
+  costed precision organ thermosense 0.10→0.15, same fixed cost), the only thing varied was the payoff
+  **affordance** precision feeds: a SMOOTH graded steering benefit vs a DISCRETE, repeated, high-stakes
+  eat-vs-skip decision (residue, two stakes levels). The hypothesis — that a small precision gain unlocking
+  a discrete high-stakes action is what makes a sense locally evolvable — is **refuted**: no affordance is
+  locally evolvable (2–3/8 wins), the discrete high-stakes geometry is *not* steeper than the smooth one
+  (if anything worse on the selection slope), and raising the stakes does not help. The one positive signal
+  (DISCRETE_hi's monomorphic N\* slope +19.4) is again a **bulk-vs-invasion gap** — a bulk-fitter step that
+  still cannot invade from rarity.
+
+Together they close the loop: the blocker is **not** staleness (211), **not** a hidden valley (212), and
+**not** the payoff shape (213). It is simply that **one precision/probe step's marginal benefit is too
+small at the honest cost** — a benefit-*magnitude* wall. Mutation-geometry and standing-variation rungs
+were therefore *not* run: with no valley and no payoff-shape lever, they have nothing to cross to.
+
 ## 4. The law
 
 > **At this toy active-inference ecology, a costed heritable capability's marginal step does not pay
@@ -132,13 +157,19 @@ estimate, a lower-cue-noise regime, or mutation-geometry/standing-variation rath
 > It holds for PASSIVE capabilities (senses, memory/inference) AND for a costed ACTIVE
 > information-gathering ACTION, both fixed-rate (Exp 210) and UNCERTAINTY-GATED (Exp 211) —
 > perception and action hit the same wall, and even an agent that probes only when it is unsure
-> cannot find the pivotal states with its own honestly-computable uncertainty signal.**
+> cannot find the pivotal states with its own honestly-computable uncertainty signal. And the wall is
+> a benefit-MAGNITUDE wall, NOT a search-geometry or payoff-shape one: the landscape has no valley
+> (Exp 212) and the local gradient is unchanged whether the payoff is a smooth graded benefit or a
+> discrete, repeated, high-stakes action (Exp 213). The marginal benefit of one step is simply too
+> small at the honest cost — so mutation-geometry / standing-variation has nothing to cross to.**
 
 ## 5. What this does NOT prove
 
 - **Not** "these capabilities can never evolve in any world." It is a statement about *this* toy
-  substrate's payoff geometry; a non-saturating payoff or a richer world could change the sign. The
-  preflight is exactly the cheap instrument to re-test that when a new mechanism is proposed.
+  substrate. Exp 213 *did* test whether a non-saturating payoff *shape* (a discrete, repeated,
+  high-stakes affordance) changes the sign — it does not here — so the open lever is now benefit
+  *magnitude* (a much larger per-step payoff, a higher pivotal-decision density, or a richer world),
+  not payoff shape. The preflight is the cheap instrument to re-test that when a new mechanism is proposed.
 - **Not** a claim about scaled systems — toy scale throughout.
 - **Not** that memory/sensing is useless — both are demonstrably useful when gifted (the gift and
   the large-step results are positive). The negative is specifically about the *local* gradient.

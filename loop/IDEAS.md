@@ -1341,6 +1341,21 @@ The loop marks items it has consumed by indenting a response under them:
 (empty — drop ideas above this line's section freely)
 
 - [from human, 2026-06-15] Do not simply tune thermosense. Run an affordance audit: compare thermosense against a richer sense axis where small precision improvements unlock discrete, repeated, high-stakes action differences. The goal is to identify what payoff geometry makes a sense locally evolvable, not to force any particular organ to win.
+  → taken up as Exp 213 (GEOMETRY_INDEPENDENT_WALL, NEGATIVE / NEW INSIGHT, blind-verified). Matched
+    affordance audit (Exp 204 engine, no change): SMOOTH graded forage-steering vs DISCRETE high-stakes
+    eat-vs-skip (residue, loss 0.5/1.0), same costed precision organ at fixed cost. No affordance locally
+    evolvable (2–3/8 wins); the discrete high-stakes geometry is NOT steeper than smooth and does not scale
+    with stakes ⇒ payoff GEOMETRY does not change local evolvability. The steer's hypothesis is refuted at
+    this substrate; the goal (identify the payoff geometry that makes a sense evolvable) is answered: none
+    of the tested geometries — it is a benefit-MAGNITUDE wall, not a payoff-shape one.
+  → [human, 2026-06-15] "b": CLOSE evolvability-geometry + write the synthesis. Direction flipped
+    closed-negative (Exp 212 NO_HIGHER_REGION + Exp 213 GEOMETRY_INDEPENDENT_WALL; both rungs say the
+    blocker is benefit magnitude, not search geometry — Rung 2/3 not run, nothing to cross to). Synthesis
+    folded into docs/research/local-gradient-wall.md (§3 evolvability-geometry coda + law + caveat).
+    Re-opens only on a human word with a benefit-MAGNITUDE lever (much larger per-step payoff / higher
+    pivotal-decision density / richer world), not another payoff-shape or search-geometry probe. The loop
+    holds for a human direction off the local-gradient line (RESUME §3b: M4a "talk to it" / nira's switch /
+    the N-ladder).
 ## Consumed
 
 (processed items get moved here, with their disposition)
