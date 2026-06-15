@@ -1,0 +1,43 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp215.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp215_m4a_1d.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.33\" quoted in entry not found in experiments/outputs/exp215.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.44\" quoted in entry not found in experiments/outputs/exp215.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/8\" quoted in entry not found in experiments/outputs/exp215.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-15T23:16:22Z",
+  "commit_sha": "e1e44538e155a8e0e52558cd27e7ffdfac1f8494",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 215,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
