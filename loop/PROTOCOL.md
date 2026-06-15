@@ -51,8 +51,10 @@ not permission to weaken `loop/VALIDATION.md`.
    across cores, not in a serial `for seed in seeds:` loop. Independence holds because each run's
    `events_hash` depends only on its own seed (so parallelism changes NO result — guard with a
    serial-vs-parallel byte-match where feasible). Use `ecology/batch.py` (`run_batch` /
-   `default_workers()`); for the Evolvability Preflight, dispatch the per-seed/per-arm runs through
-   it rather than the gates' built-in serial loops. **BUT cap workers so memory cannot swap-thrash**
+   `default_workers()`) for batch runs; for the Evolvability Preflight, the generic gates
+   `run_local_pairwise_gradient` / `run_invasion_from_rarity` take a `max_workers` param — pass the
+   memory-sized `recommended_workers` (below) to parallelize their per-seed runs (omit ⇒ serial;
+   parallel is bit-identical, guarded by `tests/test_gates_parallel.py`). **BUT cap workers so memory cannot swap-thrash**
    (the L26 hours-scale failure mode): `max_workers × peak_RSS_per_run ≤ ~60% physical RAM`. Do NOT
    hand-set `max_workers` to the core count — pass the runs through
    `ecology.runtime_budget.preflight(..., max_workers=<cores>)`, which returns a `recommended_workers`

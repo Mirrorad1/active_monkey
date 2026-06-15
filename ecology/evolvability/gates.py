@@ -288,6 +288,21 @@ def run_monomorphic_sweep(
 
 
 # ---------------------------------------------------------------------------
+# Parallel-map helper (order-preserving, falls back to serial)
+# ---------------------------------------------------------------------------
+
+def _parallel_map(worker, arg_list, max_workers):
+    """Map worker over arg_list. Serial when max_workers in (None, 0, 1); else a
+    ProcessPoolExecutor with exactly max_workers procs. Results ALWAYS in input order
+    (ex.map preserves order), so downstream aggregation is identical to serial."""
+    if max_workers in (None, 0, 1):
+        return [worker(a) for a in arg_list]
+    from concurrent.futures import ProcessPoolExecutor
+    with ProcessPoolExecutor(max_workers=max_workers) as ex:
+        return list(ex.map(worker, arg_list))
+
+
+# ---------------------------------------------------------------------------
 # C-helper) Generic equal-count common-garden runner (Gate C fallback)
 # ---------------------------------------------------------------------------
 
@@ -367,6 +382,20 @@ def _run_pairwise_generic(
 
 
 # ---------------------------------------------------------------------------
+# C-worker) Top-level picklable per-seed worker for the pairwise gate
+# ---------------------------------------------------------------------------
+
+def _pairwise_one_seed(args):
+    base_cfg, axis, h_res, h_mut, seed, count_each, window = args
+    if axis.backend == "thermosense":
+        return _sa.run_pairwise_competition(base_cfg, h_res, h_mut, seed,
+                                            count_each=count_each, window=window,
+                                            inefficiency=axis.inefficiency_value)
+    return _run_pairwise_generic(base_cfg, axis, h_res, h_mut, seed,
+                                 count_each=count_each, window=window)
+
+
+# ---------------------------------------------------------------------------
 # C) Local pairwise gradient
 # ---------------------------------------------------------------------------
 
@@ -381,6 +410,7 @@ def run_local_pairwise_gradient(
     count_each: int = 50,
     window: tuple[int, int] = (50, 1500),
     min_pop: int = 10,
+    max_workers: int | None = None,
 ) -> GateOutcome:
     """Gate C: local pairwise invasion gradient (resident vs single-step mutant).
 
@@ -392,6 +422,10 @@ def run_local_pairwise_gradient(
     proven Exp 203 instrument).  For any other backend, uses _run_pairwise_generic, a
     generic common-garden runner that reads/writes the trait via the axis
     (axis.clamp_founder / axis.get) and returns the same dict keys.
+
+    max_workers: None/1 = serial (default). When set (e.g. ecology.runtime_budget.preflight(...)'s
+    memory-sized recommended_workers), the per-seed runs execute in parallel across that many
+    processes; results are bit-identical to serial (seeds are independent).
     """
     h_res = axis.resident_value
     h_mut = axis.mutant_value
@@ -402,20 +436,10 @@ def run_local_pairwise_gradient(
     inv_frac_finals: list[float] = []
     extinct_count = 0
 
-    for seed in seeds:
-        if axis.backend == "thermosense":
-            d = _sa.run_pairwise_competition(
-                base_cfg, h_res, h_mut, seed,
-                count_each=count_each,
-                window=window,
-                inefficiency=axis.inefficiency_value,
-            )
-        else:
-            d = _run_pairwise_generic(
-                base_cfg, axis, h_res, h_mut, seed,
-                count_each=count_each,
-                window=window,
-            )
+    args = [(base_cfg, axis, h_res, h_mut, s, count_each, window) for s in seeds]
+    d_list = _parallel_map(_pairwise_one_seed, args, max_workers)
+
+    for seed, d in zip(seeds, d_list):
         valid = (
             _m.is_population_valid(d["final_pop"], d["extinct"], False, min_pop)
             and not math.isnan(d["inv_frac_final"])
@@ -553,6 +577,14 @@ def _run_invasion(
     }
 
 
+def _invasion_one_seed(args):
+    """Top-level picklable per-seed worker for the invasion gate."""
+    base_cfg, axis, h_res, h_mut, seed, rc, ic, window, stride = args
+    return _run_invasion(base_cfg, axis, h_res, h_mut, seed,
+                         resident_count=rc, invader_count=ic,
+                         window=window, stride=stride)
+
+
 def run_invasion_from_rarity(
     base_cfg: EcologyConfig,
     axis: TraitAxis,
@@ -566,12 +598,17 @@ def run_invasion_from_rarity(
     window: tuple[int, int] = (50, 1500),
     stride: int = 25,
     min_pop: int = 10,
+    max_workers: int | None = None,
 ) -> GateOutcome:
     """Gate D: can a rare mutant increase in frequency when starting from rarity?
 
     Seeds a RARE mutant (≈mutant_fraction of total) into a resident background and
     measures whether the mutant frequency increases over the competition window.
     Uses a generic invasion runner that works for any backend.
+
+    max_workers: None/1 = serial (default). When set (e.g. ecology.runtime_budget.preflight(...)'s
+    memory-sized recommended_workers), the per-seed runs execute in parallel across that many
+    processes; results are bit-identical to serial (seeds are independent).
     """
     h_res = axis.resident_value
     h_mut = axis.mutant_value
@@ -582,14 +619,11 @@ def run_invasion_from_rarity(
     n_valid = 0
     extinct_count = 0
 
-    for seed in seeds:
-        r = _run_invasion(
-            base_cfg, axis, h_res, h_mut, seed,
-            resident_count=resident_count,
-            invader_count=invader_count,
-            window=window,
-            stride=stride,
-        )
+    args = [(base_cfg, axis, h_res, h_mut, s, resident_count, invader_count, window, stride)
+            for s in seeds]
+    r_list = _parallel_map(_invasion_one_seed, args, max_workers)
+
+    for seed, r in zip(seeds, r_list):
         valid = _m.is_population_valid(r["final_pop"], r["extinct"], False, min_pop)
         if r["extinct"]:
             extinct_count += 1

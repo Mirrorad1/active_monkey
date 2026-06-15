@@ -228,8 +228,9 @@ Ground rules for this file:
   16-seed×multi-arm preflight is ~150 serial sim-runs (Exp 210 ~25 min). Independent runs (different
   seeds/arms; each `events_hash` depends only on its own seed ⇒ parallel changes NO result) MUST run
   in PARALLEL via `ecology/batch.py` (`run_batch`/`default_workers()`), NOT a serial `for seed` loop;
-  the Evolvability Preflight gates still loop serially, so route their per-seed runs through batch.
-  BUT cap `max_workers` so `workers × peak_RSS_per_run ≤ ~60% RAM` — use
+  the generic Evolvability Preflight gates (`run_local_pairwise_gradient`/`run_invasion_from_rarity`)
+  now take a `max_workers` param (pass `recommended_workers`; serial when omitted; parallel==serial
+  proven by `tests/test_gates_parallel.py`). BUT cap `max_workers` so `workers × peak_RSS_per_run ≤ ~60% RAM` — use
   `ecology.runtime_budget.preflight(...)`'s `recommended_workers` (already memory-sized) as the pool
   size; over-subscribing → SWAP thrashing → minutes become hours (L26 failure mode #2). Determinism
   contract still bars vectorising/RNG-batching/consume-reorder (those change the hash). Right-size the
