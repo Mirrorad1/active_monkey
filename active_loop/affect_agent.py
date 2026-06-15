@@ -11,7 +11,7 @@ import jax.numpy as jnp
 
 from pymdp.agent import Agent
 
-from active_loop.affect_spec import LV, K
+from active_loop.affect_spec import LV, K, NEU
 
 
 class AffectAgent:
@@ -48,30 +48,36 @@ class AffectAgent:
             learn_B=True,   # pB learned as of increment 1b (Exp 127)
         )
 
-        # empirical prior starts at D
+        # Prior over intent each turn = D.  Utterances are independent draws from the
+        # partner, so there is no across-turn intent carry (Exp 128/1c): perceiving a new
+        # utterance starts from D and is sharpened by the learned emission A[0].
         self._prior = D
         # snapshot initial pA[0] mass for window arithmetic (Exp 125 P4)
         self._init_pA0_sum = float(jnp.array(self.agent.pA[0]).sum())
 
-        # keep the last qs, prev_qs, obs, and action for infer_parameters
+        # Per-turn belief frames for the within-turn credit assignment (1c timing fix):
+        #   _qs_perceive = intent from the utterance ALONE (pre-feedback), used by act();
+        #   _last_qs     = most recent posterior (post-feedback once learned), for readout;
+        #   _last_action = the response chosen this turn.
+        self._qs_perceive: list | None = None
         self._last_qs: list | None = None
-        self._prev_qs: list | None = None   # qs from the turn BEFORE the last action
-        self._last_obs: list[jnp.ndarray] | None = None
         self._last_action: jnp.ndarray | None = None
 
     # ── Perception ────────────────────────────────────────────────────────────
 
-    def perceive(self, code: int, valence_idx: int = 1) -> np.ndarray:
-        """Infer intent posterior given utterance code and last valence.
+    def perceive(self, code: int) -> np.ndarray:
+        """Infer the intent posterior from the utterance ALONE (valence NEU).
+
+        1c timing fix (Exp 128): the previous turn's valence is NOT folded into this
+        turn's intent inference — valence is feedback ABOUT the response, observed later
+        in observe_feedback and bound to THIS turn's code there.  Prior = D.
 
         Returns qs as a flat numpy array of shape (K,), summing to 1.
         """
-        # Rotate: current last_qs becomes prev_qs before computing the new one
-        self._prev_qs = self._last_qs
-        obs = [jnp.array([code]), jnp.array([valence_idx])]
+        obs = [jnp.array([code]), jnp.array([NEU])]
         qs = self.agent.infer_states(obs, self._prior)
+        self._qs_perceive = qs
         self._last_qs = qs
-        self._last_obs = [jnp.array([[code]]), jnp.array([[valence_idx]])]
         return np.array(qs[0]).reshape(-1)  # (K,)
 
     # ── Action ────────────────────────────────────────────────────────────────
@@ -82,37 +88,44 @@ class AffectAgent:
         Returns response index ∈ {0..R-1}.  ASK (index 4) is selected when
         epistemic value is high — the exploration reflex.
         """
-        if self._last_qs is None:
+        if self._qs_perceive is None:
             raise RuntimeError("call perceive() before act()")
-        q_pi, _neg_efe = self.agent.infer_policies(self._last_qs)
+        q_pi, _neg_efe = self.agent.infer_policies(self._qs_perceive)
         self._key, sk = jax.random.split(self._key)
         sk_batch = jax.random.split(sk, 1)
         action = self.agent.sample_action(q_pi, rng_key=sk_batch)
         self._last_action = action
-        # update empirical prior for the next turn
-        self._prior = self.agent.update_empirical_prior(action, self._last_qs)
+        # The prior stays D (independent utterances); the response's consequence is bound
+        # WITHIN this turn by observe_feedback, not carried to the next perceive.
         return int(jnp.asarray(action).reshape(-1)[0])
 
     # ── Learning ──────────────────────────────────────────────────────────────
 
     def observe_feedback(self, code: int, valence_idx: int) -> None:
-        """Windowed Dirichlet A- and B-update: decay existing counts then add new mass.
+        """Co-present the action's consequence with the turn's own code, then learn.
 
-        The window (LV=0.999, Exp 85-91) is applied by scaling pA and pB before the
-        pymdp infer_parameters call, which adds qs-weighted observation/transition mass.
-        pB is learned as of increment 1b (Exp 127, human-authorized resumption).
+        THE 1c TIMING FIX (Exp 128).  The partner's contingency is
+        (response_t x code_t -> valence_t); the learner must see all three together.
+        So we RE-INFER the intent from the FULL turn observation [code_t, valence_t]
+        (same prior D as perceive), then:
+          - A-update binds [code_t, valence_t] to that post-feedback intent (qs_learn);
+          - B-update learns the WITHIN-TURN transition qs_perceive -> qs_learn caused by
+            response_t (so a good response is learned to reach a positive-valence intent).
+        This is the spec's "perceive -> act -> observe[code,valence] -> learn" flow; the
+        action and its consequence are now in the SAME inference step (vs Exp 125/127/128,
+        where valence_t was only seen alongside code_{t+1}, after the intent had moved on).
 
-        B-learning requires two consecutive belief frames (prev_qs at t-1 and
-        last_qs at t) plus the action taken between them.  When prev_qs is not yet
-        available (first turn) the B update is silently skipped for that turn only.
+        The window (LV=0.999, Exp 85-91) is applied by scaling pA/pB before infer_parameters.
         """
-        if self._last_qs is None or self._last_action is None:
+        if self._qs_perceive is None or self._last_action is None:
             return
 
-        # ── 1. Decay existing Dirichlet counts (the window) ──────────────────
-        # infer_parameters returns a new immutable Agent; we rebuild with decayed
-        # pA and pB before the update so the new mass is added on top of the
-        # already-decayed concentrations.
+        # ── 0. Re-infer the post-feedback intent (the consequence, co-presented) ──
+        obs_full = [jnp.array([code]), jnp.array([valence_idx])]
+        qs_learn = self.agent.infer_states(obs_full, self._prior)
+        self._last_qs = qs_learn
+
+        # ── 1. Decay existing Dirichlet counts (the window) then rebuild ──────────
         decayed_pA = [
             jnp.array(self.agent.pA[0]) * self.lv,
             jnp.array(self.agent.pA[1]) * self.lv,
@@ -132,29 +145,21 @@ class AffectAgent:
             learn_A=True, learn_B=True,
         )
 
-        # ── 2. Add new observation mass via infer_parameters ─────────────────
-        # beliefs_A: current qs (1 frame) — shapes (1, 1, K) each factor
+        # ── 2. A-update: bind [code_t, valence_t] to the post-feedback intent ─────
         updated_obs = [jnp.array([[code]]), jnp.array([[valence_idx]])]
-        # action from act(): shape (1, num_factors); expand to (1, 1, num_factors)
         action_seq = self._last_action[:, None, :]  # (1, 1, num_factors)
 
-        # ── 3. B-learning: two-frame belief sequence ──────────────────────────
-        # beliefs_B needs shape (1, T=2, K) so the outer-product joint covers the
-        # t-1 -> t transition.  We can only do this when _prev_qs is available
-        # (i.e. from turn 2 onward).
-        if self._prev_qs is not None:
-            # each _prev_qs / _last_qs factor is (1, 1, K) from infer_states
-            beliefs_B = [
-                jnp.concatenate([self._prev_qs[0], self._last_qs[0]], axis=1)
-            ]  # list of (1, 2, K)
-        else:
-            beliefs_B = None  # first turn: skip B update this step
+        # ── 3. B-update: the WITHIN-TURN transition qs_perceive -> qs_learn ───────
+        # both factors are (1, 1, K) from infer_states; concat on T -> (1, 2, K).
+        beliefs_B = [
+            jnp.concatenate([self._qs_perceive[0], qs_learn[0]], axis=1)
+        ]
 
         updated = tmp.infer_parameters(
-            beliefs_A=self._last_qs,   # list[(1, 1, K)]
-            observations=updated_obs,  # list[(1, 1)] per modality
-            actions=action_seq,        # (1, 1, num_factors)
-            beliefs_B=beliefs_B,       # list[(1, 2, K)] or None
+            beliefs_A=qs_learn,        # list[(1, 1, K)] — post-feedback intent
+            observations=updated_obs,  # list[(1, 1)] per modality — [code, valence]
+            actions=action_seq,        # (1, 1, num_factors) — response_t
+            beliefs_B=beliefs_B,       # list[(1, 2, K)] — within-turn transition
             lr_pA=1.0,
             lr_pB=1.0,
         )

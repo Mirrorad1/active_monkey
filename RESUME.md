@@ -280,10 +280,19 @@ step 0.
   high-stakes eat-vs-skip at matched cost) found no affordance locally evolvable and the discrete geometry
   no steeper ⇒ payoff geometry does not change evolvability. Both rungs: the blocker is benefit MAGNITUDE,
   not payoff shape; mutation-geometry/standing-variation (Rung 2/3) have no valley to cross. DECISION POINT.
-- Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
-  "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
-  goal); nira's normalized-predictive switch (standing consult from Exp 154); the
-  cloud-branch merge (renumber-on-merge plan).
+- **M4a "talk to it" thread (Exp 125/127/128/214, HALTED 3×, NEGATIVE / NEW INSIGHT):** the most
+  direct path to the moonshot goal — a toy affective dyad that infers intent + has functional valence +
+  learns to earn approval (docs/specs/m4-affective-dyad.md; `active_loop/affect_spec.py` + `affect_agent.py`).
+  Increment 1 (Exp 125) and 1b (Exp 127) halted on F3 (never learns); Exp 128 pinned a TIMING flaw.
+  **Exp 214 (increment 1c, human's word 2026-06-15)** re-wired the turn (perceive utterance alone → act →
+  observe [code,valence] co-presented → learn the within-turn intent shift) — the timing fix is REAL but
+  NOT SUFFICIENT: still 0/8, response distribution stays uniform. A GIFTED-EFE liveness control proves the
+  EFE/policy is SOUND (q_pi 0.71 on a discriminative model) — so it is the AIF echo of the program's
+  useful-when-gifted ≠ learnable wall: the response→valence credit is mediated by an intent-transition
+  whose signal is near-zero until the model is already learned. HALTS for the human; pointed redesign = a
+  MORE DIRECT response→valence path. Guard: tests/test_affect_agent.py.
+- Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
+  (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 - Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
 - Fork/replay/restore as first-class primitives: `ecology/runtime.py` (+ `ecology/RUNTIME.md`) — lossless snapshot/restore (bit-identical pause/resume), counterfactual `fork`, `replay` with a bit-match gate, and `distill` (a founder genotype from successful runs — closes the replay_or_distill gap). The `creature/` spine has its own `Creature.fork()` + `growth.replay_nll()`. A unified cross-substrate AgentState is the documented next step.

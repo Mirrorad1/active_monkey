@@ -9061,3 +9061,69 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   "the toy ecology's local-gradient wall is a benefit-magnitude wall, payoff-shape-independent," and step to
   a RESUME §3b standing option. No full evolution is warranted (no positive local gradient anywhere).
 - trace: experiments/exp213_affordance_audit.py → experiments/outputs/exp213.txt
+
+## Exp 214 — M4a increment 1c: the "talk to it" TIMING RE-WIRE — necessary but NOT sufficient; the agent still does not learn to earn approval (NEGATIVE / NEW INSIGHT; M4a thread HALTS a 3rd time; the EFE is live-when-gifted but the model is not learnable)
+
+- Plain: This is the most direct path to the actual goal — a toy thing you can talk to that infers what
+  you mean, registers positive/negative, and learns to seek positive. It halted twice before (the agent
+  never learned to earn a scripted partner's approval), and the diagnosis pinned a timing flaw: the praise
+  for a turn arrived stapled to the NEXT turn's utterance, so the agent never saw its action and the
+  resulting feedback together. Increment 1c re-wires the turn so they ARE seen together (perceive the
+  utterance alone → act → observe the utterance-and-feedback as one step → learn). On the human's word we
+  re-ran the exact learning test. Result: still no learning. The fix was necessary but not enough — even
+  with action and consequence co-presented, the agent keeps trying all its responses about equally and
+  never homes in on the one that earns approval. Crucially this is NOT a broken-wiring artifact: when we
+  HAND the agent a model that already knows the right response, its decision machinery picks it strongly —
+  so the machinery works; it is the LEARNING of that model from scratch in 100 turns that does not happen.
+- Hypothesis: with the action and its consequence co-presented in one inference step (the Exp 128
+  prescribed re-wire), the agent's realized POS-feedback rate rises within a 100-turn scripted-partner
+  session — P3 (POS-rate improvement ≥ 0.15 H1→H2 in ≥ 6/8 fresh seeds), the property that FAILED 0/8 in
+  Exp 125 and 127. Falsifier (F3 ⇒ NEGATIVE/HALT, the consult guardrail): P3 still fails ⇒ the timing fix
+  is necessary but not sufficient; HALT for the human, no self-fix.
+- Setup: re-wired active_loop/affect_agent.py (NOT FROZEN) — perceive(code) now infers intent from the
+  utterance ALONE (valence NEU, prior D; the previous turn's valence is no longer folded in — that was the
+  leak), and observe_feedback(code, valence) RE-INFERS the intent from the full turn observation
+  [code, valence] then learns A from it + the WITHIN-TURN transition qs_perceive→qs_learn caused by
+  response_t (B). affect_spec, the LV=0.999 window, EFE, and ASK are unchanged. Re-ran the Exp 125
+  predeclarations (P1 inference / P2 ASK / P3 learning / P4 window) on FRESH seeds 20–27, 100 turns,
+  partner POS iff response==code%4 (NEU iff ASK). Added two instrument controls: a response-distribution
+  entropy readout (collapse vs diffuse) and a GIFTED-EFE liveness check. New guard: tests/test_affect_agent.py.
+- Result: P1 PASS 8/8 (inference proper, entropy below uniform every turn). P2 PASS (ASK ≥2 in first 10 in
+  2/8; never-ask 3/8 < 7 so F2 silent). P4 EXACT 8/8 (pA[0].sum 100.999 = predicted). P3 FAIL 0/8 —
+  improvements −0.24…+0.04, mean −0.067 (within chance noise; the slight negative is regression-to-mean).
+  Two controls make the negative airtight: (1) the response distribution stays ~UNIFORM all session
+  (entropy 0.975→0.984 of 1.0) and the per-code POS rate never rises — a genuine no-learning, NOT a
+  degenerate collapse; (2) GIFTED-EFE LIVENESS — handed a discriminative model (intent0 emits POS, response0
+  drives intent→0), the policy prefers response0 with q_pi 0.711 (≫ uniform 0.20), so the EFE/policy is
+  SOUND. The learned A1 POS-row stays flat (~0.20) and the post-training policy is exactly uniform
+  (q_pi=[0.2]×5 for every code) — the learning never produces a discriminative model. F3 FIRED ⇒ HALT.
+- Implication: the Exp 128 timing flaw was real and is now fixed, but fixing it did NOT make the agent
+  learn — so timing was necessary, not sufficient. The binding wall is the credit path response→valence:
+  it is mediated by an intent-transition B whose within-turn signal is near-zero while A[1] is still
+  uninformative, so the joint A+B bootstrap never ignites in 100 turns from weak priors — the policy stays
+  uniform and the agent samples all responses about equally. The EFE-liveness control places this exactly
+  in the program's central pattern: the affect EFE is USEFUL-WHEN-GIFTED (it exploits a discriminative
+  model strongly) but the model is not LEARNABLE from scratch at this scale — the AIF/affective echo of the
+  whole arc's useful-when-gifted ≠ evolvable wall. Generalizability tier: mechanism diagnosis, toy scale.
+  The pointed redesign (for the human): a MORE DIRECT response→valence pathway — let the response condition
+  the valence emission directly, not only via an intent transition — plus the standing capacity/lr/session-
+  length suspects.
+- Honest caveat: functional valence only — no sentience claim; the agent infers intent and (when it works)
+  learns to earn a token, nothing more. This is ONE realization of the timing re-wire (within-turn B,
+  prior D); a different B-timing or stronger priors could differ — the robust claim is "this prescribed
+  fix, soundly wired, does not learn in 100 turns," not "timing is irrelevant." K/R/U and the partner are
+  PROVIDED; the agent learns A/B (intent clustering + response value) from scratch. Single config (100
+  turns, 8 seeds); a much longer session was not run (Exp 128 already ruled out scale at 1000 turns on the
+  pre-1c agent, but not on the re-wired one — a residual).
+- Verdict: NEGATIVE / NEW INSIGHT (F3; the predeclared halt honored — the M4a thread is HALTED awaiting the
+  human, third time).
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp214.txt)
+  recomputed NEGATIVE/HALT (F3: P3 0/8; P1 8/8, P2 alive/F2 silent, P4 exact) AND flagged a possible
+  policy-disconnect wiring bug (confident intent but uniform action). That suspicion was then RULED OUT by
+  the committed GIFTED-EFE liveness control (q_pi 0.71 on a discriminative model ⇒ the EFE is sound), which
+  was added to the output for exactly this audit.
+- Next (on human word only): the M4a thread HALTS a third time. The pointed redesign is a more DIRECT
+  response→valence link in the generative model (response conditioning valence emission, not only via the
+  intent transition); alternatives are stronger priors / fewer intents / longer sessions. No self-fix per
+  the consult guardrail. tests/test_affect_agent.py guards the EFE/timing wiring against silent regression.
+- trace: experiments/exp214_m4a_1c.py → experiments/outputs/exp214.txt

@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 213, title: "evolvability-geometry Rung 1b: AFFORDANCE AUDIT (does payoff GEOMETRY make a sense locally evolvable?).", tag: "NEGATIVE" },
-  tally: { total: 213, positive: 114, negative: 66, mixed: 29, breakthroughs: 7 },
+  latest_exp: { n: 214, title: "M4a increment 1c: the \"talk to it\" TIMING RE-WIRE — necessary but NOT sufficient; the agent still does not learn to earn approval", tag: "NEGATIVE" },
+  tally: { total: 214, positive: 114, negative: 67, mixed: 29, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
