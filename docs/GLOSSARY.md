@@ -35,6 +35,10 @@ stream, rather than by a separate static test set.
 **Belief-like state:** An internal estimate used for prediction or action in the toy model.
 It does not imply consciousness.
 
+**Active sensing:** The agent takes an action to improve its observations, not just to get
+food directly. Programmer translation: instead of only reacting to logs, the service pays
+to add better observability before deciding what to do.
+
 **First-person state:** Agent-side variables available to or carried by the creature, such
 as local observations, energy, memory, uncertainty, prediction error, and action history.
 
@@ -43,8 +47,11 @@ resource state, births, deaths, and lineage.
 
 **World model:** The creature's internal model of how observations and transitions work.
 
-**Active inference:** A framework where an agent updates beliefs and selects actions by
-minimizing variational and expected free energy.
+**Active inference:** Action and perception are coupled. The agent acts partly to reduce
+uncertainty about hidden state, not only to maximize immediate reward. Programmer
+translation: like a runtime system choosing diagnostics that reduce ambiguity before
+taking a risky production action. This repo has not achieved full active inference in the
+ecology; active sensing is the current bridge test.
 
 **Falsifier:** A predeclared observation that would weaken or kill a hypothesis.
 

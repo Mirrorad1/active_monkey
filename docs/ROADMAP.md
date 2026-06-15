@@ -2,38 +2,72 @@
 
 This roadmap separates current evidence from long-term motivation. The ambition is to
 study sensing, memory, belief-like internal state, and communication under pressure. The
-current evidence is narrower and toy-scale.
+current evidence is narrower and toy-scale: passive cue integration, `memory_horizon`,
+and continuous `belief_persistence` did not yet produce robust adaptive sense-organ or
+belief-capacity emergence under fair local-gradient tests.
 
-## Now: Public Legibility And Evolvability Preflight
+## Current State: Passive Memory Is Not The Next Knob
 
-Current work should make the lab easier to audit without changing the science record.
-That means clearer front-door docs, a claim ledger, an experiment index, reproducibility
-notes, and consistency checks.
+The thermosense and Phase 3 hidden-state-memory chapters now share the same binding
+lesson: a capability can be useful when gifted, but still fail to be locally evolvable
+when a small heritable step near the resident does not pay for itself.
 
-The current research method to stabilize is Evolvability Preflight: before spending compute
-on full evolution batches, measure whether the local trait gradient or design premise is
-positive enough to justify the batch.
+That does **not** mean memory is solved, useless, or impossible in general. It means the
+current ecology has not shown that simply adding passive cues, passive hidden-state
+integration, or more memory knobs causes robust adaptive sense-organ or belief-like-state
+growth. For this phase, deeper passive memory is a mostly closed-negative direction.
 
-## Next: General Trait Preflight For Costly Senses
+The reusable method remains Evolvability Preflight: before spending compute on full
+evolution batches, measure whether the local trait gradient or design premise is positive
+enough to justify the batch.
 
-The thermosense arc closed negative in this substrate. The next reusable infrastructure
-step is a general trait preflight layer that can apply to other sense-like capabilities:
-sight-like spatial sensing, hearing-like localization, communication reliability, or
-memory machinery.
+## Phase 4 — Active Sensing
 
-The target is not "make every trait evolve." The target is a falsifiable diagnostic:
-which environments create a locally positive path for a costly trait, and which only make
-the trait useful when gifted?
+**Phase 4 goal:** test whether information-gathering actions can become locally adaptive.
 
-## Later: Memory, Belief-Like State, And Internal Model Persistence
+**Core question:** can a small increase in sampling or probing tendency beat the resident
+in a fair common garden?
 
-Once trait preflight is general, the project can return to memory and belief-like state
-inside ecology. The important distinction is first-person versus third-person state: the
-creature's internal estimates should be measured separately from the observer's ground
-truth.
+**Candidate mechanisms:**
 
-Near-term infrastructure likely includes a unified AgentState surface that can fork,
-replay, restore, and compare creature/ecology histories without losing provenance.
+- `probe_action`
+- `sample_extra_cue`
+- `lookahead_cue`
+- `local_scan_radius`
+- `information_sampling_rate`
+
+**Acceptance bar:**
+
+1. Probe action costs energy, time, or opportunity cost.
+2. Probe is not directly rewarded.
+3. Probe only improves future action selection.
+4. Scrambling or disabling the hidden state removes the advantage.
+5. Local pairwise gradient passes before full evolution.
+
+Active sensing means the agent takes an action to improve its observations, not just to
+get food directly. Programmer translation: instead of only reacting to logs, the service
+pays to add better observability before deciding what to do.
+
+This is a pre-active-inference bridge, not a claim that full active inference has been
+achieved in the ecology. Active inference would couple action and perception more deeply:
+the agent acts partly to reduce uncertainty about hidden state, not only to maximize
+immediate reward. Programmer translation: like a runtime system choosing diagnostics that
+reduce ambiguity before taking a risky production action.
+
+## Why This Matters
+
+Active sensing is a better bridge to active inference than simply adding more memory,
+because the agent must spend resources to reduce uncertainty before acting. The immediate
+scientific test is local adaptivity of costly probing or sampling actions: does a small,
+costed tendency to gather better information win under the same fair common-garden
+standard that rejected passive memory and passive sensor precision?
+
+## What Would Falsify This Direction
+
+The direction should be considered unsupported if probing only helps because of direct
+reward leakage, hidden hardcoding, id-order artifacts, unfair seed conditions, or if the
+advantage survives hidden-state scrambling. A negative local pairwise gradient is also a
+first-class result: it would say this bridge does not pay locally in the current ecology.
 
 ## Future: Communication And World-Model Substrate
 
@@ -45,10 +79,17 @@ World models are also future motivation. Learned latent models should be introdu
 when explicit belief variables stop scaling and there is a concrete, audited problem for
 the learned model to solve.
 
+Near-term infrastructure may still include a unified AgentState surface that can fork,
+replay, restore, and compare creature/ecology histories without losing provenance, but it
+should support the active-sensing test rather than reopen passive memory as the main
+scientific direction.
+
 ## Standing Guardrails
 
 - Keep long-term ambition separate from current evidence.
 - Preserve null results and honest walls.
+- Do not claim memory is solved, active inference has been achieved, or emergence is
+  guaranteed.
 - Do not rename packages or imports casually.
 - Do not weaken traceability to improve presentation.
 - Any new public claim needs a falsifier, script, output, caveat, and reader path.

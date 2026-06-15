@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>active_monkey — a tiny artificial-life lab</title>
-<meta name="description" content="A tiny artificial-life lab testing when costly sensing, memory, and belief-like state become locally adaptive under ecological pressure.">
+<meta name="description" content="A tiny artificial-life lab testing when costly sensing, passive memory, and active information-gathering actions become locally adaptive under ecological pressure.">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/monkey-32.png">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/monkey-180.png">
 <link rel="apple-touch-icon" href="assets/monkey-180.png">
@@ -59,7 +59,7 @@
     <div>
       <div class="kicker">open-source self-lab · artificial life · active inference</div>
       <h1 class="h-display">When does a costly trait become worth keeping?</h1>
-      <p class="lead"><b>active_monkey is a tiny artificial-life lab.</b> It uses small artificial ecologies to test when costly sensing, memory, belief-like state, and later communication become locally adaptive under pressure.</p>
+      <p class="lead"><b>active_monkey is a tiny artificial-life lab.</b> It uses small artificial ecologies to test when costly sensing, passive memory, active information-gathering, and later communication become locally adaptive under pressure.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/CLAIMS.md">Start with the claims ledger →</a>
         <a class="btn btn-ghost" href="https://github.com/Mirrorad1/active_monkey/blob/main/docs/EXPERIMENT_INDEX.md">Reader map</a>
@@ -77,7 +77,7 @@
     </div>
     <div class="grid3">
       <div class="card"><div class="eyebrow">world</div><h3>The world has consequence</h3><p>A variable matters only if it changes whether the creature can continue, reproduce, or act better.</p></div>
-      <div class="card"><div class="eyebrow">representation</div><h3>Information has to earn its place</h3><p>The central question is when a world variable becomes worth sensing, remembering, compressing, or communicating from the creature's side.</p></div>
+      <div class="card"><div class="eyebrow">representation</div><h3>Information has to earn its place</h3><p>The central question is when a world variable becomes worth sensing, remembering, actively sampling, compressing, or communicating from the creature's side.</p></div>
       <div class="card"><div class="eyebrow">discipline</div><h3>Emergence gets tested</h3><p>A result counts only when direct reward, trivial baselines, seed accidents, and observer-only explanations have been made hard to confuse with the claim.</p></div>
     </div>
   </section>
@@ -85,15 +85,15 @@
   <section>
     <div class="sec-head">
       <div class="kicker">The research spine</div>
-      <h2 class="h-section">Ecology → sensor → organ → belief.</h2>
+      <h2 class="h-section">Ecology → local gradient → active sensing.</h2>
       <p>The public story is not experiment 1 versus experiment 3. It is a self-lab with a spine: build minimal conditions where costly information-bearing traits have to earn their place.</p>
     </div>
     <div class="spine">
       <div class="row"><div class="num">01</div><div><h3>Ecological pressure</h3><p>Energy, depletion, temperature, competition, and lineage pressure make some information useful and most information ignorable.</p></div></div>
-      <div class="row"><div class="num">02</div><div><h3>Sensor</h3><p>A world variable becomes accessible. The test is whether the ecology makes the sensor useful without rewarding the sensor directly.</p></div></div>
-      <div class="row"><div class="num">03</div><div><h3>Organ</h3><p>A sensor becomes persistent, costly, and maintained. The capability has to pay for itself across generations.</p></div></div>
-      <div class="row"><div class="num">04</div><div><h3>Belief</h3><p>The creature carries internal estimates of hidden state: what is nearby, depleted, dangerous, useful, or surprising.</p></div></div>
-      <div class="row"><div class="num">05</div><div><h3>Communication and world models</h3><p>Signals matter when they change another creature's belief or action. Learned world models matter when explicit beliefs stop scaling.</p></div></div>
+      <div class="row"><div class="num">02</div><div><h3>Costly sensing</h3><p>A world variable becomes accessible. The test is whether the ecology makes the sensor useful without rewarding the sensor directly.</p></div></div>
+      <div class="row"><div class="num">03</div><div><h3>Local-gradient wall</h3><p>Gifted sensors and passive memory can be useful, while small costed steps still fail to beat the resident.</p></div></div>
+      <div class="row"><div class="num">04</div><div><h3>Active sensing</h3><p>The next test is whether a creature can pay to probe, sample, or scan for better information before acting.</p></div></div>
+      <div class="row"><div class="num">05</div><div><h3>Communication and world models</h3><p>Signals and learned models remain future motivation; they must change belief or action under pressure without direct reward leakage.</p></div></div>
     </div>
   </section>
 
@@ -104,9 +104,9 @@
       <p>The project is a public notebook for one research direction: how small artificial systems become more creature-like under pressure, and which explanations survive attempts to break them.</p>
     </div>
     <div class="grid3">
-      <div class="card"><div class="eyebrow">current</div><h3>Sensor-to-organ</h3><p>Find conditions where a costly sensor is not merely expressed but maintained.</p></div>
-      <div class="card"><div class="eyebrow">current</div><h3>First-person state</h3><p>Track what the creature can observe, predict, and update separately from what the outside observer can see.</p></div>
-      <div class="card"><div class="eyebrow">later</div><h3>Deep active inference</h3><p>Use learned latent beliefs when explicit belief variables stop scaling, not as a shortcut around the ecology.</p></div>
+      <div class="card"><div class="eyebrow">current</div><h3>Phase 4 active sensing</h3><p>Test whether a costly probe or sampling action can improve future action selection enough to win locally.</p></div>
+      <div class="card"><div class="eyebrow">current evidence</div><h3>Passive memory wall</h3><p>Hidden-state memory and belief-persistence variants have not yet produced a robust local adaptive gradient.</p></div>
+      <div class="card"><div class="eyebrow">later</div><h3>Active inference</h3><p>Couple action and perception more deeply only after the active-sensing bridge survives its falsifiers.</p></div>
     </div>
   </section>
 
@@ -131,7 +131,7 @@
       <div>
         <div class="kicker slate">The open problem</div>
         <h2>When does a capability pay for its own upkeep?</h2>
-        <p>The current open problem is whether a toy ecology can make an internal capability locally adaptive, and whether that claim survives falsifiers.</p>
+        <p>The current open problem is whether a toy ecology can make a costly information-gathering action locally adaptive, and whether that claim survives falsifiers.</p>
       </div>
       <a class="btn btn-primary" href="open_problem.html">Read the current framing →</a>
     </div>

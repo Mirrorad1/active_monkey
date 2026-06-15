@@ -1,7 +1,7 @@
 # Experiment Index
 
 [EXPERIMENTS.md](../EXPERIMENTS.md) is the append-only lab notebook. This file is a
-reader map: it groups the 207 logged experiments into chapters, says what each chapter
+reader map: it groups the 209 logged experiments into chapters, says what each chapter
 changed, and points to evidence without rewriting the historical record.
 
 ## Start Here
@@ -174,7 +174,34 @@ a locally positive path, not just an installed benefit.
 [experiments/outputs/exp206_design_audit.json](../experiments/outputs/exp206_design_audit.json),
 and [experiments/outputs/exp207.txt](../experiments/outputs/exp207.txt).
 
-## Chapter 8: Meta Tooling And Public Legibility
+## Chapter 8: Phase 3 Hidden-State Memory (Exp 208-209)
+
+Phase 3 asked whether passive hidden-state memory or belief persistence could succeed
+where scalar senses did not. It closed negative under Evolvability Preflight: passive
+cue integration was useful when gifted big, but small local steps did not robustly beat
+the resident under drift-controlled common-garden tests.
+
+**Key experiments:** Exp 208-209.
+
+**What changed after this chapter:** the local-gradient wall generalized from costed
+senses to costed information-processing capacity. The next structural test is active
+sensing: costly information-gathering actions, not more passive memory knobs.
+
+**What failed:** `memory_horizon` 1->2 and `belief_persistence` 0.50->0.55 both failed
+the local-gradient gate. The continuous trait ruled out the main granularity artifact;
+the perfect-percept controls showed the residual advantage was drift/noise, not a
+robust denoising edge.
+
+**Why it matters:** it prevents the public roadmap from treating memory or passive hidden
+state as the obvious next fix. The cleaner bridge toward active inference is whether an
+agent can pay to reduce uncertainty before acting.
+
+**Evidence:** [docs/research/local-gradient-wall.md](research/local-gradient-wall.md),
+[loop/directions/hidden-state-memory.md](../loop/directions/hidden-state-memory.md),
+[experiments/outputs/preflight_memory_rung1/](../experiments/outputs/preflight_memory_rung1/),
+and [experiments/outputs/preflight_belief_persistence_rung1b/](../experiments/outputs/preflight_belief_persistence_rung1b/).
+
+## Chapter 9: Meta Tooling And Public Legibility
 
 This is not a separate science chapter. It covers the repo systems that keep the record
 auditable: experiment parsing, site data, route cards, validation rules, and docs checks.
