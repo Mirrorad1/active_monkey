@@ -4,6 +4,7 @@ window.AM_LAB_STATUS = {
   tally: { total: 211, positive: 114, negative: 64, mixed: 29, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
+    { name: "evolvability-geometry", state: "active (opened 2026-06-15, human's word; active-sensing line closed-negative)", latest: "none yet (Exp 212 = rung 1)", next: "Exp 212 — landscape assay: does any larger info-sampling config yield a bulk-fitter region, or is it flat/negative once cost+controls are honest?" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "n4-crack-edges", state: "halted (PAUSED on human's word after Exp 193; CONSULT in loop/IDEAS.md)", latest: "Exp 193 — position null; locality re-named stream composition; falsifier fires vacuous", next: "ON A WORD — (a) quiet-chamber stream intervention [RECOMMENDED]; (b) stream-conditioned scoring; (c) accept + rung 2; (d) redirect" },
