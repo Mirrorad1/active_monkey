@@ -1314,6 +1314,30 @@ The loop marks items it has consumed by indenting a response under them:
     re-opens only on an explicit human word. New lessons L29 (drift = population-size, not cost)
     + L30 (calibrate a costed action's cost to the empirical benefit ceiling).
 
+- [from human via /lab, 2026-06-15] Exp 211 — uncertainty-gated active sensing (the named lever from
+  the Exp 210 entry). Implement + test it as the next science PR.
+  → taken up as Exp 211 (NEGATIVE / NEW INSIGHT, blind-verified, PR #54 rebase-merged to main). Added a
+    probe_policy abstraction {off, fixed_rate, uncertainty_gated, random_cost_matched, pure_cost,
+    gate_shuffle, hidden_scramble}; OFF + fixed_rate byte-identical to Exp 210 (golden hashes intact;
+    12 new guards in tests/test_uncertainty_gated.py). The gate reads ONLY the action margin
+    |single-cue belief−0.5| (creature-available). FAIL_LOCAL_GRADIENT: gating WORKS when imposed (beats
+    budget-matched random on decision quality 0.4071<0.4103, enriched at low margin 0.099 vs 0.941,
+    changes the action on 0.474 of probes vs random 0.285) but does NOT beat fixed-rate (0.3970), so its
+    benefit ceiling is ~0 (0.0009 vs fixed 0.0186 energy/step) — under sensory noise a single cue is
+    often CONFIDENTLY WRONG, invisible to the margin gate but fixed by indiscriminate fixed-rate probing.
+    The local step is flat/drift even at probe_cost=0.0 (5/16, mean_s −0.0031). The wasted-fixed-rate-
+    budget hypothesis is REFUTED; the wall now spans uncertainty-targeted active sensing too. New lesson
+    L32 (works-when-imposed ≠ has a benefit ceiling to select on). NOT full active inference.
+  → DECISION POINT (reflect, PROTOCOL step 7): the active-sensing line is now CLOSED-NEGATIVE across BOTH
+    fixed-rate (210) and uncertainty-gated (211); the local-gradient wall is robust across senses
+    (199–207), memory/inference (208–209), and action (210–211). The last ~4 verdicts are all NEGATIVE/
+    NEW-INSIGHT confirmations of the same wall — diminishing per-experiment insight, a natural stop point.
+    Named (lower-value) residual levers re-open only on an explicit human word: (a) a richer/multi-cue
+    uncertainty signal or a lower-cue-noise regime (where confident reads are reliable); (b) mutation
+    geometry / standing variation instead of a single small step. Or STEP OFF the local-gradient line
+    toward RESUME §3b standing options (M4a increment 1c — the "talk to it" path; nira's normalized-
+    predictive switch; the locked N-ladder). The loop awaits a human steer before opening a new line.
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed
