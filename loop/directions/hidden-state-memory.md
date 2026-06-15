@@ -1,8 +1,15 @@
 # direction: hidden-state-memory (Phase 3)
 
-**STATUS:** pre-registration / design (committed BEFORE any engine code or data, per
-PROTOCOL step 2 + VALIDATION). Depends on Phase 2.5 (generic Gate C, PR #49) for the
-binding gate to run on a non-thermosense trait.
+**STATUS:** CLOSED-NEGATIVE (2026-06-14, on the human's word "C"). Rung 1 (integer
+`memory_horizon`) and rung 1b (continuous `belief_persistence`) both = FAIL_LOCAL_GRADIENT:
+a costed information-processing capability has no positive LOCAL selection gradient at this
+substrate, at both discrete and continuous resolution, drift-controlled — even though it pays
+when gifted big. The local-gradient wall GENERALISES from scalar senses (Exp 199–207) to
+memory/inference. Synthesis: `docs/research/local-gradient-wall.md`. Rung 2 (full evolution)
+NOT run (gated on a POSITIVE rung 1). Re-opens only on an explicit human word (the named
+non-saturating-payoff lever remains untried, flagged lower-value/higher-tuning-risk).
+(Original pre-registration design follows, with the rung-1/1b verdict addenda below.)
+Depends on Phase 2.5 (generic Gate C, PR #49) for the binding gate to run on a non-thermosense trait.
 
 **Question.** When the world has a slowly-switching HIDDEN state that a single noisy
 observation cannot resolve, does a small heritable increase in *memory / inference
