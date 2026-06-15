@@ -97,9 +97,30 @@ killer (Theory B):
   The `memory_horizon` trait re-tested at the SAME cap-250 regime is also flat (4/8, −0.0034) ⇒ the
   Phase-3 result is **not** a drift artifact. Committed run: `experiments/outputs/exp210.txt`.
 
-The one structurally-untried lever left is an **uncertainty-gated** probe (sample only when the
-belief is uncertain — the actual active-inference step, vs the fixed-rate probe here), which could
-target the rare pivotal post-switch step the fixed-rate probe wastes most of its budget missing.
+**Uncertainty-gated active sensing (Phase 4 / Rung 4, Exp 211), CLOSED-NEGATIVE — the wasted-budget
+hypothesis REFUTED.** Exp 210's probe fired at a *fixed* rate, so the natural follow-up was: did it
+fail only because it wasted most probes on non-pivotal states? Exp 211 adds a `probe_policy`
+abstraction and an **uncertainty-gated** probe — probe with probability `gain ×
+sigmoid(sensitivity×(threshold − action_margin))`, where `action_margin = |single-cue belief − 0.5|`
+is a *creature-available* signal (no oracle). It is the first real act-to-reduce-your-own-uncertainty
+step (a pre-active-inference bridge, **not** full active inference).
+- **The gate works exactly as designed when IMPOSED:** at matched budget it beats budget-matched
+  *random* probing on decision quality (wrong-cell 0.4071 vs 0.4103), concentrates probes at ambiguous
+  states (margin@probe 0.099 vs 0.941), and changes the next action on 0.474 of probes vs random's
+  0.285; the pure-cost / gate-shuffle / hidden-scramble controls do not improve decisions.
+- **But it does NOT beat fixed-rate** (0.3970): under sensory noise a single cue is often *confidently
+  wrong* (large action margin, wrong half), and the cheap uncertainty signal cannot flag those, while
+  indiscriminate fixed-rate probing fixes them by probing everything. So the **gated benefit ceiling is
+  ~0** (0.0009 vs fixed-rate's 0.0186 energy/step) — an order of magnitude smaller.
+- With essentially nothing to select on, the binding local step (gain 0.50→0.55) is flat/drift **even at
+  probe_cost = 0.0** (so cost cannot foreordain it): 5/16 wins, mean_s −0.0031, NEGATIVE; flat across a
+  cost sweep; invasion skipped. Blind-verified. Committed run: `experiments/outputs/exp211.txt`.
+
+So **wasted fixed-rate budget was not the issue** — those probes were not waste, and uncertainty-
+targeting does not rescue the benefit. The new lesson: a costed capability can *work when imposed* yet
+have a near-zero benefit ceiling because the agent's own honestly-computable gating signal is itself too
+noisy to identify the pivotal states. Named (lower-value) residual levers: a richer/multi-cue uncertainty
+estimate, a lower-cue-noise regime, or mutation-geometry/standing-variation rather than a single step.
 
 ## 4. The law
 
@@ -109,7 +130,9 @@ target the rare pivotal post-switch step the fixed-rate probe wastes most of its
 > This holds across sensing AND information-processing, and across discrete AND continuous trait
 > resolution. Useful-when-gifted ≠ locally evolvable; the local gradient is the binding barrier.
 > It holds for PASSIVE capabilities (senses, memory/inference) AND for a costed ACTIVE
-> information-gathering ACTION (Exp 210) — perception and action hit the same wall.**
+> information-gathering ACTION, both fixed-rate (Exp 210) and UNCERTAINTY-GATED (Exp 211) —
+> perception and action hit the same wall, and even an agent that probes only when it is unsure
+> cannot find the pivotal states with its own honestly-computable uncertainty signal.**
 
 ## 5. What this does NOT prove
 

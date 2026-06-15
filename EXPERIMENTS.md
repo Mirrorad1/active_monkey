@@ -8841,3 +8841,84 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   a population-size problem, not a cost problem) + L30 (calibrate a costed action's cost to the empirical
   benefit ceiling) folded into loop/LESSONS.md.
 - trace: experiments/exp210_active_sensing_preflight.py → experiments/outputs/exp210.txt
+
+## Exp 211 — Phase 4 / Rung 4: does UNCERTAINTY-GATED active sensing (probe only when unsure) escape Exp 210's wall? NEGATIVE / NEW INSIGHT (FAIL_LOCAL_GRADIENT; gating works as designed but the wasted-budget hypothesis is REFUTED)
+
+- Plain: Exp 210 let a creature pay to take an extra look (a probe) before deciding, but it probed at a
+  FIXED background rate — so we asked: was it negative only because it wasted most probes on easy steps?
+  Here the creature probes ONLY when it is genuinely unsure which half of the world is good right now (its
+  single read sits near the 50/50 line) — the first real act-to-reduce-your-own-uncertainty step toward
+  active inference. Two questions: (A) when imposed, does timing probes by uncertainty beat spending the
+  same probe budget at random times? Yes. (B) is a small heritable step toward more-probing-when-unsure
+  favoured by selection? No. And the surprise: gating does NOT beat the old fixed-rate probing overall,
+  because under noisy senses a creature is often CONFIDENTLY WRONG — it feels sure but is reading the wrong
+  half — and the cheap uncertainty signal cannot flag those, while fixed-rate probing fixes them by probing
+  everything. So the wasted-budget story is wrong: those extra probes were not waste, and targeting them
+  does not rescue the benefit. This is NOT full active inference; we do not claim it is.
+- Hypothesis: under a slowly-switching HIDDEN mode, UNCERTAINTY-GATED probing (probe_probability =
+  information_sampling_rate × sigmoid(sensitivity×(threshold − action_margin)), action_margin = |single-cue
+  belief − 0.5|, a creature-available signal only) (A) makes better decisions per probe than budget-matched
+  random probing AND beats fixed-rate at a LOWER budget, and (B) opens a POSITIVE local selection gradient
+  at a gated resident (gain 0.50→0.55) where fixed-rate probing (Exp 210) found none — because targeting the
+  budget at pivotal (ambiguous) states should make the marginal probe pay. Falsifier (⇒ NEGATIVE): the
+  drift-robust local slope is ~0 / does not cross the positive bar even at zero cost; a second falsifier (the
+  wasted-budget claim itself): gated does NOT beat random cost-matched when budget-matched.
+- Setup: probe_policy abstraction added (off / fixed_rate / uncertainty_gated / random_cost_matched /
+  pure_cost / gate_shuffle / hidden_scramble); OFF + fixed_rate are byte-identical to Exp 210 (two golden
+  hashes still pinned in tests/test_active_sensing.py; 12 new guards in tests/test_uncertainty_gated.py). The
+  heritable trait is REUSED: under uncertainty_gated, information_sampling_rate is the probe GAIN/cap UNDER
+  uncertainty (so the mutant probes MORE only where it is unsure, not everywhere — gate_threshold/sensitivity
+  are config). Controls share the probe machinery: random_cost_matched (fixed rate calibrated to the gated
+  rate = 0.0533, random timing); pure_cost (gated trigger + cost, extra cues NOT integrated → no info);
+  gate_shuffle (gate reads a TIME-SHUFFLED margin → timing destroyed); hidden_scramble (extra cues drawn from
+  a SCRAMBLED mode → no mutual info). Rung A (decision quality, regime-robust) at cap-50; Rung B (the binding
+  evolvability test) at the drift-suppressed cap-250 regime (L29). FRESH seeds 70–85 (no reuse of Exp 210's
+  50–65). L30: the BINDING Rung-B arm uses probe_cost=0.0 (because the measured gated benefit ceiling is ~0,
+  no positive cost is fair) so cost CANNOT foreordain the negative; a cost sweep {0.0, 0.005, 0.01, 0.02}
+  spans it. L31: independent runs parallelised (11 memory-sized workers); L25 runtime pre-flight gated the batch.
+- Result: LIVENESS — gifted gated (gain 1.0) cuts wrong-cell only 0.4003→0.3989 (gated benefit ceiling
+  0.0009 energy/step), while fixed-rate FULL probing cuts it 0.4003→0.3693 (ceiling 0.0186) — the GATED
+  ceiling is an order of magnitude SMALLER, because the gate never probes the high-margin-but-WRONG reads
+  that fixed-rate fixes. RUNG A (cap-50, 8 seeds, imposed gain 0.5): gated wrong-cell 0.4071 < random
+  cost-matched 0.4103 (C1 ✓, beats random at matched budget 0.0533) but > fixed_rate 0.3970 (C2 ✗, fixed
+  wins despite 10× the budget); pure_cost 0.4158, hidden_scramble 0.4098, gate_shuffle 0.4114 all ≥ gated
+  (C3/C4/C5 ✓ — the controls do not improve decisions); probes enriched at low margin (margin@probe 0.099 vs
+  0.941, C6 ✓); gated changes the action on 0.474 of probes vs random's 0.285 (C7 ✓). RUNG B (cap-250, 16
+  seeds): the BINDING zero-cost arm is wins=5/16 (bar ≥14), mean_s=−0.0031 (NEGATIVE_LOCAL_GRADIENT); the
+  pure-cost control 8/16, −0.0006; the fair-cost (0.01) arm 10/16, −0.0001 — gated never crosses the positive
+  bar and the gated-vs-pure-cost comparison FLIPS with cost (5<8 at 0.0 ⇒ pure drift). Cost sweep: mean_s ∈
+  {−0.0085, −0.0032, +0.0018} across {0.0, 0.005, 0.02} — flat/drift, non-monotone, not cost-driven. invasion
+  SKIPPED (C8 ✗). null_guards all_pass (byte-identity disconnect PASS). C8 = False ⇒ FAIL_LOCAL_GRADIENT.
+- Implication: the wasted-fixed-rate-budget hypothesis is REFUTED. Uncertainty-gating works exactly as
+  designed when IMPOSED — it concentrates the budget on ambiguous states (C6), changes decisions far more per
+  probe than random (C7), and beats budget-matched random on decision quality (C1) — yet it does NOT beat
+  fixed-rate (C2): under sensory noise (cue_noise 1.0) a single cue is often CONFIDENTLY WRONG (large action
+  margin, wrong half), and the creature's own cheaply-available uncertainty signal cannot flag those states,
+  while indiscriminate fixed-rate probing fixes them by probing everything. So the gated benefit CEILING is
+  ~0 (much smaller than fixed-rate's), there is essentially nothing to select on, and the local heritable
+  step is flat/drift even at zero cost. The program's local-gradient wall — a costed capability's marginal
+  step does not pay near the resident — now also spans uncertainty-TARGETED active sensing, and we learn WHY:
+  the gating signal a creature can honestly compute is itself too noisy to identify the pivotal states.
+  Generalizability tier: mechanism-level / failure-mode, bounded to this toy substrate. Synthesis appended to
+  docs/research/local-gradient-wall.md.
+- Honest caveat: toy scale; this is a PRE-active-inference bridge (one uncertainty signal, the single-cue
+  action margin), NOT full active inference, and we do not claim it. The gate, cue model, mode dynamics, probe
+  sample-count, threshold and sensitivity are PROVIDED; the only heritable quantity is the probe gain. The
+  negative is conditional on the chosen gate signal — a richer/multi-cue uncertainty estimate (or a regime
+  with lower cue noise, where confident reads are reliable) is untested and is the named (lower-value) next
+  lever. C1 (gated beats random) holds by a small margin (0.4071 vs 0.4103) at 8 seeds; the binding Rung-B
+  negative is the robust claim (flat across costs and seeds).
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp211.txt,
+  instructed to ignore the script's printed claim) recomputed FAIL_LOCAL_GRADIENT / NEGATIVE
+  conjunct-by-conjunct: C1=T, C2=F, C3=T, C4=T, C5=T, C6=T, C7=T, C8=F (binding 5/16, mean_s −0.0031 ≪ bar 14;
+  liveness passed, no HALT), and independently concluded the wasted-budget hypothesis is partially refuted
+  (gated beats random but not fixed-rate).
+- Next: Phase 4 active sensing CLOSED-NEGATIVE across BOTH fixed-rate (Exp 210) and uncertainty-gated (Exp
+  211). The wall now spans scalar senses (199–207), passive memory/inference (208–209), fixed-rate active
+  sensing (210), and uncertainty-gated active sensing (211). Named (lower-value) residual levers — a
+  multi-cue/lower-noise uncertainty signal, or mutation geometry / standing variation rather than a single
+  small step — re-open only on an explicit human word. No full evolution (the local pairwise gradient did not
+  pass). New methodology note L32 (a costed capability can work-when-imposed yet have a near-zero benefit
+  ceiling because the agent's own honestly-computable gating signal cannot identify the pivotal states).
+- trace: experiments/exp211_uncertainty_gated_active_sensing.py → experiments/outputs/exp211.txt

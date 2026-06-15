@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 210, title: "Phase 4 / Rung 3: does a costed information-gathering ACTION (\"active sensing\") pay locally?", tag: "NEGATIVE" },
-  tally: { total: 210, positive: 114, negative: 63, mixed: 29, breakthroughs: 7 },
+  latest_exp: { n: 211, title: "Phase 4 / Rung 4: does UNCERTAINTY-GATED active sensing (probe only when unsure) escape Exp 210's wall?", tag: "NEGATIVE" },
+  tally: { total: 211, positive: 114, negative: 64, mixed: 29, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },

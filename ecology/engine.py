@@ -318,6 +318,40 @@ class EcologyConfig:
     probe_cost: float = 0.0
     probe_n_samples: int = 4
 
+    # ------------------------------------------------------------------
+    # Exp 211: probe-policy abstraction — HOW the within-step probe is triggered.
+    # ALL defaults preserve Exp 210 behaviour: probe_policy="fixed_rate" + the default
+    # OFF gate means an enable_active_sensing=True run that does NOT set probe_policy
+    # reproduces Exp 210 byte-for-byte (the fixed_rate branch is the verbatim Exp 210
+    # code path, golden-hash guarded). When enable_active_sensing is False the probe
+    # block never runs ⇒ byte-identical regardless of probe_policy.
+    #
+    # probe_policy ∈ {
+    #   "off"                 — no probe (== enable_active_sensing False; for completeness),
+    #   "fixed_rate"          — Exp 210: probe iff u < information_sampling_rate,
+    #   "uncertainty_gated"   — probe with prob = info_sampling_rate * sigmoid(
+    #                            sensitivity*(threshold - action_margin)); action_margin =
+    #                            |provisional_belief - 0.5| from the SINGLE fresh cue (the
+    #                            creature's own ambiguity about which half to steer to),
+    #   "random_cost_matched" — probe with fixed prob random_cost_matched_probe_rate
+    #                            (budget-matched random TIMING; same info, same cost),
+    #   "pure_cost"           — uncertainty-gated TRIGGER + cost, but the extra cues are
+    #                            NOT integrated (pays the cost, gains no information),
+    #   "gate_shuffle"        — uncertainty-gated but the gate reads a TIME-SHUFFLED margin
+    #                            (same marginal probe rate, timing decorrelated from the
+    #                            current step's uncertainty; info ON),
+    #   "hidden_scramble"     — uncertainty-gated TRIGGER + cost, extra cues drawn from a
+    #                            SCRAMBLED mode (no mutual information with the true mode).
+    # }
+    # The gate params below are CONFIG (shared by resident+mutant in the common garden);
+    # the heritable knob is information_sampling_rate (the probe GAIN / cap under
+    # uncertainty), so the local-gradient mutant probes MORE only where it is uncertain.
+    probe_policy: str = "fixed_rate"
+    uncertainty_gate_threshold: float = 0.15      # action-margin cutoff (probe when margin < ~this)
+    uncertainty_gate_sensitivity: float = 20.0    # sigmoid steepness of the gate ramp
+    random_cost_matched_probe_rate: float = 0.0   # fixed probe prob for random_cost_matched
+    gate_shuffle_buffer: int = 64                 # ring-buffer length for the time-shuffle gate
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -368,6 +402,12 @@ class Ecology:
             mode_wrong_regen_factor=cfg.mode_wrong_regen_factor,
             enable_active_sensing=cfg.enable_active_sensing,
             probe_n_samples=cfg.probe_n_samples,
+            # Exp 211 probe-policy params (defaults preserve Exp 210 fixed_rate behaviour).
+            probe_policy=cfg.probe_policy,
+            uncertainty_gate_threshold=cfg.uncertainty_gate_threshold,
+            uncertainty_gate_sensitivity=cfg.uncertainty_gate_sensitivity,
+            random_cost_matched_probe_rate=cfg.random_cost_matched_probe_rate,
+            gate_shuffle_buffer=cfg.gate_shuffle_buffer,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which
@@ -421,6 +461,16 @@ class Ecology:
         self.probe_count_total: int = 0
         self.wrong_cell_steps_total: int = 0
         self.hidden_mode_steps_total: int = 0
+        # Exp 211 telemetry (NOT in events / events_hash): probe pivotality + uncertainty
+        # enrichment. probe_changed_action_count = probes after which m_hat (which-half
+        # decision) flipped vs the no-probe (single-cue) decision. action_margin sums let
+        # the experiment report mean action-margin overall vs at-probe vs without-probe
+        # (the gate-enrichment test). All gated on enable_active_sensing + hidden_mode.
+        self.probe_changed_action_count: int = 0
+        self.action_margin_sum: float = 0.0       # sum over all hidden-mode steps
+        self.action_margin_n: int = 0
+        self.action_margin_at_probe_sum: float = 0.0   # sum over probe steps only
+        self.action_margin_at_probe_n: int = 0
         # Exp 202: band-strip telemetry (NOT in events_hash; populated only when
         # cfg.track_band_strip is True). A plain attribute, so the OFF path is
         # byte-identical to Exp 194-201.
@@ -640,11 +690,25 @@ class Ecology:
         if cfg.enable_active_sensing and getattr(c.policy, "probed_this_step", False):
             ph.energy -= cfg.probe_cost
             self.probe_count_total += 1
+            # Exp 211: probe pivotality (telemetry, no rng, NOT in events_hash) — the probe
+            # CHANGED the next which-half decision vs the no-probe (single-cue) baseline.
+            if getattr(c.policy, "last_probe_changed_action", False):
+                self.probe_changed_action_count += 1
         # Phase 4 telemetry (NOT in events_hash): wrong-type-cell occupancy = decision quality.
         if cfg.enable_hidden_mode and self.world.cell_type is not None:
             self.hidden_mode_steps_total += 1
             if self.world.cell_type[new_pos] != self.world.hidden_mode:
                 self.wrong_cell_steps_total += 1
+            # Exp 211: action-margin enrichment telemetry (no rng, NOT in events_hash).
+            # last_action_margin is set by choose_action ONLY when active sensing is on.
+            if cfg.enable_active_sensing:
+                _m = getattr(c.policy, "last_action_margin", None)
+                if _m is not None:
+                    self.action_margin_sum += _m
+                    self.action_margin_n += 1
+                    if getattr(c.policy, "probed_this_step", False):
+                        self.action_margin_at_probe_sum += _m
+                        self.action_margin_at_probe_n += 1
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy

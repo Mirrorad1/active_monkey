@@ -197,11 +197,37 @@ ACTIVE_SENSING_AXIS = TraitAxis(
     disconnect_overrides={"enable_active_sensing": False},
 )
 
+# Exp 211 rung B: uncertainty-GATED active sensing.  Same heritable trait as Exp 210
+# (information_sampling_rate), but under probe_policy="uncertainty_gated" that trait is the
+# probe GAIN/cap under uncertainty — so the local-gradient mutant (0.50 -> 0.55) is "more
+# likely to probe ONLY when uncertain", NOT "more probe everywhere".  The resident is already
+# probing (gain 0.50) so this is the near-resident local step once gating exists.  Disconnect
+# = enable_active_sensing off (full: no probe draws, no probe cost ⇒ byte-identical across gain).
+UNCERTAINTY_GATED_AXIS = TraitAxis(
+    name="uncertainty_gated_gain",
+    resident_value=0.50,
+    mutant_value=0.55,
+    low_value=0.0,
+    high_value=1.0,
+    cost_enabled=True,
+    h_trait="information_sampling_rate",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,                       # freeze via mutation_rate=0 (no engine freeze hook)
+    enable_flag="enable_active_sensing",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="active_sensing",               # non-thermosense ⇒ generic gate path
+    disconnect_overrides={"enable_active_sensing": False},
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
     "belief_persistence": BELIEF_PERSISTENCE_AXIS,
     "information_sampling_rate": ACTIVE_SENSING_AXIS,
+    "uncertainty_gated_gain": UNCERTAINTY_GATED_AXIS,
 }
 
 
