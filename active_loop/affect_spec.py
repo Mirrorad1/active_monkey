@@ -81,3 +81,64 @@ def build_dyad_model(seed: int = 0) -> dict:
         C  = [_b(C0),  _b(C1)],
         D  = [_b(D0)],
     )
+
+
+def build_direct_head_model(seed: int = 0, k: int = K) -> dict:
+    """M4a increment 1d: the DIRECT response->valence head (Exp 214 redesign).
+
+    Exp 214 showed the response->valence credit path was too INDIRECT (response moved
+    intent via B, intent emitted valence via A1; the within-turn B signal was ~0).  This
+    model makes valence depend DIRECTLY on (intent, response) by adding a second hidden
+    factor `last_response` (R states) that the action DETERMINISTICALLY sets, and routing
+    the valence emission through it: A1 = P(valence | intent, last_response).  All the
+    learning lives in A (learn_A=True, learn_B=False): A1 is a direct Dirichlet count table
+    P(valence | intent, response), so a non-vanishing gradient runs straight from action to
+    feedback.  B0 (intent) = identity per response (intent is observation-driven, unmoved by
+    the response); B1 (last_response) = deterministic action-set.
+
+    Hidden factors: [intent (K), last_response (R)].  Observations: [utterance (U), valence (V)].
+    Control: [response (R)].  Shapes are batch-first JAX (batch=1), per controller.py.
+    """
+    rng = np.random.default_rng(seed)
+
+    # A[0] = P(utterance | intent, last_response): depends on intent ONLY (broadcast over R).
+    A0_2d = np.ones((U, k)) / U + rng.uniform(0.0, 0.05, (U, k))
+    A0_2d = A0_2d / A0_2d.sum(axis=0, keepdims=True)
+    A0 = np.repeat(A0_2d[:, :, None], R, axis=2)              # (U, k, R)
+
+    # A[1] = P(valence | intent, last_response): THE DIRECT HEAD — learnable, ~uniform+jitter.
+    A1 = np.ones((V, k, R)) / V + rng.uniform(0.0, 0.05, (V, k, R))
+    A1 = A1 / A1.sum(axis=0, keepdims=True)                   # (V, k, R) column-stochastic over V
+
+    # B[0] = P(intent' | intent): identity, UNCONTROLLED (num_controls=1) — the response does
+    # not move intent (intent is observation-driven).  Shape (k, k, 1) so pymdp treats factor 0
+    # as a single no-op control; the ONLY controllable factor is last_response (below), so the
+    # policy space is exactly the R responses (not R x R).
+    B0 = np.eye(k)[:, :, None]                               # (k, k, 1)
+
+    # B[1] = P(last_response' | last_response, response): deterministic — next = the action taken.
+    # This is the ONLY controlled factor (R actions = the response repertoire).
+    B1 = np.zeros((R, R, R))
+    for a in range(R):
+        for rp in range(R):
+            B1[a, rp, a] = 1.0                               # B1[r'=a, r_prev, action=a] = 1
+
+    C0 = np.zeros(U); C1 = np.array([-2.0, 0.0, 3.0])         # strong POS preference
+    D0 = np.ones(k) / k; D1 = np.ones(R) / R                 # uniform priors over both factors
+
+    pA0 = A0 * 1.0 + 0.1
+    pA1 = A1 * 1.0 + 0.1                                      # weak Dirichlet on the head -> fast learning
+    pB0 = B0 * 50.0 + 0.1                                     # strong concentration: B stays structural
+    pB1 = B1 * 50.0 + 0.1                                     # (learn_B=False, but keep them sharp)
+
+    def _b(x: np.ndarray) -> jnp.ndarray:
+        return jnp.array(x[None])
+
+    return dict(
+        A  = [_b(A0),  _b(A1)],
+        pA = [_b(pA0), _b(pA1)],
+        B  = [_b(B0),  _b(B1)],
+        pB = [_b(pB0), _b(pB1)],
+        C  = [_b(C0),  _b(C1)],
+        D  = [_b(D0),  _b(D1)],
+    )

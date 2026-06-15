@@ -14,8 +14,8 @@ import math
 import numpy as np
 import jax.numpy as jnp
 
-from active_loop.affect_spec import build_dyad_model, LV, NEU, POS
-from active_loop.affect_agent import AffectAgent
+from active_loop.affect_spec import build_dyad_model, build_direct_head_model, LV, NEU, POS, U, R
+from active_loop.affect_agent import AffectAgent, DirectHeadAgent
 
 
 def test_efe_liveness_on_gifted_model():
@@ -62,3 +62,40 @@ def test_window_arithmetic_and_session_runs():
     expected = init * (LV ** n) + sum(LV ** k for k in range(n))
     assert abs(ag.pA0_sum() - expected) < 0.5, f"window arithmetic off: {ag.pA0_sum():.3f} vs {expected:.3f}"
     assert ag.pB0_sum() > 0  # B-learning accumulated mass
+
+
+# ---------------------------------------------------------------------------
+# Increment 1d: DirectHeadAgent (2-factor direct response->valence head) wiring guards
+# ---------------------------------------------------------------------------
+
+def test_direct_head_efe_liveness():
+    """INSTRUMENT SOUNDNESS (Exp 215 control): with a CLEANLY-gifted direct-head model —
+    code0→intent0 (A0) and A1[intent0, resp2]→POS — the 2-factor EFE must PREFER resp2.
+    Guards the direct head + the [1,R] control wiring against a silent disconnect."""
+    import jax.numpy as jnp
+    from pymdp.agent import Agent
+    m = build_direct_head_model(0)
+    A0 = np.array(m["A"][0])[0]; A0[:] = 0.02; A0[0, 0, :] = 0.9
+    A0 = A0 / A0.sum(0, keepdims=True); m["A"][0] = jnp.array(A0[None]); m["pA"][0] = jnp.array((A0 + 0.1)[None])
+    A1 = np.array(m["A"][1])[0]; A1[:, 0, 2] = [0.05, 0.05, 0.9]
+    A1 = A1 / A1.sum(0, keepdims=True); m["A"][1] = jnp.array(A1[None]); m["pA"][1] = jnp.array((A1 + 0.1)[None])
+    ag = Agent(A=m["A"], B=m["B"], C=m["C"], D=m["D"], pA=m["pA"], pB=m["pB"],
+               num_controls=[1, R], policy_len=1, action_selection="stochastic", sampling_mode="full",
+               inference_algo="fpi", batch_size=1, learn_A=True, learn_B=False)
+    qs = ag.infer_states([jnp.array([0]), jnp.array([NEU])], ag.D)
+    qp = np.array(ag.infer_policies(qs)[0]).reshape(-1)
+    assert int(np.argmax(qp)) == 2 and qp[2] > 0.4, f"direct-head EFE wiring bug: q_pi={np.round(qp,3)}"
+
+
+def test_direct_head_agent_runs_and_learns_A1():
+    """A short DirectHeadAgent session runs end-to-end and the valence head A1 accumulates mass
+    (learn_A on the 2-factor model); the chosen response is a valid index."""
+    ag = DirectHeadAgent(build_direct_head_model(3), lv=LV, seed=3)
+    rng = np.random.default_rng(3)
+    for _ in range(8):
+        code = int(rng.integers(0, U))
+        ag.perceive(code)
+        r = ag.act()
+        assert 0 <= r < R
+        ag.observe_feedback(code, POS if r == (code % 4) else NEU)
+    assert ag.pA1_sum() > ag._init_pA1_sum - 1.0  # the head ledger is live

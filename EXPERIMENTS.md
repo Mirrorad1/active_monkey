@@ -9127,3 +9127,69 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   intent transition); alternatives are stronger priors / fewer intents / longer sessions. No self-fix per
   the consult guardrail. tests/test_affect_agent.py guards the EFE/timing wiring against silent regression.
 - trace: experiments/exp214_m4a_1c.py → experiments/outputs/exp214.txt
+
+## Exp 215 — M4a increment 1d: the DIRECT response→valence head — fixes the credit path but the agent still does not learn; the aliasing hypothesis is REFUTED (NEGATIVE / NEW INSIGHT; M4a thread HALTS a 4th time, two walls ruled out)
+
+- Plain: The "talk to it" agent could not learn to earn approval; Exp 214 pinned the cause as too-indirect
+  credit (the response only changed how you feel by slowly nudging an internal "intent" state). Increment
+  1d gives the agent a DIRECT link from its action to your feedback: it now learns a table "at intent k,
+  response r tends to earn +/0/-". When we HAND it a correct table, its decision machinery exploits it
+  strongly — so the wiring is right and the credit path is genuinely fixed. But learning that table from
+  scratch in 100 turns still does not happen. And the surprising part: we tested the obvious next suspect —
+  that 6 utterance codes crammed into 4 internal intents (aliasing) confuse the table — by giving it one
+  intent per code (K=6); it STILL does not learn. So neither the indirect credit (now fixed) nor the
+  aliasing is the wall. The wall is deeper: the learned signal is too weak to make the agent commit to a
+  response, so it keeps trying everything roughly equally and never gathers enough positive feedback to
+  lock in. Functional valence only; no sentience claim.
+- Hypothesis: with a DIRECT response→valence head (a 2-factor model — intent + a last_response factor the
+  action sets — with valence emitted by A1 = P(valence | intent, last_response)), the agent's realized
+  POS-rate rises ≥ 0.15 H1→H2 in ≥ 6/8 fresh seeds (P3), where increments 1/1b/1c failed 0/8. Falsifier
+  (F3 ⇒ NEGATIVE/HALT, the consult guardrail): P3 still fails ⇒ the direct head is necessary-improving but
+  not sufficient; HALT for the human.
+- Setup: new active_loop/affect_spec.build_direct_head_model (2 hidden factors [intent K, last_response R];
+  B0 intent identity/uncontrolled, B1 last_response deterministic action-set; A1 = the direct valence head,
+  the ONLY thing learned alongside A0 — learn_A=True, learn_B=False) + a new DirectHeadAgent
+  (active_loop/affect_agent.py; the 1c within-turn timing kept; equinox.tree_at for the window decay).
+  Re-ran the Exp 125 predeclarations (P1–P4) on FRESH seeds 20–27, 100 turns. Controls: a CLEAN gifted-EFE
+  liveness (gift A0 code0→intent0 AND A1[intent0,resp2]→POS; the EFE must prefer resp2 — rules out a wiring
+  bug, as in Exp 214); a per-seed code→intent ALIASING count; and a K=U=6 (one-intent-per-code, 8 seeds)
+  diagnostic. New guards in tests/test_affect_agent.py. Functional valence only.
+- Result: P1 8/8 (inference proper). P2 3/8 ASK (F2 silent, never-ask 3/8). P4 EXACT 8/8 (pA[1].sum 118.73
+  = predicted LV-decay). P3 FAIL 0/8 — improvements −0.16…+0.04, mean −0.053 (chance noise). The instrument
+  is SOUND: the clean gifted-EFE control gives q_pi[correct]=0.548 (≫ uniform 0.20) — the EFE exploits a
+  discriminative model strongly, so this is genuine no-learning, not a bug. The direct head is a REAL
+  advance: A1 develops PARTIAL POS structure (POS-cell max ~0.44 vs uniform 0.33), unlike Exp 214's flat
+  head. But the K=U=6 diagnostic ALSO fails (P3 0/8, mean −0.068) ⇒ removing the U→K aliasing (mean 2.12
+  code-pairs with different correct responses share an intent at K=4) does NOT rescue learning ⇒ ALIASING
+  IS RULED OUT as the binding wall. F3 FIRED ⇒ HALT.
+- Implication: increment 1d is a productive NEGATIVE — it FIXES Exp 214's credit-path wall (the response→
+  valence link is now direct and A1 learns partial structure) and RULES OUT two candidate walls in one
+  experiment: (i) the credit-path indirection (fixed), and (ii) the intent-clustering capacity/aliasing
+  (K=U also fails). The binding wall is now narrowed to a WEAK-SIGNAL → DIFFUSE-POLICY → NO-EXPLOITATION
+  loop: the learned A1 signal (POS ~0.44 vs 0.33) is too weak to make the stochastic EFE policy concentrate,
+  so the action distribution stays ~uniform, the agent never exploits what it has learned, and in 100 turns
+  of sparse POS feedback (≈1-in-5 responses earns +) the joint bootstrap never ignites. This is still the
+  program's central shape — the EFE is useful-when-gifted (q_pi 0.55) but the policy is not learnable from
+  weak self-generated signal at this scale — now localised to exploration/precision rather than the model
+  structure. Surviving suspects (for the human): policy precision / a sharper exploitation schedule, a
+  higher learning rate, or a longer session (100 turns may simply be too few). Generalizability tier:
+  mechanism diagnosis, toy scale.
+- Honest caveat: functional valence only, no sentience claim — the agent learns (when it works) to earn a
+  token, nothing more. The "direct head" is a PROVIDED structural prior (a second hidden factor + a fixed
+  deterministic B1), declared as such; it does not make success inevitable (the agent must still learn
+  A0 code→intent AND A1 intent×response→valence from sparse feedback). Single config (100 turns, 8 seeds,
+  fixed precision); the surviving suspects (precision/lr/horizon) are NOT yet tested — that is the next
+  increment, not a claim here. The 2-factor inference is ~10× slower per turn (JAX re-jit on the per-turn
+  parameter update); tractable at this scale, a perf note for longer runs.
+- Verdict: NEGATIVE / NEW INSIGHT (F3; predeclared halt honored — the M4a thread HALTS, fourth time).
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp215.txt)
+  recomputed NEGATIVE/HALT (F3: P3 0/8; P1 8/8, P2 alive, P4 exact), confirmed the gifted-EFE liveness
+  (q_pi 0.548) rules out a wiring bug, and independently concluded the K=U=6 (0/8) result REFUTES aliasing
+  as the primary bottleneck — "the failure is in how the agent updates the valence model from experience,
+  not the clustering geometry."
+- Next (on human word only): the M4a thread HALTS a fourth time, two walls ruled out (credit path,
+  aliasing). The pointed next increment is the EXPLORATION/exploitation dynamics — higher policy precision
+  / a sharper exploit schedule, a higher learning rate, or a longer session — to break the weak-signal →
+  diffuse-policy loop. No self-fix per the consult guardrail. Card: loop/directions/affective-dyad.md;
+  guards: tests/test_affect_agent.py.
+- trace: experiments/exp215_m4a_1d.py → experiments/outputs/exp215.txt

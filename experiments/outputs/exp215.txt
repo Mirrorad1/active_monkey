@@ -1,0 +1,27 @@
+==============================================================================
+EXP 215 — M4a increment 1d: DIRECT response→valence head (2-factor: intent + last_response)
+perceive(utterance) → act(sets last_response) → observe[code,valence] → learn A1=P(val|intent,resp)
+==============================================================================
+FRESH seeds [20, 21, 22, 23, 24, 25, 26, 27]; 100 turns; K=4 intents, U=6 codes, R=5 responses; partner POS iff response==code%4. Only A learned (learn_A=True, learn_B=False); B structural; LV=0.999 window on A.
+
+seed  H-drop ask10 pos_h1 pos_h2  improv  pA1_sum alias
+-------------------------------------------------------
+  20   1.000     0  0.320  0.160  -0.160   118.73     2
+  21   1.000     1  0.240  0.280  +0.040   118.73     1
+  22   1.000     0  0.100  0.100  +0.000   118.73     2
+  23   1.000     3  0.180  0.180  +0.000   118.73     4
+  24   1.000     3  0.180  0.080  -0.100   118.73     2
+  25   1.000     1  0.280  0.200  -0.080   118.73     1
+  26   1.000     0  0.160  0.180  +0.020   118.73     1
+  27   1.000     2  0.280  0.140  -0.140   118.73     4
+
+P1 inference (entropy-drop>=0.5): 8/8 (need 6) -> PASS
+P2 ASK>=2 in first10: 3/8 (need 2; F2 halt iff never-ask>=7: never=3)
+P3 POS-rate improvement>=0.15: 0/8 (need 6)  [mean -0.053]
+P4 window arithmetic on pA[1] (the head): PASS (all 8)
+EFE LIVENESS (clean aligned gift -> EFE prefers the POS response): q_pi 0.55-ish, argmax-correct=True (q_pi[correct]=0.548 >> uniform 0.20) -> instrument SOUND.
+DIAGNOSTIC aliasing: mean 2.12 code-pairs (different correct responses) share an intent under K=4 -> the direct head gets CONTRADICTORY targets at those intents.
+DIAGNOSTIC K=U=6 (one intent per code, NO aliasing; 8 seeds): P3 0/8 mean improv -0.068, mean aliasing 1.50.
+
+VERDICT (script claim): NEGATIVE / HALT — F3: POS-rate improvement >=0.15 in only 0/8 (mean -0.053). The direct head IS built and the instrument is SOUND (clean gifted-EFE prefers the correct response, q_pi 0.55) — the credit path is now DIRECT and A1=P(valence|intent,response) develops PARTIAL structure (unlike Exp 214's flat head), so 1d is a real advance on the Exp 214 wall. BUT the agent still does not learn, and 1d RULES OUT two hypotheses: it is not the credit-path indirection (fixed here), and the K=U diagnostic (one intent per code, NO aliasing) ALSO fails (P3 0/8, mean -0.068) -> ALIASING IS RULED OUT. The wall is DEEPER: a weak-signal -> diffuse-policy -> no-exploitation loop — the learned A1 signal is too weak to make the EFE concentrate, so the stochastic action stays ~uniform, the agent never exploits, and in 100 turns of sparse POS feedback the bootstrap never ignites. Surviving suspects: exploration/policy-precision, learning rate, session length. The M4a thread HALTS for the human. No self-fix per the consult guardrail.
+  SEEDS [20, 21, 22, 23, 24, 25, 26, 27]; K=4; P1=8/8 P2_ask=3/8 P3=0/8 mean_improv=-0.053; EFE q=0.548; KU_P3=0/8.

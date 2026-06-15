@@ -202,3 +202,88 @@ class AffectAgent:
         p_pos = col[2] / col.sum()  # POS=2
 
         return float(np.clip(0.5 * conf + 0.5 * p_pos, 0.0, 1.0))
+
+
+# ---------------------------------------------------------------------------
+# Increment 1d: DirectHeadAgent — the direct response->valence head (Exp 215)
+# ---------------------------------------------------------------------------
+class DirectHeadAgent:
+    """M4a increment 1d (Exp 215): a 2-factor agent whose valence emission depends DIRECTLY on
+    (intent, last_response).  Built from affect_spec.build_direct_head_model.
+
+    Two hidden factors [intent (K), last_response (R)].  The action deterministically sets the
+    last_response factor (B1); the valence head A1 = P(valence | intent, last_response) is the
+    DIRECT credit path (learnable).  Only A is learned (learn_A=True, learn_B=False) — B0
+    (intent identity, uncontrolled) and B1 (deterministic action-set) are fixed structural priors.
+    The 1c TIMING discipline is kept: perceive the utterance alone -> act (which sets the
+    last_response prior to the chosen response) -> observe [code, valence] co-presented -> learn,
+    so the valence is bound to (intent, response_t) in the same inference step.
+
+    Functional valence only — no sentience claim.
+    """
+
+    def __init__(self, model_dict: dict, lv: float = LV, seed: int = 0):
+        self.lv = lv
+        self._key = jax.random.PRNGKey(seed)
+        R = int(jnp.array(model_dict["B"][1]).shape[-1])
+        self.R = R
+        self.agent = Agent(
+            A=model_dict["A"], B=model_dict["B"], C=model_dict["C"], D=model_dict["D"],
+            pA=model_dict["pA"], pB=model_dict["pB"],
+            num_controls=[1, R],           # factor 0 (intent) uncontrolled; factor 1 (last_response) = the response
+            policy_len=1, action_selection="stochastic", sampling_mode="full",
+            inference_algo="fpi", batch_size=1, learn_A=True, learn_B=False,
+        )
+        self._D = model_dict["D"]
+        self._init_pA1_sum = float(jnp.array(self.agent.pA[1]).sum())  # window arithmetic on the HEAD
+        self._prior = self._D
+        self._qs_perceive: list | None = None
+        self._last_qs: list | None = None
+        self._last_action: jnp.ndarray | None = None
+
+    def perceive(self, code: int) -> np.ndarray:
+        """Infer intent from the utterance alone (valence NEU); prior D (last_response uniform pre-act)."""
+        qs = self.agent.infer_states([jnp.array([code]), jnp.array([NEU])], self._D)
+        self._qs_perceive = qs
+        self._last_qs = qs
+        return np.array(qs[0]).reshape(-1)
+
+    def act(self) -> int:
+        """EFE response selection; then set the observe-prior so last_response = the chosen response
+        (B1 deterministic; B0 leaves intent unchanged) — so the feedback is bound to THIS response."""
+        if self._qs_perceive is None:
+            raise RuntimeError("call perceive() before act()")
+        q_pi, _ = self.agent.infer_policies(self._qs_perceive)
+        self._key, sk = jax.random.split(self._key)
+        action = self.agent.sample_action(q_pi, rng_key=jax.random.split(sk, 1))
+        self._last_action = action
+        self._prior = self.agent.update_empirical_prior(action, self._qs_perceive)
+        return int(jnp.asarray(action).reshape(-1)[-1])   # control on factor 1 = the response
+
+    def observe_feedback(self, code: int, valence_idx: int) -> None:
+        """Co-present [code_t, valence_t] (1c timing): re-infer with last_response=response_t, then
+        windowed-Dirichlet learn A0 (utterance|intent) + A1 (valence|intent,response) — the DIRECT head."""
+        if self._qs_perceive is None or self._last_action is None:
+            return
+        qs_learn = self.agent.infer_states(
+            [jnp.array([code]), jnp.array([valence_idx])], self._prior)
+        self._last_qs = qs_learn
+        # Window decay: swap pA in-place via equinox.tree_at (NOT a full Agent rebuild, which
+        # re-traces the constructor and is ~10x slower per turn for the 2-factor model). The
+        # resulting state (A=current expected, pA=decayed, B/C/D/pB unchanged) is identical to
+        # reconstructing Agent(A=self.agent.A, ..., pA=decayed_pA), so the math is unchanged.
+        import equinox as eqx  # noqa: PLC0415 (local import; cheap, avoids a module-level dep)
+        decayed_pA = [jnp.array(self.agent.pA[0]) * self.lv,
+                      jnp.array(self.agent.pA[1]) * self.lv]
+        tmp = eqx.tree_at(lambda a: a.pA, self.agent, decayed_pA)
+        updated = tmp.infer_parameters(
+            beliefs_A=qs_learn,
+            observations=[jnp.array([[code]]), jnp.array([[valence_idx]])],
+            actions=self._last_action[:, None, :],   # required positional; B is NOT learned (learn_B=False)
+            beliefs_B=None,
+            lr_pA=1.0,
+        )
+        self.agent = updated
+
+    def pA1_sum(self) -> float:
+        return float(jnp.array(self.agent.pA[1]).sum())
