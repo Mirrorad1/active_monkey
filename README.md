@@ -16,9 +16,9 @@ study when a capability is locally adaptive rather than merely present.
 
 The preferred public framing is narrow:
 
-> When do costly capabilities - sensing, memory, belief-like internal state, and
-> eventually communication - become worth maintaining because they improve
-> action-relevant outcomes under pressure?
+> When do costly capabilities - sensing, active information gathering,
+> memory/belief-like internal state, and eventually communication - become worth
+> maintaining because they improve action-relevant outcomes under pressure?
 
 The project is deliberately toy-scale. Its value is auditability: a skeptical reader
 should be able to trace a claim to the experiment entry, script, raw output, caveat,
@@ -36,10 +36,10 @@ Current spine:
 ```text
 ecological pressure
 -> costly sensing
--> organ-like persistence
--> memory and belief-like state
--> communication
--> world-model substrate
+-> local-gradient tests
+-> passive sensor/memory walls
+-> active sensing
+-> communication and world-model substrate
 ```
 
 ## Why Ecology Instead Of A Single Agent
@@ -56,13 +56,15 @@ evolutionary path pays for its upkeep in this setup.
 
 The early active-inference toys explored language, memory, valence, embodiment, and
 queryable toy opinions. The current public spine is the ecology chapter: can costly
-traits become locally adaptive under pressure?
+traits, including information-gathering actions, become locally adaptive under
+pressure?
 
 For the current state of the evidence, start with:
 
 - [docs/CLAIMS.md](docs/CLAIMS.md) - claim-by-claim ledger with caveats and falsifiers.
-- [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md) - chapter map for the 207-entry notebook.
+- [docs/EXPERIMENT_INDEX.md](docs/EXPERIMENT_INDEX.md) - chapter map for the 209-entry notebook.
 - [docs/research/sense-axis-organ-evolution.md](docs/research/sense-axis-organ-evolution.md) - current thermosense / sense-evolution synthesis.
+- [docs/research/local-gradient-wall.md](docs/research/local-gradient-wall.md) - synthesis connecting costly senses to Phase 3 hidden-state memory.
 - [sense-evolution.html](sense-evolution.html) - public write-up of the closed-negative sense-evolution chapter.
 
 ## Current Strongest Results
@@ -81,9 +83,15 @@ Current evidence suggests:
 - Several thermosense experiments found that gifted or global usefulness is not
   enough. A functional sensor can still be un-evolvable when the local selection
   gradient at the resident is non-positive.
+- Phase 3 hidden-state memory extended that wall: passive cue integration via
+  `memory_horizon` and continuous `belief_persistence` did not produce a robust
+  local adaptive gradient, even though larger gifted jumps can be useful.
 - Recent work motivates an Evolvability Preflight layer: measure local trait
   gradients and load-bearing premises before spending compute on full evolution
   batches.
+- The next structural test is active sensing: whether a costly probe or sampling
+  action can improve future action selection enough to beat the resident in a fair
+  common garden.
 
 These are toy-scale claims about this codebase and its current substrates, not claims
 about biology, consciousness, AGI, or inevitable emergence.

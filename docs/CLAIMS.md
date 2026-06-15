@@ -199,9 +199,41 @@ provided or constrained by the current engine.
 heritable increase in sensor precision at the resident reliably produces a positive local
 selection gradient and full evolution follows it to functional values.
 
-**Next need:** generalize the preflight layer before attempting other costly senses.
+**Next need:** use the preflight discipline on Phase 4 active-sensing probes before any
+full evolution batch.
 
-## C8 - Evolvability Preflight Is Now A Method, Not A Result Claim
+## C8 - Passive Hidden-State Memory Did Not Clear The Local-Gradient Bar
+
+**Plain-English claim:** In the Phase 3 hidden-state-memory tests, passive cue integration
+and belief persistence were useful when gifted in large jumps, but small local steps did
+not robustly beat the resident under fair common-garden preflight.
+
+**Status:** negative / supported wall in this setup.
+
+**Evidence:** Exp 208-209 in [EXPERIMENTS.md](../EXPERIMENTS.md);
+[docs/research/local-gradient-wall.md](research/local-gradient-wall.md);
+[loop/directions/hidden-state-memory.md](../loop/directions/hidden-state-memory.md);
+[experiments/outputs/preflight_memory_rung1/](../experiments/outputs/preflight_memory_rung1/);
+[experiments/outputs/preflight_belief_persistence_rung1b/](../experiments/outputs/preflight_belief_persistence_rung1b/).
+
+**What was measured:** local pairwise gradient, invasion from rarity, perfect-percept drift
+controls, large-step gifted benefit, and guard checks for the hidden-mode mechanism.
+
+**What this does NOT show:** that memory is solved, useless, or impossible in general. It
+shows that passive hidden-state integration did not produce a robust local adaptive
+gradient in this toy ecology.
+
+**Main caveat:** the hidden mode, cues, belief estimator, and payoff coupling are provided
+substrate. The result is about whether the costed heritable capacity pays locally.
+
+**Falsifier / what would change the conclusion:** a matched hidden-state regime where a
+small passive-memory or belief-persistence step beats the resident under drift controls
+and passes invasion-from-rarity without reward leakage.
+
+**Next need:** move from passive memory knobs to Phase 4 active sensing: costly probing or
+sampling actions whose only benefit is better future action selection.
+
+## C9 - Evolvability Preflight Is Now A Method, Not A Result Claim
 
 **Plain-English claim:** The project should often measure the local gradient or premise
 of a proposed evolution before launching full batches.
@@ -223,9 +255,10 @@ needs full-run confirmation.
 **Falsifier / what would change the conclusion:** repeated cases where preflight predicts
 the wrong sign or misses a full-run effect under matched gates.
 
-**Next need:** document a general trait preflight API and acceptance rubric.
+**Next need:** apply the method to a costly active-sensing axis, where the binding gate is
+still the local pairwise gradient before full evolution.
 
-## C9 - The Lab's Main Public Contribution Is Auditability And Negative Results
+## C10 - The Lab's Main Public Contribution Is Auditability And Negative Results
 
 **Plain-English claim:** active_monkey's durable value is not a novel base algorithm; it is
 an integrated, falsifier-disciplined toy lab with visible null results and traceable claims.

@@ -43,14 +43,14 @@
   <header>
     <div class="kicker slate">active_monkey · current research note</div>
     <h1 class="h-display">The open problem is creaturehood.</h1>
-    <p class="sub">The current question is not whether a small system looks intelligent from the outside. It is whether ecological pressure can make sensing, persistent capability, belief, and communication useful from the system's own side.</p>
+    <p class="sub">The current question is not whether a small system looks intelligent from the outside. It is whether ecological pressure can make costly information gathering useful from the system's own side.</p>
   </header>
 
   <section>
     <p class="lead"><strong>Open problem:</strong> under what conditions does information become meaningful to a tiny artificial creature?</p>
     <div class="callout">
       <div class="tag">one sentence version</div>
-      <p>Build a small ecology where a world variable becomes worth sensing, worth maintaining, worth remembering, and eventually worth communicating, without directly rewarding the representation itself.</p>
+      <p>Build a small ecology where a world variable becomes worth sensing, worth actively sampling, worth remembering, and eventually worth communicating, without directly rewarding the representation itself.</p>
     </div>
     <p>This page used to center an older framing around worldview growth and identity continuity. Those remain useful notes in the notebook, but the cleaner public framing is now more basic: study how creature-like agency begins before trying to bolt on large-scale intelligence.</p>
   </section>
@@ -72,7 +72,8 @@
         <tr><th>Stage</th><th>Question</th><th>Failure mode to avoid</th></tr>
         <tr><td>Ecology</td><td>Does the world create real pressure: resource limits, depletion, temperature, competition, or lineage effects?</td><td>A toy world where every behavior works because nothing matters.</td></tr>
         <tr><td>Sensor</td><td>Does a world variable become useful to observe?</td><td>Rewarding the sensor directly and calling that emergence.</td></tr>
-        <tr><td>Organ</td><td>Does the costly capability persist across generations because it improves action-relevant outcomes?</td><td>A one-off mutation that appears but is not maintained.</td></tr>
+        <tr><td>Passive memory</td><td>Does carrying hidden-state cues across time pay locally?</td><td>Treating useful-when-gifted memory as evidence that small costed steps evolve.</td></tr>
+        <tr><td>Active sensing</td><td>Does the creature pay to gather better information before acting?</td><td>Letting the probe action receive direct reward, or hiding a hardcoded answer in the mechanism.</td></tr>
         <tr><td>Belief</td><td>Does the creature carry internal estimates of hidden state that change action?</td><td>Confusing observer annotations with the creature's own state.</td></tr>
         <tr><td>Communication</td><td>Does one creature's signal change another creature's belief or action?</td><td>Counting emitted symbols without showing that they matter.</td></tr>
         <tr><td>World model</td><td>Can learned compression predict future trajectories or guide action without replacing the ecology as ground truth?</td><td>Training on simulator artifacts and mistaking overfit for intelligence.</td></tr>
@@ -90,12 +91,25 @@
   </section>
 
   <section>
+    <h2>Phase 4 — Active Sensing</h2>
+    <p>Passive cue and memory variants have not yet produced robust adaptive sense-organ emergence under fair tests. The next structural test is not "more memory knobs"; it is whether costly information-gathering actions can become locally adaptive.</p>
+    <div class="callout">
+      <div class="tag">current test</div>
+      <p>Can a small increase in probing or sampling tendency beat the resident in a fair common garden, when the probe costs energy, time, or opportunity and only improves future action selection?</p>
+    </div>
+    <div class="grid2">
+      <div class="card"><b>Why this matters</b><p>Active sensing is a cleaner bridge toward active inference because action and perception begin to couple: the creature spends resources to reduce uncertainty before acting.</p></div>
+      <div class="card"><b>What would kill it</b><p>Direct reward leakage, hidden hardcoding, id-order artifacts, unfair seeds, or an advantage that survives hidden-state scrambling would make the direction unsupported.</p></div>
+    </div>
+  </section>
+
+  <section>
     <h2>Where deep active inference fits</h2>
-    <p>Deep active inference is not the first move. It becomes useful when explicit belief variables stop scaling.</p>
-    <p>For now, the project should keep the substrate legible: ecology first, then sensing, then persistent capability, then belief reconstruction. Learned latent models can enter later as compression for action-relevant state, not as a shortcut around the hard part.</p>
+    <p>Deep active inference is not the first move, and active inference has not been achieved in the ecology. It becomes useful when explicit belief variables stop scaling.</p>
+    <p>For now, the project should keep the substrate legible: ecology first, then local-gradient tests, then active sensing as a pre-active-inference bridge. Learned latent models can enter later as compression for action-relevant state, not as a shortcut around the hard part.</p>
     <div class="callout">
       <div class="tag">honest bottom line</div>
-      <p>active_monkey is not claiming AGI, consciousness, or language emergence. The defensible claim is narrower: tiny ecologies can be used to study how sensing, belief-like state, and world models become useful under pressure.</p>
+      <p>active_monkey is not claiming AGI, consciousness, active inference, or language emergence. The defensible claim is narrower: tiny ecologies can be used to study how sensing, belief-like state, and world models become useful under pressure.</p>
     </div>
   </section>
 
@@ -104,8 +118,8 @@
     <table>
       <tbody>
         <tr><th>Track</th><th>Question</th></tr>
-        <tr><td>Sensor-to-organ</td><td>What conditions make a costly sensor persist rather than get suppressed?</td></tr>
-        <tr><td>Belief reconstruction</td><td>Can we infer what the creature believed from observations, actions, and outcomes?</td></tr>
+        <tr><td>Active sensing</td><td>Can costly probing or sampling improve future action selection enough to become locally adaptive?</td></tr>
+        <tr><td>Belief reconstruction</td><td>Can we infer what the creature believed from observations, actions, and outcomes without mistaking observer truth for agent-side state?</td></tr>
         <tr><td>Observer model</td><td>Can a learned model predict future seeds or early signs of persistence without controlling the ecology?</td></tr>
         <tr><td>Communication</td><td>Can signals become belief transfer rather than just emitted tokens?</td></tr>
       </tbody>
