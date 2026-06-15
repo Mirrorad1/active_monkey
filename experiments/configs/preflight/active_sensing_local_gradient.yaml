@@ -25,7 +25,10 @@ base_overrides:
   cue_noise: 1.0
   memory_cost_slope: 0.005
   memory_upkeep_floor: 0.0
-  probe_cost: 0.1              # affordable-but-real (pure-cost control mutant loses at cap250)
+  probe_cost: 0.01            # FAIR: below the empirical benefit ceiling (~0.032 energy/step,
+                              # = full-probe wrong-cell drop x hazard) so probing CAN pay; a
+                              # cost above the ceiling would make a negative inevitable. The
+                              # cost-sensitivity sweep (script) spans 0.005..0.1 across the ceiling.
   probe_n_samples: 4
   shuffle_creature_order: true
 trait: information_sampling_rate
