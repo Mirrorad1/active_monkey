@@ -1,0 +1,11 @@
+========================================================================
+EXP 209 — CONTINUOUS belief_persistence (rho 0.5->0.55) LOCAL-GRADIENT PREFLIGHT
+========================================================================
+seeds [50, 51, 52, 53, 54, 55, 56, 57]; same hidden-mode hazard regime as Exp 208; win>=7 for POSITIVE
+
+LIVENESS (gifted rho 0->0.85, pilot seeds [100, 101, 102]): POSITIVE_LOCAL_GRADIENT  wins=3/3  mean_inv_frac=0.973
+local eps-step (rho 0.5 vs 0.55): FLAT_OR_NOISY  wins=6/8  mean_inv_frac=0.742
+PERFECT-PERCEPT DRIFT CONTROL (cue_noise=0, no denoising): FLAT_OR_NOISY  wins=6/8  mean_inv_frac=0.719
+invasion_from_rarity: DOES_NOT_INVADE  increase=0/8
+
+VERDICT: FAIL_LOCAL_GRADIENT — the large step pays (mechanism live) but the eps-step is sub-threshold (6/8) and ~ the perfect-percept control (so the residual is DRIFT, not denoising). The local-gradient wall is REAL, not a granularity artifact; it generalises from scalar senses to information-processing capacity.

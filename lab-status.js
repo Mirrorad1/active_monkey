@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 207, title: "N5 SENSE-EVOLUTION sub-arc: SENSOR-CONTROLLER CO-ADAPTATION — a design-stage corner-grid PRE-FLIGHT shows the premise is FALSE (no 2-D fitness valley): the controller θ pays ALONE via herd-escape while the sensor h is pure cost at EVERY θ, so co-adaptation cannot occur — the last non-niche lever is ruled out WITHOUT a full batch; this CLOSES the sub-arc", tag: "NEGATIVE" },
-  tally: { total: 207, positive: 114, negative: 60, mixed: 29, breakthroughs: 7 },
+  latest_exp: { n: 209, title: "Phase 3 rung 1b: the CONTINUOUS belief_persistence trait (ρ 0.5→0.55, a true small-ε step) — is the wall a granularity artifact?", tag: "NEGATIVE" },
+  tally: { total: 209, positive: 114, negative: 62, mixed: 29, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },

@@ -241,6 +241,16 @@ step 0.
   experiments (199–205) now converge: no costed sense becomes a functional organ at this substrate.
   Post-205 CONSULT live in loop/IDEAS.md (206 barcode-niches = the last structurally-distinct escape /
   207 controller / accept + synthesize). Card: loop/directions/population-ecology.md.
+- **The Evolvability Preflight + Phase 3 (Exp 208–209, CLOSED-NEGATIVE, 2026-06-14):** the sense-arc
+  instruments were generalised into a reusable, trait-agnostic **Evolvability Preflight** framework
+  (`ecology/evolvability/`, PRs #46/#49) that measures the binding LOCAL gradient cheaply before any full
+  batch. Phase 3 then asked whether INFORMATION-PROCESSING capacity evolves where senses didn't: a gated
+  hidden-state-mode substrate (`enable_hidden_mode`) + the first non-thermosense traits. **Exp 208**
+  (memory_horizon 1→2) and **Exp 209** (continuous belief_persistence ρ 0.5→0.55, ruling out a
+  granularity artifact) are BOTH FAIL_LOCAL_GRADIENT — the local gradient is a coin-flip vs the
+  perfect-percept drift control, while large gifted steps DO pay (mechanism live). The local-gradient wall
+  GENERALISES from scalar senses to memory/inference. Synthesis: `docs/research/local-gradient-wall.md`;
+  card `loop/directions/hidden-state-memory.md` (closed-negative).
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

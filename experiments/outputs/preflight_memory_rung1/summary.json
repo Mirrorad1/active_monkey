@@ -10,18 +10,18 @@
       "metric": "invader fraction at end relative to 0.5 neutral start",
       "verdict": "FLAT_OR_NOISY",
       "aggregate": {
-        "wins": 6,
+        "wins": 4,
         "n_valid": 8,
-        "mean_effect": 0.17048385908018868,
-        "mean_s": 0.0022912439850170463,
-        "mean_inv_frac_final": 0.6704838590801887
+        "mean_effect": 0.01903973509933775,
+        "mean_s": 0.003194367812313783,
+        "mean_inv_frac_final": 0.5190397350993378
       },
       "validity_flags": {
         "n_seeds": 8,
         "n_valid": 8,
         "extinct_fraction": 0.0
       },
-      "interpretation": "Local pairwise gradient verdict: FLAT_OR_NOISY.  wins=6/8 in ambiguous range [4, 6] or mean_effect not positive (mean_effect=0.17048385908018868).  This tests whether a single-step mutant (h=2) can invade a resident (h=1) population \u2014 the direct test of local evolvability.",
+      "interpretation": "Local pairwise gradient verdict: FLAT_OR_NOISY.  wins=4/8 in ambiguous range [4, 6] or mean_effect not positive (mean_effect=0.01903973509933775).  This tests whether a single-step mutant (h=2) can invade a resident (h=1) population \u2014 the direct test of local evolvability.",
       "raw_path": "raw/local_pairwise_gradient.jsonl"
     },
     {
@@ -117,7 +117,7 @@
   },
   "controller": null,
   "config_hash": "1b59635d5db5001431a9522a612c3dcebf12dfe8785574c29150db9cd846e117",
-  "git_commit": "389f2f132ddc90b20b04ec785b5964015ac6df8f",
+  "git_commit": "6c0e68c67b44da94305102dea47a46d759cd558f",
   "artifact_paths": {
     "run_dir": "results/preflight/memory_horizon_local_gradient/rung1",
     "config_json": "results/preflight/memory_horizon_local_gradient/rung1/config.json",

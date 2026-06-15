@@ -8692,3 +8692,79 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   options OFF the ecology line (RESUME §3b, each needs its own word): M4a increment 1c (the talk-to-it path
   toward the moonshot conversation goal), nira's normalized-predictive switch, climbing the locked N-ladder.
   The loop HOLDS for an explicit human direction.
+
+## Exp 208 — Phase 3 hidden-state memory, rung 1: does a heritable step in memory (memory_horizon 1→2) have a positive LOCAL selection gradient under a slowly-switching HIDDEN mode? NEGATIVE / NEW INSIGHT (FAIL_LOCAL_GRADIENT, measured via the Evolvability Preflight; drift-controlled)
+
+- Plain: The closed sense-arc (Exp 199–207) showed every costed *sense* saturates, so a slightly-better
+  sensor never wins more babies at the margin. The structurally-different hope was hidden-state inference:
+  when the world has a hidden state a single noisy glimpse can't resolve, remembering MORE past glimpses
+  should keep paying (averaging k noisy cues cuts the error ~1/k) — the bridge from this ecology toward a
+  "world model." I tested it cheaply with the new Evolvability Preflight (does a tiny step pay?), NOT a
+  full evolution batch. Answer: it does not. A creature that remembers 2 cues instead of 1 does not
+  reliably out-breed it, and a rare 2-cue mutant does not invade at all. Memory is useful when handed out
+  in bulk, but the marginal step doesn't pay — the same wall as the senses (it ends near a coin-flip,
+  exactly like a no-effect control).
+- Hypothesis: under hidden-mode partial observability, memory_horizon has a POSITIVE local gradient at the
+  resident (the single-step mutant 1→2 invades in a fair common garden ≥7/8 seeds) — the first positive
+  local gradient in the trait-evolution arc. (Predeclared in loop/directions/hidden-state-memory.md.)
+- Setup: a gated `enable_hidden_mode` engine mechanism (byte-identical OFF, anchored to the committed
+  Exp 194 hash): a binary hidden mode switches slowly (world rng); a mode-dependent HAZARD
+  (mode_wrong_regen_factor=1.0 ⇒ food UNIFORM so carrying capacity is intact; mode_hazard_scale=0.6 ⇒ a
+  small survivable energy penalty for sitting in a wrong-type cell); each creature reads a noisy cue,
+  averages its last `memory_horizon` cues into a belief, and steers to the inferred good half. Anti-cheat:
+  nothing is written as f(memory) — memory keys only the averaging window + the upkeep cost. Run via the
+  Evolvability Preflight (PRs #46/#49): gates local_pairwise_gradient (binding, generic Gate C),
+  invasion_from_rarity, null_guards. Regime FIXED on a disclosed pilot, NOT tuned to a positive (high-food
+  capacity 50 / regen 3.0, cue_noise 1.0, mode_switch_prob 0.05, memory_cost_slope 0.005); FRESH verdict
+  seeds 50–57; healthy pops ~150–280 (the earlier pilot collapses were the 100-founder common-garden
+  cold-start, not the mechanism).
+- Result: local_pairwise_gradient FLAT_OR_NOISY, 4/8 wins, mean invader-fraction 0.52 — ≈ the perfect-percept
+  drift control (cue_noise=0, where memory gives NO denoising benefit) which is ALSO 4/8 at 0.48. The two
+  match, so there is NO denoising-attributable local advantage (it ends at a coin-flip). invasion_from_rarity
+  DOES_NOT_INVADE, 0/8. null_guards all_pass (byte-identical-when-disconnected PASS). Aggregate =
+  FAIL_LOCAL_GRADIENT.
+- Implication: the marginal value of one more remembered observation does not out-breed its cost near the
+  resident, even in a regime built to favour memory (uniform food, survivable hazard, unreliable single
+  cue). The program's local-gradient wall extends a step toward information-processing capacity.
+- Honest caveat: the integer step 1→2 is a 100% jump, NOT a true local ε-step, so this FAIL could in
+  principle be a granularity artifact — directly motivating Exp 209 (a continuous trait). Toy scale.
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: the perfect-percept DRIFT CONTROL (cue_noise=0 fixates ~the same as the noisy run ⇒ the residual
+  is not a denoising artifact) + the committed raw rows; no separate blinded-agent verifier was run for this
+  preflight — the drift control is the independent check.
+- Next: Exp 209 — repeat with a CONTINUOUS belief_persistence trait (a genuinely small ε-step) to rule out
+  the integer-granularity artifact.
+- trace: experiments/exp208_memory_horizon_preflight.py → experiments/outputs/exp208.txt (committed run: experiments/outputs/preflight_memory_rung1/summary.json)
+
+## Exp 209 — Phase 3 rung 1b: the CONTINUOUS belief_persistence trait (ρ 0.5→0.55, a true small-ε step) — is the wall a granularity artifact? NEGATIVE / NEW INSIGHT (FAIL_LOCAL_GRADIENT; the wall is REAL, not an artifact)
+
+- Plain: Exp 208's failure used an integer trait whose smallest step (1→2) doubles the memory — not really
+  a "small" step, so the failure might have been an artifact of coarse granularity. So I added a continuous
+  knob (an EMA persistence weight ρ) and tested a genuinely tiny step, ρ 0.5→0.55. Two things came out
+  cleanly: memory is genuinely useful (a BIG jump, ρ 0→0.85, wins decisively), but the tiny local step
+  still doesn't pay — and a control where memory provides no benefit wins just as often, proving the
+  residual is drift, not memory. So the wall is real: even at fine resolution, the marginal step doesn't
+  pay. Information-processing capacity behaves like the senses.
+- Hypothesis: if Exp 208's FAIL was a granularity artifact, a continuous small ε-step (ρ 0.5→0.55) should
+  pay (POSITIVE); if the wall is real, the small step also fails.
+- Setup: a continuous `belief_persistence` genotype trait (gated, additive, byte-identical OFF) — the
+  steering belief becomes an EMA with persistence ρ instead of a fixed buffer mean. Same hidden-mode hazard
+  regime and FRESH seeds 50–57 as Exp 208; run through the same Evolvability Preflight gates. Includes a
+  liveness check (large step ρ 0→0.85) and the perfect-percept drift control.
+- Result: mechanism is LIVE — the large step ρ 0→0.85 is POSITIVE 3/3 (invader-fraction 0.97), so memory
+  pays when gifted big. But the local ε-step ρ 0.5→0.55 is FLAT_OR_NOISY, 6/8, invader-fraction 0.74, while
+  the perfect-percept drift control (cue_noise=0, no denoising) is ALSO 6/8 at 0.72 — ~identical, so the
+  residual 6/8 is drift/fast-fixation, NOT denoising (the denoising-attributable effect ≈ 0.02).
+  invasion_from_rarity 0/8; null_guards all_pass. Aggregate = FAIL_LOCAL_GRADIENT.
+- Implication: resolves Exp 208's caveat — the local-gradient wall is NOT a coarse-granularity artifact; it
+  holds at continuous ε-resolution while large gifted jumps DO pay. The program's wall (a costed
+  capability's marginal step doesn't pay near the resident; benefit saturates) GENERALISES from scalar
+  senses (Exp 199–207) to information-processing capacity. Synthesis: docs/research/local-gradient-wall.md.
+- Honest caveat: toy scale; a genuinely non-saturating payoff geometry remains untried (logged, lower-value
+  / higher-tuning-risk). Verification via the perfect-percept drift control + committed raw, no separate
+  blinded agent.
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: the perfect-percept drift control (control 6/8 ≈ noisy 6/8 ⇒ the residual is not denoising) +
+  the live large-step positive (mechanism confirmed working) + committed raw; no separate blinded agent.
+- Next: hidden-state-memory direction CLOSED-NEGATIVE; the wall generalises from sensing to cognition.
+- trace: experiments/exp209_belief_persistence_preflight.py → experiments/outputs/exp209.txt (committed run: experiments/outputs/preflight_belief_persistence_rung1b/summary.json)
