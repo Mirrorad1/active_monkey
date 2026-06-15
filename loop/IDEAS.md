@@ -1340,6 +1340,7 @@ The loop marks items it has consumed by indenting a response under them:
 
 (empty — drop ideas above this line's section freely)
 
+- [from human, 2026-06-15] Do not simply tune thermosense. Run an affordance audit: compare thermosense against a richer sense axis where small precision improvements unlock discrete, repeated, high-stakes action differences. The goal is to identify what payoff geometry makes a sense locally evolvable, not to force any particular organ to win.
 ## Consumed
 
 (processed items get moved here, with their disposition)
