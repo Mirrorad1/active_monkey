@@ -1,0 +1,27 @@
+================================================================================
+EXP 213 — evolvability-geometry Rung 1b: AFFORDANCE AUDIT (payoff geometry vs local evolvability)
+SMOOTH graded steering  vs  DISCRETE repeated high-stakes eat-vs-skip — matched substrate + cost
+================================================================================
+Matched: Exp-204 forage substrate, thermosense precision 0.1->0.15, inefficiency 0.2 (cost HELD FIXED), regen 0.08; only the AFFORDANCE varies. CAP horizon 3500 (late 1500, 4 seeds); PW horizon 3000 (8 seeds). FRESH seeds 120-127.
+RUNTIME PRE-FLIGHT: safe=True workers->8 proj~0.1 min
+Binding metric = LOCAL pairwise gradient (win-fraction over seeds + mean_s); N*(h) landscape = shape.
+
+--- N*(h) LANDSCAPE (monomorphic carrying capacity, cost ON) ---
+  affordance     h=0.0   h=0.1   h=0.15  h=0.6     opt_h  localΔ(0.10->0.15)
+  SMOOTH_forage   441.8  512.9  383.5  128.6   0.1    -129.4
+  DISCRETE_lo       0.0  107.8  103.1  100.0   0.1    -4.8
+  DISCRETE_hi      14.4   47.0   66.4   62.4   0.15   +19.4
+
+--- LOCAL PAIRWISE GRADIENT (precision 0.10->0.15; win-fraction + mean_s) ---
+  affordance       wins  win_frac   inv_auc    mean_s  valid_pw valid_cap
+  SMOOTH_forage    2/8      0.250     0.243   +0.0065        8/8        4/4
+  DISCRETE_lo      3/8      0.375     0.387   -0.0014        8/8        4/4
+  DISCRETE_hi      2/8      0.250     0.286   -0.0064        8/8        3/4
+
+validity: all arms >=5/8 valid_pw & >=3/4 valid_cap => True (SMOOTH 8/8,4/4; DISCRETE_lo 8/8,4/4; DISCRETE_hi 8/8,3/4)
+smooth gradient: wins 2/8 mean_s +0.0065 (positive=False)
+discrete_hi vs smooth: wins 2 vs 2, mean_s -0.0064 vs +0.0065; scales-with-stakes (hi>=lo): False => discrete_better=False
+bulk-vs-invasion: monomorphic N* local slope (0.10->0.15) is POSITIVE only for ['DISCRETE_hi'] (DISCRETE_hi +19.4, opt_h 0.15), yet its INVASION gradient is non-positive (wins 2/8, mean_s -0.0064) => a bulk-fitter monomorphic step that a rare mutant still cannot invade (small/noisy pops; valid_cap 3/4).
+
+VERDICT (script claim): GEOMETRY_INDEPENDENT_WALL — every affordance has a non-positive local gradient (SMOOTH wins 2/8, DISCRETE_hi 2/8; mean_s ~0) AND the discrete high-stakes affordance is NOT meaningfully steeper than the smooth one and does not scale with stakes. Discreteness / repetition / high stakes do NOT change local evolvability at this substrate: the local-gradient wall is payoff-geometry-INDEPENDENT. The blocker is the small marginal benefit of a precision STEP, regardless of whether the affordance is graded or a discrete high-stakes decision — consolidating the Exp 199-212 wall as a benefit-magnitude wall, not a payoff-shape one. (Honest nuance: the DISCRETE_hi MONOMORPHIC N* slope is the only positive one near the resident (+19.4, opt_h 0.15), so the high-stakes geometry does create a tiny BULK gradient — but it fails to INVADE [wins 2/8], a bulk-vs-invasion gap on small noisy pops, not local evolvability.)
+  affordances ['SMOOTH_forage', 'DISCRETE_lo', 'DISCRETE_hi']; H 0.1->0.15; CAP_SEEDS [120, 121, 122, 123]; PW_SEEDS [120, 121, 122, 123, 124, 125, 126, 127]; horizons cap3500/pw3000; cost(inefficiency) 0.2 fixed; win-bar 7/8.

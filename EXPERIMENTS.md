@@ -8991,3 +8991,73 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   traits (in which case evolvability-geometry closes: the blocker is benefit magnitude, not geometry).
   No mutation-geometry / standing-variation run is warranted until a landscape assay finds a real valley.
 - trace: experiments/exp212_active_sensing_landscape.py → experiments/outputs/exp212.txt
+
+## Exp 213 — evolvability-geometry Rung 1b: AFFORDANCE AUDIT (does payoff GEOMETRY make a sense locally evolvable?). NEGATIVE / NEW INSIGHT (GEOMETRY_INDEPENDENT_WALL — the blocker is benefit magnitude, not payoff shape)
+
+- Plain: Exp 212 showed active sensing's wall is a small-benefit wall (no valley). The human steer: do not
+  just tune another organ — audit the payoff GEOMETRY. The idea: maybe a sense becomes evolvable when a
+  SMALL precision gain unlocks a DISCRETE, REPEATED, HIGH-STAKES action (eat-vs-skip with a big penalty),
+  not a smooth graded benefit that saturates. We test it on a perfectly matched world: same forage world,
+  same costed precision organ, same cost — the ONLY difference is what precision feeds: a SMOOTH graded
+  steering benefit, vs a DISCRETE high-stakes eat-vs-skip decision (two stakes levels). Result: it makes no
+  difference. None of the three affordances lets a slightly-more-precise mutant out-compete the resident
+  (all 2–3 wins of 8); the discrete high-stakes version is, if anything, the WORST, and raising the stakes
+  does not help. So discreteness / repetition / high stakes do NOT change local evolvability here — the
+  blocker is simply that the marginal benefit of one precision step is tiny, whatever shape the payoff
+  takes. The goal was to find what payoff geometry makes a sense evolvable; the honest answer at this
+  substrate is "none of the tested geometries — it is a benefit-magnitude wall, not a payoff-shape wall."
+- Hypothesis (steer / geometry-matters): at matched cost the DISCRETE high-stakes affordance has a more
+  positive local selection gradient for precision (thermosense_intensity 0.10→0.15) than the SMOOTH graded
+  affordance, scaling with the outcome gap (DISCRETE_hi > DISCRETE_lo > SMOOTH on win-fraction / mean_s),
+  ideally crossing POSITIVE where smooth is flat. Falsifier (GEOMETRY_INDEPENDENT_WALL): all affordances
+  have a non-positive local gradient AND discrete is not meaningfully steeper than smooth nor scales with
+  stakes — payoff geometry does not change local evolvability. Third outcome
+  (GEOMETRY_MATTERS_SUBTHRESHOLD): discrete steeper + stakes-scaling but still sub-bar.
+- Setup: MATCHED substrate via the committed Exp 204 enable_residue engine (NO engine change). Affordances:
+  SMOOTH_forage = no_residue_cfg() (precision reduces graded forage-steering noise); DISCRETE_lo / DISCRETE_hi
+  = residue_compete_cfg(0.6) with residue_loss 0.5 / 1.0 (binary eat-vs-skip; a false positive costs the loss;
+  survivable range per Exp 205). Identical forage world, founder, regen 0.08, and COST (thermosense
+  inefficiency 0.20 held fixed across all arms — L30: the comparison is geometry at matched cost, not
+  cost-tuning). Binding metric = the LOCAL pairwise gradient (precision 0.10→0.15, win-fraction over 8 seeds
+  + mean_s; the win-fraction cancels the founder lottery, L29); secondary = monomorphic N*(h) landscape
+  shape. FRESH seeds 120–127. L25 runtime pre-flight, L31 parallel, L21/L24 validity (exclude collapsed arms).
+- Result: all three arms valid (≥8/8 pairwise, ≥3/4 capacity). Local gradient: SMOOTH 2/8 wins
+  (mean_s +0.0065), DISCRETE_lo 3/8 (−0.0014), DISCRETE_hi 2/8 (−0.0064) — NONE crosses the 7/8 positive bar;
+  the discrete high-stakes arm is NOT steeper than smooth (2 vs 2 wins; mean_s −0.0064 < +0.0065) and does
+  NOT scale with stakes (hi 2/8 < lo 3/8). N*(h) landscape: SMOOTH peaks AT the resident (512.9 at 0.10,
+  dropping to 383.5 at 0.15 and 128.6 at 0.60 — precision above resident hurts carrying capacity);
+  DISCRETE_lo flat (opt 0.10); DISCRETE_hi is the ONLY arm with a positive monomorphic local slope
+  (47.0→66.4, localΔ +19.4, opt 0.15) — but on small/noisy pops (valid_cap 3/4) and its INVASION gradient is
+  still negative (2/8). Verdict = GEOMETRY_INDEPENDENT_WALL.
+- Implication: the steer's hypothesis is REFUTED at this substrate — a discrete, repeated, high-stakes
+  payoff geometry does NOT make precision more locally evolvable than a smooth graded one; the discrete
+  high-stakes affordance is if anything slightly worse on invasion, and raising the stakes does not help.
+  So the local-gradient wall (Exp 199–212) is payoff-geometry-INDEPENDENT: the binding blocker is the small
+  MARGINAL BENEFIT of a single precision step at the matched cost, regardless of whether the affordance is
+  graded or a discrete high-stakes decision. The one positive signal anywhere — DISCRETE_hi's monomorphic
+  N* local slope (+19.4) — is a BULK-vs-INVASION gap (a monomorphic step that is bulk-fitter yet cannot
+  invade from rarity), echoing Exp 210/212: bulk carrying capacity and invasion fitness are distinct, and
+  it is invasion that gates evolvability. Generalizability tier: mechanism/affordance-comparison, bounded to
+  this substrate. This consolidates the whole arc: the wall is benefit-magnitude, not payoff-shape.
+- Honest caveat: toy scale. Two affordance FAMILIES (graded steering, discrete eat-vs-skip) at two stakes
+  levels — not an exhaustive sweep of payoff geometries; a still-steeper or differently-structured
+  affordance (e.g. a higher pivotal-decision density, or a sense gating a rarer but even-higher-stakes
+  event) is untested and is the residual lever. DISCRETE_hi capacity validity was 3/4 (one seed collapsed),
+  so its +19.4 bulk slope is small/noisy and not over-read. Cost held fixed at the Exp 203/205 standard
+  (inefficiency 0.20) — I did not re-derive a per-affordance benefit ceiling (L30). Reuses provided engine;
+  the only swept quantities are the affordance flags and the pinned precision step. Not full active inference.
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp213.txt,
+  instructed to ignore the script's printed claim) recomputed GEOMETRY_INDEPENDENT_WALL: all arms valid, no
+  affordance positive (SMOOTH 2/8 +0.0065, DISCRETE_lo 3/8, DISCRETE_hi 2/8 −0.0064), discrete not steeper
+  than smooth and not stakes-scaling; concluded the steer hypothesis is refuted and the N* bulk nuance
+  (DISCRETE_hi +19.4) is a frequency-dependence/bulk-vs-invasion red flag that does not change the binding
+  invasion verdict.
+- Next: evolvability-geometry is converging NEGATIVE — across active-sensing (212, no valley) and an
+  affordance audit (213, geometry-independent), the blocker is benefit MAGNITUDE, not search geometry, so
+  heavy-tailed mutation / standing variation (Rung 2/3) have no valley to cross. This is a decision point
+  (CONSULT to the human): (a) one more probe — a still-steeper / higher-pivotal-density affordance, or a
+  second wall trait's landscape — before closing; or (b) close evolvability-geometry with the synthesis
+  "the toy ecology's local-gradient wall is a benefit-magnitude wall, payoff-shape-independent," and step to
+  a RESUME §3b standing option. No full evolution is warranted (no positive local gradient anywhere).
+- trace: experiments/exp213_affordance_audit.py → experiments/outputs/exp213.txt

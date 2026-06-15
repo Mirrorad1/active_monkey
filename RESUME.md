@@ -266,6 +266,20 @@ step 0.
   and ACTIVE information-seeking (210). The one named untried lever: an UNCERTAINTY-GATED probe (true active
   inference), re-opens only on a human word. New lessons L29 (drift = pop-size, not cost) + L30 (calibrate a
   costed action's cost to its benefit ceiling).
+- **Phase 4 / Rung 4 — uncertainty-gated active sensing (Exp 211, CLOSED-NEGATIVE, 2026-06-15; human
+  `/lab`):** the named lever — probe only when the creature's own action margin (|single-cue belief−0.5|)
+  is ambiguous. FAIL_LOCAL_GRADIENT (blind-verified): gating WORKS when imposed (beats budget-matched
+  random, enriched, pivotal) but does NOT beat fixed-rate (single cue often confidently WRONG, invisible
+  to the margin gate), benefit ceiling ~0, flat even at zero cost. Wasted-budget hypothesis REFUTED.
+  New lesson L32 (works-when-imposed ≠ has a benefit ceiling). Active sensing CLOSED across fixed-rate + gated.
+- **The evolvability-geometry direction (Exp 212–213, ACTIVE — CONVERGING-NEGATIVE, human's word
+  2026-06-15):** reframes the wall — is the blocker the capability or the search GEOMETRY?
+  `loop/directions/evolvability-geometry.md`. **Exp 212 (NO_HIGHER_REGION)** — a landscape assay of
+  active-sensing N*(rate) is monotone but +1.5% at full probing, NO valley ⇒ small-benefit wall, not
+  geometry. **Exp 213 (GEOMETRY_INDEPENDENT_WALL)** — an affordance audit (SMOOTH graded vs DISCRETE
+  high-stakes eat-vs-skip at matched cost) found no affordance locally evolvable and the discrete geometry
+  no steeper ⇒ payoff geometry does not change evolvability. Both rungs: the blocker is benefit MAGNITUDE,
+  not payoff shape; mutation-geometry/standing-variation (Rung 2/3) have no valley to cross. DECISION POINT.
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

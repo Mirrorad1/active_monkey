@@ -1,10 +1,10 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 212, title: "evolvability-geometry Rung 1: LANDSCAPE ASSAY of active sensing — is there a bulk-fitter region beyond the wall?", tag: "NEGATIVE" },
-  tally: { total: 212, positive: 114, negative: 65, mixed: 29, breakthroughs: 7 },
+  latest_exp: { n: 213, title: "evolvability-geometry Rung 1b: AFFORDANCE AUDIT (does payoff GEOMETRY make a sense locally evolvable?).", tag: "NEGATIVE" },
+  tally: { total: 213, positive: 114, negative: 66, mixed: 29, breakthroughs: 7 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
-    { name: "evolvability-geometry", state: "active (opened 2026-06-15, human's word)", latest: "Exp 212 — NO_HIGHER_REGION (blind-verified): the active-sensing landscape is monotone-increasing but only +1.5% at full probing (sub-3%-margin) with NO valley ⇒ a SMALL-BENEFIT wall, not search geometry; trait stopped for this direction", next: "Exp 213 — landscape-assay a SECOND wall trait (thermosense or memory): does ANY closed-negative trait hide a valley, or is the wall uniformly small-benefit across traits (⇒ blocker is benefit magnitude, not geometry)?" },
+    { name: "evolvability-geometry", state: "active (CONVERGING-NEGATIVE — awaiting steer)", latest: "Exp 213 GEOMETRY_INDEPENDENT_WALL (blind-verified): affordance audit (SMOOTH graded vs DISCRETE high-stakes, matched cost) — NO affordance locally evolvable (2–3/8 wins), discrete not steeper than smooth ⇒ payoff geometry doesn't change evolvability; Exp 212 NO_HIGHER_REGION (no valley)", next: "DECISION POINT — both rungs say the blocker is benefit MAGNITUDE not geometry; one more steeper-affordance probe or CLOSE (benefit-magnitude wall, shape-independent)." },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "n4-crack-edges", state: "halted (PAUSED on human's word after Exp 193; CONSULT in loop/IDEAS.md)", latest: "Exp 193 — position null; locality re-named stream composition; falsifier fires vacuous", next: "ON A WORD — (a) quiet-chamber stream intervention [RECOMMENDED]; (b) stream-conditioned scoring; (c) accept + rung 2; (d) redirect" },
