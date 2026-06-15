@@ -1,0 +1,12 @@
+========================================================================
+EXP 208 — memory_horizon (1->2) LOCAL-GRADIENT PREFLIGHT (hidden-mode hazard regime)
+========================================================================
+seeds [50, 51, 52, 53, 54, 55, 56, 57]; regime: high-food hazard (capacity 50, regen 3.0, cue_noise 1.0, mode_switch_prob 0.05, hazard 0.6); win>=7 for POSITIVE
+
+local_pairwise_gradient (memory 1 vs 2): FLAT_OR_NOISY  wins=4/8  mean_inv_frac=0.519
+PERFECT-PERCEPT DRIFT CONTROL (cue_noise=0, no denoising): FLAT_OR_NOISY  wins=4/8  mean_inv_frac=0.481
+invasion_from_rarity: DOES_NOT_INVADE  increase=0/8
+null_guards all_pass=True
+
+VERDICT: FAIL_LOCAL_GRADIENT — noisy local gradient is sub-threshold (6/8) and ~ the perfect-percept drift control; rare mutant does not invade (0/8). Memory is useful in bulk but the marginal step does not pay near the resident.
+CAVEAT: integer step 1->2 is a 100% jump, not a true local eps-step -> Exp 209 (continuous).
