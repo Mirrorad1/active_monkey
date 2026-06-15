@@ -1356,6 +1356,7 @@ The loop marks items it has consumed by indenting a response under them:
     pivotal-decision density / richer world), not another payoff-shape or search-geometry probe. The loop
     holds for a human direction off the local-gradient line (RESUME §3b: M4a "talk to it" / nira's switch /
     the N-ladder).
+- [from human, 2026-06-15] increment 1d: direct response→valence head
 ## Consumed
 
 (processed items get moved here, with their disposition)
