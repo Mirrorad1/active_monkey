@@ -1,0 +1,83 @@
+{
+  "slug": "belief_persistence_local_gradient",
+  "description": "Phase 3 rung 1b: local gradient of CONTINUOUS belief_persistence (eps-step) under a hidden switching mode.",
+  "base_scenario": "balanced",
+  "base_overrides": {
+    "enable_hidden_mode": true,
+    "mode_wrong_regen_factor": 1.0,
+    "mode_hazard_scale": 0.6,
+    "capacity": 50.0,
+    "regen_rate": 3.0,
+    "initial_resource": 0.7,
+    "max_population": 30000,
+    "mode_switch_prob": 0.05,
+    "cue_noise": 1.0,
+    "memory_cost_slope": 0.005,
+    "memory_upkeep_floor": 0.0,
+    "shuffle_creature_order": true
+  },
+  "founder_overrides": {},
+  "trait": {
+    "name": "belief_persistence",
+    "resident_value": 0.5,
+    "mutant_value": 0.55,
+    "low_value": 0.0,
+    "high_value": 0.95,
+    "cost_enabled": true,
+    "h_trait": "belief_persistence",
+    "inefficiency_trait": null,
+    "inefficiency_value": 0.0,
+    "freeze_flag": null,
+    "enable_flag": "enable_hidden_mode",
+    "active_threshold": 0.0,
+    "cost_floor": 0.0,
+    "cost_inefficiency": 0.0,
+    "backend": "memory",
+    "disconnect_overrides": {
+      "enable_hidden_mode": false
+    }
+  },
+  "controller": null,
+  "seeds": [
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "horizon": 1500,
+  "settle_steps": 0,
+  "measurement_window": [
+    50,
+    800
+  ],
+  "output_dir": "results/preflight",
+  "replicates": 1,
+  "gates": [
+    "local_pairwise_gradient",
+    "invasion_from_rarity",
+    "null_guards"
+  ],
+  "gate_params": {},
+  "monomorphic_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "cost_values": [
+    0.0025,
+    0.005,
+    0.01
+  ],
+  "win_threshold": null,
+  "lose_threshold": null,
+  "min_valid_seeds": 6,
+  "min_population": 80,
+  "deterministic": true,
+  "null_toggles": {}
+}

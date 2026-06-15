@@ -152,9 +152,32 @@ MEMORY_AXIS = TraitAxis(
     disconnect_overrides={"enable_hidden_mode": False},
 )
 
+# Phase 3 rung-1b: the CONTINUOUS analog of memory_horizon — belief_persistence (EMA weight).
+# resident 0.5 -> mutant 0.55 is a genuinely SMALL eps step (vs the integer's 100% 1->2 jump),
+# so this is the faithful LOCAL-gradient test. Same backend/freeze/disconnect as MEMORY_AXIS.
+BELIEF_PERSISTENCE_AXIS = TraitAxis(
+    name="belief_persistence",
+    resident_value=0.50,
+    mutant_value=0.55,
+    low_value=0.0,
+    high_value=0.95,
+    cost_enabled=True,
+    h_trait="belief_persistence",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,
+    enable_flag="enable_hidden_mode",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="memory",
+    disconnect_overrides={"enable_hidden_mode": False},
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
+    "belief_persistence": BELIEF_PERSISTENCE_AXIS,
 }
 
 

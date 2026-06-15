@@ -34,6 +34,9 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     "thermosense_inefficiency":         (0.2,   1.0),    # upkeep multiplier; 0.2 = floor
     # Exp hidden-state-mode: memory horizon for noisy cue integration.
     "memory_horizon":                   (0,    12),      # int; 0 = no memory
+    # Phase 3 rung-1b: CONTINUOUS belief persistence (EMA weight) — the local (small-ε)
+    # analog of memory_horizon, so a genuinely small heritable step can be tested.
+    "belief_persistence":               (0.0,  0.95),    # 0 = react to current cue only
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
@@ -42,7 +45,7 @@ INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory
 THERMOSENSE_TRAITS: frozenset[str] = frozenset({"thermosense_intensity", "thermosense_inefficiency"})
 
 # Memory trait names — used to gate rng draws in mutate() (regression guard).
-MEMORY_TRAITS: frozenset[str] = frozenset({"memory_horizon"})
+MEMORY_TRAITS: frozenset[str] = frozenset({"memory_horizon", "belief_persistence"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -94,6 +97,7 @@ class Genotype:
     thermosense_inefficiency: float = 1.0         # upkeep multiplier; evolved down ⇒ cheaper
     # Exp hidden-state-mode: cue integration window — LAST, WITH DEFAULT (regression-safe)
     memory_horizon: int = 0                        # 0 = no cue buffer; int in [0, 12]
+    belief_persistence: float = 0.0                # continuous EMA persistence; 0 = none
 
 
 def is_valid(g: Genotype) -> bool:
@@ -243,6 +247,7 @@ def founder() -> Genotype:
         "thermosense_inefficiency": 1.0,
         # Exp hidden-state-mode: no cue memory at founding; must be set explicitly.
         "memory_horizon": 0,
+        "belief_persistence": 0.0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

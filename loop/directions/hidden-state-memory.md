@@ -1,8 +1,15 @@
 # direction: hidden-state-memory (Phase 3)
 
-**STATUS:** pre-registration / design (committed BEFORE any engine code or data, per
-PROTOCOL step 2 + VALIDATION). Depends on Phase 2.5 (generic Gate C, PR #49) for the
-binding gate to run on a non-thermosense trait.
+**STATUS:** CLOSED-NEGATIVE (2026-06-14, on the human's word "C"). Rung 1 (integer
+`memory_horizon`) and rung 1b (continuous `belief_persistence`) both = FAIL_LOCAL_GRADIENT:
+a costed information-processing capability has no positive LOCAL selection gradient at this
+substrate, at both discrete and continuous resolution, drift-controlled — even though it pays
+when gifted big. The local-gradient wall GENERALISES from scalar senses (Exp 199–207) to
+memory/inference. Synthesis: `docs/research/local-gradient-wall.md`. Rung 2 (full evolution)
+NOT run (gated on a POSITIVE rung 1). Re-opens only on an explicit human word (the named
+non-saturating-payoff lever remains untried, flagged lower-value/higher-tuning-risk).
+(Original pre-registration design follows, with the rung-1/1b verdict addenda below.)
+Depends on Phase 2.5 (generic Gate C, PR #49) for the binding gate to run on a non-thermosense trait.
 
 **Question.** When the world has a slowly-switching HIDDEN state that a single noisy
 observation cannot resolve, does a small heritable increase in *memory / inference
@@ -227,6 +234,31 @@ fails invasion-from-rarity. Per the card, NO full evolution batch is warranted.
 STATUS: rung 1 CLOSED (FAIL). Rung 2 (full evolution) NOT run (gated on a POSITIVE rung 1).
 Open follow-ups (each needs a word): a continuous belief_persistence trait; a steeper /
 non-saturating inference payoff; or accept the wall's generalisation as the closing finding.
+
+### RUNG-1b VERDICT (2026-06-14) — FAIL_LOCAL_GRADIENT; the wall is REAL, not a granularity artifact
+
+rung-1 used the INTEGER memory_horizon, whose smallest step (1→2) is a 100% jump — not a
+local ε-step — so the FAIL could in principle have been a granularity artifact. rung-1b adds
+the CONTINUOUS `belief_persistence` trait (an EMA weight ρ; gated, additive, byte-identical
+OFF — full suite green, new EMA anti-cheat test passes) and tests the faithful small-ε step
+ρ 0.5 → 0.55 on the same high-food + mode-hazard regime (drift-safe pops ~150-280), FRESH
+seeds [50-57]:
+- **Mechanism is genuinely LIVE** (pilot): a LARGE step ρ 0→0.85 is POSITIVE 3/3
+  (inv_frac 0.97) — memory/inference clearly pays when gifted big.
+- **Local ε-step ρ 0.5→0.55:** local_pairwise_gradient FLAT_OR_NOISY **6/8** (inv_frac 0.742),
+  invasion_from_rarity DOES_NOT_INVADE 0/8, guards all_pass ⇒ **FAIL_LOCAL_GRADIENT**.
+- **Drift control decisive:** the perfect-percept control (cue_noise=0, NO denoising) is ALSO
+  **6/8 (inv_frac 0.719)** — ~identical to the noisy case. So the residual 6/8 is drift/fast-
+  fixation noise, NOT a denoising signal (denoising-attributable effect ≈ 0.02, negligible).
+  Committed run: experiments/outputs/preflight_belief_persistence_rung1b/.
+
+**CONCLUSION (the option-A question, resolved):** the local-gradient wall is NOT a coarse-
+granularity artifact. Even a continuous ε-step shows no selectable local advantage (noisy ≈
+perfect-percept control), while large jumps DO pay (live mechanism). So the program's wall —
+*a costed capability's marginal step doesn't pay near the resident; benefit saturates* — holds
+for information-processing capacity at BOTH integer and continuous resolution. The hidden-state
+direction is now ready for the synthesis (option C): the wall genuinely generalises from
+scalar senses (Exp 199-207) to memory/inference, on solid ground.
 
 ---
 

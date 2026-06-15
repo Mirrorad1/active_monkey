@@ -604,10 +604,14 @@ class Ecology:
                 and self.world.cell_type[new_pos] != self.world.hidden_mode):
             ph.energy -= cfg.mode_hazard_scale
 
-        # Exp hidden-state-mode: memory upkeep — cost of maintaining the cue buffer.
-        # OFF when enable_hidden_mode=False or memory_horizon==0 (no buffer) ⇒ byte-identical.
+        # Exp hidden-state-mode: memory upkeep — cost of maintaining the belief.
+        # OFF when enable_hidden_mode=False or both memory traits 0 ⇒ byte-identical.
+        # memory_horizon (integer buffer, rung 1) and belief_persistence (continuous EMA,
+        # rung 1b) are alternative integration mechanisms; each pays the same slope per unit.
         if cfg.enable_hidden_mode and g.memory_horizon > 0:
             ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.memory_horizon
+        if cfg.enable_hidden_mode and g.belief_persistence > 0.0:
+            ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.belief_persistence
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy

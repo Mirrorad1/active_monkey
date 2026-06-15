@@ -194,3 +194,22 @@ def test_mode_switches_and_is_hidden():
     h1 = Ecology(cfg, seed=3).run()["events_hash"]
     h2 = Ecology(cfg, seed=3).run()["events_hash"]
     assert h1 == h2, "Non-deterministic: same seed produced different events_hash"
+
+
+# ---------------------------------------------------------------------------
+# E) belief_persistence (continuous EMA) — anti-cheat + OFF byte-identity
+# ---------------------------------------------------------------------------
+def test_belief_persistence_perfect_percept_null():
+    """Continuous belief_persistence (rung-1b): with cue_noise=0, no switching, zero cost,
+    a population with belief_persistence=0.8 must produce the SAME events_hash as 0.0 —
+    the EMA changes nothing when the cue is perfect and free (anti-cheat for the EMA path).
+    Also: belief_persistence defaults to 0.0, so the OFF byte-identity (test A) already
+    covers that the new trait is inert when enable_hidden_mode is False.
+    """
+    cfg0 = _hidden_cfg(cue_noise=0.0, mode_switch_prob=0.0, memory_cost_slope=0.0,
+                       memory_upkeep_floor=0.0, mutation_rate=0)
+    f0 = dataclasses.replace(cfg0.founder, belief_persistence=0.0)
+    f8 = dataclasses.replace(cfg0.founder, belief_persistence=0.8)
+    h0 = Ecology(dataclasses.replace(cfg0, founder=f0), seed=7).run()["events_hash"]
+    h8 = Ecology(dataclasses.replace(cfg0, founder=f8), seed=7).run()["events_hash"]
+    assert h0 == h8, "ANTI-CHEAT: belief_persistence must be inert at perfect cue + zero cost"
