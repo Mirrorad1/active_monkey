@@ -54,7 +54,10 @@ not permission to weaken `loop/VALIDATION.md`.
    `default_workers()`) for batch runs; for the Evolvability Preflight, the generic gates
    `run_local_pairwise_gradient` / `run_invasion_from_rarity` take a `max_workers` param — pass the
    memory-sized `recommended_workers` (below) to parallelize their per-seed runs (omit ⇒ serial;
-   parallel is bit-identical, guarded by `tests/test_gates_parallel.py`). **BUT cap workers so memory cannot swap-thrash**
+   parallel is bit-identical, guarded by `tests/test_gates_parallel.py`). CONFIG-DRIVEN preflights
+   (`run_preflight(cfg)` / `python -m ecology.evolvability --config`) need NO wiring — the runner
+   auto-sizes via `runtime_budget.recommended_workers_for` and records it in `repro["workers"]`; set
+   `PreflightConfig.max_workers` only to lower the ceiling (None ⇒ auto, 1 ⇒ serial). **BUT cap workers so memory cannot swap-thrash**
    (the L26 hours-scale failure mode): `max_workers × peak_RSS_per_run ≤ ~60% physical RAM`. Do NOT
    hand-set `max_workers` to the core count — pass the runs through
    `ecology.runtime_budget.preflight(..., max_workers=<cores>)`, which returns a `recommended_workers`
