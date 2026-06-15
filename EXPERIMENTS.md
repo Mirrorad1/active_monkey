@@ -8922,3 +8922,72 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   pass). New methodology note L32 (a costed capability can work-when-imposed yet have a near-zero benefit
   ceiling because the agent's own honestly-computable gating signal cannot identify the pivotal states).
 - trace: experiments/exp211_uncertainty_gated_active_sensing.py → experiments/outputs/exp211.txt
+
+## Exp 212 — evolvability-geometry Rung 1: LANDSCAPE ASSAY of active sensing — is there a bulk-fitter region beyond the wall? NEGATIVE / NEW INSIGHT (NO_HIGHER_REGION: monotone-no-valley; the blocker is small benefit, not search geometry)
+
+- Plain: Across the whole prior arc a costed capability kept being useful-when-gifted yet not locally
+  selectable. Before asking whether evolution could CROSS to a useful version, we first ask whether a
+  useful version EXISTS. This run does not evolve anything: it pins the active-sensing probe rate at a
+  grid of fixed values, runs a separate monomorphic population for each, and measures how big a
+  population each sustains (carrying capacity = a fitness proxy). If some probing rate sustained a
+  clearly bigger population than the non-probing resident, there would be a higher-fitness target worth
+  trying to reach. Answer: the population does grow with probing — but only by ~1.5% at full probing,
+  and it climbs smoothly the whole way (no dip, so no valley). The benefit is real (more probing → fewer
+  wrong-half steps; it beats a pure-cost arm) but far too small to matter, and below the noise that
+  flattened the earlier evolution tests. So for active sensing the blocker is a tiny benefit, NOT a
+  broken search path — there is no valley for mutation tricks to cross.
+- Hypothesis: a fitness valley exists — at the honest fair cost (probe_cost 0.01) and the
+  drift-suppressed cap-250 regime, the monomorphic carrying capacity N*(rate) for fixed-rate active
+  sensing PEAKS at a rate h*>0 that exceeds the non-probing resident N*(0) by a meaningful margin
+  (≥3%, ≥5/8 seeds), while the local step N*(0.1) does not pay — a useful-but-unreachable completed
+  capability worth a Rung-2 valley-crossing test. Falsifier (NO_HIGHER_REGION): N*(rate) is
+  flat/decreasing OR the peak gain is sub-margin ⇒ the capability is not useful enough even completed;
+  stop the trait. Third outcome (POSITIVE_LOCAL_SLOPE_AUDIT): N*(0.1) meaningfully > N*(0) ⇒ a
+  bulk-vs-invasion gap to audit. ARTIFACT if arms collapse or the INFO arm shows no perception benefit.
+- Setup: monomorphic N* sweep (NOT an evolution run), fixed_rate policy, grid rate ∈ {0, 0.1, 0.25,
+  0.5, 0.75, 1.0}, FRESH seeds 90–97, N* = mean alive population over t∈(800,1500) at cap-250/regen-10.
+  Two arms: INFO (cue_noise=1.0, inference matters) and COST-ONLY (cue_noise=0.0, perfect percept so a
+  probe buys no information, only its cost) — the cost-only arm isolates the pure cost of probing.
+  Reuses the Exp 210–211 substrate unchanged (probe_policy, byte-identity guards, benefit-ceiling
+  discipline); no engine change. L29 (cap-250), L30 (fair cost, ceiling measured in Exp 211), L31
+  parallelised, L25 runtime pre-flight. Predeclared meaningful margin 3%.
+- Result: INFO arm N* rises MONOTONICALLY with probe rate — 964.2 → 969.5 → 970.7 → 974.8 → 976.0 →
+  978.3 — peak at full probing = +1.5% over the resident (rel_gain +0.015), and wrong-cell occupancy
+  falls cleanly 0.4076 → 0.3635 (liveness: probing genuinely sharpens perception). 8/8 seeds show
+  N*(1.0) > N*(0), but the gain (+1.5%) is BELOW the 3% meaningful margin; the local step N*(0.1) is
+  +0.005. The COST-ONLY arm is flat/slightly-declining with rate (slope ≈ −0.8%, peak rel_gain −0.001),
+  so INFO's positive slope is the INFORMATION benefit (within-arm slope +1.5% vs cost-only −0.8% ≈ a
+  +2.3% slope recovery; cross-arm baselines differ because perfect-percept cue_noise=0 sustains a higher
+  N* than noisy cue_noise=1.0). SHAPE = monotone-increasing, NO valley (uphill the whole way). No arm
+  collapsed (min N* 964). Verdict = NO_HIGHER_REGION.
+- Implication: the active-sensing fitness landscape is monotone-increasing but nearly FLAT — full
+  probing buys only ~1.5% carrying capacity, real (8/8 seeds, beats the cost-only arm) but below both
+  the predeclared meaningfulness bar AND the finite-population drift threshold that flattened Exp 210's
+  invasion gradient. Crucially there is NO VALLEY (the path from resident to peak is monotone uphill,
+  not downhill-then-up). So for active sensing the local-gradient wall is a SMALL-BENEFIT wall, NOT a
+  search-geometry wall: heavy-tailed mutation / standing variation (evolvability-geometry Rung 2/3) fix
+  valley-CROSSING and have no valley to cross here. This refines the whole arc's finding — the
+  capabilities (199–211) failed not because evolution's operators could not reach a fitter region, but
+  because the fitter region barely exists at the honest cost. Generalizability tier: mechanism/
+  landscape characterization, bounded to this trait + substrate. Synthesis pointer:
+  docs/research/local-gradient-wall.md (active-sensing now has a completed landscape assay).
+- Honest caveat: toy scale; a single trait (fixed-rate information_sampling_rate) — this does NOT
+  characterize the landscapes of the OTHER closed-negative traits (thermosense, memory), which could in
+  principle still hide a valley; that is the named next step. N* (monomorphic carrying capacity) is one
+  bulk-fitness proxy; a +1.5% gain is small but non-zero, so "no higher region" means "no MEANINGFULLY
+  higher region (sub-3%-margin), and no valley" — not literally zero benefit. cue_noise/hazard/probe
+  sample-count/grid are PROVIDED; the only swept quantity is the pinned probe rate. Not full active
+  inference; nothing was evolved.
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp212.txt,
+  instructed to ignore the script's printed claim) recomputed NO_HIGHER_REGION: rel_gain 0.0146 < the
+  0.03 margin (so higher_region False regardless of the 8/8 seed wins), local step +0.0055, liveness
+  TRUE (wrong-cell falls), no arm collapsed; landscape monotone-increasing with no valley; concluded
+  Rung 2/3 are NOT warranted on this trait (no target region to cross to).
+- Next: active-sensing trait STOPPED for evolvability-geometry (no valley; direction stop-condition #1
+  met — a representative wall trait has a completed landscape assay). Exp 213 should landscape-assay a
+  SECOND representative closed-negative trait (thermosense intensity or memory_horizon/belief_persistence)
+  to test whether ANY of them hides a valley, or whether the wall is UNIFORMLY small-benefit across
+  traits (in which case evolvability-geometry closes: the blocker is benefit magnitude, not geometry).
+  No mutation-geometry / standing-variation run is warranted until a landscape assay finds a real valley.
+- trace: experiments/exp212_active_sensing_landscape.py → experiments/outputs/exp212.txt

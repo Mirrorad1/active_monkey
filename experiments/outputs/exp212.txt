@@ -1,0 +1,32 @@
+================================================================================
+EXP 212 — evolvability-geometry RUNG 1: ACTIVE-SENSING LANDSCAPE ASSAY
+Is there a bulk-fitter probing configuration beyond the local wall? (monomorphic N* sweep)
+================================================================================
+Regime cap250/regen10.0 (drift-suppressed), cue_noise(info)=1.0, hazard 0.6, probe_n_samples 4, FAIR probe_cost 0.01, fixed_rate policy, monomorphic (mutation_rate=0), N* = mean alive pop over t in (800, 1500).
+RUNTIME PRE-FLIGHT: safe=True workers->8 proj~0.7 min
+DIAGNOSTIC landscape classification — NOT an evolution run, NOT full active inference.
+
+--- INFO landscape (cue_noise=1.0: inference matters) ---
+   rate        N*  wrong_cell  probe_rate    repro
+    0.0     964.2      0.4076      0.0000    73068
+    0.1     969.5      0.4064      0.1000    72977
+   0.25     970.7      0.3937      0.2501    73011
+    0.5     974.8      0.3845      0.5001    73384
+   0.75     976.0      0.3701      0.7500    73221
+    1.0     978.3      0.3635      1.0000    73006
+--- COST-ONLY landscape (cue_noise=0.0: perfect percept, probe buys nothing) ---
+   rate        N*  wrong_cell
+    0.0     984.1      0.3395
+    0.1     983.4      0.3387
+   0.25     982.1      0.3386
+    0.5     978.4      0.3409
+   0.75     980.0      0.3403
+    1.0     975.8      0.3424
+
+resident N*(0)=964.2; peak N*(1.0)=978.3  rel_gain=+0.015 (meaningful-margin 0.03); per-seed wins 8/8 (need >= 5)
+local step N*(0.1) rel to N*(0) = +0.005; cost-only peak rel_gain = -0.001; INFO-minus-COST-only at rate1.0 = +2.5 creatures
+landscape SHAPE: monotone-increasing (uphill path, NO valley)
+liveness (wrong-cell falls with rate): info wrong 0.4076 -> 0.3635 = True; min arm N* = 964.2 (collapsed<80: False)
+
+VERDICT (script claim): NO_HIGHER_REGION — no probing rate sustains a MEANINGFULLY larger monomorphic population than the non-probing resident: the peak (rate 1.0) gain is only rel_gain +0.015 < the predeclared meaningful margin 0.03 (8/8 seeds). The landscape is 'monotone-increasing (uphill path, NO valley)': the INFORMATION benefit is REAL (wrong-cell falls with rate; INFO exceeds the cost-only arm by +2.5 creatures at full probing) but TINY — full probing buys only ~1.5% carrying capacity, below the drift threshold that flattened Exp 210's invasion gradient. CRUCIALLY there is NO VALLEY (the path from resident to peak is monotone uphill, not downhill-then-up), so the blocker for active sensing is SMALL BENEFIT, not search geometry: heavy-tailed mutation / standing variation (Rung 2/3) fix valley-crossing and have no valley to cross here. STOP the active-sensing trait for evolvability-geometry; a representative wall trait now has a completed landscape assay (direction stop-condition #1).
+  SEEDS [90, 91, 92, 93, 94, 95, 96, 97]; grid [0.0, 0.1, 0.25, 0.5, 0.75, 1.0]; window (800, 1500); fair_cost 0.01; margin 0.03; min_seed_wins 5.
