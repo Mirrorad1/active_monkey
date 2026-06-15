@@ -201,6 +201,36 @@ def preflight(configs: list[tuple[str, EcologyConfig, int]], *, horizon: int, n_
     return report
 
 
+def recommended_workers_for(base_cfg: "EcologyConfig", n_seeds: int, *, horizon: int,
+                            max_workers: "int | None" = None,
+                            min_parallel_jobs: int = 4) -> int:
+    """Memory-safe worker count for running n_seeds INDEPENDENT runs of base_cfg in parallel.
+
+    Returns 1 (serial) when: max_workers == 1, OR n_seeds < min_parallel_jobs (a small batch
+    is not worth pool/probe overhead), OR the sizing probe fails (robust fallback — NEVER raises).
+    Otherwise probes via preflight(...) and returns the memory-sized recommended_workers,
+    clamped to <= n_seeds and (if given) <= max_workers. max_workers is an optional USER CEILING;
+    the memory cap always binds, so this can never over-subscribe RAM (the swap guarantee).
+    SIZING ONLY: require_safe=False here — it does NOT gate on EXPLOSION/OVER_BUDGET (the
+    experiment's own L25 preflight(require_safe=True) does that).
+    """
+    if max_workers == 1 or n_seeds < min_parallel_jobs:
+        return 1
+    # Import inside function to avoid potential circular imports
+    from ecology.batch import default_workers  # noqa: PLC0415
+    ceiling = max_workers if (max_workers and max_workers > 0) else default_workers()
+    ceiling = max(1, min(ceiling, n_seeds))
+    if ceiling <= 1:
+        return 1
+    try:
+        rep = preflight([("autosize", base_cfg, 0)], horizon=horizon, n_jobs=n_seeds,
+                        max_workers=ceiling, require_safe=False)
+        rec = int(rep.get("recommended_workers", 1))
+        return max(1, min(rec, ceiling))
+    except Exception:
+        return 1
+
+
 def format_report(report: dict[str, Any]) -> str:
     """One-screen human summary of a preflight() report."""
     L = [f"RUNTIME PRE-FLIGHT — {'SAFE' if report['safe'] else 'FLAGS RAISED'} "

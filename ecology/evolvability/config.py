@@ -71,6 +71,7 @@ class PreflightConfig:
     lose_threshold: Optional[int] = None
     min_valid_seeds: int = 3
     min_population: int = 10
+    max_workers: Optional[int] = None  # None => auto memory-safe sizing; 1 => serial; k => ceiling
     deterministic: bool = True
     null_toggles: dict = D.field(default_factory=dict)
 

@@ -184,6 +184,16 @@ def run_preflight(
     axis = cfg.trait
 
     # ------------------------------------------------------------------
+    # Resolve memory-safe worker count once, before gate dispatch
+    # ------------------------------------------------------------------
+    from ecology.runtime_budget import recommended_workers_for  # noqa: PLC0415
+    resolved_workers = recommended_workers_for(
+        base_cfg, len(seeds),
+        horizon=cfg.horizon,
+        max_workers=getattr(cfg, "max_workers", None),
+    )
+
+    # ------------------------------------------------------------------
     # 2. Create run directory
     # ------------------------------------------------------------------
     run_dir = io.new_run_dir(cfg.output_dir, cfg.slug, run_id)
@@ -222,6 +232,10 @@ def run_preflight(
             continue
 
         gp = cfg.gate_params.get(gate_name, {})
+
+        if gate_name in ("local_pairwise_gradient", "invasion_from_rarity"):
+            # Inject memory-safe worker count; explicit gate_params override takes precedence
+            gp = {"max_workers": resolved_workers, **gp}
 
         if gate_name == "gifted_benefit":
             outcome = run_gifted_benefit(base_cfg, axis, seeds, **gp)
@@ -404,6 +418,7 @@ def run_preflight(
         "deterministic": cfg.deterministic,
         "seeds": list(seeds),
         "n_seeds": len(seeds),
+        "workers": resolved_workers,
     }
 
     artifact_paths = {
