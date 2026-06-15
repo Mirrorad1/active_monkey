@@ -13,8 +13,17 @@ integration trait. Prior verdicts stand untouched (append-only).
   to memory/inference. Synthesis: `docs/research/local-gradient-wall.md`. Rung 2 (full
   evolution) NOT run (gated on a POSITIVE rung). Depends on Phase 2.5 (generic Gate C,
   PR #49) for the binding gate to run on a non-thermosense trait.
-- **Rung 3 (Phase 4): ACTIVE — Exp 210 (pre-registration below).** Does a costed
-  information-gathering ACTION have a positive local gradient where passive capacity did not?
+- **Rung 3 (Phase 4): CLOSED-NEGATIVE (2026-06-14) — Exp 210.** A costed information-gathering
+  ACTION (fixed-rate probe → extra within-step cues) does NOT have a positive local gradient where
+  passive capacity didn't: at a drift-suppressed regime (cap 250) and a FAIR cost (probe_cost 0.01,
+  below the measured ~0.034 benefit ceiling), the small probing mutant (rate 0.0→0.10) is neutral
+  (7/16 wins, drift-robust slope mean_s ≈ 0) and LOSES to a pure-cost perfect-percept control;
+  invasion_from_rarity 0/16. Mechanism LIVE (gifted probing cuts wrong-cell occupancy 0.40→0.35);
+  memory re-tested at the same cap-250 regime is also flat (wall ≠ drift artifact). **Theory B:
+  staleness was NOT the killer** — the local-gradient wall generalises from scalar senses (199–207)
+  and passive memory/inference (208–209) to active information-SEEKING. The one named untried lever
+  is an UNCERTAINTY-GATED probe (true active inference); re-opens only on an explicit human word.
+  Pre-registration + verdict addendum below. (The card returns to CLOSED-NEGATIVE.)
 
 (Original Phase-3 pre-registration design + rung-1/1b verdict addenda follow the Rung-3
 section below.)
@@ -128,7 +137,24 @@ is fixed-rate (NOT uncertainty-gated) ⇒ this is explicitly a PRE-active-infere
 active inference. The belief estimator, mode dynamics, cue, payoff coupling, and probe sample-count
 are PROVIDED; the heritable quantity is only the sampling RATE. Predicting POSITIVE (Theory A) and
 getting NEGATIVE (Theory B, the prior) is an honest negative, logged as such. Bridge claim bounded
-to this toy substrate. RESEARCH.md carries the variance/bias derivation (theorist discipline).
+to this toy substrate.
+
+### RUNG-3 VERDICT (2026-06-14, Exp 210) — FAIL_LOCAL_GRADIENT (NEGATIVE / NEW INSIGHT; Theory B)
+
+Blind-verified (independent agent, AGREE). The pre-registered regime (cap 50) was found
+DRIFT-DOMINATED on the disclosed pilot {100–104} — the pure-cost perfect-percept control fixated the
+mutant as often as the info arm. Two disclosed validity fixes: (1) raise carrying capacity to 250
+(pops ~950, slow fixation) and read the drift-robust selection slope mean_s; (2) calibrate the cost to
+the empirical benefit ceiling (gifted full-probe cuts wrong-cell occupancy 0.4042→0.3466 ⇒ ceiling
+~0.0345 energy/step), so the FAIR verdict uses probe_cost 0.01 (< ceiling), with a sweep 0.005–0.1.
+RESULT (FRESH seeds 50–65): the local step 0.0→0.10 is **7/16 wins, mean_s −0.0004, inv 0.520** (neutral)
+and LOSES to the pure-cost control (11/16, +0.0024, 0.656); **invasion_from_rarity 0/16**. Cost sweep:
+info ≈ pure-cost at every cost. Memory_horizon (Phase 3) re-tested at the SAME cap-250 regime is also
+flat (4/8, −0.0034) ⇒ the Phase-3 wall is NOT a drift artifact. null_guards all_pass. **Conclusion:
+staleness was not the killer; the local-gradient wall generalises to active information-seeking.** The
+ONE named untried lever is an UNCERTAINTY-GATED probe (probe only when belief is uncertain — the actual
+active-inference step, which could target the rare pivotal post-switch step the fixed-rate probe misses);
+re-opens only on an explicit human word. Methodology lessons L29/L30 in loop/LESSONS.md.
 
 ---
 

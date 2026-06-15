@@ -251,6 +251,21 @@ step 0.
   perfect-percept drift control, while large gifted steps DO pay (mechanism live). The local-gradient wall
   GENERALISES from scalar senses to memory/inference. Synthesis: `docs/research/local-gradient-wall.md`;
   card `loop/directions/hidden-state-memory.md` (closed-negative).
+- **Phase 4 / Rung 3 — active sensing (Exp 210, CLOSED-NEGATIVE, 2026-06-14; human `/lab` directive):**
+  the pre-active-inference bridge — does a costed information-gathering ACTION (pay to probe extra cues
+  before acting) pay locally where passive capacity didn't? New gated mechanism (`enable_active_sensing` +
+  heritable `information_sampling_rate` + probe; byte-identical OFF, golden-hash-guarded; `tests/test_active_sensing.py`).
+  **FAIL_LOCAL_GRADIENT (blind-verified).** Two disclosed validity fixes the pilot forced: (1) DRIFT is a
+  population-size problem — at cap-50 the common garden is drift-dominated, so raised carrying capacity to
+  250 (pops ~950) and read the drift-robust selection slope; (2) calibrate the cost to the empirical benefit
+  ceiling (~0.034 energy/step) — fair `probe_cost` 0.01. Result (FRESH seeds 50–65): the small probing
+  mutant (rate 0→0.10) is neutral (7/16, slope ≈ 0) and LOSES to a pure-cost perfect-percept control;
+  invasion 0/16; mechanism LIVE (gifted probing cuts wrong-cell occupancy 0.40→0.35); memory re-tested at
+  the same cap-250 regime is also flat ⇒ the wall is NOT a drift artifact. **Theory B: staleness was not the
+  killer** — the local-gradient wall now spans scalar senses (199–207), passive memory/inference (208–209),
+  and ACTIVE information-seeking (210). The one named untried lever: an UNCERTAINTY-GATED probe (true active
+  inference), re-opens only on a human word. New lessons L29 (drift = pop-size, not cost) + L30 (calibrate a
+  costed action's cost to its benefit ceiling).
 - Standing options in loop/IDEAS.md (each needs its own word): M4a increment 1c (the
   "talk to it" path, halted since Exp 128 — the most direct path to the moonshot
   goal); nira's normalized-predictive switch (standing consult from Exp 154); the

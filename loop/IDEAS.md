@@ -1298,6 +1298,22 @@ The loop marks items it has consumed by indenting a response under them:
     shared checkout (branch infra/lab-invocation) during this work; the Exp 207 close was based on the
     latest origin/main to avoid colliding with its pushed site work.
 
+- [from human via /lab, 2026-06-14] Phase 4 — Active Sensing: implement a minimal falsifiable
+  test of whether a costed information-gathering ACTION (pay to probe an extra cue before acting)
+  is locally adaptive — the pre-active-inference bridge. Chosen direction: REOPEN hidden-state-memory
+  for a bounded Rung 3 only (theorist persona); full task spec injected as the run's --idea.
+  → taken up as Exp 210 (NEGATIVE / NEW INSIGHT, blind-verified). Built the gated active-sensing
+    mechanism (enable_active_sensing + information_sampling_rate trait + probe, byte-identical OFF,
+    golden-hash-guarded, tests/test_active_sensing.py); ran the Evolvability Preflight. FAIL_LOCAL_
+    GRADIENT: at a drift-suppressed regime + a FAIR cost (below the measured benefit ceiling), the
+    small probing mutant (rate 0→0.10) is neutral (7/16, slope ~0) and loses to a pure-cost control;
+    invasion 0/16; mechanism live; memory re-tested at the same regime also flat (wall ≠ drift
+    artifact). Theory B: staleness was not the killer — the local-gradient wall generalises from
+    senses (199–207) and passive memory (208–209) to ACTIVE information-seeking. Card → CLOSED-
+    NEGATIVE; the one named untried lever is an UNCERTAINTY-GATED probe (true active inference),
+    re-opens only on an explicit human word. New lessons L29 (drift = population-size, not cost)
+    + L30 (calibrate a costed action's cost to the empirical benefit ceiling).
+
 (empty — drop ideas above this line's section freely)
 
 ## Consumed

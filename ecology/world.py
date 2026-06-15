@@ -119,6 +119,14 @@ class GridWorld:
     # the original harsh mode-gating (used by the liveness test where the benefit is sharpest).
     mode_wrong_regen_factor: float = 0.3
 
+    # Phase 4: active-sensing gate — OFF by default; OFF is byte-identical to Phase-3 paths.
+    # enable_active_sensing: gates the extra probe draws in creature.choose_action and the
+    #   probe cost in engine._step_one_creature.  When False, no extra rng draws are made
+    #   and behaviour is byte-identical to pre-Phase-4 code.
+    # probe_n_samples: number of extra cue samples drawn per probe event.
+    enable_active_sensing: bool = False
+    probe_n_samples: int = 4
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -322,6 +330,9 @@ class GridWorld:
         mode_switch_prob: float = 0.02,
         cue_noise: float = 0.5,
         mode_wrong_regen_factor: float = 0.3,
+        # Phase 4: active-sensing parameters — all default to OFF (no-op).
+        enable_active_sensing: bool = False,
+        probe_n_samples: int = 4,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -390,4 +401,7 @@ class GridWorld:
             mode_switch_prob=mode_switch_prob,
             cue_noise=cue_noise,
             mode_wrong_regen_factor=mode_wrong_regen_factor,
+            # Phase 4 active-sensing fields — defaults are no-ops.
+            enable_active_sensing=enable_active_sensing,
+            probe_n_samples=probe_n_samples,
         )

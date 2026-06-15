@@ -205,3 +205,21 @@ Ground rules for this file:
   NEGATIVE, no full batch needed (it would only rediscover the sixth wall). A design-stage negative IS a real,
   loggable, blind-verifiable finding when the corner-grid is run on committed code with the anti-cheat guards
   passing. [PROTOCOL step 3; kin of L22/L25]
+- **L29 (Exp 210, 2026-06-14).** DRIFT in a finite-population invasion / common-garden test is a
+  POPULATION-SIZE problem, not a cost problem. The diagnostic: a matched PURE-COST / perfect-percept control
+  (the trait's mechanism on but its INFORMATION removed, e.g. cue_noise=0) — if that control's mutant fixates
+  (inv_frac → 0/1) as often as the treatment, the fixation metric cannot separate selection from drift. FIX:
+  raise carrying capacity (bigger pops ⇒ slower fixation) and read the drift-robust SELECTION SLOPE mean_s
+  (slope of ln(n_mut/n_res) over the pre-fixation window; drift ⇒ mean_s ≈ 0, selection ⇒ consistent
+  mean_s > 0), requiring the treatment to BEAT the pure-cost control on the slope, not just win on inv_frac.
+  Do NOT "fix" drift by raising the cost — that changes which trait wins by COST, not selection (the trap that
+  nearly turned Exp 210 into a foreordained negative). Kin of L24 (high trait at collapsed pops = drift artifact).
+  [VALIDATION; METHODOLOGY]
+- **L30 (Exp 210, 2026-06-14).** CALIBRATE a costed ACTION's cost to the EMPIRICAL benefit ceiling BEFORE
+  reading a verdict. Measure the maximum attainable benefit with a gifted, cost-WAIVED run (e.g. full-probe
+  wrong-cell-occupancy drop × hazard = energy/step). A verdict cost ABOVE that ceiling makes a NEGATIVE
+  INEVITABLE — the mirror of seed-shopping a positive, and a VALIDATION violation (don't make the outcome
+  foreordained). Pick the verdict cost BELOW the ceiling and report a cost-sensitivity sweep spanning it, so
+  the negative is "doesn't pay even when it could" rather than "priced out by fiat." Kin of L20 (remove cheaper
+  escapes before concluding a costed feature doesn't pay) and L22 (forced/gifted benefit ≠ evolvable).
+  [VALIDATION; METHODOLOGY; PROTOCOL step 3]

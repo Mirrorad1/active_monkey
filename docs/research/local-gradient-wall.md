@@ -77,13 +77,39 @@ A second, subtler property surfaced: temporal integration is **not a pure denois
 memory also LAGS a hidden-state switch (stale pre-switch evidence), a real cost that produces an
 interior optimum and further flattens the near-resident gradient.
 
+**Active information-seeking (Phase 4 / Rung 3, Exp 210), CLOSED-NEGATIVE.** The lag/staleness
+property above motivated the next bet: an *action* — pay to sample extra cues WITHIN the current
+step (a "probe"), which sharpens the current-mode belief with **zero** staleness bias (variance
+~1/(1+n)). If staleness was what flattened memory's gradient (Theory A), staleness-free active
+sensing should finally show a positive local gradient. It does not — staleness was **not** the
+killer (Theory B):
+- New gated mechanism (`enable_active_sensing` + heritable `information_sampling_rate` + a per-step
+  probe; byte-identical OFF, golden-hash-guarded). Mechanism is **LIVE**: gifted full-rate probing
+  cuts wrong-type-cell occupancy 0.4042 → 0.3466 (benefit ceiling ≈ 0.0345 energy/step).
+- Two disclosed validity fixes the pilot forced (now reusable disciplines): **drift is a
+  population-size problem** (at the Phase-3-parity cap-50 regime the pure-cost control fixated the
+  mutant as often as the info arm — drift-dominated; raised carrying capacity to cap-250, pops ~950,
+  and read the drift-robust selection **slope** mean_s); and **calibrate the cost to the empirical
+  benefit ceiling** (a cost above the gifted ceiling makes a negative inevitable — fair cost 0.01).
+- Verdict (FRESH seeds 50–65): local step rate 0.0→0.10 is **7/16 wins, mean_s −0.0004, inv 0.520**
+  (neutral), and **loses** to the pure-cost perfect-percept control (11/16, +0.0024, 0.656);
+  `invasion_from_rarity` **0/16**; a cost sweep 0.005–0.1 shows info ≈ pure-cost at every cost.
+  The `memory_horizon` trait re-tested at the SAME cap-250 regime is also flat (4/8, −0.0034) ⇒ the
+  Phase-3 result is **not** a drift artifact. Committed run: `experiments/outputs/exp210.txt`.
+
+The one structurally-untried lever left is an **uncertainty-gated** probe (sample only when the
+belief is uncertain — the actual active-inference step, vs the fixed-rate probe here), which could
+target the rare pivotal post-switch step the fixed-rate probe wastes most of its budget missing.
+
 ## 4. The law
 
 > **At this toy active-inference ecology, a costed heritable capability's marginal step does not pay
 > near the resident — its benefit saturates faster than its cost falls — so the local selection
 > gradient is ≤ the evolvability threshold, EVEN WHEN the capability is genuinely useful when gifted.
 > This holds across sensing AND information-processing, and across discrete AND continuous trait
-> resolution. Useful-when-gifted ≠ locally evolvable; the local gradient is the binding barrier.**
+> resolution. Useful-when-gifted ≠ locally evolvable; the local gradient is the binding barrier.
+> It holds for PASSIVE capabilities (senses, memory/inference) AND for a costed ACTIVE
+> information-gathering ACTION (Exp 210) — perception and action hit the same wall.**
 
 ## 5. What this does NOT prove
 

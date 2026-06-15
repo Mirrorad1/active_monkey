@@ -174,10 +174,34 @@ BELIEF_PERSISTENCE_AXIS = TraitAxis(
     disconnect_overrides={"enable_hidden_mode": False},
 )
 
+# Phase 4 rung-3: information_sampling_rate (active sensing probe probability).
+# backend="active_sensing" => generic gate path (not thermosense).
+# freeze via mutation_rate=0 (no engine freeze hook) => freeze_flag=None.
+# disconnect = enable_active_sensing off (full disconnect: no probe draws, no probe cost).
+ACTIVE_SENSING_AXIS = TraitAxis(
+    name="information_sampling_rate",
+    resident_value=0.0,
+    mutant_value=0.10,
+    low_value=0.0,
+    high_value=1.0,
+    cost_enabled=True,
+    h_trait="information_sampling_rate",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,                       # freeze via mutation_rate=0 (no engine freeze hook)
+    enable_flag="enable_active_sensing",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="active_sensing",               # non-thermosense ⇒ generic gate path
+    disconnect_overrides={"enable_active_sensing": False},
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
     "belief_persistence": BELIEF_PERSISTENCE_AXIS,
+    "information_sampling_rate": ACTIVE_SENSING_AXIS,
 }
 
 

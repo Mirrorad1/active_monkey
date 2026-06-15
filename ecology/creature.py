@@ -129,6 +129,10 @@ class HomeostaticPolicy:
         # Phase 3 rung-1b: continuous-belief EMA state (lazy; only used when
         # belief_persistence>0). Plain attribute, NEVER in events_hash.
         self.belief_ema: "float | None" = None
+        # Phase 4: flag set each step by choose_action to record whether the creature
+        # paid for an active-sensing probe this step.  Read by engine._step_one_creature
+        # to charge probe_cost.  Plain attribute, NEVER in events_hash.
+        self.probed_this_step: bool = False
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -161,6 +165,21 @@ class HomeostaticPolicy:
         # with IDENTICAL rng draws when enable_hidden_mode is False).
         if world.enable_hidden_mode and world.cell_type is not None:
             cue = float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+            # Phase 4 active sensing: optional probe — pay to draw extra cues this step and
+            # average them into a sharper belief (variance ~1/(1+n)).  ON path only; when
+            # enable_active_sensing is False NO extra rng draws happen ⇒ byte-identical to
+            # the Phase-3 path.  The extra samples are ALWAYS drawn when active sensing is ON
+            # (keep-the-draw / discard-the-result idiom, cf. mutate's freeze guards) so the
+            # rng stream is identical across information_sampling_rate values; the trait keys
+            # ONLY whether they are averaged in and whether the cost is charged.
+            self.probed_this_step = False
+            if world.enable_active_sensing:
+                u = rng.random()
+                extra = [float(world.hidden_mode) + rng.normal(0.0, world.cue_noise)
+                         for _ in range(world.probe_n_samples)]
+                if u < float(creature.genotype.information_sampling_rate):
+                    cue = (cue + sum(extra)) / (1.0 + len(extra))
+                    self.probed_this_step = True
             rho = float(creature.genotype.belief_persistence)
             if rho > 0.0:
                 # Phase 3 rung-1b: CONTINUOUS belief — an EMA with persistence rho, so a

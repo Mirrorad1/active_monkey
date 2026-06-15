@@ -303,6 +303,21 @@ class EcologyConfig:
     memory_upkeep_floor: float = 0.0
     memory_cost_slope: float = 0.01
 
+    # ------------------------------------------------------------------
+    # Phase 4: active sensing — per-step paid probe for extra cues.
+    # ALL defaults preserve pre-Phase-4 byte-identical behaviour.
+    #
+    # enable_active_sensing: gates the probe draws in creature.choose_action and the
+    #   probe cost in _step_one_creature.  False (default) ⇒ no extra rng draws ⇒
+    #   byte-identical to Phase-3 paths.
+    # probe_cost: energy charged per step when the creature probed (information_sampling_rate
+    #   >= rng draw).  0.0 default ⇒ probing is free (only non-zero when explicitly set).
+    # probe_n_samples: number of extra cue samples drawn per probe event.
+    # ------------------------------------------------------------------
+    enable_active_sensing: bool = False   # defaults preserve byte-identical OFF behaviour
+    probe_cost: float = 0.0
+    probe_n_samples: int = 4
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -351,6 +366,8 @@ class Ecology:
             mode_switch_prob=cfg.mode_switch_prob,
             cue_noise=cfg.cue_noise,
             mode_wrong_regen_factor=cfg.mode_wrong_regen_factor,
+            enable_active_sensing=cfg.enable_active_sensing,
+            probe_n_samples=cfg.probe_n_samples,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which
@@ -399,6 +416,11 @@ class Ecology:
         self.next_id: int = 0
         self.events: list[dict[str, Any]] = []
         self.exploded: bool = False
+        # Phase 4 telemetry (NOT in events / events_hash): active-sensing probe counter
+        # and hidden-mode occupancy counters for decision-quality measurement.
+        self.probe_count_total: int = 0
+        self.wrong_cell_steps_total: int = 0
+        self.hidden_mode_steps_total: int = 0
         # Exp 202: band-strip telemetry (NOT in events_hash; populated only when
         # cfg.track_band_strip is True). A plain attribute, so the OFF path is
         # byte-identical to Exp 194-201.
@@ -613,6 +635,17 @@ class Ecology:
         if cfg.enable_hidden_mode and g.belief_persistence > 0.0:
             ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.belief_persistence
 
+        # Phase 4: active-sensing probe cost — charged when the creature probed this step.
+        # OFF (enable_active_sensing=False) ⇒ probed_this_step never True ⇒ byte-identical.
+        if cfg.enable_active_sensing and getattr(c.policy, "probed_this_step", False):
+            ph.energy -= cfg.probe_cost
+            self.probe_count_total += 1
+        # Phase 4 telemetry (NOT in events_hash): wrong-type-cell occupancy = decision quality.
+        if cfg.enable_hidden_mode and self.world.cell_type is not None:
+            self.hidden_mode_steps_total += 1
+            if self.world.cell_type[new_pos] != self.world.hidden_mode:
+                self.wrong_cell_steps_total += 1
+
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
         if cfg.enable_residue and self.world.residue is not None:
@@ -695,7 +728,8 @@ class Ecology:
                                     mutate_thermosense=cfg.enable_thermosense,
                                     freeze_learning_rate=cfg.freeze_learning_rate,
                                     freeze_thermosense=cfg.freeze_thermosense,
-                                    mutate_memory=cfg.enable_hidden_mode)
+                                    mutate_memory=cfg.enable_hidden_mode,
+                                    mutate_active_sensing=cfg.enable_active_sensing)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,

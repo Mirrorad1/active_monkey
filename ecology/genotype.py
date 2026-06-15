@@ -37,6 +37,8 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     # Phase 3 rung-1b: CONTINUOUS belief persistence (EMA weight) — the local (small-ε)
     # analog of memory_horizon, so a genuinely small heritable step can be tested.
     "belief_persistence":               (0.0,  0.95),    # 0 = react to current cue only
+    # Phase 4: active sensing — per-step probability of paying to draw extra cues.
+    "information_sampling_rate":        (0.0,  1.0),
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
@@ -46,6 +48,9 @@ THERMOSENSE_TRAITS: frozenset[str] = frozenset({"thermosense_intensity", "thermo
 
 # Memory trait names — used to gate rng draws in mutate() (regression guard).
 MEMORY_TRAITS: frozenset[str] = frozenset({"memory_horizon", "belief_persistence"})
+
+# Active-sensing trait names — used to gate rng draws in mutate() (regression guard).
+ACTIVE_SENSING_TRAITS: frozenset[str] = frozenset({"information_sampling_rate"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -98,6 +103,7 @@ class Genotype:
     # Exp hidden-state-mode: cue integration window — LAST, WITH DEFAULT (regression-safe)
     memory_horizon: int = 0                        # 0 = no cue buffer; int in [0, 12]
     belief_persistence: float = 0.0                # continuous EMA persistence; 0 = none
+    information_sampling_rate: float = 0.0         # Phase 4: per-step probe probability (active sensing); 0 = never probe
 
 
 def is_valid(g: Genotype) -> bool:
@@ -120,6 +126,7 @@ def mutate(
     freeze_learning_rate: bool = False,
     freeze_thermosense: bool = False,
     mutate_memory: bool = False,
+    mutate_active_sensing: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -154,6 +161,13 @@ def mutate(
     When mutate_memory=True, the draw is made AFTER all other traits (memory_horizon
     is LAST in field order) — the upstream stream is unaffected.  Default False ⇒
     byte-identical to Exp 194-206.
+
+    Phase 4 REGRESSION GUARD: when mutate_active_sensing=False (the default),
+    information_sampling_rate is copied unchanged WITHOUT any rng draw, so the rng
+    stream for all base + thermosense + memory traits is byte-identical to the
+    pre-Phase-4 behaviour.  information_sampling_rate is the LAST field in field
+    order, so skipping its draw leaves the rng stream for all upstream traits
+    byte-identical.  Default False ⇒ byte-identical to Exp 194-209.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -168,6 +182,12 @@ def mutate(
         # thermosense skip guard above.  memory_horizon is LAST in field order
         # so no upstream trait's draw is affected when the skip fires.
         if k in MEMORY_TRAITS and not mutate_memory:
+            new_d[k] = v
+            continue
+        # Active-sensing traits: skip rng draw when mutation is disabled — mirrors
+        # the memory skip guard above.  information_sampling_rate is the LAST field
+        # in field order so no upstream trait's draw is affected when the skip fires.
+        if k in ACTIVE_SENSING_TRAITS and not mutate_active_sensing:
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]
@@ -248,6 +268,8 @@ def founder() -> Genotype:
         # Exp hidden-state-mode: no cue memory at founding; must be set explicitly.
         "memory_horizon": 0,
         "belief_persistence": 0.0,
+        # Phase 4: no active sensing at founding; must emerge by mutation under enable_active_sensing.
+        "information_sampling_rate": 0.0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

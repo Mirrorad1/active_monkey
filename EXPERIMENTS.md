@@ -8768,3 +8768,76 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   the live large-step positive (mechanism confirmed working) + committed raw; no separate blinded agent.
 - Next: hidden-state-memory direction CLOSED-NEGATIVE; the wall generalises from sensing to cognition.
 - trace: experiments/exp209_belief_persistence_preflight.py → experiments/outputs/exp209.txt (committed run: experiments/outputs/preflight_belief_persistence_rung1b/summary.json)
+
+## Exp 210 — Phase 4 / Rung 3: does a costed information-gathering ACTION ("active sensing") pay locally? NEGATIVE / NEW INSIGHT (FAIL_LOCAL_GRADIENT; the wall generalises from passive capacity to active information-seeking)
+
+- Plain: Until now creatures only sensed passively. Here a creature can take an ACTION — pay a little
+  energy to take an extra look (a "probe") before deciding where to move — getting a sharper read of the
+  hidden good-half before it acts. This is the act-to-see-better idea, the first toy step toward active
+  inference (the probe fires at a fixed inherited rate, not yet gated on how unsure the creature is). The
+  test: do creatures that probe a bit more out-breed creatures that never probe, in a fair shared world?
+  Answer: no. Probing genuinely sharpens the read (a heavily-probing creature spends less time in bad
+  cells), but the gain is too small to be worth its cost — a slightly-more-probing mutant is a coin-flip
+  against the resident, no better than a control that probes for nothing. The small-steps-dont-pay wall,
+  found for passive senses and for memory, also holds for paying-to-look.
+- Hypothesis: under a slowly-switching HIDDEN mode (partial observability), the heritable
+  information_sampling_rate has a POSITIVE LOCAL selection gradient at a NON-probing resident — a small
+  probing mutant (rate 0.0 → 0.10) invades the resident in a fair common garden — because within-step
+  extra cue samples sharpen the CURRENT-mode belief with NO staleness penalty (unlike memory, which mixes
+  in stale cues from before the last switch). Theory A: staleness was why passive memory (Exp 208/209)
+  failed, so staleness-free active sensing should be the first crack in the wall. Theory B (the prior):
+  the wall is structural (a crude single cue already gets the easy calls right; extra sampling only helps
+  the rare pivotal step), so the marginal step does not pay and active sensing fails like every lever.
+- Setup: new gated mechanism (enable_active_sensing, default OFF ⇒ Exp 194–209 byte-identical, two golden
+  hashes pinned in tests/test_active_sensing.py). Genotype trait information_sampling_rate ∈ [0,1] (last
+  field, rng-skip guard); each step the creature draws the base cue + a probe coin + probe_n_samples=4 extra
+  cues (extras ALWAYS drawn when ON, so rng-consumption is identical across the trait — only USE and COST
+  depend on the trait), and if it probes it averages them into a sharper belief and pays probe_cost. Memory
+  OFF (founder memory_horizon=0) so this isolates active sensing. Two binding methodology fixes, both
+  DISCLOSED (pilot seeds {100–104}; verdict on FRESH seeds 50–65): (1) DRIFT is a population-size problem —
+  at Phase-3-parity carrying capacity (cap 50, pops ~150) the common garden is drift-dominated (the
+  pure-cost control fixates the mutant as often as the info arm), so I raised carrying capacity to 250
+  (regen 10, pops ~950) and read the drift-robust SELECTION SLOPE mean_s (drift ⇒ ~0); (2) CALIBRATE the
+  cost to the empirical benefit ceiling — a gifted cost-waived run gives the max gain, so the FAIR verdict
+  uses probe_cost 0.01 (below the ceiling) with a cost-sweep 0.005–0.1 spanning it. Controls: pure-cost
+  perfect-percept (cue_noise=0 = same probe, NO information), hazard-off (hidden state decision-irrelevant),
+  a gifted-liveness check, and a re-test of the Phase-3 memory_horizon trait at the SAME cap-250 regime.
+- Result: mechanism is LIVE — gifted probing (rate 1.0, cost waived) cuts wrong-type-cell occupancy
+  0.4042 → 0.3466; the benefit ceiling = (drop 0.0575) × hazard 0.6 = 0.0345 energy/step (so probing can
+  only pay if probe_cost < ~0.035). At the FAIR cost 0.01, 16 seeds: the local step (0.0 → 0.10) is
+  wins=7/16 (bar ≥14), mean_s=-0.0004, inv=0.520 — neutral; the pure-cost perfect-percept control is
+  wins=11/16, mean_s=+0.0024, inv=0.656, so the info arm does NOT beat the drift+cost baseline (info is
+  LOWER on both metrics, Δmean_s -0.0029). invasion_from_rarity DOES_NOT_INVADE, 0/16. Cost sweep
+  (8 seeds): info ≈ pure-cost at every cost (only at 0.005 is info +0.0062 vs pure-cost +0.0011, both
+  drift-level, inv 0.52 vs 0.57). The memory_horizon trait re-tested at the SAME cap-250 regime is also flat
+  (mem 1→2: wins 4/8, mean_s -0.0034; its perfect-percept control 3/8, -0.0043) ⇒ the Phase-3 wall is NOT a
+  drift artifact. null_guards all_pass (byte-identity disconnect PASS). Aggregate = FAIL_LOCAL_GRADIENT.
+- Implication: Theory B over Theory A — STALENESS WAS NOT THE KILLER. Even staleness-free, within-step
+  information acquisition has a marginal benefit too small to select on near the resident: the selection
+  coefficient at the local step is statistically indistinguishable from zero (and from the pure-cost drift
+  baseline), so a single heritable step in probing rate cannot invade. The program's local-gradient wall —
+  a costed capability's marginal step does not pay near the resident — now spans scalar senses (Exp 199–207),
+  passive information-PROCESSING capacity (memory/inference, Exp 208–209), AND costly ACTIVE
+  information-SEEKING (Exp 210). Mechanism connection: the probe reduces belief variance ~1/(1+n) with zero
+  bias, but its expected payoff per step (≈ rate × wrong-cell-reduction × hazard) is bounded by a tiny
+  benefit ceiling (~0.03 energy/step at full probing) — below the cost+drift threshold for any small
+  heritable rate. Generalizability tier: failure-mode (a cross-mechanism law of THIS toy substrate),
+  bounded to toy scale. Synthesis: docs/research/local-gradient-wall.md.
+- Honest caveat: toy scale. The probe is FIXED-RATE, not uncertainty-gated, so this is a PRE-active-inference
+  bridge, not full active inference — an uncertainty-gated probe (sample only when unsure) is the untested,
+  named next lever (the actual active-inference step) and could in principle target the rare pivotal step
+  the fixed-rate probe wastes most of its budget missing. The regime change (cap 50 → 250) and cost
+  calibration are disclosed validity fixes, not tuning-to-a-result (the wall holds at the fair cost AND
+  across the cost sweep AND for the memory control). The belief estimator, cue, mode dynamics, and probe
+  sample-count are PROVIDED; the heritable quantity is only the sampling rate.
+- Verdict: NEGATIVE / NEW INSIGHT.
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp210.txt,
+  instructed to ignore the script's printed claim) recomputed FAIL_LOCAL_GRADIENT conjunct-by-conjunct: the
+  binding arm fails the win bar (7/16 < 14), mean_s ≤ 0, loses to the pure-cost control on both metrics, and
+  invasion 0/16; null_guards + liveness pass. Drift-robust slope + pure-cost + memory controls all corroborate.
+- Next: Phase 4 / Rung 3 CLOSED-NEGATIVE (active sensing is not locally adaptive at this substrate). The
+  hidden-state-memory card returns to closed-negative; the one named untried lever is an UNCERTAINTY-GATED
+  probe (true active inference) — re-opens only on an explicit human word. Methodology lessons L29 (drift is
+  a population-size problem, not a cost problem) + L30 (calibrate a costed action's cost to the empirical
+  benefit ceiling) folded into loop/LESSONS.md.
+- trace: experiments/exp210_active_sensing_preflight.py → experiments/outputs/exp210.txt

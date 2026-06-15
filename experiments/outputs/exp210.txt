@@ -1,21 +1,30 @@
-==========================================================================
+==============================================================================
 EXP 210 — information_sampling_rate (0.0 -> 0.10) LOCAL-GRADIENT PREFLIGHT
 Phase 4 / Rung 3: ACTIVE SENSING (pay to probe extra cues before deciding)
-==========================================================================
-seeds [50, 51, 52, 53, 54, 55, 56, 57]; DRIFT-SUPPRESSED regime cap250.0/regen10.0 (pops ~950), cue_noise 1.0, hazard 0.6, probe_cost 0.1, probe_n_samples 4; win>=7.
+==============================================================================
+DRIFT-SUPPRESSED regime cap250.0/regen10.0 (pops ~950), cue_noise 1.0, hazard 0.6, probe_n_samples 4, FAIR probe_cost 0.01.
 Primary metric = drift-robust SELECTION SLOPE mean_s (drift~0, selection>0); inv_frac/wins reported but drift-prone at fixation.
 
-LIVENESS (gifted rate1.0 vs 0.0, cost waived, n=8; 3 seeds): wrong-cell frac 0.3466 vs 0.4042  live(probe<noprobe)=True
+LIVENESS (gifted rate1.0 vs 0.0, cost waived, n=8; 3 seeds): wrong-cell frac 0.3466 vs 0.4042  live=True
+BENEFIT CEILING = (wrong-cell drop 0.0575) x hazard 0.6 = 0.0345 energy/step  =>  probing can only pay if probe_cost < ~0.035
 
-[AS] LOCAL gradient  rate 0.0->0.10 (cue1.0)        : wins=4/8  mean_s=-0.0002  inv=0.423  ['0.00', '0.55', '0.86', '0.73', '1.00', '0.14', '0.00', '0.11']
-[AS] CONTROL perfect-percept (cue0; probe=pure cost): wins=2/8  mean_s=+0.0008  inv=0.375  ['0.00', '0.41', '0.04', '0.51', '1.00', '0.44', '0.41', '0.21']
-[AS] CONTROL hazard-off (belief irrelevant)         : wins=4/8  mean_s=-0.0015  inv=0.469  ['0.15', '0.00', '0.42', '0.71', '1.00', '0.35', '0.55', '0.58']
-[AS] GIFTED larger step rate 0.0->0.30 (reference)  : wins=2/8  mean_s=+0.0003  inv=0.328  ['0.03', '0.04', '0.33', '0.43', '0.65', '0.25', '0.32', '0.58']
-[AS] invasion_from_rarity: DOES_NOT_INVADE  increase=0/8
+--- BINDING local gradient @ fair probe_cost=0.01, 16 seeds ---
+[AS] info  rate 0.0->0.10 (cue1.0)            : wins=7/16 (bar>=14)  mean_s=-0.0004  inv=0.520
+[AS] CONTROL pure-cost perfect-percept (cue0) : wins=11/16  mean_s=+0.0024  inv=0.656   (same probe, NO information)
+[AS] CONTROL hazard-off (belief irrelevant)   : wins=7/16  mean_s=-0.0012  inv=0.413
+[AS] invasion_from_rarity: DOES_NOT_INVADE  increase=0/16
+  INFO vs PURE-COST contrast: mean_s -0.0004 vs +0.0024 (Δ=-0.0029); inv 0.520 vs 0.656 => info does NOT beat the pure-cost drift baseline
 
-[MEM] memory 1->2 (cue1.0)            : wins=4/8  mean_s=-0.0034  inv=0.511  ['0.00', '1.00', '0.00', '0.00', '1.00', '0.09', '1.00', '1.00']
-[MEM] perfect-percept control (cue0)  : wins=3/8  mean_s=-0.0043  inv=0.353  ['0.00', '0.60', '1.00', '0.35', '0.29', '0.58', '0.00', '0.00']
+--- COST SENSITIVITY (info vs pure-cost), 8 seeds ---
+  probe_cost=0.005: info mean_s=+0.0062 inv=0.52 | pure-cost mean_s=+0.0011 inv=0.57
+  probe_cost=0.02 : info mean_s=-0.0024 inv=0.45 | pure-cost mean_s=-0.0007 inv=0.46
+  probe_cost=0.04 : info mean_s=-0.0009 inv=0.41 | pure-cost mean_s=-0.0016 inv=0.47
+  probe_cost=0.1  : info mean_s=-0.0002 inv=0.42 | pure-cost mean_s=+0.0008 inv=0.38
+
+--- MEMORY control @ cap-250 (Phase-3 trait; confirms wall != drift artifact), 8 seeds ---
+[MEM] memory 1->2 (cue1.0)           : wins=4/8  mean_s=-0.0034  inv=0.511
+[MEM] perfect-percept control (cue0) : wins=3/8  mean_s=-0.0043  inv=0.353
 
 null_guards all_pass=True  (byte-identity disconnect: PASS)
 
-VERDICT (script claim): FAIL_LOCAL_GRADIENT — the marginal probing step (0->0.10) does NOT robustly pay near the resident (selection slope ~ drift; does not beat the pure-cost control), even though a LARGER step (0->0.30) pays and the mechanism is live. Memory re-tested at the same drift-suppressed regime ALSO shows no signal (the wall is not a drift artifact). The local-gradient wall GENERALISES from passive capacity (Exp 208/209) to ACTIVE information-seeking (Theory B). Re-checked by the blinded verifier.
+VERDICT (script claim): FAIL_LOCAL_GRADIENT / NEGATIVE — the marginal probing step (0->0.10) does NOT pay near the resident: drift-robust slope ~0, it does NOT beat the pure-cost drift control, and a rare mutant does not invade — even though the mechanism is LIVE (gifted probing improves observations) and the cost is fair (< benefit ceiling). Memory re-tested at the same drift-suppressed regime ALSO shows no signal (the wall is not a drift artifact). The local-gradient wall GENERALISES from passive capacity (senses 199-207, memory 208-209) to costly ACTIVE information-seeking (Theory B). Re-checked by the blinded verifier.
