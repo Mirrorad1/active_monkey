@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp213.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp213_affordance_audit.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.20\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.5\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.60\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.0\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2/3\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"203/205\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"210/212\" quoted in entry not found in experiments/outputs/exp213.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-15T20:47:27Z",
+  "commit_sha": "86c5c36aa8e54b9e07efc4d9fdff90d63c490efd",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 213,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
