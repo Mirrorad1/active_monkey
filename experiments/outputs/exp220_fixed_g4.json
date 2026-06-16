@@ -1,0 +1,130 @@
+[
+  {
+    "seed": 20,
+    "first": 0.16,
+    "last": 0.17,
+    "csel": 0.1667,
+    "improv": 0.01,
+    "genuine": false
+  },
+  {
+    "seed": 21,
+    "first": 0.25,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.08,
+    "genuine": false
+  },
+  {
+    "seed": 22,
+    "first": 0.01,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.01,
+    "genuine": false
+  },
+  {
+    "seed": 23,
+    "first": 0.18,
+    "last": 0.36,
+    "csel": 0.5,
+    "improv": 0.18,
+    "genuine": true
+  },
+  {
+    "seed": 24,
+    "first": 0.07,
+    "last": 0.42,
+    "csel": 0.6667,
+    "improv": 0.35,
+    "genuine": true
+  },
+  {
+    "seed": 25,
+    "first": 0.32,
+    "last": 0.53,
+    "csel": 0.5,
+    "improv": 0.21,
+    "genuine": true
+  },
+  {
+    "seed": 26,
+    "first": 0.23,
+    "last": 0.52,
+    "csel": 0.5,
+    "improv": 0.29,
+    "genuine": true
+  },
+  {
+    "seed": 27,
+    "first": 0.21,
+    "last": 0.55,
+    "csel": 0.6667,
+    "improv": 0.34,
+    "genuine": true
+  },
+  {
+    "seed": 28,
+    "first": 0.18,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.15,
+    "genuine": false
+  },
+  {
+    "seed": 29,
+    "first": 0.12,
+    "last": 0.5,
+    "csel": 0.5,
+    "improv": 0.38,
+    "genuine": true
+  },
+  {
+    "seed": 30,
+    "first": 0.04,
+    "last": 0.16,
+    "csel": 0.1667,
+    "improv": 0.12,
+    "genuine": false
+  },
+  {
+    "seed": 31,
+    "first": 0.22,
+    "last": 0.5,
+    "csel": 0.5,
+    "improv": 0.28,
+    "genuine": true
+  },
+  {
+    "seed": 32,
+    "first": 0.03,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.03,
+    "genuine": false
+  },
+  {
+    "seed": 33,
+    "first": 0.16,
+    "last": 0.34,
+    "csel": 0.3333,
+    "improv": 0.18,
+    "genuine": false
+  },
+  {
+    "seed": 34,
+    "first": 0.11,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.22,
+    "genuine": false
+  },
+  {
+    "seed": 35,
+    "first": 0.02,
+    "last": 0.17,
+    "csel": 0.1667,
+    "improv": 0.15,
+    "genuine": false
+  }
+]

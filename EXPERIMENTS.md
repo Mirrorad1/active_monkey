@@ -9472,3 +9472,67 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   ≥0.5 count), targeting reliable (≥12/16) GENUINE discrimination at K=4. Card: loop/directions/affective-dyad.md;
   guards: tests/test_affect_agent.py (correct_select + constant_response_ceiling).
 - trace: experiments/exp219_m4a_discriminate.py → experiments/outputs/exp219.txt
+
+## Exp 220 — M4a precision schedule: gradually annealing decisiveness (γ 1→8) gives the FIRST reliable GENUINE discrimination at realistic capacity K=4 (sched_full 13/16) — it fixes the learn-but-don't-exploit decoupling and beats fixed precision; but at the LONG 300-turn session only (POSITIVE / NEW INSIGHT; blind-verified)
+
+- Plain: Exp 219 found the talk-to-it agent could LEARN which reply each signal wants (it "knows the
+  answer") but at low decisiveness wouldn't ACT on it, while high decisiveness made it commit too early to
+  a wrong guess. The natural fix: start INDECISIVE (explore, to learn), then gradually get MORE decisive (to
+  act on what it learned). This tests that "precision schedule" against just-pick-a-fixed-decisiveness, with
+  16 runs and the honest can't-be-faked yard-stick. Result: the gradual schedule WORKS — annealing
+  decisiveness slowly across the whole conversation makes 13 of 16 runs genuinely tell the signals apart
+  (up to 5 of 6 right), the first RELIABLE genuine result here. Fixed high decisiveness is the WORST (3/16
+  — it over-commits early, exactly the failure the slow ramp avoids); fixed medium is middling (7/16); and
+  ramping slowly over the WHOLE session beats ramping fast then holding (8/16). Honest limits: this is at
+  the LONG (300-turn) conversation; the short, more realistic conversation is NOT tested here and Exp 219
+  showed short conversations block learning — so the long session is doing much of the work and the schedule
+  was never separated from it. Functional valence only; no sentience claim.
+- Hypothesis (predeclared, with named falsifier): the Exp 219 learn-but-don't-exploit DECOUPLING (γ1 learns
+  csel 0.54 but won't exploit; fixed γ4 only ~5/8) is fixed by a PRECISION SCHEDULE — anneal γ low→high
+  (explore-to-learn, then sharpen-to-exploit). At K=4, N=16, does a schedule cell reach RELIABLE genuine
+  discrimination (≥12/16) and beat the best fixed-γ cell by ≥3? FALSIFIER: if no schedule cell beats the
+  best fixed cell by ≥3 genuine seeds, annealing-γ-fixes-the-decoupling is refuted (log NEGATIVE).
+- Setup: 4 cells, all K=4 / 300t / optimism=2.0 / lr4, seeds 20–35 (N=16). fixed_g4 (γ4), fixed_g8 (γ8),
+  sched_half (anneal γ 1→8 over first 150t then hold 8), sched_full (anneal γ 1→8 across all 300t). New
+  DirectHeadAgent `gamma_schedule` (Sonnet-coded): per-turn γ via eqx.tree_at on a THROWAWAY agent used
+  only for infer_policies (self.agent/learning untouched) — byte-identical when None (guard test);
+  mechanism proven live (γ1 q_pi max 0.54 vs γ8 1.00). Metric = the Exp 219 constant-UNFAKEABLE probe:
+  genuine = correct_select≥0.5 (≥3/6 codes, above the 1/3 ceiling) AND last-third POS>1/3. Reliability bar
+  ≥12/16. Report csel distributions, not just counts.
+- Result: VERDICT SCHEDULE_WINS. genuine (mean_csel): fixed_g4 7/16 (0.354) · fixed_g8 3/16 (0.302) ·
+  sched_half 8/16 (0.448) · sched_full 13/16 (0.552). best_sched (sched_full 13) ≥12 AND beats best_fixed
+  (fixed_g4 7) by 6 ⇒ reliable genuine discrimination at K=4. fixed_g8 is WORST (9/16 seeds frozen at
+  csel=0.333, the constant-policy signature of early over-commitment). sched_full csel distribution
+  0.33:3 | 0.50:6 | 0.67:6 | 0.83:1 (mean_last 0.473 ≫ 1/3).
+- Implication: the precision schedule FIXES the Exp 219 decoupling — gradual annealing explores long enough
+  to LEARN then sharpens to EXPLOIT — and the monotone story holds across cells (fixed-high over-commits
+  worst → fixed-mid → fast-anneal → slow-full-anneal best). This is the first RELIABLE GENUINE (honest-
+  metric, constant-unfakeable) discrimination in the entire M4a thread, at the realistic AMBIGUOUS capacity
+  K=4. The schedule's ADVANTAGE over fixed γ is isolated at matched 300t (sched_full 13 vs fixed_g4 7).
+  Tier: a mechanism fix + a reliability result, toy scale, one (long) session length.
+- Honest caveat: POSITIVE but NOT a breakthrough, and NOT the full realistic regime (blind-verified
+  reasoning): (1) every cell is the LONG 300t session — the SHORT realistic session (100t), which Exp 219
+  showed blocks LEARNING (g1_100 0/8, g4_100 1/8), is NOT tested here, so the schedule was never separated
+  from the long session and 300t does much of the heavy lifting (fixed_g4 alone already reaches 7/16). (2)
+  BAR-FRAGILE: at a one-step-stricter bar (csel≥0.67) sched_full falls 13→7 (below the 12 reliability line),
+  though the schedule's MARGIN over fixed survives (7 vs fixed_g4's 2); 6 of the 13 genuine seeds sit exactly
+  at csel=0.5, one rung above the ceiling. (3) N=16 is modest; sched_full(13) vs sched_half(8) is a real-
+  looking but not statistically-nailed ordering. Functional valence only — "genuinely tells signals apart" =
+  correct_select, nothing more; no sentience claim.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE — reliable genuine discrimination achieved at K=4
+  via an honest schedule that beats fixed precision (a real milestone for the thread), but graded below
+  BREAKTHROUGH because it is confounded with the long session, bar-fragile, and the short-session blocker
+  remains open.
+- Verifier: agree — an independent blinded agent recomputed all 4 cells from the committed JSONs (zero
+  mismatches) → SCHEDULE_WINS / reliable-genuine-discrimination=yes; confirmed the schedule is HONEST (applies
+  to a throwaway agent for policy inference only — does NOT leak into A1 learning; optimism held constant;
+  csel constant-unfakeable); confirmed the explore→exploit mechanism is consistent (fixed_g8's 9 ceiling-
+  frozen seeds = over-commitment); and graded POSITIVE not BREAKTHROUGH for the confound (schedule never
+  separated from 300t; fixed_g4 at 300t already 7/16), bar-fragility (13→7 at csel≥0.67), and modest N=16.
+  All caveats folded in above.
+- Next (on human word only): Exp 221 / increment 1j — SEPARATE the schedule from session length: run the
+  precision schedule at the SHORT realistic session (100t, and 150/200t) at K=4, N≥16 — does annealing γ
+  rescue the SHORT session (the still-open Exp 219 learning blocker), or is the long 300t session necessary?
+  Also report genuine at the stricter csel≥0.67 bar. Card: loop/directions/affective-dyad.md; guards:
+  tests/test_affect_agent.py (gamma_schedule + correct_select + constant_response_ceiling).
+- trace: experiments/exp220_m4a_schedule.py → experiments/outputs/exp220.txt

@@ -1,0 +1,130 @@
+[
+  {
+    "seed": 20,
+    "first": 0.12,
+    "last": 0.34,
+    "csel": 0.3333,
+    "improv": 0.22,
+    "genuine": false
+  },
+  {
+    "seed": 21,
+    "first": 0.3,
+    "last": 0.51,
+    "csel": 0.5,
+    "improv": 0.21,
+    "genuine": true
+  },
+  {
+    "seed": 22,
+    "first": 0.14,
+    "last": 0.34,
+    "csel": 0.3333,
+    "improv": 0.2,
+    "genuine": false
+  },
+  {
+    "seed": 23,
+    "first": 0.15,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.18,
+    "genuine": false
+  },
+  {
+    "seed": 24,
+    "first": 0.03,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.03,
+    "genuine": false
+  },
+  {
+    "seed": 25,
+    "first": 0.14,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.19,
+    "genuine": false
+  },
+  {
+    "seed": 26,
+    "first": 0.2,
+    "last": 0.34,
+    "csel": 0.3333,
+    "improv": 0.14,
+    "genuine": false
+  },
+  {
+    "seed": 27,
+    "first": 0.18,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.15,
+    "genuine": false
+  },
+  {
+    "seed": 28,
+    "first": 0.02,
+    "last": 0.29,
+    "csel": 0.3333,
+    "improv": 0.27,
+    "genuine": false
+  },
+  {
+    "seed": 29,
+    "first": 0.1,
+    "last": 0.33,
+    "csel": 0.3333,
+    "improv": 0.23,
+    "genuine": false
+  },
+  {
+    "seed": 30,
+    "first": 0.02,
+    "last": 0.16,
+    "csel": 0.1667,
+    "improv": 0.14,
+    "genuine": false
+  },
+  {
+    "seed": 31,
+    "first": 0.3,
+    "last": 0.49,
+    "csel": 0.5,
+    "improv": 0.19,
+    "genuine": true
+  },
+  {
+    "seed": 32,
+    "first": 0.06,
+    "last": 0.16,
+    "csel": 0.1667,
+    "improv": 0.1,
+    "genuine": false
+  },
+  {
+    "seed": 33,
+    "first": 0.2,
+    "last": 0.34,
+    "csel": 0.3333,
+    "improv": 0.14,
+    "genuine": false
+  },
+  {
+    "seed": 34,
+    "first": 0.02,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.02,
+    "genuine": false
+  },
+  {
+    "seed": 35,
+    "first": 0.16,
+    "last": 0.5,
+    "csel": 0.5,
+    "improv": 0.34,
+    "genuine": true
+  }
+]
