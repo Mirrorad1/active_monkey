@@ -226,7 +226,7 @@ class DirectHeadAgent:
                  gamma: float = 1.0, alpha: float = 1.0,
                  action_selection: str = "stochastic", lr_pA: float = 1.0,
                  eps0: float = 0.0, eps_min: float = 0.0, eps_turns: int = 0,
-                 optimism: float = 0.0):
+                 optimism: float = 0.0, gamma_schedule: tuple | None = None):
         """gamma (policy precision), alpha (action precision), action_selection, and lr_pA
         (Dirichlet learning rate) are the HONEST ignition-envelope scaffolds (Exp 216): they
         change how decisively the agent exploits / how fast it learns — they do NOT give it the
@@ -240,6 +240,14 @@ class DirectHeadAgent:
           optimism: uniformly-elevated prior P(POS) across ALL responses and intents in the A1
             Dirichlet prior before Agent construction.  Uniform elevation is what makes it HONEST
             — it does not favour any particular (intent, response) pair over another.
+
+        Exp 220 HONEST precision schedule (default None -> byte-identical to Exp 219):
+          gamma_schedule: (g_start, g_end, anneal_turns) or None.  When given, the policy
+            precision anneals LINEARLY from g_start to g_end over the first anneal_turns acts,
+            then holds g_end for the remainder of the session.  This changes DECISIVENESS over
+            time (explore-to-learn early, then sharpen-to-exploit late) — it does NOT reveal
+            the answer; correct_select is constant-unfakeable.  When None, no scheduling is
+            applied and act() is byte-identical to the Exp 219 path (no extra tree_at ops).
         """
         self.lv = lv
         self.lr_pA = lr_pA
@@ -276,6 +284,9 @@ class DirectHeadAgent:
         self._explore = (eps0 > 0.0 or eps_min > 0.0)
         self._t = 0
 
+        # GAMMA SCHEDULE state (None => no scheduling; act() is byte-identical when None).
+        self._gamma_schedule = gamma_schedule
+
     def perceive(self, code: int) -> np.ndarray:
         """Infer intent from the utterance alone (valence NEU); prior D (last_response uniform pre-act)."""
         qs = self.agent.infer_states([jnp.array([code]), jnp.array([NEU])], self._D)
@@ -288,7 +299,16 @@ class DirectHeadAgent:
         (B1 deterministic; B0 leaves intent unchanged) — so the feedback is bound to THIS response."""
         if self._qs_perceive is None:
             raise RuntimeError("call perceive() before act()")
-        q_pi, _ = self.agent.infer_policies(self._qs_perceive)
+        if self._gamma_schedule is not None:
+            # GAMMA SCHEDULE: anneal precision linearly from g_start to g_end over anneal_turns
+            # acts, then hold g_end.  Changes DECISIVENESS over time (not the answer).
+            import equinox as eqx  # noqa: PLC0415
+            g_start, g_end, anneal_turns = self._gamma_schedule
+            gamma_t = g_start + (g_end - g_start) * min(1.0, self._t / max(1, anneal_turns))
+            agent_for_pi = eqx.tree_at(lambda a: a.gamma, self.agent, jnp.array([float(gamma_t)]))
+            q_pi, _ = agent_for_pi.infer_policies(self._qs_perceive)
+        else:
+            q_pi, _ = self.agent.infer_policies(self._qs_perceive)
         self._key, sk = jax.random.split(self._key)
         action = self.agent.sample_action(q_pi, rng_key=jax.random.split(sk, 1))
         # eps-greedy HONEST exploration (no-op when disabled -> byte-identical to Exp 216):

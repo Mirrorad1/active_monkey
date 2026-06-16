@@ -1,0 +1,97 @@
+==============================================================================
+EXP 220 — M4a precision schedule (anneal gamma) at N=16
+OPTIMISM=2.0 LR=4.0 held constant; schedule changes DECISIVENESS not the answer
+CEIL=0.333; genuine = (csel>=0.5) AND (last>0.333)
+==============================================================================
+FALSIFIER: if no schedule cell beats the best fixed cell by >=3 genuine seeds
+  (out of 16), the 'annealing gamma fixes the decoupling' hypothesis is REFUTED.
+
+--- CELL: fixed_g4  (gamma=4.0, fixed) ---
+  seed 20: first 0.1600 -> last 0.1700  csel 0.1667  genuine=False
+  seed 21: first 0.2500 -> last 0.3300  csel 0.3333  genuine=False
+  seed 22: first 0.0100 -> last 0.0000  csel 0.0000  genuine=False
+  seed 23: first 0.1800 -> last 0.3600  csel 0.5000  genuine=True  GENUINE
+  seed 24: first 0.0700 -> last 0.4200  csel 0.6667  genuine=True  GENUINE
+  seed 25: first 0.3200 -> last 0.5300  csel 0.5000  genuine=True  GENUINE
+  seed 26: first 0.2300 -> last 0.5200  csel 0.5000  genuine=True  GENUINE
+  seed 27: first 0.2100 -> last 0.5500  csel 0.6667  genuine=True  GENUINE
+  seed 28: first 0.1800 -> last 0.3300  csel 0.3333  genuine=False
+  seed 29: first 0.1200 -> last 0.5000  csel 0.5000  genuine=True  GENUINE
+  seed 30: first 0.0400 -> last 0.1600  csel 0.1667  genuine=False
+  seed 31: first 0.2200 -> last 0.5000  csel 0.5000  genuine=True  GENUINE
+  seed 32: first 0.0300 -> last 0.0000  csel 0.0000  genuine=False
+  seed 33: first 0.1600 -> last 0.3400  csel 0.3333  genuine=False
+  seed 34: first 0.1100 -> last 0.3300  csel 0.3333  genuine=False
+  seed 35: first 0.0200 -> last 0.1700  csel 0.1667  genuine=False
+  genuine 7/16, mean_csel 0.354, mean_last 0.326
+  csel distribution: 0.00:2 | 0.17:3 | 0.33:4 | 0.50:5 | 0.67:2 | 0.83:0 | 1.00:0
+
+--- CELL: fixed_g8  (gamma=8.0, fixed) ---
+  seed 20: first 0.1200 -> last 0.3400  csel 0.3333  genuine=False
+  seed 21: first 0.3000 -> last 0.5100  csel 0.5000  genuine=True  GENUINE
+  seed 22: first 0.1400 -> last 0.3400  csel 0.3333  genuine=False
+  seed 23: first 0.1500 -> last 0.3300  csel 0.3333  genuine=False
+  seed 24: first 0.0300 -> last 0.0000  csel 0.0000  genuine=False
+  seed 25: first 0.1400 -> last 0.3300  csel 0.3333  genuine=False
+  seed 26: first 0.2000 -> last 0.3400  csel 0.3333  genuine=False
+  seed 27: first 0.1800 -> last 0.3300  csel 0.3333  genuine=False
+  seed 28: first 0.0200 -> last 0.2900  csel 0.3333  genuine=False
+  seed 29: first 0.1000 -> last 0.3300  csel 0.3333  genuine=False
+  seed 30: first 0.0200 -> last 0.1600  csel 0.1667  genuine=False
+  seed 31: first 0.3000 -> last 0.4900  csel 0.5000  genuine=True  GENUINE
+  seed 32: first 0.0600 -> last 0.1600  csel 0.1667  genuine=False
+  seed 33: first 0.2000 -> last 0.3400  csel 0.3333  genuine=False
+  seed 34: first 0.0200 -> last 0.0000  csel 0.0000  genuine=False
+  seed 35: first 0.1600 -> last 0.5000  csel 0.5000  genuine=True  GENUINE
+  genuine 3/16, mean_csel 0.302, mean_last 0.299
+  csel distribution: 0.00:2 | 0.17:2 | 0.33:9 | 0.50:3 | 0.67:0 | 0.83:0 | 1.00:0
+
+--- CELL: sched_half  (gamma=1.0, schedule=(1.0, 8.0, 150)) ---
+  seed 20: first 0.2400 -> last 0.4900  csel 0.5000  genuine=True  GENUINE
+  seed 21: first 0.2300 -> last 0.4900  csel 0.5000  genuine=True  GENUINE
+  seed 22: first 0.0900 -> last 0.5300  csel 0.6667  genuine=True  GENUINE
+  seed 23: first 0.1900 -> last 0.3100  csel 0.3333  genuine=False
+  seed 24: first 0.0800 -> last 0.0100  csel 0.0000  genuine=False
+  seed 25: first 0.2500 -> last 0.3400  csel 0.3333  genuine=False
+  seed 26: first 0.1900 -> last 0.3400  csel 0.3333  genuine=False
+  seed 27: first 0.2200 -> last 0.5900  csel 0.6667  genuine=True  GENUINE
+  seed 28: first 0.1800 -> last 0.3300  csel 0.3333  genuine=False
+  seed 29: first 0.1400 -> last 0.3700  csel 0.3333  genuine=False
+  seed 30: first 0.1300 -> last 0.6200  csel 0.8333  genuine=True  GENUINE
+  seed 31: first 0.1200 -> last 0.6600  csel 0.6667  genuine=True  GENUINE
+  seed 32: first 0.1500 -> last 0.4300  csel 0.5000  genuine=True  GENUINE
+  seed 33: first 0.1800 -> last 0.3300  csel 0.3333  genuine=False
+  seed 34: first 0.2000 -> last 0.3200  csel 0.3333  genuine=False
+  seed 35: first 0.1000 -> last 0.4100  csel 0.5000  genuine=True  GENUINE
+  genuine 8/16, mean_csel 0.448, mean_last 0.411
+  csel distribution: 0.00:1 | 0.17:0 | 0.33:7 | 0.50:4 | 0.67:3 | 0.83:1 | 1.00:0
+
+--- CELL: sched_full  (gamma=1.0, schedule=(1.0, 8.0, 300)) ---
+  seed 20: first 0.2400 -> last 0.4600  csel 0.5000  genuine=True  GENUINE
+  seed 21: first 0.2400 -> last 0.5700  csel 0.6667  genuine=True  GENUINE
+  seed 22: first 0.0800 -> last 0.4800  csel 0.6667  genuine=True  GENUINE
+  seed 23: first 0.1700 -> last 0.3200  csel 0.3333  genuine=False
+  seed 24: first 0.0800 -> last 0.0800  csel 0.3333  genuine=False
+  seed 25: first 0.2300 -> last 0.4300  csel 0.5000  genuine=True  GENUINE
+  seed 26: first 0.2100 -> last 0.4400  csel 0.5000  genuine=True  GENUINE
+  seed 27: first 0.2100 -> last 0.6000  csel 0.6667  genuine=True  GENUINE
+  seed 28: first 0.1400 -> last 0.4500  csel 0.6667  genuine=True  GENUINE
+  seed 29: first 0.1500 -> last 0.4900  csel 0.5000  genuine=True  GENUINE
+  seed 30: first 0.1800 -> last 0.4500  csel 0.5000  genuine=True  GENUINE
+  seed 31: first 0.1400 -> last 0.6600  csel 0.6667  genuine=True  GENUINE
+  seed 32: first 0.1500 -> last 0.2200  csel 0.3333  genuine=False
+  seed 33: first 0.1800 -> last 0.7400  csel 0.8333  genuine=True  GENUINE
+  seed 34: first 0.1400 -> last 0.5200  csel 0.5000  genuine=True  GENUINE
+  seed 35: first 0.1100 -> last 0.6600  csel 0.6667  genuine=True  GENUINE
+  genuine 13/16, mean_csel 0.552, mean_last 0.473
+  csel distribution: 0.00:0 | 0.17:0 | 0.33:3 | 0.50:6 | 0.67:6 | 0.83:1 | 1.00:0
+
+--- HEADLINE: SCHEDULE vs FIXED (predeclared decision rule) ---
+  best_fixed: fixed_g4=7/16
+  best_sched: sched_full=13/16
+  any cell >= 12/16 genuine: True
+
+VERDICT: SCHEDULE_WINS
+  The precision schedule delivers RELIABLE genuine discrimination at K=4 (best_sched=13/16 >= 12, gap=6 >= 3). The learn-then-exploit annealing strategy fixes the decoupling. Best schedule cell: sched_full. Best fixed cell: fixed_g4=7/16.
+  NOTE: At least one cell reached >=12/16 genuine — reliable genuine discrimination at K=4 IS achievable.
+MACHINE SUMMARY: VERDICT=SCHEDULE_WINS ceil=0.333 fixed_g4=7/16 fixed_g8=3/16 sched_half=8/16 sched_full=13/16 best_sched=sched_full:13 best_fixed=fixed_g4:7

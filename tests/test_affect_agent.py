@@ -291,3 +291,124 @@ def test_exp219_cells_and_genuine_rule():
         assert cfg["turns"] in {100, 300, 600}, f"{name}: unexpected turns {cfg['turns']}"
 
     assert constant_response_ceiling(correct, R) == pytest.approx(1 / 3)
+
+
+# ---------------------------------------------------------------------------
+# Exp 220: gamma_schedule guards
+# ---------------------------------------------------------------------------
+
+def test_gamma_schedule_off_byte_identical():
+    """OFF guard: two agents (K=6, seed=0), one with default (no gamma_schedule kwarg) and one
+    with gamma_schedule=None; drive both through the same 12-code sequence (perceive/act/
+    observe_feedback valence NEU); assert IDENTICAL action sequences.  Guards that the
+    gamma_schedule=None path adds zero extra ops and consumes no extra RNG."""
+    CODES = [0, 1, 2, 3, 4, 5, 0, 2, 4, 1, 3, 5]
+    model = build_direct_head_model(0, k=6)
+    ag_default = DirectHeadAgent(model, lv=LV, seed=0)
+    ag_none    = DirectHeadAgent(model, lv=LV, seed=0, gamma_schedule=None)
+    acts_default, acts_none = [], []
+    for code in CODES:
+        ag_default.perceive(code); ag_none.perceive(code)
+        acts_default.append(ag_default.act()); acts_none.append(ag_none.act())
+        ag_default.observe_feedback(code, NEU); ag_none.observe_feedback(code, NEU)
+    assert acts_default == acts_none, (
+        f"gamma_schedule=None must be byte-identical to default; "
+        f"got {acts_default} vs {acts_none}")
+
+
+def test_gamma_schedule_changes_decisiveness():
+    """CRITICAL MECHANISM GUARD: the gamma schedule must ACTUALLY change policy sharpness —
+    a silent no-op would make all schedule cells identical to fixed cells, invalidating the
+    experiment.
+
+    Approach: use a GIFTED discriminative model so q_pi is already non-uniform, then compare
+    the q_pi distribution for gamma_schedule=(1,1,1) vs (8,8,1).  The gamma=8 schedule must
+    produce a strictly higher max q_pi value (sharper/more decisive policy).  Direct q_pi
+    comparison is reliable here because the gifted A1 already breaks the uniform prior;
+    the stochastic sample_action is bypassed — we compare the softmax output directly.
+
+    gamma_schedule=(g,g,1) is a degenerate constant schedule: anneal from g to g over 1
+    step = always g for every act call.
+    """
+    import equinox as eqx
+
+    # Build a gifted K=4 model: code 0 -> intent 0 (A0 sharp), intent 0 + response 2 -> POS (A1 sharp).
+    m = build_direct_head_model(0, k=4)
+
+    A0 = np.array(m["A"][0])[0]
+    A0[:] = 0.02
+    A0[0, 0, :] = 0.9                                      # code 0 -> intent 0
+    A0 = A0 / A0.sum(0, keepdims=True)
+    m["A"][0]  = jnp.array(A0[None])
+    m["pA"][0] = jnp.array((A0 + 0.1)[None])
+
+    A1 = np.array(m["A"][1])[0]
+    A1[:] = 0.05
+    A1[POS, 0, 2] = 0.9                                    # intent 0, response 2 -> POS
+    A1 = A1 / A1.sum(0, keepdims=True)
+    m["A"][1]  = jnp.array(A1[None])
+    m["pA"][1] = jnp.array((A1 + 0.1)[None])
+
+    # Both agents start from the SAME gifted model and same seed.
+    import copy
+    ag_low  = DirectHeadAgent(copy.deepcopy(m), lv=LV, seed=0, gamma=1.0, alpha=1.0,
+                               gamma_schedule=(1.0, 1.0, 1))
+    ag_high = DirectHeadAgent(copy.deepcopy(m), lv=LV, seed=0, gamma=1.0, alpha=1.0,
+                               gamma_schedule=(8.0, 8.0, 1))
+
+    # Perceive code 0 on both to set _qs_perceive.
+    ag_low.perceive(0); ag_high.perceive(0)
+
+    # Compute q_pi via the same tree_at logic that act() uses (gamma_t at t=0).
+    # gamma_schedule=(g,g,1): t=0, anneal_turns=1, gamma_t = g + (g-g)*min(1.0, 0/1) = g.
+    agent_low_pi  = eqx.tree_at(lambda a: a.gamma, ag_low.agent,  jnp.array([1.0]))
+    agent_high_pi = eqx.tree_at(lambda a: a.gamma, ag_high.agent, jnp.array([8.0]))
+
+    qpi_low,  _ = agent_low_pi.infer_policies(ag_low._qs_perceive)
+    qpi_high, _ = agent_high_pi.infer_policies(ag_high._qs_perceive)
+
+    arr_low  = np.array(qpi_low).reshape(-1)
+    arr_high = np.array(qpi_high).reshape(-1)
+    max_low  = float(arr_low.max())
+    max_high = float(arr_high.max())
+
+    assert max_high > max_low, (
+        f"gamma=8 schedule must produce a strictly sharper q_pi than gamma=1 schedule; "
+        f"got max_high={max_high:.4f} <= max_low={max_low:.4f}. "
+        f"q_pi_low={np.round(arr_low,4)} q_pi_high={np.round(arr_high,4)}. "
+        f"If this fails the gamma tree_at is a no-op — fix the mechanism in Task 1b, "
+        f"do NOT weaken this test.")
+
+
+def test_exp220_cells_well_formed():
+    """Exp 220 config guard: CELLS dict has exactly 4 keys with the predeclared structure."""
+    import importlib.util as _u
+    import pathlib as _pl
+
+    _spec = _u.spec_from_file_location(
+        "exp220", _pl.Path(__file__).parent.parent / "experiments" / "exp220_m4a_schedule.py"
+    )
+    _mod = _u.module_from_spec(_spec)
+    _spec.loader.exec_module(_mod)
+
+    cells = _mod.CELLS
+    assert list(cells.keys()) == ["fixed_g4", "fixed_g8", "sched_half", "sched_full"], (
+        f"CELLS keys mismatch: {list(cells.keys())}")
+
+    # fixed_* must have gamma_schedule=None
+    for name in ["fixed_g4", "fixed_g8"]:
+        assert cells[name]["gamma_schedule"] is None, (
+            f"{name}: gamma_schedule must be None, got {cells[name]['gamma_schedule']}")
+
+    # sched_* must have 3-tuples with g_start=1.0, g_end=8.0
+    for name in ["sched_half", "sched_full"]:
+        sched = cells[name]["gamma_schedule"]
+        assert isinstance(sched, tuple) and len(sched) == 3, (
+            f"{name}: gamma_schedule must be a 3-tuple, got {sched!r}")
+        g_start, g_end, anneal_turns = sched
+        assert g_start == 1.0, f"{name}: g_start must be 1.0, got {g_start}"
+        assert g_end == 8.0,   f"{name}: g_end must be 8.0, got {g_end}"
+
+    # Module-level constants
+    assert _mod.K == 4,    f"K must be 4, got {_mod.K}"
+    assert _mod.TURNS == 300, f"TURNS must be 300, got {_mod.TURNS}"

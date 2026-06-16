@@ -309,10 +309,18 @@ step 0.
   EXPLOITATION (γ1 has the highest csel 0.54 — it learns the mapping — but won't act on it). Realistic K=4 ≈
   K=6 ⇒ capacity is NOT the blocker. The honest metric TEMPERS 217/218: the anchor's lenient 7/8 is only
   4/8 GENUINE (learning real, reliability overstated). N=8 ⇒ no cell ranking (g4_600 3/8 < g4_300 5/8 is
-  noise). NEXT (human's word): **Exp 220 / 1i** — a PRECISION SCHEDULE (anneal γ low→high: explore-to-learn
-  then sharpen-to-exploit, the natural fix for the learn-but-don't-exploit decoupling) + bigger N (≥16) +
-  report csel distributions, targeting reliable genuine discrimination at K=4. Guard:
-  tests/test_affect_agent.py (correct_select + constant_response_ceiling); card: loop/directions/affective-dyad.md.
+  noise). **Exp 220 (1i, precision schedule, POSITIVE / NEW INSIGHT, blind-verified, Sonnet-coded)** added
+  a per-turn γ schedule (`DirectHeadAgent.gamma_schedule`, eqx.tree_at on a throwaway agent — no leak into
+  learning; byte-identical when off) and tested anneal-vs-fixed at K=4, N=16: gradually annealing γ 1→8 over
+  the full session (sched_full) reaches **13/16 GENUINE** — the FIRST reliable genuine discrimination in M4a
+  — fixing the learn-but-don't-exploit decoupling; it beats fixed γ4 (7/16) and fixed γ8 is WORST (3/16,
+  over-commits early). NOT a breakthrough (blind-verified): every cell is the LONG 300t session — the short
+  100t realistic session (Exp 219's open learning blocker) is untested, so length does much of the work and
+  the schedule was never separated from it; the 13/16 is bar-fragile (csel≥0.67 → 7/16) and N=16 is modest.
+  NEXT (human's word): **Exp 221 / 1j** — SEPARATE the schedule from session length: run it at the SHORT
+  session (100/150/200t) at K=4, N≥16 — does annealing γ rescue the short session, or is 300t necessary? +
+  report at the stricter csel≥0.67 bar. Guard: tests/test_affect_agent.py (gamma_schedule + correct_select
+  + constant_response_ceiling); card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
