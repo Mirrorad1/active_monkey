@@ -144,3 +144,32 @@ def test_frozen_guard_blocks_scorer_edit(tmp_path):
     assert git_ops.changed_files(repo) == []
     # Scorer file must be restored
     assert (repo / "eval" / "affect_score.py").read_text() == scorer_before
+
+
+@pytest.mark.slow
+def test_run_affect_pr_loop_completes_and_writes_isolated_journal(tmp_path):
+    """run_affect_pr_loop must complete a full iteration and write its ISOLATED affect journal.
+
+    Regression guard for the Exp 224 instrument bug: one_affect_iteration's branch churn
+    (commit_all sweeps the untracked world_model_affect onto the proposal branch, then
+    discard -> checkout(trunk) WIPES it because it is not tracked on trunk). A critic-reject
+    iteration takes that discard path; without the re-mkdir fix the subsequent
+    wm.append_evidence raises FileNotFoundError. With it, the loop completes and writes the
+    journal under the isolated world_model_affect dir.
+    """
+    from active_loop.affect_pr_loop import run_affect_pr_loop
+    repo = _clone(tmp_path)
+    trunk = git_ops.current_branch(repo)
+    # MockCritic(approve=False) -> proposal critic-rejected -> the discard-checkout path that
+    # wiped world_model_affect. Stub score so no real 10-min scoring runs.
+    run_affect_pr_loop(
+        repo,
+        AffectMockProposer(0),
+        MockCritic(approve=False),
+        iterations=1,
+        score_fn=lambda _r: {"metric": 0.40, "verdict": True},
+    )
+    assert git_ops.current_branch(repo) == trunk
+    journal = repo / "world_model_affect" / "evidence" / "journal.jsonl"
+    assert journal.exists(), "isolated affect journal was not written"
+    assert journal.read_text().strip(), "affect journal is empty"

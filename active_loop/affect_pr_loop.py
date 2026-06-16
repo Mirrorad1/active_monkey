@@ -143,6 +143,12 @@ def run_affect_pr_loop(
             base_metric=best_metric,
             score_fn=score_fn,
         )
+        # one_affect_iteration's branch churn (commit_all sweeps the untracked world_model_affect
+        # onto the proposal branch, then discard -> checkout(trunk) WIPES it because it is NOT tracked
+        # on trunk — unlike the lang world_model which is committed). Re-ensure the WorldModel subdirs
+        # exist before writing evidence/findings/INDEX, or append_evidence raises FileNotFoundError.
+        for _sub in ("beliefs", "findings", "evidence"):
+            (repo / world_model_dir / _sub).mkdir(parents=True, exist_ok=True)
         wm.append_evidence({
             "iter": i,
             "hypothesis": r.hypothesis,
