@@ -1,0 +1,49 @@
+==============================================================================
+EXP 222 - M4a increment 1e: FROZEN learns-to-positive scorer validation
+CEIL=0.333; genuine = (csel>=0.5) AND (last>0.333)
+guardrails: realized_above_ceiling (mean_last>1/3), learned_improvement (>=0.10),
+            genuine_reliable (genuine_fraction>=0.5)
+==============================================================================
+FALSIFIER: A1 verdict=False (no learning) OR A2 verdict=True (constant fakes it)
+           => the frozen metric is BROKEN. Do not ship.
+
+--- A1: score_affect() at frozen defaults (the DirectHeadAgent learner) ---
+{
+  "metric": 0.4225,
+  "mean_first": 0.1825,
+  "mean_last": 0.4225,
+  "improvement": 0.24,
+  "genuine_fraction": 0.75,
+  "ask_rate": 0.32708333333333334,
+  "n_seeds": 8,
+  "guardrails": {
+    "realized_above_ceiling": true,
+    "learned_improvement": true,
+    "genuine_reliable": true
+  },
+  "verdict": true
+}
+A1_VERDICT=True  (want True)
+
+--- A2: score_affect(constant_factory(0)) -- the anti-hack control ---
+{
+  "metric": 0.33375,
+  "mean_first": 0.33125000000000004,
+  "mean_last": 0.33375,
+  "improvement": 0.0024999999999999467,
+  "genuine_fraction": 0.0,
+  "ask_rate": 0.0,
+  "n_seeds": 8,
+  "guardrails": {
+    "realized_above_ceiling": true,
+    "learned_improvement": false,
+    "genuine_reliable": false
+  },
+  "verdict": false
+}
+A2_VERDICT=False  (want False)
+
+--- MILESTONE VERDICT (predeclared) ---
+  A1 learner verdict = True (want True);  A2 constant verdict = False (want False), genuine_fraction=0.0
+VERDICT: MILESTONE_VALIDATED
+MACHINE SUMMARY: VERDICT=MILESTONE_VALIDATED A1_verdict=True A1_metric=0.4225 A1_genuine=0.750 A1_improvement=0.2400 A2_verdict=False A2_genuine=0.000

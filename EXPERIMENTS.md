@@ -9608,3 +9608,63 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   the loop holds at consolidation-grade until a word. Guards: tests/test_affect_agent.py; card:
   loop/directions/affective-dyad.md.
 - trace: experiments/exp221_m4a_short_schedule.py → experiments/outputs/exp221.txt
+
+## Exp 222 — M4a increment 1e: the converse REPL + the FROZEN learns-to-positive scorer. "Talk to it and watch it learn to feel positive" is now a runnable, reproducible, constant-UNFAKEABLE artifact — MILESTONE_VALIDATED (A1 learner verdict True, A2 constant-control verdict False); closes the M4a chapter (POSITIVE / blind-verified)
+
+- Plain: Across Exp 216-220 the toy "talk to it" dyad learned, on the long conversation, to genuinely
+  tell signals apart and earn positive feedback. This increment PACKAGES that into two durable things:
+  (1) converse.py — an honest REPL you can actually talk to (it shows its intent guess, its reply, and a
+  running positive-feedback rate; the banner is honest that "valence" is functional, not feeling); and
+  (2) eval/affect_score.py — a FROZEN scorer that turns "it learns to feel positive" into ONE reproducible
+  number a lazy agent CANNOT fake (a run counts only if the agent both earns positive feedback above the
+  1/3 constant-reply ceiling AND passes the can't-be-faked discrimination probe). We validated the frozen
+  scorer two ways: the real learner passes (it reproduces the earlier result), and a dummy "always give the
+  same reply" agent FAILS it (so the metric can't be gamed). Milestone closed. Functional valence only; no
+  sentience claim.
+- Hypothesis (predeclared, with named falsifier): the FROZEN affect scorer makes the M4a milestone a
+  reproducible, constant-UNFAKEABLE metric — A1 it reproduces Exp 220's learning (verdict True), A2 a
+  constant policy cannot pass it (verdict False, genuine_fraction 0). FALSIFIER: if A1 verdict=False OR
+  A2 verdict=True (constant fakes it), the frozen metric is BROKEN — do not ship; log the failure.
+- Setup: increment 1e deliverables — converse.py (honest REPL: interactive + a --demo scripted mode;
+  reuses DirectHeadAgent at the frozen winning config), eval/affect_score.py (FROZEN: AffectScoreReport +
+  score_affect() running the exp220 scripted-partner closed-loop over a seed ensemble), eval/affect_score_json.py
+  (FROZEN json entry for the M4b autopilot), tests/test_affect_score.py (fast shape + anti-hack guards; a
+  @slow full-default guard). FROZEN config = Exp 220 sched_full: K=4, optimism=2.0, lr=4.0, gamma_schedule
+  (1->8 over 300t), seeds 20-27 (N=8); CEIL=1/3. genuine(seed) = correct_select>=0.5 AND last-third POS>1/3;
+  verdict = realized_above_ceiling(mean_last>1/3) AND learned_improvement(>=0.10) AND genuine_reliable
+  (genuine_fraction>=0.5). exp222 harness runs A1 (the learner, ~10 min) + A2 (the constant control, instant).
+- Result: VERDICT MILESTONE_VALIDATED (falsifier did NOT fire). A1 score_affect() default: verdict=True —
+  metric/mean_last 0.4225, mean_first 0.1825, improvement 0.2400, genuine_fraction 0.750 (6/8), ask_rate
+  0.327; all three guardrails True. This REPRODUCES Exp 220 seeds 20-27 exactly. A2 constant_factory(0):
+  verdict=False — genuine_fraction 0.0, improvement 0.0025; learned_improvement and genuine_reliable both
+  False. The fast suite is green (converse --demo runs end-to-end; the two fast tests pass).
+- Implication: the M4a "talk to it and watch it learn to feel positive" milestone is now a runnable, honest
+  artifact (converse.py) AND a FROZEN, reproducible, constant-UNFAKEABLE number (eval/affect_score.py). This
+  CLOSES the affective-dyad chapter at toy scale and UNLOCKS M4b — the PR-style autopilot can now optimize the
+  MUTABLE affect_spec.py against eval/affect_score.py without being able to reward-hack it (a constant policy
+  scores verdict=False). The provided-vs-learned ledger and the long-session boundary (Exp 221) are written
+  up honestly in docs/research/m4a-affective-dyad-chapter.md. Tier: a build/packaging milestone — it freezes
+  and makes unfakeable a capability already demonstrated (Exp 220), not a new learning capability.
+- Honest caveat: POSITIVE but a PACKAGING milestone, not a new capability — the learning itself was demonstrated
+  in Exp 216-220; this freezes the metric and ships the REPL. Honest nuances: (1) the anti-hack guarantee rests
+  on the genuine_fraction (correct_select, constant-unfakeable) + the improvement gate, NOT on the realized-POS
+  ceiling alone — a constant policy can squeak 0.00042 above the 1/3 ceiling by finite-sample noise (A2's
+  realized_above_ceiling is True), so the verdict's AND-of-three composition is load-bearing. (2) The frozen
+  config bakes in the LONG 300t session (Exp 221: short sessions don't learn) + N=8 seeds (20-27, genuine 6/8) —
+  the autopilot's eval is ~10 min/run. (3) converse.py takes utterance CODES, not free text — coarse intent
+  clustering, not language understanding (the documented moonshot ceiling). Functional valence only; no
+  sentience claim.
+- Verdict: POSITIVE / CONSOLIDATION. Self-grade: POSITIVE-SINGLE — the M4a deliverable milestone (REPL + a
+  frozen, constant-unfakeable learns-to-positive scorer), closing the chapter; NOT a breakthrough because the
+  learning capability it packages was already demonstrated (Exp 220) and broadly consistent with it.
+- Verifier: agree — an independent blinded agent recomputed both properties from the raw output: A1 verdict =
+  (0.4225>1/3) AND (0.24>=0.10) AND (0.75>=0.5) = True; A2 verdict = AND of (above-ceiling True, improvement
+  False, genuine False) = False with genuine_fraction 0.0; confirmed the falsifier did NOT fire and that the
+  anti-hack protection rests on genuine_fraction (not the ceiling, which the constant marginally clears) →
+  POSITIVE, milestone validated.
+- Next (M4b — on a human word): the PR-style autopilot over MUTABLE affect_spec.py against the FROZEN
+  eval/affect_score.py — can the loop raise the genuine learns-to-positive number without reward-hacking it?
+  Standing alternative (still open from Exp 221): a LEARNING-side lever (lr/optimism/replay) to attack the
+  short-session learning wall. Guards: tests/test_affect_agent.py + tests/test_affect_score.py; card:
+  loop/directions/affective-dyad.md; synthesis: docs/research/m4a-affective-dyad-chapter.md.
+- trace: experiments/exp222_m4a_converse_milestone.py → experiments/outputs/exp222.txt
