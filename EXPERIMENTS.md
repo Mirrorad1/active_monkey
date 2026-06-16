@@ -9193,3 +9193,70 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   diffuse-policy loop. No self-fix per the consult guardrail. Card: loop/directions/affective-dyad.md;
   guards: tests/test_affect_agent.py.
 - trace: experiments/exp215_m4a_1d.py → experiments/outputs/exp215.txt
+
+## Exp 216 — M4a ignition-envelope diagnostic: the direct-head "talk to it" dyad LEARNS to earn approval under honest scaffolds — the FIRST ignition in the M4a thread (POSITIVE / NEW INSIGHT; POSITIVE-SINGLE; not yet reliable)
+
+- Plain: The talk-to-it agent had halted four times without ever learning to earn the partner's approval.
+  Instead of adding more machinery, this takes the agent APART to find where it fails and whether ANY fair
+  help lets it learn. Three tests: (A) hand it the right answers and check it can build its internal table;
+  (B) hand it a correct table and check it acts on it; (C) the full learn-and-act loop, under generous but
+  HONEST help — more internal states, faster learning, more decisive action, a longer session, none of
+  which tells it the answer. The pieces work alone (it acts perfectly given a correct table; it builds a
+  good table when fed enough good data with enough states), and under the generous honest help the full
+  loop IGNITES: at least one run actually learns — its rate of earning approval climbs over the session
+  (0.10 → 0.34), the first time that has ever happened here. So the dyad CAN learn under honest conditions
+  — this path is not a dead end. It is not yet reliable (1 of 4 runs; decisive action can lock an unlucky
+  run onto a wrong early guess), so the next step is reliability and dialing the help back toward realism,
+  not closing the thread and not adding more heads. Functional valence only; no sentience claim.
+- Hypothesis (the steer's question): can the Exp 215 direct-head dyad learn to earn POS under ANY honest
+  scaffold (scaffolds change HOW it learns/acts, never reveal the answer)? Decision rule, predeclared:
+  PATH_EXISTS / IGNITION iff ≥ 1/4 generous-scaffold seeds show POS-rate improvement ≥ 0.15 AND last-third
+  POS-rate ≥ 0.30 (clearly above the ~0.20 chance ceiling); NO_IGNITION (⇒ close M4a negative) iff 0/4.
+- Setup: a DIAGNOSTIC (no new architecture) on the committed Exp 215 DirectHeadAgent, parametrised with the
+  honest scaffolds gamma (policy precision), alpha, lr_pA (learning rate) + a force_action teacher hook.
+  (A) UPDATE-ONLY — teacher forces (code, random response, TRUE valence) triples, then read the learned
+  policy's correct-response selection. (B) POLICY-ONLY — gift the TRUE valence table + code→intent
+  identity, sweep gamma, read correct-select. (C) CLOSED-LOOP — full bootstrap under the GENEROUS honest
+  scaffold (K=U=6 intent capacity, lr 4, gamma 8, 300 turns), fresh seeds 20–23, metric = POS-rate
+  improvement first-third→last-third. Realistic-regime baseline (K=4, 100 turns, default precision) is
+  Exp 215 (P3 0/8), not re-run. New guards in tests/test_affect_agent.py.
+- Result: B POLICY-ONLY = 1.00 at gamma {1,4,16} (exploitation is PERFECT given a correct table). A
+  UPDATE-ONLY = 0.00 at K=4 (the realistic intent capacity — aliasing makes the table unrepresentable),
+  0.33 at K=6/lr4/200, and 0.83 at K=6/lr4/600 (the LEARNING acquires the table given capacity + lr +
+  ~600 good triples). C CLOSED-LOOP IGNITION = 1/4: seed 20 POS-rate 0.10 → 0.34 (improvement +0.240),
+  seeds 21/22/23 flat (+0.000/+0.000/−0.020); best +0.240, mean +0.055. The 1/4 meets the predeclared
+  PATH_EXISTS bar ⇒ IGNITION. (Prior M4a increments 125/127/214/215 were ALL 0/8 — this is the first
+  positive learning.)
+- Implication: M4a is NOT a dead end — a learnable path exists under honest scaffolds. The decomposition
+  localises exactly why the realistic regime (Exp 215) failed and is NOT a single wall but a CONJUNCTION:
+  exploitation works (policy 1.0), learning works given enough intent CAPACITY (K=U, not the aliased K=4)
+  + learning rate + DATA (~600 good triples), and the closed loop needs all of those PLUS enough turns for
+  sparse stochastic exploration to generate that data. Seed 20 cracked the exploration cold-start; 21–23
+  never escaped the zero-feedback basin (high precision can lock an unlucky run onto a wrong early guess).
+  This RECASTS the whole M4a thread: the four prior halts were each one necessary ingredient (learning
+  channel → timing → direct credit → and now capacity + lr + horizon + exploration luck), and assembling
+  them ignites. The binding remaining problem is RELIABILITY (1/4), i.e. the exploration cold-start, not a
+  structural impossibility. Generalizability tier: mechanism diagnosis + an existence result, toy scale.
+- Honest caveat: functional valence only — no sentience claim; "learns to earn approval" = the realized
+  POS-feedback rate rises over a session, nothing more. This is ONE ignition of four seeds, under a GENEROUS
+  (though honest) scaffold (K=U intent capacity, gamma 8, lr 4, 300 turns) — an EXISTENCE result, not a
+  reliable capability; it would NOT survive the hostile-reviewer test as a robust demonstration (hence
+  POSITIVE-SINGLE, not BREAKTHROUGH — the BREAKTHROUGH would be a RELIABLE ignition, ideally at a ratcheted-
+  down scaffold). K/R/U and the partner are PROVIDED; the agent learns A0 (code→intent) and A1
+  (intent×response→valence) from sparse feedback; none of the scaffolds reveal the answer. The realistic
+  K=4/100-turn regime does NOT ignite (Exp 215). The 2-factor inference is slow (~0.6 s/turn).
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE-SINGLE — the first ignition (an existence result
+  that materially redirects M4a from candidate-for-closure to path-found), but fragile (1/4) and
+  scaffold-dependent, so not the reliable BREAKTHROUGH.
+- Verifier: agree — an independent blinded agent (given only the predeclaration + committed exp216.txt)
+  applied the decision rule (1/4 satisfies improvement ≥ 0.15 AND last-third ≥ 0.30) → PATH_EXISTS/IGNITION,
+  judged seed 20 a genuine within-run learning curve (0.10→0.34 over 300 turns, not a one-off), confirmed
+  the decomposition (policy-only 1.0; update-only 0.83 at K=U vs 0.0 at K=4) shows the components work and
+  the integration bottleneck is exploration cold-start (3/4 never escape the zero-feedback basin), and
+  agreed "do not close; next = reliability/ratchet" is the rule-correct call (close requires 0/4).
+- Next (on human word only): M4a is NOT closed — the ignition envelope is found. The next increment (1f)
+  is RELIABILITY: break the exploration cold-start (optimistic A1 initialisation / epsilon-greedy or
+  count-based exploration / a curriculum warm-start), then RATCHET the scaffold down toward the realistic
+  regime (lower gamma, fewer intents, shorter session) to find the minimal honest conditions for reliable
+  ignition. Card: loop/directions/affective-dyad.md; guards: tests/test_affect_agent.py.
+- trace: experiments/exp216_m4a_ignition.py → experiments/outputs/exp216.txt
