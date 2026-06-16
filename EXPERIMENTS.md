@@ -9668,3 +9668,64 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   short-session learning wall. Guards: tests/test_affect_agent.py + tests/test_affect_score.py; card:
   loop/directions/affective-dyad.md; synthesis: docs/research/m4a-affective-dyad-chapter.md.
 - trace: experiments/exp222_m4a_converse_milestone.py → experiments/outputs/exp222.txt
+
+## Exp 223 — M4b first REAL autopilot run (--real --iterations 2): the real pipeline WORKS for one full iteration (Claude proposes a valid affect_spec mutation → FROZEN scorer grades it → loop correctly reverts a worse candidate), but the run is INSTRUMENT-LIMITED (iteration-2 proposer timeout + the FROZEN proposer carries lang/controller context + a shared world_model journal) — the science question (can it raise the metric?) is UNRESOLVED at N=1 (NO_VERDICT / NEW INSIGHT; blind-verified INSTRUMENT_FAILURE)
+
+- Plain: First time turning the auto-improver loose for real. It DID work for one round: Claude made a
+  real small change to the agent's model file, the FROZEN can't-be-faked scorer graded the changed agent,
+  and the loop correctly THREW THE CHANGE AWAY because it scored worse (0.37 vs the 0.42 baseline). But the
+  second round crashed: the nested Claude call took longer than the 180-second limit. We also found the
+  loop's proposer was reading the OLD language-model mission and notes (wrong context for this affect task),
+  and writing into a shared notes file mixed with old runs. So the machinery is proven to work end-to-end,
+  but it needs its own affect-specific proposer + a longer timeout + its own notes before a real
+  improvement run. No improvement found in the one completed round. Functional valence only; no sentience.
+- Hypothesis (predeclared, with named falsifier): the M4b autopilot runs end-to-end for real AND can RAISE
+  the genuine learns-to-positive metric above the deterministic baseline (0.4225) without reward-hacking.
+  FALSIFIER: if across BOTH iterations no proposal both improves the metric AND holds verdict, NEGATIVE
+  (no gain at N=2); a claude/scorer failure is an INSTRUMENT failure, NOT a science verdict.
+- Setup: run_affect_loop.py --real --iterations 2 on an ISOLATED clone (git clone --local of HEAD 1f3eb9d;
+  .venv symlinked; cron-safe). Real path: ClaudeCliProposer (claude -p, target affect_spec.py) + ClaudeCliCritic
+  + the FROZEN score_affect() (300t x 8 seeds, ~10 min/candidate). KEEP iff metric > best AND verdict.
+- Result: VERDICT NO_VERDICT (instrument-limited). Baseline real score reproduced = 0.4225 (REPORT.md
+  "best metric: 0.4225"). ITERATION 0 (affect) = a COMPLETE real cycle: the claude proposer returned a valid
+  affect_spec.py mutation, it passed frozen-guard + the affect tests + the critic, the FROZEN scorer scored
+  it 0.3713 (< 0.4225), and it was correctly REVERTED (no_improvement). ITERATION 1: the nested `claude -p`
+  proposer call raised subprocess.TimeoutExpired after 180 s (the FROZEN ClaudeCliProposer default), crashing
+  run_affect_loop with returncode=1 before iteration 1 reached scoring. The cloned world_model/evidence/
+  journal.jsonl carried 5 STALE rows from prior LANG/CONTROLLER pr-loop runs (negative free-energy metrics
+  -1.99/-2.09; hyps "set K 12->14", "nudge first float 0.2->0.3"); the affect loop appended to the same
+  journal (the only affect row is the 0.3713 one). 0 improving merges; best stayed at baseline 0.4225; no
+  frozen path touched (frozen-guard active).
+- Implication: the real M4b pipeline is VALIDATED for one full iteration — the unit tests (Exp's M4b harness)
+  only STUBBED the proposer + scorer, so this is the first proof that the real claude proposer + the real
+  10-min FROZEN scorer + the real keep/revert compose end-to-end (and a WORSE candidate is correctly thrown
+  away). But three INSTRUMENT requirements block a clean multi-iteration run, all now named: (1) the FROZEN
+  ClaudeCliProposer's 180 s timeout is too short for the full-context affect prompt (it embeds MISSION+policy+
+  world_model+the whole spec); (2) that proposer reads the lang/controller MISSION.md / policy.md /
+  world_model/INDEX.md — WRONG context for affect (its mission literally says "edit ONLY model_spec.py" and
+  "lower free energy"); an AFFECT-SPECIFIC proposer is needed; (3) the shared world_model journal mixes lang
+  rows — the affect loop needs its own world_model. Tier: an instrument-shakedown of the real M4b path —
+  pipeline-validated-for-1-iteration + a named instrument-requirements list; no science verdict on
+  improvability (N=1, the 0.3713<0.4225 datum is a single worse candidate, not a 2-iteration falsifier test).
+- Honest caveat: NO_VERDICT — the predeclared 2-iteration falsifier did NOT fire (iteration 1 crashed on a
+  proposer timeout, which the predeclaration explicitly classifies as an INSTRUMENT failure, not a science
+  result), so "can the autopilot raise the metric?" is UNRESOLVED. The one positive sub-finding (real
+  pipeline validated for a full iteration) is about the HARNESS, not the science. The frozen scorer +
+  frozen-guard held (no gaming, no frozen-touch). N=1; the lang-context proposer + shared journal make even
+  the single datum methodologically muddy. Functional valence only; no sentience claim.
+- Verdict: NO_VERDICT (INSTRUMENT-LIMITED) / NEW INSIGHT. Self-grade: NO_VERDICT — the science question is
+  unresolved (instrument-limited); the value is the named instrument requirements + the one-iteration
+  real-pipeline validation.
+- Verifier: disagreed — I first read it MIXED (pipeline works + no improvement); the independent blinded
+  agent graded INSTRUMENT_FAILURE, reasoning that the predeclared falsifier requires BOTH iterations to
+  complete but iteration 1 crashed on the proposer timeout (a claude failure the predeclaration excludes from
+  a science verdict), so the science verdict is unresolvable. Resolved to the STRICTER reading: NO_VERDICT /
+  instrument-limited (both readings recorded); the real-pipeline-validated-for-1-iteration observation stands
+  as a sub-finding, not a science claim.
+- Next (CONSULT — a human word): to make M4b run cleanly, build an AFFECT-SPECIFIC proposer (its own affect
+  MISSION/objective + an isolated affect world_model + a longer claude timeout via run_affect_loop.py, which
+  is non-frozen) THEN re-run a bounded multi-iteration M4b; OR a quick-fix re-run (bump the proposer timeout +
+  point at an isolated world_model, keep the frozen proposer) for a faster but methodologically muddier
+  improvability datum; OR pause M4b and pick the standing alt (a LEARNING-side lever for the short-session
+  wall, Exp 221). Guards: tests/test_affect_pr_loop.py; card: loop/directions/affective-dyad.md.
+- trace: experiments/exp223_m4b_first_run.py → experiments/outputs/exp223.txt
