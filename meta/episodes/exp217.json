@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp217.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp217_m4a_cold_start.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.05\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.20\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.40\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.44\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.83\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1.0\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/4\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2.0\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"215/216\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"25/27\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/8\" quoted in entry not found in experiments/outputs/exp217.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-16T03:41:54Z",
+  "commit_sha": "15dfdcbe67f787dc8204193eda2cc43b386e76cb",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 217,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
