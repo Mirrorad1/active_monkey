@@ -1,16 +1,16 @@
 """Entry point for the language-model PR-style autopilot.
 
-    uv run --python .venv python run_pr_loop.py --iterations 3            # mock (no LLM)
-    uv run --python .venv python run_pr_loop.py --iterations 3 --real     # claude proposer + critic
+    uv run --python .venv active-monkey-pr-loop --iterations 3            # mock (no LLM)
+    uv run --python .venv active-monkey-pr-loop --iterations 3 --real     # claude proposer + critic
 """
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 from active_loop.pr_loop import run_pr_loop
 from active_loop.proposer import LangMockProposer, ClaudeCliProposer
 from active_loop.critic import MockCritic, ClaudeCliCritic
+from active_loop.cli._paths import repo_root
 
 
 def main() -> None:
@@ -18,7 +18,7 @@ def main() -> None:
     ap.add_argument("--iterations", type=int, default=0)
     ap.add_argument("--real", action="store_true")
     args = ap.parse_args()
-    repo = Path(__file__).resolve().parent
+    repo = repo_root()
     if args.real:
         proposer = ClaudeCliProposer(
             target_file="active_loop/lang_model_spec.py",

@@ -33,6 +33,12 @@ def test_lab_command_has_consent_gate():
     assert "do not" in text  # explicit prohibition on iterating/committing before "go"
 
 
+def test_lab_command_explains_how_to_create_missing_direction():
+    text = (CMD / "lab.md").read_text(encoding="utf-8").lower()
+    assert "loop/directions/_template.md" in text
+    assert "create a new direction" in text
+
+
 def test_steer_command_exists():
     assert (CMD / "steer.md").is_file()
 

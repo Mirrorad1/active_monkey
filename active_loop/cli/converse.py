@@ -14,14 +14,8 @@ HONEST BANNER (printed at startup):
 from __future__ import annotations
 
 import argparse
-import sys
-from pathlib import Path
 
 import numpy as np
-
-_REPO = Path(__file__).parent
-if str(_REPO) not in sys.path:
-    sys.path.insert(0, str(_REPO))
 
 from active_loop.affect_spec import (
     build_direct_head_model,

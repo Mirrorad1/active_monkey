@@ -20,7 +20,8 @@ HYPOTHESIS: with the affect-specific proposer (own affect mission + isolated wor
 learns-to-positive metric above the deterministic baseline (0.4225) by mutating build_direct_head_model's
 priors in affect_spec.py, without reward-hacking (FROZEN scorer + frozen-guard).
 
-PREDECLARATION: run `run_affect_loop.py --real --iterations 2` on an ISOLATED clone (cron-safe).
+PREDECLARATION: run `python -m active_loop.cli.run_affect_loop --real --iterations 2`
+on an ISOLATED clone (cron-safe).
 The --real path now uses AffectClaudeProposer + AffectClaudeCritic + the isolated world_model_affect
 journal. Baseline = the autopilot's first real score of the unmodified clone (must reproduce ~0.4225).
 The lever is ONLY build_direct_head_model's priors (the FROZEN scorer fixes optimism/lr/gamma-schedule).
@@ -85,10 +86,10 @@ def main() -> None:
         log(f"[setup] clone base_sha={base_sha[:10]}")
         log("")
 
-        log("[run] run_affect_loop.py --real --iterations 2 (AFFECT proposer, ~40 min) ...")
+        log("[run] python -m active_loop.cli.run_affect_loop --real --iterations 2 (AFFECT proposer, ~40 min) ...")
         env = dict(os.environ, OMP_NUM_THREADS="1", XLA_FLAGS="--xla_cpu_multi_thread_eigen=false")
         proc = _run(["uv", "run", "--python", ".venv", "python",
-                     "run_affect_loop.py", "--real", "--iterations", "2"],
+                     "-m", "active_loop.cli.run_affect_loop", "--real", "--iterations", "2"],
                     clone_repo, timeout=7200, env=env)
         log(f"[run] returncode={proc.returncode}")
         if proc.stdout.strip():

@@ -130,7 +130,7 @@ The default public commands are:
 ```bash
 uv sync
 uv run --python .venv pytest -q
-uv run --python .venv python converse_demo.py
+uv run --python .venv active-monkey-converse-demo
 uv run --python .venv python experiments/exp154_growth_confirmation.py
 uv run --python .venv python tools/check_docs.py
 ```

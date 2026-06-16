@@ -77,8 +77,11 @@ def test_cli_unknown_direction_errors():
         [sys.executable, "loop/compose.py", "zzznope"],
         cwd=ROOT, capture_output=True, text=True,
     )
+    output = (r.stderr + r.stdout).lower()
     assert r.returncode != 0
-    assert "no direction" in (r.stderr + r.stdout).lower()
+    assert "no direction" in output
+    assert "loop/directions/_template.md" in output
+    assert "create a new direction" in output
 
 
 def test_cli_positional_and_flag_conflict_errors():
@@ -95,5 +98,8 @@ def test_cli_no_direction_errors():
         [sys.executable, "loop/compose.py"],
         cwd=ROOT, capture_output=True, text=True,
     )
+    output = (r.stderr + r.stdout).lower()
     assert r.returncode != 0
-    assert "no direction" in (r.stderr + r.stdout).lower()
+    assert "no direction" in output
+    assert "pick one explicitly" in output
+    assert "create a new direction" in output

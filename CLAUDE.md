@@ -4,8 +4,9 @@
 (the RECIPE), where we are, and how to continue. Do not start work before reading it.
 
 This repo contains TWO loops — don't confuse them (RESUME.md §4):
-- **Loop A** (code-mutating autopilot): `run_loop.py` machinery, governed by `MISSION.md` +
-  `policy.md` + the `FROZEN` manifest. Never edit FROZEN paths.
+- **Loop A** (code-mutating autopilot): `active-monkey-loop` / `active-monkey-pr-loop`
+  machinery (`active_loop/cli/`), governed by `MISSION.md` + `policy.md` + the
+  `FROZEN` manifest. Never edit FROZEN paths.
 - **Loop B** (Claude-driven research): you designing/running experiments. Governed by
   `loop/PROTOCOL.md` (iteration discipline) and `loop/VALIDATION.md` (honesty rules —
   non-negotiable). The modular prompt system lives in `loop/` — directions, personas, and the

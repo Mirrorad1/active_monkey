@@ -47,7 +47,7 @@ novelty hunting before world enrichment is reading noise.
 3. **Enriched world epochs.** After persistent-creature episode 5 (5×5 growth), add the
    minimal dynamics that give history room to bite (e.g. a slowly drifting comfort source
    or appearing/decaying hazard — ONE new mechanism, declared as provided). Run long epochs
-   (`run_life.py`) with the surprise ledger armed. Predeclared expectation: adaptation
+   (`active-monkey-life`) with the surprise ledger armed. Predeclared expectation: adaptation
    tracks the drift with measurable lag. A quiet ledger across epochs is a REAL negative:
    "no novelty at this richness" — log it, don't shop for anomalies post-hoc.
 

@@ -43,7 +43,8 @@ control (`tests/test_affect_agent.py`) must pass first — it proves the EFE/pol
   fails ⇒ even a direct credit path does not learn at this scale ⇒ HALT with the next suspect (capacity /
   lr / session length). Honesty: a direct head is a PROVIDED structural prior — declare it; it does not
   make success inevitable (the agent must still learn WHICH response per intent).
-- **Increment 1e+ — converse REPL + FROZEN scorer (only after 1d learns).** `converse.py` honest REPL;
+- **Increment 1e+ — converse REPL + FROZEN scorer (only after 1d learns).** `active-monkey-converse`
+  (`active_loop/cli/converse.py`) honest REPL;
   `eval/affect_score.py` the frozen learns-to-positive metric; then **M4b** = the PR-style autopilot over
   `affect_spec.py` against that metric.
 
@@ -53,4 +54,4 @@ provided-vs-learned ledger. Close NEGATIVE when the increment ladder exhausts th
 (direct head, capacity, session length) without P3 ever passing — then the finding is the affective
 learnability wall (the AIF face of useful-when-gifted ≠ learnable), documented for the human.
 
-**STATUS.** state: closed-positive (M4a milestone reached; M4b autopilot exists, first real run instrument-limited). latest: Exp 223 — M4b first REAL run (--real x2, clone), NO_VERDICT / NEW INSIGHT (blind-verified INSTRUMENT_FAILURE): the real pipeline WORKS for one iteration (Claude proposes a valid affect_spec mutation → guard+tests+critic → FROZEN scorer 0.3713 < 0.4225 → correctly reverted), but round 2 hit the nested claude -p 180s timeout and the FROZEN proposer carries lang context — improvability UNRESOLVED (N=1). Prior: M4b harness (5 stub tests); Exp 222 (1e) converse.py + the FROZEN scorer; Exp 221 short-session boundary. next (human word): build an AFFECT proposer (own mission + world_model + timeout) then re-run; OR quick-fix re-run; OR the short-session LEARNING lever.
+**STATUS.** state: closed-positive (M4a milestone reached; M4b autopilot exists, first real run instrument-limited). latest: Exp 223 — M4b first REAL run (--real x2, clone), NO_VERDICT / NEW INSIGHT (blind-verified INSTRUMENT_FAILURE): the real pipeline WORKS for one iteration (Claude proposes a valid affect_spec mutation → guard+tests+critic → FROZEN scorer 0.3713 < 0.4225 → correctly reverted), but round 2 hit the nested claude -p 180s timeout and the FROZEN proposer carries lang context — improvability UNRESOLVED (N=1). Prior: M4b harness; Exp 222 REPL + FROZEN scorer; Exp 221 short-session boundary. next (human word): build an AFFECT proposer (own mission + world_model + timeout) then re-run; OR quick-fix re-run; OR the short-session LEARNING lever.

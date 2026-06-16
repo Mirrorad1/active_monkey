@@ -1,12 +1,11 @@
 """Entry point for the affect-model PR-style autopilot.
 
-    uv run --python .venv python run_affect_loop.py --iterations 3            # mock (no LLM)
-    uv run --python .venv python run_affect_loop.py --iterations 3 --real     # claude proposer + critic
+    uv run --python .venv active-monkey-affect-loop --iterations 3            # mock (no LLM)
+    uv run --python .venv active-monkey-affect-loop --iterations 3 --real     # claude proposer + critic
 """
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 from active_loop.affect_pr_loop import (
     run_affect_pr_loop,
@@ -15,6 +14,7 @@ from active_loop.affect_pr_loop import (
     AffectClaudeCritic,
 )
 from active_loop.critic import MockCritic
+from active_loop.cli._paths import repo_root
 
 
 def main() -> None:
@@ -23,7 +23,7 @@ def main() -> None:
     ap.add_argument("--real", action="store_true",
                     help="use AffectClaudeProposer + AffectClaudeCritic instead of mocks")
     args = ap.parse_args()
-    repo = Path(__file__).resolve().parent
+    repo = repo_root()
     if args.real:
         proposer = AffectClaudeProposer()
         critic = AffectClaudeCritic()

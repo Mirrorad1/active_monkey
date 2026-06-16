@@ -4,7 +4,7 @@ self-learned world + self-formed values + taught word-labels. Toy scale, honest:
  - VALUES over colors: SELF-FORMED from experience (Exp26) [genuinely the creature's own]
  - word<->color labels: TAUGHT from a few examples (Exp34) [like a child labeling its concepts]
  - sentence shape: TEMPLATE (genuine grammar is the open ceiling, see open_problem.html)
-Run: python converse_demo.py   (PYTHONPATH=. or from repo root)
+Run: uv run --python .venv active-monkey-converse-demo
 """
 from __future__ import annotations
 import numpy as np, math

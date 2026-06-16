@@ -19,7 +19,8 @@ mutation; the FROZEN scorer evaluates it; the loop keeps/reverts correctly) AND 
 genuine learns-to-positive metric above the deterministic baseline (0.4225, from Exp 222) without
 reward-hacking (the FROZEN eval/ prefix + frozen-guard block any tampering with the scorer).
 
-PREDECLARATION: run `run_affect_loop.py --real --iterations 2` on an ISOLATED clone of the repo
+PREDECLARATION: run `python -m active_loop.cli.run_affect_loop --real --iterations 2`
+on an ISOLATED clone of the repo
 (shared-checkout / cron safety). Baseline = the autopilot's own first real score of the unmodified
 clone (must reproduce ~0.4225). Then 2 iterations, each: claude -p proposes ONE small change to
 active_loop/affect_spec.py -> frozen-guard -> affect tests -> claude critic -> the FROZEN
@@ -91,10 +92,10 @@ def main() -> None:
         log("")
 
         # --- run the real autopilot (this is the ~40-min step) ---
-        log("[run] run_affect_loop.py --real --iterations 2 ...")
+        log("[run] python -m active_loop.cli.run_affect_loop --real --iterations 2 ...")
         env = dict(os.environ, OMP_NUM_THREADS="1", XLA_FLAGS="--xla_cpu_multi_thread_eigen=false")
         proc = _run(["uv", "run", "--python", ".venv", "python",
-                     "run_affect_loop.py", "--real", "--iterations", "2"],
+                     "-m", "active_loop.cli.run_affect_loop", "--real", "--iterations", "2"],
                     clone_repo, timeout=5400, env=env)
         log(f"[run] returncode={proc.returncode}")
         if proc.stdout.strip():
