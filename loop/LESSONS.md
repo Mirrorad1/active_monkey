@@ -250,3 +250,21 @@ Ground rules for this file:
   evolvability verdict — a policy that beats random but not the indiscriminate version has near-zero
   ceiling, and the local gradient is foreordained flat regardless of cost (verify at probe_cost=0.0 per
   L30). Kin of L22 (forced/gifted ≠ evolvable) and L30 (cost vs benefit ceiling). [VALIDATION; METHODOLOGY]
+- **L33 (Exp 221, 2026-06-16).** A batch of JAX/XLA-CPU experiment processes (the affect_agent /
+  DirectHeadAgent family) must BOUND CONCURRENCY to ≈ cores / cores-per-process — NOT run one process
+  per cell. Each JAX-CPU process spawns its own multi-thread XLA/Eigen pool (~2.3 useful cores/process
+  here; `OMP_NUM_THREADS=1` and `XLA_FLAGS=--xla_cpu_multi_thread_eigen=false` do NOT pin it, and macOS
+  has no per-process thread cap), so launching all 8 cells at once oversubscribed 12 cores → load 43,
+  ~96 spinning threads, only ~4 useful cores (throughput WORSE than fewer processes; the L26 swap-thrash
+  analogue for CPU threads). Rule: MEASURE per-process core footprint with a single-process probe first,
+  then run via a concurrency pool of `floor(cores / cores_per_proc)` (e.g. `xargs -P N`), longest cells
+  first; chunk a cell across processes only with DISTINCT output files (the `--seeds` read-modify-write
+  merge races if two processes write the same cell JSON). Kin of L26/L31 (oversubscription → thrash).
+  [PROTOCOL step 3]
+- **L34 (Exp 221, 2026-06-16).** Set decision/report THRESHOLDS ON the metric's value grid. A
+  constant-unfakeable probe quantized to k/6 compared against a literal float bar `csel >= 0.67` silently
+  EXCLUDES 4/6 = 0.6667 (just below 0.67), shifting the intended "one-step-stricter" bar up by a full
+  quantum to ≥5/6 (sched_300 read 1/16 instead of the intended 7/16). The verdict was unaffected (the
+  primary bar 0.5 = 3/6 is on-grid), but a reported number was wrong until recomputed at ≥4/6. Rule: when a
+  metric takes values k/N, write thresholds as `>= k/N` (e.g. `>= 4/6`), never an off-grid decimal; an
+  L13-kin instrument-resolution check. [VALIDATION; PROTOCOL step 5]
