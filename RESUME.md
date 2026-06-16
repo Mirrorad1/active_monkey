@@ -301,9 +301,18 @@ step 0.
   ~1/3 POS-rate proves nothing (a constant "always reply 0" policy already scores 1/3) — K4's 6/8 is a
   constant-ceiling artifact (the "aliasing rescued" read is WITHDRAWN), and the 216/217 reliable counts
   overstate genuine discrimination. Guard added: `affect_spec.constant_response_ceiling` + a pinning test.
-  NEXT (human's word): **Exp 219 / 1h** — re-run under a DISCRIMINATION metric (last-third > 1/3, or a
-  per-intent correct-select readout) and attack the real blockers (session length, precision) directly.
-  Guard: tests/test_affect_agent.py; card: loop/directions/affective-dyad.md.
+  **Exp 219 (1h, discrimination readout, PARTIAL / NEW INSIGHT, blind-verified, Codex-coded)** added the
+  honest probe `DirectHeadAgent.correct_select` (read-only, constant-UNFAKEABLE: a constant policy caps at
+  2/6) and attacked the blockers at K=4. Result: the dyad GENUINELY discriminates (best K=4 g4_300 = 5/8,
+  up to 5/6 codes right) but NOT reliably — no cell reaches ≥6/8, even the K=6 controls (4–5/8). The two
+  blockers SEPARATE cleanly: SHORT SESSION blocks LEARNING (near-chance csel at 100t), LOW PRECISION blocks
+  EXPLOITATION (γ1 has the highest csel 0.54 — it learns the mapping — but won't act on it). Realistic K=4 ≈
+  K=6 ⇒ capacity is NOT the blocker. The honest metric TEMPERS 217/218: the anchor's lenient 7/8 is only
+  4/8 GENUINE (learning real, reliability overstated). N=8 ⇒ no cell ranking (g4_600 3/8 < g4_300 5/8 is
+  noise). NEXT (human's word): **Exp 220 / 1i** — a PRECISION SCHEDULE (anneal γ low→high: explore-to-learn
+  then sharpen-to-exploit, the natural fix for the learn-but-don't-exploit decoupling) + bigger N (≥16) +
+  report csel distributions, targeting reliable genuine discrimination at K=4. Guard:
+  tests/test_affect_agent.py (correct_select + constant_response_ceiling); card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).

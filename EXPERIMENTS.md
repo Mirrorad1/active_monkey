@@ -9402,3 +9402,73 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   — directly (e.g. does a longer session or a precision schedule rescue the realistic corner?). Card:
   loop/directions/affective-dyad.md; guards: tests/test_affect_agent.py.
 - trace: experiments/exp218_m4a_ratchet.py → experiments/outputs/exp218.txt
+
+## Exp 219 — M4a discrimination readout: under an honest, constant-unfakeable metric the dyad GENUINELY tells signals apart but only ~half-reliably; the two blockers SEPARATE cleanly (short session blocks LEARNING, low precision blocks EXPLOITATION); realistic capacity K=4 is NOT a blocker (PARTIAL / NEW INSIGHT; blind-verified; Codex-coded)
+
+- Plain: Exp 218 caught that our "did it learn?" yard-stick was too lax — a lazy agent that always
+  gives the same reply already scores 1/3. So this adds an honest probe a lazy agent CANNOT fake: after
+  training, ask the agent — for each of the 6 signals — which reply it would give, and count how many it
+  gets RIGHT (a constant reply can only ever get 2 of 6 right, so getting ≥3 of 6 means it genuinely told
+  the signals apart). Then it attacks the two suspected obstacles head-on at the realistic capacity:
+  too-short conversation and too-little decisiveness. Findings: (1) the dyad DOES genuinely tell signals
+  apart in the best cases (up to 5 of 6 right), and a constant policy provably can't fake that — but only
+  about HALF the runs reach it, even on the easy settings. (2) The two obstacles split CLEANLY: a short
+  conversation stops it from LEARNING the mapping at all (it stays near-random); too-little decisiveness
+  lets it LEARN the mapping but not ACT on it (it knows the right reply yet won't commit). You need BOTH a
+  long-enough conversation AND enough decisiveness. (3) The realistic, ambiguous-capacity setting is NOT
+  the obstacle — it tells signals apart about as well as the roomy setting. (4) Sobering: under this honest
+  yard-stick, last experiment's "reliable 7/8" is really about 4/8 genuine — the learning was REAL, but we
+  had overstated how RELIABLE it is. Functional valence only; no sentience claim.
+- Hypothesis (predeclared, with named falsifier): with optimism held on, does attacking the two blockers
+  (precision γ, session length) let the realistic-CAPACITY (K=4) dyad GENUINELY discriminate (correct_select
+  ≥0.5, i.e. ≥3/6 codes mapped right — beyond the 2/6=1/3 constant ceiling — AND last-third POS>1/3)?
+  Reliability bar ≥6/8. FALSIFIER (predeclared): if NO K=4 cell reaches ≥2/8 genuine, the "attacking the
+  blockers rescues K=4 discrimination" hypothesis is refuted (log NEGATIVE).
+- Setup: NEW honest metric — `DirectHeadAgent.correct_select(correct)` (Codex-coded, read-only): probe each
+  code from prior D (utterance alone, valence NEU), take the argmax-policy response, count correct/6. It is
+  CONSTANT-UNFAKEABLE (a constant policy caps at 2/6). 7 cells, optimism=2.0 + lr4 + seeds 20–27 held; K=4
+  precision×session grid (γ∈{1,4} × turns∈{100,300,600}, minus γ1/600) + two K=6 controls (γ8/300t =
+  Exp 217/218 anchor; γ4/300t = Exp 218 gamma4). Validation: untrained correct_select = 0.167 (chance);
+  gifted/trained ≥0.5 (guard tests). genuine(seed) = correct_select≥0.5 AND last>1/3.
+- Result: VERDICT PARTIAL. Genuine (mean_csel): g1_100 0/8 (0.229) · g1_300 2/8 (0.542) · g4_100 1/8
+  (0.250) · g4_300 5/8 (0.417, best K=4) · g4_600 3/8 (0.396) · ctrl_anchor 4/8 (0.458) · ctrl_g4K6 5/8
+  (0.479). No cell — not even the K=6 controls — reaches the ≥6/8 reliability bar; falsifier did NOT fire
+  (g1_300/g4_300/g4_600 ≥2/8). The csel/POS DECOUPLING is the cleanest finding: g1_300 (γ1) has the HIGHEST
+  mean_csel (0.542) yet only 2/8 genuine — 4 of its seeds (22/24/26/27) LEARN the mapping (csel≥0.5) but
+  last-third POS stays ≤1/3 (γ1 too indecisive to EXPLOIT it). The *_100 cells have near-chance csel
+  (0.23–0.25) — short sessions block LEARNING. K=4 g4_300 (5/8, csel 0.417) ≈ K=6 ctrl_g4K6 (5/8, csel
+  0.479) — capacity is NOT the blocker.
+- Implication: the two blockers SEPARATE mechanistically — SHORT SESSION blocks LEARNING (low csel in the
+  100t cells), LOW PRECISION blocks EXPLOITATION (high csel + low POS in g1_300); the realistic corner
+  (γ1/100t) stacks both → 0/8. Fixing both (γ4 + 300t) is the best K=4 result and matches the K=6 control,
+  so the realistic AMBIGUOUS capacity (K=4) is genuinely fine — aliasing is not the wall. Crucially the
+  honest metric TEMPERS the prior headlines: the SAME anchor config that read 7/8 "reliable ignition" in
+  Exp 217 is only 4/8 GENUINE here, and Exp 218's γ4 "8/8" is 5/8 genuine — the learning was real (control
+  mean_csel 0.46–0.48 ≫ the 0.333 ceiling ≫ 0.167 chance) but its RELIABILITY was overstated by the lenient
+  last≥0.30 threshold. Tier: a metric upgrade + mechanism separation, toy scale, no reliable regime.
+- Honest caveat: PARTIAL/mixed — genuine discrimination is REAL and constant-unfakeable (best 5/8) but NOT
+  reliable anywhere (no cell ≥6/8, controls included). The script's predeclared binary control-check printed
+  "CONTROL FAILS → constant-ceiling; escalate" (controls <6/8); that binary is TOO HARSH — the honest
+  per-seed reading is genuine-but-only-~half-reliable: ctrl_anchor = 4/8 seeds clearly above ceiling (≥0.5)
+  + 4/8 sitting AT the 0.333 ceiling; ctrl_g4K6 = 5/8 above + 3/8 at ceiling. N=8 is far too small to read
+  the cell ORDERING as signal: the γ4 turns ladder is NON-MONOTONE (g4_300 5/8 vs g4_600 3/8 — within
+  binomial noise), so "g4_300 is the minimal/best cell" and "more turns help" are OVER-READS — do not claim
+  a cell ranking. The csel≥0.5 bar is coarse (quantised at 1/6; one probe flip moves a seed across it) and
+  several genuine seeds clear last>1/3 by a thin margin. Functional valence only; no sentience claim.
+- Verdict: PARTIAL / NEW INSIGHT. Self-grade: PARTIAL — real constant-unfakeable discrimination + a clean
+  two-blocker separation + capacity cleared, but no reliable regime and a downward temper of the 217/218
+  reliability headlines.
+- Verifier: agree — an independent blinded agent recomputed all 7 cells from the committed JSONs (every
+  `genuine` flag byte-matched) → PARTIAL, falsifier did NOT fire; confirmed the probe is read-only +
+  constant-unfakeable (csel≥0.5 unreachable by a constant policy) and the mechanism HONEST; CONFIRMED the
+  csel/POS decoupling (g1_300: 4 seeds learn-but-don't-exploit) as the cleanest result and that K=4 ≈ K=6;
+  judged the control reframe HONEST ONLY WITH the per-seed split attached (half the control seeds sit at the
+  0.333 ceiling), and flagged that N=8 cannot support any cell-ordering claim (g4_600<g4_300 is noise). All
+  caveats folded in above.
+- Next (on human word only): Exp 220 / increment 1i — the two blockers are now named and SEPARATE, so
+  attack them jointly and report DISTRIBUTIONS not binary counts: (a) a PRECISION SCHEDULE (anneal γ low→high
+  — explore to learn, then sharpen to exploit — the natural fix for the learn-but-don't-exploit decoupling),
+  (b) bigger N (≥16 seeds) to resolve reliability, (c) report mean_csel + per-seed csel histogram (not just a
+  ≥0.5 count), targeting reliable (≥12/16) GENUINE discrimination at K=4. Card: loop/directions/affective-dyad.md;
+  guards: tests/test_affect_agent.py (correct_select + constant_response_ceiling).
+- trace: experiments/exp219_m4a_discriminate.py → experiments/outputs/exp219.txt
