@@ -34,7 +34,8 @@ PREDECLARATION (this is a DIAGNOSTIC with a close-or-ratchet DECISION RULE, not 
          >= 0.30 (clearly above the ~0.20 chance ceiling) -> the dyad CAN learn under honest scaffolds;
          do NOT close; next = reliability + ratchet the scaffold toward realism.
        NO_IGNITION (close M4a negative) iff 0/4 generous seeds ignite -> even generous non-cheating help
-         does not let it learn -> the toy talk-to-it dyad is not learnable; close the thread.
+         does not let it learn -> the toy talk-to-it dyad is not learnable; close the thread. This 0/4
+         branch is the predeclared FALSIFIER of "a learnable path exists under honest scaffolds".
   Honesty: every scaffold (K=U, lr, gamma, session length) changes HOW it learns/acts, not WHAT the
   answer is — the agent still learns A0 (code→intent) and A1 (intent×response→valence) from feedback.
   The realistic-regime baseline (K=4, 100 turns, default precision) is Exp 215 (P3 0/8) — not re-run here.

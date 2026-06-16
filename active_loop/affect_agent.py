@@ -222,8 +222,15 @@ class DirectHeadAgent:
     Functional valence only — no sentience claim.
     """
 
-    def __init__(self, model_dict: dict, lv: float = LV, seed: int = 0):
+    def __init__(self, model_dict: dict, lv: float = LV, seed: int = 0,
+                 gamma: float = 1.0, alpha: float = 1.0,
+                 action_selection: str = "stochastic", lr_pA: float = 1.0):
+        """gamma (policy precision), alpha (action precision), action_selection, and lr_pA
+        (Dirichlet learning rate) are the HONEST ignition-envelope scaffolds (Exp 216): they
+        change how decisively the agent exploits / how fast it learns — they do NOT give it the
+        answer.  Defaults reproduce the Exp 215 closed-loop run."""
         self.lv = lv
+        self.lr_pA = lr_pA
         self._key = jax.random.PRNGKey(seed)
         R = int(jnp.array(model_dict["B"][1]).shape[-1])
         self.R = R
@@ -231,7 +238,8 @@ class DirectHeadAgent:
             A=model_dict["A"], B=model_dict["B"], C=model_dict["C"], D=model_dict["D"],
             pA=model_dict["pA"], pB=model_dict["pB"],
             num_controls=[1, R],           # factor 0 (intent) uncontrolled; factor 1 (last_response) = the response
-            policy_len=1, action_selection="stochastic", sampling_mode="full",
+            policy_len=1, gamma=gamma, alpha=alpha,
+            action_selection=action_selection, sampling_mode="full",
             inference_algo="fpi", batch_size=1, learn_A=True, learn_B=False,
         )
         self._D = model_dict["D"]
@@ -260,6 +268,16 @@ class DirectHeadAgent:
         self._prior = self.agent.update_empirical_prior(action, self._qs_perceive)
         return int(jnp.asarray(action).reshape(-1)[-1])   # control on factor 1 = the response
 
+    def force_action(self, response: int) -> None:
+        """TEACHER override (Exp 216 update-only diagnostic): set the response WITHOUT EFE
+        sampling, so a teacher can feed chosen (intent, response, valence) triples and we can
+        isolate whether the LEARNING (not the policy) acquires the A1 table.  Mirrors act()'s
+        prior update so observe_feedback binds the feedback to this response."""
+        if self._qs_perceive is None:
+            raise RuntimeError("call perceive() before force_action()")
+        self._last_action = jnp.array([[0, int(response)]])   # [factor0 no-op, factor1 = response]
+        self._prior = self.agent.update_empirical_prior(self._last_action, self._qs_perceive)
+
     def observe_feedback(self, code: int, valence_idx: int) -> None:
         """Co-present [code_t, valence_t] (1c timing): re-infer with last_response=response_t, then
         windowed-Dirichlet learn A0 (utterance|intent) + A1 (valence|intent,response) — the DIRECT head."""
@@ -281,7 +299,7 @@ class DirectHeadAgent:
             observations=[jnp.array([[code]]), jnp.array([[valence_idx]])],
             actions=self._last_action[:, None, :],   # required positional; B is NOT learned (learn_B=False)
             beliefs_B=None,
-            lr_pA=1.0,
+            lr_pA=self.lr_pA,
         )
         self.agent = updated
 

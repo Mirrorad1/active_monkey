@@ -1,0 +1,25 @@
+==============================================================================
+EXP 216 — M4a ignition-envelope diagnostic (direct head kept; honest scaffolds only)
+==============================================================================
+Decompose: A update-only (learning) / B policy-only (exploitation) / C closed-loop (bootstrap).
+
+--- B. POLICY-ONLY (gift TRUE A1, sweep policy precision gamma) -> exploitation works? ---
+  gamma=1.0 : correct-response selection 1.00/1.0
+  gamma=4.0 : correct-response selection 1.00/1.0
+  gamma=16.0: correct-response selection 1.00/1.0
+
+--- A. UPDATE-ONLY (teacher feeds true triples; read learned-policy correct-select) ---
+  K=4 lr=1.0 teach=200: learned-policy correct-select 0.00/1.0
+  K=6 lr=4.0 teach=200: learned-policy correct-select 0.33/1.0
+  K=6 lr=4.0 teach=600: learned-policy correct-select 0.83/1.0
+  (K=4 = the realistic intent capacity: aliasing makes the table unrepresentable; K=U=6 + lr + enough data = the learning DOES acquire it.)
+
+--- C. CLOSED-LOOP IGNITION (generous honest scaffold K=U=6, lr=4, gamma=8, 300 turns; seeds [20, 21, 22, 23]) ---
+  seed 20: POS first-third 0.10 -> last-third 0.34  improvement +0.240
+  seed 21: POS first-third 0.00 -> last-third 0.00  improvement +0.000
+  seed 22: POS first-third 0.00 -> last-third 0.00  improvement +0.000
+  seed 23: POS first-third 0.02 -> last-third 0.00  improvement -0.020
+  ignitions (improv>=0.15 AND last-third>=0.30): 1/4; best improvement +0.240; mean +0.055
+
+VERDICT (script claim): IGNITION / PATH_EXISTS — POSITIVE / NEW INSIGHT. Under a GENEROUS but HONEST scaffold (K=U intent capacity, lr 4, policy precision 8, 300 turns — none of which reveals the answer), the closed-loop dyad LEARNS to earn approval in 1/4 seeds (best POS-rate improvement +0.240; e.g. 0.10 -> 0.34) — the FIRST learning in the M4a thread (Exp 125/127/214/215 were all 0/8). The decomposition localises why the realistic regime (Exp 215) failed: POLICY-ONLY shows exploitation is perfect given a correct table (1.0), UPDATE-ONLY shows the learning acquires the table given enough intent CAPACITY (K=U, not the aliased K=4 = 0.0) + learning rate + DATA (~600 good triples), and the closed loop needs all three plus enough turns for sparse exploration to generate that data. So M4a is NOT a dead end: a learnable path exists under honest scaffolds. It is NOT yet RELIABLE (1/4; high precision can lock an unlucky seed onto a wrong early guess) — the next increment is RELIABILITY + ratcheting the scaffold toward the realistic regime, NOT closing and NOT more heads. Functional valence only — no sentience claim.
+  policy-only OK; update-only K=U works; closed-loop ignite 1/4 (best +0.240); GEN_SEEDS [20, 21, 22, 23].
