@@ -2,14 +2,14 @@
 
 Three concerns:
   1. Staleness guard — regenerating in-memory must produce bytes identical to
-     the committed lab-status.js (same pattern as test_directions_index.py).
+     the committed site/data/lab-status.js (same pattern as test_directions_index.py).
   2. Schema sanity — the generated structure contains the right values.
   3. Direction states — every direction in the output has a known/valid state.
 
 Run:  uv run --python .venv pytest tests/test_lab_status.py -q
 Remediation if staleness fails:
   uv run --python .venv python -m active_loop.site_data --lab-status
-  then commit lab-status.js.
+  then commit site/data/lab-status.js.
 """
 from __future__ import annotations
 
@@ -17,13 +17,14 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).parent.parent
+LAB_STATUS = ROOT / "site" / "data" / "lab-status.js"
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
 def _read_committed() -> str:
-    return (ROOT / "lab-status.js").read_text(encoding="utf-8")
+    return LAB_STATUS.read_text(encoding="utf-8")
 
 
 def _regenerate_in_memory() -> str:
@@ -75,14 +76,14 @@ def test_lab_status_not_stale():
     """In-memory regeneration must be byte-identical to the committed lab-status.js.
 
     If this fails: uv run --python .venv python -m active_loop.site_data --lab-status
-    and commit the updated lab-status.js.
+    and commit the updated site/data/lab-status.js.
     """
     committed = _read_committed()
     regenerated = _regenerate_in_memory()
     assert regenerated == committed, (
-        "lab-status.js is stale — regenerate with:\n"
+        "site/data/lab-status.js is stale — regenerate with:\n"
         "  uv run --python .venv python -m active_loop.site_data --lab-status\n"
-        "and commit lab-status.js.\n"
+        "and commit site/data/lab-status.js.\n"
         f"Committed length: {len(committed)}, regenerated length: {len(regenerated)}"
     )
 

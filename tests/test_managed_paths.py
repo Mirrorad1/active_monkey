@@ -21,7 +21,7 @@ def _configured() -> set[str]:
 
 def test_managed_set_matches_expected():
     expected = {
-        "EXPERIMENTS.md", "experiments", "experiments-data.js", "lab-status.js",
+        "EXPERIMENTS.md", "experiments", "site/data/experiments-data.js", "site/data/lab-status.js",
         "DIRECTIONS.md", "loop/IDEAS.md", "loop/directions", "loop/managed-paths.txt",
         "creature/state", "world_model", "reports", "REPORT.md",
     }

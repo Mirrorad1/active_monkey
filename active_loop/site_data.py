@@ -1,8 +1,8 @@
-"""site_data — caveat injection for experiments-data.js and lab-status.js generation.
+"""site_data — caveat injection and lab-status generation for site/data.
 
 Reads EXPERIMENTS.md, extracts the "Honest caveat" (or "- Caveat:") text for
 each experiment, then injects a ``caveat`` field into every matching entry in
-``experiments-data.js``.
+``site/data/experiments-data.js``.
 
 Caveat rule (applied uniformly to every experiment):
   The first sentence of the caveat text from EXPERIMENTS.md, where a sentence
@@ -11,10 +11,10 @@ Caveat rule (applied uniformly to every experiment):
   is used.  Experiments that have no caveat line in EXPERIMENTS.md receive an
   empty string ("") as their caveat field.
 
-Usage (regenerate experiments-data.js in-place):
+Usage (regenerate site/data/experiments-data.js in-place):
   uv run --python .venv python -m active_loop.site_data
 
-Usage (generate lab-status.js):
+Usage (generate site/data/lab-status.js):
   uv run --python .venv python -m active_loop.site_data --lab-status
 """
 
@@ -26,6 +26,9 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).parent.parent
+SITE_DATA_DIR = ROOT / "site" / "data"
+EXPERIMENTS_DATA_JS = SITE_DATA_DIR / "experiments-data.js"
+LAB_STATUS_JS = SITE_DATA_DIR / "lab-status.js"
 
 # ---------------------------------------------------------------------------
 # Shared STATUS-block parser (imported from tools/gen_directions_index.py
@@ -93,14 +96,14 @@ def parse_caveats_from_md(md_path: pathlib.Path | None = None) -> dict[int, str]
 
 
 # ---------------------------------------------------------------------------
-# experiments-data.js patcher
+# site/data/experiments-data.js patcher
 # ---------------------------------------------------------------------------
 
 def inject_caveats(
     js_path: pathlib.Path | None = None,
     caveats: dict[int, str] | None = None,
 ) -> str:
-    """Return the updated text of experiments-data.js with caveat fields injected.
+    """Return updated site/data/experiments-data.js text with caveats injected.
 
     For each entry ``{ n:N, ...  trace:{...} }`` in AM_EXPERIMENTS, a
     ``caveat:"<text>"`` field is inserted immediately before the ``trace:``
@@ -113,7 +116,7 @@ def inject_caveats(
     The function returns the new file text; it does NOT write to disk.
     """
     if js_path is None:
-        js_path = ROOT / "experiments-data.js"
+        js_path = EXPERIMENTS_DATA_JS
     if caveats is None:
         caveats = parse_caveats_from_md()
 
@@ -132,7 +135,7 @@ def inject_caveats(
 
     start_m = re.search(r"window\.AM_EXPERIMENTS\s*=\s*\[", text)
     if not start_m:
-        raise ValueError("AM_EXPERIMENTS not found in experiments-data.js")
+        raise ValueError("AM_EXPERIMENTS not found in site/data/experiments-data.js")
     body_start = start_m.end()
     rest = text[body_start:]
     end_m = re.search(r"^\s*\]\s*;", rest, re.MULTILINE)
@@ -247,13 +250,14 @@ def regenerate(
     js_path: pathlib.Path | None = None,
     md_path: pathlib.Path | None = None,
 ) -> None:
-    """Re-inject caveats and write experiments-data.js in place."""
+    """Re-inject caveats and write site/data/experiments-data.js in place."""
     if js_path is None:
-        js_path = ROOT / "experiments-data.js"
+        js_path = EXPERIMENTS_DATA_JS
     if md_path is None:
         md_path = ROOT / "EXPERIMENTS.md"
     caveats = parse_caveats_from_md(md_path)
     new_text = inject_caveats(js_path, caveats)
+    js_path.parent.mkdir(parents=True, exist_ok=True)
     js_path.write_text(new_text, encoding="utf-8")
 
 
@@ -514,17 +518,18 @@ def generate_lab_status(
     md_path: pathlib.Path | None = None,
     directions_dir: pathlib.Path | None = None,
 ) -> None:
-    """Generate lab-status.js and write it to *out_path* (default: repo root)."""
+    """Generate lab-status.js and write it to *out_path* (default: site/data)."""
     if out_path is None:
-        out_path = ROOT / "lab-status.js"
+        out_path = LAB_STATUS_JS
     content = lab_status(md_path, directions_dir)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(content, encoding="utf-8")
 
 
 if __name__ == "__main__":
     if "--lab-status" in sys.argv:
         generate_lab_status()
-        print("lab-status.js regenerated.", file=sys.stderr)
+        print("site/data/lab-status.js regenerated.", file=sys.stderr)
     else:
         regenerate()
-        print("experiments-data.js regenerated with caveat fields.", file=sys.stderr)
+        print("site/data/experiments-data.js regenerated with caveat fields.", file=sys.stderr)

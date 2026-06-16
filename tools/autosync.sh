@@ -17,7 +17,9 @@ if [ -n "$(git status --porcelain)" ]; then
   # Self-heal generated indexes before staging, so a direction-card edit or
   # experiment entry can never strand the suite red on a staleness guard.
   uv run --python .venv python tools/gen_directions_index.py >/dev/null 2>&1 || true
+  uv run --python .venv python -m active_loop.site_data >/dev/null 2>&1 || true
   uv run --python .venv python -m active_loop.site_data --lab-status >/dev/null 2>&1 || true
+  uv run --python .venv python tools/site/build_static.py >/dev/null 2>&1 || true
 
   # Managed paths are configured in loop/managed-paths.txt (one per line,
   # # comments allowed). Keeps autosync from sweeping scratch files or

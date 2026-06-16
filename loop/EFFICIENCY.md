@@ -9,7 +9,7 @@ keep wall-clock and context cost bounded WITHOUT degrading experiment integrity.
 - COLD (reach only on demand, via TARGETED reads — never whole):
   - `EXPERIMENTS.md` (660K+): read ONE entry with `awk '/^## Exp N /{f=1} /^## Exp M /{f=0} f' EXPERIMENTS.md`
     or Read with offset/limit; NEVER read the whole file (the latest entry is ~1.7% of it).
-  - `experiments-data.js` (480K+): re-Read only the tail entry + the `AM_TALLY` line before editing (L12).
+  - `site/data/experiments-data.js` (480K+): re-Read only the tail entry + the `AM_TALLY` line before editing (L12).
   - `experiments/outputs/**.json` (raw data, ~26M): NEVER read into context — reference the path. They are
     committed for reproducibility, not for reading.
 

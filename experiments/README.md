@@ -82,11 +82,11 @@ The `expNN:` commit MUST contain the script + output + EXPERIMENTS.md entry toge
 — all three in one atomic commit. A log entry without its script and output is an
 unverified claim (see `loop/VALIDATION.md` reproducibility rule).
 
-### Curated entry in experiments-data.js
+### Curated entry in site/data/experiments-data.js
 
-Each new experiment (Exp 41+) also adds a curated entry to `experiments-data.js` in the
-same atomic commit as the script and output files. The entry's `trace` block points to the
-files above:
+Each new experiment (Exp 41+) also adds a curated entry to
+`site/data/experiments-data.js` in the same atomic commit as the script and output
+files. The entry's `trace` block points to the files above:
 
 ```js
 trace: {

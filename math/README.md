@@ -116,15 +116,16 @@ committed output disagree (e.g. Exp 1's `4.81 → 4.00` narrated vs `4.007 → 3
 
 ## The web page is generated from this Markdown
 
-[`math.html`](../math.html) renders from [`../math-data.js`](../math-data.js), which is
+[`math.html`](../math.html) renders from [`../site/data/math-data.js`](../site/data/math-data.js), which is
 **generated** from these `.md` files — the Markdown is the single source of truth. After editing
 any file, regenerate:
 
 ```bash
-python3 math/build_math_data.py     # stdlib only; writes ../math-data.js
+python3 math/build_math_data.py     # stdlib only; writes ../site/data/math-data.js
 ```
 
-`math.html` reuses the site's shared chrome under `site/` (`site/am.css`, `site/am-shared.jsx`,
-`site/tweaks-panel.jsx`, all at `?v=5` — the Stream B layout guarded by `tests/test_site_assets.py`).
-The **"The Math"** nav link lives in the shared `site/am-shared.jsx`, so it appears on every page
-automatically. `math-data.js` stays at the repo root alongside `experiments-data.js`.
+`math.html` reuses the site's shared chrome under `site/` (`site/styles/am.css`,
+`site/components/am-shared.jsx`, `site/components/tweaks-panel.jsx`, all at `?v=5`).
+The **"The Math"** nav link lives in the shared `site/components/am-shared.jsx`, so it appears on
+every page automatically. Root HTML deploy files are generated from `site/pages/` by
+`tools/site/build_static.py`.

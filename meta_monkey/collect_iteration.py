@@ -131,7 +131,7 @@ def _output_path(exp: int) -> str:
 
 
 def _site_text(root: pathlib.Path) -> str:
-    path = root / "experiments-data.js"
+    path = root / "site" / "data" / "experiments-data.js"
     if not path.exists():
         return ""
     return _read_text(path)

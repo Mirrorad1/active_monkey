@@ -11,7 +11,7 @@ can reason about the process record instead of scraping prose every time.
 This is not a meta-controller, not an autonomous agent, and not a new active-inference
 experiment. It does not run experiments, choose experiments, grade scientific claims,
 call LLM APIs, call OpenRouter, mutate creature state, edit `EXPERIMENTS.md`, or edit
-`experiments-data.js`.
+`site/data/experiments-data.js`.
 
 ## Why it exists
 

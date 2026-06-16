@@ -32,11 +32,17 @@ Raw outputs are evidence artifacts. Do not rewrite them for style, size, or cons
 
 ## Public Site And Tracker
 
-- [index.html](../index.html) is the public homepage.
-- [journey.html](../journey.html), [experiments-data.js](../experiments-data.js), and
-  [lab-status.js](../lab-status.js) support the public experiment tracker.
-- [sense-evolution.html](../sense-evolution.html) is the current public closed-chapter write-up.
-- [site/](../site/) contains shared CSS and client assets.
+- [site/pages/](../site/pages/) contains the source HTML pages.
+- Root HTML files such as [index.html](../index.html), [journey.html](../journey.html), and
+  [math.html](../math.html) are generated deploy entrypoints for GitHub Pages.
+- [site/data/experiments-data.js](../site/data/experiments-data.js) and
+  [site/data/lab-status.js](../site/data/lab-status.js) support the public experiment tracker.
+- [site/data/math-data.js](../site/data/math-data.js) supports the generated math reference.
+- [site/styles/](../site/styles/), [site/runtime/](../site/runtime/),
+  [site/components/](../site/components/), and [site/assets/](../site/assets/) contain shared
+  client code, CSS, React components, and image assets.
+- [tools/site/build_static.py](../tools/site/build_static.py) copies `site/pages/*.html` to the
+  root deploy entrypoints.
 
 ## Docs
 
@@ -67,8 +73,10 @@ Raw outputs are evidence artifacts. Do not rewrite them for style, size, or cons
 ## Generated Or Derived Artifacts
 
 Some public artifacts are generated or patched from source-of-truth files. Examples include
-site data derived from [EXPERIMENTS.md](../EXPERIMENTS.md) and caveat injection into the public
-timeline. If changing a generator, run the associated tests and inspect the generated diff.
+site data derived from [EXPERIMENTS.md](../EXPERIMENTS.md), caveat injection into the public
+timeline, math data derived from [math/](../math/), and root deploy pages generated from
+[site/pages/](../site/pages/). If changing a generator, run the associated tests and inspect
+the generated diff.
 
 ## What Not To Touch Casually
 

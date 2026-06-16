@@ -114,9 +114,9 @@ not permission to weaken `loop/VALIDATION.md`.
    what we're *really* testing and what the result means, said simply, for a reader who
    knows none of the machinery. The in-depth Setup stays exactly as before; the Plain line
    sits above it as the simple, broad-base reference. This is the same text that becomes
-   the entry's `plain` field in `experiments-data.js` (rendered above the technical setup
-   in the journey). No double-quotes inside it (the site stores it as a JS double-quoted
-   string).
+   the entry's `plain` field in `site/data/experiments-data.js` (rendered above the
+   technical setup in the journey). No double-quotes inside it (the site stores it as a
+   JS double-quoted string).
 
    **Re-run re-quote rule:** if a script is re-run after ANY patch, the entry quotes
    the FINAL committed output — re-check every non-deterministic number (L3 in
@@ -140,7 +140,7 @@ not permission to weaken `loop/VALIDATION.md`.
    system could not do before), and (c) the honest caveat — what is still provided,
    templated, or approximate. Write it for a reader who has read nothing else. This
    synthesis is placed BOTH in the EXPERIMENTS.md entry AND in the new curated entry's
-   `story` field in `experiments-data.js`.
+   `story` field in `site/data/experiments-data.js`.
 
 6. **Commit.** One commit per experiment containing the script
    (`experiments/expNN_<slug>.py`), its raw output (`experiments/outputs/expNN.txt`),
@@ -171,10 +171,10 @@ not permission to weaken `loop/VALIDATION.md`.
      bad epoch by `git checkout` of a prior committed snapshot, and an intentional restart is
      allowed only when logged as an explicit `rebirth` biography event.
 
-   **Site update (mandatory):** the same commit also updates `experiments-data.js` with
-   the new curated entry — kind graded honestly (breakthrough / positive / wall /
-   partial), a `plain` field (the layman's "in plain terms" from step 5, required on
-   every entry), and a `trace` block with:
+   **Site update (mandatory):** the same commit also updates
+   `site/data/experiments-data.js` with the new curated entry — kind graded honestly
+   (breakthrough / positive / wall / partial), a `plain` field (the layman's "in plain
+   terms" from step 5, required on every entry), and a `trace` block with:
    - `script`: `"experiments/expNN_<slug>.py"` — the script committed above
    - `output`: `"experiments/outputs/expNN.txt"` — the raw output committed above
    - `rerun` / `verified`: omit these fields for now; add them only after an actual
