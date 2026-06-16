@@ -11,7 +11,7 @@ import jax.numpy as jnp
 
 from pymdp.agent import Agent
 
-from active_loop.affect_spec import LV, K, NEU
+from active_loop.affect_spec import LV, K, NEU, POS
 
 
 class AffectAgent:
@@ -224,16 +224,38 @@ class DirectHeadAgent:
 
     def __init__(self, model_dict: dict, lv: float = LV, seed: int = 0,
                  gamma: float = 1.0, alpha: float = 1.0,
-                 action_selection: str = "stochastic", lr_pA: float = 1.0):
+                 action_selection: str = "stochastic", lr_pA: float = 1.0,
+                 eps0: float = 0.0, eps_min: float = 0.0, eps_turns: int = 0,
+                 optimism: float = 0.0):
         """gamma (policy precision), alpha (action precision), action_selection, and lr_pA
         (Dirichlet learning rate) are the HONEST ignition-envelope scaffolds (Exp 216): they
         change how decisively the agent exploits / how fast it learns — they do NOT give it the
-        answer.  Defaults reproduce the Exp 215 closed-loop run."""
+        answer.  Defaults reproduce the Exp 215 closed-loop run.
+
+        Exp 217 HONEST exploration scaffolds (all default OFF -> byte-identical to Exp 216):
+          eps0, eps_min, eps_turns: eps-greedy decaying uniform-random exploration.  With prob
+            eps(t) the EFE response is replaced by a UNIFORM-random response (zero information
+            about which response is correct); eps decays linearly from eps0 to eps_min over
+            eps_turns steps.  When all three are 0 no extra RNG is consumed.
+          optimism: uniformly-elevated prior P(POS) across ALL responses and intents in the A1
+            Dirichlet prior before Agent construction.  Uniform elevation is what makes it HONEST
+            — it does not favour any particular (intent, response) pair over another.
+        """
         self.lv = lv
         self.lr_pA = lr_pA
         self._key = jax.random.PRNGKey(seed)
         R = int(jnp.array(model_dict["B"][1]).shape[-1])
         self.R = R
+
+        # OPTIMISM: uniformly elevate the POS row of pA1 BEFORE building the Agent.
+        # The increment is identical for every (intent, response) column — no response is
+        # specially favoured — which is what makes this HONEST.  We do NOT mutate the
+        # caller's dict.
+        if optimism > 0:
+            pA1 = np.array(model_dict["pA"][1])                   # (1, V, k, R)
+            pA1[:, POS, :, :] = pA1[:, POS, :, :] + optimism     # uniform across (intent,response) -> honest
+            model_dict = {**model_dict, "pA": [model_dict["pA"][0], jnp.array(pA1)]}
+
         self.agent = Agent(
             A=model_dict["A"], B=model_dict["B"], C=model_dict["C"], D=model_dict["D"],
             pA=model_dict["pA"], pB=model_dict["pB"],
@@ -248,6 +270,11 @@ class DirectHeadAgent:
         self._qs_perceive: list | None = None
         self._last_qs: list | None = None
         self._last_action: jnp.ndarray | None = None
+
+        # EPS-GREEDY state (stored AFTER Agent is built so OFF == zero extra RNG consumption).
+        self._eps0 = float(eps0); self._eps_min = float(eps_min); self._eps_turns = int(eps_turns)
+        self._explore = (eps0 > 0.0 or eps_min > 0.0)
+        self._t = 0
 
     def perceive(self, code: int) -> np.ndarray:
         """Infer intent from the utterance alone (valence NEU); prior D (last_response uniform pre-act)."""
@@ -264,6 +291,20 @@ class DirectHeadAgent:
         q_pi, _ = self.agent.infer_policies(self._qs_perceive)
         self._key, sk = jax.random.split(self._key)
         action = self.agent.sample_action(q_pi, rng_key=jax.random.split(sk, 1))
+        # eps-greedy HONEST exploration (no-op when disabled -> byte-identical to Exp 216):
+        # with prob eps(t) replace the EFE response with a UNIFORM-random response (zero info
+        # about which response is correct); eps decays linearly eps0 -> eps_min over eps_turns.
+        if self._explore:
+            if self._eps_turns > 0:
+                frac = min(1.0, self._t / self._eps_turns)
+                eps = self._eps0 + (self._eps_min - self._eps0) * frac
+            else:
+                eps = self._eps0
+            self._key, ek, rk = jax.random.split(self._key, 3)
+            if float(jax.random.uniform(ek)) < eps:
+                r = int(jax.random.randint(rk, (), 0, self.R))
+                action = jnp.array([[0, r]])   # [factor0 no-op, factor1 = explored response]
+        self._t += 1
         self._last_action = action
         self._prior = self.agent.update_empirical_prior(action, self._qs_perceive)
         return int(jnp.asarray(action).reshape(-1)[-1])   # control on factor 1 = the response

@@ -1,0 +1,58 @@
+[
+  {
+    "seed": 20,
+    "first": 0.08,
+    "last": 0.34,
+    "improv": 0.26,
+    "ignite": true
+  },
+  {
+    "seed": 21,
+    "first": 0.22,
+    "last": 0.47,
+    "improv": 0.25,
+    "ignite": true
+  },
+  {
+    "seed": 22,
+    "first": 0.29,
+    "last": 0.56,
+    "improv": 0.27,
+    "ignite": true
+  },
+  {
+    "seed": 23,
+    "first": 0.3,
+    "last": 0.66,
+    "improv": 0.36,
+    "ignite": true
+  },
+  {
+    "seed": 24,
+    "first": 0.18,
+    "last": 0.49,
+    "improv": 0.31,
+    "ignite": true
+  },
+  {
+    "seed": 25,
+    "first": 0.16,
+    "last": 0.33,
+    "improv": 0.17,
+    "ignite": true
+  },
+  {
+    "seed": 26,
+    "first": 0.21,
+    "last": 0.33,
+    "improv": 0.12,
+    "ignite": false
+  },
+  {
+    "seed": 27,
+    "first": 0.07,
+    "last": 0.33,
+    "improv": 0.26,
+    "ignite": true
+  }
+]

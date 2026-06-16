@@ -280,17 +280,23 @@ step 0.
   high-stakes eat-vs-skip at matched cost) found no affordance locally evolvable and the discrete geometry
   no steeper ⇒ payoff geometry does not change evolvability. Both rungs: the blocker is benefit MAGNITUDE,
   not payoff shape; mutation-geometry/standing-variation (Rung 2/3) have no valley to cross. DECISION POINT.
-- **M4a "talk to it" thread (Exp 125/127/128/214, HALTED 3×, NEGATIVE / NEW INSIGHT):** the most
-  direct path to the moonshot goal — a toy affective dyad that infers intent + has functional valence +
-  learns to earn approval (docs/specs/m4-affective-dyad.md; `active_loop/affect_spec.py` + `affect_agent.py`).
-  Increment 1 (Exp 125) and 1b (Exp 127) halted on F3 (never learns); Exp 128 pinned a TIMING flaw.
-  **Exp 214 (increment 1c, human's word 2026-06-15)** re-wired the turn (perceive utterance alone → act →
-  observe [code,valence] co-presented → learn the within-turn intent shift) — the timing fix is REAL but
-  NOT SUFFICIENT: still 0/8, response distribution stays uniform. A GIFTED-EFE liveness control proves the
-  EFE/policy is SOUND (q_pi 0.71 on a discriminative model) — so it is the AIF echo of the program's
-  useful-when-gifted ≠ learnable wall: the response→valence credit is mediated by an intent-transition
-  whose signal is near-zero until the model is already learned. HALTS for the human; pointed redesign = a
-  MORE DIRECT response→valence path. Guard: tests/test_affect_agent.py.
+- **M4a "talk to it" thread (Exp 125/127/128/214/215/216/217 — IGNITED, now RELIABLE on the generous
+  scaffold; POSITIVE / NEW INSIGHT):** the most direct path to the moonshot goal — a toy affective dyad
+  that infers intent + has functional valence + learns to earn approval (docs/specs/m4-affective-dyad.md;
+  `active_loop/affect_spec.py` + `affect_agent.py`). Increments 1/1b (Exp 125/127) halted on F3 (never
+  learns); Exp 128 pinned a TIMING flaw; **Exp 214 (1c)** fixed the timing (REAL but not sufficient, 0/8);
+  **Exp 215 (1d)** built a DIRECT response→valence head (`DirectHeadAgent`) and RULED OUT aliasing (K=U
+  also 0/8) — narrowing the wall to exploration. **Exp 216 (1e, ignition-envelope diagnostic, POSITIVE)**
+  decomposed the failure: policy-only 1.0 (exploitation works), update-only 0.83 at K=U+lr+data (learning
+  works), closed-loop 1/4 ignite (seed20 POS 0.10→0.34) — the FIRST ignition; the Exp 215 wall was a
+  CONJUNCTION whose binding remainder is the exploration cold-start. **Exp 217 (1f, cold-start break,
+  POSITIVE, blind-verified)** turned that fragile 1/4 into a RELIABLE 7/8: an HONEST optimistic POS prior
+  (+2.0 uniform across correct AND wrong cells — no leakage) makes 7/8 seeds learn (mean-last 0.44 ≫ 0.20
+  chance); ε-greedy 5/8; control 2/8 byte-reproduces Exp 216 (regression PASS ⇒ gains real). NOT a
+  breakthrough — reliable ONLY on the generous scaffold (K=U=6, γ8, 300t); the realistic K=4/100t regime
+  failed in Exp 215/216 and is deferred. NEXT (human's word): **Exp 218 / 1g** — ratchet γ/K/turns toward
+  realism with optimism on, find the minimal honest scaffold for reliable ignition. Guard:
+  tests/test_affect_agent.py; card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
