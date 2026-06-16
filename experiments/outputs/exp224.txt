@@ -1,0 +1,41 @@
+==============================================================================
+EXP 224 — M4b clean re-run with the AFFECT-specific proposer (--real x2, isolated clone)
+baseline (deterministic, Exp 222) = 0.4225
+AFFECT proposer (own mission + world_model_affect + 600s timeout); KEEP iff metric>best AND verdict
+==============================================================================
+FALSIFIER: BOTH iterations complete AND no improving+verdict merge => NEGATIVE (no gain at N=2)
+
+[setup] cloning repo -> /var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo
+[setup] clone base_sha=9299683b38
+
+[run] run_affect_loop.py --real --iterations 2 (AFFECT proposer, ~40 min) ...
+[run] returncode=1
+[run stderr tail]
+Traceback (most recent call last):
+  File "/private/var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo/run_affect_loop.py", line 38, in <module>
+    main()
+  File "/private/var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo/run_affect_loop.py", line 33, in main
+    run_affect_pr_loop(repo, proposer, critic, iterations=args.iterations)
+  File "/private/var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo/active_loop/affect_pr_loop.py", line 146, in run_affect_pr_loop
+    wm.append_evidence({
+  File "/private/var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo/active_loop/world_model.py", line 85, in append_evidence
+    with (self.root / "evidence" / "journal.jsonl").open("a") as fh:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mirro/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/w5/61rk4nkn2mv3vjx83l5ljrf80000gn/T/exp224_m4b_clone_dglwvudi/repo/world_model_affect/evidence/journal.jsonl'
+
+--- PER-ITERATION JOURNAL (world_model_affect, isolated) ---
+
+--- REPORT.md ---
+# active-loop affect report
+
+iter 0
+best metric: 0.4225
+last: critic_reject (merged=False)
+
+--- VERDICT (predeclared) ---
+VERDICT: INSTRUMENT_FAILURE
+  no affect journal rows — the autopilot did not run a single iteration.
+MACHINE SUMMARY: VERDICT=INSTRUMENT_FAILURE baseline=0.4225 best=0.4225 merges=0 complete_iters=0 run_rc=1
