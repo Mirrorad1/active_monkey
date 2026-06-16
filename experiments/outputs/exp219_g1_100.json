@@ -1,0 +1,74 @@
+[
+  {
+    "seed": 20,
+    "first": 0.4242,
+    "last": 0.1818,
+    "csel": 0.3333,
+    "improv": -0.2424,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 21,
+    "first": 0.1818,
+    "last": 0.2121,
+    "csel": 0.1667,
+    "improv": 0.0303,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 22,
+    "first": 0.0909,
+    "last": 0.0606,
+    "csel": 0.0,
+    "improv": -0.0303,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 23,
+    "first": 0.1515,
+    "last": 0.1818,
+    "csel": 0.3333,
+    "improv": 0.0303,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 24,
+    "first": 0.1515,
+    "last": 0.0909,
+    "csel": 0.0,
+    "improv": -0.0606,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 25,
+    "first": 0.4242,
+    "last": 0.2121,
+    "csel": 0.3333,
+    "improv": -0.2121,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 26,
+    "first": 0.2121,
+    "last": 0.2121,
+    "csel": 0.3333,
+    "improv": 0.0,
+    "genuine": false,
+    "ignite": false
+  },
+  {
+    "seed": 27,
+    "first": 0.303,
+    "last": 0.1212,
+    "csel": 0.3333,
+    "improv": -0.1818,
+    "genuine": false,
+    "ignite": false
+  }
+]

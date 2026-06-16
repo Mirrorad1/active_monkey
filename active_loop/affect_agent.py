@@ -344,5 +344,15 @@ class DirectHeadAgent:
         )
         self.agent = updated
 
+    def correct_select(self, correct: dict[int, int]) -> float:
+        """Discrimination probe (Exp 219): for each code c, infer intent from the utterance ALONE (valence NEU) from the model prior D, pick the argmax-policy response, and check whether it equals correct[c]. Returns the fraction of codes mapped correctly. Read-only — uses fresh inference from D, mutates nothing."""
+        hits = 0
+        for c in correct:
+            qs = self.agent.infer_states([jnp.array([c]), jnp.array([NEU])], self._D)
+            q_pi, _ = self.agent.infer_policies(qs)
+            resp = int(np.argmax(np.array(q_pi).reshape(-1)))
+            hits += (resp == correct[c])
+        return hits / len(correct)
+
     def pA1_sum(self) -> float:
         return float(jnp.array(self.agent.pA[1]).sum())

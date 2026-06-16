@@ -235,3 +235,59 @@ def test_constant_response_ceiling_is_one_third_and_exceeds_ignition_threshold()
     assert ceil > 1 / R, "constant ceiling must exceed the uniform-random ceiling 1/R"
     # the documented flaw: the 0.30 ignition threshold sits BELOW this ceiling
     assert ceil > 0.30, "constant ceiling must be above the 0.30 ignition threshold (the flaw)"
+
+
+def test_correct_select_high_on_gifted_discriminative_model():
+    """Exp 219 probe guard: a gifted K=6 direct-head agent should discriminate."""
+    correct = {c: c % 4 for c in range(U)}
+    m = build_direct_head_model(0, k=6)
+
+    A0 = np.array(m["A"][0])[0]
+    A0[:] = 0.01
+    for c in range(U):
+        A0[c, c, :] = 0.95
+    A0 = A0 / A0.sum(0, keepdims=True)
+    m["A"][0] = jnp.array(A0[None])
+    m["pA"][0] = jnp.array((A0 + 0.1)[None])
+
+    A1 = np.array(m["A"][1])[0]
+    A1[:] = 0.1
+    for c, r in correct.items():
+        A1[POS, c, r] = 0.9
+    A1 = A1 / A1.sum(0, keepdims=True)
+    m["A"][1] = jnp.array(A1[None])
+    m["pA"][1] = jnp.array((A1 + 0.1)[None])
+
+    ag = DirectHeadAgent(m, seed=0, lr_pA=4.0, lv=LV)
+
+    assert ag.correct_select(correct) >= 0.5
+
+
+def test_correct_select_near_chance_on_untrained():
+    """Exp 219 probe guard: an untrained direct-head agent must not look discriminative."""
+    ag = DirectHeadAgent(build_direct_head_model(0, k=6), seed=0)
+    assert ag.correct_select({c: c % 4 for c in range(U)}) <= 0.5
+
+
+def test_exp219_cells_and_genuine_rule():
+    """Exp 219 config guard: cells and constant-response ceiling match the predeclaration."""
+    import importlib.util as _u
+    import pathlib as _pl
+    import pytest
+    from active_loop.affect_spec import constant_response_ceiling
+
+    _spec = _u.spec_from_file_location(
+        "exp219", _pl.Path(__file__).parent.parent / "experiments" / "exp219_m4a_discriminate.py"
+    )
+    _mod = _u.module_from_spec(_spec)
+    _spec.loader.exec_module(_mod)
+
+    correct = {c: c % 4 for c in range(U)}
+    assert set(_mod.CELLS) == {"g1_100", "g1_300", "g4_100", "g4_300", "g4_600",
+                               "ctrl_anchor", "ctrl_g4K6"}
+    for name, cfg in _mod.CELLS.items():
+        assert cfg["gamma"] > 0, f"{name}: gamma must be >0, got {cfg['gamma']}"
+        assert cfg["K"] in {4, 6}, f"{name}: K must be 4 or 6, got {cfg['K']}"
+        assert cfg["turns"] in {100, 300, 600}, f"{name}: unexpected turns {cfg['turns']}"
+
+    assert constant_response_ceiling(correct, R) == pytest.approx(1 / 3)

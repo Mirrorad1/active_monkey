@@ -1,0 +1,93 @@
+==============================================================================
+EXP 219 — M4a discrimination readout (genuine > constant ceiling)
+OPTIMISM=2.0 LR=4.0 held constant; correct_select probes fresh D inference
+==============================================================================
+CEIL=0.333; last~0.33 is the constant ceiling for a degenerate constant-response policy.
+FALSIFIER: if no K=4 cell reaches >=2/8 genuine, the hypothesis is refuted.
+
+--- CELL: g1_100  (gamma=1.0, K=4, turns=100) ---
+  seed 20: first 0.42 -> last 0.18  csel 0.33  genuine=False
+  seed 21: first 0.18 -> last 0.21  csel 0.17  genuine=False
+  seed 22: first 0.09 -> last 0.06  csel 0.00  genuine=False
+  seed 23: first 0.15 -> last 0.18  csel 0.33  genuine=False
+  seed 24: first 0.15 -> last 0.09  csel 0.00  genuine=False
+  seed 25: first 0.42 -> last 0.21  csel 0.33  genuine=False
+  seed 26: first 0.21 -> last 0.21  csel 0.33  genuine=False
+  seed 27: first 0.30 -> last 0.12  csel 0.33  genuine=False
+  genuine 0/8, mean_csel 0.229, mean_last 0.159; (lenient ignite 0/8 for comparison)
+
+--- CELL: g1_300  (gamma=1.0, K=4, turns=300) ---
+  seed 20: first 0.28 -> last 0.20  csel 0.33  genuine=False
+  seed 21: first 0.26 -> last 0.36  csel 0.83  genuine=True  GENUINE
+  seed 22: first 0.08 -> last 0.23  csel 0.50  genuine=False
+  seed 23: first 0.17 -> last 0.29  csel 0.33  genuine=False
+  seed 24: first 0.11 -> last 0.27  csel 0.50  genuine=False
+  seed 25: first 0.27 -> last 0.42  csel 0.83  genuine=True  GENUINE
+  seed 26: first 0.19 -> last 0.29  csel 0.50  genuine=False
+  seed 27: first 0.21 -> last 0.20  csel 0.50  genuine=False
+  genuine 2/8, mean_csel 0.542, mean_last 0.283; (lenient ignite 0/8 for comparison)
+
+--- CELL: g4_100  (gamma=4.0, K=4, turns=100) ---
+  seed 20: first 0.21 -> last 0.12  csel 0.17  genuine=False
+  seed 21: first 0.12 -> last 0.33  csel 0.33  genuine=False
+  seed 22: first 0.03 -> last 0.00  csel 0.00  genuine=False
+  seed 23: first 0.21 -> last 0.18  csel 0.17  genuine=False
+  seed 24: first 0.18 -> last 0.03  csel 0.00  genuine=False
+  seed 25: first 0.33 -> last 0.39  csel 0.67  genuine=True  GENUINE
+  seed 26: first 0.15 -> last 0.36  csel 0.33  genuine=False
+  seed 27: first 0.09 -> last 0.30  csel 0.33  genuine=False
+  genuine 1/8, mean_csel 0.250, mean_last 0.216; (lenient ignite 3/8 for comparison)
+
+--- CELL: g4_300  (gamma=4.0, K=4, turns=300) ---
+  seed 20: first 0.16 -> last 0.17  csel 0.17  genuine=False
+  seed 21: first 0.25 -> last 0.33  csel 0.33  genuine=False
+  seed 22: first 0.01 -> last 0.00  csel 0.00  genuine=False
+  seed 23: first 0.18 -> last 0.36  csel 0.50  genuine=True  GENUINE
+  seed 24: first 0.07 -> last 0.42  csel 0.67  genuine=True  GENUINE
+  seed 25: first 0.32 -> last 0.53  csel 0.50  genuine=True  GENUINE
+  seed 26: first 0.23 -> last 0.52  csel 0.50  genuine=True  GENUINE
+  seed 27: first 0.21 -> last 0.55  csel 0.67  genuine=True  GENUINE
+  genuine 5/8, mean_csel 0.417, mean_last 0.360; (lenient ignite 5/8 for comparison)
+
+--- CELL: g4_600  (gamma=4.0, K=4, turns=600) ---
+  seed 20: first 0.17 -> last 0.17  csel 0.17  genuine=False
+  seed 21: first 0.29 -> last 0.34  csel 0.33  genuine=False
+  seed 22: first 0.01 -> last 0.00  csel 0.00  genuine=False
+  seed 23: first 0.25 -> last 0.36  csel 0.33  genuine=False
+  seed 24: first 0.16 -> last 0.66  csel 0.67  genuine=True  GENUINE
+  seed 25: first 0.37 -> last 0.41  csel 0.33  genuine=False
+  seed 26: first 0.33 -> last 0.67  csel 0.67  genuine=True  GENUINE
+  seed 27: first 0.32 -> last 0.65  csel 0.67  genuine=True  GENUINE
+  genuine 3/8, mean_csel 0.396, mean_last 0.407; (lenient ignite 3/8 for comparison)
+
+--- CELL: ctrl_anchor  (gamma=8.0, K=6, turns=300) ---
+  seed 20: first 0.08 -> last 0.34  csel 0.33  genuine=False
+  seed 21: first 0.22 -> last 0.47  csel 0.50  genuine=True  GENUINE
+  seed 22: first 0.29 -> last 0.56  csel 0.67  genuine=True  GENUINE
+  seed 23: first 0.30 -> last 0.66  csel 0.67  genuine=True  GENUINE
+  seed 24: first 0.18 -> last 0.49  csel 0.50  genuine=True  GENUINE
+  seed 25: first 0.16 -> last 0.33  csel 0.33  genuine=False
+  seed 26: first 0.21 -> last 0.33  csel 0.33  genuine=False
+  seed 27: first 0.07 -> last 0.33  csel 0.33  genuine=False
+  genuine 4/8, mean_csel 0.458, mean_last 0.439; (lenient ignite 7/8 for comparison)
+
+--- CELL: ctrl_g4K6  (gamma=4.0, K=6, turns=300) ---
+  seed 20: first 0.23 -> last 0.67  csel 0.67  genuine=True  GENUINE
+  seed 21: first 0.14 -> last 0.47  csel 0.50  genuine=True  GENUINE
+  seed 22: first 0.23 -> last 0.51  csel 0.50  genuine=True  GENUINE
+  seed 23: first 0.09 -> last 0.39  csel 0.50  genuine=True  GENUINE
+  seed 24: first 0.10 -> last 0.33  csel 0.33  genuine=False
+  seed 25: first 0.14 -> last 0.33  csel 0.33  genuine=False
+  seed 26: first 0.13 -> last 0.34  csel 0.33  genuine=False
+  seed 27: first 0.12 -> last 0.66  csel 0.67  genuine=True  GENUINE
+  genuine 5/8, mean_csel 0.479, mean_last 0.463; (lenient ignite 8/8 for comparison)
+
+--- K6 CONTROL CHECK ---
+*** CONTROL FAILS: even the easy K=6 regime does not genuinely discriminate -> Exp 217's reliable-ignition headline was constant-ceiling; escalate. ***
+
+--- HEADLINE OVER K=4 CELLS ---
+PARTIAL: some K=4 cell reaches >=2/8 genuine but none reaches >=6/8; best cell g4_300=5/8.
+
+VERDICT: PARTIAL
+  The realistic-capacity dyad shows isolated genuine discrimination but not reliable discrimination. The falsifier does not fire, but the reliability hypothesis is not met. Report partial only; do not call the K=4 regime solved.
+MACHINE SUMMARY: VERDICT=PARTIAL ceil=0.333 controls=anchor:4/8,g4K6:5/8 K4_best=g4_300:5/8 g1_100=0/8 g1_300=2/8 g4_100=1/8 g4_300=5/8 g4_600=3/8
