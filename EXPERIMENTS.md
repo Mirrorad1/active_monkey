@@ -9729,3 +9729,67 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   improvability datum; OR pause M4b and pick the standing alt (a LEARNING-side lever for the short-session
   wall, Exp 221). Guards: tests/test_affect_pr_loop.py; card: loop/directions/affective-dyad.md.
 - trace: experiments/exp223_m4b_first_run.py → experiments/outputs/exp223.txt
+
+## Exp 224 — M4b clean re-run with the AFFECT-specific proposer: the autopilot now runs END-TO-END (clean rc=0 after fixing 4 instrument issues), and at N=2 finds NO improvement — but CRITIC-GATED: both proposer prior-changes were rejected by the AffectClaudeCritic BEFORE the FROZEN scorer ever measured them, so improvability is untested by the scorer (NEGATIVE / NEW INSIGHT; blind-verified)
+
+- Plain: After fixing the Exp 223 problems (own affect mission, its own notes file, a longer 600s timeout)
+  AND a second bug found mid-run (the affect notes folder got wiped every round by git branch-switching),
+  the auto-improver finally completed a clean 2-round run. Result: it did NOT improve the agent — but not
+  because the changes scored worse. Both of Claude's proposed model tweaks were REJECTED by the reviewer
+  step before they were ever graded. So the bottleneck at this scale is the REVIEWER (critic), not the
+  scorer: the metric was never measured on any proposed change. A leftover hygiene bug also means the notes
+  file only kept the last round's entry, and the clone is gone so we can't read WHY the reviewer rejected.
+  No improvement found; the autopilot machinery is proven to run end-to-end. Functional valence only; no
+  sentience claim.
+- Hypothesis (predeclared, with named falsifier): with the affect-specific proposer (own mission + isolated
+  world_model_affect + 600s timeout) the M4b autopilot completes a clean bounded run AND can RAISE the genuine
+  learns-to-positive metric above baseline (0.4225) by mutating build_direct_head_model's priors, without
+  reward-hacking. FALSIFIER: if BOTH iterations COMPLETE and no proposal both improves the metric AND holds
+  verdict (all discarded as no_improvement / guardrail_fail / critic_reject / tests_failed), NEGATIVE (no gain
+  at N=2). A claude/scorer failure (timeout/crash) is STILL an INSTRUMENT failure.
+- Setup: run_affect_loop.py --real --iterations 2 on an isolated clone (HEAD d01f96d). --real = AffectClaudeProposer
+  (affect mission, reads world_model_affect/INDEX.md, 600s timeout) + AffectClaudeCritic (affect review prompt)
+  + the FROZEN score_affect() (300t x 8 seeds, ~10 min/candidate). KEEP iff metric>best AND verdict. Two instrument
+  bugs were fixed to reach a clean run: Exp 223's (timeout + lang context) and this run's mid-flight discovery —
+  the untracked world_model_affect dir was WIPED each iteration (commit_all sweeps it onto the proposal branch,
+  then discard->checkout(trunk) removes it since it is not tracked on trunk, unlike the lang world_model). Fixed
+  (re-mkdir each iteration) + guarded (tests/test_affect_pr_loop.py::test_run_affect_pr_loop_completes_and_writes_isolated_journal).
+- Result: VERDICT NEGATIVE (falsifier fires). returncode=0 — CLEAN completion ("Affect PR loop finished"); no
+  crash/timeout (the 600s timeout + the dir fix held). Baseline real score reproduced = 0.4225. Both iterations
+  (i=0, i=1) executed; the proposer produced valid affect_spec.py mutations ("affect proposal applied") that
+  passed frozen-guard + the affect tests, but the AffectClaudeCritic REJECTED both -> critic_reject -> neither
+  candidate was ever scored. 0 merges; best stayed at baseline 0.4225; no frozen path touched. (Residual: a
+  journal data-loss bug persisted only the LAST iteration's row — world_model_affect is still wiped each round,
+  so append starts a fresh file; my fix stopped the CRASH but not the data loss. The clone is deleted, so the
+  critic_reason text is not recoverable.)
+- Implication: a real but PARTIAL milestone — the M4b autopilot is now proven to run END-TO-END for a clean
+  bounded real session (after fixing FOUR instrument issues from repurposing the lang autopilot: short timeout,
+  lang mission context, shared world_model, untracked-dir git wipe). The first science datum is NEGATIVE, and
+  its character is the NEW INSIGHT: the BINDING gate at this scale is the CRITIC, not the scorer — both
+  proposer prior-tweaks were rejected before measurement, so the FROZEN scorer never tested whether they
+  improve the metric. So "the baseline priors are improvable by the autopilot" is NOT answered: the loop failed
+  UPSTREAM of scoring. Two readings, indistinguishable without the critic_reason: the critic correctly rejected
+  unsound prior-hacks, OR the critic (an LLM soft gate on a tiny-diff prior change) is mis-calibrated / too
+  strict. Tier: a process/instrument result + a gate-localization finding; no improvability verdict on the
+  metric (the scorer never ran on a mutant).
+- Honest caveat: NEGATIVE per the predeclared falsifier (both iterations complete, 0 improving merges), but it
+  is CRITIC-GATED, not score-driven — NO mutant was ever scored, so this is NOT evidence the metric is
+  unimprovable; it is evidence the critic blocked the proposer at N=2. Residual instrument issues remain: (a)
+  the journal accumulation bug (only the last row persists); (b) the critic_reason is unrecorded (can't judge
+  if the rejections were sound); (c) the AffectClaudeCritic + AffectClaudeProposer (real claude -p) are not
+  unit-tested (like the lang ClaudeCli classes). N=2 is tiny; the lever is narrow (model priors only — the
+  FROZEN scorer fixes optimism/lr/gamma-schedule). Functional valence only; no sentience claim.
+- Verdict: NEGATIVE / NEW INSIGHT. Self-grade: NEGATIVE — the predeclared falsifier fired (clean 2-iteration
+  completion, 0 improving merges); the new insight is the gate localization (critic-gated, scorer never ran on
+  a mutant) + the end-to-end-runs milestone, not an improvability claim.
+- Verifier: agree — an independent blinded agent applied the predeclared rule: 0 merges with metric>0.4225;
+  both iterations completed cleanly (rc=0, no crash/timeout); both proposals critic_reject (an explicitly named
+  discard reason) -> falsifier fires -> NEGATIVE; and classified the failure mode as CRITIC-GATED (candidates
+  rejected before scoring; the metric was never measured on any mutant), not score-driven.
+- Next (CONSULT — a human word): (a) a CLEANER re-run — fix the journal-accumulation bug + capture the
+  critic_reason + inspect/calibrate the AffectClaudeCritic (is it correctly rejecting unsound prior-hacks, or
+  too strict?), optionally more iterations, to get an actual scorer-measured improvability datum; (b) ACCEPT
+  the M4b finding as-is — the autopilot runs end-to-end but is critic-gated at this scale; the M4a deliverable
+  (converse REPL + the FROZEN unfakeable scorer, Exp 222) stands as the milestone; (c) pivot to the short-session
+  LEARNING lever (Exp 221). Guards: tests/test_affect_pr_loop.py; card: loop/directions/affective-dyad.md.
+- trace: experiments/exp224_m4b_clean_run.py → experiments/outputs/exp224.txt
