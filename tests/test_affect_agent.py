@@ -181,3 +181,57 @@ def test_directhead_optimism_off_byte_identical():
         ag_default.observe_feedback(code, NEU); ag_zero.observe_feedback(code, NEU)
     assert acts_default == acts_zero, (
         f"optimism=0 must be byte-identical to defaults; got {acts_default} vs {acts_zero}")
+
+
+def test_exp218_cells_well_formed():
+    """Guard: Exp 218 CELLS dict is structurally sound (Exp 218 integrity sentinel).
+
+    No sessions; pure config check.  Ensures CELLS can be imported and every entry
+    satisfies the predeclared constraints so a typo in the constant table cannot
+    silently corrupt a long-running experiment.
+    """
+    import importlib.util as _u
+    import pathlib as _pl
+    _spec = _u.spec_from_file_location(
+        "exp218", _pl.Path(__file__).parent.parent / "experiments" / "exp218_m4a_ratchet.py"
+    )
+    _mod = _u.module_from_spec(_spec)
+    _spec.loader.exec_module(_mod)
+    cells = _mod.CELLS
+
+    assert set(cells) == {"anchor", "gamma4", "gamma1", "K5", "K4", "turns100", "realistic"}, \
+        f"CELLS keys mismatch: {set(cells)}"
+
+    for name, cfg in cells.items():
+        assert cfg["gamma"] > 0,             f"{name}: gamma must be >0, got {cfg['gamma']}"
+        assert 4 <= cfg["K"] <= 6,           f"{name}: K must be in [4,6], got {cfg['K']}"
+        assert cfg["turns"] in {100, 300},   f"{name}: turns must be 100 or 300, got {cfg['turns']}"
+
+    # boundary sentinels
+    anc = cells["anchor"]
+    assert anc["gamma"] == 8.0 and anc["K"] == 6 and anc["turns"] == 300, \
+        f"anchor must be gamma=8/K=6/turns=300, got {anc}"
+    real = cells["realistic"]
+    assert real["gamma"] == 1.0 and real["K"] == 4 and real["turns"] == 100, \
+        f"realistic must be gamma=1/K=4/turns=100, got {real}"
+
+
+def test_constant_response_ceiling_is_one_third_and_exceeds_ignition_threshold():
+    """Exp 218 metric guard (blind-verified): a last-third POS-rate of ~0.33 does NOT prove
+    per-intent learning — a degenerate constant-response policy already reaches it.
+
+    For the standard M4a map (CORRECT[c]=c%4, U=6, R=5) the constant-response ceiling is 1/3,
+    which is ABOVE the ignition threshold (last>=0.30) used in Exp 216/217/218. So that
+    threshold under-discriminates: future M4a ignition claims must clear 1/3 (or report a
+    per-intent correct-select readout). This test pins the ceiling so the flaw can't be
+    silently re-introduced.
+    """
+    from active_loop.affect_spec import constant_response_ceiling, U, R
+
+    correct = {c: c % 4 for c in range(U)}
+    ceil = constant_response_ceiling(correct, R)
+    assert abs(ceil - 1 / 3) < 1e-9, f"constant-response ceiling expected 1/3, got {ceil}"
+    # the uniform-random null (1/R) is LOWER — and is the wrong null for this map
+    assert ceil > 1 / R, "constant ceiling must exceed the uniform-random ceiling 1/R"
+    # the documented flaw: the 0.30 ignition threshold sits BELOW this ceiling
+    assert ceil > 0.30, "constant ceiling must be above the 0.30 ignition threshold (the flaw)"

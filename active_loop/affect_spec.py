@@ -6,6 +6,8 @@ epistemic term + the ASK response.
 """
 from __future__ import annotations
 
+from collections import Counter
+
 import numpy as np
 import jax.numpy as jnp
 
@@ -142,3 +144,24 @@ def build_direct_head_model(seed: int = 0, k: int = K) -> dict:
         C  = [_b(C0),  _b(C1)],
         D  = [_b(D0),  _b(D1)],
     )
+
+
+def constant_response_ceiling(correct: dict[int, int], r_count: int) -> float:
+    """Best POS-rate a DEGENERATE constant-response policy can reach (Exp 218 guard).
+
+    Given a code->correct-response map with codes drawn UNIFORMLY, a policy that always
+    emits one fixed response r earns POS on the fraction of codes whose correct answer is r.
+    The ceiling is the max of that fraction over all responses. For the standard M4a map
+    (CORRECT[c] = c % 4 over U=6 codes) this is 1/3: responses 0 and 1 are EACH correct for
+    2 of the 6 codes.
+
+    Why this matters (the metric flaw Exp 218 surfaced, blind-verified): a "learning" /
+    ignition claim must CLEAR this ceiling. A last-third POS-rate at or just above it (~0.33)
+    is consistent with a non-discriminating CONSTANT policy, NOT genuine per-intent learning.
+    The uniform-random ceiling (1/r_count = 0.20 here) is LOWER and is the WRONG null — any
+    ignition threshold for this map must exceed 1/3, or report a per-intent correct-select
+    readout, to actually demonstrate discrimination.
+    """
+    counts = Counter(correct.values())
+    best = max((counts.get(r, 0) for r in range(r_count)), default=0)
+    return best / len(correct)

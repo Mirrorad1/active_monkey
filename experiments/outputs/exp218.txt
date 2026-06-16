@@ -1,0 +1,109 @@
+==============================================================================
+EXP 218 — M4a ratchet: minimal honest scaffold for reliable ignition
+OPTIMISM=2.0 LR=4.0 held constant; scaffold knobs ratcheted toward realism
+==============================================================================
+
+--- CELL: anchor  (gamma=8.0, K=6, turns=300) ---
+  seed 20: first 0.08 -> last 0.34  improv +0.260  IGNITE
+  seed 21: first 0.22 -> last 0.47  improv +0.250  IGNITE
+  seed 22: first 0.29 -> last 0.56  improv +0.270  IGNITE
+  seed 23: first 0.30 -> last 0.66  improv +0.360  IGNITE
+  seed 24: first 0.18 -> last 0.49  improv +0.310  IGNITE
+  seed 25: first 0.16 -> last 0.33  improv +0.170  IGNITE
+  seed 26: first 0.21 -> last 0.33  improv +0.120
+  seed 27: first 0.07 -> last 0.33  improv +0.260  IGNITE
+  ignitions: 7/8   mean_last: 0.439   RELIABLE (>=6/8)
+
+--- CELL: gamma4  (gamma=4.0, K=6, turns=300) ---
+  seed 20: first 0.23 -> last 0.67  improv +0.440  IGNITE
+  seed 21: first 0.14 -> last 0.47  improv +0.330  IGNITE
+  seed 22: first 0.23 -> last 0.51  improv +0.280  IGNITE
+  seed 23: first 0.09 -> last 0.39  improv +0.300  IGNITE
+  seed 24: first 0.10 -> last 0.33  improv +0.230  IGNITE
+  seed 25: first 0.14 -> last 0.33  improv +0.190  IGNITE
+  seed 26: first 0.13 -> last 0.34  improv +0.210  IGNITE
+  seed 27: first 0.12 -> last 0.66  improv +0.540  IGNITE
+  ignitions: 8/8   mean_last: 0.463   RELIABLE (>=6/8)
+
+--- CELL: gamma1  (gamma=1.0, K=6, turns=300) ---
+  seed 20: first 0.26 -> last 0.22  improv -0.040
+  seed 21: first 0.25 -> last 0.27  improv +0.020
+  seed 22: first 0.09 -> last 0.22  improv +0.130
+  seed 23: first 0.20 -> last 0.36  improv +0.160  IGNITE
+  seed 24: first 0.12 -> last 0.28  improv +0.160
+  seed 25: first 0.27 -> last 0.32  improv +0.050
+  seed 26: first 0.13 -> last 0.20  improv +0.070
+  seed 27: first 0.20 -> last 0.19  improv -0.010
+  ignitions: 1/8   mean_last: 0.258   not (>=6/8)
+
+--- CELL: K5  (gamma=8.0, K=5, turns=300) ---
+  seed 20: first 0.28 -> last 0.34  improv +0.060
+  seed 21: first 0.30 -> last 0.34  improv +0.040
+  seed 22: first 0.03 -> last 0.34  improv +0.310  IGNITE
+  seed 23: first 0.17 -> last 0.17  improv +0.000
+  seed 24: first 0.29 -> last 0.57  improv +0.280  IGNITE
+  seed 25: first 0.20 -> last 0.66  improv +0.460  IGNITE
+  seed 26: first 0.05 -> last 0.16  improv +0.110
+  seed 27: first 0.24 -> last 0.50  improv +0.260  IGNITE
+  ignitions: 4/8   mean_last: 0.385   not (>=6/8)
+
+--- CELL: K4  (gamma=8.0, K=4, turns=300) ---
+  seed 20: first 0.12 -> last 0.34  improv +0.220  IGNITE
+  seed 21: first 0.30 -> last 0.51  improv +0.210  IGNITE
+  seed 22: first 0.14 -> last 0.34  improv +0.200  IGNITE
+  seed 23: first 0.15 -> last 0.33  improv +0.180  IGNITE
+  seed 24: first 0.03 -> last 0.00  improv -0.030
+  seed 25: first 0.14 -> last 0.33  improv +0.190  IGNITE
+  seed 26: first 0.20 -> last 0.34  improv +0.140
+  seed 27: first 0.18 -> last 0.33  improv +0.150  IGNITE
+  ignitions: 6/8   mean_last: 0.315   RELIABLE (>=6/8)
+
+--- CELL: turns100  (gamma=8.0, K=6, turns=100) ---
+  seed 20: first 0.09 -> last 0.09  improv +0.000
+  seed 21: first 0.15 -> last 0.24  improv +0.091
+  seed 22: first 0.24 -> last 0.30  improv +0.061
+  seed 23: first 0.21 -> last 0.42  improv +0.212  IGNITE
+  seed 24: first 0.18 -> last 0.21  improv +0.030
+  seed 25: first 0.21 -> last 0.15  improv -0.061
+  seed 26: first 0.18 -> last 0.27  improv +0.091
+  seed 27: first 0.06 -> last 0.09  improv +0.030
+  ignitions: 1/8   mean_last: 0.223   not (>=6/8)
+
+--- CELL: realistic  (gamma=1.0, K=4, turns=100) ---
+  seed 20: first 0.42 -> last 0.18  improv -0.242
+  seed 21: first 0.18 -> last 0.21  improv +0.030
+  seed 22: first 0.09 -> last 0.06  improv -0.030
+  seed 23: first 0.15 -> last 0.18  improv +0.030
+  seed 24: first 0.15 -> last 0.09  improv -0.061
+  seed 25: first 0.42 -> last 0.21  improv -0.212
+  seed 26: first 0.21 -> last 0.21  improv +0.000
+  seed 27: first 0.30 -> last 0.12  improv -0.182
+  ignitions: 0/8   mean_last: 0.159   not (>=6/8)
+
+--- ANCHOR CONSISTENCY (expect ~7/8, accept 6-8 as consistent with Exp 217) ---
+  anchor=7/8 -> PASS (consistent with Exp 217 optimistic 7/8)
+
+--- BREAK-POINT ANALYSIS per knob ---
+  gamma knob (K=6, 300t): anchor(8) -> gamma4(4) -> gamma1(1)
+    anchor: 7/8 -> RELIABLE
+    gamma4: 8/8 -> RELIABLE
+    gamma1: 1/8 -> breaks
+  gamma break-point: gamma1
+
+  K knob (gamma=8, 300t): anchor(6) -> K5(5) -> K4(4)
+    anchor: 7/8 -> RELIABLE
+    K5: 4/8 -> breaks
+    K4: 6/8 -> RELIABLE
+  K break-point: K5
+
+  turns knob (gamma=8, K=6): anchor(300) -> turns100(100)
+    anchor: 7/8 -> RELIABLE
+    turns100: 1/8 -> breaks
+  turns break-point: turns100
+
+--- VERDICT (predeclared decision rule) ---
+
+VERDICT: PARTIAL_RATCHET
+  Optimism extends reliability beyond the anchor on cells: ['gamma4', 'K4'].  Minimal honest scaffold (most realistic reliable non-anchor cell): gamma4 (gamma=4.0, K=6, turns=300).  Blocking knob(s): gamma (breaks between 4 and 1); K (breaks at 5 already); turns (breaks at 100).  realistic cell is NOT reliable (0/8).
+
+MACHINE SUMMARY: VERDICT=PARTIAL_RATCHET anchor=7/8 gamma1=1/8 K4=6/8 turns100=1/8 realistic=0/8
