@@ -1,0 +1,46 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp216.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp216_m4a_ignition.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.20\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.6\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0/4\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"21/22\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3/4\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4/100\" quoted in entry not found in experiments/outputs/exp216.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-16T02:23:58Z",
+  "commit_sha": "663acc645e1b73e5921b8b3b85d7c946acb12932",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 216,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
