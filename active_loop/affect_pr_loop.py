@@ -15,6 +15,7 @@ from active_loop import git_ops
 from active_loop.frozen_guard import is_frozen_touched
 from active_loop.world_model import WorldModel
 from active_loop.report_html import render_report
+from active_loop.critic import Verdict
 
 
 @dataclass
@@ -124,9 +125,10 @@ def run_affect_pr_loop(
     iterations: int = 0,
     error_budget: int = 5,
     score_fn: Callable | None = None,
+    world_model_dir: str = "world_model_affect",
 ) -> None:
     repo = Path(repo)
-    wm = WorldModel(repo / "world_model")
+    wm = WorldModel(repo / world_model_dir)
     history: list[float] = []
     consecutive_errors = 0
 
@@ -196,6 +198,98 @@ def run_affect_pr_loop(
             git_ops.commit_paths(repo, ["NEEDS_HUMAN.md"], f"affect loop: halt at iter {i}")
             return
         i += 1
+
+
+# ── Affect-specific mission string ──────────────────────────────────────────
+
+_AFFECT_MISSION = (
+    "You are improving a toy active-inference AFFECTIVE DYAD "
+    "(docs/specs/m4-affective-dyad.md). The agent infers a latent intent from an "
+    "utterance code and picks a response; it LEARNS (Dirichlet on A) which response "
+    "earns POSITIVE feedback. GOAL: raise the genuine 'learns-to-positive' metric = "
+    "mean last-third POSITIVE-feedback rate, which counts ONLY if it clears the 1/3 "
+    "constant-reply ceiling AND the agent genuinely discriminates "
+    "(correct_select >= 3/6, constant-UNFAKEABLE). Functional valence only; no "
+    "sentience claim."
+)
+
+_AFFECT_CODE_FENCE = re.compile(r"```(?:python)?\n(.*?)```", re.DOTALL)
+
+
+class AffectClaudeProposer:
+    """Invokes `claude -p` with an affect-specific prompt to propose a new version of affect_spec.py."""
+
+    def __init__(self, timeout_s: int = 600, target_file: str = "active_loop/affect_spec.py"):
+        self.timeout_s = timeout_s
+        self.target_file = target_file
+
+    def _read(self, repo: Path, rel: str) -> str:
+        p = Path(repo) / rel
+        return p.read_text() if p.exists() else ""
+
+    def propose(self, repo) -> str:
+        repo = Path(repo)
+        index = self._read(repo, "world_model_affect/INDEX.md")
+        current = self._read(repo, self.target_file)
+        rules = (
+            "You may edit ONLY active_loop/affect_spec.py — specifically the PRIORS inside "
+            "build_direct_head_model (A0/A1 jitter, pA Dirichlet concentrations, B concentrations, "
+            "C preferences, D). Do NOT change the dims K/U/R/V or any function signature; do NOT "
+            "touch the FROZEN evaluator (eval/). Keep it valid Python and a valid pymdp model "
+            "(normalized columns, correct shapes) or it is reverted. Don't game the metric — a "
+            "constant policy already fails it."
+        )
+        prompt = (
+            f"{_AFFECT_MISSION}\n\n"
+            f"## Rules\n{rules}\n\n"
+            f"## What you know so far (world model)\n{index}\n\n"
+            f"## Current {self.target_file}\n```python\n{current}\n```\n\n"
+            "Propose ONE small change to raise the metric. Output ONLY the complete new contents "
+            f"of {self.target_file} in a single ```python code fence — no prose."
+        )
+        proc = subprocess.run(
+            ["claude", "-p", prompt, "--output-format", "text"],
+            cwd=str(repo), capture_output=True, text=True, timeout=self.timeout_s,
+        )
+        if proc.returncode != 0:
+            raise RuntimeError(f"claude CLI failed: {proc.stderr[:500]}")
+        m = _AFFECT_CODE_FENCE.search(proc.stdout)
+        if m is None:
+            raise RuntimeError("proposer returned no python code fence")
+        new_src = m.group(1)
+        compile(new_src, self.target_file, "exec")
+        (repo / self.target_file).write_text(new_src)
+        return "affect proposal applied"
+
+
+class AffectClaudeCritic:
+    """Asks `claude -p` to review a diff to affect_spec.py for soundness and metric-gaming."""
+
+    def __init__(self, timeout_s: int = 600):
+        self.timeout_s = timeout_s
+
+    def review(self, diff: str, repo) -> Verdict:
+        if not diff.strip():
+            return Verdict(False, "empty diff")
+        prompt = (
+            "You are reviewing a proposed change to active_loop/affect_spec.py — the "
+            "generative-model PRIORS of a toy affective dyad. The objective is to RAISE "
+            "the genuine learns-to-positive metric (last-third POSITIVE rate clearing the "
+            "1/3 ceiling AND correct_select>=3/6) WITHOUT gaming the FROZEN evaluator "
+            "(eval/affect_score.py) and WITHOUT changing dims/signatures. Here is the diff:\n\n"
+            f"{diff}\n\n"
+            "Reply with exactly one line: 'APPROVE: <reason>' if it is a sound, honest attempt, "
+            "or 'REJECT: <reason>' if it is unsound or gaming."
+        )
+        proc = subprocess.run(
+            ["claude", "-p", prompt, "--output-format", "text"],
+            cwd=str(repo), capture_output=True, text=True, timeout=self.timeout_s,
+        )
+        if proc.returncode != 0:
+            return Verdict(False, f"critic CLI failed: {proc.stderr[:200]}")
+        out = proc.stdout.strip()
+        approved = bool(re.match(r"\s*APPROVE", out, re.IGNORECASE))
+        return Verdict(approved, out[:300])
 
 
 # ── Mock proposer for harness validation ────────────────────────────────────
