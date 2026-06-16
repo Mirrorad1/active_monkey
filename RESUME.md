@@ -317,10 +317,20 @@ step 0.
   over-commits early). NOT a breakthrough (blind-verified): every cell is the LONG 300t session — the short
   100t realistic session (Exp 219's open learning blocker) is untested, so length does much of the work and
   the schedule was never separated from it; the 13/16 is bar-fragile (csel≥0.67 → 7/16) and N=16 is modest.
-  NEXT (human's word): **Exp 221 / 1j** — SEPARATE the schedule from session length: run it at the SHORT
-  session (100/150/200t) at K=4, N≥16 — does annealing γ rescue the short session, or is 300t necessary? +
-  report at the stricter csel≥0.67 bar. Guard: tests/test_affect_agent.py (gamma_schedule + correct_select
-  + constant_response_ceiling); card: loop/directions/affective-dyad.md.
+  **Exp 221 (1j, NEGATIVE / NEW INSIGHT, blind-verified)** SEPARATED the schedule from session length: the
+  precision schedule does NOT rescue the short session (short sched 0/2/3 of 16, bar 12) — it beats fixed
+  only at 300t (+6) and is slightly WORSE at short lengths; mean_csel rises with length for BOTH conditions,
+  so **short sessions block LEARNING** (the schedule only optimizes EXPLOITATION) and **the long 300t session
+  is load-bearing**. Regression-anchored EXACT to Exp 220 (sched_300=13/16, fixed_300=7/16). **Exp 222 (1e,
+  POSITIVE / milestone close, blind-verified) CLOSED the M4a chapter** at toy scale: built `converse.py` (the
+  honest "talk to it" REPL) + `eval/affect_score.py` (FROZEN learns-to-positive scorer) + `_json` + tests.
+  MILESTONE_VALIDATED: the DirectHeadAgent learner passes (verdict True: realized POS 0.42>1/3, genuine 6/8,
+  improvement 0.24, reproduces Exp 220) AND a constant-reply control FAILS (verdict False, genuine 0) — a
+  constant-UNFAKEABLE metric. Synthesis + provided-vs-learned ledger: `docs/research/m4a-affective-dyad-chapter.md`.
+  NEXT (each needs a human word): **M4b** — the PR-style autopilot over MUTABLE `affect_spec.py` against the
+  FROZEN `eval/affect_score.py` (can it raise the genuine number without reward-hacking?); standing alternative
+  — a LEARNING-side lever (lr/optimism/replay) to attack the short-session learning wall (Exp 221). Guards:
+  tests/test_affect_agent.py + tests/test_affect_score.py; card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
