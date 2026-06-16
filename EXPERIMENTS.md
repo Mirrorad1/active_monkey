@@ -9536,3 +9536,75 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   Also report genuine at the stricter csel≥0.67 bar. Card: loop/directions/affective-dyad.md; guards:
   tests/test_affect_agent.py (gamma_schedule + correct_select + constant_response_ceiling).
 - trace: experiments/exp220_m4a_schedule.py → experiments/outputs/exp220.txt
+
+## Exp 221 — M4a schedule vs session length (1j): the precision schedule does NOT rescue the short session — the long 300t session is LOAD-BEARING (short sched 0/2/3 of 16; the schedule beats fixed ONLY at 300t, +6, and is slightly WORSE at short lengths); confirms short sessions block LEARNING, not exploitation (NEGATIVE / NEW INSIGHT; blind-verified; regression-anchored to Exp 220)
+
+- Plain: Last experiment, gradually ramping decisiveness made the talk-to-it agent reliably tell signals
+  apart — but only on the long 300-turn conversation. This asks the obvious next question: was it the
+  RAMP doing the work, or just the long conversation? Answer: the long conversation. The same ramp at
+  SHORT conversations (100/150/200 turns) does NOT make it reliable — in fact at short lengths the ramp is
+  slightly WORSE than just picking one fixed decisiveness, because it sharpens too fast and commits before
+  anything is learned. The agent's ability to tell signals apart climbs steadily with conversation length
+  for BOTH the ramp and the fixed setting — confirming that a short conversation blocks LEARNING itself,
+  and a decisiveness schedule only helps you ACT on what you already learned, so it has nothing to sharpen
+  when little was learned. The long session is load-bearing. Functional valence only; no sentience claim.
+- Hypothesis (predeclared, with named falsifier): annealing gamma 1->8 ACROSS the session makes genuine
+  discrimination RELIABLE at K=4 even at the SHORT session — i.e. the SCHEDULE, not the 300t length, does
+  the work. FALSIFIER (predeclared): if NO short sched cell (sched_100/150/200) reaches >= 12/16 genuine,
+  the rescue hypothesis is REFUTED — the long 300t session is load-bearing (log NEGATIVE, do not reframe).
+- Setup: 8 cells = 2 conditions x 4 session lengths, N=16 (seeds 20-35, same as Exp 220), K=4, optimism=2.0,
+  lr=4.0 held constant. sched_{100,150,200,300} anneal gamma 1->8 across the FULL L-turn session
+  (gamma_schedule=(1,8,L)); fixed_{100,150,200,300} hold gamma=4.0 (the Exp 220 best fixed control). Metric =
+  the Exp 219/220 constant-UNFAKEABLE probe: genuine = correct_select>=0.5 (>=3/6 codes right, above the 1/3
+  constant ceiling) AND last-third POS>1/3; reliability bar >=12/16. The 300t cells are a REGRESSION ANCHOR
+  (same seeds, identical config -> must reproduce Exp 220 sched_full 13/16 + fixed_g4 7/16). Reused exp220's
+  closed_loop byte-for-byte (only session length varies per cell). Also report the one-step-stricter bar.
+  RUNTIME: each DirectHeadAgent turn is ~0.26 s of JAX (re-traced per turn); ran the 8 cells PARALLEL at a
+  measured concurrency cap (per-process probe = ~2.3 cores; pool=5 on 12 cores) after an 8-wide launch
+  thrashed (oversubscription, L33).
+- Result: VERDICT LENGTH_NECESSARY_FALSIFIED — falsifier FIRES. genuine (mean_csel): sched_100 0/16 (0.198),
+  sched_150 2/16 (0.271), sched_200 3/16 (0.365), sched_300 13/16 (0.552); fixed_100 1/16 (0.219), fixed_150
+  4/16 (0.281), fixed_200 5/16 (0.323), fixed_300 7/16 (0.354). NO short sched cell reaches >=12/16 (max 3).
+  GAP (sched_L - fixed_L): L=100 -1, L=150 -2, L=200 -2, L=300 +6 — the schedule beats fixed ONLY at 300t and
+  is slightly WORSE at every short length. mean_csel rises monotonically with length for BOTH conditions
+  (sched 0.20 -> 0.27 -> 0.37 -> 0.55; fixed 0.22 -> 0.28 -> 0.32 -> 0.35). REGRESSION ANCHOR EXACT:
+  sched_300=13/16 (==Exp 220 expected 13), fixed_300=7/16 (==Exp 220 expected 7), match=True. Stricter bar
+  (>=4/6 codes right AND last>1/3, recomputed from the committed JSONs): sched_300=7/16 (== Exp 220's
+  stricter-bar 7), sched_200=2, sched_150=2, sched_100=0 — still no short cell near reliable.
+- Implication: the precision schedule does NOT substitute for session length — it is an EXPLOITATION
+  optimizer (sharpen what you learned), and at short sessions there is little learned to exploit, so it
+  cannot rescue them; worse, annealing 1->8 over only 100 turns reaches high decisiveness BEFORE learning,
+  over-committing (the fixed-g8 early-over-commit failure of Exp 220), which is why sched < fixed at short L.
+  The monotone mean_csel-vs-length climb (both conditions) CONFIRMS Exp 219's two-blocker split: SHORT
+  SESSION blocks LEARNING (low csel regardless of schedule); the schedule only moves the csel->genuine
+  (exploitation) step. This SEPARATES Exp 220's positive from session length (the human's exact ask): the
+  13/16 headline REQUIRES the long 300t session; the long session is load-bearing. Tier: a parameter-level
+  / failure-mode boundary condition on the Exp 220 result (bridge: explore-then-exploit precision annealing
+  cannot compensate for insufficient learning-time — an EFE-side echo of useful-when-gifted != learnable).
+- Honest caveat: NEGATIVE is clean (falsifier fired; instrument validated by the EXACT Exp 220 regression
+  reproduction). But (1) N=16 and the short-cell gaps are small — gap -1/-2/-2 is within binomial noise of
+  zero, so "the schedule HURTS at short sessions" is SUGGESTIVE; the safe claim is "the schedule does NOT
+  HELP at short sessions." (2) "Annealing too fast over-commits" is the mechanistic READING of the negative
+  gap, consistent with Exp 220's fixed-g8 finding, but not independently isolated here. (3) The script's
+  literal genuine_strict bar (csel>=0.67) silently lands ABOVE 4/6=0.6667 (csel is quantized to k/6), so it
+  read sched_300=1/16 — that is effectively a >=5/6 bar; the INTENDED one-step-stricter >=4/6 bar (=Exp 220's
+  "csel>=0.67") gives 7/16 and is what is reported above (L34). (4) Functional valence only — "tells signals
+  apart" = correct_select, nothing more; no sentience claim.
+- Verdict: NEGATIVE / NEW INSIGHT. Self-grade: NEGATIVE — the rescue hypothesis is refuted by its predeclared
+  falsifier; the new insight is the clean SEPARATION (the 300t session, not the schedule, is load-bearing;
+  short sessions block LEARNING, which a precision schedule cannot fix), regression-anchored to Exp 220.
+- Verifier: agree — an independent blinded agent applied the predeclared rule conjunct-by-conjunct: no short
+  sched cell (0/2/3 of 16) reaches >=12/16 -> LENGTH_NECESSARY fires -> NEGATIVE; confirmed the regression
+  anchor validates the instrument (sched_300=13, fixed_300=7 reproduce Exp 220) and that the gap table is
+  consistent with "schedule does not help / slightly hurts at short sessions, helps only at 300t."
+- Next (CONSULT — a natural decision point; needs a human word): Exp 217-221 form a coherent arc and the
+  binding blocker is now named — the SHORT session blocks LEARNING, and the precision schedule (an
+  exploitation lever) cannot move it. Options: (a) attack the LEARNING side at short sessions — a
+  data-efficiency lever (higher lr / lr schedule, stronger optimism, or experience replay) rather than a
+  precision lever — to test whether short-session learning is improvable at all; (b) ACCEPT the toy
+  milestone as reached at the long session (Exp 220's 13/16 reliable genuine discrimination) with the
+  short-session learning wall documented, and proceed to increment 1e (converse REPL + FROZEN
+  eval/affect_score.py); (c) stop/redirect. RECOMMENDED (bounded, silence-actionable): none self-starts;
+  the loop holds at consolidation-grade until a word. Guards: tests/test_affect_agent.py; card:
+  loop/directions/affective-dyad.md.
+- trace: experiments/exp221_m4a_short_schedule.py → experiments/outputs/exp221.txt

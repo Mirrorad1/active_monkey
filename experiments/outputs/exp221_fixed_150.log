@@ -1,2 +1,3 @@
 /Users/mirro/Projects/active-loop/active_loop/affect_agent.py:267: UserWarning: A JAX array is being set as static! This can result in unexpected behavior and is usually a mistake to do.
   self.agent = Agent(
+[exp221 fixed_150] genuine=4/16 genuine_strict=0/16 mean_csel=0.281  saved /Users/mirro/Projects/active-loop/experiments/outputs/exp221_fixed_150.json

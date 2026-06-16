@@ -1,0 +1,146 @@
+[
+  {
+    "seed": 20,
+    "first": 0.3939,
+    "last": 0.1818,
+    "csel": 0.3333,
+    "improv": -0.2121,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 21,
+    "first": 0.1515,
+    "last": 0.1515,
+    "csel": 0.5,
+    "improv": 0.0,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 22,
+    "first": 0.0909,
+    "last": 0.0303,
+    "csel": 0.0,
+    "improv": -0.0606,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 23,
+    "first": 0.1212,
+    "last": 0.1515,
+    "csel": 0.0,
+    "improv": 0.0303,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 24,
+    "first": 0.1515,
+    "last": 0.0303,
+    "csel": 0.0,
+    "improv": -0.1212,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 25,
+    "first": 0.3333,
+    "last": 0.3333,
+    "csel": 0.3333,
+    "improv": 0.0,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 26,
+    "first": 0.1212,
+    "last": 0.3636,
+    "csel": 0.3333,
+    "improv": 0.2424,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 27,
+    "first": 0.303,
+    "last": 0.1212,
+    "csel": 0.3333,
+    "improv": -0.1818,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 28,
+    "first": 0.1515,
+    "last": 0.1818,
+    "csel": 0.3333,
+    "improv": 0.0303,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 29,
+    "first": 0.1212,
+    "last": 0.1515,
+    "csel": 0.1667,
+    "improv": 0.0303,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 30,
+    "first": 0.1515,
+    "last": 0.1515,
+    "csel": 0.0,
+    "improv": 0.0,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 31,
+    "first": 0.2121,
+    "last": 0.1515,
+    "csel": 0.3333,
+    "improv": -0.0606,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 32,
+    "first": 0.1212,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.1212,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 33,
+    "first": 0.1212,
+    "last": 0.1212,
+    "csel": 0.1667,
+    "improv": 0.0,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 34,
+    "first": 0.0909,
+    "last": 0.3333,
+    "csel": 0.3333,
+    "improv": 0.2424,
+    "genuine": false,
+    "genuine_strict": false
+  },
+  {
+    "seed": 35,
+    "first": 0.1515,
+    "last": 0.0,
+    "csel": 0.0,
+    "improv": -0.1515,
+    "genuine": false,
+    "genuine_strict": false
+  }
+]
