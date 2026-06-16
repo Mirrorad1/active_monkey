@@ -1357,6 +1357,7 @@ The loop marks items it has consumed by indenting a response under them:
     holds for a human direction off the local-gradient line (RESUME §3b: M4a "talk to it" / nira's switch /
     the N-ladder).
 - [from human, 2026-06-15] increment 1d: direct response→valence head
+- [from human, 2026-06-15] Exp 216: run an M4a ignition-envelope diagnostic, not another architecture redesign. Keep the Exp 215 direct response→valence head. Separate the failure into update-only, policy-only, and closed-loop tests. Sweep policy precision, A1 learning/evidence strength, session length, and feedback density. Goal: determine whether the direct-head dyad can learn under any honest scaffold, then ratchet scaffolds down only if it ignites. If it cannot learn even under generous non-cheating conditions, close M4a negative rather than adding more heads.
 ## Consumed
 
 (processed items get moved here, with their disposition)
