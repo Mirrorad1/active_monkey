@@ -1,0 +1,55 @@
+==============================================================================
+EXP 217 — M4a cold-start break: honest exploration vs. baseline (8 seeds)
+==============================================================================
+
+--- ARM: baseline ---
+  seed 20: first 0.10 -> last 0.34  improv +0.240  IGNITE
+  seed 21: first 0.00 -> last 0.00  improv +0.000
+  seed 22: first 0.00 -> last 0.00  improv +0.000
+  seed 23: first 0.02 -> last 0.00  improv -0.020
+  seed 24: first 0.00 -> last 0.00  improv +0.000
+  seed 25: first 0.16 -> last 0.33  improv +0.170  IGNITE
+  seed 26: first 0.00 -> last 0.00  improv +0.000
+  seed 27: first 0.00 -> last 0.00  improv +0.000
+  ignitions: 2/8   mean last-third POS-rate: 0.084
+
+--- ARM: epsgreedy ---
+  seed 20: first 0.09 -> last 0.33  improv +0.240  IGNITE
+  seed 21: first 0.17 -> last 0.32  improv +0.150  IGNITE
+  seed 22: first 0.09 -> last 0.34  improv +0.250  IGNITE
+  seed 23: first 0.09 -> last 0.32  improv +0.230  IGNITE
+  seed 24: first 0.07 -> last 0.33  improv +0.260  IGNITE
+  seed 25: first 0.10 -> last 0.00  improv -0.100
+  seed 26: first 0.10 -> last 0.29  improv +0.190
+  seed 27: first 0.09 -> last 0.00  improv -0.090
+  ignitions: 5/8   mean last-third POS-rate: 0.241
+
+--- ARM: optimistic ---
+  seed 20: first 0.08 -> last 0.34  improv +0.260  IGNITE
+  seed 21: first 0.22 -> last 0.47  improv +0.250  IGNITE
+  seed 22: first 0.29 -> last 0.56  improv +0.270  IGNITE
+  seed 23: first 0.30 -> last 0.66  improv +0.360  IGNITE
+  seed 24: first 0.18 -> last 0.49  improv +0.310  IGNITE
+  seed 25: first 0.16 -> last 0.33  improv +0.170  IGNITE
+  seed 26: first 0.21 -> last 0.33  improv +0.120
+  seed 27: first 0.07 -> last 0.33  improv +0.260  IGNITE
+  ignitions: 7/8   mean last-third POS-rate: 0.439
+
+--- REGRESSION CHECK: baseline seeds 20-23 vs Exp 216 expectation ---
+  seed 20: improv +0.240 (expect ~+0.240, ignite=True expect=True) -> OK
+  seed 21: improv +0.000 (expect ~+0.000, ignite=False expect=False) -> OK
+  seed 22: improv +0.000 (expect ~+0.000, ignite=False expect=False) -> OK
+  seed 23: improv -0.020 (expect ~-0.020, ignite=False expect=False) -> OK
+  Regression: PASS
+
+--- VERDICT (predeclared decision rule) ---
+  baseline ignitions: 2/8
+  epsgreedy ignitions: 5/8   mean_last: 0.241
+  optimistic ignitions: 7/8   mean_last: 0.439
+  best exploration arm: optimistic (7/8, mean_last=0.439)
+  delta over baseline: +5
+
+VERDICT: RELIABLE / COLD_START_BREAKABLE
+  Honest exploration (optimistic) breaks the cold-start: 7/8 ignitions (mean_last=0.439), delta=+5 over baseline.  Next: ratchet the scaffold toward realism (Exp 218/1g).
+
+MACHINE SUMMARY: VERDICT=RELIABLE arm=optimistic best_ig=7/8 base_ig=2/8 delta=+5 mean_last=0.439

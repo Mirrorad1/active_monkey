@@ -9260,3 +9260,77 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   regime (lower gamma, fewer intents, shorter session) to find the minimal honest conditions for reliable
   ignition. Card: loop/directions/affective-dyad.md; guards: tests/test_affect_agent.py.
 - trace: experiments/exp216_m4a_ignition.py → experiments/outputs/exp216.txt
+
+## Exp 217 — M4a cold-start break: honest exploration turns the fragile 1/4 ignition into a RELIABLE 7/8 — an optimistic POS prior breaks the exploration cold-start (POSITIVE / NEW INSIGHT; reliable-at-generous-scaffold, NOT yet realistic-regime)
+
+- Plain: Exp 216 found the talk-to-it dyad COULD learn to earn approval but only rarely (1 of 4 runs) —
+  an unlucky early guess plus decisive action locked most runs onto a wrong answer before they ever found
+  the right one (the "exploration cold-start"). This adds HONEST help that makes the agent keep trying
+  options without ever telling it which is right, and asks whether that makes the learning reliable. Two
+  honest aids, each tried against an untouched control: (1) ε-greedy — now and then ignore the current best
+  guess and try a uniformly RANDOM response; (2) optimism — start out believing EVERY response might earn
+  approval (equally), so the agent keeps exploring under-tried options until real feedback sorts them out.
+  Neither aid reveals the correct answer (both treat all responses identically). Result: the control
+  reproduces Exp 216 exactly (2/8, the same lonely ignitions), ε-greedy lifts it to 5/8, and OPTIMISM makes
+  it RELIABLE — 7 of 8 runs learn to earn approval, with the approval rate climbing well past chance
+  (mean last-third 0.44 vs the 0.20 you'd get by luck vs 0.08 for the control). So the cold-start WAS the
+  bottleneck, and an honest nudge breaks it. Big caveat: this is still on the "easy" settings (no
+  ambiguity, decisive action, a long session); the harder, more realistic settings are the next test, not
+  yet passed. Functional valence only; no sentience claim.
+- Hypothesis (predeclared, with named falsifier): the Exp 216 unreliability is an EXPLORATION COLD-START —
+  sparse early exploration + high policy precision lock an unlucky run onto a wrong response before the A1
+  table is built. If so, HONEST exploration aids (which broaden coverage but carry zero information about
+  which response is correct — same treatment for every response column) should raise the ignition rate
+  across seeds. FALSIFIER (predeclared): if BOTH honest aids fail to beat the control by more than 1
+  ignition, the cold-start hypothesis is refuted (log NEGATIVE, do not reframe).
+- Setup: three arms on the SAME generous honest scaffold as Exp 216 (K=U=6 intent capacity, lr_pA=4,
+  gamma=8, 300 turns), seeds 20–27 (N=8; 20–23 overlap Exp 216 as a regression control). baseline = no
+  exploration aid (must reproduce Exp 216). epsgreedy = decaying uniform-random override (ε 0.5→0.05 over
+  200 turns). optimistic = +2.0 added UNIFORMLY to the POS row of the A1 Dirichlet prior across every
+  (intent,response) cell before the agent is built. Both aids implemented in DirectHeadAgent with OFF
+  defaults that are byte-identical to Exp 216 (guarded by new fast tests: ε-off / optimism-off reproduce
+  the action stream exactly; ε-on samples uniformly; optimism's increment is identical at correct and
+  wrong cells). Metric per seed: improv = last-third − first-third POS-rate; ignite = improv≥0.15 AND
+  last-third≥0.30. Decision rule (best exploration arm): RELIABLE iff best_ig≥5/8 AND best_mean_last≥0.40
+  AND best_ig−base_ig≥3; PARTIAL iff delta≥2; NOT_COLD_START/FALSIFIED iff delta≤1.
+- Result: REGRESSION CHECK PASSES — baseline seeds 20–23 reproduce Exp 216 to the digit (seed20 +0.240
+  ignites; 21 +0.000; 22 +0.000; 23 −0.020), so the harness is faithful and the arms differ ONLY in the
+  exploration aid. baseline 2/8 (mean last 0.084; seeds 20,25). epsgreedy 5/8 (mean last 0.241). optimistic
+  7/8 (mean last 0.439; seeds 21–24 reach last-third 0.47–0.66, far above the 0.20 chance ceiling). Best
+  arm optimistic: 7≥5, 0.439≥0.40, delta +5≥3 ⇒ RELIABLE / COLD_START_BREAKABLE. The predeclared falsifier
+  did NOT trigger (both aids beat control by ≥3).
+- Implication: the exploration cold-start IS the binding remainder identified in Exp 216, and an HONEST aid
+  breaks it — this is the FIRST reliable ignition in the M4a thread. Mechanistically it completes the Exp
+  216 story: exploitation works (policy-only 1.0), learning works given capacity+lr+data (update-only 0.83),
+  and the missing piece was sustained exploration to GENERATE that data under high precision — supply it
+  honestly (optimism keeps under-tried responses attractive until feedback sorts them) and 7/8 runs learn.
+  Optimism beats ε-greedy because random overrides also inject noise into the EXPLOIT phase (ε-greedy's
+  residual 0.05 caps its mean last-third at 0.241 and de-ignited seeds 25/27 back to 0.00), whereas optimism
+  fades as real counts accrue. Generalizability tier: mechanism result + a reliability existence-proof, toy
+  scale, one honest scaffold.
+- Honest caveat: reliable ignition is demonstrated ONLY on the generous scaffold (K=U=6 removes the
+  aliasing that sinks K=4, gamma=8 is high precision, 300 turns is long); the REALISTIC regime (K=4, 100
+  turns) was NOT tested here and FAILED in Exp 215/216 — so the easy-mode scaffold is doing load-bearing
+  work and the realistic-regime claim is unproven and explicitly deferred to Exp 218. Robustness limits
+  (per the blind verifier, logged not hidden): ignition COUNT overstates robustness — epsgreedy shows 5/8
+  ignitions yet mean last-third 0.241 < 0.40 with two seeds collapsing to 0.00; the "single best arm"
+  decision rule structurally hides that weaker arm; N=8 is small and only 4 seeds (24–27) are fresh beyond
+  Exp 216's band. Functional valence only — "learns to earn approval" = realized POS-feedback rate rises,
+  nothing more; no sentience claim.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE / NEW-INSIGHT — a real, reliable, HONEST result
+  (7/8, faithful control, no leakage) but scaffold-dependent; NOT a BREAKTHROUGH because the breakthrough
+  bar (Exp 216's own words) is reliable ignition at a RATCHETED-DOWN scaffold, which is untested.
+- Verifier: agree — an independent blinded agent recomputed the decision rule from the committed per-arm
+  JSONs (zero mismatches) → RELIABLE; re-ran the baseline from source and confirmed it byte-reproduces Exp
+  216 (gains are a real mechanism effect, not a harness artifact); verified at the array level that the
+  optimism increment is +2.0 at CORRECT cells AND +2.0 at WRONG cells (no leakage) and that ε-greedy is
+  uniform, so the POS metric can rise ONLY through genuine correct selection (0.439 ≫ 0.20 chance ≫ 0.084
+  control) ⇒ HONEST; graded POSITIVE/NEW-INSIGHT (scaffold-dependent), and raised the epsgreedy-weakness /
+  single-best-arm / small-N red flags now recorded in the caveat.
+- Next (on human word only): M4a is NOT closed and now has a RELIABLE working dyad on the generous scaffold.
+  Exp 218 / increment 1g = RATCHET toward realism: lower the scaffold one knob at a time (gamma 8→4→2, K
+  6→5→4, turns 300→200→100) with the optimism aid held on, find the MINIMAL honest scaffold at which
+  reliable ignition (≥6/8) survives, and report where it breaks. Strengthen the bar too: require mean
+  last-third≥0.40 per-arm (not just the best arm) and add fresh seeds. Card: loop/directions/affective-dyad.md;
+  guards: tests/test_affect_agent.py.
+- trace: experiments/exp217_m4a_cold_start.py → experiments/outputs/exp217.txt

@@ -14,7 +14,7 @@ import math
 import numpy as np
 import jax.numpy as jnp
 
-from active_loop.affect_spec import build_dyad_model, build_direct_head_model, LV, NEU, POS, U, R
+from active_loop.affect_spec import build_dyad_model, build_direct_head_model, LV, NEU, POS, U, R, V
 from active_loop.affect_agent import AffectAgent, DirectHeadAgent
 
 
@@ -99,3 +99,85 @@ def test_direct_head_agent_runs_and_learns_A1():
         assert 0 <= r < R
         ag.observe_feedback(code, POS if r == (code % 4) else NEU)
     assert ag.pA1_sum() > ag._init_pA1_sum - 1.0  # the head ledger is live
+
+
+# ---------------------------------------------------------------------------
+# Exp 217: HONEST exploration scaffolds — fast guards (no 300-turn sessions)
+# ---------------------------------------------------------------------------
+
+def test_directhead_eps_off_byte_identical():
+    """OFF guard: two DirectHeadAgents on the same model+seed, one with all defaults and one with
+    explicit eps0=0.0, optimism=0.0, must produce BYTE-IDENTICAL action sequences over 12 turns.
+    Guards that the OFF path consumes ZERO extra RNG (a silent extra split would break fixed-seed
+    determinism and corrupt all future regression checks)."""
+    CODES = [0, 1, 2, 3, 4, 5, 0, 2, 4, 1, 3, 5]
+    model = build_direct_head_model(0, k=6)
+    ag_default = DirectHeadAgent(model, lv=LV, seed=0)
+    ag_explicit = DirectHeadAgent(model, lv=LV, seed=0, eps0=0.0, eps_min=0.0, eps_turns=0,
+                                   optimism=0.0)
+    acts_default, acts_explicit = [], []
+    for code in CODES:
+        ag_default.perceive(code); ag_explicit.perceive(code)
+        acts_default.append(ag_default.act()); acts_explicit.append(ag_explicit.act())
+        ag_default.observe_feedback(code, NEU); ag_explicit.observe_feedback(code, NEU)
+    assert acts_default == acts_explicit, (
+        f"eps OFF must be byte-identical to defaults; got {acts_default} vs {acts_explicit}")
+
+
+def test_directhead_eps_greedy_explores():
+    """eps=1.0 (always explore): over 60 acts on a fixed code, ALL R responses must appear at
+    least once, and no single response must dominate (>70%).  Guards that the exploration override
+    actually fires and samples uniformly across responses."""
+    import collections
+    model = build_direct_head_model(0, k=6)
+    ag = DirectHeadAgent(model, lv=LV, seed=42, eps0=1.0, eps_min=1.0, eps_turns=0)
+    counts: dict[int, int] = collections.Counter()
+    n = 60
+    for _ in range(n):
+        ag.perceive(0)
+        r = ag.act()
+        counts[r] += 1
+        ag.observe_feedback(0, NEU)
+    assert len(counts) == R, (
+        f"eps=1 exploration must cover all {R} responses; only saw {sorted(counts.keys())}")
+    for r in range(R):
+        assert counts[r] > 0, f"response {r} never appeared in {n} fully-exploring acts"
+        frac = counts[r] / n
+        assert frac < 0.70, f"response {r} too dominant ({frac:.2f}); exploration is not uniform"
+
+
+def test_directhead_optimism_is_uniform_across_responses():
+    """Honesty guard: optimism=5.0 must add EXACTLY +5.0 to the POS row of pA1 uniformly across
+    ALL (intent, response) pairs, and 0.0 elsewhere.  Any response-specific increment would
+    encode the answer and violate the HONEST constraint."""
+    model = build_direct_head_model(0, k=6)
+    ag_base = DirectHeadAgent(model, lv=LV, seed=0, optimism=0.0)
+    ag_opt  = DirectHeadAgent(model, lv=LV, seed=0, optimism=5.0)
+    pA1_base = np.array(ag_base.agent.pA[1])  # (1, V, k, R)
+    pA1_opt  = np.array(ag_opt.agent.pA[1])   # (1, V, k, R)
+    diff = pA1_opt - pA1_base
+    # POS row: every entry must be exactly +5.0
+    pos_diff = diff[:, POS, :, :]
+    assert np.allclose(pos_diff, 5.0, atol=1e-5), (
+        f"optimism +5 must add exactly 5.0 to every POS entry; got min={pos_diff.min():.4f} "
+        f"max={pos_diff.max():.4f}")
+    # All other rows (NEG, NEU): must be 0.0 (no response-specific leak)
+    other_diff = np.delete(diff, POS, axis=1)
+    assert np.allclose(other_diff, 0.0, atol=1e-5), (
+        f"optimism must leave NEG/NEU rows unchanged; got max abs diff {np.abs(other_diff).max():.4g}")
+
+
+def test_directhead_optimism_off_byte_identical():
+    """OFF guard: default DirectHeadAgent vs optimism=0.0 must produce BYTE-IDENTICAL actions over
+    12 turns.  Guards that the zero-optimism path does not mutate the model_dict even slightly."""
+    CODES = [3, 0, 5, 1, 4, 2, 3, 5, 0, 4, 1, 2]
+    model = build_direct_head_model(7, k=6)
+    ag_default = DirectHeadAgent(model, lv=LV, seed=7)
+    ag_zero    = DirectHeadAgent(model, lv=LV, seed=7, optimism=0.0)
+    acts_default, acts_zero = [], []
+    for code in CODES:
+        ag_default.perceive(code); ag_zero.perceive(code)
+        acts_default.append(ag_default.act()); acts_zero.append(ag_zero.act())
+        ag_default.observe_feedback(code, NEU); ag_zero.observe_feedback(code, NEU)
+    assert acts_default == acts_zero, (
+        f"optimism=0 must be byte-identical to defaults; got {acts_default} vs {acts_zero}")
