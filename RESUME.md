@@ -292,11 +292,18 @@ step 0.
   CONJUNCTION whose binding remainder is the exploration cold-start. **Exp 217 (1f, cold-start break,
   POSITIVE, blind-verified)** turned that fragile 1/4 into a RELIABLE 7/8: an HONEST optimistic POS prior
   (+2.0 uniform across correct AND wrong cells — no leakage) makes 7/8 seeds learn (mean-last 0.44 ≫ 0.20
-  chance); ε-greedy 5/8; control 2/8 byte-reproduces Exp 216 (regression PASS ⇒ gains real). NOT a
-  breakthrough — reliable ONLY on the generous scaffold (K=U=6, γ8, 300t); the realistic K=4/100t regime
-  failed in Exp 215/216 and is deferred. NEXT (human's word): **Exp 218 / 1g** — ratchet γ/K/turns toward
-  realism with optimism on, find the minimal honest scaffold for reliable ignition. Guard:
-  tests/test_affect_agent.py; card: loop/directions/affective-dyad.md.
+  chance); ε-greedy 5/8; control 2/8 byte-reproduces Exp 216 (regression PASS ⇒ gains real). Reliable ONLY
+  on the generous scaffold. **Exp 218 (1g, ratchet, PARTIAL / NEW INSIGHT, blind-verified)** turned the
+  difficulty back up one knob at a time (optimism held on): optimism does NOT rescue the realistic corner
+  (γ1/K4/100t = 0/8, and it DEGRADES); the anchor reproduces Exp 217 byte-for-byte; the real blockers are
+  SHORT SESSION (100t 1/8) + LOW PRECISION (γ1 1/8), NOT aliasing (γ4 8/8 even improves). KEY METRIC CATCH
+  (self-healed): the ignition threshold (last≥0.30) sits BELOW the 0.333 constant-response ceiling, so a
+  ~1/3 POS-rate proves nothing (a constant "always reply 0" policy already scores 1/3) — K4's 6/8 is a
+  constant-ceiling artifact (the "aliasing rescued" read is WITHDRAWN), and the 216/217 reliable counts
+  overstate genuine discrimination. Guard added: `affect_spec.constant_response_ceiling` + a pinning test.
+  NEXT (human's word): **Exp 219 / 1h** — re-run under a DISCRIMINATION metric (last-third > 1/3, or a
+  per-intent correct-select readout) and attack the real blockers (session length, precision) directly.
+  Guard: tests/test_affect_agent.py; card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).

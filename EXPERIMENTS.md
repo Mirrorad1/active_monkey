@@ -9334,3 +9334,71 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   last-third≥0.40 per-arm (not just the best arm) and add fresh seeds. Card: loop/directions/affective-dyad.md;
   guards: tests/test_affect_agent.py.
 - trace: experiments/exp217_m4a_cold_start.py → experiments/outputs/exp217.txt
+
+## Exp 218 — M4a ratchet toward realism: optimism does NOT rescue the realistic regime (0/8); the real blockers are short session + low precision, NOT aliasing — and the ignition metric is exposed as under-discriminating (PARTIAL_RATCHET / NEW INSIGHT, mixed; blind-verified)
+
+- Plain: Exp 217 made the talk-to-it dyad learn RELIABLY (7/8) but only on "easy" settings (lots of
+  internal room, decisive action, a long conversation). This turns the difficulty back up ONE knob at a
+  time — keeping the honest optimism aid on — to find the hardest, most realistic setting where it still
+  learns reliably, and to see where it breaks. Findings: lowering decisiveness a little actually HELPS
+  (8/8), but dropping it all the way to indecisive breaks it (1/8); shortening the conversation breaks it
+  (1/8); and the full realistic corner (all knobs hard at once) fails completely (0/8) — worse, it gets
+  WORSE over the session instead of better. A second, sobering finding: the yard-stick we've been using to
+  call a run "learned" (earning approval ~1/3 of the time by the end) is too lax — a dumb agent that always
+  gives the SAME reply already earns approval 1/3 of the time on this task, so "1/3" does not prove the
+  agent actually told the signals apart. With a stricter, honest yard-stick, only the easy-setting runs
+  clearly show real discrimination. So: the realistic goal is NOT reached yet, the true obstacles are a
+  too-short conversation and too-little decisiveness (not the ambiguity we suspected), and we tightened our
+  own measuring stick. Functional valence only; no sentience claim.
+- Hypothesis (predeclared, with named falsifier): with the Exp 217 optimism aid held ON, does reliable
+  ignition (≥6/8) SURVIVE as the scaffold is ratcheted toward the realistic regime, and where does it
+  break? Headline: REALISTIC_RELIABLE iff the realistic corner (γ1,K4,100t) ≥6/8 (optimism rescues realism);
+  PARTIAL_RATCHET iff some non-anchor cell holds but the corner breaks; FALSIFIER: NO_RATCHET iff NO cell
+  beyond the generous anchor reaches ≥6/8 (optimism's reliability does not generalise at all).
+- Setup: 7 cells, OPTIMISM=2.0 + lr_pA=4 held constant (the Exp 217 winner), seeds 20–27 (N=8), ignite =
+  improv≥0.15 AND last-third≥0.30. anchor γ8/K6/300t (consistency control = Exp 217 optimistic). One-knob
+  ladders from the anchor: γ 8→4→1 (K6,300t); K 6→5→4 (γ8,300t); turns 300→100 (γ8,K6); plus the full
+  realistic corner γ1/K4/100t (where Exp 215/216 scored 0/8). No production-model change — pure
+  parametrisation of the validated DirectHeadAgent. Ran 4-way parallel (L31).
+- Result: anchor 7/8 (mean last 0.439) — REPRODUCES Exp 217 BYTE-FOR-BYTE (consistency PASS ⇒ all cells
+  differ from the anchor by ONE declared knob only). γ ladder: γ8=7/8, γ4=8/8 (lowering precision a notch
+  IMPROVES — less premature lock-in), γ1=1/8 (BREAKS). K ladder NON-MONOTONE: K6=7/8, K5=4/8, K4=6/8.
+  turns: 300t=7/8, 100t=1/8 (BREAKS). realistic corner γ1/K4/100t = 0/8, and it DEGRADES (first>last on
+  5/8 seeds, e.g. 0.42→0.18). ⇒ PARTIAL_RATCHET (realistic NOT rescued; γ4 and K4 reliable beyond anchor).
+- Implication: (1) The realistic regime is NOT rescued by optimism — the headline answer is NO. (2) The
+  dominant blockers are SHORT SESSION (turns100 1/8) and LOW PRECISION (γ1 1/8), NOT intent capacity:
+  precision can even be RELAXED one notch (γ4 8/8) for the better. (3) THE ALIASING-KILLER STORY IS
+  REFUTED-BUT-SO-IS-THE-RESCUE — and this is the key honesty correction (blind-verified): K4's "6/8" is
+  ARTIFACT-TINGED. A constant-response policy that always emits response 0 or 1 already scores 0.333 on
+  this task (CORRECT[c]=c%4 makes responses 0,1 each correct for 2 of 6 codes), which is ABOVE the 0.30
+  ignition threshold. Five of K4's six "ignitions" sit exactly at last 0.33–0.34 — i.e. consistent with a
+  NON-discriminating constant policy, not genuine per-intent learning. So K=4 is NOT a clean "aliasing
+  rescued" (the prior read), and K5<K4 (4/8<6/8) is within seed noise. Genuine discrimination (last clearly
+  ABOVE 0.333) appears only in the easy cells (γ4/anchor ~4/8 seeds reach 0.47–0.67). (4) METRIC FLAW
+  surfaced and self-healed: the ignition threshold (last≥0.30) is below the 0.333 constant-response ceiling,
+  so the ignition COUNT overstates discrimination — this applies retroactively to interpreting Exp 216/217
+  (their reliable-ignition counts include constant-ceiling seeds; the genuine-discrimination rate is lower).
+  Guard added: active_loop.affect_spec.constant_response_ceiling(correct, R) + a pinning test. Tier:
+  characterisation + a metric correction, toy scale.
+- Honest caveat: PARTIAL/mixed — a NEGATIVE headline (realistic regime 0/8, a standing wall) plus real new
+  insight (blockers identified; aliasing-rescue refuted; metric tightened). "Minimal honest scaffold = γ4"
+  is a PER-AXIS statement (γ4 relaxes ONE knob from the generous anchor) — NOT a demonstrated realistic
+  operating point, because the realistic corner stacks THREE relaxations and the knobs are not additive.
+  K4's reliability is fragile/borderline (mostly constant-ceiling), do not bank it. N=8 is small. Functional
+  valence only; no sentience claim.
+- Verdict: PARTIAL_RATCHET / NEW INSIGHT (mixed). Self-grade: PARTIAL — the realistic-regime goal is not
+  reached (wall) but the experiment maps the break-points, OVERTURNS the aliasing-killer/rescue framing, and
+  exposes + guards a metric flaw that tempers the 216/217 headlines.
+- Verifier: agree — an independent blinded agent recomputed all 7 cells from the committed JSONs (zero
+  mismatches) → PARTIAL_RATCHET, realistic NOT rescued; confirmed the anchor reproduces Exp 217 byte-for-byte
+  (harness faithful); confirmed HONEST (optimism uniform 2.0, ε-greedy OFF in every cell, knobs change
+  difficulty not the answer); and CAUGHT that K4's 6/8 sits at the 0.333 constant-response ceiling (5/6
+  ignitions barely-passing) ⇒ "aliasing rescued" unsupported and the 0.30 threshold under-discriminates;
+  flagged "minimal scaffold=γ4 relaxes only 1 of 3 realistic knobs." All corrections folded into this entry.
+- Next (on human word only): Exp 219 / increment 1h — RE-RUN the ratchet (and re-read 216/217) under a
+  DISCRIMINATION metric: last-third POS must exceed the 1/3 constant-response ceiling (use
+  constant_response_ceiling) AND/OR report a per-intent correct-select readout, so "learned" means told the
+  signals apart, not converged to a constant. Then attack the REAL blockers — session length and precision
+  — directly (e.g. does a longer session or a precision schedule rescue the realistic corner?). Card:
+  loop/directions/affective-dyad.md; guards: tests/test_affect_agent.py.
+- trace: experiments/exp218_m4a_ratchet.py → experiments/outputs/exp218.txt
