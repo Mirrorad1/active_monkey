@@ -281,3 +281,15 @@ Ground rules for this file:
   stub-score integration test of the WHOLE loop path (not just one iteration) — it shakes out the
   dir/git-churn/world_model bugs cheaply; otherwise each real run discovers one more trivial bug (Exp 223 =
   timeout+context, Exp 224a = the git-wipe). Kin of L25/L31 (pre-flight before a big spend). [PROTOCOL step 3]
+- **L36 (Exp 224-225, 2026-06-16).** When an LLM-driven optimization autopilot reports "no improvement",
+  DISTINGUISH the failure mode before concluding anything about the metric: (a) SCORE-DRIVEN (a candidate was
+  measured and scored ≤ baseline) vs (b) GATE-GATED (the candidate was rejected by a critic/test/frozen-guard
+  BEFORE the metric ever measured it). A gate-gated negative says NOTHING about improvability — the scorer
+  never ran on a mutant (Exp 224 = NEGATIVE but both proposals were critic-rejected pre-scoring; "improvable?"
+  was UNRESOLVED, not answered). Cheaply DIAGNOSE a gate-gated result by capturing the gate's REASONS on a
+  handful of proposals (propose→critic only, NO expensive scoring): the critic may be CORRECTLY rejecting
+  metric-gaming (Exp 225: it rejected baking the code→intent answer-structure into a prior, and approved a
+  legitimate preference tweak), in which case the gate is working, not broken — then SCORE a gate-APPROVED
+  proposal directly to test whether a legitimate improvement exists (Exp 225b: the approved C1 tweak scored
+  0.4225→0.5188, genuine 6/8→8/8). Don't read a gate-gated 0/N as "metric unimprovable" or "gate miscalibrated"
+  without that ~5-min diagnostic. [PROTOCOL step 5; VALIDATION; kin of L35]
