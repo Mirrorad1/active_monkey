@@ -99,11 +99,24 @@ Status legend: **[done]** completed and verified · **[scaffold]** runnable scaf
   `active-monkey` CLI (`export` / `inspect` / `score` / `converse`). Provenance pins the
   frozen scorer (`eval/affect_score.py`) by sha256; scoring refuses to run on hash drift.
   See `docs/ARTIFACTS.md`.
-- **[scaffold] Autonomous find-and-keep (Exp 226).** A deterministic generate→score→critic
-  →keep loop over the frozen scorer (`experiments/exp226_autonomous_find_and_keep.py`): it
-  keeps the honest Exp 225 NEU-aversion move and rejects an A0 code→intent gaming candidate.
-  The `claude -p`-driven autopilot (`affect_pr_loop.py`) is the not-yet-exercised next step
-  (TODOs recorded in the result JSON).
+- **[done] Autonomous find-and-keep, end-to-end (Exp 227).** The REAL
+  `affect_pr_loop.one_affect_iteration` machinery, run on an isolated clone with a real
+  `claude -p` critic + the real FROZEN scorer + a real git merge, REJECTS a gaming A0 bake
+  and KEEPS the honest C1 NEU-aversion (baseline 0.4225 → merged 0.51875, verdict held;
+  `experiments/exp227_real_autopilot_find_and_keep.py` → `.../exp227_real_autopilot.json`).
+  The candidate generation is scripted (the two Exp 225 moves) so the run is reproducible;
+  the keep decision is fully autonomous. A fully-autonomous *discovery* run (real
+  `AffectClaudeProposer` generating candidates) remains the next step. The earlier
+  deterministic stand-in (`experiments/exp226_autonomous_find_and_keep.py`) re-implemented the
+  keep/reject logic; Exp 227 exercises the production code instead.
+- **[done] Host-robust scorer (`active_loop/affect_score_fast.py`).** On a constrained host the
+  binding constraint is XLA JIT exhaustion, not wall-time: the frozen agent recompiles a static
+  gamma every turn, and the compiled dylibs accumulate until the CPU backend fails to
+  materialize symbols, so a full 8-seed score crashes mid-run. `jax.clear_caches()` between
+  seeds (per Exp 226) frees the executables and bounds the dylib count; a small worker pool adds
+  a modest wall-clock win on top. Bit-identical to `eval/affect_score.py` (guarded by
+  `tests/test_affect_score_fast.py`); full config completes ~13 min / 5.6 GB. Process-parallelism
+  WITHOUT cache-clear is a trap — N cold caches multiply the memory and OOM.
 - **[done] BeliefBench v0** (`active_loop/benchmarks/beliefbench.py`): hidden partner-type
   inference; PASS at v0 (belief updates, drives policy, scrambling hurts, transfers, below
   oracle). "belief" = posterior over a hidden state, not subjective belief.
