@@ -11,3 +11,6 @@ serv.log
 
 # evolvability-preflight run artifacts (reproducible from config.json + seeds)
 results/
+
+# transient experiment stderr capture (warnings only; not a result artifact)
+experiments/outputs/*_stderr.log
