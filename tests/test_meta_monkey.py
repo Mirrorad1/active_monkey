@@ -58,7 +58,7 @@ def _make_repo(
     if output:
         _write(root / "experiments" / "outputs" / f"exp{n}.txt", "metric = 1.000\n")
     _write(
-        root / "experiments-data.js",
+        root / "site" / "data" / "experiments-data.js",
         "window.AM_EXPERIMENTS = [\n"
         f'  {{ n: {n}, trace: {{ script: "experiments/exp{n}_synthetic.py", '
         f'output: "experiments/outputs/exp{n}.txt" }} }},\n'

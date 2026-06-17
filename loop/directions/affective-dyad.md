@@ -43,7 +43,8 @@ control (`tests/test_affect_agent.py`) must pass first — it proves the EFE/pol
   fails ⇒ even a direct credit path does not learn at this scale ⇒ HALT with the next suspect (capacity /
   lr / session length). Honesty: a direct head is a PROVIDED structural prior — declare it; it does not
   make success inevitable (the agent must still learn WHICH response per intent).
-- **Increment 1e+ — converse REPL + FROZEN scorer (only after 1d learns).** `converse.py` honest REPL;
+- **Increment 1e+ — converse REPL + FROZEN scorer (only after 1d learns).** `active-monkey-converse`
+  (`active_loop/cli/converse.py`) honest REPL;
   `eval/affect_score.py` the frozen learns-to-positive metric; then **M4b** = the PR-style autopilot over
   `affect_spec.py` against that metric.
 

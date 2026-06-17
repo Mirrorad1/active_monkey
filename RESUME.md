@@ -48,7 +48,8 @@ step 0.
   (place-scale to 6×6, value/converse to 6 concepts, integrated stack, noise-robustness,
   opinion-revisability) — all POSITIVE, diminishing insight. **We are in the consolidation phase:
   each new experiment confirms more than it discovers.** Be honest about that with the user.
-- **Capstone:** `converse_demo.py` — two creatures raised differently answer the same questions
+- **Capstone:** `active-monkey-converse-demo` (`active_loop/cli/converse_demo.py`) — two
+  creatures raised differently answer the same questions
   differently. Verified runnable (see §5).
 
 ### 3b. Where we are NOW (folded 2026-06-13, state as of Exp 202)
@@ -322,8 +323,9 @@ step 0.
   only at 300t (+6) and is slightly WORSE at short lengths; mean_csel rises with length for BOTH conditions,
   so **short sessions block LEARNING** (the schedule only optimizes EXPLOITATION) and **the long 300t session
   is load-bearing**. Regression-anchored EXACT to Exp 220 (sched_300=13/16, fixed_300=7/16). **Exp 222 (1e,
-  POSITIVE / milestone close, blind-verified) CLOSED the M4a chapter** at toy scale: built `converse.py` (the
-  honest "talk to it" REPL) + `eval/affect_score.py` (FROZEN learns-to-positive scorer) + `_json` + tests.
+  POSITIVE / milestone close, blind-verified) CLOSED the M4a chapter** at toy scale: built
+  `active-monkey-converse` (the honest "talk to it" REPL) + `eval/affect_score.py` (FROZEN
+  learns-to-positive scorer) + `_json` + tests.
   MILESTONE_VALIDATED: the DirectHeadAgent learner passes (verdict True: realized POS 0.42>1/3, genuine 6/8,
   improvement 0.24, reproduces Exp 220) AND a constant-reply control FAILS (verdict False, genuine 0) — a
   constant-UNFAKEABLE metric. Synthesis + provided-vs-learned ledger: `docs/research/m4a-affective-dyad-chapter.md`.
@@ -354,7 +356,7 @@ This repo contains **two different "loops."** "Continue the moonshot" means loop
 
 | | **A. Code-mutating autopilot** | **B. Claude-driven experiment loop** |
 |---|---|---|
-| What it is | `run_loop.py` / `run_pr_loop.py` machinery | Claude (you) writing & running experiment scripts |
+| What it is | `active-monkey-loop` / `active-monkey-pr-loop` machinery (`active_loop/cli/`) | Claude (you) writing & running experiment scripts |
 | What it optimizes | the free-energy / bits-char **metric**, by editing `model_spec.py` / `lang_model_spec.py` | the **moonshot question**, by designing Exp 41, 42, … |
 | Governed by | `MISSION.md` + `policy.md` (FROZEN trust boundary) | `loop/` modules (PROTOCOL + VALIDATION) via the `/loop` prompt in §6 |
 | Output | kept/reverted diffs, `world_model/` grows | new entries appended to `EXPERIMENTS.md` |
@@ -367,13 +369,13 @@ experiments, not the autopilot. To continue the moonshot, re-issue the loop B pr
 
 ```bash
 cd /Users/mirro/Projects/active-loop
-uv run --python .venv python converse_demo.py        # capstone: two creatures, self-formed opinions
-uv run --python .venv python run_life.py --steps 200          # continue mirro's life (parallel track; born in Exp 45)
+uv run --python .venv active-monkey-converse-demo    # capstone: two creatures, self-formed opinions
+uv run --python .venv active-monkey-life --steps 200 # continue mirro's life (parallel track; born in Exp 45)
 uv run --python .venv pytest -q                      # fast suite (~58 tests, well under a minute)
 uv run --python .venv pytest -q -m 'slow or not slow' # full suite (~70 tests, ~4 min)
-uv run --python .venv python talk.py                 # char-level babbler REPL (honest ceiling)
+uv run --python .venv active-monkey-talk             # char-level babbler REPL (honest ceiling)
 # autopilot (loop A), bounded so it doesn't run forever:
-uv run --python .venv python run_loop.py --iterations 1
+uv run --python .venv active-monkey-loop --iterations 1
 ```
 
 Always use `uv run --python .venv` — the shell auto-activates conda base and shadows the venv.
@@ -434,9 +436,10 @@ gently remind me it's a natural stopping point when insight flattens.
 | `EXPERIMENTS.md` | append-only honest log, Exp 1–40 — the central artifact |
 | `RESEARCH.md` | parallel math / frontier analysis |
 | `open_problem.html` | the actual open problem written up (restyled "active_monkey" page — intentional, don't revert) |
-| `converse_demo.py` | the capstone "talk to it" demo |
+| `active_loop/cli/` | console command entrypoints (`active-monkey-*`) |
+| `active_loop/cli/converse_demo.py` | the capstone "talk to it" demo |
 | `MISSION.md` / `policy.md` | governing docs for loop A (the code-mutating autopilot) |
-| `talk.py` | char-model REPL babbler |
+| `active_loop/cli/talk.py` | char-model REPL babbler |
 | `active_loop/` | the code: controller, worker, specs, lang model, critic, loop machinery |
 | `world_model/` | persistent belief store (loop A); grows, never resets |
 | `eval/` | FROZEN scorers (never edit) |

@@ -59,7 +59,7 @@ labels.
 
 **Why it matters:** this is the toy-scale moonshot chain, with the strongest caveats.
 
-**Evidence:** [converse_demo.py](../converse_demo.py),
+**Evidence:** [active_loop/cli/converse_demo.py](../active_loop/cli/converse_demo.py),
 [experiments/recovered/exp35_converse_demo.py](../experiments/recovered/exp35_converse_demo.py),
 and [experiments/recovered/outputs/](../experiments/recovered/outputs/).
 

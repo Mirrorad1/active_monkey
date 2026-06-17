@@ -74,7 +74,7 @@ function Nav({active}){
     <nav className="nav">
       <div className="nav-in">
         <a className="brand" href="index.html">
-          <img className="logo" src="assets/monkey-180.png" alt="active_monkey" width="26" height="26"/><span><b>active</b>_monkey</span>
+          <img className="logo" src="site/assets/monkey-180.png" alt="active_monkey" width="26" height="26"/><span><b>active</b>_monkey</span>
         </a>
         <div className="nav-links">
           {link("index.html","Home","home")}

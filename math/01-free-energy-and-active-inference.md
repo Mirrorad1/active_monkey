@@ -573,7 +573,7 @@ boundary the anchor defends. **Exp 26** supplies the self-formed value (`C ∝ e
 history; see Valence); **Exp 34** supplies the taught labels: an `~8`-example `P(word | color)` map
 let two differently-raised creatures answer "what do you like?" with "I like red" vs "I like green" —
 *content self-formed, words taught*. **Exp 35** packages the full chain into the runnable
-`converse_demo.py` capstone.
+`active-monkey-converse-demo` capstone.
 
 **▸ In programmer terms.** The collapse is the classic degeneracy of fitting two coupled
 factorizations at once (like learning both the rotation and the basis of a matrix from its product —

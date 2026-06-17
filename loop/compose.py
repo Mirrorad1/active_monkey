@@ -25,6 +25,13 @@ ALIASES = {
     "pop": "population-ecology",
 }
 
+NEW_DIRECTION_HINT = (
+    "If none of these directions fits, create a new direction card by copying "
+    "loop/directions/_TEMPLATE.md to loop/directions/<slug>.md, fill in the "
+    "question, ladder, stop condition, and STATUS line, then rerun compose.py "
+    "with that slug."
+)
+
 
 def resolve_direction(name: str, candidates: list[str] | None = None) -> str:
     """Resolve a user-typed direction token to a real card stem.
@@ -43,7 +50,7 @@ def resolve_direction(name: str, candidates: list[str] | None = None) -> str:
     if not matches:
         sys.exit(
             f"error: no direction matches '{name}' "
-            f"(have: {', '.join(candidates)})"
+            f"(have: {', '.join(candidates)})\n{NEW_DIRECTION_HINT}"
         )
     sys.exit(
         f"error: '{name}' is ambiguous — matches {', '.join(matches)}; be more specific"
@@ -148,7 +155,8 @@ def main() -> None:
     if not requested:
         sys.exit(
             "error: no direction given — pick one explicitly (no default).\n"
-            "available: " + ", ".join(available("directions"))
+            "available: " + ", ".join(available("directions")) + "\n"
+            + NEW_DIRECTION_HINT
         )
     direction = resolve_direction(requested)
     print(compose(direction, args.persona, args.idea))

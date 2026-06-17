@@ -436,7 +436,7 @@ All results were produced inside the committed lockfile environment.
 ```bash
 uv sync                                  # creates .venv from uv.lock
 uv run --python .venv pytest -q          # fast suite (~2s)
-uv run --python .venv python converse_demo.py        # capstone demo
+uv run --python .venv active-monkey-converse-demo    # capstone demo
 uv run --python .venv python experiments/exp145_m3c_live_probation.py  # any experiment re-runs from its script
 ```
 

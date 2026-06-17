@@ -24,15 +24,17 @@ and (3) stay honest by construction.
 ## Use
 
 ```bash
-# default direction + persona:
-uv run --python .venv python loop/compose.py
+# list available modules:
+uv run --python .venv python loop/compose.py --list
+
+# pick a direction + default persona:
+uv run --python .venv python loop/compose.py transfer
 
 # pick modules, inject a one-off idea:
 uv run --python .venv python loop/compose.py \
   --direction transfer --persona skeptic --idea "what if the anchor can be weaker?"
 
-# list available modules:
-uv run --python .venv python loop/compose.py --list
+# if no direction fits, copy loop/directions/_TEMPLATE.md to a new card
 ```
 
 Paste the output into a fresh Claude session (it is a `/loop` command). The session will
@@ -70,5 +72,8 @@ globs the experiment script. Computed on demand — never stale.
 ## Extending
 
 Add a new direction or persona by copying `_TEMPLATE.md` in the respective folder.
-Keep cards short (< 40 lines). The card is the module; `compose.py` does no magic —
-it just concatenates, so anything you can say in a card steers the loop.
+When no existing direction applies, create a new `loop/directions/<slug>.md`
+from `loop/directions/_TEMPLATE.md`, fill in the question, ladder, stop condition,
+and STATUS line, then compose with that slug. Keep cards short (< 40 lines). The
+card is the module; `compose.py` does no magic — it just concatenates, so anything
+you can say in a card steers the loop.

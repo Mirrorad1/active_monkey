@@ -15,7 +15,7 @@ Use the highest-thinking model for:
 - deciding whether the design can honestly fail
 - reviewing any code returned by a coding subagent
 - applying `loop/VALIDATION.md` conjunct by conjunct to raw output
-- writing `EXPERIMENTS.md`, `experiments-data.js`, `RESUME.md`, and final commits
+- writing `EXPERIMENTS.md`, `site/data/experiments-data.js`, `RESUME.md`, and final commits
 - choosing whether a result is POSITIVE / NEGATIVE / MIXED and CONSOLIDATION / NEW INSIGHT
 
 The main model may ask for help, but it owns the scientific claim.
@@ -36,7 +36,7 @@ Give it:
 
 Default write scope: one `experiments/expNN_<slug>.py` script, or one small helper
 module plus its focused tests. The coder does not edit `EXPERIMENTS.md`,
-`experiments-data.js`, `creature/state/`, `RESUME.md`, or git history.
+`site/data/experiments-data.js`, `creature/state/`, `RESUME.md`, or git history.
 
 ## Verifier subagent: Codex high-fast
 

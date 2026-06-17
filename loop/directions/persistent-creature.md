@@ -21,11 +21,11 @@ genuinely riskable; they may not appear or may appear as walls.
 
 **Parallel track.** This direction runs ALONGSIDE the fresh-model experiment loop, not
 instead of it — other direction cards remain the default for mechanism validation with
-clean step-0 controls. The long-running life (`run_life.py`, optionally on a schedule)
+clean step-0 controls. The long-running life (`active-monkey-life`, optionally on a schedule)
 accumulates mirro's biography BETWEEN experiments. Experiments that need the lived
 creature `fork()` its latest committed snapshot, so the life feeds controlled experiments
 without being consumed by them. The daily/session runner is separate from the experiment
-runner (`run_loop.py`); neither controls the other.
+runner (`active-monkey-loop`); neither controls the other.
 
 **Experiment ladder.**
 

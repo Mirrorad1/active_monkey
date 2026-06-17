@@ -71,7 +71,7 @@ word-to-concept mapping.
 **Status:** supported at toy scale.
 
 **Evidence:** Exp 17-35 in [EXPERIMENTS.md](../EXPERIMENTS.md);
-[converse_demo.py](../converse_demo.py); recovered scripts under
+[active_loop/cli/converse_demo.py](../active_loop/cli/converse_demo.py); recovered scripts under
 [experiments/recovered/](../experiments/recovered/).
 
 **What was measured:** model-learning error, place localization, navigation success,

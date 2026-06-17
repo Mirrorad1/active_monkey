@@ -6,12 +6,12 @@ output quality reflects held-out free energy (bits/char).
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 from active_loop.lang_model import LangModel
+from active_loop.cli._paths import repo_root
 from eval.lang_score import score_language
 
-CORPUS = Path(__file__).resolve().parent / "data" / "corpus.txt"
+CORPUS = repo_root() / "data" / "corpus.txt"
 
 
 def main() -> None:

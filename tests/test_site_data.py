@@ -1,11 +1,13 @@
-"""Fast, stdlib-only tests that assert the curated site snapshot
-(experiments-data.js) is consistent with the ground-truth log
+"""Fast, stdlib-only tests that assert the curated site data snapshot
+(site/data/experiments-data.js) is consistent with the ground-truth log
 (EXPERIMENTS.md).  No network, no jax, no pymdp imports.
 """
 import re
 import pathlib
 
 ROOT = pathlib.Path(__file__).parent.parent
+SITE_DATA = "site/data/experiments-data.js"
+LAB_STATUS = "site/data/lab-status.js"
 
 VALID_KINDS = {"breakthrough", "positive", "wall", "partial"}
 
@@ -16,9 +18,9 @@ def _read(name):
 
 def _journey_inline_style():
     """Return the Journey page's inline style block."""
-    text = _read("journey.html")
+    text = _read("site/pages/journey.html")
     m = re.search(r"<style>\s*(.*?)\s*</style>", text, re.DOTALL)
-    assert m, "journey.html inline <style> block not found"
+    assert m, "site/pages/journey.html inline <style> block not found"
     return m.group(1)
 
 
@@ -33,11 +35,11 @@ def _exp_md_numbers():
 
 
 # ---------------------------------------------------------------------------
-# Parse experiments-data.js  (regex over plain text — no JS eval)
+# Parse site/data/experiments-data.js  (regex over plain text — no JS eval)
 # ---------------------------------------------------------------------------
 
 def _js_text():
-    return _read("experiments-data.js")
+    return _read(SITE_DATA)
 
 
 def _am_experiments_body():
@@ -73,7 +75,7 @@ def _tally_fields():
         r"AM_TALLY\s*=\s*\{([^}]*)\}",
         text,
     )
-    assert m, "AM_TALLY not found in experiments-data.js"
+    assert m, f"AM_TALLY not found in {SITE_DATA}"
     body = m.group(1)
     fields = {}
     for key in ("total", "breakthrough", "positive", "wall", "partial"):
@@ -380,7 +382,7 @@ def _surprise_segments_points():
     text = _js_text()
     # Find the AM_SURPRISE_SEGMENTS array body
     m = re.search(r"window\.AM_SURPRISE_SEGMENTS\s*=\s*\[", text)
-    assert m, "AM_SURPRISE_SEGMENTS not found in experiments-data.js"
+    assert m, f"AM_SURPRISE_SEGMENTS not found in {SITE_DATA}"
     body_start = m.end()
     rest = text[body_start:]
     # Find the closing ]; at start of a line
@@ -493,7 +495,7 @@ def test_caveat_field_is_first_sentence_from_md():
     exp20_md = md_caveats.get(20, "")
     exp20_js = js_entries.get(20, "")
     assert exp20_md, "Exp 20 must have a caveat in EXPERIMENTS.md"
-    assert exp20_js, "Exp 20 caveat must be non-empty in experiments-data.js"
+    assert exp20_js, f"Exp 20 caveat must be non-empty in {SITE_DATA}"
     assert exp20_js == exp20_md, (
         f"Exp 20 caveat mismatch.\n"
         f"  MD (generator):  {exp20_md!r}\n"
@@ -525,7 +527,7 @@ def test_caveat_js_is_in_sync_with_generator():
                 f"Exp {n}: JS={js_cav!r:.60} vs MD={md_cav!r:.60}"
             )
     assert not drift, (
-        "experiments-data.js caveat fields are out of sync with EXPERIMENTS.md.\n"
+        f"{SITE_DATA} caveat fields are out of sync with EXPERIMENTS.md.\n"
         "Regenerate: uv run --python .venv python -m active_loop.site_data\n"
         + "\n".join(drift[:10])
     )
@@ -538,7 +540,7 @@ def test_caveat_js_is_in_sync_with_generator():
 # mixed old-JS/new-HTML and the page breaks). See loop/META.md.
 # ---------------------------------------------------------------------------
 
-_PAGES = ["index.html", "journey.html", "open_problem.html"]
+_PAGES = ["site/pages/index.html", "site/pages/journey.html", "site/pages/open_problem.html"]
 
 
 def test_asset_cache_versions_are_consistent():
@@ -588,7 +590,7 @@ def test_experiment_numbers_are_unique():
 
 
 def test_site_js_has_no_shell_quote_escape_leaks():
-    for fname in ("experiments-data.js", "lab-status.js"):
+    for fname in (SITE_DATA, LAB_STATUS):
         text = _read(fname)
         leaks = [
             f"{fname}:{i}: …{line.strip()[:90]}"

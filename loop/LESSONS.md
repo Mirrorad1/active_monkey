@@ -52,14 +52,14 @@ Ground rules for this file:
   pytest BARE in the && chain — piping it (`pytest | tail`) replaces its exit code with
   the pipe's last command, so a red suite sails through. Check the printed
   pass/fail line BEFORE the commit lands, and re-run any generator the failure names
-  (site_data --lab-status, gen_directions_index) after card/site edits. [PROTOCOL step 6]
-- **L12 (Exp 176/177 iterations, 2026-06-11).** `experiments-data.js` is REWRITTEN by
+  (site_data, site_data --lab-status, gen_directions_index) after card/site edits. [PROTOCOL step 6]
+- **L12 (Exp 176/177 iterations, 2026-06-11).** `site/data/experiments-data.js` is REWRITTEN by
   `python -m active_loop.site_data` (caveat regeneration), so any read of it from a
   previous iteration is stale and the next Edit fails with "modified since read" —
   in a shared checkout this looks like (but is not) the parallel-session race. Rule:
   re-Read the generated region (tail entry + AM_TALLY line) at the START of each
   iteration's site-entry edit, and always edit-then-generate within one iteration,
-  never generate-then-edit-later. Same applies to lab-status.js and DIRECTIONS.md.
+  never generate-then-edit-later. Same applies to `site/data/lab-status.js` and DIRECTIONS.md.
 - **L13 (Exp 183 addendum, 2026-06-12).** Refuter/falsifier IMPLEMENTATIONS are
   instruments: check their resolution against the measured quantity's timescale
   before believing a fire (a 100-step snapshot cadence floor-snapped a 75-step

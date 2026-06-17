@@ -126,7 +126,7 @@ Append a `## Reproduce` section to README (exact text):
 > ```bash
 > uv sync                                  # creates .venv from uv.lock
 > uv run --python .venv pytest -q          # fast suite (~2s)
-> uv run --python .venv python converse_demo.py        # capstone demo
+> uv run --python .venv active-monkey-converse-demo    # capstone demo
 > uv run --python .venv python experiments/exp145_m3c_live_probation.py  # any experiment re-runs from its script
 > ```
 > Every experiment script is committed together with its raw outputs under
@@ -183,9 +183,10 @@ Insert near the top (exact text, adjust heading levels to match the file):
 Acceptance: README renders; no other claims touched.
 
 **T9 — Public site language pass** · Haiku (exact replacements) · no deps ·
-edit `index.html` (and `am-shared.jsx`/`experiments-data.js` ONLY if the same strings
-live there; search first). NOTE: the site auto-deploys via git hooks — one commit, no
-force-push.
+edit `site/pages/index.html` (and `site/components/am-shared.jsx` /
+`site/data/experiments-data.js` ONLY if the same strings live there; search first), then
+run `python tools/site/build_static.py`. NOTE: the site auto-deploys via git hooks — one
+commit, no force-push.
 Apply these exact replacements (verify each old string exists; if drifted, find the
 nearest match and report what you changed):
 1. meta description "one little mind coming online" → "a tiny active-inference agent
@@ -233,7 +234,7 @@ audited toy lab and its negative-results catalog."
 Acceptance: page exists, README links it under a "Related work" bullet.
 
 **T11 — Caveats ride along on the public experiment cards** · Sonnet · no deps ·
-inspect how `journey.html` / `experiments-data.js` cards are generated
+inspect how `site/pages/journey.html` / `site/data/experiments-data.js` cards are generated
 (see `active_loop/site_data.py` and its tests); add the entry's "Honest caveat" text
 (or its first sentence, if length-constrained) to each experiment card's data so the
 public timeline never shows a BREAKTHROUGH/POSITIVE card without its caveat.

@@ -12,7 +12,10 @@ Do this, in order:
    Capture the composed `/loop` prompt it prints.
 2. If it exited non-zero (no direction given, or an unknown/ambiguous one), run
    `uv run --python .venv python loop/compose.py --list`, show the options, and ask
-   me which direction I meant. Do not guess.
+   me which direction I meant. If none of the listed cards applies, offer to
+   create a new direction by copying `loop/directions/_TEMPLATE.md` to
+   `loop/directions/<slug>.md`, filling in the question, ladder, stop condition,
+   and STATUS line, then composing with that slug. Do not guess.
 3. Show a ONE-line summary of what this run will do: direction, persona, and any
    `--idea`.
 4. STOP. Ask me to confirm with "go" (or "edit ...") before you begin iterating.

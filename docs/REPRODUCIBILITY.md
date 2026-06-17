@@ -43,7 +43,7 @@ uv run --python .venv python tools/check_docs.py
 Small demo:
 
 ```bash
-uv run --python .venv python converse_demo.py
+uv run --python .venv active-monkey-converse-demo
 ```
 
 Structure-growth confirmation:

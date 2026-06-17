@@ -45,7 +45,7 @@ An earlier draft hand-injected a labeled "positive" observation with a preset pr
 - "Learning to feel positive" = (a) intrinsic: free energy falls as it predicts you better; (b) extrinsic: it learns which responses earn the cue it has grounded as good, and its EFE-chosen responses shift toward them. The session valence trajectory is the headline metric.
 - **Irreducible bottom:** we choose the agent's generative model (what counts as "being itself"); FEP holds this is non-arbitrary for anything that persists, but the first "there is a self to maintain" is the designer's act. After that, the valence is the agent's own.
 
-## 4. Interaction (`converse.py`)
+## 4. Interaction (`active-monkey-converse`)
 
 A REPL conversation:
 ```
@@ -67,7 +67,7 @@ active-loop/
     affect_spec.py        # MUTABLE: build the dyad generative model (A/B/C/D, K, R, U) + valence prefs
     affect_agent.py       # AffectAgent: perceive(utterance) -> intent belief; act() -> response (EFE);
                           #   observe_feedback(valence) -> learn; valence_readout()
-  converse.py             # the REPL dyad
+  active_loop/cli/converse.py  # the REPL dyad
   eval/
     affect_score.py       # FROZEN: scripted-partner session -> mean realized valence (learns-to-positive metric)
     affect_score_json.py  # FROZEN: JSON entry for the autopilot loop
@@ -82,7 +82,7 @@ To measure (and let the autopilot improve) the agent, `affect_score.py` runs a *
 
 ## 7. Build increments
 
-- **M4a — affective core:** `intent_encoder`, `affect_spec`, `affect_agent` (perceive/act/learn/valence), `converse.py`, `eval/affect_score(+_json)`. Prove the agent infers intent, picks EFE responses, and a scripted-partner session shows realized valence rising as it learns. Honest REPL.
+- **M4a — affective core:** `intent_encoder`, `affect_spec`, `affect_agent` (perceive/act/learn/valence), `active-monkey-converse`, `eval/affect_score(+_json)`. Prove the agent infers intent, picks EFE responses, and a scripted-partner session shows realized valence rising as it learns. Honest REPL.
 - **M4b — autopilot over the dyad:** point the M3b PR-style loop at `affect_spec.py` with the affect metric, so it autonomously improves how well/fast the agent learns to earn positive feedback.
 
 ## 8. Risks & honesty

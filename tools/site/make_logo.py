@@ -6,15 +6,15 @@ white eye-highlights and teeth inside the figure are preserved. Then emits a
 square, padded logo plus the favicon / apple-touch sizes the page expects.
 
 Usage:
-    python3 assets/make_logo.py [path/to/raw_monkey.png]
+    python3 tools/site/make_logo.py [path/to/raw_monkey.png]
 
-Default input: assets/monkey-raw.png  ->  writes assets/monkey.png (+ sizes).
+Default input: site/assets/monkey-raw.png  ->  writes site/assets/monkey.png (+ sizes).
 """
 import sys
 from collections import deque
 from PIL import Image
 
-SRC = sys.argv[1] if len(sys.argv) > 1 else "assets/monkey-raw.png"
+SRC = sys.argv[1] if len(sys.argv) > 1 else "site/assets/monkey-raw.png"
 WHITE = 236      # pixels with R,G,B all >= this are "background white"
 PAD = 0.06       # transparent padding around the trimmed figure (fraction)
 
@@ -55,8 +55,8 @@ canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
 canvas.paste(img, ((side - img.size[0]) // 2, (side - img.size[1]) // 2), img)
 img = canvas
 
-img.save("assets/monkey.png")
+img.save("site/assets/monkey.png")
 for size in (32, 180, 512):
-    img.resize((size, size), Image.LANCZOS).save(f"assets/monkey-{size}.png")
+    img.resize((size, size), Image.LANCZOS).save(f"site/assets/monkey-{size}.png")
 img.resize((48, 48), Image.LANCZOS).save("favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
-print(f"ok — wrote assets/monkey.png ({img.size[0]}px) + favicons from {SRC}")
+print(f"ok — wrote site/assets/monkey.png ({img.size[0]}px) + favicons from {SRC}")

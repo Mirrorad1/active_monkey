@@ -7,8 +7,9 @@ packaged into a runnable, honest, constant-unfakeable artifact. Functional valen
 claim, ever.
 
 Source spec: `docs/specs/m4-affective-dyad.md`. Code: `active_loop/affect_spec.py` (MUTABLE model
-builder) + `active_loop/affect_agent.py` (`DirectHeadAgent`). Deliverables (increment 1e): `converse.py`
-(honest REPL), `eval/affect_score.py` + `eval/affect_score_json.py` (FROZEN learns-to-positive scorer).
+builder) + `active_loop/affect_agent.py` (`DirectHeadAgent`). Deliverables (increment 1e):
+`active-monkey-converse` (`active_loop/cli/converse.py`, honest REPL), `eval/affect_score.py` +
+`eval/affect_score_json.py` (FROZEN learns-to-positive scorer).
 Guards: `tests/test_affect_agent.py`, `tests/test_affect_score.py`.
 
 ## The arc (Exp 125 → 222)
@@ -40,7 +41,7 @@ Guards: `tests/test_affect_agent.py`, `tests/test_affect_score.py`.
    at 300t (+6) and is slightly *worse* at short lengths (anneals too fast → over-commits before
    learning). `mean_csel` rises with length for **both** schedule and fixed ⇒ the schedule is an
    *exploitation* optimizer; **the long 300t session is load-bearing** for the LEARNING itself.
-7. **The milestone packaging (Exp 222, increment 1e).** `converse.py` + the FROZEN scorer. The
+7. **The milestone packaging (Exp 222, increment 1e).** `active-monkey-converse` + the FROZEN scorer. The
    scorer makes "learns to feel positive" one reproducible number that a lazy policy **cannot fake**:
    A1 — `score_affect()` at the validated config returns `verdict=True` (mean_last 0.42 > the 1/3
    ceiling, genuine_fraction 0.75, improvement 0.24, reproducing Exp 220's learning); A2 — the SAME

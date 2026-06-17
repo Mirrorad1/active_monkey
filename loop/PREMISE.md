@@ -32,5 +32,5 @@ that baseline: does it probe an EDGE of the recipe, or merely re-confirm it?
 
 Verified pymdp patterns to reuse: Exp 21 (place learning), 26 (opinion formation),
 30 (value-propagation planning), 34/35 (language bridge / converse). Capstone artifact:
-`converse_demo.py`. Designed-but-unbuilt next rung: the M4 affective-dyad spec
+`active-monkey-converse-demo`. Designed-but-unbuilt next rung: the M4 affective-dyad spec
 (see RESUME.md §7).

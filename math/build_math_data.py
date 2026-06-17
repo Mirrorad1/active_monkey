@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ../math-data.js from the math/*.md reference files.
+"""Generate ../site/data/math-data.js from the math/*.md reference files.
 
 Single source of truth: the markdown files in this directory. This script parses
 each file into structured concept records (Glossary / Example / Data / Programmer
@@ -8,7 +8,8 @@ client-side with `marked`. Pure stdlib; run from anywhere:
 
     python3 math/build_math_data.py
 
-It writes <repo-root>/math-data.js. Re-run whenever you edit a math/*.md file.
+It writes <repo-root>/site/data/math-data.js. Re-run whenever you edit a
+math/*.md file.
 """
 import json
 import os
@@ -17,7 +18,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-OUT = os.path.join(ROOT, "math-data.js")
+OUT = os.path.join(ROOT, "site", "data", "math-data.js")
 
 # file -> (short label for the topic chip, track grouping)
 FILE_META = {
@@ -161,6 +162,7 @@ def main():
         "   Do NOT edit by hand; edit the markdown and re-run the generator.\n"
         "   Single source of truth = the math/ reference files. */\n"
     )
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(header)
         fh.write("window.AM_MATH = ")

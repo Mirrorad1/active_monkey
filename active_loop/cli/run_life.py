@@ -5,9 +5,9 @@ lives in <state-dir>/<name>.  The runner NEVER births a creature — birth happe
 in a logged experiment (see loop/directions/persistent-creature.md).
 
 Examples:
-    uv run --python .venv python run_life.py --steps 200
-    uv run --python .venv python run_life.py --name mirro --steps 500 --sessions 3
-    uv run --python .venv python run_life.py --steps 100 --commit
+    uv run --python .venv active-monkey-life --steps 200
+    uv run --python .venv active-monkey-life --name mirro --steps 500 --sessions 3
+    uv run --python .venv active-monkey-life --steps 100 --commit
 """
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ import subprocess
 from pathlib import Path
 
 from active_loop.creature import Creature
+from active_loop.cli._paths import repo_root
 
 
 def _status_line(c: Creature) -> str:
@@ -72,8 +73,8 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    repo_root = Path(__file__).resolve().parent
-    state_dir = repo_root / args.state_dir
+    root = repo_root()
+    state_dir = root / args.state_dir
     creature_path = state_dir / args.name
 
     if not creature_path.exists():
@@ -95,7 +96,7 @@ def main() -> None:
         print(_status_line(c))
 
         if args.commit:
-            _git_commit(state_dir, args.name, c.age_steps, c.map_accuracy(), repo_root)
+            _git_commit(state_dir, args.name, c.age_steps, c.map_accuracy(), root)
             print(f"  committed: age={c.age_steps}")
 
     print(f"\nDone. {args.name} age={c.age_steps} state_hash={c._state_hash()[:16]}...")
