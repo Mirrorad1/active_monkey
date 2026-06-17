@@ -327,10 +327,21 @@ step 0.
   MILESTONE_VALIDATED: the DirectHeadAgent learner passes (verdict True: realized POS 0.42>1/3, genuine 6/8,
   improvement 0.24, reproduces Exp 220) AND a constant-reply control FAILS (verdict False, genuine 0) — a
   constant-UNFAKEABLE metric. Synthesis + provided-vs-learned ledger: `docs/research/m4a-affective-dyad-chapter.md`.
-  NEXT (each needs a human word): **M4b** — the PR-style autopilot over MUTABLE `affect_spec.py` against the
-  FROZEN `eval/affect_score.py` (can it raise the genuine number without reward-hacking?); standing alternative
-  — a LEARNING-side lever (lr/optimism/replay) to attack the short-session learning wall (Exp 221). Guards:
-  tests/test_affect_agent.py + tests/test_affect_score.py; card: loop/directions/affective-dyad.md.
+  **The M4b autopilot arc (Exp 223–225):** built the PR-style autopilot over MUTABLE `affect_spec.py` scored
+  by the FROZEN `eval/affect_score.py` (higher=better; `active_loop/affect_pr_loop.py` + `run_affect_loop.py`).
+  **Exp 223** (first real run) + **Exp 224** (clean re-run) were an instrument shakedown — repurposing the lang
+  autopilot surfaced 4 bugs (180s timeout, lang mission/context, shared world_model, an untracked-dir git wipe;
+  all fixed + guarded, L35); Exp 224 ran clean (rc=0) but found NO improvement at N=2 — CRITIC-GATED (both
+  proposals rejected before scoring). **Exp 225 (POSITIVE / NEW INSIGHT, blind-verified) RESOLVED it:** the
+  AffectClaudeCritic is SOUND (it rejects baking the code→intent map into A0 = gaming, and approves a legit C1
+  NEU-aversion preference), so Exp 224's NEGATIVE was the critic doing its job; AND that approved, non-gaming
+  change GENUINELY improves the metric — **C1 neu=-0.5 → mean_last 0.4225→0.5188, genuine 6/8→8/8** — so the
+  autopilot HAS a real honest improving move (Exp 224's 0/2 was sampling, not a ceiling).
+  NEXT (each needs a human word): (a) a full multi-iteration M4b run to show AUTONOMOUS find-and-keep of the C1
+  improvement (+ the journal-accumulation fix); (b) ACCEPT C1=-0.5 into `affect_spec.py` (raises the milestone
+  baseline to ~0.52 / genuine 8/8 — edits the spine the FROZEN scorer reads); (c) stop / pivot to the
+  short-session LEARNING lever (lr/optimism/replay, Exp 221). Guards: tests/test_affect_agent.py +
+  tests/test_affect_score.py + tests/test_affect_pr_loop.py; card: loop/directions/affective-dyad.md.
 - Other standing options in loop/IDEAS.md (each needs its own word): nira's normalized-predictive switch
   (standing consult from Exp 154); the cloud-branch merge (renumber-on-merge plan).
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
