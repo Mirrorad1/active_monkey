@@ -116,6 +116,28 @@ uv run active-monkey converse artifacts/active-monkey-affect-dyad-v0 --demo
 See [docs/ARTIFACTS.md](docs/ARTIFACTS.md) and the belief/communication benchmarks in
 [docs/BELIEFS_AND_COMMUNICATION.md](docs/BELIEFS_AND_COMMUNICATION.md).
 
+### Coalescence: experiments → reusable artifacts
+
+The artifact system above (one *AgentCheckpoint*) is the seed of a broader **coalescence
+standard** that turns experiments into a composable library — `ExperimentBundle`s,
+`MechanismCard`s, `GeometryMap`s, `BoundaryNote`s, `ScorerCard`s, and `AdapterCard`s — so
+findings accumulate instead of living as one-off narratives.
+
+```bash
+uv run active-monkey coalesce inventory --json            # honest inventory of all 225 experiments
+uv run active-monkey coalesce backfill-plan --out plan.json
+uv run active-monkey coalesce export --experiment exp222 --level checkpoint_bundle --out experiment_bundles/exp222
+uv run active-monkey coalesce validate --all
+uv run active-monkey coalesce mechanisms list ; uv run active-monkey coalesce geometry list
+```
+
+See [docs/COALESCENCE_PLAN.md](docs/COALESCENCE_PLAN.md), the spec in
+[docs/ARTIFACT_SPEC.md](docs/ARTIFACT_SPEC.md), the inventory/rerun plan in
+[docs/EXPERIMENT_BACKFILL.md](docs/EXPERIMENT_BACKFILL.md), and the seeded
+[docs/MECHANISM_LIBRARY.md](docs/MECHANISM_LIBRARY.md). Negative results are first-class
+(boundaries are reusable constraints); statuses stay honest (`validated` / `constrained` /
+`scaffold`).
+
 ## What This Is Not
 
 - Not a consciousness claim.
