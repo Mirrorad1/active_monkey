@@ -74,13 +74,17 @@ def _shuffled_codes(rng):
     return nxt
 
 
-def run_interactive(seed: int = 0, turns: int = TURNS_DEFAULT) -> None:
-    """Interactive REPL: user types code then feedback, agent learns."""
+def run_interactive(seed: int = 0, turns: int = TURNS_DEFAULT, agent_factory=None) -> None:
+    """Interactive REPL: user types code then feedback, agent learns.
+
+    agent_factory(seed, turns) -> agent (defaults to the frozen winning config).  An
+    artifact-backed agent can be supplied without changing the REPL behavior.
+    """
     print(BANNER)
     print(f"Utterance codes: 0..{U - 1}.  Feedback: +  -  (empty=neutral).  Type 'q' to quit.")
     print()
 
-    ag = _make_agent(seed, turns)
+    ag = (agent_factory or _make_agent)(seed, turns)
     pos_count = 0
     total = 0
 
@@ -121,14 +125,17 @@ def run_interactive(seed: int = 0, turns: int = TURNS_DEFAULT) -> None:
         print(f"\n[session ended after {total} turns. final POS rate: {pos_count/total:.3f}]")
 
 
-def run_demo(seed: int = 0, turns: int = 60) -> None:
-    """Non-interactive scripted-partner demo session (same CORRECT mapping as the scorer)."""
+def run_demo(seed: int = 0, turns: int = 60, agent_factory=None) -> None:
+    """Non-interactive scripted-partner demo session (same CORRECT mapping as the scorer).
+
+    agent_factory(seed, turns) -> agent (defaults to the frozen winning config).
+    """
     print(BANNER)
     print(f"[demo] scripted-partner session: seed={seed} turns={turns}")
     print()
 
     np.random.seed(seed)
-    ag = _make_agent(seed, turns)
+    ag = (agent_factory or _make_agent)(seed, turns)
     nxt = _shuffled_codes(np.random.default_rng(seed))
     third = turns // 3
     pf = pl = 0

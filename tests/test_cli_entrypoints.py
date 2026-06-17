@@ -11,6 +11,7 @@ import tomllib
 ROOT = pathlib.Path(__file__).parent.parent
 
 EXPECTED_CONSOLE_SCRIPTS = {
+    "active-monkey": "active_loop.cli.main:main",
     "active-monkey-loop": "active_loop.cli.run_loop:main",
     "active-monkey-pr-loop": "active_loop.cli.run_pr_loop:main",
     "active-monkey-affect-loop": "active_loop.cli.run_affect_loop:main",
