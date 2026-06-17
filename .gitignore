@@ -15,3 +15,8 @@ results/
 # transient experiment stderr capture (warnings only; not a result artifact)
 experiments/outputs/*_stderr.log
 experiments/outputs/*_stdout.log
+
+# stray local export dir: the module active_loop/artifacts.py owns this import name,
+# so active_loop/artifacts/ must never be a tracked package (it would shadow the module).
+# An interrupted `artifact export` can leave empty dirs here; never commit them.
+active_loop/artifacts/
