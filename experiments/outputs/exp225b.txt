@@ -1,0 +1,12 @@
+==============================================================================
+EXP 225b — score the M4b critic-APPROVED C1 NEU-aversion vs baseline 0.4225
+FROZEN scorer session (8 seeds x 300t); only C1 overridden; CEIL=0.333
+==============================================================================
+baseline (C1 neu=0.0) = 0.4225  (Exp 222 deterministic)
+
+C1 neu=-0.50: mean_last=0.5188 (delta +0.0963)  mean_first=0.2200  mean_csel=0.604  genuine=8/8
+C1 neu=-1.00: mean_last=0.4250 (delta +0.0025)  mean_first=0.2338  mean_csel=0.417  genuine=4/8
+
+--- VERDICT ---
+VERDICT: APPROVED_DIRECTION_IMPROVES — the critic-approved C1 neu=-0.50 raises mean_last to 0.5188 > baseline 0.4225 (+0.0963); the M4b autopilot has a real improving move it would find+keep.
+MACHINE SUMMARY: VERDICT=APPROVED_DIRECTION_IMPROVES baseline=0.4225 neu-0.50=0.5188(g8) neu-1.00=0.4250(g4)

@@ -268,3 +268,28 @@ Ground rules for this file:
   primary bar 0.5 = 3/6 is on-grid), but a reported number was wrong until recomputed at ≥4/6. Rule: when a
   metric takes values k/N, write thresholds as `>= k/N` (e.g. `>= 4/6`), never an off-grid decimal; an
   L13-kin instrument-resolution check. [VALIDATION; PROTOCOL step 5]
+- **L35 (Exp 223-224, M4b real-run shakedown, 2026-06-16).** Repurposing a FROZEN/generic LLM-driven
+  autopilot (a PR-loop) for a NEW objective inherits the original's baked-in assumptions, which fail ONE AT A
+  TIME in expensive real runs unless shaken out first: (1) the proposer/critic carry the ORIGINAL mission /
+  context / world_model (lang) — write NON-frozen objective-specific proposer+critic with their own mission;
+  (2) the proposer timeout is sized for the original prompt — bump it (180s→600s here); (3) a NEW isolated
+  world_model/notes dir is NOT tracked on trunk, so `commit_all` (git add -A) sweeps it onto the proposal
+  branch and the discard→`checkout(trunk)` WIPES it (the lang loop only worked because its world_model was
+  already committed) — re-create the dir each iteration AND/OR commit it to trunk first; (4) the FULL
+  orchestration loop (`run_*_loop`) may never have been integration-tested — only the single-iteration fn was.
+  RULE: BEFORE launching expensive real autopilot runs (here ~10–40 min each), add a FAST mock-proposer +
+  stub-score integration test of the WHOLE loop path (not just one iteration) — it shakes out the
+  dir/git-churn/world_model bugs cheaply; otherwise each real run discovers one more trivial bug (Exp 223 =
+  timeout+context, Exp 224a = the git-wipe). Kin of L25/L31 (pre-flight before a big spend). [PROTOCOL step 3]
+- **L36 (Exp 224-225, 2026-06-16).** When an LLM-driven optimization autopilot reports "no improvement",
+  DISTINGUISH the failure mode before concluding anything about the metric: (a) SCORE-DRIVEN (a candidate was
+  measured and scored ≤ baseline) vs (b) GATE-GATED (the candidate was rejected by a critic/test/frozen-guard
+  BEFORE the metric ever measured it). A gate-gated negative says NOTHING about improvability — the scorer
+  never ran on a mutant (Exp 224 = NEGATIVE but both proposals were critic-rejected pre-scoring; "improvable?"
+  was UNRESOLVED, not answered). Cheaply DIAGNOSE a gate-gated result by capturing the gate's REASONS on a
+  handful of proposals (propose→critic only, NO expensive scoring): the critic may be CORRECTLY rejecting
+  metric-gaming (Exp 225: it rejected baking the code→intent answer-structure into a prior, and approved a
+  legitimate preference tweak), in which case the gate is working, not broken — then SCORE a gate-APPROVED
+  proposal directly to test whether a legitimate improvement exists (Exp 225b: the approved C1 tweak scored
+  0.4225→0.5188, genuine 6/8→8/8). Don't read a gate-gated 0/N as "metric unimprovable" or "gate miscalibrated"
+  without that ~5-min diagnostic. [PROTOCOL step 5; VALIDATION; kin of L35]

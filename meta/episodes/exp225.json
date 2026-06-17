@@ -1,0 +1,43 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp225.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp225_critic_diagnostic.py",
+    "site_data_references_output": false,
+    "site_data_references_script": false
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.52\" quoted in entry not found in experiments/outputs/exp225.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0/2\" quoted in entry not found in experiments/outputs/exp225.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/8\" quoted in entry not found in experiments/outputs/exp225.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-17T00:05:21Z",
+  "commit_sha": "afe5710b5ec1eebca603a6735789c6c2c61bcee0",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 225,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning",
+      "site_data_missing_script_reference",
+      "site_data_missing_output_reference"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
