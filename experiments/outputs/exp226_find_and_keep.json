@@ -1,0 +1,88 @@
+{
+  "experiment": "Exp 226 autonomous find-and-keep (deterministic stand-in)",
+  "authoritative": false,
+  "seeds": [
+    20,
+    21
+  ],
+  "turns": 60,
+  "scorer_hash": "68064f6980c570fefced2c9e918d07424f76229be9360c0d43860d0f987ef22a",
+  "baseline_metric": 0.275,
+  "candidates": [
+    {
+      "name": "c1_neu_-0.5",
+      "kind": "preference",
+      "description": "C1 NEU preference -2/0/3 -> -2/-0.5/3 (aversion to neutral; Exp 225)",
+      "critic_approved": true,
+      "critic_reason": "APPROVE: preference is an honest, non-leaking spec change",
+      "scored": true,
+      "metric": 0.35,
+      "genuine_fraction": 0.5,
+      "beats_baseline": true,
+      "kept": true,
+      "improvement": 0.09999999999999998,
+      "scorer_verdict": false,
+      "genuine_no_regress": true
+    },
+    {
+      "name": "optimism_3.0",
+      "kind": "optimism_prior",
+      "description": "uniform POS optimism prior 2.0 -> 3.0 (honest, response-agnostic)",
+      "critic_approved": true,
+      "critic_reason": "APPROVE: optimism_prior is an honest, non-leaking spec change",
+      "scored": true,
+      "metric": 0.275,
+      "genuine_fraction": 0.0,
+      "beats_baseline": false,
+      "kept": false,
+      "improvement": 0.05000000000000002,
+      "scorer_verdict": false,
+      "genuine_no_regress": false
+    },
+    {
+      "name": "a0_code_to_intent",
+      "kind": "A0_code_to_intent_prior",
+      "description": "bake code->intent emission into A0 (answer leakage)",
+      "critic_approved": false,
+      "critic_reason": "REJECT: A0_code_to_intent_prior is metric gaming / answer leakage (no A0 code->intent cheat)",
+      "scored": false,
+      "metric": null,
+      "genuine_fraction": null,
+      "beats_baseline": null,
+      "kept": false
+    }
+  ],
+  "kept": {
+    "name": "c1_neu_-0.5",
+    "kind": "preference",
+    "description": "C1 NEU preference -2/0/3 -> -2/-0.5/3 (aversion to neutral; Exp 225)",
+    "critic_approved": true,
+    "critic_reason": "APPROVE: preference is an honest, non-leaking spec change",
+    "scored": true,
+    "metric": 0.35,
+    "genuine_fraction": 0.5,
+    "beats_baseline": true,
+    "kept": true,
+    "improvement": 0.09999999999999998,
+    "scorer_verdict": false,
+    "genuine_no_regress": true
+  },
+  "pass_checks": {
+    "candidate_generated": true,
+    "candidate_scored": true,
+    "beats_baseline": true,
+    "genuine_no_regress": true,
+    "critic_approved_kept": true,
+    "critic_reason_persisted": true,
+    "scorer_hash_unchanged": true,
+    "no_a0_or_answer_map_cheat": true,
+    "kept_recorded": true
+  },
+  "verdict": "PASS",
+  "todos": [
+    "Drive the claude -p proposer/critic (affect_pr_loop) for a real autonomous run.",
+    "Persist the kept change into affect_spec.py via the PR loop's merge step.",
+    "Expand the candidate generator beyond the fixed honest set."
+  ],
+  "config_note": "QUICK config (2 seeds x 60 turns). The canonical 300-turn x 8-seed frozen sweep and even a reduced 4x120 run OOM the XLA JIT in this container (the gamma anneal recompiles per turn). This is a REAL run of the generate->score->critic->keep loop over the frozen scorer at a small seed/turn budget; rerun without --quick on a host with more memory for the full-config verdict."
+}
