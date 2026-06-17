@@ -96,6 +96,26 @@ Current evidence suggests:
 These are toy-scale claims about this codebase and its current substrates, not claims
 about biology, consciousness, AGI, or inevitable emergence.
 
+## Copyable Agent Artifacts (Artifact Infrastructure)
+
+active_monkey now ships a local, Hugging-Face-style **artifact** system so an agent can be
+exported, inspected, scored, and conversed with as one reproducible, copyable directory —
+local-first, no upload, no network. The first artifact is the toy affective-dyad agent
+(`active-monkey-affect-dyad-v0`).
+
+```bash
+uv run active-monkey artifact export --preset affect-dyad-v0 --out artifacts/active-monkey-affect-dyad-v0
+uv run active-monkey artifact inspect artifacts/active-monkey-affect-dyad-v0
+uv run active-monkey score   artifacts/active-monkey-affect-dyad-v0
+uv run active-monkey converse artifacts/active-monkey-affect-dyad-v0 --demo
+```
+
+"weights" here means probability tables / Dirichlet counts (not neural-net weights);
+"belief" means a posterior over a hidden state (not subjective belief); the affect dyad is
+**functional valence only** — no sentience, consciousness, AGI, or subjective-feeling claim.
+See [docs/ARTIFACTS.md](docs/ARTIFACTS.md) and the belief/communication benchmarks in
+[docs/BELIEFS_AND_COMMUNICATION.md](docs/BELIEFS_AND_COMMUNICATION.md).
+
 ## What This Is Not
 
 - Not a consciousness claim.

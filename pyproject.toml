@@ -14,9 +14,12 @@ dependencies = [
     "mctx>=0.0.5",
     "networkx>=3.3",
     "matplotlib>=3.1.3",
+    "safetensors>=0.8.0",
+    "inferactively-pymdp>=1.0.3",
 ]
 
 [project.scripts]
+active-monkey = "active_loop.cli.main:main"
 active-monkey-loop = "active_loop.cli.run_loop:main"
 active-monkey-pr-loop = "active_loop.cli.run_pr_loop:main"
 active-monkey-affect-loop = "active_loop.cli.run_affect_loop:main"

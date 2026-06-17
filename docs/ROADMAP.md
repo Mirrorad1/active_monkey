@@ -84,6 +84,45 @@ replay, restore, and compare creature/ecology histories without losing provenanc
 should support the active-sensing test rather than reopen passive memory as the main
 scientific direction.
 
+## Direction Update: a falsifier-first toy lab with copyable agent artifacts
+
+active_monkey is becoming a **falsifier-first toy lab with copyable agent artifacts**. The
+unit of work is a reproducible artifact + a frozen scorer + predeclared controls, so any
+result — positive or negative — is checkable and forkable.
+
+Status legend: **[done]** completed and verified · **[scaffold]** runnable scaffold ·
+**[proposed]** next experiment · **[neg/inconcl]** negative or inconclusive.
+
+- **[done] First artifact: `active-monkey-affect-dyad-v0`.** A substrate-independent
+  `AgentState`/checkpoint layer (`active_loop/state.py`, safetensors, stable content hash,
+  schema-mismatch refusal), a local artifact API (`active_loop/artifacts.py`), and a stable
+  `active-monkey` CLI (`export` / `inspect` / `score` / `converse`). Provenance pins the
+  frozen scorer (`eval/affect_score.py`) by sha256; scoring refuses to run on hash drift.
+  See `docs/ARTIFACTS.md`.
+- **[scaffold] Autonomous find-and-keep (Exp 226).** A deterministic generate→score→critic
+  →keep loop over the frozen scorer (`experiments/exp226_autonomous_find_and_keep.py`): it
+  keeps the honest Exp 225 NEU-aversion move and rejects an A0 code→intent gaming candidate.
+  The `claude -p`-driven autopilot (`affect_pr_loop.py`) is the not-yet-exercised next step
+  (TODOs recorded in the result JSON).
+- **[done] BeliefBench v0** (`active_loop/benchmarks/beliefbench.py`): hidden partner-type
+  inference; PASS at v0 (belief updates, drives policy, scrambling hurts, transfers, below
+  oracle). "belief" = posterior over a hidden state, not subjective belief.
+- **[done] Comm v0** (`active_loop/benchmarks/comm_v0.py`): costed sender/receiver signaling
+  ("proto-communication", NOT language); PASS at v0 (beats shuffled/muted, ~1.9 bits MI).
+- **[neg/inconcl] Short-session learning levers**
+  (`experiments/short_session_affect_levers.py`): honest sample-efficiency curves for
+  optimism / exploration / experience-replay levers at 30/50/100/300 turns. Per Exp 221 the
+  long session is load-bearing; a non-PASS at short sessions is the expected negative, not a
+  tuning failure. Eligibility traces and an active ASK/probe action remain scaffolded TODOs
+  (reported NOT_IMPLEMENTED, not faked).
+- **[proposed] Eventual re-entry into ecology / selection** via the same AgentState surface
+  (fork / replay / restore with provenance), once the belief and communication benchmarks
+  have load-bearing levers.
+
+This direction does not overstate results: BeliefBench/Comm are toy-scale existence tests
+of machinery, the autonomous loop is a deterministic stand-in until the claude-driven loop
+is run, and the short-session levers are honestly inconclusive/negative at short horizons.
+
 ## Standing Guardrails
 
 - Keep long-term ambition separate from current evidence.
