@@ -20,8 +20,9 @@ def test_validate_all_clean_on_committed_repo():
     """Every committed card/bundle/manifest validates; nothing fails."""
     report = V.validate_all(str(ROOT))
     assert report["failed"] == [], report["failed"]
-    # The seeded library + the existing checkpoint artifact all pass.
-    assert len(report["passed"]) >= 11, report["passed"]
+    # The seeded library (6 mechanisms + 5 boundary notes + 3 geometry maps + adapter +
+    # scorer) + the existing checkpoint artifact all pass.
+    assert len(report["passed"]) >= 21, report["passed"]
 
 
 @pytest.mark.parametrize("bundle", ["exp222", "exp199", "exp210"])
@@ -35,13 +36,31 @@ def test_sample_bundle_refs_exist(bundle):
 
 
 def test_seed_mechanism_cards_have_honest_status():
-    """functional-valence-dyad-v0 is validated; communication-scaffold-v0 is a scaffold."""
-    fv = load(ROOT / "mechanisms/functional-valence-dyad-v0/mechanism_card.json")
-    assert fv["status"] == "validated"
-    assert fv["source_experiments"]  # non-empty evidence
-    comm = load(ROOT / "mechanisms/communication-scaffold-v0/mechanism_card.json")
-    assert comm["status"] == "scaffold"
-    assert comm["source_experiments"] == []  # no run yet — honestly empty
+    """Each mechanism card's status matches its evidence (no overclaiming)."""
+    expected = {
+        "functional-valence-dyad-v0": "validated",
+        "recipe-symmetry-breaking-v0": "validated",
+        "meta-calibration-n3-v0": "validated",
+        "online-structure-growth-v0": "validated",
+        "identity-n4-monitor-v0": "constrained",
+        "communication-scaffold-v0": "scaffold",
+    }
+    for mid, status in expected.items():
+        card = load(ROOT / "mechanisms" / mid / "mechanism_card.json")
+        assert card["status"] == status, (mid, card["status"])
+        if status == "scaffold":
+            assert card["source_experiments"] == []  # no run yet — honestly empty
+        else:
+            assert card["source_experiments"]  # validated/constrained need evidence
+
+
+def test_recipe_and_collapse_are_two_halves():
+    """The flagship finding: the collapse boundary and the recipe that breaks its symmetry."""
+    collapse = load(ROOT / "boundary_notes/disembodied-stream-collapse-v0.json")
+    assert collapse["artifact_type"] == "boundary_note"
+    assert 31 in collapse["source_experiments"]
+    commitment = load(ROOT / "boundary_notes/identity-n4-commitment-v0.json")
+    assert commitment["artifact_type"] == "boundary_note"
 
 
 def test_seed_generator_importable():

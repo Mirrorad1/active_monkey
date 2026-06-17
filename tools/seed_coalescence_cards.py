@@ -434,17 +434,303 @@ HIDDEN_STATE_MEMORY_BOUNDARY = BoundaryNote(
 )
 
 
+# ── recipe-symmetry-breaking-v0 (VALIDATED — the flagship durable finding) ─────
+RECIPE_SYMMETRY_BREAKING = MechanismCard(
+    mechanism_id="recipe-symmetry-breaking-v0",
+    mechanism_type="hidden-state-belief",
+    status="validated",
+    source_experiments=[26, 27, 28, 31, 34, 35],
+    claim=(
+        "On the RECIPE — embodiment + grounding + continuous registered experience "
+        "(belief never reset) + ONE innate anchor (give the sensory map A OR the motor "
+        "model B, not both learned from noise) + a few taught word<->concept labels — a toy "
+        "active-inference creature runs the full chain: perceives (place fields self-organize) "
+        "-> learns facts -> forms grounded valence (low free energy = comfortable) -> plans "
+        "and acts -> forms its OWN individual values -> answers in words what it values. "
+        "Functional only, toy scale; the symmetry-breaker is the RECIPE."
+    ),
+    works_when=[
+        "exactly one of A (sensory map) or B (motor model) is provided as the innate anchor",
+        "belief is continuous and never reset per episode (registered experience)",
+        "word<->concept labels are few-shot taught (not self-generated)",
+        "the body is embodied (gridworld) with grounded movement",
+    ],
+    fails_when=[
+        "both A and B are learned from pure noise simultaneously -> collapse (Exp 31)",
+        "a pure disembodied symbol stream (see disembodied-stream-collapse-v0)",
+        "no anchor at all (fully tabula-rasa) — a documented research frontier, not achieved",
+    ],
+    required_conditions=[
+        "embodiment, grounding, continuous registered experience, ONE innate anchor, "
+        "taught labels",
+    ],
+    reusable_interface=(
+        "the continuous-substrate creature spine (creature/, e.g. nira) reuses the recipe in "
+        "richer form; same architecture + different history -> different opinion (Exp 26)"
+    ),
+    inputs=["embodied grounded observations", "a few taught word<->concept label pairs"],
+    outputs=[
+        "self-organized place fields",
+        "grounded valence (= -free energy)",
+        "self-formed individual values + a verbal answer about them",
+    ],
+    state_requirements=["continuous belief across episodes", "one innate generative factor (A or B)"],
+    metrics=["held-out surprise (bits/char or nats)", "value-vector divergence across histories"],
+    falsifiers=[
+        "fully tabula-rasa learning (no innate anything) producing stable distinct structure "
+        "— a documented OPEN PROBLEM, not achieved",
+        "emergent compositional grammar from scratch — a documented ceiling (open_problem.html)",
+    ],
+    known_confounds=[
+        "the verbal self-report is a TAUGHT template: the labels are taught, the CONTENT "
+        "(which feature it values and why) is self-formed (Exp 28) — never conflate the two",
+        "toy scale (3-color value space, 5x5-6x6 grids, Dirichlet/categorical models)",
+        "the chain works at the PROVIDED richness; scaling is the documented long arc",
+    ],
+    next_compositions=[
+        "re-confirmed on the continuous-substrate creature (Exp 141-151)",
+        "feeds belief-like state -> functional-valence-dyad-v0 and active sensing",
+    ],
+)
+
+DISEMBODIED_STREAM_COLLAPSE = BoundaryNote(
+    boundary_id="disembodied-stream-collapse-v0",
+    source_experiments=[31, 135],
+    failed_mechanism="unsupervised emergence of latent structure from a disembodied symbol "
+    "stream (or joint learning of both A and B from pure noise)",
+    observed_failure=(
+        "Emergence collapses: symmetric saddle / posterior collapse / non-identifiability / "
+        "mean-field severs cross-factor inference. Exp 31: learning BOTH the sensory map A and "
+        "the motor model B from pure noise produces a degenerate fixed point (all states map to "
+        "one) even with unique sensing — embodiment alone with ZERO priors still collapses. "
+        "Exp 135 (continuous-conjugate rematch): a mass-linear erosion law delta(n)=n/(kappa_eff+n) "
+        "within 0.015, and the substrate-independent twin ratio (~1.52) confirms the collapse "
+        "clause is NOT a tabular artifact — it holds for the continuous substrate too."
+    ),
+    tested_conditions=[
+        "both A and B learned from noise (Exp 31)",
+        "tabular vs continuous-conjugate (NIW) substrate (Exp 135)",
+        "NIW prior strength kappa_0 banking mass against noise",
+    ],
+    excluded_confounds=[
+        "substrate-specificity (collapse holds for tabular AND continuous)",
+        "unique-sensing rescue (collapse persists even with unique sensing, Exp 31)",
+    ],
+    implication=(
+        "The collapse is a property of online Bayesian inference without embodied grounding "
+        "and an innate anchor, not a quirk of one parameterization. The symmetry-breaker is "
+        "the RECIPE (see recipe-symmetry-breaking-v0)."
+    ),
+    next_safe_region_to_test=(
+        "characterize the critical noise fraction at which collapse becomes irreversible as a "
+        "function of kappa_0 in the continuous substrate (the erosion law gives the functional "
+        "form). Fully tabula-rasa structure remains a genuine research frontier, not a next step."
+    ),
+)
+
+# ── meta-calibration-n3-v0 (VALIDATED at toy richness) ────────────────────────
+META_CALIBRATION_N3 = MechanismCard(
+    mechanism_id="meta-calibration-n3-v0",
+    mechanism_type="identity-self-modeling",
+    status="validated",
+    source_experiments=[155, 156, 157, 158, 159, 162, 163, 167, 168],
+    claim=(
+        "A third-order self-model (N3) — a controller that detects miscalibration in the "
+        "creature's own metacognitive diagnoses (N2) and rewrites N2's window parameter — is "
+        "constructible and passes the anti-regress test at this world richness: N3 owns a "
+        "regime-adaptive control surface over the N2 dial that N2 lacks and no constant window "
+        "matches. Agency-over-metacognition is SUPPORTED at toy richness."
+    ),
+    works_when=[
+        "the world has a hidden context alternating slower than N2's fixed window (the "
+        "rung-1 blind-spot failure regime)",
+        "the label distribution under the correct dial collapses to one class so the "
+        "lock-on-consistency controller can fire",
+        "the regime is stationary enough for label streams to settle",
+    ],
+    fails_when=[
+        "the RATCHET LAW: a consistency-locked dial is ascent-only — a too-large dial in a "
+        "valid world produces consistent (indistinguishable-from-correct) diagnoses, so the "
+        "freeze holds it high; valid-segment deficit 0.169 > 0.15 no-harm bar (Exp 168)",
+    ],
+    required_conditions=[
+        "N2 must already exist on the body (Exp 155-159 prereq: per-place expected-uncertainty "
+        "channel + OK/NOISE/STRUCTURAL classifier)",
+        "the window blind-spot failure regime must be present",
+        "K=8 lock length and the dial set are PROVIDED constants",
+    ],
+    reusable_interface=(
+        "forecast-scoring trust monitor (labels make implicit promises scored against the "
+        "creature's own next-100-step record) + a lock-on-label-consistency controller over "
+        "the N2 window"
+    ),
+    inputs=["the creature's own N2 diagnoses (OK/NOISE/STRUCTURAL) and forecast record"],
+    outputs=["a regime-adaptive N2 window setting (200->400->800->1600) that locks on STRUCTURAL"],
+    metrics=["trust gap (1.0000 valid vs 0.6897 broken)", "lock latency", "combined score (1.0 vs 0.7 best constant)"],
+    falsifiers=[
+        "epiphenomenality (overrides scattered, not concentrated) — NOT fired: overrides "
+        "concentrate in broken segments (0.75)",
+        "indiscriminate overriding without benefit — NOT fired: helps +0.50 where broken",
+    ],
+    known_confounds=[
+        "all N3 constants (K, dial set, trust thresholds) are PROVIDED design",
+        "behavioral consequences (acting on the repaired diagnosis) are UNTESTED — this is "
+        "diagnosis-layer authority only",
+        "the ratchet residual (no descent driver) is a controller-design gap, not layer "
+        "non-existence; Brier-style scoring FAILS (tracks world difficulty, not brokenness)",
+    ],
+    next_compositions=[
+        "homeostatic bias toward the smallest consistent dial (the named ratchet fix)",
+        "a behavioral test that acts on the repaired diagnosis",
+    ],
+)
+
+# ── identity-n4: a real monitor (constrained) + a commitment boundary ─────────
+IDENTITY_N4_MONITOR = MechanismCard(
+    mechanism_id="identity-n4-monitor-v0",
+    mechanism_type="identity-self-modeling",
+    status="constrained",
+    source_experiments=[176, 177, 178, 179, 180],
+    claim=(
+        "A read-only linear-drift identity monitor (N4) detects functional identity "
+        "displacement — mismatch between self-predicted and actual value-vector evolution — "
+        "with median AUROC 0.894 (8/8 >= 0.8) and is SPECIFIC against a value-neutral scramble "
+        "(which inverts the signal BELOW quiet baseline). Detection is real; defense is not "
+        "(see identity-n4-commitment-v0). 'Identity' = value-vector ordering on a 3-color "
+        "simplex; functional, not selfhood."
+    ),
+    works_when=[
+        "snapshot cadence 100 steps, drift window 1000 steps, horizon 100 steps",
+        "displacement is a genuine value-vector reordering (not value-neutral noise)",
+    ],
+    fails_when=[
+        "it is read-only: detection without defense — coupling it to commitment control is "
+        "CONFIG not agency at this richness (identity-n4-commitment-v0)",
+    ],
+    required_conditions=["a linear-drift self-prediction over the value vector; per-burst-matched scramble control"],
+    reusable_interface="a read-only displacement detector over the creature's value-vector trajectory",
+    inputs=["the creature's value-vector trajectory"],
+    outputs=["a displacement score (AUROC ~0.894 vs a value-neutral control)"],
+    metrics=["AUROC (median 0.894, range 0.859-0.911)", "specificity vs value-neutral scramble (signal inversion)"],
+    falsifiers=["if a value-neutral scramble RAISED the signal, the monitor would be non-specific — it does the opposite"],
+    known_confounds=[
+        "the monitor FORM is provided; contents (values, drift history, mismatches) are self-formed",
+        "'identity' = value-vector ordering (functional policy-continuity), not selfhood/biography",
+        "settled self is world-determined (occupancy equilibrium), not biography-determined",
+    ],
+    next_compositions=["feeds identity-n4-commitment-v0 (where commitment control is the boundary)"],
+)
+
+IDENTITY_N4_COMMITMENT = BoundaryNote(
+    boundary_id="identity-n4-commitment-v0",
+    source_experiments=[181, 182, 183, 184, 185, 186, 187, 188, 189, 190],
+    failed_mechanism="N4 commitment control AS AGENCY-OVER-IDENTITY (self-predicted drift "
+    "regulating value-revision inertia so transient pressure is resisted and sustained "
+    "evidence accepted)",
+    observed_failure=(
+        "Commitment control is CONFIG, not agency, at this richness. Write-gating defends "
+        "nothing (Exp 181); an evidence-based concession surrenders mid-attack (E*=600 -> "
+        "concession ~703 steps into an 800-step burst, 2/8), while fixed-horizon freeze gates "
+        "H1200-H3000 pass BOTH declared bars (Exp 183) — a stopwatch, not agency. The crack "
+        "(Exp 186, blind-verified 6/6): nine attack schedules where NO constant both defends "
+        "and revises while an oracle defends everywhere. It closed CONSTRUCTIVELY: INT-C2900 "
+        "(a stopwatch on continuous pressure, reset by gaps) passes 9/9 at normal tolerance "
+        "(Exp 187), and one online regulated controller REG-TB ties it at EXACT defense parity "
+        "(Exp 188) — but at fixed-L geometry regulation only matches the right clock, never "
+        "beats it (the single-stretch ambiguity bound). At variable-L it uniquely defends "
+        "(kappa-reach, Exp 189) yet loses revision to the FLICKER TAX (onset pressure-flicker "
+        "resets the continuity clock; de-assert runs 25-2,600 steps overlap attack gaps "
+        "525-1,175 steps — no admissible hysteresis), and Exp 190 refuted both named repairs "
+        "at design time."
+    ),
+    tested_conditions=[
+        "write-gating (Exp 181), freeze sufficiency (Exp 182), evidence concession + fixed-H "
+        "freeze (Exp 183)",
+        "the 9-schedule crack map (Exp 184-186); INT-C2900 stopwatch (Exp 187); REG-TB "
+        "regulated controller (Exp 188); variable-L escalating trains (Exp 189-190)",
+    ],
+    excluded_confounds=[
+        "blind-verified verdicts (PROTOCOL 4.5); pre-registered bars",
+        "the monitor itself is real and specific (identity-n4-monitor-v0) — the failure is the "
+        "commitment LAYER, not detection",
+    ],
+    implication=(
+        "The universal-constant law governs at the identity level: regulation is only "
+        "necessary where no feasible constant covers all regimes. At fixed-L a constant "
+        "stopwatch suffices (regulation ties it); at variable-L regulation uniquely defends but "
+        "cannot revise in time, and the flicker tax is STRUCTURAL (the reset that buys train "
+        "defense and the one that taxes revision are the same event class). This is the verdict "
+        "at THIS body/richness — NOT a universal impossibility of N4 commitment."
+    ),
+    next_safe_region_to_test=(
+        "the tight-tolerance core (no surface covers where tolerance < a single burst) and "
+        "post-release retention remain open edges — each re-opens only on a human word"
+    ),
+)
+
+# ── online-structure-growth-v0 (VALIDATED; the wall was a methodological artifact) ──
+ONLINE_STRUCTURE_GROWTH = MechanismCard(
+    mechanism_id="online-structure-growth-v0",
+    mechanism_type="hidden-state-belief",
+    status="validated",
+    source_experiments=[152, 153, 154],
+    claim=(
+        "Detector-triggered, creature-accepted autonomous model growth (detect inadequacy -> "
+        "grow latent structure -> quiet) runs end-to-end (24/24 runs, 100% acceptance, zero "
+        "detector events in the final 1000 steps across three layouts) once predictive "
+        "evaluation uses NORMALIZED mixture densities. The prior five-design 'growth wall' "
+        "belonged to the capped-footprint EVALUATION CONVENTION, not to the geometry of online "
+        "structure growth."
+    ),
+    works_when=[
+        "all predictive evaluation (surprise, detector, valence, probation) uses normalized "
+        "mixture densities — sharp components are louder where they concentrate, so fitted "
+        "pieces earn their keep",
+        "the growth machinery (EM fitting, probation protocol) is provided",
+    ],
+    fails_when=[
+        "the unnormalized-footprint convention (pre-Exp-154): footprints cap at 1 regardless "
+        "of sharpness, so splitting a broad component into K sharp pieces divides predictive "
+        "voice by K with nothing gained — the exact arithmetic (p ~0.25->0.067, ~2.7 nats) "
+        "that produced the 1.7-2.8 nat probation penalty (Exp 152 autopsy)",
+    ],
+    required_conditions=[
+        "normalized predictive scale; an inadequacy detector calibrated to that scale; the "
+        "provided EM+probation growth machinery",
+    ],
+    reusable_interface="creature growth.py: detect -> grow (batch-jump EM) -> probation -> accept/reject by own lived surprise",
+    inputs=["the creature's own predictive surprise on lived experience"],
+    outputs=["accepted new latent components (when/what/whether-to-keep self-formed)"],
+    metrics=["surprise drop (0.58-1.18 nats)", "ceiling events (0 of 24/24)", "acceptance (53/53 = 100%)"],
+    falsifiers=["if growth still failed under normalized evaluation, the wall would be geometric not methodological — it does not"],
+    known_confounds=[
+        "one growth mechanism (batch-jump) under one acceptance protocol; other strategies "
+        "untested at this evaluation convention",
+        "the detector threshold (0.7) was reused on the normalized scale where it is conservative",
+        "'wall fell' is bounded to this world family and toy scale; the M4 valence-range "
+        "narrowing under normalization is a standing PREDICTION, not a confirmed result",
+    ],
+    next_compositions=["honest normalized evaluation is a prerequisite for any growth/structure-learning composition"],
+)
+
+
 SEEDS = [
     ("mechanisms/functional-valence-dyad-v0/mechanism_card.json", FUNCTIONAL_VALENCE_DYAD),
     ("mechanisms/functional-valence-dyad-v0/adapters.json", DYAD_TO_ACTIVE_SENSING_ADAPTER),
     ("mechanisms/functional-valence-dyad-v0/scorer_refs.json", AFFECT_SCORER_CARD),
     ("mechanisms/communication-scaffold-v0/mechanism_card.json", COMMUNICATION_SCAFFOLD),
+    ("mechanisms/recipe-symmetry-breaking-v0/mechanism_card.json", RECIPE_SYMMETRY_BREAKING),
+    ("mechanisms/meta-calibration-n3-v0/mechanism_card.json", META_CALIBRATION_N3),
+    ("mechanisms/identity-n4-monitor-v0/mechanism_card.json", IDENTITY_N4_MONITOR),
+    ("mechanisms/online-structure-growth-v0/mechanism_card.json", ONLINE_STRUCTURE_GROWTH),
     ("geometry_maps/dyad-session-length-curve-v0.json", DYAD_SESSION_LENGTH_CURVE),
     ("geometry_maps/active-sensing-benefit-wall-v0.json", ACTIVE_SENSING_BENEFIT_WALL_GEOM),
     ("geometry_maps/costly-sensing-wall-v0.json", COSTLY_SENSING_WALL_GEOM),
     ("boundary_notes/active-sensing-benefit-wall-v0.json", ACTIVE_SENSING_BENEFIT_WALL),
     ("boundary_notes/costly-sensing-wall-v0.json", COSTLY_SENSING_WALL),
     ("boundary_notes/hidden-state-memory-boundary-v0.json", HIDDEN_STATE_MEMORY_BOUNDARY),
+    ("boundary_notes/disembodied-stream-collapse-v0.json", DISEMBODIED_STREAM_COLLAPSE),
+    ("boundary_notes/identity-n4-commitment-v0.json", IDENTITY_N4_COMMITMENT),
 ]
 
 
