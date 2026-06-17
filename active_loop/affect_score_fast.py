@@ -1,19 +1,27 @@
-"""Parallel drop-in for ``eval.affect_score.score_affect`` (NOT frozen — a wrapper).
+"""Host-robust drop-in for ``eval.affect_score.score_affect`` (NOT frozen — a wrapper).
 
-The frozen scorer runs the 8-seed ensemble SEQUENTIALLY; each seed is a 300-turn
-closed-loop session whose per-turn cost is dominated by XLA dispatch overhead
-(~0.7 s/turn here), so a full score is ~28 min and the autopilot — which scores
-once per candidate — is impractical in-container.
+Two independent problems make the frozen scorer impractical on a constrained host:
 
-This wrapper changes ONE thing: it runs the per-seed sessions across a process pool
-instead of a Python ``for`` loop.  It calls the FROZEN ``eval.affect_score._run_session``
-verbatim for each seed and aggregates with the FROZEN constants and the same arithmetic
-as ``score_affect``, so the result is **bit-identical by construction** — the only
-difference is wall-clock.  ``tests/test_affect_score_fast.py`` asserts exact equality
-field-by-field against the frozen scorer.
+1. **XLA JIT exhaustion (the binding one).** The frozen agent anneals a *static* gamma
+   over the session, so ``infer_policies`` recompiles every turn (~300 distinct XLA
+   executables per seed).  Those compiled dylibs accumulate until the CPU backend fails
+   to materialize new symbols (``JaxRuntimeError: Failed to materialize symbols`` /
+   ``xla_jit_dylib_N``) — a full 8-seed score crashes mid-run here, sequential OR parallel.
+   The fix (proven in experiments/exp226): call ``jax.clear_caches()`` between independent
+   seeds so the executable cache is freed and the dylib count stays bounded.  It frees only
+   compiled executables — the numbers are unchanged.
 
-Seeds are independent, so this is embarrassingly parallel; on an N-core host the speedup
-is ~min(n_seeds, N).  Functional valence only — no sentience claim.
+2. **Wall-clock.** Each seed pays the full per-turn recompilation (~160 s/seed here), so a
+   sequential cache-cleared score is ~20 min.  Running a *few* seeds at a time across
+   processes (each worker still clearing between its own seeds, so per-worker memory stays
+   bounded) recovers a ~2x wall-clock win without reintroducing the JIT exhaustion.
+
+Result equals ``score_affect`` **bit-for-bit** — it reuses the FROZEN ``_run_session`` per
+seed and the frozen aggregation constants; only executable-cache freeing and the seed loop's
+scheduling differ.  ``tests/test_affect_score_fast.py`` pins exact equality.  Default worker
+count is deliberately small (memory-safe: each seed peaks ~2.6 GB during compilation).
+
+Functional valence only — no sentience claim.
 """
 from __future__ import annotations
 
@@ -22,39 +30,46 @@ import os
 
 import numpy as np
 
+# Each compiling seed peaks ~2.6 GB here; keep concurrency low so N workers fit in RAM.
+_DEFAULT_MAX_WORKERS = 2
+
+
+def _run_one(seed: int, turns: int) -> dict:
+    """Run ONE frozen per-seed session, then free the JIT executable cache.
+
+    Lazy imports so loading this module is cheap and (under spawn) each worker imports the
+    heavy JAX-pulling frozen module once.  jax.clear_caches() drops the compiled executables
+    accumulated by the per-turn gamma recompilation — bounding memory and the XLA dylib count
+    — without touching any value (bit-identity preserved, guarded by tests)."""
+    import jax  # noqa: PLC0415
+    from eval.affect_score import _direct_head_factory, _run_session  # noqa: PLC0415
+    row = _run_session(_direct_head_factory, seed, turns)
+    jax.clear_caches()
+    return row
+
 
 def _worker(args: tuple[int, int]) -> tuple[int, dict]:
-    """Run ONE frozen per-seed session in this worker process.
-
-    Imported lazily so the (heavy, JAX-pulling) frozen module is loaded once per worker
-    rather than in the parent before forking/spawning.  Returns (seed, row) where row is
-    exactly what eval.affect_score._run_session returns.
-    """
     seed, turns = args
-    from eval.affect_score import _direct_head_factory, _run_session  # noqa: PLC0415
-    return seed, _run_session(_direct_head_factory, seed, turns)
+    return seed, _run_one(seed, turns)
 
 
 def _limit_worker_threads() -> None:
-    """Cap intra-op threading so N workers don't oversubscribe the cores (these models are
-    tiny; the cost is dispatch, not matmul, so single-threaded workers are fastest)."""
+    """Cap intra-op threading so workers don't oversubscribe cores (these models are tiny;
+    the cost is dispatch/compilation, not matmul)."""
     for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
-                "NUMEXPR_NUM_THREADS", "XLA_FLAGS"):
-        if var == "XLA_FLAGS":
-            os.environ[var] = (os.environ.get(var, "") +
-                               " --xla_cpu_multi_thread_eigen=false"
-                               " intra_op_parallelism_threads=1").strip()
-        else:
-            os.environ.setdefault(var, "1")
+                "NUMEXPR_NUM_THREADS"):
+        os.environ.setdefault(var, "1")
 
 
-def score_affect_fast(seeds=None, turns: int | None = None, max_workers: int | None = None):
-    """Parallel, bit-identical equivalent of ``eval.affect_score.score_affect``.
+def score_affect_fast(seeds=None, turns: int | None = None,
+                      max_workers: int | None = None):
+    """Host-robust, bit-identical equivalent of ``eval.affect_score.score_affect``.
 
-    Returns the same frozen ``AffectScoreReport``.  ``seeds``/``turns`` default to the
-    frozen defaults.  ``max_workers`` defaults to ``min(n_seeds, cpu_count)``.
+    Clears the JIT cache between seeds (so the full config COMPLETES on a constrained host)
+    and optionally runs a few seeds at a time across processes for a wall-clock win.
+    ``max_workers=1`` is the pure sequential cache-cleared path; ``None`` -> a memory-safe
+    small default.  Returns the frozen ``AffectScoreReport``.
     """
-    # Imported here (not at module top) so importing THIS module is cheap; these pull JAX.
     from eval.affect_score import (  # noqa: PLC0415
         CEIL, GENUINE_FLOOR, IMPROVEMENT_FLOOR, REALIZED_FLOOR, SEEDS_DEFAULT,
         TURNS_DEFAULT, AffectScoreReport,
@@ -63,16 +78,18 @@ def score_affect_fast(seeds=None, turns: int | None = None, max_workers: int | N
     seeds = tuple(SEEDS_DEFAULT if seeds is None else seeds)
     turns = TURNS_DEFAULT if turns is None else int(turns)
     if max_workers is None:
-        max_workers = min(len(seeds), os.cpu_count() or 1)
+        max_workers = min(_DEFAULT_MAX_WORKERS, len(seeds), os.cpu_count() or 1)
 
     _limit_worker_threads()  # set in parent so spawn children inherit the caps
 
-    # spawn (not fork): each worker imports JAX cleanly with the thread caps in effect,
-    # avoiding fork-after-XLA-init hazards.
-    ctx = mp.get_context("spawn")
     if max_workers <= 1 or len(seeds) <= 1:
-        rows = dict(_worker((s, turns)) for s in seeds)
+        # Pure sequential, cache-cleared between seeds (mirrors exp226 _score(cache_clear)).
+        rows = {s: _run_one(s, turns) for s in seeds}
     else:
+        # spawn (not fork): each worker gets a clean JAX/XLA backend (no fork-after-init
+        # hazard) and clears its own cache between its seeds, so per-worker memory stays
+        # bounded and the dylib count never exhausts.
+        ctx = mp.get_context("spawn")
         with ctx.Pool(processes=max_workers, initializer=_limit_worker_threads) as pool:
             rows = dict(pool.map(_worker, [(s, turns) for s in seeds]))
 

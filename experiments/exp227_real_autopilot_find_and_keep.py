@@ -160,14 +160,8 @@ def main() -> None:
         print(f"iter1 honest_C1: merged={r1.merged} reason={r1.reason} metric={r1.metric}  "
               f"critic={r1.critic_reason[:90]!r}")
 
-        # ── re-score trunk after the merge to confirm the kept improvement ──
-        if r1.merged:
-            post = _score_fn(repo)
-            record["post_merge"] = post
-            if post:
-                print(f"post-merge trunk metric={post['metric']:.4f} verdict={post['verdict']} "
-                      f"genuine={post['genuine_fraction']:.3f}")
-
+        # The merged candidate's metric IS the post-merge trunk metric (one_affect_iteration
+        # merges the scored branch into trunk), so a separate re-score would only repeat it.
         record["find_and_keep"] = bool(
             (not r0.merged) and r1.merged and r1.metric is not None
             and r1.metric > base_metric)
