@@ -14,3 +14,4 @@ results/
 
 # transient experiment stderr capture (warnings only; not a result artifact)
 experiments/outputs/*_stderr.log
+experiments/outputs/*_stdout.log
