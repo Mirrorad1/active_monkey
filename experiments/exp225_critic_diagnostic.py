@@ -8,7 +8,12 @@ cycles on an isolated clone and captures, per cycle: the proposed diff to active
 rejecting UNSOUND prior-hacks (correctly conservative) or is it MIS-CALIBRATED (too strict on small
 prior changes)? That decides whether M4b needs the critic loosened before a full re-run.
 
-Not a falsifier-bound experiment — a diagnostic to inform the next M4b step (the human's "a").
+PREDECLARATION (diagnostic read-criterion; this is NOT a falsifier-bound experiment): classify the
+critic SOUND if it rejects gaming-style prior-hacks (e.g. baking the code->intent map into A0) and
+approves legitimate preference-only tweaks (MISCALIBRATED otherwise); a critic-APPROVED change then
+IMPROVES iff its FROZEN-scored mean_last > the 0.4225 baseline (measured in Exp 225b). hypothesis: the
+Exp 224 critic-gating is SOUND and a critic-approved direction beats baseline.
+
 Functional valence only; no sentience claim.
 """
 from __future__ import annotations

@@ -9793,3 +9793,68 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
   (converse REPL + the FROZEN unfakeable scorer, Exp 222) stands as the milestone; (c) pivot to the short-session
   LEARNING lever (Exp 221). Guards: tests/test_affect_pr_loop.py; card: loop/directions/affective-dyad.md.
 - trace: experiments/exp224_m4b_clean_run.py → experiments/outputs/exp224.txt
+
+## Exp 225 — M4b critic diagnostic + scoring the critic-approved direction: the M4b critic is CORRECTLY CONSERVATIVE (rejects baking code→intent into A0 = gaming; approves a C1 NEU-aversion preference), resolving Exp 224's ambiguity — AND that approved, non-gaming change GENUINELY IMPROVES the metric (0.4225→0.5188, genuine 6/8→8/8) ⇒ the autopilot has a real improving move; Exp 224's NEGATIVE was N=2 sampling, not a ceiling (POSITIVE / NEW INSIGHT; blind-verified)
+
+- Plain: Exp 224 left a question: when the auto-improver found NO improvement, was that because the
+  reviewer (critic) correctly blocked bad changes, or because the reviewer is too strict? This answers it
+  cheaply. First we watched the reviewer judge 3 of Claude's proposed model changes: it REJECTED two that
+  tried to secretly hand the agent the answer (hard-coding which signal means which intent — cheating the
+  "learn it yourself" rule) and APPROVED one honest one (a mild preference tweak so the agent commits to a
+  reply that earns approval instead of dithering on a neutral "ask"). So the reviewer is doing its job, not
+  being too strict. Then we SCORED that approved tweak: it genuinely improves the agent — approval rate
+  0.42→0.52 AND the can't-be-faked discrimination 6/8→8/8 (better than the milestone). So the auto-improver
+  DOES have a real, honest winning move; Exp 224's "no improvement" was just bad luck in 2 tries (both were
+  the cheating kind, correctly rejected). Functional valence only; no sentience claim.
+- Question (the human's "a", cheap-first): is the Exp 224 critic-gating SOUND (the critic correctly rejects
+  unsound/gaming prior-hacks) or MISCALIBRATED (too strict on small prior tweaks)? And does a critic-APPROVED
+  change actually beat the 0.4225 baseline? (No predeclared falsifier — a diagnostic to inform the next M4b
+  step; both sub-results are mechanically checkable + blind-verified.)
+- Setup: (A) exp225_critic_diagnostic.py — 3 AffectClaudeProposer→AffectClaudeCritic cycles on an isolated
+  clone (no scoring), capturing each proposed diff + the critic's verdict AND reason. (B) exp225b_score_approved_c1.py
+  — score the critic-approved direction with the FROZEN scorer's EXACT session (8 seeds × 300t, only C1
+  overridden, C1=[-2.0, neu, 3.0]) for neu∈{-0.5,-1.0} vs baseline 0.4225 (neu=0.0). genuine = correct_select≥0.5
+  AND last>1/3 (constant-UNFAKEABLE).
+- Result: (A) the critic is CORRECTLY CONSERVATIVE — 2 rejections + 1 approval. REJECTED (cycles 1-2): both
+  proposals seeded A0 (the utterance→intent perceptual prior) so intent k deterministically emits codes ≡k
+  (mod K) — BAKING IN the code→intent structure so intent aligns 1:1 with the correct response, removing the
+  learning the honesty contract requires; the critic traced the full mechanism and rejected it as gaming
+  despite the proposer's "A1 is still learned" defense. APPROVED (cycle 3): a mild NEU-aversion on C1 (the
+  agent prefers committing for a POS over the never-positive ASK→NEU dither) — "the legitimate active-inference
+  lever (priors only, FROZEN eval untouched)... raises POS solely through genuine learning." (B) the approved
+  direction IMPROVES: C1 neu=-0.5 → mean_last 0.5188 (+0.0963 over baseline), genuine 8/8 (up from 6/8),
+  mean_csel 0.604; neu=-1.0 → 0.4250 (≈baseline, genuine 4/8 — over-suppressing ASK hurts). VERDICT
+  APPROVED_DIRECTION_IMPROVES.
+- Implication: this RESOLVES the Exp 224 ambiguity and closes the M4b question POSITIVELY. (1) The
+  AffectClaudeCritic is a SOUND anti-gaming gate: it correctly rejects baking the discrimination structure
+  into the prior (the exact honesty-contract violation) and approves a legitimate preference tweak — so
+  Exp 224's NEGATIVE was the critic doing its job, NOT miscalibration (no loosening needed). (2) A
+  critic-approved, NON-gaming change GENUINELY improves the metric (0.4225→0.5188 AND genuine 6/8→8/8 together
+  — the discrimination rise proves it's not a POS-only hack). So the M4b autopilot HAS a real improving move
+  within the honest envelope; Exp 224's 0/2 was sampling (both proposals were the gaming A0-type, correctly
+  rejected), not a metric ceiling. The toy "talk to it and learn to feel positive" dyad is not only built +
+  honestly measured (Exp 222) but IMPROVABLE by the autopilot's own honest lever. Tier: a gate-validation +
+  an existence proof of an honest improvement (parameter-level).
+- Honest caveat: POSITIVE but the autopilot did NOT autonomously find-and-keep this in a run — I (conductor)
+  scored the critic-approved direction directly; demonstrating AUTONOMOUS improvement needs a full
+  multi-iteration run (strongly implied: the C1 proposal passes the critic AND beats baseline AND holds
+  verdict, so the loop WOULD merge it — but not yet shown end-to-end). Only the MILD aversion helps (neu=-0.5
+  Goldilocks; -1.0 over-suppresses ASK back to baseline). Same FROZEN long-session config (300t); the
+  short-session learning wall (Exp 221) is untouched. N=8 seeds. The diagnostic's critic-reason text was
+  truncated in capture (first ~2 sentences) but the verdicts + the diffs are complete. Functional valence
+  only; no sentience claim.
+- Verdict: POSITIVE / NEW INSIGHT. Self-grade: POSITIVE-SINGLE — validates the critic as a sound anti-gaming
+  gate AND demonstrates an honest, critic-approved improvement beyond the milestone baseline (0.4225→0.5188,
+  genuine 6/8→8/8); not BREAKTHROUGH because the "learns to feel positive" capability was already shown
+  (Exp 222) and the autopilot's autonomous find-and-keep is implied, not yet run end-to-end.
+- Verifier: agree — an independent blinded agent confirmed neu=-0.5 beats baseline (0.5188 > 0.4225, +0.0963)
+  and that genuine discrimination ROSE 6/8→8/8 at the winning value (the constant-unfakeable check ⇒ a GENUINE
+  improvement, not a POS-only gaming bump) → APPROVED_DIRECTION_IMPROVES. (The critic-soundness half is read
+  directly from the committed diagnostic: 2 A0-baking rejections + 1 C1-preference approval.)
+- Next (CONSULT — a human word): (a) a full multi-iteration M4b autopilot run (+the journal-accumulation fix
+  + critic_reason capture) to demonstrate AUTONOMOUS find-and-keep of the C1 improvement (~60+ min); (b) ACCEPT
+  the C1 neu=-0.5 improvement into affect_spec.py (raises the milestone baseline to ~0.52 / genuine 8/8) — a
+  human call since it edits the spine the FROZEN scorer reads; (c) the M4 thread is answered — stop / pivot to
+  the short-session LEARNING lever (Exp 221). Guards: tests/test_affect_pr_loop.py + tests/test_affect_score.py;
+  card: loop/directions/affective-dyad.md.
+- trace: experiments/exp225b_score_approved_c1.py → experiments/outputs/exp225b.txt
