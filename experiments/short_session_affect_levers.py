@@ -129,28 +129,43 @@ def _random_factory(seed, turns):
     return _RandomAgent(seed)
 
 
-def evaluate(seeds, lengths) -> dict:
+def _score_curve(seeds, turns, factory, cache_clear: bool) -> dict:
+    """Return mean_last/improvement/genuine_fraction; cache_clear frees the JIT cache
+    between seeds (memory-safe on constrained hosts; numerically identical to score_affect)."""
+    if not cache_clear:
+        rep = score_affect(seeds=seeds, turns=turns, agent_factory=factory)
+        return {"mean_last": rep.mean_last, "improvement": rep.improvement,
+                "genuine_fraction": rep.genuine_fraction}
+    import jax  # noqa: PLC0415
+    from eval.affect_score import _run_session  # noqa: PLC0415
+    firsts, lasts, genuine = [], [], []
+    for s in seeds:
+        row = _run_session(factory, s, turns)
+        firsts.append(row["first"]); lasts.append(row["last"])
+        genuine.append(bool(row["csel"] >= 0.5 and row["last"] > CEIL))
+        jax.clear_caches()
+    mean_first = float(np.mean(firsts)); mean_last = float(np.mean(lasts))
+    return {"mean_last": mean_last, "improvement": mean_last - mean_first,
+            "genuine_fraction": float(np.mean(genuine))}
+
+
+def evaluate(seeds, lengths, cache_clear: bool = False) -> dict:
     levers = dict(LEVERS)
     levers["random_control"] = _random_factory
     curves: dict[str, dict] = {}
     for name, factory in levers.items():
         row = {}
         for L in lengths:
-            rep = score_affect(seeds=seeds, turns=L, agent_factory=factory)
-            verdict = "PASS" if (rep.mean_last > CEIL and rep.genuine_fraction >= GENUINE_FLOOR
-                                 and rep.improvement >= 0.10) else (
-                      "INCONCLUSIVE" if rep.mean_last > CEIL else "FAIL")
-            row[str(L)] = {
-                "mean_last": rep.mean_last,
-                "improvement": rep.improvement,
-                "genuine_fraction": rep.genuine_fraction,
-                "verdict": verdict,
-            }
+            s = _score_curve(seeds, L, factory, cache_clear)
+            verdict = "PASS" if (s["mean_last"] > CEIL and s["genuine_fraction"] >= GENUINE_FLOOR
+                                 and s["improvement"] >= 0.10) else (
+                      "INCONCLUSIVE" if s["mean_last"] > CEIL else "FAIL")
+            row[str(L)] = {**s, "verdict": verdict}
         curves[name] = row
     return curves
 
 
-def run(quick=False, full=False) -> dict:
+def run(quick=False, full=False, cache_clear=False) -> dict:
     if quick:
         seeds, lengths = (20, 21), (30, 50, 100)
     elif full:
@@ -159,7 +174,7 @@ def run(quick=False, full=False) -> dict:
         seeds, lengths = (20, 21, 22, 23), (30, 50, 100, 300)
 
     sh = scorer_hash(".")
-    curves = evaluate(seeds, lengths)
+    curves = evaluate(seeds, lengths, cache_clear=cache_clear)
 
     # Headline read: does any honest lever PASS at a SHORT session (<=100t)?
     short_lengths = [L for L in lengths if L <= 100]
@@ -194,10 +209,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Short-session affect learning levers")
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--full", action="store_true")
+    ap.add_argument("--cache-clear", action="store_true", dest="cache_clear",
+                    help="clear the JAX JIT cache between seeds (memory-safe; identical numbers)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
-    result = run(quick=args.quick, full=args.full)
+    result = run(quick=args.quick, full=args.full, cache_clear=args.cache_clear)
     print(json.dumps(result, indent=2))
     if not args.quick:
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
