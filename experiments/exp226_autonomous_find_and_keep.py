@@ -120,26 +120,56 @@ def _factory_for(cand: Candidate, turns: int):
     return factory
 
 
-def score_candidate(cand: Candidate, seeds, turns) -> dict:
-    rep = score_affect(seeds=seeds, turns=turns, agent_factory=_factory_for(cand, turns))
-    return {
-        "metric": rep.metric,
-        "genuine_fraction": rep.genuine_fraction,
-        "improvement": rep.improvement,
-        "verdict": rep.verdict,
-    }
+def _score(seeds, turns, agent_factory=None, cache_clear: bool = False) -> dict:
+    """Score with the frozen scorer; return the four fields the loop reads.
+
+    cache_clear=True mirrors score_affect's aggregation EXACTLY (same frozen
+    _run_session + the same REALIZED/IMPROVEMENT/GENUINE thresholds and CEIL) but
+    calls jax.clear_caches() between independent seeds so the per-turn gamma
+    recompilation does not exhaust the XLA JIT memory on a constrained host. The
+    numbers are identical to score_affect (guarded by test_exp226_harness); only the
+    JIT executable cache is freed between sessions.
+    """
+    if not cache_clear:
+        rep = score_affect(seeds=seeds, turns=turns, agent_factory=agent_factory)
+        return {"metric": rep.metric, "genuine_fraction": rep.genuine_fraction,
+                "improvement": rep.improvement, "verdict": rep.verdict}
+
+    import jax  # noqa: PLC0415
+    from eval.affect_score import (  # noqa: PLC0415
+        _run_session, _direct_head_factory, CEIL as _CEIL,
+        REALIZED_FLOOR, IMPROVEMENT_FLOOR, GENUINE_FLOOR as _GF,
+    )
+    factory = agent_factory or _direct_head_factory
+    firsts, lasts, genuine = [], [], []
+    for s in seeds:
+        row = _run_session(factory, s, turns)
+        firsts.append(row["first"]); lasts.append(row["last"])
+        genuine.append(bool(row["csel"] >= 0.5 and row["last"] > _CEIL))
+        jax.clear_caches()
+    import numpy as _np  # noqa: PLC0415
+    mean_first = float(_np.mean(firsts)); mean_last = float(_np.mean(lasts))
+    improvement = mean_last - mean_first
+    genuine_fraction = float(_np.mean(genuine))
+    verdict = bool(mean_last > REALIZED_FLOOR and improvement >= IMPROVEMENT_FLOOR
+                   and genuine_fraction >= _GF)
+    return {"metric": mean_last, "genuine_fraction": genuine_fraction,
+            "improvement": improvement, "verdict": verdict}
+
+
+def score_candidate(cand: Candidate, seeds, turns, cache_clear: bool = False) -> dict:
+    return _score(seeds, turns, agent_factory=_factory_for(cand, turns), cache_clear=cache_clear)
 
 
 # ── The loop ─────────────────────────────────────────────────────────────────
 
-def run(seeds=SEEDS_DEFAULT, turns=TURNS_DEFAULT, quick=False) -> dict:
+def run(seeds=SEEDS_DEFAULT, turns=TURNS_DEFAULT, quick=False, cache_clear: bool = False) -> dict:
     if quick:
         seeds, turns = (20, 21), 60
 
     sh = scorer_hash(".")
     # baseline = the current frozen winning config
-    base = score_affect(seeds=seeds, turns=turns)
-    baseline_metric = base.metric
+    baseline_metric = _score(seeds, turns, cache_clear=cache_clear)["metric"]
 
     candidates = generate_candidates()
     scored = []
@@ -155,7 +185,7 @@ def run(seeds=SEEDS_DEFAULT, turns=TURNS_DEFAULT, quick=False) -> dict:
         if not approved:
             scored.append(row)
             continue
-        s = score_candidate(cand, seeds, turns)
+        s = score_candidate(cand, seeds, turns, cache_clear=cache_clear)
         beats = s["metric"] > baseline_metric
         no_regress = s["genuine_fraction"] >= GENUINE_REGRESS_FLOOR
         row.update({
@@ -191,9 +221,11 @@ def run(seeds=SEEDS_DEFAULT, turns=TURNS_DEFAULT, quick=False) -> dict:
     verdict = "PASS" if all(pass_checks.values()) else (
         "FAIL" if (n_scored == 0 or kept is None) else "INCONCLUSIVE")
 
+    authoritative = (not quick) and turns >= TURNS_DEFAULT and len(seeds) >= len(SEEDS_DEFAULT)
     return {
         "experiment": "Exp 226 autonomous find-and-keep (deterministic stand-in)",
-        "authoritative": (not quick),
+        "authoritative": authoritative,
+        "cache_clear": cache_clear,
         "seeds": list(seeds), "turns": turns,
         "scorer_hash": sh,
         "baseline_metric": baseline_metric,
@@ -212,10 +244,13 @@ def run(seeds=SEEDS_DEFAULT, turns=TURNS_DEFAULT, quick=False) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Exp 226 autonomous find-and-keep harness")
     ap.add_argument("--quick", action="store_true", help="fast smoke run (NOT authoritative)")
+    ap.add_argument("--cache-clear", action="store_true", dest="cache_clear",
+                    help="clear the JAX JIT cache between seeds (fits memory-constrained hosts; "
+                         "numerically identical to score_affect)")
     ap.add_argument("--out", default=None, help="write JSON result here")
     args = ap.parse_args()
 
-    result = run(quick=args.quick)
+    result = run(quick=args.quick, cache_clear=args.cache_clear)
     print(json.dumps(result, indent=2))
 
     # Only persist an authoritative (full-config) run to the results dir.
