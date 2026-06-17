@@ -14,19 +14,34 @@ uv run active-monkey coalesce validate --all
 
 | id | type | status | source exps |
 |---|---|---|---|
+| `recipe-symmetry-breaking-v0` | hidden-state-belief | **validated** (toy scale) | 26–35 |
 | `functional-valence-dyad-v0` | functional-valence-learning | **validated** (toy scale) | 215–222, 225 |
+| `meta-calibration-n3-v0` | identity-self-modeling | **validated** (toy richness) | 155–168 |
+| `online-structure-growth-v0` | hidden-state-belief | **validated** (toy scale) | 152–154 |
+| `identity-n4-monitor-v0` | identity-self-modeling | **constrained** (detection only) | 176–180 |
 | `communication-scaffold-v0` | costed-signaling | **scaffold** (NOT validated) | — (none) |
 
-- **functional-valence-dyad-v0** — the one validated mechanism with a runnable checkpoint
+- **recipe-symmetry-breaking-v0** — the project's flagship durable finding as a card: the
+  RECIPE (embodiment + grounding + continuous registered experience + **one** innate anchor +
+  taught labels) that lets a toy creature run the full chain perceive → learn → want → act →
+  form-its-own-values → answer-in-words, where a disembodied symbol stream collapses. Labels
+  taught, content self-formed; tabula-rasa + grammar remain open frontiers.
+- **functional-valence-dyad-v0** — a validated mechanism with a runnable checkpoint
   (`artifacts/active-monkey-affect-dyad-v0`). A symbolic dyad learns which response earns
-  approval per inferred intent-like state, judged by a frozen constant-unfakeable scorer.
-  Ships an `AdapterCard` (`adapters.json`, belief → active-sensing — a composition *hypothesis*,
-  not a validated bridge) and a `ScorerCard` (`scorer_refs.json`, the sha256-pinned affect
-  scorer). Functional valence only — not subjective feeling.
+  approval per inferred intent-like state, judged by a frozen constant-unfakeable scorer. Ships
+  an `AdapterCard` (`adapters.json`) and a `ScorerCard` (`scorer_refs.json`).
+- **meta-calibration-n3-v0** — agency-over-metacognition at toy richness: a controller that
+  detects and repairs miscalibration in the creature's own diagnoses (forecast-scoring trust
+  monitor + lock-on-consistency). All N3 constants provided; the ratchet residual is named;
+  behavioral consequences untested.
+- **online-structure-growth-v0** — detector→grow→quiet works once evaluation uses normalized
+  densities; the prior five-design "growth wall" was a capped-footprint **evaluation-convention**
+  artifact, not a growth-geometry fact.
+- **identity-n4-monitor-v0** — a real, specific read-only identity-displacement monitor (AUROC
+  0.894). Detection only; **defense** (commitment control) is the boundary below.
 - **communication-scaffold-v0** — explicitly speculative. The `comm_v0` benchmark is an
-  existence test (costed signaling beats shuffled/muted, ~1.9 bits MI); no selection-pressure
-  or emergence result exists. `source_experiments` is honestly empty. Emergent compositional
-  grammar remains the documented open problem.
+  existence test (~1.9 bits MI); no selection or emergence result exists. `source_experiments`
+  honestly empty.
 
 ## Geometry maps (`geometry_maps/`)
 
@@ -40,9 +55,16 @@ uv run active-monkey coalesce validate --all
 
 | id | failed mechanism | the constraint |
 |---|---|---|
+| `disembodied-stream-collapse-v0` | latent-structure emergence from a disembodied symbol stream | collapse (symmetric saddle / non-identifiability) is substrate-independent; the RECIPE is the symmetry-breaker (Exp 31, 135) |
+| `identity-n4-commitment-v0` | N4 commitment control as agency-over-identity | commitment is **config, not agency** at this richness; closed constructively by a stopwatch at fixed-L, flicker-taxed at variable-L (Exp 181–190) |
 | `active-sensing-benefit-wall-v0` | costed active information-gathering | useful-when-gifted ≠ locally evolvable; benefit magnitude is the wall (Exp 210–213) |
 | `costly-sensing-wall-v0` | evolution of a costed sensory organ | no costed sense becomes functional at this substrate; the fitness valley is the barrier (Exp 199–207) |
 | `hidden-state-memory-boundary-v0` | passive hidden-state memory as a locally evolvable trait | the local-gradient wall generalises from senses to memory/inference (Exp 208–209) |
+
+The `disembodied-stream-collapse-v0` boundary and `recipe-symmetry-breaking-v0` mechanism are
+two halves of the same finding — the collapse and what breaks its symmetry. The
+`identity-n4-commitment-v0` boundary pairs with the `identity-n4-monitor-v0` mechanism —
+detection is real, defense is config.
 
 ## Sample experiment bundles (`experiment_bundles/`)
 
