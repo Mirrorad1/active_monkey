@@ -188,6 +188,10 @@ def build_parser() -> argparse.ArgumentParser:
     cv.add_argument("--turns", type=int, default=300)
     cv.set_defaults(func=_cmd_converse)
 
+    # coalesce — artifact coalescing utilities (inventory/backfill/export/validate)
+    from active_loop.cli.coalesce import register_coalesce_subparser
+    register_coalesce_subparser(sub)
+
     return p
 
 
