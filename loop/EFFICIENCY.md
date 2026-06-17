@@ -45,3 +45,12 @@ keep wall-clock and context cost bounded WITHOUT degrading experiment integrity.
 - The slim-output policy bounds FUTURE growth. The legacy ~26M (esp. exp194's 8.8M move-event bloat)
   stays in history; a one-time prune / git-LFS migrate REWRITES history and must be a deliberate
   maintenance op (pause the cron loop, merge open PRs, coordinate the force-push) — never unilateral.
+
+## Waiting on long jobs (don't hand-roll watch-loops)
+- For a background job, use the harness's `run_in_background` + its task-completion NOTIFICATION; do
+  NOT spawn `until <grep>; do sleep N; done` Bash watch-loops to poll for output. Lesson from Exp 227:
+  several such loops were left polling for output from runs that were later killed, so their exit
+  condition never came true and they became multi-hour zombie `sleep` loops (alarming, though ~0 CPU).
+  If you must poll, give the loop a bounded iteration cap so it can never outlive its target.
+- Print progress to a file you can `Read` directly; remember stdout to a redirected file is
+  block-buffered, so interim lines only appear at flush/exit — size the job, don't busy-watch it.
