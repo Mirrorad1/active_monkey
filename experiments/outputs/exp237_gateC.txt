@@ -1,3 +1,0 @@
-usage: python -m ecology.evolvability [-h] --config PATH [--run-id ID]
-                                      [--output-dir DIR]
-python -m ecology.evolvability: error: the following arguments are required: --config
