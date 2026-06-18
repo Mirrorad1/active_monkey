@@ -1,0 +1,24 @@
+========================================================================
+Exp 236 — navigation-policy diagnostic (HONEST neutral tie-break, commit 19a586e)
+========================================================================
+
+[1] COMFORTABLE config, GATE OPEN (crossing free) — does honest navigation chase the
+    distant plateau, or stay in the sufficient basin? (the gaming artifact was 63.7% here)
+    nav OFF (local greedy):   1.0%   (Exp 235 ceiling ~1%)
+    nav ON  (food-driven):    0.5%   <- honest; NOT the 63.7% index artifact
+
+[2] SCARCITY (regen 0.05, lean basin conc 2.5), GATE OPEN — can forced ranging make
+    navigation DISCOVER the rich plateau? (food-driven expressibility)
+    nav ON scarce, horizon 200:  14.1% plateau intake
+    nav ON scarce, horizon 800:  14.1% plateau intake
+
+[3] SCARCITY, GATE CLOSED — is climb_ability a real marginal (0.05 blocked, 0.10 more)?
+    THE DECISIVE TEST: if the marginal is ~0, navigation does NOT rescue the experiment.
+    soft=0.05: resid(0.05)= 0.0% mut(0.10)= 0.6% marginal= +0.6pp | curve 0.0:0 0.05:0 0.1:1 0.2:1 0.4:0 0.8:0 1.0:0
+    soft=0.1: resid(0.05)= 0.0% mut(0.10)= 0.6% marginal= +0.6pp | curve 0.0:0 0.05:0 0.1:1 0.2:1 0.4:0 0.8:0 1.0:0
+
+[4] VERDICT: navigation reaches the plateau ONLY under scarcity + gate-open; with the
+    closed stochastic gate the climb marginal is ~0 (retreat on failed roll; persistence
+    starves the population). NULL/INVALID — reach/cross/survive cannot be jointly
+    satisfied on this gridworld. The expressibility prerequisite needs PERCEPTION of
+    distant food (Exp 237), not just path-planning over a memory map.
