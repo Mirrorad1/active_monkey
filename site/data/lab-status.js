@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 233, title: "self-other-modeling Rung 2-ambiguous: NO_VERDICT — could not make target-inference hard (q->0.89 again, TWICE now); on this substrate goal-directed BFS is too LEGIBLE to construct ambiguous targets — the lever is the OTHER's legibility, not the goal set", tag: "POSITIVE" },
-  tally: { total: 233, positive: 125, negative: 72, mixed: 32, breakthroughs: 13 },
+  latest_exp: { n: 234, title: "self-other-modeling Rung 3: does ToM PAY behaviorally?", tag: "MIXED" },
+  tally: { total: 234, positive: 125, negative: 72, mixed: 32, breakthroughs: 13 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
