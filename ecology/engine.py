@@ -28,7 +28,7 @@ from ecology.genotype import (
     Genotype, mutate, is_valid, complexity as genotype_complexity,
     thermosense_active, thermosense_upkeep,
 )
-from ecology.world import _TERRAIN_GATE_SOFTNESS_DEFAULT
+from ecology.world import _TERRAIN_GATE_SOFTNESS_DEFAULT, _TERRAIN_RIDGE_HEIGHT_DEFAULT
 from ecology.world import GridWorld
 from ecology.creature import Creature, Phenotype
 
@@ -380,6 +380,7 @@ class EcologyConfig:
     enable_terrain: bool = False
     terrain_food_concentration: float = 0.0
     terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT
+    terrain_ridge_height: float = _TERRAIN_RIDGE_HEIGHT_DEFAULT   # plateau elevation (binary geometry)
     climb_cost_floor: float = 0.0
     climb_cost_slope: float = 0.0
     terrain_gates_movement: bool = True
@@ -444,6 +445,7 @@ class Ecology:
             enable_terrain=cfg.enable_terrain,
             terrain_food_concentration=cfg.terrain_food_concentration,
             terrain_gate_softness=cfg.terrain_gate_softness,
+            terrain_ridge_height=cfg.terrain_ridge_height,
             terrain_gates_movement=cfg.terrain_gates_movement,
         )
 

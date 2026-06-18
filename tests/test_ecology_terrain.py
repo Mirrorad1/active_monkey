@@ -6,8 +6,13 @@ Covers:
   2. Cost-divergence (ON causally live): events_hash DIVERGES when enable_terrain=True
      with two different climb_ability founders (mirrors test_probe_cost_is_paid).
   3. One golden hash pin for an enable_terrain=True run (catch ON-path drift).
+     NOTE: This hash tracks the CANONICAL geometry (binary basin/plateau with
+     terrain_ridge_height=0.15, plateau=top 1/3 rows). It is EXPECTED to change when
+     the human retunes geometry parameters; repin it at that point with a clear comment.
   4. Disconnect overrides byte-identity assertion (Gate-G Guard 1 style): with the axis
      disconnect overrides applied, the event hash is identical across climb_ability values.
+  5. Manipulation check (gen-0 simulation): plateau_intake_share criteria from
+     experiments/exp235_manip_check.py.
 
 Design:
   - Mirrors tests/test_active_sensing.py + tests/test_ecology_thermosense.py structure.
@@ -24,6 +29,13 @@ from ecology.engine import Ecology, EcologyConfig
 from ecology.scenarios import SCENARIOS
 from ecology.genotype import Genotype, founder, mutate
 from ecology.evolvability.trait_axis import make_axis, LOCOMOTION_AXIS
+from ecology.world import GridWorld
+from experiments.exp235_manip_check import (
+    manipulation_check,
+    CANONICAL_CFG_OVERRIDES,
+    RESIDENT_SHARE_THRESHOLD,
+    MARGINAL_THRESHOLD,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -31,11 +43,17 @@ from ecology.evolvability.trait_axis import make_axis, LOCOMOTION_AXIS
 # ---------------------------------------------------------------------------
 
 def _terrain_cfg(**over) -> EcologyConfig:
-    """Base terrain config (ON) with sensible defaults for fast tests."""
+    """Base terrain config (ON) with sensible defaults for fast tests.
+
+    Uses terrain_food_concentration=2.0 (conserved-total OK: 48 plateau / 144 total,
+    out_factor = (144-48*2)/96 = 0.5 >= 0).  The old value of 4.0 was invalid with
+    the new binary geometry (out_factor = -0.5 < 0).
+    """
     base = dict(
         enable_terrain=True,
-        terrain_food_concentration=4.0,    # plateau carries 4x regen
+        terrain_food_concentration=2.0,    # plateau carries 2x regen (conserved-total valid)
         terrain_gate_softness=0.08,
+        terrain_ridge_height=0.15,
         climb_cost_floor=0.05,
         climb_cost_slope=0.10,
         terrain_gates_movement=True,
@@ -152,17 +170,30 @@ class TestCostDivergenceOnPath:
 
 # Golden hash for a fixed enable_terrain=True run (seed=5, horizon=100, no mutation,
 # zero climb cost, climb=0.05 founder, food_concentration=2.0).
-# Pinned from the first correct implementation of the terrain substrate.
-# DO NOT update this to fix a test — investigate the ON-path change instead.
+#
+# TRACKS THE CANONICAL GEOMETRY: binary basin/plateau (terrain_ridge_height=0.15,
+# plateau=top 1/3 of rows: rows 8-11 in 12x12 = 48 cells).
+#
+# This hash is EXPECTED to change when the human retunes geometry (e.g. terrain_ridge_height
+# or terrain_gate_softness). At that point, repin it with a comment noting the new geometry.
+# DO NOT update to fix a test caused by an OFF-path change — investigate the gating instead.
 _TERRAIN_ON_GOLDEN_SEED = 5
-_TERRAIN_ON_GOLDEN_HASH = "9f105b95c544ee536911fdb857f0dff1a7927096b23b3574a03e9bda29cb17a5"
+# Pinned for canonical geometry: binary basin/plateau (terrain_ridge_height=0.15,
+# plateau = top 1/3 of rows: rows 8-11 in 12x12 = 48 cells, basin = rows 0-7 = 96 cells).
+# terrain_food_concentration=2.0 → out_factor=0.5. Seed=5, horizon=100, no mutation, no cost.
+# This hash WILL change when the human retunes geometry; repin at that point with a new comment.
+_TERRAIN_ON_GOLDEN_HASH = "1620e35d35bf4937da9a7f5e821d4a952ceaa544536752cf7004515a50f0a58e"
 
 
 class TestGoldenHashTerrainOn:
     """Golden hash pin for a fixed enable_terrain=True run.
 
-    The hash is pinned from the first correct implementation and must not change.
-    Any change to the ON-path code will break this test — investigate, do not update.
+    The hash tracks the CANONICAL GEOMETRY (binary basin/plateau, terrain_ridge_height=0.15,
+    plateau=top 1/3 rows). It will change when the human retunes geometry — at that point
+    repin _TERRAIN_ON_GOLDEN_HASH with a comment noting the new geometry.
+
+    Any change from a NON-geometry ON-path code change must be investigated.
+    Do NOT update this hash to fix a test without understanding the cause.
     """
 
     def _run_terrain_on(self, seed: int = _TERRAIN_ON_GOLDEN_SEED) -> dict:
@@ -172,6 +203,7 @@ class TestGoldenHashTerrainOn:
             enable_terrain=True,
             terrain_food_concentration=2.0,
             terrain_gate_softness=0.08,
+            terrain_ridge_height=0.15,   # canonical geometry (binary, single crossing)
             climb_cost_floor=0.0,
             climb_cost_slope=0.0,
             terrain_gates_movement=True,
@@ -184,14 +216,23 @@ class TestGoldenHashTerrainOn:
         return eco.run()
 
     def test_terrain_on_golden_hash_stable(self) -> None:
-        """Pin the ON-path events_hash for a fixed config/seed (regression guard)."""
+        """Pin the ON-path events_hash for the canonical binary geometry.
+
+        Hash tracks: binary basin/plateau, terrain_ridge_height=0.15, plateau=top 1/3 rows,
+        terrain_food_concentration=2.0, seed=5, horizon=100, no mutation, no climb cost.
+
+        This hash WILL change when the human retunes geometry (expected). At that point,
+        repin _TERRAIN_ON_GOLDEN_HASH with a new comment documenting the geometry change.
+        A change from a non-geometry ON-path code edit must be investigated.
+        """
         result = self._run_terrain_on()
         h = result["events_hash"]
         assert h == _TERRAIN_ON_GOLDEN_HASH, (
             f"ON-path golden hash changed!\n"
             f"  Got:      {h}\n"
             f"  Expected: {_TERRAIN_ON_GOLDEN_HASH}\n"
-            "DO NOT update this hash to fix the test — investigate the ON-path change."
+            "If this change is due to geometry retuning, repin the hash with a comment.\n"
+            "If this is an unexpected ON-path change, investigate — do not update blindly."
         )
 
 
@@ -291,24 +332,156 @@ class TestTerrainMechanicsSmoke:
         )
 
     def test_climbable_neighbors_deterministic_downhill(self) -> None:
-        """climbable_neighbors: downhill neighbors always admitted (no rng needed)."""
+        """climbable_neighbors: downhill neighbors always admitted (no rng needed).
+
+        With BINARY geometry: basin cells at 0.0, plateau at terrain_ridge_height.
+        From a basin cell, flat basin neighbors are always admitted (delta=0, prob=1).
+        From a plateau cell, downhill basin neighbors are always admitted (delta<0, prob=1).
+        """
         cfg = D.replace(SCENARIOS["balanced"], enable_terrain=True)
         eco = Ecology(cfg, seed=0)
         world = eco.world
         assert world.elevation is not None
 
         rng = __import__("numpy").random.default_rng(42)
-        # Find a plateau cell with basin neighbors (elevation transition row)
-        # Row basin_rows = 4 (for 12 rows): cells at row 4 are ridge (elevation=1.0).
-        # A cell on the plateau (row 5) looking downward toward row 4 is upslope from row 4.
-        # A cell in the basin looking upward sees an upslope edge.
-        # Cells at row 0, col 0..11 are basin (elevation=0.0).
+        # Basin: bottom 2/3 of rows (rows 0-7 for 12-row grid).
+        # Cell at row=0, col=0 is basin (elevation=0.0).
         basin_pos = 0  # row=0, col=0, elevation=0.0
-        # From a basin cell, neighbors at row=1 (also basin) are flat — always admitted.
+        # From a basin cell, flat basin neighbors (row=1, col=1) are admitted.
         nb = world.climbable_neighbors(basin_pos, 0.0, rng)
-        # At least some neighbors should be admitted (downhill/flat ones).
-        # Right neighbor (col=1) and down neighbor (row=1) are both basin => admitted.
+        # At least some neighbors should be admitted (flat/downhill ones).
         assert len(nb) >= 1, (
             "climbable_neighbors returned empty list for a basin cell with climb=0.0 "
             "— flat/downhill neighbors should always be admitted."
+        )
+
+    def test_binary_elevation_geometry(self) -> None:
+        """Binary elevation: only two elevations (0.0 and terrain_ridge_height)."""
+        cfg = D.replace(SCENARIOS["balanced"], enable_terrain=True, terrain_ridge_height=0.15)
+        eco = Ecology(cfg, seed=0)
+        world = eco.world
+        assert world.elevation is not None
+
+        unique_elevs = sorted(set(float(e) for e in world.elevation))
+        assert len(unique_elevs) == 2, (
+            f"Expected exactly 2 elevation levels (binary geometry), got {unique_elevs}"
+        )
+        assert abs(unique_elevs[0] - 0.0) < 1e-9, "Basin elevation should be 0.0"
+        assert abs(unique_elevs[1] - 0.15) < 1e-9, (
+            f"Plateau elevation should be terrain_ridge_height=0.15, got {unique_elevs[1]}"
+        )
+
+    def test_conserved_regen_total(self) -> None:
+        """Terrain ON regen total matches terrain OFF (conserved-total guarantee)."""
+        import numpy as np
+
+        # Build two worlds: one ON, one OFF
+        rng_on = __import__("numpy").random.default_rng(99)
+        world_on = GridWorld.from_config(
+            rows=12, cols=12, capacity=10.0, regen_rate=0.20,
+            initial_resource=0.5, rng=rng_on,
+            enable_terrain=True,
+            terrain_food_concentration=2.0,
+            terrain_ridge_height=0.15,
+            terrain_gate_softness=0.08,
+        )
+        rng_off = __import__("numpy").random.default_rng(99)
+        world_off = GridWorld.from_config(
+            rows=12, cols=12, capacity=10.0, regen_rate=0.20,
+            initial_resource=0.5, rng=rng_off,
+            enable_terrain=False,
+        )
+        from ecology.world import GridWorld as _GW
+
+        # Measure regen added in one step (start from empty to avoid capacity clamping)
+        world_on.resource[:] = 0.0
+        world_off.resource[:] = 0.0
+        before_on = float(np.sum(world_on.resource))
+        before_off = float(np.sum(world_off.resource))
+        world_on.step_regen()
+        world_off.step_regen()
+        regen_on = float(np.sum(world_on.resource)) - before_on
+        regen_off = float(np.sum(world_off.resource)) - before_off
+
+        # They should be approximately equal (conserved-total)
+        assert abs(regen_on - regen_off) < 0.01, (
+            f"Terrain regen total NOT conserved!\n"
+            f"  ON: {regen_on:.6f}\n"
+            f"  OFF: {regen_off:.6f}\n"
+            f"  Diff: {abs(regen_on - regen_off):.6f}"
+        )
+
+    def test_out_factor_negative_raises(self) -> None:
+        """step_regen raises ValueError if out_factor < 0 (no silent food inflation)."""
+        import numpy as np
+
+        # Build a world where plateau fraction is too large for the concentration
+        # plateau = top 1/3 (48 cells), concentration = 10.0 → out_factor < 0
+        rng = __import__("numpy").random.default_rng(0)
+        world = GridWorld.from_config(
+            rows=12, cols=12, capacity=10.0, regen_rate=0.20,
+            initial_resource=0.5, rng=rng,
+            enable_terrain=True,
+            terrain_food_concentration=10.0,  # way too high → out_factor < 0
+            terrain_ridge_height=0.15,
+        )
+        world.resource[:] = 0.0
+        with pytest.raises(ValueError, match="out_factor"):
+            world.step_regen()
+
+
+# ---------------------------------------------------------------------------
+# Test 6: Manipulation check (gen-0 simulation)
+# ---------------------------------------------------------------------------
+
+class TestManipulationCheck:
+    """Gen-0 simulation-based manipulation check (L38 reachability check, Exp 235 Rung 1).
+
+    Reads thresholds and canonical config from experiments/exp235_manip_check.py so
+    updating the geometry/thresholds there automatically updates this test.
+
+    NOTE: With first-guess geometry (terrain_ridge_height=0.15, softness=0.08), the
+    crossing probability per step is very low, so the resident and mutant shares may
+    be nearly identical and both FAIL the criteria.  This is the EXPECTED outcome:
+    the structure is enforced, not the calibration.  The human will retune the geometry.
+    """
+
+    @pytest.mark.slow
+    def test_manipulation_check_canonical(self) -> None:
+        """Run gen-0 manipulation check on the canonical config and assert criteria.
+
+        STRUCTURE ENFORCED: the function runs without error and returns the right keys.
+        CALIBRATION: the PASS/FAIL is logged, not hard-enforced here (geometry is first-guess).
+        """
+        result = manipulation_check()
+
+        # Structural assertions (always required)
+        assert "resident_share" in result
+        assert "mutant_share" in result
+        assert "marginal" in result
+        assert "withheld_pass" in result
+        assert "marginal_pass" in result
+        assert "both_pass" in result
+        assert "shares_grid" in result
+
+        rs = result["resident_share"]
+        ms = result["mutant_share"]
+        mg = result["marginal"]
+
+        # Shares must be in [0, 1]
+        if rs == rs:  # not NaN
+            assert 0.0 <= rs <= 1.0, f"resident_share out of range: {rs}"
+        if ms == ms:
+            assert 0.0 <= ms <= 1.0, f"mutant_share out of range: {ms}"
+
+        # Log the result (the human will check and decide on geometry)
+        import math
+        print(
+            f"\n[ManipulationCheck] resident_share={rs:.4f}, mutant_share={ms:.4f}, "
+            f"marginal={mg:.4f}, "
+            f"withheld_pass={result['withheld_pass']}, marginal_pass={result['marginal_pass']}"
+        )
+        print(
+            f"  Thresholds: resident ≤ {RESIDENT_SHARE_THRESHOLD}, "
+            f"marginal ≥ {MARGINAL_THRESHOLD}"
         )
