@@ -378,8 +378,10 @@ class HomeostaticPolicy:
 
                 # Pick TARGET = argmax score(cell) over all cells.
                 # score = m[cell] - penalty * manhattan_dist(pos, cell)
-                # Tie-break: higher cell index wins (plateau cells have higher indices
-                # than basin cells, so ties resolve toward the plateau when m is equal).
+                # Tie-break: LOWEST cell index wins (the codebase convention, cf. the
+                # (m, -c) tie-breaks elsewhere) — a NEUTRAL spatial tie-break, so any
+                # plateau-seeking is driven by learned/expected food (m), not by an
+                # index artifact (plateau cells happen to have higher indices).
                 # We scan all n_cells; on a 12x12 grid this is 144 iterations — fast.
                 best_score = float("-inf")
                 target_cell = pos  # fallback: stay (should not happen on non-empty map)
@@ -387,7 +389,7 @@ class HomeostaticPolicy:
                     cr, cc = divmod(cell, cols)
                     mdist = abs(pos_r - cr) + abs(pos_c - cc)
                     score = float(self.m[cell]) - penalty * mdist
-                    if score > best_score or (score == best_score and cell > target_cell):
+                    if score > best_score:
                         best_score = score
                         target_cell = cell
 
@@ -418,12 +420,14 @@ class HomeostaticPolicy:
                             n,
                         ),
                     )
-                elif away_or_equal:
-                    # All paths sealed / same dist — fall back to best-m neighbor
+                    return step
+                if away_or_equal:
+                    # No neighbor makes progress toward TARGET this tick — fall back to the
+                    # best-m available neighbor. (Persistent stay-at-rim was tested and
+                    # starves the population under scarcity; see EXPERIMENTS.md Exp 236.)
                     step = max(away_or_equal, key=lambda n: (float(self.m[n]), -n))
                 else:
                     step = pos  # no admissible neighbors (extreme edge case)
-
                 return step
 
             # ----------------------------------------------------------------
