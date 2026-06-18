@@ -369,6 +369,21 @@ step 0.
   the simple baselines FAIL (a less-legible/partially-observed other; or a coordination task stigmergy
   cannot solve). Introduced LESSONS L37 (stale direction-card STATUS) + L38 (predeclare a manipulation
   check; separability != cardinality).
+- **The environmental-complexity direction (Exp 235, ACTIVE — the human's word 2026-06-18: "make
+  the environment progressively more complex … see if they develop better ways to move"):** the last
+  structurally-distinct escape from the local-gradient wall — movement was NEVER an evolvable axis
+  (199–213). A NEW substrate (`enable_terrain`, byte-identical OFF, golden-hash guarded) adds a static
+  2.5D sealed-plateau heightmap + a costed heritable `climb_ability` LOCOMOTION axis (Preflight
+  `trait_axis.py`). **Exp 235 (NULL/INVALID / NEW INSIGHT, blind-verified):** the gate-open deflation
+  control showed `climb_ability` is behaviorally INERT — the comfort-gated LOCAL greedy forager
+  (`creature.py choose_action`, steps only to the best ADJACENT cell, no path-planning) never
+  navigates to the distant sealed plateau (gate-open plateau intake ~1%, every geometry-sweep cell
+  noise-level, worse under scarcity). The bottleneck is the POLICY, not the gate; the predeclared L38
+  manipulation check fired its abort condition before any gradient batch. NOT a local-gradient wall
+  result (no valid gradient measured). **NEXT = Exp 236 (the human's pick):** add a navigation-capable
+  forage policy (path-planning toward distant high-value cells) behind a flag (byte-identical OFF), so
+  the trait is expressible, then re-run the manipulation check and the Gate C local-gradient batch.
+  Card: `loop/directions/environmental-complexity.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
