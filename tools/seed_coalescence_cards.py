@@ -714,6 +714,97 @@ ONLINE_STRUCTURE_GROWTH = MechanismCard(
 )
 
 
+# ── self-other-modeling arc (Exp 228-234) ────────────────────────────────────
+FUNCTIONAL_GOAL_INFERENCE = MechanismCard(
+    mechanism_id="functional-goal-inference-v0",
+    mechanism_type="hidden-state-belief",
+    status="constrained",
+    source_experiments=[228, 229, 230, 231, 232, 233, 234],
+    claim=(
+        "A clade-mate can functionally infer ANOTHER agent's latent goal from its trajectory "
+        "(a provided goal-directed-policy model; the goal is inferred, never provided) and "
+        "predict the other better than learning the other's transition dynamics -- but ONLY at "
+        "TRANSITIONS (cold-start and goal-changes), in proportion to the other's non-stationarity; "
+        "in steady state an adaptive transition model matches it. The first crossing of the "
+        "solipsism gap social-emergence named at closure, at toy scale and LIGHT (policy provided)."
+    ),
+    works_when=[
+        "cold-start: goal-inference is near-oracle within a few steps; the learned-transition "
+        "baseline needs hundreds (Exp 229, early edge +0.10, 8/8)",
+        "goal-changes: re-tracks a switched goal far faster than re-learning transitions "
+        "(Exp 230, post-switch +0.13)",
+        "the edge GROWS monotonically with the other's change-frequency (Exp 231)",
+    ],
+    fails_when=[
+        "steady state: an adaptive learned-transition model catches up (Exp 230/231 overall edge ~0)",
+        "behaviorally: reactive stigmergy already near-optimally coordinates, leaving no headroom; "
+        "naive proactive yielding HURTS (Exp 234, joint 0.46 vs 0.77)",
+    ],
+    required_conditions=[
+        "a PROVIDED goal-directed-policy model (eps-greedy BFS toward a target); only the goal is inferred",
+        "a NON-STATIONARY other for a sustained benefit (the benefit is transition-localised)",
+        "the binding control is a LEARNED adaptive-transition model, not a naive random walk",
+    ],
+    inputs=["the other's observed position/trajectory"],
+    outputs=["a posterior over the other's latent goal (q_goal/q_target); a next-cell prediction"],
+    metrics=["next-cell prediction accuracy", "post-switch re-tracking edge", "goal-posterior concentration"],
+    falsifiers=[
+        "must beat a LEARNED adaptive-transition baseline (the binding control), not just a naive "
+        "random-walk tracker (Exp 228 caveat -> Exp 229+)",
+        "predeclare a manipulation check that the inference is ACTUALLY hard (L38) -- a high goal "
+        "posterior means the test was easy",
+    ],
+    known_confounds=[
+        "LIGHT: the policy is provided and the goal is often trivially inferable (q->0.999 at 3-way, "
+        "0.93 at 25-way separable targets)",
+        "inference difficulty is set by behavioral SEPARABILITY, not goal-space SIZE (Exp 232)",
+        "on this gridworld goal-directed BFS is intrinsically LEGIBLE -- target geometry cannot make "
+        "inference hard (Exp 233); see self-other-substrate-legibility-wall-v0",
+    ],
+    next_compositions=[
+        "a substrate where the simple baselines FAIL -- a less-legible/partially-observed other, or a "
+        "coordination task stigmergy cannot solve -- is required to test whether ToM pays beyond transitions",
+    ],
+)
+
+SELF_OTHER_LEGIBILITY_WALL = BoundaryNote(
+    boundary_id="self-other-substrate-legibility-wall-v0",
+    source_experiments=[232, 233, 234],
+    failed_mechanism="demonstrating that structured self-other modeling (theory-of-mind) genuinely "
+    "beats SIMPLE baselines under a HARD inference or in BEHAVIOR, on the toy gridworld substrate",
+    observed_failure=(
+        "Three consecutive degenerate-baseline results, each caught by a predeclared manipulation/sanity "
+        "gate (L38). (Exp 232) inference cannot be made hard by goal-space SIZE -- 4 corners in a 25-way "
+        "space stay trivially separable (q->0.93); difficulty = behavioral separability, not cardinality. "
+        "(Exp 233) target geometry CANNOT create inference-ambiguity -- even adjacent cells are separable "
+        "(q->0.89) because goal-directed BFS broadcasts the goal. (Exp 234) reactive stigmergy already "
+        "near-optimally coordinates (1.6% crowding), leaving no behavioral headroom for ToM; naive "
+        "proactive yielding HURTS (joint 0.46 vs 0.77)."
+    ),
+    tested_conditions=[
+        "25-way separable corner targets (Exp 232)",
+        "ambiguous center-adjacent cluster targets (Exp 233)",
+        "shared-resource coordination: proactive model-based yield vs reactive comfort-gated stigmergy (Exp 234)",
+    ],
+    excluded_confounds=[
+        "the L38 manipulation check was predeclared and gated each result (the goal posterior must stay "
+        "low if inference is hard; the baseline must crowd) -- so the degeneracy was caught BEFORE being "
+        "mis-read as a positive",
+    ],
+    implication=(
+        "On this toy gridworld the SIMPLE baselines (adaptive transition learning; reactive comfort-gated "
+        "stigmergy) are robustly near-optimal, so structured self-other modeling has little room to beat "
+        "them -- predictively in steady state OR behaviorally. The functional-goal-inference benefit "
+        "(functional-goal-inference-v0) is REAL but confined to TRANSITIONS."
+    ),
+    next_safe_region_to_test=(
+        "a LESS-LEGIBLE other (a noisy/high-temperature policy, or partial/intermittent observation so "
+        "the goal is not broadcast) AND/OR a coordination task stigmergy cannot solve (anti-coordination "
+        "requiring commitment, or a non-depleting shared good) -- a substrate where the simple baseline FAILS"
+    ),
+)
+
+
 SEEDS = [
     ("mechanisms/functional-valence-dyad-v0/mechanism_card.json", FUNCTIONAL_VALENCE_DYAD),
     ("mechanisms/functional-valence-dyad-v0/adapters.json", DYAD_TO_ACTIVE_SENSING_ADAPTER),
@@ -731,6 +822,8 @@ SEEDS = [
     ("boundary_notes/hidden-state-memory-boundary-v0.json", HIDDEN_STATE_MEMORY_BOUNDARY),
     ("boundary_notes/disembodied-stream-collapse-v0.json", DISEMBODIED_STREAM_COLLAPSE),
     ("boundary_notes/identity-n4-commitment-v0.json", IDENTITY_N4_COMMITMENT),
+    ("mechanisms/functional-goal-inference-v0/mechanism_card.json", FUNCTIONAL_GOAL_INFERENCE),
+    ("boundary_notes/self-other-substrate-legibility-wall-v0.json", SELF_OTHER_LEGIBILITY_WALL),
 ]
 
 

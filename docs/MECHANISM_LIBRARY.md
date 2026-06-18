@@ -19,6 +19,7 @@ uv run active-monkey coalesce validate --all
 | `meta-calibration-n3-v0` | identity-self-modeling | **validated** (toy richness) | 155–168 |
 | `online-structure-growth-v0` | hidden-state-belief | **validated** (toy scale) | 152–154 |
 | `identity-n4-monitor-v0` | identity-self-modeling | **constrained** (detection only) | 176–180 |
+| `functional-goal-inference-v0` | hidden-state-belief | **constrained** (transitions only) | 228–234 |
 | `communication-scaffold-v0` | costed-signaling | **scaffold** (NOT validated) | — (none) |
 
 - **recipe-symmetry-breaking-v0** — the project's flagship durable finding as a card: the
@@ -60,6 +61,7 @@ uv run active-monkey coalesce validate --all
 | `active-sensing-benefit-wall-v0` | costed active information-gathering | useful-when-gifted ≠ locally evolvable; benefit magnitude is the wall (Exp 210–213) |
 | `costly-sensing-wall-v0` | evolution of a costed sensory organ | no costed sense becomes functional at this substrate; the fitness valley is the barrier (Exp 199–207) |
 | `hidden-state-memory-boundary-v0` | passive hidden-state memory as a locally evolvable trait | the local-gradient wall generalises from senses to memory/inference (Exp 208–209) |
+| `self-other-substrate-legibility-wall-v0` | structured self-other modeling beating simple baselines under hard inference / in behavior | on this gridworld the simple baselines are near-optimal (goal-directed BFS is too legible; reactive stigmergy already coordinates); ToM pays only at transitions (Exp 232–234) |
 
 The `disembodied-stream-collapse-v0` boundary and `recipe-symmetry-breaking-v0` mechanism are
 two halves of the same finding — the collapse and what breaks its symmetry. The

@@ -80,11 +80,19 @@ surviving ToM novelty-candidate(s) with their cascade record, or "no disciplined
 modeling benefit at this substrate; the next step would require <named substrate>" — and open
 that substrate as a new direction or stop.
 
-**STATUS.** state: exploratory (new, card-first; descends from social-emergence's named next
-substrate "self-other modeling") · latest: TBD-human (awaiting review of this card before Rung 1)
-· depends-on: social-emergence (closed Exp 63–74), persistent-creature, functional-emergence ·
-reusable: q_other position/goal beliefs, goal-directed-other harness, ToM prediction metrics,
-the position-tracking baseline control · why: first model of the OTHER's hidden state (the
-solipsism gap social-emergence named at closure); rung-1 precursor to N7 · next-falsifiable:
-Rung 1 — goal-directed-other substrate + position-tracking baseline beats the occupancy marginal,
-trunk byte-identical, on forks of mirro/vela.
+**STATUS.** state: CLOSED-MIXED (rung-2/3 sub-arc, Exp 228–234; descends from social-emergence's
+named next substrate "self-other modeling") · latest: Exp 234 · depends-on: social-emergence
+(closed Exp 63–74), persistent-creature, functional-emergence · reusable: q_other position/goal
+beliefs, the goal-directed-other harness, ToM prediction metrics, the learned-transition baseline
+control (the binding non-ToM comparison), the L38 manipulation-check discipline · why: FIRST
+functional self-other modeling — crossed the solipsism gap (Exp 229) · FINDINGS: ToM benefit is
+real but LIGHT and LOCALISED to transitions (cold-start Exp 229, goal-changes Exp 230), growing
+with the other's non-stationarity (Exp 231, direction confirmed); difficulty = behavioral
+separability not goal-space size (Exp 232); and on this gridworld the SIMPLE baselines are
+robustly near-optimal — goal-directed BFS is too legible to make inference hard (Exp 233) and
+reactive stigmergy already coordinates so naive ToM-action hurts (Exp 234, three straight
+sanity-gate fires). DISTILLED into the coalescence library: `mechanisms/functional-goal-inference-v0`
+(constrained) + `boundary_notes/self-other-substrate-legibility-wall-v0`. · next-falsifiable:
+re-opens only on a substrate where the SIMPLE baselines FAIL — a less-legible/partially-observed
+other (the goal not broadcast), or a coordination task stigmergy cannot solve. Do NOT re-test ToM
+benefit on this legible substrate (the wall is documented).
