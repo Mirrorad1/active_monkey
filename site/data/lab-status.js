@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 228, title: "self-other-modeling Rung 1: the goal-directed-other substrate + a position-tracking baseline, and a large prediction headroom that only goal-KNOWLEDGE fills — but it is measured vs a naive baseline, so the rung-2 control is named", tag: "POSITIVE" },
-  tally: { total: 228, positive: 122, negative: 72, mixed: 30, breakthroughs: 11 },
+  latest_exp: { n: 229, title: "self-other-modeling Rung 2: latent-goal inference BEATS a learned-transition baseline on sample efficiency — the first functional self-other modeling, but LIGHT", tag: "POSITIVE" },
+  tally: { total: 229, positive: 123, negative: 72, mixed: 30, breakthroughs: 12 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
