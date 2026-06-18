@@ -193,7 +193,7 @@ def run_affect_pr_loop(
         )
         git_ops.commit_paths(
             repo,
-            ["world_model", "reports", "REPORT.md"],
+            ["world_model", "world_model_affect", "reports", "REPORT.md"],
             f"affect loop: iter {i} artifacts",
         )
 
@@ -295,7 +295,7 @@ class AffectClaudeCritic:
             return Verdict(False, f"critic CLI failed: {proc.stderr[:200]}")
         out = proc.stdout.strip()
         approved = bool(re.match(r"\s*APPROVE", out, re.IGNORECASE))
-        return Verdict(approved, out[:300])
+        return Verdict(approved, out[:1000])
 
 
 # ── Mock proposer for harness validation ────────────────────────────────────
