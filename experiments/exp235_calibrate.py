@@ -20,6 +20,13 @@ resident_share <= 0.25 (sealed) AND marginal >= 0.10 (large 0.05->0.10 unlock).
 
 Run:  uv run --python .venv python experiments/exp235_calibrate.py
 Honest research only; this PRE-validates the substrate before any gradient batch.
+
+Predeclared falsifier (substrate-validity, per loop/directions/environmental-complexity.md):
+the prediction is that climb_ability is expressible iff a sealed plateau can be reached.
+The falsifier of expressibility: if the gate-open plateau access is ALSO low (the local
+forager never exploits the plateau even when crossing is free), then no geometry calibration
+can rescue it — the trait is behaviorally inert => NULL/INVALID (substrate redesign), NOT a
+local-gradient wall result.
 """
 from __future__ import annotations
 
@@ -60,6 +67,8 @@ def main() -> None:
     print(f"    full climb grid (should be ~flat — climb is irrelevant when gate open):")
     for c, s in sorted(go["shares_grid"].items()):
         print(f"      climb {c:<5} -> {_fmt(s)}")
+    print(f"    gate-open marginal (mutant-resident, should be ~0 since climb is moot): "
+          f"{go['marginal']*100:+.2f}pp")
     ceiling = go["resident_share"]
     if ceiling != ceiling or ceiling < 0.30:
         print(f"    >> POLICY-BOTTLENECK SIGNAL: even with free crossing the population "
@@ -69,6 +78,23 @@ def main() -> None:
     else:
         print(f"    >> Gate-open access is {_fmt(ceiling)} (>=30%): the policy CAN exploit "
               f"the plateau; the gate is a candidate bottleneck. Proceeding to sweep.")
+
+    # ------------------------------------------------------------------
+    # 1b. EXTREME-SCARCITY gate-open probe — can scarcity EVER drive the local
+    #     policy up to the plateau?  (regen x horizon grid, gate open, lean basin)
+    # ------------------------------------------------------------------
+    print("\n[1b] EXTREME-SCARCITY gate-open probe (gate open, conc 2.5 lean basin):")
+    print("     regen  horiz | gate-open plateau_share at resident climb")
+    base_regen = getattr(mc.SCENARIOS["balanced"], "regen_rate", 0.2)
+    for regen in [base_regen, base_regen * 0.25, base_regen * 0.05]:
+        for horiz in [200, 600]:
+            r = mc.manipulation_check({
+                "terrain_gates_movement": False,
+                "regen_rate": regen,
+                "horizon": horiz,
+                "terrain_food_concentration": 2.5,
+            })
+            print(f"     {regen:5.3f} {horiz:5d} | {_fmt(r['resident_share'])}")
 
     # ------------------------------------------------------------------
     # 2. GEOMETRY SWEEP (gate closed).
