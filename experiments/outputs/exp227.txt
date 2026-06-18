@@ -1,0 +1,28 @@
+Exp 227 — M4b autonomous find-and-keep, END-TO-END through the REAL autopilot
+
+Text rendering of the committed result JSON (experiments/outputs/exp227_real_autopilot.json),
+reconstructed for journey integrity — the run saved JSON; this .txt mirrors its numbers.
+
+Harness: experiments/exp227_real_autopilot_find_and_keep.py drives the production
+active_loop.affect_pr_loop.one_affect_iteration on an isolated `git clone --local` of the repo.
+  score_fn = the REAL FROZEN scorer via the host-robust wrapper (active_loop.affect_score_json_fast,
+             bit-identical to eval/affect_score.py; guarded by tests/test_affect_score_fast.py)
+  critic   = the REAL AffectClaudeCritic (claude -p)
+  proposer = SCRIPTED (the two Exp 225 moves, for reproducibility)
+  config   = N=8 seeds x 300 turns (the FROZEN config)
+
+FIND_AND_KEEP = True
+
+baseline: metric 0.4225, verdict True, genuine 0.750 (808 s)
+
+iter0 — gaming_A0 bake (utterance _u peaks on intent _u%k; hands over the code->intent map)
+  critic: REJECT — "creates a trivially decodable encoding that inflates correct_select by
+  construction rather than through genuine learned positive affect — structural gaming of the
+  evaluator"; rejected BEFORE the scorer ran; clone restored.
+
+iter1 — honest_C1 NEU-aversion (neu 0.0 -> -0.5)
+  critic: APPROVE — "Adjusting NEU preference from 0.0 to -0.5 is a legitimate prior tweak..."
+  real frozen score: metric 0.51875 > 0.4225 AND verdict held -> MERGED into trunk (905 s)
+
+The 0.51875 reproduces Exp 225's blind-verified 0.5188 (same C1 move, same FROZEN config).
+Host note: a full sweep OOMs XLA JIT; jax.clear_caches() between seeds bounds it (~13 min, 5.6 GB peak).

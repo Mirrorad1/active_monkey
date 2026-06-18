@@ -1,0 +1,26 @@
+Exp 226 — M4b autonomous find-and-keep (deterministic stand-in)
+
+Text rendering of the committed result JSON (experiments/outputs/exp226_find_and_keep.json),
+reconstructed for journey integrity — the run saved JSON; this .txt mirrors its numbers.
+authoritative = false (a deterministic STAND-IN critic/scorer; quick config, not the FROZEN config).
+
+Config: seeds [20, 21], turns 60 (quick; NOT the FROZEN 8-seed x 300-turn config).
+scorer_hash: 68064f6980c570fefced2c9e918d07424f76229be9360c0d43860d0f987ef22a
+baseline_metric: 0.275
+
+Candidate 1 — c1_neu_-0.5 (preference: C1 NEU -2/0/3 -> -2/-0.5/3; aversion to neutral; Exp 225)
+  critic_approved: true ("APPROVE: preference is an honest, non-leaking spec change")
+  scored: true   metric: 0.35   beats_baseline: true   improvement: 0.10
+  scorer_verdict: false (60-turn quick config sits below the milestone bar)
+  genuine_fraction: 0.5   genuine_no_regress: true   KEPT: true
+
+Candidate 2 — optimism_3.0 (uniform POS optimism prior 2.0 -> 3.0; honest, response-agnostic)
+  critic_approved: true ("APPROVE: optimism_prior is an honest, non-leaking spec change")
+  scored: true   metric: 0.275   beats_baseline: false   KEPT: false
+
+Gaming variants: rejected by the deterministic anti-gaming guard.
+
+Control-flow result: propose -> critic-gate -> score -> keep-if-improves-without-regress -> drop.
+The KEPT honest C1 tweak (0.275 -> 0.35, +0.10) is the same move Exp 227 later ran end-to-end
+through the production autopilot, reproducing the canonical 0.4225 -> 0.51875. Numbers here are
+non-authoritative; the reusable result is the control flow.

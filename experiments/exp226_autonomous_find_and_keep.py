@@ -3,6 +3,8 @@
 GOAL (the M4b milestone): test whether an improvement loop can autonomously
 GENERATE candidate spec changes, SCORE them with the FROZEN scorer, CRITIC-check them
 for gaming, and KEEP/merge an honest improvement — with predeclared PASS/FAIL.
+Falsifier (this is a demonstration, not a falsifiable hypothesis): the loop FAILS if it
+does NOT keep an honest improving candidate, or if it KEEPS a gaming candidate.
 
 HONESTY ABOUT INFRASTRUCTURE (read this):
   The production autopilot (active_loop/affect_pr_loop.py) drives a `claude -p`
