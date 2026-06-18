@@ -293,3 +293,12 @@ Ground rules for this file:
   proposal directly to test whether a legitimate improvement exists (Exp 225b: the approved C1 tweak scored
   0.4225→0.5188, genuine 6/8→8/8). Don't read a gate-gated 0/N as "metric unimprovable" or "gate miscalibrated"
   without that ~5-min diagnostic. [PROTOCOL step 5; VALIDATION; kin of L35]
+- **L37 (2026-06-18).** A direction card's `STATUS` line can be STALE — it is hand-maintained and is NOT
+  re-derived from the record, so it can claim a direction is open after its ladder has been run and closed.
+  `social-emergence.md` read `state: exploratory · next-falsifiable: Rung 1` long after the ladder ran and
+  CLOSED at Exp 74 (vela, the Rung-1 peer spine, has existed since Exp 63). This misled both a recon subagent
+  ("no rung has been run") and a /lab compose ("start at Rung 1" = a duplicate of Exp 63). RULE: at PROTOCOL
+  step 0/1, treat `IDEAS.md` + `EXPERIMENTS.md` as the source of truth for whether a direction is open, NOT the
+  card's STATUS line; before running "the next rung", grep EXPERIMENTS.md for that direction's experiments and
+  confirm the rung is genuinely unrun. When you find a stale STATUS, FIX it in the same iteration (mark the
+  closure + point to the descendant direction) — the card is a pointer, the log is the truth. [PROTOCOL step 0/1; META]
