@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp232.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp232_self_other_hardgoal.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": []
+  },
+  "collected_at_utc": "2026-06-18T04:08:34Z",
+  "commit_sha": "bb5467d4362fb0a5edd1cb1b463bac307218e9af",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 232,
+  "future_policy_hint": "no immediate process repair indicated",
+  "process": {
+    "likely_risks": [],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
