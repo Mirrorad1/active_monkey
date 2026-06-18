@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
   latest_exp: { n: 227, title: "M4b autonomous find-and-keep, END-TO-END through the REAL autopilot: the production loop (real claude critic + real FROZEN scorer + real git merge) REJECTS a gaming A0 bake and KEEPS the honest C1 NEU-aversion (0.4225→0.5188, verdict held) — closes the Exp 225 \"implied, not run\" gap; plus the host-robust scorer that made it runnable", tag: "POSITIVE" },
-  tally: { total: 226, positive: 120, negative: 72, mixed: 30, breakthroughs: 11 },
+  tally: { total: 227, positive: 121, negative: 72, mixed: 30, breakthroughs: 11 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
