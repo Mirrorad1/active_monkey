@@ -1,0 +1,90 @@
+================================================================================
+Exp 229 — self-other-modeling Rung 2: latent-goal inference vs LEARNED-transition baseline
+================================================================================
+
+Implementation notes:
+  - Shared world: vela's world (vela-fork is B, lives here natively)
+  - B's favorite color (true goal): argmax(vela.value_counts) = color 2
+  - Source cells for true goal: [2, 3, 4, 7, 8, 9, 12, 13, 14]
+  - Number of colors: 3, all_colors = [0, 1, 2]
+  - EPS_POLICY = 0.2, ALPHA_EMA = 0.1, THRESH_GATE = 0.75
+  - LAMBDA_RELAX = 0.01, EST_INIT = 1.0
+  - M1.5: online trans counts +1 Laplace, predict BEFORE update, update AFTER B moves
+  - M3: q_goal uniform init (1/3 each); PREDICT then observe then update (no leakage)
+  - M3 per-color policy: eps-greedy toward nearest source of that color (EPS=0.2)
+  - BFS tie-break: uniform over minimizer neighbor cells for both M2 and M3
+  - At-source behavior: BFS dist=0 at source -> best_d = min over 4 wall-clamped neighbors
+    (may include source itself if wall clamped); same logic for both M2 and M3 per-color dist
+  - q_goal floor: 1e-9 added to each likelihood to avoid collapse
+  - M0 initialized with +1 smoothing (uniform prior)
+  - EARLY = first 100 steps; OVERALL = all 2000 steps
+  - M2_EPSILON (oracle smoothing) = 1e-06
+
+--- PER-SEED TABLE ---
+
+seed    M15_e     M3_e   edge_e   M15_ov    M3_ov   q[true]   M3e>M15e
+------------------------------------------------------------------------------
+   0   0.7100   0.7800   0.0700   0.7605   0.7715    0.9992        YES
+   1   0.6000   0.7000   0.1000   0.7860   0.7960    0.9993        YES
+   2   0.7200   0.8200   0.1000   0.7970   0.8105    0.9993        YES
+   3   0.5800   0.6700   0.0900   0.7590   0.7590    0.9992        YES
+   4   0.7400   0.8000   0.0600   0.7685   0.7790    0.9992        YES
+   5   0.5500   0.6600   0.1100   0.7540   0.7610    0.9974        YES
+   6   0.5400   0.6900   0.1500   0.7950   0.8020    0.9987        YES
+   7   0.6600   0.7500   0.0900   0.7700   0.7770    0.9993        YES
+------------------------------------------------------------------------------
+  mean   0.6375   0.7337   0.0963   0.7737   0.7820    0.9989
+
+--- FULL PREDICTOR ACCURACY TABLE ---
+
+seed     M0_e     M1_e    M15_e     M3_e     M2_e    M0_ov    M1_ov   M15_ov    M3_ov    M2_ov
+----------------------------------------------------------------------------------------------------
+   0   0.4000   0.1600   0.7100   0.7800   0.8000   0.1800   0.2645   0.7605   0.7715   0.7725
+   1   0.4200   0.1900   0.6000   0.7000   0.7000   0.2000   0.2740   0.7860   0.7960   0.7960
+   2   0.3400   0.2000   0.7200   0.8200   0.8300   0.2180   0.2830   0.7970   0.8105   0.8110
+   3   0.3000   0.1700   0.5800   0.6700   0.6800   0.2050   0.2305   0.7590   0.7590   0.7595
+   4   0.4100   0.2300   0.7400   0.8000   0.8100   0.2125   0.2475   0.7685   0.7790   0.7795
+   5   0.2100   0.3700   0.5500   0.6600   0.6600   0.1920   0.1990   0.7540   0.7610   0.7610
+   6   0.3900   0.1500   0.5400   0.6900   0.6500   0.2005   0.2640   0.7950   0.8020   0.8000
+   7   0.2400   0.3300   0.6600   0.7500   0.7600   0.1955   0.2580   0.7700   0.7770   0.7775
+----------------------------------------------------------------------------------------------------
+  mean   0.2004   0.2526   0.7737   0.7820   0.7821  (overall means)
+
+--- AGGREGATES ---
+
+  mean(M3_early - M1.5_early):   0.0963  (threshold for pred_a: >=0.05)
+  count(M3_early > M1.5_early):  8/8  (threshold for pred_a: >=6/8)
+  mean M3_overall:               0.7820
+  mean M1.5_overall:             0.7737
+  M3_overall - M1.5_overall:     0.0083  (pred_b threshold: >=-0.02)
+  mean q_goal[true_goal=2]:      0.9989  (pred_c threshold: >=0.60)
+  mean M0_overall:               0.2004
+  mean M1_overall:               0.2526
+  mean M2_overall (oracle):      0.7821
+
+--- SPINE INTEGRITY (F4) ---
+
+  mirro before: 0f35f93115f4371fde6e435a...
+  mirro after:  0f35f93115f4371fde6e435a...
+  mirro intact: YES
+  vela before:  fd004cb78cc85be8164711ab...
+  vela after:   fd004cb78cc85be8164711ab...
+  vela intact:  YES
+  F4: NOT FIRED
+
+--- FALSIFIER EVALUATION ---
+
+  F1 (no sample-efficiency edge): NOT FIRED  [mean_early_edge=0.0963 (need>=0.05), count=8/8 (need>=6)]
+  F2 (goal inference did not concentrate): NOT FIRED  [mean q_goal[true]=0.9989 (need>=0.60)]
+  F3 (ToM hurts asymptotically): NOT FIRED  [M3_overall-M1.5_overall=0.0083 (need>=-0.02)]
+  F4 (spine hash changed): NOT FIRED  [mirro OK, vela OK]
+
+--- PREDICTION CONJUNCT EVALUATION ---
+
+  (a) mean_early_edge>=0.05 AND count>=6/8: TRUE  [edge=0.0963, count=8/8]
+  (b) M3_overall >= M1.5_overall - 0.02:   TRUE  [0.7820 >= 0.7737 - 0.02 = 0.7537]
+  (c) mean q_goal[true] >= 0.60:           TRUE  [0.9989]
+
+VERDICT: TRUE — all conjuncts hold; goal posterior concentrates (q[true]=0.9989); M3 early edge=0.0963 in 8/8 seeds; M3_overall=0.7820 >= M1.5_overall=0.7737-0.02; functional ToM benefit confirmed at this scale
+
+================================================================================
