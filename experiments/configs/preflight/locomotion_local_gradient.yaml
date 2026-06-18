@@ -1,0 +1,73 @@
+slug: locomotion_local_gradient
+description: >
+  Exp 235 Rung 1: local gradient of climb_ability (LOCOMOTION_AXIS) on a binary sealed-plateau
+  terrain. Resident 0.05 → mutant 0.10. The trait must be COSTED (climb_cost_floor + climb_cost_slope
+  > 0) and the plateau must be genuinely sealed (manipulation_check must pass before running this).
+  Gates: local_pairwise_gradient (binding, Gate C) + invasion_from_rarity (Gate D) + null_guards.
+  Gifted_benefit and monomorphic_sweep raise NotImplementedError for the generic 'locomotion' backend
+  and are NOT listed here.
+
+# Base scenario and overrides
+base_scenario: balanced
+base_overrides:
+  # --- Terrain substrate (Exp 235 Rung 1) ---
+  enable_terrain: true
+  terrain_food_concentration: 2.0       # plateau carries 2x regen (conserved-total with 1/3 plateau)
+  terrain_gate_softness: 0.08           # sigmoid ramp softness for basin→plateau crossing
+  terrain_ridge_height: 0.15            # plateau elevation (binary geometry; human will retune)
+  terrain_gates_movement: true          # movement is gated by the sigmoid rim
+
+  # --- Perception (Exp 237): food-gradient scent makes the trait EXPRESSIBLE ---
+  # Without this the trait is inexpressible (Exp 235/236): the forager never reaches the
+  # plateau, so the gradient is vacuously flat. With it, every creature reaches ~61% plateau
+  # intake regardless of climb (gen-0 benefit curve is FLAT) — this Gate C run tests whether
+  # the invasion gradient is therefore negative (benefit saturates, the wall extends to locomotion).
+  enable_food_sense: true
+  food_sense_decay: 0.5
+
+  # --- Climb cost: INTENSITY-DEPENDENT only (floor=0). The floor is a flat per-tick tax
+  #     paid by EVERY creature when terrain is ON — it suppresses the whole population
+  #     without creating any climb gradient (only the slope scales with the trait). Zeroing
+  #     it keeps the trait properly costed (cost = slope * climb_ability, monotone) while
+  #     letting the population reach a drift-robust size (L29). ---
+  climb_cost_floor: 0.0
+  climb_cost_slope: 0.10               # per-unit cost slope (total = slope * climb_ability)
+
+  # --- Population dynamics: raise carrying capacity so pops are robustly > min_population
+  #     (L29: drift = pop-size, not cost; read the gradient on a large, drift-robust pop). ---
+  max_population: 1000
+  initial_resource: 0.8
+  regen_rate: 0.6                      # 3x the balanced default (0.2) to grow the standing pop
+
+# Trait axis
+trait: climb_ability
+
+# No controller (single-need regime)
+controller: null
+
+# Seeds — >=8 for statistical power (Gate C requires ≥7/8 wins to PASS)
+seeds: [10, 11, 12, 13, 14, 15, 16, 17]
+
+# Simulation horizon (steps per run)
+horizon: 500
+
+# Measurement window: skip the first 50 steps (transient), read until horizon
+measurement_window: [50, 500]
+
+# Output
+output_dir: results/preflight
+
+# Gates to run.
+# NOTE: gifted_benefit and monomorphic_sweep raise NotImplementedError for backend=locomotion
+# (they require the thermosense sense_axis.py percept-path which is engine-specific).
+# local_pairwise_gradient uses _run_pairwise_generic (the generic common-garden runner).
+# invasion_from_rarity uses the generic _run_invasion.
+# null_guards uses the LOCOMOTION_AXIS disconnect_overrides (full causal disconnect).
+gates:
+  - local_pairwise_gradient
+  - invasion_from_rarity
+  - null_guards
+
+# Statistical thresholds (Gate C: ≥7/8 wins PASS; <3/8 FAIL; else AMBIGUOUS)
+min_valid_seeds: 6
+min_population: 20

@@ -40,6 +40,8 @@ keep wall-clock and context cost bounded WITHOUT degrading experiment integrity.
 - A direction card's STATUS line is HOT context (it feeds DIRECTIONS.md). Keep it <= 800 chars: latest
   result (1-2 sentences) + depends-on + reusable + why + next-falsifiable. Put the full narrative in the
   card BODY (cold, read on demand) and `EXPERIMENTS.md`. Guard: `tests/test_status_line_length.py`.
+- The cap is 800 **chars**, not bytes. `·`/`—`/`–` are multibyte, so `wc -c` over-reports — a 809-byte
+  line can be well under 800 chars. Measure with Python `len(line)` (what the test uses), not `wc -c`.
 
 ## Git weight (maintenance, not per-iteration)
 - The slim-output policy bounds FUTURE growth. The legacy ~26M (esp. exp194's 8.8M move-event bloat)

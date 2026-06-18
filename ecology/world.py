@@ -14,12 +14,21 @@ Grid indexing: cell = row * cols + col.  Positions are flat integers.
 """
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 import numpy as np
 
 
 _FLOOR_REGEN: float = 0.05  # minimum regrowth on depleted cells
+
+# Exp 235: terrain crossing ramp softness — controls sigmoid steepness for rim crossings.
+_TERRAIN_GATE_SOFTNESS_DEFAULT: float = 0.08
+
+# Exp 235: terrain_ridge_height default — plateau elevation (binary geometry).
+# Basin cells are at 0.0, plateau cells at terrain_ridge_height.
+# There is exactly ONE upslope crossing (delta = terrain_ridge_height).
+_TERRAIN_RIDGE_HEIGHT_DEFAULT: float = 0.15
 
 
 @dataclass
@@ -137,6 +146,44 @@ class GridWorld:
     random_cost_matched_probe_rate: float = 0.0
     gate_shuffle_buffer: int = 64
 
+    # Exp 235: optional static 2.5D elevation field — None when enable_terrain=False.
+    # Mirrors the existing temperature field pattern (None => OFF, ZERO rng draws in build).
+    # Geometry (BINARY — single crossing):
+    #   Basin cells: elevation = 0.0 (founder spawn region)
+    #   Plateau cells: elevation = terrain_ridge_height (default 0.15)
+    # There is exactly ONE upslope crossing delta=terrain_ridge_height (basin→plateau).
+    # Movement within each region is flat (delta=0, always free).
+    # terrain_gate_softness controls the sigmoid ramp for that single rim crossing.
+    # terrain_food_concentration is the plateau regen boost (mirrors food_concentration
+    # for the thermal-band path; conserved-total, out_factor >= 0 enforced).
+    # terrain_ridge_height is CONFIG-DRIVEN (human-tunable; default 0.15).
+    elevation: "np.ndarray | None" = None   # shape (rows*cols,), dtype float64
+    terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT
+    terrain_ridge_height: float = _TERRAIN_RIDGE_HEIGHT_DEFAULT   # plateau elevation (binary geometry)
+    terrain_food_concentration: float = 0.0   # 0 => OFF / no boost (default: conserved flat)
+    terrain_gates_movement: bool = True        # True => climbable_neighbors used in creature
+
+    # Exp 236: navigation-capable foraging policy flag.
+    # False (default) => OFF path is BYTE-IDENTICAL to Exp 194-235.
+    # True  => HomeostaticPolicy.choose_action uses the global-target navigation branch
+    #          (head toward the best-remembered food cell) when current cell is depleted.
+    enable_navigation: bool = False
+
+    # Exp 236: distance penalty for the navigation target score.
+    # score(cell) = m[cell] - nav_distance_penalty * manhattan_dist(pos, cell)
+    # A small value (0.001) so m differences dominate over distance; the penalty
+    # only breaks near-equal-m ties and reduces pointless long hikes to distant
+    # cells that score only marginally better than closer ones.
+    # Stored on the world so creature.py can read it without threading cfg.
+    nav_distance_penalty: float = 0.001
+
+    # Exp 237: food-gradient perception — OFF by default (byte-identical OFF).
+    # enable_food_sense: when True, HomeostaticPolicy.choose_action senses a resource
+    #   "scent" gradient and navigates toward the richest food.
+    # food_sense_decay: distance decay factor for the scent computation.
+    enable_food_sense: bool = False
+    food_sense_decay: float = 0.5
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -230,6 +277,52 @@ class GridWorld:
                 self.resource[still_zero] = min(_FLOOR_REGEN, self.capacity)
             return
 
+        # Exp 235 terrain regen: concentrated plateau regen — ONLY when enable_terrain is
+        # True (elevation field present) AND terrain_food_concentration > 0.  Geometry
+        # (BINARY): plateau cells (elevation >= terrain_ridge_height - epsilon) carry
+        # regen_rate * terrain_food_concentration; basin cells get regen_rate * out_factor,
+        # where out_factor is chosen so total regen is conserved (mirrors the food-coupling
+        # mask pattern).  No silent food inflation: if the config would make out_factor < 0
+        # (plateau too large / concentration too high), raises ValueError (no fallback to 1.0).
+        # Pure arithmetic (NO rng).  Returns early so existing paths are never reached when
+        # this branch is active — the existing paths are byte-identical when elevation is None
+        # (OFF path => return never fires).
+        if self.elevation is not None and self.terrain_food_concentration > 0.0:
+            # Plateau = cells at elevation >= terrain_ridge_height (the binary threshold).
+            # Use a small epsilon to handle float comparison cleanly.
+            _eps = 1e-9
+            n_cells = self.rows * self.cols
+            on_plateau = self.elevation >= (self.terrain_ridge_height - _eps)
+            n_in = int(np.sum(on_plateau))
+            n_out = n_cells - n_in
+            if n_out > 0:
+                out_factor = (n_cells - n_in * self.terrain_food_concentration) / n_out
+            else:
+                out_factor = 0.0
+            # NO SILENT FOOD INFLATION: if out_factor < 0 the config is invalid (plateau
+            # too large or concentration too high).  Raise loudly; no fallback to 1.0.
+            if out_factor < 0.0:
+                raise ValueError(
+                    f"Terrain regen config invalid: out_factor={out_factor:.4f} < 0. "
+                    f"With n_plateau={n_in}, n_basin={n_out}, n_cells={n_cells}, "
+                    f"terrain_food_concentration={self.terrain_food_concentration:.2f} "
+                    f"the conserved-total constraint requires plateau <= n_cells / "
+                    f"food_concentration = {n_cells / self.terrain_food_concentration:.1f} cells. "
+                    f"Reduce plateau size or terrain_food_concentration."
+                )
+            depleted = self.resource == 0.0
+            regen_amounts = np.where(
+                on_plateau,
+                self.regen_rate * self.terrain_food_concentration,
+                self.regen_rate * out_factor,
+            )
+            self.resource += regen_amounts
+            self.resource = np.clip(self.resource, 0.0, self.capacity)
+            still_zero = depleted & (self.resource == 0.0)
+            if np.any(still_zero):
+                self.resource[still_zero] = min(_FLOOR_REGEN, self.capacity)
+            return
+
         # --- Original path (byte-identical when enable_food_coupling is False) ---
         depleted = self.resource == 0.0
         self.resource += self.regen_rate
@@ -287,6 +380,54 @@ class GridWorld:
                 nb.append(self._pos(r, c + 1))
             table.append(nb)
         return table
+
+    def climbable_neighbors(
+        self, pos: int, climb: float, rng: "np.random.Generator"
+    ) -> list[int]:
+        """Exp 235: return admissible neighbors filtered by the terrain rim crossing ramp.
+
+        Geometry (BINARY): basin cells at elevation 0.0, plateau cells at elevation
+        terrain_ridge_height.  There is exactly ONE upslope delta = terrain_ridge_height
+        (basin→plateau crossing).  Movement within each region is flat (delta=0, free).
+
+        Downhill/flat edges are always free (prob 1.0).  An UPSLOPE edge n is admissible
+        with probability sigmoid((climb - delta_elev) / terrain_gate_softness), where
+        delta_elev = elev[n] - elev[pos] > 0.  This is a CALIBRATED RAMP: each small
+        increment of climb_ability buys a proportional increase in crossing odds.  It is
+        NOT a binary threshold (threshold would saturate at low climb; a ramp does not).
+
+        Only called when enable_terrain is True (ON-branch only); the OFF path uses
+        world.neighbors() VERBATIM with zero new rng draws.  The crossing roll is the
+        ONLY new rng draw introduced by the terrain mechanic (strictly inside this method,
+        which is only called from the ON branch of choose_action).
+
+        Returns the list of admissible neighbors (may be empty, in which case the creature
+        stays at pos — handled by the caller).  The returned list is a fresh list (not
+        cached) because it depends on rng state.
+        """
+        if self.elevation is None:
+            return self.neighbors(pos)
+        raw = self.neighbors(pos)
+        admissible: list[int] = []
+        elev_here = float(self.elevation[pos])
+        softness = self.terrain_gate_softness
+        for n in raw:
+            delta = float(self.elevation[n]) - elev_here
+            if delta <= 0.0:
+                # downhill or flat: always free
+                admissible.append(n)
+            else:
+                # upslope: sigmoid gate — each ε of climb buys a small crossing prob increase
+                x = (climb - delta) / softness
+                # numerically-stable sigmoid
+                if x >= 0.0:
+                    prob = 1.0 / (1.0 + math.exp(-x))
+                else:
+                    z = math.exp(x)
+                    prob = z / (1.0 + z)
+                if rng.random() < prob:
+                    admissible.append(n)
+        return admissible
 
     # ------------------------------------------------------------------
     # Exp 197: temperature stress query
@@ -349,6 +490,18 @@ class GridWorld:
         uncertainty_gate_sensitivity: float = 20.0,
         random_cost_matched_probe_rate: float = 0.0,
         gate_shuffle_buffer: int = 64,
+        # Exp 235: terrain parameters — all default to OFF (no-op; zero rng draws).
+        enable_terrain: bool = False,
+        terrain_food_concentration: float = 0.0,
+        terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT,
+        terrain_ridge_height: float = _TERRAIN_RIDGE_HEIGHT_DEFAULT,
+        terrain_gates_movement: bool = True,
+        # Exp 236: navigation policy flag — default False => byte-identical to Exp 194-235.
+        enable_navigation: bool = False,
+        nav_distance_penalty: float = 0.05,
+        # Exp 237: food-gradient perception — default False => byte-identical to Exp 194-236.
+        enable_food_sense: bool = False,
+        food_sense_decay: float = 0.5,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -364,6 +517,18 @@ class GridWorld:
         Exp 200 foraging parameters are stored in the world so step_regen() and
         creature.py can read them without threading cfg through every call.
         All defaults are no-ops — byte-identical to Exp 194–199 when not set.
+
+        Exp 235 terrain: if enable_terrain is True, a STATIC 2.5D BINARY elevation
+        field is built AFTER the existing temperature/resource init, with ZERO rng draws.
+        Geometry (BINARY — single crossing, for a rows x cols grid):
+          - Basin: bottom rows//3 rows (elevation 0.0) — founder spawn region
+          - Plateau: all remaining rows (elevation = terrain_ridge_height, default 0.15)
+        There is exactly ONE upslope crossing: basin→plateau (delta = terrain_ridge_height).
+        Movement within each region is flat (delta=0, free).
+        Plateau = top 2/3 of rows (e.g. 96 of 144 cells for 12x12; use plateau=top 1/3
+        for concentration=2.0 to keep out_factor >= 0).  terrain_ridge_height is a
+        CONFIG-DRIVEN parameter so the human can sweep it without code edits.
+        The resource rng stream is UNCHANGED.
         """
         base = capacity * max(0.0, min(1.0, initial_resource))
         perturb = rng.uniform(-0.05 * capacity, 0.05 * capacity, size=rows * cols)
@@ -387,6 +552,32 @@ class GridWorld:
                 [1 if c >= cols // 2 else 0 for r in range(rows) for c in range(cols)],
                 dtype=np.int64,
             )
+
+        # Exp 235: build static BINARY elevation map — ZERO rng draws; AFTER existing inits.
+        # Layout (BINARY — single crossing):
+        #   - Bottom basin_rows rows = basin (elevation 0.0)
+        #   - All remaining rows (top 2/3) = plateau (elevation = terrain_ridge_height)
+        # There is exactly ONE upslope crossing: delta = terrain_ridge_height (basin→plateau).
+        # No intermediate ridge row — plateau IS the high ground.
+        # Geometry for 12x12: basin = rows 0-3 (48 cells, 33.3%), plateau = rows 4-11 (96 cells, 66.7%)
+        # With terrain_food_concentration=2.0: out_factor = (144 - 96*2)/48 = -48/48 < 0 (invalid).
+        # Use plateau = top 1/3 of rows (basin_rows = 2*rows//3) to satisfy conserved-total:
+        #   plateau = 48 cells, basin = 96 cells
+        #   out_factor = (144 - 48*2)/96 = 48/96 = 0.5 >= 0 ✓
+        # Founders are spawned in basin cells (elevation <= 0.0) — see engine.py.
+        elevation: np.ndarray | None = None
+        if enable_terrain:
+            # Plateau = top 1/3 of rows → basin = bottom 2/3 (basin_rows = 2*rows//3).
+            # This ensures out_factor >= 0 with terrain_food_concentration <= rows/plateau_rows = 3.
+            basin_rows = max(1, (2 * rows) // 3)
+            elev_list: list[float] = []
+            for r in range(rows):
+                for c in range(cols):
+                    if r < basin_rows:
+                        elev_list.append(0.0)                  # basin
+                    else:
+                        elev_list.append(terrain_ridge_height)  # plateau
+            elevation = np.array(elev_list, dtype=np.float64)
 
         return cls(
             rows=rows,
@@ -426,4 +617,20 @@ class GridWorld:
             uncertainty_gate_sensitivity=uncertainty_gate_sensitivity,
             random_cost_matched_probe_rate=random_cost_matched_probe_rate,
             gate_shuffle_buffer=gate_shuffle_buffer,
+            # Exp 235 terrain fields — defaults are no-ops.
+            elevation=elevation,
+            terrain_gate_softness=terrain_gate_softness,
+            terrain_ridge_height=terrain_ridge_height,
+            terrain_food_concentration=terrain_food_concentration if enable_terrain else 0.0,
+            # terrain_gates_movement: always pass the config value; the field default is True
+            # (matching EcologyConfig.terrain_gates_movement default and from_config default).
+            # When enable_terrain=False, elevation is None, so climbable_neighbors degrades
+            # gracefully to world.neighbors() even if the field is True.
+            terrain_gates_movement=terrain_gates_movement,
+            # Exp 236: navigation policy flag (default False => byte-identical OFF).
+            enable_navigation=enable_navigation,
+            nav_distance_penalty=nav_distance_penalty,
+            # Exp 237: food-gradient perception (default False => byte-identical OFF).
+            enable_food_sense=enable_food_sense,
+            food_sense_decay=food_sense_decay,
         )

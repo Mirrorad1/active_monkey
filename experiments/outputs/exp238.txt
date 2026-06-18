@@ -1,0 +1,67 @@
+======================================================================
+Exp 238 Rung 1 — L39 Expressibility Gate
+  Speed sweep: [0.25, 0.5, 1.0, 2.0, 3.0, 4.0]
+  N_SEEDS=8, HORIZON=200, INITIAL_POP=30
+  Cost: floor=0.0, slope=0.05
+======================================================================
+
+--- BUMP (structured Gaussian bumps) ---
+  speed=0.25: mean_intake/step=0.16892  cost/step=0.0125  net=0.15642  (n_valid=8/8)
+  speed=0.50: mean_intake/step=0.36423  cost/step=0.0250  net=0.33923  (n_valid=8/8)
+  speed=1.00: mean_intake/step=0.82337  cost/step=0.0500  net=0.77337  (n_valid=8/8)
+  speed=2.00: mean_intake/step=1.81913  cost/step=0.1000  net=1.71913  (n_valid=8/8)
+  speed=3.00: mean_intake/step=2.32933  cost/step=0.1500  net=2.17933  (n_valid=8/8)
+  speed=4.00: mean_intake/step=2.17608  cost/step=0.2000  net=1.97608  (n_valid=8/8)
+  Spearman(speed, intake): 0.943
+  Spearman(speed, net):    0.943
+  Slope (intake, end-to-end): 0.535241 per unit speed
+
+--- FLAT (uniform rho — null) ---
+  speed=0.25: mean_intake/step=0.12500  cost/step=0.0125  net=0.11250  (n_valid=8/8)
+  speed=0.50: mean_intake/step=0.25000  cost/step=0.0250  net=0.22500  (n_valid=8/8)
+  speed=1.00: mean_intake/step=0.50000  cost/step=0.0500  net=0.45000  (n_valid=8/8)
+  speed=2.00: mean_intake/step=1.00000  cost/step=0.1000  net=0.90000  (n_valid=8/8)
+  speed=3.00: mean_intake/step=1.50000  cost/step=0.1500  net=1.35000  (n_valid=8/8)
+  speed=4.00: mean_intake/step=2.00000  cost/step=0.2000  net=1.80000  (n_valid=8/8)
+  Spearman(speed, intake): 1.000
+  Spearman(speed, net):    1.000
+  Slope (intake, end-to-end): 0.500000 per unit speed
+
+--- NEUTRAL-LAYOUT (different bump arrangement) ---
+  speed=0.25: mean_intake/step=0.18095  cost/step=0.0125  net=0.16845  (n_valid=8/8)
+  speed=0.50: mean_intake/step=0.42853  cost/step=0.0250  net=0.40353  (n_valid=8/8)
+  speed=1.00: mean_intake/step=0.96168  cost/step=0.0500  net=0.91168  (n_valid=8/8)
+  speed=2.00: mean_intake/step=1.95833  cost/step=0.1000  net=1.85833  (n_valid=8/8)
+  speed=3.00: mean_intake/step=2.48133  cost/step=0.1500  net=2.33133  (n_valid=8/8)
+  speed=4.00: mean_intake/step=2.29839  cost/step=0.2000  net=2.09839  (n_valid=8/8)
+  Spearman(speed, intake): 0.943
+  Spearman(speed, net):    0.943
+  Slope (intake, end-to-end): 0.564650 per unit speed
+
+--- L40 ROBUSTNESS: navigation DISABLED (fixed diagonal heading + wall reflection) ---
+  Distance-matched control: the creature sweeps fresh field at every speed (no wall-clamp).
+  If the BUMP curve still RISES here (Spearman>0.5), the rise is distance-arithmetic, not nav.
+  bump    : 0.1138 0.2397 0.4727 0.9305 1.4007 1.8615   Spearman=1.000 slope=0.4660
+  flat    : 0.1241 0.2464 0.4834 0.9387 1.3626 1.7609   Spearman=1.000 slope=0.4365
+  neutral : 0.1101 0.2293 0.4555 0.8978 1.3280 1.7479   Spearman=1.000 slope=0.4367
+  BUMP nav-OFF Spearman = 1.000, slope = 0.4660 (collapses / navigation-driven: False, rises-without-nav if Spearman > 0.5)
+
+======================================================================
+L39 VERDICT
+======================================================================
+BUMP field Spearman(speed,intake) = 0.943
+  Threshold for PASS: > 0.5
+  Rising: True
+BUMP slope (end-to-end) = 0.535241
+  Threshold for non-trivial: |slope| > 0.0001
+  Non-trivial: True
+FLAT field Spearman(speed,intake) = 1.000
+  NOTE: flat field rises arithmetically (intake = rho*speed*dt). This is EXPECTED,
+  not a cheat failure. The L40 test is bump >> flat (spatial navigation bonus).
+Mean BUMP-minus-FLAT spatial bonus: 0.38434
+  Spatial bonus positive (>0.01): True
+NEUTRAL Spearman(speed,intake) = 0.943
+L40 robustness: BUMP nav-OFF Spearman = 1.000, slope = 0.4660 (navigation-driven / collapses: False)
+
+VERDICT: L39 MIXED / ARTIFACT-SUSPECT — bump rises and bump > flat (bonus=0.3843), BUT the L40 robustness control FAILS: the BUMP curve still RISES with navigation DISABLED (distance-matched billiard, nav-OFF Spearman=1.000 > 0.5). The rise is therefore (at least partly) the distance-arithmetic artifact (longer sweep integrates more field), not earned spatial navigation. Treat as a near-false-positive per L40/L41 — do NOT proceed to Rung 2 on this without isolating the navigation component.
+======================================================================

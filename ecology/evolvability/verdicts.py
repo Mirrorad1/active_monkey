@@ -82,6 +82,7 @@ class AggregateVerdict(str, enum.Enum):
     CONTROLLER_PAYS_ALONE = "CONTROLLER_PAYS_ALONE"
     NO_EFFECT            = "NO_EFFECT"
     NO_VERDICT           = "NO_VERDICT"
+    FREQUENCY_DEPENDENT  = "FREQUENCY_DEPENDENT"
 
 
 # ---------------------------------------------------------------------------
@@ -345,6 +346,7 @@ def aggregate_verdict(
     monomorphic_survivable: Optional[bool] = None,
     crosspartial: Optional[CrossPartialVerdict] = None,
     guards_all_pass: bool,
+    invasion: Optional[InvasionVerdict] = None,
 ) -> tuple:
     """Aggregate all sub-verdicts into a single experiment verdict.
 
@@ -366,7 +368,11 @@ def aggregate_verdict(
     2. gradient == POSITIVE_LOCAL_GRADIENT:
        a. not guards_all_pass
           → NO_VERDICT  (suspected artifact; a null/cheat guard FAILED)
-       b. guards_all_pass
+       b. invasion == DOES_NOT_INVADE (with valid data, i.e. an explicit verdict)
+          → FREQUENCY_DEPENDENT  (positive frequency-dependence / priority effect:
+            wins head-to-head at equal frequency but cannot spread from rarity;
+            invasion-from-rarity is the binding adaptive-dynamics criterion)
+       c. guards_all_pass (invasion absent, NO_VERDICT/FLAT, or INVADES)
           → PASS_LOCAL_GRADIENT
 
     3. gradient == NEGATIVE or FLAT (remaining cases):
@@ -391,6 +397,11 @@ def aggregate_verdict(
     monomorphic_survivable    : True iff the monomorphic optimum is a viable population
     crosspartial             : from crosspartial_verdict(); optional
     guards_all_pass          : True iff all null/cheat guards passed
+    invasion                 : from invasion_verdict() for Gate D (invasion_from_rarity);
+                               when DOES_NOT_INVADE and gradient is POSITIVE, the aggregate
+                               is FREQUENCY_DEPENDENT rather than PASS_LOCAL_GRADIENT.
+                               Only an explicit DOES_NOT_INVADE triggers the downgrade;
+                               None / NO_VERDICT / FLAT_OR_NOISY / INVADES do not.
     """
     # Rule 0: the binding local-gradient gate was not run at all.
     if gradient is None:
@@ -426,6 +437,20 @@ def aggregate_verdict(
                 AggregateVerdict.NO_VERDICT,
                 "positive local gradient but a null/cheat guard FAILED — "
                 "suspected artifact, not a pass",
+            )
+        # Rule 2b: positive pairwise + explicit DOES_NOT_INVADE from rarity =>
+        # positive frequency-dependence / priority effect, NOT directional selection.
+        # Invasion-from-rarity is the binding adaptive-dynamics criterion:
+        # a trait that wins head-to-head at 50/50 but cannot spread when rare is NOT
+        # evolvable in the adaptive-dynamics sense.  Only downgrade on an explicit
+        # DOES_NOT_INVADE with valid data; NO_VERDICT / FLAT_OR_NOISY / INVADES / None
+        # leave the verdict at PASS.
+        if invasion == InvasionVerdict.DOES_NOT_INVADE:
+            return (
+                AggregateVerdict.FREQUENCY_DEPENDENT,
+                "pairwise gradient positive but mutant DOES NOT invade from rarity => "
+                "positive frequency-dependence / priority effect, not directional selection; "
+                "invasion-from-rarity is the binding adaptive-dynamics criterion",
             )
         return (
             AggregateVerdict.PASS_LOCAL_GRADIENT,

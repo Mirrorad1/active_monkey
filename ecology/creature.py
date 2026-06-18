@@ -76,6 +76,10 @@ class Phenotype:
     fp_count: int = 0                   # ate an actually-residue cell (costly mistake)
     fn_count: int = 0                   # skipped an actually-fresh cell (missed food)
     tn_count: int = 0                   # skipped an actually-residue cell (correct skip)
+    # Exp 238: continuous locomotion parallel float position — NEVER in events_hash.
+    # pos stays int (nearest grid cell projection); pos_cont is the true continuous (x, y).
+    # None when enable_continuous_locomotion is OFF (default) — zero extra deepcopy delta.
+    pos_cont: "tuple[float, float] | None" = None
 
 
 # ---------------------------------------------------------------------------
@@ -189,7 +193,20 @@ class HomeostaticPolicy:
         rng: np.random.Generator,
     ) -> int:
         pos = creature.phenotype.pos
-        neighbors = world.neighbors(pos)
+
+        # Exp 235: terrain-gated candidate neighbor set.  ONLY inside this ON branch;
+        # the OFF path uses world.neighbors() VERBATIM (zero new rng draws).  The
+        # crossing roll is the ONLY new rng draw, strictly inside this ON branch.
+        # Gated on world.terrain_gates_movement (set True by enable_terrain in engine).
+        if world.terrain_gates_movement and world.elevation is not None:
+            neighbors = world.climbable_neighbors(
+                pos, float(creature.genotype.climb_ability), rng
+            )
+            if not neighbors:
+                return pos  # all edges sealed at current climb_ability — stay
+        else:
+            neighbors = world.neighbors(pos)
+
         if not neighbors:
             return pos  # trapped (shouldn't happen on 12x12 but handle it)
 
@@ -329,9 +346,141 @@ class HomeostaticPolicy:
 
         if not use_thermo:
             # ----------------------------------------------------------------
-            # EXACT existing logic — verbatim, unchanged — rng stream identical
+            # Exp 237: FOOD-SENSE branch — gated on world.enable_food_sense.
+            # Activates ONLY when current cell is depleted (resource <
+            # _DEPLETION_THRESHOLD) and enable_food_sense is True.  OFF path
+            # never runs this block ⇒ byte-identical to Exp 194-236 (the
+            # enable_navigation + explore/exploit paths below are reached with
+            # IDENTICAL rng draws when enable_food_sense is False).
+            #
+            # MECHANIC (honest, food-driven, NO index artifacts):
+            #   For each admissible neighbor n (climbable_neighbors when terrain ON),
+            #   compute scent(n) = sum over ALL cells c of resource[c] * decay^manhattan_dist(n, c)
+            #   Move to the neighbor with highest scent; tie-break by LOWER index (NEUTRAL).
+            #   The rich plateau (2x regen) raises scent even from the basin, so the
+            #   creature persistently retries the rim instead of retreating downhill.
+            #
+            # RNG discipline: the ONLY rng draw is the terrain crossing roll already
+            #   inside climbable_neighbors (computed above as `neighbors`).  No new draws.
+            # ----------------------------------------------------------------
+            if world.enable_food_sense:
+                _fs_resource = world.resource_at(pos)
+                if _fs_resource < _DEPLETION_THRESHOLD:
+                    _cols = world.cols
+                    _n_cells = world.rows * _cols
+                    _decay = world.food_sense_decay
+                    _best_scent = float("-inf")
+                    _best_n = neighbors[0]
+                    for _n in neighbors:
+                        _nr, _nc = divmod(_n, _cols)
+                        _scent = 0.0
+                        for _c in range(_n_cells):
+                            _cr, _cc = divmod(_c, _cols)
+                            _mdist = abs(_nr - _cr) + abs(_nc - _cc)
+                            _scent += float(world.resource[_c]) * (_decay ** _mdist)
+                        # Neutral tie-break: higher scent wins; equal => LOWER index
+                        if _scent > _best_scent or (_scent == _best_scent and _n < _best_n):
+                            _best_scent = _scent
+                            _best_n = _n
+                    return _best_n
+                # Resource plentiful here: fall through to existing logic
+
+            # ----------------------------------------------------------------
+            # Exp 236: NAVIGATION-CAPABLE branch — gated on world.enable_navigation.
+            # Activates ONLY when the current cell is depleted (resource <
+            # _DEPLETION_THRESHOLD) and enable_navigation is True.  When
+            # enable_navigation is False, this block is never entered — the EXISTING
+            # code path below runs VERBATIM with identical rng draws (OFF = byte-
+            # identical to Exp 194-235; the "stay and eat" path is also unaffected).
+            #
+            # Mechanic (minimal, honest):
+            #   TARGET = argmax over all cells of
+            #     score(cell) = m[cell] - nav_distance_penalty * manhattan_dist(pos, cell)
+            #   Take ONE STEP toward TARGET: among the candidate neighbors
+            #   (climbable_neighbors when terrain_gates_movement is ON — so the climb
+            #   gate decides whether the upslope step toward the target is available),
+            #   choose the neighbor minimizing manhattan_dist(neighbor, TARGET), tie-
+            #   broken by higher m then lower index.  If no neighbor moves toward TARGET
+            #   (all sealed / same dist), fall back to best-m neighbor.
+            #
+            # RNG discipline: the ONLY new rng draw is the terrain crossing roll
+            #   already INSIDE climbable_neighbors (world.terrain_gates_movement ON),
+            #   which is drawn BEFORE this block via the shared `neighbors` local
+            #   variable computed at the top of choose_action.  No additional rng draws
+            #   are made in this branch — the `neighbors` list was already computed above.
             # ----------------------------------------------------------------
             current_resource = world.resource_at(pos)
+
+            if world.enable_navigation and current_resource < _DEPLETION_THRESHOLD:
+                # --- Navigation: head toward best-remembered distant food ---
+                n_cells = world.rows * world.cols
+                cols = world.cols
+                penalty = world.nav_distance_penalty
+
+                # Compute row, col of current position (fast inline divmod).
+                pos_r, pos_c = divmod(pos, cols)
+
+                # Pick TARGET = argmax score(cell) over all cells.
+                # score = m[cell] - penalty * manhattan_dist(pos, cell)
+                # Tie-break: LOWEST cell index wins (the codebase convention, cf. the
+                # (m, -c) tie-breaks elsewhere) — a NEUTRAL spatial tie-break, so any
+                # plateau-seeking is driven by learned/expected food (m), not by an
+                # index artifact (plateau cells happen to have higher indices).
+                # We scan all n_cells; on a 12x12 grid this is 144 iterations — fast.
+                best_score = float("-inf")
+                target_cell = pos  # fallback: stay (should not happen on non-empty map)
+                for cell in range(n_cells):
+                    cr, cc = divmod(cell, cols)
+                    mdist = abs(pos_r - cr) + abs(pos_c - cc)
+                    score = float(self.m[cell]) - penalty * mdist
+                    if score > best_score:
+                        best_score = score
+                        target_cell = cell
+
+                # Compute target row, col for distance-to-target measurement.
+                tgt_r, tgt_c = divmod(target_cell, cols)
+                cur_dist = abs(pos_r - tgt_r) + abs(pos_c - tgt_c)
+
+                # Choose ONE STEP from pos toward TARGET: among admissible neighbors,
+                # prefer the one minimizing manhattan_dist(neighbor, TARGET).
+                # Tie-break: higher m[neighbor], then lower index.
+                toward: list[int] = []
+                away_or_equal: list[int] = []
+                for n in neighbors:
+                    nr, nc = divmod(n, cols)
+                    nd = abs(nr - tgt_r) + abs(nc - tgt_c)
+                    if nd < cur_dist:
+                        toward.append(n)
+                    else:
+                        away_or_equal.append(n)
+
+                if toward:
+                    # Among toward-target neighbors, prefer smaller dist, then higher m, then lower index.
+                    step = min(
+                        toward,
+                        key=lambda n: (
+                            abs(divmod(n, cols)[0] - tgt_r) + abs(divmod(n, cols)[1] - tgt_c),
+                            -float(self.m[n]),
+                            n,
+                        ),
+                    )
+                    return step
+                if away_or_equal:
+                    # No neighbor makes progress toward TARGET this tick — fall back to the
+                    # best-m available neighbor. (Persistent stay-at-rim was tested and
+                    # starves the population under scarcity; see EXPERIMENTS.md Exp 236.)
+                    step = max(away_or_equal, key=lambda n: (float(self.m[n]), -n))
+                else:
+                    step = pos  # no admissible neighbors (extreme edge case)
+                return step
+
+            # ----------------------------------------------------------------
+            # EXACT existing logic — verbatim, unchanged — rng stream identical
+            # when enable_navigation is False (OFF path never touches the block
+            # above, so rng draws here are byte-identical to Exp 194-235).
+            # When enable_navigation is True but resource is plentiful, we also
+            # reach this block (the "stay and eat" path is unchanged).
+            # ----------------------------------------------------------------
 
             # Decide explore vs exploit
             if current_resource < _DEPLETION_THRESHOLD:

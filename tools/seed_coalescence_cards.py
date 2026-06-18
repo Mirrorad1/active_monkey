@@ -805,6 +805,141 @@ SELF_OTHER_LEGIBILITY_WALL = BoundaryNote(
 )
 
 
+# ── environmental-complexity arc (Exp 235-237) ───────────────────────────────
+
+PERCEPTION_ENABLED_LOCOMOTION = MechanismCard(
+    mechanism_id="perception-enabled-locomotion-v0",
+    mechanism_type="costed-sensing",
+    status="constrained",
+    source_experiments=[237],
+    claim=(
+        "A distance-decayed food-scent sense (enable_food_sense) on the discrete "
+        "comfort-gated gridworld solves the REACH + SURVIVE prerequisite for testing "
+        "locomotion evolvability: gate-open plateau intake rises from ~1% (Exp 235/236) "
+        "to ~62%, and the population remains viable. The flat-world null (33% plateau "
+        "intake) confirms the benefit is food-gradient-driven, not an index-ordering "
+        "artifact (cf. Exp 236 L40 catch). enable_food_sense is byte-identical OFF; "
+        "composable with enable_terrain + climb_ability + enable_navigation. "
+        "The mechanism does NOT yield evolvable locomotion — see "
+        "local-gradient-wall-locomotion-v0 for that boundary."
+    ),
+    works_when=[
+        "enable_food_sense ON: plateau intake rises from ~1% to ~62% (gate-open control)",
+        "flat-world null confirms 33% intake is food-driven, not a grid-index artifact "
+        "(catches the L40 tie-break gaming from Exp 236)",
+        "population survives once food-sense enables plateau access",
+    ],
+    fails_when=[
+        "reach+survive does NOT imply evolvability: the climb_ability benefit curve is "
+        "flat (monomorphic saturation) and invasion_from_rarity DOES_NOT_INVADE (Exp 237)",
+        "navigation alone (enable_navigation, Exp 236) does NOT rescue reach: "
+        "gate-closed marginal ~0 (retreat-on-failed-roll; persistence starves the pop)",
+        "short-sighted greedy forager (Exp 235): plateau intake ~1% — trait behaviorally "
+        "inert even with terrain ON",
+    ],
+    required_conditions=[
+        "enable_terrain ON (sealed plateau with costed climb_ability)",
+        "enable_food_sense ON (distance-decayed scent of the live resource field)",
+        "byte-identical OFF gate verified (golden hash guard; Exp 194 + Exp 235 hashes unchanged)",
+    ],
+    reusable_interface=(
+        "enable_food_sense flag (ecology/config); distance-decayed scent perception "
+        "reusing the thermosense / band-tracking machinery pattern; composable with "
+        "enable_terrain, climb_ability, enable_navigation."
+    ),
+    inputs=[
+        "live resource field (cell regen values)",
+        "creature position",
+    ],
+    outputs=[
+        "distance-decayed food scent per cell",
+        "movement bias toward high-scent cells",
+    ],
+    state_requirements=[
+        "enable_terrain ON (sealed plateau substrate)",
+        "climb_ability heritable costed trait",
+    ],
+    costs=["food-sense has a metabolic cost (consistent with the thermosense organ pattern)"],
+    metrics=[
+        "gate-open plateau intake fraction (1% -> 62%)",
+        "flat-world null intake fraction (33% — food-driven, not index artifact)",
+        "population viability (survival fraction across seeds)",
+    ],
+    falsifiers=[
+        "if the flat-world null also shows ~62% intake, the scent drives an index artifact, "
+        "not food-gradient-driven movement (Exp 236 L40 catch would fire)",
+        "if population goes extinct with food-sense ON, the reach prerequisite is not solved",
+    ],
+    known_confounds=[
+        "Exp 235 L40: first navigation build gamed metric via highest-index target tie-break "
+        "(63.7% artifact, caught by validator); food-sense build uses fair tie-break + flat-world null",
+        "reach+survive is a GATE, not a claim of evolvability — see local-gradient-wall-locomotion-v0",
+    ],
+    next_compositions=[
+        "perception-enabled-locomotion-v0 + enable_terrain + climb_ability -> "
+        "Gate C local gradient (Exp 237: DOES_NOT_INVADE; wall holds)",
+        "continuous-space mover substrate: the next named escape once the discrete gridworld "
+        "is closed (requires a human word)",
+    ],
+)
+
+LOCAL_GRADIENT_WALL_LOCOMOTION = BoundaryNote(
+    boundary_id="local-gradient-wall-locomotion-v0",
+    source_experiments=[235, 236, 237],
+    failed_mechanism="costed heritable locomotion (climb_ability) as a locally evolvable "
+    "trait on the discrete comfort-gated gridworld",
+    observed_failure=(
+        "The local-gradient wall holds for locomotion via two compounding layers. "
+        "(a) EXPRESSIBILITY (Exp 235/236): the trait is behaviorally INERT — a local greedy "
+        "forager (Exp 235, plateau intake ~1%) and a navigation-capable policy (Exp 236, "
+        "gate-closed marginal ~0; retreat-on-failed-roll / persistence-starvation) cannot "
+        "jointly satisfy REACH + GATED-BOTTLENECK + SURVIVE on this gridworld. "
+        "(b) EVOLVABILITY (Exp 237): once food-gradient perception (enable_food_sense) "
+        "solves reach+survive (intake 1%->62%), the gen-0 monomorphic benefit curve is FLAT "
+        "(benefit saturation — every creature gets ~64% plateau food regardless of "
+        "climb_ability), and invasion_from_rarity DOES_NOT_INVADE (7/8 seeds extinct). "
+        "The Gate C pairwise 'PASS' (7/8 invader-wins at 50/50) is POSITIVE FREQUENCY-"
+        "DEPENDENCE / a priority effect: a resident advantage that cannot bootstrap from "
+        "rarity, not directional selection. Caught by a predeclared L41 manipulation check; "
+        "the Preflight aggregate was self-healed to require invasion-from-rarity alongside "
+        "the pairwise gradient (L41 fix)."
+    ),
+    tested_conditions=[
+        "Exp 235: sealed-plateau terrain + costed climb_ability, local greedy forager — "
+        "NULL/INVALID (trait behaviorally inert; plateau intake ~1%)",
+        "Exp 236: navigation-capable policy (enable_navigation) + sealed terrain — "
+        "gate-closed marginal ~0; retreat-on-failed-roll; persistence starves the pop; "
+        "L40 metric-gaming via index-artifact caught and cleaned",
+        "Exp 237: food-gradient perception (enable_food_sense) solves reach+survive "
+        "(plateau intake ~62%, flat-world null 33% food-driven); Gate C run; "
+        "monomorphic benefit flat; invasion_from_rarity DOES_NOT_INVADE (7/8 extinct); "
+        "pairwise 7/8 = frequency-dependence (L41); Preflight self-healed",
+    ],
+    excluded_confounds=[
+        "reach prerequisite: confirmed solved by enable_food_sense (Exp 237) before "
+        "running the evolvability gate — not conflated with evolvability",
+        "index-artifact in navigation build: caught by flat-world null control (Exp 236 L40)",
+        "pairwise gradient mis-read as directional selection: caught by invasion-from-rarity "
+        "manipulation check (L41); positive-frequency-dependence cannot bootstrap from rarity",
+        "the Preflight aggregate over-claiming PASS: self-healed in Exp 237 (L41 fix — "
+        "invasion-from-rarity is now a required co-criterion alongside pairwise gradient)",
+    ],
+    implication=(
+        "The local-gradient wall is now general across five modalities on the discrete "
+        "comfort-gated gridworld: scalar senses (Exp 199-201), passive memory/inference "
+        "(Exp 208-209), active information-gathering (Exp 210-213), AND locomotion "
+        "(Exp 235-237). Useful-when-gifted != locally evolvable; benefit saturation is the "
+        "recurring mechanism. The gridworld substrate is CLOSED for locomotion evolvability; "
+        "the next named escape requires a continuous-space mover (a human word)."
+    ),
+    next_safe_region_to_test=(
+        "a continuous-space mover substrate where movement cost is non-saturating per small "
+        "step and the sealed resource is not trivially accessible to a crude mover — "
+        "re-opens only on a human word; the discrete gridworld is closed"
+    ),
+)
+
+
 SEEDS = [
     ("mechanisms/functional-valence-dyad-v0/mechanism_card.json", FUNCTIONAL_VALENCE_DYAD),
     ("mechanisms/functional-valence-dyad-v0/adapters.json", DYAD_TO_ACTIVE_SENSING_ADAPTER),
@@ -824,6 +959,8 @@ SEEDS = [
     ("boundary_notes/identity-n4-commitment-v0.json", IDENTITY_N4_COMMITMENT),
     ("mechanisms/functional-goal-inference-v0/mechanism_card.json", FUNCTIONAL_GOAL_INFERENCE),
     ("boundary_notes/self-other-substrate-legibility-wall-v0.json", SELF_OTHER_LEGIBILITY_WALL),
+    ("mechanisms/perception-enabled-locomotion-v0/mechanism_card.json", PERCEPTION_ENABLED_LOCOMOTION),
+    ("boundary_notes/local-gradient-wall-locomotion-v0.json", LOCAL_GRADIENT_WALL_LOCOMOTION),
 ]
 
 

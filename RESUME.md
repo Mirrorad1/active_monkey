@@ -349,6 +349,81 @@ step 0.
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 - Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
 - Fork/replay/restore as first-class primitives: `ecology/runtime.py` (+ `ecology/RUNTIME.md`) — lossless snapshot/restore (bit-identical pause/resume), counterfactual `fork`, `replay` with a bit-match gate, and `distill` (a founder genotype from successful runs — closes the replay_or_distill gap). The `creature/` spine has its own `Creature.fork()` + `growth.replay_nll()`. A unified cross-substrate AgentState is the documented next step.
+- **Coalescence artifact standard (2026-06-17, PRs #63–66, merged):** experiments now accumulate
+  into reusable artifacts. `active_loop/coalescence/` (schema/validate/inventory/backfill/export) +
+  the `active-monkey coalesce …` CLI + `docs/ARTIFACT_SPEC.md`/`COALESCENCE_PLAN.md`/`MECHANISM_LIBRARY.md`.
+  The library holds ExperimentBundles, MechanismCards, GeometryMaps, BoundaryNotes (validate --all green).
+  When an experiment/chapter closes, distill it into a card. Memory: [[coalescence-artifact-standard]].
+- **The self-other-modeling chapter (Exp 228–234, CLOSED-POSITIVE, 2026-06-18):** descends from the
+  closed social-emergence direction's named gap (creatures are solipsistic). **Exp 229** = the FIRST
+  functional self-other modeling — a creature infers another's latent goal from its trajectory and
+  predicts it better than learning the other's transition dynamics (the solipsism gap crossed at toy
+  scale), but LIGHT (policy provided). **Exp 230–231:** the benefit is LOCALISED to transitions
+  (cold-start, goal-changes) and grows monotonically with the other's non-stationarity (direction of
+  the law confirmed; magnitude knife-edge). **Exp 232–234 (three straight sanity-gate fires):** on this
+  gridworld the SIMPLE baselines are robustly near-optimal — goal-directed BFS is too LEGIBLE to make
+  inference hard via targets (difficulty = behavioral separability not goal-space size), and reactive
+  stigmergy already coordinates so naive ToM-action HURTS. Distilled to
+  `mechanisms/functional-goal-inference-v0` + `boundary_notes/self-other-substrate-legibility-wall-v0`;
+  card `loop/directions/self-other-modeling.md` (closed-positive). Re-opens only on a substrate where
+  the simple baselines FAIL (a less-legible/partially-observed other; or a coordination task stigmergy
+  cannot solve). Introduced LESSONS L37 (stale direction-card STATUS) + L38 (predeclare a manipulation
+  check; separability != cardinality).
+- **The environmental-complexity direction (Exp 235, ACTIVE — the human's word 2026-06-18: "make
+  the environment progressively more complex … see if they develop better ways to move"):** the last
+  structurally-distinct escape from the local-gradient wall — movement was NEVER an evolvable axis
+  (199–213). A NEW substrate (`enable_terrain`, byte-identical OFF, golden-hash guarded) adds a static
+  2.5D sealed-plateau heightmap + a costed heritable `climb_ability` LOCOMOTION axis (Preflight
+  `trait_axis.py`). **Exp 235 (NULL/INVALID / NEW INSIGHT, blind-verified):** the gate-open deflation
+  control showed `climb_ability` is behaviorally INERT — the comfort-gated LOCAL greedy forager
+  (`creature.py choose_action`, steps only to the best ADJACENT cell, no path-planning) never
+  navigates to the distant sealed plateau (gate-open plateau intake ~1%, every geometry-sweep cell
+  noise-level, worse under scarcity). The bottleneck is the POLICY, not the gate; the predeclared L38
+  manipulation check fired its abort condition before any gradient batch. NOT a local-gradient wall
+  result (no valid gradient measured). **NEXT = Exp 236 (the human's pick):** add a navigation-capable
+  forage policy (path-planning toward distant high-value cells) behind a flag (byte-identical OFF), so
+  the trait is expressible, then re-run the manipulation check and the Gate C local-gradient batch.
+  **Exp 236 (NULL/INVALID / NEW INSIGHT, blind-verified):** the `enable_navigation` policy does NOT
+  rescue it. METHODOLOGY CATCH (L40): the first build GAMED the expressibility metric (63.7% plateau
+  access) via a higher-index target tie-break (plateau cells have high indices) — caught by the
+  validator re-running with the neutral codebase-convention tie-break (→ 0.5%). Honest food-driven
+  navigation reaches the plateau only under scarcity (~14%, gate-open), and the closed stochastic gate
+  yields a ~0 climb marginal (retreat-on-failed-roll; persistence starves the pop). So this gridworld
+  cannot jointly satisfy REACH + CROSS + SURVIVE for a locomotion trait — a substrate boundary across
+  BOTH the local-greedy and navigation policies. **NEXT = Exp 237 (the human's pick):** a
+  PERCEPTION-driven substrate — give the creature a resource-gradient sense (reuse the
+  thermosense/band-tracking machinery) so it perceives + navigates toward the rich plateau, movement as
+  the primary survival challenge; FAIL = even with distant-food perception no geometry makes
+  climb_ability expressible (then close the gridworld for locomotion; next = a continuous-space mover).
+  **Exp 237 (MIXED / NEW INSIGHT, blind-verified):** food-gradient PERCEPTION (`enable_food_sense`, a
+  distance-decayed scent of the live resource field) SOLVES reach+survive — gate-open plateau intake
+  1%->62%, anti-gaming-clean (flat-resource world -> 33% uniform null, food-driven not an index
+  artifact), population persists. So the substrate VALIDLY POSES the locomotion-evolvability question
+  for the first time. The answer: climb_ability does NOT cleanly evolve — the gen-0 MONOMORPHIC benefit
+  curve is FLAT (64.3-64.7% across climb 0->1; saturation) and `invasion_from_rarity` says
+  DOES_NOT_INVADE (rare mutant extinct 7/8). The Preflight's pairwise Gate C "PASS" (mutant wins 7/8
+  at 50/50) is POSITIVE FREQUENCY-DEPENDENCE / a priority effect (get-there-first on the shared
+  plateau), NOT directional selection — a caught FALSE-POSITIVE. So the **local-gradient wall EXTENDS
+  to locomotion via benefit saturation**, now general across senses (199-201), memory (208-209), active
+  sensing (210-211), and movement (237). SELF-HEAL (L41): fixed the Preflight aggregate that
+  over-claimed PASS despite invasion-from-rarity failing; invasion-from-rarity is the binding criterion.
+  **NEXT:** distil the arc into coalescence cards (a MechanismCard perception-enabled-locomotion +
+  extend the local-gradient-wall BoundaryNote to locomotion), then CLOSE the direction (the gridworld's
+  locomotion question is answered) OR — on a human word — a continuous-space mover with richer movement
+  physics. Card: `loop/directions/environmental-complexity.md`.
+  **Exp 238 (MIXED / NEW INSIGHT, self-corrected):** moved to the
+  `continuous-locomotion` direction. New `ContinuousWorld` substrate (gated
+  `enable_continuous_locomotion`, byte-identical OFF; full suite 817 passed). The discrete-grid
+  saturation does NOT reappear in continuous space (bump Spearman 0.943, non-flat, curve turns over at
+  speed 4 as cost bites) — the L39 expressibility prerequisite is met. BUT the rise is dominated by
+  DISTANCE ARITHMETIC: the flat-null (uniform field, Spearman 1.000) and the navigation-disabled
+  diagonal billiard (nav-off bump Spearman 1.000) both rise at the same rate. The genuine
+  navigation/spatial bonus is real but secondary (+~0.07 slope). An intermediate commit (06b9e6d)
+  over-claimed "L39 PASS" on a degenerate wall-clamping nav-off probe (zero-length sweeps made intake
+  speed-invariant by construction — a spurious null). 894087d fixed the probe (diagonal billiard) and
+  self-corrected to MIXED. **RUNG 2 IS GATED**: do not run invasion-from-rarity until the confound is
+  isolated (Rung 1b: cost-neutralise coverage so only efficient navigation pays). Card:
+  `loop/directions/continuous-locomotion.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

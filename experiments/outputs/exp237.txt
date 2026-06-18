@@ -1,0 +1,30 @@
+========================================================================
+Exp 237 — food-gradient perception + the Gate C/D frequency-dependence catch
+========================================================================
+
+[1] REACH — gate-open plateau intake, food_sense OFF vs ON (canonical config):
+    food_sense OFF:   1.0%  (Exp 235/236 local-greedy floor)
+    food_sense ON :  61.6%  -> perception solves REACH
+
+[2] ANTI-GAMING (L40) — FLAT-resource world (plateau NOT richer): plateau share must
+    collapse to the ~33% uniform null (48/144 cells), NOT rise toward 100%:
+    flat-world plateau share:  33.2%  (food-driven, not an index artifact)
+
+[3] gen-0 MONOMORPHIC benefit curve at the Gate C regime — FLAT => benefit SATURATES:
+    climb 0.0   ->  64.3% plateau intake
+    climb 0.05  ->  64.5% plateau intake
+    climb 0.1   ->  64.7% plateau intake
+    climb 0.2   ->  64.7% plateau intake
+    climb 0.4   ->  64.6% plateau intake
+    climb 0.8   ->  64.6% plateau intake
+    climb 1.0   ->  64.6% plateau intake
+    resident(0.05)=64.5%  mutant(0.10)=64.7%  marginal=+0.18pp  (no per-capita benefit to climbing)
+
+[4] THE CATCH (locomotion preflight at this regime, n_valid=8/8):
+    Gate C local_pairwise_gradient (50/50): POSITIVE_LOCAL_GRADIENT, mutant wins 7/8, mean_s +0.008
+    Gate D invasion_from_rarity (rare ~5%): DOES_NOT_INVADE, increase 1/8
+    => FLAT monomorphic benefit + pairwise-win + no-invasion-from-rarity = POSITIVE
+       FREQUENCY-DEPENDENCE (priority/interference on the shared plateau), NOT directional
+       selection. climb_ability does NOT cleanly evolve; the local-gradient wall holds.
+    Invasion-from-rarity is the binding adaptive-dynamics criterion (L41). The Preflight
+    aggregate PASS_LOCAL_GRADIENT is misleading when Gate C and Gate D disagree.

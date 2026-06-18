@@ -338,6 +338,13 @@ def run_preflight(
         # rather than masquerading as a collapsed-population NO_VERDICT.
         gradient = None
 
+    invasion_outcome = outcomes.get("invasion_from_rarity")
+    invasion: Optional[_v.InvasionVerdict] = (
+        _v.InvasionVerdict(invasion_outcome.verdict)
+        if invasion_outcome is not None and invasion_outcome.verdict
+        else None
+    )
+
     gifted_outcome = outcomes.get("gifted_benefit")
     benefit: Optional[_v.BenefitVerdict] = (
         _v.BenefitVerdict(gifted_outcome.verdict)
@@ -376,6 +383,7 @@ def run_preflight(
         monomorphic_survivable=monomorphic_surv,
         crosspartial=crosspartial,
         guards_all_pass=guards_all_pass,
+        invasion=invasion,
     )
 
     # ------------------------------------------------------------------

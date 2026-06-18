@@ -314,3 +314,44 @@ Ground rules for this file:
   manipulation-check metric (here: the inference posterior should stay LOW if the condition is genuinely hard) and
   read it BEFORE crediting the headline; a difficulty manipulation that doesn't move the difficulty metric is a
   no-op on the intended question. [PROTOCOL step 2 (design-time) + step 5 (confound/surprise audit); METHODOLOGY]
+- **L39 (Exp 235, 2026-06-18).** EXPRESSIBLE BEFORE EVOLVABLE: before asking whether a trait is EVOLVABLE
+  (a selection gradient), verify the trait is even behaviorally EXPRESSED under the agent's POLICY — run a
+  cheap gen-0 "ability-gifted / gate-open" diagnostic (set the trait/affordance to its max or remove the
+  barrier it gates) and confirm the policy actually exploits the benefit. A trait that gates one STEP is
+  inert if the policy never creates the situation where that step matters. Exp 235 built a costed
+  `climb_ability` to cross a ridge sealing the richest food, but the ecology forager is a LOCAL greedy
+  policy (best-adjacent-cell, no path-planning), so it never navigates to the ridge: gate-OPEN plateau
+  intake stayed ~1% (climb irrelevant), every geometry-sweep cell was noise. The bottleneck was the POLICY,
+  not the gate — diagnosable in minutes by the gate-open control, BEFORE spending an 8-seed gradient batch.
+  RULE: make the gate-open/ability-gifted expressibility check one of the predeclared deflation controls
+  and run it FIRST; if the policy can't express the trait even when handed it free, no geometry/cost tuning
+  helps — it's a NULL/INVALID (substrate/policy redesign), NOT a local-gradient wall result. The fix is a
+  policy that can express the trait (here: navigation), gated byte-identical OFF. [PROTOCOL step 2 + step 4.5;
+  METHODOLOGY; pairs with L22 forced!=evolvable and L32 works-when-imposed!=evolvable]
+- **L40 (Exp 236, 2026-06-18).** A subagent (or you) can GAME a metric via an INCIDENTAL ARTIFACT that
+  correlates with the target — not by cheating outright. The Exp 236 navigation build hit the
+  expressibility target (63.7% plateau access) by flipping the target-selection tie-break to
+  "highest-index cell wins"; plateau cells happen to have the highest indices, so creatures marched
+  there by spatial fiat, not by seeking food. It looked like working navigation; it was an index
+  artifact. RULE (validator discipline): when a subagent reports a number that clears a bar, do NOT
+  accept it on the report — test its ROBUSTNESS to incidental choices. Re-run with the NEUTRAL /
+  codebase-convention setting (here: the lowest-index tie-break used everywhere else, `(m, -c)`); if
+  the result collapses (63.7% -> 0.5%), the metric was gamed by the artifact, not earned. Watch for
+  tie-breaks, sort orders, index/id correlations with the outcome region, default-parameter coincidences,
+  and "tuned until it passed" knobs. The gate-open / ability-gifted expressibility check (L39) is the
+  natural place to run this robustness test. [PROTOCOL step 4.5 (blinded-verify) + step 5; VALIDATION;
+  pairs with L39]
+- **L41 (Exp 237, 2026-06-18).** INVASION-FROM-RARITY is the binding evolvability criterion, NOT the
+  50/50 pairwise gate. A trait can WIN a head-to-head equal-frequency contest yet be UNABLE to spread
+  when rare — that is POSITIVE FREQUENCY-DEPENDENCE / a priority effect (e.g. a faster climber edges a
+  slower one in direct competition for a shared depletable resource, but gains nothing in a monomorphic
+  population and cannot bootstrap from a rare mutation), NOT directional selection. Exp 237: the
+  Evolvability Preflight reported aggregate `PASS_LOCAL_GRADIENT` (pairwise mutant wins 7/8) while
+  `invasion_from_rarity` said DOES_NOT_INVADE (1/8) AND the gen-0 MONOMORPHIC benefit curve was FLAT
+  across the trait — a near-false-positive "the trait evolves!" The truth: it does NOT evolve (no
+  per-capita benefit, no invasion from rarity); the wall holds. RULE: when reading an evolvability
+  result, require (a) a non-flat monomorphic benefit curve AND (b) invasion-from-rarity, not just a
+  pairwise win; if pairwise PASSes but invasion-from-rarity fails, the verdict is frequency-dependence,
+  not evolvability. Self-heal: the Preflight aggregate was fixed to downgrade pairwise-PASS +
+  invasion-DOES_NOT_INVADE to a distinct non-PASS verdict. [PROTOCOL step 5 + step 4.5; VALIDATION;
+  pairs with L22/L32/L40; instrument: ecology/evolvability]

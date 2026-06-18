@@ -20,6 +20,7 @@ uv run active-monkey coalesce validate --all
 | `online-structure-growth-v0` | hidden-state-belief | **validated** (toy scale) | 152–154 |
 | `identity-n4-monitor-v0` | identity-self-modeling | **constrained** (detection only) | 176–180 |
 | `functional-goal-inference-v0` | hidden-state-belief | **constrained** (transitions only) | 228–234 |
+| `perception-enabled-locomotion-v0` | costed-sensing | **constrained** (reach+survive only; NOT evolvable) | 237 |
 | `communication-scaffold-v0` | costed-signaling | **scaffold** (NOT validated) | — (none) |
 
 - **recipe-symmetry-breaking-v0** — the project's flagship durable finding as a card: the
@@ -40,6 +41,13 @@ uv run active-monkey coalesce validate --all
   artifact, not a growth-geometry fact.
 - **identity-n4-monitor-v0** — a real, specific read-only identity-displacement monitor (AUROC
   0.894). Detection only; **defense** (commitment control) is the boundary below.
+- **perception-enabled-locomotion-v0** — `enable_food_sense` (distance-decayed food scent)
+  solves the reach+survive prerequisite for locomotion evolvability on the discrete gridworld:
+  plateau intake rises from ~1% (greedy/navigation) to ~62%; flat-world null (33%) confirms
+  it is food-gradient-driven, not an index-ordering artifact (L40 catch). The mechanism is
+  **constrained**: it opens the gate for a valid locomotion evolvability test, but does NOT
+  yield evolvable locomotion — that boundary is `local-gradient-wall-locomotion-v0`. Byte-
+  identical OFF; composable with `enable_terrain`, `climb_ability`, `enable_navigation`.
 - **communication-scaffold-v0** — explicitly speculative. The `comm_v0` benchmark is an
   existence test (~1.9 bits MI); no selection or emergence result exists. `source_experiments`
   honestly empty.
@@ -62,11 +70,15 @@ uv run active-monkey coalesce validate --all
 | `costly-sensing-wall-v0` | evolution of a costed sensory organ | no costed sense becomes functional at this substrate; the fitness valley is the barrier (Exp 199–207) |
 | `hidden-state-memory-boundary-v0` | passive hidden-state memory as a locally evolvable trait | the local-gradient wall generalises from senses to memory/inference (Exp 208–209) |
 | `self-other-substrate-legibility-wall-v0` | structured self-other modeling beating simple baselines under hard inference / in behavior | on this gridworld the simple baselines are near-optimal (goal-directed BFS is too legible; reactive stigmergy already coordinates); ToM pays only at transitions (Exp 232–234) |
+| `local-gradient-wall-locomotion-v0` | costed heritable locomotion (climb_ability) as a locally evolvable trait | two-layer failure: (a) EXPRESSIBILITY — greedy forager and navigation policy cannot jointly satisfy reach+gate+survive (Exp 235/236); (b) EVOLVABILITY — food-gradient perception solves reach+survive but benefit SATURATES flat and invasion_from_rarity DOES_NOT_INVADE; pairwise "PASS" is frequency-dependence (L41 catch); wall now general across senses, memory, active sensing, AND locomotion (Exp 235–237) |
 
 The `disembodied-stream-collapse-v0` boundary and `recipe-symmetry-breaking-v0` mechanism are
 two halves of the same finding — the collapse and what breaks its symmetry. The
 `identity-n4-commitment-v0` boundary pairs with the `identity-n4-monitor-v0` mechanism —
-detection is real, defense is config.
+detection is real, defense is config. The `local-gradient-wall-locomotion-v0` boundary pairs
+with `perception-enabled-locomotion-v0` — perception solves reach+survive (a real positive
+substrate result) but does not yield evolvable locomotion; the wall now spans senses, memory,
+active-sensing, and locomotion, closing the discrete gridworld for this arc.
 
 ## Sample experiment bundles (`experiment_bundles/`)
 

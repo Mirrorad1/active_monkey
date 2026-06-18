@@ -1,0 +1,8 @@
+Preflight complete.
+  slug            : locomotion_local_gradient
+  run_id          : 20260618T212712Z
+  aggregate_verdict: FREQUENCY_DEPENDENT
+  failure_reason  : pairwise gradient positive but mutant DOES NOT invade from rarity => positive frequency-dependence / priority effect, not directional selection; invasion-from-rarity is the binding adaptive-dynamics criterion
+  run_dir         : results/preflight/locomotion_local_gradient/20260618T212712Z
+  report.md       : results/preflight/locomotion_local_gradient/20260618T212712Z/report.md
+  summary.json    : results/preflight/locomotion_local_gradient/20260618T212712Z/summary.json

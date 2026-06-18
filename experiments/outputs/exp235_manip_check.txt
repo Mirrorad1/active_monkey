@@ -1,0 +1,71 @@
+======================================================================
+EXP 235 MANIPULATION CHECK — Reachability Flood-Fill (L38)
+======================================================================
+
+SUBSTRATE GEOMETRY
+  Grid: 12x12 = 144 cells
+  Unique elevations: [0.0, 1.0, 1.5]
+  Basin cells (elev=0.0): 48  (33%)
+  Ridge cells (elev=1.0): 12  (8%)
+  Plateau cells (elev>0.5): 96  (67%)
+  Terrain gate softness: 0.08
+  Plateau food_concentration: 2.0
+
+REGEN WEIGHTS (proportional to per-cell steady-state regen)
+  Total weight: 240.0000
+  Basin+ridge weight: 48.0000  (20.0%)
+  Plateau weight: 192.0000  (80.0%)
+
+FOUNDER SPAWN (basin-restricted)
+  Unique founder cells: [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44]
+  Count: 12 (from 12 founders)
+
+CROSSING PROBABILITIES PER STEP
+  Basin->Ridge (delta=1.0, softness=0.08):
+    climb=0.05: p = 6.96e-06  (0.0007%/step)
+    climb=0.1: p = 1.30e-05  (0.0013%/step)
+    ratio: 1.87x improvement
+  Ridge->Plateau (delta=0.5, softness=0.08):
+    climb=0.05: p = 3.59e-03  (0.3594%/step)
+    climb=0.1: p = 6.69e-03  (0.6693%/step)
+
+======================================================================
+PREDECLARED MANIPULATION CHECK METRICS
+======================================================================
+
+--- BINARY-SEALED approach (flood-fill, threshold=0.010) ---
+  Resident (climb=0.05): 48 cells reachable, regen=48.0000
+  Mutant   (climb=0.1): 48 cells reachable, regen=48.0000
+
+  (a) WITHHELD-REGEN at resident: 80.0%
+      Required: ≥30%  |  Status: PASS
+  (b) MARGINAL UNLOCKED (0.05->0.10): 0.0%
+      Status: SMALL
+
+--- EXPECTED-REGEN approach (best-path probability * regen_weight) ---
+  Resident (climb=0.05): expected regen = 48.000171 (of 240.0000)
+  Mutant   (climb=0.1): expected regen = 48.000327
+
+  (a) WITHHELD-REGEN at resident: 80.00%
+      Required: ≥30%  |  Status: PASS
+  (b) MARGINAL UNLOCKED (0.05->0.10): 0.0001%
+      Status: SMALL — crossing too tight at both values
+
+======================================================================
+TUNING GUIDANCE
+======================================================================
+
+The current geometry seals the plateau very tightly (crossing ~7e-4 % per step
+at resident climb=0.05). This satisfies (a) but the marginal step (b) is also tiny.
+
+To widen the gradient, consider:
+  - Reduce ridge height: set ridge elevation to 0.5 instead of 1.0 so delta=0.5
+    instead of delta=1.0. At climb=0.05, p = sigmoid((0.05-0.5)/0.08) = 0.4%.
+  - Increase softness: with softness=0.2, p(0.05, delta=1.0) = 0.7%,
+    p(0.10, delta=1.0) = 1.2% — ratio still 1.7x but LARGER absolute probability.
+  - Both together: delta=0.5, softness=0.15 gives p(0.05)=4.6%, p(0.10)=8.1%
+    — these are plausible per-step crossing rates in a 200-step run.
+
+NOTE: Exact tuning is the human's job. This script is the predeclared instrument.
+      Run it BEFORE the gradient batch to verify the manipulation check passes.
+======================================================================

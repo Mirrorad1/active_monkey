@@ -1,0 +1,63 @@
+========================================================================
+Exp 235 calibration — bottleneck diagnostic + geometry sweep
+thresholds: resident_share <= 0.25 (sealed), marginal >= 0.10 (large unlock)
+gen-0: 3 seeds, horizon 200, resident climb 0.05, mutant 0.1
+========================================================================
+
+[1] GATE-OPEN diagnostic (terrain_gates_movement=False, crossing free):
+    plateau_intake_share with free crossing (resident climb):   1.0%
+    full climb grid (should be ~flat — climb is irrelevant when gate open):
+      climb 0.0   ->   1.1%
+      climb 0.05  ->   1.0%
+      climb 0.1   ->   0.0%
+      climb 0.2   ->   0.0%
+      climb 0.4   ->   0.0%
+      climb 0.8   ->   0.0%
+      climb 1.0   ->  14.9%
+    gate-open marginal (mutant-resident, should be ~0 since climb is moot): -1.03pp
+    >> POLICY-BOTTLENECK SIGNAL: even with free crossing the population reaches only   1.0% of its food on the plateau.
+    >> The local greedy policy does not exploit the sealed plateau; climb_ability cannot be expressed. Gate calibration will NOT help.
+
+[1b] EXTREME-SCARCITY gate-open probe (gate open, conc 2.5 lean basin):
+     regen  horiz | gate-open plateau_share at resident climb
+     0.200   200 |   1.4%
+     0.200   600 |   1.4%
+     0.050   200 |   0.0%
+     0.050   600 |   0.0%
+     0.010   200 |   0.0%
+     0.010   600 |   0.0%
+
+[2] GEOMETRY SWEEP (gate closed):
+     ridge  soft  conc |  resid mutant   marg | seal? marg? BOTH?
+    -------------------------------------------------------------
+      0.05  0.02   2.0 |   0.9%   1.1%   0.2% |   Y    .      
+      0.05  0.05   2.0 |   0.9%   1.1%   0.2% |   Y    .      
+      0.05   0.1   2.0 |   0.9%   1.1%   0.2% |   Y    .      
+       0.1  0.02   2.0 |   0.0%   1.1%   1.1% |   Y    .      
+       0.1  0.05   2.0 |   0.0%   1.1%   1.1% |   Y    .      
+       0.1   0.1   2.0 |   0.9%   1.1%   0.2% |   Y    .      
+      0.15  0.02   2.0 |   0.0%   0.0%   0.0% |   Y    .      
+      0.15  0.05   2.0 |   0.0%   0.4%   0.4% |   Y    .      
+      0.15   0.1   2.0 |   0.0%   0.4%   0.4% |   Y    .      
+      0.25  0.02   2.0 |   0.0%   0.0%   0.0% |   Y    .      
+      0.25  0.05   2.0 |   0.0%   0.0%   0.0% |   Y    .      
+      0.25   0.1   2.0 |   0.0%   0.4%   0.4% |   Y    .      
+      0.05  0.02   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+      0.05  0.05   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+      0.05   0.1   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+       0.1  0.02   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+       0.1  0.05   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+       0.1   0.1   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+      0.15  0.02   2.5 |   0.0%   0.0%   0.0% |   Y    .      
+      0.15  0.05   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+      0.15   0.1   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+      0.25  0.02   2.5 |   0.0%   0.0%   0.0% |   Y    .      
+      0.25  0.05   2.5 |   0.0%   0.0%   0.0% |   Y    .      
+      0.25   0.1   2.5 |   1.5%   0.0%  -1.5% |   Y    .      
+
+[3] SUMMARY:
+    NO geometry cell passes both criteria with the current local greedy policy.
+    => If the gate-open diagnostic also showed low access, the honest verdict is
+       a POLICY/SUBSTRATE wall: climb_ability is behaviorally inert because the
+       local forager never paths to the sealed plateau. This is a NULL/INVALID
+       (substrate redesign), not a local-gradient wall result — log it as such.
