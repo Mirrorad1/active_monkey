@@ -222,12 +222,44 @@ UNCERTAINTY_GATED_AXIS = TraitAxis(
     disconnect_overrides={"enable_active_sensing": False},
 )
 
+# Exp 235: LOCOMOTION_AXIS — climb_ability heritable terrain climbing trait.
+# Generic common-garden backend (not thermosense) — the binding gate (local_pairwise_gradient)
+# runs through the generic path.  No inefficiency companion trait (inefficiency_trait=None).
+# No engine freeze hook => freeze_flag=None (freeze via mutation_rate=0).
+# disconnect_overrides enumerates EVERY channel climb_ability feeds (cost + movement gate +
+# plateau regen + climb cost): all turned off so the trait is causally inert for the null guard.
+LOCOMOTION_AXIS = TraitAxis(
+    name="climb_ability",
+    resident_value=0.05,
+    mutant_value=0.10,
+    low_value=0.0,
+    high_value=1.0,
+    cost_enabled=True,
+    h_trait="climb_ability",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,                       # freeze via mutation_rate=0 (no engine freeze hook)
+    enable_flag="enable_terrain",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="locomotion",                   # non-thermosense => generic gate path
+    disconnect_overrides={
+        "enable_terrain": False,
+        "terrain_gates_movement": False,
+        "terrain_food_concentration": 0.0,
+        "climb_cost_floor": 0.0,
+        "climb_cost_slope": 0.0,
+    },
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
     "belief_persistence": BELIEF_PERSISTENCE_AXIS,
     "information_sampling_rate": ACTIVE_SENSING_AXIS,
     "uncertainty_gated_gain": UNCERTAINTY_GATED_AXIS,
+    "climb_ability": LOCOMOTION_AXIS,
 }
 
 

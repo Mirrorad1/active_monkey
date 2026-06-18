@@ -39,6 +39,8 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     "belief_persistence":               (0.0,  0.95),    # 0 = react to current cue only
     # Phase 4: active sensing — per-step probability of paying to draw extra cues.
     "information_sampling_rate":        (0.0,  1.0),
+    # Exp 235: locomotion / terrain climbing ability — LAST, WITH DEFAULT (regression-safe).
+    "climb_ability":                    (0.0,  1.0),
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
@@ -51,6 +53,9 @@ MEMORY_TRAITS: frozenset[str] = frozenset({"memory_horizon", "belief_persistence
 
 # Active-sensing trait names — used to gate rng draws in mutate() (regression guard).
 ACTIVE_SENSING_TRAITS: frozenset[str] = frozenset({"information_sampling_rate"})
+
+# Exp 235: locomotion / terrain climbing trait — used to gate rng draws in mutate() (regression guard).
+LOCOMOTION_TRAITS: frozenset[str] = frozenset({"climb_ability"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -104,6 +109,9 @@ class Genotype:
     memory_horizon: int = 0                        # 0 = no cue buffer; int in [0, 12]
     belief_persistence: float = 0.0                # continuous EMA persistence; 0 = none
     information_sampling_rate: float = 0.0         # Phase 4: per-step probe probability (active sensing); 0 = never probe
+    # Exp 235: locomotion / terrain climbing ability — LAST, WITH DEFAULT (regression-safe).
+    # 0.05 = low but non-zero (founders can cross rim with very low probability).
+    climb_ability: float = 0.05
 
 
 def is_valid(g: Genotype) -> bool:
@@ -127,6 +135,7 @@ def mutate(
     freeze_thermosense: bool = False,
     mutate_memory: bool = False,
     mutate_active_sensing: bool = False,
+    mutate_locomotion: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -168,6 +177,13 @@ def mutate(
     pre-Phase-4 behaviour.  information_sampling_rate is the LAST field in field
     order, so skipping its draw leaves the rng stream for all upstream traits
     byte-identical.  Default False ⇒ byte-identical to Exp 194-209.
+
+    Exp 235 REGRESSION GUARD: when mutate_locomotion=False (the default),
+    climb_ability is copied unchanged WITHOUT any rng draw, so the rng stream for
+    all base + thermosense + memory + active-sensing traits is byte-identical to the
+    pre-Exp-235 behaviour.  climb_ability is the LAST field in field order, so
+    skipping its draw leaves the rng stream for all upstream traits byte-identical.
+    Default False ⇒ byte-identical to Exp 194-213.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -188,6 +204,12 @@ def mutate(
         # the memory skip guard above.  information_sampling_rate is the LAST field
         # in field order so no upstream trait's draw is affected when the skip fires.
         if k in ACTIVE_SENSING_TRAITS and not mutate_active_sensing:
+            new_d[k] = v
+            continue
+        # Locomotion traits: skip rng draw when mutation is disabled — mirrors the
+        # active-sensing skip guard above.  climb_ability is the LAST field in field
+        # order so no upstream trait's draw is affected when the skip fires.
+        if k in LOCOMOTION_TRAITS and not mutate_locomotion:
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]
@@ -270,6 +292,8 @@ def founder() -> Genotype:
         "belief_persistence": 0.0,
         # Phase 4: no active sensing at founding; must emerge by mutation under enable_active_sensing.
         "information_sampling_rate": 0.0,
+        # Exp 235: low but non-zero climbing ability at founding; must evolve under enable_terrain.
+        "climb_ability": 0.05,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

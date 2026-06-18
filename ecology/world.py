@@ -14,12 +14,16 @@ Grid indexing: cell = row * cols + col.  Positions are flat integers.
 """
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 import numpy as np
 
 
 _FLOOR_REGEN: float = 0.05  # minimum regrowth on depleted cells
+
+# Exp 235: terrain crossing ramp softness — controls sigmoid steepness for rim crossings.
+_TERRAIN_GATE_SOFTNESS_DEFAULT: float = 0.08
 
 
 @dataclass
@@ -137,6 +141,17 @@ class GridWorld:
     random_cost_matched_probe_rate: float = 0.0
     gate_shuffle_buffer: int = 64
 
+    # Exp 235: optional static 2.5D elevation field — None when enable_terrain=False.
+    # Mirrors the existing temperature field pattern (None => OFF, ZERO rng draws in build).
+    # Geometry: a low BASIN around the founder spawn cells, ringed by ONE ridge, behind
+    # which a HIGH PLATEAU carries concentrated regen.  terrain_gate_softness controls the
+    # sigmoid ramp that stochastically gates upslope crossings.  terrain_food_concentration
+    # is the plateau regen boost (mirrors food_concentration for the thermal-band path).
+    elevation: "np.ndarray | None" = None   # shape (rows*cols,), dtype float64
+    terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT
+    terrain_food_concentration: float = 0.0   # 0 => OFF / no boost (default: conserved flat)
+    terrain_gates_movement: bool = False       # True => climbable_neighbors used in creature
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -230,6 +245,48 @@ class GridWorld:
                 self.resource[still_zero] = min(_FLOOR_REGEN, self.capacity)
             return
 
+        # Exp 235 terrain regen: concentrated plateau regen — ONLY when enable_terrain is
+        # True (elevation field present) AND terrain_food_concentration > 0.  Geometry:
+        # plateau cells (elevation > 0.5) get regen_rate * terrain_food_concentration;
+        # basin+ridge cells (elevation <= 0.5) get regen_rate * out_factor, where
+        # out_factor is chosen so total regen is conserved (mirrors the food-coupling mask
+        # pattern).  When out_factor would go negative, the basin gets regen_rate * 1.0
+        # (normal regen) and the plateau boost is NOT applied — this prevents starving the
+        # basin when the plateau fraction is large.  Pure arithmetic (NO rng).  Returns early
+        # so existing paths are never reached when this branch is active — the existing paths
+        # are byte-identical when elevation is None (OFF path => return never fires).
+        if self.elevation is not None and self.terrain_food_concentration > 0.0:
+            # Plateau = cells where elevation > 0.5 (the ridge threshold).
+            n_cells = self.rows * self.cols
+            on_plateau = self.elevation > 0.5
+            n_in = int(np.sum(on_plateau))
+            n_out = n_cells - n_in
+            if n_out > 0:
+                out_factor = max(
+                    0.0,
+                    (n_cells - n_in * self.terrain_food_concentration) / n_out,
+                )
+            else:
+                out_factor = 0.0
+            # If out_factor would be zero (plateau too large / concentration too high),
+            # fall back to a boosted-plateau-only approach: plateau gets the boost,
+            # basin gets normal regen (not conserved-total but basin remains viable).
+            # This guards against inadvertent basin starvation.
+            if out_factor == 0.0 and n_out > 0:
+                out_factor = 1.0   # basin keeps normal regen; plateau gets extra
+            depleted = self.resource == 0.0
+            regen_amounts = np.where(
+                on_plateau,
+                self.regen_rate * self.terrain_food_concentration,
+                self.regen_rate * out_factor,
+            )
+            self.resource += regen_amounts
+            self.resource = np.clip(self.resource, 0.0, self.capacity)
+            still_zero = depleted & (self.resource == 0.0)
+            if np.any(still_zero):
+                self.resource[still_zero] = min(_FLOOR_REGEN, self.capacity)
+            return
+
         # --- Original path (byte-identical when enable_food_coupling is False) ---
         depleted = self.resource == 0.0
         self.resource += self.regen_rate
@@ -287,6 +344,50 @@ class GridWorld:
                 nb.append(self._pos(r, c + 1))
             table.append(nb)
         return table
+
+    def climbable_neighbors(
+        self, pos: int, climb: float, rng: "np.random.Generator"
+    ) -> list[int]:
+        """Exp 235: return admissible neighbors filtered by the terrain rim crossing ramp.
+
+        Downhill/flat edges are always free (prob 1.0).  An UPSLOPE edge n is admissible
+        with probability sigmoid((climb - delta_elev) / terrain_gate_softness), where
+        delta_elev = elev[n] - elev[pos] > 0.  This is a CALIBRATED RAMP: each small
+        increment of climb_ability buys a proportional increase in crossing odds.  It is
+        NOT a binary threshold (threshold would saturate at low climb; a ramp does not).
+
+        Only called when enable_terrain is True (ON-branch only); the OFF path uses
+        world.neighbors() VERBATIM with zero new rng draws.  The crossing roll is the
+        ONLY new rng draw introduced by the terrain mechanic (strictly inside this method,
+        which is only called from the ON branch of choose_action).
+
+        Returns the list of admissible neighbors (may be empty, in which case the creature
+        stays at pos — handled by the caller).  The returned list is a fresh list (not
+        cached) because it depends on rng state.
+        """
+        if self.elevation is None:
+            return self.neighbors(pos)
+        raw = self.neighbors(pos)
+        admissible: list[int] = []
+        elev_here = float(self.elevation[pos])
+        softness = self.terrain_gate_softness
+        for n in raw:
+            delta = float(self.elevation[n]) - elev_here
+            if delta <= 0.0:
+                # downhill or flat: always free
+                admissible.append(n)
+            else:
+                # upslope: sigmoid gate — each ε of climb buys a small crossing prob increase
+                x = (climb - delta) / softness
+                # numerically-stable sigmoid
+                if x >= 0.0:
+                    prob = 1.0 / (1.0 + math.exp(-x))
+                else:
+                    z = math.exp(x)
+                    prob = z / (1.0 + z)
+                if rng.random() < prob:
+                    admissible.append(n)
+        return admissible
 
     # ------------------------------------------------------------------
     # Exp 197: temperature stress query
@@ -349,6 +450,11 @@ class GridWorld:
         uncertainty_gate_sensitivity: float = 20.0,
         random_cost_matched_probe_rate: float = 0.0,
         gate_shuffle_buffer: int = 64,
+        # Exp 235: terrain parameters — all default to OFF (no-op; zero rng draws).
+        enable_terrain: bool = False,
+        terrain_food_concentration: float = 0.0,
+        terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT,
+        terrain_gates_movement: bool = True,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -364,6 +470,15 @@ class GridWorld:
         Exp 200 foraging parameters are stored in the world so step_regen() and
         creature.py can read them without threading cfg through every call.
         All defaults are no-ops — byte-identical to Exp 194–199 when not set.
+
+        Exp 235 terrain: if enable_terrain is True, a STATIC 2.5D elevation field is
+        built AFTER the existing temperature/resource init, with ZERO rng draws.
+        Geometry (for a rows x cols grid):
+          - Basin: rows//3 rows surrounding the founder spawn rows (elevation 0.0)
+          - Ridge: one ring of cells at exactly basin_rows (elevation 1.0)
+          - Plateau: all cells above the ridge ring (elevation 1.5)
+        The ridge/plateau threshold is 0.5 (used in step_regen ON-branch and
+        climbable_neighbors).  The resource rng stream is UNCHANGED.
         """
         base = capacity * max(0.0, min(1.0, initial_resource))
         perturb = rng.uniform(-0.05 * capacity, 0.05 * capacity, size=rows * cols)
@@ -387,6 +502,27 @@ class GridWorld:
                 [1 if c >= cols // 2 else 0 for r in range(rows) for c in range(cols)],
                 dtype=np.int64,
             )
+
+        # Exp 235: build static elevation map — ZERO rng draws; AFTER existing inits.
+        # Layout: bottom basin_rows rows = basin (elevation 0.0);
+        #         row basin_rows itself = ridge (elevation 1.0);
+        #         rows above = plateau (elevation 1.5).
+        # Founders are spawned at deterministic spread positions; the 12x12 balanced
+        # scenario places founders in the bottom rows (step = total//n_founders = 12),
+        # so basin = bottom 4 rows, ridge = row 4, plateau = rows 5-11.
+        elevation: np.ndarray | None = None
+        if enable_terrain:
+            basin_rows = max(1, rows // 3)
+            elev_list: list[float] = []
+            for r in range(rows):
+                for c in range(cols):
+                    if r < basin_rows:
+                        elev_list.append(0.0)      # basin
+                    elif r == basin_rows:
+                        elev_list.append(1.0)      # ridge
+                    else:
+                        elev_list.append(1.5)      # plateau
+            elevation = np.array(elev_list, dtype=np.float64)
 
         return cls(
             rows=rows,
@@ -426,4 +562,9 @@ class GridWorld:
             uncertainty_gate_sensitivity=uncertainty_gate_sensitivity,
             random_cost_matched_probe_rate=random_cost_matched_probe_rate,
             gate_shuffle_buffer=gate_shuffle_buffer,
+            # Exp 235 terrain fields — defaults are no-ops.
+            elevation=elevation,
+            terrain_gate_softness=terrain_gate_softness,
+            terrain_food_concentration=terrain_food_concentration if enable_terrain else 0.0,
+            terrain_gates_movement=terrain_gates_movement if enable_terrain else False,
         )

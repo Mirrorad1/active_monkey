@@ -28,6 +28,7 @@ from ecology.genotype import (
     Genotype, mutate, is_valid, complexity as genotype_complexity,
     thermosense_active, thermosense_upkeep,
 )
+from ecology.world import _TERRAIN_GATE_SOFTNESS_DEFAULT
 from ecology.world import GridWorld
 from ecology.creature import Creature, Phenotype
 
@@ -352,6 +353,37 @@ class EcologyConfig:
     random_cost_matched_probe_rate: float = 0.0   # fixed probe prob for random_cost_matched
     gate_shuffle_buffer: int = 64                 # ring-buffer length for the time-shuffle gate
 
+    # ------------------------------------------------------------------
+    # Exp 235: terrain / locomotion evolvability substrate — OFF by default.
+    # ALL defaults preserve Exp 194-213 byte-identical behaviour (enable_terrain False ⇒
+    # no elevation field, no crossing rolls, no climb_ability mutation, no climb cost).
+    #
+    # enable_terrain: gates ALL terrain mechanics (world elevation build, movement gate,
+    #   plateau regen boost, climb cost, climb_ability mutation in mutate()).
+    #   False (default) ⇒ zero new rng draws ⇒ byte-identical to Exp 194-213.
+    #
+    # terrain_food_concentration: regen boost for plateau cells (mirrors food_concentration
+    #   for the thermal-band path; conserved-total).  0.0 (default) ⇒ uniform regen.
+    #   Only read when enable_terrain is True.
+    #
+    # terrain_gate_softness: sigmoid ramp softness for upslope crossing probability.
+    #   A sane positive default; only read when enable_terrain is True.
+    #
+    # climb_cost_floor / climb_cost_slope: monotone cost paid per tick when terrain is ON.
+    #   total_cost = floor + slope * climb_ability (mirrors thermosense_upkeep cost shape).
+    #   Both 0.0 (default) ⇒ OFF (no climb cost ⇒ byte-identical OFF path).
+    #
+    # terrain_gates_movement: when True (and enable_terrain), movement uses
+    #   climbable_neighbors() instead of world.neighbors().  Default True so that
+    #   the plateau is genuinely sealed; set False for the gate-open control.
+    # ------------------------------------------------------------------
+    enable_terrain: bool = False
+    terrain_food_concentration: float = 0.0
+    terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT
+    climb_cost_floor: float = 0.0
+    climb_cost_slope: float = 0.0
+    terrain_gates_movement: bool = True
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -408,6 +440,11 @@ class Ecology:
             uncertainty_gate_sensitivity=cfg.uncertainty_gate_sensitivity,
             random_cost_matched_probe_rate=cfg.random_cost_matched_probe_rate,
             gate_shuffle_buffer=cfg.gate_shuffle_buffer,
+            # Exp 235 terrain params — defaults are no-ops (enable_terrain=False).
+            enable_terrain=cfg.enable_terrain,
+            terrain_food_concentration=cfg.terrain_food_concentration,
+            terrain_gate_softness=cfg.terrain_gate_softness,
+            terrain_gates_movement=cfg.terrain_gates_movement,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which
@@ -497,24 +534,51 @@ class Ecology:
             founders = [cfg.founder] * cfg.initial_population
         else:
             founders = [g for g, cnt in cfg.founder_mix for _ in range(int(cnt))]
-        step = max(1, total // max(1, len(founders)))
-        for i, geno in enumerate(founders):
-            pos = (i * step) % total
-            start_energy = geno.energy_capacity * 0.75
-            ph = Phenotype(energy=start_energy, age=0, pos=pos)
-            c = Creature(
-                creature_id=self.next_id,
-                parent_id=None,
-                generation=0,
-                lineage_root=self.next_id,
-                genotype=geno,
-                phenotype=ph,
-                n_cells=n_cells,
-            )
-            self._creatures.append(c)
-            self._alive_list.append(c)
-            self.events.append(self._event("birth", c, details={"founder": True}))
-            self.next_id += 1
+
+        # Exp 235 terrain: restrict founder spawn to BASIN cells (elevation <= 0.0)
+        # so founders start inside the sealed area, not on the ridge/plateau.
+        # Pure arithmetic (no rng); spawn positions computed from the basin cell list.
+        # When terrain is OFF, the existing placement logic is VERBATIM (byte-identical).
+        if cfg.enable_terrain and self.world.elevation is not None:
+            basin_cells = [c for c in range(n_cells)
+                           if float(self.world.elevation[c]) <= 0.0]
+            basin_step = max(1, len(basin_cells) // max(1, len(founders)))
+            for i, geno in enumerate(founders):
+                pos = basin_cells[(i * basin_step) % len(basin_cells)]
+                start_energy = geno.energy_capacity * 0.75
+                ph = Phenotype(energy=start_energy, age=0, pos=pos)
+                c = Creature(
+                    creature_id=self.next_id,
+                    parent_id=None,
+                    generation=0,
+                    lineage_root=self.next_id,
+                    genotype=geno,
+                    phenotype=ph,
+                    n_cells=n_cells,
+                )
+                self._creatures.append(c)
+                self._alive_list.append(c)
+                self.events.append(self._event("birth", c, details={"founder": True}))
+                self.next_id += 1
+        else:
+            step = max(1, total // max(1, len(founders)))
+            for i, geno in enumerate(founders):
+                pos = (i * step) % total
+                start_energy = geno.energy_capacity * 0.75
+                ph = Phenotype(energy=start_energy, age=0, pos=pos)
+                c = Creature(
+                    creature_id=self.next_id,
+                    parent_id=None,
+                    generation=0,
+                    lineage_root=self.next_id,
+                    genotype=geno,
+                    phenotype=ph,
+                    n_cells=n_cells,
+                )
+                self._creatures.append(c)
+                self._alive_list.append(c)
+                self.events.append(self._event("birth", c, details={"founder": True}))
+                self.next_id += 1
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -667,6 +731,13 @@ class Ecology:
         if cfg.enable_thermosense and thermosense_active(g, cfg.thermosense_active_threshold):
             ph.energy -= thermosense_upkeep(g, cfg.thermosense_upkeep_floor, cfg.thermosense_active_threshold)
 
+        # Exp 235: terrain climb cost — monotone in climb_ability, mirrors thermosense_upkeep
+        # shape (floor + slope * ability).  OFF when enable_terrain=False (default) ⇒
+        # byte-identical.  Both floor=0 and slope=0 (defaults) ⇒ zero cost even when ON.
+        if cfg.enable_terrain and (cfg.climb_cost_floor != 0.0 or cfg.climb_cost_slope != 0.0):
+            climb_cost = cfg.climb_cost_floor + cfg.climb_cost_slope * g.climb_ability
+            ph.energy -= max(0.0, climb_cost)
+
         # Hidden-state-mode HAZARD: a creature standing in a WRONG-type cell (cell_type !=
         # current hidden_mode) pays a small survivable energy penalty. Gated (OFF path
         # byte-identical: no draw, no read). The penalty is on CELL TYPE vs the true mode,
@@ -784,8 +855,20 @@ class Ecology:
             energy_at_repro = ph.energy
             # Only reproduce if parent stays above min_survival_energy
             if energy_at_repro - transfer - overhead > cfg.min_survival_energy:
-                # Child placement: lowest-indexed neighbor (deterministic), or parent cell
-                neighbors = self.world.neighbors(new_pos)
+                # Child placement: lowest-indexed neighbor (deterministic), or parent cell.
+                # Exp 235: when terrain is ON and movement gating is ON, guard the spawn so
+                # a newborn is NOT placed across an unclimbable rim (spurious extinction is
+                # not a gradient result).  Use world.neighbors() directly (not
+                # climbable_neighbors — spawn placement is deterministic, never probabilistic).
+                if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
+                    all_nb = self.world.neighbors(new_pos)
+                    elev_here = float(self.world.elevation[new_pos])
+                    # Allow placement on basin cells (elevation <= 0.0) or same-level;
+                    # never place a newborn on the ridge (1.0) or plateau (1.5) from basin.
+                    safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
+                    neighbors = safe_nb if safe_nb else all_nb
+                else:
+                    neighbors = self.world.neighbors(new_pos)
                 child_pos = min(neighbors) if neighbors else new_pos
 
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
@@ -793,7 +876,8 @@ class Ecology:
                                     freeze_learning_rate=cfg.freeze_learning_rate,
                                     freeze_thermosense=cfg.freeze_thermosense,
                                     mutate_memory=cfg.enable_hidden_mode,
-                                    mutate_active_sensing=cfg.enable_active_sensing)
+                                    mutate_active_sensing=cfg.enable_active_sensing,
+                                    mutate_locomotion=cfg.enable_terrain)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 child = Creature(
                     creature_id=self.next_id,

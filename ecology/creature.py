@@ -189,7 +189,20 @@ class HomeostaticPolicy:
         rng: np.random.Generator,
     ) -> int:
         pos = creature.phenotype.pos
-        neighbors = world.neighbors(pos)
+
+        # Exp 235: terrain-gated candidate neighbor set.  ONLY inside this ON branch;
+        # the OFF path uses world.neighbors() VERBATIM (zero new rng draws).  The
+        # crossing roll is the ONLY new rng draw, strictly inside this ON branch.
+        # Gated on world.terrain_gates_movement (set True by enable_terrain in engine).
+        if world.terrain_gates_movement and world.elevation is not None:
+            neighbors = world.climbable_neighbors(
+                pos, float(creature.genotype.climb_ability), rng
+            )
+            if not neighbors:
+                return pos  # all edges sealed at current climb_ability — stay
+        else:
+            neighbors = world.neighbors(pos)
+
         if not neighbors:
             return pos  # trapped (shouldn't happen on 12x12 but handle it)
 
