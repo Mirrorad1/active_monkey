@@ -341,3 +341,17 @@ Ground rules for this file:
   and "tuned until it passed" knobs. The gate-open / ability-gifted expressibility check (L39) is the
   natural place to run this robustness test. [PROTOCOL step 4.5 (blinded-verify) + step 5; VALIDATION;
   pairs with L39]
+- **L41 (Exp 237, 2026-06-18).** INVASION-FROM-RARITY is the binding evolvability criterion, NOT the
+  50/50 pairwise gate. A trait can WIN a head-to-head equal-frequency contest yet be UNABLE to spread
+  when rare — that is POSITIVE FREQUENCY-DEPENDENCE / a priority effect (e.g. a faster climber edges a
+  slower one in direct competition for a shared depletable resource, but gains nothing in a monomorphic
+  population and cannot bootstrap from a rare mutation), NOT directional selection. Exp 237: the
+  Evolvability Preflight reported aggregate `PASS_LOCAL_GRADIENT` (pairwise mutant wins 7/8) while
+  `invasion_from_rarity` said DOES_NOT_INVADE (1/8) AND the gen-0 MONOMORPHIC benefit curve was FLAT
+  across the trait — a near-false-positive "the trait evolves!" The truth: it does NOT evolve (no
+  per-capita benefit, no invasion from rarity); the wall holds. RULE: when reading an evolvability
+  result, require (a) a non-flat monomorphic benefit curve AND (b) invasion-from-rarity, not just a
+  pairwise win; if pairwise PASSes but invasion-from-rarity fails, the verdict is frequency-dependence,
+  not evolvability. Self-heal: the Preflight aggregate was fixed to downgrade pairwise-PASS +
+  invasion-DOES_NOT_INVADE to a distinct non-PASS verdict. [PROTOCOL step 5 + step 4.5; VALIDATION;
+  pairs with L22/L32/L40; instrument: ecology/evolvability]

@@ -395,7 +395,22 @@ step 0.
   thermosense/band-tracking machinery) so it perceives + navigates toward the rich plateau, movement as
   the primary survival challenge; FAIL = even with distant-food perception no geometry makes
   climb_ability expressible (then close the gridworld for locomotion; next = a continuous-space mover).
-  Card: `loop/directions/environmental-complexity.md`.
+  **Exp 237 (MIXED / NEW INSIGHT, blind-verified):** food-gradient PERCEPTION (`enable_food_sense`, a
+  distance-decayed scent of the live resource field) SOLVES reach+survive — gate-open plateau intake
+  1%->62%, anti-gaming-clean (flat-resource world -> 33% uniform null, food-driven not an index
+  artifact), population persists. So the substrate VALIDLY POSES the locomotion-evolvability question
+  for the first time. The answer: climb_ability does NOT cleanly evolve — the gen-0 MONOMORPHIC benefit
+  curve is FLAT (64.3-64.7% across climb 0->1; saturation) and `invasion_from_rarity` says
+  DOES_NOT_INVADE (rare mutant extinct 7/8). The Preflight's pairwise Gate C "PASS" (mutant wins 7/8
+  at 50/50) is POSITIVE FREQUENCY-DEPENDENCE / a priority effect (get-there-first on the shared
+  plateau), NOT directional selection — a caught FALSE-POSITIVE. So the **local-gradient wall EXTENDS
+  to locomotion via benefit saturation**, now general across senses (199-201), memory (208-209), active
+  sensing (210-211), and movement (237). SELF-HEAL (L41): fixed the Preflight aggregate that
+  over-claimed PASS despite invasion-from-rarity failing; invasion-from-rarity is the binding criterion.
+  **NEXT:** distil the arc into coalescence cards (a MechanismCard perception-enabled-locomotion +
+  extend the local-gradient-wall BoundaryNote to locomotion), then CLOSE the direction (the gridworld's
+  locomotion question is answered) OR — on a human word — a continuous-space mover with richer movement
+  physics. Card: `loop/directions/environmental-complexity.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
