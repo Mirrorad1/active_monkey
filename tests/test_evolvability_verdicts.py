@@ -355,3 +355,80 @@ class TestAggregateVerdict:
         )
         assert isinstance(reason, str)
         assert len(reason) > 0
+
+    # -------------------------------------------------------------------
+    # FREQUENCY_DEPENDENT: pairwise positive + invasion DOES_NOT_INVADE
+    # -------------------------------------------------------------------
+
+    def test_frequency_dependent_when_positive_gradient_but_does_not_invade(self):
+        # ACCEPTANCE: the near-false-positive exposed by Exp 237.
+        # A trait that wins 50/50 head-to-head but cannot spread from rarity
+        # exhibits positive frequency-dependence / a priority effect, NOT
+        # directional selection.  Invasion-from-rarity is the binding criterion
+        # in adaptive dynamics; reporting PASS here would be wrong.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=InvasionVerdict.DOES_NOT_INVADE,
+        )
+        assert verdict == AggregateVerdict.FREQUENCY_DEPENDENT
+        assert verdict != AggregateVerdict.PASS_LOCAL_GRADIENT
+        assert "invasion" in reason.lower() or "rarity" in reason.lower() or "frequency" in reason.lower()
+
+    def test_pass_still_when_positive_gradient_and_invades(self):
+        # Both gates agree: still PASS (no regression).
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=InvasionVerdict.INVADES,
+        )
+        assert verdict == AggregateVerdict.PASS_LOCAL_GRADIENT
+
+    def test_pass_still_when_positive_gradient_and_invasion_no_verdict(self):
+        # Insufficient data from Gate D: do NOT downgrade to FREQUENCY_DEPENDENT.
+        # Only an explicit DOES_NOT_INVADE triggers the downgrade.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=InvasionVerdict.NO_VERDICT,
+        )
+        assert verdict == AggregateVerdict.PASS_LOCAL_GRADIENT
+
+    def test_pass_still_when_positive_gradient_and_invasion_flat_or_noisy(self):
+        # FLAT_OR_NOISY from Gate D: do NOT downgrade.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=InvasionVerdict.FLAT_OR_NOISY,
+        )
+        assert verdict == AggregateVerdict.PASS_LOCAL_GRADIENT
+
+    def test_pass_still_when_positive_gradient_and_invasion_none(self):
+        # Gate D not run (invasion=None): do NOT downgrade.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=None,
+        )
+        assert verdict == AggregateVerdict.PASS_LOCAL_GRADIENT
+
+    def test_frequency_dependent_takes_precedence_over_guards_pass(self):
+        # When guards fail AND invasion DOES_NOT_INVADE, guards-fail rule (2a) fires first.
+        # This confirms FREQUENCY_DEPENDENT is only reachable when guards PASS.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.POSITIVE_LOCAL_GRADIENT,
+            guards_all_pass=False,
+            invasion=InvasionVerdict.DOES_NOT_INVADE,
+        )
+        # guards fail => NO_VERDICT, not FREQUENCY_DEPENDENT
+        assert verdict == AggregateVerdict.NO_VERDICT
+
+    def test_does_not_invade_with_negative_gradient_does_not_produce_frequency_dependent(self):
+        # DOES_NOT_INVADE only matters when the gradient is POSITIVE.
+        # With a negative gradient the FREQUENCY_DEPENDENT rule does not apply.
+        verdict, reason = aggregate_verdict(
+            gradient=GradientVerdict.NEGATIVE_LOCAL_GRADIENT,
+            guards_all_pass=True,
+            invasion=InvasionVerdict.DOES_NOT_INVADE,
+        )
+        assert verdict != AggregateVerdict.FREQUENCY_DEPENDENT
