@@ -411,6 +411,19 @@ step 0.
   extend the local-gradient-wall BoundaryNote to locomotion), then CLOSE the direction (the gridworld's
   locomotion question is answered) OR — on a human word — a continuous-space mover with richer movement
   physics. Card: `loop/directions/environmental-complexity.md`.
+  **Exp 238 (MIXED / NEW INSIGHT, self-corrected):** moved to the
+  `continuous-locomotion` direction. New `ContinuousWorld` substrate (gated
+  `enable_continuous_locomotion`, byte-identical OFF; full suite 817 passed). The discrete-grid
+  saturation does NOT reappear in continuous space (bump Spearman 0.943, non-flat, curve turns over at
+  speed 4 as cost bites) — the L39 expressibility prerequisite is met. BUT the rise is dominated by
+  DISTANCE ARITHMETIC: the flat-null (uniform field, Spearman 1.000) and the navigation-disabled
+  diagonal billiard (nav-off bump Spearman 1.000) both rise at the same rate. The genuine
+  navigation/spatial bonus is real but secondary (+~0.07 slope). An intermediate commit (06b9e6d)
+  over-claimed "L39 PASS" on a degenerate wall-clamping nav-off probe (zero-length sweeps made intake
+  speed-invariant by construction — a spurious null). 894087d fixed the probe (diagonal billiard) and
+  self-corrected to MIXED. **RUNG 2 IS GATED**: do not run invasion-from-rarity until the confound is
+  isolated (Rung 1b: cost-neutralise coverage so only efficient navigation pays). Card:
+  `loop/directions/continuous-locomotion.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

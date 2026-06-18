@@ -37,6 +37,13 @@ A flattering false log is worthless. These rules bind every experiment entry.
   (Exp 69: requiring the monopolist's own gate to trip). Corollary: avoid raw
   threshold-state checks for engagement (Exp 69's 0.0009 near-miss) — count events.
 - Verdict tags are mandatory: POSITIVE / NEGATIVE / MIXED + CONSOLIDATION / NEW INSIGHT.
+- **Degenerate-control guard (added after Exp 238's confounded nav-off probe):** an
+  anti-gaming null or control can PASS via a degeneracy — e.g. a wall-clamping probe that
+  forces the creature to sweep zero-length paths, making the measured quantity
+  speed-invariant by construction — and thereby launder an overclaim. Before trusting any
+  control, verify it is NON-DEGENERATE: it actually exercises the variable it controls for
+  (here: navigation-disabled creature must still sweep fresh field at every speed level).
+  A degenerate control is not a null; replace it and re-run.
 - Ban unfalsifiable glow-words ("remarkably", "impressively", "emergent" without a
   measured criterion). Numbers over adjectives.
 - The "Honest caveat" line is mandatory, even for clean positives. If you truly can't

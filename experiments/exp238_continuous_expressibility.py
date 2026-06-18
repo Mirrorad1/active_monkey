@@ -1,5 +1,20 @@
 """experiments/exp238_continuous_expressibility.py — Exp 238 Rung 1 L39 gate.
 
+Hypothesis: a continuous-space substrate where creatures move real distance d=speed*dt per
+step and harvest food as the line integral of a resource field produces a NON-saturating
+gen-0 monomorphic benefit curve (unlike the flat/saturating discrete-grid curve), AND
+the L40 anti-gaming probe (flat-field null + navigation-disabled billiard) confirms the
+rise is physics/navigation-driven, not pure distance arithmetic.
+
+Prediction: bump Spearman(speed,intake) > 0.5 (non-saturating) AND bump >> flat (spatial
+bonus > 0) AND the navigation-disabled probe COLLAPSES (nav-off Spearman < 0.5 or slope
+much lower than with-nav), confirming navigation skill drives the effect.
+
+Falsifier: (a) bump Spearman <= 0.5 (still flat/saturating in continuous space — the wall
+is substrate-general) OR (b) the navigation-disabled probe also rises (nav-off Spearman
+> 0.5), meaning the rise is distance arithmetic, not navigation — MIXED/ARTIFACT-SUSPECT;
+Rung 2 gated.
+
 Monomorphic sweep of locomotor_speed over {0.25, 0.5, 1.0, 2.0, 3.0, 4.0}.
 Gen-0 (NO evolution, NO mutation, mutation_rate=0.0).
 Measures per-capita mean intake-per-step across N seeds.
