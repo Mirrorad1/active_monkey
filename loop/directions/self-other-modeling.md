@@ -80,19 +80,4 @@ surviving ToM novelty-candidate(s) with their cascade record, or "no disciplined
 modeling benefit at this substrate; the next step would require <named substrate>" — and open
 that substrate as a new direction or stop.
 
-**STATUS.** state: CLOSED-MIXED (rung-2/3 sub-arc, Exp 228–234; descends from social-emergence's
-named next substrate "self-other modeling") · latest: Exp 234 · depends-on: social-emergence
-(closed Exp 63–74), persistent-creature, functional-emergence · reusable: q_other position/goal
-beliefs, the goal-directed-other harness, ToM prediction metrics, the learned-transition baseline
-control (the binding non-ToM comparison), the L38 manipulation-check discipline · why: FIRST
-functional self-other modeling — crossed the solipsism gap (Exp 229) · FINDINGS: ToM benefit is
-real but LIGHT and LOCALISED to transitions (cold-start Exp 229, goal-changes Exp 230), growing
-with the other's non-stationarity (Exp 231, direction confirmed); difficulty = behavioral
-separability not goal-space size (Exp 232); and on this gridworld the SIMPLE baselines are
-robustly near-optimal — goal-directed BFS is too legible to make inference hard (Exp 233) and
-reactive stigmergy already coordinates so naive ToM-action hurts (Exp 234, three straight
-sanity-gate fires). DISTILLED into the coalescence library: `mechanisms/functional-goal-inference-v0`
-(constrained) + `boundary_notes/self-other-substrate-legibility-wall-v0`. · next-falsifiable:
-re-opens only on a substrate where the SIMPLE baselines FAIL — a less-legible/partially-observed
-other (the goal not broadcast), or a coordination task stigmergy cannot solve. Do NOT re-test ToM
-benefit on this legible substrate (the wall is documented).
+**STATUS.** state: closed-positive (Exp 228–234) · latest: Exp 234 · depends-on: social-emergence (closed), persistent-creature · reusable: q_other goal beliefs, the goal-directed-other harness, the learned-transition baseline control, the L38 manipulation-check · why: FIRST functional self-other modeling — solipsism gap crossed (229), but LIGHT and localised to transitions, growing with non-stationarity (229–231); difficulty = separability not size (232); simple baselines near-optimal here (legible BFS 233; stigmergy coordinates 234) · distilled to functional-goal-inference-v0 + self-other-substrate-legibility-wall-v0 · next-falsifiable: re-opens only where the SIMPLE baselines FAIL (less-legible/partial-obs other, or coordination stigmergy cannot solve).
