@@ -4,6 +4,7 @@ window.AM_LAB_STATUS = {
   tally: { total: 237, positive: 129, negative: 72, mixed: 32, breakthroughs: 14 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
+    { name: "continuous-locomotion", state: "active", latest: "predeclared (no experiment yet; gridworld locomotion CLOSED Exp 235–237)", next: "Rung 1 — the gen-0 monomorphic benefit curve of a costed continuous locomotion trait is FLAT/saturating = no escape, the wall is substrate-general." },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
