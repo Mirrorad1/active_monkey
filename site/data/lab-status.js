@@ -4,6 +4,7 @@ window.AM_LAB_STATUS = {
   tally: { total: 234, positive: 126, negative: 72, mixed: 32, breakthroughs: 13 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
+    { name: "environmental-complexity", state: "active", latest: "Exp 235 predeclared (none logged yet)", next: "Exp 235 Rung 1 — Gate C local gradient (0.05→0.10) <7/8 despite a passing manipulation check = FAIL_LOCAL_GRADIENT, the wall extends to locomotion." },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "n4-crack-edges", state: "halted (PAUSED on human's word after Exp 193; CONSULT in loop/IDEAS.md)", latest: "Exp 193 — position null; locality re-named stream composition; falsifier fires vacuous", next: "ON A WORD — (a) quiet-chamber stream intervention [RECOMMENDED]; (b) stream-conditioned scoring; (c) accept + rung 2; (d) redirect" },
