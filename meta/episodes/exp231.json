@@ -1,0 +1,48 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp231.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp231_self_other_sweep.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.0004\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.00044\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.0082\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.0189\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.019\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.0468\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.0496\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.0578\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.058\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.9327\" quoted in entry not found in experiments/outputs/exp231.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-18T03:36:36Z",
+  "commit_sha": "58c1ab50f714692557cfa5d887f937953e83dd6a",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 231,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
