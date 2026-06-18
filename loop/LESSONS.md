@@ -314,3 +314,17 @@ Ground rules for this file:
   manipulation-check metric (here: the inference posterior should stay LOW if the condition is genuinely hard) and
   read it BEFORE crediting the headline; a difficulty manipulation that doesn't move the difficulty metric is a
   no-op on the intended question. [PROTOCOL step 2 (design-time) + step 5 (confound/surprise audit); METHODOLOGY]
+- **L39 (Exp 235, 2026-06-18).** EXPRESSIBLE BEFORE EVOLVABLE: before asking whether a trait is EVOLVABLE
+  (a selection gradient), verify the trait is even behaviorally EXPRESSED under the agent's POLICY — run a
+  cheap gen-0 "ability-gifted / gate-open" diagnostic (set the trait/affordance to its max or remove the
+  barrier it gates) and confirm the policy actually exploits the benefit. A trait that gates one STEP is
+  inert if the policy never creates the situation where that step matters. Exp 235 built a costed
+  `climb_ability` to cross a ridge sealing the richest food, but the ecology forager is a LOCAL greedy
+  policy (best-adjacent-cell, no path-planning), so it never navigates to the ridge: gate-OPEN plateau
+  intake stayed ~1% (climb irrelevant), every geometry-sweep cell was noise. The bottleneck was the POLICY,
+  not the gate — diagnosable in minutes by the gate-open control, BEFORE spending an 8-seed gradient batch.
+  RULE: make the gate-open/ability-gifted expressibility check one of the predeclared deflation controls
+  and run it FIRST; if the policy can't express the trait even when handed it free, no geometry/cost tuning
+  helps — it's a NULL/INVALID (substrate/policy redesign), NOT a local-gradient wall result. The fix is a
+  policy that can express the trait (here: navigation), gated byte-identical OFF. [PROTOCOL step 2 + step 4.5;
+  METHODOLOGY; pairs with L22 forced!=evolvable and L32 works-when-imposed!=evolvable]
