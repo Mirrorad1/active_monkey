@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "output_exists": false,
+    "output_path": "experiments/outputs/exp235.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp235_m4b_autonomous_discovery.py",
+    "site_data_references_output": false,
+    "site_data_references_script": false
+  },
+  "checks": {
+    "hard_failures": [
+      "Exp 235: raw output missing at experiments/outputs/exp235.txt"
+    ],
+    "passed": false,
+    "warnings": [
+      "Exp 235: output file missing \u2014 skipping re-quote check (experiments/outputs/exp235.txt)"
+    ]
+  },
+  "collected_at_utc": "2026-06-18T14:28:27Z",
+  "commit_sha": "069c68c6567af773fdf72f1474d19365a32f7691",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 235,
+  "future_policy_hint": "repair mechanical iteration failures before interpretation",
+  "process": {
+    "likely_risks": [
+      "missing_output",
+      "check_iteration_failure",
+      "check_iteration_warning",
+      "site_data_missing_script_reference",
+      "site_data_missing_output_reference"
+    ],
+    "notes": [],
+    "process_failure": true
+  },
+  "schema_version": 1
+}
