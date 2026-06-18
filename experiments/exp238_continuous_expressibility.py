@@ -142,21 +142,43 @@ def run_sweep(layout: str) -> dict:
 
 
 def _nav_off_intake(layout: str, speed: float, horizon: int = HORIZON) -> float:
-    """L40 ROBUSTNESS probe: drive ContinuousWorld with a FIXED heading (no navigation).
+    """L40 ROBUSTNESS probe: no-navigation control, distance-MATCHED (fair).
 
-    A single creature starts at arena center and moves due-east every step, IGNORING
-    the field. If the BUMP curve still rises with speed here, the rise was the
-    distance-arithmetic artifact, not navigation. Returns mean intake/step.
+    A single creature moves on a FIXED diagonal heading and REFLECTS off the arena
+    walls (a billiard path), IGNORING the field. The reflection is the load-bearing
+    fix: a naive fixed-east walk walls out at x=ARENA_W after a few steps and then
+    sweeps zero-length segments for the rest of the run, so per-step intake is
+    speed-invariant BY CONSTRUCTION (a wall-clamping artifact, not a real collapse).
+    Reflecting keeps the creature sweeping FRESH field at every speed, so the swept
+    path length scales with speed exactly as it does for the navigated population.
+
+    Interpretation: if the BUMP curve STILL rises with speed here (Spearman > 0.5),
+    the population's rise is the distance-arithmetic effect (longer sweep integrates
+    more field), NOT earned navigation. If it collapses (flat/non-monotone), the rise
+    is navigation-driven. Returns mean intake/step.
     """
     from ecology.continuous_world import ContinuousWorld, ARENA_W, ARENA_H
     w = ContinuousWorld.from_config(layout=layout)
     x, y = ARENA_W / 2.0, ARENA_H / 2.0
+    # Fixed diagonal heading (field-INDEPENDENT); slope tan(0.4) is irrational-ish so
+    # the billiard path does not fall into a short closed orbit over the horizon.
+    hdx, hdy = math.cos(0.4), math.sin(0.4)
     total = 0.0
     for _ in range(horizon):
-        hdx, hdy = 1.0, 0.0  # fixed heading; field ignored (navigation OFF)
         d = speed * 1.0
-        x1 = max(0.0, min(ARENA_W, x + hdx * d))
-        y1 = max(0.0, min(ARENA_H, y + hdy * d))
+        x1 = x + hdx * d
+        y1 = y + hdy * d
+        # Reflect off walls (preserve full step distance; flip the heading component).
+        if x1 > ARENA_W:
+            x1 = 2.0 * ARENA_W - x1; hdx = -hdx
+        elif x1 < 0.0:
+            x1 = -x1; hdx = -hdx
+        if y1 > ARENA_H:
+            y1 = 2.0 * ARENA_H - y1; hdy = -hdy
+        elif y1 < 0.0:
+            y1 = -y1; hdy = -hdy
+        x1 = max(0.0, min(ARENA_W, x1))
+        y1 = max(0.0, min(ARENA_H, y1))
         total += w.consume(x, y, x1, y1, energy_deficit=1e9)
         w.step_regen()
         x, y = x1, y1
@@ -233,22 +255,26 @@ def main() -> None:
         }
 
     # --- L40 ROBUSTNESS: navigation-OFF control (the decisive anti-artifact test) ---
-    pr("\n--- L40 ROBUSTNESS: navigation DISABLED (fixed heading, field ignored) ---")
-    pr("  If the BUMP curve still rises here, the rise was distance-arithmetic, not navigation.")
+    pr("\n--- L40 ROBUSTNESS: navigation DISABLED (fixed diagonal heading + wall reflection) ---")
+    pr("  Distance-matched control: the creature sweeps fresh field at every speed (no wall-clamp).")
+    pr("  If the BUMP curve still RISES here (Spearman>0.5), the rise is distance-arithmetic, not nav.")
     nav_off: dict[str, list[float]] = {}
     for layout in ["bump", "flat", "neutral"]:
         vals = run_sweep_no_nav(layout)
         nav_off[layout] = vals
+        rho = _spearman_r(list(SPEED_SWEEP), vals)
         slope = (vals[-1] - vals[0]) / (SPEED_SWEEP[-1] - SPEED_SWEEP[0])
         pr("  {:8s}: ".format(layout)
            + " ".join(f"{v:.4f}" for v in vals)
-           + f"   slope={slope:.4f}")
+           + f"   Spearman={rho:.3f} slope={slope:.4f}")
+    bump_navoff_rho = _spearman_r(list(SPEED_SWEEP), nav_off["bump"])
     bump_navoff_slope = (nav_off["bump"][-1] - nav_off["bump"][0]) / (SPEED_SWEEP[-1] - SPEED_SWEEP[0])
-    # The bump rise must COLLAPSE without navigation (slope near zero) for the escape to be real.
-    NAV_OFF_FLAT_THRESHOLD = 0.05  # nav-off bump slope must be below this (near-flat)
-    nav_off_collapses = abs(bump_navoff_slope) < NAV_OFF_FLAT_THRESHOLD
-    pr(f"  BUMP nav-OFF slope = {bump_navoff_slope:.4f} (collapses to flat: {nav_off_collapses}, "
-       f"threshold |slope| < {NAV_OFF_FLAT_THRESHOLD})")
+    # COLLAPSE = the nav-OFF bump curve does NOT rise monotonically with speed.
+    # (Spearman-based: robust to the small absolute magnitudes of a single-creature probe.)
+    NAV_OFF_RISE_THRESHOLD = 0.5
+    nav_off_collapses = bump_navoff_rho <= NAV_OFF_RISE_THRESHOLD
+    pr(f"  BUMP nav-OFF Spearman = {bump_navoff_rho:.3f}, slope = {bump_navoff_slope:.4f} "
+       f"(collapses / navigation-driven: {nav_off_collapses}, rises-without-nav if Spearman > {NAV_OFF_RISE_THRESHOLD})")
 
     pr("\n" + "=" * 70)
     pr("L39 VERDICT")
@@ -295,8 +321,8 @@ def main() -> None:
     pr(f"Mean BUMP-minus-FLAT spatial bonus: {mean_spatial_bonus:.5f}")
     pr(f"  Spatial bonus positive (>0.01): {spatial_bonus_positive}")
     pr(f"NEUTRAL Spearman(speed,intake) = {neutral['rho_intake']:.3f}")
-    pr(f"L40 robustness: BUMP nav-OFF slope = {bump_navoff_slope:.4f} "
-       f"(navigation-driven rise: {nav_off_collapses})")
+    pr(f"L40 robustness: BUMP nav-OFF Spearman = {bump_navoff_rho:.3f}, slope = {bump_navoff_slope:.4f} "
+       f"(navigation-driven / collapses: {nav_off_collapses})")
 
     if bump_rising and bump_nontrivial:
         if spatial_bonus_positive and nav_off_collapses:
@@ -307,24 +333,25 @@ def main() -> None:
                 "line-integral resource collection over swept distance, which CONFIRMS the effect is "
                 "physics-driven (not a convention/measurement artifact). BUMP >> FLAT (mean bonus={:.4f}) "
                 "isolates the spatial-navigation component (steering toward bumps), AND the decisive L40 "
-                "robustness control passes: with navigation DISABLED the BUMP rise COLLAPSES "
-                "(nav-OFF slope={:.4f} ~ 0), proving the rise is navigation-driven, NOT a distance-"
-                "arithmetic artifact. NEUTRAL layout reproduces the bump curve (consistent). Continuous "
-                "space ESCAPES the discrete saturation wall at the expressibility level. CAVEAT: because "
-                "even the FLAT field rises with speed (pure area-sweep, move-more->eat-more passes the "
-                "raw gate), L39 is EASY in continuous space — necessary but NOT sufficient. Whether this "
+                "robustness control passes: with navigation DISABLED (distance-matched billiard) the BUMP "
+                "rise COLLAPSES (nav-OFF Spearman={:.3f} <= 0.5), proving the rise is navigation-driven, "
+                "NOT a distance-arithmetic artifact. NEUTRAL layout reproduces the bump curve (consistent). "
+                "Continuous space ESCAPES the discrete saturation wall at the expressibility level. CAVEAT: "
+                "because even the FLAT field rises with speed (pure area-sweep, move-more->eat-more passes "
+                "the raw gate), L39 is EASY in continuous space — necessary but NOT sufficient. Whether this "
                 "non-saturating benefit yields LOCAL EVOLVABILITY (invasion-from-rarity) is the binding "
                 "Rung-2 (L41) test."
             ).format(bump["rho_intake"], bump["slope"], flat["rho_intake"],
-                     mean_spatial_bonus, bump_navoff_slope)
+                     mean_spatial_bonus, bump_navoff_rho)
         elif spatial_bonus_positive and not nav_off_collapses:
             verdict = (
                 "L39 MIXED / ARTIFACT-SUSPECT — bump rises and bump > flat (bonus={:.4f}), BUT the L40 "
-                "robustness control FAILS: the BUMP curve still rises with navigation DISABLED "
-                "(nav-OFF slope={:.4f}). The rise is therefore (at least partly) the distance-arithmetic "
-                "artifact (longer sweep integrates more field), not earned spatial navigation. Treat as a "
-                "near-false-positive per L40/L41 — do NOT proceed to Rung 2 on this."
-            ).format(mean_spatial_bonus, bump_navoff_slope)
+                "robustness control FAILS: the BUMP curve still RISES with navigation DISABLED "
+                "(distance-matched billiard, nav-OFF Spearman={:.3f} > 0.5). The rise is therefore (at "
+                "least partly) the distance-arithmetic artifact (longer sweep integrates more field), not "
+                "earned spatial navigation. Treat as a near-false-positive per L40/L41 — do NOT proceed to "
+                "Rung 2 on this without isolating the navigation component."
+            ).format(mean_spatial_bonus, bump_navoff_rho)
         else:
             verdict = (
                 "L39 MIXED — bump curve rises with speed but bump ≈ flat (spatial bonus={:.4f} ≤ 0.01); "

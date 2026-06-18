@@ -38,12 +38,13 @@ Exp 238 Rung 1 — L39 Expressibility Gate
   Spearman(speed, net):    0.943
   Slope (intake, end-to-end): 0.564650 per unit speed
 
---- L40 ROBUSTNESS: navigation DISABLED (fixed heading, field ignored) ---
-  If the BUMP curve still rises here, the rise was distance-arithmetic, not navigation.
-  bump    : 0.0144 0.0144 0.0144 0.0144 0.0144 0.0144   slope=0.0000
-  flat    : 0.0150 0.0150 0.0150 0.0150 0.0150 0.0150   slope=0.0000
-  neutral : 0.0149 0.0149 0.0149 0.0149 0.0149 0.0150   slope=0.0000
-  BUMP nav-OFF slope = 0.0000 (collapses to flat: True, threshold |slope| < 0.05)
+--- L40 ROBUSTNESS: navigation DISABLED (fixed diagonal heading + wall reflection) ---
+  Distance-matched control: the creature sweeps fresh field at every speed (no wall-clamp).
+  If the BUMP curve still RISES here (Spearman>0.5), the rise is distance-arithmetic, not nav.
+  bump    : 0.1138 0.2397 0.4727 0.9305 1.4007 1.8615   Spearman=1.000 slope=0.4660
+  flat    : 0.1241 0.2464 0.4834 0.9387 1.3626 1.7609   Spearman=1.000 slope=0.4365
+  neutral : 0.1101 0.2293 0.4555 0.8978 1.3280 1.7479   Spearman=1.000 slope=0.4367
+  BUMP nav-OFF Spearman = 1.000, slope = 0.4660 (collapses / navigation-driven: False, rises-without-nav if Spearman > 0.5)
 
 ======================================================================
 L39 VERDICT
@@ -60,7 +61,7 @@ FLAT field Spearman(speed,intake) = 1.000
 Mean BUMP-minus-FLAT spatial bonus: 0.38434
   Spatial bonus positive (>0.01): True
 NEUTRAL Spearman(speed,intake) = 0.943
-L40 robustness: BUMP nav-OFF slope = 0.0000 (navigation-driven rise: True)
+L40 robustness: BUMP nav-OFF Spearman = 1.000, slope = 0.4660 (navigation-driven / collapses: False)
 
-VERDICT: L39 PASS — BUMP monomorphic curve is MONOTONE + NON-FLAT in locomotor_speed (Spearman=0.943, slope=0.5352); it does NOT saturate, unlike the discrete-grid climb curve. FLAT-field null ALSO rises (Spearman=1.000, perfectly linear) — this is line-integral resource collection over swept distance, which CONFIRMS the effect is physics-driven (not a convention/measurement artifact). BUMP >> FLAT (mean bonus=0.3843) isolates the spatial-navigation component (steering toward bumps), AND the decisive L40 robustness control passes: with navigation DISABLED the BUMP rise COLLAPSES (nav-OFF slope=0.0000 ~ 0), proving the rise is navigation-driven, NOT a distance-arithmetic artifact. NEUTRAL layout reproduces the bump curve (consistent). Continuous space ESCAPES the discrete saturation wall at the expressibility level. CAVEAT: because even the FLAT field rises with speed (pure area-sweep, move-more->eat-more passes the raw gate), L39 is EASY in continuous space — necessary but NOT sufficient. Whether this non-saturating benefit yields LOCAL EVOLVABILITY (invasion-from-rarity) is the binding Rung-2 (L41) test.
+VERDICT: L39 MIXED / ARTIFACT-SUSPECT — bump rises and bump > flat (bonus=0.3843), BUT the L40 robustness control FAILS: the BUMP curve still RISES with navigation DISABLED (distance-matched billiard, nav-OFF Spearman=1.000 > 0.5). The rise is therefore (at least partly) the distance-arithmetic artifact (longer sweep integrates more field), not earned spatial navigation. Treat as a near-false-positive per L40/L41 — do NOT proceed to Rung 2 on this without isolating the navigation component.
 ======================================================================
