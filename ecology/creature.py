@@ -342,6 +342,46 @@ class HomeostaticPolicy:
 
         if not use_thermo:
             # ----------------------------------------------------------------
+            # Exp 237: FOOD-SENSE branch — gated on world.enable_food_sense.
+            # Activates ONLY when current cell is depleted (resource <
+            # _DEPLETION_THRESHOLD) and enable_food_sense is True.  OFF path
+            # never runs this block ⇒ byte-identical to Exp 194-236 (the
+            # enable_navigation + explore/exploit paths below are reached with
+            # IDENTICAL rng draws when enable_food_sense is False).
+            #
+            # MECHANIC (honest, food-driven, NO index artifacts):
+            #   For each admissible neighbor n (climbable_neighbors when terrain ON),
+            #   compute scent(n) = sum over ALL cells c of resource[c] * decay^manhattan_dist(n, c)
+            #   Move to the neighbor with highest scent; tie-break by LOWER index (NEUTRAL).
+            #   The rich plateau (2x regen) raises scent even from the basin, so the
+            #   creature persistently retries the rim instead of retreating downhill.
+            #
+            # RNG discipline: the ONLY rng draw is the terrain crossing roll already
+            #   inside climbable_neighbors (computed above as `neighbors`).  No new draws.
+            # ----------------------------------------------------------------
+            if world.enable_food_sense:
+                _fs_resource = world.resource_at(pos)
+                if _fs_resource < _DEPLETION_THRESHOLD:
+                    _cols = world.cols
+                    _n_cells = world.rows * _cols
+                    _decay = world.food_sense_decay
+                    _best_scent = float("-inf")
+                    _best_n = neighbors[0]
+                    for _n in neighbors:
+                        _nr, _nc = divmod(_n, _cols)
+                        _scent = 0.0
+                        for _c in range(_n_cells):
+                            _cr, _cc = divmod(_c, _cols)
+                            _mdist = abs(_nr - _cr) + abs(_nc - _cc)
+                            _scent += float(world.resource[_c]) * (_decay ** _mdist)
+                        # Neutral tie-break: higher scent wins; equal => LOWER index
+                        if _scent > _best_scent or (_scent == _best_scent and _n < _best_n):
+                            _best_scent = _scent
+                            _best_n = _n
+                    return _best_n
+                # Resource plentiful here: fall through to existing logic
+
+            # ----------------------------------------------------------------
             # Exp 236: NAVIGATION-CAPABLE branch — gated on world.enable_navigation.
             # Activates ONLY when the current cell is depleted (resource <
             # _DEPLETION_THRESHOLD) and enable_navigation is True.  When

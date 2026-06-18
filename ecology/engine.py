@@ -407,6 +407,21 @@ class EcologyConfig:
     enable_navigation: bool = False    # default False => byte-identical to Exp 194-235
     nav_distance_penalty: float = 0.001
 
+    # ------------------------------------------------------------------
+    # Exp 237: food-gradient perception — OFF by default.
+    # ALL defaults preserve Exp 194-236 byte-identical behaviour.
+    #
+    # enable_food_sense: when True, creatures sense a distance-decayed resource
+    #   "scent" and navigate toward the richest food each depleted step.
+    #   The rich plateau (2x regen) raises scent even from the basin, so creatures
+    #   persistently retry the terrain rim instead of retreating.
+    #   False (default) ⇒ BYTE-IDENTICAL to Exp 194-236 (block never entered).
+    # food_sense_decay: decay factor per unit of manhattan distance.
+    #   scent(n) = sum_c resource[c] * (food_sense_decay ** manhattan_dist(n, c))
+    # ------------------------------------------------------------------
+    enable_food_sense: bool = False
+    food_sense_decay: float = 0.5
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -472,6 +487,9 @@ class Ecology:
             # Exp 236 navigation params — defaults are no-ops (enable_navigation=False).
             enable_navigation=cfg.enable_navigation,
             nav_distance_penalty=cfg.nav_distance_penalty,
+            # Exp 237 food-sense params — defaults are no-ops (enable_food_sense=False).
+            enable_food_sense=cfg.enable_food_sense,
+            food_sense_decay=cfg.food_sense_decay,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which

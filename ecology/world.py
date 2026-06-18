@@ -177,6 +177,13 @@ class GridWorld:
     # Stored on the world so creature.py can read it without threading cfg.
     nav_distance_penalty: float = 0.001
 
+    # Exp 237: food-gradient perception — OFF by default (byte-identical OFF).
+    # enable_food_sense: when True, HomeostaticPolicy.choose_action senses a resource
+    #   "scent" gradient and navigates toward the richest food.
+    # food_sense_decay: distance decay factor for the scent computation.
+    enable_food_sense: bool = False
+    food_sense_decay: float = 0.5
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -492,6 +499,9 @@ class GridWorld:
         # Exp 236: navigation policy flag — default False => byte-identical to Exp 194-235.
         enable_navigation: bool = False,
         nav_distance_penalty: float = 0.05,
+        # Exp 237: food-gradient perception — default False => byte-identical to Exp 194-236.
+        enable_food_sense: bool = False,
+        food_sense_decay: float = 0.5,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -620,4 +630,7 @@ class GridWorld:
             # Exp 236: navigation policy flag (default False => byte-identical OFF).
             enable_navigation=enable_navigation,
             nav_distance_penalty=nav_distance_penalty,
+            # Exp 237: food-gradient perception (default False => byte-identical OFF).
+            enable_food_sense=enable_food_sense,
+            food_sense_decay=food_sense_decay,
         )
