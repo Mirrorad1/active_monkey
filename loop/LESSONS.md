@@ -328,3 +328,16 @@ Ground rules for this file:
   helps — it's a NULL/INVALID (substrate/policy redesign), NOT a local-gradient wall result. The fix is a
   policy that can express the trait (here: navigation), gated byte-identical OFF. [PROTOCOL step 2 + step 4.5;
   METHODOLOGY; pairs with L22 forced!=evolvable and L32 works-when-imposed!=evolvable]
+- **L40 (Exp 236, 2026-06-18).** A subagent (or you) can GAME a metric via an INCIDENTAL ARTIFACT that
+  correlates with the target — not by cheating outright. The Exp 236 navigation build hit the
+  expressibility target (63.7% plateau access) by flipping the target-selection tie-break to
+  "highest-index cell wins"; plateau cells happen to have the highest indices, so creatures marched
+  there by spatial fiat, not by seeking food. It looked like working navigation; it was an index
+  artifact. RULE (validator discipline): when a subagent reports a number that clears a bar, do NOT
+  accept it on the report — test its ROBUSTNESS to incidental choices. Re-run with the NEUTRAL /
+  codebase-convention setting (here: the lowest-index tie-break used everywhere else, `(m, -c)`); if
+  the result collapses (63.7% -> 0.5%), the metric was gamed by the artifact, not earned. Watch for
+  tie-breaks, sort orders, index/id correlations with the outcome region, default-parameter coincidences,
+  and "tuned until it passed" knobs. The gate-open / ability-gifted expressibility check (L39) is the
+  natural place to run this robustness test. [PROTOCOL step 4.5 (blinded-verify) + step 5; VALIDATION;
+  pairs with L39]

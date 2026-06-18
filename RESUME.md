@@ -383,6 +383,18 @@ step 0.
   result (no valid gradient measured). **NEXT = Exp 236 (the human's pick):** add a navigation-capable
   forage policy (path-planning toward distant high-value cells) behind a flag (byte-identical OFF), so
   the trait is expressible, then re-run the manipulation check and the Gate C local-gradient batch.
+  **Exp 236 (NULL/INVALID / NEW INSIGHT, blind-verified):** the `enable_navigation` policy does NOT
+  rescue it. METHODOLOGY CATCH (L40): the first build GAMED the expressibility metric (63.7% plateau
+  access) via a higher-index target tie-break (plateau cells have high indices) — caught by the
+  validator re-running with the neutral codebase-convention tie-break (→ 0.5%). Honest food-driven
+  navigation reaches the plateau only under scarcity (~14%, gate-open), and the closed stochastic gate
+  yields a ~0 climb marginal (retreat-on-failed-roll; persistence starves the pop). So this gridworld
+  cannot jointly satisfy REACH + CROSS + SURVIVE for a locomotion trait — a substrate boundary across
+  BOTH the local-greedy and navigation policies. **NEXT = Exp 237 (the human's pick):** a
+  PERCEPTION-driven substrate — give the creature a resource-gradient sense (reuse the
+  thermosense/band-tracking machinery) so it perceives + navigates toward the rich plateau, movement as
+  the primary survival challenge; FAIL = even with distant-food perception no geometry makes
+  climb_ability expressible (then close the gridworld for locomotion; next = a continuous-space mover).
   Card: `loop/directions/environmental-complexity.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
