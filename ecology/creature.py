@@ -76,6 +76,10 @@ class Phenotype:
     fp_count: int = 0                   # ate an actually-residue cell (costly mistake)
     fn_count: int = 0                   # skipped an actually-fresh cell (missed food)
     tn_count: int = 0                   # skipped an actually-residue cell (correct skip)
+    # Exp 238: continuous locomotion parallel float position — NEVER in events_hash.
+    # pos stays int (nearest grid cell projection); pos_cont is the true continuous (x, y).
+    # None when enable_continuous_locomotion is OFF (default) — zero extra deepcopy delta.
+    pos_cont: "tuple[float, float] | None" = None
 
 
 # ---------------------------------------------------------------------------

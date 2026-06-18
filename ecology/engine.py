@@ -31,6 +31,7 @@ from ecology.genotype import (
 from ecology.world import _TERRAIN_GATE_SOFTNESS_DEFAULT, _TERRAIN_RIDGE_HEIGHT_DEFAULT
 from ecology.world import GridWorld
 from ecology.creature import Creature, Phenotype
+from ecology.continuous_world import ContinuousWorld
 
 
 # ---------------------------------------------------------------------------
@@ -422,6 +423,30 @@ class EcologyConfig:
     enable_food_sense: bool = False
     food_sense_decay: float = 0.5
 
+    # ------------------------------------------------------------------
+    # Exp 238: continuous locomotion — OFF by default.
+    # ALL defaults preserve Exp 194-237 byte-identical behaviour.
+    #
+    # enable_continuous_locomotion: when True, a ContinuousWorld is used instead of
+    #   GridWorld; creatures move d = locomotor_speed * dt per step; intake is the
+    #   line integral of rho(x,y) along the swept segment.
+    #   False (default) ⇒ BYTE-IDENTICAL to Exp 194-237 (no new paths entered).
+    #
+    # continuous_layout: resource field layout ("bump", "flat", "neutral").
+    # continuous_dt: fixed timestep for continuous movement (distance = speed * dt).
+    # speed_cost_floor: fixed upkeep cost per step (when enable_continuous_locomotion).
+    # speed_cost_slope: per-unit locomotor_speed upkeep (monotone cost).
+    # continuous_regen_rate: per-step regen rate for continuous world sub-cells.
+    # continuous_capacity: max resource per sub-cell.
+    # ------------------------------------------------------------------
+    enable_continuous_locomotion: bool = False
+    continuous_layout: str = "bump"
+    continuous_dt: float = 1.0
+    speed_cost_floor: float = 0.0
+    speed_cost_slope: float = 0.0
+    continuous_regen_rate: float = 0.05
+    continuous_capacity: float = 2.0
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -491,6 +516,22 @@ class Ecology:
             enable_food_sense=cfg.enable_food_sense,
             food_sense_decay=cfg.food_sense_decay,
         )
+
+        # Exp 238: continuous locomotion — build ContinuousWorld as a SIBLING attribute.
+        # The discrete GridWorld above is ALWAYS built (even when ON) to keep founder spawn,
+        # world seam calls (step_regen for the discrete path), and all OFF-path code paths
+        # identical. When enable_continuous_locomotion=True, the creature movement, intake,
+        # and cost seams use self.cont_world instead of self.world; self.world is unused for
+        # resource/movement (but retained for consistency with the OFF path structure).
+        # OFF: self.cont_world = None; every continuous block is behind `if self.cont_world`.
+        if cfg.enable_continuous_locomotion:
+            self.cont_world: ContinuousWorld | None = ContinuousWorld.from_config(
+                layout=cfg.continuous_layout,
+                regen_rate=cfg.continuous_regen_rate,
+                capacity=cfg.continuous_capacity,
+            )
+        else:
+            self.cont_world = None
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which
         # requires both the food-coupling regen concentration and the temperature
@@ -625,6 +666,21 @@ class Ecology:
                 self.events.append(self._event("birth", c, details={"founder": True}))
                 self.next_id += 1
 
+        # Exp 238: set continuous positions for founders when ON.
+        # Spread founders evenly across the arena using their discrete grid pos as seed
+        # (pure arithmetic, no rng; OFF path never reaches this block — byte-identical).
+        if cfg.enable_continuous_locomotion and self.cont_world is not None:
+            from ecology.continuous_world import ARENA_W, ARENA_H
+            _rows = cfg.rows
+            _cols = cfg.cols
+            for c in self._creatures:
+                _pos = c.phenotype.pos
+                _r, _col = divmod(_pos, _cols)
+                # Map discrete (row, col) to continuous arena center of each cell.
+                x = ((_col + 0.5) / _cols) * ARENA_W
+                y = ((_r + 0.5) / _rows) * ARENA_H
+                c.phenotype.pos_cont = (x, y)
+
     # ------------------------------------------------------------------
     # Internal helpers
     # ------------------------------------------------------------------
@@ -745,11 +801,37 @@ class Ecology:
 
         # 2. Choose + execute action; pay movement_cost only if cell changed
         old_pos = ph.pos
-        new_pos = c.act(self.world, self.rng)
-        if new_pos != old_pos:
+        if self.cont_world is not None:
+            # Exp 238: continuous locomotion branch.
+            # The SAME single rng draw path runs via c.act() for byte-identity when OFF;
+            # the returned discrete cell is used as a HEADING cue (direction toward that cell)
+            # then discarded — continuous physics applies instead.
+            # ANTI-CHEAT: locomotor_speed keys ONLY how far we sweep (d = speed * dt).
+            from ecology.continuous_world import ARENA_W, ARENA_H
+            _hint_cell = c.act(self.world, self.rng)  # consumes the SAME single rng draw
+            # Derive heading toward sensed-best direction from cont_world field.
+            _x0, _y0 = ph.pos_cont if ph.pos_cont is not None else (0.5, 0.5)
+            _hdx, _hdy = self.cont_world.best_heading(_x0, _y0)
+            # Advance by d = locomotor_speed * dt (instantaneous; no momentum).
+            _d = g.locomotor_speed * cfg.continuous_dt
+            _x1 = max(0.0, min(ARENA_W, _x0 + _hdx * _d))
+            _y1 = max(0.0, min(ARENA_H, _y0 + _hdy * _d))
+            ph.pos_cont = (_x1, _y1)
+            # Project to nearest discrete grid cell (byte-identical integer pos for events_hash).
+            _r = int(_y1 / ARENA_H * cfg.rows)
+            _col = int(_x1 / ARENA_W * cfg.cols)
+            _r = max(0, min(cfg.rows - 1, _r))
+            _col = max(0, min(cfg.cols - 1, _col))
+            new_pos = _r * cfg.cols + _col
+            ph.pos = new_pos
+            # Movement cost: always charged in continuous mode (every step moves).
             ph.energy -= g.movement_cost
-            if self.cfg.log_moves:
-                self.events.append(self._event("move", c, details={"from": old_pos, "to": new_pos}))
+        else:
+            new_pos = c.act(self.world, self.rng)
+            if new_pos != old_pos:
+                ph.energy -= g.movement_cost
+                if self.cfg.log_moves:
+                    self.events.append(self._event("move", c, details={"from": old_pos, "to": new_pos}))
 
         # 3. Pay metabolic + aging cost
         ph.energy -= g.baseline_metabolic_cost + g.aging_cost * ph.age
@@ -782,6 +864,14 @@ class Ecology:
         if cfg.enable_terrain and (cfg.climb_cost_floor != 0.0 or cfg.climb_cost_slope != 0.0):
             climb_cost = cfg.climb_cost_floor + cfg.climb_cost_slope * g.climb_ability
             ph.energy -= max(0.0, climb_cost)
+
+        # Exp 238: continuous locomotion speed cost — monotone in locomotor_speed.
+        # OFF when enable_continuous_locomotion=False (default) ⇒ byte-identical (block never
+        # entered). Both floor=0 and slope=0 (defaults) ⇒ zero cost even when ON.
+        # ANTI-CHEAT: cost is never a function of intake or field value.
+        if cfg.enable_continuous_locomotion and (cfg.speed_cost_floor != 0.0 or cfg.speed_cost_slope != 0.0):
+            speed_cost = cfg.speed_cost_floor + cfg.speed_cost_slope * g.locomotor_speed
+            ph.energy -= max(0.0, speed_cost)
 
         # Hidden-state-mode HAZARD: a creature standing in a WRONG-type cell (cell_type !=
         # current hidden_mode) pays a small survivable energy penalty. Gated (OFF path
@@ -828,7 +918,23 @@ class Ecology:
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
-        if cfg.enable_residue and self.world.residue is not None:
+        # Exp 238: continuous locomotion eat — line integral along the swept segment.
+        # OFF (enable_continuous_locomotion=False) ⇒ byte-identical discrete path below.
+        if self.cont_world is not None and ph.pos_cont is not None:
+            # Exp 238: continuous eat via line integral along the swept segment.
+            # ANTI-CHEAT: intake is integral of the PROVIDED rho field.
+            if deficit > 0:
+                _x1, _y1 = ph.pos_cont  # new (end) position after this step's move
+                _hdx, _hdy = self.cont_world.best_heading(_x1, _y1)
+                _d = g.locomotor_speed * cfg.continuous_dt
+                from ecology.continuous_world import ARENA_W, ARENA_H
+                _x0e = max(0.0, min(ARENA_W, _x1 - _hdx * _d))
+                _y0e = max(0.0, min(ARENA_H, _y1 - _hdy * _d))
+                eaten = self.cont_world.consume(_x0e, _y0e, _x1, _y1, deficit)
+                ph.energy += eaten
+                ph.resource_eaten += eaten
+            # ph.energy cap, ph.age, stress: fall through to shared code below.
+        elif cfg.enable_residue and self.world.residue is not None:
             # Exp 204: residue / false-positive discrimination. ONE rng draw, made ONLY
             # in this gated ON branch and ONLY when deficit > 0 (exactly when the OFF path
             # consumes) — so the OFF path (enable_residue=False) keeps the EXACT
@@ -922,8 +1028,17 @@ class Ecology:
                                     freeze_thermosense=cfg.freeze_thermosense,
                                     mutate_memory=cfg.enable_hidden_mode,
                                     mutate_active_sensing=cfg.enable_active_sensing,
-                                    mutate_locomotion=cfg.enable_terrain)
+                                    mutate_locomotion=cfg.enable_terrain,
+                                    mutate_continuous_locomotion=cfg.enable_continuous_locomotion)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
+                # Exp 238: set continuous pos for child near parent when ON.
+                if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
+                    from ecology.continuous_world import ARENA_W, ARENA_H
+                    _pr, _pc = divmod(child_pos, cfg.cols)
+                    child_ph.pos_cont = (
+                        ((_pc + 0.5) / cfg.cols) * ARENA_W,
+                        ((_pr + 0.5) / cfg.rows) * ARENA_H,
+                    )
                 child = Creature(
                     creature_id=self.next_id,
                     parent_id=c.creature_id,
@@ -1115,6 +1230,9 @@ class Ecology:
 
         # World regeneration
         self.world.step_regen()
+        # Exp 238: continuous world regen (ON-branch only; OFF path never reaches this).
+        if self.cont_world is not None:
+            self.cont_world.step_regen()
 
         # Exp 204: residue decay (ON-branch only; no rng, not in events_hash). Placed here
         # rather than inside step_regen() so it runs regardless of which step_regen() path

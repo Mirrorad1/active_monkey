@@ -41,6 +41,8 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     "information_sampling_rate":        (0.0,  1.0),
     # Exp 235: locomotion / terrain climbing ability — LAST, WITH DEFAULT (regression-safe).
     "climb_ability":                    (0.0,  1.0),
+    # Exp 238: continuous locomotion speed — LAST, WITH DEFAULT (regression-safe).
+    "locomotor_speed":                  (0.25, 4.0),
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
@@ -56,6 +58,9 @@ ACTIVE_SENSING_TRAITS: frozenset[str] = frozenset({"information_sampling_rate"})
 
 # Exp 235: locomotion / terrain climbing trait — used to gate rng draws in mutate() (regression guard).
 LOCOMOTION_TRAITS: frozenset[str] = frozenset({"climb_ability"})
+
+# Exp 238: continuous locomotion speed trait — skip rng draw when OFF (regression guard).
+LOCOMOTION_CONTINUOUS_TRAITS: frozenset[str] = frozenset({"locomotor_speed"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -112,6 +117,9 @@ class Genotype:
     # Exp 235: locomotion / terrain climbing ability — LAST, WITH DEFAULT (regression-safe).
     # 0.05 = low but non-zero (founders can cross rim with very low probability).
     climb_ability: float = 0.05
+    # Exp 238: continuous locomotion speed — LAST, WITH DEFAULT (regression-safe).
+    # Default 1.0 = midpoint of [0.25, 4.0]; founders start at a neutral speed.
+    locomotor_speed: float = 1.0
 
 
 def is_valid(g: Genotype) -> bool:
@@ -136,6 +144,7 @@ def mutate(
     mutate_memory: bool = False,
     mutate_active_sensing: bool = False,
     mutate_locomotion: bool = False,
+    mutate_continuous_locomotion: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -184,6 +193,11 @@ def mutate(
     pre-Exp-235 behaviour.  climb_ability is the LAST field in field order, so
     skipping its draw leaves the rng stream for all upstream traits byte-identical.
     Default False ⇒ byte-identical to Exp 194-213.
+
+    Exp 238 REGRESSION GUARD: when mutate_continuous_locomotion=False (the default),
+    locomotor_speed is copied unchanged WITHOUT any rng draw, so the rng stream for
+    all prior traits is byte-identical to the pre-Exp-238 behaviour.
+    locomotor_speed is LAST in field order.  Default False ⇒ byte-identical to Exp 194-237.
     """
     d = asdict(g)
     new_d: dict[str, Any] = {}
@@ -210,6 +224,12 @@ def mutate(
         # active-sensing skip guard above.  climb_ability is the LAST field in field
         # order so no upstream trait's draw is affected when the skip fires.
         if k in LOCOMOTION_TRAITS and not mutate_locomotion:
+            new_d[k] = v
+            continue
+        # Continuous locomotion traits: skip rng draw when mutation is disabled — mirrors the
+        # locomotion skip guard above.  locomotor_speed is the LAST field in field order
+        # so no upstream trait's draw is affected when the skip fires.
+        if k in LOCOMOTION_CONTINUOUS_TRAITS and not mutate_continuous_locomotion:
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]
@@ -294,6 +314,8 @@ def founder() -> Genotype:
         "information_sampling_rate": 0.0,
         # Exp 235: low but non-zero climbing ability at founding; must evolve under enable_terrain.
         "climb_ability": 0.05,
+        # Exp 238: neutral starting speed; must evolve under enable_continuous_locomotion.
+        "locomotor_speed": 1.0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

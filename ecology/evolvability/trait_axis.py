@@ -253,6 +253,38 @@ LOCOMOTION_AXIS = TraitAxis(
     },
 )
 
+# Exp 238: LOCOMOTION_CONTINUOUS_AXIS — locomotor_speed heritable continuous-movement trait.
+# Generic backend ("locomotion_continuous" != "thermosense") => gates dispatch through the
+# generic _run_pairwise_generic / _run_invasion path with ZERO gate-code changes.
+# No inefficiency companion trait. No engine freeze hook => freeze_flag=None (freeze via mutation_rate=0).
+# disconnect_overrides enumerates EVERY channel locomotor_speed feeds (cost + continuous world):
+#   enable_continuous_locomotion=False: disables all continuous physics (movement, eat, cost)
+#   speed_cost_floor=0: zero the fixed cost
+#   speed_cost_slope=0: zero the speed-proportional cost
+# All three together make the trait causally inert (byte-identical across trait values).
+LOCOMOTION_CONTINUOUS_AXIS = TraitAxis(
+    name="locomotor_speed",
+    resident_value=1.0,
+    mutant_value=1.1,
+    low_value=0.25,
+    high_value=4.0,
+    cost_enabled=True,
+    h_trait="locomotor_speed",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,
+    enable_flag="enable_continuous_locomotion",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="locomotion_continuous",
+    disconnect_overrides={
+        "enable_continuous_locomotion": False,
+        "speed_cost_floor": 0.0,
+        "speed_cost_slope": 0.0,
+    },
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
@@ -260,6 +292,7 @@ BUILTIN_AXES: dict[str, TraitAxis] = {
     "information_sampling_rate": ACTIVE_SENSING_AXIS,
     "uncertainty_gated_gain": UNCERTAINTY_GATED_AXIS,
     "climb_ability": LOCOMOTION_AXIS,
+    "locomotor_speed": LOCOMOTION_CONTINUOUS_AXIS,
 }
 
 
