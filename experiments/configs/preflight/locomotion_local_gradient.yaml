@@ -25,13 +25,19 @@ base_overrides:
   enable_food_sense: true
   food_sense_decay: 0.5
 
-  # --- Climb cost (MUST be nonzero for the trait to be costed) ---
-  climb_cost_floor: 0.05               # fixed cost per tick when terrain is ON
-  climb_cost_slope: 0.10               # per-unit cost slope (total = floor + slope * climb_ability)
+  # --- Climb cost: INTENSITY-DEPENDENT only (floor=0). The floor is a flat per-tick tax
+  #     paid by EVERY creature when terrain is ON — it suppresses the whole population
+  #     without creating any climb gradient (only the slope scales with the trait). Zeroing
+  #     it keeps the trait properly costed (cost = slope * climb_ability, monotone) while
+  #     letting the population reach a drift-robust size (L29). ---
+  climb_cost_floor: 0.0
+  climb_cost_slope: 0.10               # per-unit cost slope (total = slope * climb_ability)
 
-  # --- Population dynamics ---
+  # --- Population dynamics: raise carrying capacity so pops are robustly > min_population
+  #     (L29: drift = pop-size, not cost; read the gradient on a large, drift-robust pop). ---
   max_population: 1000
-  initial_resource: 0.7
+  initial_resource: 0.8
+  regen_rate: 0.6                      # 3x the balanced default (0.2) to grow the standing pop
 
 # Trait axis
 trait: climb_ability
