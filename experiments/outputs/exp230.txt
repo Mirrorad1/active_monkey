@@ -1,0 +1,76 @@
+==========================================================================================
+Exp 230 — self-other-modeling Rung 2-hard: NON-STATIONARY goal vs FAIR adaptive learned baseline
+==========================================================================================
+
+Implementation notes:
+  - Shared world: vela's world (vela-fork is B, lives here natively)
+  - n_cells = 25, n_colors = 3, all_colors = [0, 1, 2]
+  - B's goal CYCLES: goal_color(step) = all_colors[(step//400) % 3]
+  - Switch steps: [400, 800, 1200, 1600]; post-switch window = 50 steps each
+  - EPS_POLICY = 0.2, ALPHA_EMA = 0.1, THRESH_GATE = 0.75
+  - LAMBDA_RELAX = 0.01, EST_INIT = 1.0
+  - M1.5s: stationary trans counts +1 Laplace, no decay (exp229 reference)
+  - M1.5a: adaptive trans float, decay=0.99 per step, +1 Laplace predict (BINDING control)
+  - M3a: q_goal uniform init; PREDICT then observe then Bayes update, then leak:
+         q_goal = 0.98*q_goal + 0.02*(1/3 each), re-normalized
+  - M2*: oracle knows CURRENT goal_color; near-one-hot (eps=1e-06)
+  - q_goal[current_goal] tracked at PREDICT time (pre-update, no leakage)
+  - BFS tie-break: uniform over minimizer neighbor cells
+  - q_goal floor: 1e-9 added to each likelihood before Bayes update
+
+--- PER-SEED TABLE ---
+
+seed   M2*_ov   M15s_ov   M15a_ov   M3a_ov     edge   M3a_ps   M15a_ps   q[cur]   M3a>M15a
+-----------------------------------------------------------------------------------------------
+   0   0.8380    0.7530    0.7925   0.8275   0.0350   0.7650    0.6500   0.9541        YES
+   1   0.8520    0.7755    0.8140   0.8430   0.0290   0.8400    0.7600   0.9541        YES
+   2   0.8570    0.7800    0.8170   0.8475   0.0305   0.7600    0.5900   0.9594        YES
+   3   0.8530    0.7770    0.8070   0.8415   0.0345   0.7600    0.5700   0.9496        YES
+   4   0.8550    0.7775    0.8090   0.8435   0.0345   0.8150    0.6550   0.9621        YES
+   5   0.8480    0.7745    0.8045   0.8370   0.0325   0.7300    0.6200   0.9492        YES
+   6   0.8545    0.7750    0.8215   0.8450   0.0235   0.7750    0.7050   0.9546        YES
+   7   0.8330    0.7515    0.7920   0.8245   0.0325   0.7750    0.6300   0.9576        YES
+-----------------------------------------------------------------------------------------------
+  mean   0.8488    0.7705    0.8072   0.8387   0.0315   0.7775    0.6475   0.9551
+  [post-switch total steps across all seeds: 1600]
+
+--- AGGREGATES ---
+
+  mean(M3a_overall - M1.5a_overall) [edge]:  0.0315  (threshold for pred_a: >=0.05)
+  count(M3a_overall > M1.5a_overall):        8/8  (threshold for pred_a: >=6/8)
+  mean M3a_overall:                          0.8387
+  mean M1.5a_overall (adaptive baseline):    0.8072
+  mean M1.5s_overall (stationary ref):       0.7705  (expected to degrade)
+  mean M2*_overall (oracle):                 0.8488
+  mean q_goal[current_goal]:                 0.9551  (pred_b threshold: >=0.60)
+  mean M3a_postswitch:                       0.7775
+  mean M1.5a_postswitch:                     0.6475
+  M3a_postswitch - M1.5a_postswitch:         0.1300  (pred_c threshold: >0)
+  M1.5s_overall vs M1.5a_overall delta:      -0.0367  (degradation reference)
+
+--- SPINE INTEGRITY (F4) ---
+
+  mirro before: 0f35f93115f4371fde6e435a...
+  mirro after:  0f35f93115f4371fde6e435a...
+  mirro intact: YES
+  vela before:  fd004cb78cc85be8164711ab...
+  vela after:   fd004cb78cc85be8164711ab...
+  vela intact:  YES
+  F4: NOT FIRED
+
+--- FALSIFIER EVALUATION ---
+
+  F1 (adaptive baseline matches goal-inference): FIRED  [mean_edge=0.0315 (need>=0.05), count=8/8 (need>=6)]
+  F2 (goal-inference cannot track changing goal): NOT FIRED  [mean q_goal[current]=0.9551 (need>=0.60)]
+  F3 (no faster post-switch re-tracking): NOT FIRED  [M3a_ps=0.7775, M1.5a_ps=0.6475 (need M3a_ps > M1.5a_ps)]
+  F4 (spine hash changed): NOT FIRED  [mirro OK, vela OK]
+
+--- PREDICTION CONJUNCT EVALUATION ---
+
+  (a) mean_edge>=0.05 AND count>=6/8:          FALSE  [edge=0.0315, count=8/8]
+  (b) mean q_goal[current] >= 0.60:            TRUE  [0.9551]
+  (c) M3a_postswitch > M1.5a_postswitch:       TRUE  [M3a=0.7775, M1.5a=0.6475]
+
+VERDICT: FALSE/F1 — adaptive learned baseline matches goal-inference overall (mean_edge=0.0315, count=8/8); ToM overall benefit does not survive fair adaptive comparison (DEFLATION)
+
+==========================================================================================
