@@ -17,6 +17,14 @@ base_overrides:
   terrain_ridge_height: 0.15            # plateau elevation (binary geometry; human will retune)
   terrain_gates_movement: true          # movement is gated by the sigmoid rim
 
+  # --- Perception (Exp 237): food-gradient scent makes the trait EXPRESSIBLE ---
+  # Without this the trait is inexpressible (Exp 235/236): the forager never reaches the
+  # plateau, so the gradient is vacuously flat. With it, every creature reaches ~61% plateau
+  # intake regardless of climb (gen-0 benefit curve is FLAT) — this Gate C run tests whether
+  # the invasion gradient is therefore negative (benefit saturates, the wall extends to locomotion).
+  enable_food_sense: true
+  food_sense_decay: 0.5
+
   # --- Climb cost (MUST be nonzero for the trait to be costed) ---
   climb_cost_floor: 0.05               # fixed cost per tick when terrain is ON
   climb_cost_slope: 0.10               # per-unit cost slope (total = floor + slope * climb_ability)
