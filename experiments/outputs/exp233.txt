@@ -1,0 +1,79 @@
+==========================================================================================
+Exp 233 — self-other-modeling Rung 2-ambiguous: ToM re-tracking with GENUINELY HARD (ambiguous) inference
+==========================================================================================
+
+Implementation notes:
+  - Substrate: identical to Exp 232 (vela-fork is B, mirro-fork is A)
+  - n_cells = 25, n_targets = 25 (all cells are candidate targets, as in Exp 232)
+  - B's CYCLE target cells: [7, 11, 13, 17]  (ambiguous center-adjacent cluster — cells orthogonal to center 12)
+  - B's goal TARGET CELL = CYCLE[(step//400) % 4]; 4 switches in H=2000
+  - Switch steps: [400, 800, 1200, 1600]; post-switch window = 50 steps each
+  - EPS_POLICY = 0.2, ALPHA_EMA = 0.1, THRESH_GATE = 0.75
+  - LAMBDA_RELAX = 0.01, EST_INIT = 1.0
+  - M1.5a: adaptive trans float, decay=0.99 per step, +1 Laplace predict (BINDING control)
+  - M3t: q_target uniform init over 25 cells; PREDICT then observe then Bayes update, then leak:
+         q_target = 0.98*q_target + 0.02*(1/25 each), re-normalized
+  - M2*: oracle knows CURRENT target cell; near-one-hot at BFS-greedy next cell (eps=1e-06)
+  - BFS dist fields for all 25 candidate targets precomputed once (shared across seeds)
+  - q_target[current_target] tracked at PREDICT time (pre-update, no leakage)
+  - BFS tie-break: uniform over minimizer neighbor cells
+  - Likelihood floor: 1e-9 added to each per-target likelihood before Bayes update
+  - Comfort gate: at-target means b_pos == current_target cell
+  - MANIPULATION CHECK threshold: mean q_target[true] < 0.60 (targets genuinely ambiguous)
+
+--- PER-SEED TABLE ---
+
+seed   M2*_ov   M15a_ov   M3t_ov   edge_ov   M3t_ps   M15a_ps   ps_edge   q[cur]   ps>=.05
+----------------------------------------------------------------------------------------------------
+   0   0.5690    0.5100   0.5495    0.0395   0.5200    0.3750    0.1450   0.8796       YES
+   1   0.5645    0.5290   0.5690    0.0400   0.5050    0.3750    0.1300   0.8852       YES
+   2   0.5720    0.5215   0.5635    0.0420   0.5350    0.3500    0.1850   0.8862       YES
+   3   0.5735    0.5225   0.5580    0.0355   0.4900    0.3500    0.1400   0.8849       YES
+   4   0.5775    0.5375   0.5710    0.0335   0.5450    0.3350    0.2100   0.8940       YES
+   5   0.5650    0.5360   0.5420    0.0060   0.5400    0.3650    0.1750   0.8840       YES
+   6   0.5885    0.5385   0.5615    0.0230   0.5400    0.3950    0.1450   0.8919       YES
+   7   0.5755    0.5385   0.5680    0.0295   0.5100    0.3300    0.1800   0.8984       YES
+----------------------------------------------------------------------------------------------------
+  mean   0.5732    0.5292   0.5603    0.0311   0.5231    0.3594    0.1637   0.8880
+  [post-switch total steps across all seeds: 1600]
+  [count seeds with postswitch_edge >= 0.05: 8/8]
+
+--- AGGREGATES ---
+
+  mean(M3t_postswitch - M1.5a_postswitch) [ps edge]: 0.1637  (threshold: >=0.05 AND >=6/8 seeds)
+  count seeds postswitch_edge >= 0.05:               8/8  (threshold: >=6/8)
+  mean M3t_overall:                                   0.5603
+  mean M1.5a_overall (adaptive baseline):             0.5292
+  mean(M3t_overall - M1.5a_overall) [overall edge]:  0.0311
+  mean M2*_overall (oracle):                          0.5732
+  mean q_target[true_target]:                         0.8880  [MANIPULATION CHECK: need < 0.60]
+
+--- MANIPULATION CHECK ---
+
+  mean q_target[true_target] = 0.8880
+  Threshold: < 0.60 (targets genuinely ambiguous; inference is hard)
+  Result: FAILED (q >= 0.60 -- targets NOT ambiguous enough)
+
+--- SPINE INTEGRITY (F2) ---
+
+  mirro before: 0f35f93115f4371fde6e435a...
+  mirro after:  0f35f93115f4371fde6e435a...
+  mirro intact: YES
+  vela before:  fd004cb78cc85be8164711ab...
+  vela after:   fd004cb78cc85be8164711ab...
+  vela intact:  YES
+  F2 (spine hash): NOT FIRED
+
+--- VERDICT LOGIC EVALUATION ---
+
+  MANIPULATION CHECK (manip_ok): mean q[true] < 0.60? NO  [0.8880]
+  (a) ps_edge >= 0.05 AND count >= 6/8:  YES  [ps_edge=0.1637, count=8/8]
+
+  Decision tree:
+    F2 (spine changed)? NO
+    manip_ok (q < 0.60)? NO (-> NO_VERDICT)
+    a_ok (ps edge)? YES (-> POSITIVE)
+
+VERDICT: NO_VERDICT (manipulation failed: q=0.8880 >= 0.60, targets not ambiguous); re-design needed
+
+==========================================================================================
