@@ -3,6 +3,9 @@
 RESUME §3b / docs/ROADMAP flagged the open gap: the production affect_pr_loop machinery
 (branch -> propose -> frozen-guard -> tests -> critic -> score -> merge) had NEVER been
 run end-to-end; Exp 226 reimplemented the keep/reject logic in a standalone script.
+Predeclared falsifier (a demonstration, not a hypothesis): the run FAILS if the real critic
+KEEPS a gaming candidate, or if it rejects/loses the honest improving candidate; both
+outcomes are mechanically checkable from the committed result JSON.
 
 This drives the ACTUAL active_loop.affect_pr_loop.one_affect_iteration on an isolated
 `git clone --local` of the repo, with:
