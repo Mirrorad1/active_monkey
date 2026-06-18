@@ -71,3 +71,19 @@
 {"event": "live", "age_steps": 114750, "summary": "lived 6000 steps; map_accuracy=1.000; localize_bits=-0.000", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
 {"event": "save", "age_steps": 114750, "summary": "saved to creature/state/vela", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
 {"event": "checkpoint_after", "exp": "Exp 130", "age_steps": 114750, "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664", "summary": "Exp 130: checkpoint after (age 108750 -> 114750)"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed0'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed1'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed2'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed3'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed4'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed5'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed6'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed7'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed0'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed1'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed2'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed3'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed4'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed5'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed6'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
+{"event": "fork", "age_steps": 114750, "summary": "forked into 'exp228-vela-fork-seed7'", "state_hash": "fd004cb78cc85be8164711abca6827d0012007ea9829f035caeb6f46d9599664"}
