@@ -385,6 +385,28 @@ class EcologyConfig:
     climb_cost_slope: float = 0.0
     terrain_gates_movement: bool = True
 
+    # ------------------------------------------------------------------
+    # Exp 236: navigation-capable foraging policy — OFF by default.
+    # ALL defaults preserve Exp 194-235 byte-identical behaviour.
+    #
+    # enable_navigation: when True (and use_thermo is False), the depleted-cell
+    #   foraging branch uses a GLOBAL target-selection step before the existing
+    #   local explore/exploit logic:
+    #     - pick TARGET = argmax over all cells of
+    #         score(cell) = m[cell] - nav_distance_penalty * manhattan_dist(pos, cell)
+    #     - take ONE STEP toward TARGET among the candidate neighbors
+    #       (climbable_neighbors when terrain_gates_movement is True, else neighbors())
+    #     - tie-break: closer to TARGET first, then higher m, then lower index
+    #     - if no admissible neighbor moves toward TARGET: fall back to best-m neighbor
+    #   Resource plentiful => "stay and eat" (unchanged).  OFF => byte-identical.
+    #
+    # nav_distance_penalty: score discount per unit of manhattan distance.
+    #   Small penalty (default 0.05) so creatures prefer closer high-value cells
+    #   over very distant ones, but still navigate far if the food value is high.
+    # ------------------------------------------------------------------
+    enable_navigation: bool = False    # default False => byte-identical to Exp 194-235
+    nav_distance_penalty: float = 0.001
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -447,6 +469,9 @@ class Ecology:
             terrain_gate_softness=cfg.terrain_gate_softness,
             terrain_ridge_height=cfg.terrain_ridge_height,
             terrain_gates_movement=cfg.terrain_gates_movement,
+            # Exp 236 navigation params — defaults are no-ops (enable_navigation=False).
+            enable_navigation=cfg.enable_navigation,
+            nav_distance_penalty=cfg.nav_distance_penalty,
         )
 
         # Exp 201 guard: band-staleness needs a drifting food band to track, which

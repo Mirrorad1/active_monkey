@@ -163,6 +163,20 @@ class GridWorld:
     terrain_food_concentration: float = 0.0   # 0 => OFF / no boost (default: conserved flat)
     terrain_gates_movement: bool = True        # True => climbable_neighbors used in creature
 
+    # Exp 236: navigation-capable foraging policy flag.
+    # False (default) => OFF path is BYTE-IDENTICAL to Exp 194-235.
+    # True  => HomeostaticPolicy.choose_action uses the global-target navigation branch
+    #          (head toward the best-remembered food cell) when current cell is depleted.
+    enable_navigation: bool = False
+
+    # Exp 236: distance penalty for the navigation target score.
+    # score(cell) = m[cell] - nav_distance_penalty * manhattan_dist(pos, cell)
+    # A small value (0.001) so m differences dominate over distance; the penalty
+    # only breaks near-equal-m ties and reduces pointless long hikes to distant
+    # cells that score only marginally better than closer ones.
+    # Stored on the world so creature.py can read it without threading cfg.
+    nav_distance_penalty: float = 0.001
+
     # PERF (not part of state/equality): lazily-built static neighbor table (see neighbors()).
     _neighbor_table: "list[list[int]] | None" = field(default=None, init=False, repr=False, compare=False)
 
@@ -475,6 +489,9 @@ class GridWorld:
         terrain_gate_softness: float = _TERRAIN_GATE_SOFTNESS_DEFAULT,
         terrain_ridge_height: float = _TERRAIN_RIDGE_HEIGHT_DEFAULT,
         terrain_gates_movement: bool = True,
+        # Exp 236: navigation policy flag — default False => byte-identical to Exp 194-235.
+        enable_navigation: bool = False,
+        nav_distance_penalty: float = 0.05,
     ) -> "GridWorld":
         """Build initial resource field and optional temperature gradient.
 
@@ -600,4 +617,7 @@ class GridWorld:
             # When enable_terrain=False, elevation is None, so climbable_neighbors degrades
             # gracefully to world.neighbors() even if the field is True.
             terrain_gates_movement=terrain_gates_movement,
+            # Exp 236: navigation policy flag (default False => byte-identical OFF).
+            enable_navigation=enable_navigation,
+            nav_distance_penalty=nav_distance_penalty,
         )
