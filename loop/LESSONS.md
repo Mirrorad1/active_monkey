@@ -302,3 +302,15 @@ Ground rules for this file:
   card's STATUS line; before running "the next rung", grep EXPERIMENTS.md for that direction's experiments and
   confirm the rung is genuinely unrun. When you find a stale STATUS, FIX it in the same iteration (mark the
   closure + point to the descendant direction) — the card is a pointer, the log is the truth. [PROTOCOL step 0/1; META]
+- **L38 (Exp 232, 2026-06-18).** MANIPULATION CHECK: when you design a "harder" (or "easier", or "more X")
+  condition to stress-test a prior result, ADD AND PREDECLARE a check that the manipulation ACTUALLY moved the
+  thing it was supposed to — otherwise a passed metric just answers a WEAKER question than you think. Exp 232
+  tried to make goal-inference HARD with a "25-way" target (vs the trivial 3-way of Exp 229-231), but the
+  inference posterior hit q=0.93 (>> the 0.40 bar) because the 4 CORNER targets chosen induce maximally-different
+  trajectories — trivially separable. The "25-way" was nominal; the actual inference stayed easy, so the
+  predeclared POSITIVE did NOT overcome the "trivial-goal" caveat it set out to test. GENERAL PRINCIPLE the miss
+  taught: inference difficulty over another agent's latent goal is set by the behavioral SEPARABILITY of the goals
+  (how differently they make the agent act), NOT by the goal-space SIZE/cardinality. RULE: predeclare a
+  manipulation-check metric (here: the inference posterior should stay LOW if the condition is genuinely hard) and
+  read it BEFORE crediting the headline; a difficulty manipulation that doesn't move the difficulty metric is a
+  no-op on the intended question. [PROTOCOL step 2 (design-time) + step 5 (confound/surprise audit); METHODOLOGY]
