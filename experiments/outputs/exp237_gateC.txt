@@ -1,0 +1,8 @@
+Preflight complete.
+  slug            : locomotion_local_gradient
+  run_id          : 20260618T205718Z
+  aggregate_verdict: PASS_LOCAL_GRADIENT
+  failure_reason  : positive local gradient confirmed and all guards passed
+  run_dir         : results/preflight/locomotion_local_gradient/20260618T205718Z
+  report.md       : results/preflight/locomotion_local_gradient/20260618T205718Z/report.md
+  summary.json    : results/preflight/locomotion_local_gradient/20260618T205718Z/summary.json
