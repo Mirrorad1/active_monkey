@@ -349,6 +349,26 @@ step 0.
 - Suite ~250 fast tests green; every Exp 152+ verdict blind-verified (PROTOCOL 4.5).
 - Efficiency / context discipline: see loop/EFFICIENCY.md (hot vs cold context, lean workflow results, slim output commits, STATUS-line cap).
 - Fork/replay/restore as first-class primitives: `ecology/runtime.py` (+ `ecology/RUNTIME.md`) — lossless snapshot/restore (bit-identical pause/resume), counterfactual `fork`, `replay` with a bit-match gate, and `distill` (a founder genotype from successful runs — closes the replay_or_distill gap). The `creature/` spine has its own `Creature.fork()` + `growth.replay_nll()`. A unified cross-substrate AgentState is the documented next step.
+- **Coalescence artifact standard (2026-06-17, PRs #63–66, merged):** experiments now accumulate
+  into reusable artifacts. `active_loop/coalescence/` (schema/validate/inventory/backfill/export) +
+  the `active-monkey coalesce …` CLI + `docs/ARTIFACT_SPEC.md`/`COALESCENCE_PLAN.md`/`MECHANISM_LIBRARY.md`.
+  The library holds ExperimentBundles, MechanismCards, GeometryMaps, BoundaryNotes (validate --all green).
+  When an experiment/chapter closes, distill it into a card. Memory: [[coalescence-artifact-standard]].
+- **The self-other-modeling chapter (Exp 228–234, CLOSED-POSITIVE, 2026-06-18):** descends from the
+  closed social-emergence direction's named gap (creatures are solipsistic). **Exp 229** = the FIRST
+  functional self-other modeling — a creature infers another's latent goal from its trajectory and
+  predicts it better than learning the other's transition dynamics (the solipsism gap crossed at toy
+  scale), but LIGHT (policy provided). **Exp 230–231:** the benefit is LOCALISED to transitions
+  (cold-start, goal-changes) and grows monotonically with the other's non-stationarity (direction of
+  the law confirmed; magnitude knife-edge). **Exp 232–234 (three straight sanity-gate fires):** on this
+  gridworld the SIMPLE baselines are robustly near-optimal — goal-directed BFS is too LEGIBLE to make
+  inference hard via targets (difficulty = behavioral separability not goal-space size), and reactive
+  stigmergy already coordinates so naive ToM-action HURTS. Distilled to
+  `mechanisms/functional-goal-inference-v0` + `boundary_notes/self-other-substrate-legibility-wall-v0`;
+  card `loop/directions/self-other-modeling.md` (closed-positive). Re-opens only on a substrate where
+  the simple baselines FAIL (a less-legible/partially-observed other; or a coordination task stigmergy
+  cannot solve). Introduced LESSONS L37 (stale direction-card STATUS) + L38 (predeclare a manipulation
+  check; separability != cardinality).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
