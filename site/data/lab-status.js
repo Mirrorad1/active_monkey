@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 231, title: "self-other-modeling Rung 2-sweep: the \"ToM pays in proportion to the other's non-stationarity\" law — DIRECTION confirmed (clean monotone), magnitude a HAIR under the predeclared bar", tag: "MIXED" },
-  tally: { total: 231, positive: 123, negative: 72, mixed: 32, breakthroughs: 12 },
+  latest_exp: { n: 232, title: "self-other-modeling Rung 2-hardgoal: the ToM benefit EXTENDS to a 25-way candidate space — but the chosen targets were too easy to tell apart (q->0.93), so this did NOT test a genuinely hard inference; the real lesson is difficulty = behavioral SEPARABILITY, not goal-space SIZE", tag: "POSITIVE" },
+  tally: { total: 232, positive: 124, negative: 72, mixed: 32, breakthroughs: 13 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
