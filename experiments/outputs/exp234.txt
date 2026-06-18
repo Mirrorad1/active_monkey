@@ -1,0 +1,79 @@
+==========================================================================================
+Exp 234 — self-other-modeling Rung 3: proactive avoidance (ToM) vs reactive stigmergy (BASE)
+==========================================================================================
+
+Implementation notes:
+  - Shared world: vela's 5x5 world (n_cells=25)
+  - SOURCE_CELL S = 12 (center cell, row=2 col=2)
+  - Comfort rule: both@S -> 0.3 each; sole@S -> 1.0; neither -> 0.0
+  - C1 start: mirro.true_pos = 11  (not S)
+  - C2 start: vela.true_pos  = 22  (not S)
+  - EPS_POLICY=0.2, ALPHA_EMA=0.1, THRESH_GATE=0.75
+  - LAMBDA_RELAX=0.01, EST_INIT=1.0
+  - H=2000 steps, 8 seeds (0-7), PAIRED: BASE and TOM run same seed
+  - BASE arm RNG seeds: 700000+seed*10+{0,1} per creature
+  - TOM  arm RNG seeds: 700001+seed*10+{0,1} per creature
+  - Comfort EMA updated BEFORE policy action (mirrors exp70/exp230)
+  - TOM yield: if other_pos==S and self_pos!=S -> wander (random action)
+  - TOM yield RNG draw parity: draws u + integers(0,4), matching BASE wander branch
+  - JOINT computed from START-OF-STEP positions (before move)
+  - FAIRNESS = min(sum_c1,sum_c2)/max(sum_c1,sum_c2); 1.0=equal, 0.0=one starves
+  - Spine forks via copy.deepcopy; NEVER saved
+
+--- PER-SEED TABLE ---
+
+seed  BASE_joint  TOM_joint  joint_edge  BASE_coocc  TOM_coocc  BASE_fair  TOM_fair  TOM>=0.10
+----------------------------------------------------------------------------------------------------
+   0      0.8021     0.4630     -0.3391      0.0085     0.0375     0.9633    0.9723         NO
+   1      0.7981     0.4760     -0.3221      0.0160     0.0350     0.9814    0.8630         NO
+   2      0.7885     0.4580     -0.3305      0.0125     0.0400     0.9924    0.9163         NO
+   3      0.7746     0.4522     -0.3224      0.0160     0.0495     0.9112    0.8932         NO
+   4      0.7306     0.4566     -0.2740      0.0210     0.0410     0.8553    0.8883         NO
+   5      0.7714     0.4684     -0.3030      0.0215     0.0415     0.9987    0.8019         NO
+   6      0.7556     0.4527     -0.3029      0.0160     0.0445     0.8643    0.9956         NO
+   7      0.7611     0.4652     -0.2959      0.0185     0.0345     0.9844    0.8582         NO
+----------------------------------------------------------------------------------------------------
+  mean      0.7727     0.4615     -0.3112      0.0163     0.0404     0.9439    0.8986
+
+--- AGGREGATES ---
+
+  mean(TOM_joint - BASE_joint) [joint edge]:  -0.3112  (threshold for pred_a: >=0.10)
+  count(joint_edge >= 0.10) / 8:             0/8  (threshold for pred_a: >=6/8)
+  count(TOM_joint > BASE_joint) / 8:         0/8  (any positive edge)
+  mean BASE_co_occupation:                    0.0163  (sanity pred_c threshold: >0.05)
+  mean TOM_co_occupation:                     0.0404  (pred_b: must be < BASE)
+  mean BASE_fairness:                         0.9439
+  mean TOM_fairness:                          0.8986
+
+--- FAIRNESS DIAGNOSTIC ---
+
+  TOM wins JOINT overall: NO  (mean_joint_edge=-0.3112)
+  TOM fairness < BASE fairness: YES  (TOM_fair=0.8986, BASE_fair=0.9439)
+  DIAGNOSIS: TOM does not win JOINT overall; fairness comparison is secondary.
+
+--- SPINE INTEGRITY (F4) ---
+
+  mirro before: 0f35f93115f4371fde6e435a...
+  mirro after:  0f35f93115f4371fde6e435a...
+  mirro intact: YES
+  vela before:  fd004cb78cc85be8164711ab...
+  vela after:   fd004cb78cc85be8164711ab...
+  vela intact:  YES
+  F4: NOT FIRED
+
+--- FALSIFIER EVALUATION ---
+
+  F1 (TOM does NOT beat BASE by >=0.10 in >=6/8 seeds): FIRED  [mean_edge=-0.3112 (need>=0.10), count=0/8 (need>=6/8)]
+  F2 (TOM co_occupation >= BASE co_occupation): FIRED  [TOM_coocc=0.0404, BASE_coocc=0.0163]
+  F3 (BASE does not crowd: co_occupation <= 0.05): FIRED  [mean BASE_coocc=0.0163 (need >0.05)]
+  F4 (spine hash changed): NOT FIRED  [mirro OK, vela OK]
+
+--- PREDICTION CONJUNCT EVALUATION ---
+
+  (a) mean_edge>=0.10 AND count>=6/8:    FALSE  [edge=-0.3112, count=0/8]
+  (b) mean TOM_coocc < mean BASE_coocc:  FALSE  [TOM=0.0404, BASE=0.0163]
+  (c) sanity BASE_coocc > 0.05:          FALSE  [BASE_coocc=0.0163]
+
+VERDICT: NO_VERDICT/F3 — BASE does not crowd (BASE_coocc=0.0163 <= 0.05); no room to improve; re-design required
+
+==========================================================================================
