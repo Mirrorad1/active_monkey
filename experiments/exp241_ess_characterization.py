@@ -38,6 +38,14 @@ DISCIPLINE:
   - confounded-control-probe-guard: null guard byte-identity PASSED first
   - Do NOT write EXPERIMENTS.md entry — awaits main researcher validation
 
+PREDECLARED HYPOTHESIS / FALSIFIER:
+  Hypothesis: at least ONE cost_slope in {0.3, 0.6, 1.0, 1.5, 2.0, 3.0} produces
+  a STABLE finite N_eq for a HIGHER speed than the Exp-240 resident (speed>1.0), and
+  the convergence test shows only the faster mutant invades (not the slower).
+  Falsifier: if NO cost regime yields stable higher speeds AND both faster AND slower
+  mutants "invade" by explosion, the Exp-240 escape is DEMOGRAPHIC-INSTABILITY-ENTANGLED
+  — not a clean selection gradient. Either outcome is a valid and logged result.
+
 Usage:
   uv run --python .venv python experiments/exp241_ess_characterization.py
 """
