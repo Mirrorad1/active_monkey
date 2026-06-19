@@ -514,6 +514,17 @@ class EcologyConfig:
     continuous_bump_amplitude: float = 1.0
     continuous_bump_centers: tuple | None = None
 
+    # Exp 246: moving-patch resource mode — OFF (False) by default, byte-identical to Exp 238-245.
+    # When True, the structural resource density is a SINGLE concentrated Gaussian whose center
+    # drifts deterministically on a circular orbit; creatures crowd the patch and compete.
+    # All fields default to their canonical values so the OFF path is perfectly byte-identical.
+    # Requires enable_continuous_locomotion=True (cont_world must exist).
+    continuous_moving_patch: bool = False
+    continuous_patch_sigma: float = 0.8
+    continuous_patch_amplitude: float = 3.0
+    continuous_patch_orbit_radius: float = 3.0
+    continuous_patch_period: int = 300
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -603,6 +614,12 @@ class Ecology:
                 bump_sigma=cfg.continuous_bump_sigma,
                 bump_amplitude=cfg.continuous_bump_amplitude,
                 bump_centers=cfg.continuous_bump_centers,
+                # Exp 246: moving-patch resource mode (defaults byte-identical to Exp 238-245).
+                moving_patch=cfg.continuous_moving_patch,
+                patch_sigma=cfg.continuous_patch_sigma,
+                patch_amplitude=cfg.continuous_patch_amplitude,
+                patch_orbit_radius=cfg.continuous_patch_orbit_radius,
+                patch_period=cfg.continuous_patch_period,
             )
         else:
             self.cont_world = None

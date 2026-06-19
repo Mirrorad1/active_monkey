@@ -168,9 +168,37 @@ class ContinuousWorld:
     bump_amplitude: float = _BUMP_AMPLITUDE
     bump_centers: tuple | None = None  # None → _BUMP_CENTERS_BUMP (byte-identical default)
 
+    # Exp 246: moving-patch resource mode — OFF (False) by default, byte-identical to Exp 238-245.
+    # When True, rho(x,y) is a SINGLE concentrated Gaussian whose CENTER drifts deterministically
+    # over time on a circular orbit around the arena center.  Food exists only at/near the moving
+    # patch; creatures crowd it and compete for the concentrated resource.
+    #
+    # Fields (read ONLY when moving_patch=True):
+    #   patch_sigma:        Gaussian half-width of the patch (lower → sharper concentration).
+    #   patch_amplitude:    Peak density at the patch center.
+    #   patch_orbit_radius: Orbit radius around (ARENA_W/2, ARENA_H/2).
+    #   patch_period:       Steps per full orbit; drift speed = 2*pi*R/period units/step.
+    #
+    # A deterministic time counter `self._patch_t` (int, init 0) advances ONCE PER STEP at the
+    # END of step_regen(), INSIDE `if self.moving_patch:` so the OFF path NEVER touches it.
+    # rho() during a step uses the CURRENT _patch_t; the per-creature loop reads rho before
+    # step_regen() advances the counter — a ~1-step tracking lag, which is fine and deterministic.
+    #
+    # OFF path (moving_patch=False): rho() takes the existing bump/flat/neutral branches,
+    # _patch_t is NEVER allocated or used, the counter is NEVER incremented.
+    # All existing tests (incl. _CONTINUOUS_ON_GOLDEN_HASH) MUST pass unchanged.
+    moving_patch: bool = False
+    patch_sigma: float = 0.8
+    patch_amplitude: float = 3.0
+    patch_orbit_radius: float = 3.0
+    patch_period: int = 300
+
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
     _resource: list = field(default_factory=list)
+    # Exp 246: time counter for the moving-patch orbit.  Initialised to 0.  Only mutated
+    # (and meaningful) when moving_patch=True; the OFF path never touches this field.
+    _patch_t: int = field(default=0, init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         if not self._resource:
@@ -190,7 +218,21 @@ class ContinuousWorld:
         Exp 245: uses instance fields bump_sigma, bump_amplitude, bump_centers.
         Defaults (1.5, 1.0, None) are byte-identical to the Exp 238-244 module constants.
         bump_centers=None → legacy _BUMP_CENTERS_BUMP for "bump", _BUMP_CENTERS_NEUTRAL for "neutral".
+
+        Exp 246: when moving_patch=True, returns a SINGLE Gaussian centered at the current
+        patch orbit position (keyed on self._patch_t), IGNORING the bump/flat/neutral branches.
+        OFF path (moving_patch=False): identical to pre-Exp-246 code — no new branch entered.
         """
+        if self.moving_patch:
+            # Exp 246 ON branch: single moving Gaussian. No rng. Fully deterministic.
+            t = self._patch_t
+            angle = (2.0 * math.pi * t) / self.patch_period
+            cx = ARENA_W / 2.0 + self.patch_orbit_radius * math.cos(angle)
+            cy = ARENA_H / 2.0 + self.patch_orbit_radius * math.sin(angle)
+            dx = x - cx
+            dy = y - cy
+            s2 = self.patch_sigma * self.patch_sigma
+            return self.patch_amplitude * math.exp(-((dx * dx) + (dy * dy)) / (2.0 * s2))
         if self.layout == "flat":
             return _FLAT_RHO
         elif self.layout == "neutral":
@@ -383,6 +425,11 @@ class ContinuousWorld:
                     if v > cap:
                         v = cap
                     row[ci] = v
+        # Exp 246: advance the orbit counter ONCE PER STEP, ONLY when moving_patch=True.
+        # The OFF path (moving_patch=False) never enters this block — _patch_t stays 0 and
+        # is never touched, preserving perfect byte-identity with Exp 238-245.
+        if self.moving_patch:
+            self._patch_t += 1
 
     # ------------------------------------------------------------------
     # Heading helper (food-gradient sensing)
@@ -429,6 +476,11 @@ class ContinuousWorld:
         bump_sigma: float = _BUMP_SIGMA,
         bump_amplitude: float = _BUMP_AMPLITUDE,
         bump_centers: tuple | None = None,
+        moving_patch: bool = False,
+        patch_sigma: float = 0.8,
+        patch_amplitude: float = 3.0,
+        patch_orbit_radius: float = 3.0,
+        patch_period: int = 300,
     ) -> "ContinuousWorld":
         """Build a ContinuousWorld from config parameters.  No rng used.
 
@@ -444,6 +496,10 @@ class ContinuousWorld:
         bump_amplitude=1.0 (default): byte-identical to Exp 238-244.
         bump_centers=None (default): uses legacy _BUMP_CENTERS_BUMP (byte-identical).
             Pass an explicit tuple to override the "bump" layout centers.
+        moving_patch=False (default): byte-identical to Exp 238-245. No orbit, no _patch_t.
+        moving_patch=True (Exp 246): single drifting Gaussian replaces the bump/flat/neutral
+            field. patch_sigma, patch_amplitude, patch_orbit_radius, patch_period control the
+            patch geometry and orbit speed. No rng; deterministic.
         """
         return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
                    logistic_regen=logistic_regen,
@@ -451,4 +507,9 @@ class ContinuousWorld:
                    floored_regen=floored_regen,
                    bump_sigma=bump_sigma,
                    bump_amplitude=bump_amplitude,
-                   bump_centers=bump_centers)
+                   bump_centers=bump_centers,
+                   moving_patch=moving_patch,
+                   patch_sigma=patch_sigma,
+                   patch_amplitude=patch_amplitude,
+                   patch_orbit_radius=patch_orbit_radius,
+                   patch_period=patch_period)

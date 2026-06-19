@@ -92,6 +92,11 @@ def _build_config(
     bump_sigma: float = 1.5,
     bump_amplitude: float = 1.0,
     bump_centers: tuple | None = None,
+    moving_patch: bool = False,
+    patch_sigma: float = 0.8,
+    patch_amplitude: float = 3.0,
+    patch_orbit_radius: float = 3.0,
+    patch_period: int = 300,
 ) -> EcologyConfig:
     """Build the Exp 243 monomorphic continuous config via dataclasses.replace.
 
@@ -137,6 +142,12 @@ def _build_config(
         continuous_bump_sigma=bump_sigma,
         continuous_bump_amplitude=bump_amplitude,
         continuous_bump_centers=bump_centers,
+        # Exp 246: moving-patch resource mode (defaults byte-identical to Exp 238-245).
+        continuous_moving_patch=moving_patch,
+        continuous_patch_sigma=patch_sigma,
+        continuous_patch_amplitude=patch_amplitude,
+        continuous_patch_orbit_radius=patch_orbit_radius,
+        continuous_patch_period=patch_period,
     )
 
 
@@ -210,6 +221,11 @@ def run_cert(
     bump_sigma: float = 1.5,
     bump_amplitude: float = 1.0,
     bump_centers: tuple | None = None,
+    moving_patch: bool = False,
+    patch_sigma: float = 0.8,
+    patch_amplitude: float = 3.0,
+    patch_orbit_radius: float = 3.0,
+    patch_period: int = 300,
 ) -> dict:
     """Run a monomorphic certification run and return the analysis-window telemetry dict.
 
@@ -240,6 +256,16 @@ def run_cert(
         Bump peak density (default=1.0, byte-identical to Exp 238-244).
     bump_centers : tuple | None
         Explicit bump center tuple for the "bump" layout (None → legacy default).
+    moving_patch : bool
+        Exp 246: enable single drifting Gaussian resource mode (default=False, byte-identical).
+    patch_sigma : float
+        Exp 246: Gaussian half-width of the moving patch (default=0.8).
+    patch_amplitude : float
+        Exp 246: Peak density at the patch center (default=3.0).
+    patch_orbit_radius : float
+        Exp 246: Orbit radius around the arena center (default=3.0).
+    patch_period : int
+        Exp 246: Steps per full orbit (default=300).
 
     Returns
     -------
@@ -267,6 +293,11 @@ def run_cert(
         bump_sigma=bump_sigma,
         bump_amplitude=bump_amplitude,
         bump_centers=bump_centers,
+        moving_patch=moving_patch,
+        patch_sigma=patch_sigma,
+        patch_amplitude=patch_amplitude,
+        patch_orbit_radius=patch_orbit_radius,
+        patch_period=patch_period,
     )
 
     eco = Ecology(cfg, seed=seed)
