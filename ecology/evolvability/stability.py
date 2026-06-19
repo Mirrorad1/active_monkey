@@ -125,7 +125,11 @@ def oscillation_verdict(N, *, seed=0) -> dict:
     damping_ok = bool(_amp(late) <= _amp(early) - _DAMP_K*se) or _amp(early) <= _amp(late)*1.05
     primary = ar_mod < _AR_MODULUS_MAX
     secondary = prom <= prom95
-    tertiary = (trough > _AUTOCORR_TROUGH_MIN) and (amp_ptp < _AMP_PTP_MAX)
+    # TERTIARY: flag as oscillatory only if BOTH a deep anti-phase autocorrelation trough
+    # (trough ≤ -0.30) AND a large relative peak-to-trough amplitude (amp_ptp ≥ 0.30);
+    # demographic noise has the amplitude but not the anti-phase autocorrelation.
+    # PASS (DAMPED-contributing) when either condition is absent → OR combinator.
+    tertiary = (trough > _AUTOCORR_TROUGH_MIN) or (amp_ptp < _AMP_PTP_MAX)
     classification = "DAMPED" if (primary and secondary and tertiary and damping_ok) else "OSCILLATORY"
     return {"ar_modulus": ar_mod, "periodogram_prominence": prom,
             "periodogram_null_95": prom95, "autocorr_trough": trough,
