@@ -2,33 +2,33 @@ Exp 243 Runtime Preflight Pilot
 ================================
 Parameters:
   horizon=4000, burn_in=0.6, seed=42
-  hmax=0.04, Kc=60.0, theta=1.0, regen=0.05, layout=bump
+  hmax=0.04, Kc=60.0, theta=1.0, regen=1.0, layout=bump
   Stage-1 grid: 2304 runs (8 speeds x 4 hmax x 3 Kc x 3 regen x 8 seeds)
 
 Per-cell results:
   SLOW     (speed=0.5):
-    wall_time=0.026s, n_eq=0.0, median_N_window=0.0, final_N=0
+    wall_time=0.098s, n_eq=0.0, median_N_window=0.0, final_N=0
     growth=EXTINCT, osc=N/A (EXTINCT), exploded=False
-    births/step=0.0000, crowding/step=0.0000, availability=0.975
+    births/step=0.0000, crowding/step=0.0000, availability=1.000
     osc_detail: N/A
   MEDIUM   (speed=1.0):
-    wall_time=0.017s, n_eq=0.0, median_N_window=0.0, final_N=0
+    wall_time=0.241s, n_eq=0.0, median_N_window=0.0, final_N=0
     growth=EXTINCT, osc=N/A (EXTINCT), exploded=False
-    births/step=0.0000, crowding/step=0.0000, availability=0.970
+    births/step=0.0000, crowding/step=0.0000, availability=1.000
     osc_detail: N/A
   FAST     (speed=2.0):
-    wall_time=0.020s, n_eq=0.0, median_N_window=0.0, final_N=0
-    growth=EXTINCT, osc=N/A (EXTINCT), exploded=False
-    births/step=0.0000, crowding/step=0.0000, availability=0.959
-    osc_detail: N/A
+    wall_time=6.555s, n_eq=20.0, median_N_window=20.0, final_N=10
+    growth=EXTINCT, osc=OSCILLATORY, exploded=False
+    births/step=1.2106, crowding/step=0.2669, availability=1.000
+    osc_detail: ar_mod=0.930, amp_ptp=1.250
 
 Wall time summary:
-  Median per-run: 0.020s
-  Max per-run:    0.026s
+  Median per-run: 0.241s
+  Max per-run:    6.555s
 
 Stage-1 projection:
-  Serial:   47.1s = 0.0131h
-  Parallel: 3.9s = 0.0011h  (12 cores, trivially parallel)
+  Serial:   554.9s = 0.1542h
+  Parallel: 46.2s = 0.0128h  (12 cores, trivially parallel)
   NOTE: Fast wall time is because populations go extinct quickly (not a sign of efficiency)
 
 Cell outcome summary:
@@ -36,10 +36,10 @@ Cell outcome summary:
   EXTINCT:      3/3  (['SLOW', 'MEDIUM', 'FAST'])
   RUNAWAY:      0/3  ([])
   DAMPED:       0/3  ([])
-  OSCILLATORY:  0/3  ([])
-  N/A (extinct):3/3  (['SLOW', 'MEDIUM', 'FAST'])
+  OSCILLATORY:  1/3  (['FAST'])
+  N/A (extinct):2/3  (['SLOW', 'MEDIUM'])
 
 GO/NO-GO: NO-GO
-Reason: ALL 3 probed cells EXTINCT at default params (A+B ON, hmax=0.04, Kc=60.0, regen=0.05). The default founder cannot reproduce in the continuous substrate at these settings. See birth-balance diagnostic (exp243_birthbalance.txt) for root cause. The full Stage-1 sweep at these params would produce all-extinct cells with zero births and zero stability signal. Parameter redesign required.
+Reason: ALL 3 probed cells EXTINCT at default params (A+B ON, hmax=0.04, Kc=60.0, regen=1.0). The default founder cannot reproduce in the continuous substrate at these settings. See birth-balance diagnostic (exp243_birthbalance.txt) for root cause. The full Stage-1 sweep at these params would produce all-extinct cells with zero births and zero stability signal. Parameter redesign required.
 
-QUALITATIVE (A+B damped at defaults?): NEGATIVE: A+B ON at the DEFAULT PARAMS (hmax=0.04, Kc=60, regen=0.05) produces EXTINCTION in ALL 3 probed cells (slow/medium/fast). The population goes extinct due to aging: the default founder's max achievable energy in the continuous substrate falls SHORT of the reproduction threshold (see exp243_birthbalance.txt for the energy budget analysis). There are ZERO births, zero crowding-deaths, and zero stability signal. Horizon=4000 does NOT fix this — it merely runs 4000 steps of extinction. The Stage-1 sweep at these params would cost ~47.1s serial (fast, but useless). ACTION REQUIRED: Redesign the sweep to use parameters where reproduction is possible (lower aging cost, lower repro threshold, or higher continuous_capacity).
+QUALITATIVE (A+B damped at defaults?): NEGATIVE: A+B ON at the DEFAULT PARAMS (hmax=0.04, Kc=60, regen=0.05) produces EXTINCTION in ALL 3 probed cells (slow/medium/fast). The population goes extinct due to aging: the default founder's max achievable energy in the continuous substrate falls SHORT of the reproduction threshold (see exp243_birthbalance.txt for the energy budget analysis). There are ZERO births, zero crowding-deaths, and zero stability signal. Horizon=4000 does NOT fix this — it merely runs 4000 steps of extinction. The Stage-1 sweep at these params would cost ~554.9s serial (fast, but useless). ACTION REQUIRED: Redesign the sweep to use parameters where reproduction is possible (lower aging cost, lower repro threshold, or higher continuous_capacity).

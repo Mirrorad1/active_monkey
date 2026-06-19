@@ -37,14 +37,45 @@ import numpy as np
 
 from ecology.engine import Ecology, EcologyConfig, _density_mortality_p
 from ecology.scenarios import SCENARIOS
-from ecology.genotype import founder
+from ecology.genotype import founder as _base_founder
 from ecology.evolvability.stability import n_eq as _n_eq
 from ecology.continuous_world import ARENA_W, ARENA_H, _BUMP_CENTERS_BUMP, _BUMP_SIGMA
 
 
+# ---------------------------------------------------------------------------
+# Exp-242 viability-calibrated continuous founder parameters
+# (extracted from experiments/exp242_regulated_ess.py, lines 74–80)
+# These replace the discrete "balanced" founder (threshold=17, cap=20, bmc=0.5, mc=0.3)
+# which was NON-VIABLE on the continuous intake scale (~0.14/step intake vs ~0.8/step cost).
+# ---------------------------------------------------------------------------
+_EXP242_BMC: float = 0.05        # baseline_metabolic_cost  (line 74)
+_EXP242_MC: float = 0.03         # movement_cost            (line 75)
+_EXP242_CAP: float = 10.0        # energy_capacity          (line 76)
+_EXP242_THRESHOLD: float = 4.2   # reproduction_energy_threshold  (line 77)
+_EXP242_TRANSFER: float = 0.35   # reproduction_energy_transfer_fraction (line 78)
+_EXP242_COST_FRAC: float = 0.06  # reproduction_cost_fraction  (line 79)
+_EXP242_AGING: float = 0.003     # aging_cost               (line 80)
+_EXP242_CONTINUOUS_CAPACITY: float = 2.0   # continuous_capacity (line 87)
+
+
 def _founder_with_speed(speed: float):
-    """Return a base founder genotype with locomotor_speed set to `speed`."""
-    return D.replace(founder(), locomotor_speed=speed)
+    """Return the Exp-242 viability-calibrated continuous founder with locomotor_speed=speed.
+
+    Uses the Exp-242 viable continuous parameters (threshold=4.2, cap=10.0, bmc=0.05,
+    mc=0.03, aging=0.003) rather than the discrete 'balanced' founder (threshold=17,
+    cap=20, bmc=0.5, mc=0.3), which starved in ~20-50 steps on the continuous substrate.
+    """
+    return D.replace(
+        _base_founder(),
+        baseline_metabolic_cost=_EXP242_BMC,
+        movement_cost=_EXP242_MC,
+        energy_capacity=_EXP242_CAP,
+        reproduction_energy_threshold=_EXP242_THRESHOLD,
+        reproduction_energy_transfer_fraction=_EXP242_TRANSFER,
+        reproduction_cost_fraction=_EXP242_COST_FRAC,
+        aging_cost=_EXP242_AGING,
+        locomotor_speed=speed,
+    )
 
 
 def _build_config(
@@ -58,7 +89,13 @@ def _build_config(
     layout: str,
     horizon: int,
 ) -> EcologyConfig:
-    """Build the Exp 243 monomorphic continuous config via dataclasses.replace."""
+    """Build the Exp 243 monomorphic continuous config via dataclasses.replace.
+
+    Uses the Exp-242 viability-calibrated continuous founder and substrate params
+    (continuous_capacity=2.0, min_survival_energy=0.5, max_population=4000,
+    initial_population=21, continuous_logistic_regen=False) that produced viable
+    reproducing populations in Exp 242. Layers Exp 243 mechanisms A+B on top.
+    """
     base = SCENARIOS["balanced"]
     return D.replace(
         base,
@@ -67,11 +104,13 @@ def _build_config(
         continuous_layout=layout,
         continuous_dt=1.0,
         speed_cost_floor=0.0,
-        speed_cost_slope=0.0,
+        speed_cost_slope=0.6,        # Exp-242 viable speed cost slope (not 0.0)
         continuous_regen_rate=regen_rate,
-        # Depletion-aware intake (Exp 242)
+        continuous_capacity=_EXP242_CONTINUOUS_CAPACITY,
+        # Depletion-aware intake (Exp 242) — fixes the density-feedback bug
         enable_continuous_depletion_intake=True,
-        # Floored regen (Exp 243 Mechanism B)
+        continuous_logistic_regen=False,   # Exp-242: NOT logistic; floored regen replaces
+        # Floored regen (Exp 243 Mechanism B) — replaces Exp-242's logistic regen
         continuous_floored_regen=True,
         # Density mortality (Exp 243 Mechanism A)
         enable_density_mortality=True,
@@ -81,11 +120,15 @@ def _build_config(
         density_mortality_rate_scale=rate_scale,
         # Freeze locomotion (monomorphic: all founders + offspring at speed)
         freeze_continuous_locomotion=True,
-        # Founder with fixed speed
+        # Viable founder with fixed speed (Exp-242 calibrated)
         founder=_founder_with_speed(speed),
+        # Viable substrate params from Exp-242 (exp242_regulated_ess.py line 97-173)
+        initial_population=21,
+        max_population=4000,
+        min_survival_energy=0.5,
+        mutation_rate=0.0,  # monomorphic — no mutation
         # Run params
         horizon=horizon,
-        mutation_rate=0.0,  # monomorphic — no mutation
     )
 
 

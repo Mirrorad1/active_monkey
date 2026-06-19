@@ -36,14 +36,16 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from ecology.engine import Ecology, EcologyConfig, _density_mortality_p
 from ecology.scenarios import SCENARIOS
-from ecology.genotype import founder
-from ecology.evolvability.cert_run import _reconstruct_N_per_step
+from ecology.genotype import founder as _base_founder
+from ecology.evolvability.cert_run import _reconstruct_N_per_step, _founder_with_speed, _EXP242_BMC, _EXP242_MC, _EXP242_CAP, _EXP242_THRESHOLD, _EXP242_TRANSFER, _EXP242_COST_FRAC, _EXP242_AGING, _EXP242_CONTINUOUS_CAPACITY
 from ecology.continuous_world import ContinuousWorld
 
 # ---- Parameters (matching the cert_run sweep defaults) ----
 SPEED = 1.0
 HORIZON = 2000
-REGEN_RATE = 0.05
+# Use the same regen_rate that cert_run uses (thread via run_cert hmax=0.0)
+# The Exp-242 viable regime used regen_rate in [0.5, 1.0, 2.0]; use 1.0 as the reference.
+REGEN_RATE = 1.0
 LAYOUT = "bump"
 SEED = 42
 
@@ -53,7 +55,13 @@ KC_DEFAULT = 60.0
 
 
 def _build_birthbalance_config() -> EcologyConfig:
-    """Build config: continuous, depletion ON, floored regen ON, density-mortality OFF."""
+    """Build config on the Exp-242 viable continuous base; density-mortality OFF (hmax=0).
+
+    Uses the Exp-242 viability-calibrated founder (threshold=4.2, cap=10.0, bmc=0.05,
+    mc=0.03, aging=0.003) and substrate (continuous_capacity=2.0, min_survival_energy=0.5,
+    max_population=4000, continuous_logistic_regen=False) rather than the SCENARIOS["balanced"]
+    discrete founder (threshold=17.0, cap=20.0) which was NON-VIABLE on the continuous substrate.
+    """
     base = SCENARIOS["balanced"]
     return D.replace(
         base,
@@ -61,9 +69,11 @@ def _build_birthbalance_config() -> EcologyConfig:
         continuous_layout=LAYOUT,
         continuous_dt=1.0,
         speed_cost_floor=0.0,
-        speed_cost_slope=0.0,
+        speed_cost_slope=0.6,
         continuous_regen_rate=REGEN_RATE,
+        continuous_capacity=_EXP242_CONTINUOUS_CAPACITY,
         enable_continuous_depletion_intake=True,
+        continuous_logistic_regen=False,
         continuous_floored_regen=True,
         # Density mortality OFF — we want unthrottled birth measurement
         enable_density_mortality=False,
@@ -72,14 +82,18 @@ def _build_birthbalance_config() -> EcologyConfig:
         density_mortality_theta=THETA_TARGET,
         density_mortality_rate_scale=0.0,
         freeze_continuous_locomotion=True,
-        founder=D.replace(founder(), locomotor_speed=SPEED),
+        # Use Exp-242 viable founder, NOT the discrete balanced founder
+        founder=_founder_with_speed(SPEED),
+        initial_population=21,
+        max_population=4000,
+        min_survival_energy=0.5,
         horizon=HORIZON,
         mutation_rate=0.0,
     )
 
 
 def _measure_single_creature_max_intake() -> float:
-    """Run a single creature with effectively infinite regen to measure max intake/step."""
+    """Run a single Exp-242-viable creature with effectively infinite regen to measure max intake/step."""
     base = SCENARIOS["balanced"]
     cfg = D.replace(
         base,
@@ -87,49 +101,49 @@ def _measure_single_creature_max_intake() -> float:
         continuous_layout=LAYOUT,
         continuous_dt=1.0,
         speed_cost_floor=0.0,
-        speed_cost_slope=0.0,
+        speed_cost_slope=0.6,
         # Very high regen to keep field full
         continuous_regen_rate=100.0,
+        continuous_capacity=_EXP242_CONTINUOUS_CAPACITY,
         enable_continuous_depletion_intake=True,
+        continuous_logistic_regen=False,
         continuous_floored_regen=True,
         enable_density_mortality=False,
         freeze_continuous_locomotion=True,
-        founder=D.replace(founder(), locomotor_speed=SPEED),
+        # Use Exp-242 viable founder
+        founder=_founder_with_speed(SPEED),
+        initial_population=1,
+        max_population=4000,
+        min_survival_energy=0.5,
         horizon=1,
         mutation_rate=0.0,
-        initial_population=1,
     )
     eco = Ecology(cfg, seed=SEED)
     eco.run()
     alive = [c for c in eco._creatures if c.phenotype.alive]
     if alive:
-        # Energy after 1 step: start_energy - costs + intake = ?
-        # start_energy = 0.75 * energy_capacity = 15.0
-        start_energy = eco._creatures[0].genotype.energy_capacity * 0.75
-        step_cost_age0 = founder().movement_cost + founder().baseline_metabolic_cost  # 0.3+0.5=0.8
-        # Note: aging_cost * age = 0.02 * 0 = 0 at first step (age starts at 0 before first step)
+        # start_energy = 0.75 * energy_capacity (Exp-242 cap=10.0 => start=7.5)
+        start_energy = _EXP242_CAP * 0.75
+        step_cost_age0 = _EXP242_MC + _EXP242_BMC + 0.6 * SPEED  # movement + bmc + speed_cost
         energy_after = alive[0].phenotype.energy
-        # intake = energy_after - start_energy + step_cost_age0
-        # age at first step's aging is the creature's age BEFORE the step (0 initially → step increments after)
-        # Actually the step increments age AFTER costs, so age=0 at cost time in step 1
-        # Total cost at step 1: movement=0.3 + bmc=0.5 + aging=0.02*0=0 = 0.8
-        # Wait: age is incremented in step. Let's be empirical:
         intake_est = energy_after - start_energy + step_cost_age0
         return intake_est
     return 0.0
 
 
 def _energy_budget_analysis() -> dict:
-    """Analytical energy budget: can a creature EVER reach the reproduction threshold?
+    """Analytical energy budget: can an Exp-242-viable creature reach the reproduction threshold?
 
+    Uses the Exp-242 calibrated founder params (threshold=4.2, cap=10.0, bmc=0.05, mc=0.03,
+    aging=0.003) which replaced the NON-VIABLE discrete founder (threshold=17, cap=20).
     Returns a dict with the analysis results.
     """
-    f = founder()
-    start_energy = f.energy_capacity * 0.75   # = 15.0
-    repro_threshold = f.reproduction_energy_threshold  # = 17.0
-    max_energy = f.energy_capacity  # = 20.0
+    start_energy = _EXP242_CAP * 0.75   # = 7.5
+    repro_threshold = _EXP242_THRESHOLD  # = 4.2
+    max_energy = _EXP242_CAP              # = 10.0
+    speed_cost = 0.6 * SPEED              # = 0.6 at speed=1.0
 
-    # Measure single-step intake at full field, single creature
+    # Measure single-step intake at full field, single Exp-242 creature
     max_intake = _measure_single_creature_max_intake()
 
     # Per-step energy trajectory with constant max intake
@@ -138,7 +152,7 @@ def _energy_budget_analysis() -> dict:
     repro_age = None
 
     for age in range(500):  # simulate up to 500 steps
-        step_cost = f.movement_cost + f.baseline_metabolic_cost + f.aging_cost * age
+        step_cost = _EXP242_MC + _EXP242_BMC + speed_cost + _EXP242_AGING * age
         energy = energy + max_intake - step_cost
         if energy > max_achieved:
             max_achieved = energy
@@ -151,24 +165,27 @@ def _energy_budget_analysis() -> dict:
         if energy <= 0:
             break
 
+    base_cost_age0 = _EXP242_MC + _EXP242_BMC + speed_cost  # = 0.03 + 0.05 + 0.6 = 0.68
     return {
         "start_energy": start_energy,
         "repro_threshold": repro_threshold,
         "max_achievable_energy": max_achieved,
         "max_intake_per_step": max_intake,
         "repro_age": repro_age,  # None if never reached
-        "step_cost_age0": f.movement_cost + f.baseline_metabolic_cost,
-        "aging_cost_per_step": f.aging_cost,
-        "break_even_age": (max_intake - f.movement_cost - f.baseline_metabolic_cost) / f.aging_cost
-        if f.aging_cost > 0 else float("inf"),
+        "step_cost_age0": base_cost_age0,
+        "aging_cost_per_step": _EXP242_AGING,
+        "break_even_age": (max_intake - base_cost_age0) / _EXP242_AGING
+        if _EXP242_AGING > 0 else float("inf"),
     }
 
 
 def main():
     print("=" * 65)
-    print("Exp 243 Birth-Balance Diagnostic")
+    print("Exp 243 Birth-Balance Diagnostic (Exp-242 viable founder)")
     print(f"  speed={SPEED}, horizon={HORIZON}, regen_rate={REGEN_RATE}")
     print(f"  layout={LAYOUT}, seed={SEED}, hmax=0.0 (mortality OFF)")
+    print(f"  founder: threshold={_EXP242_THRESHOLD}, cap={_EXP242_CAP}, "
+          f"bmc={_EXP242_BMC}, mc={_EXP242_MC}, aging={_EXP242_AGING}")
     print("=" * 65)
 
     # Energy budget analysis
@@ -346,15 +363,18 @@ Birth-balance computation:
 
 RECOMMENDATION: {recommendation}
 
-CRITICAL CONTEXT:
-  The default founder (reproduction_energy_threshold=17.0, aging_cost=0.02/step)
-  with the continuous world (continuous_capacity=2.0, regen_rate=0.05) produces
-  populations that go extinct due to aging before reaching the reproduction threshold.
-  Max achievable energy ({budget['max_achievable_energy']:.4f}) < threshold (17.0) by
-  {budget['repro_threshold'] - budget['max_achievable_energy']:.4f} units.
-  The birth-balance assumption (b≈0.1/step) in the spec was not empirically verified
-  before this diagnostic. The Stage-1 sweep at default params will produce ALL-EXTINCT
-  cells — no stability, no N_eq, no GO verdict possible without parameter changes.
+CRITICAL CONTEXT (FIX APPLIED):
+  This diagnostic now uses the Exp-242 viability-calibrated continuous founder:
+    threshold={_EXP242_THRESHOLD}, cap={_EXP242_CAP}, bmc={_EXP242_BMC}, mc={_EXP242_MC},
+    aging={_EXP242_AGING}, transfer={_EXP242_TRANSFER}, cost_frac={_EXP242_COST_FRAC}
+    regen_rate={REGEN_RATE}, continuous_capacity={_EXP242_CONTINUOUS_CAPACITY}
+  The original NON-VIABLE discrete founder (threshold=17.0, cap=20.0, bmc=0.5, mc=0.3,
+  aging=0.02) could not reproduce in the continuous substrate (~0.14/step intake vs
+  ~0.8/step cost => starved in 20-50 steps). The Exp-242 calibrated founder uses
+  a lower threshold (4.2 vs 17.0) and much lower costs (bmc=0.05 vs 0.5, mc=0.03 vs 0.3)
+  that are commensurate with the continuous intake scale.
+  Start energy: {budget['start_energy']:.1f} | threshold: {budget['repro_threshold']:.1f}
+  Can reproduce: {"YES at age " + str(budget['repro_age']) if budget['repro_age'] is not None else "NO — threshold NEVER reached"}
 """
     out_path.write_text(summary)
     print(f"\nSummary written to: {out_path}")

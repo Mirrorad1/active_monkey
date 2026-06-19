@@ -53,7 +53,11 @@ LAYOUT = "bump"
 HMAX = 0.04
 KC = 60.0
 THETA = 1.0
-REGEN_RATE = 0.05
+# regen_rate=1.0: Exp-242 viable continuous regime (sweep was [0.5, 1.0, 2.0]).
+# regen=0.05 was the original (non-viable) discrete "balanced" rate — too slow to
+# sustain the continuous founder at any density. The birth-balance confirmed regen=1.0
+# gives b=0.019/step and implied N_eq=28 (viable, sub-Kc=60).
+REGEN_RATE = 1.0
 RATE_SCALE = 0.0
 
 # Stage-1 full grid dimensions (from spec §8)
