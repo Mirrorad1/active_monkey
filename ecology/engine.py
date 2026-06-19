@@ -446,6 +446,11 @@ class EcologyConfig:
     speed_cost_slope: float = 0.0
     continuous_regen_rate: float = 0.05
     continuous_capacity: float = 2.0
+    # Exp 240: logistic resource regeneration — OFF (False) by default, byte-identical to
+    # Exp 238-239. When True, ContinuousWorld.step_regen() uses logistic formula
+    # regen = regen_rate * v * (1 - v/cap) instead of flat regen_rate, producing a
+    # genuine negative feedback that prevents the commons-tragedy runaway at Rung 2.
+    continuous_logistic_regen: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -529,6 +534,7 @@ class Ecology:
                 layout=cfg.continuous_layout,
                 regen_rate=cfg.continuous_regen_rate,
                 capacity=cfg.continuous_capacity,
+                logistic_regen=cfg.continuous_logistic_regen,
             )
         else:
             self.cont_world = None

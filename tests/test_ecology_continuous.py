@@ -376,3 +376,117 @@ class TestContinuousOnMechanicsSmoke:
             "Speed cost seam is NOT causally active: changing speed_cost_slope 0→0.5 "
             "did NOT change the trajectory."
         )
+
+
+# ---------------------------------------------------------------------------
+# Test 5: Exp 240 continuous_logistic_regen knob
+# ---------------------------------------------------------------------------
+
+class TestLogisticRegen:
+    """Tests for the Exp 240 continuous_logistic_regen density-dependent regulation.
+
+    OFF (logistic_regen=False) must be BYTE-IDENTICAL to Exp 238-239 (the OFF hash must
+    equal the existing continuous ON golden hash).  ON must be causally active (changes
+    the trajectory vs OFF), and must be gated: when enable_continuous_locomotion=False
+    the knob has NO effect (byte-identical to baseline OFF runs).
+    """
+
+    def test_logistic_regen_off_byte_identical_to_baseline(self) -> None:
+        """continuous_logistic_regen=False must produce SAME hash as the plain ON run.
+
+        Guarantees the OFF path is byte-identical to Exp 238-239 — no leakage.
+        """
+        def run(logistic: bool) -> str:
+            cfg = D.replace(
+                _cont_cfg(horizon=50, continuous_logistic_regen=logistic),
+                founder=_founder_with_speed(1.5),
+            )
+            return Ecology(cfg, seed=_CONTINUOUS_ON_GOLDEN_SEED).run()["events_hash"]
+
+        h_off = run(False)
+        assert h_off == _CONTINUOUS_ON_GOLDEN_HASH, (
+            f"continuous_logistic_regen=False broke OFF byte-identity!\n"
+            f"  Got:      {h_off}\n"
+            f"  Expected: {_CONTINUOUS_ON_GOLDEN_HASH}\n"
+            "The logistic OFF path must be byte-identical to Exp 238-239. Do NOT update the"
+            " existing hash — fix the gating instead."
+        )
+
+    def test_logistic_regen_on_depletes_cells_differently(self) -> None:
+        """continuous_logistic_regen=True must produce a DIFFERENT resource state than OFF.
+
+        Verifies the logistic branch is causally active (actually changes the resource field).
+        At high population with heavy depletion: logistic regen cannot recover cells that hit 0
+        (regen=0 at v=0), while linear regen adds regen_rate regardless. Run with more founders
+        and higher max_pop so bump cells get depleted and the two branches diverge.
+        The events_hash may be identical if creature starvation order is unchanged; resource
+        state is the load-bearing proof of causal activity.
+        """
+        import dataclasses as dc2
+
+        def run_get_resource_total(logistic: bool) -> float:
+            # Use higher initial pop so bump cells actually deplete to 0 in the short horizon.
+            cfg = D.replace(
+                _cont_cfg(horizon=30, continuous_logistic_regen=logistic,
+                          continuous_regen_rate=0.2, max_population=2000),
+                founder=_founder_with_speed(1.5),
+                initial_population=100,
+            )
+            eco = Ecology(cfg, seed=_CONTINUOUS_ON_GOLDEN_SEED)
+            eco.run()
+            assert eco.cont_world is not None
+            return sum(
+                eco.cont_world._resource[ri][ci]
+                for ri in range(24) for ci in range(24)
+            )
+
+        r_off = run_get_resource_total(False)
+        r_on = run_get_resource_total(True)
+        # Logistic regen leaves depleted cells at 0 (logistic formula = 0 when v=0),
+        # while linear regen bumps them back up. Logistic total resource should be LOWER.
+        assert r_on < r_off, (
+            f"continuous_logistic_regen=True did NOT produce lower total resource than OFF!\n"
+            f"  linear (OFF):   total_resource={r_off:.2f}\n"
+            f"  logistic (ON):  total_resource={r_on:.2f}\n"
+            "At high population, logistic regen leaves depleted (v=0) cells at 0 while linear"
+            " regen recovers them. If r_on >= r_off, the logistic branch is NOT active."
+        )
+
+    def test_logistic_regen_gated_by_enable_continuous_locomotion(self) -> None:
+        """When enable_continuous_locomotion=False, logistic_regen setting has NO effect.
+
+        The OFF-continuous path must never enter the logistic branch regardless of the
+        continuous_logistic_regen flag (byte-identical to baseline OFF runs).
+        """
+        def run(logistic: bool) -> str:
+            cfg = D.replace(
+                SCENARIOS["balanced"],
+                enable_continuous_locomotion=False,
+                continuous_logistic_regen=logistic,
+                mutation_rate=0.0,
+                horizon=50,
+                founder=_founder_with_speed(1.0),
+            )
+            return Ecology(cfg, seed=5).run()["events_hash"]
+
+        h_false = run(False)
+        h_true = run(True)
+        assert h_false == h_true, (
+            "continuous_logistic_regen=True changed the hash when enable_continuous_locomotion=False!\n"
+            f"  logistic=False: {h_false}\n"
+            f"  logistic=True:  {h_true}\n"
+            "The logistic_regen flag must have zero effect when continuous locomotion is OFF."
+        )
+
+    def test_logistic_regen_deterministic(self) -> None:
+        """Two identical-seed continuous-ON runs with logistic_regen=True are deterministic."""
+        def run() -> str:
+            cfg = D.replace(
+                _cont_cfg(horizon=40, continuous_logistic_regen=True),
+                founder=_founder_with_speed(1.0),
+            )
+            return Ecology(cfg, seed=7).run()["events_hash"]
+
+        assert run() == run(), (
+            "continuous_logistic_regen=True runs are NOT deterministic — different hashes!"
+        )

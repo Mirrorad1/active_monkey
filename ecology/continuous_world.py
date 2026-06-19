@@ -100,10 +100,22 @@ class ContinuousWorld:
     The sub-cell grid holds depletable resource in each cell; its state is updated by
     consume().  The density field rho is separate and does NOT decay (it is the structural
     landscape); the sub-cell grid is the AVAILABLE resource (can be depleted and regenerates).
+
+    Exp 240: logistic_regen — OFF by default (byte-identical to Exp 238-239).
+    When True, each sub-cell regens at:
+        regen_amount = regen_rate * resource_cell * (1 - resource_cell / capacity)
+    instead of the flat regen_rate. This logistic formula is maximised at 50% resource
+    (regen_rate * capacity / 4) and approaches 0 at both 0 (depleted) and capacity (full).
+    The result: heavily-depleted cells recover SLOWLY, so a large population that depletes
+    the bump cells cannot keep harvesting at the same rate — a genuine negative feedback that
+    produces a stable carrying capacity instead of a commons-tragedy runaway.
+    OFF path (logistic_regen=False) is byte-identical to Exp 238-239 (the block never runs).
     """
     layout: Literal["bump", "flat", "neutral"] = "bump"
     regen_rate: float = 0.05
     capacity: float = 2.0
+    # Exp 240: logistic regeneration gate — OFF (False) by default, byte-identical to Exp 238-239.
+    logistic_regen: bool = False
 
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
@@ -245,16 +257,43 @@ class ContinuousWorld:
         return intake
 
     def step_regen(self) -> None:
-        """Regenerate each sub-cell by regen_rate, capped at capacity."""
+        """Regenerate each sub-cell by regen_rate, capped at capacity.
+
+        Exp 240: when logistic_regen=True, uses logistic formula instead of flat rate:
+            regen_amount = regen_rate * resource_cell * (1 - resource_cell / capacity)
+        This is the classic renewable-commons regulation: depleted cells recover slowly
+        (near-zero resource → near-zero regen), full cells don't overshoot (1 - 1.0 = 0),
+        and maximum regen occurs at 50% fullness.  The OFF path (logistic_regen=False) is
+        BYTE-IDENTICAL to Exp 238-239 — the logistic branch is never entered when False.
+        """
         cap = self.capacity
         rr = self.regen_rate
-        for ri in range(_GRID_CELLS):
-            row = self._resource[ri]
-            for ci in range(_GRID_CELLS):
-                v = float(row[ci]) + rr
-                if v > cap:
-                    v = cap
-                row[ci] = v
+        if self.logistic_regen:
+            # Exp 240: logistic regen — gated ON branch only (OFF is byte-identical).
+            # regen_amount = regen_rate * v * (1 - v / cap), capped at cap.
+            # This creates genuine negative feedback: a depleted cell (v ≈ 0) regens near 0,
+            # so a large population that strips the field cannot harvest at the same rate.
+            inv_cap = 1.0 / cap
+            for ri in range(_GRID_CELLS):
+                row = self._resource[ri]
+                for ci in range(_GRID_CELLS):
+                    v = float(row[ci])
+                    delta = rr * v * (1.0 - v * inv_cap)
+                    v = v + delta
+                    if v > cap:
+                        v = cap
+                    elif v < 0.0:
+                        v = 0.0
+                    row[ci] = v
+        else:
+            # Original flat-rate regen (byte-identical to Exp 238-239 when logistic_regen=False).
+            for ri in range(_GRID_CELLS):
+                row = self._resource[ri]
+                for ci in range(_GRID_CELLS):
+                    v = float(row[ci]) + rr
+                    if v > cap:
+                        v = cap
+                    row[ci] = v
 
     # ------------------------------------------------------------------
     # Heading helper (food-gradient sensing)
@@ -295,6 +334,12 @@ class ContinuousWorld:
         layout: Literal["bump", "flat", "neutral"] = "bump",
         regen_rate: float = 0.05,
         capacity: float = 2.0,
+        logistic_regen: bool = False,
     ) -> "ContinuousWorld":
-        """Build a ContinuousWorld from config parameters.  No rng used."""
-        return cls(layout=layout, regen_rate=regen_rate, capacity=capacity)
+        """Build a ContinuousWorld from config parameters.  No rng used.
+
+        logistic_regen=False (default): byte-identical to Exp 238-239.
+        logistic_regen=True (Exp 240): logistic resource renewal for stable carrying capacity.
+        """
+        return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
+                   logistic_regen=logistic_regen)

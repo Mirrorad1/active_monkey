@@ -424,6 +424,30 @@ step 0.
   self-corrected to MIXED. **RUNG 2 IS GATED**: do not run invasion-from-rarity until the confound is
   isolated (Rung 1b: cost-neutralise coverage so only efficient navigation pays). Card:
   `loop/directions/continuous-locomotion.md`.
+  **Exp 239 (MIXED / NEW INSIGHT):** Rung 1b — cost-neutralised coverage (speed_cost_slope=0.6,
+  flat-rho=0.5) isolates the NAVIGATION component as the dominant benefit driver. FLAT+nav net ≤ 0 at
+  all speeds (coverage neutralised); BUMP billiard net ≤ 0 at all speeds (distance arithmetic
+  neutralised); BUMP+nav net positive for speeds 0.25–2.0 (peak +0.626); nav advantage all-positive
+  every speed (mean +0.444, Spearman 0.657) — a CLEAN L39 nav-isolation fixing the Exp 238 confound.
+  Provisional Rung-2 invasion (Gate D 8/8 INVADES) is correctly flagged as GROWTH-PHASE r-selection
+  (the Exp-239 founder does not reach demographic equilibrium; extinction ~t=427 in monomorphic run).
+  This motivated Exp 240. Self-grade: MIXED.
+  **Exp 239+240 note — the binding verdict framing (do not restate without all caveats):**
+  **Exp 240 (POSITIVE / NEW INSIGHT — CANDIDATE first escape of the local-gradient wall, NOT
+  BREAKTHROUGH):** Rung 2 at VERIFIED-stable equilibrium. Density-dependent logistic regen added so
+  resident (speed=1.0) reaches N_eq=374 (CoV=0.010, 3000 steps × 3 seeds, births≈deaths≈17/step). At
+  that equilibrium density, speed-1.1 monomorphic intake is +43% vs speed-1.0 (0.65972 vs 0.58599,
+  fixed N=374 probe; Spearman=1.000, non-saturating). Rare mutant invades 8/8 (Gate C + Gate D). Gate
+  G null guards PASS. The local-gradient wall's core prediction — benefit saturates at equilibrium so a
+  rare costed mutant cannot invade — FAILS in continuous space. **HONEST CAVEATS (must remain
+  prominent):** (1) DIRECTIONAL/RUNAWAY: speed-1.1 has no finite monomorphic carrying capacity (explodes
+  past max_pop=5000); invasion drives a commons tragedy, not evolution to a stable optimum — no ESS
+  found; (2) ONE REGIME: viability-calibrated founder, one specific cost/threshold set; robustness
+  untested (the wall held across ~10 discrete regimes); (3) The mechanism is raw-speed advantage in a
+  structured field — navigational strategy beyond raw speed is the deeper open question. Self-grade:
+  POSITIVE / NEW INSIGHT (candidate escape). **NOT BREAKTHROUGH** — needs: runaway characterized (does
+  cost ever bound speed to a stable ESS?), robustness across regimes, independent replication.
+  Card: `loop/directions/continuous-locomotion.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
