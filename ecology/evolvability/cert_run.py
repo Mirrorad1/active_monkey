@@ -39,7 +39,7 @@ from ecology.engine import Ecology, EcologyConfig, _density_mortality_p
 from ecology.scenarios import SCENARIOS
 from ecology.genotype import founder as _base_founder
 from ecology.evolvability.stability import n_eq as _n_eq
-from ecology.continuous_world import ARENA_W, ARENA_H, _BUMP_CENTERS_BUMP, _BUMP_SIGMA
+from ecology.continuous_world import ARENA_W, ARENA_H, _BUMP_CENTERS_BUMP
 
 
 # ---------------------------------------------------------------------------
@@ -89,6 +89,9 @@ def _build_config(
     layout: str,
     horizon: int,
     speed_cost_slope: float = 0.6,
+    bump_sigma: float = 1.5,
+    bump_amplitude: float = 1.0,
+    bump_centers: tuple | None = None,
 ) -> EcologyConfig:
     """Build the Exp 243 monomorphic continuous config via dataclasses.replace.
 
@@ -130,6 +133,10 @@ def _build_config(
         mutation_rate=0.0,  # monomorphic — no mutation
         # Run params
         horizon=horizon,
+        # Exp 245: configurable bump geometry (defaults byte-identical to Exp 238-244).
+        continuous_bump_sigma=bump_sigma,
+        continuous_bump_amplitude=bump_amplitude,
+        continuous_bump_centers=bump_centers,
     )
 
 
@@ -200,6 +207,9 @@ def run_cert(
     horizon: int = 4000,
     burn_in: float = 0.6,
     speed_cost_slope: float = 0.6,
+    bump_sigma: float = 1.5,
+    bump_amplitude: float = 1.0,
+    bump_centers: tuple | None = None,
 ) -> dict:
     """Run a monomorphic certification run and return the analysis-window telemetry dict.
 
@@ -224,6 +234,12 @@ def run_cert(
     speed_cost_slope : float
         Linear energy cost per unit speed (default=0.6, the Exp-242 baseline).
         Pass lower values (e.g. 0.05–0.2) to search for viable slow/medium-speed regimes.
+    bump_sigma : float
+        Gaussian bump width (default=1.5, byte-identical to Exp 238-244). Lower → sharper.
+    bump_amplitude : float
+        Bump peak density (default=1.0, byte-identical to Exp 238-244).
+    bump_centers : tuple | None
+        Explicit bump center tuple for the "bump" layout (None → legacy default).
 
     Returns
     -------
@@ -248,6 +264,9 @@ def run_cert(
         layout=layout,
         horizon=horizon,
         speed_cost_slope=speed_cost_slope,
+        bump_sigma=bump_sigma,
+        bump_amplitude=bump_amplitude,
+        bump_centers=bump_centers,
     )
 
     eco = Ecology(cfg, seed=seed)
@@ -335,27 +354,28 @@ def run_cert(
     #
     # For "bump" layout, bump centers are in _BUMP_CENTERS_BUMP with sigma=1.5.
     # For other layouts, we use a conservative center of the arena as proxy.
-    _INTERBUMP_RADIUS_SQ = (1.5 * _BUMP_SIGMA) ** 2  # radius = 1.5*sigma = 2.25 units, squared
+    _INTERBUMP_RADIUS_SQ = (1.5 * bump_sigma) ** 2  # radius = 1.5*sigma, squared (Exp 245: uses configurable sigma)
     if layout == "bump":
-        bump_centers = _BUMP_CENTERS_BUMP
+        # Exp 245: use configured bump_centers if supplied, otherwise legacy default.
+        interbump_centers = bump_centers if bump_centers is not None else _BUMP_CENTERS_BUMP
     elif layout == "neutral":
         from ecology.continuous_world import _BUMP_CENTERS_NEUTRAL
-        bump_centers = _BUMP_CENTERS_NEUTRAL
+        interbump_centers = _BUMP_CENTERS_NEUTRAL
     else:
         # flat layout: no bumps; all creatures are "off-bump" — flux = 1.0 proxy
-        bump_centers = ()
+        interbump_centers = ()
 
     interbump_count = 0
     for c in alive_creatures:
         if c.phenotype.pos_cont is not None:
             x, y = c.phenotype.pos_cont
-            if not bump_centers:
+            if not interbump_centers:
                 # flat layout: define interbump_flux=1.0 (no bump structure)
                 interbump_count += 1
             else:
                 min_dist_sq = min(
                     (x - cx) ** 2 + (y - cy) ** 2
-                    for cx, cy in bump_centers
+                    for cx, cy in interbump_centers
                 )
                 if min_dist_sq > _INTERBUMP_RADIUS_SQ:
                     interbump_count += 1

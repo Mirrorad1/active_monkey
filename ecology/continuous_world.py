@@ -129,6 +129,15 @@ class ContinuousWorld:
     density.  ANTI-CHEAT preserved: the availability factor is the PROVIDED depletable
     grid, never any f(locomotor_speed); locomotor_speed still keys only the swept distance.
     OFF path (enable_depletion_intake=False) is byte-identical to Exp 238-241.
+
+    Exp 245: configurable bump geometry — bump_sigma, bump_amplitude, bump_centers.
+    All default to the module-level constants (_BUMP_SIGMA=1.5, _BUMP_AMPLITUDE=1.0,
+    _BUMP_CENTERS_BUMP) so a default-constructed world is byte-identical to Exp 238-244.
+    bump_centers=None (default) → the legacy _BUMP_CENTERS_BUMP tuple is used for the
+    "bump" layout and _BUMP_CENTERS_NEUTRAL for the "neutral" layout; pass an explicit
+    tuple to override only the "bump" layout centers (neutral continues using its own).
+    Choice rationale: keeping bump_centers=None→legacy avoids any generator that would
+    need to reproduce the exact 5 legacy positions, keeping default byte-identity trivial.
     """
     layout: Literal["bump", "flat", "neutral"] = "bump"
     regen_rate: float = 0.05
@@ -150,6 +159,15 @@ class ContinuousWorld:
     # SEPARATE from logistic_regen (left untouched so the Exp-240 golden is preserved verbatim).
     floored_regen: bool = False
 
+    # Exp 245: configurable bump geometry — OFF (defaults) is byte-identical to Exp 238-244.
+    # bump_sigma: Gaussian width (default 1.5 = _BUMP_SIGMA). Lower → sharper/more concentrated.
+    # bump_amplitude: peak density (default 1.0 = _BUMP_AMPLITUDE).
+    # bump_centers: explicit bump center tuple for the "bump" layout (None → use legacy
+    #   _BUMP_CENTERS_BUMP). Neutral layout always uses _BUMP_CENTERS_NEUTRAL regardless.
+    bump_sigma: float = _BUMP_SIGMA
+    bump_amplitude: float = _BUMP_AMPLITUDE
+    bump_centers: tuple | None = None  # None → _BUMP_CENTERS_BUMP (byte-identical default)
+
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
     _resource: list = field(default_factory=list)
@@ -167,13 +185,19 @@ class ContinuousWorld:
     # ------------------------------------------------------------------
 
     def rho(self, x: float, y: float) -> float:
-        """Resource density at continuous position (x, y). Pure; does not deplete."""
+        """Resource density at continuous position (x, y). Pure; does not deplete.
+
+        Exp 245: uses instance fields bump_sigma, bump_amplitude, bump_centers.
+        Defaults (1.5, 1.0, None) are byte-identical to the Exp 238-244 module constants.
+        bump_centers=None → legacy _BUMP_CENTERS_BUMP for "bump", _BUMP_CENTERS_NEUTRAL for "neutral".
+        """
         if self.layout == "flat":
             return _FLAT_RHO
         elif self.layout == "neutral":
-            return _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            return _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, self.bump_sigma, self.bump_amplitude)
         else:
-            return _rho_bump(x, y, _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            centers = self.bump_centers if self.bump_centers is not None else _BUMP_CENTERS_BUMP
+            return _rho_bump(x, y, centers, self.bump_sigma, self.bump_amplitude)
 
     # ------------------------------------------------------------------
     # Sub-cell indexing
@@ -402,6 +426,9 @@ class ContinuousWorld:
         logistic_regen: bool = False,
         enable_depletion_intake: bool = False,
         floored_regen: bool = False,
+        bump_sigma: float = _BUMP_SIGMA,
+        bump_amplitude: float = _BUMP_AMPLITUDE,
+        bump_centers: tuple | None = None,
     ) -> "ContinuousWorld":
         """Build a ContinuousWorld from config parameters.  No rng used.
 
@@ -413,8 +440,15 @@ class ContinuousWorld:
             speed reaches a finite carrying capacity instead of running away.
         floored_regen=False (default): byte-identical to Exp 238-239.
         floored_regen=True (Exp 243): gap-proportional regen with no absorbing dead-zone.
+        bump_sigma=1.5 (default): byte-identical to Exp 238-244. Lower → sharper bumps.
+        bump_amplitude=1.0 (default): byte-identical to Exp 238-244.
+        bump_centers=None (default): uses legacy _BUMP_CENTERS_BUMP (byte-identical).
+            Pass an explicit tuple to override the "bump" layout centers.
         """
         return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
                    logistic_regen=logistic_regen,
                    enable_depletion_intake=enable_depletion_intake,
-                   floored_regen=floored_regen)
+                   floored_regen=floored_regen,
+                   bump_sigma=bump_sigma,
+                   bump_amplitude=bump_amplitude,
+                   bump_centers=bump_centers)

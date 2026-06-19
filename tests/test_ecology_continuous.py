@@ -29,7 +29,10 @@ from ecology.scenarios import SCENARIOS
 from ecology.genotype import founder
 from ecology.runtime import snapshot, restore
 from ecology.evolvability.trait_axis import LOCOMOTION_CONTINUOUS_AXIS
-from ecology.continuous_world import ContinuousWorld, _GRID_CELLS
+from ecology.continuous_world import (
+    ContinuousWorld, _GRID_CELLS,
+    _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -710,3 +713,150 @@ class TestFlooredRegen:
             eco = Ecology(cfg, seed=3); eco.run()
             return float(np.sum(eco.cont_world._resource))
         assert run(True) != run(False), "Mechanism B is a silent no-op — VOID if byte-identical"
+
+
+# ---------------------------------------------------------------------------
+# Test 9: Exp 245 configurable bump geometry
+# ---------------------------------------------------------------------------
+
+class TestConfigurableBumpGeometry:
+    """Tests for the Exp 245 configurable bump geometry (sigma, amplitude, bump_centers).
+
+    Guards:
+      - Default geometry (sigma=1.5, amplitude=1.0, centers=None) is byte-identical to
+        legacy: same rho values at all test points AND the existing golden hash passes.
+      - bump_centers=None → uses _BUMP_CENTERS_BUMP exactly (not a different set).
+      - Sharper config (sigma=0.6) produces a more concentrated field: rho>0.1 spans
+        fewer sub-cells than the default.
+      - Two constructions with the same config produce identical rho values (determinism).
+      - Neutral layout still uses its own centers regardless of bump_centers parameter.
+    """
+
+    def test_default_geometry_byte_identical_to_legacy_rho(self) -> None:
+        """Default fields (sigma=1.5, amplitude=1.0, centers=None) produce same rho() as legacy constants."""
+        w_default = ContinuousWorld()  # all defaults
+        # Legacy rho: directly call _rho_bump with the module constants.
+        from ecology.continuous_world import _rho_bump
+        test_points = [
+            (3.0, 3.0),   # bump center
+            (6.0, 6.0),   # central bump center
+            (1.0, 1.0),   # far from bumps
+            (9.0, 9.0),   # corner bump center
+            (0.5, 11.5),  # arena corner
+        ]
+        for (x, y) in test_points:
+            expected = _rho_bump(x, y, _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            got = w_default.rho(x, y)
+            assert abs(got - expected) < 1e-15, (
+                f"Default rho({x},{y})={got} differs from legacy rho={expected}. "
+                "Default ContinuousWorld is NOT byte-identical to the legacy code."
+            )
+
+    def test_default_centers_are_legacy_bump_centers(self) -> None:
+        """bump_centers=None → uses _BUMP_CENTERS_BUMP exactly (not a different set)."""
+        w = ContinuousWorld()
+        from ecology.continuous_world import _rho_bump
+        # Verify that each legacy bump center produces a local maximum (rho at center >
+        # rho slightly off-center), confirming those are the actual centers in use.
+        for (cx, cy) in _BUMP_CENTERS_BUMP:
+            rho_at_center = w.rho(cx, cy)
+            rho_offset = w.rho(cx + 0.5, cy + 0.5)
+            assert rho_at_center > rho_offset, (
+                f"Legacy center ({cx},{cy}) is NOT a local maximum in the default world. "
+                "bump_centers=None may not be using _BUMP_CENTERS_BUMP."
+            )
+
+    def test_sharper_sigma_produces_more_concentrated_field(self) -> None:
+        """sigma=0.6 produces a more concentrated field than sigma=1.5 (default).
+
+        Counts sub-cells with rho>0.1 for both configs; sharper must be strictly fewer.
+        This is the primary Exp 245 competition-strength probe validation.
+        """
+        w_default = ContinuousWorld(bump_sigma=1.5)
+        w_sharp = ContinuousWorld(bump_sigma=0.6)
+
+        # Sample over the full 24x24 sub-cell grid centers.
+        from ecology.continuous_world import _CELL_SIZE
+        cells_above_default = 0
+        cells_above_sharp = 0
+        for ri in range(_GRID_CELLS):
+            for ci in range(_GRID_CELLS):
+                # Sub-cell center coordinates.
+                x = (ci + 0.5) * _CELL_SIZE
+                y = (ri + 0.5) * _CELL_SIZE
+                if w_default.rho(x, y) > 0.1:
+                    cells_above_default += 1
+                if w_sharp.rho(x, y) > 0.1:
+                    cells_above_sharp += 1
+
+        assert cells_above_sharp < cells_above_default, (
+            f"Sharper sigma=0.6 did NOT produce a more concentrated field than sigma=1.5!\n"
+            f"  sigma=1.5: {cells_above_default} sub-cells with rho>0.1\n"
+            f"  sigma=0.6: {cells_above_sharp} sub-cells with rho>0.1\n"
+            "The sharper config must have fewer rho>0.1 cells."
+        )
+        # Sanity: both must be > 0 (bumps exist) and < total (576).
+        assert cells_above_default > 0, "Default field has NO sub-cells above 0.1 — something is wrong."
+        assert cells_above_sharp > 0, "Sharper field has NO sub-cells above 0.1 — sigma=0.6 is too tight."
+
+        # Store counts for the report (print for visibility in test output).
+        print(
+            f"\n[Exp 245] rho>0.1 sub-cell counts: "
+            f"sigma=1.5 → {cells_above_default}, sigma=0.6 → {cells_above_sharp}"
+        )
+
+    def test_geometry_determinism(self) -> None:
+        """Two ContinuousWorld instances with the same config produce identical rho values."""
+        w1 = ContinuousWorld(bump_sigma=0.6, bump_amplitude=0.8)
+        w2 = ContinuousWorld(bump_sigma=0.6, bump_amplitude=0.8)
+        test_points = [(1.5, 1.5), (3.0, 3.0), (6.0, 6.0), (9.0, 9.0), (11.0, 11.0)]
+        for (x, y) in test_points:
+            assert w1.rho(x, y) == w2.rho(x, y), (
+                f"rho({x},{y}) differs between two same-config worlds: "
+                f"{w1.rho(x,y)} vs {w2.rho(x,y)}. Geometry is NOT deterministic."
+            )
+
+    def test_neutral_layout_unaffected_by_bump_centers(self) -> None:
+        """Neutral layout always uses its own centers, ignoring bump_centers parameter."""
+        from ecology.continuous_world import _BUMP_CENTERS_NEUTRAL, _rho_bump
+
+        custom_centers = ((1.0, 1.0), (11.0, 11.0))
+        w_default_neutral = ContinuousWorld(layout="neutral")
+        w_custom_neutral = ContinuousWorld(layout="neutral", bump_centers=custom_centers)
+
+        test_pts = [(2.0, 5.0), (5.0, 2.0), (10.0, 7.0)]
+        for (x, y) in test_pts:
+            legacy_neutral = _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            assert abs(w_default_neutral.rho(x, y) - legacy_neutral) < 1e-15, (
+                f"Neutral layout rho({x},{y}) differs from legacy neutral centers."
+            )
+            assert abs(w_custom_neutral.rho(x, y) - legacy_neutral) < 1e-15, (
+                f"Neutral layout rho({x},{y}) changed when bump_centers was set — "
+                "neutral must always use _BUMP_CENTERS_NEUTRAL regardless of bump_centers."
+            )
+
+    def test_golden_hash_unchanged_with_default_geometry(self) -> None:
+        """Golden hash is UNCHANGED with default bump geometry (byte-identity via EcologyConfig).
+
+        This is the critical byte-identity check: adding the Exp 245 fields with defaults
+        must not change the existing _CONTINUOUS_ON_GOLDEN_HASH.
+        """
+        cfg = D.replace(_cont_cfg(horizon=50), founder=_founder_with_speed(1.5))
+        result = Ecology(cfg, seed=_CONTINUOUS_ON_GOLDEN_SEED).run()
+        h = result["events_hash"]
+        assert h == _CONTINUOUS_ON_GOLDEN_HASH, (
+            f"Exp 245 BROKE the golden hash — default geometry is NOT byte-identical!\n"
+            f"  Got:      {h}\n"
+            f"  Expected: {_CONTINUOUS_ON_GOLDEN_HASH}\n"
+            "Check that all new EcologyConfig fields default to their legacy values."
+        )
+
+    def test_from_config_default_byte_identical(self) -> None:
+        """ContinuousWorld.from_config() with defaults produces same rho() as ContinuousWorld()."""
+        w_direct = ContinuousWorld()
+        w_from_cfg = ContinuousWorld.from_config()
+        test_pts = [(3.0, 3.0), (6.0, 6.0), (9.0, 9.0), (1.0, 11.0)]
+        for (x, y) in test_pts:
+            assert w_direct.rho(x, y) == w_from_cfg.rho(x, y), (
+                f"from_config() default rho({x},{y}) differs from direct ContinuousWorld()."
+            )

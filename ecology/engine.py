@@ -505,6 +505,15 @@ class EcologyConfig:
     density_mortality_Kc: float = 60.0        # density scale (birth-balance-derived)
     density_mortality_rate_scale: float = 0.0 # optional lead/derivative brake (default OFF)
 
+    # Exp 245: configurable continuous bump geometry — OFF (defaults) byte-identical to Exp 238-244.
+    # continuous_bump_sigma: Gaussian bump width (default 1.5 = _BUMP_SIGMA). Lower → sharper.
+    # continuous_bump_amplitude: bump peak density (default 1.0 = _BUMP_AMPLITUDE).
+    # continuous_bump_centers: explicit centers for the "bump" layout (None → legacy default).
+    #   None (default) → uses _BUMP_CENTERS_BUMP in ContinuousWorld; byte-identical to Exp 238-244.
+    continuous_bump_sigma: float = 1.5
+    continuous_bump_amplitude: float = 1.0
+    continuous_bump_centers: tuple | None = None
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -590,6 +599,10 @@ class Ecology:
                 logistic_regen=cfg.continuous_logistic_regen,
                 enable_depletion_intake=cfg.enable_continuous_depletion_intake,
                 floored_regen=cfg.continuous_floored_regen,
+                # Exp 245: configurable bump geometry (defaults byte-identical to Exp 238-244).
+                bump_sigma=cfg.continuous_bump_sigma,
+                bump_amplitude=cfg.continuous_bump_amplitude,
+                bump_centers=cfg.continuous_bump_centers,
             )
         else:
             self.cont_world = None
