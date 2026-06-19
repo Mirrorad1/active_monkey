@@ -7,6 +7,7 @@ Pure numpy (no scipy.signal) for determinism.
 """
 from __future__ import annotations
 import numpy as np
+from ecology.engine import _density_mortality_p
 
 
 def n_eq(N) -> float:
@@ -138,3 +139,100 @@ def oscillation_verdict(N, *, seed=0) -> dict:
             "periodogram_null_95": prom95, "autocorr_trough": trough,
             "amp_ptp": amp_ptp, "damping_ok": damping_ok,
             "classification": classification}
+
+
+# --- per-run gates, cell certification, non-degeneracy, band verdict (FROZEN thresholds) ---
+_PERSIST_FLOOR = 30
+_LEVEL_CV_MED_MAX = 0.15
+_LEVEL_CV_SEED_MAX = 0.25
+_DRIFT_MAX = 0.10
+_RETURN_SLOPE_MAX = 1.0
+_MARGINAL_BRAKE_MAX = 0.5
+_SEED_AGREE_MAX = 0.25
+_AVAIL_LO, _AVAIL_HI = 0.05, 0.85
+_BOUNDARY_MAX = 0.5
+
+
+def _marginal_brake(n_eq_val, params):
+    """Compute the crowding-brake strength at n_eq.
+
+    Uses _density_mortality_p (canonical engine helper) for the hazard p,
+    then computes the derivative p' analytically for the theta-logistic.
+    Returns |p + n_eq * p'|.
+    """
+    h, Kc, th = params["hmax"], params["Kc"], params["theta"]
+    p = _density_mortality_p(n_eq_val, h, Kc, th)
+    pprime = h * th * (n_eq_val / Kc) ** (th - 1) / Kc if n_eq_val > 0 else 0.0
+    return abs(p + n_eq_val * pprime)
+
+
+def non_degeneracy_ok(run):
+    """Return (bool, reasons) — True iff run passes all non-degeneracy checks."""
+    reasons = []
+    if run["exploded"]:
+        reasons.append("exploded")
+    if not (_PERSIST_FLOOR <= run["n_eq"]):
+        reasons.append("below_floor")
+    if not (_AVAIL_LO < run["availability_mean"] < _AVAIL_HI):
+        reasons.append("degenerate_depletion(availability=%.3f)" % run["availability_mean"])
+    if run["boundary_frac"] >= _BOUNDARY_MAX:
+        reasons.append("wall_clamped")
+    if run["interbump_flux"] <= 0.0:
+        reasons.append("static_spatial_mosaic")
+    return (len(reasons) == 0, reasons)
+
+
+def certify_run(run, params):
+    """Apply all per-run stability gates. Returns dict with 'passes' bool and per-check detail."""
+    N = np.asarray(run["N"], dtype=float)
+    eqv = run.get("n_eq", n_eq(N))
+    checks = {}
+    checks["persistence"] = persistence(N) >= _PERSIST_FLOOR and not run["exploded"]
+    checks["level_cv"] = level_cv(N) <= _LEVEL_CV_SEED_MAX
+    checks["drift"] = drift_slope(N, eqv) <= _DRIFT_MAX
+    checks["return_map"] = (abs(return_map_slope(N)) < _RETURN_SLOPE_MAX
+                            and _marginal_brake(eqv, params) < _MARGINAL_BRAKE_MAX)
+    bp, cp = run["births_per_step"], run["crowding_per_step"]
+    checks["birth_pulse"] = (cp == 0.0 and bp == 0.0) or (cp > 0 and 0.5 <= bp / cp <= 2.0)
+    checks["oscillation"] = oscillation_verdict(N)["classification"] == "DAMPED"
+    nd_ok, nd_reasons = non_degeneracy_ok(run)
+    checks["non_degenerate"] = nd_ok
+    passes = all(checks.values())
+    return {"passes": passes, "checks": checks, "nd_reasons": nd_reasons}
+
+
+def certify_cell(runs, params, seeds):
+    """Certify a cell across multiple seed runs.
+
+    Passes iff >=ceil(0.75*seeds) runs pass AND seed_agreement <= _SEED_AGREE_MAX.
+    """
+    per = [certify_run(r, params) for r in runs]
+    n_pass = sum(1 for p in per if p["passes"])
+    need = int(np.ceil(0.75 * seeds))
+    n_eqs = [r.get("n_eq", n_eq(r["N"])) for r in runs]
+    agree = seed_agreement(n_eqs) <= _SEED_AGREE_MAX
+    return {"certified": n_pass >= need and agree, "n_pass": n_pass, "need": need,
+            "seed_agreement_ok": agree, "per_seed": per}
+
+
+def band_verdict(cell_stable, expressed_speeds):
+    """GO iff a contiguous run of >=3 stable speeds overlaps expressed_speeds.
+
+    cell_stable: {speed: bool}
+    expressed_speeds: set of speeds observed in the expressed population.
+    """
+    speeds = sorted(cell_stable)
+    best = []
+    run = []
+    for s in speeds:
+        if cell_stable[s]:
+            run.append(s)
+        else:
+            if len(run) > len(best):
+                best = run
+            run = []
+    if len(run) > len(best):
+        best = run
+    overlap = [s for s in best if s in expressed_speeds]
+    go = len(best) >= 3 and len(overlap) >= 1
+    return {"verdict": "GO" if go else "NO-GO", "band": best, "overlap": overlap}

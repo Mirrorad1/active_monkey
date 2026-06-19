@@ -59,3 +59,48 @@ def test_detector_catches_low_amplitude_cycle():
     # the failure mode the candidate detector missed: a noisy ~12-24% sustained cycle.
     v = S.oscillation_verdict(_limit_cycle(amp=22.0, sigma=6.0))
     assert v["classification"] == "OSCILLATORY"
+
+
+def test_certify_run_passes_clean_damped():
+    N = _damped_series(seed=2, n0=150.0)
+    run = dict(N=N, births_per_step=1.5, crowding_per_step=1.4, p_hazard_mean=0.04,
+               exploded=False, availability_mean=0.4, boundary_frac=0.1, interbump_flux=0.3,
+               n_eq=float(np.median(N)))
+    res = S.certify_run(run, params=dict(hmax=0.04, Kc=60.0, theta=1.0))
+    assert res["passes"] is True
+
+def test_certify_run_fails_extinct_floor():
+    N = 8 + np.zeros(1600)                       # below the persistence floor of 30
+    run = dict(N=N, births_per_step=0.0, crowding_per_step=0.0, p_hazard_mean=0.0,
+               exploded=False, availability_mean=0.9, boundary_frac=0.1, interbump_flux=0.0,
+               n_eq=8.0)
+    assert S.certify_run(run, params=dict(hmax=0.04, Kc=60.0, theta=1.0))["passes"] is False
+
+def test_non_degeneracy_flags_static_mosaic():
+    run = dict(N=150+np.zeros(1600), interbump_flux=0.0, availability_mean=0.4,
+               boundary_frac=0.1, exploded=False, n_eq=150.0)
+    ok, reasons = S.non_degeneracy_ok(run)
+    assert ok is False and any("mosaic" in r for r in reasons)
+
+def test_band_verdict_requires_overlap():
+    # stable at slow {0.25,0.5,0.75} but expressed only at fast {2,3,4} -> NO-GO (no overlap)
+    cell = {0.25: True, 0.5: True, 0.75: True, 1.0: False, 2.0: False, 3.0: False}
+    v = S.band_verdict(cell, expressed_speeds={2.0, 3.0, 4.0})
+    assert v["verdict"] == "NO-GO"
+    cell2 = {1.0: True, 1.5: True, 2.0: True}
+    v2 = S.band_verdict(cell2, expressed_speeds={1.0, 1.5, 2.0})
+    assert v2["verdict"] == "GO" and v2["band"] == [1.0, 1.5, 2.0]
+
+
+def test_marginal_brake_agrees_with_density_mortality_p():
+    """_marginal_brake's p-term must agree with ecology.engine._density_mortality_p."""
+    from ecology.engine import _density_mortality_p
+    params = dict(hmax=0.05, Kc=80.0, theta=2.0)
+    n_eq_val = 60.0
+    # compute p via the canonical engine helper
+    p_engine = _density_mortality_p(n_eq_val, params["hmax"], params["Kc"], params["theta"])
+    # compute p as used internally by _marginal_brake (h * clamp((N/Kc)^th, 0, 1))
+    h, Kc, th = params["hmax"], params["Kc"], params["theta"]
+    f = min(1.0, max(0.0, (n_eq_val / Kc) ** th))
+    p_local = h * f
+    assert abs(p_engine - p_local) < 1e-12, f"p_engine={p_engine} p_local={p_local}"
