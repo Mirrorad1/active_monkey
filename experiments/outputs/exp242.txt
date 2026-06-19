@@ -1,0 +1,63 @@
+========================================================================
+Exp 242 — Regulated ESS Test (Rung 4): Depletion-Aware Intake
+========================================================================
+
+QUESTION: With the density-dependent feedback the Exp 238-241 substrate was
+  MISSING, does a monomorphic population at ANY speed reach a STABLE finite N_eq,
+  enabling a clean ESS/invasion test? Does continuous locomotion cleanly evolve,
+  or does proper regulation restore saturation (wall holds)?
+
+ROOT CAUSE (Exp 241 substrate bug): continuous intake = line integral of the
+  STRUCTURAL rho() field (never depletes), NOT the depletable _resource grid. So
+  depletion had ZERO effect on intake → per-capita intake never fell with density
+  → faster movers always ran away. Every regen-side fix is a knife-edge.
+FIX: enable_continuous_depletion_intake — intake = rho * (resource_cell/capacity).
+  Closes the feedback. Full field ⇒ factor 1.0 ⇒ ON==OFF. byte-identical OFF.
+
+Founder: bmc=0.05, mc=0.03, cap=10.0, threshold=4.2, aging=0.003.
+Sweeps: regen_rate=[0.5, 1.0, 2.0], cost_slope=[0.05, 0.1, 0.2], speed=[0.5, 1.0, 1.5, 2.0, 3.0]
+Stability: horizon=2400, eq-window t>=1600, CoV<0.05.
+
+========================================================================
+Step 0: Null Guard (byte-identity, trait-disabled)
+========================================================================
+
+  seed=0: PASS  h_res=d5c52897a2a779f4, h_mut=d5c52897a2a779f4
+  seed=1: PASS  h_res=6caee93aeba86bc4, h_mut=6caee93aeba86bc4
+  Null guards: all PASS = True
+
+========================================================================
+Step 1: N_eq(speed, cost, regen) MAP — Stability Gate
+========================================================================
+
+GATE: a regime with >= 3 STABLE speeds (CoV<0.05).
+  3 seeds/cell, 2400-step runs, eq-window last third.
+  KEY DIAGNOSTIC: does ANY speed still RUNAWAY? (Exp 241: all faster ran away.)
+
+    Running (regen=0.5, cost=0.05, speed=0.5)...
+    Running (regen=0.5, cost=0.05, speed=1.0)...
+    Running (regen=0.5, cost=0.05, speed=1.5)...
+    Running (regen=0.5, cost=0.05, speed=2.0)...
+    Running (regen=0.5, cost=0.05, speed=3.0)...
+  regen=0.5, cost=0.05: E0.5 | ?1.0 | ?1.5 | ?2.0 | ?3.0
+    STABLE speeds: []
+
+    Running (regen=0.5, cost=0.1, speed=0.5)...
+    Running (regen=0.5, cost=0.1, speed=1.0)...
+    Running (regen=0.5, cost=0.1, speed=1.5)...
+    Running (regen=0.5, cost=0.1, speed=2.0)...
+    Running (regen=0.5, cost=0.1, speed=3.0)...
+  regen=0.5, cost=0.1: E0.5 | ?1.0 | ?1.5 | ?2.0 | ?3.0
+    STABLE speeds: []
+
+    Running (regen=0.5, cost=0.2, speed=0.5)...
+    Running (regen=0.5, cost=0.2, speed=1.0)...
+    Running (regen=0.5, cost=0.2, speed=1.5)...
+    Running (regen=0.5, cost=0.2, speed=2.0)...
+    Running (regen=0.5, cost=0.2, speed=3.0)...
+  regen=0.5, cost=0.2: E0.5 | E1.0 | ?1.5 | ?2.0 | ?3.0
+    STABLE speeds: []
+
+    Running (regen=1.0, cost=0.05, speed=0.5)...
+    Running (regen=1.0, cost=0.05, speed=1.0)...
+    Running (regen=1.0, cost=0.05, speed=1.5)...
