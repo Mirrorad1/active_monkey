@@ -122,13 +122,16 @@ def oscillation_verdict(N, *, seed=0) -> dict:
     def _amp(a): return a.std()
     boot = [ _amp(rng.choice(late, size=len(late))) for _ in range(200) ]
     se = float(np.std(boot))
-    damping_ok = bool(_amp(late) <= _amp(early) - _DAMP_K*se) or _amp(early) <= _amp(late)*1.05
+    damping_ok = (_amp(late) <= _amp(early) - _DAMP_K*se) or (_amp(early) <= _amp(late)*1.05)
     primary = ar_mod < _AR_MODULUS_MAX
     secondary = prom <= prom95
-    # TERTIARY: flag as oscillatory only if BOTH a deep anti-phase autocorrelation trough
-    # (trough ≤ -0.30) AND a large relative peak-to-trough amplitude (amp_ptp ≥ 0.30);
-    # demographic noise has the amplitude but not the anti-phase autocorrelation.
-    # PASS (DAMPED-contributing) when either condition is absent → OR combinator.
+    # TERTIARY (DAMPED-contributing witness): tertiary=True keeps the series DAMPED.
+    # It is True when the series LACKS at least one cycle signature — i.e. the autocorr
+    # trough is shallow (> -0.30) OR the peak-to-trough amplitude is small (< 0.30).
+    # A sustained cycle has BOTH a deep anti-phase trough (<= -0.30) AND large amplitude
+    # (>= 0.30); demographic noise has large amplitude but a shallow trough, so it passes
+    # via the trough clause -> DAMPED. Only when BOTH cycle signatures hold is tertiary
+    # False -> OSCILLATORY.
     tertiary = (trough > _AUTOCORR_TROUGH_MIN) or (amp_ptp < _AMP_PTP_MAX)
     classification = "DAMPED" if (primary and secondary and tertiary and damping_ok) else "OSCILLATORY"
     return {"ar_modulus": ar_mod, "periodogram_prominence": prom,
