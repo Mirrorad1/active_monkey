@@ -104,3 +104,8 @@ def test_marginal_brake_agrees_with_density_mortality_p():
     f = min(1.0, max(0.0, (n_eq_val / Kc) ** th))
     p_local = h * f
     assert abs(p_engine - p_local) < 1e-12, f"p_engine={p_engine} p_local={p_local}"
+    # also verify _marginal_brake's OUTPUT matches a reference built from _density_mortality_p
+    brake_val = S._marginal_brake(n_eq_val, params)
+    pprime = h * th * (n_eq_val / Kc) ** (th - 1) / Kc
+    expected = abs(p_engine + n_eq_val * pprime)
+    assert abs(brake_val - expected) < 1e-12, f"brake_val={brake_val} expected={expected}"

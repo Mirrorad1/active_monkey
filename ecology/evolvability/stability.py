@@ -32,6 +32,8 @@ def return_map_slope(N) -> float:
     """Local OLS slope of N(t+1) vs N(t) over the window (empirical one-step return map)."""
     N = np.asarray(N, dtype=float)
     x, y = N[:-1], N[1:]
+    if np.ptp(x) == 0:      # constant series: one-step return map slope is 0 by convention
+        return 0.0
     return float(np.polyfit(x, y, 1)[0])
 
 
