@@ -34,6 +34,16 @@ EXPERIMENT STRUCTURE:
            CRITICAL: the winner must ALSO reach a stable equilibrium, not runaway.
   Step 4: Robustness (neutral layout).
 
+PREDICTION:
+  With enable_continuous_depletion_intake=True, at least one (regen, cost) regime
+  produces >= 3 speeds with STABLE finite N_eq (CoV<0.05), enabling a clean
+  ESS/invasion test. If so, the non-saturating benefit translates to a clean wall-escape.
+
+FALSIFIER:
+  No (regen, cost) regime yields >= 3 stable speeds (CoV<0.05) across the 3x3x5
+  sweep; the stability gate FAILS; no invasion test is run. => CAN'T POSE.
+  Secondary falsifier: if gate passes but faster mutant does not invade from rarity => NEGATIVE.
+
 VERDICT:
   CLEAN ESCAPE: stable range AND faster mutant cleanly invades-to-a-new-stable-equilibrium.
   WALL HOLDS: proper regulation restores saturation; faster mutant does NOT invade.

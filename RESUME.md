@@ -462,6 +462,7 @@ step 0.
   for efficient movers on this substrate; continuous space trades the discrete saturation obstacle
   for a DEMOGRAPHIC-INSTABILITY one; the local-gradient wall is NOT cleanly escaped.
   Self-grade: NEGATIVE / NEW INSIGHT. Card: `loop/directions/continuous-locomotion.md`.
+  **Exp 242 (CAN'T POSE / NEW INSIGHT — chapter close):** Found the FOUNDATIONAL INTAKE BUG: ContinuousWorld.line_integral_intake read the structural rho() field (never depletes), not the depletable _resource grid — so Exp 238-241 ran with zero density-dependent feedback (always-full field). The correct fix (enable_continuous_depletion_intake) eliminates runaway (0 runaway cells in a 45-cell sweep) but yields OSCILLATORY/limit-cycle dynamics — 0 stable fixed points, slow speeds extinct. No stable equilibrium => no clean ESS/invasion test posable. CAN'T POSE. **CHAPTER CLOSED (continuous-locomotion):** the toy continuous substrate cannot host a clean locomotion-evolvability verdict; the discrete local-gradient wall STANDS. Card: `loop/directions/continuous-locomotion.md` (state: closed-negative).
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
