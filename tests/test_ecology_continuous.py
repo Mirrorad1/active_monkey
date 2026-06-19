@@ -654,6 +654,21 @@ class TestFreezeContinuousLocomotion:
         assert frozen["events_hash"] == self._run(freeze=True)["events_hash"]
 
     def test_off_path_byte_identical(self):
-        # freeze defaults False => existing continuous-ON golden must be unchanged.
-        result = D.replace  # sanity: helper import present
-        assert self._run(freeze=False, horizon=50, seed=_CONTINUOUS_ON_GOLDEN_SEED) is not None
+        # freeze=False must be byte-identical to a run where the flag is left at its
+        # default (i.e. the pre-task code path): the flag's OFF state draws no rng and
+        # adds no float op, so the event stream must be bit-for-bit unchanged.
+        # (The Exp 238-242 golden pin lives in test_continuous_on_golden_hash_stable;
+        # this test guards the OFF state of THIS flag within its own config family.)
+        h_freeze_false = self._run(freeze=False)["events_hash"]
+
+        cfg_no_flag = D.replace(_cont_cfg(horizon=60),
+                                founder=_founder_with_speed(1.5),
+                                mutation_rate=0.1)  # flag omitted => default False
+        h_no_flag = Ecology(cfg_no_flag, seed=3).run()["events_hash"]
+
+        assert h_freeze_false == h_no_flag, (
+            "freeze_continuous_locomotion=False is NOT byte-identical to the default "
+            "(no-flag) path — the OFF state is leaking a behavioral change!\n"
+            f"  freeze=False: {h_freeze_false}\n"
+            f"  no-flag:      {h_no_flag}"
+        )
