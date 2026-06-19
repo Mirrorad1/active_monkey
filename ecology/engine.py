@@ -452,6 +452,17 @@ class EcologyConfig:
     # genuine negative feedback that prevents the commons-tragedy runaway at Rung 2.
     continuous_logistic_regen: bool = False
 
+    # Exp 242: depletion-aware intake — OFF by default, byte-identical to Exp 238-241.
+    # The Exp 238-241 substrate has a silent regulation bug: continuous intake is the line
+    # integral of the STRUCTURAL density field rho() (which never depletes), so the
+    # depletable _resource grid has NO effect on intake and per-capita intake never falls
+    # with density — faster movers always run away (no finite carrying capacity, Exp 241).
+    # When True, ContinuousWorld.line_integral_intake multiplies rho by the local
+    # availability fraction (resource_cell / capacity), closing the density-dependent
+    # feedback so every speed reaches a finite carrying capacity. Requires
+    # enable_continuous_locomotion=True. OFF path is byte-identical to Exp 238-241.
+    enable_continuous_depletion_intake: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -535,6 +546,7 @@ class Ecology:
                 regen_rate=cfg.continuous_regen_rate,
                 capacity=cfg.continuous_capacity,
                 logistic_regen=cfg.continuous_logistic_regen,
+                enable_depletion_intake=cfg.enable_continuous_depletion_intake,
             )
         else:
             self.cont_world = None
