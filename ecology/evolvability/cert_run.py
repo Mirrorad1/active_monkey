@@ -88,6 +88,7 @@ def _build_config(
     rate_scale: float,
     layout: str,
     horizon: int,
+    speed_cost_slope: float = 0.6,
 ) -> EcologyConfig:
     """Build the Exp 243 monomorphic continuous config via dataclasses.replace.
 
@@ -104,7 +105,7 @@ def _build_config(
         continuous_layout=layout,
         continuous_dt=1.0,
         speed_cost_floor=0.0,
-        speed_cost_slope=0.6,        # Exp-242 viable speed cost slope (not 0.0)
+        speed_cost_slope=speed_cost_slope,   # configurable; default=0.6 (Exp-242 baseline)
         continuous_regen_rate=regen_rate,
         continuous_capacity=_EXP242_CONTINUOUS_CAPACITY,
         # Depletion-aware intake (Exp 242) — fixes the density-feedback bug
@@ -198,6 +199,7 @@ def run_cert(
     seed: int,
     horizon: int = 4000,
     burn_in: float = 0.6,
+    speed_cost_slope: float = 0.6,
 ) -> dict:
     """Run a monomorphic certification run and return the analysis-window telemetry dict.
 
@@ -219,6 +221,9 @@ def run_cert(
         Number of steps to run.
     burn_in : float
         Fraction of horizon to discard as burn-in (default 0.6).
+    speed_cost_slope : float
+        Linear energy cost per unit speed (default=0.6, the Exp-242 baseline).
+        Pass lower values (e.g. 0.05–0.2) to search for viable slow/medium-speed regimes.
 
     Returns
     -------
@@ -242,6 +247,7 @@ def run_cert(
         rate_scale=rate_scale,
         layout=layout,
         horizon=horizon,
+        speed_cost_slope=speed_cost_slope,
     )
 
     eco = Ecology(cfg, seed=seed)
