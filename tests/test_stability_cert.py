@@ -109,3 +109,12 @@ def test_marginal_brake_agrees_with_density_mortality_p():
     pprime = h * th * (n_eq_val / Kc) ** (th - 1) / Kc
     expected = abs(p_engine + n_eq_val * pprime)
     assert abs(brake_val - expected) < 1e-12, f"brake_val={brake_val} expected={expected}"
+
+
+def test_cert_run_smoke():
+    from ecology.evolvability.cert_run import run_cert
+    r = run_cert(speed=1.0, hmax=0.04, Kc=60.0, theta=1.0, regen_rate=0.05,
+                 rate_scale=0.0, layout="bump", seed=3, horizon=300, burn_in=0.6)
+    assert set(r) >= {"N", "births_per_step", "crowding_per_step", "exploded",
+                      "availability_mean", "boundary_frac", "interbump_flux", "n_eq"}
+    assert len(r["N"]) == int(300 * 0.4)
