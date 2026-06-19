@@ -1,0 +1,206 @@
+========================================================================
+Exp 241 — ESS Characterization: Runaway vs Clean Escape (Rung 3)
+========================================================================
+
+QUESTION: Is the Exp-240 candidate escape (speed=1.1 invades, speed_cost=0.6)
+  (A) a CLEAN ESCAPE — a stable finite ESS with convergent invasion from both
+      sides; or
+  (B) a DEMOGRAPHIC ARTIFACT — always runaway regardless of cost, the invasion
+      only happens via explosion?
+
+Parameters inherited from Exp 240: bmc=0.05, mc=0.03,
+  cap=10.0, threshold=4.2, aging=0.003,
+  regen_rate=0.2, capacity=2.0, logistic_regen=True.
+
+========================================================================
+Step 0: Null Guard (byte-identity, trait-disabled)
+========================================================================
+
+  seed=0: PASS  h_res=d5c52897a2a779f4, h_mut=d5c52897a2a779f4
+  seed=1: PASS  h_res=6caee93aeba86bc4, h_mut=6caee93aeba86bc4
+  Null guards: all PASS = True
+
+========================================================================
+Step 1: N_eq(speed, cost_slope) MAP — classify demographic outcome
+========================================================================
+
+speed_cost_slope values: [0.3, 0.6, 1.0, 1.5, 2.0, 3.0]
+monomorphic speed values: [0.5, 1.0, 1.5, 2.0, 3.0]
+3 seeds per cell, 3000-step runs, equilibrium window t>=1200
+STABLE = CoV < 0.05 in window, N>5; RUNAWAY = explodes >2000; EXTINCT = pop→0
+
+   cost \ speed    0.5    1.0    1.5    2.0    3.0
+  ------------------------------------------------
+    Running (cost=0.3, speed=0.5)...
+    Running (cost=0.3, speed=1.0)...
+    Running (cost=0.3, speed=1.5)...
+    Running (cost=0.3, speed=2.0)...
+    Running (cost=0.3, speed=3.0)...
+     0.3      S 504   RUN   RUN   RUN   RUN
+    Running (cost=0.6, speed=0.5)...
+    Running (cost=0.6, speed=1.0)...
+    Running (cost=0.6, speed=1.5)...
+    Running (cost=0.6, speed=2.0)...
+    Running (cost=0.6, speed=3.0)...
+     0.6       EXT  S 374   RUN   RUN   RUN
+    Running (cost=1.0, speed=0.5)...
+    Running (cost=1.0, speed=1.0)...
+    Running (cost=1.0, speed=1.5)...
+    Running (cost=1.0, speed=2.0)...
+    Running (cost=1.0, speed=3.0)...
+     1.0       EXT   EXT   EXT   EXT   EXT
+    Running (cost=1.5, speed=0.5)...
+    Running (cost=1.5, speed=1.0)...
+    Running (cost=1.5, speed=1.5)...
+    Running (cost=1.5, speed=2.0)...
+    Running (cost=1.5, speed=3.0)...
+     1.5       EXT   EXT   EXT   EXT   EXT
+    Running (cost=2.0, speed=0.5)...
+    Running (cost=2.0, speed=1.0)...
+    Running (cost=2.0, speed=1.5)...
+    Running (cost=2.0, speed=2.0)...
+    Running (cost=2.0, speed=3.0)...
+     2.0       EXT   EXT   EXT   EXT   EXT
+    Running (cost=3.0, speed=0.5)...
+    Running (cost=3.0, speed=1.0)...
+    Running (cost=3.0, speed=1.5)...
+    Running (cost=3.0, speed=2.0)...
+    Running (cost=3.0, speed=3.0)...
+     3.0       EXT   EXT   EXT   EXT   EXT
+
+  Legend: S<N> = STABLE at N_eq=<N>, RUN = RUNAWAY, EXT = EXTINCT
+
+  STABLE cells: 2
+    cost=0.3, speed=0.5: N_eq=503.7, CoV=0.017
+    cost=0.6, speed=1.0: N_eq=374.4, CoV=0.010
+
+  NO cost regime has multiple stable speeds.
+  This means: for any cost tested, either HIGHER speeds run away OR the population
+  goes extinct — there is NO cost value that creates a stable equilibrium for a
+  faster monomorphic population. This is the ALWAYS-RUNAWAY picture.
+
+  INTERIM VERDICT: DEMOGRAPHIC-INSTABILITY-ENTANGLED
+  (will confirm with additional analysis below)
+
+========================================================================
+Step 2: Equilibrium Net-Benefit Curve (intake at own N_eq)
+========================================================================
+
+For each stable (speed, cost) cell: measure per-capita raw intake at own N_eq.
+Net benefit ≈ intake − speed_cost (metabolic cost is speed-dependent).
+An INTERIOR OPTIMUM s* is signaled by net benefit peaking at an intermediate speed.
+
+  cost=0.3: measuring benefit curve for stable speeds [0.5]
+    speed=0.5: N_eq=504, raw_intake=0.2553, cost=0.1500, net=0.1053
+
+  cost=0.6: measuring benefit curve for stable speeds [1.0]
+    speed=1.0: N_eq=374, raw_intake=0.5860, cost=0.6000, net=-0.0140
+
+========================================================================
+Step 3: Convergence Test (invasion from both sides of candidate s*)
+========================================================================
+
+  No cost regime with multiple stable speeds — testing at Exp-240 cost=0.6 anyway.
+  This tests the BELOW case (is the known invasion still runaway?)
+  and checks if a SLOWER mutant could invade at very high cost (ABOVE case).
+
+  Replicating Exp-240: resident=1.0, mutant=1.1, cost=0.6, N_eq=374
+    8/8 invade (exploded=8), PASSES=True
+  Slower-invasion test: resident=1.0, mutant=0.9, cost=0.6
+    8/8 invade (exploded=8), PASSES=True
+
+  High-cost check: cost=3.0, testing if speed=1.0 is still stable
+    speed=1.0 at cost=3.0: EXTINCT
+
+========================================================================
+Step 4: Robustness Check (neutral layout + alt founder)
+========================================================================
+
+Purpose: confirm that the qualitative result (stable ESS, or always-runaway)
+holds under a different bump-field arrangement and a different founder calibration.
+
+  4a: Neutral layout (BUMP_CENTERS_NEUTRAL — different geometric arrangement)
+  Testing key cost values: 0.6 and 3.0
+
+    Neutral layout: (cost=0.6, speed=1.0)...
+      status=RUNAWAY, N_eq=NaN
+    Neutral layout: (cost=0.6, speed=1.5)...
+      status=RUNAWAY, N_eq=NaN
+    Neutral layout: (cost=3.0, speed=1.0)...
+      status=EXTINCT, N_eq=NaN
+    Neutral layout: (cost=3.0, speed=1.5)...
+      status=EXTINCT, N_eq=NaN
+
+  4b: Alt founder (bmc=0.04, mc=0.025, threshold=4.5, aging=0.004)
+  Testing key cost values: 0.6 and 3.0
+
+    Alt founder: (cost=0.6, speed=1.0)...
+      status=STABLE, N_eq=50.0
+    Alt founder: (cost=0.6, speed=1.5)...
+      status=RUNAWAY, N_eq=NaN
+    Alt founder: (cost=3.0, speed=1.0)...
+      status=EXTINCT, N_eq=NaN
+    Alt founder: (cost=3.0, speed=1.5)...
+      status=EXTINCT, N_eq=NaN
+
+========================================================================
+AGGREGATE VERDICT
+========================================================================
+
+  === N_eq(speed, cost) MAP SUMMARY ===
+  Total cells: 30
+  STABLE: 2, RUNAWAY: 7, EXTINCT: 21
+  cost=0.3: STABLE=[0.5], RUNAWAY=[1.0, 1.5, 2.0, 3.0]
+  cost=0.6: STABLE=[1.0], RUNAWAY=[1.5, 2.0, 3.0]
+  cost=1.0: STABLE=[], RUNAWAY=[]
+  cost=1.5: STABLE=[], RUNAWAY=[]
+  cost=2.0: STABLE=[], RUNAWAY=[]
+  cost=3.0: STABLE=[], RUNAWAY=[]
+
+  === ESS ANALYSIS ===
+  No cost regime yields stable higher speeds.
+  => Higher speeds always run away regardless of cost slope tested.
+
+  === ROBUSTNESS ===
+  Neutral layout:
+    cost=0.6, speed=1.0: RUNAWAY
+    cost=0.6, speed=1.5: RUNAWAY
+    cost=3.0, speed=1.0: EXTINCT
+    cost=3.0, speed=1.5: EXTINCT
+  Alt founder:
+    cost=0.6, speed=1.0: STABLE
+    cost=0.6, speed=1.5: RUNAWAY
+    cost=3.0, speed=1.0: EXTINCT
+    cost=3.0, speed=1.5: EXTINCT
+
+  === BYTE-IDENTITY / GOLDEN HASH ===
+  Null guards PASS: True
+  enable_continuous_locomotion=False by default (OFF = byte-identical to Exp 194-239).
+  continuous_logistic_regen=False by default (OFF = byte-identical to Exp 238-239).
+  No changes to engine.py, continuous_world.py, or golden-hash test files.
+
+========================================================================
+BLUNT BOTTOM LINE
+========================================================================
+
+  VERDICT: DEMOGRAPHIC-INSTABILITY-ENTANGLED (always runaway at all costs tested)
+
+  No cost regime tested yields a stable finite equilibrium for speeds
+  faster than the Exp-240 resident (speed=1.0). Any harvesting-efficiency
+  gain via higher speed triggers a demographic runaway (commons tragedy).
+  The 'invasion' in Exp 240 reflects substrate instability, not a clean
+  selection gradient toward an evolvable optimum.
+
+  The Exp-240 candidate escape is DEMOGRAPHIC-INSTABILITY-ENTANGLED.
+  It does NOT constitute a clean evolvable optimum. The local-gradient
+  wall may hold for a stable ESS — it is only breached in a regime where
+  the winner explodes, not converges.
+
+  This WEAKENS (does not fully invalidate) the Exp-240 candidate:
+  - The per-capita benefit at N_eq=374 is real (+43%), non-saturating.
+  - But the benefit comes with no demographic ceiling for the faster type.
+  - A regime where a faster type both INVADES and CONVERGES to stable N_eq
+    has NOT been found in the tested parameter space.
+
+  Verdict string: DEMOGRAPHIC-INSTABILITY-ENTANGLED — ALWAYS RUNAWAY
+

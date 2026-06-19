@@ -448,6 +448,20 @@ step 0.
   POSITIVE / NEW INSIGHT (candidate escape). **NOT BREAKTHROUGH** — needs: runaway characterized (does
   cost ever bound speed to a stable ESS?), robustness across regimes, independent replication.
   Card: `loop/directions/continuous-locomotion.md`.
+  **Exp 241 (NEGATIVE / NEW INSIGHT — DOWNGRADES the Exp-240 candidate escape):** Rung 3 ESS
+  characterization. N_eq(speed,cost) map (6 costs × 5 speeds = 30 cells, 3 seeds, 3000 steps):
+  STABLE=2, RUNAWAY=7, EXTINCT=21 — only 2 knife-edge cells (one stable speed per cost); any
+  faster speed RUNS AWAY; costs 1.0–3.0 all EXTINCT. Convergence test at Exp-240 equilibrium
+  (resident=1.0, cost=0.6): faster mutant (1.1) 8/8 invade by explosion AND slower mutant (0.9)
+  8/8 invade by explosion — a slower creature eats LESS, so if it "invades" the same way,
+  the invasion metric is DEMOGRAPHIC INSTABILITY, not a speed-selection gradient. The Exp-240
+  equilibrium is also bump-layout-specific (neutral layout → runaway even at speed 1.0).
+  **WHAT SURVIVES:** the non-saturating per-capita benefit is real (+43% at fixed density N=374;
+  continuous coverage genuinely escapes discrete-grid saturation at the BENEFIT level).
+  **WHAT DOES NOT SURVIVE:** the EVOLVABILITY / wall-escape claim — no stable, robust equilibrium
+  for efficient movers on this substrate; continuous space trades the discrete saturation obstacle
+  for a DEMOGRAPHIC-INSTABILITY one; the local-gradient wall is NOT cleanly escaped.
+  Self-grade: NEGATIVE / NEW INSIGHT. Card: `loop/directions/continuous-locomotion.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
