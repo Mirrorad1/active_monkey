@@ -35,6 +35,26 @@ from ecology.continuous_world import ContinuousWorld
 
 
 # ---------------------------------------------------------------------------
+# Exp 243 Mechanism A: pure hazard helper (module-level, no imports, no state)
+# ---------------------------------------------------------------------------
+def _density_mortality_p(N, hmax, Kc, theta, rate_scale=0.0, dN=0.0):
+    """Exp 243 Mechanism A per-step crowding death probability (theta-logistic on N).
+
+    p = hmax * clamp((N/Kc)**theta, 0, 1)  [ + rate_scale*max(0, dN/Kc) when rate_scale>0 ].
+    Pure function of the GLOBAL scalar N (no genotype term) -> trait-flat by construction.
+    """
+    factor = (N / Kc) ** theta
+    if factor < 0.0:
+        factor = 0.0
+    elif factor > 1.0:
+        factor = 1.0
+    p = hmax * factor
+    if rate_scale > 0.0 and dN > 0.0:
+        p += rate_scale * (dN / Kc)
+    return p
+
+
+# ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
 @dataclass
@@ -474,6 +494,16 @@ class EcologyConfig:
     # Exp 243: Mechanism B — monotone floored regen for the continuous world. OFF byte-identical.
     # NOTE: only observable when enable_continuous_depletion_intake=True (intake ignores _resource otherwise).
     continuous_floored_regen: bool = False
+
+    # Exp 243: Mechanism A — global density-dependent (crowding) mortality. OFF byte-identical.
+    # Per-creature Bernoulli death roll keyed ONLY on the frozen total head-count N:
+    #   p = hmax * clamp((N/Kc)**theta, 0, 1) [+ rate_scale*max(0,(N-N_prev)/Kc)].
+    # A SUBSTRATE scalar, not a genotype trait (no new heritable trait, no mutate_* flag).
+    enable_density_mortality: bool = False
+    density_mortality_theta: float = 1.0      # 1.0 linear (default); 2.0 = Stage-2 probe
+    density_mortality_hmax: float = 0.04      # per-step hazard ceiling
+    density_mortality_Kc: float = 60.0        # density scale (birth-balance-derived)
+    density_mortality_rate_scale: float = 0.0 # optional lead/derivative brake (default OFF)
 
 
 # ---------------------------------------------------------------------------
@@ -1161,6 +1191,25 @@ class Ecology:
         if not ph.alive and c.policy is not None:
             c.policy.release_maps()
 
+        # 7c. Exp 243 Mechanism A: global density-dependent crowding mortality.
+        #     Gated; OFF path makes ZERO rng draws and emits no event. Only rolled if the
+        #     creature is still alive this step (starvation/senescence take precedence).
+        if cfg.enable_density_mortality and ph.alive:
+            p = _density_mortality_p(
+                self._dm_N_frozen, cfg.density_mortality_hmax, cfg.density_mortality_Kc,
+                cfg.density_mortality_theta, cfg.density_mortality_rate_scale,
+                getattr(self, "_dm_dN", 0.0))
+            if p > 0.0 and self.rng.random() < p:
+                ph.alive = False
+                ph.cause_of_death = "crowding"
+                self.events.append(self._event("death", c, details={
+                    "cause": "crowding",
+                    "age": ph.age,
+                    "offspring_count": ph.offspring_count,
+                }))
+                if c.policy is not None:
+                    c.policy.release_maps()
+
     # ------------------------------------------------------------------
     # Step / Run
     # ------------------------------------------------------------------
@@ -1206,6 +1255,16 @@ class Ecology:
         if self.cfg.enable_hidden_mode:
             if self.rng.random() < self.cfg.mode_switch_prob:
                 self.world.hidden_mode = 1 - self.world.hidden_mode
+
+        # Exp 243 Mechanism A: freeze the global head-count ONCE per step, before the
+        # per-creature loop and before any shuffle, so every alive creature sees the SAME N.
+        if self.cfg.enable_density_mortality:
+            _N_now = self.alive_count()
+            if not hasattr(self, "_dm_N_prev"):
+                self._dm_N_prev = _N_now          # t=0: derivative term is 0
+            self._dm_dN = _N_now - self._dm_N_prev
+            self._dm_N_frozen = _N_now
+            self._dm_N_prev = _N_now
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
