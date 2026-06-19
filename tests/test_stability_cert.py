@@ -30,3 +30,32 @@ def test_return_map_slope_damped_below_one():
 
 def test_seed_agreement():
     assert S.seed_agreement([100, 110, 120]) == (120-100)/110
+
+
+def _damped_series(seed=0, n=1600, phi=0.5, n0=150.0, sigma=2.0):
+    rng = np.random.default_rng(seed); N = np.empty(n); N[0] = n0
+    for i in range(1, n):
+        N[i] = n0 + phi*(N[i-1]-n0) + rng.normal(0, sigma)
+    return N
+
+def _limit_cycle(seed=0, n=1600, n0=150.0, amp=25.0, period=40.0, sigma=3.0):
+    rng = np.random.default_rng(seed); t = np.arange(n)
+    return n0 + amp*np.sin(2*np.pi*t/period) + rng.normal(0, sigma, n)
+
+def test_detector_passes_damped():
+    v = S.oscillation_verdict(_damped_series())
+    assert v["classification"] == "DAMPED"
+
+def test_detector_flags_limit_cycle():
+    v = S.oscillation_verdict(_limit_cycle())
+    assert v["classification"] == "OSCILLATORY"
+
+def test_detector_does_not_false_fail_flat_noise():
+    # truly-flat + demographic noise must NOT be misread as a sustained cycle.
+    rng = np.random.default_rng(1); N = 150 + rng.normal(0, np.sqrt(150), 1600)
+    assert S.oscillation_verdict(N)["classification"] == "DAMPED"
+
+def test_detector_catches_low_amplitude_cycle():
+    # the failure mode the candidate detector missed: a noisy ~12-24% sustained cycle.
+    v = S.oscillation_verdict(_limit_cycle(amp=22.0, sigma=6.0))
+    assert v["classification"] == "OSCILLATORY"
