@@ -107,15 +107,41 @@ class ContinuousWorld:
     instead of the flat regen_rate. This logistic formula is maximised at 50% resource
     (regen_rate * capacity / 4) and approaches 0 at both 0 (depleted) and capacity (full).
     The result: heavily-depleted cells recover SLOWLY, so a large population that depletes
-    the bump cells cannot keep harvesting at the same rate — a genuine negative feedback that
-    produces a stable carrying capacity instead of a commons-tragedy runaway.
+    the bump cells cannot keep harvesting at the same rate.
     OFF path (logistic_regen=False) is byte-identical to Exp 238-239 (the block never runs).
+
+    Exp 242: depletion_intake — OFF by default (byte-identical to Exp 238-241).
+    The Exp 238-241 substrate has a SILENT REGULATION BUG: line_integral_intake reads
+    the STRUCTURAL density field rho() (which never depletes), NOT the depletable
+    _resource grid.  So consume_segment()'s depletion of _resource has ZERO effect on
+    intake — every mover always integrates the full undepleted rho field, per-capita
+    intake NEVER falls with population density, and faster movers always run away
+    (commons tragedy with no finite carrying capacity).  This is why Exp 241 found
+    every regen-side fix is a knife-edge: regen acts on _resource, but intake ignores it.
+
+    When enable_depletion_intake=True, intake reads the AVAILABILITY of the depletable
+    grid: the per-sample density rho(x,y) is multiplied by (resource_cell / capacity),
+    so a region stripped by a dense population yields proportionally less intake.  This
+    closes the feedback loop (intake DOES fall with local depletion), creating a genuine
+    density-dependent carrying capacity for EVERY speed.  When the field is full
+    (_resource == capacity everywhere) the availability factor is 1.0, so the intake
+    EQUALS the structural integral — the ON path reduces to the OFF physics at zero
+    density.  ANTI-CHEAT preserved: the availability factor is the PROVIDED depletable
+    grid, never any f(locomotor_speed); locomotor_speed still keys only the swept distance.
+    OFF path (enable_depletion_intake=False) is byte-identical to Exp 238-241.
     """
     layout: Literal["bump", "flat", "neutral"] = "bump"
     regen_rate: float = 0.05
     capacity: float = 2.0
     # Exp 240: logistic regeneration gate — OFF (False) by default, byte-identical to Exp 238-239.
     logistic_regen: bool = False
+
+    # Exp 242: depletion-aware intake — OFF by default, byte-identical to Exp 238-241.
+    # When True, line_integral_intake multiplies rho by the local availability fraction
+    # (resource_cell / capacity) so consumed regions yield less — the missing
+    # density-dependent feedback that bounds every speed at a finite carrying capacity.
+    # OFF path (enable_depletion_intake=False) is BYTE-IDENTICAL to Exp 238-241.
+    enable_depletion_intake: bool = False
 
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
@@ -187,15 +213,35 @@ class ContinuousWorld:
         if d < 1e-12:
             return 0.0
         # Trapezoidal-rule line integral: sum rho at k equally-spaced points, weight by d/k.
+        # Exp 242: when enable_depletion_intake is True, each sample's structural density
+        # rho(xi,yi) is scaled by the local AVAILABILITY fraction (resource_cell / capacity),
+        # so a region the population has stripped yields less intake — the density-dependent
+        # feedback the OFF path is missing.  When the field is full this factor is 1.0, so the
+        # ON integral EQUALS the OFF integral (the ON path reduces to OFF physics at zero
+        # depletion).  OFF path is byte-identical to Exp 238-241 (the multiply never runs).
+        # ANTI-CHEAT: the availability factor is the PROVIDED depletable grid, never f(speed).
         total = 0.0
-        for i in range(k):
-            t = i / (k - 1) if k > 1 else 0.0
-            xi = x0 + t * ddx
-            yi = y0 + t * ddy
-            # Clamp to arena.
-            xi = max(0.0, min(ARENA_W, xi))
-            yi = max(0.0, min(ARENA_H, yi))
-            total = total + self.rho(xi, yi)
+        if self.enable_depletion_intake:
+            inv_cap = 1.0 / self.capacity
+            for i in range(k):
+                t = i / (k - 1) if k > 1 else 0.0
+                xi = x0 + t * ddx
+                yi = y0 + t * ddy
+                # Clamp to arena.
+                xi = max(0.0, min(ARENA_W, xi))
+                yi = max(0.0, min(ARENA_H, yi))
+                ri, ci = self._cell_idx(xi, yi)
+                avail_frac = float(self._resource[ri][ci]) * inv_cap
+                total = total + (self.rho(xi, yi) * avail_frac)
+        else:
+            for i in range(k):
+                t = i / (k - 1) if k > 1 else 0.0
+                xi = x0 + t * ddx
+                yi = y0 + t * ddy
+                # Clamp to arena.
+                xi = max(0.0, min(ARENA_W, xi))
+                yi = max(0.0, min(ARENA_H, yi))
+                total = total + self.rho(xi, yi)
         # Weight by d/k (trapezoid step size).
         raw_intake = (total * d) / k
         # Cap by energy deficit.
@@ -335,11 +381,17 @@ class ContinuousWorld:
         regen_rate: float = 0.05,
         capacity: float = 2.0,
         logistic_regen: bool = False,
+        enable_depletion_intake: bool = False,
     ) -> "ContinuousWorld":
         """Build a ContinuousWorld from config parameters.  No rng used.
 
         logistic_regen=False (default): byte-identical to Exp 238-239.
         logistic_regen=True (Exp 240): logistic resource renewal for stable carrying capacity.
+        enable_depletion_intake=False (default): byte-identical to Exp 238-241.
+        enable_depletion_intake=True (Exp 242): intake reads the depletable grid availability
+            (rho * resource_cell/capacity), closing the density-dependent feedback so every
+            speed reaches a finite carrying capacity instead of running away.
         """
         return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
-                   logistic_regen=logistic_regen)
+                   logistic_regen=logistic_regen,
+                   enable_depletion_intake=enable_depletion_intake)

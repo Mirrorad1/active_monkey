@@ -490,3 +490,144 @@ class TestLogisticRegen:
         assert run() == run(), (
             "continuous_logistic_regen=True runs are NOT deterministic — different hashes!"
         )
+
+
+# ---------------------------------------------------------------------------
+# Test 6: Exp 242 enable_continuous_depletion_intake knob
+# ---------------------------------------------------------------------------
+
+class TestContinuousDepletionIntakeKnob:
+    """Tests for the Exp 242 enable_continuous_depletion_intake knob.
+
+    The Exp 238-241 substrate has a silent regulation bug: continuous intake is the line
+    integral of the STRUCTURAL density field rho() (never depletes), so the depletable
+    _resource grid has NO effect on intake.  The Exp 242 flag makes intake read the local
+    availability (resource_cell / capacity), closing the density-dependent feedback.
+
+    Guards:
+      - OFF path is byte-identical (determinism) and the flag is gated by locomotion.
+      - line_integral_intake ON a FULL field == OFF integral (reduces to OFF at zero depletion).
+      - line_integral_intake ON a DEPLETED field is STRICTLY LESS than OFF (the feedback bites).
+      - An ON run over a populated horizon produces a DIFFERENT events_hash than OFF (the
+        mechanism actually changes intake → energy → reproduction/death events).
+    """
+
+    def _run(self, enable: bool, seed: int = 7) -> str:
+        cfg = D.replace(
+            SCENARIOS["balanced"],
+            enable_continuous_locomotion=True,
+            continuous_layout="bump",
+            continuous_dt=1.0,
+            speed_cost_floor=0.0,
+            speed_cost_slope=0.2,
+            mutation_rate=0.0,
+            horizon=60,
+            continuous_logistic_regen=False,
+            enable_continuous_depletion_intake=enable,
+            continuous_regen_rate=0.2,
+            continuous_capacity=2.0,
+            initial_population=40,
+            max_population=2000,
+        )
+        return Ecology(cfg, seed=seed).run()["events_hash"]
+
+    def test_depletion_intake_off_determinism(self) -> None:
+        """enable_continuous_depletion_intake=False is deterministic (same hash twice)."""
+        assert self._run(enable=False, seed=7) == self._run(enable=False, seed=7), (
+            "enable_continuous_depletion_intake=False is not deterministic!"
+        )
+
+    def test_depletion_intake_on_determinism(self) -> None:
+        """enable_continuous_depletion_intake=True is deterministic (same hash twice)."""
+        assert self._run(enable=True, seed=11) == self._run(enable=True, seed=11), (
+            "enable_continuous_depletion_intake=True runs are NOT deterministic!"
+        )
+
+    def test_depletion_intake_on_changes_events_hash(self) -> None:
+        """ON must change the events_hash vs OFF — the mechanism actually bites.
+
+        Depletion-aware intake lowers per-capita intake as the field is stripped, which
+        changes energy → reproduction/death timings → the event stream.  If the hash were
+        unchanged the flag would be a silent no-op (the very bug Exp 242 fixes).
+        """
+        h_off = self._run(enable=False, seed=7)
+        h_on = self._run(enable=True, seed=7)
+        assert h_off != h_on, (
+            "enable_continuous_depletion_intake=True did NOT change the events_hash!\n"
+            f"  OFF={h_off[:16]}  ON={h_on[:16]}\n"
+            "The depletion-intake mechanism is a silent no-op — intake still ignores _resource."
+        )
+
+    def test_full_field_intake_equals_off(self) -> None:
+        """On a FULL field, the depletion-aware integral EQUALS the structural OFF integral.
+
+        availability == 1.0 everywhere ⇒ rho * 1.0 == rho ⇒ the ON path reduces to OFF
+        physics at zero depletion.  This is the byte-identity-at-init property.
+        """
+        from ecology.continuous_world import ContinuousWorld
+
+        w_off = ContinuousWorld(layout="bump", regen_rate=0.2, capacity=2.0,
+                                enable_depletion_intake=False)
+        w_on = ContinuousWorld(layout="bump", regen_rate=0.2, capacity=2.0,
+                               enable_depletion_intake=True)
+        # Both start full (capacity everywhere). Same segment.
+        seg = (1.0, 1.0, 3.5, 3.5)
+        i_off = w_off.line_integral_intake(*seg, 100.0)
+        i_on = w_on.line_integral_intake(*seg, 100.0)
+        assert abs(i_off - i_on) < 1e-12, (
+            f"Full-field intake differs between OFF and ON: off={i_off}, on={i_on}\n"
+            "ON must reduce to OFF when availability == 1.0 everywhere."
+        )
+
+    def test_depleted_field_intake_strictly_less(self) -> None:
+        """On a DEPLETED field, the depletion-aware integral is STRICTLY LESS than OFF.
+
+        This is the density-dependent feedback: a region the population has stripped
+        yields proportionally less intake (rho * availability < rho).  OFF ignores
+        depletion and integrates the full structural rho regardless.
+        """
+        from ecology.continuous_world import ContinuousWorld, _GRID_CELLS
+
+        w_off = ContinuousWorld(layout="bump", regen_rate=0.2, capacity=2.0,
+                                enable_depletion_intake=False)
+        w_on = ContinuousWorld(layout="bump", regen_rate=0.2, capacity=2.0,
+                               enable_depletion_intake=True)
+        # Deplete the ON field to 25% availability everywhere.
+        for ri in range(_GRID_CELLS):
+            for ci in range(_GRID_CELLS):
+                w_on._resource[ri][ci] = 0.5  # 0.5 / 2.0 = 25%
+        seg = (1.0, 1.0, 5.0, 5.0)  # passes through the central bump
+        i_off = w_off.line_integral_intake(*seg, 100.0)
+        i_on = w_on.line_integral_intake(*seg, 100.0)
+        assert i_on < i_off, (
+            f"Depleted-field intake NOT less under ON: off={i_off:.4f}, on={i_on:.4f}\n"
+            "The depletion-intake feedback is not biting."
+        )
+        # At uniform 25% availability the ON integral should be ~25% of OFF.
+        assert abs(i_on - 0.25 * i_off) < 1e-9, (
+            f"ON integral ({i_on:.6f}) is not 25% of OFF ({i_off:.6f}) at 25% availability."
+        )
+
+    def test_depletion_intake_gated_by_enable_locomotion(self) -> None:
+        """When enable_continuous_locomotion=False, the depletion-intake knob has NO effect.
+
+        cont_world is None when locomotion OFF, so enable_continuous_depletion_intake=True
+        must be byte-identical to the plain OFF run.
+        """
+        def _run_off_locomotion(enable_depletion: bool) -> str:
+            cfg = D.replace(
+                SCENARIOS["balanced"],
+                enable_continuous_locomotion=False,
+                enable_continuous_depletion_intake=enable_depletion,
+                mutation_rate=0.0,
+                horizon=30,
+            )
+            return Ecology(cfg, seed=5).run()["events_hash"]
+
+        h_false = _run_off_locomotion(False)
+        h_true = _run_off_locomotion(True)
+        assert h_false == h_true, (
+            "enable_continuous_depletion_intake=True changed hash when locomotion is OFF!\n"
+            f"  OFF depletion={h_false[:16]}  ON depletion={h_true[:16]}\n"
+            "The knob must have zero effect when enable_continuous_locomotion=False."
+        )
