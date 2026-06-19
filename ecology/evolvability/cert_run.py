@@ -39,7 +39,7 @@ from ecology.engine import Ecology, EcologyConfig, _density_mortality_p
 from ecology.scenarios import SCENARIOS
 from ecology.genotype import founder
 from ecology.evolvability.stability import n_eq as _n_eq
-from ecology.continuous_world import ARENA_W, ARENA_H, _BUMP_CENTERS_BUMP
+from ecology.continuous_world import ARENA_W, ARENA_H, _BUMP_CENTERS_BUMP, _BUMP_SIGMA
 
 
 def _founder_with_speed(speed: float):
@@ -92,54 +92,50 @@ def _build_config(
 def _reconstruct_N_per_step(events: list, horizon: int) -> list[int]:
     """Reconstruct per-step alive count via event-replay.
 
-    Strategy: scan events in order. Birth events (event_type=="birth") add +1 to
-    the running alive count at their timestep `t`. Death events (event_type=="death")
-    subtract 1. The resource_tick and reproduction events do not change alive count.
+    Engine founder/offspring representation (verified from ecology/engine.py):
+    - FOUNDERS: emitted as "birth" events at t=0 (before any step() call) with
+      details={"founder": True}. They are added in __init__ before the run loop.
+    - OFFSPRING: emitted as "birth" events with details={"founder": False, "parent_id": ...}
+      at whatever t the engine's self.t holds when _step_one_creature runs.
+      Step-0 offspring have t=0 AND founder=False.
+    - DEATHS: emitted as "death" events at the t when they occur in _step_one_creature.
+
+    Strategy: seed alive count from FOUNDER-FLAGGED births (t=0, founder=True) before
+    the per-step loop. Then in each step, count non-founder births at that step's t
+    (offspring, including genuine step-0 offspring) as +1, and deaths at that t as -1.
+    This correctly handles step-0 offspring that share t=0 with founders.
 
     Returns a list of length `horizon` where index i is the alive count AT THE END
     of step i (after births and deaths in step i are applied).
 
-    Birth events include both founder births (t=0, details.founder=True) and offspring
-    births. The engine initialises founders in __init__ (t=0 events, before any step),
-    so the initial count is derived from those t=0 births, then each step's births and
-    deaths advance it.
-
     NOTE: events_hash is NOT touched — this is purely a post-hoc read of eco.events.
     """
-    # Build a per-timestep delta: births = +1, deaths = -1
-    birth_delta: dict[int, int] = {}
+    # Separate founders from offspring births; build per-step deltas.
+    n_founders: int = 0
+    offspring_delta: dict[int, int] = {}
     death_delta: dict[int, int] = {}
 
     for ev in events:
         et = ev.get("event_type")
         t = ev.get("t", 0)
         if et == "birth":
-            birth_delta[t] = birth_delta.get(t, 0) + 1
+            if ev.get("details", {}).get("founder", False):
+                # Founder: added before the run loop; counts toward initial alive.
+                n_founders += 1
+            else:
+                # Offspring (genuine birth during a step, including step 0).
+                offspring_delta[t] = offspring_delta.get(t, 0) + 1
         elif et == "death":
             death_delta[t] = death_delta.get(t, 0) + 1
 
-    # Walk through steps 0..horizon-1 accumulating alive count.
-    # Founder births happen at t=0 (they are pre-step events in __init__).
-    # The engine's step() increments self.t at the END of each step, so events at t=k
-    # are from step k. After step k finishes, the alive count includes those t=k
-    # births and deaths. We snapshot AFTER each step.
-    #
-    # The initial alive count before any step() calls = founder births at t=0.
-    # After step 0 completes: add births at t=0, subtract deaths at t=0 from STEP
-    # (but founders were added before step 0 — we need to separate them).
-    #
-    # Cleaner approach: replay cumulatively step by step.
-    # At the end of step t (0-indexed), N[t] = sum of all births so far - sum of all deaths so far.
-    alive = 0
-    # Add founder births at t=0 (before the first step runs)
-    alive += birth_delta.pop(0, 0)
-
+    # Walk steps 0..horizon-1. Initial alive = founder count (pre-step, from __init__).
+    # At each step t, add offspring born during that step and subtract deaths.
+    alive = n_founders
     N_series: list[int] = []
     for step_t in range(horizon):
-        # Births and deaths emitted during step `step_t` (engine uses self.t = step_t
-        # at the start of the step, then increments at the end)
-        # Non-founder births at t=step_t are offspring born during that step.
-        alive += birth_delta.get(step_t, 0)
+        # Offspring born during this step (includes genuine step-0 offspring).
+        alive += offspring_delta.get(step_t, 0)
+        # Deaths during this step.
         alive -= death_delta.get(step_t, 0)
         alive = max(0, alive)
         N_series.append(alive)
@@ -241,7 +237,7 @@ def run_cert(
     # Computed analytically from N(t) using the canonical engine helper.
     # No engine change needed.
     p_hazard_vals = [
-        _density_mortality_p(float(n), hmax, Kc, theta, rate_scale)
+        _density_mortality_p(float(n), hmax, Kc, theta, rate_scale)  # NOTE: dN=0 proxy; underestimates p_hazard when rate_scale>0 (the lead term is omitted).
         for n in N_window
     ]
     p_hazard_mean = float(np.mean(p_hazard_vals)) if p_hazard_vals else 0.0
@@ -290,7 +286,7 @@ def run_cert(
     #
     # For "bump" layout, bump centers are in _BUMP_CENTERS_BUMP with sigma=1.5.
     # For other layouts, we use a conservative center of the arena as proxy.
-    _INTERBUMP_RADIUS = 1.5 * 1.5  # 1.5 * _BUMP_SIGMA; squared for efficiency
+    _INTERBUMP_RADIUS_SQ = (1.5 * _BUMP_SIGMA) ** 2  # radius = 1.5*sigma = 2.25 units, squared
     if layout == "bump":
         bump_centers = _BUMP_CENTERS_BUMP
     elif layout == "neutral":
@@ -312,7 +308,7 @@ def run_cert(
                     (x - cx) ** 2 + (y - cy) ** 2
                     for cx, cy in bump_centers
                 )
-                if min_dist_sq > _INTERBUMP_RADIUS:
+                if min_dist_sq > _INTERBUMP_RADIUS_SQ:
                     interbump_count += 1
 
     interbump_flux = interbump_count / total_alive if total_alive > 0 else 0.0
