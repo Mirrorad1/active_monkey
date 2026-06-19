@@ -1,0 +1,42 @@
+Exp 243 Birth-Balance Diagnostic
+=================================
+Parameters:
+  speed=1.0, horizon=2000, regen_rate=0.05
+  layout=bump, seed=42, hmax=0.0 (mortality OFF)
+  hmax_target=0.04, theta_target=1.0, Kc_default=60.0
+
+Energy Budget Analysis (single creature, full field):
+  Start energy:              15.0
+  Reproduction threshold:    17.0
+  Max intake/step (full fld):0.1373
+  Step cost at age 0:        0.800
+  Aging cost/step:           0.0200
+  Break-even age:            -33.1 steps
+  Max achievable energy:     15.0000
+  Can reproduce:             NO — threshold NEVER reached
+
+Empirical run results (hmax=0.0, horizon=2000, seed=42):
+  N(0)=12, N_max=12, N_final=0
+  Total births:    0
+  Total deaths:    12  (causes: {'starvation': 12})
+  Field availability (end): 0.968
+  Per-capita b:    0.00000
+
+Birth-balance computation:
+  hmax*(N_eq/Kc)^theta = b  =>  N_eq = Kc*(b/hmax)^(1/theta)
+  With hmax=0.04, theta=1.0, Kc=60.0:
+    b = 0.00000
+    Implied N_eq at Kc=60: nan
+    Implied Kc for N_eq=50%*Nmax: nan
+
+RECOMMENDATION: CRITICAL FINDING: b=0 — NO BIRTHS at default sweep params. Max achievable energy (15.00) < repro threshold (17.0). The sweep will produce EXTINCT populations; Kc calibration is moot. REQUIRES PARAMETER REDESIGN before Stage-1 sweep can produce valid data.
+
+CRITICAL CONTEXT:
+  The default founder (reproduction_energy_threshold=17.0, aging_cost=0.02/step)
+  with the continuous world (continuous_capacity=2.0, regen_rate=0.05) produces
+  populations that go extinct due to aging before reaching the reproduction threshold.
+  Max achievable energy (15.0000) < threshold (17.0) by
+  2.0000 units.
+  The birth-balance assumption (b≈0.1/step) in the spec was not empirically verified
+  before this diagnostic. The Stage-1 sweep at default params will produce ALL-EXTINCT
+  cells — no stability, no N_eq, no GO verdict possible without parameter changes.
