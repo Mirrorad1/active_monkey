@@ -463,6 +463,14 @@ class EcologyConfig:
     # enable_continuous_locomotion=True. OFF path is byte-identical to Exp 238-241.
     enable_continuous_depletion_intake: bool = False
 
+    # Exp 243: freeze locomotor_speed (breed TRUE) — OFF by default, byte-identical to Exp 238-242.
+    # The certification/null runs need MONOMORPHIC populations, but engine.py couples
+    # mutate_continuous_locomotion to enable_continuous_locomotion (every continuous run mutates
+    # speed). When True (continuous ON), the per-child locomotor_speed rng draw
+    # (genotype.py LOCOMOTION_CONTINUOUS_TRAITS skip-guard) is skipped so speed breeds true.
+    # OFF (default) ⇒ byte-identical: the mutate flag is unchanged.
+    freeze_continuous_locomotion: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -1047,7 +1055,8 @@ class Ecology:
                                     mutate_memory=cfg.enable_hidden_mode,
                                     mutate_active_sensing=cfg.enable_active_sensing,
                                     mutate_locomotion=cfg.enable_terrain,
-                                    mutate_continuous_locomotion=cfg.enable_continuous_locomotion)
+                                    mutate_continuous_locomotion=(cfg.enable_continuous_locomotion
+                                                                  and not cfg.freeze_continuous_locomotion))
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 # Exp 238: set continuous pos for child near parent when ON.
                 if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
