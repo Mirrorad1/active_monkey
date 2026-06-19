@@ -471,6 +471,10 @@ class EcologyConfig:
     # OFF (default) ⇒ byte-identical: the mutate flag is unchanged.
     freeze_continuous_locomotion: bool = False
 
+    # Exp 243: Mechanism B — monotone floored regen for the continuous world. OFF byte-identical.
+    # NOTE: only observable when enable_continuous_depletion_intake=True (intake ignores _resource otherwise).
+    continuous_floored_regen: bool = False
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -555,6 +559,7 @@ class Ecology:
                 capacity=cfg.continuous_capacity,
                 logistic_regen=cfg.continuous_logistic_regen,
                 enable_depletion_intake=cfg.enable_continuous_depletion_intake,
+                floored_regen=cfg.continuous_floored_regen,
             )
         else:
             self.cont_world = None

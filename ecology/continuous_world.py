@@ -143,6 +143,13 @@ class ContinuousWorld:
     # OFF path (enable_depletion_intake=False) is BYTE-IDENTICAL to Exp 238-241.
     enable_depletion_intake: bool = False
 
+    # Exp 243: monotone floored regen — OFF by default, byte-identical to Exp 238-239 when OFF.
+    # When True, step_regen uses gap-proportional delta = regen_rate*(capacity - v):
+    # at v=0 -> regen_rate*capacity > 0 (NO absorbing dead-zone, unlike logistic_regen),
+    # strictly decreasing in v with NO overcompensating hump, capped without overshoot.
+    # SEPARATE from logistic_regen (left untouched so the Exp-240 golden is preserved verbatim).
+    floored_regen: bool = False
+
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
     _resource: list = field(default_factory=list)
@@ -314,7 +321,19 @@ class ContinuousWorld:
         """
         cap = self.capacity
         rr = self.regen_rate
-        if self.logistic_regen:
+        if self.floored_regen:
+            # Exp 243: gap-proportional (monotone, floored, non-overcompensating) — ON branch only.
+            for ri in range(_GRID_CELLS):
+                row = self._resource[ri]
+                for ci in range(_GRID_CELLS):
+                    v = float(row[ci])
+                    v = v + rr * (cap - v)
+                    if v > cap:
+                        v = cap
+                    elif v < 0.0:
+                        v = 0.0
+                    row[ci] = v
+        elif self.logistic_regen:
             # Exp 240: logistic regen — gated ON branch only (OFF is byte-identical).
             # regen_amount = regen_rate * v * (1 - v / cap), capped at cap.
             # This creates genuine negative feedback: a depleted cell (v ≈ 0) regens near 0,
@@ -382,6 +401,7 @@ class ContinuousWorld:
         capacity: float = 2.0,
         logistic_regen: bool = False,
         enable_depletion_intake: bool = False,
+        floored_regen: bool = False,
     ) -> "ContinuousWorld":
         """Build a ContinuousWorld from config parameters.  No rng used.
 
@@ -391,7 +411,10 @@ class ContinuousWorld:
         enable_depletion_intake=True (Exp 242): intake reads the depletable grid availability
             (rho * resource_cell/capacity), closing the density-dependent feedback so every
             speed reaches a finite carrying capacity instead of running away.
+        floored_regen=False (default): byte-identical to Exp 238-239.
+        floored_regen=True (Exp 243): gap-proportional regen with no absorbing dead-zone.
         """
         return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
                    logistic_regen=logistic_regen,
-                   enable_depletion_intake=enable_depletion_intake)
+                   enable_depletion_intake=enable_depletion_intake,
+                   floored_regen=floored_regen)

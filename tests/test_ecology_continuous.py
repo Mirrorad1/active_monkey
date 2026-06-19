@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import dataclasses as D
 
+import numpy as np
 import pytest
 
 from ecology.engine import Ecology
@@ -28,6 +29,7 @@ from ecology.scenarios import SCENARIOS
 from ecology.genotype import founder
 from ecology.runtime import snapshot, restore
 from ecology.evolvability.trait_axis import LOCOMOTION_CONTINUOUS_AXIS
+from ecology.continuous_world import ContinuousWorld, _GRID_CELLS
 
 
 # ---------------------------------------------------------------------------
@@ -672,3 +674,39 @@ class TestFreezeContinuousLocomotion:
             f"  freeze=False: {h_freeze_false}\n"
             f"  no-flag:      {h_no_flag}"
         )
+
+
+# ---------------------------------------------------------------------------
+# Test 8: Exp 243 Mechanism B — monotone floored regen
+# ---------------------------------------------------------------------------
+
+class TestFlooredRegen:
+    def test_no_absorbing_state_and_monotone(self):
+        w = ContinuousWorld.from_config(regen_rate=0.05, capacity=2.0, floored_regen=True)
+        # Strip one cell to zero, step regen: floored regen must lift it OFF zero (no dead zone).
+        w._resource[0][0] = 0.0
+        w.step_regen()
+        assert w._resource[0][0] == 0.05 * 2.0          # r*cap at v=0
+        # A near-full cell must not overshoot capacity.
+        w._resource[0][1] = 2.0
+        w.step_regen()
+        assert w._resource[0][1] == 2.0                  # delta=0 at v=cap
+
+    def test_off_path_is_flat_regen(self):
+        w = ContinuousWorld.from_config(regen_rate=0.05, capacity=2.0, floored_regen=False)
+        w._resource[0][0] = 1.0
+        w.step_regen()
+        assert w._resource[0][0] == 1.05                 # flat += 0.05 (Exp 238-239 path)
+
+    def test_on_differs_in_continuous_resource_with_depletion(self):
+        # B is a silent no-op unless depletion-intake reads _resource. Run with depletion ON,
+        # assert the cont_world._resource trajectory differs between floored and flat regen.
+        def run(floored):
+            cfg = D.replace(_cont_cfg(horizon=80),
+                            founder=_founder_with_speed(1.5),
+                            initial_population=20,
+                            enable_continuous_depletion_intake=True,
+                            continuous_floored_regen=floored)
+            eco = Ecology(cfg, seed=3); eco.run()
+            return float(np.sum(eco.cont_world._resource))
+        assert run(True) != run(False), "Mechanism B is a silent no-op — VOID if byte-identical"
