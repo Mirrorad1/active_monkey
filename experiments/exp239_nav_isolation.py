@@ -47,6 +47,14 @@ report the negative honestly if navigation net also goes flat or negative (that 
 the bump field is too sparse to overcome the cost even with navigation, and the substrate
 does not isolate navigation).
 
+HYPOTHESIS (predeclared falsifier): if cost-neutralised coverage isolates navigation as the
+dominant driver, BUMP+nav net must be positive at ≥1 speed while FLAT+nav net ≤ 0 at ALL
+speeds AND the billiard (nav-disabled) net ≤ 0 at ALL speeds. If ANY of these three
+conditions fails, the confound is NOT resolved and Rung 2 is still gated. The falsifier for
+the Rung-2 provisional pass is the absence of a demographic equilibrium in the resident
+population — if the founder does not reach a stable N_eq, the invasion is growth-phase
+r-selection, not equilibrium-competition (see Exp 240).
+
 Usage:
   uv run --python .venv python experiments/exp239_nav_isolation.py
 """

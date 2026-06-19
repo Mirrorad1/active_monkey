@@ -51,6 +51,18 @@ KEY FINDING DISCOVERED (disclosed before running gates):
   super-fit growth (no mutant equilibrium) rather than stable competitive coexistence
   followed by displacement — the wall result is PASS_LOCAL_GRADIENT with this caveat.
 
+HYPOTHESIS (predeclared falsifiers):
+  (1) Equilibrium falsifier: if the resident (speed=1.0) does NOT reach a genuine
+      demographic equilibrium (CoV < 0.05 in window t>=1200, 3000-step run, 3 seeds),
+      ABORT — the Exp 239 growth-phase concern applies.
+  (2) Benefit-curve falsifier: if the monomorphic per-capita intake at fixed N=374 is
+      FLAT (Spearman ≤ 0.3) across the speed axis, the local-gradient wall holds at
+      equilibrium density — no invasion claim is valid.
+  (3) Invasion falsifier (Gate D): if the rare mutant (f_init ~5%) does NOT increase in
+      frequency or drive population explosion across >=7/8 seeds, DOES_NOT_INVADE —
+      the wall holds. The pre-disclosed runaway (speed=1.1 has no finite K) must be
+      noted in any positive claim; a runaway is directional selection, not ESS stability.
+
 Usage:
   uv run --python .venv python experiments/exp240_equilibrium_invasion.py
 """
