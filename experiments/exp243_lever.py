@@ -38,7 +38,7 @@ emit("Exp 243 lever search: regen DOWN vs availability/viability/damping")
 emit(f"fixed: hmax={HMAX} Kc={KC} theta={THETA} rate_scale=0 slope={SLOPE} cap=2.0 layout=bump h={HORIZON}")
 emit(f"L40 non-degenerate band: availability in (0.05, 0.85); persistence floor min_N>=30")
 emit("")
-emit(f'{"regen":>6} {"speed":>5} {"seed":>4} {"n_eq":>6} {"avail":>6} {"flux":>6} {"explod":>6} {"osc":>11} {"PASS":>5}  failed_gates / nd_reasons")
+emit(f'{"regen":>6} {"speed":>5} {"seed":>4} {"n_eq":>6} {"avail":>6} {"flux":>6} {"explod":>6} {"osc":>11} {"PASS":>5}  failed_gates / nd_reasons')
 emit("-"*108)
 
 winners = []
