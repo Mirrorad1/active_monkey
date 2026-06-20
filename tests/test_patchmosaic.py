@@ -284,3 +284,139 @@ def test_smoke_run():
     assert result["t_end"] <= cfg.horizon
     assert isinstance(result["global_extinct"], bool)
     assert isinstance(result["exploded"], bool)
+
+
+# ---------------------------------------------------------------------------
+# T10: Ring topology unchanged — topology="ring" (default) gives IDENTICAL
+# events_hash to a run that does not set topology at all (byte-identical default).
+# The golden hash is captured at commit time; a regression means the ring's rng
+# stream changed and the test must FAIL (not be updated silently).
+# ---------------------------------------------------------------------------
+_RING_GOLDEN_HASH = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+def test_ring_topology_unchanged():
+    cfg_default = PatchMosaicConfig(horizon=200)
+    cfg_explicit = PatchMosaicConfig(horizon=200, topology="ring")
+
+    h_default  = PatchMosaicSim(cfg_default,  seed=1).run()["events_hash"]
+    h_explicit = PatchMosaicSim(cfg_explicit, seed=1).run()["events_hash"]
+
+    assert h_default == _RING_GOLDEN_HASH, (
+        f"Ring default hash changed! Expected {_RING_GOLDEN_HASH!r}, got {h_default!r}. "
+        "The ring rng stream must be byte-identical to the original implementation."
+    )
+    assert h_explicit == _RING_GOLDEN_HASH, (
+        f"topology='ring' explicit hash changed! Expected {_RING_GOLDEN_HASH!r}, "
+        f"got {h_explicit!r}. Setting topology='ring' must not alter the rng stream."
+    )
+
+
+# ---------------------------------------------------------------------------
+# T11: grid2d adjacency — 4x4 grid gives every patch exactly 4 distinct neighbors,
+# symmetric (i in neighbors[j] iff j in neighbors[i]), and torus-wrapped.
+# ---------------------------------------------------------------------------
+def test_grid2d_adjacency():
+    cfg = PatchMosaicConfig(n_patches=16, topology="grid2d", grid_cols=4)
+    sim = PatchMosaicSim(cfg, seed=42)
+    n = cfg.n_patches
+    nb = sim.neighbors
+
+    for i in range(n):
+        assert len(nb[i]) == 4, (
+            f"Patch {i} has {len(nb[i])} neighbors, expected 4 (von Neumann on torus)."
+        )
+        assert len(set(nb[i])) == 4, f"Patch {i} has duplicate neighbors: {nb[i]}"
+        assert i not in nb[i], f"Patch {i} is its own neighbor (self-loop)."
+        for j in nb[i]:
+            assert i in nb[j], (
+                f"Asymmetry: {j} in neighbors[{i}] but {i} not in neighbors[{j}]."
+            )
+
+
+# ---------------------------------------------------------------------------
+# T12: smallworld adjacency — connected, symmetric, deterministic under seed,
+# and differs from the pure ring when rewire > 0.
+# ---------------------------------------------------------------------------
+def test_smallworld_adjacency():
+    cfg = PatchMosaicConfig(n_patches=12, topology="smallworld", smallworld_rewire=0.3)
+    sim1 = PatchMosaicSim(cfg, seed=7)
+    sim2 = PatchMosaicSim(cfg, seed=7)
+    n = cfg.n_patches
+    nb1, nb2 = sim1.neighbors, sim2.neighbors
+
+    # Deterministic under same seed.
+    assert nb1 == nb2, "smallworld neighbors are not deterministic under same seed."
+
+    # Symmetric and no self-loops.
+    for i in range(n):
+        assert i not in nb1[i], f"Patch {i} is its own neighbor."
+        for j in nb1[i]:
+            assert i in nb1[j], f"Asymmetry: {j} in neighbors[{i}] but {i} not in neighbors[{j}]."
+
+    # Connected (every node reachable from 0 via BFS).
+    from collections import deque
+    visited = set()
+    q = deque([0])
+    visited.add(0)
+    while q:
+        node = q.popleft()
+        for nb in nb1[node]:
+            if nb not in visited:
+                visited.add(nb)
+                q.append(nb)
+    assert len(visited) == n, f"smallworld graph is disconnected: only {len(visited)}/{n} reachable."
+
+    # Differs from pure ring (some long-range edges present when rewire > 0).
+    ring_nb = [sorted([(i - 1) % n, (i + 1) % n]) for i in range(n)]
+    assert nb1 != ring_nb, (
+        "smallworld neighbors are identical to the ring despite rewire=0.3; "
+        "expected at least one rewired edge."
+    )
+
+
+# ---------------------------------------------------------------------------
+# T13: Migration only goes to graph-neighbors, for all three topologies.
+# ---------------------------------------------------------------------------
+def test_migration_neighbors_only_all_topologies():
+    common = dict(
+        n_patches=8,
+        migration_rate_prey=0.9,
+        migration_rate_pred=0.9,
+        n_prey0_per_patch=20,
+        n_pred0_per_patch=10,
+    )
+    for topo in ("ring", "grid2d", "smallworld"):
+        extra = {}
+        if topo == "grid2d":
+            extra["grid_cols"] = 4  # 8 patches / 4 cols = 2x4 grid
+        cfg = PatchMosaicConfig(topology=topo, **common, **extra)
+        sim = PatchMosaicSim(cfg, seed=55)
+        moves = sim._migrate(record_moves=True)
+        assert moves, f"topology={topo!r}: no migration moves occurred — test setup degenerate."
+        for origin, target in moves:
+            assert target in sim.neighbors[origin], (
+                f"topology={topo!r}: long-range move {origin} -> {target}; "
+                f"valid neighbors of {origin} are {sim.neighbors[origin]}."
+            )
+
+
+# ---------------------------------------------------------------------------
+# T14: grid2d requires n_patches divisible by grid_cols.
+# ---------------------------------------------------------------------------
+def test_grid2d_requires_valid_cols():
+    # n_patches=10 is not divisible by grid_cols=3 (10 % 3 = 1).
+    cfg = PatchMosaicConfig(n_patches=10, topology="grid2d", grid_cols=3)
+    with pytest.raises(ValueError, match="not divisible"):
+        PatchMosaicSim(cfg, seed=1)
+
+    # grid_cols=0 auto-derives cols=round(sqrt(10))=3; 10 % 3 = 1 => also ValueError.
+    cfg2 = PatchMosaicConfig(n_patches=10, topology="grid2d", grid_cols=0)
+    with pytest.raises(ValueError, match="not divisible"):
+        PatchMosaicSim(cfg2, seed=1)
+
+    # grid_cols=0, n_patches=9 => cols=round(sqrt(9))=3; 9 % 3 = 0 => should succeed.
+    cfg3 = PatchMosaicConfig(n_patches=9, topology="grid2d", grid_cols=0)
+    sim3 = PatchMosaicSim(cfg3, seed=1)
+    assert len(sim3.neighbors) == 9
+    for i in range(9):
+        assert len(sim3.neighbors[i]) == 4
