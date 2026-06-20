@@ -1,0 +1,99 @@
+==================================================================================================
+Exp 250 — CANONICAL SUMMARY: Natural stabilizers for predator-prey coexistence:
+the spatial-agent SUBSTRATE destabilizes the stable Bazykin ODE.
+NEGATIVE / NEW INSIGHT (capstone). Direction: co-evolution / environmental-complexity.
+==================================================================================================
+
+QUESTION
+--------
+Can any natural ecological stabilizer (or combination) yield a robust persistent predator-prey
+coexistence (stable fixed point OR bounded limit cycle) on this substrate?
+
+PREDECLARED FALSIFIER
+---------------------
+If no mechanism/combination/scale yields robust persistent coexistence (both roles alive at
+horizon, predator never hitting zero, amplitude not diverging), the two-trophic coexistence
+wall is complete on this substrate.
+
+RESULT
+------
+NEGATIVE, exhaustive (6 mechanisms / 14 probes / horizons to 2000).
+
+Exp 251 — LATENT-STATE diagnostic (exp251_latent_state.py):
+  Buffer-lag CONFIRMED: shrinking predator buffer drops cv_prey 0.56->0.16.
+  Insufficient: lower buffer -> predator starves (pred_eq=0 at pred_cap=4.8, 7.0).
+  (full data: experiments/outputs/exp251_latent_state.txt)
+
+Exp 252 — Type III functional response + decoupled births + low buffer (exp252_type3_coexistence.py):
+  Sweep: h {2,4,8} x n_pred {3,5} x capR {0.35,0.45}; rate=0.5 K=250 pred_cap=5.5; horizon=1200.
+  Every working stabilizer caps predator INTAKE -> predator equilibrium pinned TINY (~0-5).
+  0 persistent stable coexistence cells.
+  (full data: experiments/outputs/exp252_type3_coexistence.txt)
+
+Exp 253 — Full natural stack (decoupled births + low buffer + Type III + interference):
+  exp253_full_combine.py: sweep w {0.5,1.5,3.0} x n_pred {4,8} x capR {0.45,0.60};
+    rate=0.5 K=250 pred_cap=5.5 h=4; horizon=1500. 0 stable coexistence.
+  exp253b_robust_equilibrium.py: sweep w x capR x assim; K=300 n_pred=6; horizon=1500.
+    Max pred_eq=5.9 (avg seed); 0 robust equilibria (pred_eq>=10).
+  exp253c_scale_equilibrium.py: scale-up K {400,800}; pred_cap {5.5,10.0}; horizon=1500.
+    Prey at 800 -> predator still ~5-8. Predator does NOT scale with prey biomass.
+    0 robust equilibria.
+  (full data: experiments/outputs/exp253_full_combine.txt,
+              experiments/outputs/exp253b_robust_equilibrium.txt,
+              experiments/outputs/exp253c_scale_equilibrium.txt)
+
+Exp 254 — Bazykin (logistic prey + predator SELF-LIMIT mortality, no intake cuts):
+  exp254_bazykin_equilibrium.py: K_P {20,40} x hmax {0.10,0.20} x max_cap {2,3};
+    n_pred=10 K_prey=300; horizon=1500.
+    Predator self-limiting mortality (caps NUMBER not intake) broke the intake cap:
+    predator ~19 (K_P=20, hmax=0.20, max_cap=3), but system still oscillatory-collapsed.
+    0 robust equilibria.
+  exp254b_stabilize.py: sharper self-limit (theta {2,3} x hmax {0.30,0.50} x pred_cap {5.5,7.0});
+    K_P=20; horizon=1500. Sharper self-limit OVER-DAMPS to predator extinction.
+    0 stable coexistence.
+  exp254c_scale_cycle.py: scale-up K_prey {500,1000} x K_P {60,120} x hmax {0.06,0.12};
+    horizon=2000. Predator transients 50-112. Oscillation INTRINSICALLY DIVERGENT
+    (all cells collapse before horizon, amplitude growing): NOT small-N stochastic.
+    0 robust persistent cycles.
+  (full data: experiments/outputs/exp254_bazykin_equilibrium.txt,
+              experiments/outputs/exp254b_stabilize.txt,
+              experiments/outputs/exp254c_scale_cycle.txt)
+
+Universal pattern: predator-starvation (over-damp/weak) OR oscillatory-collapse
+(under-damp) OR boom-bust (unsaturated). The stable+robust window is EMPTY and
+SCALE-INVARIANT.
+
+CAPSTONE VERDICT
+----------------
+NEGATIVE / NEW INSIGHT — CAN'T-POSE.
+The doubly-logistic Bazykin model (decoupled logistic prey + predator self-limit) is PROVABLY
+STABLE as a continuous ODE, yet it COLLAPSES on this substrate. Therefore the instability is
+NOT in the ecological model; it is introduced by the SPATIAL-AGENT SUBSTRATE — discreteness +
+the energy-buffer demographic lag + spatial-stochastic encounter dynamics — which destabilize
+a coexistence the continuous model guarantees.
+
+This is the two-trophic analog of the Exp 246-247 single-population stability-vs-strong-
+competition wall, now mapped at the trophic-interaction level. The discrete local-gradient
+wall stands. Co-evolution cannot escape it because the antagonist's population cannot be
+stably established on this substrate.
+
+RE-OPEN CONDITION: a well-mixed Bazykin substrate (realizes the stable ODE without the
+destabilizing discretization) and/or true no-buffer instantaneous-demography agents
+(Exp-247 escape, now doubly-motivated).
+
+Scripts: experiments/exp251_latent_state.py (latent-state diagnostic)
+         experiments/exp252_type3_coexistence.py (Type III response)
+         experiments/exp253_full_combine.py (full natural stack)
+         experiments/exp253b_robust_equilibrium.py (robust equilibrium search)
+         experiments/exp253c_scale_equilibrium.py (scale-up)
+         experiments/exp254_bazykin_equilibrium.py (Bazykin doubly-logistic)
+         experiments/exp254b_stabilize.py (sharper self-limit)
+         experiments/exp254c_scale_cycle.py (scale-up cycle classification)
+Full outputs: experiments/outputs/exp251_latent_state.txt
+              experiments/outputs/exp252_type3_coexistence.txt
+              experiments/outputs/exp253_full_combine.txt
+              experiments/outputs/exp253b_robust_equilibrium.txt
+              experiments/outputs/exp253c_scale_equilibrium.txt
+              experiments/outputs/exp254_bazykin_equilibrium.txt
+              experiments/outputs/exp254b_stabilize.txt
+              experiments/outputs/exp254c_scale_cycle.txt

@@ -14,6 +14,10 @@ coexistence (both roles alive at the horizon on all seeds), logistic prey growth
 escape -> try the spatial refuge next. If some cell coexists -> the Red Queen invasion test
 becomes posable; proceed to expressibility + the co-evolving-vs-static invasion.
 
+PREDICTION: logistic prey growth breaks the starvation failure mode and enables persistent
+coexistence; the predeclared falsifier is 0/N coexistence across the full (K, predation)
+sweep — which is what the data showed (NEGATIVE).
+
 RAW NUMBERS — controller judges go/abort.
 """
 import sys

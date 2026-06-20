@@ -1,0 +1,59 @@
+==================================================================================================
+Exp 249 — CANONICAL SUMMARY: Decoupled prey growth enables predator but yields
+PARADOX-OF-ENRICHMENT boom-bust, not coexistence. NEGATIVE / NEW INSIGHT.
+Direction: co-evolution / environmental-complexity.
+==================================================================================================
+
+QUESTION
+--------
+Does decoupled (resource-independent) prey growth enable persistent two-trophic predator-prey
+coexistence that Exp 248 could not reach?
+
+PREDECLARED FALSIFIER
+---------------------
+If no (form, K_prey, rate, predation-pressure) regime yields persistent coexistence
+(both roles alive at the horizon, all seeds), decoupled prey growth is not the escape.
+
+RESULT
+------
+Form 1 — Logistic SUPPRESSION (enable_logistic_prey_growth, commit d26214d):
+  Sweep: K_prey {60,100,150,250} x n_pred {2,4,6} x capR {0.20,0.35,0.50}; horizon=600; seeds {0,1,2}.
+  0/36 coexistence — suppression caps the prey TOP but cannot raise low-density productivity
+  (the binding constraint), so predators still starve out.
+  (full data: experiments/outputs/exp249_logistic_coexistence.txt)
+
+Form 2 — Additive DECOUPLED births (enable_decoupled_prey_birth, commit b9194b4):
+  Coarse sweep (exp250_decoupled_coexistence.py): rate {0.20,0.35,0.50} x K {120,250} x
+    n_pred {3,6} x capR {0.30,0.50}; horizon=600; seeds {0,1,2}. 0 coexistence.
+  Fine transition-zone sweep (exp250b_fine_coexistence.py): rate {0.40,0.50} x K {200,300} x
+    n_pred {3,4} x capR {0.35,0.40,0.45}; horizon=1000; seeds {0,1,2}. 0 coexistence.
+  Additive form DOES work (raises low-density prey productivity); predator NOW PERSISTS
+  (pred_eq up to 67, surviving 400-700+ steps) instead of starving — failure mode shifted.
+  But system PARADOX-OF-ENRICHMENT boom-busts: diverging oscillation -> collapse.
+  The knife-edge: capR low -> predator starves; capR high -> boom-bust collapse.
+  No stable band at any intermediate capture radius.
+  (full data: experiments/outputs/exp250_decoupled_coexistence.txt,
+              experiments/outputs/exp250b_fine_coexistence.txt)
+
+Productivity check (exp250_productivity_check.py):
+  ON +37% low-density prey growth vs OFF (ON: ~430 prey at t=40; OFF: ~313).
+  Decoupled births genuinely raise low-density productivity.
+
+VERDICT
+-------
+NEGATIVE / NEW INSIGHT.
+Decoupled prey growth converts predator-starvation (Exp 248) into paradox-of-enrichment
+boom-bust; no stable coexistence band exists. The escape is real (predator now viable)
+but INCOMPLETE (system unstable past the Rosenzweig-MacArthur Hopf bifurcation).
+Motivated the Exp-250 natural-stabilizer search.
+
+NOTE: The suppression form was a mis-interpretation of "growth independent of the resource"
+(it still requires resource energy); the additive decoupled-birth form is the faithful one.
+
+Scripts: experiments/exp249_logistic_coexistence.py (suppression form)
+         experiments/exp250_decoupled_coexistence.py (additive form, coarse)
+         experiments/exp250b_fine_coexistence.py (additive form, fine)
+         experiments/exp250_productivity_check.py (productivity lift confirmation)
+Full outputs: experiments/outputs/exp249_logistic_coexistence.txt
+              experiments/outputs/exp250_decoupled_coexistence.txt
+              experiments/outputs/exp250b_fine_coexistence.txt
