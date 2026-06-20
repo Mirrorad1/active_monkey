@@ -129,6 +129,15 @@ class ContinuousWorld:
     density.  ANTI-CHEAT preserved: the availability factor is the PROVIDED depletable
     grid, never any f(locomotor_speed); locomotor_speed still keys only the swept distance.
     OFF path (enable_depletion_intake=False) is byte-identical to Exp 238-241.
+
+    Exp 245: configurable bump geometry — bump_sigma, bump_amplitude, bump_centers.
+    All default to the module-level constants (_BUMP_SIGMA=1.5, _BUMP_AMPLITUDE=1.0,
+    _BUMP_CENTERS_BUMP) so a default-constructed world is byte-identical to Exp 238-244.
+    bump_centers=None (default) → the legacy _BUMP_CENTERS_BUMP tuple is used for the
+    "bump" layout and _BUMP_CENTERS_NEUTRAL for the "neutral" layout; pass an explicit
+    tuple to override only the "bump" layout centers (neutral continues using its own).
+    Choice rationale: keeping bump_centers=None→legacy avoids any generator that would
+    need to reproduce the exact 5 legacy positions, keeping default byte-identity trivial.
     """
     layout: Literal["bump", "flat", "neutral"] = "bump"
     regen_rate: float = 0.05
@@ -143,9 +152,53 @@ class ContinuousWorld:
     # OFF path (enable_depletion_intake=False) is BYTE-IDENTICAL to Exp 238-241.
     enable_depletion_intake: bool = False
 
+    # Exp 243: monotone floored regen — OFF by default, byte-identical to Exp 238-239 when OFF.
+    # When True, step_regen uses gap-proportional delta = regen_rate*(capacity - v):
+    # at v=0 -> regen_rate*capacity > 0 (NO absorbing dead-zone, unlike logistic_regen),
+    # strictly decreasing in v with NO overcompensating hump, capped without overshoot.
+    # SEPARATE from logistic_regen (left untouched so the Exp-240 golden is preserved verbatim).
+    floored_regen: bool = False
+
+    # Exp 245: configurable bump geometry — OFF (defaults) is byte-identical to Exp 238-244.
+    # bump_sigma: Gaussian width (default 1.5 = _BUMP_SIGMA). Lower → sharper/more concentrated.
+    # bump_amplitude: peak density (default 1.0 = _BUMP_AMPLITUDE).
+    # bump_centers: explicit bump center tuple for the "bump" layout (None → use legacy
+    #   _BUMP_CENTERS_BUMP). Neutral layout always uses _BUMP_CENTERS_NEUTRAL regardless.
+    bump_sigma: float = _BUMP_SIGMA
+    bump_amplitude: float = _BUMP_AMPLITUDE
+    bump_centers: tuple | None = None  # None → _BUMP_CENTERS_BUMP (byte-identical default)
+
+    # Exp 246: moving-patch resource mode — OFF (False) by default, byte-identical to Exp 238-245.
+    # When True, rho(x,y) is a SINGLE concentrated Gaussian whose CENTER drifts deterministically
+    # over time on a circular orbit around the arena center.  Food exists only at/near the moving
+    # patch; creatures crowd it and compete for the concentrated resource.
+    #
+    # Fields (read ONLY when moving_patch=True):
+    #   patch_sigma:        Gaussian half-width of the patch (lower → sharper concentration).
+    #   patch_amplitude:    Peak density at the patch center.
+    #   patch_orbit_radius: Orbit radius around (ARENA_W/2, ARENA_H/2).
+    #   patch_period:       Steps per full orbit; drift speed = 2*pi*R/period units/step.
+    #
+    # A deterministic time counter `self._patch_t` (int, init 0) advances ONCE PER STEP at the
+    # END of step_regen(), INSIDE `if self.moving_patch:` so the OFF path NEVER touches it.
+    # rho() during a step uses the CURRENT _patch_t; the per-creature loop reads rho before
+    # step_regen() advances the counter — a ~1-step tracking lag, which is fine and deterministic.
+    #
+    # OFF path (moving_patch=False): rho() takes the existing bump/flat/neutral branches,
+    # _patch_t is NEVER allocated or used, the counter is NEVER incremented.
+    # All existing tests (incl. _CONTINUOUS_ON_GOLDEN_HASH) MUST pass unchanged.
+    moving_patch: bool = False
+    patch_sigma: float = 0.8
+    patch_amplitude: float = 3.0
+    patch_orbit_radius: float = 3.0
+    patch_period: int = 300
+
     # Sub-cell resource grid: shape (_GRID_CELLS, _GRID_CELLS), each cell in [0, capacity].
     # Initialised to capacity (full) at construction.
     _resource: list = field(default_factory=list)
+    # Exp 246: time counter for the moving-patch orbit.  Initialised to 0.  Only mutated
+    # (and meaningful) when moving_patch=True; the OFF path never touches this field.
+    _patch_t: int = field(default=0, init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         if not self._resource:
@@ -160,13 +213,33 @@ class ContinuousWorld:
     # ------------------------------------------------------------------
 
     def rho(self, x: float, y: float) -> float:
-        """Resource density at continuous position (x, y). Pure; does not deplete."""
+        """Resource density at continuous position (x, y). Pure; does not deplete.
+
+        Exp 245: uses instance fields bump_sigma, bump_amplitude, bump_centers.
+        Defaults (1.5, 1.0, None) are byte-identical to the Exp 238-244 module constants.
+        bump_centers=None → legacy _BUMP_CENTERS_BUMP for "bump", _BUMP_CENTERS_NEUTRAL for "neutral".
+
+        Exp 246: when moving_patch=True, returns a SINGLE Gaussian centered at the current
+        patch orbit position (keyed on self._patch_t), IGNORING the bump/flat/neutral branches.
+        OFF path (moving_patch=False): identical to pre-Exp-246 code — no new branch entered.
+        """
+        if self.moving_patch:
+            # Exp 246 ON branch: single moving Gaussian. No rng. Fully deterministic.
+            t = self._patch_t
+            angle = (2.0 * math.pi * t) / self.patch_period
+            cx = ARENA_W / 2.0 + self.patch_orbit_radius * math.cos(angle)
+            cy = ARENA_H / 2.0 + self.patch_orbit_radius * math.sin(angle)
+            dx = x - cx
+            dy = y - cy
+            s2 = self.patch_sigma * self.patch_sigma
+            return self.patch_amplitude * math.exp(-((dx * dx) + (dy * dy)) / (2.0 * s2))
         if self.layout == "flat":
             return _FLAT_RHO
         elif self.layout == "neutral":
-            return _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            return _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, self.bump_sigma, self.bump_amplitude)
         else:
-            return _rho_bump(x, y, _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            centers = self.bump_centers if self.bump_centers is not None else _BUMP_CENTERS_BUMP
+            return _rho_bump(x, y, centers, self.bump_sigma, self.bump_amplitude)
 
     # ------------------------------------------------------------------
     # Sub-cell indexing
@@ -314,7 +387,19 @@ class ContinuousWorld:
         """
         cap = self.capacity
         rr = self.regen_rate
-        if self.logistic_regen:
+        if self.floored_regen:
+            # Exp 243: gap-proportional (monotone, floored, non-overcompensating) — ON branch only.
+            for ri in range(_GRID_CELLS):
+                row = self._resource[ri]
+                for ci in range(_GRID_CELLS):
+                    v = float(row[ci])
+                    v = v + rr * (cap - v)
+                    if v > cap:
+                        v = cap
+                    elif v < 0.0:
+                        v = 0.0
+                    row[ci] = v
+        elif self.logistic_regen:
             # Exp 240: logistic regen — gated ON branch only (OFF is byte-identical).
             # regen_amount = regen_rate * v * (1 - v / cap), capped at cap.
             # This creates genuine negative feedback: a depleted cell (v ≈ 0) regens near 0,
@@ -340,6 +425,11 @@ class ContinuousWorld:
                     if v > cap:
                         v = cap
                     row[ci] = v
+        # Exp 246: advance the orbit counter ONCE PER STEP, ONLY when moving_patch=True.
+        # The OFF path (moving_patch=False) never enters this block — _patch_t stays 0 and
+        # is never touched, preserving perfect byte-identity with Exp 238-245.
+        if self.moving_patch:
+            self._patch_t += 1
 
     # ------------------------------------------------------------------
     # Heading helper (food-gradient sensing)
@@ -382,6 +472,15 @@ class ContinuousWorld:
         capacity: float = 2.0,
         logistic_regen: bool = False,
         enable_depletion_intake: bool = False,
+        floored_regen: bool = False,
+        bump_sigma: float = _BUMP_SIGMA,
+        bump_amplitude: float = _BUMP_AMPLITUDE,
+        bump_centers: tuple | None = None,
+        moving_patch: bool = False,
+        patch_sigma: float = 0.8,
+        patch_amplitude: float = 3.0,
+        patch_orbit_radius: float = 3.0,
+        patch_period: int = 300,
     ) -> "ContinuousWorld":
         """Build a ContinuousWorld from config parameters.  No rng used.
 
@@ -391,7 +490,26 @@ class ContinuousWorld:
         enable_depletion_intake=True (Exp 242): intake reads the depletable grid availability
             (rho * resource_cell/capacity), closing the density-dependent feedback so every
             speed reaches a finite carrying capacity instead of running away.
+        floored_regen=False (default): byte-identical to Exp 238-239.
+        floored_regen=True (Exp 243): gap-proportional regen with no absorbing dead-zone.
+        bump_sigma=1.5 (default): byte-identical to Exp 238-244. Lower → sharper bumps.
+        bump_amplitude=1.0 (default): byte-identical to Exp 238-244.
+        bump_centers=None (default): uses legacy _BUMP_CENTERS_BUMP (byte-identical).
+            Pass an explicit tuple to override the "bump" layout centers.
+        moving_patch=False (default): byte-identical to Exp 238-245. No orbit, no _patch_t.
+        moving_patch=True (Exp 246): single drifting Gaussian replaces the bump/flat/neutral
+            field. patch_sigma, patch_amplitude, patch_orbit_radius, patch_period control the
+            patch geometry and orbit speed. No rng; deterministic.
         """
         return cls(layout=layout, regen_rate=regen_rate, capacity=capacity,
                    logistic_regen=logistic_regen,
-                   enable_depletion_intake=enable_depletion_intake)
+                   enable_depletion_intake=enable_depletion_intake,
+                   floored_regen=floored_regen,
+                   bump_sigma=bump_sigma,
+                   bump_amplitude=bump_amplitude,
+                   bump_centers=bump_centers,
+                   moving_patch=moving_patch,
+                   patch_sigma=patch_sigma,
+                   patch_amplitude=patch_amplitude,
+                   patch_orbit_radius=patch_orbit_radius,
+                   patch_period=patch_period)

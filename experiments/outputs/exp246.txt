@@ -1,0 +1,23 @@
+Exp 246 — Moving-patch lever: sweep results
+===========================================
+Regime: hmax=0.20, Kc=60, regen=0.5, slope=0.05, speed=2.0 (stabilizer/GO regime)
+Patch mode: single concentrated Gaussian, center orbits deterministically
+
+sigma / amp / period   n_eq   drop%   pav
+----------------------------------------------
+0.8  /  4  / 300       28     2.6%    0.851
+0.8  /  8  / 300       39     5.1%    0.795
+0.8  /  8  / 600       37     1.0%    0.820
+0.8  /  8  / 150       42     3.3%    0.763
+1.2  /  6  / 300       54     5.7%    0.821
+1.2  / 12  / 300       65    12.8%    0.794
+0.6  / 12  / 300       30     6.3%    0.789
+----------------------------------------------
+
+Best result: sigma=1.2, amp=12, period=300 -> n_eq=65, drop=12.8%, pav=0.794
+No extinction across all conditions.
+Patch availability FLOORS at ~0.76-0.85: floored regen refills the patch about as fast as
+the crowd depletes it.
+
+VERDICT: NEGATIVE. Moving/dynamic patch does NOT produce strong density-dependent competition.
+Forced crowding helps only marginally (best 12.8% drop, well short of a clean ESS regime).

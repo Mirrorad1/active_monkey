@@ -35,6 +35,26 @@ from ecology.continuous_world import ContinuousWorld
 
 
 # ---------------------------------------------------------------------------
+# Exp 243 Mechanism A: pure hazard helper (module-level, no imports, no state)
+# ---------------------------------------------------------------------------
+def _density_mortality_p(N, hmax, Kc, theta, rate_scale=0.0, dN=0.0):
+    """Exp 243 Mechanism A per-step crowding death probability (theta-logistic on N).
+
+    p = hmax * clamp((N/Kc)**theta, 0, 1)  [ + rate_scale*max(0, dN/Kc) when rate_scale>0 ].
+    Pure function of the GLOBAL scalar N (no genotype term) -> trait-flat by construction.
+    """
+    factor = (N / Kc) ** theta
+    if factor < 0.0:
+        factor = 0.0
+    elif factor > 1.0:
+        factor = 1.0
+    p = hmax * factor
+    if rate_scale > 0.0 and dN > 0.0:
+        p += rate_scale * (dN / Kc)
+    return p
+
+
+# ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
 @dataclass
@@ -463,6 +483,48 @@ class EcologyConfig:
     # enable_continuous_locomotion=True. OFF path is byte-identical to Exp 238-241.
     enable_continuous_depletion_intake: bool = False
 
+    # Exp 243: freeze locomotor_speed (breed TRUE) — OFF by default, byte-identical to Exp 238-242.
+    # The certification/null runs need MONOMORPHIC populations, but engine.py couples
+    # mutate_continuous_locomotion to enable_continuous_locomotion (every continuous run mutates
+    # speed). When True (continuous ON), the per-child locomotor_speed rng draw
+    # (genotype.py LOCOMOTION_CONTINUOUS_TRAITS skip-guard) is skipped so speed breeds true.
+    # OFF (default) ⇒ byte-identical: the mutate flag is unchanged.
+    freeze_continuous_locomotion: bool = False
+
+    # Exp 243: Mechanism B — monotone floored regen for the continuous world. OFF byte-identical.
+    # NOTE: only observable when enable_continuous_depletion_intake=True (intake ignores _resource otherwise).
+    continuous_floored_regen: bool = False
+
+    # Exp 243: Mechanism A — global density-dependent (crowding) mortality. OFF byte-identical.
+    # Per-creature Bernoulli death roll keyed ONLY on the frozen total head-count N:
+    #   p = hmax * clamp((N/Kc)**theta, 0, 1) [+ rate_scale*max(0,(N-N_prev)/Kc)].
+    # A SUBSTRATE scalar, not a genotype trait (no new heritable trait, no mutate_* flag).
+    enable_density_mortality: bool = False
+    density_mortality_theta: float = 1.0      # 1.0 linear (default); 2.0 = Stage-2 probe
+    density_mortality_hmax: float = 0.04      # per-step hazard ceiling
+    density_mortality_Kc: float = 60.0        # density scale (birth-balance-derived)
+    density_mortality_rate_scale: float = 0.0 # optional lead/derivative brake (default OFF)
+
+    # Exp 245: configurable continuous bump geometry — OFF (defaults) byte-identical to Exp 238-244.
+    # continuous_bump_sigma: Gaussian bump width (default 1.5 = _BUMP_SIGMA). Lower → sharper.
+    # continuous_bump_amplitude: bump peak density (default 1.0 = _BUMP_AMPLITUDE).
+    # continuous_bump_centers: explicit centers for the "bump" layout (None → legacy default).
+    #   None (default) → uses _BUMP_CENTERS_BUMP in ContinuousWorld; byte-identical to Exp 238-244.
+    continuous_bump_sigma: float = 1.5
+    continuous_bump_amplitude: float = 1.0
+    continuous_bump_centers: tuple | None = None
+
+    # Exp 246: moving-patch resource mode — OFF (False) by default, byte-identical to Exp 238-245.
+    # When True, the structural resource density is a SINGLE concentrated Gaussian whose center
+    # drifts deterministically on a circular orbit; creatures crowd the patch and compete.
+    # All fields default to their canonical values so the OFF path is perfectly byte-identical.
+    # Requires enable_continuous_locomotion=True (cont_world must exist).
+    continuous_moving_patch: bool = False
+    continuous_patch_sigma: float = 0.8
+    continuous_patch_amplitude: float = 3.0
+    continuous_patch_orbit_radius: float = 3.0
+    continuous_patch_period: int = 300
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -547,6 +609,17 @@ class Ecology:
                 capacity=cfg.continuous_capacity,
                 logistic_regen=cfg.continuous_logistic_regen,
                 enable_depletion_intake=cfg.enable_continuous_depletion_intake,
+                floored_regen=cfg.continuous_floored_regen,
+                # Exp 245: configurable bump geometry (defaults byte-identical to Exp 238-244).
+                bump_sigma=cfg.continuous_bump_sigma,
+                bump_amplitude=cfg.continuous_bump_amplitude,
+                bump_centers=cfg.continuous_bump_centers,
+                # Exp 246: moving-patch resource mode (defaults byte-identical to Exp 238-245).
+                moving_patch=cfg.continuous_moving_patch,
+                patch_sigma=cfg.continuous_patch_sigma,
+                patch_amplitude=cfg.continuous_patch_amplitude,
+                patch_orbit_radius=cfg.continuous_patch_orbit_radius,
+                patch_period=cfg.continuous_patch_period,
             )
         else:
             self.cont_world = None
@@ -1047,7 +1120,8 @@ class Ecology:
                                     mutate_memory=cfg.enable_hidden_mode,
                                     mutate_active_sensing=cfg.enable_active_sensing,
                                     mutate_locomotion=cfg.enable_terrain,
-                                    mutate_continuous_locomotion=cfg.enable_continuous_locomotion)
+                                    mutate_continuous_locomotion=(cfg.enable_continuous_locomotion
+                                                                  and not cfg.freeze_continuous_locomotion))
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 # Exp 238: set continuous pos for child near parent when ON.
                 if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
@@ -1147,6 +1221,25 @@ class Ecology:
         if not ph.alive and c.policy is not None:
             c.policy.release_maps()
 
+        # 7c. Exp 243 Mechanism A: global density-dependent crowding mortality.
+        #     Gated; OFF path makes ZERO rng draws and emits no event. Only rolled if the
+        #     creature is still alive this step (starvation/senescence take precedence).
+        if cfg.enable_density_mortality and ph.alive:
+            p = _density_mortality_p(
+                self._dm_N_frozen, cfg.density_mortality_hmax, cfg.density_mortality_Kc,
+                cfg.density_mortality_theta, cfg.density_mortality_rate_scale,
+                getattr(self, "_dm_dN", 0.0))
+            if p > 0.0 and self.rng.random() < p:
+                ph.alive = False
+                ph.cause_of_death = "crowding"
+                self.events.append(self._event("death", c, details={
+                    "cause": "crowding",
+                    "age": ph.age,
+                    "offspring_count": ph.offspring_count,
+                }))
+                if c.policy is not None:
+                    c.policy.release_maps()
+
     # ------------------------------------------------------------------
     # Step / Run
     # ------------------------------------------------------------------
@@ -1192,6 +1285,16 @@ class Ecology:
         if self.cfg.enable_hidden_mode:
             if self.rng.random() < self.cfg.mode_switch_prob:
                 self.world.hidden_mode = 1 - self.world.hidden_mode
+
+        # Exp 243 Mechanism A: freeze the global head-count ONCE per step, before the
+        # per-creature loop and before any shuffle, so every alive creature sees the SAME N.
+        if self.cfg.enable_density_mortality:
+            _N_now = self.alive_count()
+            if not hasattr(self, "_dm_N_prev"):
+                self._dm_N_prev = _N_now          # t=0: derivative term is 0
+            self._dm_dN = _N_now - self._dm_N_prev
+            self._dm_N_frozen = _N_now
+            self._dm_N_prev = _N_now
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when

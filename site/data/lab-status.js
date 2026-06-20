@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 242, title: "continuous-locomotion Rung 4 (regulated ESS): foundational intake bug diagnosed — all Exp 238-241 ran on an ALWAYS-FULL field; correct depletion-aware fix eliminates runaway but yields oscillatory/limit-cycle dynamics (0 stable fixed points, 45-cell sweep); CAN'T POSE a clean ESS/invasion test; candidate escape RETIRED; chapter CLOSES.", tag: "POSITIVE" },
-  tally: { total: 242, positive: 131, negative: 73, mixed: 34, breakthroughs: 15 },
+  latest_exp: { n: 246, title: "Moving-patch lever fails; the unifying STABILITY-vs-COMPETITION trade-off (NEGATIVE / NEW INSIGHT — chapter close).", tag: "NEGATIVE" },
+  tally: { total: 246, positive: 131, negative: 77, mixed: 34, breakthroughs: 15 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },

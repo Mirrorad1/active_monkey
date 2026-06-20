@@ -1,0 +1,45 @@
+Exp 243 Birth-Balance Diagnostic
+=================================
+Parameters:
+  speed=1.0, horizon=2000, regen_rate=1.0
+  layout=bump, seed=42, hmax=0.0 (mortality OFF)
+  hmax_target=0.04, theta_target=1.0, Kc_default=60.0
+
+Energy Budget Analysis (single creature, full field):
+  Start energy:              7.5
+  Reproduction threshold:    4.2
+  Max intake/step (full fld):0.1373
+  Step cost at age 0:        0.680
+  Aging cost/step:           0.0030
+  Break-even age:            -180.9 steps
+  Max achievable energy:     7.5000
+  Can reproduce:             YES at age 0
+
+Empirical run results (hmax=0.0, horizon=2000, seed=42):
+  N(0)=21, N_max=56, N_final=0
+  Total births:    69
+  Total deaths:    90  (causes: {'starvation': 90})
+  Field availability (end): 1.000
+  Per-capita b:    0.01892
+
+Birth-balance computation:
+  hmax*(N_eq/Kc)^theta = b  =>  N_eq = Kc*(b/hmax)^(1/theta)
+  With hmax=0.04, theta=1.0, Kc=60.0:
+    b = 0.01892
+    Implied N_eq at Kc=60: 28.387273724629726
+    Implied Kc for N_eq=50%*Nmax: 59.181449275362326
+
+RECOMMENDATION: KEEP Kc=60: implied N_eq=28.4 is well below Kc; equilibrium is in the sub-saturation regime.
+
+CRITICAL CONTEXT (FIX APPLIED):
+  This diagnostic now uses the Exp-242 viability-calibrated continuous founder:
+    threshold=4.2, cap=10.0, bmc=0.05, mc=0.03,
+    aging=0.003, transfer=0.35, cost_frac=0.06
+    regen_rate=1.0, continuous_capacity=2.0
+  The original NON-VIABLE discrete founder (threshold=17.0, cap=20.0, bmc=0.5, mc=0.3,
+  aging=0.02) could not reproduce in the continuous substrate (~0.14/step intake vs
+  ~0.8/step cost => starved in 20-50 steps). The Exp-242 calibrated founder uses
+  a lower threshold (4.2 vs 17.0) and much lower costs (bmc=0.05 vs 0.5, mc=0.03 vs 0.3)
+  that are commensurate with the continuous intake scale.
+  Start energy: 7.5 | threshold: 4.2
+  Can reproduce: YES at age 0

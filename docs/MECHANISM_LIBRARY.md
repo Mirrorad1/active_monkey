@@ -70,7 +70,7 @@ uv run active-monkey coalesce validate --all
 | `costly-sensing-wall-v0` | evolution of a costed sensory organ | no costed sense becomes functional at this substrate; the fitness valley is the barrier (Exp 199–207) |
 | `hidden-state-memory-boundary-v0` | passive hidden-state memory as a locally evolvable trait | the local-gradient wall generalises from senses to memory/inference (Exp 208–209) |
 | `self-other-substrate-legibility-wall-v0` | structured self-other modeling beating simple baselines under hard inference / in behavior | on this gridworld the simple baselines are near-optimal (goal-directed BFS is too legible; reactive stigmergy already coordinates); ToM pays only at transitions (Exp 232–234) |
-| `local-gradient-wall-locomotion-v0` | costed heritable locomotion (climb_ability) as a locally evolvable trait | two-layer failure: (a) EXPRESSIBILITY — greedy forager and navigation policy cannot jointly satisfy reach+gate+survive (Exp 235/236); (b) EVOLVABILITY — food-gradient perception solves reach+survive but benefit SATURATES flat and invasion_from_rarity DOES_NOT_INVADE; pairwise "PASS" is frequency-dependence (L41 catch); wall now general across senses, memory, active sensing, AND locomotion (Exp 235–237) |
+| `local-gradient-wall-locomotion-v0` | costed heritable locomotion (climb_ability / speed trait) as a locally evolvable trait | three-layer failure: (a) EXPRESSIBILITY — greedy forager and navigation policy cannot jointly satisfy reach+gate+survive (Exp 235/236); (b) EVOLVABILITY — food-gradient perception solves reach+survive but benefit SATURATES flat and invasion_from_rarity DOES_NOT_INVADE; pairwise "PASS" is frequency-dependence (L41 catch); (c) CONTINUOUS SUBSTRATE ENGINEERING — DEMOGRAPHIC STABILITY and STRONG RESOURCE COMPETITION are MUTUALLY EXCLUSIVE on this toy substrate (Mechanism A caps N below resource-limitation → STABLE ↔ WEAK competition; STRONG competition ↔ oscillatory); continuous space removes discrete saturation but introduces this trade-off; five substrate levers failed (founder calibration, A-strength, regen rate, bump geometry, moving patch); WEAKLY-POSABLE only; wall now general across senses, memory, active sensing, locomotion-discrete, AND locomotion-continuous (Exp 235–246) |
 
 The `disembodied-stream-collapse-v0` boundary and `recipe-symmetry-breaking-v0` mechanism are
 two halves of the same finding — the collapse and what breaks its symmetry. The
@@ -78,7 +78,10 @@ two halves of the same finding — the collapse and what breaks its symmetry. Th
 detection is real, defense is config. The `local-gradient-wall-locomotion-v0` boundary pairs
 with `perception-enabled-locomotion-v0` — perception solves reach+survive (a real positive
 substrate result) but does not yield evolvable locomotion; the wall now spans senses, memory,
-active-sensing, and locomotion, closing the discrete gridworld for this arc.
+active-sensing, and locomotion (discrete AND continuous), closing both the discrete gridworld
+and the toy ContinuousWorld for this arc (Exp 243-246: DEMOGRAPHIC STABILITY and STRONG
+RESOURCE COMPETITION are MUTUALLY EXCLUSIVE; five substrate levers failed; WEAKLY-POSABLE only;
+re-opens only on an agent-architecture redesign).
 
 ## Sample experiment bundles (`experiment_bundles/`)
 

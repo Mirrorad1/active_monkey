@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import dataclasses as D
 
+import numpy as np
 import pytest
 
 from ecology.engine import Ecology
@@ -28,6 +29,10 @@ from ecology.scenarios import SCENARIOS
 from ecology.genotype import founder
 from ecology.runtime import snapshot, restore
 from ecology.evolvability.trait_axis import LOCOMOTION_CONTINUOUS_AXIS
+from ecology.continuous_world import (
+    ContinuousWorld, _GRID_CELLS,
+    _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -631,3 +636,437 @@ class TestContinuousDepletionIntakeKnob:
             f"  OFF depletion={h_false[:16]}  ON depletion={h_true[:16]}\n"
             "The knob must have zero effect when enable_continuous_locomotion=False."
         )
+
+
+# ---------------------------------------------------------------------------
+# Test 7: Exp 243 freeze_continuous_locomotion flag
+# ---------------------------------------------------------------------------
+
+class TestFreezeContinuousLocomotion:
+    def _run(self, *, freeze: bool, seed: int = 3, horizon: int = 60):
+        cfg = D.replace(_cont_cfg(horizon=horizon),
+                        founder=_founder_with_speed(1.5),
+                        mutation_rate=0.1,                      # mutation ON so the draw matters
+                        freeze_continuous_locomotion=freeze)
+        return Ecology(cfg, seed=seed).run()
+
+    def test_freeze_changes_hash_and_is_deterministic(self):
+        frozen = self._run(freeze=True)
+        unfrozen = self._run(freeze=False)
+        # Freezing SKIPS the per-child locomotor_speed draw => the event stream must differ.
+        assert frozen["events_hash"] != unfrozen["events_hash"]
+        # ...and freezing must itself be deterministic across reruns.
+        assert frozen["events_hash"] == self._run(freeze=True)["events_hash"]
+
+    def test_off_path_byte_identical(self):
+        # freeze=False must be byte-identical to a run where the flag is left at its
+        # default (i.e. the pre-task code path): the flag's OFF state draws no rng and
+        # adds no float op, so the event stream must be bit-for-bit unchanged.
+        # (The Exp 238-242 golden pin lives in test_continuous_on_golden_hash_stable;
+        # this test guards the OFF state of THIS flag within its own config family.)
+        h_freeze_false = self._run(freeze=False)["events_hash"]
+
+        cfg_no_flag = D.replace(_cont_cfg(horizon=60),
+                                founder=_founder_with_speed(1.5),
+                                mutation_rate=0.1)  # flag omitted => default False
+        h_no_flag = Ecology(cfg_no_flag, seed=3).run()["events_hash"]
+
+        assert h_freeze_false == h_no_flag, (
+            "freeze_continuous_locomotion=False is NOT byte-identical to the default "
+            "(no-flag) path — the OFF state is leaking a behavioral change!\n"
+            f"  freeze=False: {h_freeze_false}\n"
+            f"  no-flag:      {h_no_flag}"
+        )
+
+
+# ---------------------------------------------------------------------------
+# Test 8: Exp 243 Mechanism B — monotone floored regen
+# ---------------------------------------------------------------------------
+
+class TestFlooredRegen:
+    def test_no_absorbing_state_and_monotone(self):
+        w = ContinuousWorld.from_config(regen_rate=0.05, capacity=2.0, floored_regen=True)
+        # Strip one cell to zero, step regen: floored regen must lift it OFF zero (no dead zone).
+        w._resource[0][0] = 0.0
+        w.step_regen()
+        assert w._resource[0][0] == 0.05 * 2.0          # r*cap at v=0
+        # A near-full cell must not overshoot capacity.
+        w._resource[0][1] = 2.0
+        w.step_regen()
+        assert w._resource[0][1] == 2.0                  # delta=0 at v=cap
+
+    def test_off_path_is_flat_regen(self):
+        w = ContinuousWorld.from_config(regen_rate=0.05, capacity=2.0, floored_regen=False)
+        w._resource[0][0] = 1.0
+        w.step_regen()
+        assert w._resource[0][0] == 1.05                 # flat += 0.05 (Exp 238-239 path)
+
+    def test_on_differs_in_continuous_resource_with_depletion(self):
+        # B is a silent no-op unless depletion-intake reads _resource. Run with depletion ON,
+        # assert the cont_world._resource trajectory differs between floored and flat regen.
+        def run(floored):
+            cfg = D.replace(_cont_cfg(horizon=80),
+                            founder=_founder_with_speed(1.5),
+                            initial_population=20,
+                            enable_continuous_depletion_intake=True,
+                            continuous_floored_regen=floored)
+            eco = Ecology(cfg, seed=3); eco.run()
+            return float(np.sum(eco.cont_world._resource))
+        assert run(True) != run(False), "Mechanism B is a silent no-op — VOID if byte-identical"
+
+
+# ---------------------------------------------------------------------------
+# Test 9: Exp 245 configurable bump geometry
+# ---------------------------------------------------------------------------
+
+class TestConfigurableBumpGeometry:
+    """Tests for the Exp 245 configurable bump geometry (sigma, amplitude, bump_centers).
+
+    Guards:
+      - Default geometry (sigma=1.5, amplitude=1.0, centers=None) is byte-identical to
+        legacy: same rho values at all test points AND the existing golden hash passes.
+      - bump_centers=None → uses _BUMP_CENTERS_BUMP exactly (not a different set).
+      - Sharper config (sigma=0.6) produces a more concentrated field: rho>0.1 spans
+        fewer sub-cells than the default.
+      - Two constructions with the same config produce identical rho values (determinism).
+      - Neutral layout still uses its own centers regardless of bump_centers parameter.
+    """
+
+    def test_default_geometry_byte_identical_to_legacy_rho(self) -> None:
+        """Default fields (sigma=1.5, amplitude=1.0, centers=None) produce same rho() as legacy constants."""
+        w_default = ContinuousWorld()  # all defaults
+        # Legacy rho: directly call _rho_bump with the module constants.
+        from ecology.continuous_world import _rho_bump
+        test_points = [
+            (3.0, 3.0),   # bump center
+            (6.0, 6.0),   # central bump center
+            (1.0, 1.0),   # far from bumps
+            (9.0, 9.0),   # corner bump center
+            (0.5, 11.5),  # arena corner
+        ]
+        for (x, y) in test_points:
+            expected = _rho_bump(x, y, _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            got = w_default.rho(x, y)
+            assert abs(got - expected) < 1e-15, (
+                f"Default rho({x},{y})={got} differs from legacy rho={expected}. "
+                "Default ContinuousWorld is NOT byte-identical to the legacy code."
+            )
+
+    def test_default_centers_are_legacy_bump_centers(self) -> None:
+        """bump_centers=None → uses _BUMP_CENTERS_BUMP exactly (not a different set)."""
+        w = ContinuousWorld()
+        from ecology.continuous_world import _rho_bump
+        # Verify that each legacy bump center produces a local maximum (rho at center >
+        # rho slightly off-center), confirming those are the actual centers in use.
+        for (cx, cy) in _BUMP_CENTERS_BUMP:
+            rho_at_center = w.rho(cx, cy)
+            rho_offset = w.rho(cx + 0.5, cy + 0.5)
+            assert rho_at_center > rho_offset, (
+                f"Legacy center ({cx},{cy}) is NOT a local maximum in the default world. "
+                "bump_centers=None may not be using _BUMP_CENTERS_BUMP."
+            )
+
+    def test_sharper_sigma_produces_more_concentrated_field(self) -> None:
+        """sigma=0.6 produces a more concentrated field than sigma=1.5 (default).
+
+        Counts sub-cells with rho>0.1 for both configs; sharper must be strictly fewer.
+        This is the primary Exp 245 competition-strength probe validation.
+        """
+        w_default = ContinuousWorld(bump_sigma=1.5)
+        w_sharp = ContinuousWorld(bump_sigma=0.6)
+
+        # Sample over the full 24x24 sub-cell grid centers.
+        from ecology.continuous_world import _CELL_SIZE
+        cells_above_default = 0
+        cells_above_sharp = 0
+        for ri in range(_GRID_CELLS):
+            for ci in range(_GRID_CELLS):
+                # Sub-cell center coordinates.
+                x = (ci + 0.5) * _CELL_SIZE
+                y = (ri + 0.5) * _CELL_SIZE
+                if w_default.rho(x, y) > 0.1:
+                    cells_above_default += 1
+                if w_sharp.rho(x, y) > 0.1:
+                    cells_above_sharp += 1
+
+        assert cells_above_sharp < cells_above_default, (
+            f"Sharper sigma=0.6 did NOT produce a more concentrated field than sigma=1.5!\n"
+            f"  sigma=1.5: {cells_above_default} sub-cells with rho>0.1\n"
+            f"  sigma=0.6: {cells_above_sharp} sub-cells with rho>0.1\n"
+            "The sharper config must have fewer rho>0.1 cells."
+        )
+        # Sanity: both must be > 0 (bumps exist) and < total (576).
+        assert cells_above_default > 0, "Default field has NO sub-cells above 0.1 — something is wrong."
+        assert cells_above_sharp > 0, "Sharper field has NO sub-cells above 0.1 — sigma=0.6 is too tight."
+
+        # Store counts for the report (print for visibility in test output).
+        print(
+            f"\n[Exp 245] rho>0.1 sub-cell counts: "
+            f"sigma=1.5 → {cells_above_default}, sigma=0.6 → {cells_above_sharp}"
+        )
+
+    def test_geometry_determinism(self) -> None:
+        """Two ContinuousWorld instances with the same config produce identical rho values."""
+        w1 = ContinuousWorld(bump_sigma=0.6, bump_amplitude=0.8)
+        w2 = ContinuousWorld(bump_sigma=0.6, bump_amplitude=0.8)
+        test_points = [(1.5, 1.5), (3.0, 3.0), (6.0, 6.0), (9.0, 9.0), (11.0, 11.0)]
+        for (x, y) in test_points:
+            assert w1.rho(x, y) == w2.rho(x, y), (
+                f"rho({x},{y}) differs between two same-config worlds: "
+                f"{w1.rho(x,y)} vs {w2.rho(x,y)}. Geometry is NOT deterministic."
+            )
+
+    def test_neutral_layout_unaffected_by_bump_centers(self) -> None:
+        """Neutral layout always uses its own centers, ignoring bump_centers parameter."""
+        from ecology.continuous_world import _BUMP_CENTERS_NEUTRAL, _rho_bump
+
+        custom_centers = ((1.0, 1.0), (11.0, 11.0))
+        w_default_neutral = ContinuousWorld(layout="neutral")
+        w_custom_neutral = ContinuousWorld(layout="neutral", bump_centers=custom_centers)
+
+        test_pts = [(2.0, 5.0), (5.0, 2.0), (10.0, 7.0)]
+        for (x, y) in test_pts:
+            legacy_neutral = _rho_bump(x, y, _BUMP_CENTERS_NEUTRAL, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            assert abs(w_default_neutral.rho(x, y) - legacy_neutral) < 1e-15, (
+                f"Neutral layout rho({x},{y}) differs from legacy neutral centers."
+            )
+            assert abs(w_custom_neutral.rho(x, y) - legacy_neutral) < 1e-15, (
+                f"Neutral layout rho({x},{y}) changed when bump_centers was set — "
+                "neutral must always use _BUMP_CENTERS_NEUTRAL regardless of bump_centers."
+            )
+
+    def test_golden_hash_unchanged_with_default_geometry(self) -> None:
+        """Golden hash is UNCHANGED with default bump geometry (byte-identity via EcologyConfig).
+
+        This is the critical byte-identity check: adding the Exp 245 fields with defaults
+        must not change the existing _CONTINUOUS_ON_GOLDEN_HASH.
+        """
+        cfg = D.replace(_cont_cfg(horizon=50), founder=_founder_with_speed(1.5))
+        result = Ecology(cfg, seed=_CONTINUOUS_ON_GOLDEN_SEED).run()
+        h = result["events_hash"]
+        assert h == _CONTINUOUS_ON_GOLDEN_HASH, (
+            f"Exp 245 BROKE the golden hash — default geometry is NOT byte-identical!\n"
+            f"  Got:      {h}\n"
+            f"  Expected: {_CONTINUOUS_ON_GOLDEN_HASH}\n"
+            "Check that all new EcologyConfig fields default to their legacy values."
+        )
+
+    def test_from_config_default_byte_identical(self) -> None:
+        """ContinuousWorld.from_config() with defaults produces same rho() as ContinuousWorld()."""
+        w_direct = ContinuousWorld()
+        w_from_cfg = ContinuousWorld.from_config()
+        test_pts = [(3.0, 3.0), (6.0, 6.0), (9.0, 9.0), (1.0, 11.0)]
+        for (x, y) in test_pts:
+            assert w_direct.rho(x, y) == w_from_cfg.rho(x, y), (
+                f"from_config() default rho({x},{y}) differs from direct ContinuousWorld()."
+            )
+
+
+# ---------------------------------------------------------------------------
+# Test 10: Exp 246 moving-patch resource mode
+# ---------------------------------------------------------------------------
+
+class TestMovingPatch:
+    """Tests for the Exp 246 moving-patch resource mode.
+
+    Guards:
+      - OFF byte-identity: moving_patch=False (default) reproduces the existing golden hash
+        and rho() at sample points equals pre-change rho() exactly.
+      - ON moves: with moving_patch=True, the argmax cell of rho SHIFTS as _patch_t advances
+        by period/4 steps (one quarter-orbit), moving along the orbit path.
+      - ON concentrated: rho>0.1 spans few cells (a sharp single-bump, not spread like the
+        5-bump default) when the patch is at its initial position.
+      - Determinism: two constructions with the same config + same step_regen call count
+        produce identical rho fields.
+      - OFF step_regen never touches _patch_t (stays 0 for all eternity when OFF).
+    """
+
+    def test_off_byte_identical_golden_hash(self) -> None:
+        """moving_patch=False (default) must reproduce the existing _CONTINUOUS_ON_GOLDEN_HASH.
+
+        HARD GUARD: this is the Exp 246 byte-identity check for the OFF path.
+        If this fails the gate leaked; do NOT repin the hash.
+        """
+        cfg = D.replace(_cont_cfg(horizon=50), founder=_founder_with_speed(1.5))
+        result = Ecology(cfg, seed=_CONTINUOUS_ON_GOLDEN_SEED).run()
+        h = result["events_hash"]
+        assert h == _CONTINUOUS_ON_GOLDEN_HASH, (
+            f"Exp 246 BROKE the golden hash — moving_patch OFF path is NOT byte-identical!\n"
+            f"  Got:      {h}\n"
+            f"  Expected: {_CONTINUOUS_ON_GOLDEN_HASH}\n"
+            "Fix the gating — do NOT repin this hash."
+        )
+
+    def test_off_rho_unchanged_at_sample_points(self) -> None:
+        """Default ContinuousWorld (moving_patch=False) rho() equals pre-Exp-246 formula.
+
+        Compares directly against _rho_bump with legacy constants (the pre-change path).
+        """
+        from ecology.continuous_world import _rho_bump
+        w = ContinuousWorld()  # moving_patch=False by default
+        test_pts = [
+            (3.0, 3.0),
+            (6.0, 6.0),
+            (1.0, 1.0),
+            (9.0, 9.0),
+            (0.5, 11.5),
+        ]
+        for (x, y) in test_pts:
+            expected = _rho_bump(x, y, _BUMP_CENTERS_BUMP, _BUMP_SIGMA, _BUMP_AMPLITUDE)
+            got = w.rho(x, y)
+            assert abs(got - expected) < 1e-15, (
+                f"OFF path rho({x},{y})={got} differs from legacy _rho_bump={expected}. "
+                "moving_patch=False must not change the existing rho() output."
+            )
+
+    def test_off_patch_t_never_incremented(self) -> None:
+        """With moving_patch=False, _patch_t stays 0 after step_regen calls."""
+        w = ContinuousWorld(moving_patch=False, regen_rate=0.05, capacity=2.0)
+        assert w._patch_t == 0
+        for _ in range(50):
+            w.step_regen()
+        assert w._patch_t == 0, (
+            f"_patch_t advanced to {w._patch_t} even though moving_patch=False! "
+            "OFF path must NEVER touch _patch_t."
+        )
+
+    def test_on_argmax_shifts_with_orbit(self) -> None:
+        """With moving_patch=True, the rho argmax cell moves as _patch_t advances.
+
+        Samples rho on the 24x24 sub-cell grid at _patch_t=0 and again after
+        period/4 step_regen calls. The argmax cell must shift (different (ri, ci)),
+        confirming the patch center moves along the orbit.
+        """
+        from ecology.continuous_world import _CELL_SIZE
+        PERIOD = 80  # small period so period/4 = 20 steps is fast to test
+        w = ContinuousWorld(
+            moving_patch=True,
+            patch_sigma=0.8,
+            patch_amplitude=3.0,
+            patch_orbit_radius=3.0,
+            patch_period=PERIOD,
+        )
+        # Sample rho at _patch_t=0.
+        def argmax_cell(world: ContinuousWorld) -> tuple[int, int]:
+            best_ri, best_ci, best_v = 0, 0, -1.0
+            for ri in range(_GRID_CELLS):
+                for ci in range(_GRID_CELLS):
+                    x = (ci + 0.5) * _CELL_SIZE
+                    y = (ri + 0.5) * _CELL_SIZE
+                    v = world.rho(x, y)
+                    if v > best_v:
+                        best_v = v
+                        best_ri, best_ci = ri, ci
+            return best_ri, best_ci
+
+        argmax_t0 = argmax_cell(w)
+        # Advance by PERIOD/4 steps (quarter orbit = 90-degree shift).
+        quarter = PERIOD // 4
+        for _ in range(quarter):
+            w.step_regen()
+
+        argmax_t_quarter = argmax_cell(w)
+        assert argmax_t0 != argmax_t_quarter, (
+            f"Argmax cell did NOT shift after {quarter} step_regen calls (quarter orbit)!\n"
+            f"  argmax at t=0:         cell {argmax_t0}\n"
+            f"  argmax at t={quarter}: cell {argmax_t_quarter}\n"
+            "The moving patch must drift visibly over a quarter period."
+        )
+        # Confirm _patch_t advanced correctly.
+        assert w._patch_t == quarter, (
+            f"_patch_t={w._patch_t} != quarter={quarter} after quarter-period step_regen calls."
+        )
+
+    def test_on_concentrated_rho(self) -> None:
+        """With moving_patch=True, the field is sharply concentrated: rho>0.1 spans few cells.
+
+        At _patch_t=0 the patch is at the right of the arena center (orbit starts at angle=0).
+        Checks that the number of sub-cells with rho>0.1 is much smaller than the default
+        5-bump layout (which spreads rho across most of the arena).
+        """
+        from ecology.continuous_world import _CELL_SIZE
+        w_patch = ContinuousWorld(
+            moving_patch=True,
+            patch_sigma=0.8,
+            patch_amplitude=3.0,
+            patch_orbit_radius=3.0,
+            patch_period=300,
+        )
+        w_default = ContinuousWorld()  # 5-bump default spread
+        count_patch = 0
+        count_default = 0
+        for ri in range(_GRID_CELLS):
+            for ci in range(_GRID_CELLS):
+                x = (ci + 0.5) * _CELL_SIZE
+                y = (ri + 0.5) * _CELL_SIZE
+                if w_patch.rho(x, y) > 0.1:
+                    count_patch += 1
+                if w_default.rho(x, y) > 0.1:
+                    count_default += 1
+        assert count_patch < count_default, (
+            f"Moving patch is NOT more concentrated than the 5-bump default!\n"
+            f"  moving_patch: {count_patch} cells with rho>0.1\n"
+            f"  default 5-bump: {count_default} cells with rho>0.1\n"
+            "patch_sigma=0.8 should be a sharp single bump (far fewer cells)."
+        )
+        assert count_patch > 0, (
+            "Moving patch has ZERO cells with rho>0.1 — patch_sigma=0.8 is too tight or orbit is wrong."
+        )
+        print(
+            f"\n[Exp 246] rho>0.1 sub-cell counts: "
+            f"moving_patch → {count_patch}, default 5-bump → {count_default}"
+        )
+
+    def test_on_determinism(self) -> None:
+        """Two identical moving_patch=True constructions produce identical rho fields."""
+        from ecology.continuous_world import _CELL_SIZE
+        PERIOD = 80
+        STEPS = 25
+
+        def build_and_advance(steps: int) -> list[float]:
+            w = ContinuousWorld(
+                moving_patch=True, patch_sigma=0.8, patch_amplitude=3.0,
+                patch_orbit_radius=3.0, patch_period=PERIOD,
+            )
+            for _ in range(steps):
+                w.step_regen()
+            return [
+                w.rho((ci + 0.5) * _CELL_SIZE, (ri + 0.5) * _CELL_SIZE)
+                for ri in range(_GRID_CELLS)
+                for ci in range(_GRID_CELLS)
+            ]
+
+        field1 = build_and_advance(STEPS)
+        field2 = build_and_advance(STEPS)
+        assert field1 == field2, (
+            "Two identical moving_patch=True constructions produced different rho fields! "
+            "The moving patch must be fully deterministic."
+        )
+
+    def test_on_full_orbit_returns_to_start(self) -> None:
+        """After exactly patch_period step_regen calls, the patch returns to _patch_t=0 position.
+
+        The orbit is 2*pi periodic: rho at _patch_t=PERIOD == rho at _patch_t=0.
+        """
+        from ecology.continuous_world import _CELL_SIZE
+        PERIOD = 60
+
+        w = ContinuousWorld(
+            moving_patch=True, patch_sigma=0.8, patch_amplitude=3.0,
+            patch_orbit_radius=3.0, patch_period=PERIOD,
+        )
+        # Sample at t=0.
+        pts = [(ci + 0.5) * _CELL_SIZE for ci in range(_GRID_CELLS)]
+        rho_t0 = [w.rho(x, y) for x in pts for y in pts]
+
+        # Advance by one full period.
+        for _ in range(PERIOD):
+            w.step_regen()
+
+        rho_tfull = [w.rho(x, y) for x in pts for y in pts]
+        # rho at t=PERIOD must equal rho at t=0 (same orbit angle modulo period).
+        for i, (v0, vf) in enumerate(zip(rho_t0, rho_tfull)):
+            assert abs(v0 - vf) < 1e-12, (
+                f"rho differs at cell {i} after full orbit: t=0={v0:.6f}, t={PERIOD}={vf:.6f}\n"
+                "The orbit must be exactly periodic with period=PERIOD."
+            )

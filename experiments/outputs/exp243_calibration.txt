@@ -1,0 +1,96 @@
+================================================================================
+Exp 243 Substrate Calibration Search
+================================================================================
+
+STEP 1: Timing pre-check (speed=1.0, slope=0.1, regen=1.0, horizon=3000)
+  Pre-check: wall_time=22.00s, exploded=False, n_eq=90.5
+  Pre-check under 30s — using horizon=3000 AS PLANNED
+  Precheck ~22s; fast cells ~67s at h=2000 → forcing horizon=2000 to stay under 12min budget
+  Horizon set to: 2000
+  Pre-check exploded=False n_eq=90 — viable.
+
+STEP 2: Running grid (A+B ON)
+  Grid: slope in [0.05, 0.1, 0.2] × regen in [0.5, 1.0, 2.0] × speed in [0.5, 1.0, 2.0]
+  Params: hmax=0.04, Kc=60.0, theta=1.0, horizon=2000, seed=42
+
+
+Grid total wall time: 438.5s (7.3min)
+
+STEP 3: Regime map
+
+====================================================================================================
+  slope  regen  speed |                  class   n_eq      oscil  births/s  crowd/s  avail |  wall_s
+----------------------------------------------------------------------------------------------------
+   0.05    0.5    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.5s
+   0.05    0.5    1.0 |          VIABLE-DAMPED     55     DAMPED    2.0025   1.9363  0.987 |     7.1s
+   0.05    0.5    2.0 |     VIABLE-OSCILLATORY    232 OSCILLATORY   11.5113   9.2737  0.948 |    27.2s
+   0.05    1.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     1.0s
+   0.05    1.0    1.0 |     VIABLE-OSCILLATORY    113 OSCILLATORY    4.7138   4.6238  1.000 |    17.1s
+   0.05    1.0    2.0 |     VIABLE-OSCILLATORY    593 OSCILLATORY   31.4525  23.1875  1.000 |    68.3s
+   0.05    2.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     1.0s
+   0.05    2.0    1.0 |     VIABLE-OSCILLATORY    113 OSCILLATORY    4.7138   4.6238  1.000 |    17.3s
+   0.05    2.0    2.0 |     VIABLE-OSCILLATORY    593 OSCILLATORY   31.4525  23.1875  1.000 |    68.9s
+   0.10    0.5    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.3s
+   0.10    0.5    1.0 |     VIABLE-OSCILLATORY     43 OSCILLATORY    1.3538   1.2150  0.987 |     5.4s
+   0.10    0.5    2.0 |     VIABLE-OSCILLATORY    157 OSCILLATORY    8.7888   6.4400  0.952 |    18.7s
+   0.10    1.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.8s
+   0.10    1.0    1.0 |     VIABLE-OSCILLATORY    122 OSCILLATORY    5.2025   4.8087  1.000 |    16.3s
+   0.10    1.0    2.0 |     VIABLE-OSCILLATORY    411 OSCILLATORY   25.9375  15.7287  1.000 |    47.4s
+   0.10    2.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.8s
+   0.10    2.0    1.0 |     VIABLE-OSCILLATORY    122 OSCILLATORY    5.2025   4.8087  1.000 |    16.2s
+   0.10    2.0    2.0 |     VIABLE-OSCILLATORY    411 OSCILLATORY   25.9375  15.7287  1.000 |    47.1s
+   0.20    0.5    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.2s
+   0.20    0.5    1.0 |   MARGINAL-OSCILLATORY      8 OSCILLATORY    0.1025   0.0462  0.998 |     1.9s
+   0.20    0.5    2.0 |          VIABLE-DAMPED     85     DAMPED    5.3362   3.2850  0.956 |     9.9s
+   0.20    1.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.4s
+   0.20    1.0    1.0 |     VIABLE-OSCILLATORY     33 OSCILLATORY    0.9975   0.6875  1.000 |     6.2s
+   0.20    1.0    2.0 |     VIABLE-OSCILLATORY    215 OSCILLATORY   18.2037   8.2438  1.000 |    26.0s
+   0.20    2.0    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.4s
+   0.20    2.0    1.0 |     VIABLE-OSCILLATORY     33 OSCILLATORY    0.9975   0.6875  1.000 |     6.1s
+   0.20    2.0    2.0 |     VIABLE-OSCILLATORY    215 OSCILLATORY   18.2037   8.2438  1.000 |    25.5s
+====================================================================================================
+
+VIABLE+DAMPED band summary:
+  slope=0.05, regen=0.5: 1 speeds viable+damped: [1.0]
+  slope=0.20, regen=0.5: 1 speeds viable+damped: [2.0]
+
+STEP 4: Pathology check (A OFF = enable_density_mortality disabled, hmax=0)
+
+  Best viable regime: slope=0.05, regen=0.5 (1 VIABLE-DAMPED speeds)
+  Testing A-OFF at speeds: [0.5, 1.0]
+
+
+Pathology check results (A OFF, same (slope, regen) as best viable):
+====================================================================================================
+  slope  regen  speed |                  class   n_eq      oscil  births/s  crowd/s  avail |  wall_s
+----------------------------------------------------------------------------------------------------
+   0.05    0.5    0.5 |                EXTINCT      0        N/A       nan      nan    nan |     0.6s
+   0.05    0.5    1.0 |   MARGINAL-OSCILLATORY     25 OSCILLATORY    0.2775   0.0000  0.993 |     6.0s
+====================================================================================================
+
+A-ON vs A-OFF comparison:
+  speed=0.5: A-ON=EXTINCT → A-OFF=EXTINCT [same]
+  speed=1.0: A-ON=VIABLE-DAMPED → A-OFF=MARGINAL-OSCILLATORY [DESTABILIZED]
+
+PATHOLOGY VERDICT: A is NECESSARY — removing A destabilizes (DAMPED→OSCILLATORY/RUNAWAY/EXTINCT).
+This confirms A+B is doing real stabilization work.
+
+================================================================================
+RECOMMENDATION
+================================================================================
+NO VIABLE+DAMPED BAND FOUND in the searched grid.
+This is a substantive result: even with the viable founder + A+B, this substrate
+does not host a damped equilibrium across ≥2 speeds at {SLOPES} × {REGENS}.
+
+Observed patterns:
+  EXTINCT: 9 cells
+  MARGINAL: 1 cells
+  VIABLE: 17 cells
+
+Recommendation: the current (speed_cost_slope, regen_rate) parameter space
+does not yield a stable calibration substrate. The continuous-locomotion
+chapter verdict (CAN'T POSE) appears robust to this parameter search.
+Do NOT proceed to full Stage-1 sweep at these parameter ranges.
+
+Grid total wall time: 438.5s (7.3min)
+Script finished at: 2026-06-19T20:13:47Z
