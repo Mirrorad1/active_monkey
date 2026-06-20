@@ -1,0 +1,14 @@
+================================================================================
+Exp 255 — Well-mixed Bazykin coexistence check. RAW — controller judges.
+Default WellMixedConfig, horizon=1500, seeds=[0, 1, 2, 3]
+================================================================================
+  seed   t_end   prey_eq   pred_eq   persisted
+--------------------------------------------------
+     0    1500      68.6      31.7        True
+     1    1500      72.3      31.3        True
+     2    1500      67.5      31.8        True
+     3    1500      68.8      31.8        True
+
+VERDICT: POSITIVE — all seeds coexist to t=1500 (bounded limit cycle).
+FALSIFIER check: any extinction at t=1500 -> Exp-250 diagnosis WRONG.
+FALSIFIER NOT triggered: diagnosis confirmed (spatial substrate was the destabilizer).

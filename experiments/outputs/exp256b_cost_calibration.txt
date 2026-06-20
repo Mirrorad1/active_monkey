@@ -17,5 +17,3 @@ RED QUEEN READ (per escape_cost): static esc(ESS) / atk vs co-evolve esc / atk
   cost=0.15: static esc=3.22 atk=1.00 [static<cap] | co-evolve esc=3.88 atk=3.05 -> ATTACK TRACKS (co>static); prey pushed higher
   cost=0.3: static esc=2.01 atk=1.00 [static<cap] | co-evolve esc=1.64 atk=1.98 -> ATTACK TRACKS (co>static); no extra prey push
   cost=0.5: static esc=1.31 atk=1.00 [static<cap] | co-evolve esc=0.34 atk=1.46 -> no attack tracking; no extra prey push
-
-[written to experiments/outputs/exp256b_cost_calibration.txt]
