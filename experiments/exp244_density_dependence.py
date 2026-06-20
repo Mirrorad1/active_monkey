@@ -14,6 +14,12 @@ Method (no engine change; events_hash untouched): step the GO regime tick-by-tic
 natural density trajectory (founders -> equilibrium, incl. oscillation excursions), and per
 step record N, whole-field availability, occupied-cell availability, and per-capita intake
 (delta resource_eaten for creatures alive across both steps). Bin by N; report the trend.
+
+HYPOTHESIS: per-capita intake is density-dependent on the stabilized substrate (corr(N,
+intake) consistently negative across runs) — meaning genuine resource competition exists,
+not pure mortality regulation. PREDECLARED FALSIFIER: if corr(N, per-capita intake) is
+flat or positive across all 4 runs (speed × seed), per-capita intake is NOT density-
+dependent, the field is effectively non-limiting, and the substrate is DEGENERATE (NO-GO).
 """
 from __future__ import annotations
 import numpy as np

@@ -14,6 +14,12 @@ regress per-capita intake vs N over the natural density trajectory):
 A sharper sigma with a MUCH steeper intake-vs-N drop AND still viable => stronger competition
 that could bound the speed benefit (toward an ESS). Extinction at sharp sigma => navigation
 breaks (can't sense distant concentrated patches) / too little local food — a real limit.
+
+HYPOTHESIS: concentrating food into sharper bumps (lower sigma, same total food) steepens
+density-dependent competition (larger %intake-drop with N) because creatures crowd fewer,
+faster-depleted cells. PREDECLARED FALSIFIER: if the %intake-drop stays weak (< ~20%)
+across the full sigma sweep at every seed, bump geometry is NOT the lever strengthening
+competition — the refill-rate-vs-revisit-rate tension is geometry-independent.
 """
 from __future__ import annotations
 import numpy as np

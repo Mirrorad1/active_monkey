@@ -11,6 +11,13 @@ NON-DEGENERATE damped equilibrium. If availability only drops below 0.85 once th
 starving/extinct (no overlap), the tension is binding -> clean NO-GO confirming Exp-242.
 
 Applies the FULL certify_run gate (incl. the L40 non-degeneracy audit) to every cell.
+
+HYPOTHESIS: adding Mechanism A (crowding mortality) + Mechanism B (floored regen) yields a
+damped, non-degenerate equilibrium (a stable population that genuinely depletes the resource
+field). PREDECLARED FALSIFIER: if no cell passes certify_run's non-degeneracy audit (0/N
+cells, availability outside the L40 band, or population non-viable) across the full
+regen/A-strength sweep, the viability-vs-depletion tension is BINDING and the substrate
+cannot host an evolvability test (NO-GO).
 """
 from __future__ import annotations
 import sys

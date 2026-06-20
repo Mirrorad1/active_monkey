@@ -1,0 +1,32 @@
+Exp 245 — Geometry redesign for stronger competition: bump concentration FAILS
+Sigma-sweep table (sigma x seed; GO regime: hmax=0.20, Kc=60, regen=0.5, slope=0.05, speed=2.0)
+
+sigma  seed  n_eq     drop%    corr     avail
+------------------------------------------------------
+1.5    1     42-43    5.4%     -0.29    0.978
+1.5    2     42-43    5.7%     -0.34    0.978
+1.0    1     49       2.9%     -0.11    0.980
+1.0    2     49       3.7%     -0.14    0.980
+0.75   1     52-53    3.8%     -0.04    0.981
+0.75   2     52-53    7.7%     -0.41    0.981
+0.6    1     54       5.7%     -0.10    0.982
+0.6    2     54       6.4%     -0.22    0.982
+0.5    1     52-53    6.1%     -0.13    0.979
+0.5    2     52-53    8.9%     -0.31    0.979
+
+whole_avail: ~0.978-0.982 throughout all sigma values
+no extinction at any sigma
+
+MECHANISM: with floored regen (rate 0.5, capacity 2.0) a grazed cell refills to ~0.9
+in ~4 steps; the population (~50) is sparse over 576 sub-cells, so a creature grazes a
+cell, moves on, and the cell REFILLS BEFORE another creature revisits it -> standing-crop
+depletion never accumulates -> the field stays ~full -> competition stays weak.
+Bump geometry changes neither the refill rate nor the revisit sparsity, so it cannot
+strengthen competition.
+
+CONCLUSION: %intake-drop stays WEAK and noisy (~3-9%) at EVERY sigma.
+Concentration does NOT create strong density-dependence. NEGATIVE.
+
+Configurable geometry committed in 2bf27c5:
+  ecology/continuous_world.py, engine.py, cert_run.py,
+  tests/test_ecology_continuous.py

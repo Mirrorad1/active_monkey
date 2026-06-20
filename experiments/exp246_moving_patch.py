@@ -14,6 +14,13 @@ amplitude at the stabilizer regime and measures, via the Exp-244 method:
 STRONG competition (big %drop, low patch-availability, still viable) => the substrate can be
 posed with genuine competition. Extinct => the small patch can't sustain a crowding population
 (scarcity/tracking failure). Weak again => even forced crowding can't beat the refill rate.
+
+HYPOTHESIS: forcing the population to crowd one drifting patch creates strong resource
+competition (high local density -> revisit rate exceeds refill rate -> standing-crop
+depletion -> steep per-capita intake decline with N). PREDECLARED FALSIFIER: if %intake-drop
+stays weak (< ~20%) and patch availability stays high (> ~0.70) across the patch-size /
+amplitude / drift-period sweep, the moving patch does NOT strengthen competition — the
+refill-rate-vs-revisit-rate wall is general and the substrate cannot host a clean ESS test.
 """
 from __future__ import annotations
 import math

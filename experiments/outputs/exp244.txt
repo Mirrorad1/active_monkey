@@ -1,0 +1,70 @@
+Exp 244 — Correction to Exp-243 non-degeneracy gate: per-capita intake IS density-dependent
+================================================================================================
+
+QUESTION: Is the stabilized continuous substrate (GO regime: hmax=0.20, Kc=60, theta=1,
+regen=0.5, speed_cost_slope=0.05, bump topology, Gaussian sigma=1.5) non-degenerate?
+
+CORRECT ARBITER: Density-dependence of per-capita intake (corr(N, per-capita intake) < 0
+consistently across seeds/speeds = genuine population-level resource competition).
+
+WRONG ARBITER (Exp-243 gate): whole-field availability_mean > 0.85 — measures spatial
+dilution (~500 unoccupied cells near capacity), not actual population competition.
+
+=== 4-RUN DENSITY-DEPENDENCE RESULTS ===
+
+Run 1: speed=2.0, seed=1
+  corr(N, per-capita intake) = -0.395
+  per-capita intake range: 0.665 → 0.620  (N range: 37 → 48)
+  intake drop: ~7%
+
+Run 2: speed=2.0, seed=2
+  corr(N, per-capita intake) = -0.326
+  per-capita intake range: 0.662 → 0.620  (similar N range)
+  intake drop: ~6%
+
+Run 3: speed=1.5, seed=1
+  corr(N, per-capita intake) = -0.483
+  per-capita intake range: 0.529 → 0.482
+  intake drop: ~9%
+
+Run 4: speed=1.5, seed=2
+  corr(N, per-capita intake) = -0.550
+  per-capita intake range: 0.526 → 0.479
+  intake drop: ~9%
+
+SUMMARY: 4/4 NEGATIVE correlations — genuine density-dependent competition exists.
+
+=== FIELD AVAILABILITY READINGS ===
+
+Whole-field availability (mean over all 576 sub-cells):
+  ~0.979 → 0.977  (negligible movement; this is why the Exp-243 gate fired as "degenerate")
+
+Occupied-cell availability:
+  speed=2.0: ~0.80  (flat in N — constant self-depletion refilled by regen)
+  speed=1.5: ~0.70  (flat in N — same pattern)
+
+Interpretation: occupied cells are genuinely depleted (~0.70-0.80); whole-field mean is
+diluted by ~500 unoccupied cells staying near capacity (sigma=1.5 bumps → rho>0.1 spans
+~524/576 cells, but creatures cluster on bump peaks).
+
+=== VERDICT ===
+
+WEAKLY-POSABLE (corrects Exp-243 NO-GO).
+- Genuine resource competition: YES (4/4 negative corr)
+- Competition strength: WEAK (~7-9% per-capita intake drop across observed N range)
+- Whole-field availability gate: DEPRECATED (wrong kind of arbiter)
+- Correct metric going forward: density-dependence of per-capita intake
+
+CAVEAT: competition weak enough that invasion-from-rarity would likely show directional/
+runaway invasion (the ~+43% speed benefit unbounded by weak competition; Exp-240 commons-
+tragedy pattern), not a clean ESS. A geometry redesign (smaller arena / sharper bumps) for
+STRONGER competition is the next step.
+
+INSTRUMENT LESSON (4th refinement of the arc):
+  non-depleting field [Exp 242]
+  → discrete-founder calibration
+  → whole-field availability spatial dilution [Exp 243 gate — now DEPRECATED]
+  → availability is not even the right KIND of measure [Exp 244]
+  → CORRECT: density-dependence of per-capita intake
+
+trace: experiments/exp244_density_dependence.py
