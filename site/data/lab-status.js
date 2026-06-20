@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 248, title: "Red Queen predator-prey: CAN'T-POSE at the viability gate; no two-trophic coexistence on this substrate (NEGATIVE / CONSOLIDATION — extends the stability-vs-competition trade-off to a second trophic level).", tag: "NEGATIVE" },
-  tally: { total: 248, positive: 131, negative: 79, mixed: 34, breakthroughs: 15 },
+  latest_exp: { n: 250, title: "Natural stabilizers for predator-prey coexistence: the spatial-agent SUBSTRATE destabilizes a coexistence the ODE guarantees (NEGATIVE / NEW INSIGHT — capstone).", tag: "NEGATIVE" },
+  tally: { total: 250, positive: 131, negative: 81, mixed: 34, breakthroughs: 15 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },

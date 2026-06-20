@@ -14,5 +14,3 @@ K_prey   K_P  hmax n_pred   t_end  pred_eq minPredTail  cv_1st  cv_2nd     trend
   1000   120  0.12     60  1345.0     12.5         0.0   0.153   0.470   DIVERGE   False  False
 
 ROBUST PERSISTENT CYCLES (reach t=2000 all seeds, predator trough>0, amplitude not diverging): 0
-
-[written to experiments/outputs/exp254c_scale_cycle.txt]
