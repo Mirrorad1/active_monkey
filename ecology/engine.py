@@ -606,6 +606,23 @@ class EcologyConfig:
     interference_strength: float = 0.5          # w: per-neighbour interference weight
     interference_radius: float = 2.5            # neighbourhood radius for counting rival predators
 
+    # Exp 254: Predator self-limiting (density-dependent) mortality — OFF by default,
+    # byte-identical to all prior experiments when False.
+    #
+    # enable_predator_self_limit: master gate.  When True, each PREDATOR that is still alive
+    #   after starvation/senescence/crowding rolls a Bernoulli death hazard that scales with
+    #   the frozen per-step predator count N_pred: p = hmax * min(1, (N_pred/kc)**theta).
+    #   This caps predator population without cutting per-capita capture/intake (Bazykin-style
+    #   doubly-self-limited system when combined with logistic prey).  When False: NO rng draw,
+    #   NO code runs → byte-identical to all prior experiments.
+    # predator_self_limit_hmax: maximum per-step death hazard (ceiling at N_pred >= kc).
+    # predator_self_limit_kc: predator density scale K_P; hazard = hmax when N_pred = kc.
+    # predator_self_limit_theta: Hill exponent (1.0 = linear; >1 = accelerating above kc).
+    enable_predator_self_limit: bool = False   # Exp 254 gate; OFF byte-identical to Exp 253
+    predator_self_limit_hmax: float = 0.1     # max per-step death hazard (at N_pred >= kc)
+    predator_self_limit_kc: float = 30.0      # predator density scale K_P
+    predator_self_limit_theta: float = 1.0    # Hill exponent (1.0 = linear)
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -1470,6 +1487,26 @@ class Ecology:
                 if c.policy is not None:
                     c.policy.release_maps()
 
+        # 7d. Exp 254: predator self-limiting (density-dependent) mortality.
+        #     Gated; OFF path makes ZERO rng draws and emits no event. Only rolled if
+        #     the creature is still alive (starvation/senescence/crowding take precedence)
+        #     AND it is a predator. SINGLE gated rng draw — only ON + role==predator + alive.
+        if cfg.enable_predator_self_limit and ph.alive and c.genotype.role == "predator":
+            kc = cfg.predator_self_limit_kc
+            p = (cfg.predator_self_limit_hmax
+                 * min(1.0, (self._psl_N_pred / kc) ** cfg.predator_self_limit_theta)
+                 ) if kc > 0 else 0.0
+            if p > 0.0 and self.rng.random() < p:
+                ph.alive = False
+                ph.cause_of_death = "pred_self_limit"
+                self.events.append(self._event("death", c, details={
+                    "cause": "pred_self_limit",
+                    "age": ph.age,
+                    "offspring_count": ph.offspring_count,
+                }))
+                if c.policy is not None:
+                    c.policy.release_maps()
+
     # ------------------------------------------------------------------
     # Exp 248: gated 3-phase predation loop (continuous world only).
     # Entered ONLY when cfg.enable_predation (the OFF path never touches any of this).
@@ -1757,6 +1794,13 @@ class Ecology:
         # additive birth).
         if self.cfg.enable_logistic_prey_growth or self.cfg.enable_decoupled_prey_birth:
             self._lpg_N_prey = sum(1 for c in self._alive_list if c.genotype.role == "prey")
+
+        # Exp 254: freeze the PREDATOR head-count ONCE per step, before the per-creature
+        # loop, so every predator creature sees the SAME N_pred (order-independent,
+        # deterministic). The OFF path never sets _psl_N_pred — the gate in
+        # _step_one_creature bypasses entirely, so OFF is byte-identical.
+        if self.cfg.enable_predator_self_limit:
+            self._psl_N_pred = sum(1 for c in self._alive_list if c.genotype.role == "predator")
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
