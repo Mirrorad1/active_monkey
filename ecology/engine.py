@@ -525,6 +525,14 @@ class EcologyConfig:
     continuous_patch_orbit_radius: float = 3.0
     continuous_patch_period: int = 300
 
+    # Exp 249: logistic prey-birth suppression (Rosenzweig-MacArthur stabilizer).
+    # OFF (False) byte-identical: no rng draw, no code runs on the OFF path.
+    # enable_logistic_prey_growth: master gate; when True, prey births are stochastically
+    #   suppressed with probability (1 − N_prey/K), giving instantaneous density regulation.
+    # prey_carrying_capacity: effective carrying capacity K for prey density regulation.
+    enable_logistic_prey_growth: bool = False  # Exp 249 gate; OFF byte-identical
+    prey_carrying_capacity: float = 150.0       # logistic K for prey birth suppression
+
     # Exp 248: predator-prey — master gate + per-role mutation flags.
     # All three default False → OFF path byte-identical to all prior experiments.
     enable_predation: bool = False          # Exp 248 master gate; OFF byte-identical
@@ -1190,74 +1198,84 @@ class Ecology:
             energy_at_repro = ph.energy
             # Only reproduce if parent stays above min_survival_energy
             if energy_at_repro - transfer - overhead > cfg.min_survival_energy:
-                # Child placement: lowest-indexed neighbor (deterministic), or parent cell.
-                # Exp 235: when terrain is ON and movement gating is ON, guard the spawn so
-                # a newborn is NOT placed across an unclimbable rim (spurious extinction is
-                # not a gradient result).  Use world.neighbors() directly (not
-                # climbable_neighbors — spawn placement is deterministic, never probabilistic).
-                if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
-                    all_nb = self.world.neighbors(new_pos)
-                    elev_here = float(self.world.elevation[new_pos])
-                    # Allow placement on basin cells (elevation <= 0.0) or same-level;
-                    # never place a newborn on the ridge (1.0) or plateau (1.5) from basin.
-                    safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
-                    neighbors = safe_nb if safe_nb else all_nb
-                else:
-                    neighbors = self.world.neighbors(new_pos)
-                child_pos = min(neighbors) if neighbors else new_pos
+                # Exp 249 Mechanism B: logistic prey-birth suppression (Rosenzweig-MacArthur).
+                # Gate fires ONLY when ON and creature is prey; draws the SINGLE rng this step.
+                # OFF path: _lpg_suppress=False, NO rng draw, code is byte-identical to before.
+                # When suppressed: child is not created, no energy is paid, parent skips repro.
+                _lpg_suppress = False
+                if cfg.enable_logistic_prey_growth and c.genotype.role == "prey":
+                    _lpg_p = max(0.0, 1.0 - self._lpg_N_prey / cfg.prey_carrying_capacity)
+                    if self.rng.random() >= _lpg_p:   # single rng draw — only when ON + prey
+                        _lpg_suppress = True
+                if not _lpg_suppress:
+                    # Child placement: lowest-indexed neighbor (deterministic), or parent cell.
+                    # Exp 235: when terrain is ON and movement gating is ON, guard the spawn so
+                    # a newborn is NOT placed across an unclimbable rim (spurious extinction is
+                    # not a gradient result).  Use world.neighbors() directly (not
+                    # climbable_neighbors — spawn placement is deterministic, never probabilistic).
+                    if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
+                        all_nb = self.world.neighbors(new_pos)
+                        elev_here = float(self.world.elevation[new_pos])
+                        # Allow placement on basin cells (elevation <= 0.0) or same-level;
+                        # never place a newborn on the ridge (1.0) or plateau (1.5) from basin.
+                        safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
+                        neighbors = safe_nb if safe_nb else all_nb
+                    else:
+                        neighbors = self.world.neighbors(new_pos)
+                    child_pos = min(neighbors) if neighbors else new_pos
 
-                if cfg.enable_predation:
-                    _mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
-                                  or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
-                else:
-                    _mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
-                child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
-                                    mutate_thermosense=cfg.enable_thermosense,
-                                    freeze_learning_rate=cfg.freeze_learning_rate,
-                                    freeze_thermosense=cfg.freeze_thermosense,
-                                    mutate_memory=cfg.enable_hidden_mode,
-                                    mutate_active_sensing=cfg.enable_active_sensing,
-                                    mutate_locomotion=cfg.enable_terrain,
-                                    mutate_continuous_locomotion=_mut_speed)
-                child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
-                # Exp 238: set continuous pos for child near parent when ON.
-                if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
-                    from ecology.continuous_world import ARENA_W, ARENA_H
-                    _pr, _pc = divmod(child_pos, cfg.cols)
-                    child_ph.pos_cont = (
-                        ((_pc + 0.5) / cfg.cols) * ARENA_W,
-                        ((_pr + 0.5) / cfg.rows) * ARENA_H,
+                    if cfg.enable_predation:
+                        _mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
+                                      or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
+                    else:
+                        _mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
+                    child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
+                                        mutate_thermosense=cfg.enable_thermosense,
+                                        freeze_learning_rate=cfg.freeze_learning_rate,
+                                        freeze_thermosense=cfg.freeze_thermosense,
+                                        mutate_memory=cfg.enable_hidden_mode,
+                                        mutate_active_sensing=cfg.enable_active_sensing,
+                                        mutate_locomotion=cfg.enable_terrain,
+                                        mutate_continuous_locomotion=_mut_speed)
+                    child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
+                    # Exp 238: set continuous pos for child near parent when ON.
+                    if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
+                        from ecology.continuous_world import ARENA_W, ARENA_H
+                        _pr, _pc = divmod(child_pos, cfg.cols)
+                        child_ph.pos_cont = (
+                            ((_pc + 0.5) / cfg.cols) * ARENA_W,
+                            ((_pr + 0.5) / cfg.rows) * ARENA_H,
+                        )
+                    child = Creature(
+                        creature_id=self.next_id,
+                        parent_id=c.creature_id,
+                        generation=c.generation + 1,
+                        lineage_root=c.lineage_root,
+                        genotype=child_geno,
+                        phenotype=child_ph,
+                        n_cells=cfg.rows * cfg.cols,
                     )
-                child = Creature(
-                    creature_id=self.next_id,
-                    parent_id=c.creature_id,
-                    generation=c.generation + 1,
-                    lineage_root=c.lineage_root,
-                    genotype=child_geno,
-                    phenotype=child_ph,
-                    n_cells=cfg.rows * cfg.cols,
-                )
-                self.next_id += 1
-                ph.energy -= (transfer + overhead)
-                ph.offspring_count += 1
-                pending_children.append(child)
-                self.events.append(self._event("reproduction", c, details={
-                    "transfer": round(transfer, 6),
-                    "overhead": round(overhead, 6),
-                    "child_id": child.creature_id,
-                    # F4-verifiable fields: parent state at the decision point.
-                    # energy_at_repro is the exact float (not rounded) so F4 checks
-                    # can compare it accurately against reproduction_energy_threshold.
-                    "parent_age_at_repro": ph.age,
-                    "parent_energy_at_repro": energy_at_repro,
-                    "parent_maturity_age": g.maturity_age,
-                    "parent_repro_energy_threshold": g.reproduction_energy_threshold,
-                }))
-                self.events.append(self._event("birth", child, details={
-                    "founder": False,
-                    "parent_id": c.creature_id,
-                }))
-                assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
+                    self.next_id += 1
+                    ph.energy -= (transfer + overhead)
+                    ph.offspring_count += 1
+                    pending_children.append(child)
+                    self.events.append(self._event("reproduction", c, details={
+                        "transfer": round(transfer, 6),
+                        "overhead": round(overhead, 6),
+                        "child_id": child.creature_id,
+                        # F4-verifiable fields: parent state at the decision point.
+                        # energy_at_repro is the exact float (not rounded) so F4 checks
+                        # can compare it accurately against reproduction_energy_threshold.
+                        "parent_age_at_repro": ph.age,
+                        "parent_energy_at_repro": energy_at_repro,
+                        "parent_maturity_age": g.maturity_age,
+                        "parent_repro_energy_threshold": g.reproduction_energy_threshold,
+                    }))
+                    self.events.append(self._event("birth", child, details={
+                        "founder": False,
+                        "parent_id": c.creature_id,
+                    }))
+                    assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
 
         # 7a. Senescence degradation — ONLY when enable_senescence is True.
         #     Deterministic (no rng draws), so OFF path is byte-identical to Exp 194.
@@ -1575,6 +1593,12 @@ class Ecology:
             self._dm_dN = _N_now - self._dm_N_prev
             self._dm_N_frozen = _N_now
             self._dm_N_prev = _N_now
+
+        # Exp 249 Mechanism B: freeze the PREY head-count ONCE per step so every creature
+        # this step sees the SAME N_prey (order-independent, deterministic). The OFF path
+        # never sets _lpg_N_prey — the gate in _step_one_creature is bypassed entirely.
+        if self.cfg.enable_logistic_prey_growth:
+            self._lpg_N_prey = sum(1 for c in self._alive_list if c.genotype.role == "prey")
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
