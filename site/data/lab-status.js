@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 245, title: "Geometry redesign for stronger competition: bump concentration FAILS (NEGATIVE / NEW INSIGHT — the refill-rate-vs-revisit-rate mechanism).", tag: "NEGATIVE" },
-  tally: { total: 245, positive: 131, negative: 76, mixed: 34, breakthroughs: 15 },
+  latest_exp: { n: 246, title: "Moving-patch lever fails; the unifying STABILITY-vs-COMPETITION trade-off (NEGATIVE / NEW INSIGHT — chapter close).", tag: "NEGATIVE" },
+  tally: { total: 246, positive: 131, negative: 77, mixed: 34, breakthroughs: 15 },
   directions: [
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },
@@ -20,10 +20,10 @@ window.AM_LAB_STATUS = {
     { name: "identity-n4-crack", state: "closed-positive (CLOSED 2026-06-12)", latest: "Exp 188–190 — crack REAL → closed on continuity clock → regulation ties at fixed-L → defends uniquely at variable-L but cannot revise → rung-6 NEGATIVE; synthesis docs/research/n4-crack-chapter.md §8", next: "ON A WORD — variable-L geometry, tight-tolerance core, or post-release retention (§6 edges 2–3)" },
     { name: "self-other-modeling", state: "closed-positive (Exp 228–234)", latest: "Exp 234", next: "re-opens only where the SIMPLE baselines FAIL (less-legible/partial-obs other, or coordination stigmergy cannot solve)." },
     { name: "social-emergence", state: "closed-positive (ladder Exp 63–74)", latest: "Exp 74", next: "NONE — ladder closed; do NOT re-run Rung 1 (vela exists); descendant `self-other-modeling` carries the open question (model the OTHER's hidden state)." },
-    { name: "continuous-locomotion", state: "closed-negative (WEAKLY-POSABLE; bump-geometry lever NEGATIVE; refill-rate-vs-revisit-rate mechanism robust across 4 levers)", latest: "TBD", next: "" },
     { name: "evolvability-geometry", state: "closed-negative (2026-06-15, human's word \"b\") — a benefit-MAGNITUDE wall, not search geometry or payoff shape", latest: "Exp 213 GEOMETRY_INDEPENDENT_WALL + Exp 212 NO_HIGHER_REGION (both blind-verified): landscape assay found no valley; affordance audit found smooth and discrete-high-stakes payoffs equally non-evolvable ⇒ Rung 2/3 not run (nothing to cross to)", next: "re-opens only on a human word with a benefit-MAGNITUDE lever (bigger per-step payoff / higher pivotal density / richer world)" },
     { name: "identity-n4", state: "closed-negative", latest: "Exp 183 — regulated commitment vs any constant FAILED kill test; defense-as-config documented; chapter graded on human's word", next: "TBD-human (seed-229/variable-length crack deferred, or untried anchor form)" },
     { name: "population-ecology", state: "closed-negative (sense-evolution sub-arc; closed 2026-06-14, human's word \"c\")", latest: "Exp 207 (NEGATIVE / NEW INSIGHT, design-stage; blind-verified — the sensor-controller co-adaptation lever, the last non-niche escape, ruled out by a cheap corner-grid PRE-FLIGHT: the 2-D-valley premise is FALSE — controller θ pays ALONE via herd-escape [+0.147], sensor h pure cost at every θ [dB/dh<0], cross-partial ≈0; no full batch [L28]) · SEVEN levers (Exp 199–207: avoidance/foraging/increasing-returns/competition/residue/niche/controller) all FAIL — a costed sense is un-evolvable here: the local gradient at the resident is ≤0 even when a precise population is fitter in bulk AND survives", next: "" },
+    { name: "continuous-locomotion", state: "CLOSED", latest: "TBD", next: "" },
   ],
   flagship: { title: "Agents That Know When Their Worldview Is Too Small", page: "docs/flagship/worldview-too-small.md" }
 };
