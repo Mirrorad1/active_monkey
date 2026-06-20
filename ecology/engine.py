@@ -525,6 +525,104 @@ class EcologyConfig:
     continuous_patch_orbit_radius: float = 3.0
     continuous_patch_period: int = 300
 
+    # Exp 249: logistic prey-birth suppression (Rosenzweig-MacArthur stabilizer).
+    # OFF (False) byte-identical: no rng draw, no code runs on the OFF path.
+    # enable_logistic_prey_growth: master gate; when True, prey births are stochastically
+    #   suppressed with probability (1 − N_prey/K), giving instantaneous density regulation.
+    # prey_carrying_capacity: effective carrying capacity K for prey density regulation.
+    enable_logistic_prey_growth: bool = False  # Exp 249 gate; OFF byte-identical
+    prey_carrying_capacity: float = 150.0       # logistic K for prey birth suppression
+
+    # Exp 250: additive resource-INDEPENDENT logistic prey birth.
+    # OFF (False) byte-identical: no rng draw, no code runs on the OFF path.
+    # enable_decoupled_prey_birth: master gate; when True, alive prey gain an ADDITIVE
+    #   birth probability that does NOT depend on the depletable resource, raising
+    #   low-density productivity (the binding constraint for predator-prey coexistence).
+    # prey_birth_rate: per-step base birth probability at zero density (scales logistically
+    #   with (1 − N_prey/prey_carrying_capacity)). Reuses prey_carrying_capacity for K.
+    enable_decoupled_prey_birth: bool = False  # Exp 250 gate; OFF byte-identical
+    prey_birth_rate: float = 0.3               # base birth rate at low density (additive)
+
+    # Exp 248: predator-prey — master gate + per-role mutation flags.
+    # All three default False → OFF path byte-identical to all prior experiments.
+    enable_predation: bool = False          # Exp 248 master gate; OFF byte-identical
+    mutate_predator_speed: bool = False     # the SINGLE causal bit (co-evolving arm = True)
+    freeze_prey_speed: bool = False         # prey breed-true in the focal test (both arms)
+
+    # Exp 248 Task 3: gated 3-phase predation-loop parameters. READ ONLY inside
+    # `if cfg.enable_predation` — every default is inert on the OFF path (the predation
+    # branch in step() is never entered), so OFF stays byte-identical to all prior work.
+    #   capture_radius: predator captures the nearest not-yet-captured prey strictly
+    #     WITHIN this continuous-arena distance. NEVER a function of locomotor_speed
+    #     (the anti-cheat seam: speed keys only how far a creature sweeps, d = speed*dt).
+    #   sensing_radius: range within which prey see predators (flee) and predators see
+    #     prey (pursuit); beyond it the role heading reduces to best_heading.
+    #   assimilation_efficiency: fraction of a captured prey's energy a predator can
+    #     assimilate; the predator gains min(deficit, prey.energy*assimilation_efficiency).
+    #   strike_cost: energy charged to a predator that captures this step (default 0.0).
+    #   w_food / w_flee: prey heading weights — h = normalize(w_food*best_heading
+    #     − w_flee*Σ unit(pred→prey)/dist). The flee sum is EXACTLY 0.0 when no predator
+    #     is in range, so h == best_heading (the Step-5 invariant).
+    #   max_captures_per_step: captures a single predator may make per step (default 1).
+    #   pred_start_energy_frac: founder predator start energy as a fraction of capacity.
+    capture_radius: float = 0.6
+    sensing_radius: float = 3.0
+    assimilation_efficiency: float = 0.6
+    strike_cost: float = 0.0
+    w_food: float = 1.0
+    w_flee: float = 1.5
+    max_captures_per_step: int = 1
+    pred_start_energy_frac: float = 0.75
+
+    # Exp 252: Type III (sigmoid) predator functional response — OFF by default,
+    # byte-identical to Exp 248-251 when False.
+    #
+    # enable_type3_response: master gate.  When True, each predator that identifies a
+    #   candidate target within capture_radius draws ONE rng sample to decide whether
+    #   the strike SUCCEEDS (prob = n_local^k / (h^k + n_local^k)).  At low n_local
+    #   (rare prey) p_cap ≈ 0 → emergent low-density refuge.  At high n_local p_cap → 1
+    #   (saturation).  When False: NO rng draw, capture remains deterministic → byte-identical.
+    # type3_half_density: half-saturation local prey count h (Hill equation denominator).
+    #   At n_local = h the capture probability is exactly 0.5.  Default 3.0.
+    # type3_exponent: Hill exponent k; k=2 gives the classic sigmoid Type III shape.
+    #   k=1 reduces to the hyperbolic Type II (no inflection).  Default 2.0.
+    enable_type3_response: bool = False   # Exp 252 gate; OFF byte-identical to Exp 248-251
+    type3_half_density: float = 3.0       # half-saturation local prey count h (Hill eq)
+    type3_exponent: float = 2.0           # Hill exponent k; 2 = classic Type III sigmoid
+
+    # Exp 253: Predator interference (ratio-dependent / Beddington-DeAngelis) — OFF by default,
+    # byte-identical to all prior experiments when False.
+    #
+    # enable_predator_interference: master gate.  When True, after a target is found (and
+    #   optionally after passing the Type III draw), the focal predator counts OTHER alive
+    #   predators within interference_radius; p_success = 1 / (1 + w * n_other) where w is
+    #   interference_strength.  A single rng draw gates the capture.  When n_other=0,
+    #   p_success=1.0 and a lone predator is unaffected.  When False: NO rng draw → byte-identical.
+    # interference_strength: w in the Beddington-DeAngelis denominator.  Higher w means stronger
+    #   inter-predator competition.  Default 0.5.
+    # interference_radius: spatial neighbourhood radius within which other predators count as
+    #   interfering competitors.  Default 2.5 (world units).
+    enable_predator_interference: bool = False  # Exp 253 gate; OFF byte-identical to Exp 252
+    interference_strength: float = 0.5          # w: per-neighbour interference weight
+    interference_radius: float = 2.5            # neighbourhood radius for counting rival predators
+
+    # Exp 254: Predator self-limiting (density-dependent) mortality — OFF by default,
+    # byte-identical to all prior experiments when False.
+    #
+    # enable_predator_self_limit: master gate.  When True, each PREDATOR that is still alive
+    #   after starvation/senescence/crowding rolls a Bernoulli death hazard that scales with
+    #   the frozen per-step predator count N_pred: p = hmax * min(1, (N_pred/kc)**theta).
+    #   This caps predator population without cutting per-capita capture/intake (Bazykin-style
+    #   doubly-self-limited system when combined with logistic prey).  When False: NO rng draw,
+    #   NO code runs → byte-identical to all prior experiments.
+    # predator_self_limit_hmax: maximum per-step death hazard (ceiling at N_pred >= kc).
+    # predator_self_limit_kc: predator density scale K_P; hazard = hmax when N_pred = kc.
+    # predator_self_limit_theta: Hill exponent (1.0 = linear; >1 = accelerating above kc).
+    enable_predator_self_limit: bool = False   # Exp 254 gate; OFF byte-identical to Exp 253
+    predator_self_limit_hmax: float = 0.1     # max per-step death hazard (at N_pred >= kc)
+    predator_self_limit_kc: float = 30.0      # predator density scale K_P
+    predator_self_limit_theta: float = 1.0    # Hill exponent (1.0 = linear)
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -722,7 +820,8 @@ class Ecology:
             basin_step = max(1, len(basin_cells) // max(1, len(founders)))
             for i, geno in enumerate(founders):
                 pos = basin_cells[(i * basin_step) % len(basin_cells)]
-                start_energy = geno.energy_capacity * 0.75
+                _frac = cfg.pred_start_energy_frac if (cfg.enable_predation and geno.role == "predator") else 0.75
+                start_energy = geno.energy_capacity * _frac
                 ph = Phenotype(energy=start_energy, age=0, pos=pos)
                 c = Creature(
                     creature_id=self.next_id,
@@ -741,7 +840,8 @@ class Ecology:
             step = max(1, total // max(1, len(founders)))
             for i, geno in enumerate(founders):
                 pos = (i * step) % total
-                start_energy = geno.energy_capacity * 0.75
+                _frac = cfg.pred_start_energy_frac if (cfg.enable_predation and geno.role == "predator") else 0.75
+                start_energy = geno.energy_capacity * _frac
                 ph = Phenotype(energy=start_energy, age=0, pos=pos)
                 c = Creature(
                     creature_id=self.next_id,
@@ -877,11 +977,19 @@ class Ecology:
         overhead = ph.energy * g.reproduction_cost_fraction * (1.0 + genotype_complexity(g))
         return transfer, overhead
 
-    def _step_one_creature(
-        self, c: Creature, pending_children: list[Creature]
-    ) -> None:
-        """Execute one timestep for a single creature.  Reads only c + local cell.
-        NO global ranking, NO cross-creature comparison.
+    def _sense_act_move(self, c: Creature) -> int:
+        """Step 1-2: sense, choose+execute action, advance position, charge movement_cost.
+
+        Returns the new discrete cell (new_pos).  This is the EXACT legacy move block from
+        _step_one_creature, factored out unchanged so the OFF / non-predation path is
+        byte-identical (same rng draws via c.sense()/c.act(), same arithmetic).
+
+        Exp 248 (predation ON, continuous): c.sense()/c.act() STILL run (preserving the rng
+        stream + learned-map update), but the realized heading (_hdx,_hdy) is REPLACED by the
+        role-aware pursuit/flee heading from the FROZEN pre-move snapshot, and that heading is
+        stored in ph.move_hx/move_hy/move_d for the eat back-projection (Task 2 reuse seam).
+        ANTI-CHEAT: locomotor_speed keys ONLY the swept distance d = speed*dt — never the
+        heading and never the capture geometry.
         """
         ph = c.phenotype
         g = c.genotype
@@ -902,12 +1010,21 @@ class Ecology:
             _hint_cell = c.act(self.world, self.rng)  # consumes the SAME single rng draw
             # Derive heading toward sensed-best direction from cont_world field.
             _x0, _y0 = ph.pos_cont if ph.pos_cont is not None else (0.5, 0.5)
-            _hdx, _hdy = self.cont_world.best_heading(_x0, _y0)
+            if cfg.enable_predation:
+                # Exp 248: role-aware heading from the frozen pre-move snapshot.
+                _hdx, _hdy = self._role_heading(
+                    c, _x0, _y0, self._pred_prey_snap, self._pred_pred_snap)
+            else:
+                _hdx, _hdy = self.cont_world.best_heading(_x0, _y0)
             # Advance by d = locomotor_speed * dt (instantaneous; no momentum).
             _d = g.locomotor_speed * cfg.continuous_dt
             _x1 = max(0.0, min(ARENA_W, _x0 + _hdx * _d))
             _y1 = max(0.0, min(ARENA_H, _y0 + _hdy * _d))
             ph.pos_cont = (_x1, _y1)
+            # Exp 248: store realized move heading for gated eat-heading reuse (Task 2).
+            # Gated on enable_predation — OFF path never executes this write (byte-identical).
+            if cfg.enable_predation:
+                ph.move_hx, ph.move_hy, ph.move_d = _hdx, _hdy, _d
             # Project to nearest discrete grid cell (byte-identical integer pos for events_hash).
             _r = int(_y1 / ARENA_H * cfg.rows)
             _col = int(_x1 / ARENA_W * cfg.cols)
@@ -923,6 +1040,36 @@ class Ecology:
                 ph.energy -= g.movement_cost
                 if self.cfg.log_moves:
                     self.events.append(self._event("move", c, details={"from": old_pos, "to": new_pos}))
+        return new_pos
+
+    def _step_one_creature(
+        self, c: Creature, pending_children: list[Creature],
+        skip_move: bool = False, skip_eat: bool = False,
+    ) -> None:
+        """Execute one timestep for a single creature.  Reads only c + local cell.
+        NO global ranking, NO cross-creature comparison.
+
+        Exp 248 (predation tail, Phase C only): when skip_move=True the sense/act/move
+        block is SKIPPED — Phase A already sensed, acted (consuming the rng draw), advanced
+        pos_cont/pos and charged movement_cost — so this runs only the metabolic→eat→
+        reproduce→death tail on the already-moved creature.  When skip_eat=True the eat
+        step is skipped (predators feed only via capture in Phase B).  BOTH default False
+        ⇒ the OFF / non-predation path is the EXACT existing single-pass behaviour
+        (byte-identical; the two flags are never set unless enable_predation).
+        """
+        ph = c.phenotype
+        g = c.genotype
+        cfg = self.cfg
+
+        # 1-2. Sense + choose/execute action + movement_cost.
+        # OFF / non-predation path: run the legacy sense/act/move block VERBATIM
+        # (byte-identical). Predation Phase C path (skip_move=True): Phase A already
+        # sensed, acted (consuming the rng draw), advanced pos_cont/pos and charged
+        # movement_cost via _sense_act_move(), so the tail simply reads the new cell.
+        if skip_move:
+            new_pos = ph.pos
+        else:
+            new_pos = self._sense_act_move(c)
 
         # 3. Pay metabolic + aging cost
         ph.energy -= g.baseline_metabolic_cost + g.aging_cost * ph.age
@@ -1009,6 +1156,13 @@ class Ecology:
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
+        # Exp 248: predators feed ONLY via capture (Phase B) — skip the foraging eat.
+        # skip_eat is only ever True on the predation Phase C path (default False ⇒
+        # byte-identical to every prior experiment). Setting deficit = 0 means every
+        # `if deficit > 0` eat branch (continuous / residue / niche / discrete) is a
+        # no-op AND makes no rng draw, so a predator never depletes a food cell.
+        if skip_eat:
+            deficit = 0.0
         # Exp 238: continuous locomotion eat — line integral along the swept segment.
         # OFF (enable_continuous_locomotion=False) ⇒ byte-identical discrete path below.
         if self.cont_world is not None and ph.pos_cont is not None:
@@ -1016,9 +1170,15 @@ class Ecology:
             # ANTI-CHEAT: intake is integral of the PROVIDED rho field.
             if deficit > 0:
                 _x1, _y1 = ph.pos_cont  # new (end) position after this step's move
-                _hdx, _hdy = self.cont_world.best_heading(_x1, _y1)
-                _d = g.locomotor_speed * cfg.continuous_dt
                 from ecology.continuous_world import ARENA_W, ARENA_H
+                # Exp 248: gated eat-heading reuse (Task 2).
+                # ON: reuse the realized move heading stored in ph (start-of-step heading).
+                # OFF: recompute from end position (existing byte-identical path).
+                if cfg.enable_predation:
+                    _hdx, _hdy, _d = ph.move_hx, ph.move_hy, ph.move_d  # reuse realized move heading
+                else:
+                    _hdx, _hdy = self.cont_world.best_heading(_x1, _y1)  # existing reconstruction (byte-identical)
+                    _d = g.locomotor_speed * cfg.continuous_dt
                 _x0e = max(0.0, min(ARENA_W, _x1 - _hdx * _d))
                 _y0e = max(0.0, min(ARENA_H, _y1 - _hdy * _d))
                 eaten = self.cont_world.consume(_x0e, _y0e, _x1, _y1, deficit)
@@ -1097,70 +1257,157 @@ class Ecology:
             energy_at_repro = ph.energy
             # Only reproduce if parent stays above min_survival_energy
             if energy_at_repro - transfer - overhead > cfg.min_survival_energy:
-                # Child placement: lowest-indexed neighbor (deterministic), or parent cell.
-                # Exp 235: when terrain is ON and movement gating is ON, guard the spawn so
-                # a newborn is NOT placed across an unclimbable rim (spurious extinction is
-                # not a gradient result).  Use world.neighbors() directly (not
-                # climbable_neighbors — spawn placement is deterministic, never probabilistic).
+                # Exp 249 Mechanism B: logistic prey-birth suppression (Rosenzweig-MacArthur).
+                # Gate fires ONLY when ON and creature is prey; draws the SINGLE rng this step.
+                # OFF path: _lpg_suppress=False, NO rng draw, code is byte-identical to before.
+                # When suppressed: child is not created, no energy is paid, parent skips repro.
+                _lpg_suppress = False
+                if cfg.enable_logistic_prey_growth and c.genotype.role == "prey":
+                    _lpg_p = max(0.0, 1.0 - self._lpg_N_prey / cfg.prey_carrying_capacity)
+                    if self.rng.random() >= _lpg_p:   # single rng draw — only when ON + prey
+                        _lpg_suppress = True
+                if not _lpg_suppress:
+                    # Child placement: lowest-indexed neighbor (deterministic), or parent cell.
+                    # Exp 235: when terrain is ON and movement gating is ON, guard the spawn so
+                    # a newborn is NOT placed across an unclimbable rim (spurious extinction is
+                    # not a gradient result).  Use world.neighbors() directly (not
+                    # climbable_neighbors — spawn placement is deterministic, never probabilistic).
+                    if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
+                        all_nb = self.world.neighbors(new_pos)
+                        elev_here = float(self.world.elevation[new_pos])
+                        # Allow placement on basin cells (elevation <= 0.0) or same-level;
+                        # never place a newborn on the ridge (1.0) or plateau (1.5) from basin.
+                        safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
+                        neighbors = safe_nb if safe_nb else all_nb
+                    else:
+                        neighbors = self.world.neighbors(new_pos)
+                    child_pos = min(neighbors) if neighbors else new_pos
+
+                    if cfg.enable_predation:
+                        _mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
+                                      or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
+                    else:
+                        _mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
+                    child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
+                                        mutate_thermosense=cfg.enable_thermosense,
+                                        freeze_learning_rate=cfg.freeze_learning_rate,
+                                        freeze_thermosense=cfg.freeze_thermosense,
+                                        mutate_memory=cfg.enable_hidden_mode,
+                                        mutate_active_sensing=cfg.enable_active_sensing,
+                                        mutate_locomotion=cfg.enable_terrain,
+                                        mutate_continuous_locomotion=_mut_speed)
+                    child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
+                    # Exp 238: set continuous pos for child near parent when ON.
+                    if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
+                        from ecology.continuous_world import ARENA_W, ARENA_H
+                        _pr, _pc = divmod(child_pos, cfg.cols)
+                        child_ph.pos_cont = (
+                            ((_pc + 0.5) / cfg.cols) * ARENA_W,
+                            ((_pr + 0.5) / cfg.rows) * ARENA_H,
+                        )
+                    child = Creature(
+                        creature_id=self.next_id,
+                        parent_id=c.creature_id,
+                        generation=c.generation + 1,
+                        lineage_root=c.lineage_root,
+                        genotype=child_geno,
+                        phenotype=child_ph,
+                        n_cells=cfg.rows * cfg.cols,
+                    )
+                    self.next_id += 1
+                    ph.energy -= (transfer + overhead)
+                    ph.offspring_count += 1
+                    pending_children.append(child)
+                    self.events.append(self._event("reproduction", c, details={
+                        "transfer": round(transfer, 6),
+                        "overhead": round(overhead, 6),
+                        "child_id": child.creature_id,
+                        # F4-verifiable fields: parent state at the decision point.
+                        # energy_at_repro is the exact float (not rounded) so F4 checks
+                        # can compare it accurately against reproduction_energy_threshold.
+                        "parent_age_at_repro": ph.age,
+                        "parent_energy_at_repro": energy_at_repro,
+                        "parent_maturity_age": g.maturity_age,
+                        "parent_repro_energy_threshold": g.reproduction_energy_threshold,
+                    }))
+                    self.events.append(self._event("birth", child, details={
+                        "founder": False,
+                        "parent_id": c.creature_id,
+                    }))
+                    assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
+
+        # Exp 250: additive resource-INDEPENDENT logistic prey birth.
+        # Gated; OFF => NO rng draw, byte-identical to all prior experiments.
+        # Raises low-density prey productivity decoupled from the depletable resource.
+        # ph.alive guard: never spawn from a creature that died this step
+        # (starvation/senescence/crowding/predation may have fired above).
+        if cfg.enable_decoupled_prey_birth and c.genotype.role == "prey" and ph.alive:
+            _dpb_p = cfg.prey_birth_rate * max(0.0, 1.0 - self._lpg_N_prey / cfg.prey_carrying_capacity)
+            if self.rng.random() < _dpb_p:   # SINGLE gated rng draw — only when ON + prey + alive
+                # Spawn ONE resource-independent offspring.  Child energy is a modest baseline
+                # (energy_capacity * 0.5) — NOT taken from parent, NOT from the resource.
+                # Parent energy is UNCHANGED (resource-independent = no transfer/overhead).
                 if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
                     all_nb = self.world.neighbors(new_pos)
                     elev_here = float(self.world.elevation[new_pos])
-                    # Allow placement on basin cells (elevation <= 0.0) or same-level;
-                    # never place a newborn on the ridge (1.0) or plateau (1.5) from basin.
                     safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
                     neighbors = safe_nb if safe_nb else all_nb
                 else:
                     neighbors = self.world.neighbors(new_pos)
                 child_pos = min(neighbors) if neighbors else new_pos
 
-                child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
-                                    mutate_thermosense=cfg.enable_thermosense,
-                                    freeze_learning_rate=cfg.freeze_learning_rate,
-                                    freeze_thermosense=cfg.freeze_thermosense,
-                                    mutate_memory=cfg.enable_hidden_mode,
-                                    mutate_active_sensing=cfg.enable_active_sensing,
-                                    mutate_locomotion=cfg.enable_terrain,
-                                    mutate_continuous_locomotion=(cfg.enable_continuous_locomotion
-                                                                  and not cfg.freeze_continuous_locomotion))
-                child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
-                # Exp 238: set continuous pos for child near parent when ON.
+                if cfg.enable_predation:
+                    _dpb_mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
+                                      or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
+                else:
+                    _dpb_mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
+                _dpb_child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
+                                         mutate_thermosense=cfg.enable_thermosense,
+                                         freeze_learning_rate=cfg.freeze_learning_rate,
+                                         freeze_thermosense=cfg.freeze_thermosense,
+                                         mutate_memory=cfg.enable_hidden_mode,
+                                         mutate_active_sensing=cfg.enable_active_sensing,
+                                         mutate_locomotion=cfg.enable_terrain,
+                                         mutate_continuous_locomotion=_dpb_mut_speed)
+                _dpb_child_ph = Phenotype(
+                    energy=g.energy_capacity * 0.5,  # modest baseline; NOT from parent or resource
+                    age=0,
+                    pos=child_pos,
+                    birth_t=self.t,
+                )
                 if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
                     from ecology.continuous_world import ARENA_W, ARENA_H
-                    _pr, _pc = divmod(child_pos, cfg.cols)
-                    child_ph.pos_cont = (
-                        ((_pc + 0.5) / cfg.cols) * ARENA_W,
-                        ((_pr + 0.5) / cfg.rows) * ARENA_H,
+                    _dpb_pr, _dpb_pc = divmod(child_pos, cfg.cols)
+                    _dpb_child_ph.pos_cont = (
+                        ((_dpb_pc + 0.5) / cfg.cols) * ARENA_W,
+                        ((_dpb_pr + 0.5) / cfg.rows) * ARENA_H,
                     )
-                child = Creature(
+                _dpb_child = Creature(
                     creature_id=self.next_id,
                     parent_id=c.creature_id,
                     generation=c.generation + 1,
                     lineage_root=c.lineage_root,
-                    genotype=child_geno,
-                    phenotype=child_ph,
+                    genotype=_dpb_child_geno,
+                    phenotype=_dpb_child_ph,
                     n_cells=cfg.rows * cfg.cols,
                 )
                 self.next_id += 1
-                ph.energy -= (transfer + overhead)
                 ph.offspring_count += 1
-                pending_children.append(child)
+                pending_children.append(_dpb_child)
                 self.events.append(self._event("reproduction", c, details={
-                    "transfer": round(transfer, 6),
-                    "overhead": round(overhead, 6),
-                    "child_id": child.creature_id,
-                    # F4-verifiable fields: parent state at the decision point.
-                    # energy_at_repro is the exact float (not rounded) so F4 checks
-                    # can compare it accurately against reproduction_energy_threshold.
+                    "transfer": 0.0,        # resource-independent: no energy transfer
+                    "overhead": 0.0,        # resource-independent: no overhead
+                    "child_id": _dpb_child.creature_id,
                     "parent_age_at_repro": ph.age,
-                    "parent_energy_at_repro": energy_at_repro,
+                    "parent_energy_at_repro": ph.energy,
                     "parent_maturity_age": g.maturity_age,
                     "parent_repro_energy_threshold": g.reproduction_energy_threshold,
                 }))
-                self.events.append(self._event("birth", child, details={
+                self.events.append(self._event("birth", _dpb_child, details={
                     "founder": False,
                     "parent_id": c.creature_id,
                 }))
-                assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
+                assert is_valid(_dpb_child_geno), "Exp250 decoupled birth mutation produced invalid genotype"
 
         # 7a. Senescence degradation — ONLY when enable_senescence is True.
         #     Deterministic (no rng draws), so OFF path is byte-identical to Exp 194.
@@ -1240,6 +1487,250 @@ class Ecology:
                 if c.policy is not None:
                     c.policy.release_maps()
 
+        # 7d. Exp 254: predator self-limiting (density-dependent) mortality.
+        #     Gated; OFF path makes ZERO rng draws and emits no event. Only rolled if
+        #     the creature is still alive (starvation/senescence/crowding take precedence)
+        #     AND it is a predator. SINGLE gated rng draw — only ON + role==predator + alive.
+        if cfg.enable_predator_self_limit and ph.alive and c.genotype.role == "predator":
+            kc = cfg.predator_self_limit_kc
+            p = (cfg.predator_self_limit_hmax
+                 * min(1.0, (self._psl_N_pred / kc) ** cfg.predator_self_limit_theta)
+                 ) if kc > 0 else 0.0
+            if p > 0.0 and self.rng.random() < p:
+                ph.alive = False
+                ph.cause_of_death = "pred_self_limit"
+                self.events.append(self._event("death", c, details={
+                    "cause": "pred_self_limit",
+                    "age": ph.age,
+                    "offspring_count": ph.offspring_count,
+                }))
+                if c.policy is not None:
+                    c.policy.release_maps()
+
+    # ------------------------------------------------------------------
+    # Exp 248: gated 3-phase predation loop (continuous world only).
+    # Entered ONLY when cfg.enable_predation (the OFF path never touches any of this).
+    # ------------------------------------------------------------------
+    def _role_heading(
+        self, c: Creature, x: float, y: float,
+        prey_snap: list, pred_snap: list,
+    ) -> tuple[float, float]:
+        """Role-aware unit move heading for creature c at continuous position (x, y),
+        computed ONLY from the FROZEN pre-move snapshot (so headings are order-independent
+        ⇒ shuffle-invariant) and the PROVIDED resource field.
+
+        prey: h = normalize(w_food*best_heading(x,y) − w_flee*Σ unit(pred→prey)/dist),
+              summed over predators in pred_snap within sensing_radius. The flee term is
+              EXACTLY 0.0 when no predator is in range ⇒ h == best_heading (Step-5 invariant).
+        predator: steer toward the nearest prey in prey_snap within sensing_radius (PURSUIT);
+              else fall back to best_heading.
+
+        DETERMINISM: snapshots are pre-sorted ascending creature_id, so the flee Σ is summed
+        in a FIXED order (reproducible float result) and the nearest-prey scan tie-breaks to
+        the lowest id. ANTI-CHEAT: heading is toward the provided field / snapshot positions;
+        locomotor_speed never enters here (it keys only swept distance downstream).
+        """
+        cfg = self.cfg
+        sr = cfg.sensing_radius
+        sr2 = sr * sr
+        bx, by = self.cont_world.best_heading(x, y)
+        if c.genotype.role == "predator":
+            # PURSUIT: nearest prey within sensing_radius (ties → lowest id, since prey_snap
+            # is ascending-id and we keep strict-less updates).
+            best_d2 = sr2
+            tx = ty = None
+            for (_pid, px, py) in prey_snap:
+                dx = px - x
+                dy = py - y
+                d2 = dx * dx + dy * dy
+                if d2 < best_d2:
+                    best_d2 = d2
+                    tx, ty = dx, dy
+            if tx is None:
+                return (bx, by)
+            mag = math.sqrt(tx * tx + ty * ty)
+            if mag < 1e-12:
+                return (bx, by)
+            return (tx / mag, ty / mag)
+        # PREY: forage toward food, flee away from nearby predators (fixed-order sum).
+        flee_x = 0.0
+        flee_y = 0.0
+        for (_pid, px, py) in pred_snap:
+            dx = x - px            # predator → prey direction (points AWAY from predator)
+            dy = y - py
+            d2 = dx * dx + dy * dy
+            if d2 < sr2 and d2 > 1e-18:
+                dist = math.sqrt(d2)
+                inv = 1.0 / dist
+                flee_x += (dx * inv) * inv   # unit(pred→prey)/dist = (dx/dist)/dist
+                flee_y += (dy * inv) * inv
+        hx = cfg.w_food * bx - cfg.w_flee * flee_x
+        hy = cfg.w_food * by - cfg.w_flee * flee_y
+        mag = math.sqrt(hx * hx + hy * hy)
+        if mag < 1e-12:
+            # Degenerate (food + flee cancel): fall back to the pure foraging heading.
+            return (bx, by)
+        # Step-5 invariant: when flee term is exactly 0 and w_food == 1, h == best_heading
+        # (best_heading is already unit, so normalize(1.0*best_heading) == best_heading).
+        return (hx / mag, hy / mag)
+
+    def _resolve_captures(self) -> None:
+        """Phase B: predators (ascending creature_id) each claim the nearest not-yet-captured
+        prey strictly WITHIN capture_radius; max_captures_per_step per predator.
+
+        On capture: prey alive=False, cause_of_death="predation"; predator gains
+        min(deficit, prey.energy*assimilation_efficiency); a "predation" death event is emitted
+        (mirroring the starvation death-event shape) in predator-id then prey-id order; the
+        predator is charged strike_cost. ANTI-CHEAT: capture_radius is a fixed geometric
+        threshold — NEVER a function of locomotor_speed (verified by the Step-5 seam test).
+        Ties (within 1e-9) resolve to the lowest prey-id.
+        """
+        cfg = self.cfg
+        cr = cfg.capture_radius
+        cr2 = cr * cr
+        alive = self.alive_snapshot()  # ascending creature_id
+        predators = [c for c in alive if c.genotype.role == "predator"]
+        prey = [c for c in alive if c.genotype.role == "prey"]
+        captured_ids: set[int] = set()
+        # Deferred death events so we can emit in predator-id then prey-id order.
+        pending_events: list[dict] = []
+        for pred in predators:  # ascending id by construction of alive_snapshot()
+            pph = pred.phenotype
+            if not pph.alive or pph.pos_cont is None:
+                continue
+            n_caught = 0
+            px, py = pph.pos_cont
+            while n_caught < cfg.max_captures_per_step:
+                # Nearest not-yet-captured prey within capture_radius; ties → lowest id.
+                best_d2 = None
+                target = None
+                for q in prey:  # ascending id
+                    qph = q.phenotype
+                    if (not qph.alive) or (q.creature_id in captured_ids) or qph.pos_cont is None:
+                        continue
+                    qx, qy = qph.pos_cont
+                    dx = qx - px
+                    dy = qy - py
+                    d2 = dx * dx + dy * dy
+                    if d2 < cr2:
+                        # strict-less with a 1e-9 (squared-distance) tie tolerance; prey is
+                        # ascending-id so an equal-or-near-equal distance keeps the lower id.
+                        if best_d2 is None or d2 < best_d2 - 1e-9:
+                            best_d2 = d2
+                            target = q
+                if target is None:
+                    break
+                # Exp 252: Type III (sigmoid) functional response gate.
+                # Fires ONLY when ON and a target is in range; draws ONE rng sample per predator
+                # per step (ascending predator-id order → deterministic).  OFF: no draw, no change.
+                if cfg.enable_type3_response:
+                    # Local prey density around THIS predator (within sensing_radius), from the
+                    # frozen snapshot, excluding already-captured prey — deterministic count, NO rng.
+                    sr2 = cfg.sensing_radius * cfg.sensing_radius
+                    n_local = 0
+                    for q in prey:  # same frozen ascending-id list used above
+                        qph = q.phenotype
+                        if (not qph.alive) or (q.creature_id in captured_ids) or qph.pos_cont is None:
+                            continue
+                        qx, qy = qph.pos_cont
+                        if (qx - px) * (qx - px) + (qy - py) * (qy - py) <= sr2:
+                            n_local += 1
+                    h = cfg.type3_half_density
+                    k = cfg.type3_exponent
+                    denom = (h ** k) + (n_local ** k)
+                    p_cap = (n_local ** k) / denom if denom > 0 else 0.0
+                    if self.rng.random() >= p_cap:  # the SINGLE gated rng draw — only ON, only when a target is in range
+                        break   # strike fails: rare-prey escape (emergent low-density refuge). Predator done this step.
+                # Exp 253: Predator interference gate (ratio-dependent / Beddington-DeAngelis).
+                # Fires ONLY when ON and a target is in range (and after any Type III draw).
+                # OFF → no draw → byte-identical to all prior experiments.
+                if cfg.enable_predator_interference:
+                    # Local OTHER-predator density around THIS predator → ratio-dependent interference.
+                    # Deterministic count (NO rng) over the frozen ascending-id predator snapshot.
+                    ir2 = cfg.interference_radius * cfg.interference_radius
+                    n_other = 0
+                    for op in predators:
+                        if op.creature_id == pred.creature_id:
+                            continue
+                        oph = op.phenotype
+                        if (not oph.alive) or oph.pos_cont is None:
+                            continue
+                        ox, oy = oph.pos_cont
+                        if (ox - px) * (ox - px) + (oy - py) * (oy - py) <= ir2:
+                            n_other += 1
+                    p_success = 1.0 / (1.0 + cfg.interference_strength * n_other)
+                    if self.rng.random() >= p_success:   # the SINGLE gated interference rng draw
+                        break   # strike blocked by predator competition. Predator done this step.
+                # Capture.
+                tph = target.phenotype
+                tph.alive = False
+                tph.cause_of_death = "predation"
+                captured_ids.add(target.creature_id)
+                deficit = pred.genotype.energy_capacity - pph.energy
+                gain = min(deficit, tph.energy * cfg.assimilation_efficiency) if deficit > 0 else 0.0
+                pph.energy += gain
+                pph.energy = min(pph.energy, pred.genotype.energy_capacity)
+                pending_events.append(self._event("death", target, details={
+                    "cause": "predation",
+                    "age": tph.age,
+                    "offspring_count": tph.offspring_count,
+                }))
+                if target.policy is not None:
+                    target.policy.release_maps()
+                n_caught += 1
+            if n_caught > 0 and cfg.strike_cost != 0.0:
+                pph.energy -= cfg.strike_cost
+        # Emit in predator-id then prey-id order: pending_events is already in
+        # predator-id order (outer loop) and prey-id order (inner ascending scan).
+        # NOTE: this emit order is exact for max_captures_per_step == 1 (the only
+        # configured value).  If a future rung sets max_captures_per_step > 1, each
+        # predator's multiple captures must be sorted by prey-id before emit to
+        # preserve that ordering guarantee.  Do NOT change the emit logic here
+        # without re-auditing that invariant.
+        self.events.extend(pending_events)
+
+    def _step_predation(self, pending_children: list[Creature]) -> None:
+        """Gated 3-phase predation step (continuous world). Iterates a FROZEN ascending
+        creature_id snapshot in EVERY phase, so the rng stream is identical regardless of
+        shuffle_creature_order (the shuffle-invariance certification).
+
+        Phase A (move-all): each alive creature senses/acts (rng), computes its role-aware
+          heading from the frozen pre-move snapshot, advances, and is charged movement_cost.
+        Phase B (_resolve_captures): predators claim nearby prey (no rng).
+        Phase C: each SURVIVING creature runs the eat/reproduce/death tail (skip eat for
+          predators), in ascending creature_id order (deterministic rng consumption).
+        """
+        # Frozen pre-move snapshot: (creature_id, x, y), ascending id, BEFORE any move.
+        snap = self.alive_snapshot()  # ascending creature_id
+        prey_snap: list[tuple[int, float, float]] = []
+        pred_snap: list[tuple[int, float, float]] = []
+        for c in snap:
+            ph = c.phenotype
+            x, y = ph.pos_cont if ph.pos_cont is not None else (0.5, 0.5)
+            if c.genotype.role == "predator":
+                pred_snap.append((c.creature_id, x, y))
+            else:
+                prey_snap.append((c.creature_id, x, y))
+        self._pred_prey_snap = prey_snap
+        self._pred_pred_snap = pred_snap
+
+        # Phase A: move-all (sense/act/move + movement_cost), ascending id.
+        for c in snap:
+            self._sense_act_move(c)
+
+        # Phase B: resolve captures (geometric, no rng).
+        self._resolve_captures()
+
+        # Phase C: eat/reproduce/death tail for survivors, ascending id.
+        for c in snap:
+            if not c.phenotype.alive:
+                continue  # captured this step (or already dead) — skip the tail.
+            self._step_one_creature(
+                c, pending_children,
+                skip_move=True,
+                skip_eat=(c.genotype.role == "predator"),
+            )
+
     # ------------------------------------------------------------------
     # Step / Run
     # ------------------------------------------------------------------
@@ -1296,6 +1787,21 @@ class Ecology:
             self._dm_N_frozen = _N_now
             self._dm_N_prev = _N_now
 
+        # Exp 249/250: freeze the PREY head-count ONCE per step so every creature
+        # this step sees the SAME N_prey (order-independent, deterministic). The OFF path
+        # (both gates False) never sets _lpg_N_prey — gates in _step_one_creature bypass
+        # entirely. One frozen count serves BOTH mechanisms (Exp 249 suppression + Exp 250
+        # additive birth).
+        if self.cfg.enable_logistic_prey_growth or self.cfg.enable_decoupled_prey_birth:
+            self._lpg_N_prey = sum(1 for c in self._alive_list if c.genotype.role == "prey")
+
+        # Exp 254: freeze the PREDATOR head-count ONCE per step, before the per-creature
+        # loop, so every predator creature sees the SAME N_pred (order-independent,
+        # deterministic). The OFF path never sets _psl_N_pred — the gate in
+        # _step_one_creature bypasses entirely, so OFF is byte-identical.
+        if self.cfg.enable_predator_self_limit:
+            self._psl_N_pred = sum(1 for c in self._alive_list if c.genotype.role == "predator")
+
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
         # ascending creature_id order — BYTE-IDENTICAL to Exp 194-201. Exp 202: when
         # shuffle_creature_order is True, a RANDOMISED order each step (rng.shuffle, drawing
@@ -1310,7 +1816,15 @@ class Ecology:
         # saves an O(alive) list copy every step. The visited creatures and their order are
         # identical to the old `order = self._alive()` copy, so events_hash is unchanged
         # (guarded by the committed-hash regression tests + tests/test_perf_optimizations.py).
-        if self.cfg.shuffle_creature_order:
+        # Exp 248: gated 3-phase predation loop. SHUFFLE TRAP — this branch must NOT call
+        # rng.shuffle and must NOT touch `order`: it iterates a FROZEN ascending-creature_id
+        # snapshot in every phase, so shuffle_creature_order is INERT under predation (the
+        # rng stream is identical for shuffle=False and shuffle=True). That identical stream
+        # is exactly what test_predation_on_invariant_under_shuffle certifies. The shuffle
+        # block below is therefore strictly on the NON-predation path.
+        if self.cfg.enable_predation:
+            order = self.alive_snapshot()   # ascending creature_id; for band-strip telemetry only
+        elif self.cfg.shuffle_creature_order:
             order = self.alive_snapshot()
             self.rng.shuffle(order)
         else:
@@ -1323,8 +1837,11 @@ class Ecology:
             _mask = np.abs(self.world.temperature - self.world.current_food_optimal) <= self.world.food_band_width
             _band_before = float(np.sum(self.world.resource[_mask]))
 
-        for c in order:
-            self._step_one_creature(c, pending_children)
+        if self.cfg.enable_predation:
+            self._step_predation(pending_children)
+        else:
+            for c in order:
+                self._step_one_creature(c, pending_children)
 
         # Exp 206: freeze this step's occupancy as next step's crowding snapshot (no rng,
         # not in events_hash). OFF path never runs ⇒ byte-identical.
@@ -1455,7 +1972,9 @@ class Ecology:
         last_gen_trait_means: dict[str, float] = {}
         if max_gen_creatures:
             from dataclasses import asdict
-            trait_keys = list(asdict(max_gen_creatures[0].genotype).keys())
+            from ecology.genotype import TRAIT_BOUNDS as _TRAIT_BOUNDS
+            trait_keys = [k for k in asdict(max_gen_creatures[0].genotype).keys()
+                          if k in _TRAIT_BOUNDS]  # skip non-numeric fields (e.g. role)
             for k in trait_keys:
                 vals = [getattr(c.genotype, k) for c in max_gen_creatures]
                 last_gen_trait_means[k] = float(np.mean(vals))

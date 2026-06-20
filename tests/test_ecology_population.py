@@ -84,6 +84,8 @@ def test_child_inherits_with_bounded_mutation():
         from dataclasses import asdict
         d = asdict(child)
         for k, v in d.items():
+            if k not in TRAIT_BOUNDS:
+                continue  # non-numeric fields (e.g. role) — no bounds check
             lo, hi = TRAIT_BOUNDS[k]
             assert lo <= v <= hi, f"Trait {k}={v} out of bounds [{lo},{hi}]"
         # At least threshold ≤ capacity
@@ -386,6 +388,8 @@ def test_mutation_stays_in_bounds():
         assert is_valid(child), f"is_valid() failed at seed {seed_i}: {child}"
         d = asdict(child)
         for k, v in d.items():
+            if k not in TRAIT_BOUNDS:
+                continue  # non-numeric fields (e.g. role) — no bounds check
             lo, hi = TRAIT_BOUNDS[k]
             assert lo <= v <= hi, f"Trait {k}={v} out of [{lo},{hi}] at seed {seed_i}"
         assert child.reproduction_energy_threshold <= child.energy_capacity

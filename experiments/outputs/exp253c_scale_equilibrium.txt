@@ -1,0 +1,16 @@
+================================================================================================================
+Exp 253c — ROBUST predator equilibrium via bigger buffer / more biomass (interference damps boom).
+fixed: rate=0.5 capR=0.8 assim=0.9 h=4 n_pred=10 sensing=2.5; sweep pred_cap x K x w; horizon=1500 seeds=[0, 1, 2]
+================================================================================================================
+pred_cap     K     w   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  STABLE  ROBUST
+----------------------------------------------------------------------------------------------------------------
+     5.5   400   0.5  1500.0    393.2      8.3         0.7    0.088     False   False   False
+     5.5   400   1.5  1500.0    387.1      0.0         0.0    0.042     False   False   False
+     5.5   800   0.5  1500.0    811.4      0.0         0.0    0.137     False   False   False
+     5.5   800   1.5  1500.0    824.5      4.5         0.7    0.140     False   False   False
+    10.0   400   0.5  1500.0    397.1      0.6         0.0    0.097     False   False   False
+    10.0   400   1.5  1500.0    386.8      0.0         0.0    0.044     False   False   False
+    10.0   800   0.5  1500.0    846.7      7.6         0.3    0.172     False   False   False
+    10.0   800   1.5  1500.0    800.4      0.0         0.0    0.113     False   False   False
+
+ROBUST equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=15): 0

@@ -1,0 +1,16 @@
+==============================================================================================================
+Exp 254b — STABILIZE the near-equilibrium: sharper predator self-limit (theta,hmax) + lower buffer.
+fixed: K_P=20 capR=0.45 max_cap=2 K_prey=300 rate=0.5 n_pred=10; sweep theta x hmax x pred_cap; horizon=1500 seeds=[0, 1, 2]
+==============================================================================================================
+theta  hmax pred_cap   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  STABLE  ROBUST
+--------------------------------------------------------------------------------------------------------------
+    2  0.30      5.5  1500.0    291.2      0.0         0.0    0.048     False   False   False
+    2  0.30      7.0  1500.0    291.9      0.0         0.0    0.052     False   False   False
+    2  0.50      5.5  1500.0    291.1      0.0         0.0    0.046     False   False   False
+    2  0.50      7.0  1500.0    290.7      0.0         0.0    0.046     False   False   False
+    3  0.30      5.5  1500.0    290.9      0.0         0.0    0.043     False   False   False
+    3  0.30      7.0  1500.0    290.4      0.0         0.0    0.044     False   False   False
+    3  0.50      5.5  1500.0    290.8      0.0         0.0    0.046     False   False   False
+    3  0.50      7.0  1500.0    291.1      0.0         0.0    0.046     False   False   False
+
+STABLE coexistence cells (both alive t=1500 all seeds, min_pred_tail>0): 0  [ROBUST (pred_eq>=12): 0]

@@ -1,0 +1,51 @@
+==================================================================================================
+Exp 249 — does LOGISTIC prey growth enable two-trophic coexistence? RAW — controller judges.
+prey base: Exp-240 viable founder + enable_logistic_prey_growth; regen=1.0 horizon=600 seeds=[0, 1, 2]
+==================================================================================================
+(A) PREY-ONLY with logistic ON (must persist; should cap near K):
+    K=  60: t_end=600 prey_eq=59.8 prey_final=58.0
+    K= 150: t_end=600 prey_eq=140.7 prey_final=131.0
+
+(B) TWO-TROPHIC coexistence sweep (logistic prey + predator):
+K_prey n_pred  capR   t_end  prey_eq  pred_eq  cv_prey  BOTH@end  explode
+--------------------------------------------------------------------------------------------------
+    60      2  0.20   600.0      6.1      0.0    0.413     False    False
+    60      2  0.35   600.0      8.1      0.0    0.325     False    False
+    60      2  0.50   600.0      8.1      0.0    0.276     False    False
+    60      4  0.20   600.0     11.5      0.0    0.270     False    False
+    60      4  0.35   600.0     10.7      0.0    0.247     False    False
+    60      4  0.50   419.7      9.5      9.8    0.616     False    False
+    60      6  0.20   600.0     11.0      0.0    0.237     False    False
+    60      6  0.35   600.0      8.1      0.0    0.268     False    False
+    60      6  0.50   234.3     11.3     20.9    0.935     False    False
+   100      2  0.20   600.0     28.4      0.0    0.215     False    False
+   100      2  0.35   418.3     15.0     11.3    0.631     False    False
+   100      2  0.50   419.0      9.3     10.7    0.651     False    False
+   100      4  0.20   600.0     14.2      0.0    0.233     False    False
+   100      4  0.35   600.0      8.4      0.0    0.330     False    False
+   100      4  0.50   416.7     10.6     11.5    0.734     False    False
+   100      6  0.20   600.0      8.3      0.0    0.285     False    False
+   100      6  0.35   600.0     18.1      0.0    0.359     False    False
+   100      6  0.50   600.0      8.6      0.0    0.359     False    False
+   150      2  0.20   600.0      9.7      0.0    0.311     False    False
+   150      2  0.35   600.0     10.3      0.0    0.283     False    False
+   150      2  0.50   600.0     11.3      0.0    0.303     False    False
+   150      4  0.20   600.0     11.6      0.0    0.264     False    False
+   150      4  0.35   600.0      7.8      0.0    0.271     False    False
+   150      4  0.50   397.7     12.3     11.3    0.761     False    False
+   150      6  0.20   600.0     22.1      0.0    0.237     False    False
+   150      6  0.35   600.0     11.6      0.0    0.284     False    False
+   150      6  0.50   600.0     11.1      0.0    0.292     False    False
+   250      2  0.20   600.0     11.2      0.0    0.356     False    False
+   250      2  0.35   600.0      8.1      0.0    0.338     False    False
+   250      2  0.50   600.0     10.7      0.0    0.238     False    False
+   250      4  0.20   600.0     12.0      0.0    0.316     False    False
+   250      4  0.35   572.0      9.4      0.0    0.358     False    False
+   250      4  0.50   419.7     12.0     10.9    0.744     False    False
+   250      6  0.20   600.0     10.7      0.0    0.258     False    False
+   250      6  0.35   416.0      9.1     12.0    0.709     False    False
+   250      6  0.50   600.0     10.6      0.0    0.186     False    False
+
+COEXISTENCE regimes (both roles alive at t=600, ALL seeds): 0
+
+[written to experiments/outputs/exp249_logistic_coexistence.txt]

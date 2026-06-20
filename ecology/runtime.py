@@ -39,7 +39,7 @@ import numpy as np
 
 from ecology.engine import Ecology, EcologyConfig
 from ecology.creature import Creature
-from ecology.genotype import Genotype, clamp_traits, is_valid, INT_TRAITS
+from ecology.genotype import Genotype, clamp_traits, is_valid, INT_TRAITS, TRAIT_BOUNDS
 
 
 # ---------------------------------------------------------------------------
@@ -158,8 +158,14 @@ def distill(ecos: list[Ecology], strategy: str = "survivor_mean") -> Genotype:
         genos = [c.genotype for eco in ecos for c in eco._alive_list]
         if not genos:
             raise ValueError("distill('survivor_mean'): no survivors across the given runs")
-        keys = list(asdict(genos[0]).keys())
-        blended = {k: float(np.mean([getattr(g, k) for g in genos])) for k in keys}
+        all_keys = list(asdict(genos[0]).keys())
+        numeric_keys = [k for k in all_keys if k in TRAIT_BOUNDS]
+        blended: dict[str, Any] = {k: float(np.mean([getattr(g, k) for g in genos]))
+                                    for k in numeric_keys}
+        # Non-numeric fields (e.g. role): pass through from first genotype unchanged
+        for k in all_keys:
+            if k not in TRAIT_BOUNDS:
+                blended[k] = getattr(genos[0], k)
         result = Genotype(**clamp_traits(blended))
     elif strategy == "top_reproducer":
         best: Creature | None = None

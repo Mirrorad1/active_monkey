@@ -1,0 +1,18 @@
+==============================================================================================================
+Exp 253b — ROBUST natural equilibrium: low interference + high predator yield.
+fixed: rate=0.5 K=300 pred_cap=5.5 h=4 n_pred=6 sensing=2.5; sweep w x capR x assim; horizon=1500 seeds=[0, 1, 2]
+==============================================================================================================
+    w  capR  assim   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  STABLE  ROBUST
+--------------------------------------------------------------------------------------------------------------
+  0.3  0.60   0.70  1500.0    291.3      0.0         0.0    0.054     False   False   False
+  0.3  0.60   0.90  1500.0    291.4      0.0         0.0    0.041     False   False   False
+  0.3  0.80   0.70  1500.0    296.3      2.7         0.0    0.073     False   False   False
+  0.3  0.80   0.90  1500.0    294.9      5.9         0.3    0.084     False   False   False
+  0.5  0.60   0.70  1500.0    291.4      0.0         0.0    0.045     False   False   False
+  0.5  0.60   0.90  1500.0    291.1      0.0         0.0    0.050     False   False   False
+  0.5  0.80   0.70  1500.0    292.2      4.1         0.3    0.065     False   False   False
+  0.5  0.80   0.90  1500.0    291.3      0.0         0.0    0.048     False   False   False
+
+ROBUST stable equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=10): 0
+
+[written to experiments/outputs/exp253b_robust_equilibrium.txt]

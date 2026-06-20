@@ -1,0 +1,26 @@
+================================================================================
+Exp 254 — Bazykin doubly-logistic: predator SELF-LIMIT mortality; robust equilibrium?
+Sub-probe of the Exp 248-254 natural-stabilizer search. RAW — controller judges.
+(Full data: exp254_bazykin_equilibrium.txt, exp254b_stabilize.txt, exp254c_scale_cycle.txt)
+================================================================================
+
+QUESTION: Does predator self-limiting MORTALITY (caps NUMBER, not intake) yield robust
+stable equilibrium where every intake-cutting stabilizer failed?
+PREDECLARED FALSIFIER: if predator self-limit ALSO fails to produce robust equilibrium
+(predator still tiny/fragile, or boom-bust), then NO mechanism -- intake-cutting OR
+number-cutting -- yields robust two-trophic coexistence on this substrate.
+
+RESULT: ROBUST equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=15): 0.
+Self-limit mortality (hmax=0.20, K_P=40): predator ~19 at t=1500.0 but oscillatory-collapse.
+Sharper self-limit (exp254b, theta{2,3}): OVER-DAMPS to predator extinction.
+Scale-up (exp254c, K_prey=1000): oscillation INTRINSICALLY DIVERGENT (all cells collapse before
+horizon, amplitude growing). Scale-invariant wall.
+Bazykin ODE is provably stable as a continuous model; this substrate collapses it.
+
+FALSIFIER TRIGGERED: 0/8 cells produce a robust stable equilibrium.
+
+VERDICT: NEGATIVE / NEW INSIGHT (capstone). No mechanism -- intake-cutting or number-cutting --
+yields robust two-trophic coexistence. The instability is introduced by the spatial-agent
+substrate (discreteness + energy-buffer lag + spatial-stochastic encounters), not the ODE.
+Verifier: controller ran all three probes; applied strict gate (pred_eq>=15, both@t=horizon,
+amplitude not diverging) to raw numbers; ODE-vs-substrate dissociation confirmed.

@@ -1,0 +1,21 @@
+================================================================================
+Exp 253 — Full natural-ecology stack: does any combination yield equilibrium?
+Sub-probe of the Exp 248-254 natural-stabilizer search. RAW — controller judges.
+(Full data: exp253_full_combine.txt, exp253b_robust_equilibrium.txt, exp253c_scale_equilibrium.txt)
+================================================================================
+
+QUESTION: Does the full stack (decoupled births + low buffer + Type III + predator interference)
+yield stable equilibrium?
+PREDECLARED FALSIFIER: if NO cell in the full-stack sweep is stable, then NO combination of
+natural ecological stabilizers produces stable two-trophic equilibrium on this substrate.
+
+RESULT: PERSISTENT STABLE coexistence cells (both alive t=1500, predator NEVER hit 0 in
+tail): 0 across 12 full-stack cells (w x n_pred x capR). Max pred_eq barely above 0 in a
+few cells. Scale-up probe (exp253c): prey at K=800, predator still ~5 (does not scale with
+prey biomass). Universal pattern: predator pinned tiny by intake cuts, does not grow with prey.
+
+FALSIFIER TRIGGERED: 0/12 full-stack cells stable.
+
+VERDICT: NEGATIVE / NEW INSIGHT. Every working stabilizer caps predator intake -> predator
+equilibrium intrinsically tiny. Intake-cutting stabilizers cannot thread the viable+stable needle.
+Verifier: controller ran all probes (combine, robust, scale); applied strict gate to raw numbers.

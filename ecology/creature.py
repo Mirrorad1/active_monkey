@@ -80,6 +80,13 @@ class Phenotype:
     # pos stays int (nearest grid cell projection); pos_cont is the true continuous (x, y).
     # None when enable_continuous_locomotion is OFF (default) — zero extra deepcopy delta.
     pos_cont: "tuple[float, float] | None" = None
+    # Exp 248: realized unit move heading (predation eat-reuse) — NEVER in events_hash.
+    # Stored each move step when enable_predation=True; reused by the eat back-projection
+    # so the swept segment uses the TRUE start-of-step heading (pursuit/flee in Task 3).
+    # Default 0.0 ⇒ untouched when enable_predation is OFF (byte-identical gate).
+    move_hx: float = 0.0
+    move_hy: float = 0.0
+    move_d: float = 0.0
 
 
 # ---------------------------------------------------------------------------

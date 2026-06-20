@@ -1,0 +1,339 @@
+==============================================================================
+Exp 248 — Red Queen predator-prey: STATIC GEOMETRY EXPRESSIBILITY PROBE
+RAW NUMBERS — NO VERDICT — controller judges go/abort
+==============================================================================
+R=30 replicates | horizon=300 | founders: 30 prey + 6 predators
+Prey speeds: [1.0, 1.1, 1.5]  |  Predator brackets: [1.2, 1.4, 1.6]
+
+Metrics:
+  capture_hazard    = total_captures / total_prey_alive_steps
+  capture_survival  = 1 − capture_hazard
+  prey_alive_steps  = Σ_t (# prey alive at step t)  [exposure denominator]
+  pred→prey dist    = mean over predator-steps of (predator→nearest-prey dist)
+  Captures counted via events with event_type='death', cause='predation'
+
+------------------------------------------------------------------------------
+ s_prey  s_pred     survival     ±std     hazard  pred→dist  prey-steps  captures
+------------------------------------------------------------------------------
+    1.0     1.2     0.964873 0.001757   0.035127     1.0272       12333       433
+    1.1     1.2     0.940384 0.004870   0.059616     1.0102       11459       682
+    1.5     1.2     0.948852 0.005213   0.051148     1.0742       12144       619
+
+    1.0     1.4     0.917151 0.012605   0.082849     1.1826        9500       779
+    1.1     1.4     0.971131 0.011788   0.028869     1.1526       13895       392
+    1.5     1.4     0.978291 0.003393   0.021709     1.1233       15701       340
+
+    1.0     1.6     0.953731 0.003135   0.046269     1.1029       13328       616
+    1.1     1.6     0.933879 0.007476   0.066121     1.1834       11663       768
+    1.5     1.6     0.975382 0.001216   0.024618     1.2026       16417       404
+
+==============================================================================
+HEADLINE: marginal capture-survival delta = survival(s_prey) − survival(1.0)
+          delta>0 ⇒ faster prey survive better (escape EXPRESSED).
+          se,t are ACROSS-SEED (unit of replication = run); |t|>~2 ≈ significant.
+          LOCAL (1.1−1.0) = the invasion gradient (decides the gate).
+          WIDE  (1.5−1.0) = sensitivity check (can the probe see a BIG escape?).
+------------------------------------------------------------------------------
+ s_pred   contrast  surv_base  surv_fast       delta        se        t
+------------------------------------------------------------------------------
+    1.2    1.1-1.0   0.964873   0.940384   -0.024490  0.000961  -25.475
+    1.2    1.5-1.0   0.964873   0.948852   -0.016021  0.001022  -15.684
+
+    1.4    1.1-1.0   0.917151   0.971131   +0.053980  0.003205   16.843
+    1.4    1.5-1.0   0.917151   0.978291   +0.061140  0.002424   25.223
+
+    1.6    1.1-1.0   0.953731   0.933879   -0.019852  0.001505  -13.187
+    1.6    1.5-1.0   0.953731   0.975382   +0.021650  0.000624   34.669
+
+Exposure counts (total prey-alive-steps across all R seeds per cell):
+ s_pred    s_prey=1.0    s_prey=1.1    s_prey=1.5
+-------------------------------------------------
+    1.2         12333         11459         12144
+    1.4          9500         13895         15701
+    1.6         13328         11663         16417
+
+==============================================================================
+Per-replicate detail:
+------------------------------------------------------------------------------
+  s_prey=1.0 s_pred=1.2:
+    seed= 0  survival=0.963145  hazard=0.036855  captures=  15  prey-steps=   407  pred→dist=1.0246
+    seed= 1  survival=0.966265  hazard=0.033735  captures=  14  prey-steps=   415  pred→dist=1.0085
+    seed= 2  survival=0.966427  hazard=0.033573  captures=  14  prey-steps=   417  pred→dist=1.0091
+    seed= 3  survival=0.965854  hazard=0.034146  captures=  14  prey-steps=   410  pred→dist=1.0308
+    seed= 4  survival=0.965854  hazard=0.034146  captures=  14  prey-steps=   410  pred→dist=1.0316
+    seed= 5  survival=0.963145  hazard=0.036855  captures=  15  prey-steps=   407  pred→dist=1.0269
+    seed= 6  survival=0.963145  hazard=0.036855  captures=  15  prey-steps=   407  pred→dist=1.0289
+    seed= 7  survival=0.965602  hazard=0.034398  captures=  14  prey-steps=   407  pred→dist=1.0242
+    seed= 8  survival=0.966102  hazard=0.033898  captures=  14  prey-steps=   413  pred→dist=1.0061
+    seed= 9  survival=0.963145  hazard=0.036855  captures=  15  prey-steps=   407  pred→dist=1.0278
+    seed=10  survival=0.966265  hazard=0.033735  captures=  14  prey-steps=   415  pred→dist=1.0131
+    seed=11  survival=0.966265  hazard=0.033735  captures=  14  prey-steps=   415  pred→dist=1.0110
+    seed=12  survival=0.967059  hazard=0.032941  captures=  14  prey-steps=   425  pred→dist=1.0452
+    seed=13  survival=0.965602  hazard=0.034398  captures=  14  prey-steps=   407  pred→dist=1.0302
+    seed=14  survival=0.965602  hazard=0.034398  captures=  14  prey-steps=   407  pred→dist=1.0238
+    seed=15  survival=0.961722  hazard=0.038278  captures=  16  prey-steps=   418  pred→dist=1.0479
+    seed=16  survival=0.965602  hazard=0.034398  captures=  14  prey-steps=   407  pred→dist=1.0274
+    seed=17  survival=0.966981  hazard=0.033019  captures=  14  prey-steps=   424  pred→dist=1.0421
+    seed=18  survival=0.965854  hazard=0.034146  captures=  14  prey-steps=   410  pred→dist=1.0361
+    seed=19  survival=0.961071  hazard=0.038929  captures=  16  prey-steps=   411  pred→dist=1.0435
+    seed=20  survival=0.963145  hazard=0.036855  captures=  15  prey-steps=   407  pred→dist=1.0324
+    seed=21  survival=0.962406  hazard=0.037594  captures=  15  prey-steps=   399  pred→dist=1.0313
+    seed=22  survival=0.965854  hazard=0.034146  captures=  14  prey-steps=   410  pred→dist=1.0324
+    seed=23  survival=0.963235  hazard=0.036765  captures=  15  prey-steps=   408  pred→dist=1.0063
+    seed=24  survival=0.967059  hazard=0.032941  captures=  14  prey-steps=   425  pred→dist=1.0498
+    seed=25  survival=0.966019  hazard=0.033981  captures=  14  prey-steps=   412  pred→dist=1.0309
+    seed=26  survival=0.965602  hazard=0.034398  captures=  14  prey-steps=   407  pred→dist=1.0227
+    seed=27  survival=0.966184  hazard=0.033816  captures=  14  prey-steps=   414  pred→dist=1.0057
+    seed=28  survival=0.961538  hazard=0.038462  captures=  15  prey-steps=   390  pred→dist=1.0294
+    seed=29  survival=0.964455  hazard=0.035545  captures=  15  prey-steps=   422  pred→dist=1.0361
+  s_prey=1.1 s_pred=1.2:
+    seed= 0  survival=0.936340  hazard=0.063660  captures=  24  prey-steps=   377  pred→dist=1.0100
+    seed= 1  survival=0.942257  hazard=0.057743  captures=  22  prey-steps=   381  pred→dist=1.0200
+    seed= 2  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9973
+    seed= 3  survival=0.934426  hazard=0.065574  captures=  24  prey-steps=   366  pred→dist=1.0194
+    seed= 4  survival=0.939314  hazard=0.060686  captures=  23  prey-steps=   379  pred→dist=1.0140
+    seed= 5  survival=0.936000  hazard=0.064000  captures=  24  prey-steps=   375  pred→dist=1.0046
+    seed= 6  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9931
+    seed= 7  survival=0.935065  hazard=0.064935  captures=  25  prey-steps=   385  pred→dist=0.9990
+    seed= 8  survival=0.945312  hazard=0.054688  captures=  21  prey-steps=   384  pred→dist=1.0142
+    seed= 9  survival=0.943878  hazard=0.056122  captures=  22  prey-steps=   392  pred→dist=1.0057
+    seed=10  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9998
+    seed=11  survival=0.949367  hazard=0.050633  captures=  20  prey-steps=   395  pred→dist=1.0061
+    seed=12  survival=0.939314  hazard=0.060686  captures=  23  prey-steps=   379  pred→dist=1.0375
+    seed=13  survival=0.936675  hazard=0.063325  captures=  24  prey-steps=   379  pred→dist=1.0040
+    seed=14  survival=0.938172  hazard=0.061828  captures=  23  prey-steps=   372  pred→dist=1.0377
+    seed=15  survival=0.938172  hazard=0.061828  captures=  23  prey-steps=   372  pred→dist=1.0393
+    seed=16  survival=0.942257  hazard=0.057743  captures=  22  prey-steps=   381  pred→dist=1.0199
+    seed=17  survival=0.946970  hazard=0.053030  captures=  21  prey-steps=   396  pred→dist=1.0047
+    seed=18  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9944
+    seed=19  survival=0.946701  hazard=0.053299  captures=  21  prey-steps=   394  pred→dist=1.0021
+    seed=20  survival=0.943878  hazard=0.056122  captures=  22  prey-steps=   392  pred→dist=1.0050
+    seed=21  survival=0.946701  hazard=0.053299  captures=  21  prey-steps=   394  pred→dist=1.0023
+    seed=22  survival=0.946835  hazard=0.053165  captures=  21  prey-steps=   395  pred→dist=1.0066
+    seed=23  survival=0.939153  hazard=0.060847  captures=  23  prey-steps=   378  pred→dist=1.0092
+    seed=24  survival=0.946835  hazard=0.053165  captures=  21  prey-steps=   395  pred→dist=1.0078
+    seed=25  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9984
+    seed=26  survival=0.938172  hazard=0.061828  captures=  23  prey-steps=   372  pred→dist=1.0423
+    seed=27  survival=0.936170  hazard=0.063830  captures=  24  prey-steps=   376  pred→dist=0.9982
+    seed=28  survival=0.949367  hazard=0.050633  captures=  20  prey-steps=   395  pred→dist=1.0034
+    seed=29  survival=0.933333  hazard=0.066667  captures=  25  prey-steps=   375  pred→dist=1.0098
+  s_prey=1.5 s_pred=1.2:
+    seed= 0  survival=0.955399  hazard=0.044601  captures=  19  prey-steps=   426  pred→dist=1.0770
+    seed= 1  survival=0.933884  hazard=0.066116  captures=  24  prey-steps=   363  pred→dist=1.1370
+    seed= 2  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.0624
+    seed= 3  survival=0.951574  hazard=0.048426  captures=  20  prey-steps=   413  pred→dist=1.1067
+    seed= 4  survival=0.948148  hazard=0.051852  captures=  21  prey-steps=   405  pred→dist=1.0597
+    seed= 5  survival=0.950980  hazard=0.049020  captures=  20  prey-steps=   408  pred→dist=1.1099
+    seed= 6  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0444
+    seed= 7  survival=0.948529  hazard=0.051471  captures=  21  prey-steps=   408  pred→dist=1.0575
+    seed= 8  survival=0.945545  hazard=0.054455  captures=  22  prey-steps=   404  pred→dist=1.0593
+    seed= 9  survival=0.951691  hazard=0.048309  captures=  20  prey-steps=   414  pred→dist=1.0922
+    seed=10  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0466
+    seed=11  survival=0.945137  hazard=0.054863  captures=  22  prey-steps=   401  pred→dist=1.0643
+    seed=12  survival=0.937158  hazard=0.062842  captures=  23  prey-steps=   366  pred→dist=1.1265
+    seed=13  survival=0.936508  hazard=0.063492  captures=  24  prey-steps=   378  pred→dist=1.0831
+    seed=14  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0559
+    seed=15  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0574
+    seed=16  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0579
+    seed=17  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.0460
+    seed=18  survival=0.954762  hazard=0.045238  captures=  19  prey-steps=   420  pred→dist=1.0642
+    seed=19  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.0504
+    seed=20  survival=0.951220  hazard=0.048780  captures=  20  prey-steps=   410  pred→dist=1.0508
+    seed=21  survival=0.951338  hazard=0.048662  captures=  20  prey-steps=   411  pred→dist=1.0473
+    seed=22  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.0702
+    seed=23  survival=0.950980  hazard=0.049020  captures=  20  prey-steps=   408  pred→dist=1.1079
+    seed=24  survival=0.948020  hazard=0.051980  captures=  21  prey-steps=   404  pred→dist=1.0650
+    seed=25  survival=0.950980  hazard=0.049020  captures=  20  prey-steps=   408  pred→dist=1.1143
+    seed=26  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.1085
+    seed=27  survival=0.939314  hazard=0.060686  captures=  23  prey-steps=   379  pred→dist=1.0537
+    seed=28  survival=0.951691  hazard=0.048309  captures=  20  prey-steps=   414  pred→dist=1.0963
+    seed=29  survival=0.951100  hazard=0.048900  captures=  20  prey-steps=   409  pred→dist=1.0539
+
+  s_prey=1.0 s_pred=1.4:
+    seed= 0  survival=0.906149  hazard=0.093851  captures=  29  prey-steps=   309  pred→dist=1.1953
+    seed= 1  survival=0.923780  hazard=0.076220  captures=  25  prey-steps=   328  pred→dist=1.1735
+    seed= 2  survival=0.909699  hazard=0.090301  captures=  27  prey-steps=   299  pred→dist=1.1862
+    seed= 3  survival=0.928144  hazard=0.071856  captures=  24  prey-steps=   334  pred→dist=1.1739
+    seed= 4  survival=0.912338  hazard=0.087662  captures=  27  prey-steps=   308  pred→dist=1.1703
+    seed= 5  survival=0.888889  hazard=0.111111  captures=  30  prey-steps=   270  pred→dist=1.2900
+    seed= 6  survival=0.938889  hazard=0.061111  captures=  22  prey-steps=   360  pred→dist=1.1267
+    seed= 7  survival=0.909699  hazard=0.090301  captures=  27  prey-steps=   299  pred→dist=1.1946
+    seed= 8  survival=0.924242  hazard=0.075758  captures=  25  prey-steps=   330  pred→dist=1.1715
+    seed= 9  survival=0.916667  hazard=0.083333  captures=  26  prey-steps=   312  pred→dist=1.1733
+    seed=10  survival=0.928358  hazard=0.071642  captures=  24  prey-steps=   335  pred→dist=1.1617
+    seed=11  survival=0.927928  hazard=0.072072  captures=  24  prey-steps=   333  pred→dist=1.1730
+    seed=12  survival=0.913462  hazard=0.086538  captures=  27  prey-steps=   312  pred→dist=1.1505
+    seed=13  survival=0.910256  hazard=0.089744  captures=  28  prey-steps=   312  pred→dist=1.1888
+    seed=14  survival=0.909699  hazard=0.090301  captures=  27  prey-steps=   299  pred→dist=1.1921
+    seed=15  survival=0.925373  hazard=0.074627  captures=  25  prey-steps=   335  pred→dist=1.1215
+    seed=16  survival=0.915584  hazard=0.084416  captures=  26  prey-steps=   308  pred→dist=1.1741
+    seed=17  survival=0.919255  hazard=0.080745  captures=  26  prey-steps=   322  pred→dist=1.1807
+    seed=18  survival=0.925373  hazard=0.074627  captures=  25  prey-steps=   335  pred→dist=1.1230
+    seed=19  survival=0.928783  hazard=0.071217  captures=  24  prey-steps=   337  pred→dist=1.1814
+    seed=20  survival=0.933333  hazard=0.066667  captures=  23  prey-steps=   345  pred→dist=1.1493
+    seed=21  survival=0.890511  hazard=0.109489  captures=  30  prey-steps=   274  pred→dist=1.3073
+    seed=22  survival=0.909699  hazard=0.090301  captures=  27  prey-steps=   299  pred→dist=1.1860
+    seed=23  survival=0.888889  hazard=0.111111  captures=  30  prey-steps=   270  pred→dist=1.2946
+    seed=24  survival=0.910828  hazard=0.089172  captures=  28  prey-steps=   314  pred→dist=1.1698
+    seed=25  survival=0.922840  hazard=0.077160  captures=  25  prey-steps=   324  pred→dist=1.1588
+    seed=26  survival=0.916399  hazard=0.083601  captures=  26  prey-steps=   311  pred→dist=1.1781
+    seed=27  survival=0.931751  hazard=0.068249  captures=  23  prey-steps=   337  pred→dist=1.1899
+    seed=28  survival=0.914191  hazard=0.085809  captures=  26  prey-steps=   303  pred→dist=1.2092
+    seed=29  survival=0.933526  hazard=0.066474  captures=  23  prey-steps=   346  pred→dist=1.1329
+  s_prey=1.1 s_pred=1.4:
+    seed= 0  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1447
+    seed= 1  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1485
+    seed= 2  survival=0.948718  hazard=0.051282  captures=  20  prey-steps=   390  pred→dist=1.1682
+    seed= 3  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1433
+    seed= 4  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1482
+    seed= 5  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1500
+    seed= 6  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1439
+    seed= 7  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1420
+    seed= 8  survival=0.974630  hazard=0.025370  captures=  12  prey-steps=   473  pred→dist=1.1437
+    seed= 9  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1444
+    seed=10  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1476
+    seed=11  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1380
+    seed=12  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1456
+    seed=13  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1515
+    seed=14  survival=0.957845  hazard=0.042155  captures=  18  prey-steps=   427  pred→dist=1.1697
+    seed=15  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1479
+    seed=16  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1467
+    seed=17  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1526
+    seed=18  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1439
+    seed=19  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1600
+    seed=20  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1457
+    seed=21  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1557
+    seed=22  survival=0.974576  hazard=0.025424  captures=  12  prey-steps=   472  pred→dist=1.1451
+    seed=23  survival=0.974684  hazard=0.025316  captures=  12  prey-steps=   474  pred→dist=1.1492
+    seed=24  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1475
+    seed=25  survival=0.974630  hazard=0.025370  captures=  12  prey-steps=   473  pred→dist=1.1465
+    seed=26  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1391
+    seed=27  survival=0.974468  hazard=0.025532  captures=  12  prey-steps=   470  pred→dist=1.1435
+    seed=28  survival=0.974522  hazard=0.025478  captures=  12  prey-steps=   471  pred→dist=1.1450
+    seed=29  survival=0.914773  hazard=0.085227  captures=  30  prey-steps=   352  pred→dist=1.2813
+  s_prey=1.5 s_pred=1.4:
+    seed= 0  survival=0.979167  hazard=0.020833  captures=  11  prey-steps=   528  pred→dist=1.1221
+    seed= 1  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1265
+    seed= 2  survival=0.979127  hazard=0.020873  captures=  11  prey-steps=   527  pred→dist=1.1251
+    seed= 3  survival=0.978967  hazard=0.021033  captures=  11  prey-steps=   523  pred→dist=1.1223
+    seed= 4  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1216
+    seed= 5  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1199
+    seed= 6  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1240
+    seed= 7  survival=0.974104  hazard=0.025896  captures=  13  prey-steps=   502  pred→dist=1.1326
+    seed= 8  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1209
+    seed= 9  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1269
+    seed=10  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1334
+    seed=11  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1236
+    seed=12  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1269
+    seed=13  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1169
+    seed=14  survival=0.960663  hazard=0.039337  captures=  19  prey-steps=   483  pred→dist=1.1519
+    seed=15  survival=0.979127  hazard=0.020873  captures=  11  prey-steps=   527  pred→dist=1.1298
+    seed=16  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1176
+    seed=17  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1105
+    seed=18  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1152
+    seed=19  survival=0.979008  hazard=0.020992  captures=  11  prey-steps=   524  pred→dist=1.1219
+    seed=20  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1196
+    seed=21  survival=0.979008  hazard=0.020992  captures=  11  prey-steps=   524  pred→dist=1.1181
+    seed=22  survival=0.979087  hazard=0.020913  captures=  11  prey-steps=   526  pred→dist=1.1269
+    seed=23  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1247
+    seed=24  survival=0.979167  hazard=0.020833  captures=  11  prey-steps=   528  pred→dist=1.1174
+    seed=25  survival=0.978967  hazard=0.021033  captures=  11  prey-steps=   523  pred→dist=1.1218
+    seed=26  survival=0.979008  hazard=0.020992  captures=  11  prey-steps=   524  pred→dist=1.1202
+    seed=27  survival=0.979048  hazard=0.020952  captures=  11  prey-steps=   525  pred→dist=1.1202
+    seed=28  survival=0.979167  hazard=0.020833  captures=  11  prey-steps=   528  pred→dist=1.1153
+    seed=29  survival=0.979008  hazard=0.020992  captures=  11  prey-steps=   524  pred→dist=1.1256
+
+  s_prey=1.0 s_pred=1.6:
+    seed= 0  survival=0.946009  hazard=0.053991  captures=  23  prey-steps=   426  pred→dist=1.1198
+    seed= 1  survival=0.955056  hazard=0.044944  captures=  20  prey-steps=   445  pred→dist=1.1140
+    seed= 2  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0943
+    seed= 3  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0925
+    seed= 4  survival=0.952703  hazard=0.047297  captures=  21  prey-steps=   444  pred→dist=1.1061
+    seed= 5  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0880
+    seed= 6  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.1042
+    seed= 7  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0925
+    seed= 8  survival=0.946009  hazard=0.053991  captures=  23  prey-steps=   426  pred→dist=1.1191
+    seed= 9  survival=0.952703  hazard=0.047297  captures=  21  prey-steps=   444  pred→dist=1.1019
+    seed=10  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.1000
+    seed=11  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0908
+    seed=12  survival=0.955257  hazard=0.044743  captures=  20  prey-steps=   447  pred→dist=1.1142
+    seed=13  survival=0.955457  hazard=0.044543  captures=  20  prey-steps=   449  pred→dist=1.0824
+    seed=14  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0948
+    seed=15  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0919
+    seed=16  survival=0.955157  hazard=0.044843  captures=  20  prey-steps=   446  pred→dist=1.1155
+    seed=17  survival=0.946009  hazard=0.053991  captures=  23  prey-steps=   426  pred→dist=1.1260
+    seed=18  survival=0.953020  hazard=0.046980  captures=  21  prey-steps=   447  pred→dist=1.0861
+    seed=19  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0941
+    seed=20  survival=0.955056  hazard=0.044944  captures=  20  prey-steps=   445  pred→dist=1.1210
+    seed=21  survival=0.953229  hazard=0.046771  captures=  21  prey-steps=   449  pred→dist=1.0776
+    seed=22  survival=0.946009  hazard=0.053991  captures=  23  prey-steps=   426  pred→dist=1.1260
+    seed=23  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0959
+    seed=24  survival=0.954853  hazard=0.045147  captures=  20  prey-steps=   443  pred→dist=1.1243
+    seed=25  survival=0.955157  hazard=0.044843  captures=  20  prey-steps=   446  pred→dist=1.1212
+    seed=26  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0950
+    seed=27  survival=0.955157  hazard=0.044843  captures=  20  prey-steps=   446  pred→dist=1.1168
+    seed=28  survival=0.955357  hazard=0.044643  captures=  20  prey-steps=   448  pred→dist=1.0936
+    seed=29  survival=0.955457  hazard=0.044543  captures=  20  prey-steps=   449  pred→dist=1.0871
+  s_prey=1.1 s_pred=1.6:
+    seed= 0  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1858
+    seed= 1  survival=0.923706  hazard=0.076294  captures=  28  prey-steps=   367  pred→dist=1.1962
+    seed= 2  survival=0.919890  hazard=0.080110  captures=  29  prey-steps=   362  pred→dist=1.1784
+    seed= 3  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1799
+    seed= 4  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1773
+    seed= 5  survival=0.933333  hazard=0.066667  captures=  26  prey-steps=   390  pred→dist=1.1867
+    seed= 6  survival=0.929504  hazard=0.070496  captures=  27  prey-steps=   383  pred→dist=1.1879
+    seed= 7  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1875
+    seed= 8  survival=0.924119  hazard=0.075881  captures=  28  prey-steps=   369  pred→dist=1.1931
+    seed= 9  survival=0.939850  hazard=0.060150  captures=  24  prey-steps=   399  pred→dist=1.1678
+    seed=10  survival=0.923706  hazard=0.076294  captures=  28  prey-steps=   367  pred→dist=1.1944
+    seed=11  survival=0.933504  hazard=0.066496  captures=  26  prey-steps=   391  pred→dist=1.1856
+    seed=12  survival=0.931122  hazard=0.068878  captures=  27  prey-steps=   392  pred→dist=1.1688
+    seed=13  survival=0.939850  hazard=0.060150  captures=  24  prey-steps=   399  pred→dist=1.1775
+    seed=14  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1826
+    seed=15  survival=0.940150  hazard=0.059850  captures=  24  prey-steps=   401  pred→dist=1.1861
+    seed=16  survival=0.925729  hazard=0.074271  captures=  28  prey-steps=   377  pred→dist=1.2030
+    seed=17  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1818
+    seed=18  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1803
+    seed=19  survival=0.939850  hazard=0.060150  captures=  24  prey-steps=   399  pred→dist=1.1611
+    seed=20  survival=0.928000  hazard=0.072000  captures=  27  prey-steps=   375  pred→dist=1.1866
+    seed=21  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1785
+    seed=22  survival=0.936548  hazard=0.063452  captures=  25  prey-steps=   394  pred→dist=1.1762
+    seed=23  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1847
+    seed=24  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1799
+    seed=25  survival=0.943350  hazard=0.056650  captures=  23  prey-steps=   406  pred→dist=1.1794
+    seed=26  survival=0.923706  hazard=0.076294  captures=  28  prey-steps=   367  pred→dist=1.2057
+    seed=27  survival=0.931579  hazard=0.068421  captures=  26  prey-steps=   380  pred→dist=1.1748
+    seed=28  survival=0.919890  hazard=0.080110  captures=  29  prey-steps=   362  pred→dist=1.1838
+    seed=29  survival=0.929504  hazard=0.070496  captures=  27  prey-steps=   383  pred→dist=1.1911
+  s_prey=1.5 s_pred=1.6:
+    seed= 0  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1972
+    seed= 1  survival=0.976407  hazard=0.023593  captures=  13  prey-steps=   551  pred→dist=1.2221
+    seed= 2  survival=0.978417  hazard=0.021583  captures=  12  prey-steps=   556  pred→dist=1.1889
+    seed= 3  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1968
+    seed= 4  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.1991
+    seed= 5  survival=0.976407  hazard=0.023593  captures=  13  prey-steps=   551  pred→dist=1.2313
+    seed= 6  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.1959
+    seed= 7  survival=0.976407  hazard=0.023593  captures=  13  prey-steps=   551  pred→dist=1.2241
+    seed= 8  survival=0.976277  hazard=0.023723  captures=  13  prey-steps=   548  pred→dist=1.1988
+    seed= 9  survival=0.974074  hazard=0.025926  captures=  14  prey-steps=   540  pred→dist=1.2059
+    seed=10  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.1988
+    seed=11  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.1997
+    seed=12  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2043
+    seed=13  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2077
+    seed=14  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2091
+    seed=15  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2034
+    seed=16  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.2001
+    seed=17  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1938
+    seed=18  survival=0.976277  hazard=0.023723  captures=  13  prey-steps=   548  pred→dist=1.1983
+    seed=19  survival=0.976277  hazard=0.023723  captures=  13  prey-steps=   548  pred→dist=1.1915
+    seed=20  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1938
+    seed=21  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1942
+    seed=22  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1968
+    seed=23  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2105
+    seed=24  survival=0.974406  hazard=0.025594  captures=  14  prey-steps=   547  pred→dist=1.2014
+    seed=25  survival=0.974453  hazard=0.025547  captures=  14  prey-steps=   548  pred→dist=1.1965
+    seed=26  survival=0.976407  hazard=0.023593  captures=  13  prey-steps=   551  pred→dist=1.2191
+    seed=27  survival=0.976449  hazard=0.023551  captures=  13  prey-steps=   552  pred→dist=1.1938
+    seed=28  survival=0.974074  hazard=0.025926  captures=  14  prey-steps=   540  pred→dist=1.2040
+    seed=29  survival=0.974026  hazard=0.025974  captures=  14  prey-steps=   539  pred→dist=1.2013
+

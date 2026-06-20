@@ -1,0 +1,18 @@
+====================================================================================================================
+Exp 254c — SCALE-UP: is the predator-prey oscillation a robust BOUNDED cycle or intrinsically DIVERGENT?
+decoupled prey + predator self-limit, full predation; sweep K_prey x K_P x hmax; horizon=2000 seeds=[0, 1, 2]
+====================================================================================================================
+K_prey   K_P  hmax n_pred   t_end  pred_eq minPredTail  cv_1st  cv_2nd     trend  BOTH@T  CYCLE
+--------------------------------------------------------------------------------------------------------------------
+   500    60  0.06     30  1346.7     15.3         0.0   0.388   0.682   DIVERGE   False  False
+   500    60  0.12     30  1350.3     20.9         0.0   3.110   0.877   bounded   False  False
+   500   120  0.06     60  1348.3     13.7         0.0   9.960   0.930   bounded   False  False
+   500   120  0.12     60  1364.3     15.0         0.0   1.126   0.859   bounded   False  False
+  1000    60  0.06     30    49.3    112.2         0.0   0.620   0.806   DIVERGE   False  False
+  1000    60  0.12     30   706.3     52.5         0.0   0.591   0.799   DIVERGE   False  False
+  1000   120  0.06     60  1346.7     14.9         0.0   0.101   0.729   DIVERGE   False  False
+  1000   120  0.12     60  1345.0     12.5         0.0   0.153   0.470   DIVERGE   False  False
+
+ROBUST PERSISTENT CYCLES (reach t=2000 all seeds, predator trough>0, amplitude not diverging): 0
+
+[written to experiments/outputs/exp254c_scale_cycle.txt]

@@ -1,0 +1,21 @@
+================================================================================
+Exp 252 — Type III functional response + decoupled births + modest buffer: equilibrium?
+Sub-probe of the Exp 248-254 natural-stabilizer search. RAW — controller judges.
+(Full data: experiments/outputs/exp252_type3_coexistence.txt)
+================================================================================
+
+QUESTION: Does a Type III functional response (emergent low-density prey refuge + saturation)
+yield persistent stable coexistence?
+PREDECLARED FALSIFIER: if NO cell keeps both roles alive at t=1200 with min_pred_tail>0,
+the Type III stabilizer does not produce a stable equilibrium on this substrate.
+
+RESULT: PERSISTENT STABLE coexistence cells (both alive t=1200, predator NEVER hit 0 in
+tail): 0. Pattern: predator pinned intrinsically tiny (~0 or immediate collapse);
+Type III caps intake -> predator starves. Failure mode: intake-cut -> viable predator
+equilibrium pinned near 0.
+
+FALSIFIER TRIGGERED: 0/12 cells stable.
+
+VERDICT: NEGATIVE / NEW INSIGHT. Type III response damps the boom but starves the predator;
+the intake-vs-viability trade-off persists.
+Verifier: controller ran the sweep directly; applied the strict gate (min_pred_tail>0) to raw.

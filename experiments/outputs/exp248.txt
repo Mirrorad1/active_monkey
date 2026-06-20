@@ -1,0 +1,34 @@
+Exp 248 — Red Queen predator-prey: CAN'T-POSE at the viability gate (NEGATIVE / CONSOLIDATION).
+Canonical raw-output summary. Full sweep tables: experiments/outputs/exp248_viability.txt
+(viability search) and experiments/outputs/exp248_geometry.txt (Rung-1, VOID — founder-confounded).
+
+QUESTION: Is a persistent two-trophic predator-prey system posable on this substrate
+(continuous bump-resource depletion world), so that a prey-escape invasion-from-rarity test
+(co-evolving vs static predator) can be run?
+
+PREDECLARED FALSIFIER: if no predation regime keeps BOTH roles alive at the horizon across a
+best-shot sweep of prey productivity x predation geometry x predator energetics, the test is
+CAN'T-POSE at the viability gate.
+
+RESULT: NEGATIVE. 0 coexistence regimes across 42 best-shot predation configurations x 3 seeds
+(126 runs) + ~1900 adversarial-verifier runs (longer horizon, larger arena / lower encounter,
+raised standing-crop capacity, slowed predator numerical response, dense boundary grid). On a
+CONFIRMED-VIABLE prey base (Exp-240 calibrated founder; prey-only persists to t=600 at
+prey_eq~128), every predation regime either:
+  - STARVES THE PREDATOR OUT (pred_eq=0, single-trophic prey survives), or
+  - BOOM-BUST mutual COLLAPSE (t_end~43-65, cv_prey 1.3-1.9).
+There is NO stable coexistence band between the two failure modes.
+
+MECHANISM: same demographic-STABILITY-vs-STRONG-COMPETITION trade-off as Exp 246-247, now from
+the viability side — a predator IS strong competition for the prey; strong predation -> resource-
+limited oscillatory collapse, weak predation -> predator extinction. The prey base (eq~128) is
+knocked ~10x down by even mild predation and cannot supply a predator without collapsing.
+
+RUNG-1 NOTE (VOID): the first expressibility probe (exp248_geometry_probe.py) was confounded by
+the raw founder() (non-viable on the continuous substrate; prey starve by t~23 with NO
+predators — the Exp-243 founder-calibration trap). Its sign-unstable escape gradient is VOID.
+
+VERDICT: CAN'T-POSE (viability). The discrete local-gradient wall stands; adding a trophic level
+does not escape it. The predation engine (commits f7ab4e3..5a02d9a) is correct and reusable.
+Re-open escape (out of scope): prey growth DECOUPLED from the depletable resource (logistic /
+refuge) — pursued in Exp 249 (logistic suppression, NEGATIVE) and Exp 250 (additive births).

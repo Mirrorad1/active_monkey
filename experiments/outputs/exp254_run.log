@@ -1,0 +1,18 @@
+================================================================================================================
+Exp 254 — Bazykin (logistic prey + predator SELF-LIMIT mortality, full predation, no intake cuts).
+fixed: rate=0.5 K_prey=300 pred_cap=8 capR=0.5 assim=0.7 n_pred=10; sweep K_P x hmax x max_cap; horizon=1500 seeds=[0, 1, 2]
+================================================================================================================
+  K_P  hmax maxcap   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  STABLE  ROBUST
+----------------------------------------------------------------------------------------------------------------
+   20  0.10      2    49.3     51.4     49.4         0.0    1.558     False   False   False
+   20  0.10      3    56.0     54.3     44.8         0.0    1.309     False   False   False
+   20  0.20      2   600.3    198.9     18.9         0.0    0.540     False   False   False
+   20  0.20      3  1013.7    207.4      7.0         0.0    0.471     False   False   False
+   40  0.10      2    50.3     50.4     54.0         0.0    1.531     False   False   False
+   40  0.10      3   527.0    112.3     21.6         0.0    1.090     False   False   False
+   40  0.20      2  1500.0    291.2      0.0         0.0    0.046     False   False   False
+   40  0.20      3  1500.0    291.4      0.0         0.0    0.048     False   False   False
+
+ROBUST equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=15): 0
+
+[written to experiments/outputs/exp254_bazykin_equilibrium.txt]

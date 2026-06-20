@@ -1,0 +1,22 @@
+============================================================================================================
+Exp 253 — FULL natural stack (decoupled births + low buffer + Type III + interference)
+fixed: rate=0.5 K=250 pred_cap=5.5 h=4 sensing=2.5; sweep w x n_pred x capR; horizon=1500 seeds=[0, 1, 2]
+============================================================================================================
+    w n_pred  capR   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  STABLE
+------------------------------------------------------------------------------------------------------------
+  0.5      4  0.45  1500.0    258.0      0.0         0.0    0.096     False   False
+  0.5      4  0.60  1500.0    245.5      4.8         0.3    0.062     False   False
+  0.5      8  0.45  1500.0    256.1      0.0         0.0    0.098     False   False
+  0.5      8  0.60  1500.0    244.1      2.9         0.3    0.058     False   False
+  1.5      4  0.45  1500.0    257.9      0.0         0.0    0.105     False   False
+  1.5      4  0.60  1500.0    242.8      0.0         0.0    0.044     False   False
+  1.5      8  0.45  1500.0    264.4      0.0         0.0    0.123     False   False
+  1.5      8  0.60  1500.0    245.5      2.8         0.7    0.057     False   False
+  3.0      4  0.45  1500.0    254.0      0.0         0.0    0.088     False   False
+  3.0      4  0.60  1500.0    259.8      1.0         0.3    0.108     False   False
+  3.0      8  0.45  1500.0    258.4      0.0         0.0    0.100     False   False
+  3.0      8  0.60  1500.0    275.8      0.0         0.0    0.175     False   False
+
+PERSISTENT STABLE coexistence cells (both alive t=1500, predator NEVER hit 0 in tail): 0
+
+[written to experiments/outputs/exp253_full_combine.txt]

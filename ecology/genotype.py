@@ -64,9 +64,15 @@ LOCOMOTION_CONTINUOUS_TRAITS: frozenset[str] = frozenset({"locomotor_speed"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
-    """Clamp each trait to its bounds; round INT_TRAITS; enforce threshold≤capacity."""
+    """Clamp each trait to its bounds; round INT_TRAITS; enforce threshold≤capacity.
+
+    Non-numeric fields not in TRAIT_BOUNDS (e.g. role) are passed through unchanged.
+    """
     out: dict[str, Any] = {}
     for k, v in d.items():
+        if k not in TRAIT_BOUNDS:
+            out[k] = v  # non-numeric pass-through (e.g. Exp 248 role)
+            continue
         lo, hi = TRAIT_BOUNDS[k]
         v = float(v)
         v = max(lo, min(hi, v))
@@ -120,12 +126,17 @@ class Genotype:
     # Exp 238: continuous locomotion speed — LAST, WITH DEFAULT (regression-safe).
     # Default 1.0 = midpoint of [0.25, 4.0]; founders start at a neutral speed.
     locomotor_speed: float = 1.0
+    # Exp 248: predator-prey role — LAST field, default 'prey', NEVER mutated (copied verbatim),
+    # NOT in TRAIT_BOUNDS, NOT emitted in _event() → byte-identical OFF.
+    role: str = "prey"
 
 
 def is_valid(g: Genotype) -> bool:
     """Return True iff every trait is within TRAIT_BOUNDS and threshold ≤ capacity."""
     d = asdict(g)
     for k, v in d.items():
+        if k not in TRAIT_BOUNDS:
+            continue  # non-numeric fields (e.g. role) are not range-checked
         lo, hi = TRAIT_BOUNDS[k]
         if not (lo <= v <= hi):
             return False
@@ -145,6 +156,7 @@ def mutate(
     mutate_active_sensing: bool = False,
     mutate_locomotion: bool = False,
     mutate_continuous_locomotion: bool = False,
+    mutate_predator_speed: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -230,6 +242,11 @@ def mutate(
         # locomotion skip guard above.  locomotor_speed is the LAST field in field order
         # so no upstream trait's draw is affected when the skip fires.
         if k in LOCOMOTION_CONTINUOUS_TRAITS and not mutate_continuous_locomotion:
+            new_d[k] = v
+            continue
+        # Exp 248: role is a non-numeric field — NEVER mutated, copied verbatim.
+        # role is LAST in field order so this never shifts any upstream rng draw.
+        if k == "role":
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]

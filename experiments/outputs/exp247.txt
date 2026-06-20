@@ -1,0 +1,26 @@
+Exp 247 — No-energy-buffer escape: A-OFF/A-ON x energy_capacity sweep
+Viable regime: regen=0.5, slope=0.05, speed=2.0
+Reproduction threshold: 4.2 (energy_capacity floor)
+
+=== Sweep table ===
+cap10 OFF: n_eq173.5 minN133 CV0.218 OSC corr-0.917 drop17.6%
+cap10 ON:  n_eq42   minN29  CV0.101 OSC corr-0.395 6.3%
+cap7  OFF: n_eq180  minN147 CV0.207 OSC corr-0.916 16.0%
+cap7  ON:  n_eq42   minN31  CV0.105 OSC corr-0.162 3.7%
+cap5.5 OFF: n_eq180 minN132 CV0.218 OSC corr-0.913 18.4%
+cap5.5 ON:  n_eq42  minN28  CV0.098 OSC corr-0.538 7.7%
+cap4.8 OFF: n_eq183 minN144 CV0.200 OSC corr-0.906 14.7%
+cap4.8 ON:  n_eq42  minN29  CV0.093 DAMPED corr-0.545 6.8%
+
+=== A-OFF field availability check ===
+A-OFF cap5.5 whole-field availability over final window = 0.949
+(High availability yet corr -0.913 confirms density-dependence of per-capita intake is
+the correct arbiter; whole-field availability is the WRONG proxy — re-confirms Exp 244.)
+
+=== Summary ===
+CV flat across buffer sizes (cap10->cap4.8): ~0.218, 0.207, 0.218, 0.200 (A-OFF)
+Oscillation is NOT buffer-driven; A-OFF always oscillatory, A-ON always stable.
+A contrast: strong competition A-OFF (corr -0.91, drop 15-18%) vs weak A-ON (~4-8%).
+Trade-off is A-driven, confirmed across SIX levers.
+cap4.8 A-ON: DAMPED (closest to zero-buffer; still stable-and-weak, not strong).
+VERDICT: NEGATIVE — no-energy-buffer escape fails.

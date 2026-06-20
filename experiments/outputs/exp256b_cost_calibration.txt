@@ -1,0 +1,19 @@
+================================================================================================
+Exp 256b — Red Queen cost calibration: does the arms race survive a finite-ESS escape cost?
+sweep escape_cost; STATIC vs CO-EVOLVE predator; trait cap = 4.0; horizon=3000 seeds=[0, 1, 2, 3, 4]
+================================================================================================
+esc_cost        arm  esc_final  atk_final  extinct
+------------------------------------------------------------
+    0.15     static       3.22       1.00        0
+    0.15  co-evolve       3.88       3.05        0
+
+    0.30     static       2.01       1.00        0
+    0.30  co-evolve       1.64       1.98        0
+
+    0.50     static       1.31       1.00        0
+    0.50  co-evolve       0.34       1.46        0
+
+RED QUEEN READ (per escape_cost): static esc(ESS) / atk vs co-evolve esc / atk
+  cost=0.15: static esc=3.22 atk=1.00 [static<cap] | co-evolve esc=3.88 atk=3.05 -> ATTACK TRACKS (co>static); prey pushed higher
+  cost=0.3: static esc=2.01 atk=1.00 [static<cap] | co-evolve esc=1.64 atk=1.98 -> ATTACK TRACKS (co>static); no extra prey push
+  cost=0.5: static esc=1.31 atk=1.00 [static<cap] | co-evolve esc=0.34 atk=1.46 -> no attack tracking; no extra prey push
