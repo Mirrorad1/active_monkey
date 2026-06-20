@@ -92,11 +92,14 @@ def _build_trait_rows(creatures: list[Any]) -> list[dict[str, Any]]:
         g = c.generation
         gen_map.setdefault(g, []).append(c)
 
+    from ecology.genotype import TRAIT_BOUNDS
     rows = []
     for gen in sorted(gen_map.keys()):
         cs = gen_map[gen]
         trait_d = _asdict(cs[0].genotype)
         for trait_name in trait_d:
+            if trait_name not in TRAIT_BOUNDS:
+                continue  # skip non-numeric fields (e.g. role) — no mean/std defined
             vals = [getattr(c.genotype, trait_name) for c in cs]
             rows.append({
                 "generation": gen,

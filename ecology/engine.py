@@ -525,6 +525,12 @@ class EcologyConfig:
     continuous_patch_orbit_radius: float = 3.0
     continuous_patch_period: int = 300
 
+    # Exp 248: predator-prey — master gate + per-role mutation flags.
+    # All three default False → OFF path byte-identical to all prior experiments.
+    enable_predation: bool = False          # Exp 248 master gate; OFF byte-identical
+    mutate_predator_speed: bool = False     # the SINGLE causal bit (co-evolving arm = True)
+    freeze_prey_speed: bool = False         # prey breed-true in the focal test (both arms)
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -1113,6 +1119,11 @@ class Ecology:
                     neighbors = self.world.neighbors(new_pos)
                 child_pos = min(neighbors) if neighbors else new_pos
 
+                if cfg.enable_predation:
+                    _mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
+                                  or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
+                else:
+                    _mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
                 child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
                                     mutate_thermosense=cfg.enable_thermosense,
                                     freeze_learning_rate=cfg.freeze_learning_rate,
@@ -1120,8 +1131,7 @@ class Ecology:
                                     mutate_memory=cfg.enable_hidden_mode,
                                     mutate_active_sensing=cfg.enable_active_sensing,
                                     mutate_locomotion=cfg.enable_terrain,
-                                    mutate_continuous_locomotion=(cfg.enable_continuous_locomotion
-                                                                  and not cfg.freeze_continuous_locomotion))
+                                    mutate_continuous_locomotion=_mut_speed)
                 child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                 # Exp 238: set continuous pos for child near parent when ON.
                 if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
@@ -1455,7 +1465,9 @@ class Ecology:
         last_gen_trait_means: dict[str, float] = {}
         if max_gen_creatures:
             from dataclasses import asdict
-            trait_keys = list(asdict(max_gen_creatures[0].genotype).keys())
+            from ecology.genotype import TRAIT_BOUNDS as _TRAIT_BOUNDS
+            trait_keys = [k for k in asdict(max_gen_creatures[0].genotype).keys()
+                          if k in _TRAIT_BOUNDS]  # skip non-numeric fields (e.g. role)
             for k in trait_keys:
                 vals = [getattr(c.genotype, k) for c in max_gen_creatures]
                 last_gen_trait_means[k] = float(np.mean(vals))
