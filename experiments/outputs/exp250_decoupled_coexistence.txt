@@ -35,5 +35,3 @@ prey base: Exp-240 viable founder + enable_decoupled_prey_birth; regen=1.0 horiz
  0.50   250      6  0.50   417.3    183.3     43.0    0.588     False    False
 
 COEXISTENCE regimes (both roles alive at t=600, ALL seeds): 0
-
-[written to experiments/outputs/exp250_decoupled_coexistence.txt]
