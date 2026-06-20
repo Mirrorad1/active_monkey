@@ -144,3 +144,71 @@ def test_freeze_predator_trait():
                 "prey trait mean should drift away from initial value over 200 steps "
                 f"(initial={prey_initial}, series={prey_series[:10]}...)"
             )
+
+
+# ---------------------------------------------------------------------------
+# T6: Predator attack under selection — proves the fix (individual capture attribution)
+#
+# Exp 255 fix: predators now get births based on THEIR OWN captures, not pooled
+# captures.  A high-attack predator (attack=3.0) captures more prey than a
+# low-attack predator (attack=0.5) sharing the same prey pool -> high-attack
+# lineage outcompetes low-attack lineage -> mean predator trait drifts to 3.0.
+#
+# NOTE: the events_hash golden values in test_determinism are RE-PINNED here
+# because the model was corrected — the per-kill attribution draw is a new RNG
+# draw that legitimately changes the sequence.  The change is documented and
+# intentional (not a regression).
+# ---------------------------------------------------------------------------
+def test_predator_attack_under_selection():
+    """High-attack predators accumulate more captures -> more births -> outcompete low-attack.
+
+    Setup: 2 predators sharing a large prey pool.  One starts with attack=3.0 (HIGH),
+    the other with attack=0.5 (LOW).  No mutation (mutation_rate=0), no freeze (children
+    inherit parent trait).  After 400 steps the HIGH-attack lineage should dominate.
+    """
+    cfg = WellMixedConfig(
+        n_prey0=200,
+        n_pred0=2,
+        mutation_rate=0.0,
+        freeze_predator_trait=False,   # children inherit parent trait (no mutation)
+        freeze_prey_trait=True,        # hold prey trait constant (isolate predator selection)
+        prey_escape0=1.0,
+        pred_attack0=1.0,              # placeholder; overridden below
+        horizon=400,
+        K_prey=500,
+        pred_self_limit_hmax=0.05,
+        pred_base_mortality=0.05,
+        pred_birth_per_capture=0.5,
+        assimilation=0.5,
+    )
+    sim = WellMixedSim(cfg, seed=42)
+    # Override: first predator HIGH attack, second LOW attack
+    HIGH_ATTACK = 3.0
+    LOW_ATTACK = 0.5
+    sim.predators[0].trait = HIGH_ATTACK
+    sim.predators[1].trait = LOW_ATTACK
+
+    result = sim.run()
+
+    # Both populations must not go globally extinct (prey must survive too)
+    assert not result["exploded"], "Population exploded — tune cfg"
+    assert result["prey_series"][-1] > 0, "Prey went extinct — predators too efficient"
+
+    # Count predators by lineage trait at end
+    preds = sim.predators
+    high_lineage = sum(1 for q in preds if abs(q.trait - HIGH_ATTACK) < 1e-9)
+    low_lineage  = sum(1 for q in preds if abs(q.trait - LOW_ATTACK) < 1e-9)
+
+    assert high_lineage > low_lineage, (
+        f"HIGH-attack lineage ({HIGH_ATTACK}) should dominate LOW-attack ({LOW_ATTACK}) "
+        f"under individual selection.  Got high={high_lineage}, low={low_lineage} at t_end={result['t_end']}. "
+        f"Mean pred trait series (last 5): {result['pred_trait_mean_series'][-5:]}"
+    )
+
+    # Mean predator trait at end must be strictly closer to HIGH_ATTACK than LOW_ATTACK
+    final_mean = result["pred_trait_mean_series"][-1]
+    mid = (HIGH_ATTACK + LOW_ATTACK) / 2.0   # = 1.75
+    assert final_mean > mid, (
+        f"Mean predator attack trait ({final_mean:.3f}) should exceed midpoint ({mid}) "
+        f"if high-attack lineage dominates.  Seed=42, t_end={result['t_end']}."
+    )

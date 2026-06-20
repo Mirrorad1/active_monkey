@@ -19,9 +19,9 @@ Design principles
 RNG discipline
 --------------
 One ``numpy.random.default_rng(seed)`` drives all decisions in strict ID-ascending
-order.  Per step, draws are: (1) prey births, (2) predation kills, (3) predator
-births, (4) predator deaths.  Within each phase, creatures are processed in
-ascending cid order.
+order.  Per step, draws are: (1) prey births, (2) predation kills + kill-attribution
+(one extra draw per kill to attribute to a predator), (3) predator births,
+(4) predator deaths.  Within each phase, creatures are processed in ascending cid order.
 """
 from __future__ import annotations
 
@@ -161,39 +161,53 @@ class WellMixedSim:
                 self._next_cid += 1
                 births_prey += 1
 
-        # (c) Predation — Type II functional response, escape-keyed
-        #   sat = 1 / (1 + a*h*N_prey)
-        #   vulnerability v_i = 1 / (1 + escape_k * max(0, prey_i.trait - mean_pred_attack))
-        #   hazard haz_i = a * N_pred * sat * v_i
-        #   kill_prob = 1 - exp(-haz_i)
-        if N_pred > 0:
-            mean_pred_attack = (
-                sum(q.trait for q in self.predators) / N_pred
-            )
-        else:
-            mean_pred_attack = cfg.pred_attack0
-
+        # (c) Predation — Type II, INDIVIDUAL predator attack (selectable).
+        #   sat = 1 / (1 + a*h*N_prey)  (shared saturation — depends only on prey density)
+        #   For each prey i, each predator j contributes hazard:
+        #     v_ij = 1 / (1 + escape_k * max(0, prey_i.trait - pred_j.trait))
+        #     c_ij = attack_a * sat * v_ij
+        #   total hazard on prey i = sum_j(c_ij)
+        #   kill_prob_i = 1 - exp(-total_haz_i)
+        #   If prey i is killed, the kill is attributed to predator j with prob c_ij / total_haz.
+        #   This gives higher-attack predators MORE captures -> individual selection on attack.
         sat = 1.0 / (1.0 + cfg.attack_a * cfg.handling_h * N_prey) if N_prey > 0 else 1.0
 
         dead_prey_mask = [False] * N_prey
+        pred_captures = [0] * N_pred          # per-predator capture count THIS step
         captures_this_step = 0
         for i, p in enumerate(self.prey):
-            excess = max(0.0, p.trait - mean_pred_attack)
-            v_i = 1.0 / (1.0 + cfg.escape_k * excess)
-            haz_i = cfg.attack_a * N_pred * sat * v_i
-            kill_prob = 1.0 - math.exp(-haz_i)
+            # Compute each predator's hazard contribution on prey i
+            contribs: List[float] = []
+            total_haz = 0.0
+            for q in self.predators:
+                v_ij = 1.0 / (1.0 + cfg.escape_k * max(0.0, p.trait - q.trait))
+                c = cfg.attack_a * sat * v_ij
+                contribs.append(c)
+                total_haz += c
+            kill_prob = 1.0 - math.exp(-total_haz)
             if rng.random() < kill_prob:
                 dead_prey_mask[i] = True
-                captures_this_step += 1
                 deaths_prey_pred += 1
+                captures_this_step += 1
+                # Attribute kill to ONE predator, weighted by hazard contribution.
+                # Higher-attack predators win more kills -> individual selection on attack.
+                if total_haz > 0.0:
+                    r = rng.random() * total_haz
+                    cum = 0.0
+                    for j, c in enumerate(contribs):
+                        cum += c
+                        if r <= cum:
+                            pred_captures[j] += 1
+                            break
+                    else:
+                        pred_captures[-1] += 1
 
-        # (d) Predator numerical response + self-limit
-        cap_per_pred = captures_this_step / max(1, N_pred)
+        # (d) Predator numerical response (INDIVIDUAL captures) + self-limit
         dead_pred_mask = [False] * N_pred
         new_pred_children: List[Critter] = []
         for j, q in enumerate(self.predators):
-            # Birth draw
-            birth_p_pred = cfg.pred_birth_per_capture * cfg.assimilation * cap_per_pred
+            # Birth draw — uses THIS predator's OWN captures (individual selection)
+            birth_p_pred = cfg.pred_birth_per_capture * cfg.assimilation * pred_captures[j]
             birth_p_pred = min(1.0, max(0.0, birth_p_pred))
             if rng.random() < birth_p_pred:
                 if cfg.freeze_predator_trait:
