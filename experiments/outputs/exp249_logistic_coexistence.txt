@@ -47,5 +47,3 @@ K_prey n_pred  capR   t_end  prey_eq  pred_eq  cv_prey  BOTH@end  explode
    250      6  0.50   600.0     10.6      0.0    0.186     False    False
 
 COEXISTENCE regimes (both roles alive at t=600, ALL seeds): 0
-
-[written to experiments/outputs/exp249_logistic_coexistence.txt]
