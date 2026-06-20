@@ -1,41 +1,35 @@
-============================================================================================
-Exp 248 Rung 2 — PREY-ONLY VIABILITY SEARCH (no predators). RAW — controller judges.
-founder defaults: energy_capacity=20.0 repro_thresh=17.0 bmc=0.5 mc=0.3
-horizon=300  N_prey0=20  seeds=[0, 1, 2]
-============================================================================================
- e_cap    rthr  mcost     bmc  regen   t_end    n150    n300  cv_tail  explode  PERSIST
---------------------------------------------------------------------------------------------
-  10.0   4.200   0.05   0.050   True    44.0     0.0     0.0    0.398    False    False
-  10.0   8.500   0.05   0.050   True    44.0     0.0     0.0    0.398    False    False
-  10.0   4.200   0.05   0.050  False    49.0     0.0     0.0    0.403    False    False
-  10.0   8.500   0.05   0.050  False    49.0     0.0     0.0    0.403    False    False
-  10.0   4.200   0.05   0.250   True    35.0     0.0     0.0    0.446    False    False
-  10.0   8.500   0.05   0.250   True    35.0     0.0     0.0    0.446    False    False
-  10.0   4.200   0.30   0.250  False    27.0     0.0     0.0    0.447    False    False
-  10.0   8.500   0.30   0.250  False    27.0     0.0     0.0    0.447    False    False
-  10.0   4.200   0.30   0.250   True    25.0     0.0     0.0    0.451    False    False
-  10.0   8.500   0.30   0.250   True    25.0     0.0     0.0    0.451    False    False
-  10.0   4.200   0.30   0.050   True    33.0     0.0     0.0    0.454    False    False
-  10.0   8.500   0.30   0.050   True    33.0     0.0     0.0    0.454    False    False
-  10.0   4.200   0.05   0.250  False    39.0     0.0     0.0    0.466    False    False
-  10.0   8.500   0.05   0.250  False    39.0     0.0     0.0    0.466    False    False
-  20.0   4.200   0.05   0.050   True    41.0     0.0     0.0    0.485    False    False
-  20.0   8.500   0.05   0.050   True    41.0     0.0     0.0    0.485    False    False
-  10.0   4.200   0.30   0.050  False    37.0     0.0     0.0    0.493    False    False
-  10.0   8.500   0.30   0.050  False    37.0     0.0     0.0    0.493    False    False
-  20.0   4.200   0.05   0.250  False    33.0     0.0     0.0    0.496    False    False
-  20.0   8.500   0.05   0.250  False    33.0     0.0     0.0    0.496    False    False
-  20.0   4.200   0.30   0.250   True    22.0     0.0     0.0    0.502    False    False
-  20.0   8.500   0.30   0.250   True    22.0     0.0     0.0    0.502    False    False
-  20.0   4.200   0.05   0.050  False    45.0     0.0     0.0    0.502    False    False
-  20.0   8.500   0.05   0.050  False    45.0     0.0     0.0    0.502    False    False
-  20.0   4.200   0.30   0.050  False    31.0     0.0     0.0    0.507    False    False
-  20.0   8.500   0.30   0.050  False    31.0     0.0     0.0    0.507    False    False
-  20.0   4.200   0.05   0.250   True    31.0     0.0     0.0    0.507    False    False
-  20.0   8.500   0.05   0.250   True    31.0     0.0     0.0    0.507    False    False
-  20.0   4.200   0.30   0.050   True    29.0     0.0     0.0    0.511    False    False
-  20.0   8.500   0.30   0.050   True    29.0     0.0     0.0    0.511    False    False
-  20.0   4.200   0.30   0.250  False    24.0     0.0     0.0    0.540    False    False
-  20.0   8.500   0.30   0.250  False    24.0     0.0     0.0    0.540    False    False
+================================================================================================
+Exp 248 Rung 2 — TWO-TROPHIC VIABILITY SEARCH on the Exp-242 viable prey base.
+RAW NUMBERS — controller judges go/abort.
+prey base: Exp-240 calibrated founder (bmc=0.05,mc=0.03,cap=10,thr=4.2,aging=0.003)
+regen_rate=1.0 capacity=2.0 cost_slope=0.0 horizon=600 seeds=[0, 1, 2]
+================================================================================================
+(A) PREY-ONLY base (no predators) — must persist:
+    seed=0  t_end=600  prey_final=93  prey_eq(tail)=128.5
+    seed=1  t_end=600  prey_final=93  prey_eq(tail)=128.5
+    seed=2  t_end=600  prey_final=93  prey_eq(tail)=128.5
+    => prey base persists to t=600 on all seeds: True
 
-Regimes that PERSIST to t=300: 0 / 32
+(B) TWO-TROPHIC predation-pressure sweep (prey base held viable):
+n_prey n_pred  capR  senseR  assim   t_end  prey_eq  pred_eq  cv_prey  BOTH@end  explode
+------------------------------------------------------------------------------------------------
+    21      2  0.20     1.5   0.60   600.0     17.0      0.0    0.145     False    False
+    21      2  0.20     3.0   0.60   600.0      8.0      0.0    0.371     False    False
+    21      2  0.40     1.5   0.60   600.0      6.4      0.0    0.194     False    False
+    21      2  0.40     3.0   0.60   600.0     16.9      0.0    0.263     False    False
+    21      2  0.60     1.5   0.60   600.0     16.0      0.0    0.283     False    False
+    21      2  0.60     3.0   0.60    51.0     17.6     35.0    1.439     False    False
+    21      4  0.20     1.5   0.60   600.0     35.0      0.0    0.387     False    False
+    21      4  0.20     3.0   0.60   600.0     13.5      0.0    0.365     False    False
+    21      4  0.40     1.5   0.60   600.0      8.1      0.0    0.279     False    False
+    21      4  0.40     3.0   0.60   600.0      7.3      0.0    0.321     False    False
+    21      4  0.60     1.5   0.60   600.0      7.9      0.0    0.267     False    False
+    21      4  0.60     3.0   0.60   600.0      8.1      0.0    0.381     False    False
+    21      8  0.20     1.5   0.60   600.0      6.6      0.0    0.455     False    False
+    21      8  0.20     3.0   0.60   600.0      8.1      0.0    0.289     False    False
+    21      8  0.40     1.5   0.60    54.0     18.1     42.1    1.322     False    False
+    21      8  0.40     3.0   0.60   600.0      7.4      0.0    0.120     False    False
+    21      8  0.60     1.5   0.60   600.0      8.5      0.0    0.429     False    False
+    21      8  0.60     3.0   0.60    43.0      3.4     24.2    1.918     False    False
+
+Regimes with BOTH roles alive at t=600 on ALL seeds (coexistence): 0

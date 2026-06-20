@@ -84,10 +84,11 @@ def run_two_trophic(cfg, seed):
     }
 
 
-def build_two_trophic_cfg(n_prey, n_pred, capture_radius, sensing_radius, assimilation):
+def build_two_trophic_cfg(n_prey, n_pred, capture_radius, sensing_radius, assimilation,
+                          regen_rate=REGEN_RATE):
     prey_geno = D.replace(make_founder(1.0), role="prey")
     pred_geno = D.replace(make_founder(1.4), role="predator")
-    cfg = make_cfg(speed=1.0, cost_slope=COST_SLOPE, regen_rate=REGEN_RATE,
+    cfg = make_cfg(speed=1.0, cost_slope=COST_SLOPE, regen_rate=regen_rate,
                    horizon=HORIZON, founder_mix=((prey_geno, n_prey), (pred_geno, n_pred)))
     return D.replace(
         cfg,
@@ -174,6 +175,39 @@ def main():
     for g in go_rows:
         lines.append(f"    COEXIST: n_pred={g[1]} capR={g[2]} senseR={g[3]} assim={g[4]} "
                      f"prey_eq={g[5]:.1f} pred_eq={g[6]:.1f} cv_prey={g[7]:.3f}")
+    lines.append("")
+
+    # (C) BEST-SHOT coexistence sweep: a MORE PRODUCTIVE prey base (higher regen → higher
+    # N_eq → more biomass to absorb predation) crossed with gentler/finer predation and lower
+    # assimilation. If coexistence fails even here, the negative is robust.
+    lines.append("(C) BEST-SHOT coexistence sweep (productive prey base + gentle predation):")
+    lines.append(f"{'regen':>6} {'n_pred':>6} {'capR':>5} {'senseR':>7} {'assim':>6} "
+                 f"{'t_end':>7} {'prey_eq':>8} {'pred_eq':>8} {'cv_prey':>8} {'BOTH@end':>9} {'explode':>8}")
+    lines.append("-" * 96)
+    c_go = []
+    for regen, n_pred, capR, senseR, assim in itertools.product(
+            [2.0, 4.0], [3, 5], [0.15, 0.30], [2.0], [0.3, 0.6]):
+        cfg = build_two_trophic_cfg(21, n_pred, capR, senseR, assim, regen_rate=regen)
+        res = [run_two_trophic(cfg, s) for s in SEEDS]
+        t_end = np.mean([r["t_end"] for r in res])
+        prey_eq = np.mean([r["prey_eq"] for r in res])
+        pred_eq = np.mean([r["pred_eq"] for r in res])
+        cvp = np.nanmean([r["cv_prey"] for r in res])
+        both_all = all(r["both_alive_end"] for r in res)
+        explode = any(r["exploded"] for r in res)
+        lines.append(
+            f"{regen:>6.1f} {n_pred:>6} {capR:>5.2f} {senseR:>7.1f} {assim:>6.2f} "
+            f"{t_end:>7.1f} {prey_eq:>8.1f} {pred_eq:>8.1f} {cvp:>8.3f} {str(both_all):>9} {str(explode):>8}"
+        )
+        if both_all and not explode:
+            c_go.append((regen, n_pred, capR, senseR, assim, prey_eq, pred_eq, cvp))
+    lines.append("")
+    lines.append(f"(C) coexistence regimes (both roles alive at t={HORIZON}, all seeds): {len(c_go)}")
+    for g in c_go:
+        lines.append(f"    COEXIST: regen={g[0]} n_pred={g[1]} capR={g[2]} senseR={g[3]} assim={g[4]} "
+                     f"prey_eq={g[5]:.1f} pred_eq={g[6]:.1f} cv_prey={g[7]:.3f}")
+    lines.append("")
+    lines.append(f"TOTAL coexistence regimes found (B + C): {len(go_rows) + len(c_go)}")
     out = "\n".join(lines)
     print(out)
     _write(out)
