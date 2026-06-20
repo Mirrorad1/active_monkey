@@ -590,6 +590,22 @@ class EcologyConfig:
     type3_half_density: float = 3.0       # half-saturation local prey count h (Hill eq)
     type3_exponent: float = 2.0           # Hill exponent k; 2 = classic Type III sigmoid
 
+    # Exp 253: Predator interference (ratio-dependent / Beddington-DeAngelis) — OFF by default,
+    # byte-identical to all prior experiments when False.
+    #
+    # enable_predator_interference: master gate.  When True, after a target is found (and
+    #   optionally after passing the Type III draw), the focal predator counts OTHER alive
+    #   predators within interference_radius; p_success = 1 / (1 + w * n_other) where w is
+    #   interference_strength.  A single rng draw gates the capture.  When n_other=0,
+    #   p_success=1.0 and a lone predator is unaffected.  When False: NO rng draw → byte-identical.
+    # interference_strength: w in the Beddington-DeAngelis denominator.  Higher w means stronger
+    #   inter-predator competition.  Default 0.5.
+    # interference_radius: spatial neighbourhood radius within which other predators count as
+    #   interfering competitors.  Default 2.5 (world units).
+    enable_predator_interference: bool = False  # Exp 253 gate; OFF byte-identical to Exp 252
+    interference_strength: float = 0.5          # w: per-neighbour interference weight
+    interference_radius: float = 2.5            # neighbourhood radius for counting rival predators
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -1588,6 +1604,26 @@ class Ecology:
                     p_cap = (n_local ** k) / denom if denom > 0 else 0.0
                     if self.rng.random() >= p_cap:  # the SINGLE gated rng draw — only ON, only when a target is in range
                         break   # strike fails: rare-prey escape (emergent low-density refuge). Predator done this step.
+                # Exp 253: Predator interference gate (ratio-dependent / Beddington-DeAngelis).
+                # Fires ONLY when ON and a target is in range (and after any Type III draw).
+                # OFF → no draw → byte-identical to all prior experiments.
+                if cfg.enable_predator_interference:
+                    # Local OTHER-predator density around THIS predator → ratio-dependent interference.
+                    # Deterministic count (NO rng) over the frozen ascending-id predator snapshot.
+                    ir2 = cfg.interference_radius * cfg.interference_radius
+                    n_other = 0
+                    for op in predators:
+                        if op.creature_id == pred.creature_id:
+                            continue
+                        oph = op.phenotype
+                        if (not oph.alive) or oph.pos_cont is None:
+                            continue
+                        ox, oy = oph.pos_cont
+                        if (ox - px) * (ox - px) + (oy - py) * (oy - py) <= ir2:
+                            n_other += 1
+                    p_success = 1.0 / (1.0 + cfg.interference_strength * n_other)
+                    if self.rng.random() >= p_success:   # the SINGLE gated interference rng draw
+                        break   # strike blocked by predator competition. Predator done this step.
                 # Capture.
                 tph = target.phenotype
                 tph.alive = False
