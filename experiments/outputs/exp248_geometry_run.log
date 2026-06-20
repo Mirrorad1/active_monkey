@@ -1,0 +1,19 @@
+Exp 248 geometry probe | R=30 seeds | horizon=300 | prey=30 + pred=6 founders
+Prey speeds: [1.0, 1.1, 1.5]  |  Predator brackets: [1.2, 1.4, 1.6]
+
+  Running cell s_prey=1.0 s_pred=1.2 ... survival=0.964873 ± 0.001757  hazard=0.035127  pred→prey_dist=1.0272  prey-steps=12333
+  Running cell s_prey=1.1 s_pred=1.2 ... survival=0.940384 ± 0.004870  hazard=0.059616  pred→prey_dist=1.0102  prey-steps=11459
+  Running cell s_prey=1.5 s_pred=1.2 ... survival=0.948852 ± 0.005213  hazard=0.051148  pred→prey_dist=1.0742  prey-steps=12144
+  Running cell s_prey=1.0 s_pred=1.4 ... survival=0.917151 ± 0.012605  hazard=0.082849  pred→prey_dist=1.1826  prey-steps=9500
+  Running cell s_prey=1.1 s_pred=1.4 ... survival=0.971131 ± 0.011788  hazard=0.028869  pred→prey_dist=1.1526  prey-steps=13895
+  Running cell s_prey=1.5 s_pred=1.4 ... survival=0.978291 ± 0.003393  hazard=0.021709  pred→prey_dist=1.1233  prey-steps=15701
+  Running cell s_prey=1.0 s_pred=1.6 ... survival=0.953731 ± 0.003135  hazard=0.046269  pred→prey_dist=1.1029  prey-steps=13328
+  Running cell s_prey=1.1 s_pred=1.6 ... survival=0.933879 ± 0.007476  hazard=0.066121  pred→prey_dist=1.1834  prey-steps=11663
+  Running cell s_prey=1.5 s_pred=1.6 ... survival=0.975382 ± 0.001216  hazard=0.024618  pred→prey_dist=1.2026  prey-steps=16417
+Traceback (most recent call last):
+  File "/Users/mirro/Projects/active-loop/experiments/exp248_geometry_probe.py", line 362, in <module>
+    main()
+  File "/Users/mirro/Projects/active-loop/experiments/exp248_geometry_probe.py", line 303, in main
+    f"{'delta':>+11} {'se':>9} {'t':>8}")
+      ^^^^^^^^^^^^^^
+ValueError: Sign not allowed in string format specifier
