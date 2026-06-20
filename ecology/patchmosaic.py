@@ -135,6 +135,17 @@ class PatchMosaicConfig:
     prey_escape: float = 1.0
     pred_attack: float = 1.0
 
+    # ---- Trait evolution (gated; default OFF — byte-identical to pre-evolution substrate) ----
+    enable_trait_evolution: bool = False
+    mutation_rate: float = 0.0
+    mutation_sd: float = 0.05
+    escape_cost: float = 0.15
+    escape_baseline: float = 1.0
+    freeze_prey_trait: bool = False
+    freeze_predator_trait: bool = False
+    trait_min: float = 0.0
+    trait_max: float = 4.0
+
     # ---- Migration (local, graph-neighbor only) ----
     migration_rate_prey: float = 0.0    # per-prey per-step prob of moving to a neighbor
     migration_rate_pred: float = 0.0    # per-predator per-step prob of moving to a neighbor
@@ -361,6 +372,24 @@ class PatchMosaicSim:
         return len(visited) == n
 
     # ------------------------------------------------------------------
+    # Trait evolution helpers (gated behind enable_trait_evolution)
+    # ------------------------------------------------------------------
+    def _mutate(self, parent_trait: float) -> float:
+        """Return the offspring trait after (possibly) applying mutation.
+
+        ONLY called when enable_trait_evolution is True.  When mutation_rate > 0
+        and the rng fires, adds N(0, mutation_sd) noise clamped to [trait_min, trait_max].
+        Otherwise returns parent_trait unchanged.
+
+        CRITICAL: this method must NEVER be called when enable_trait_evolution is False —
+        the rng draw would shift the stream and break byte-identity with the baseline."""
+        cfg = self.cfg
+        if cfg.mutation_rate > 0.0 and self.rng.random() < cfg.mutation_rate:
+            delta = self.rng.normal(0.0, cfg.mutation_sd)
+            return max(cfg.trait_min, min(cfg.trait_max, parent_trait + delta))
+        return parent_trait
+
+    # ------------------------------------------------------------------
     # Per-patch dynamics formulas (REPLICATED from wellmixed; see module docstring)
     # ------------------------------------------------------------------
     def _async_multiplier(self, patch_idx: int, t: int) -> float:
@@ -423,8 +452,16 @@ class PatchMosaicSim:
         new_prey_children: List[Critter] = []
         birth_p = self._prey_birth_prob(patch.idx, N_prey, t)
         for p in patch.prey:  # ascending cid (maintained by append)
-            if rng.random() < birth_p:
-                new_prey_children.append(Critter("prey", p.trait, self._next_cid))
+            if cfg.enable_trait_evolution:
+                # Per-individual escape cost: higher escape above baseline -> lower fecundity.
+                birth_p_i = birth_p * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
+                draw_ok = rng.random() < birth_p_i
+                child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
+            else:
+                draw_ok = rng.random() < birth_p
+                child_trait = p.trait
+            if draw_ok:
+                new_prey_children.append(Critter("prey", child_trait, self._next_cid))
                 self._next_cid += 1
 
         # (c) Predation — Type II, escape-keyed, refuge-gated predator ACCESS.
@@ -476,7 +513,9 @@ class PatchMosaicSim:
             birth_p_pred = cfg.pred_birth_per_capture * cfg.assimilation * pred_captures[j]
             birth_p_pred = min(1.0, max(0.0, birth_p_pred))
             if rng.random() < birth_p_pred:
-                new_pred_children.append(Critter("pred", q.trait, self._next_cid))
+                child_trait = (q.trait if cfg.freeze_predator_trait else self._mutate(q.trait)) \
+                    if cfg.enable_trait_evolution else q.trait
+                new_pred_children.append(Critter("pred", child_trait, self._next_cid))
                 self._next_cid += 1
             if rng.random() < death_p_pred:
                 dead_pred_mask[j] = True

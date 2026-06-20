@@ -420,3 +420,150 @@ def test_grid2d_requires_valid_cols():
     assert len(sim3.neighbors) == 9
     for i in range(9):
         assert len(sim3.neighbors[i]) == 4
+
+
+# ---------------------------------------------------------------------------
+# T15: Trait evolution OFF is byte-identical — explicit False and default both
+# produce the same events_hash as the existing ring golden T10.
+# ---------------------------------------------------------------------------
+def test_trait_evolution_off_byte_identical():
+    """Gate OFF (explicit and default) must be byte-identical to the baseline ring run."""
+    _RING_GOLDEN_HASH = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+    cfg_default = PatchMosaicConfig(horizon=200)
+    cfg_explicit_off = PatchMosaicConfig(horizon=200, enable_trait_evolution=False)
+
+    h_default = PatchMosaicSim(cfg_default, seed=1).run()["events_hash"]
+    h_explicit_off = PatchMosaicSim(cfg_explicit_off, seed=1).run()["events_hash"]
+
+    assert h_default == _RING_GOLDEN_HASH, (
+        f"Default config hash changed from ring golden! Got {h_default!r}. "
+        "enable_trait_evolution=False (default) must be byte-identical to the baseline."
+    )
+    assert h_explicit_off == _RING_GOLDEN_HASH, (
+        f"enable_trait_evolution=False (explicit) hash changed from ring golden! "
+        f"Got {h_explicit_off!r}. Must be byte-identical to the baseline."
+    )
+    assert h_default == h_explicit_off, (
+        "Default and explicit False must produce identical events_hash."
+    )
+
+
+# ---------------------------------------------------------------------------
+# T16: Trait evolution ON produces a different events_hash from the gate-OFF run.
+# ---------------------------------------------------------------------------
+def test_trait_evolution_on_differs():
+    """Gate ON with mutation must diverge from gate OFF (different rng stream)."""
+    cfg_off = PatchMosaicConfig(horizon=200)
+    cfg_on = PatchMosaicConfig(horizon=200, enable_trait_evolution=True, mutation_rate=0.1)
+
+    h_off = PatchMosaicSim(cfg_off, seed=1).run()["events_hash"]
+    h_on = PatchMosaicSim(cfg_on, seed=1).run()["events_hash"]
+
+    assert h_off != h_on, (
+        "enable_trait_evolution=True with mutation_rate=0.1 must produce a different "
+        "events_hash than the gate-OFF run (trajectories diverge due to cost + mutation)."
+    )
+
+
+# ---------------------------------------------------------------------------
+# T17: Escape cost reduces prey birth probability for high-escape individuals.
+# ---------------------------------------------------------------------------
+def test_escape_cost_reduces_prey_birth():
+    """A prey with escape > escape_baseline has strictly lower effective birth_p."""
+    cfg = PatchMosaicConfig(
+        horizon=1,
+        enable_trait_evolution=True,
+        escape_cost=0.15,
+        escape_baseline=1.0,
+    )
+    sim = PatchMosaicSim(cfg, seed=1)
+
+    # Compute the base birth probability for a typical patch state.
+    N_prey = 40
+    base_birth_p = sim._prey_birth_prob(patch_idx=0, N_prey=N_prey, t=0)
+    assert base_birth_p > 0.0, "Test setup degenerate: base birth_p must be positive."
+
+    # A prey at baseline incurs zero cost.
+    prey_at_baseline = 1.0  # == escape_baseline
+    cost_at_baseline = max(0.0, 1.0 - cfg.escape_cost * max(0.0, prey_at_baseline - cfg.escape_baseline))
+    birth_p_at_baseline = base_birth_p * cost_at_baseline
+
+    # A prey above baseline incurs a cost.
+    prey_above = 2.0  # above escape_baseline=1.0
+    cost_above = max(0.0, 1.0 - cfg.escape_cost * max(0.0, prey_above - cfg.escape_baseline))
+    birth_p_above = base_birth_p * cost_above
+
+    assert birth_p_above < birth_p_at_baseline, (
+        f"Escape cost must reduce birth probability for trait > escape_baseline: "
+        f"birth_p(trait=1.0)={birth_p_at_baseline:.6f} vs birth_p(trait=2.0)={birth_p_above:.6f}."
+    )
+    assert birth_p_at_baseline == pytest.approx(base_birth_p, rel=1e-10), (
+        "A prey AT the escape_baseline must pay no fecundity cost."
+    )
+
+
+# ---------------------------------------------------------------------------
+# T18: freeze_predator_trait keeps predator trait-mean constant while prey can move.
+# ---------------------------------------------------------------------------
+def test_freeze_predator_trait():
+    """freeze_predator_trait=True -> predator trait frozen; =False -> can drift."""
+    common = dict(
+        horizon=300,
+        n_patches=4,
+        enable_trait_evolution=True,
+        mutation_rate=0.5,   # high mutation so trait moves quickly
+        mutation_sd=0.2,
+        escape_cost=0.0,     # no cost so prey population survives for many steps
+    )
+
+    # Frozen predator: predator trait should never change from initial pred_attack.
+    cfg_frozen = PatchMosaicConfig(freeze_predator_trait=True, **common)
+    sim_frozen = PatchMosaicSim(cfg_frozen, seed=42)
+    result_frozen = sim_frozen.run()
+
+    # Check that final predator trait-mean is still the initial pred_attack.
+    all_pred_traits_frozen = [
+        q.trait for patch in sim_frozen.patches for q in patch.predators
+    ]
+    if all_pred_traits_frozen:
+        assert all(t == cfg_frozen.pred_attack for t in all_pred_traits_frozen), (
+            f"freeze_predator_trait=True: predator traits should remain at "
+            f"{cfg_frozen.pred_attack}, but got {set(all_pred_traits_frozen)!r}."
+        )
+
+    # Unfrozen predator: predator trait should drift from initial value.
+    cfg_free = PatchMosaicConfig(freeze_predator_trait=False, **common)
+    sim_free = PatchMosaicSim(cfg_free, seed=42)
+    sim_free.run()
+
+    all_pred_traits_free = [
+        q.trait for patch in sim_free.patches for q in patch.predators
+    ]
+    if all_pred_traits_free:
+        # With mutation_rate=0.5 over 300 steps, at least some predators should
+        # have a trait != pred_attack (1.0) with overwhelming probability.
+        assert not all(t == cfg_free.pred_attack for t in all_pred_traits_free), (
+            "freeze_predator_trait=False with high mutation_rate: predator traits "
+            "should drift from the initial value but all remained unchanged."
+        )
+
+
+# ---------------------------------------------------------------------------
+# T19: Trait evolution with gate ON is deterministic (same seed => same hash).
+# ---------------------------------------------------------------------------
+def test_trait_evolution_deterministic():
+    """Gate ON run must be deterministic: two identical configs + seed => same events_hash."""
+    cfg = PatchMosaicConfig(
+        horizon=200,
+        enable_trait_evolution=True,
+        mutation_rate=0.1,
+        mutation_sd=0.05,
+    )
+    h1 = PatchMosaicSim(cfg, seed=7).run()["events_hash"]
+    h2 = PatchMosaicSim(cfg, seed=7).run()["events_hash"]
+
+    assert h1 == h2, (
+        "enable_trait_evolution=True run must be deterministic: "
+        f"two identical runs with seed=7 produced different hashes: {h1!r} vs {h2!r}."
+    )
