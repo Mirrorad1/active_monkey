@@ -56,4 +56,18 @@ Regimes with BOTH roles alive at t=600 on ALL seeds (coexistence): 0
 
 (C) coexistence regimes (both roles alive at t=600, all seeds): 0
 
-TOTAL coexistence regimes found (B + C): 0
+(D) PREDATOR best-shot (efficient carnivore metabolism + high assimilation):
+ p_bmc   p_mc  assim  pstart n_pred  capR   t_end  prey_eq  pred_eq  BOTH@end  explode
+------------------------------------------------------------------------------------------------
+ 0.020   0.01   0.90    0.90      3  0.30   600.0     10.4      0.0     False    False
+ 0.020   0.01   0.90    0.90      3  0.50   600.0     25.2      0.0     False    False
+ 0.020   0.01   0.90    0.90      6  0.30   600.0     12.8      0.0     False    False
+ 0.020   0.01   0.90    0.90      6  0.50   600.0     11.2      0.0     False    False
+ 0.005   0.01   0.90    0.90      3  0.30   600.0     11.3      0.0     False    False
+ 0.005   0.01   0.90    0.90      3  0.50    65.0     13.9     64.8     False    False
+ 0.005   0.01   0.90    0.90      6  0.30   600.0     15.7      0.0     False    False
+ 0.005   0.01   0.90    0.90      6  0.50   600.0     12.1      0.0     False    False
+
+(D) coexistence regimes (efficient predator): 0
+
+TOTAL coexistence regimes found (B + C + D): 0
