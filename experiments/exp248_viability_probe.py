@@ -85,9 +85,15 @@ def run_two_trophic(cfg, seed):
 
 
 def build_two_trophic_cfg(n_prey, n_pred, capture_radius, sensing_radius, assimilation,
-                          regen_rate=REGEN_RATE):
+                          regen_rate=REGEN_RATE, pred_bmc=None, pred_mc=None,
+                          pred_start_frac=0.75):
     prey_geno = D.replace(make_founder(1.0), role="prey")
-    pred_geno = D.replace(make_founder(1.4), role="predator")
+    pred_over = {"role": "predator"}
+    if pred_bmc is not None:
+        pred_over["baseline_metabolic_cost"] = pred_bmc
+    if pred_mc is not None:
+        pred_over["movement_cost"] = pred_mc
+    pred_geno = D.replace(make_founder(1.4), **pred_over)
     cfg = make_cfg(speed=1.0, cost_slope=COST_SLOPE, regen_rate=regen_rate,
                    horizon=HORIZON, founder_mix=((prey_geno, n_prey), (pred_geno, n_pred)))
     return D.replace(
@@ -98,7 +104,7 @@ def build_two_trophic_cfg(n_prey, n_pred, capture_radius, sensing_radius, assimi
         capture_radius=capture_radius,
         sensing_radius=sensing_radius,
         assimilation_efficiency=assimilation,
-        pred_start_energy_frac=0.75,
+        pred_start_energy_frac=pred_start_frac,
     )
 
 
@@ -207,7 +213,39 @@ def main():
         lines.append(f"    COEXIST: regen={g[0]} n_pred={g[1]} capR={g[2]} senseR={g[3]} assim={g[4]} "
                      f"prey_eq={g[5]:.1f} pred_eq={g[6]:.1f} cv_prey={g[7]:.3f}")
     lines.append("")
-    lines.append(f"TOTAL coexistence regimes found (B + C): {len(go_rows) + len(c_go)}")
+
+    # (D) PREDATOR best-shot: give the predator a carnivore-efficient metabolism (low bmc/mc),
+    # high assimilation, full start energy, on the productive prey base + moderate predation.
+    # If even a maximally-efficient predator cannot persist, predator non-viability is NOT a
+    # mere predator-energetics mis-calibration — it is the substrate.
+    lines.append("(D) PREDATOR best-shot (efficient carnivore metabolism + high assimilation):")
+    lines.append(f"{'p_bmc':>6} {'p_mc':>6} {'assim':>6} {'pstart':>7} {'n_pred':>6} {'capR':>5} "
+                 f"{'t_end':>7} {'prey_eq':>8} {'pred_eq':>8} {'BOTH@end':>9} {'explode':>8}")
+    lines.append("-" * 96)
+    d_go = []
+    for p_bmc, p_mc, assim, pstart, n_pred, capR in itertools.product(
+            [0.02, 0.005], [0.01], [0.9], [0.9], [3, 6], [0.3, 0.5]):
+        cfg = build_two_trophic_cfg(21, n_pred, capR, 2.5, assim, regen_rate=2.0,
+                                    pred_bmc=p_bmc, pred_mc=p_mc, pred_start_frac=pstart)
+        res = [run_two_trophic(cfg, s) for s in SEEDS]
+        t_end = np.mean([r["t_end"] for r in res])
+        prey_eq = np.mean([r["prey_eq"] for r in res])
+        pred_eq = np.mean([r["pred_eq"] for r in res])
+        both_all = all(r["both_alive_end"] for r in res)
+        explode = any(r["exploded"] for r in res)
+        lines.append(
+            f"{p_bmc:>6.3f} {p_mc:>6.2f} {assim:>6.2f} {pstart:>7.2f} {n_pred:>6} {capR:>5.2f} "
+            f"{t_end:>7.1f} {prey_eq:>8.1f} {pred_eq:>8.1f} {str(both_all):>9} {str(explode):>8}"
+        )
+        if both_all and not explode:
+            d_go.append((p_bmc, p_mc, assim, n_pred, capR, prey_eq, pred_eq))
+    lines.append("")
+    lines.append(f"(D) coexistence regimes (efficient predator): {len(d_go)}")
+    for g in d_go:
+        lines.append(f"    COEXIST: p_bmc={g[0]} p_mc={g[1]} assim={g[2]} n_pred={g[3]} capR={g[4]} "
+                     f"prey_eq={g[5]:.1f} pred_eq={g[6]:.1f}")
+    lines.append("")
+    lines.append(f"TOTAL coexistence regimes found (B + C + D): {len(go_rows) + len(c_go) + len(d_go)}")
     out = "\n".join(lines)
     print(out)
     _write(out)

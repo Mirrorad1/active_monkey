@@ -33,3 +33,27 @@ n_prey n_pred  capR  senseR  assim   t_end  prey_eq  pred_eq  cv_prey  BOTH@end 
     21      8  0.60     3.0   0.60    43.0      3.4     24.2    1.918     False    False
 
 Regimes with BOTH roles alive at t=600 on ALL seeds (coexistence): 0
+
+(C) BEST-SHOT coexistence sweep (productive prey base + gentle predation):
+ regen n_pred  capR  senseR  assim   t_end  prey_eq  pred_eq  cv_prey  BOTH@end  explode
+------------------------------------------------------------------------------------------------
+   2.0      3  0.15     2.0   0.30   600.0     27.7      0.0    0.117     False    False
+   2.0      3  0.15     2.0   0.60   600.0     10.9      0.0    0.300     False    False
+   2.0      3  0.30     2.0   0.30   600.0     26.7      0.0    0.296     False    False
+   2.0      3  0.30     2.0   0.60   600.0     29.2      0.0    0.317     False    False
+   2.0      5  0.15     2.0   0.30   443.0      2.2      0.0    0.655     False    False
+   2.0      5  0.15     2.0   0.60   600.0     14.1      0.0    0.465     False    False
+   2.0      5  0.30     2.0   0.30   600.0     21.8      0.0    0.370     False    False
+   2.0      5  0.30     2.0   0.60   600.0     10.0      0.0    0.303     False    False
+   4.0      3  0.15     2.0   0.30   600.0     27.7      0.0    0.117     False    False
+   4.0      3  0.15     2.0   0.60   600.0     10.9      0.0    0.300     False    False
+   4.0      3  0.30     2.0   0.30   600.0     26.7      0.0    0.296     False    False
+   4.0      3  0.30     2.0   0.60   600.0     29.2      0.0    0.317     False    False
+   4.0      5  0.15     2.0   0.30   443.0      2.2      0.0    0.655     False    False
+   4.0      5  0.15     2.0   0.60   600.0     14.1      0.0    0.465     False    False
+   4.0      5  0.30     2.0   0.30   600.0     21.8      0.0    0.370     False    False
+   4.0      5  0.30     2.0   0.60   600.0     10.0      0.0    0.303     False    False
+
+(C) coexistence regimes (both roles alive at t=600, all seeds): 0
+
+TOTAL coexistence regimes found (B + C): 0
