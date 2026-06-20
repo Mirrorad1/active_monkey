@@ -118,6 +118,15 @@ def _pred_cfg(**over):
     (pursuit locomotor_speed=1.4), enable_predation ON, continuous world with
     depletion-aware intake, fixed mutation, horizon 300.  Roles are seeded only via
     founder_mix; predator speed mutates (the co-evolving arm), prey speed is frozen.
+
+    DETERMINISM FIXTURE ONLY — NOT a viable ecology.  This uses the raw founder()
+    (energy_capacity=20, bmc=0.5, no continuous_regen_rate) which Exp 248 showed is
+    non-viable on the continuous depletion substrate (prey starve to extinction by
+    t~23 even with NO predators — the Exp-243 founder-calibration trap).  The golden
+    below therefore fingerprints a deterministic *collapse* trajectory; it guards the
+    predation rng/dynamics against regression, NOT ecological validity.  The viable
+    two-trophic search lives in experiments/exp248_viability_probe.py (verdict:
+    CAN'T-POSE — no coexistence; see EXPERIMENTS.md Exp 248).
     """
     from ecology.scenarios import SCENARIOS
 

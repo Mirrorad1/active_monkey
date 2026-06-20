@@ -5,9 +5,12 @@ Rung-1 (geometry probe) was CONFOUNDED: it built genotypes from the raw `founder
 depletion substrate, and the prey starved to EXTINCTION by t≈23 even with NO predators.
 The continuous-locomotion arc (Exp 240-246) already established a VIABLE monomorphic
 continuous config — the Exp-240 calibrated founder (bmc=0.05, mc=0.03, cap=10, thr=4.2,
-aging=0.003) + continuous_regen_rate≈0.2-2.0 + continuous_capacity=2.0 — giving a stable
-equilibrium N_eq≈374. We REUSE that exact config (imported from exp242_regulated_ess) as
-the prey base, so viability is not re-derived.
+aging=0.003) + continuous_regen_rate + continuous_capacity. We REUSE that exact config
+(imported from exp242_regulated_ess) as the prey base, so viability is not re-derived.
+NOTE: the operational base here (regen_rate=1.0, capacity=2.0) PERSISTS to the horizon as a
+bounded oscillation with prey tail-mean ~128 (NOT a fixed point — Exp 242 itself graded the
+single-population speed ESS CAN'T-POSE). The "N_eq≈374" figure in the source arc corresponds
+to the higher capacity=10 regime; viability here only requires PERSISTENCE, which holds.
 
 This script:
   (A) CONFIRMS the prey-only viable base persists to a long horizon (sanity that the
