@@ -18,5 +18,3 @@ fixed: rate=0.5 K=250 pred_cap=5.5 h=4 sensing=2.5; sweep w x n_pred x capR; hor
   3.0      8  0.60  1500.0    275.8      0.0         0.0    0.175     False   False
 
 PERSISTENT STABLE coexistence cells (both alive t=1500, predator NEVER hit 0 in tail): 0
-
-[written to experiments/outputs/exp253_full_combine.txt]
