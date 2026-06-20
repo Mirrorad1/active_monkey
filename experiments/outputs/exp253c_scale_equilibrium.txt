@@ -14,5 +14,3 @@ pred_cap     K     w   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  S
     10.0   800   1.5  1500.0    800.4      0.0         0.0    0.113     False   False   False
 
 ROBUST equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=15): 0
-
-[written to experiments/outputs/exp253c_scale_equilibrium.txt]
