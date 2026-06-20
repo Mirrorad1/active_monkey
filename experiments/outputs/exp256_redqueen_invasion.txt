@@ -1,0 +1,43 @@
+====================================================================================================
+Exp 256 — RED QUEEN invasion test on the well-mixed Bazykin substrate. RAW — controller judges.
+single causal bit = freeze_predator_trait (static) vs co-evolving; seeds=[0, 1, 2, 3, 4]
+====================================================================================================
+(A) INVASION-FROM-RARITY: rare breed-true mutant escape=1.4 into resident escape=1.0 at equilibrium.
+       arm seed      f0  f_final   f_max  invaded  fixed
+------------------------------------------------------------
+    static    0   0.087    1.000   1.000     True   True
+    static    1   0.105    1.000   1.000     True   True
+    static    2   0.085    1.000   1.000     True   True
+    static    3   0.118    1.000   1.000     True   True
+    static    4   0.118    1.000   1.000     True   True
+  -> static: invaded 5/5, fixed 5/5
+
+ co-evolve    0   0.090    0.000   0.232    False  False
+ co-evolve    1   0.102    1.000   1.000     True   True
+ co-evolve    2   0.103    0.000   0.059    False  False
+ co-evolve    3   0.081    1.000   1.000     True   True
+ co-evolve    4   0.074    1.000   1.000     True   True
+  -> co-evolve: invaded 3/5, fixed 3/5
+
+(B) OPEN-ENDED ARMS RACE: prey escape mutable; predator STATIC vs CO-EVOLVING. Trait means at checkpoints.
+       arm seed  esc@250  esc@1k  esc@2k  esc@3k  atk@3k  slope/1k extinct
+--------------------------------------------------------------------------------
+    static    0     1.64    2.62    2.82    3.36     1.0     0.553   False
+    static    1      1.5    2.44    2.97    3.32     1.0     0.342   False
+    static    2     1.67    2.63    3.05    3.32     1.0     0.277   False
+    static    3     1.47    2.25    3.18    3.41     1.0     0.233   False
+    static    4     1.36    2.28    2.93    3.19     1.0     0.271   False
+  -> static: mean esc@3k=3.32, mean atk@3k=1.00, mean late-slope/1k=0.335
+
+ co-evolve    0      1.3    2.41    2.56    3.29    0.32     0.721   False
+ co-evolve    1      1.5    2.46    3.22    3.36    0.61     0.149   False
+ co-evolve    2     1.74    2.33    2.55    2.72    0.66     0.173   False
+ co-evolve    3     1.47    2.54    3.08    3.69    1.03     0.601   False
+ co-evolve    4     1.45    2.46    2.66    3.01    0.28     0.336   False
+  -> co-evolve: mean esc@3k=3.21, mean atk@3k=0.58, mean late-slope/1k=0.396
+
+RED QUEEN SIGNATURE (single causal bit = predator co-evolution):
+  static:    esc@3k=3.32 atk@3k=1.00 late-slope=0.335
+  co-evolve: esc@3k=3.21 atk@3k=0.58 late-slope=0.396
+  Red Queen CONFIRMED iff co-evolve shows predator attack TRACKING prey escape (atk@3k >> static)
+  AND sustained escalation (co-evolve late-slope > static late-slope, static ~plateaued).
