@@ -1,0 +1,20 @@
+================================================================================
+Exp 251 — Latent-state diagnostic: predator energy-buffer sweep in boom-bust regime.
+Sub-probe of the Exp 248-254 natural-stabilizer search. RAW — controller judges.
+(Full data: experiments/outputs/exp251_latent_state.txt)
+================================================================================
+
+QUESTION: Is the boom-bust latent state driven by the predator energy-buffer lag?
+PREDECLARED FALSIFIER: if shrinking the predator buffer never yields persistent coexistence
+(every buffer either boom-bust collapses or starves the predator), then low-buffer demography
+is not the fix.
+
+RESULT: Buffer-lag CONFIRMED as contributing factor (cv_prey drops 0.56->0.16 as buffer
+shrinks). However, it is INSUFFICIENT as a fix: lower buffer -> predator starves.
+PERSISTENT coexistence cells (both roles alive at t=1200, ALL seeds): 0
+
+FALSIFIER TRIGGERED: shrinking the predator buffer alone never yields persistent coexistence.
+
+VERDICT: NEGATIVE / NEW INSIGHT. Buffer-lag is real but insufficient; fixes the symptom
+diagnosis but does not provide a stable coexistence by itself.
+Verifier: controller ran the sweep directly; applied the coexistence gate to raw numbers.
