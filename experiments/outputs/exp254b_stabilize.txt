@@ -14,5 +14,3 @@ theta  hmax pred_cap   t_end  prey_eq  pred_eq minPredTail  cv_prey  BOTH@end  S
     3  0.50      7.0  1500.0    291.1      0.0         0.0    0.046     False   False   False
 
 STABLE coexistence cells (both alive t=1500 all seeds, min_pred_tail>0): 0  [ROBUST (pred_eq>=12): 0]
-
-[written to experiments/outputs/exp254b_stabilize.txt]
