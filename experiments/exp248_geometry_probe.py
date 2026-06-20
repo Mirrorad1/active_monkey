@@ -300,7 +300,7 @@ def main():
     lines.append("          WIDE  (1.5−1.0) = sensitivity check (can the probe see a BIG escape?).")
     lines.append("-" * 78)
     lines.append(f"{'s_pred':>7} {'contrast':>10} {'surv_base':>10} {'surv_fast':>10} "
-                 f"{'delta':>+11} {'se':>9} {'t':>8}")
+                 f"{'delta':>11} {'se':>9} {'t':>8}")
     lines.append("-" * 78)
     for s_pred in PRED_SPEEDS:
         base = results[(1.0, s_pred)]
