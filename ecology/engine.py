@@ -914,6 +914,11 @@ class Ecology:
             _x1 = max(0.0, min(ARENA_W, _x0 + _hdx * _d))
             _y1 = max(0.0, min(ARENA_H, _y0 + _hdy * _d))
             ph.pos_cont = (_x1, _y1)
+            # Exp 248: store realized move heading for gated eat-heading reuse (Task 2).
+            # Gated on enable_predation — OFF path never executes this write (byte-identical).
+            # Task 3 will replace _hdx,_hdy with the role-aware (pursuit/flee) heading here.
+            if cfg.enable_predation:
+                ph.move_hx, ph.move_hy, ph.move_d = _hdx, _hdy, _d
             # Project to nearest discrete grid cell (byte-identical integer pos for events_hash).
             _r = int(_y1 / ARENA_H * cfg.rows)
             _col = int(_x1 / ARENA_W * cfg.cols)
@@ -1022,9 +1027,15 @@ class Ecology:
             # ANTI-CHEAT: intake is integral of the PROVIDED rho field.
             if deficit > 0:
                 _x1, _y1 = ph.pos_cont  # new (end) position after this step's move
-                _hdx, _hdy = self.cont_world.best_heading(_x1, _y1)
-                _d = g.locomotor_speed * cfg.continuous_dt
                 from ecology.continuous_world import ARENA_W, ARENA_H
+                # Exp 248: gated eat-heading reuse (Task 2).
+                # ON: reuse the realized move heading stored in ph (start-of-step heading).
+                # OFF: recompute from end position (existing byte-identical path).
+                if cfg.enable_predation:
+                    _hdx, _hdy, _d = ph.move_hx, ph.move_hy, ph.move_d  # reuse realized move heading
+                else:
+                    _hdx, _hdy = self.cont_world.best_heading(_x1, _y1)  # existing reconstruction (byte-identical)
+                    _d = g.locomotor_speed * cfg.continuous_dt
                 _x0e = max(0.0, min(ARENA_W, _x1 - _hdx * _d))
                 _y0e = max(0.0, min(ARENA_H, _y1 - _hdy * _d))
                 eaten = self.cont_world.consume(_x0e, _y0e, _x1, _y1, deficit)
