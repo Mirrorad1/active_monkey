@@ -14,5 +14,3 @@ fixed: rate=0.5 K_prey=300 pred_cap=8 capR=0.5 assim=0.7 n_pred=10; sweep K_P x 
    40  0.20      3  1500.0    291.4      0.0         0.0    0.048     False   False   False
 
 ROBUST equilibria (both alive t=1500 all seeds, min_pred_tail>0, pred_eq>=15): 0
-
-[written to experiments/outputs/exp254_bazykin_equilibrium.txt]
