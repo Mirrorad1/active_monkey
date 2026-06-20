@@ -574,6 +574,22 @@ class EcologyConfig:
     max_captures_per_step: int = 1
     pred_start_energy_frac: float = 0.75
 
+    # Exp 252: Type III (sigmoid) predator functional response — OFF by default,
+    # byte-identical to Exp 248-251 when False.
+    #
+    # enable_type3_response: master gate.  When True, each predator that identifies a
+    #   candidate target within capture_radius draws ONE rng sample to decide whether
+    #   the strike SUCCEEDS (prob = n_local^k / (h^k + n_local^k)).  At low n_local
+    #   (rare prey) p_cap ≈ 0 → emergent low-density refuge.  At high n_local p_cap → 1
+    #   (saturation).  When False: NO rng draw, capture remains deterministic → byte-identical.
+    # type3_half_density: half-saturation local prey count h (Hill equation denominator).
+    #   At n_local = h the capture probability is exactly 0.5.  Default 3.0.
+    # type3_exponent: Hill exponent k; k=2 gives the classic sigmoid Type III shape.
+    #   k=1 reduces to the hyperbolic Type II (no inflection).  Default 2.0.
+    enable_type3_response: bool = False   # Exp 252 gate; OFF byte-identical to Exp 248-251
+    type3_half_density: float = 3.0       # half-saturation local prey count h (Hill eq)
+    type3_exponent: float = 2.0           # Hill exponent k; 2 = classic Type III sigmoid
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -1551,6 +1567,27 @@ class Ecology:
                             target = q
                 if target is None:
                     break
+                # Exp 252: Type III (sigmoid) functional response gate.
+                # Fires ONLY when ON and a target is in range; draws ONE rng sample per predator
+                # per step (ascending predator-id order → deterministic).  OFF: no draw, no change.
+                if cfg.enable_type3_response:
+                    # Local prey density around THIS predator (within sensing_radius), from the
+                    # frozen snapshot, excluding already-captured prey — deterministic count, NO rng.
+                    sr2 = cfg.sensing_radius * cfg.sensing_radius
+                    n_local = 0
+                    for q in prey:  # same frozen ascending-id list used above
+                        qph = q.phenotype
+                        if (not qph.alive) or (q.creature_id in captured_ids) or qph.pos_cont is None:
+                            continue
+                        qx, qy = qph.pos_cont
+                        if (qx - px) * (qx - px) + (qy - py) * (qy - py) <= sr2:
+                            n_local += 1
+                    h = cfg.type3_half_density
+                    k = cfg.type3_exponent
+                    denom = (h ** k) + (n_local ** k)
+                    p_cap = (n_local ** k) / denom if denom > 0 else 0.0
+                    if self.rng.random() >= p_cap:  # the SINGLE gated rng draw — only ON, only when a target is in range
+                        break   # strike fails: rare-prey escape (emergent low-density refuge). Predator done this step.
                 # Capture.
                 tph = target.phenotype
                 tph.alive = False
