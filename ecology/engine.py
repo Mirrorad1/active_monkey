@@ -753,7 +753,8 @@ class Ecology:
             basin_step = max(1, len(basin_cells) // max(1, len(founders)))
             for i, geno in enumerate(founders):
                 pos = basin_cells[(i * basin_step) % len(basin_cells)]
-                start_energy = geno.energy_capacity * 0.75
+                _frac = cfg.pred_start_energy_frac if (cfg.enable_predation and geno.role == "predator") else 0.75
+                start_energy = geno.energy_capacity * _frac
                 ph = Phenotype(energy=start_energy, age=0, pos=pos)
                 c = Creature(
                     creature_id=self.next_id,
@@ -772,7 +773,8 @@ class Ecology:
             step = max(1, total // max(1, len(founders)))
             for i, geno in enumerate(founders):
                 pos = (i * step) % total
-                start_energy = geno.energy_capacity * 0.75
+                _frac = cfg.pred_start_energy_frac if (cfg.enable_predation and geno.role == "predator") else 0.75
+                start_energy = geno.energy_capacity * _frac
                 ph = Phenotype(energy=start_energy, age=0, pos=pos)
                 c = Creature(
                     creature_id=self.next_id,
@@ -1469,6 +1471,11 @@ class Ecology:
                 pph.energy -= cfg.strike_cost
         # Emit in predator-id then prey-id order: pending_events is already in
         # predator-id order (outer loop) and prey-id order (inner ascending scan).
+        # NOTE: this emit order is exact for max_captures_per_step == 1 (the only
+        # configured value).  If a future rung sets max_captures_per_step > 1, each
+        # predator's multiple captures must be sorted by prey-id before emit to
+        # preserve that ordering guarantee.  Do NOT change the emit logic here
+        # without re-auditing that invariant.
         self.events.extend(pending_events)
 
     def _step_predation(self, pending_children: list[Creature]) -> None:

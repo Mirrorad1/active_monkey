@@ -230,3 +230,23 @@ def test_prey_heading_equals_best_heading_when_no_predator_in_range():
         "prey heading with no predator in range must EQUAL best_heading "
         f"(flee term not exactly zero): got ({hx},{hy}) vs ({bx},{by})"
     )
+
+
+# ===========================================================================
+# Rung 0b-ii: pred_start_energy_frac wiring (Task 3 fix)
+# ===========================================================================
+
+def test_pred_start_energy_frac_wired_and_predator_scoped():
+    """pred_start_energy_frac is live: non-default value changes predator founder energy
+    but does NOT change prey founder energy (role-gated, not a global fraction)."""
+    import pytest
+    from ecology.engine import Ecology
+
+    cfg = _pred_cfg(enable_predation=True)
+    cfg = D.replace(cfg, pred_start_energy_frac=0.5)   # non-default
+    eco = Ecology(cfg, seed=5)
+    preds = [c for c in eco._creatures if c.genotype.role == "predator"]
+    prey  = [c for c in eco._creatures if c.genotype.role == "prey"]
+    assert preds and prey
+    assert preds[0].phenotype.energy == pytest.approx(preds[0].genotype.energy_capacity * 0.5)   # param took effect
+    assert prey[0].phenotype.energy  == pytest.approx(prey[0].genotype.energy_capacity * 0.75)    # prey unaffected
