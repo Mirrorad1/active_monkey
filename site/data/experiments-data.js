@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:257, breakthrough:9, positive:113, wall:58, partial:77, from:4.81, to:4.00 };
+window.AM_TALLY = { total:258, breakthrough:9, positive:114, wall:58, partial:77, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -2767,7 +2767,17 @@ window.AM_EXPERIMENTS = [
     result:"POSITIVE -- CAN_POSE_GLOBAL_COHABITATION + PATCH_MOSAIC_RESCUE_SUPPORTED. BASELINE_1P (8x single patch) = 0/10 collapse; scale control 1x-16x all 0/5 (not scale). NEITHER (8p, no mechanisms) = 0/10 collapse (mechanism necessary). REFUGE_ONLY = 10/10 (refuge load-bearing; recol=0, shelters in place). MIG_ONLY_ASYNC = 10/10 (localext=270, recol=269, sync=-0.08; genuine metapopulation rescue). MIG_ONLY_SYNC = 0/10 (synchrony kills migration rescue). BOTH = 10/10, most bounded (CV 0.15/0.07).",
     implication:"Discrete spatial predator-prey coexistence is POSABLE once single-arena global synchronization is broken -- via a spatial refuge OR via migration+asynchrony (recolonization of crashed patches by out-of-phase survivors). The Exp-248 CAN'T-POSE was specific to a single homogeneous arena; patch structure (the metapopulation level) rescues it. This re-opens the path to a discrete Red Queen: with coexistence now posed, a costed prey-escape/predator-attack trait-invasion test becomes possible on this substrate.",
     caveat:"POSITIVE / NEW INSIGHT, scoped.",
-    trace:{ script:"experiments/exp257_patch_mosaic_predator_prey.py", output:"experiments/outputs/exp257.txt" } }
+    trace:{ script:"experiments/exp257_patch_mosaic_predator_prey.py", output:"experiments/outputs/exp257.txt" } },
+  { n:258, kind:"positive", chapter:"frontier",
+    title:"Patch-mosaic robustness across topology x scale: refuge rescue is topology/scale-general; migration+asynchrony rescue is lattice-favored and erodes at large N.",
+    one:"Exp 257 posed discrete predator-prey coexistence on a ring of 8 patches via two load-bearing mechanisms (refuge; migration+asynchrony). Rung-3 robustness check: is that a ring-8 knife-edge? Extended ecology/patchmosaic.py with configurable neighbor topologies (commit 4acb2de; ring stays default + byte-identical; grid2d von-Neumann torus; Watts-Strogatz small-world). Re-ran 5 mechanism cells across 3x3 topology x scale grid on FRESH seeds 200-209. ROBUST: NEITHER = 0/10 at all 9 cells (baseline collapse general); REFUGE_ONLY = 10/10 at all 9 cells (refuge rescue topology- AND scale-general); BOTH = 10/10 at all 9 cells. TOPOLOGY/SCALE-SENSITIVE: MIG_ONLY_ASYNC = 10/10 on ring (8/16/32) and grid2d (8/16/32) but only 7/7/9 on small-world (fails 8/10 bar at sw-8, sw-16) -- long-range edges partially re-synchronize patches, eroding the rescue. MIG_ONLY_SYNC (synchrony-kills-rescue control) holds (0/10) at small/medium scale but partially breaks at 32 patches (ring-32=6, smallworld-32=8) -- at large N, replication insurance substitutes for asynchrony.",
+    plain:"Exp 257 found two mechanisms that rescue coexistence in a ring of 8 patches. Here we ask: is that ring-8 specific, or does it hold across different patch network shapes (ring, 2D grid torus, small-world) and different patch counts (8, 16, 32)? The refuge result is fully robust: it rescues coexistence at every topology and scale tested (10/10 everywhere). The migration+asynchrony result is lattice-specific: it works on rings and grids (10/10), but weakens on small-world networks where long-range connections partially re-synchronize patches (7-9/10). The no-mechanism baseline always collapses (0/10 everywhere). A robustly-coexisting regime (refuge/BOTH) exists everywhere, unblocking the Red Queen trait-invasion rung.",
+    metric:{ from:0, to:10, unit:"seeds persisting (refuge robust; migration+async lattice-favored)" },
+    setup:"experiments/exp258_patch_topology_robustness.py. 5 cells x {ring, grid2d(cols=4), smallworld(rewire=0.2)} x {8,16,32 patches} x seeds 200-209, horizon=1000. Collapse-prone regime (attack_a=0.05, K_pred=40, hmax=0.05). PASS=8/10 both persist. Topology extension commit 4acb2de (9+5 tests in tests/test_patchmosaic.py; T10 golden ring byte-identical guard).",
+    result:"POSITIVE-PARTIAL. NEITHER=0/10 all 9 cells. REFUGE_ONLY=10/10 all 9 cells. BOTH=10/10 all 9 cells. MIG_ONLY_ASYNC=10/10 on ring-{8,16,32} and grid2d-{8,16,32}; 7/7/9 on small-world (fails 8/10 at sw-8, sw-16). MIG_ONLY_SYNC=0/10 at small/medium scale; partially breaks at 32 patches (ring-32=6, smallworld-32=8) -- large-N replication insurance.",
+    implication:"Coexistence-posing is NOT a ring-8 knife-edge: the refuge mechanism is topology/scale-general (10/10 everywhere). The two rescue mechanisms differ in generality: REFUGE is topology/scale-general; MIGRATION+ASYNCHRONY is a lattice-locality effect that erodes under long-range edges (small-world) or large N. A robustly-coexisting resident exists everywhere in the refuge/BOTH regime (10/10) -- Red Queen trait-invasion rung (rung 4) is UN-BLOCKED on that regime.",
+    caveat:"POSITIVE-PARTIAL / NEW INSIGHT.",
+    trace:{ script:"experiments/exp258_patch_topology_robustness.py", output:"experiments/outputs/exp258.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
