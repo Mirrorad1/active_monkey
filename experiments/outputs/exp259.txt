@@ -1,0 +1,86 @@
+================================================================================================
+Exp 259 — DISCRETE RED QUEEN on the patch-mosaic substrate. CANONICAL SUMMARY.
+================================================================================================
+
+QUESTION
+--------
+Does co-evolution of the predator (single causal bit = freeze_predator_trait: True=static,
+False=co-evolving) change the evolutionary outcome of prey escape-speed on the discrete
+patch-mosaic substrate (BOTH regime: refuge+migration+asynchrony)?
+
+FALSIFIER
+---------
+If the static and co-evolving arms are indistinguishable — predator attack does not adapt,
+prey escape outcome unchanged — co-evolution does not engage here.
+
+SETUP
+-----
+experiments/exp259_patch_red_queen.py.
+BOTH regime (n_patches=8 ring, refuge access_fraction=0.30/refuge_frac=0.25,
+migration_rate=0.05, async rotating amp=0.4, collapse-prone within-patch
+attack_a=0.05/K_pred=40/hmax=0.05), enable_trait_evolution.
+Trait-evolution extension commit 3736adf (byte-identical OFF; ring golden T10 unchanged).
+Sanity seeds 300-302 confirmed coexistence survives evolving traits.
+VERDICT on FRESH seeds 400-409.
+
+Part A: invasion-from-rarity — rare breed-true mutant (escape=1.4) into resident
+        (escape=1.0) at equilibrium; static vs co-evolving predator.
+Part B: open-ended arms race — prey escape mutable; predator static vs co-evolving;
+        trait means at checkpoints 500/1000/2000/3000, horizon=3000.
+
+RESULT
+------
+Part A (invasion-from-rarity):
+  static predator:   6/10 seeds invaded (mutant fixed 6/10)
+  co-evolving pred:  0/10 seeds invaded (adapting predator neutralizes escape advantage)
+
+Part B (open-ended arms race):
+  arm         esc@500  esc@1k  esc@2k  esc@3k  atk@3k  extinct@end
+  static       1.39    2.02    2.69    2.98    1.00    0/10
+  co-evolve    1.14    0.92    0.77    0.68    1.59    0/10
+
+  static:   prey escape escalates to 2.98; predator attack FROZEN at 1.00.
+  co-evolve: predator attack ESCALATES 1.0 -> 1.59; prey escape COLLAPSES
+             (monotone decline 1.14->0.92->0.77->0.68 — prey abandon a now-futile
+             costly trait). All arms coexist to horizon (0/10 extinct).
+
+VERDICT: POSITIVE-SINGLE
+------------------------
+Co-evolution (single causal bit) demonstrably changes the outcome:
+
+  - Flips invasion:  static 6/10 invaded -> co-evolve 0/10 (adapting predator neutralizes
+                     escape advantage)
+  - Drives predator-attack escalation: 1.0 -> 1.59 under co-evolution
+  - Prey-escape suppression: 2.98 (static) -> 0.68 (co-evolve) = predator-DOMINANCE
+
+The dynamic is ASYMMETRIC PREDATOR-DOMINANCE (attack rises + plateaus ~1.6; prey escape
+suppressed below baseline), NOT a sustained mutual arms race.
+
+SUBSTRATE-DEPENDENCE: the co-evolutionary outcome is substrate-dependent.
+  - Well-mixed Exp 256:           co-evolution -> prey CO-ESCALATION (esc up to 3.88)
+  - Discrete patch (this exp):    co-evolution -> PREDATOR-DOMINANCE (esc collapses to 0.68)
+
+Co-evolution matters on both substrates; its direction depends on the substrate.
+
+HONEST CAVEATS
+--------------
+1. Trait expressibility is BY-CONSTRUCTION (capture = f(escape, attack)); the EMERGENT
+   results are: invasion-flip, predator-attack escalation, prey-escape suppression,
+   and the substrate-dependence vs well-mixed.
+2. The outcome is predator-DOMINANCE, NOT a classic sustained mutual Red Queen escalation.
+3. Within-patch dynamics are mean-field; collapse-prone regime calibrated;
+   coexistence scaffolded by the BOTH (refuge+migration) regime.
+4. Part A static invasion = 6/10 (metapopulation stochasticity), vs 0/10 co-evolve
+   (clean contrast).
+
+Self-grade: POSITIVE-SINGLE (scoped positive; discrete Red Queen engages; outcome is
+predator-dominance, substrate-dependent vs well-mixed; expressibility by-construction;
+NOT breakthrough-level).
+
+Rung 4 of the patch-mosaic-red-queen ladder complete.
+
+TRACE
+-----
+experiments/exp259_patch_red_queen.py -> experiments/outputs/exp259.txt
+(trait-evolution substrate extension commit 3736adf; tests/test_patchmosaic.py T15-T19)
+raw data: experiments/outputs/exp259_patch_red_queen.txt
