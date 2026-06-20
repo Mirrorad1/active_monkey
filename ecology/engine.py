@@ -531,6 +531,31 @@ class EcologyConfig:
     mutate_predator_speed: bool = False     # the SINGLE causal bit (co-evolving arm = True)
     freeze_prey_speed: bool = False         # prey breed-true in the focal test (both arms)
 
+    # Exp 248 Task 3: gated 3-phase predation-loop parameters. READ ONLY inside
+    # `if cfg.enable_predation` — every default is inert on the OFF path (the predation
+    # branch in step() is never entered), so OFF stays byte-identical to all prior work.
+    #   capture_radius: predator captures the nearest not-yet-captured prey strictly
+    #     WITHIN this continuous-arena distance. NEVER a function of locomotor_speed
+    #     (the anti-cheat seam: speed keys only how far a creature sweeps, d = speed*dt).
+    #   sensing_radius: range within which prey see predators (flee) and predators see
+    #     prey (pursuit); beyond it the role heading reduces to best_heading.
+    #   assimilation_efficiency: fraction of a captured prey's energy a predator can
+    #     assimilate; the predator gains min(deficit, prey.energy*assimilation_efficiency).
+    #   strike_cost: energy charged to a predator that captures this step (default 0.0).
+    #   w_food / w_flee: prey heading weights — h = normalize(w_food*best_heading
+    #     − w_flee*Σ unit(pred→prey)/dist). The flee sum is EXACTLY 0.0 when no predator
+    #     is in range, so h == best_heading (the Step-5 invariant).
+    #   max_captures_per_step: captures a single predator may make per step (default 1).
+    #   pred_start_energy_frac: founder predator start energy as a fraction of capacity.
+    capture_radius: float = 0.6
+    sensing_radius: float = 3.0
+    assimilation_efficiency: float = 0.6
+    strike_cost: float = 0.0
+    w_food: float = 1.0
+    w_flee: float = 1.5
+    max_captures_per_step: int = 1
+    pred_start_energy_frac: float = 0.75
+
 
 # ---------------------------------------------------------------------------
 # Ecology
@@ -883,11 +908,19 @@ class Ecology:
         overhead = ph.energy * g.reproduction_cost_fraction * (1.0 + genotype_complexity(g))
         return transfer, overhead
 
-    def _step_one_creature(
-        self, c: Creature, pending_children: list[Creature]
-    ) -> None:
-        """Execute one timestep for a single creature.  Reads only c + local cell.
-        NO global ranking, NO cross-creature comparison.
+    def _sense_act_move(self, c: Creature) -> int:
+        """Step 1-2: sense, choose+execute action, advance position, charge movement_cost.
+
+        Returns the new discrete cell (new_pos).  This is the EXACT legacy move block from
+        _step_one_creature, factored out unchanged so the OFF / non-predation path is
+        byte-identical (same rng draws via c.sense()/c.act(), same arithmetic).
+
+        Exp 248 (predation ON, continuous): c.sense()/c.act() STILL run (preserving the rng
+        stream + learned-map update), but the realized heading (_hdx,_hdy) is REPLACED by the
+        role-aware pursuit/flee heading from the FROZEN pre-move snapshot, and that heading is
+        stored in ph.move_hx/move_hy/move_d for the eat back-projection (Task 2 reuse seam).
+        ANTI-CHEAT: locomotor_speed keys ONLY the swept distance d = speed*dt — never the
+        heading and never the capture geometry.
         """
         ph = c.phenotype
         g = c.genotype
@@ -908,7 +941,12 @@ class Ecology:
             _hint_cell = c.act(self.world, self.rng)  # consumes the SAME single rng draw
             # Derive heading toward sensed-best direction from cont_world field.
             _x0, _y0 = ph.pos_cont if ph.pos_cont is not None else (0.5, 0.5)
-            _hdx, _hdy = self.cont_world.best_heading(_x0, _y0)
+            if cfg.enable_predation:
+                # Exp 248: role-aware heading from the frozen pre-move snapshot.
+                _hdx, _hdy = self._role_heading(
+                    c, _x0, _y0, self._pred_prey_snap, self._pred_pred_snap)
+            else:
+                _hdx, _hdy = self.cont_world.best_heading(_x0, _y0)
             # Advance by d = locomotor_speed * dt (instantaneous; no momentum).
             _d = g.locomotor_speed * cfg.continuous_dt
             _x1 = max(0.0, min(ARENA_W, _x0 + _hdx * _d))
@@ -916,7 +954,6 @@ class Ecology:
             ph.pos_cont = (_x1, _y1)
             # Exp 248: store realized move heading for gated eat-heading reuse (Task 2).
             # Gated on enable_predation — OFF path never executes this write (byte-identical).
-            # Task 3 will replace _hdx,_hdy with the role-aware (pursuit/flee) heading here.
             if cfg.enable_predation:
                 ph.move_hx, ph.move_hy, ph.move_d = _hdx, _hdy, _d
             # Project to nearest discrete grid cell (byte-identical integer pos for events_hash).
@@ -934,6 +971,36 @@ class Ecology:
                 ph.energy -= g.movement_cost
                 if self.cfg.log_moves:
                     self.events.append(self._event("move", c, details={"from": old_pos, "to": new_pos}))
+        return new_pos
+
+    def _step_one_creature(
+        self, c: Creature, pending_children: list[Creature],
+        skip_move: bool = False, skip_eat: bool = False,
+    ) -> None:
+        """Execute one timestep for a single creature.  Reads only c + local cell.
+        NO global ranking, NO cross-creature comparison.
+
+        Exp 248 (predation tail, Phase C only): when skip_move=True the sense/act/move
+        block is SKIPPED — Phase A already sensed, acted (consuming the rng draw), advanced
+        pos_cont/pos and charged movement_cost — so this runs only the metabolic→eat→
+        reproduce→death tail on the already-moved creature.  When skip_eat=True the eat
+        step is skipped (predators feed only via capture in Phase B).  BOTH default False
+        ⇒ the OFF / non-predation path is the EXACT existing single-pass behaviour
+        (byte-identical; the two flags are never set unless enable_predation).
+        """
+        ph = c.phenotype
+        g = c.genotype
+        cfg = self.cfg
+
+        # 1-2. Sense + choose/execute action + movement_cost.
+        # OFF / non-predation path: run the legacy sense/act/move block VERBATIM
+        # (byte-identical). Predation Phase C path (skip_move=True): Phase A already
+        # sensed, acted (consuming the rng draw), advanced pos_cont/pos and charged
+        # movement_cost via _sense_act_move(), so the tail simply reads the new cell.
+        if skip_move:
+            new_pos = ph.pos
+        else:
+            new_pos = self._sense_act_move(c)
 
         # 3. Pay metabolic + aging cost
         ph.energy -= g.baseline_metabolic_cost + g.aging_cost * ph.age
@@ -1020,6 +1087,13 @@ class Ecology:
 
         # 4. Eat resource at new cell; cap energy at energy_capacity
         deficit = g.energy_capacity - ph.energy
+        # Exp 248: predators feed ONLY via capture (Phase B) — skip the foraging eat.
+        # skip_eat is only ever True on the predation Phase C path (default False ⇒
+        # byte-identical to every prior experiment). Setting deficit = 0 means every
+        # `if deficit > 0` eat branch (continuous / residue / niche / discrete) is a
+        # no-op AND makes no rng draw, so a predator never depletes a food cell.
+        if skip_eat:
+            deficit = 0.0
         # Exp 238: continuous locomotion eat — line integral along the swept segment.
         # OFF (enable_continuous_locomotion=False) ⇒ byte-identical discrete path below.
         if self.cont_world is not None and ph.pos_cont is not None:
@@ -1262,6 +1336,184 @@ class Ecology:
                     c.policy.release_maps()
 
     # ------------------------------------------------------------------
+    # Exp 248: gated 3-phase predation loop (continuous world only).
+    # Entered ONLY when cfg.enable_predation (the OFF path never touches any of this).
+    # ------------------------------------------------------------------
+    def _role_heading(
+        self, c: Creature, x: float, y: float,
+        prey_snap: list, pred_snap: list,
+    ) -> tuple[float, float]:
+        """Role-aware unit move heading for creature c at continuous position (x, y),
+        computed ONLY from the FROZEN pre-move snapshot (so headings are order-independent
+        ⇒ shuffle-invariant) and the PROVIDED resource field.
+
+        prey: h = normalize(w_food*best_heading(x,y) − w_flee*Σ unit(pred→prey)/dist),
+              summed over predators in pred_snap within sensing_radius. The flee term is
+              EXACTLY 0.0 when no predator is in range ⇒ h == best_heading (Step-5 invariant).
+        predator: steer toward the nearest prey in prey_snap within sensing_radius (PURSUIT);
+              else fall back to best_heading.
+
+        DETERMINISM: snapshots are pre-sorted ascending creature_id, so the flee Σ is summed
+        in a FIXED order (reproducible float result) and the nearest-prey scan tie-breaks to
+        the lowest id. ANTI-CHEAT: heading is toward the provided field / snapshot positions;
+        locomotor_speed never enters here (it keys only swept distance downstream).
+        """
+        cfg = self.cfg
+        sr = cfg.sensing_radius
+        sr2 = sr * sr
+        bx, by = self.cont_world.best_heading(x, y)
+        if c.genotype.role == "predator":
+            # PURSUIT: nearest prey within sensing_radius (ties → lowest id, since prey_snap
+            # is ascending-id and we keep strict-less updates).
+            best_d2 = sr2
+            tx = ty = None
+            for (_pid, px, py) in prey_snap:
+                dx = px - x
+                dy = py - y
+                d2 = dx * dx + dy * dy
+                if d2 < best_d2:
+                    best_d2 = d2
+                    tx, ty = dx, dy
+            if tx is None:
+                return (bx, by)
+            mag = math.sqrt(tx * tx + ty * ty)
+            if mag < 1e-12:
+                return (bx, by)
+            return (tx / mag, ty / mag)
+        # PREY: forage toward food, flee away from nearby predators (fixed-order sum).
+        flee_x = 0.0
+        flee_y = 0.0
+        for (_pid, px, py) in pred_snap:
+            dx = x - px            # predator → prey direction (points AWAY from predator)
+            dy = y - py
+            d2 = dx * dx + dy * dy
+            if d2 < sr2 and d2 > 1e-18:
+                dist = math.sqrt(d2)
+                inv = 1.0 / dist
+                flee_x += (dx * inv) * inv   # unit(pred→prey)/dist = (dx/dist)/dist
+                flee_y += (dy * inv) * inv
+        hx = cfg.w_food * bx - cfg.w_flee * flee_x
+        hy = cfg.w_food * by - cfg.w_flee * flee_y
+        mag = math.sqrt(hx * hx + hy * hy)
+        if mag < 1e-12:
+            # Degenerate (food + flee cancel): fall back to the pure foraging heading.
+            return (bx, by)
+        # Step-5 invariant: when flee term is exactly 0 and w_food == 1, h == best_heading
+        # (best_heading is already unit, so normalize(1.0*best_heading) == best_heading).
+        return (hx / mag, hy / mag)
+
+    def _resolve_captures(self) -> None:
+        """Phase B: predators (ascending creature_id) each claim the nearest not-yet-captured
+        prey strictly WITHIN capture_radius; max_captures_per_step per predator.
+
+        On capture: prey alive=False, cause_of_death="predation"; predator gains
+        min(deficit, prey.energy*assimilation_efficiency); a "predation" death event is emitted
+        (mirroring the starvation death-event shape) in predator-id then prey-id order; the
+        predator is charged strike_cost. ANTI-CHEAT: capture_radius is a fixed geometric
+        threshold — NEVER a function of locomotor_speed (verified by the Step-5 seam test).
+        Ties (within 1e-9) resolve to the lowest prey-id.
+        """
+        cfg = self.cfg
+        cr = cfg.capture_radius
+        cr2 = cr * cr
+        alive = self.alive_snapshot()  # ascending creature_id
+        predators = [c for c in alive if c.genotype.role == "predator"]
+        prey = [c for c in alive if c.genotype.role == "prey"]
+        captured_ids: set[int] = set()
+        # Deferred death events so we can emit in predator-id then prey-id order.
+        pending_events: list[dict] = []
+        for pred in predators:  # ascending id by construction of alive_snapshot()
+            pph = pred.phenotype
+            if not pph.alive or pph.pos_cont is None:
+                continue
+            n_caught = 0
+            px, py = pph.pos_cont
+            while n_caught < cfg.max_captures_per_step:
+                # Nearest not-yet-captured prey within capture_radius; ties → lowest id.
+                best_d2 = None
+                target = None
+                for q in prey:  # ascending id
+                    qph = q.phenotype
+                    if (not qph.alive) or (q.creature_id in captured_ids) or qph.pos_cont is None:
+                        continue
+                    qx, qy = qph.pos_cont
+                    dx = qx - px
+                    dy = qy - py
+                    d2 = dx * dx + dy * dy
+                    if d2 < cr2:
+                        # strict-less with a 1e-9 (squared-distance) tie tolerance; prey is
+                        # ascending-id so an equal-or-near-equal distance keeps the lower id.
+                        if best_d2 is None or d2 < best_d2 - 1e-9:
+                            best_d2 = d2
+                            target = q
+                if target is None:
+                    break
+                # Capture.
+                tph = target.phenotype
+                tph.alive = False
+                tph.cause_of_death = "predation"
+                captured_ids.add(target.creature_id)
+                deficit = pred.genotype.energy_capacity - pph.energy
+                gain = min(deficit, tph.energy * cfg.assimilation_efficiency) if deficit > 0 else 0.0
+                pph.energy += gain
+                pph.energy = min(pph.energy, pred.genotype.energy_capacity)
+                pending_events.append(self._event("death", target, details={
+                    "cause": "predation",
+                    "age": tph.age,
+                    "offspring_count": tph.offspring_count,
+                }))
+                if target.policy is not None:
+                    target.policy.release_maps()
+                n_caught += 1
+            if n_caught > 0 and cfg.strike_cost != 0.0:
+                pph.energy -= cfg.strike_cost
+        # Emit in predator-id then prey-id order: pending_events is already in
+        # predator-id order (outer loop) and prey-id order (inner ascending scan).
+        self.events.extend(pending_events)
+
+    def _step_predation(self, pending_children: list[Creature]) -> None:
+        """Gated 3-phase predation step (continuous world). Iterates a FROZEN ascending
+        creature_id snapshot in EVERY phase, so the rng stream is identical regardless of
+        shuffle_creature_order (the shuffle-invariance certification).
+
+        Phase A (move-all): each alive creature senses/acts (rng), computes its role-aware
+          heading from the frozen pre-move snapshot, advances, and is charged movement_cost.
+        Phase B (_resolve_captures): predators claim nearby prey (no rng).
+        Phase C: each SURVIVING creature runs the eat/reproduce/death tail (skip eat for
+          predators), in ascending creature_id order (deterministic rng consumption).
+        """
+        # Frozen pre-move snapshot: (creature_id, x, y), ascending id, BEFORE any move.
+        snap = self.alive_snapshot()  # ascending creature_id
+        prey_snap: list[tuple[int, float, float]] = []
+        pred_snap: list[tuple[int, float, float]] = []
+        for c in snap:
+            ph = c.phenotype
+            x, y = ph.pos_cont if ph.pos_cont is not None else (0.5, 0.5)
+            if c.genotype.role == "predator":
+                pred_snap.append((c.creature_id, x, y))
+            else:
+                prey_snap.append((c.creature_id, x, y))
+        self._pred_prey_snap = prey_snap
+        self._pred_pred_snap = pred_snap
+
+        # Phase A: move-all (sense/act/move + movement_cost), ascending id.
+        for c in snap:
+            self._sense_act_move(c)
+
+        # Phase B: resolve captures (geometric, no rng).
+        self._resolve_captures()
+
+        # Phase C: eat/reproduce/death tail for survivors, ascending id.
+        for c in snap:
+            if not c.phenotype.alive:
+                continue  # captured this step (or already dead) — skip the tail.
+            self._step_one_creature(
+                c, pending_children,
+                skip_move=True,
+                skip_eat=(c.genotype.role == "predator"),
+            )
+
+    # ------------------------------------------------------------------
     # Step / Run
     # ------------------------------------------------------------------
     def step(self) -> None:
@@ -1331,7 +1583,15 @@ class Ecology:
         # saves an O(alive) list copy every step. The visited creatures and their order are
         # identical to the old `order = self._alive()` copy, so events_hash is unchanged
         # (guarded by the committed-hash regression tests + tests/test_perf_optimizations.py).
-        if self.cfg.shuffle_creature_order:
+        # Exp 248: gated 3-phase predation loop. SHUFFLE TRAP — this branch must NOT call
+        # rng.shuffle and must NOT touch `order`: it iterates a FROZEN ascending-creature_id
+        # snapshot in every phase, so shuffle_creature_order is INERT under predation (the
+        # rng stream is identical for shuffle=False and shuffle=True). That identical stream
+        # is exactly what test_predation_on_invariant_under_shuffle certifies. The shuffle
+        # block below is therefore strictly on the NON-predation path.
+        if self.cfg.enable_predation:
+            order = self.alive_snapshot()   # ascending creature_id; for band-strip telemetry only
+        elif self.cfg.shuffle_creature_order:
             order = self.alive_snapshot()
             self.rng.shuffle(order)
         else:
@@ -1344,8 +1604,11 @@ class Ecology:
             _mask = np.abs(self.world.temperature - self.world.current_food_optimal) <= self.world.food_band_width
             _band_before = float(np.sum(self.world.resource[_mask]))
 
-        for c in order:
-            self._step_one_creature(c, pending_children)
+        if self.cfg.enable_predation:
+            self._step_predation(pending_children)
+        else:
+            for c in order:
+                self._step_one_creature(c, pending_children)
 
         # Exp 206: freeze this step's occupancy as next step's crowding snapshot (no rng,
         # not in events_hash). OFF path never runs ⇒ byte-identical.

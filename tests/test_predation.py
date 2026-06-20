@@ -97,3 +97,136 @@ def test_enable_predation_on_prey_only_continuous_does_not_raise_and_is_determin
         f"  run1: {h1}\n"
         f"  run2: {h2}"
     )
+
+
+# ===========================================================================
+# Rung 0b-ii: gated 3-phase predation loop + frozen snapshot + pursuit/flee +
+# capture + ON golden  (Task 3)
+# ===========================================================================
+#
+# _PREDATION_ON_GOLDEN_HASH is the determinism fingerprint of the focal two-role
+# predation run (_pred_cfg(enable_predation=True), seed=5).  Pinned from the FIRST
+# green run.  DO NOT REPIN WITHOUT CAUSE — a changed value means the predation
+# dynamics or rng stream shifted; investigate before updating.
+_PREDATION_ON_GOLDEN_HASH = "5862b4e83ac278f9ef6d6ba5d45f041bbeb158a05962d24c49be5440475e399a"  # do not repin without cause
+
+
+def _pred_cfg(**over):
+    """Two-role predator/prey common-garden config for the predation focal test.
+
+    A founder_mix of breed-true prey (escape locomotor_speed=1.0) + faster predators
+    (pursuit locomotor_speed=1.4), enable_predation ON, continuous world with
+    depletion-aware intake, fixed mutation, horizon 300.  Roles are seeded only via
+    founder_mix; predator speed mutates (the co-evolving arm), prey speed is frozen.
+    """
+    from ecology.scenarios import SCENARIOS
+
+    prey_geno = D.replace(founder(), locomotor_speed=1.0, role="prey")
+    pred_geno = D.replace(founder(), locomotor_speed=1.4, role="predator")
+    base = dict(
+        enable_continuous_locomotion=True,
+        continuous_layout="bump",
+        continuous_dt=1.0,
+        speed_cost_floor=0.0,
+        speed_cost_slope=0.0,
+        mutation_rate=0.05,
+        horizon=300,
+        enable_continuous_depletion_intake=True,   # depletion-intake ON
+        enable_predation=True,                      # GATE ON
+        mutate_predator_speed=True,                 # co-evolving arm
+        freeze_prey_speed=True,                     # prey breed true
+        founder_mix=((prey_geno, 10), (pred_geno, 3)),
+    )
+    base.update(over)
+    return D.replace(SCENARIOS["balanced"], **base)
+
+
+def test_predation_on_differs_from_off():
+    """Predation is not a silent no-op: ON and OFF produce different events_hash."""
+    from ecology.engine import Ecology
+    on = Ecology(_pred_cfg(enable_predation=True), seed=5).run()["events_hash"]
+    off = Ecology(_pred_cfg(enable_predation=False), seed=5).run()["events_hash"]
+    assert on != off  # predation is not a silent no-op
+
+
+def test_predation_on_golden_hash():
+    """The focal two-role predation run reproduces its pinned golden hash."""
+    from ecology.engine import Ecology
+    h = Ecology(_pred_cfg(enable_predation=True), seed=5).run()["events_hash"]
+    assert h == _PREDATION_ON_GOLDEN_HASH
+
+
+def test_predation_on_invariant_under_shuffle():
+    """Frozen pre-move snapshot ⇒ headings + capture are order-independent.
+
+    The predation branch must NOT call rng.shuffle (it would diverge the rng stream
+    from the shuffle=False path); shuffle becomes inert and the hashes are identical.
+    """
+    from ecology.engine import Ecology
+    a = Ecology(_pred_cfg(enable_predation=True, shuffle_creature_order=False), seed=5).run()["events_hash"]
+    b = Ecology(_pred_cfg(enable_predation=True, shuffle_creature_order=True), seed=5).run()["events_hash"]
+    assert a == b  # frozen pre-move snapshot ⇒ headings order-independent
+
+
+# ---------------------------------------------------------------------------
+# Step 5: anti-cheat seam tests
+# ---------------------------------------------------------------------------
+
+def test_capture_rate_invariant_to_locomotor_speed_at_fixed_positions():
+    """ANTI-CHEAT: capture_radius is NEVER a function of locomotor_speed.
+
+    With positions held fixed (we resolve captures directly), the set of captured
+    prey depends ONLY on the geometric capture_radius — changing the predator's
+    locomotor_speed must not change who is captured.
+    """
+    from ecology.engine import Ecology
+
+    def _captured_ids(pred_speed: float):
+        cfg = _pred_cfg(horizon=1)
+        eco = Ecology(cfg, seed=5)
+        # Hand-place: predator at id 0, two prey straddling the capture radius.
+        alive = eco.alive_snapshot()
+        pred = alive[0]
+        pred.genotype = D.replace(pred.genotype, role="predator", locomotor_speed=pred_speed)
+        pred.phenotype.pos_cont = (6.0, 6.0)
+        prey_a, prey_b = alive[1], alive[2]
+        prey_a.genotype = D.replace(prey_a.genotype, role="prey")
+        prey_b.genotype = D.replace(prey_b.genotype, role="prey")
+        cr = cfg.capture_radius
+        prey_a.phenotype.pos_cont = (6.0 + cr * 0.5, 6.0)   # inside capture radius
+        prey_b.phenotype.pos_cont = (6.0 + cr * 5.0, 6.0)   # well outside
+        eco._resolve_captures()
+        return {prey_a.creature_id: not prey_a.phenotype.alive,
+                prey_b.creature_id: not prey_b.phenotype.alive}
+
+    slow = _captured_ids(0.5)
+    fast = _captured_ids(4.0)
+    assert slow == fast, (
+        "capture outcome changed with locomotor_speed at FIXED positions — "
+        "capture_radius leaked a dependence on speed (anti-cheat violation)"
+    )
+    # Sanity: the near prey is captured, the far one is not (geometry, not speed).
+    vals = list(slow.values())
+    assert vals == [True, False]
+
+
+def test_prey_heading_equals_best_heading_when_no_predator_in_range():
+    """Step-5 invariant: prey flee term is EXACTLY 0.0 when no predator is in range,
+    so the role-aware prey heading EQUALS best_heading (the pure foraging heading).
+
+    This certifies the eat-heading-reuse seam reduces to the enable_predation=False
+    foraging heading whenever the flee term vanishes."""
+    from ecology.engine import Ecology
+
+    cfg = _pred_cfg(horizon=1)
+    eco = Ecology(cfg, seed=5)
+    alive = eco.alive_snapshot()
+    prey = next(c for c in alive if c.genotype.role == "prey")
+    x, y = prey.phenotype.pos_cont
+    # No predators anywhere near: build an empty predator snapshot.
+    hx, hy = eco._role_heading(prey, x, y, prey_snap=[], pred_snap=[])
+    bx, by = eco.cont_world.best_heading(x, y)
+    assert hx == bx and hy == by, (
+        "prey heading with no predator in range must EQUAL best_heading "
+        f"(flee term not exactly zero): got ({hx},{hy}) vs ({bx},{by})"
+    )
