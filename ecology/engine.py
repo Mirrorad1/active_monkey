@@ -533,6 +533,16 @@ class EcologyConfig:
     enable_logistic_prey_growth: bool = False  # Exp 249 gate; OFF byte-identical
     prey_carrying_capacity: float = 150.0       # logistic K for prey birth suppression
 
+    # Exp 250: additive resource-INDEPENDENT logistic prey birth.
+    # OFF (False) byte-identical: no rng draw, no code runs on the OFF path.
+    # enable_decoupled_prey_birth: master gate; when True, alive prey gain an ADDITIVE
+    #   birth probability that does NOT depend on the depletable resource, raising
+    #   low-density productivity (the binding constraint for predator-prey coexistence).
+    # prey_birth_rate: per-step base birth probability at zero density (scales logistically
+    #   with (1 − N_prey/prey_carrying_capacity)). Reuses prey_carrying_capacity for K.
+    enable_decoupled_prey_birth: bool = False  # Exp 250 gate; OFF byte-identical
+    prey_birth_rate: float = 0.3               # base birth rate at low density (additive)
+
     # Exp 248: predator-prey — master gate + per-role mutation flags.
     # All three default False → OFF path byte-identical to all prior experiments.
     enable_predation: bool = False          # Exp 248 master gate; OFF byte-identical
@@ -1277,6 +1287,79 @@ class Ecology:
                     }))
                     assert is_valid(child_geno), "Mutation produced invalid genotype — engine bug"
 
+        # Exp 250: additive resource-INDEPENDENT logistic prey birth.
+        # Gated; OFF => NO rng draw, byte-identical to all prior experiments.
+        # Raises low-density prey productivity decoupled from the depletable resource.
+        # ph.alive guard: never spawn from a creature that died this step
+        # (starvation/senescence/crowding/predation may have fired above).
+        if cfg.enable_decoupled_prey_birth and c.genotype.role == "prey" and ph.alive:
+            _dpb_p = cfg.prey_birth_rate * max(0.0, 1.0 - self._lpg_N_prey / cfg.prey_carrying_capacity)
+            if self.rng.random() < _dpb_p:   # SINGLE gated rng draw — only when ON + prey + alive
+                # Spawn ONE resource-independent offspring.  Child energy is a modest baseline
+                # (energy_capacity * 0.5) — NOT taken from parent, NOT from the resource.
+                # Parent energy is UNCHANGED (resource-independent = no transfer/overhead).
+                if cfg.enable_terrain and cfg.terrain_gates_movement and self.world.elevation is not None:
+                    all_nb = self.world.neighbors(new_pos)
+                    elev_here = float(self.world.elevation[new_pos])
+                    safe_nb = [n for n in all_nb if float(self.world.elevation[n]) <= elev_here + 0.01]
+                    neighbors = safe_nb if safe_nb else all_nb
+                else:
+                    neighbors = self.world.neighbors(new_pos)
+                child_pos = min(neighbors) if neighbors else new_pos
+
+                if cfg.enable_predation:
+                    _dpb_mut_speed = ((c.genotype.role == "predator" and cfg.mutate_predator_speed)
+                                      or (c.genotype.role == "prey" and not cfg.freeze_prey_speed))
+                else:
+                    _dpb_mut_speed = (cfg.enable_continuous_locomotion and not cfg.freeze_continuous_locomotion)
+                _dpb_child_geno = mutate(c.genotype, self.rng, cfg.mutation_rate,
+                                         mutate_thermosense=cfg.enable_thermosense,
+                                         freeze_learning_rate=cfg.freeze_learning_rate,
+                                         freeze_thermosense=cfg.freeze_thermosense,
+                                         mutate_memory=cfg.enable_hidden_mode,
+                                         mutate_active_sensing=cfg.enable_active_sensing,
+                                         mutate_locomotion=cfg.enable_terrain,
+                                         mutate_continuous_locomotion=_dpb_mut_speed)
+                _dpb_child_ph = Phenotype(
+                    energy=g.energy_capacity * 0.5,  # modest baseline; NOT from parent or resource
+                    age=0,
+                    pos=child_pos,
+                    birth_t=self.t,
+                )
+                if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
+                    from ecology.continuous_world import ARENA_W, ARENA_H
+                    _dpb_pr, _dpb_pc = divmod(child_pos, cfg.cols)
+                    _dpb_child_ph.pos_cont = (
+                        ((_dpb_pc + 0.5) / cfg.cols) * ARENA_W,
+                        ((_dpb_pr + 0.5) / cfg.rows) * ARENA_H,
+                    )
+                _dpb_child = Creature(
+                    creature_id=self.next_id,
+                    parent_id=c.creature_id,
+                    generation=c.generation + 1,
+                    lineage_root=c.lineage_root,
+                    genotype=_dpb_child_geno,
+                    phenotype=_dpb_child_ph,
+                    n_cells=cfg.rows * cfg.cols,
+                )
+                self.next_id += 1
+                ph.offspring_count += 1
+                pending_children.append(_dpb_child)
+                self.events.append(self._event("reproduction", c, details={
+                    "transfer": 0.0,        # resource-independent: no energy transfer
+                    "overhead": 0.0,        # resource-independent: no overhead
+                    "child_id": _dpb_child.creature_id,
+                    "parent_age_at_repro": ph.age,
+                    "parent_energy_at_repro": ph.energy,
+                    "parent_maturity_age": g.maturity_age,
+                    "parent_repro_energy_threshold": g.reproduction_energy_threshold,
+                }))
+                self.events.append(self._event("birth", _dpb_child, details={
+                    "founder": False,
+                    "parent_id": c.creature_id,
+                }))
+                assert is_valid(_dpb_child_geno), "Exp250 decoupled birth mutation produced invalid genotype"
+
         # 7a. Senescence degradation — ONLY when enable_senescence is True.
         #     Deterministic (no rng draws), so OFF path is byte-identical to Exp 194.
         #     Uses genotype_complexity() — the same helper used by reproduction overhead,
@@ -1594,10 +1677,12 @@ class Ecology:
             self._dm_N_frozen = _N_now
             self._dm_N_prev = _N_now
 
-        # Exp 249 Mechanism B: freeze the PREY head-count ONCE per step so every creature
+        # Exp 249/250: freeze the PREY head-count ONCE per step so every creature
         # this step sees the SAME N_prey (order-independent, deterministic). The OFF path
-        # never sets _lpg_N_prey — the gate in _step_one_creature is bypassed entirely.
-        if self.cfg.enable_logistic_prey_growth:
+        # (both gates False) never sets _lpg_N_prey — gates in _step_one_creature bypass
+        # entirely. One frozen count serves BOTH mechanisms (Exp 249 suppression + Exp 250
+        # additive birth).
+        if self.cfg.enable_logistic_prey_growth or self.cfg.enable_decoupled_prey_birth:
             self._lpg_N_prey = sum(1 for c in self._alive_list if c.genotype.role == "prey")
 
         # Process alive creatures. OFF path (shuffle_creature_order=False) iterates in
