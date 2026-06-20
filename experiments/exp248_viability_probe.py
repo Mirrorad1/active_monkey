@@ -12,6 +12,13 @@ bounded oscillation with prey tail-mean ~128 (NOT a fixed point — Exp 242 itse
 single-population speed ESS CAN'T-POSE). The "N_eq≈374" figure in the source arc corresponds
 to the higher capacity=10 regime; viability here only requires PERSISTENCE, which holds.
 
+HYPOTHESIS / PREDICTION: if the substrate's stability-vs-strong-competition wall (Exp 246-247)
+also governs a two-trophic system, then NO predation regime will yield persistent coexistence.
+PREDECLARED FALSIFIER: if no swept predation-pressure regime keeps BOTH roles alive at the
+horizon on all seeds, the prey-escape invasion-from-rarity test is CAN'T-POSE at the viability
+gate. [Result: confirmed NEGATIVE — 0 coexistence across 42 best-shot regimes + ~1900
+adversarial-verifier runs; predators starve out or boom-bust collapse, no stable band.]
+
 This script:
   (A) CONFIRMS the prey-only viable base persists to a long horizon (sanity that the
       imported config is genuinely viable here).
