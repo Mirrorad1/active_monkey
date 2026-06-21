@@ -64,6 +64,39 @@ def test_env_builds_and_steps():
     assert jax.numpy.isfinite(nstate.reward)
 
 
+def _fake_traj(n=12):
+    import numpy as np
+    from embodied.rollout import Trajectory
+    import mujoco
+    model = mujoco.MjModel.from_xml_path(str(ARENA))
+    q0 = np.zeros(model.nq)
+    qpos = [q0.copy() for _ in range(n)]
+    return Trajectory(qpos, [np.zeros(model.nv)] * n, [np.zeros(model.nu)] * n,
+                      [1.0] * n, [0.0] * n, "deadbeefdeadbeef")
+
+
+def test_render_writes_two_videos(tmp_path):
+    from embodied.render import render, _render_frames
+    import mujoco
+    import numpy as np
+
+    traj = _fake_traj()
+    out = render(traj, tmp_path, fps=10)
+
+    # Both mp4 files exist and are non-empty
+    for k in ("thirdperson", "firstperson"):
+        assert out[k].exists() and out[k].stat().st_size > 0
+
+    # Cross-camera guard: different cameras must produce different pixels.
+    # This catches the bug where camera= arg is silently ignored and both videos are identical.
+    model = mujoco.MjModel.from_xml_path(str(ARENA))
+    data = mujoco.MjData(model)
+    track_frames = _render_frames(model, data, traj.qpos, "track", 120, 160)
+    fp_frames = _render_frames(model, data, traj.qpos, "firstperson", 120, 160)
+    assert not np.array_equal(track_frames[0], fp_frames[0]), \
+        "track and firstperson cameras must render different pixels"
+
+
 @pytest.mark.slow
 def test_train_smoke_writes_loadable_checkpoint(tmp_path):
     from embodied.train import train, load_params
