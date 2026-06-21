@@ -666,3 +666,18 @@ def test_contest_live_changes_hash():
     GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
     cfg = PatchMosaicConfig(horizon=200, enable_contest=True, aggr0=0.5)
     assert PatchMosaicSim(cfg, 1).run()["events_hash"] != GOLD  # contest draws + transfers fire
+
+
+# ---------------------------------------------------------------------------
+# T26: Heritable aggr — drifts under mutation, clamped, lineage preserved
+# ---------------------------------------------------------------------------
+def test_aggr_heritable_and_lineage_inherited():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    cfg = PatchMosaicConfig(horizon=300, n_patches=4, enable_trait_evolution=True,
+                            enable_contest=True, aggr0=0.5, mutation_rate=0.5, aggr_mutation_sd=0.1)
+    sim = PatchMosaicSim(cfg, 7); sim.run()
+    aggrs = [c.aggr for p in sim.patches for c in p.prey]
+    if aggrs:
+        assert not all(a == 0.5 for a in aggrs)          # aggr drifted
+        assert all(0.0 <= a <= 1.0 for a in aggrs)        # clamped
+        assert all(c.lineage in range(4) for p in sim.patches for c in p.prey)  # lineage preserved

@@ -402,6 +402,14 @@ class PatchMosaicSim:
             return max(cfg.trait_min, min(cfg.trait_max, parent_trait + delta))
         return parent_trait
 
+    def _mutate_aggr(self, parent_aggr: float) -> float:
+        """Offspring aggression; gated like _mutate. Draws rng only when mutation fires."""
+        cfg = self.cfg
+        if cfg.mutation_rate > 0.0 and self.rng.random() < cfg.mutation_rate:
+            delta = self.rng.normal(0.0, cfg.aggr_mutation_sd)
+            return max(0.0, min(1.0, parent_aggr + delta))
+        return parent_aggr
+
     # ------------------------------------------------------------------
     # Per-patch dynamics formulas (REPLICATED from wellmixed; see module docstring)
     # ------------------------------------------------------------------
@@ -487,7 +495,7 @@ class PatchMosaicSim:
                 bp = birth_p * bmult[i] * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
                 draw_ok = rng.random() < bp
                 child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
-                child_aggr = p.aggr
+                child_aggr = self._mutate_aggr(p.aggr) if (cfg.enable_contest and not cfg.freeze_prey_trait) else p.aggr
             else:
                 draw_ok = rng.random() < (birth_p * bmult[i])
                 child_trait = p.trait
