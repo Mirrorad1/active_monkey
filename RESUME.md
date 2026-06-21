@@ -465,6 +465,33 @@ step 0.
   **Exp 242 (CAN'T POSE / NEW INSIGHT — chapter close):** Found the FOUNDATIONAL INTAKE BUG: ContinuousWorld.line_integral_intake read the structural rho() field (never depletes), not the depletable _resource grid — so Exp 238-241 ran with zero density-dependent feedback (always-full field). The correct fix (enable_continuous_depletion_intake) eliminates runaway (0 runaway cells in a 45-cell sweep) but yields OSCILLATORY/limit-cycle dynamics — 0 stable fixed points, slow speeds extinct. No stable equilibrium => no clean ESS/invasion test posable. CAN'T POSE. **CHAPTER CLOSED (continuous-locomotion):** the toy continuous substrate cannot host a clean locomotion-evolvability verdict; the discrete local-gradient wall STANDS. Card: `loop/directions/continuous-locomotion.md` (state: closed-negative).
   **Exp 243–Exp 246 (continuous-locomotion substrate-engineering arc, CLOSED-NEGATIVE):** built a gated stabilizer + reusable certification harness (Mechanism A = global density-dependent crowding mortality; B = monotone floored regen; freeze_continuous_locomotion; configurable bump geometry; a moving-patch resource mode; ecology/evolvability/stability.py = hardened oscillation detector + non-degeneracy audit + cell certification + cert_run telemetry). Verdict: the toy continuous substrate is WEAKLY-POSABLE (a stable A-regulated equilibrium with real-but-weak ~5-13% density-dependent competition) but DEMOGRAPHIC STABILITY and STRONG RESOURCE COMPETITION are MUTUALLY EXCLUSIVE on it (the stabilizer caps N below the resource-limited density; remove it and it oscillates) — so no clean invasion-from-rarity / ESS test is posable. Tested across FIVE levers (founder, A-strength, regen, bump geometry, moving patch). The harness caught FOUR instrument artifacts (non-depleting field, discrete-founder calibration, whole-field availability spatial-dilution, availability-isn't-the-right-KIND-of-measure → correct arbiter = density-dependence of per-capita intake). Discrete local-gradient wall stands; continuous chapter closed. Only escape (out of scope) = a consumer with no energy buffer (agent redesign). Card: `loop/directions/continuous-locomotion.md`.
   **Exp 247 (NEGATIVE / NEW INSIGHT — no-energy-buffer escape FAILS, SIX levers confirmed):** config-only probe of the Exp-246 named escape: shrink energy_capacity toward the reproduction threshold 4.2 with A-OFF and A-ON. Result: oscillation is NOT buffer-driven (CV flat ~0.21 across cap 10->4.8 A-OFF); A is the direct cause. A-OFF: resource-limited (n_eq ~173-183), genuine strong competition (corr -0.91, drop 15-18%), but oscillatory. A-ON: stable (CV ~0.09-0.10), but competition collapses to ~4-8%. Trade-off is A-driven and confirmed across SIX levers. Also re-confirms Exp-244: whole-field availability 0.949 A-OFF yet corr -0.91 — density-dependence of per-capita intake is the correct arbiter. Continuous-locomotion chapter robustly closed. Card: `loop/directions/continuous-locomotion.md`.
+- **The patch-mosaic predator-prey arc (Exp 248–262, CLOSED-POSITIVE):** the homogeneous spatial-agent
+  predator-prey substrate CAN'T-POSE coexistence (Exp 248–255: discreteness + energy-buffer lag +
+  spatial-stochastic encounters destabilize a Bazykin ecology that coexists when well-mixed). The
+  escape was a discrete PATCH MOSAIC (`ecology/patchmosaic.py`, gated, byte-identical OFF): semi-isolated
+  patches + local migration + per-patch asynchrony + refugia POSE global coexistence via metapopulation
+  rescue (Exp 257 CAN_POSE → 258 robust across topology×scale) and host a discrete Red Queen (Exp 259
+  ENGAGES → 260 costed-prey/costless-predator asymmetry is the mechanism → 261 symmetric costs give
+  BISTABILITY not symmetry → 262 attack_cost tunes the basin probability, a clean sigmoid). Card:
+  `loop/directions/patch-mosaic-red-queen.md`.
+- **The emergent-intraspecific-competition arc (Exp 263–267, CLOSED-POSITIVE):** costed prey-vs-prey
+  CONTEST aggression EMERGES under reproduction scarcity (Exp 263 — first costed-behavior emergence in
+  the program, clears the local-gradient wall); it co-emerges with but is orthogonal to the predator
+  (264), and refuges decouple it from predation (265); predator/prey ROLES do NOT self-organize from
+  cannibalism, coupled (266) or decoupled (267) — soft additive costs give a generalist apex, roles need
+  a hard specialization-forcing trade-off. Card: `loop/directions/emergent-intraspecific-competition.md`.
+- **The acoustic-ecology direction (Exp 268, ACTIVE — a NEW direction on the human's word, 2026-06-21):**
+  SOUND built from scratch as a PHYSICAL substrate (`ecology/acoustic.py` + `enable_acoustic_field` on
+  the patch mosaic, byte-identical OFF): actions radiate low/mid/high-band energy that propagates across
+  the patch graph with inverse-square attenuation, frequency-dependent absorption, propagation delay,
+  time decay, and SNR detection; agents receive ONLY per-band loudness (never source position/identity/
+  event-type). **Exp 268 (NEGATIVE / NEW INSIGHT — ABORT):** the eavesdropping channel carries real bits
+  about hidden predator density (MI high-band 0.643 vs null 0.0004, 8/8) but gifted PREY hearing gives NO
+  actionable capture-hazard benefit (0.402 > 0.379 baseline, 0/8; silent control == baseline) — the
+  metapopulation that POSES coexistence spreads predators across ALL patches (frac_light=0.000), leaving
+  no acoustic refuge to flee to; fleeing only crowds prey. Clean asymmetry: gifted PREDATOR hearing DOES
+  raise capture success (0.630 vs 0.579). Information present, advantage absent — the local-gradient
+  wall's acoustic face. Do NOT run hearing evolution yet. Card: `loop/directions/acoustic-ecology.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
