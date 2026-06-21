@@ -121,3 +121,58 @@ def test_life_step_reproduce():
         c = upd
     # With nearly full energy at start, reproduction should happen quickly
     assert reproduced, "Expected reproduction but creature died or never reproduced in 10 bouts"
+
+
+# ---------------------------------------------------------------------------
+# Task 5: population loop — PopConfig, PopResult, run()
+# ---------------------------------------------------------------------------
+
+def test_population_runs_births_deaths_and_is_deterministic():
+    """Population loop is deterministic and produces births + deaths."""
+    from embodied.population import run, PopConfig
+    from embodied.foodfield import FoodFieldConfig
+    # Use generous field config to get a viable economy (births possible)
+    cfg = PopConfig(
+        n_founders=8, horizon=40, bout_steps=6, seed=0,
+        field=FoodFieldConfig(capacity=5.0, regen=0.2),
+    )
+    a = run(cfg)
+    b = run(cfg)
+    assert a.events_hash == b.events_hash           # determinism
+    assert a.deaths >= 1                            # mortality happens
+    assert len(a.n_series) == 40                    # correct horizon
+    assert a.births >= 1, (
+        "births=0 — policy may not forage the distributed field (Task-7 risk). "
+        f"deaths={a.deaths}, hash={a.events_hash}"
+    )
+
+
+def test_population_result_fields():
+    """PopResult has all required fields with correct types."""
+    from embodied.population import run, PopConfig
+    from embodied.foodfield import FoodFieldConfig
+    cfg = PopConfig(
+        n_founders=4, horizon=20, bout_steps=6, seed=2,
+        field=FoodFieldConfig(capacity=5.0, regen=0.2),
+    )
+    r = run(cfg)
+    assert isinstance(r.n_series, list) and len(r.n_series) == 20
+    assert isinstance(r.per_capita_intake, list) and len(r.per_capita_intake) == 20
+    assert isinstance(r.births, int) and r.births >= 0
+    assert isinstance(r.deaths, int) and r.deaths >= 0
+    assert isinstance(r.events_hash, str) and len(r.events_hash) == 16
+    assert isinstance(r.final_alive, int) and r.final_alive >= 0
+
+
+def test_shared_field_competition_lowers_per_capita_intake():
+    """More founders on the same field => lower mean per-capita intake (density-dependence)."""
+    from embodied.population import run, PopConfig
+    from embodied.foodfield import FoodFieldConfig
+    f = FoodFieldConfig(capacity=5.0, regen=0.05)
+    lo = run(PopConfig(n_founders=4,  horizon=20, bout_steps=6, seed=1, field=f))
+    hi = run(PopConfig(n_founders=16, horizon=20, bout_steps=6, seed=1, field=f))
+    import numpy as np
+    assert np.mean(hi.per_capita_intake) < np.mean(lo.per_capita_intake), (
+        f"Competition test failed: lo_mean={np.mean(lo.per_capita_intake):.4f}, "
+        f"hi_mean={np.mean(hi.per_capita_intake):.4f}"
+    )
