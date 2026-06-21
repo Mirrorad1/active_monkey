@@ -74,6 +74,7 @@ class EmbodiedForageEnv(PipelineEnv):
         metrics = {
             "dist_to_food": dist,
             "reached": jnp.float32(0.0),
+            "reward": jnp.float32(0.0),
         }
         return State(pipeline_state, obs, jnp.float32(0.0), jnp.float32(0.0), metrics)
 
@@ -100,7 +101,10 @@ class EmbodiedForageEnv(PipelineEnv):
             + RewardWeights["reach"] * reached
         )
         done = jnp.float32(0.0)  # fixed-horizon; no early termination in Phase 1
-        metrics = {"dist_to_food": dist, "reached": reached}
+        # Include 'reward' in metrics so the pytree structure matches what
+        # EvalWrapper.reset injects (it adds reward to metrics on first reset,
+        # and jax.lax.scan requires identical carry pytrees across iterations).
+        metrics = {"dist_to_food": dist, "reached": reached, "reward": reward}
         obs = self._get_obs(pipeline_state)
         return state.replace(
             pipeline_state=pipeline_state,

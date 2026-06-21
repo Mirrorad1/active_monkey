@@ -62,3 +62,11 @@ def test_env_builds_and_steps():
     nstate = env.step(state, act)
     assert nstate.obs.shape == (env.observation_size,)
     assert jax.numpy.isfinite(nstate.reward)
+
+
+@pytest.mark.slow
+def test_train_smoke_writes_loadable_checkpoint(tmp_path):
+    from embodied.train import train, load_params
+    ckpt = train(num_timesteps=2048, seed=0, out_dir=tmp_path)
+    params = load_params(ckpt)
+    assert params is not None
