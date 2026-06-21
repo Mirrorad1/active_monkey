@@ -1,0 +1,28 @@
+========================================================================================================
+Exp 266 (R3) — do PREDATOR/PREY ROLES emerge from a single population via cannibalism? RAW.
+single pop (n_pred0=0), enable_cannibalism, aggr0=0.3, aggr free-evolving; seeds [740, 741, 742, 743, 744, 745, 746, 747, 748, 749]; 11 procs.
+ROLES_EMERGE iff aggr DISTRIBUTION is BIMODAL (predator clade aggr>0.5 + prey clade aggr<0.2 coexist).
+========================================================================================================
+
+cannibal_cost | mean aggr    std  bimod | %pred(>0.5) %prey(<0.2)   %mid |      p10/p50/p90 | extinct
+--------------------------------------------------------------------------------------------------------
+         0.05 |     1.000  0.000  0.897 |      100.0%        0.0%   0.0% |   1.00/1.00/1.00 | 0/10
+         0.10 |     1.000  0.000  0.911 |      100.0%        0.0%   0.0% |   1.00/1.00/1.00 | 0/10
+         0.20 |     1.000  0.000  0.928 |      100.0%        0.0%   0.0% |   1.00/1.00/1.00 | 0/10
+
+  per-seed (cannibal_cost=0.10): bimod | mean | %pred | %prey
+    seed 740: bimod=0.889 mean=1.000 %pred=100 %prey=0 (n=2758)
+    seed 741: bimod=0.874 mean=1.000 %pred=100 %prey=0 (n=2783)
+    seed 742: bimod=0.957 mean=1.000 %pred=100 %prey=0 (n=2756)
+    seed 743: bimod=0.996 mean=1.000 %pred=100 %prey=0 (n=2794)
+    seed 744: bimod=0.979 mean=1.000 %pred=100 %prey=0 (n=2787)
+    seed 745: bimod=0.901 mean=1.000 %pred=100 %prey=0 (n=2777)
+    seed 746: bimod=0.930 mean=1.000 %pred=100 %prey=0 (n=2811)
+    seed 747: bimod=0.628 mean=1.000 %pred=100 %prey=0 (n=2797)
+    seed 748: bimod=0.972 mean=1.000 %pred=100 %prey=0 (n=2768)
+    seed 749: bimod=0.986 mean=1.000 %pred=100 %prey=0 (n=2778)
+
+PREDECLARED READOUT (controller adjudicates):
+  ROLES_EMERGE iff the aggr distribution is robustly BIMODAL (bimod>0.555) with BOTH a
+  predator clade (aggr>0.5) and a prey clade (aggr<0.2) coexisting; CONVERGES iff unimodal
+  (one clade / single level); NO_VERDICT iff collapse/explosion.
