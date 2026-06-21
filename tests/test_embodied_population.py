@@ -1,6 +1,20 @@
 import numpy as np, pytest
 from pathlib import Path
 
+
+def test_policy_runner_obs_and_action(tmp_path):
+    import jax, jax.numpy as jnp
+    from embodied.policy_runner import PolicyRunner, DEFAULT_CKPT
+    pr = PolicyRunner(DEFAULT_CKPT)
+    env = pr.env
+    state = env.reset(jax.random.PRNGKey(0))
+    obs = pr.build_obs(state.pipeline_state, (3.0, 0.0))
+    assert obs.shape == (env.observation_size,)        # 29
+    act = pr.act(obs)
+    assert act.shape == (env.action_size,)             # 8
+    assert bool(jnp.isfinite(act).all())
+
+
 def test_foodfield_deplete_regen_nearest():
     from embodied.foodfield import FoodField, FoodFieldConfig
     f = FoodField(FoodFieldConfig(extent=6.0, cells=24, capacity=1.0, regen=0.1, n_sources=5), seed=0)
