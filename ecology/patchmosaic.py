@@ -141,6 +141,8 @@ class PatchMosaicConfig:
     mutation_sd: float = 0.05
     escape_cost: float = 0.15
     escape_baseline: float = 1.0
+    attack_cost: float = 0.0            # predator fecundity penalty for attack above baseline
+    attack_baseline: float = 1.0        # predator attack level at which attack_cost is zero
     freeze_prey_trait: bool = False
     freeze_predator_trait: bool = False
     trait_min: float = 0.0
@@ -511,6 +513,14 @@ class PatchMosaicSim:
         death_p_pred = self._pred_death_prob(N_pred)
         for j, q in enumerate(patch.predators):
             birth_p_pred = cfg.pred_birth_per_capture * cfg.assimilation * pred_captures[j]
+            if cfg.enable_trait_evolution:
+                # Per-individual attack cost (MIRRORS the prey escape cost EXACTLY):
+                # higher attack above baseline -> lower predator fecundity.  With the
+                # default attack_cost=0.0 the factor is exactly 1.0, so the predator-birth
+                # threshold is byte-identical and the rng draw below is unchanged.
+                birth_p_pred = birth_p_pred * max(
+                    0.0, 1.0 - cfg.attack_cost * max(0.0, q.trait - cfg.attack_baseline)
+                )
             birth_p_pred = min(1.0, max(0.0, birth_p_pred))
             if rng.random() < birth_p_pred:
                 child_trait = (q.trait if cfg.freeze_predator_trait else self._mutate(q.trait)) \

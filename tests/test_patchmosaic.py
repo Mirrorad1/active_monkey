@@ -567,3 +567,45 @@ def test_trait_evolution_deterministic():
         "enable_trait_evolution=True run must be deterministic: "
         f"two identical runs with seed=7 produced different hashes: {h1!r} vs {h2!r}."
     )
+
+
+# ---------------------------------------------------------------------------
+# T20 (Exp 261): predator attack_cost is byte-identical OFF and LIVE when ON.
+# The cost factor (a fecundity scaler on predator birth, mirroring escape_cost)
+# must add ZERO rng draws: with attack_cost=0.0 (default) it is exactly 1.0, so
+# every prior hash is preserved.  T16 pins no ON-hash literal (only h_off != h_on),
+# so we pin a fresh ON golden here and prove (a) default attack_cost=0 leaves it
+# byte-identical, (b) attack_cost>0 on a high-attack evolving config DIVERGES (the
+# cost is a live branch, not a silent no-op), (c) attack_cost>0 with the gate OFF
+# never perturbs the ring golden.
+# ---------------------------------------------------------------------------
+_TRAIT_ON_GOLDEN = "790a8499be51644f255f3e431ac0488612dd625047d696d1f646b7919fef7623"
+_RING_GOLDEN_HASH_T20 = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+
+def test_attack_cost_byte_identical_off_and_live_on():
+    def run_hash(**kw):
+        seed = kw.pop("seed", 1)
+        return PatchMosaicSim(PatchMosaicConfig(**kw), seed).run()["events_hash"]
+
+    # (a) trait-evolution ON with attack_cost at its 0.0 default == pinned ON golden.
+    h_on_default = run_hash(horizon=200, enable_trait_evolution=True, mutation_rate=0.1)
+    assert h_on_default == _TRAIT_ON_GOLDEN, (
+        f"attack_cost=0.0 (default) must leave the evolving-ON hash byte-identical to the "
+        f"pre-attack_cost golden. Expected {_TRAIT_ON_GOLDEN!r}, got {h_on_default!r}."
+    )
+
+    # (b) attack_cost>0 on a high-attack evolving config MUST diverge (cost branch is live).
+    h_on_costed = run_hash(horizon=200, enable_trait_evolution=True, mutation_rate=0.1,
+                           attack_cost=0.4, pred_attack=2.5)
+    assert h_on_costed != _TRAIT_ON_GOLDEN, (
+        "attack_cost=0.4 with high-attack predators must change the events_hash — "
+        "if it matches the cost=0 golden, the cost factor is a silent no-op."
+    )
+
+    # (c) attack_cost>0 with the gate OFF must NOT perturb the ring golden (gated path).
+    h_off_costed = run_hash(horizon=200, enable_trait_evolution=False, attack_cost=0.4, pred_attack=2.5)
+    assert h_off_costed == _RING_GOLDEN_HASH_T20, (
+        "A non-default attack_cost with enable_trait_evolution=False must never execute the "
+        f"cost branch. Expected ring golden {_RING_GOLDEN_HASH_T20!r}, got {h_off_costed!r}."
+    )
