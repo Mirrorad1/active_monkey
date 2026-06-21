@@ -681,3 +681,14 @@ def test_aggr_heritable_and_lineage_inherited():
         assert not all(a == 0.5 for a in aggrs)          # aggr drifted
         assert all(0.0 <= a <= 1.0 for a in aggrs)        # clamped
         assert all(c.lineage in range(4) for p in sim.patches for c in p.prey)  # lineage preserved
+
+
+# ---------------------------------------------------------------------------
+# T27: Lineage / aggr-distribution recording — observation-only, zero rng change
+# ---------------------------------------------------------------------------
+def test_lineage_recording_present_and_no_rng_change():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    r = PatchMosaicSim(PatchMosaicConfig(horizon=200, track_lineages=True), 1).run()
+    assert "aggr_mean_series" in r and "lineage_aggr_final" in r
+    assert r["events_hash"] == GOLD            # recording adds no rng draws

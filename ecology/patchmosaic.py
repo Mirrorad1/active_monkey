@@ -739,6 +739,7 @@ class PatchMosaicSim:
         ]
 
         step_summaries: List[dict] = []
+        aggr_mean_series: List[float] = []
         exploded = False
 
         while self.t < cfg.horizon:
@@ -758,6 +759,9 @@ class PatchMosaicSim:
             occupancy_series.append(
                 sum(1 for i in range(n) if pp[i] > 0 and qq[i] > 0) / n
             )
+            if cfg.track_lineages:
+                prey = [c.aggr for p in self.patches for c in p.prey]
+                aggr_mean_series.append(float(np.mean(prey)) if prey else 0.0)
 
             # Stop conditions
             if gp == 0 or gq == 0:
@@ -771,7 +775,7 @@ class PatchMosaicSim:
 
         global_extinct = (global_prey_series[-1] == 0 or global_pred_series[-1] == 0)
 
-        return {
+        result: dict = {
             "events_hash": events_hash,
             "global_prey_series": global_prey_series,
             "global_pred_series": global_pred_series,
@@ -787,3 +791,14 @@ class PatchMosaicSim:
             "cv_global_prey": self._cv_tail(global_prey_series),
             "cv_global_pred": self._cv_tail(global_pred_series),
         }
+        result["aggr_mean_series"] = aggr_mean_series if cfg.track_lineages else []
+        if cfg.track_lineages:
+            from collections import defaultdict
+            agg = defaultdict(list)
+            for p in self.patches:
+                for c in p.prey:
+                    agg[c.lineage].append(c.aggr)
+            result["lineage_aggr_final"] = {k: (len(v), float(np.mean(v))) for k, v in agg.items()}
+        else:
+            result["lineage_aggr_final"] = {}
+        return result
