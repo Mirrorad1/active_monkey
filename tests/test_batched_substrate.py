@@ -165,3 +165,27 @@ def test_batched_loud_cap():
     r = run(cfg)
     assert getattr(r, "capped", 0) >= 1, f"expected capped >= 1, got {getattr(r, 'capped', 0)}"
     assert max(r.n_series) <= 8, f"max(n_series)={max(r.n_series)} exceeds max_pop=8"
+
+
+# ---------------------------------------------------------------------------
+# Task 5: CLI entrypoint + certify + bracket test
+# ---------------------------------------------------------------------------
+
+@pytest.mark.slow
+def test_batched_certify_and_bracket(tmp_path):
+    """End-to-end: certify returns a dict with 'stable' bool;
+    rich-field run sustains a higher peak population than poor-field run."""
+    from embodied.batched_population import run, BatchedPopConfig
+    from embodied.run_population import certify
+    from embodied.foodfield import FoodFieldConfig
+    poor = run(BatchedPopConfig(n_founders=20, horizon=40, bout_steps=6, max_pop=128, seed=0,
+                                field=FoodFieldConfig(capacity=5.0, regen=0.2)))
+    rich = run(BatchedPopConfig(n_founders=20, horizon=40, bout_steps=6, max_pop=256, seed=0,
+                                field=FoodFieldConfig(capacity=40.0, regen=0.6)))
+    v = certify(poor)
+    assert "stable" in v and isinstance(v["stable"], bool)
+    # bracket: rich sustains a higher population than poor
+    assert max(rich.n_series) > max(poor.n_series), (
+        f"expected max(rich.n_series) > max(poor.n_series), "
+        f"got rich={max(rich.n_series)} poor={max(poor.n_series)}"
+    )
