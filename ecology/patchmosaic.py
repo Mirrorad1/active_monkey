@@ -244,7 +244,8 @@ class PatchMosaicSim:
         for i in range(cfg.n_patches):
             patch = Patch(idx=i, is_refuge=refuge_flags[i], phase=phases[i])
             for _ in range(cfg.n_prey0_per_patch):
-                patch.prey.append(Critter("prey", cfg.prey_escape, self._next_cid))
+                patch.prey.append(Critter("prey", cfg.prey_escape, self._next_cid,
+                                          aggr=cfg.aggr0, lineage=i))
                 self._next_cid += 1
             for _ in range(cfg.n_pred0_per_patch):
                 patch.predators.append(Critter("pred", cfg.pred_attack, self._next_cid))

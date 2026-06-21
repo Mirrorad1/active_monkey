@@ -630,3 +630,16 @@ def test_contest_config_defaults_inert():
     c = PatchMosaicConfig()
     assert c.enable_contest is False and c.aggr0 == 0.0 and c.track_lineages is False
     assert c.contest_cost == 0.10 and c.contest_seize == 0.50 and c.contest_dissipation == 0.0
+
+
+# ---------------------------------------------------------------------------
+# T23: Founders seed aggr0 + per-patch lineage ids (byte-identical)
+# ---------------------------------------------------------------------------
+def test_founders_seed_aggr_and_lineage_byte_identical():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    sim = PatchMosaicSim(PatchMosaicConfig(aggr0=0.3, n_patches=4), seed=1)
+    assert all(c.aggr == 0.3 for p in sim.patches for c in p.prey)
+    assert all(c.lineage == p.idx for p in sim.patches for c in p.prey)
+    # aggr0 alone (contest OFF) must not change the golden
+    h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
+    assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
