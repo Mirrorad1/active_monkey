@@ -49,3 +49,16 @@ def test_mujoco_offscreen_render_nonblack():
         frame = r.render()
     assert frame.shape == (120, 160, 3)
     assert frame.std() > 1.0  # not a constant/all-black frame
+
+
+def test_env_builds_and_steps():
+    import jax
+    from embodied.env import EmbodiedForageEnv
+    env = EmbodiedForageEnv()
+    assert env.observation_size > 0 and env.action_size > 0
+    state = env.reset(jax.random.PRNGKey(0))
+    assert state.obs.shape == (env.observation_size,)
+    act = jax.numpy.zeros(env.action_size)
+    nstate = env.step(state, act)
+    assert nstate.obs.shape == (env.observation_size,)
+    assert jax.numpy.isfinite(nstate.reward)
