@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:264, breakthrough:9, positive:117, wall:58, partial:80, from:4.81, to:4.00 };
+window.AM_TALLY = { total:265, breakthrough:9, positive:118, wall:58, partial:80, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -2837,7 +2837,17 @@ window.AM_EXPERIMENTS = [
     result:"MIXED. (A) basin P(invade) 9/10, 9/10, 8/10, 0/10, 2/10 across attack_a 0.01->0.08 (scarcity-gated, transition ~0.04-0.06). (B) aggr@end robustly 0.857 (0.70-0.91 all 10 ON seeds, not washed out); but ON vs OFF indistinguishable -- escape both bimodal (means 1.168 vs 1.498 within sd~1.3, ~2-3/10 prey-escaped), attack ~2.0 (2.087 vs 2.010), 0/10 extinct both, ON slightly lower prey (336 vs 381, the cost). Smoke 'buffering' was a 2-seed mean-of-opposites artifact.",
     implication:"Intraspecific aggression and predator-prey co-evolution are largely ORTHOGONAL here: aggression robustly co-emerges (so R1 wasn't a no-predator artifact -- refuges decouple local crowding from global predation), but it neither buffers nor destabilises the arms race -- coexistence holds and the bistable predator-dominance outcome is unchanged. Introducing intraspecific competition adds a third co-emerging trait, not a regime change. Washed-out hypothesis falsified; buffering hypothesis unsupported. Next: R3 cannibalism -> emergent roles.",
     caveat:"MIXED / NEW INSIGHT, scoped.",
-    trace:{ script:"experiments/exp264_contest_in_context.py", output:"experiments/outputs/exp264.txt" } }
+    trace:{ script:"experiments/exp264_contest_in_context.py", output:"experiments/outputs/exp264.txt" } },
+  { n:265, kind:"positive", chapter:"frontier",
+    title:"R2 follow-up: REFUGES decouple intraspecific aggression from predation -- with refuges aggression emerges regardless of predation; refuge-free it couples (declines as a strong predator thins the prey).",
+    one:"R2 found aggression co-emerged even under a co-evolving predator that crushed global prey density (N/K~0.05), explained as the refuge patches crowding locally. This tests that directly: remove the refuge (keep migration+asynchrony for coexistence) and sweep predation. The refuge x predation interaction is clean. WITH refuge: aggr@end stays flat and high (0.852, 0.804, 0.765, 0.830 across attack_a 0.01->0.07; 0/10 extinct) -- decoupled. REFUGE-FREE: aggr@end declines (0.734 -> 0.459 -> 0.396) as predation rises and global crowding falls (N/K 0.22 -> 0.07), collapsing at the strongest predation (4/10 extinct) -- coupled. At attack_a=0.05 the refuge sustains aggression (0.765) where refuge-free loses it (0.396). So spatial refuge structure is the knob that makes intraspecific competition independent of, or coupled to, interspecific predation -- the mechanistic explanation of the R2 orthogonality.",
+    plain:"In R2 it was surprising that fighting emerged even when the predator was keeping the prey sparse -- there shouldn't be enough crowding to fight over. The answer is the refuges: safe patches where prey pile up locally no matter how thin the predator makes them overall. We proved it by removing the refuges. Without them, fighting now tracks the predator exactly: under a light predator the prey crowd and fight; under a heavy predator they're kept sparse, fighting fades, and eventually the prey collapse. With refuges, fighting stays strong across the whole predation range. So a spatial safe-haven is what lets a species' internal competition run on its own clock, independent of how hard it's being hunted.",
+    metric:{ from:0.734, to:0.396, unit:"refuge-free aggr declines 0.73->0.40 w/ predation; refuge stays ~0.8 (decoupled)" },
+    setup:"experiments/exp265_refuge_free_coupling.py (multiprocessing). 3-trait co-evolution (escape+aggr+attack), contest ON, regime as R2 Part B (migration=0.05, async rotating amp=0.4, K_pred=40, escape_cost=0.15, contest_cost=0.10, contest_seize=0.50); varied axes refuge_mode {per_patch, none} x attack_a {0.01,0.03,0.05,0.07}, seeds 730-739, horizon 3000. Per-seed dispersion reported (mean-of-opposites-guard); output fully script-generated.",
+    result:"POSITIVE. Refuge: aggr@end 0.852/0.804/0.765/0.830 across attack_a 0.01-0.07 (N/K 0.33->0.12), 0/10 extinct -- flat/decoupled. Refuge-free: aggr@end 0.734/0.459/0.396/0.430 (N/K 0.22->0.06), 4/10 extinct at attack_a=0.07 -- declines/couples. At attack_a=0.05 refuge 0.765 vs refuge-free 0.396. Refuge-free transition is variable/bimodal per-seed (a0.05 spans 0.06-0.83 -- stochastic crowding threshold).",
+    implication:"Spatial refuge structure decouples intraspecific competition from interspecific predation. With a refuge, prey crowd locally regardless of global predation, so aggression emerges independent of predation pressure (the R2 orthogonality). Without it, prey crowding = global density = set by predation, so aggression couples: emerges under weak predation, washes out / collapses under strong. This is the mechanistic explanation of R2 and a concrete spatial-ecology result. Next: R3 cannibalism -> emergent roles.",
+    caveat:"POSITIVE-SINGLE / NEW INSIGHT, scoped.",
+    trace:{ script:"experiments/exp265_refuge_free_coupling.py", output:"experiments/outputs/exp265.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
