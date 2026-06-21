@@ -185,6 +185,8 @@ class Critter:
     role: str   # "prey" or "pred"
     trait: float
     cid: int
+    aggr: float = 0.0      # intraspecific-contest propensity (R1); only read when enable_contest
+    lineage: int = -1      # founder-lineage id, inherited by offspring (observation-only)
 
 
 # ---------------------------------------------------------------------------

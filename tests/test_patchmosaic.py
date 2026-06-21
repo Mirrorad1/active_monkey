@@ -609,3 +609,14 @@ def test_attack_cost_byte_identical_off_and_live_on():
         "A non-default attack_cost with enable_trait_evolution=False must never execute the "
         f"cost branch. Expected ring golden {_RING_GOLDEN_HASH_T20!r}, got {h_off_costed!r}."
     )
+
+
+# ---------------------------------------------------------------------------
+# T21: Critter carries aggr + lineage fields with correct defaults (byte-identical)
+# ---------------------------------------------------------------------------
+def test_critter_new_fields_default_and_byte_identical():
+    from ecology.patchmosaic import Critter, PatchMosaicConfig, PatchMosaicSim
+    c = Critter("prey", 1.0, 0)
+    assert c.aggr == 0.0 and c.lineage == -1
+    h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
+    assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"

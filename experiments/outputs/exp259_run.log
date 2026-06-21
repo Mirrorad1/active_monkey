@@ -1,0 +1,22 @@
+================================================================================================
+Exp 259 — DISCRETE RED QUEEN on the patch-mosaic substrate (BOTH regime). RAW — controller judges.
+single causal bit = freeze_predator_trait (static vs co-evolving); FRESH seeds [400, 401, 402, 403, 404, 405, 406, 407, 408, 409]
+================================================================================================
+(A) INVASION-FROM-RARITY: rare breed-true mutant escape=1.4 into resident escape=1.0 (at equilibrium).
+       arm  invaded  fixed  mean f0 mean f_final   n
+----------------------------------------------------
+    static     6/10    6/10    0.021        0.600  10
+ co-evolve     0/10    0/10    0.020        0.000  10
+
+(B) OPEN-ENDED ARMS RACE: prey escape mutable; predator STATIC vs CO-EVOLVING. Global trait means.
+       arm  esc@500  esc@1k  esc@2k  esc@3k  atk@3k extinct@end
+----------------------------------------------------------------------
+    static     1.39    2.02    2.69    2.98    1.00         0/10
+ co-evolve     1.14    0.92    0.77    0.68    1.59         0/10
+
+RED QUEEN SIGNATURE (single causal bit = predator co-evolution):
+  static:    esc@3k=2.98 atk@3k=1.00 (attack FROZEN)
+  co-evolve: esc@3k=0.68 atk@3k=1.59
+  Red Queen ENGAGES iff co-evolve predator attack RISES (atk@3k >> static's frozen ~1.0) = arms race in the antagonist.
+
+[written to experiments/outputs/exp259_patch_red_queen.txt]
