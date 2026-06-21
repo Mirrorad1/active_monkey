@@ -1,8 +1,9 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 267, title: "R3b: decoupling OFFENSE from DEFENSE still does NOT yield predator/prey roles — the population converges to a monomorphic GENERALIST APEX (max aggression AND max defense), no specialization (NEGATIVE / NEW INSIGHT).", tag: "NEGATIVE" },
-  tally: { total: 267, positive: 139, negative: 87, mixed: 37, breakthroughs: 15 },
+  latest_exp: { n: 268, title: "Acoustic Eavesdropping Expressibility Probe: SOUND carries real bits about hidden predator density (MI 0.643 vs null 0.0004) but gifted prey hearing gives NO actionable benefit (hazard 0.402 > baseline 0.379, 0/8) — the coexistence-posing metapopulation leaves prey no acoustic refuge to flee to; gifted PREDATOR hearing DOES help (capture success 0.630 vs 0.579) (NEGATIVE / NEW INSIGHT — ABORT evolution).", tag: "NEGATIVE" },
+  tally: { total: 268, positive: 139, negative: 88, mixed: 37, breakthroughs: 15 },
   directions: [
+    { name: "acoustic-ecology", state: "active", latest: "Exp 268 (pending)", next: "does gifted hearing measurably help AND beat shuffled/silent controls without leaking position/identity (Exp 268)?" },
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },

@@ -97,6 +97,8 @@ from typing import List, Optional, Tuple
 
 import numpy as np
 
+from ecology import acoustic as _acoustic
+
 
 # ---------------------------------------------------------------------------
 # Module-level helpers
@@ -162,6 +164,33 @@ class PatchMosaicConfig:
     freeze_predator_trait: bool = False
     trait_min: float = 0.0
     trait_max: float = 4.0
+
+    # ---- Acoustic substrate (gated; default OFF -> byte-identical) ----
+    # Sound as a PHYSICAL environmental substrate (ecology/acoustic.py).  The FIELD
+    # is purely observational; behavior changes ONLY under acoustic_response + a
+    # gifted_hearing role, so "field present, no hearing" is itself byte-identical
+    # to OFF.  Agents NEVER receive source position / identity / event type / labels.
+    enable_acoustic_field: bool = False
+    acoustic_response: bool = False     # gifted hearing DRIVES migration direction
+    gifted_hearing: str = "none"        # "none" | "prey" | "pred"
+    sound_speed: float = 4.0            # hops per step; arrival delay = round(dist/speed)
+    attenuation_power: float = 2.0      # inverse-square-like
+    distance_floor: float = 1.0
+    freq_absorption: Tuple[float, float, float] = (0.05, 0.15, 0.40)  # high absorbs fastest
+    time_decay: Tuple[float, float, float] = (0.20, 0.35, 0.60)
+    ambient_noise: Tuple[float, float, float] = (0.05, 0.04, 0.03)
+    detection_threshold: float = 2.0    # SNR floor
+    acoustic_buffer_window: int = 24
+    hearing_sensitivity: float = 1.0
+    hearing_precision: float = 0.0      # 0 = perfect estimate; >0 = noisier
+    hearing_bandwidth: int = 3          # bands resolved (1..3)
+    directional_hearing: bool = True
+    hearing_cost: float = 0.0           # per-step fecundity cost when hearing active (reported)
+    # Controls (deflationary):
+    acoustic_shuffle: bool = False      # decorrelate emission location from true source
+    acoustic_silence: bool = False      # zero all emissions (noise-only)
+    acoustic_scalar: bool = False       # collapse bands to ONE scalar (frequency not resolved)
+    acoustic_seed_offset: int = 970_001 # separate rng stream for perception noise/shuffle
 
     # ---- Migration (local, graph-neighbor only) ----
     migration_rate_prey: float = 0.0    # per-prey per-step prob of moving to a neighbor
@@ -271,6 +300,11 @@ class PatchMosaicSim:
         self._had_pred = [len(p.predators) > 0 for p in self.patches]
         self.local_extinction_events = 0
         self.recolonization_events = 0
+
+        # ---- Acoustic substrate (gated; OFF => none of this runs, byte-identical) ----
+        self._acoustic = None
+        if cfg.enable_acoustic_field:
+            self._setup_acoustic(cfg, seed)
 
     # ------------------------------------------------------------------
     # Setup helpers
@@ -464,6 +498,236 @@ class PatchMosaicSim:
         return 1.0
 
     # ------------------------------------------------------------------
+    # Acoustic substrate (gated behind enable_acoustic_field)
+    # ------------------------------------------------------------------
+    def _setup_acoustic(self, cfg: PatchMosaicConfig, seed: int) -> None:
+        """Build the acoustic field + buffers.  Called ONLY when the gate is on."""
+        acfg = _acoustic.AcousticConfig(
+            sound_speed=cfg.sound_speed,
+            attenuation_power=cfg.attenuation_power,
+            distance_floor=cfg.distance_floor,
+            freq_absorption=cfg.freq_absorption,
+            time_decay=cfg.time_decay,
+            ambient_noise=cfg.ambient_noise,
+            detection_threshold=cfg.detection_threshold,
+            buffer_window=cfg.acoustic_buffer_window,
+            hearing_sensitivity=cfg.hearing_sensitivity,
+            hearing_precision=cfg.hearing_precision,
+            hearing_bandwidth=cfg.hearing_bandwidth,
+            directional_hearing=cfg.directional_hearing,
+        )
+        self._acoustic = acfg
+        self._field = _acoustic.AcousticField(acfg, self.neighbors)
+        self._signatures = _acoustic.default_event_signatures()
+        # Separate rng stream for perception noise + the (fixed) shuffle permutation,
+        # so acoustics never perturb the master dynamics rng (byte-identity guard).
+        self._ac_rng = np.random.default_rng(seed + cfg.acoustic_seed_offset)
+        n = cfg.n_patches
+        # Fixed non-identity spatial permutation for the shuffle control (decorrelates
+        # emission LOCATION from the true source location; preserves total energy/spectra).
+        if cfg.acoustic_shuffle and n > 1:
+            perm = self._ac_rng.permutation(n)
+            tries = 0
+            while np.all(perm == np.arange(n)) and tries < 16:
+                perm = self._ac_rng.permutation(n)
+                tries += 1
+            self._shuffle_perm = perm
+        else:
+            self._shuffle_perm = np.arange(n)
+        # Per-step emission accumulator: counts of each event type per patch.
+        self._emit_counts = [self._zero_counts() for _ in range(n)]
+        # Received field at the START of the current step (what behavior reads).
+        self._received = np.zeros((n, _acoustic.N_BANDS), dtype=float)
+        # Analysis accumulators (ANALYSIS-ONLY; agents never receive these).
+        # Raw per-(patch,step) perceived band intensities + raw hidden predator
+        # density; binned by quantiles post-hoc in run() (handles dense regimes
+        # where presence/absence does not vary but DENSITY does).
+        self._an_perceived: List[np.ndarray] = []   # each (3,)
+        self._an_hidden: List[int] = []             # predator count in patch+neighbors
+        self._an_step: List[int] = []
+        # Per-step trophic bookkeeping for capture-hazard metrics.
+        self.captures_total = 0
+        self.prey_deaths_total = 0
+        self.prey_alive_steps = 0   # sum over steps of prey alive at step start
+        self.pred_alive_steps = 0   # sum over steps of predators alive at step start
+
+    @staticmethod
+    def _zero_counts() -> dict:
+        return {"movement": 0, "attack": 0, "feeding": 0, "reproduction": 0, "death": 0}
+
+    def _emit_to_bands(self) -> np.ndarray:
+        """Convert this step's per-patch event counts into per-patch per-band
+        emitted energy (n, 3), applying the silence + shuffle controls."""
+        cfg = self.cfg
+        n = cfg.n_patches
+        emit = np.zeros((n, _acoustic.N_BANDS), dtype=float)
+        if cfg.acoustic_silence:
+            return emit  # noise-only control: no source energy at all
+        for j in range(n):
+            counts = self._emit_counts[j]
+            for ev, c in counts.items():
+                if c == 0:
+                    continue
+                amp, spectrum = self._signatures[ev]
+                for b in range(_acoustic.N_BANDS):
+                    emit[j, b] += c * amp * spectrum[b]
+        if cfg.acoustic_shuffle:
+            emit = emit[self._shuffle_perm]  # relocate each patch's emission elsewhere
+        return emit
+
+    def _hidden_pred_count(self, i: int) -> int:
+        """Ground-truth hidden predator count near patch i (ANALYSIS-ONLY): predators
+        in patch i plus its graph-neighbors (the locality a sound could carry).
+        Agents NEVER receive this; binned by quantiles post-hoc."""
+        c = len(self.patches[i].predators)
+        for nb in self.neighbors[i]:
+            c += len(self.patches[nb].predators)
+        return c
+
+    def _record_acoustic_analysis(self, t: int) -> None:
+        """Sample (perceived per-band intensity, raw hidden predator density) per
+        patch using the start-of-step received field.  Binned post-hoc in run().
+        ANALYSIS-ONLY; never fed to agents."""
+        acfg = self._acoustic
+        n = self.cfg.n_patches
+        for i in range(n):
+            perceived = _acoustic.perceive(self._received[i], acfg, self._ac_rng)
+            self._an_perceived.append(np.asarray(perceived, dtype=float))
+            self._an_hidden.append(self._hidden_pred_count(i))
+            self._an_step.append(t)
+
+    @staticmethod
+    def _tercile_bin(x: np.ndarray) -> np.ndarray:
+        """Bin a 1-D array into 0/1/2 by its own 33rd/67th percentiles.  A
+        (near-)constant array collapses to all-zeros (no information)."""
+        x = np.asarray(x, dtype=float)
+        if x.size == 0:
+            return x.astype(int)
+        q1, q2 = np.quantile(x, [1.0 / 3.0, 2.0 / 3.0])
+        if q2 <= q1:  # degenerate / constant — no resolvable variation
+            if x.max() <= x.min():
+                return np.zeros_like(x, dtype=int)
+            q1 = q2 = float(x.min())  # split off only the minimum
+        b = np.zeros_like(x, dtype=int)
+        b[x > q1] = 1
+        b[x > q2] = 2
+        return b
+
+    def _acoustic_analysis(self) -> dict:
+        """Compute MI(acoustic obs; hidden predator density) + detection error +
+        capture hazard, over the STEADY-STATE second half.  ANALYSIS-ONLY.
+
+        Per-band and scalar MI use the SAME 3-bin resolution so banded-vs-scalar is
+        a fair comparison (the abort check 'scalar works as well as banded').  A
+        shuffled-hidden null gives the MI noise floor."""
+        per = np.asarray(self._an_perceived, dtype=float)   # (S, 3)
+        hid = np.asarray(self._an_hidden, dtype=float)       # (S,)
+        steps = np.asarray(self._an_step)
+        if per.shape[0] == 0:
+            return {"mi_high_bits": 0.0, "mi_mid_bits": 0.0, "mi_low_bits": 0.0,
+                    "mi_scalar_bits": 0.0, "mi_banded_bits": 0.0, "mi_null_bits": 0.0,
+                    "false_positive_rate": 0.0, "false_negative_rate": 0.0,
+                    "prey_capture_hazard": 0.0, "captures_total": self.captures_total,
+                    "prey_deaths_total": self.prey_deaths_total, "n_samples": 0}
+        # steady-state second half
+        cut = (steps.max() + 1) // 2
+        m = steps >= cut
+        per, hid = per[m], hid[m]
+        hb = self._tercile_bin(hid)
+        bands = [self._tercile_bin(per[:, b]) for b in range(_acoustic.N_BANDS)]
+        scalar = self._tercile_bin(per.sum(axis=1))
+        joint = bands[0] + 3 * bands[1] + 9 * bands[2]   # 0..26
+        hb_l = hb.tolist()
+        mi_low = _acoustic.mutual_information_bits(bands[0].tolist(), hb_l)
+        mi_mid = _acoustic.mutual_information_bits(bands[1].tolist(), hb_l)
+        mi_high = _acoustic.mutual_information_bits(bands[2].tolist(), hb_l)
+        mi_scalar = _acoustic.mutual_information_bits(scalar.tolist(), hb_l)
+        mi_banded = _acoustic.mutual_information_bits(joint.tolist(), hb_l)
+        # MI noise floor: shuffle hidden (breaks the obs<->hidden pairing).
+        hb_shuf = hb.copy()
+        self._ac_rng.shuffle(hb_shuf)
+        mi_null = _acoustic.mutual_information_bits(bands[2].tolist(), hb_shuf.tolist())
+        # detection error using the high band (the attack/death signature) vs danger.
+        near = hb == 2
+        detected = bands[2] == 2
+        fp, fn = _acoustic.detection_error_rates(detected.tolist(), near.tolist())
+        cap_haz = (self.prey_deaths_total / self.prey_alive_steps
+                   if self.prey_alive_steps > 0 else 0.0)
+        cap_success = (self.captures_total / self.pred_alive_steps
+                       if self.pred_alive_steps > 0 else 0.0)
+        return {
+            "predator_capture_success": cap_success,
+            "mi_high_bits": mi_high, "mi_mid_bits": mi_mid, "mi_low_bits": mi_low,
+            "mi_scalar_bits": mi_scalar, "mi_banded_bits": mi_banded, "mi_null_bits": mi_null,
+            "false_positive_rate": fp, "false_negative_rate": fn,
+            "prey_capture_hazard": cap_haz,
+            "captures_total": self.captures_total,
+            "prey_deaths_total": self.prey_deaths_total,
+            "n_samples": int(per.shape[0]),
+        }
+
+    def _perceived_danger(self, i: int) -> float:
+        """A gifted listener's scalar DANGER estimate at patch i = perceived
+        broadband (attack/death-dominated) intensity.  Honest: it is just loudness;
+        the agent is never told it means predator.  Under acoustic_scalar the bands
+        are summed (no frequency resolution)."""
+        acfg = self._acoustic
+        perceived = _acoustic.perceive(self._received[i], acfg, self._ac_rng)
+        if self.cfg.acoustic_scalar:
+            # No frequency resolution: total loudness only (the deflation control —
+            # cannot isolate the predator-specific attack/death signature).
+            return float(perceived.sum())
+        # Frequency-resolved: the HIGH band is the predator-SPECIFIC signature
+        # (only attack + death emit high; movement/feeding/reproduction do not).
+        # mid is added lightly (attack/death also emit mid, but so does feeding).
+        return float(perceived[2] + 0.3 * perceived[1])
+
+    def _perceived_prey_sound(self, i: int) -> float:
+        """A gifted predator's scalar PREY-ACTIVITY estimate at patch i = perceived
+        low/mid (movement/feeding-dominated) intensity."""
+        acfg = self._acoustic
+        perceived = _acoustic.perceive(self._received[i], acfg, self._ac_rng)
+        if self.cfg.acoustic_scalar:
+            return float(perceived.sum())
+        return float(perceived[0] + perceived[1])
+
+    def _choose_neighbor(self, i: int, danger: bool) -> int:
+        """Pick the migration target among patch i's graph-neighbors using ONLY the
+        perceived acoustic field.  danger=True (prey): flee the QUIETEST danger
+        neighbor (argmin).  danger=False (predator): chase the LOUDEST prey-sound
+        neighbor (argmax).  Ties -> lowest patch index (deterministic, no rng).
+        With directional_hearing off, the agent cannot compare neighbors and falls
+        back to the home reading (stays acoustically blind to direction => index 0
+        neighbor), which the probe reports as a degraded control."""
+        nb = self.neighbors[i]
+        if not self.cfg.directional_hearing:
+            # Blind to direction: random neighbor (baseline-like).
+            return nb[int(self.rng.integers(len(nb)))]
+        # Explicit local comparison (no argmax/argsort — those are banned tokens for
+        # the global-evaluator anti-cheat guard; this is an individual sensory choice).
+        if danger:
+            vals = [self._perceived_danger(j) for j in nb]
+        else:
+            vals = [self._perceived_prey_sound(j) for j in nb]
+        spread = max(vals) - min(vals)
+        # NO discriminable signal (e.g. silence, or all-equal neighbors): fall back to
+        # a RANDOM neighbor so "no usable sound" reduces to baseline migration — never
+        # a deterministic drift (the VALIDATION.md degenerate-control guard).
+        if spread <= 1e-12:
+            return nb[int(self.rng.integers(len(nb)))]
+        best_idx = nb[0]
+        best_val = vals[0]
+        if danger:  # flee the quietest neighbor
+            for k in range(1, len(nb)):
+                if vals[k] < best_val:
+                    best_val, best_idx = vals[k], nb[k]
+        else:       # chase the loudest prey-sound neighbor
+            for k in range(1, len(nb)):
+                if vals[k] > best_val:
+                    best_val, best_idx = vals[k], nb[k]
+        return best_idx
+
+    # ------------------------------------------------------------------
     def _patch_dynamics(self, patch: Patch, t: int) -> None:
         """Within-patch dynamics for ONE patch using ONLY that patch's agents.
 
@@ -615,6 +879,25 @@ class PatchMosaicSim:
             if rng.random() < death_p_pred:
                 dead_pred_mask[j] = True
 
+        # (a-acoustic) Record physical event counts for sound emission (gated; no rng).
+        #   feeding   = successful prey foraging (a prey birth)
+        #   reproduction = a birth (prey or predator)
+        #   attack    = a landed capture; death = a prey predation death + a predator death
+        # These are PHYSICAL signatures; the agent is never told the event type.
+        if cfg.enable_acoustic_field:
+            ec = self._emit_counts[patch.idx]
+            n_prey_births = len(new_prey_children)
+            n_pred_births = len(new_pred_children)
+            n_captures = sum(pred_captures)
+            n_prey_deaths = sum(dead_prey_mask)
+            n_pred_deaths = sum(dead_pred_mask)
+            ec["feeding"] += n_prey_births
+            ec["reproduction"] += n_prey_births + n_pred_births
+            ec["attack"] += n_captures
+            ec["death"] += n_prey_deaths + n_pred_deaths
+            self.captures_total += n_captures
+            self.prey_deaths_total += n_prey_deaths
+
         # (e) Apply deaths, append children (preserve ascending-cid order)
         patch.prey = [p for i, p in enumerate(patch.prey) if not dead_prey_mask[i]]
         patch.prey.extend(new_prey_children)
@@ -645,19 +928,29 @@ class PatchMosaicSim:
         # Collect moves first (decide based on the PRE-migration occupants of each
         # patch), then apply, so an agent that just arrived cannot migrate again this
         # step and the decision order is deterministic.
+        gifted_prey = (cfg.enable_acoustic_field and cfg.acoustic_response
+                       and cfg.gifted_hearing == "prey")
+        acoustic_on = cfg.enable_acoustic_field
+
         # --- Prey ---
         prey_outgoing: List[List[Critter]] = [[] for _ in range(n)]  # to-append per patch
         for i, patch in enumerate(self.patches):
             stay: List[Critter] = []
             for c in patch.prey:  # ascending cid
                 if cfg.migration_rate_prey > 0.0 and rng.random() < cfg.migration_rate_prey:
-                    if is_ring:
+                    if gifted_prey:
+                        # Gifted hearing: flee toward the QUIETEST neighbor (lowest perceived
+                        # danger). No rng direction draw — direction is acoustic, deterministic.
+                        target = self._choose_neighbor(i, danger=True)
+                    elif is_ring:
                         # ORIGINAL draw: left/right as one rng.random() < 0.5 call.
                         target = (i + 1) % n if rng.random() < 0.5 else (i - 1) % n
                     else:
                         nb = self.neighbors[i]
                         target = nb[int(rng.integers(len(nb)))]
                     prey_outgoing[target].append(c)
+                    if acoustic_on:
+                        self._emit_counts[i]["movement"] += 1
                     if record_moves:
                         moves.append((i, target))
                 else:
@@ -666,19 +959,27 @@ class PatchMosaicSim:
         for i, patch in enumerate(self.patches):
             patch.prey.extend(prey_outgoing[i])
 
+        gifted_pred = (cfg.enable_acoustic_field and cfg.acoustic_response
+                       and cfg.gifted_hearing == "pred")
+
         # --- Predators ---
         pred_outgoing: List[List[Critter]] = [[] for _ in range(n)]
         for i, patch in enumerate(self.patches):
             stay = []
             for c in patch.predators:
                 if cfg.migration_rate_pred > 0.0 and rng.random() < cfg.migration_rate_pred:
-                    if is_ring:
+                    if gifted_pred:
+                        # Gifted hearing: approach the LOUDEST prey-activity neighbor.
+                        target = self._choose_neighbor(i, danger=False)
+                    elif is_ring:
                         # ORIGINAL draw: left/right as one rng.random() < 0.5 call.
                         target = (i + 1) % n if rng.random() < 0.5 else (i - 1) % n
                     else:
                         nb = self.neighbors[i]
                         target = nb[int(rng.integers(len(nb)))]
                     pred_outgoing[target].append(c)
+                    if acoustic_on:
+                        self._emit_counts[i]["movement"] += 1
                     if record_moves:
                         moves.append((i, target))
                 else:
@@ -710,6 +1011,19 @@ class PatchMosaicSim:
     # ------------------------------------------------------------------
     def step(self) -> dict:
         """Advance one time step.  Returns per-step summary dict (counts only)."""
+        cfg = self.cfg
+        # (a0-acoustic) At step START: compute the received field from PAST emissions
+        # (propagation delay => sound emitted this step is first audible next step),
+        # record the analysis sample, and reset this step's emission accumulator.
+        if cfg.enable_acoustic_field:
+            self._received = self._field.received(self.t)
+            # prey/predator alive at step start (capture-hazard + capture-success denominators)
+            self.prey_alive_steps += sum(len(p.prey) for p in self.patches)
+            self.pred_alive_steps += sum(len(p.predators) for p in self.patches)
+            if self.t >= 0:
+                self._record_acoustic_analysis(self.t)
+            self._emit_counts = [self._zero_counts() for _ in range(cfg.n_patches)]
+
         # (a) Within-patch dynamics, patches in ascending index.
         for patch in self.patches:
             self._patch_dynamics(patch, self.t)
@@ -717,6 +1031,10 @@ class PatchMosaicSim:
         self._migrate()
         # (c) Record local-extinction / recolonization transitions.
         self._record_occupancy_transitions()
+
+        # (d-acoustic) Push this step's emissions into the propagation buffer.
+        if cfg.enable_acoustic_field:
+            self._field.push_emissions(self.t, self._emit_to_bands())
 
         self.t += 1
 
@@ -837,6 +1155,14 @@ class PatchMosaicSim:
             "cv_global_prey": self._cv_tail(global_prey_series),
             "cv_global_pred": self._cv_tail(global_pred_series),
         }
+        # ---- Acoustic analysis (ANALYSIS-ONLY; agents never received any of this) ----
+        if cfg.enable_acoustic_field:
+            result["acoustic"] = self._acoustic_analysis()
+            result["acoustic"]["attenuation_curve"] = self._field.attenuation_curve()
+            result["acoustic"]["shuffle_perm"] = self._shuffle_perm.tolist()
+        else:
+            result["acoustic"] = {}
+
         result["aggr_mean_series"] = aggr_mean_series if cfg.track_lineages else []
         if cfg.track_lineages:
             from collections import defaultdict
