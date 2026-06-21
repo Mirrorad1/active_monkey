@@ -30,4 +30,5 @@ def test_init_buffer_and_spawn():
     # spawn_into_slot sets target slot, leaves others unchanged
     s2 = w.spawn_into_slot(state, 3, (4.0, 4.0), seed=99)
     assert np.allclose(np.asarray(s2.q[3, 0:2]), [4.0, 4.0])          # slot 3 set
-    assert np.allclose(np.asarray(s2.q[0]), np.asarray(state.q[0]))   # slot 0 unchanged
+    assert np.allclose(np.asarray(s2.q[0]), np.asarray(state.q[0]))   # slot 0 q unchanged
+    assert np.allclose(np.asarray(s2.qd[0]), np.asarray(state.qd[0]))  # slot 0 qd unchanged (spawn writes qd too)
