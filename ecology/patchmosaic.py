@@ -143,6 +143,14 @@ class PatchMosaicConfig:
     escape_baseline: float = 1.0
     attack_cost: float = 0.0            # predator fecundity penalty for attack above baseline
     attack_baseline: float = 1.0        # predator attack level at which attack_cost is zero
+    # ---- Intraspecific contest (R1; gated, default OFF -> byte-identical) ----
+    enable_contest: bool = False        # the contest affordance; OFF => no contest phase, no new draws
+    aggr0: float = 0.0                  # founder prey aggression propensity
+    aggr_mutation_sd: float = 0.05      # gaussian sd for aggr inheritance (when enable_trait_evolution)
+    contest_cost: float = 0.10          # fecundity cost coefficient: birth *= (1 - contest_cost*aggr)
+    contest_seize: float = 0.50         # max share of the crowding-prize transferred winner<-loser
+    contest_dissipation: float = 0.0    # fraction of the seized prize lost (0 = zero-sum transfer)
+    track_lineages: bool = False        # record per-lineage aggr distribution (observation-only, no rng)
     freeze_prey_trait: bool = False
     freeze_predator_trait: bool = False
     trait_min: float = 0.0

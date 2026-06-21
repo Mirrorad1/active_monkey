@@ -620,3 +620,13 @@ def test_critter_new_fields_default_and_byte_identical():
     assert c.aggr == 0.0 and c.lineage == -1
     h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
     assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+
+# ---------------------------------------------------------------------------
+# T22: Contest config fields exist with correct defaults and are inert
+# ---------------------------------------------------------------------------
+def test_contest_config_defaults_inert():
+    from ecology.patchmosaic import PatchMosaicConfig
+    c = PatchMosaicConfig()
+    assert c.enable_contest is False and c.aggr0 == 0.0 and c.track_lineages is False
+    assert c.contest_cost == 0.10 and c.contest_seize == 0.50 and c.contest_dissipation == 0.0
