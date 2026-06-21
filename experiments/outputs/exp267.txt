@@ -1,0 +1,28 @@
+==============================================================================================================
+Exp 267 (R3b) — do predator/prey ROLES emerge once OFFENSE (aggr) and DEFENSE (escape) are DECOUPLED? RAW.
+single pop (n_pred0=0), cannibalism + cannibal_defense_by_escape, aggr+escape evolve; seeds [750, 751, 752, 753, 754, 755, 756, 757, 758, 759]; 11 procs.
+ROLES iff aggr BIMODAL (predator clade aggr>0.5 + prey clade aggr<0.2 coexist) AND aggr-escape anti-correlated (prey defend).
+==============================================================================================================
+
+esc_cost cann_cost |   aggr p10/p50/p90 esc_mean |  %pred  %prey | esc[pred] esc[prey] | corr(aggr,esc) | extinct
+--------------------------------------------------------------------------------------------------------------
+    0.05      0.10 |     0.87/0.97/1.00     3.90 | 100.0%   0.0% |      3.90       nan |          0.017 | 0/10
+    0.15      0.10 |     0.87/0.97/1.00     3.59 | 100.0%   0.0% |      3.59       nan |          0.032 | 0/10
+    0.30      0.10 |     0.88/0.97/1.00     2.52 | 100.0%   0.0% |      2.52       nan |          0.025 | 0/10
+
+  per-seed (esc_cost=0.15): aggr_p50 | %pred | %prey | esc[prey] | corr
+    seed 750: aggr_p50=0.96 %pred=100 %prey=0 esc[prey]=nan corr=0.09 (n=1687)
+    seed 751: aggr_p50=0.98 %pred=100 %prey=0 esc[prey]=nan corr=0.13 (n=1729)
+    seed 752: aggr_p50=0.98 %pred=100 %prey=0 esc[prey]=nan corr=0.05 (n=1749)
+    seed 753: aggr_p50=0.99 %pred=100 %prey=0 esc[prey]=nan corr=-0.05 (n=1706)
+    seed 754: aggr_p50=0.97 %pred=100 %prey=0 esc[prey]=nan corr=0.09 (n=1727)
+    seed 755: aggr_p50=0.96 %pred=100 %prey=0 esc[prey]=nan corr=0.07 (n=1733)
+    seed 756: aggr_p50=0.96 %pred=100 %prey=0 esc[prey]=nan corr=-0.05 (n=1720)
+    seed 757: aggr_p50=0.97 %pred=100 %prey=0 esc[prey]=nan corr=-0.03 (n=1685)
+    seed 758: aggr_p50=0.96 %pred=100 %prey=0 esc[prey]=nan corr=0.11 (n=1744)
+    seed 759: aggr_p50=0.97 %pred=100 %prey=0 esc[prey]=nan corr=-0.09 (n=1733)
+
+PREDECLARED READOUT (controller adjudicates):
+  ROLES_EMERGE iff a PREDATOR clade (aggr>0.5) AND a PREY clade (aggr<0.2 with high escape) robustly
+  COEXIST (both non-trivial %), with aggr-escape anti-correlated; CONVERGES iff one clade fixes;
+  decoupling at least BREAKS R3's runaway iff a defended prey clade survives (vs R3's 100% max-predator).

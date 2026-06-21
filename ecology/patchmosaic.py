@@ -154,6 +154,9 @@ class PatchMosaicConfig:
     enable_cannibalism: bool = False    # a predatory prey (high aggr) kills+consumes a conspecific (low aggr)
     cannibal_gain: float = 0.5          # prob of a reproduction boost (a child) per successful kill
     cannibal_cost: float = 0.10         # foraging cost: predatory prey forage less (birth *= 1 - cannibal_cost*aggr)
+    cannibal_defense_by_escape: bool = False  # R3b: DECOUPLE defense from offense — a target's vulnerability to
+                                              # cannibalism is set by its ESCAPE (defense, 1/(1+escape_k*escape)),
+                                              # NOT its aggr. False = R3 coupled behavior (defense = own aggr).
     track_lineages: bool = False        # record per-lineage aggr distribution (observation-only, no rng)
     freeze_prey_trait: bool = False
     freeze_predator_trait: bool = False
@@ -574,7 +577,13 @@ class PatchMosaicSim:
                 if j == i or dead_prey_mask[j]:
                     continue
                 q = patch.prey[j]
-                kill_prob = max(0.0, min(1.0, p.aggr * (1.0 - q.aggr)))  # high-aggr i eats low-aggr j
+                if cfg.cannibal_defense_by_escape:
+                    # R3b: defense is a SEPARATE trait (escape). A high-escape target resists being
+                    # cannibalised; offense (aggr) and defense (escape) are now decoupled.
+                    vuln = 1.0 / (1.0 + cfg.escape_k * q.trait)
+                    kill_prob = max(0.0, min(1.0, p.aggr * vuln))
+                else:
+                    kill_prob = max(0.0, min(1.0, p.aggr * (1.0 - q.aggr)))  # R3: defense = own aggr (coupled)
                 if rng.random() < kill_prob:
                     dead_prey_mask[j] = True
                     if rng.random() < cfg.cannibal_gain:  # reproduction boost from the meal
