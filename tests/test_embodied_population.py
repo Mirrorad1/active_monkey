@@ -1,4 +1,5 @@
 import numpy as np, pytest
+import jax
 from pathlib import Path
 
 
@@ -13,6 +14,21 @@ def test_policy_runner_obs_and_action(tmp_path):
     act = pr.act(obs)
     assert act.shape == (env.action_size,)             # 8
     assert bool(jnp.isfinite(act).all())
+
+
+def test_world_advance_moves_body_deterministically():
+    import numpy as np
+    from embodied.foodfield import FoodField, FoodFieldConfig
+    from embodied.policy_runner import PolicyRunner, DEFAULT_CKPT
+    from embodied.world import EmbodiedWorld
+    w = EmbodiedWorld(FoodField(FoodFieldConfig(), seed=0), PolicyRunner(DEFAULT_CKPT), bout_steps=10)
+    s0 = w.env.reset(jax.random.PRNGKey(0))
+    sA, pathA = w.advance(s0.pipeline_state)
+    sB, pathB = w.advance(s0.pipeline_state)
+    assert len(pathA) == 10
+    assert pathA == pathB                                  # deterministic
+    # every entry is a finite (x, y) pair
+    assert all(np.isfinite(x) and np.isfinite(y) for (x, y) in pathA)
 
 
 def test_foodfield_deplete_regen_nearest():
