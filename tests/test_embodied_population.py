@@ -176,3 +176,29 @@ def test_shared_field_competition_lowers_per_capita_intake():
         f"Competition test failed: lo_mean={np.mean(lo.per_capita_intake):.4f}, "
         f"hi_mean={np.mean(hi.per_capita_intake):.4f}"
     )
+
+
+# ---------------------------------------------------------------------------
+# Task 6: run_population certify + import-boundary guard
+# ---------------------------------------------------------------------------
+
+@pytest.mark.slow
+def test_certify_produces_verdict():
+    from embodied.population import run, PopConfig
+    from embodied.foodfield import FoodFieldConfig
+    from embodied.run_population import certify
+    r = run(PopConfig(
+        n_founders=10, horizon=30, bout_steps=6, seed=0,
+        field=FoodFieldConfig(capacity=5.0, regen=0.2),
+    ))
+    v = certify(r)
+    assert "stable" in v and "n_eq" in v               # verdict dict shape
+    assert isinstance(v["stable"], bool)
+
+
+def test_embodied_does_not_import_ecology_engine():
+    import pathlib, re
+    root = pathlib.Path(__file__).resolve().parents[1] / "embodied"
+    for p in root.rglob("*.py"):
+        src = p.read_text()
+        assert "ecology.engine" not in src and "from ecology import engine" not in src, p
