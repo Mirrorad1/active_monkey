@@ -20,3 +20,7 @@ experiments/outputs/*_stdout.log
 # so active_loop/artifacts/ must never be a tracked package (it would shadow the module).
 # An interrupted `artifact export` can leave empty dirs here; never commit them.
 active_loop/artifacts/
+
+# transient experiment stdout captures + smoke throwaways (not deliverables)
+experiments/outputs/*_run.log
+experiments/outputs/*_smoke*.txt

@@ -143,6 +143,14 @@ class PatchMosaicConfig:
     escape_baseline: float = 1.0
     attack_cost: float = 0.0            # predator fecundity penalty for attack above baseline
     attack_baseline: float = 1.0        # predator attack level at which attack_cost is zero
+    # ---- Intraspecific contest (R1; gated, default OFF -> byte-identical) ----
+    enable_contest: bool = False        # the contest affordance; OFF => no contest phase, no new draws
+    aggr0: float = 0.0                  # founder prey aggression propensity
+    aggr_mutation_sd: float = 0.05      # gaussian sd for aggr inheritance (when enable_trait_evolution)
+    contest_cost: float = 0.10          # fecundity cost coefficient: birth *= (1 - contest_cost*aggr)
+    contest_seize: float = 0.50         # max share of the crowding-prize transferred winner<-loser
+    contest_dissipation: float = 0.0    # fraction of the seized prize lost (0 = zero-sum transfer)
+    track_lineages: bool = False        # record per-lineage aggr distribution (observation-only, no rng)
     freeze_prey_trait: bool = False
     freeze_predator_trait: bool = False
     trait_min: float = 0.0
@@ -185,6 +193,8 @@ class Critter:
     role: str   # "prey" or "pred"
     trait: float
     cid: int
+    aggr: float = 0.0      # intraspecific-contest propensity (R1); only read when enable_contest
+    lineage: int = -1      # founder-lineage id, inherited by offspring (observation-only)
 
 
 # ---------------------------------------------------------------------------
@@ -234,7 +244,8 @@ class PatchMosaicSim:
         for i in range(cfg.n_patches):
             patch = Patch(idx=i, is_refuge=refuge_flags[i], phase=phases[i])
             for _ in range(cfg.n_prey0_per_patch):
-                patch.prey.append(Critter("prey", cfg.prey_escape, self._next_cid))
+                patch.prey.append(Critter("prey", cfg.prey_escape, self._next_cid,
+                                          aggr=cfg.aggr0, lineage=i))
                 self._next_cid += 1
             for _ in range(cfg.n_pred0_per_patch):
                 patch.predators.append(Critter("pred", cfg.pred_attack, self._next_cid))
@@ -391,6 +402,14 @@ class PatchMosaicSim:
             return max(cfg.trait_min, min(cfg.trait_max, parent_trait + delta))
         return parent_trait
 
+    def _mutate_aggr(self, parent_aggr: float) -> float:
+        """Offspring aggression; gated like _mutate. Draws rng only when mutation fires."""
+        cfg = self.cfg
+        if cfg.mutation_rate > 0.0 and self.rng.random() < cfg.mutation_rate:
+            delta = self.rng.normal(0.0, cfg.aggr_mutation_sd)
+            return max(0.0, min(1.0, parent_aggr + delta))
+        return parent_aggr
+
     # ------------------------------------------------------------------
     # Per-patch dynamics formulas (REPLICATED from wellmixed; see module docstring)
     # ------------------------------------------------------------------
@@ -450,20 +469,46 @@ class PatchMosaicSim:
         N_prey = len(patch.prey)
         N_pred = len(patch.predators)
 
-        # (b) Prey logistic births (with async birth-opportunity multiplier)
+        # (b) Prey logistic births (+ async); optional gated intraspecific contest redistributes
+        #     reproduction-opportunity-under-crowding from losers to winners, costed by aggr.
         new_prey_children: List[Critter] = []
         birth_p = self._prey_birth_prob(patch.idx, N_prey, t)
-        for p in patch.prey:  # ascending cid (maintained by append)
+        bmult = [1.0] * N_prey
+        if cfg.enable_contest and N_prey > 0:
+            crowd_prize = cfg.contest_seize * min(1.0, N_prey / cfg.K_prey_local)
+            for i, p in enumerate(patch.prey):           # ascending cid
+                if p.aggr <= 0.0:
+                    continue
+                bmult[i] *= max(0.0, 1.0 - cfg.contest_cost * p.aggr)
+                if N_prey < 2:
+                    continue
+                j = int(rng.integers(N_prey))
+                if j == i:
+                    continue
+                q = patch.prey[j]
+                p_win = p.aggr / (p.aggr + q.aggr + 1e-9)
+                if rng.random() < p_win:
+                    bmult[i] += crowd_prize * (1.0 - cfg.contest_dissipation)
+                    bmult[j] = max(0.0, bmult[j] - crowd_prize)
+        for i, p in enumerate(patch.prey):               # ascending cid
             if cfg.enable_trait_evolution:
-                # Per-individual escape cost: higher escape above baseline -> lower fecundity.
-                birth_p_i = birth_p * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
-                draw_ok = rng.random() < birth_p_i
+                bp = birth_p * bmult[i] * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
+                draw_ok = rng.random() < bp
                 child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
+                # NOTE (R2 footgun): _mutate_aggr draws rng. It is gated by enable_contest so the
+                # trait-evolution golden (790a8499, enable_contest=False) is preserved. But a config
+                # with enable_contest=True + enable_trait_evolution=True + freeze_prey_trait=False
+                # (evolve escape AND aggr) calls it per-birth -> its rng stream DIVERGES from the
+                # attack_cost/trait-evo experiments' stream. This is expected and untested; do not
+                # assume byte-identity to those goldens once enable_contest is on.
+                child_aggr = self._mutate_aggr(p.aggr) if (cfg.enable_contest and not cfg.freeze_prey_trait) else p.aggr
             else:
-                draw_ok = rng.random() < birth_p
+                draw_ok = rng.random() < (birth_p * bmult[i])
                 child_trait = p.trait
+                child_aggr = p.aggr
             if draw_ok:
-                new_prey_children.append(Critter("prey", child_trait, self._next_cid))
+                new_prey_children.append(Critter("prey", child_trait, self._next_cid,
+                                                 aggr=child_aggr, lineage=p.lineage))
                 self._next_cid += 1
 
         # (c) Predation — Type II, escape-keyed, refuge-gated predator ACCESS.
@@ -700,6 +745,7 @@ class PatchMosaicSim:
         ]
 
         step_summaries: List[dict] = []
+        aggr_mean_series: List[float] = []
         exploded = False
 
         while self.t < cfg.horizon:
@@ -719,6 +765,9 @@ class PatchMosaicSim:
             occupancy_series.append(
                 sum(1 for i in range(n) if pp[i] > 0 and qq[i] > 0) / n
             )
+            if cfg.track_lineages:
+                prey = [c.aggr for p in self.patches for c in p.prey]
+                aggr_mean_series.append(float(np.mean(prey)) if prey else 0.0)
 
             # Stop conditions
             if gp == 0 or gq == 0:
@@ -732,7 +781,7 @@ class PatchMosaicSim:
 
         global_extinct = (global_prey_series[-1] == 0 or global_pred_series[-1] == 0)
 
-        return {
+        result: dict = {
             "events_hash": events_hash,
             "global_prey_series": global_prey_series,
             "global_pred_series": global_pred_series,
@@ -748,3 +797,14 @@ class PatchMosaicSim:
             "cv_global_prey": self._cv_tail(global_prey_series),
             "cv_global_pred": self._cv_tail(global_pred_series),
         }
+        result["aggr_mean_series"] = aggr_mean_series if cfg.track_lineages else []
+        if cfg.track_lineages:
+            from collections import defaultdict
+            agg = defaultdict(list)
+            for p in self.patches:
+                for c in p.prey:
+                    agg[c.lineage].append(c.aggr)
+            result["lineage_aggr_final"] = {k: (len(v), float(np.mean(v))) for k, v in agg.items()}
+        else:
+            result["lineage_aggr_final"] = {}
+        return result

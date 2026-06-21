@@ -609,3 +609,86 @@ def test_attack_cost_byte_identical_off_and_live_on():
         "A non-default attack_cost with enable_trait_evolution=False must never execute the "
         f"cost branch. Expected ring golden {_RING_GOLDEN_HASH_T20!r}, got {h_off_costed!r}."
     )
+
+
+# ---------------------------------------------------------------------------
+# T21: Critter carries aggr + lineage fields with correct defaults (byte-identical)
+# ---------------------------------------------------------------------------
+def test_critter_new_fields_default_and_byte_identical():
+    from ecology.patchmosaic import Critter, PatchMosaicConfig, PatchMosaicSim
+    c = Critter("prey", 1.0, 0)
+    assert c.aggr == 0.0 and c.lineage == -1
+    h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
+    assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+
+# ---------------------------------------------------------------------------
+# T22: Contest config fields exist with correct defaults and are inert
+# ---------------------------------------------------------------------------
+def test_contest_config_defaults_inert():
+    from ecology.patchmosaic import PatchMosaicConfig
+    c = PatchMosaicConfig()
+    assert c.enable_contest is False and c.aggr0 == 0.0 and c.track_lineages is False
+    assert c.contest_cost == 0.10 and c.contest_seize == 0.50 and c.contest_dissipation == 0.0
+
+
+# ---------------------------------------------------------------------------
+# T23: Founders seed aggr0 + per-patch lineage ids (byte-identical)
+# ---------------------------------------------------------------------------
+def test_founders_seed_aggr_and_lineage_byte_identical():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    sim = PatchMosaicSim(PatchMosaicConfig(aggr0=0.3, n_patches=4), seed=1)
+    assert all(c.aggr == 0.3 for p in sim.patches for c in p.prey)
+    assert all(c.lineage == p.idx for p in sim.patches for c in p.prey)
+    # aggr0 alone (contest OFF) must not change the golden
+    h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
+    assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+
+# ---------------------------------------------------------------------------
+# T24: Contest gate OFF is byte-identical; ON with aggr0=0 is also byte-identical
+# ---------------------------------------------------------------------------
+def test_contest_byte_identical_off_and_inert():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    # OFF (default)
+    assert PatchMosaicSim(PatchMosaicConfig(horizon=200), 1).run()["events_hash"] == GOLD
+    # ON but aggr0=0 and no aggr mutation => no creature contests => byte-identical
+    cfg_inert = PatchMosaicConfig(horizon=200, enable_contest=True, aggr0=0.0)
+    assert PatchMosaicSim(cfg_inert, 1).run()["events_hash"] == GOLD
+
+
+# ---------------------------------------------------------------------------
+# T25: Contest LIVE when aggr0>0 — events_hash must differ from ring golden
+# ---------------------------------------------------------------------------
+def test_contest_live_changes_hash():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    cfg = PatchMosaicConfig(horizon=200, enable_contest=True, aggr0=0.5)
+    assert PatchMosaicSim(cfg, 1).run()["events_hash"] != GOLD  # contest draws + transfers fire
+
+
+# ---------------------------------------------------------------------------
+# T26: Heritable aggr — drifts under mutation, clamped, lineage preserved
+# ---------------------------------------------------------------------------
+def test_aggr_heritable_and_lineage_inherited():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    cfg = PatchMosaicConfig(horizon=300, n_patches=4, enable_trait_evolution=True,
+                            enable_contest=True, aggr0=0.5, mutation_rate=0.5, aggr_mutation_sd=0.1)
+    sim = PatchMosaicSim(cfg, 7); sim.run()
+    aggrs = [c.aggr for p in sim.patches for c in p.prey]
+    if aggrs:
+        assert not all(a == 0.5 for a in aggrs)          # aggr drifted
+        assert all(0.0 <= a <= 1.0 for a in aggrs)        # clamped
+        assert all(c.lineage in range(4) for p in sim.patches for c in p.prey)  # lineage preserved
+
+
+# ---------------------------------------------------------------------------
+# T27: Lineage / aggr-distribution recording — observation-only, zero rng change
+# ---------------------------------------------------------------------------
+def test_lineage_recording_present_and_no_rng_change():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    r = PatchMosaicSim(PatchMosaicConfig(horizon=200, track_lineages=True), 1).run()
+    assert "aggr_mean_series" in r and "lineage_aggr_final" in r
+    assert r["events_hash"] == GOLD            # recording adds no rng draws

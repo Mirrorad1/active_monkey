@@ -1,0 +1,32 @@
+====================================================================================================
+Exp 263 — R1: does costed prey-vs-prey CONTEST aggression EMERGE? RAW — controller adjudicates.
+breed-true 50/50 aggr common garden; eps=0.1; window=400; gradient seeds [600, 601, 602, 603, 604, 605, 606, 607]; 7/8-strict.
+scarcity knob = frozen attack_a (SCARCE=0.01 weak pred -> prey near K; ABUNDANT=0.08 strong pred).
+====================================================================================================
+
+(A) PREY-AGGR local gradient at resident aggr=0.0 (contest_cost=0.10, contest_seize=0.50):
+          regime |    wins verdict |    mean s    sd s | mean N/K | per-seed s
+----------------------------------------------------------------------------------------------------
+          SCARCE |    8/8      POS |   +0.0345  0.0000 |    0.689 | +0.035 +0.035 +0.035 +0.035 +0.035 +0.035 +0.035 +0.035
+        ABUNDANT |    7/8      POS |   +0.0259  0.0228 |    0.094 | +0.035 -0.035 +0.035 +0.035 +0.035 +0.035 +0.035 +0.035
+
+(B) CONTROLS at resident aggr=0.0, SCARCE regime:
+      DRIFT_NULL |    4/8    AMBIG |   -0.0001  0.0021 |    0.689 | cost=0,seize=0 inert -> must NOT be POS
+       COST_NULL |    8/8      POS |   +0.0345  0.0000 |    0.690 | cost=0,seize=0.50 benefit-only -> should be POS
+
+(C) INVASION-FROM-RARITY (rare aggr=0.5 breed-true into aggr=0 resident):
+          SCARCE | invaded 9/10 | mean f_final=0.900
+        ABUNDANT | invaded 0/10 | mean f_final=0.000
+
+(D) SCARCITY-GATING at HIGHER resident aggr (removes the always-win-from-0 artifact; seeds 600-603):
+  resident aggr=0.3: SCARCE 4/4 POS s=+0.0094 (N/K 0.68) | ABUNDANT 1/4 NEG s=-0.0173 (N/K 0.09)
+  resident aggr=0.5: SCARCE 4/4 POS s=+0.0049 (N/K 0.68) | ABUNDANT 2/3 AMBIG s=+0.0115 (N/K 0.09)
+  -> with real competition (p_win<1) scarcity-gating is clean (POS scarce vs NEG/AMBIG abundant);
+     the abundance-POS at resident aggr=0 is the always-win-from-50%-common-garden artifact.
+
+PREDECLARED READOUT (controller adjudicates vs the raw rows + mean-of-opposites-guard):
+  scarce gradient: POS (wins 8/8, s+0.0345, sd 0.0000, N/K 0.69)
+  abundance gradient: POS (s+0.0259, N/K 0.09) — must NOT be POS for scarcity-driven emergence
+  drift-null: AMBIG (wins 4/8) — POS here => NO_VERDICT (artifact)
+  cost-null: POS (s+0.0345) — benefit alone should be POS
+  => AGGRESSION_EMERGES iff scarce POS + drift-null neutral + abundance not-POS; else WALL/NO_VERDICT.
