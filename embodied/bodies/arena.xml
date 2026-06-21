@@ -1,4 +1,5 @@
 <mujoco model="embodied_arena">
+  <compiler angle="degree" inertiafromgeom="true"/>
   <!-- arena.xml: merges the vendored quadruped body with arena elements.
        Strategy: <include> of quadruped.xml (same directory). MuJoCo merges
        sub-elements from the included file into this document's sections.

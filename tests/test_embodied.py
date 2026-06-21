@@ -16,6 +16,18 @@ def test_arena_loads_with_cameras_and_food():
     food_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, "food")
     assert food_id >= 0
     assert model.nu > 0  # has actuators (it can be driven)
+    # Guard: compiler angle="degree" must be in effect — hip joint ranges are written
+    # as degrees in the XML (±30°); without the setting MuJoCo 3.x defaults to radians
+    # and interprets them as ±30 rad (≈±1718°), i.e. effectively unlimited.
+    jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "hip_1")
+    lo, hi = model.jnt_range[jid]
+    assert np.isclose(hi, np.deg2rad(30), atol=1e-3) and np.isclose(lo, np.deg2rad(-30), atol=1e-3), \
+        "joint ranges must be interpreted as DEGREES (compiler angle=degree)"
+
+
+def test_food_site_constant():
+    from embodied import FOOD_SITE
+    assert FOOD_SITE == "food"
 
 
 def test_mujoco_offscreen_render_nonblack():
