@@ -1,0 +1,28 @@
+<mujoco model="embodied_arena">
+  <!-- arena.xml: merges the vendored quadruped body with arena elements.
+       Strategy: <include> of quadruped.xml (same directory). MuJoCo merges
+       sub-elements from the included file into this document's sections.
+       The quadruped already provides: floor, light, torso body, actuators, assets.
+       Arena adds: arena walls, food site, track camera (worldbody-level).
+       No floor added here (quadruped already has one — avoids name clash).
+  -->
+  <include file="quadruped.xml"/>
+  <statistic center="0 0 0.5" extent="6"/>
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6"/>
+    <global offwidth="640" offheight="480"/>
+  </visual>
+  <worldbody>
+    <!-- Arena walls (8x8 arena, 1 m tall) -->
+    <geom name="wall_n" type="box" pos="0 8 0.5" size="8 0.1 0.5" rgba="0.4 0.4 0.45 1"/>
+    <geom name="wall_s" type="box" pos="0 -8 0.5" size="8 0.1 0.5" rgba="0.4 0.4 0.45 1"/>
+    <geom name="wall_e" type="box" pos="8 0 0.5" size="0.1 8 0.5" rgba="0.4 0.4 0.45 1"/>
+    <geom name="wall_w" type="box" pos="-8 0 0.5" size="0.1 8 0.5" rgba="0.4 0.4 0.45 1"/>
+    <!-- Food target (mocap body so position can be set programmatically) -->
+    <body name="food_body" pos="3 0 0.2" mocap="true">
+      <site name="food" type="sphere" size="0.3" rgba="0.9 0.7 0.1 1"/>
+    </body>
+    <!-- Overhead tracking camera (follows centre of mass) -->
+    <camera name="track" mode="trackcom" pos="0 -6 4" xyaxes="1 0 0 0 0.7 0.7"/>
+  </worldbody>
+</mujoco>

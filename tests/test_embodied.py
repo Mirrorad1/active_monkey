@@ -1,8 +1,21 @@
 import os
+from pathlib import Path
 import numpy as np
 import pytest
 
 os.environ.setdefault("MUJOCO_GL", "glfw")  # offscreen backend; document in README
+
+ARENA = Path(__file__).resolve().parents[1] / "embodied" / "bodies" / "arena.xml"
+
+
+def test_arena_loads_with_cameras_and_food():
+    import mujoco
+    model = mujoco.MjModel.from_xml_path(str(ARENA))
+    cams = {mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_CAMERA, i) for i in range(model.ncam)}
+    assert {"firstperson", "track"} <= cams
+    food_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SITE, "food")
+    assert food_id >= 0
+    assert model.nu > 0  # has actuators (it can be driven)
 
 
 def test_mujoco_offscreen_render_nonblack():
