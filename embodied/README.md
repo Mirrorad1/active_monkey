@@ -55,3 +55,84 @@ the quadruped into a wider arena scene. The included file contributes its `<worl
 `<default>`, `<asset>`, and `<actuator>` sections. `arena.xml` adds walls, a food site
 (`name="food"`, `type="sphere"`), and the `track` camera at worldbody level. No second
 floor is added — the quadruped already defines one (`name="floor"`).
+
+---
+
+## Phase-2 Population Run — Stability Verdict
+
+### Run Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| founders  | 30    |
+| horizon   | 300 steps |
+| seeds     | 0, 1, 2 |
+| FoodFieldConfig | capacity=5.0, regen=0.2 (Phase-1 FROZEN calibration; not re-tuned) |
+| bout_steps | 6 |
+| Wall time | ~3.6 min total (~0.72 s/step × 300 × 3 seeds) |
+
+No cap was applied. The pilot (founders=20, horizon=50, seed=0, ~35s) showed a
+collapsing but not runaway trajectory, so the full budget-safe run proceeded at the
+specified config.
+
+### Policy Generalization
+
+The Phase-1 fixed policy DID generalize to the food field. Per-capita intake is
+non-zero throughout the alive portion of every run (seeds 1 and 2: mean PCI ≈ 1.28–1.30).
+Births occurred: 1, 66, and 78 across seeds. The policy-generalization risk from the
+spec is NOT the failure mode.
+
+### Per-Seed N(t) Summary
+
+| Seed | min N | max N | mean N | n_eq | births | deaths | final_alive | events_hash      |
+|------|-------|-------|--------|------|--------|--------|-------------|------------------|
+| 0    | 0     | 30    | 1.9    | 0.0  | 1      | 31     | 0 (extinct) | 40e1f5c55a57d349 |
+| 1    | 3     | 33    | 10.6   | 8.5  | 66     | 89     | 7           | 4c5825292795cafe |
+| 2    | 3     | 35    | 11.7   | 10.0 | 78     | 97     | 11          | 1368a66de4477eb5 |
+
+Seed 0 went extinct at step 59 (1 birth vs. 31 deaths; b/d ≈ 0.03).
+Seeds 1 and 2 did not go extinct but showed a declining trajectory from peak (≈33–35)
+toward low-N quasi-plateau (≈7–11 in the last 20 steps). Birth:death ratios were
+sub-replacement: 0.74 and 0.80.
+
+### Preflight Stability Gates (FROZEN Thresholds)
+
+| Seed | persistence (≥30) | level_cv (≤0.25) | drift (≤0.10) | oscillation (DAMPED) | stable |
+|------|-------------------|------------------|----------------|----------------------|--------|
+| 0    | FAIL (0)          | FAIL (3.249)     | FAIL (inf)     | FAIL (OSCILLATORY)   | False  |
+| 1    | FAIL (3)          | FAIL (0.555)     | FAIL (1.608)   | FAIL (OSCILLATORY)   | False  |
+| 2    | FAIL (3)          | FAIL (0.496)     | FAIL (0.904)   | FAIL (OSCILLATORY)   | False  |
+
+Cross-seed: seeds stable = 0/3; seed_agreement = 1.176 (threshold ≤ 0.25) FAIL.
+
+### Density-Dependence
+
+| Seed | intake-vs-N corr | density_dependent |
+|------|------------------|-------------------|
+| 0    | +0.285           | False             |
+| 1    | -0.320           | True              |
+| 2    | -0.294           | True              |
+
+Seeds 1 and 2 show the expected negative correlation (higher N → lower per-capita
+intake), confirming that the competition mechanism is active. The signal is absent
+in seed 0 because the population collapses before any density equilibrium is explored.
+
+### Verdict: NEGATIVE
+
+**0/3 seeds certify stable. All four Preflight gates fail on all seeds.**
+
+The embodied substrate does NOT produce a stable population at the Phase-1 FROZEN
+calibration (FoodFieldConfig capacity=5.0, regen=0.2). The Phase-1 policy generalized
+(foraging works, births occur), but the metabolic/reproductive economy is insufficient
+for population persistence above the stability floor (persist_floor=30).
+
+Root cause: birth:death ratios are sub-replacement at this food-field calibration
+(0.03, 0.74, 0.80). The food field supports foraging but not enough reproductive output
+to balance metabolic death. This echoes the prior continuous-locomotion arc: per-creature
+physics simulation is energy-expensive, and at this calibration the population cannot
+close the birth:death balance.
+
+The density-dependence signal (seeds 1–2) confirms the competition mechanism works; the
+failure is in absolute birth rate, not in the feedback structure. A path to PASS would
+require re-calibrating the food field or creature metabolics for b/d ≥ 1 at equilibrium
+— a new task outside Phase-2 scope.
