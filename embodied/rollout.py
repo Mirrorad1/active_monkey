@@ -18,7 +18,6 @@ import hashlib
 from dataclasses import dataclass
 
 import jax
-import jax.numpy as jnp
 import numpy as np
 
 from embodied.env import EmbodiedForageEnv

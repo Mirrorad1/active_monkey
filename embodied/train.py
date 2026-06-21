@@ -29,11 +29,13 @@ def _device_put_replicated_compat(x, devices):
     )
 
 try:
-    # In JAX 0.10.1 the API exists as a deprecated stub that raises on call.
-    # Calling it with a trivial value reveals whether it's usable.
+    # JAX 0.10.1 REMOVED jax.device_put_replicated entirely — accessing the
+    # attribute raises AttributeError. This probe triggers that (or any other
+    # failure) so the single-device shim is installed ONLY when the real API is
+    # unusable; a working jax.device_put_replicated is never overridden.
     _sentinel = jnp.zeros(1)
     jax.device_put_replicated(_sentinel, jax.local_devices()[:1])
-except (AttributeError, Exception):
+except Exception:  # broad on purpose: ANY failure => fall back to the compat shim
     jax.device_put_replicated = _device_put_replicated_compat
 
 from brax.training.agents.ppo import networks as ppo_networks
