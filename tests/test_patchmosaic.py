@@ -643,3 +643,26 @@ def test_founders_seed_aggr_and_lineage_byte_identical():
     # aggr0 alone (contest OFF) must not change the golden
     h = PatchMosaicSim(PatchMosaicConfig(horizon=200), seed=1).run()["events_hash"]
     assert h == "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+
+
+# ---------------------------------------------------------------------------
+# T24: Contest gate OFF is byte-identical; ON with aggr0=0 is also byte-identical
+# ---------------------------------------------------------------------------
+def test_contest_byte_identical_off_and_inert():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    # OFF (default)
+    assert PatchMosaicSim(PatchMosaicConfig(horizon=200), 1).run()["events_hash"] == GOLD
+    # ON but aggr0=0 and no aggr mutation => no creature contests => byte-identical
+    cfg_inert = PatchMosaicConfig(horizon=200, enable_contest=True, aggr0=0.0)
+    assert PatchMosaicSim(cfg_inert, 1).run()["events_hash"] == GOLD
+
+
+# ---------------------------------------------------------------------------
+# T25: Contest LIVE when aggr0>0 — events_hash must differ from ring golden
+# ---------------------------------------------------------------------------
+def test_contest_live_changes_hash():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    cfg = PatchMosaicConfig(horizon=200, enable_contest=True, aggr0=0.5)
+    assert PatchMosaicSim(cfg, 1).run()["events_hash"] != GOLD  # contest draws + transfers fire

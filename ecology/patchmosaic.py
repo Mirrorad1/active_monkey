@@ -461,20 +461,40 @@ class PatchMosaicSim:
         N_prey = len(patch.prey)
         N_pred = len(patch.predators)
 
-        # (b) Prey logistic births (with async birth-opportunity multiplier)
+        # (b) Prey logistic births (+ async); optional gated intraspecific contest redistributes
+        #     reproduction-opportunity-under-crowding from losers to winners, costed by aggr.
         new_prey_children: List[Critter] = []
         birth_p = self._prey_birth_prob(patch.idx, N_prey, t)
-        for p in patch.prey:  # ascending cid (maintained by append)
+        bmult = [1.0] * N_prey
+        if cfg.enable_contest and N_prey > 0:
+            crowd_prize = cfg.contest_seize * min(1.0, N_prey / cfg.K_prey_local)
+            for i, p in enumerate(patch.prey):           # ascending cid
+                if p.aggr <= 0.0:
+                    continue
+                bmult[i] *= max(0.0, 1.0 - cfg.contest_cost * p.aggr)
+                if N_prey < 2:
+                    continue
+                j = int(rng.integers(N_prey))
+                if j == i:
+                    continue
+                q = patch.prey[j]
+                p_win = p.aggr / (p.aggr + q.aggr + 1e-9)
+                if rng.random() < p_win:
+                    bmult[i] += crowd_prize * (1.0 - cfg.contest_dissipation)
+                    bmult[j] = max(0.0, bmult[j] - crowd_prize)
+        for i, p in enumerate(patch.prey):               # ascending cid
             if cfg.enable_trait_evolution:
-                # Per-individual escape cost: higher escape above baseline -> lower fecundity.
-                birth_p_i = birth_p * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
-                draw_ok = rng.random() < birth_p_i
+                bp = birth_p * bmult[i] * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
+                draw_ok = rng.random() < bp
                 child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
+                child_aggr = p.aggr
             else:
-                draw_ok = rng.random() < birth_p
+                draw_ok = rng.random() < (birth_p * bmult[i])
                 child_trait = p.trait
+                child_aggr = p.aggr
             if draw_ok:
-                new_prey_children.append(Critter("prey", child_trait, self._next_cid))
+                new_prey_children.append(Critter("prey", child_trait, self._next_cid,
+                                                 aggr=child_aggr, lineage=p.lineage))
                 self._next_cid += 1
 
         # (c) Predation — Type II, escape-keyed, refuge-gated predator ACCESS.
