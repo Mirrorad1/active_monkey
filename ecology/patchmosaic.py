@@ -495,6 +495,12 @@ class PatchMosaicSim:
                 bp = birth_p * bmult[i] * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
                 draw_ok = rng.random() < bp
                 child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
+                # NOTE (R2 footgun): _mutate_aggr draws rng. It is gated by enable_contest so the
+                # trait-evolution golden (790a8499, enable_contest=False) is preserved. But a config
+                # with enable_contest=True + enable_trait_evolution=True + freeze_prey_trait=False
+                # (evolve escape AND aggr) calls it per-birth -> its rng stream DIVERGES from the
+                # attack_cost/trait-evo experiments' stream. This is expected and untested; do not
+                # assume byte-identity to those goldens once enable_contest is on.
                 child_aggr = self._mutate_aggr(p.aggr) if (cfg.enable_contest and not cfg.freeze_prey_trait) else p.aggr
             else:
                 draw_ok = rng.random() < (birth_p * bmult[i])

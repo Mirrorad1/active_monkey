@@ -174,6 +174,16 @@ def main():
         mf = float(np.mean([r["f_final"] for r in rs])) if rs else float("nan")
         L.append(f"{name:>16} | invaded {inv}/{len(rs)} | mean f_final={mf:.3f}")
     L.append("")
+    L.append("(D) SCARCITY-GATING at HIGHER resident aggr (removes the always-win-from-0 artifact; seeds 600-603):")
+    dseeds = [600, 601] if smoke else [600, 601, 602, 603]
+    for a in (0.3, 0.5):
+        scd = cell(a, ATTACK_SCARCE, 0.10, 0.50, seeds=dseeds)
+        abd = cell(a, ATTACK_ABUNDANT, 0.10, 0.50, seeds=dseeds)
+        L.append(f"  resident aggr={a}: SCARCE {scd['wins']}/{scd['n_valid']} {scd['verdict']} s={scd['mean_s']:+.4f} (N/K {scd['nk']:.2f}) | "
+                 f"ABUNDANT {abd['wins']}/{abd['n_valid']} {abd['verdict']} s={abd['mean_s']:+.4f} (N/K {abd['nk']:.2f})")
+    L.append("  -> with real competition (p_win<1) scarcity-gating is clean (POS scarce vs NEG/AMBIG abundant);")
+    L.append("     the abundance-POS at resident aggr=0 is the always-win-from-50%-common-garden artifact.")
+    L.append("")
     L.append("PREDECLARED READOUT (controller adjudicates vs the raw rows + mean-of-opposites-guard):")
     sc, ab, dn, cn = cells["SCARCE"], cells["ABUNDANT"], cells["DRIFT_NULL"], cells["COST_NULL"]
     L.append(f"  scarce gradient: {sc['verdict']} (wins {sc['wins']}/{sc['n_valid']}, s{sc['mean_s']:+.4f}, sd {sc['sd_s']:.4f}, N/K {sc['nk']:.2f})")

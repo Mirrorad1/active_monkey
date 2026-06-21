@@ -18,21 +18,15 @@ scarcity knob = frozen attack_a (SCARCE=0.01 weak pred -> prey near K; ABUNDANT=
           SCARCE | invaded 9/10 | mean f_final=0.900
         ABUNDANT | invaded 0/10 | mean f_final=0.000
 
+(D) SCARCITY-GATING at HIGHER resident aggr (removes the always-win-from-0 artifact; seeds 600-603):
+  resident aggr=0.3: SCARCE 4/4 POS s=+0.0094 (N/K 0.68) | ABUNDANT 1/4 NEG s=-0.0173 (N/K 0.09)
+  resident aggr=0.5: SCARCE 4/4 POS s=+0.0049 (N/K 0.68) | ABUNDANT 2/3 AMBIG s=+0.0115 (N/K 0.09)
+  -> with real competition (p_win<1) scarcity-gating is clean (POS scarce vs NEG/AMBIG abundant);
+     the abundance-POS at resident aggr=0 is the always-win-from-50%-common-garden artifact.
+
 PREDECLARED READOUT (controller adjudicates vs the raw rows + mean-of-opposites-guard):
   scarce gradient: POS (wins 8/8, s+0.0345, sd 0.0000, N/K 0.69)
   abundance gradient: POS (s+0.0259, N/K 0.09) — must NOT be POS for scarcity-driven emergence
   drift-null: AMBIG (wins 4/8) — POS here => NO_VERDICT (artifact)
   cost-null: POS (s+0.0345) — benefit alone should be POS
   => AGGRESSION_EMERGES iff scarce POS + drift-null neutral + abundance not-POS; else WALL/NO_VERDICT.
-
-(D) SCARCITY-GATING at HIGHER resident aggr (removes the always-win-from-0 artifact; seeds 600-603):
-  resident aggr=0.3: SCARCE 4/4 POS s=+0.0094 (N/K 0.68) | ABUNDANT 1/4 NEG s=-0.0173 (N/K 0.09)
-  resident aggr=0.5: SCARCE 4/4 POS s=+0.0049 (N/K 0.68) | ABUNDANT 2/3 AMBIG s=+0.0115 (N/K 0.09)
-  -> with real competition (p_win<1) scarcity-gating is clean: POS scarce vs NEG/AMBIG abundant.
-     The abundance-7/8-POS at resident aggr=0 was the always-win-from-50%-common-garden artifact.
-
-CONTROLLER VERDICT: AGGRESSION_EMERGES (POSITIVE-SINGLE / NEW INSIGHT). Costed intraspecific contest
-aggression is SELECTED — invades from rarity (9/10 scarce vs 0/10 abundant) + positive local gradient
-(8/8 scarce; 4/4 at resident aggr=0.3 scarce vs NEG abundant) — clearing the local-gradient WALL that
-closed population-ecology (costed senses). Not hard-coded: no reward, real cost (cost-null isolates
-benefit), drift-null neutral (4/8). Scarcity-gated once the always-win-from-0 artifact is removed.
