@@ -692,3 +692,22 @@ def test_lineage_recording_present_and_no_rng_change():
     r = PatchMosaicSim(PatchMosaicConfig(horizon=200, track_lineages=True), 1).run()
     assert "aggr_mean_series" in r and "lineage_aggr_final" in r
     assert r["events_hash"] == GOLD            # recording adds no rng draws
+
+
+# ---------------------------------------------------------------------------
+# T28 (R3): cannibalism is byte-identical OFF and LIVE when ON.
+# ---------------------------------------------------------------------------
+def test_cannibalism_byte_identical_off_and_live_on():
+    from ecology.patchmosaic import PatchMosaicConfig, PatchMosaicSim
+    GOLD = "d063c91fe091c3591529036dd102e35480319632e286fd2c17e71c9d4aafcbc5"
+    TEVO = "790a8499be51644f255f3e431ac0488612dd625047d696d1f646b7919fef7623"
+    def run_hash(**kw):
+        return PatchMosaicSim(PatchMosaicConfig(**kw), 1).run()["events_hash"]
+    # OFF (default) -> ring + trait-evolution goldens preserved
+    assert run_hash(horizon=200) == GOLD
+    assert run_hash(horizon=200, enable_trait_evolution=True, mutation_rate=0.1) == TEVO
+    # LIVE: cannibalism ON with evolving aggr changes the hash vs the same config without cannibalism
+    base = run_hash(horizon=200, enable_trait_evolution=True, mutation_rate=0.1, aggr0=0.5)
+    cann = run_hash(horizon=200, enable_trait_evolution=True, mutation_rate=0.1, aggr0=0.5,
+                    enable_cannibalism=True)
+    assert base != cann, "enable_cannibalism=True with aggr>0 must change the events_hash (live, not a no-op)"

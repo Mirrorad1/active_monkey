@@ -150,6 +150,10 @@ class PatchMosaicConfig:
     contest_cost: float = 0.10          # fecundity cost coefficient: birth *= (1 - contest_cost*aggr)
     contest_seize: float = 0.50         # max share of the crowding-prize transferred winner<-loser
     contest_dissipation: float = 0.0    # fraction of the seized prize lost (0 = zero-sum transfer)
+    # ---- Cannibalism / intraguild predation (R3; gated, default OFF -> byte-identical) ----
+    enable_cannibalism: bool = False    # a predatory prey (high aggr) kills+consumes a conspecific (low aggr)
+    cannibal_gain: float = 0.5          # prob of a reproduction boost (a child) per successful kill
+    cannibal_cost: float = 0.10         # foraging cost: predatory prey forage less (birth *= 1 - cannibal_cost*aggr)
     track_lineages: bool = False        # record per-lineage aggr distribution (observation-only, no rng)
     freeze_prey_trait: bool = False
     freeze_predator_trait: bool = False
@@ -493,15 +497,20 @@ class PatchMosaicSim:
         for i, p in enumerate(patch.prey):               # ascending cid
             if cfg.enable_trait_evolution:
                 bp = birth_p * bmult[i] * max(0.0, 1.0 - cfg.escape_cost * max(0.0, p.trait - cfg.escape_baseline))
+                if cfg.enable_cannibalism:
+                    # being predatory (high aggr) trades off against foraging on the base resource
+                    bp *= max(0.0, 1.0 - cfg.cannibal_cost * p.aggr)
                 draw_ok = rng.random() < bp
                 child_trait = p.trait if cfg.freeze_prey_trait else self._mutate(p.trait)
-                # NOTE (R2 footgun): _mutate_aggr draws rng. It is gated by enable_contest so the
-                # trait-evolution golden (790a8499, enable_contest=False) is preserved. But a config
-                # with enable_contest=True + enable_trait_evolution=True + freeze_prey_trait=False
-                # (evolve escape AND aggr) calls it per-birth -> its rng stream DIVERGES from the
-                # attack_cost/trait-evo experiments' stream. This is expected and untested; do not
-                # assume byte-identity to those goldens once enable_contest is on.
-                child_aggr = self._mutate_aggr(p.aggr) if (cfg.enable_contest and not cfg.freeze_prey_trait) else p.aggr
+                # NOTE (R2/R3 footgun): _mutate_aggr draws rng. It is gated by enable_contest OR
+                # enable_cannibalism so the trait-evolution golden (790a8499, both OFF) is preserved.
+                # A config with either flag ON + enable_trait_evolution + not freeze_prey calls it
+                # per-birth -> its rng stream DIVERGES from the attack_cost/trait-evo experiments'
+                # stream. Expected and untested; do not assume byte-identity to those once contest/
+                # cannibalism is on.
+                child_aggr = (self._mutate_aggr(p.aggr)
+                              if ((cfg.enable_contest or cfg.enable_cannibalism) and not cfg.freeze_prey_trait)
+                              else p.aggr)
             else:
                 draw_ok = rng.random() < (birth_p * bmult[i])
                 child_trait = p.trait
@@ -551,6 +560,28 @@ class PatchMosaicSim:
                             break
                     else:
                         pred_captures[-1] += 1
+
+        # (c2) Cannibalism / intraguild predation (R3; gated): a predatory prey (high aggr) kills +
+        #      consumes a conspecific (low aggr), gaining a reproduction boost. Frequency-dependent
+        #      (predators eat non-predators), so a stable predator/prey polymorphism CAN emerge.
+        #      Adds to dead_prey_mask + new_prey_children (applied in (e)); rng drawn only for aggr>0
+        #      prey, only under enable_cannibalism -> byte-identical OFF.
+        if cfg.enable_cannibalism and N_prey > 1:
+            for i, p in enumerate(patch.prey):           # ascending cid
+                if p.aggr <= 0.0 or dead_prey_mask[i]:
+                    continue
+                j = int(rng.integers(N_prey))
+                if j == i or dead_prey_mask[j]:
+                    continue
+                q = patch.prey[j]
+                kill_prob = max(0.0, min(1.0, p.aggr * (1.0 - q.aggr)))  # high-aggr i eats low-aggr j
+                if rng.random() < kill_prob:
+                    dead_prey_mask[j] = True
+                    if rng.random() < cfg.cannibal_gain:  # reproduction boost from the meal
+                        child_aggr = p.aggr if cfg.freeze_prey_trait else self._mutate_aggr(p.aggr)
+                        new_prey_children.append(Critter("prey", p.trait, self._next_cid,
+                                                         aggr=child_aggr, lineage=p.lineage))
+                        self._next_cid += 1
 
         # (d) Predator numerical response (individual captures) + self-limit death
         dead_pred_mask = [False] * N_pred
