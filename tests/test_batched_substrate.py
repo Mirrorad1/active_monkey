@@ -127,3 +127,41 @@ def test_step_economics_matches_phase2_formulas():
     assert r1["energy"] < r0["energy"] or r0["die"] or r1["die"], (
         "aging cost must use pre-increment age"
     )
+
+
+# ---------------------------------------------------------------------------
+# Task 4: batched population loop (batched_population.py)
+# ---------------------------------------------------------------------------
+
+def test_batched_run_deterministic_and_slots():
+    """Exact determinism, births+deaths, N series length, max(N)<=max_pop.
+
+    Calibration note: capacity=5.0, regen=0.5 gives births>=1, deaths>=1 within
+    horizon=20 (founder reproduction_energy_threshold=17.0 needs regen=0.5 vs 0.2
+    to fill energy in 20 steps; confirmed births=1 deaths=1 empirically).
+    """
+    from embodied.batched_population import run, BatchedPopConfig
+    from embodied.foodfield import FoodFieldConfig
+    cfg = BatchedPopConfig(n_founders=8, horizon=20, bout_steps=6, max_pop=64, seed=0,
+                           field=FoodFieldConfig(capacity=5.0, regen=0.5))
+    a = run(cfg)
+    b = run(cfg)
+    assert a.events_hash == b.events_hash, (
+        f"events_hash not deterministic: {a.events_hash!r} != {b.events_hash!r}"
+    )
+    assert a.births >= 1, f"expected births >= 1, got {a.births}"
+    assert a.deaths >= 1, f"expected deaths >= 1, got {a.deaths}"
+    assert len(a.n_series) == 20, f"n_series length {len(a.n_series)} != 20"
+    assert max(a.n_series) <= 64, f"max(n_series)={max(a.n_series)} exceeds max_pop=64"
+
+
+def test_batched_loud_cap():
+    """Birth exceeding max_pop is dropped (not silent) and surfaced in capped attribute."""
+    from embodied.batched_population import run, BatchedPopConfig
+    from embodied.foodfield import FoodFieldConfig
+    # tiny max_pop + rich field -> births want to exceed cap -> capped>0, surfaced
+    cfg = BatchedPopConfig(n_founders=6, horizon=20, bout_steps=6, max_pop=8, seed=1,
+                           field=FoodFieldConfig(capacity=40.0, regen=0.6))
+    r = run(cfg)
+    assert getattr(r, "capped", 0) >= 1, f"expected capped >= 1, got {getattr(r, 'capped', 0)}"
+    assert max(r.n_series) <= 8, f"max(n_series)={max(r.n_series)} exceeds max_pop=8"
