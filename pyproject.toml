@@ -31,6 +31,7 @@ active-monkey-m1 = "active_loop.cli.run_m1:main"
 active-monkey-talk = "active_loop.cli.talk:main"
 active-monkey-converse = "active_loop.cli.converse:main"
 active-monkey-converse-demo = "active_loop.cli.converse_demo:main"
+active-monkey-embodied = "embodied.demo:main"
 
 [dependency-groups]
 # pyyaml is OPTIONAL: it is only needed to load .yaml preflight configs

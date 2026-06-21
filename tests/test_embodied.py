@@ -114,3 +114,14 @@ def test_rollout_is_deterministic(tmp_path):
     b = rollout(ckpt, n_steps=50, seed=0)
     assert a.traj_hash == b.traj_hash
     assert len(a.qpos) == 50
+
+
+@pytest.mark.slow
+def test_demo_end_to_end(tmp_path, monkeypatch):
+    from embodied import demo
+    from embodied.train import train
+    ckpt = train(num_timesteps=2048, seed=0, out_dir=tmp_path)
+    monkeypatch.setattr(demo, "OUT_DIR", tmp_path / "out")
+    demo.run(checkpoint=ckpt, steps=20)
+    assert (tmp_path / "out" / "embodied_pipeline.txt").exists()
+    assert (tmp_path / "out" / "embodied_thirdperson.mp4").exists()
