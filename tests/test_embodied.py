@@ -70,3 +70,14 @@ def test_train_smoke_writes_loadable_checkpoint(tmp_path):
     ckpt = train(num_timesteps=2048, seed=0, out_dir=tmp_path)
     params = load_params(ckpt)
     assert params is not None
+
+
+@pytest.mark.slow
+def test_rollout_is_deterministic(tmp_path):
+    from embodied.train import train
+    from embodied.rollout import rollout
+    ckpt = train(num_timesteps=2048, seed=0, out_dir=tmp_path)
+    a = rollout(ckpt, n_steps=50, seed=0)
+    b = rollout(ckpt, n_steps=50, seed=0)
+    assert a.traj_hash == b.traj_hash
+    assert len(a.qpos) == 50
