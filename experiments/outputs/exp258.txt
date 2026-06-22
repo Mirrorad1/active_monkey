@@ -1,0 +1,60 @@
+====================================================================================================
+Exp 258 — patch-mosaic ROBUSTNESS across topology x scale. CANONICAL SUMMARY.
+====================================================================================================
+
+QUESTION: Does the Exp-257 rescue pattern (NEITHER + MIG_ONLY_SYNC collapse; REFUGE_ONLY +
+MIG_ONLY_ASYNC + BOTH rescue) hold at every combination of patch TOPOLOGY {ring, grid2d-torus,
+small-world} x SCALE {8, 16, 32 patches}? Is the result a ring-8 knife-edge, or robust?
+
+PREDECLARED FALSIFIER: if a rescue fails somewhere, or the SYNC control passes somewhere, the
+result is topology/scale-specific (PARTIAL or FAIL).
+
+SETUP: experiments/exp258_patch_topology_robustness.py. 5 cells x 3 topologies x 3 scales x
+seeds 200-209 (fresh, distinct from Exp 257's 100-109). horizon=1000; collapse-prone regime
+(attack_a=0.05, K_pred=40, pred_self_limit_hmax=0.05). PASS=8/10 both species persist.
+Topology extension: ecology/patchmosaic.py commit 4acb2de (ring byte-identical; grid2d
+von-Neumann torus; Watts-Strogatz small-world rewire=0.2; T10-T14 in tests/test_patchmosaic.py).
+
+RESULT GRID (seeds persisting out of 10):
+              cell | ring-8 | ring-16 | ring-32 | grid2d-8 | grid2d-16 | grid2d-32 | sw-8 | sw-16 | sw-32
+-----------------------------------------------------------------------------------------------------------
+           NEITHER |      0 |       0 |       0 |        0 |         0 |         0 |    0 |     0 |     0
+     MIG_ONLY_SYNC |      0 |       0 |       6 |        0 |         0 |         1 |    0 |     0 |     8
+    MIG_ONLY_ASYNC |     10 |      10 |      10 |       10 |        10 |        10 |    7 |     7 |     9
+       REFUGE_ONLY |     10 |      10 |      10 |       10 |        10 |        10 |   10 |    10 |    10
+              BOTH |     10 |      10 |      10 |       10 |        10 |        10 |   10 |    10 |    10
+
+ROBUST parts:
+- NEITHER = 0/10 at ALL 9 cells (baseline collapse fully general)
+- REFUGE_ONLY = 10/10 at ALL 9 cells (refuge rescue topology- AND scale-general)
+- BOTH = 10/10 at ALL 9 cells (refuge+migration+async fully robust)
+
+TOPOLOGY/SCALE-SENSITIVE parts:
+- MIG_ONLY_ASYNC = 10/10 on ring (8/16/32) and grid2d (8/16/32) but only 7/7/9 on small-world
+  (fails the 8/10 bar at sw-8, sw-16) -> migration+asynchrony rescue is lattice-favored;
+  small-world long-range edges partially re-synchronize patches, eroding the rescue.
+- MIG_ONLY_SYNC (the "synchrony kills rescue" control) holds (0/10) at small/medium scale but
+  PARTIALLY breaks at 32 patches (ring-32=6/10, smallworld-32=8/10) -> at large patch count,
+  plain replication insurance starts to substitute for asynchrony, weakening the signal.
+
+VERDICT: POSITIVE-PARTIAL — coexistence-posing is topology/scale-robust (REFUGE_ONLY + BOTH =
+10/10 across {ring, grid2d, small-world} x {8, 16, 32}; NEITHER = 0/10 everywhere). The
+migration+asynchrony rescue is lattice-favored and weakens at large N. Rung 3 substantially
+passes; rung 4 (Red Queen trait-invasion) is UN-BLOCKED on the robust refuge/BOTH regime.
+
+IMPLICATION: Discrete predator-prey COEXISTENCE-POSING is ROBUST (not a ring-8 knife-edge): the
+refuge mechanism poses bounded global coexistence across every tested topology and scale. The two
+rescue mechanisms differ in generality: REFUGE is topology/scale-general; MIGRATION+ASYNCHRONY is
+a lattice-locality effect (ring/grid) that erodes when long-range edges (small-world) or large
+patch counts blur the local-asynchrony structure. A robustly-coexisting resident exists
+everywhere (BOTH/refuge regime, 10/10) -> Red Queen trait-invasion rung is UN-BLOCKED on that
+regime.
+
+VERIFIER: controller ran the full topology x scale sweep on fresh seeds (200-209, distinct from
+Exp 257's 100-109) and applied the predeclared per-cell checks to raw numbers; topology extension
+keeps the ring byte-identical (golden T10, tests/test_patchmosaic.py).
+
+trace: experiments/exp258_patch_topology_robustness.py -> experiments/outputs/exp258.txt
+       (raw grid: experiments/outputs/exp258_patch_topology_robustness.txt)
+       topology extension: ecology/patchmosaic.py commit 4acb2de; tests T10-T14
+====================================================================================================

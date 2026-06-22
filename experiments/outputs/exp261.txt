@@ -1,0 +1,52 @@
+========================================================================================================
+Exp 261 — COSTED PREDATOR ATTACK: does it symmetrize the patch-mosaic Red Queen? RAW — controller judges.
+single causal bit = attack_cost (gated, mirror of escape_cost). Part A seeds [600, 601, 602, 603, 604, 605, 606, 607]; Part B seeds [700, 701, 702, 703, 704, 705, 706, 707, 708, 709].
+========================================================================================================
+[CONTROL] byte-identity isolation: attack_cost=0 Exp-259-config hash (h=300,seed=400) = 6f7f3f54096a425a... == Exp-259 golden OK (single bit isolated)
+
+(A) PREDATOR-ATTACK local gradient vs FAST frozen prey (escape=3.0). 7/8-strict; cost-null = the ac=0 row.
+attack_cost | A=1 | A=1.5 | A=2 | A=2.5 | A=3
+---------------------------------------------
+       0.00 | 8/8POS(+0.008) | 8/8POS(+0.004) | 8/8POS(+0.004) | 7/8POS(+0.015) | 4/8AMB(-0.008)
+       0.15 | 6/8AMB(+0.001) | 4/8AMB(+0.006) | 7/8POS(+0.007) | 8/8POS(+0.008) | 1/8NEG(-0.008)
+       0.25 | 4/8AMB(+0.001) | 5/8AMB(+0.001) | 6/8AMB(+0.002) | 6/8AMB(-0.002) | 0/8NEG(-0.015)
+
+[CTRL] predator DRIFT-NULL (vs saturated prey escape=1.0, attack inert): ac=0 4/8 AMBIG (s-0.0022); ac>0 2/8 NEG (s-0.0016) — must NOT be POS
+[CTRL] prey-ESS sanity (predator frozen, escape_cost=0.15): E=1.0 POS(s+0.0162), E=3.0 AMBIG(s-0.0009) — expect POS/AMBIG low, NEG by E=3
+
+(B) CO-EVOLVING arms race (both traits mutable), trait means; D = atk@3k - esc@3k. horizon=3000
+[BASELINE ac=0 on Exp-259 seeds 400-409]: esc@3k=0.678 atk@3k=1.585 D=+0.908 extinct=0/10  (reproduces Exp-259 predator-dominance iff D>=+0.40, esc<~1.0, atk>~1.0)
+attack_cost |  esc@3k  atk@3k |       D | esc_sd atk_sd |  pen% | clampf |  ext | label
+--------------------------------------------------------------------------------------------------------
+       0.00 |   0.629   1.546 |  +0.917 |  0.306  0.187 |  0.0% |  0.000 |  0/10 | PRED_DOM
+       0.05 |   1.827   2.189 |  +0.361 |  0.191  0.192 |  5.9% |  0.000 |  0/10 | mid
+       0.10 |   2.825   2.551 |  -0.274 |  0.140  0.138 | 15.5% |  0.000 |  0/10 | SYMM?
+       0.15 |   1.997   1.803 |  -0.194 |  0.227  0.148 | 12.0% |  0.000 |  0/10 | SYMM?
+       0.25 |   2.981   1.893 |  -1.087 |  0.264  0.150 | 22.3% |  0.000 |  0/10 | PREY_DOM
+       0.40 |   3.082   1.172 |  -1.909 |  0.198  0.154 |  6.9% |  0.000 |  0/10 | PREY_DOM
+
+PREDECLARED READOUT (controller adjudicates against the raw rows + the two-sided plateau criterion):
+  Part B gap D by attack_cost: ac0=+0.917, ac0.05=+0.361, ac0.1=-0.274, ac0.15=-0.194, ac0.25=-1.087, ac0.4=-1.909
+    -> monotone brake (D non-increasing in attack_cost, tol 0.05): False
+  baseline ac=0: D=+0.917 (PREDATOR_DOMINANCE expected if D>=+0.40); byte-identity isolation: OK
+  Part A interior predator ESS (first-NEG up the ladder) appears at attack_cost: [0.15, 0.25]
+  predator drift-null POS? ac=0:False ac>0:False (POS => NO_VERDICT, falsifier 4)
+Exp 261 PER-SEED decomposition (D = atk@3k - esc@3k). RAW — controller owns this measurement.
+
+ac=0.00: meanD=+0.917 sd(D)=0.426  clades[prey-dom=0 pred-dom=10 bal|D|<=0.3=0]  both>1.5=0 prey_collapsed<1.0=10  bimodCoeff=0.245
+        per-seed D: +1.78 +0.84 +0.42 +1.57 +0.73 +0.62 +0.43 +0.84 +0.86 +1.08
+        per-seed (esc,atk): (0.5,2.2) (0.6,1.4) (0.8,1.2) (0.4,2.0) (0.5,1.2) (0.7,1.4) (0.9,1.3) (0.8,1.6) (0.7,1.5) (0.5,1.6)
+ac=0.10: meanD=-0.274 sd(D)=0.622  clades[prey-dom=6 pred-dom=2 bal|D|<=0.3=1]  both>1.5=7 prey_collapsed<1.0=2  bimodCoeff=0.268
+        per-seed D: -0.40 -0.74 -0.72 -0.68 -0.64 -0.31 -1.00 +0.92 +0.07 +0.76
+        per-seed (esc,atk): (3.8,3.4) (3.9,3.2) (3.9,3.2) (3.9,3.2) (2.5,1.9) (3.9,3.6) (3.8,2.8) (0.7,1.6) (1.1,1.2) (0.7,1.5)
+ac=0.15: meanD=-0.194 sd(D)=0.735  clades[prey-dom=5 pred-dom=4 bal|D|<=0.3=1]  both>1.5=4 prey_collapsed<1.0=5  bimodCoeff=0.177
+        per-seed D: -1.10 +0.59 -1.23 +0.17 -0.70 -0.67 +0.41 +0.63 +0.75 -0.78
+        per-seed (esc,atk): (3.9,2.8) (0.7,1.3) (3.7,2.4) (0.9,1.0) (3.7,3.0) (2.0,1.3) (0.5,0.9) (0.8,1.5) (0.4,1.2) (3.4,2.6)
+ac=0.40: meanD=-1.909 sd(D)=0.180  clades[prey-dom=10 pred-dom=0 bal|D|<=0.3=0]  both>1.5=0 prey_collapsed<1.0=0  bimodCoeff=0.223
+        per-seed D: -1.78 -2.18 -1.50 -2.02 -2.04 -1.96 -1.88 -2.05 -1.78 -1.91
+        per-seed (esc,atk): (2.9,1.2) (3.3,1.1) (2.9,1.4) (3.1,1.1) (3.2,1.1) (3.3,1.3) (3.0,1.1) (3.1,1.1) (3.1,1.3) (3.0,1.1)
+ac    | t=500 (esc/atk/D)        | t=1000                  | t=2000                  | t=3000
+0.0   | 1.30/1.20/-0.10 | 1.08/1.47/+0.39 | 0.67/1.52/+0.85 | 0.63/1.55/+0.92
+0.1   | 1.34/1.17/-0.17 | 1.88/1.48/-0.40 | 2.36/2.09/-0.26 | 2.82/2.55/-0.27
+0.15  | 1.16/1.19/+0.03 | 1.39/1.31/-0.08 | 1.78/1.62/-0.15 | 2.00/1.80/-0.19
+0.4   | 1.23/1.07/-0.16 | 1.76/1.17/-0.58 | 2.70/1.30/-1.40 | 3.08/1.17/-1.91

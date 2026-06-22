@@ -1,0 +1,31 @@
+====================================================================================================
+Exp 264 (R2) — emerged contest aggression IN CONTEXT. RAW — controller adjudicates.
+Part A basin map seeds [620, 621, 622, 623, 624, 625, 626, 627, 628, 629]; Part B co-evolution seeds [720, 721, 722, 723, 724, 725, 726, 727, 728, 729]; 11 procs; trait_max=4.0.
+====================================================================================================
+
+(A) SCARCITY BASIN MAP: P(aggression invades from rarity) vs predation pressure (predator FROZEN):
+ attack_a |   invaded | mean f_final | regime
+------------------------------------------------------------
+     0.01 |    9/10  |        0.900 | SCARCE (weak pred)
+     0.02 |    9/10  |        0.900 | SCARCE (weak pred)
+     0.04 |    8/10  |        0.800 | transition
+     0.06 |    0/10  |        0.000 | ABUNDANT (strong pred)
+     0.08 |    2/10  |        0.200 | ABUNDANT (strong pred)
+
+(B) PREDATOR INTEGRATION: 3-trait co-evolution (escape+aggr+attack), single bit = enable_contest, horizon=3000
+           arm |  esc@end  aggr@end  atk@end | esc_sd |  n_prey  n_pred | extinct
+----------------------------------------------------------------------------------------------------
+   contest OFF |    1.498     0.000    2.010 |  1.400 |   381.3   221.8 | 0/10
+    contest ON |    1.168     0.857    2.087 |  1.242 |   336.2   210.9 | 0/10
+
+  per-seed esc@end [OFF]: 0.19 0.84 3.47 0.71 0.45 0.78 0.33 0.84 3.51 3.85
+  per-seed aggr@end[OFF]: 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+  per-seed esc@end [ON ]: 3.73 1.01 0.96 0.33 0.67 3.45 0.46 0.20 0.21 0.66
+  per-seed aggr@end[ON ]: 0.85 0.88 0.91 0.89 0.84 0.87 0.88 0.87 0.70 0.90
+
+PREDECLARED READOUT (controller adjudicates):
+  (A) P(invade) vs attack_a: a0.01=0.90, a0.02=0.90, a0.04=0.80, a0.06=0.00, a0.08=0.20
+  (B) OFF: esc@end=1.498 atk@end=2.010 aggr=0.000 (aggr inert when contest OFF) ext=0/10
+  (B) ON : esc@end=1.168 atk@end=2.087 aggr@end=0.857 ext=0/10
+  contest WASHED OUT iff aggr@end~0 under the co-evolving predator AND ON~OFF on esc/atk/pops;
+  contest MATTERS iff aggr@end rises and ON differs from OFF (buffers/shifts the prey-escape outcome).

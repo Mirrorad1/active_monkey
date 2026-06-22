@@ -1,0 +1,41 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp268.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp268_acoustic_eavesdropping.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.024\" quoted in entry not found in experiments/outputs/exp268.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.086\" quoted in entry not found in experiments/outputs/exp268.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.579\" quoted in entry not found in experiments/outputs/exp268.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-21T06:59:01Z",
+  "commit_sha": "5919dc2718c8616f7e1c85a3d0330e74282db3d5",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 268,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

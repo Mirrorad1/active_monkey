@@ -1,0 +1,35 @@
+====================================================================================================
+Exp 260 — ONE-SIDED RED QUEEN local-gradient PREFLIGHT on the robust Exp-258 BOTH regime. RAW.
+50/50 breed-true common garden; eps=0.1; window=400; seeds=[500, 501, 502, 503, 504, 505, 506, 507]; gate=7/8-strict (default_thresholds).
+win = mutant selection coeff s>0; POS iff wins>=ceil(7n/8), NEG iff wins<=floor(3n/8); drift nulls must be NEUTRAL.
+====================================================================================================
+
+(P) PREY-ESCAPE gradient  [predator FROZEN attack=1.0; escape_cost=0.15]  — costed, expect interior ESS
+ resident E |      wins verdict     mean s   mean f1  coexist
+------------------------------------------------------------------------------
+       1.00 |  5/8  AMBIG  s=+0.0054  f1=0.639  coex=8/8
+       1.50 |  4/8  AMBIG  s=+0.0095  f1=0.676  coex=8/8
+       2.00 |  4/8  AMBIG  s=+0.0049  f1=0.566  coex=8/8
+       2.50 |  4/8  AMBIG  s=+0.0008  f1=0.562  coex=8/8
+       3.00 |  2/8    NEG  s=-0.0011  f1=0.424  coex=8/8
+
+(P-ctrl) PREY-ESCAPE controls at E=1.0
+  cost-null |  8/8    POS  s=+0.0215  f1=0.977  coex=8/8   (escape_cost=0, pred attack=1.0: benefit only -> should be >= costed)
+ DRIFT-null |  4/8  AMBIG  s=-0.0048  f1=0.408  coex=8/8   (escape_cost=0, pred attack=2.0: escape INERT v=1 -> must be NEUTRAL)
+
+(Q) PREDATOR-ATTACK gradient  [prey FROZEN]  — costless; expect FLAT at saturated prey, ratchet vs fast prey
+ resident A | E_bg |      wins verdict     mean s   mean f1  coexist
+--------------------------------------------------------------------------------------
+       1.00 |  3.0 |  8/8    POS  s=+0.0079  f1=0.811  coex=8/8
+       1.50 |  3.0 |  6/8  AMBIG  s=+0.0059  f1=0.692  coex=8/8
+       2.00 |  3.0 |  8/8    POS  s=+0.0198  f1=0.906  coex=8/8
+       2.50 |  3.0 |  8/8    POS  s=+0.0162  f1=0.872  coex=8/8
+       1.00 |  1.0 |  4/8  AMBIG  s=+0.0005  f1=0.555  coex=8/8   <- monomorphic start / DRIFT-null (attack INERT -> must be NEUTRAL)
+
+PREDECLARED READOUT (controller adjudicates against the raw rows above):
+  prey gradient sign by E: E1=AMBIG(s+0.005), E1.5=AMBIG(s+0.010), E2=AMBIG(s+0.005), E2.5=AMBIG(s+0.001), E3=NEG(s-0.001)
+    -> interior ESS iff POS at low E and flips to NEG at high E. first-NEG anchor(s): [3.0]
+  prey drift-null: AMBIG (wins 4/8) — FALSIFIED if POS
+  prey cost-null:  POS (s +0.021) vs costed E=1.0 s +0.005 — cost is the brake iff cost-null more positive
+  predator vs fast prey (E=3.0) by A: A1=POS(s+0.008), A1.5=AMBIG(s+0.006), A2=POS(s+0.020), A2.5=POS(s+0.016)
+  predator monomorphic/drift-null (E=1.0): AMBIG (wins 4/8) — FALSIFIED if POS
