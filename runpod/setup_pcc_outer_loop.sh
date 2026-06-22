@@ -16,6 +16,7 @@
 # Useful overrides:
 #   LIMIT=48 MAX_NEW_TOKENS=192 OUTPUT=experiments/outputs/pcc_qwen_gsm8k.json
 #   MODEL=Qwen/Qwen2.5-0.5B-Instruct DATASET=openai/gsm8k SPLIT=test
+#   PYTORCH_INDEX_URL=https://download.pytorch.org/whl/cu128
 # ---------------------------------------------------------------------------
 set -euo pipefail
 
@@ -35,6 +36,7 @@ ALPHA="${ALPHA:-0.1}"
 OUTPUT="${OUTPUT:-experiments/outputs/pcc_qwen_gsm8k.json}"
 HF_HOME="${HF_HOME:-${WORKDIR}/hf-cache}"
 REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
+PYTORCH_INDEX_URL="${PYTORCH_INDEX_URL:-https://download.pytorch.org/whl/cu128}"
 
 echo "==> [1/8] Single-GPU environment"
 export CUDA_VISIBLE_DEVICES=0
@@ -90,7 +92,9 @@ fi
 
 echo "==> [5/8] Create isolated PCC venv and install HF stack"
 uv venv --python "${PY_VERSION}" .venv-pcc
-uv pip install --python .venv-pcc --upgrade torch transformers datasets accelerate
+echo "    Installing PyTorch from ${PYTORCH_INDEX_URL}"
+uv pip install --python .venv-pcc --upgrade --index-url "${PYTORCH_INDEX_URL}" torch
+uv pip install --python .venv-pcc --upgrade transformers datasets accelerate
 
 echo "==> [6/8] Verify PyTorch sees a real CUDA GPU"
 .venv-pcc/bin/python - <<'PY'
@@ -99,14 +103,33 @@ import sys
 import torch
 
 print("torch.__version__:", torch.__version__)
-print("cuda available  :", torch.cuda.is_available())
-print("devices         :", [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())])
-
 require_cuda = os.environ.get("REQUIRE_CUDA", "1") == "1"
-if require_cuda and not torch.cuda.is_available():
-    raise SystemExit("FATAL: REQUIRE_CUDA=1 but torch.cuda.is_available() is false")
+try:
+    cuda_available = torch.cuda.is_available()
+    device_count = torch.cuda.device_count() if cuda_available else 0
+    names = [torch.cuda.get_device_name(i) for i in range(device_count)]
+except Exception as exc:
+    print("cuda probe error:", repr(exc), file=sys.stderr)
+    print(
+        "Hint: if the host driver is CUDA 12.8-class, install torch from "
+        "https://download.pytorch.org/whl/cu128 rather than the PyPI latest CUDA wheel.",
+        file=sys.stderr,
+    )
+    if require_cuda:
+        raise SystemExit("FATAL: CUDA probe failed and REQUIRE_CUDA=1") from exc
+    cuda_available = False
+    names = []
 
-if torch.cuda.is_available():
+print("cuda available  :", cuda_available)
+print("devices         :", names)
+
+if require_cuda and not cuda_available:
+    raise SystemExit(
+        "FATAL: REQUIRE_CUDA=1 but torch.cuda.is_available() is false. "
+        "Check nvidia-smi and the PYTORCH_INDEX_URL wheel tag."
+    )
+
+if cuda_available:
     device = torch.device("cuda:0")
     x = torch.ones((1024, 1024), device=device)
     y = x @ x

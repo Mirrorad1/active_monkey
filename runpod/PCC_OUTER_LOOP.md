@@ -70,7 +70,8 @@ The script will:
 1. pin the job to one GPU,
 2. clone the requested branch,
 3. create `.venv-pcc`,
-4. install `torch`, `transformers`, `datasets`, and `accelerate`,
+4. install PyTorch from the CUDA 12.8 wheel index plus `transformers`,
+   `datasets`, and `accelerate`,
 5. verify a real CUDA matmul,
 6. run the dependency-free smoke check,
 7. run the Qwen/GSM8K PCC experiment,
@@ -95,6 +96,7 @@ Terminate the pod after the report is received.
 ## Useful overrides
 
 ```bash
+export PYTORCH_INDEX_URL=https://download.pytorch.org/whl/cu128
 export MODEL=Qwen/Qwen2.5-0.5B-Instruct
 export DATASET=openai/gsm8k
 export DATASET_CONFIG=main
@@ -114,3 +116,25 @@ The current harness reloads the model once for baseline and once per candidate
 scaffold. That is acceptable for a first Qwen-0.5B pilot on a RunPod GPU, but the
 next optimization should load the model once and evaluate all scaffolds in the
 same process before scaling to larger slices.
+
+## Driver mismatch repair
+
+If the pod prints an error like:
+
+```text
+torch.__version__: 2.12.1+cu130
+The NVIDIA driver on your system is too old (found version 12080)
+```
+
+the environment installed a CUDA 13 PyTorch wheel on a CUDA 12.8-class RunPod
+host driver. Do not try to update the driver from inside the container. Reinstall
+PyTorch from the CUDA 12.8 wheel index:
+
+```bash
+cd /workspace/active-loop
+git pull --ff-only
+uv pip install --python .venv-pcc --upgrade --index-url https://download.pytorch.org/whl/cu128 torch
+bash runpod/setup_pcc_outer_loop.sh
+```
+
+The updated script uses `https://download.pytorch.org/whl/cu128` by default.
