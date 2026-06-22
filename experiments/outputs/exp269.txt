@@ -1,0 +1,88 @@
+Exp 269 — Embodied population stability-vs-competition calibration sweep (MJX-batched substrate)
+Run on RunPod H100 80GB (single GPU), branch embodied-physics-substrate.
+Command:
+  unset LD_LIBRARY_PATH; export JAX_PLATFORM_NAME=cuda CUDA_VISIBLE_DEVICES=0 PYTHONPATH=.
+  python -m embodied.sweep_phase2p5 --capacities 8 12 16 22 30 --regens 0.3 0.5 \
+    --seeds 0 1 2 --horizon 300 --max-pop 256
+Total wall-clock ~1402s (~23 min) with one shared compiled world (1 JIT, not 30).
+
+GPU check OK: real kernel on {CudaDevice(id=0)}
+
+[cell 1/10] cap=8 regen=0.30  (0s elapsed)
+    seed 0:  111.8s  peakN= 49  births=150 deaths=177 capped=0 final=3
+    seed 1:   45.3s  peakN= 68  births=419 deaths=442 capped=0 final=7
+    seed 2:   42.7s  peakN= 57  births=225 deaths=255 capped=0 final=0
+  cap=8     regen=0.30:  stable 0/3  density-dep 2/3  n_eq=[19.5, 42.5, 16.0]  corr=[-0.1, -0.01, 0.01]  => -   [200s]
+[cell 2/10] cap=8 regen=0.50  (200s elapsed)
+    seed 0:   21.3s  peakN= 49  births=102 deaths=132 capped=0 final=0
+    seed 1:   46.4s  peakN=116  births=797 deaths=794 capped=0 final=33
+    seed 2:   44.5s  peakN= 97  births=373 deaths=394 capped=0 final=9
+  cap=8     regen=0.50:  stable 0/3  density-dep 1/3  n_eq=[0.0, 73.5, 25.0]  corr=[0.65, 0.06, -0.07]  => -   [112s]
+[cell 3/10] cap=12 regen=0.30  (312s elapsed)
+    seed 0:   28.8s  peakN= 55  births=157 deaths=187 capped=0 final=0
+    seed 1:   45.5s  peakN=115  births=716 deaths=728 capped=0 final=18
+    seed 2:   44.7s  peakN= 88  births=466 deaths=480 capped=0 final=16
+  cap=12    regen=0.30:  stable 0/3  density-dep 2/3  n_eq=[9.0, 58.0, 30.5]  corr=[0.55, -0.18, -0.09]  => -   [119s]
+[cell 4/10] cap=12 regen=0.50  (431s elapsed)
+    seed 0:   35.5s  peakN=102  births=310 deaths=340 capped=0 final=0
+    seed 1:   45.3s  peakN=149  births=841 deaths=859 capped=0 final=12
+    seed 2:   45.9s  peakN=129  births=754 deaths=749 capped=0 final=35
+  cap=12    regen=0.50:  stable 0/3  density-dep 2/3  n_eq=[21.0, 71.0, 62.0]  corr=[0.13, -0.1, -0.08]  => -   [127s]
+[cell 5/10] cap=16 regen=0.30  (558s elapsed)
+    seed 0:   44.4s  peakN= 68  births=513 deaths=528 capped=0 final=15
+    seed 1:   45.9s  peakN=127  births=919 deaths=911 capped=0 final=38
+    seed 2:   46.3s  peakN=136  births=753 deaths=750 capped=0 final=33
+  cap=16    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[46.0, 71.0, 52.0]  corr=[-0.17, -0.19, -0.22]  => -   [137s]
+[cell 6/10] cap=16 regen=0.50  (695s elapsed)
+    seed 0:   45.3s  peakN=119  births=638 deaths=633 capped=0 final=35
+    seed 1:   47.9s  peakN=172  births=1577 deaths=1523 capped=0 final=84
+    seed 2:   45.7s  peakN=157  births=1233 deaths=1192 capped=0 final=71
+  cap=16    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[39.0, 121.0, 94.0]  corr=[-0.04, -0.2, -0.18]  => -   [139s]
+[cell 7/10] cap=22 regen=0.30  (834s elapsed)
+    seed 0:   44.8s  peakN=104  births=624 deaths=640 capped=0 final=14
+    seed 1:   48.5s  peakN=208  births=1267 deaths=1229 capped=0 final=68
+    seed 2:   45.5s  peakN=185  births=976 deaths=964 capped=0 final=42
+  cap=22    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[47.0, 82.0, 65.5]  corr=[-0.06, -0.31, -0.18]  => -   [139s]
+[cell 8/10] cap=22 regen=0.50  (973s elapsed)
+    seed 0:   45.4s  peakN=143  births=896 deaths=919 capped=0 final=7
+    seed 1:   47.7s  peakN=203  births=1959 deaths=1855 capped=0 final=134
+    seed 2:   46.8s  peakN=212  births=1523 deaths=1481 capped=0 final=72
+  cap=22    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[70.0, 138.0, 112.5]  corr=[-0.2, -0.39, -0.32]  => -   [140s]
+[cell 9/10] cap=30 regen=0.30  (1113s elapsed)
+    seed 0:   45.5s  peakN=124  births=892 deaths=878 capped=0 final=44
+    seed 1:   49.2s  peakN=243  births=1439 deaths=1376 capped=0 final=93
+    seed 2:   46.6s  peakN=239  births=1219 deaths=1197 capped=0 final=52
+  cap=30    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[59.0, 90.0, 79.0]  corr=[-0.14, -0.27, -0.24]  => -   [141s]
+[cell 10/10] cap=30 regen=0.50  (1254s elapsed)
+    seed 0:   47.5s  peakN=182  births=1514 deaths=1455 capped=0 final=89
+    seed 1:   50.6s  peakN=256  births=2169 deaths=2074 capped=100 final=125
+    seed 2:   48.7s  peakN=256  births=1930 deaths=1828 capped=15 final=132
+  cap=30    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[106.0, 147.0, 140.0]  corr=[-0.22, -0.3, -0.39]  => -   [147s]
+
+Phase-2.5 calibration sweep (MJX-batched substrate)
+grid: capacity=[8.0, 12.0, 16.0, 22.0, 30.0] regen=[0.3, 0.5] seeds=[0, 1, 2] founders=30 horizon=300 max_pop=256 bout=8
+(a cell wins iff a majority of seeds certify STABLE under the FROZEN gate AND are density-dependent)
+
+  cap=8     regen=0.30:  stable 0/3  density-dep 2/3  n_eq=[19.5, 42.5, 16.0]  corr=[-0.1, -0.01, 0.01]  => -
+  cap=8     regen=0.50:  stable 0/3  density-dep 1/3  n_eq=[0.0, 73.5, 25.0]  corr=[0.65, 0.06, -0.07]  => -
+  cap=12    regen=0.30:  stable 0/3  density-dep 2/3  n_eq=[9.0, 58.0, 30.5]  corr=[0.55, -0.18, -0.09]  => -
+  cap=12    regen=0.50:  stable 0/3  density-dep 2/3  n_eq=[21.0, 71.0, 62.0]  corr=[0.13, -0.1, -0.08]  => -
+  cap=16    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[46.0, 71.0, 52.0]  corr=[-0.17, -0.19, -0.22]  => -
+  cap=16    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[39.0, 121.0, 94.0]  corr=[-0.04, -0.2, -0.18]  => -
+  cap=22    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[47.0, 82.0, 65.5]  corr=[-0.06, -0.31, -0.18]  => -
+  cap=22    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[70.0, 138.0, 112.5]  corr=[-0.2, -0.39, -0.32]  => -
+  cap=30    regen=0.30:  stable 0/3  density-dep 3/3  n_eq=[59.0, 90.0, 79.0]  corr=[-0.14, -0.27, -0.24]  => -
+  cap=30    regen=0.50:  stable 0/3  density-dep 3/3  n_eq=[106.0, 147.0, 140.0]  corr=[-0.22, -0.3, -0.39]  => -
+
+VERDICT: NEGATIVE / NEW INSIGHT — no cell is both stable and density-dependent. The stability-vs-strong-competition wall recurs on the embodied substrate (stable only where food is too rich to compete; competitive only where it collapses).
+
+--- Controller verification (re-applied FROZEN gate to raw numbers) ---
+certify() imports FROZEN constants verbatim from ecology.evolvability.stability
+(_PERSIST_FLOOR=30, _LEVEL_CV_SEED_MAX=0.25, _DRIFT_MAX=0.10, oscillation==DAMPED).
+Non-degeneracy proof (synthetic inputs through certify()):
+  STABLE input  (N~50+-1.5, dd pci) -> stable=True  dd=True  persist=45 cv=0.031 drift=0.011 DAMPED
+  BOOMBUST input(peak256->125 swings)-> stable=False dd=True  persist=30 cv=0.287 drift=0.285 OSCILLATORY
+  COLLAPSE input(->0)                -> stable=False dd=False persist=0  cv=0.551          OSCILLATORY
+=> the gate CAN pass a genuinely stable input; "stable 0/3 in every cell" is a real
+   signal, not a stuck gate. The boom-bust (rich) cells fail level_cv/drift/DAMPED; the
+   collapse (poor) cells fail persistence. Competitive XOR stable across all 10 cells.
