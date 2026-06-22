@@ -133,8 +133,12 @@ PyTorch from the CUDA 12.8 wheel index:
 ```bash
 cd /workspace/active-loop
 git pull --ff-only
-uv pip install --python .venv-pcc --upgrade --index-url https://download.pytorch.org/whl/cu128 torch
+uv pip uninstall --python .venv-pcc -y torch
+uv pip install --python .venv-pcc --index-url https://download.pytorch.org/whl/cu128 torch
 bash runpod/setup_pcc_outer_loop.sh
 ```
 
-The updated script uses `https://download.pytorch.org/whl/cu128` by default.
+The updated script uses `https://download.pytorch.org/whl/cu128` by default and
+does not run `--upgrade` when installing `transformers`, `datasets`, and
+`accelerate`, so those packages do not silently replace the CUDA 12.8 torch
+wheel.

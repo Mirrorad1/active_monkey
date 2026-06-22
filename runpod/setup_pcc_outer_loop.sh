@@ -93,8 +93,11 @@ fi
 echo "==> [5/8] Create isolated PCC venv and install HF stack"
 uv venv --python "${PY_VERSION}" .venv-pcc
 echo "    Installing PyTorch from ${PYTORCH_INDEX_URL}"
-uv pip install --python .venv-pcc --upgrade --index-url "${PYTORCH_INDEX_URL}" torch
-uv pip install --python .venv-pcc --upgrade transformers datasets accelerate
+uv pip uninstall --python .venv-pcc -y torch || true
+uv pip install --python .venv-pcc --index-url "${PYTORCH_INDEX_URL}" torch
+# Do not pass --upgrade here: accelerate depends on torch, and an unconstrained
+# upgrade can replace the cu128 torch wheel with PyPI's latest CUDA wheel.
+uv pip install --python .venv-pcc transformers datasets accelerate
 
 echo "==> [6/8] Verify PyTorch sees a real CUDA GPU"
 .venv-pcc/bin/python - <<'PY'
