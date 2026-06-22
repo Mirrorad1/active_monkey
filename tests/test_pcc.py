@@ -104,7 +104,11 @@ def test_runpod_pcc_script_is_bash_parseable_and_targets_hf_run():
     assert "PYTORCH_INDEX_URL" in text
     assert "https://download.pytorch.org/whl/cu128" in text
     assert "--index-url" in text
-    assert "uv pip uninstall --python .venv-pcc -y torch" in text
+    assert "PYTORCH_BACKEND" in text
+    assert "--torch-backend" in text
+    assert "--reinstall-package torch" in text
+    assert "uv pip uninstall --python .venv-pcc torch" in text
+    assert "uv pip uninstall --python .venv-pcc -y torch" not in text
     assert "uv pip install --python .venv-pcc transformers datasets accelerate" in text
     assert "--upgrade transformers datasets accelerate" not in text
     assert "Qwen/Qwen2.5-0.5B-Instruct" in text

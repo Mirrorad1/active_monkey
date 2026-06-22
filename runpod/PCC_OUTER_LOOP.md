@@ -97,6 +97,7 @@ Terminate the pod after the report is received.
 
 ```bash
 export PYTORCH_INDEX_URL=https://download.pytorch.org/whl/cu128
+export PYTORCH_BACKEND=cu128
 export MODEL=Qwen/Qwen2.5-0.5B-Instruct
 export DATASET=openai/gsm8k
 export DATASET_CONFIG=main
@@ -133,12 +134,18 @@ PyTorch from the CUDA 12.8 wheel index:
 ```bash
 cd /workspace/active-loop
 git pull --ff-only
-uv pip uninstall --python .venv-pcc -y torch
-uv pip install --python .venv-pcc --index-url https://download.pytorch.org/whl/cu128 torch
+uv pip uninstall --python .venv-pcc torch
+uv pip install --python .venv-pcc \
+  --index-url https://download.pytorch.org/whl/cu128 \
+  --torch-backend cu128 \
+  --reinstall-package torch \
+  torch
 bash runpod/setup_pcc_outer_loop.sh
 ```
 
 The updated script uses `https://download.pytorch.org/whl/cu128` by default and
 does not run `--upgrade` when installing `transformers`, `datasets`, and
 `accelerate`, so those packages do not silently replace the CUDA 12.8 torch
-wheel.
+wheel. It also uses uv's `--torch-backend cu128` and `--reinstall-package torch`
+flags so an already-installed `+cu130` wheel is actually replaced instead of
+merely audited.

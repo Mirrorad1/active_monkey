@@ -96,8 +96,12 @@ such as `+cu130`, which fails before device enumeration. Install from the
 CUDA-12.8 wheel index instead:
 
 ```sh
-uv pip uninstall --python .venv-pcc -y torch
-uv pip install --python .venv-pcc --upgrade --index-url https://download.pytorch.org/whl/cu128 torch
+uv pip uninstall --python .venv-pcc torch
+uv pip install --python .venv-pcc \
+  --index-url https://download.pytorch.org/whl/cu128 \
+  --torch-backend cu128 \
+  --reinstall-package torch \
+  torch
 ```
 
 Then install the Hugging Face packages without `--upgrade`; otherwise the solver
@@ -111,6 +115,11 @@ uv pip install --python .venv-pcc transformers datasets accelerate
 If the current pod already hit the failure, `git pull --ff-only` the fixed
 branch, uninstall/reinstall torch with the command above, and rerun the setup
 script.
+
+`uv pip uninstall` does not take `-y`; adding it makes the uninstall command
+error out. Also, if `torch +cu130` is already installed, a plain install can say
+`Audited 1 package` and leave it in place. Use `--reinstall-package torch` to
+force replacement.
 
 ## Verification
 A successful small HF plumbing run should:

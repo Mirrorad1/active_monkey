@@ -17,6 +17,7 @@
 #   LIMIT=48 MAX_NEW_TOKENS=192 OUTPUT=experiments/outputs/pcc_qwen_gsm8k.json
 #   MODEL=Qwen/Qwen2.5-0.5B-Instruct DATASET=openai/gsm8k SPLIT=test
 #   PYTORCH_INDEX_URL=https://download.pytorch.org/whl/cu128
+#   PYTORCH_BACKEND=cu128
 # ---------------------------------------------------------------------------
 set -euo pipefail
 
@@ -37,6 +38,7 @@ OUTPUT="${OUTPUT:-experiments/outputs/pcc_qwen_gsm8k.json}"
 HF_HOME="${HF_HOME:-${WORKDIR}/hf-cache}"
 REQUIRE_CUDA="${REQUIRE_CUDA:-1}"
 PYTORCH_INDEX_URL="${PYTORCH_INDEX_URL:-https://download.pytorch.org/whl/cu128}"
+PYTORCH_BACKEND="${PYTORCH_BACKEND:-cu128}"
 
 echo "==> [1/8] Single-GPU environment"
 export CUDA_VISIBLE_DEVICES=0
@@ -92,9 +94,13 @@ fi
 
 echo "==> [5/8] Create isolated PCC venv and install HF stack"
 uv venv --python "${PY_VERSION}" .venv-pcc
-echo "    Installing PyTorch from ${PYTORCH_INDEX_URL}"
-uv pip uninstall --python .venv-pcc -y torch || true
-uv pip install --python .venv-pcc --index-url "${PYTORCH_INDEX_URL}" torch
+echo "    Installing PyTorch from ${PYTORCH_INDEX_URL} / backend ${PYTORCH_BACKEND}"
+uv pip uninstall --python .venv-pcc torch || true
+uv pip install --python .venv-pcc \
+  --index-url "${PYTORCH_INDEX_URL}" \
+  --torch-backend "${PYTORCH_BACKEND}" \
+  --reinstall-package torch \
+  torch
 # Do not pass --upgrade here: accelerate depends on torch, and an unconstrained
 # upgrade can replace the cu128 torch wheel with PyPI's latest CUDA wheel.
 uv pip install --python .venv-pcc transformers datasets accelerate
