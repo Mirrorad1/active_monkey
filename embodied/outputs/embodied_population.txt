@@ -1,0 +1,61 @@
+========================================================================
+embodied population run — Preflight stability report
+========================================================================
+founders=30  horizon=300  seeds=[0, 1, 2]
+
+--- seed 0 ---
+  events_hash        : 40e1f5c55a57d349
+  births / deaths    : 1 / 31
+  final_alive        : 0
+  N(t) summary       : min=0  max=30  mean=1.9
+  per_capita_intake  : mean=0.1556  std=0.3965
+  intake-vs-N corr   : 0.285  density_dependent=False
+
+  Preflight stability gates (FROZEN thresholds):
+    persistence          FAIL
+    level_cv             FAIL
+    drift                FAIL
+    oscillation          FAIL
+  n_eq=0.0  level_cv=3.249  drift=inf  persistence=0
+  oscillation        : OSCILLATORY
+  STABLE             : False
+
+--- seed 1 ---
+  events_hash        : 4c5825292795cafe
+  births / deaths    : 66 / 89
+  final_alive        : 7
+  N(t) summary       : min=3  max=33  mean=10.6
+  per_capita_intake  : mean=1.3027  std=0.5987
+  intake-vs-N corr   : -0.320  density_dependent=True
+
+  Preflight stability gates (FROZEN thresholds):
+    persistence          FAIL
+    level_cv             FAIL
+    drift                FAIL
+    oscillation          FAIL
+  n_eq=8.5  level_cv=0.555  drift=1.608  persistence=3
+  oscillation        : OSCILLATORY
+  STABLE             : False
+
+--- seed 2 ---
+  events_hash        : 1368a66de4477eb5
+  births / deaths    : 78 / 97
+  final_alive        : 11
+  N(t) summary       : min=3  max=35  mean=11.7
+  per_capita_intake  : mean=1.2761  std=0.5785
+  intake-vs-N corr   : -0.294  density_dependent=True
+
+  Preflight stability gates (FROZEN thresholds):
+    persistence          FAIL
+    level_cv             FAIL
+    drift                FAIL
+    oscillation          FAIL
+  n_eq=10.0  level_cv=0.496  drift=0.904  persistence=3
+  oscillation        : OSCILLATORY
+  STABLE             : False
+
+--- cross-seed summary ---
+  seeds stable       : 0/3
+  n_eq per seed      : ['0.0', '8.5', '10.0']
+  seed_agreement     : 1.176  (threshold <= 0.25)  FAIL
+
