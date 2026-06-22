@@ -50,6 +50,24 @@ smarter, selection is the wrong lever (that's data/training).
   handle is the **block summary** (max-pool / smaller blocks / query-aware or learned pooling) — this
   harness measures any such change directly.
 
+## Rung-1b finding — can a cheaper-than-dense summary close the gap? (`block_summary_fix.py`)
+Searched the fix (summary mean vs max, block size, pool_factor) against an honest **selection-cost**
+column (q·vector dot products; dense = m = 512). At the hard SNR (alpha=1.0, where mean fell to 0.70):
+
+| variant | cost | recall@1.0 |
+|---|---|---|
+| exact (ceiling) | 512 (dense) | 1.000 |
+| mean b16 pf2 | 96 (19%) | 0.703 |
+| **max** b16 pf2 | 96 (19%) | **0.647** (max *backfires* — grabs the most-positive distractor per dim regardless of q's sign) |
+| **mean b8** pf2 | 128 (25%) | **0.938** (granularity is the real lever; +6% cost, still misses 0.95) |
+| mean b16 pf4 | 160 (31%) | 0.868 |
+
+**No sub-dense static summary clears the predeclared bar (recall ≥ exact−0.05 at sub-dense cost).**
+Dilution is intrinsic to block prefiltering at this budget. This *proves the cheap rung insufficient*
+(the scale-on-proven-insufficiency trigger): the irreducible residue is a **learned, query-aware block
+summary** — that's the novelty lever, now justified rather than assumed (and it needs training → rung 2/3).
+Norm-based or other plant-exploiting "fixes" are refused as degeneracies.
+
 ## Predeclared falsifiers (binding)
 - Bench validity: if `exact_topk` is not ≈1.0 on all geometries OR `window` is not ≈0 on `far`, the
   instrument can't detect failure → results are void (the script aborts).

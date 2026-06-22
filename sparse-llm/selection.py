@@ -71,6 +71,46 @@ def block_topk(q, K, budget, qpos, rng=None, block=16, pool_factor=2):
     return cand[np.argsort(-s)[:budget]]
 
 
+def _summary(Kblock, kind):
+    """Cheap O(d) per-block representative used to score the block against q."""
+    if kind == "mean":
+        return Kblock.mean(axis=0)
+    if kind == "max":
+        return Kblock.max(axis=0)          # elementwise max — less dilution by distractors
+    raise ValueError(kind)
+
+
+def make_block_selector(block=16, pool_factor=2, summary="mean"):
+    """Parametrised coarse-to-fine selector. The rung-1b fix-search varies block size, how many
+    candidate blocks to keep (pool_factor), and the block summary (mean vs max)."""
+    def sel(q, K, budget, qpos, rng=None):
+        elig = _eligible(qpos, K.shape[0])
+        m = elig.size
+        if m <= budget:
+            return elig
+        nblocks = int(np.ceil(m / block))
+        members = [elig[b * block:(b + 1) * block] for b in range(nblocks)]
+        S = np.array([_summary(K[mem], summary) for mem in members])
+        order = np.argsort(-(S @ q))
+        target = min(m, pool_factor * budget)
+        cand = []
+        for bi in order:
+            cand.extend(members[bi].tolist())
+            if len(cand) >= target:
+                break
+        cand = np.array(cand)
+        return cand[np.argsort(-(K[cand] @ q))[:budget]]
+    return sel
+
+
+def block_select_cost(m, budget, block=16, pool_factor=2):
+    """Selection overhead in q·vector dot products: score every block + fine-rank the pool.
+    Compare to exact_topk's m (= dense cost, no saving) and window/random's 0."""
+    if m <= budget:
+        return 0
+    return int(np.ceil(m / block)) + min(m, pool_factor * budget)
+
+
 SELECTORS = {
     "exact_topk": exact_topk,
     "block_topk": block_topk,
