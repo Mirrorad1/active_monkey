@@ -207,12 +207,16 @@ Order-3 minimal-failing-group detection genuinely closes the blind spot
 
 **#3 — Real LLM-probe (RunPod, pull-and-run).** `llm_probe/` is a self-contained
 torch/HF probe that replaces the binary oracle with the **NLL of the gold answer**
-under a small causal LM and measures whether `sigma_ij` for the true dangerous
-pair separates from random safe pairs (ROC-AUC) + whether NLL-thresholded C3
-beats solo on greedy accuracy. Not run here (local venv is CPU/torch-less); see
-`llm_probe/README_RUNPOD.md` for the clone→run→retrieve flow. AUC≥0.75 would mean
-the residue signal survives a real model; AUC≈0.5 would falsify C3's premise on
-that model.
+under a small causal LM. Its verdict is honest about **both signal quality and
+signal coverage**: detectability = test-only ROC-AUC (with a bootstrap CI) of
+`sigma_ij` for the true dangerous pair vs random safe pairs, AND coverage =
+`true_pair_tested_rate` (a true pair only reaches the AUC if both endpoints pass
+the safe gate and survive the pair cap — so AUC alone can overstate viability).
+The verdict PASSes only when test AUC ≥ 0.75 *and* tested-rate ≥ 0.8; utility
+(C3 vs solo greedy accuracy) is reported per budget with a bootstrap CI. Not run
+here (local venv is CPU/torch-less); offline logic is guarded by
+`llm_probe/test_probe_offline.py`. See `llm_probe/README_RUNPOD.md` for the
+clone→run→retrieve flow.
 
 ## Files
 

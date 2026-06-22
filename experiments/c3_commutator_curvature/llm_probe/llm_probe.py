@@ -18,12 +18,19 @@ places (the hidden dangerous pair) plus distractors that name competing values.
 Removing one mention should barely move the NLL (delta ~ 0); removing BOTH
 should spike it (sigma > 0) -- IF the model actually uses cross-span redundancy.
 
-Two questions, reported honestly:
-  Q1 (detectability): is sigma for the TRUE dangerous pair separated from sigma
-     for random safe pairs? (medians + ROC-AUC). This is the crux -- if the
-     real model has no measurable residue, C3 cannot work on it.
+Three things, reported honestly:
+  Q1a (signal quality): is sigma for the TRUE dangerous pair separated from sigma
+     for random safe pairs? (medians + ROC-AUC, test-only AND all-split, with a
+     bootstrap CI). If the real model has no measurable residue, C3 cannot work.
+  Q1b (signal coverage): does the true pair even REACH the AUC? It only does if
+     both endpoints pass the safe gate (delta<=tau) AND survive the pair cap.
+     AUC is conditional on tested pairs, so a high AUC over few-but-survivable
+     pairs OVERSTATES viability. We report the tested rate + why pairs go missing.
   Q2 (utility): does NLL-thresholded C3 beat solo_delta_greedy on greedy-decode
-     answer accuracy under tight budgets? (threshold calibrated on a dev split.)
+     answer accuracy under tight budgets? (threshold calibrated on a dev split;
+     per-budget delta with a bootstrap CI.)
+
+The verdict requires BOTH quality (test AUC>=0.75) AND coverage (tested>=0.8).
 
 Self-contained: no imports from the parent experiment package, so it runs from
 a fresh clone. Standard HF transformers only.
@@ -224,6 +231,66 @@ def auc(pos, neg):
     return wins / (len(pos) * len(neg))
 
 
+def collect_split(cache, split, tau):
+    """Per-instance sigma records + true-pair COVERAGE accounting for one split.
+
+    A true dangerous pair only reaches the AUC if BOTH its endpoints pass the
+    safe gate (delta <= tau) AND it survives the pair-cap subsample. If it does
+    not, it is silently absent from the positive class -- so AUC alone overstates
+    viability. We track exactly why each true pair is/ isn't tested.
+
+    Returns (recs, cov) where recs[i] = {"true": float|None, "rand": [floats]}
+    and cov has counts: n, safe_gated, tested, missing_gate, missing_cap.
+    """
+    recs = []
+    cov = {"n": 0, "safe_gated": 0, "tested": 0, "missing_gate": 0, "missing_cap": 0}
+    for inst in split:
+        _, delta, sigma = cache[inst["id"]]
+        tp = tuple(inst["hidden_dangerous_pair"])  # sorted [a,b]
+        both_safe = (delta.get(tp[0], 1e9) <= tau) and (delta.get(tp[1], 1e9) <= tau)
+        tested = tp in sigma
+        cov["n"] += 1
+        cov["safe_gated"] += int(both_safe)
+        cov["tested"] += int(tested)
+        cov["missing_gate"] += int(not both_safe)
+        cov["missing_cap"] += int(both_safe and not tested)
+        recs.append({"true": sigma.get(tp), "rand": [v for k, v in sigma.items() if k != tp]})
+    return recs, cov
+
+
+def pooled_auc(recs):
+    pos = [r["true"] for r in recs if r["true"] is not None]
+    neg = [v for r in recs for v in r["rand"]]
+    return auc(pos, neg)
+
+
+def bootstrap_auc(recs, B, rng):
+    """Resample INSTANCES (the correct unit) with replacement; 95% CI of AUC."""
+    if not recs:
+        return None
+    n, ests = len(recs), []
+    for _ in range(B):
+        sample = [recs[rng.randrange(n)] for _ in range(n)]
+        a = pooled_auc(sample)
+        if a is not None:
+            ests.append(a)
+    if not ests:
+        return None
+    ests.sort()
+    return [ests[int(0.025 * len(ests))], ests[int(0.975 * len(ests))]]
+
+
+def bootstrap_mean_ci(vals, B, rng):
+    """95% CI for the mean of a list (e.g. per-instance c3-minus-solo deltas)."""
+    if not vals:
+        return None
+    n, ests = len(vals), []
+    for _ in range(B):
+        ests.append(sum(vals[rng.randrange(n)] for _ in range(n)) / n)
+    ests.sort()
+    return [ests[int(0.025 * B)], ests[int(0.975 * B)]]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=60)
@@ -251,32 +318,33 @@ def main():
 
     # ---- compute residue for all instances ----
     cache = {}  # id -> (base, delta, sigma)
-    true_sigmas, rand_sigmas = [], []
     for k, inst in enumerate(data):
         base, delta, sigma = residue(lm, inst, args.tau, args.max_safe_pairs, rng)
         cache[inst["id"]] = (base, delta, sigma)
-        tp = tuple(inst["hidden_dangerous_pair"])
-        for (i, j), s in sigma.items():
-            if (i, j) == tp or (j, i) == tp:
-                true_sigmas.append(s)
-            else:
-                rand_sigmas.append(s)
         if (k + 1) % 10 == 0:
             print(f"  residue {k+1}/{len(data)}  ({time.time()-t0:.0f}s)")
 
-    # ---- Q1: detectability (calibrate threshold on dev) ----
-    dev_true = [s for inst in dev for s in [
-        cache[inst["id"]][2].get(tuple(inst["hidden_dangerous_pair"]))] if s is not None]
-    dev_rand = []
-    for inst in dev:
-        tp = tuple(inst["hidden_dangerous_pair"])
-        for key, s in cache[inst["id"]][2].items():
-            if key != tp and key != tp[::-1]:
-                dev_rand.append(s)
-    # threshold = midpoint between dev medians (simple, calibrated on dev only)
+    # ---- per-split sigma records + true-pair COVERAGE (honest reachability) ----
+    all_recs, cov = collect_split(cache, data, args.tau)
+    test_recs, _ = collect_split(cache, test, args.tau)
+    dev_recs, _ = collect_split(cache, dev, args.tau)
+
+    all_pos = [r["true"] for r in all_recs if r["true"] is not None]
+    all_neg = [v for r in all_recs for v in r["rand"]]
     med = lambda xs: sorted(xs)[len(xs)//2] if xs else 0.0
+
+    # threshold calibrated on DEV ONLY (midpoint between dev medians)
+    dev_true = [r["true"] for r in dev_recs if r["true"] is not None]
+    dev_rand = [v for r in dev_recs for v in r["rand"]]
     threshold = (med(dev_true) + med(dev_rand)) / 2 if dev_true else 0.5
-    det_auc = auc(true_sigmas, rand_sigmas)
+
+    all_split_auc = pooled_auc(all_recs)
+    test_only_auc = pooled_auc(test_recs)
+    boot_rng = random.Random(args.seed + 1)
+    test_auc_ci = bootstrap_auc(test_recs, 2000, boot_rng)
+
+    tested_rate = cov["tested"] / cov["n"] if cov["n"] else 0.0
+    gate_rate = cov["safe_gated"] / cov["n"] if cov["n"] else 0.0
 
     # ---- Q2: utility (C3 vs solo on test, greedy accuracy) ----
     def correct(pred, gold):
@@ -284,7 +352,7 @@ def main():
 
     util = {}
     for b in budgets:
-        c3_acc, solo_acc = [], []
+        c3_acc, solo_acc, deltas_pi = [], [], []
         for inst in test:
             spans, q, gold = inst["spans"], inst["question"], inst["gold_answer"]
             base, delta, sigma = cache[inst["id"]]
@@ -292,26 +360,53 @@ def main():
             bt = max(1, int(round(b * full_tok)))
             r_solo = select_solo(spans, delta, bt, q)
             r_c3 = select_c3(spans, delta, sigma, threshold, bt, q)
-            solo_acc.append(1.0 if correct(lm.greedy(render(spans, r_solo, q)), gold) else 0.0)
-            c3_acc.append(1.0 if correct(lm.greedy(render(spans, r_c3, q)), gold) else 0.0)
+            sc = 1.0 if correct(lm.greedy(render(spans, r_solo, q)), gold) else 0.0
+            cc = 1.0 if correct(lm.greedy(render(spans, r_c3, q)), gold) else 0.0
+            solo_acc.append(sc); c3_acc.append(cc); deltas_pi.append(cc - sc)
         util[b] = {"c3": sum(c3_acc)/len(c3_acc), "solo": sum(solo_acc)/len(solo_acc),
-                   "delta": sum(c3_acc)/len(c3_acc) - sum(solo_acc)/len(solo_acc)}
+                   "delta": sum(deltas_pi)/len(deltas_pi),
+                   "delta_ci95": bootstrap_mean_ci(deltas_pi, 2000, random.Random(args.seed + 2))}
+
+    # ---- verdict: require BOTH signal quality AND signal coverage ----
+    auc_ok = (test_only_auc or 0.0) >= 0.75
+    cov_ok = tested_rate >= 0.8
+    if auc_ok and cov_ok:
+        verdict = ("residue DETECTABLE and reliably reachable in real model "
+                   "(test AUC >= 0.75 AND true-pair tested rate >= 0.8)")
+    else:
+        why = []
+        if not auc_ok:
+            why.append(f"signal WEAK (test AUC {test_only_auc} < 0.75)")
+        if not cov_ok:
+            why.append(f"signal NOT RELIABLY REACHABLE (true-pair tested rate "
+                       f"{tested_rate:.2f} < 0.8; {cov['missing_gate']} gated out, "
+                       f"{cov['missing_cap']} dropped by pair cap)")
+        verdict = "C3 premise NOT supported here -- " + "; ".join(why)
 
     summary = {
-        "model": args.model, "n": args.n, "n_test": len(test), "tau": args.tau,
+        "model": args.model, "n": args.n, "n_test": len(test), "n_dev": len(dev),
+        "tau": args.tau, "max_safe_pairs": args.max_safe_pairs,
         "runtime_s": time.time() - t0,
         "detectability": {
-            "true_pair_sigma_median": med(true_sigmas),
-            "random_pair_sigma_median": med(rand_sigmas),
-            "true_pair_sigma_mean": sum(true_sigmas)/len(true_sigmas) if true_sigmas else None,
-            "random_pair_sigma_mean": sum(rand_sigmas)/len(rand_sigmas) if rand_sigmas else None,
-            "roc_auc_true_vs_random": det_auc,
-            "n_true": len(true_sigmas), "n_random": len(rand_sigmas),
+            "true_pair_sigma_median": med(all_pos),
+            "random_pair_sigma_median": med(all_neg),
+            "true_pair_sigma_mean": sum(all_pos)/len(all_pos) if all_pos else None,
+            "random_pair_sigma_mean": sum(all_neg)/len(all_neg) if all_neg else None,
+            # AUC: report BOTH splits explicitly; never AUC alone
+            "all_split_roc_auc_true_vs_random": all_split_auc,
+            "test_only_roc_auc_true_vs_random": test_only_auc,
+            "test_only_roc_auc_ci95": test_auc_ci,
+            # coverage: how reliably the true pair even reaches the AUC
+            "true_pair_safe_gate_rate": gate_rate,
+            "true_pair_tested_rate": tested_rate,
+            "true_pair_missing_due_to_gate": cov["missing_gate"],
+            "true_pair_missing_due_to_pair_cap": cov["missing_cap"],
+            "n_instances_for_coverage": cov["n"],
+            "n_true_tested": len(all_pos), "n_random": len(all_neg),
             "calibrated_threshold": threshold,
         },
         "utility_c3_vs_solo": util,
-        "verdict_hint": ("residue DETECTABLE in real model" if (det_auc or 0) >= 0.75
-                         else "residue weak/absent in real model -- C3 not viable here"),
+        "verdict_hint": verdict,
     }
     with open(os.path.join(args.out, "llm_probe_summary.json"), "w") as f:
         json.dump(summary, f, indent=2)
@@ -319,14 +414,19 @@ def main():
     print("\n=== C3 LLM PROBE ===")
     print(f"model={args.model}  n_test={len(test)}  runtime={summary['runtime_s']:.0f}s")
     d = summary["detectability"]
-    print(f"Q1 detectability: sigma median true={d['true_pair_sigma_median']:.3f} "
-          f"vs random={d['random_pair_sigma_median']:.3f}  ROC-AUC={d['roc_auc_true_vs_random']}")
-    print(f"   calibrated threshold (dev)={threshold:.3f}")
+    print(f"Q1a detectability: sigma median true={d['true_pair_sigma_median']:.3f} "
+          f"vs random={d['random_pair_sigma_median']:.3f}")
+    print(f"     AUC test-only={test_only_auc} CI95={test_auc_ci}  all-split={all_split_auc}")
+    print(f"Q1b coverage: true-pair tested rate={tested_rate:.2f} "
+          f"(safe-gated={gate_rate:.2f}; missing: gate={cov['missing_gate']}, "
+          f"cap={cov['missing_cap']} of {cov['n']})")
+    print(f"     calibrated threshold (dev)={threshold:.3f}")
     print("Q2 utility (greedy accuracy):")
     for b in budgets:
         u = util[b]
-        print(f"   budget {b}: C3={u['c3']:.3f}  solo={u['solo']:.3f}  delta={u['delta']:+.3f}")
-    print(f"VERDICT HINT: {summary['verdict_hint']}")
+        print(f"   budget {b}: C3={u['c3']:.3f}  solo={u['solo']:.3f}  "
+              f"delta={u['delta']:+.3f} CI95={u['delta_ci95']}")
+    print(f"VERDICT HINT: {verdict}")
     print("wrote results/llm_probe_summary.json")
 
 
