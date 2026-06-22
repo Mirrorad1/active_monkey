@@ -142,6 +142,12 @@ def run(cfg: BatchedPopConfig) -> BatchedPopResult:
                 pending_births.append((i, r["transfer"]))
 
         # Slot-fill for births (after all creatures have consumed this step).
+        # Parents are alive and never a birth target (births fill free slots),
+        # so their positions are stable across the fill — read state.q ONCE here
+        # instead of once per birth (was a host sync per birth).
+        q_now = np.asarray(state.q)
+        birth_slots: list[int] = []
+        birth_xys: list[tuple[float, float]] = []
         for parent_i, transfer in pending_births:
             free = np.where(~alive)[0]
             if free.size == 0:
@@ -149,20 +155,27 @@ def run(cfg: BatchedPopConfig) -> BatchedPopResult:
                 capped += 1
                 continue
             j = int(free[0])
-            # Place offspring near parent with seeded jitter.
-            px = float(np.asarray(state.q)[parent_i, 0])
-            py = float(np.asarray(state.q)[parent_i, 1])
+            # Place offspring near parent with seeded jitter (same rng draw order
+            # as before — one size=2 draw per birth, in pending order).
+            px = float(q_now[parent_i, 0])
+            py = float(q_now[parent_i, 1])
             off = rng.normal(0.0, 0.3, size=2)
             bx = float(px + off[0])
             by = float(py + off[1])
-            state = world.spawn_into_slot(state, j, (bx, by), seed=next_id)
             geno[j] = geno[parent_i]
             energy[j] = transfer
             age[j] = 0
             cid[j] = next_id
             alive[j] = True
+            birth_slots.append(j)
+            birth_xys.append((bx, by))
             births += 1
             next_id += 1
+
+        # One batched GPU scatter for ALL of this step's births (was one eager
+        # env.reset + full-buffer copy per birth — the host-bound bottleneck).
+        if birth_slots:
+            state = world.spawn_into_slots(state, birth_slots, birth_xys)
 
         ff.step_regen()
 

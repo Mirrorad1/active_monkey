@@ -88,6 +88,47 @@ class BatchedEmbodiedWorld:
         qd = batched_state.qd.at[idx].set(fresh.qd)
         return batched_state.replace(q=q, qd=qd)
 
+    def _fresh_pose(self):
+        """The constant offspring (q, qd) from env.reset.
+
+        EmbodiedForageEnv.reset ignores its rng — it always rebuilds the same
+        pose (sys.init_q, zero qd). So the fresh body is a CONSTANT: compute it
+        once and reuse, instead of calling the (eager MJX) reset per birth.
+        """
+        if not hasattr(self, "_fresh"):
+            ps = self.env.reset(jax.random.PRNGKey(0)).pipeline_state
+            self._fresh = (ps.q, ps.qd)
+        return self._fresh
+
+    def spawn_into_slots(self, batched_state, slots, xys):
+        """Write fresh bodies into many slots in ONE scatter.
+
+        Byte-identical to calling spawn_into_slot once per (slot, xy) — the
+        offspring pose is the constant _fresh_pose with the root xy substituted
+        — but a single device op instead of one eager reset + full-buffer copy
+        per birth (the per-birth path was the host-bound bottleneck).
+
+        Args:
+            batched_state: current (max_pop, ...) batched pipeline_state.
+            slots:         iterable of int slot indices to overwrite.
+            xys:           iterable of (x, y) root positions, aligned with slots.
+
+        Returns:
+            Updated batched_state, or the input unchanged if slots is empty.
+        """
+        slots = list(slots)
+        if not slots:
+            return batched_state
+        fresh_q, fresh_qd = self._fresh_pose()
+        idx = jnp.asarray(slots, dtype=jnp.int32)
+        xy = jnp.asarray(list(xys), dtype=fresh_q.dtype).reshape(-1, 2)
+        k = idx.shape[0]
+        q_rows = jnp.broadcast_to(fresh_q, (k, fresh_q.shape[0])).at[:, 0:2].set(xy)
+        qd_rows = jnp.broadcast_to(fresh_qd, (k, fresh_qd.shape[0]))
+        q = batched_state.q.at[idx].set(q_rows)
+        qd = batched_state.qd.at[idx].set(qd_rows)
+        return batched_state.replace(q=q, qd=qd)
+
     # ------------------------------------------------------------------
     # Advance: vmap'd bout (GPU seam) + sequential reference
     # ------------------------------------------------------------------
