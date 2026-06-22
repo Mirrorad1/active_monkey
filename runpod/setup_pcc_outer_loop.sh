@@ -9,7 +9,8 @@
 #
 # Usage:
 #   export GITHUB_TOKEN=github_pat_...   # only needed for the private repo
-#   export BRANCH=<branch-containing-pcc-files>
+#   # BRANCH is optional when running from a clone of the desired branch.
+#   # Set BRANCH only when you want the script to fetch/reset a different branch.
 #   bash runpod/setup_pcc_outer_loop.sh
 #
 # Useful overrides:
@@ -19,7 +20,7 @@
 set -euo pipefail
 
 REPO_URL="${REPO_URL:-https://github.com/Mirrorad1/active_monkey.git}"
-BRANCH="${BRANCH:-main}"
+BRANCH="${BRANCH:-}"
 WORKDIR="${WORKDIR:-/workspace}"
 REPO_DIR="${REPO_DIR:-${WORKDIR}/active-loop}"
 PY_VERSION="${PY_VERSION:-3.12}"
@@ -60,18 +61,23 @@ uv --version
 echo "==> [4/8] Clone ${REPO_URL} @ ${BRANCH}"
 mkdir -p "${WORKDIR}"
 if [ -d "${REPO_DIR}/.git" ]; then
-  echo "    Repo already present at ${REPO_DIR}; fetching ${BRANCH}"
-  git -C "${REPO_DIR}" fetch --depth 1 origin "${BRANCH}"
-  git -C "${REPO_DIR}" checkout "${BRANCH}"
-  git -C "${REPO_DIR}" reset --hard "origin/${BRANCH}"
+  if [ -n "${BRANCH}" ]; then
+    echo "    Repo already present at ${REPO_DIR}; fetching ${BRANCH}"
+    git -C "${REPO_DIR}" fetch --depth 1 origin "${BRANCH}"
+    git -C "${REPO_DIR}" checkout "${BRANCH}"
+    git -C "${REPO_DIR}" reset --hard "origin/${BRANCH}"
+  else
+    echo "    Using existing checkout at ${REPO_DIR}; set BRANCH to fetch/reset another branch."
+  fi
 else
+  CLONE_BRANCH="${BRANCH:-codex/pcc-runpod}"
   CLONE_URL="${REPO_URL}"
   if [ -n "${GITHUB_TOKEN:-${GH_TOKEN:-}}" ]; then
     TOKEN="${GITHUB_TOKEN:-${GH_TOKEN}}"
     CLONE_URL="$(printf '%s' "${REPO_URL}" | sed -E "s#https://#https://${TOKEN}@#")"
     echo "    Using GitHub token for private-repo auth"
   fi
-  git clone --depth 1 --branch "${BRANCH}" "${CLONE_URL}" "${REPO_DIR}"
+  git clone --depth 1 --branch "${CLONE_BRANCH}" "${CLONE_URL}" "${REPO_DIR}"
 fi
 cd "${REPO_DIR}"
 echo "    HEAD: $(git rev-parse --short HEAD)  branch: $(git rev-parse --abbrev-ref HEAD)"

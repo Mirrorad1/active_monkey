@@ -8,16 +8,16 @@ This runs the PCC frozen outer-loop experiment on a single RunPod GPU pod:
 
 The script is `runpod/setup_pcc_outer_loop.sh`.
 
-## Before creating the pod
+## Branch to clone
 
-The pod can only clone committed code from GitHub. Before running this remotely,
-commit and push a branch that contains:
+The current remote branch is:
 
-- `active_loop/pcc.py`
-- `experiments/pcc_outer_loop.py`
-- `runpod/setup_pcc_outer_loop.sh`
+```text
+codex/pcc-runpod
+```
 
-Then set `BRANCH` to that branch name on the pod.
+The pod can clone this branch directly. You do not need to have the branch
+locally on the pod first.
 
 ## Pod choice
 
@@ -39,13 +39,29 @@ because Hugging Face model/dataset caches then survive pod restarts.
 ## Run command on the pod
 
 For a private repo, create a fine-grained GitHub token with read-only Contents
-access to `Mirrorad1/active_monkey`, then:
+access to `Mirrorad1/active_monkey`, then paste this on the pod:
 
 ```bash
 export GITHUB_TOKEN=github_pat_xxxxxxxxx
-export BRANCH=<branch-containing-pcc-files>
+export REPO_URL=https://github.com/Mirrorad1/active_monkey.git
+export WORKDIR=/workspace
+export REPO_DIR=/workspace/active-loop
+git clone --depth 1 --branch codex/pcc-runpod \
+  "https://${GITHUB_TOKEN}@github.com/Mirrorad1/active_monkey.git" \
+  /workspace/active-loop
+cd /workspace/active-loop
 export LIMIT=48
 export MAX_NEW_TOKENS=192
+bash runpod/setup_pcc_outer_loop.sh
+```
+
+If the repo is already cloned on the pod, use:
+
+```bash
+cd /workspace/active-loop
+git fetch origin codex/pcc-runpod
+git checkout codex/pcc-runpod
+git pull --ff-only
 bash runpod/setup_pcc_outer_loop.sh
 ```
 

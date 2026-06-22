@@ -99,6 +99,8 @@ def test_runpod_pcc_script_is_bash_parseable_and_targets_hf_run():
     script = "runpod/setup_pcc_outer_loop.sh"
     subprocess.check_call(["bash", "-n", script])
     text = open(script, encoding="utf-8").read()
+    assert 'BRANCH="${BRANCH:-}"' in text
+    assert "Using existing checkout" in text
     assert "Qwen/Qwen2.5-0.5B-Instruct" in text
     assert "experiments/pcc_outer_loop.py" in text
     assert "--backend hf" in text
