@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 268, title: "Acoustic Eavesdropping Expressibility Probe: SOUND carries real bits about hidden predator density (MI 0.643 vs null 0.0004) but gifted prey hearing gives NO actionable benefit (hazard 0.402 > baseline 0.379, 0/8) — the coexistence-posing metapopulation leaves prey no acoustic refuge to flee to; gifted PREDATOR hearing DOES help (capture success 0.630 vs 0.579) (NEGATIVE / NEW INSIGHT — ABORT evolution).", tag: "NEGATIVE" },
-  tally: { total: 268, positive: 139, negative: 88, mixed: 37, breakthroughs: 15 },
+  latest_exp: { n: 269, title: "Embodied population stability-vs-competition sweep (real MuJoCo/MJX quadruped body, FIXED Phase-1 gait, NO evolution): 0/10 calibration cells stable; competitive XOR stable — the stability-vs-strong-competition wall RECURS on the embodied substrate (NEGATIVE / NEW INSIGHT).", tag: "NEGATIVE" },
+  tally: { total: 269, positive: 139, negative: 89, mixed: 37, breakthroughs: 15 },
   directions: [
     { name: "acoustic-ecology", state: "active", latest: "Exp 268 (pending)", next: "does gifted hearing measurably help AND beat shuffled/silent controls without leaking position/identity (Exp 268)?" },
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
