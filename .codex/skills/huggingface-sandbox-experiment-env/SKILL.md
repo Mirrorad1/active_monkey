@@ -25,6 +25,9 @@ are installed:
 - DNS/network errors while downloading model or dataset metadata.
 - `PermissionError: [Errno 1] Operation not permitted` for lock files under
   `~/.cache/huggingface/datasets/...`.
+- `torch.__version__` shows a CUDA wheel newer than the RunPod host driver
+  supports, e.g. `2.12.1+cu130` with driver `12080`, followed by
+  `The NVIDIA driver on your system is too old`.
 
 ## Context / Trigger Conditions
 Use this skill when:
@@ -86,6 +89,18 @@ Only use a branch default for the no-repo-present clone path.
 
 In this repo, `runpod/setup_pcc_outer_loop.sh` implements that pattern for
 `experiments/pcc_outer_loop.py`.
+
+PyTorch driver trap: do not install bare `torch` from default PyPI on RunPod
+when the host driver is CUDA 12.8-class. It may resolve a newer CUDA wheel
+such as `+cu130`, which fails before device enumeration. Install from the
+CUDA-12.8 wheel index instead:
+
+```sh
+uv pip install --python .venv-pcc --upgrade --index-url https://download.pytorch.org/whl/cu128 torch
+```
+
+If the current pod already hit the failure, `git pull --ff-only` the fixed
+branch, reinstall torch with the command above, and rerun the setup script.
 
 ## Verification
 A successful small HF plumbing run should:
