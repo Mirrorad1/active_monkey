@@ -137,6 +137,28 @@ budgets block preserves real retrieval) → stress (and that holds 1k→4k). Net
 content-based block selector preserves needle retrieval at ~6% density up to 4k context, zero training**;
 the learned query-aware summary (rung-3) is an optional push for the extreme ~3% regime only.
 
+## Rung-3 residue — selector-feasibility GEOMETRY (`geometry_ceiling.py`)
+The only idea that survived reduce-to-known with daylight: do the oracle top-k keys have a sequence-axis
+support geometry that **bounds block selectors before any scoring**? Decompose the block gap into
+`geometry_loss = 1−ceiling` (best m blocks still can't cover a fragmented S) and `scoring_loss =
+ceiling−actual` (right blocks exist, q·mean picks wrong). All derived from attention rows (frozen GPT-2,
+no training): raw score = log(weight)+const, so block score = mean log-weight.
+
+Result (GPT-2, 1024 ctx, k=64, b=32, 1440 (layer,head,query) samples):
+- **block gap 0.274 = geometry 0.208 (76%) + scoring 0.065 (24%).** Most block-selector failure is
+  STRUCTURAL fragmentation, not weak summaries -> a better/learned summary recovers ≤24%; the other 76%
+  is impossible for contiguous blocks (need token-level / non-contiguous / permutation à la PBS-Attn).
+- SURVIVES the predeclared falsifier: ρ(fragmentation,gap)=0.92, AUROC(ceiling→block-fail)=0.99.
+- Non-degenerate controls VALID: permute positions (scatter) drops ceiling 0.79→0.42; cluster → 1.00.
+- HONESTLY KILLED sub-claim: the box-counting/fractal `D_box` is a dud (ρ=0.18, ΔR²=0.02 over
+  entropy+margin) — plain blocks-touched fragmentation carries all the signal; drop the fractal framing.
+
+Honest novelty: the surviving finding (fragmentation bounds block selectors; 76/24 geometry-vs-scoring
+attribution) is a *sharpened, quantified* version of PBS-Attn's motivation, not a wholly new phenomenon;
+the genuinely-new part (fractal dimension) didn't pan out. Scope: one model/length/block-size — the
+76/24 split is b-dependent (smaller blocks → less geometry loss at higher cost); a real feasibility map
+needs a block-size × model sweep.
+
 ## Predeclared falsifiers (binding)
 - Bench validity: if `exact_topk` is not ≈1.0 on all geometries OR `window` is not ≈0 on `far`, the
   instrument can't detect failure → results are void (the script aborts).
