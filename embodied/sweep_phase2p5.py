@@ -13,6 +13,7 @@ Run on a GPU (RunPod) — see runpod/. Example:
 """
 import argparse
 import itertools
+import time
 from pathlib import Path
 
 from embodied.batched_population import run, BatchedPopConfig
@@ -26,9 +27,16 @@ def cell_verdict(capacity, regen, seeds, founders, horizon, max_pop, bout):
     """Run a (capacity, regen) cell across seeds; aggregate the per-seed certify verdicts."""
     per_seed = []
     for s in seeds:
+        t0 = time.perf_counter()
         r = run(BatchedPopConfig(n_founders=founders, horizon=horizon, bout_steps=bout,
                                  max_pop=max_pop, seed=s,
                                  field=FoodFieldConfig(capacity=capacity, regen=regen)))
+        dt = time.perf_counter() - t0
+        # Live per-seed line — the FIRST seed of the FIRST cell includes one-time JIT
+        # compile, so it will be far slower than the rest; that gap IS the compile cost.
+        print(f"    seed {s}: {dt:6.1f}s  peakN={max(r.n_series):3d}  "
+              f"births={r.births} deaths={r.deaths} capped={r.capped} final={r.final_alive}",
+              flush=True)
         per_seed.append(certify(r))
     n = len(seeds)
     n_stable = sum(1 for v in per_seed if v["stable"])
@@ -58,11 +66,18 @@ def main():
              "(a cell wins iff a majority of seeds certify STABLE under the FROZEN gate AND are density-dependent)",
              ""]
     winners = []
-    for cap, reg in itertools.product(a.capacities, a.regens):
+    grid = list(itertools.product(a.capacities, a.regens))
+    t_sweep = time.perf_counter()
+    for ci, (cap, reg) in enumerate(grid, 1):
+        print(f"[cell {ci}/{len(grid)}] cap={cap:g} regen={reg:.2f}  "
+              f"({time.perf_counter() - t_sweep:.0f}s elapsed)", flush=True)
+        t_cell = time.perf_counter()
         cv = cell_verdict(cap, reg, a.seeds, a.founders, a.horizon, a.max_pop, a.bout)
-        lines.append(f"  cap={cap:<5g} regen={reg:.2f}:  stable {cv['n_stable']}/{cv['n']}  "
-                     f"density-dep {cv['n_dd']}/{cv['n']}  n_eq={cv['n_eq']}  corr={cv['corr']}  "
-                     f"=> {'STABLE+COMPETITIVE' if cv['win'] else '-'}")
+        line = (f"  cap={cap:<5g} regen={reg:.2f}:  stable {cv['n_stable']}/{cv['n']}  "
+                f"density-dep {cv['n_dd']}/{cv['n']}  n_eq={cv['n_eq']}  corr={cv['corr']}  "
+                f"=> {'STABLE+COMPETITIVE' if cv['win'] else '-'}")
+        lines.append(line)
+        print(f"{line}   [{time.perf_counter() - t_cell:.0f}s]", flush=True)
         if cv["win"]:
             winners.append(cv)
     lines.append("")
