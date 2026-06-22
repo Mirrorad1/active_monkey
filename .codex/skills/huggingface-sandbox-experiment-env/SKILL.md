@@ -77,6 +77,13 @@ normal `.venv`.
 4. Write the experiment JSON to a file under `experiments/outputs/` and download
    it with `runpodctl send`.
 
+Branch trap: if the setup script also contains clone/fetch logic, do not default
+`BRANCH` to `main` when it is run from an already-cloned feature branch. That
+will reset the fresh pod checkout away from the branch the user intentionally
+cloned. Use an empty default (`BRANCH="${BRANCH:-}"`) and, when `REPO_DIR/.git`
+already exists, keep the existing checkout unless `BRANCH` is explicitly set.
+Only use a branch default for the no-repo-present clone path.
+
 In this repo, `runpod/setup_pcc_outer_loop.sh` implements that pattern for
 `experiments/pcc_outer_loop.py`.
 
