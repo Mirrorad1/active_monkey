@@ -138,19 +138,29 @@ class _Builder:
             self.spans[-1]["contradicts"] = cid
             self.spans[-1]["wrong_value"] = wrong
 
-    def two_cover(self, cid, value, phrasings, role, trap=None):
-        """A redundant commitment with 2 providers => one dangerous pair."""
-        p1 = self.span(phrasings[0], role)
-        p2 = self.span(phrasings[1], role)
-        self.commitments.append(dict(cid=cid, value=value, providers=[p1, p2]))
-        self.fragile_groups.append([p1, p2])
-        self.dangerous_pairs.append((p1, p2))
+    def k_cover(self, cid, value, phrasings, role, k=2, trap=None):
+        """A redundant commitment with k providers.
+
+        For k=2 this is one dangerous PAIR (its 2 providers). For k>=3 the
+        minimal failing set is the whole k-group; NO pair is dangerous on its
+        own (deleting any 2 leaves a cover), so pairwise sigma is blind to it.
+        We still record the k-group as the fragile group; dangerous_pairs is
+        only populated for k==2 (it is the 2nd-order ground truth).
+        """
+        providers = [self.span(phrasings[i], role) for i in range(k)]
+        self.commitments.append(dict(cid=cid, value=value, providers=list(providers)))
+        self.fragile_groups.append(list(providers))
+        if k == 2:
+            self.dangerous_pairs.append((providers[0], providers[1]))
         if trap:
             text, wrong = trap
             t = self.span(text, "distractor")
             t["contradicts"] = cid
             t["wrong_value"] = wrong
-        return p1, p2
+        return providers
+
+    def two_cover(self, cid, value, phrasings, role, trap=None):
+        return self.k_cover(cid, value, phrasings, role, k=2, trap=trap)
 
 
 def _finalize(b: _Builder, rng: random.Random, family: str, idx: int, n_target: int) -> dict:
@@ -193,7 +203,7 @@ _QUESTION = {
 }
 
 
-def build_A(rng, idx):
+def build_A(rng, idx, kcover=2):
     b = _Builder()
     k = rng.randint(3, 5)
     for topic in rng.sample(CRITICAL_TOPICS, k):
@@ -203,12 +213,13 @@ def build_A(rng, idx):
     return _finalize(b, rng, "A", idx, n)
 
 
-def build_B(rng, idx):
+def build_B(rng, idx, kcover=2):
     b = _Builder()
     k = rng.randint(3, 4)
     for topic in rng.sample(REDUNDANT_TOPICS, k):
         ph = list(topic["phrasings"]); rng.shuffle(ph)
-        b.two_cover(topic["cid"], topic["value"], ph, "redundant", trap=topic.get("trap"))
+        b.k_cover(topic["cid"], topic["value"], ph[:kcover], "redundant",
+                  k=kcover, trap=topic.get("trap"))
     # a couple of single criticals for substance
     for topic in rng.sample(CRITICAL_TOPICS, rng.randint(1, 2)):
         p = b.span(topic["phrasing"], "fact")
@@ -217,9 +228,10 @@ def build_B(rng, idx):
     return _finalize(b, rng, "B", idx, n)
 
 
-def build_C(rng, idx):
+def build_C(rng, idx, kcover=2):
     b = _Builder()
     # export chain: X (rule) AND Y (K blue) AND Z (K not archived)
+    # (kcover affects only B/D; C's structure is intrinsically 2-cover + bridge)
     x1 = b.span("Only blue containers are cleared for export.", "bridge")
     x2 = b.span("Export clearance applies exclusively to blue-colored containers.", "bridge")
     b.commitments.append(dict(cid="rule_blue", value="BLUE_RULE", providers=[x1, x2]))
@@ -241,12 +253,12 @@ def build_C(rng, idx):
     return _finalize(b, rng, "C", idx, n)
 
 
-def build_D(rng, idx):
+def build_D(rng, idx, kcover=2):
     b = _Builder()
     k = rng.randint(3, 5)
     for topic in rng.sample(FORMAT_TOPICS, k):
         ph = list(topic["phrasings"]); rng.shuffle(ph)
-        b.two_cover(topic["cid"], topic["value"], ph[:2], "format")
+        b.k_cover(topic["cid"], topic["value"], ph[:kcover], "format", k=kcover)
     # content criticals so the answer has substance beyond format
     for topic in rng.sample(CRITICAL_TOPICS, rng.randint(1, 2)):
         p = b.span(topic["phrasing"], "fact")
@@ -258,14 +270,14 @@ def build_D(rng, idx):
 BUILDERS = {"A": build_A, "B": build_B, "C": build_C, "D": build_D}
 
 
-def generate(n: int, seed: int) -> list[dict]:
+def generate(n: int, seed: int, kcover: int = 2) -> list[dict]:
     rng = random.Random(seed)
     families = ["A", "B", "C", "D"]
     per = n // len(families)
     instances = []
     for fam in families:
         for i in range(per):
-            instances.append(BUILDERS[fam](rng, i))
+            instances.append(BUILDERS[fam](rng, i, kcover=kcover))
     rng.shuffle(instances)
     return instances
 
@@ -274,12 +286,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--kcover", type=int, default=2,
+                    help="redundancy depth for families B/D (2 = pairwise-detectable; "
+                         ">=3 exposes the pairwise blind spot)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
     here = os.path.dirname(os.path.abspath(__file__))
     out = args.out or os.path.join(here, "data", "synthetic_c3.jsonl")
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    insts = generate(args.n, args.seed)
+    insts = generate(args.n, args.seed, kcover=args.kcover)
     write_dataset(out, insts)
     from collections import Counter
     fam = Counter(i["family"] for i in insts)

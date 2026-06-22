@@ -169,6 +169,51 @@ viable.
 3. **Higher-order residue** for k≥3 redundancy: greedy k-cover detection or a
    submodular-coverage guard, since pairwise sigma is structurally blind to it.
 
+## 10. Follow-up results (#1 targeted pairs, #2 higher-order, #3 LLM-probe)
+
+Run: `python generate_dataset.py --n 1000 --seed 7 --kcover 3 --out data/synthetic_c3_k3.jsonl`
+then `python run_extensions.py`. Outputs `results/extensions_summary.{md,json}`.
+
+**#1 — Targeted pair proposal (beats the enumeration wall).** A cheap lexical
+proposer (spans sharing a rare stemmed content token) recovers most of C3's win
+at ~12× fewer pair tests, and dominates uniform sampling (B/C/D test split):
+
+| method | acc @0.35 | acc @0.25 | avg pair tests | true-danger recall |
+|---|---|---|---|---|
+| solo_delta_greedy | 55.4% | 37.8% | 0 | — |
+| C3 full enumerate | 100% | 91.9% | 308 | 100% |
+| **C3 lexical** | **85.8%** | **75.7%** | **26** | 68% |
+| C3 uniform 25% | 66.5% | 50.8% | 77 | 27% |
+| C3 uniform 10% | 59.1% | 42.8% | 31 | 11% |
+
+Lexical at ~26 tests beats uniform at 77 tests — surface co-reference is a far
+better pair prior than uniform sampling. Recall 68% (imperfect: some 2-cover
+phrasings share no stemmed token), so it trails full enumeration but recovers
+most of the gap cheaply.
+
+**#2 — Higher-order (k≥3) residue (closes the pairwise blind spot).** On a
+`--kcover 3` dataset (B/D), pairwise C3 is provably blind:
+
+| method | acc @0.25 | group tests | note |
+|---|---|---|---|
+| solo_delta_greedy | 24.5% | 0 | |
+| C3 pairwise enumerate | 24.5% | 288 | **identical to solo** — σ_ij=0 for every pair of a 3-cover |
+| C3 order-3 lexical | 51.1% | 32 | recovers part, cheaply |
+| C3 order-3 enumerate | 91.5% | 2561 | recovers fully, expensive |
+
+Order-3 minimal-failing-group detection genuinely closes the blind spot
+(`order-3 enumerate` ≈ ceiling); the lexical proposer makes it affordable
+(32 vs 2561 tests) at the cost of recall — the cheap↔complete tradeoff, explicit.
+
+**#3 — Real LLM-probe (RunPod, pull-and-run).** `llm_probe/` is a self-contained
+torch/HF probe that replaces the binary oracle with the **NLL of the gold answer**
+under a small causal LM and measures whether `sigma_ij` for the true dangerous
+pair separates from random safe pairs (ROC-AUC) + whether NLL-thresholded C3
+beats solo on greedy accuracy. Not run here (local venv is CPU/torch-less); see
+`llm_probe/README_RUNPOD.md` for the clone→run→retrieve flow. AUC≥0.75 would mean
+the residue signal survives a real model; AUC≈0.5 would falsify C3's premise on
+that model.
+
 ## Files
 
 - `common.py` — tokenizer, span↔prompt, the deterministic evaluator / loss oracle.
@@ -176,4 +221,8 @@ viable.
 - `baselines.py` — full, random, length-greedy, solo_delta_greedy + `compute_deltas`.
 - `c3_selector.py` — residue-guarded selector (+ sampling / no-danger / random-edge ablation knobs).
 - `run_experiment.py` — runs all methods × budgets, metrics, criteria, failure cases.
-- `results/` — `summary.json`, `summary.md`, `failure_cases.jsonl`.
+- `extensions.py` — lexical pair/group proposer (#1) + higher-order minimal-failing-group selector (#2).
+- `run_extensions.py` — runs the two follow-up studies → `results/extensions_summary.{md,json}`.
+- `llm_probe/` — self-contained RunPod LLM-probe (#3): `llm_probe.py`, `setup_runpod.sh`, `README_RUNPOD.md`.
+- `results/` — `summary.json`, `summary.md`, `failure_cases.jsonl`, `extensions_summary.{json,md}`.
+- `data/synthetic_c3.jsonl` (k=2), `data/synthetic_c3_k3.jsonl` (k≥3 for study #2).
