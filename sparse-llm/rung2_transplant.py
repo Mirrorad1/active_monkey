@@ -91,6 +91,12 @@ def sparse_attention_forward(module, query, key, value, attention_mask, scaling=
                              dropout=0.0, **kwargs):
     if scaling is None:
         scaling = query.size(-1) ** -0.5
+    # GQA: repeat KV heads to match query heads if the interface hands them un-repeated (Qwen/Llama);
+    # no-op for MHA (GPT-2). The correctness gate catches a mismatch either way.
+    if key.shape[1] != query.shape[1]:
+        rep = query.shape[1] // key.shape[1]
+        key = key.repeat_interleave(rep, dim=1)
+        value = value.repeat_interleave(rep, dim=1)
     attn_weights = torch.matmul(query, key.transpose(-1, -2)) * scaling
     q_len, k_len = attn_weights.shape[-2], attn_weights.shape[-1]
     neg = torch.finfo(attn_weights.dtype).min

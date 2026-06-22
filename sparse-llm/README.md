@@ -95,9 +95,31 @@ Probe: mean `KL(dense ‖ sparse)` of the next-token distribution over 483 token
   needle test). Efficiency is not realized here (full attn computed then masked) — this measures
   selection QUALITY, not speed (that's rung 3).
 
-**Through-line:** rung-1 (block has a recall gap at low SNR) → rung-1b (cheap static summaries can't
-close it) → rung-2 (the gap reproduces on a real model at low budget). The residue is unchanged and now
-triply-confirmed: a **learned, query-aware block summary** is the lever, and it's now justified by data.
+### Real retrieval — needle-in-a-haystack on frozen Qwen2.5-0.5B (`rung2_needle.py`)
+Same transplant (made GQA-safe), gate PASS (None==eager 0.00). Plant a verbatim fact at depth in ~1024
+ctx, teacher-force the answer, measure greedy accuracy + answer log-prob per selector/budget (dense:
+acc 0.83, lp −0.39):
+
+| budget | exact | block (ours) | window | random |
+|---|---|---|---|---|
+| 256 | acc 0.83 | acc 0.83 | acc 0.28 | acc 0.06 |
+| 64 | acc 0.83 | **acc 1.00** | acc 0.00 | acc 0.06 |
+| 32 | acc 0.83 | acc 0.67 | acc 0.00 | acc 0.00 |
+
+- **Content selection preserves real long-range retrieval**; content-blind (`window`/`random`) loses the
+  needle entirely (non-degenerate control held).
+- **The cheap training-free `block` selector retrieves the needle as well as dense down to ~6% density**
+  (budget 64/1060). The block-pooling gap only bites at *extreme* sparsity (budget 32 ≈ 3% → 0.67).
+- Scope: 0.5B model, ctx 1024 (kept short so dense retrieves on CPU), single needle, 3 depths.
+
+**Decision:** the gap does NOT cost real retrieval at usable budgets — so **rung-3 (the learned
+query-aware summary) is an OPTIONAL push for the extreme-sparsity (~3%) regime, not a necessity.** A
+training-free `block` selector is already retrieval-preserving at ~6% density.
+
+**Through-line:** rung-1 (block recall gap at low SNR, synthetic) → rung-1b (cheap static summaries can't
+close it) → rung-2 KL (gap reproduces on real attention at low budget) → rung-2 needle (but at *usable*
+budgets block preserves real retrieval; the gap is an extreme-sparsity-only phenomenon). The residue (a
+learned query-aware summary) is real but now scoped to the aggressive-budget regime.
 
 ## Predeclared falsifiers (binding)
 - Bench validity: if `exact_topk` is not ≈1.0 on all geometries OR `window` is not ≈0 on `far`, the
