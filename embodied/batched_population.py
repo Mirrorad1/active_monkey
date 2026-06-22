@@ -43,12 +43,20 @@ class BatchedPopConfig:
     field: FoodFieldConfig = field(default_factory=FoodFieldConfig)
 
 
-def run(cfg: BatchedPopConfig) -> BatchedPopResult:
+def run(cfg: BatchedPopConfig, world: BatchedEmbodiedWorld | None = None) -> BatchedPopResult:
     """Spawn cfg.n_founders bodies, run for cfg.horizon steps, return BatchedPopResult.
 
     Parameters
     ----------
     cfg : BatchedPopConfig
+    world : BatchedEmbodiedWorld, optional
+        A prebuilt world to REUSE across many runs (a sweep). The world holds no
+        per-run state — its env, deterministic policy, constant offspring pose,
+        and jit-compiled advance are shared safely — so reusing one world avoids
+        recompiling `advance_batch` (and reloading the checkpoint) on every call.
+        Its max_pop / bout_steps must match cfg. When None, a fresh world is built
+        (recompiles once); the per-run buffer is always created fresh via
+        world.init_buffer, so results are byte-identical either way.
 
     Returns
     -------
@@ -58,7 +66,13 @@ def run(cfg: BatchedPopConfig) -> BatchedPopResult:
     """
     rng = np.random.default_rng(cfg.seed)
     ff = FoodField(cfg.field, seed=cfg.seed)
-    world = BatchedEmbodiedWorld(ff, PolicyRunner(DEFAULT_CKPT), cfg.max_pop, cfg.bout_steps)
+    if world is None:
+        world = BatchedEmbodiedWorld(ff, PolicyRunner(DEFAULT_CKPT), cfg.max_pop, cfg.bout_steps)
+    elif world.max_pop != cfg.max_pop or world.bout_steps != cfg.bout_steps:
+        raise ValueError(
+            f"reused world (max_pop={world.max_pop}, bout_steps={world.bout_steps}) "
+            f"does not match cfg (max_pop={cfg.max_pop}, bout_steps={cfg.bout_steps})"
+        )
 
     g0 = founder()
 

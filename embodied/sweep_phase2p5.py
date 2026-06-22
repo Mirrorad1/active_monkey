@@ -50,14 +50,15 @@ def assert_gpu_or_exit():
     print(f"GPU check OK: real kernel on {y.devices()}", flush=True)
 
 
-def cell_verdict(capacity, regen, seeds, founders, horizon, max_pop, bout):
+def cell_verdict(capacity, regen, seeds, founders, horizon, max_pop, bout, world=None):
     """Run a (capacity, regen) cell across seeds; aggregate the per-seed certify verdicts."""
     per_seed = []
     for s in seeds:
         t0 = time.perf_counter()
         r = run(BatchedPopConfig(n_founders=founders, horizon=horizon, bout_steps=bout,
                                  max_pop=max_pop, seed=s,
-                                 field=FoodFieldConfig(capacity=capacity, regen=regen)))
+                                 field=FoodFieldConfig(capacity=capacity, regen=regen)),
+                world=world)
         dt = time.perf_counter() - t0
         # Live per-seed line — the FIRST seed of the FIRST cell includes one-time JIT
         # compile, so it will be far slower than the rest; that gap IS the compile cost.
@@ -92,6 +93,16 @@ def main():
     if not a.allow_cpu:
         assert_gpu_or_exit()
 
+    # Build ONE world and reuse it across every cell/seed: env + deterministic
+    # policy + jit-compiled advance hold no per-run state, so this compiles
+    # advance_batch (and loads the checkpoint) ONCE instead of 30x. The per-run
+    # buffer is still created fresh inside run(), so results are byte-identical.
+    from embodied.batched_world import BatchedEmbodiedWorld
+    from embodied.foodfield import FoodField  # FoodFieldConfig already imported
+    from embodied.policy_runner import DEFAULT_CKPT, PolicyRunner
+    shared_world = BatchedEmbodiedWorld(
+        FoodField(FoodFieldConfig(), 0), PolicyRunner(DEFAULT_CKPT), a.max_pop, a.bout)
+
     lines = ["Phase-2.5 calibration sweep (MJX-batched substrate)",
              f"grid: capacity={a.capacities} regen={a.regens} seeds={a.seeds} "
              f"founders={a.founders} horizon={a.horizon} max_pop={a.max_pop} bout={a.bout}",
@@ -104,7 +115,8 @@ def main():
         print(f"[cell {ci}/{len(grid)}] cap={cap:g} regen={reg:.2f}  "
               f"({time.perf_counter() - t_sweep:.0f}s elapsed)", flush=True)
         t_cell = time.perf_counter()
-        cv = cell_verdict(cap, reg, a.seeds, a.founders, a.horizon, a.max_pop, a.bout)
+        cv = cell_verdict(cap, reg, a.seeds, a.founders, a.horizon, a.max_pop, a.bout,
+                          world=shared_world)
         line = (f"  cap={cap:<5g} regen={reg:.2f}:  stable {cv['n_stable']}/{cv['n']}  "
                 f"density-dep {cv['n_dd']}/{cv['n']}  n_eq={cv['n_eq']}  corr={cv['corr']}  "
                 f"=> {'STABLE+COMPETITIVE' if cv['win'] else '-'}")
