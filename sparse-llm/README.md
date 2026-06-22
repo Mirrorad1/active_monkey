@@ -26,9 +26,9 @@ smarter, selection is the wrong lever (that's data/training).
 ## The rung ladder (scale only when a rung is proven insufficient)
 1. **Synthetic recall gate** — `synthetic_recall.py`. No model, no data, seconds on CPU. Does a cheap
    selector recover the keys exact attention needs, across relevance geometries? **[DONE — see below]**
-2. **Training-free transplant** — monkeypatch the selector into a frozen open model (Llama/Qwen/Mistral),
-   reuse Q/K/V/O as-is, measure on real long-context tasks (needle-in-haystack, RULER, LongBench) vs
-   dense and vs H2O/StreamingLLM. *[next]*
+2. **Training-free transplant** — register a custom attention into a frozen open model, reuse Q/K/V/O
+   as-is, measure how much a selection rule perturbs the model. **[DONE on GPT-2 — see below]** Next
+   within this rung: a long-context model (Qwen2.5-0.5B, 32k) + a real needle/RULER retrieval task.
 3. **Train only the selector** (LoRA-for-selection) or LoRA the model to the pattern — only if rung 2
    degrades past tolerance. *[gated by rung 2]*
 
@@ -67,6 +67,37 @@ Dilution is intrinsic to block prefiltering at this budget. This *proves the che
 (the scale-on-proven-insufficiency trigger): the irreducible residue is a **learned, query-aware block
 summary** — that's the novelty lever, now justified rather than assumed (and it needs training → rung 2/3).
 Norm-based or other plant-exploiting "fixes" are refused as degeneracies.
+
+## Rung-2 finding — real frozen GPT-2, training-free selector transplant (`rung2_transplant.py`)
+Custom attention registered via `AttentionInterface`, mirroring eager exactly, with a per-(head,query)
+key selection before softmax. **Two-sided correctness gate** (budget=None == eager to 0.00e+00 AND a
+tight budget ≠ eager) — it caught a real bug: transformers 5.x hands a *custom* attention impl no
+framework causal mask, so the function must build its own (without the gate, every number would be
+silent garbage).
+
+Probe: mean `KL(dense ‖ sparse)` of the next-token distribution over 483 tokens, per selector/budget:
+
+| budget | exact (oracle) | block (ours) | window | random |
+|---|---|---|---|---|
+| 256 | 0.0000 | 0.0000 | 0.957 | 0.762 |
+| 128 | 0.0005 | 0.027 | 4.663 | 1.960 |
+| 64 | 0.0024 | 0.134 | 6.049 | 3.823 |
+| 32 | 0.015 | **1.215** | 7.114 | 5.104 |
+
+- **Content selection is everything.** `exact`/`block` ≪ `window`/`random` at every budget — GPT-2's
+  attention is so concentrated that keeping the top-32 of 483 keys preserves it almost perfectly,
+  while content-blind recency destroys it.
+- **The cheap `block` meta-selector is a strong training-free win** (6× better KL than `window` at
+  budget 32) that **tracks the oracle at generous budgets but re-opens the rung-1 dilution gap at tight
+  budgets** (KL 1.21 vs exact 0.015). The synthetic rung-1 failure mode reproduces on real attention.
+- Caveats: GPT-2 small, 483 tokens, one text; `KL(dense‖sparse)` measures *perturbation of the model's
+  own computation*, not long-range retrieval or downstream accuracy (that needs the long-context-model
+  needle test). Efficiency is not realized here (full attn computed then masked) — this measures
+  selection QUALITY, not speed (that's rung 3).
+
+**Through-line:** rung-1 (block has a recall gap at low SNR) → rung-1b (cheap static summaries can't
+close it) → rung-2 (the gap reproduces on a real model at low budget). The residue is unchanged and now
+triply-confirmed: a **learned, query-aware block summary** is the lever, and it's now justified by data.
 
 ## Predeclared falsifiers (binding)
 - Bench validity: if `exact_topk` is not ≈1.0 on all geometries OR `window` is not ≈0 on `far`, the
