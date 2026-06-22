@@ -116,10 +116,26 @@ acc 0.83, lp −0.39):
 query-aware summary) is an OPTIONAL push for the extreme-sparsity (~3%) regime, not a necessity.** A
 training-free `block` selector is already retrieval-preserving at ~6% density.
 
+### Stress test — does 6% hold as context grows? (`rung2_needle_scale.py`)
+Hold density at 6%, sweep context length (budget = 6% × ctx), Qwen2.5-0.5B, 3 depths:
+
+| ctx | dense | block @6% | window @6% |
+|---|---|---|---|
+| 1024 | 0.83 | 1.00 | 0.00 |
+| 2048 | 0.83 | 1.00 | 0.00 |
+| 4096 | 0.83 | 0.94 | 0.00 |
+
+**The claim scales:** block tracks dense (≫ window) across 1k→4k — it was *not* a short-context artifact.
+Caveats: block-vs-dense differences are within small-sample noise (one needle, 3 depths, ~18 token
+decisions/cell) — the robust signal is block ≈ dense ≫ window; and 4k is the ceiling where this 0.5B model
+still retrieves at full attention (8k–32k needs a stronger model on a GPU). The flat 1k→4k trend is
+encouraging, not proof at 32k.
+
 **Through-line:** rung-1 (block recall gap at low SNR, synthetic) → rung-1b (cheap static summaries can't
-close it) → rung-2 KL (gap reproduces on real attention at low budget) → rung-2 needle (but at *usable*
-budgets block preserves real retrieval; the gap is an extreme-sparsity-only phenomenon). The residue (a
-learned query-aware summary) is real but now scoped to the aggressive-budget regime.
+close it) → rung-2 KL (gap reproduces on real attention at low budget) → rung-2 needle (at *usable*
+budgets block preserves real retrieval) → stress (and that holds 1k→4k). Net: a **training-free,
+content-based block selector preserves needle retrieval at ~6% density up to 4k context, zero training**;
+the learned query-aware summary (rung-3) is an optional push for the extreme ~3% regime only.
 
 ## Predeclared falsifiers (binding)
 - Bench validity: if `exact_topk` is not ≈1.0 on all geometries OR `window` is not ≈0 on `far`, the
