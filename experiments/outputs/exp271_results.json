@@ -1,0 +1,2093 @@
+{
+  "calibration": {
+    "LONG": {
+      "0": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": true,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          },
+          {
+            "P1": false,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 6
+          },
+          {
+            "P1": true,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          }
+        ]
+      },
+      "1": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": true,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 2,
+            "best_def_H": 2400,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 2,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 2,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 2,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 2,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 2,
+            "best_def_H": 2400,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 2,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 3,
+            "best_def_H": 2400,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          }
+        ]
+      },
+      "2": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": false,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 0
+          },
+          {
+            "P1": false,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 0
+          },
+          {
+            "P1": false,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 0
+          },
+          {
+            "P1": false,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 0
+          },
+          {
+            "P1": false,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 3000,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 0
+          }
+        ]
+      }
+    },
+    "SHORT": {
+      "0": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": true,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          },
+          {
+            "P1": true,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          },
+          {
+            "P1": true,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          },
+          {
+            "P1": true,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          },
+          {
+            "P1": true,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 7
+          }
+        ]
+      },
+      "1": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": true,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          },
+          {
+            "P1": true,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 0,
+            "best_def_H": null,
+            "best_rev": 0,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 8
+          }
+        ]
+      },
+      "2": {
+        "band_alpha": null,
+        "band_hi": null,
+        "band_lo": null,
+        "recs": [
+          {
+            "P1": false,
+            "alpha": 0.5,
+            "base_fail": 8,
+            "best_def": 1,
+            "best_def_H": 4200,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 1,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 1,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 1
+          },
+          {
+            "P1": false,
+            "alpha": 0.55,
+            "base_fail": 8,
+            "best_def": 3,
+            "best_def_H": 4200,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 1
+          },
+          {
+            "P1": false,
+            "alpha": 0.6,
+            "base_fail": 8,
+            "best_def": 3,
+            "best_def_H": 4200,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 1
+          },
+          {
+            "P1": false,
+            "alpha": 0.65,
+            "base_fail": 8,
+            "best_def": 3,
+            "best_def_H": 4200,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 1
+          },
+          {
+            "P1": false,
+            "alpha": 0.7,
+            "base_fail": 8,
+            "best_def": 3,
+            "best_def_H": 4200,
+            "best_rev": null,
+            "crackH": true,
+            "h_rows": [
+              {
+                "H": 600,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 900,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1200,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 1800,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 2400,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 3000,
+                "both": false,
+                "def": 0,
+                "rev": null
+              },
+              {
+                "H": 4200,
+                "both": false,
+                "def": 3,
+                "rev": null
+              },
+              {
+                "H": 6000,
+                "both": false,
+                "def": 3,
+                "rev": null
+              }
+            ],
+            "in_band": false,
+            "oracle_def": 1
+          }
+        ]
+      }
+    }
+  },
+  "events_hash": {},
+  "kill_test": {
+    "LONG": {
+      "0": {
+        "deciding": "no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer",
+        "rows": [],
+        "verdict": "CANT-POSE"
+      },
+      "1": {
+        "deciding": "no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer",
+        "rows": [],
+        "verdict": "CANT-POSE"
+      },
+      "2": {
+        "deciding": "no alpha displaces passive under real v-store (P1 never holds)",
+        "rows": [],
+        "verdict": "PRECONDITION-FAIL"
+      }
+    },
+    "SHORT": {
+      "0": {
+        "deciding": "no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer",
+        "rows": [],
+        "verdict": "CANT-POSE"
+      },
+      "1": {
+        "deciding": "no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer",
+        "rows": [],
+        "verdict": "CANT-POSE"
+      },
+      "2": {
+        "deciding": "no alpha displaces passive under real v-store (P1 never holds)",
+        "rows": [],
+        "verdict": "PRECONDITION-FAIL"
+      }
+    }
+  },
+  "meta": {
+    "LAMBDA": 0.9997,
+    "THETA": 3.0,
+    "alphas": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7
+    ],
+    "cells": {
+      "LONG": {
+        "G": 600,
+        "K": 4,
+        "L": 2400,
+        "name": "LONG"
+      },
+      "SHORT": {
+        "G": 200,
+        "K": 2,
+        "L": 1600,
+        "name": "SHORT"
+      }
+    },
+    "fixed_horizons": [
+      600,
+      900,
+      1200,
+      1800,
+      2400,
+      3000,
+      4200,
+      6000
+    ],
+    "seeds": [
+      250,
+      251,
+      252,
+      253,
+      254,
+      255,
+      256,
+      257
+    ]
+  },
+  "printed_verdict": "CANT-POSE",
+  "tier_a": {
+    "pass": true,
+    "rows": [
+      {
+        "attack_exp185": 1,
+        "attack_ours": 1,
+        "fav_exp185": 2,
+        "fav_ours": 2,
+        "seed": 250,
+        "seed_ok": true,
+        "tv_delta": 0.0,
+        "tv_exp185": 0.0005882632763286599,
+        "tv_ours": 0.0005882632763286599
+      },
+      {
+        "attack_exp185": 1,
+        "attack_ours": 1,
+        "fav_exp185": 2,
+        "fav_ours": 2,
+        "seed": 251,
+        "seed_ok": true,
+        "tv_delta": 0.0,
+        "tv_exp185": 0.005411013480021487,
+        "tv_ours": 0.005411013480021487
+      }
+    ]
+  },
+  "tier_b": {
+    "attack_color": 1,
+    "baseline_def": 0,
+    "checks": {
+      "a": true,
+      "b": true,
+      "c": true,
+      "d": true,
+      "e": true
+    },
+    "h_rows": [
+      {
+        "arm": "H600",
+        "both": false,
+        "def": 0,
+        "rev": 8
+      },
+      {
+        "arm": "H900",
+        "both": false,
+        "def": 0,
+        "rev": 8
+      },
+      {
+        "arm": "H1200",
+        "both": false,
+        "def": 0,
+        "rev": 8
+      },
+      {
+        "arm": "H1800",
+        "both": false,
+        "def": 0,
+        "rev": 8
+      },
+      {
+        "arm": "H2400",
+        "both": false,
+        "def": 3,
+        "rev": 8
+      },
+      {
+        "arm": "H3000",
+        "both": false,
+        "def": 8,
+        "rev": 5
+      },
+      {
+        "arm": "H4200",
+        "both": false,
+        "def": 8,
+        "rev": 1
+      },
+      {
+        "arm": "H6000",
+        "both": false,
+        "def": 8,
+        "rev": 1
+      }
+    ],
+    "oracle_def": 8,
+    "oracle_rev": 0,
+    "pass": true,
+    "regime_color": 1
+  },
+  "trigger": {
+    "alpha": 0.6,
+    "rows": [
+      {
+        "color": 0,
+        "false_rate": 1.625,
+        "mean_latency": 2162.5,
+        "rate": 5.5,
+        "regime": 1,
+        "sep_ok": true
+      },
+      {
+        "color": 1,
+        "false_rate": 1.625,
+        "mean_latency": 2165.625,
+        "rate": 5.375,
+        "regime": 2,
+        "sep_ok": true
+      },
+      {
+        "color": 2,
+        "false_rate": 1.375,
+        "mean_latency": 1578.125,
+        "rate": 6.625,
+        "regime": 0,
+        "sep_ok": true
+      }
+    ],
+    "sep_ok_all": true
+  },
+  "verdicts": {
+    "LONG_color0": "CANT-POSE",
+    "LONG_color1": "CANT-POSE",
+    "LONG_color2": "PRECONDITION-FAIL",
+    "SHORT_color0": "CANT-POSE",
+    "SHORT_color1": "CANT-POSE",
+    "SHORT_color2": "PRECONDITION-FAIL"
+  }
+}

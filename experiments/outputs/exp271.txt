@@ -1,0 +1,163 @@
+##############################################################################
+# Exp 271 — RUNG-2 POSABILITY PRE-FLIGHT (standalone; no source-patching)
+#   freeze-vs-revise crack  vs  N4-gated movement defence: common-regime co-existence?
+##############################################################################
+SECTION 0: CONFIG ECHO
+  LAMBDA=0.9997 (crack-calibrated; re-verified THETA fires under it)  THETA=3.0
+  real predictability-weight law: w = exp(-h_predicted) on the evolving _A_hat (NOT w=1.0)
+  CELL_SHORT=(L=1600,K=2,G=200)  CELL_LONG=(L=2400,K=4,G=600) [=alpha=1 gate cell]
+  COLORS=[0, 1, 2] (attack=tested color, FIXED, gate PER COLOR incl color-2 3x3 block)
+  SEEDS=[250, 251, 252, 253, 254, 255, 256, 257] (paired across arms)  SPINE_SEEDS=[250, 251]
+  ALPHAS_CALIB=[0.5, 0.55, 0.6, 0.65, 0.7]  FIXED_HORIZONS=[600, 900, 1200, 1800, 2400, 3000, 4200, 6000]
+  bars: defence expr_frac<0.5 over [last_bend+1500,+2000); revision latency<=baseline+3000
+  gate counts: family>=6/8 oracle>=7/8 baseline_fail>=7/8 revision>=6/8
+  body: 5x5, n_colors=3, n_cells=25, cmap=[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0]
+  color counts={0: 8, 1: 8, 2: 9} (color 2 = contiguous 3x3 block)
+
+WALL-CLOCK PREFLIGHT ESTIMATE
+  per-run (CELL_LONG, alpha=0.6) ~ 0.26s; rough upper-bound runs ~ 3160 -> est ~ 13.4 min (calibration prunes most kill-test work)
+
+==============================================================================
+SECTION 1: ALPHA=1 VERDICT-LEVEL EQUIVALENCE SANITY GATE
+==============================================================================
+------------------------------------------------------------------------------
+SECTION 1a. TIER-A DETERMINISTIC SPINE (vs imported real exp185 runner)
+  CELL_LONG (2400,4,600), seeds 250-251. settle_pi@5000, settle_tv(5000->6000)
+  atol/rtol=1e-6 (op-order tolerant); attack=argmin(v) & favorite=argmax(v)@6000 EXACT.
+------------------------------------------------------------------------------
+  s250: settle_tv exp185=0.0005882632763286599 ours=0.0005882632763286599 delta=0.0 tol=2e-6 OK
+        attack(argmin@6000) exp185=1 ours=1 OK  | favorite(argmax@6000) exp185=2 ours=2 OK
+  s251: settle_tv exp185=0.005411013480021487 ours=0.005411013480021487 delta=0.0 tol=2e-6 OK
+        attack(argmin@6000) exp185=1 ours=1 OK  | favorite(argmax@6000) exp185=2 ours=2 OK
+  TIER-A SPINE: PASS
+
+------------------------------------------------------------------------------
+SECTION 1b. TIER-B VERDICT STRUCTURE @ alpha=1 (= committed hard captivity), CELL_LONG
+  per-arm [arm | defence/8 | revision_pass | both_pass] + baseline + oracle
+  attack/regime color = onset rule for the gate cell (argmin/argmax v@6000, s250)
+------------------------------------------------------------------------------
+  onset attack_color=1 (argmin v@6000); EQUIV-GATE regime_color=1 (exp185 argmin@6000 rule)
+         arm  defence/8   rev/8  both
+    baseline          0       -     -
+      oracle          8       0 (excl)
+        H600          0       8 False
+        H900          0       8 False
+       H1200          0       8 False
+       H1800          0       8 False
+       H2400          3       8 False
+       H3000          8       5 False
+       H4200          8       1 False
+       H6000          8       1 False
+  (a) oracle defence>=7/8: 8/8  PASS
+  (b) baseline defence<=1/8: 0/8  PASS
+  (c) >=1 long-H defence>=6/8: True  PASS
+  (d) NO fixed-H passes both: both-passers=[]  PASS
+  (e) H600 rev PASS(8) & H6000 rev FAIL(1): PASS
+  TIER-B VERDICT STRUCTURE: PASS
+  SCOPE CAVEAT: this tests the FIXED-H crack (a strict subset of the committed full-family crack); a 'movement beats the constants' positive is scoped to fixed-H.
+
+OVERALL EQUIVALENCE GATE: PASS
+
+==============================================================================
+SECTION 2: TRIGGER CHARACTERIZATION UNDER SOFT PULL (THETA=3.0 separation check)
+  representative midband alpha=0.6, CELL_LONG, the gated-mover monitor, 8 seeds
+  rate = mean triggers/run; false-trigger = settle-phase (t<6000) triggers
+==============================================================================
+  color 0 (regime 1): trigger_rate=5.50/run  false_trigger(settle)=1.62/run  mean_latency=2162.5  sep(THETA=3.0): OK
+  color 1 (regime 2): trigger_rate=5.38/run  false_trigger(settle)=1.62/run  mean_latency=2165.625  sep(THETA=3.0): OK
+  color 2 (regime 0): trigger_rate=6.62/run  false_trigger(settle)=1.38/run  mean_latency=1578.125  sep(THETA=3.0): OK
+  THETA=3.0 separation (attack>>settle false): OK on all colors
+
+==============================================================================
+SECTION 3-5: PER (CELL x COLOR) CALIBRATION, KILL TEST, VERDICT
+  NEVER a cross-cell/color mean (mean-of-opposites guard). Per-seed throughout.
+==============================================================================
+------------------------------------------------------------------------------
+CELL_SHORT (L=1600,K=2,G=200)  attack_color=0  regime_color=1
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=CANT-POSE (no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer)
+
+------------------------------------------------------------------------------
+CELL_SHORT (L=1600,K=2,G=200)  attack_color=1  regime_color=2
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=CANT-POSE (no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer)
+
+------------------------------------------------------------------------------
+CELL_SHORT (L=1600,K=2,G=200)  attack_color=2  regime_color=0
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=1/8  bestH=H4200 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=1/8  bestH=H4200 def=3/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=1/8  bestH=H4200 def=3/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=1/8  bestH=H4200 def=3/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=1/8  bestH=H4200 def=3/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=PRECONDITION-FAIL (no alpha displaces passive under real v-store (P1 never holds))
+
+------------------------------------------------------------------------------
+CELL_LONG (L=2400,K=4,G=600)  attack_color=0  regime_color=1
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=7/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=6/8  bestH=HNone def=0/8 rev=0/8  P1=False crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=7/8  bestH=H3000 def=1/8 rev=None/8  P1=True crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=CANT-POSE (no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer)
+
+------------------------------------------------------------------------------
+CELL_LONG (L=2400,K=4,G=600)  attack_color=1  regime_color=2
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=8/8  bestH=HNone def=0/8 rev=0/8  P1=True crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=8/8  bestH=H2400 def=2/8 rev=None/8  P1=True crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=8/8  bestH=H2400 def=2/8 rev=None/8  P1=True crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=8/8  bestH=H2400 def=3/8 rev=None/8  P1=True crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=CANT-POSE (no alpha co-satisfies P1 + a real fixed-H crack + a defendable peer)
+
+------------------------------------------------------------------------------
+CELL_LONG (L=2400,K=4,G=600)  attack_color=2  regime_color=0
+------------------------------------------------------------------------------
+  [Sec3] ALPHA-CALIBRATION  alpha | base_fail/8 | oracle_pass/8 | bestH def/8 & rev/8 | P1? | crack? | peer?
+    a=0.50  base_fail=8/8  oracle=0/8  bestH=H3000 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.55  base_fail=8/8  oracle=0/8  bestH=H3000 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.60  base_fail=8/8  oracle=0/8  bestH=H3000 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.65  base_fail=8/8  oracle=0/8  bestH=H3000 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    a=0.70  base_fail=8/8  oracle=0/8  bestH=H3000 def=1/8 rev=None/8  P1=False crackH=True peer=False  band=no
+    POSABLE band = EMPTY
+  [Sec4] band EMPTY -> no kill test. [Sec5] VERDICT=PRECONDITION-FAIL (no alpha displaces passive under real v-store (P1 never holds))
+
+==============================================================================
+SECTION 5: VERDICT VECTORS (per-cell, 3 colors) + DIRECTION MAP (NO scalar verdict)
+==============================================================================
+  CELL_SHORT: color0=CANT-POSE  color1=CANT-POSE  color2=PRECONDITION-FAIL
+  CELL_LONG: color0=CANT-POSE  color1=CANT-POSE  color2=PRECONDITION-FAIL
+
+  direction map: POSABLE=0 CANT-POSE=4 CONSTANTS-ALSO-WIN=0 PRECONDITION-FAIL=2 (of 6)
+
+PRINTED_VERDICT: CANT-POSE  (this is the SCRIPT'S claim across the 2x3 cell-color grid; per-cell-color vectors above are the load-bearing result, NOT this scalar)
+==============================================================================
+SECTION 6: SELF-CHECK SUMMARY
+==============================================================================
+  EQUIVALENCE GATE (Tier A + Tier B): PASS
+  All (cell x color) cells produced a clean verdict in {POSABLE, CANT-POSE, CONSTANTS-ALSO-WIN, PRECONDITION-FAIL}: True
+  Runtime: 8.9 min
+  EXIT CODE: 0 (0 iff gates PASS or clean CAN'T-POSE; nonzero iff equiv gate / spine FAILED)
+
