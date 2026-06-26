@@ -147,4 +147,18 @@ OPTIMAL avoider — a myopic greedy avoider manufactures a false negative on sca
 (L44); (ii) "posable" = optimal-planner upper bound, NOT yet learnable. Boundary: escapability
 ~ refuge-depth vs pull (ESCAPE crosses 0 near a~0.6–0.7).
 
-**STATUS.** state: active (rung 1 CLEARED; rung 2 licensed) · latest: Exp 270 — affordance gate CLEARED (MIXED; surface POSABLE on mirro's body) · depends-on: identity-n4, identity-n4-crack, n4-crack-edges, persistent-creature, environmental-complexity · reusable: exp270 escapability probe (policy-iter avoider + Bellman cert), rung-2 N4 monitor (Exp 180), internal constants INT-C2900/fixed-H/REG-TB, crack-cell set, L43+L44 · why: defend identity by acting (leave the overwriting stream) — the lacuna opposite internal gating · next-falsifiable: RUNG 2 — learned N4-gated avoid controller vs internal constants on defense+revision in tight/variable-L cells (kill test); add belief/qs channel first
+**RUNG 2 — CAN'T-POSE (Exp 271, NEGATIVE / NEW INSIGHT; design red-teamed + blind-verified
+unanimous, controller re-ran + re-gated; alpha=1 equivalence gate PASS = faithful port).** The
+kill test (movement beats the internal constants IN the crack cells) is ILL-POSED: the N4
+freeze-vs-revise crack is a HARD-CAPTIVITY phenomenon (freezing only defends when the agent is
+force-fed with no escape), but a movement surface needs a SOFT attack — and the soft pull that
+creates a real deficit (baseline 8/8 fail) DISSOLVES the freeze surface (best fixed-H defense
+0/8 at every passive-displacing alpha 0.50–0.70). So no defendable internal peer exists for
+movement to beat: POSABLE band EMPTY in all 6 (cell×color) cells (4 CAN'T-POSE + 2
+PRECONDITION-FAIL on the contiguous color-2 block, where even the oracle can't displace the
+passive freezer). The two surfaces are REGIME-INCOMPATIBLE (L45). This dissolves the kill-test
+hypothesis — it does NOT retract rung 1 (the environmental surface genuinely defends a soft
+escapable attack; it just does not compete head-to-head with internal gating, which solves the
+opposite hard/inescapable regime).
+
+**STATUS.** state: decision-point (rung 1 POSITIVE; rung 2 CAN'T-POSE) · latest: Exp 271 — kill test ILL-POSED: freeze-crack (hard captivity) vs movement (soft attack) are regime-incompatible; equivalence gate PASS · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270 escapability probe + exp271 posability pre-flight (alpha=1 equivalence gate), L43+L44+L45 · why: defend identity by acting — the lacuna opposite internal gating; the two poles solve incompatible regimes · next-falsifiable: ON A WORD — (a) ACCEPT + BoundaryNote + close kill-test line; (b) REFRAME on proven necessity (one regime with both a deficit AND a defendable freeze peer); (c) LEARNABLE movement actuator (upgrade rung-1 upper bound); (d) redirect

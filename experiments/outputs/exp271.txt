@@ -15,7 +15,7 @@ SECTION 0: CONFIG ECHO
   color counts={0: 8, 1: 8, 2: 9} (color 2 = contiguous 3x3 block)
 
 WALL-CLOCK PREFLIGHT ESTIMATE
-  per-run (CELL_LONG, alpha=0.6) ~ 0.26s; rough upper-bound runs ~ 3160 -> est ~ 13.4 min (calibration prunes most kill-test work)
+  per-run (CELL_LONG, alpha=0.6) ~ 0.25s; rough upper-bound runs ~ 3160 -> est ~ 13.1 min (calibration prunes most kill-test work)
 
 ==============================================================================
 SECTION 1: ALPHA=1 VERDICT-LEVEL EQUIVALENCE SANITY GATE
@@ -158,6 +158,6 @@ SECTION 6: SELF-CHECK SUMMARY
 ==============================================================================
   EQUIVALENCE GATE (Tier A + Tier B): PASS
   All (cell x color) cells produced a clean verdict in {POSABLE, CANT-POSE, CONSTANTS-ALSO-WIN, PRECONDITION-FAIL}: True
-  Runtime: 8.9 min
+  Runtime: 8.8 min
   EXIT CODE: 0 (0 iff gates PASS or clean CAN'T-POSE; nonzero iff equiv gate / spine FAILED)
 
