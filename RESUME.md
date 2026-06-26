@@ -492,6 +492,24 @@ step 0.
   no acoustic refuge to flee to; fleeing only crowds prey. Clean asymmetry: gifted PREDATOR hearing DOES
   raise capture success (0.630 vs 0.579). Information present, advantage absent — the local-gradient
   wall's acoustic face. Do NOT run hearing evolution yet. Card: `loop/directions/acoustic-ecology.md`.
+- **The identity-ecological direction (Exp 270–271, /lab "identity", persona skeptic; on branch
+  `identity-ecological` off origin/main — NB the prior sparse-llm research arc that briefly held
+  numbers 270–276 was removed from history per the human's decision, so these are the NEW 270/271):**
+  the lacuna opposite the closed N4 internal-gating pole — can a creature defend identity by ACTING
+  (leaving the stream that overwrites it) rather than by freezing memory? **Exp 270 (RUNG 1, MIXED /
+  NEW INSIGHT — gate CLEARED):** under a soft, resistible spatial attack (a pull toward the attack
+  color; no teleport) a CERTIFIED-OPTIMAL refuge planner escapes all 3 colors at low-moderate pull
+  (gaps 0.41/0.36/0.63, home-range 9–16 = genuine refuge) and is overwhelmed at high pull (revision
+  stays forced) on mirro's real aliased body → the environmental surface is POSABLE (optimal-planner
+  upper bound; learnability is a later rung). A myopic avoider manufactures a false negative (L44).
+  **Exp 271 (RUNG 2, NEGATIVE / NEW INSIGHT — CAN'T-POSE):** the kill test (movement vs the internal
+  freeze-constants in the crack cells) is ILL-POSED — the freeze-vs-revise crack is a HARD-captivity
+  phenomenon, but movement needs a SOFT attack, and the soft pull that creates a real deficit
+  (baseline 8/8 fail) DISSOLVES the freeze surface (best fixed-H defense 0/8), so no defendable
+  internal peer exists for movement to beat (POSABLE band empty in all 6 cells; alpha=1 equivalence
+  gate PASS = faithful port → trustworthy boundary). The two surfaces are regime-incompatible (L45).
+  DECISION POINT (on a word): accept + BoundaryNote / reframe-on-necessity / learnable actuator /
+  redirect. Card: `loop/directions/identity-ecological.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
