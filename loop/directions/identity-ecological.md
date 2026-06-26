@@ -131,13 +131,20 @@ language only; blinded verification per PROTOCOL 4.5; same-schedule reference ar
 any reused runner path (L15) and `_must_replace` any patch-built parameter with both
 branches exercised (L16); site entries written through Python only (the SITE-WRITER RULE).
 
-**RUNG 1, ATTEMPT 1 (Exp 276, NO-VERDICT / INVALID-by-degeneracy, blind-verified).** The
-free-roam controllability probe (gifted BFS seek/avoid oracles, NO attack) is degenerate:
-on the wall-clamped 5x5 both oracles huddle on a 1–2 cell refuge and hit the trivial bounds
-(f_seek 1.000 / f_avoid 0.000) IDENTICALLY on the aliased body AND the segregated positive
-control → geometry-blind, so it validates nothing (L43). Confirms the rung-1 spec was right
-to require a soft attack: attempt 1 dropped it to be cheap. NEXT = the soft-attack triad
-(PC-deficit / PC-escapable / PC-inescapable), where huddling is no longer free because the
-pull keeps re-asserting the attack-color diet unless the agent actively moves against it.
+**RUNG 1 — CLEARED (Exp 270, MIXED structural map / NEW INSIGHT; design adversarially
+red-teamed + result blind-verified, controller re-ran + re-gated).** An attempt-1 free-roam
+probe (gifted seek/avoid oracles, NO attack) was degenerate — both oracles huddle on a
+1–2 cell refuge and hit trivial bounds (f=1.000/0.000) IDENTICALLY on the aliased body AND
+a segregated control, geometry-blind (L43); the fix was to add the resistible soft attack so
+huddling is no longer free. Exp 270 (the soft-attack escapability probe) then CLEARED the
+gate's triad on mirro's real body: PC-deficit (the pull captures a passive walker, 20/20 all
+colors), PC-escapable (a CERTIFIED-OPTIMAL refuge planner escapes ALL 3 colors at low-moderate
+pull a=0.5 — gaps 0.41/0.36/0.63, f_avoid ~0.20, home-range 9–16 so a genuine refuge not a
+huddle; validated by the positive control), PC-inescapable (escape collapses at a=0.8 → a
+strong/changed world cannot be fled → revision stays forced). The environmental surface is
+POSABLE on this body. Two findings carry forward: (i) the affordance is only visible with an
+OPTIMAL avoider — a myopic greedy avoider manufactures a false negative on scattered colors
+(L44); (ii) "posable" = optimal-planner upper bound, NOT yet learnable. Boundary: escapability
+~ refuge-depth vs pull (ESCAPE crosses 0 near a~0.6–0.7).
 
-**STATUS.** state: active (rung 1, attempt 2 pending) · latest: Exp 276 — free-roam affordance probe DEGENERATE (NO-VERDICT); soft-attack triad next · depends-on: identity-n4 (closed-negative), identity-n4-crack (closed-positive), n4-crack-edges (halted), persistent-creature, environmental-complexity (substrate affordance), functional-emergence · reusable: rung-2 N4 monitor (Exp 180), exp190 gated runner, INT-C2900 / REG-TB / fixed-H concession arms, confirmed crack-cell set, displacement-deficit law (Exp 176), the stream-composition finding (Exp 192) · why: the named lacuna opposite the internal-gating pole — an environmental identity-control surface, the cell the closed chapters relabeled "locality confound" · next-falsifiable: rung 1 attempt 2 — the soft-attack affordance triad (PC-deficit/escapable/inescapable), huddling no longer free
+**STATUS.** state: active (rung 1 CLEARED; rung 2 licensed) · latest: Exp 270 — soft-attack affordance gate CLEARED (MIXED structural map: P-afford all colors at a=0.5, inescapable at a=0.8); surface POSABLE on mirro's body · depends-on: identity-n4 (closed-negative), identity-n4-crack (closed-positive), n4-crack-edges (halted), persistent-creature, environmental-complexity (substrate affordance), functional-emergence · reusable: certified soft-attack escapability probe (exp270, policy-iteration avoider + Bellman-residual cert), rung-2 N4 monitor (Exp 180), INT-C2900 / REG-TB / fixed-H concession arms, confirmed crack-cell set, displacement-deficit law (Exp 176), stream-composition finding (Exp 192), L43 (affordance-probe degeneracy) + L44 (myopic-planner false negative) · why: the named lacuna opposite the internal-gating pole — an environmental identity-control surface, the cell the closed chapters relabeled "locality confound" · next-falsifiable: RUNG 2 — a LEARNED N4-mismatch-gated avoid controller vs the internal-gating constants (INT-C2900 / fixed-H / REG-TB) on BOTH defense and revision in the tight-tolerance / variable-L cells where every internal surface provably failed (the kill test); first add the belief/qs channel + the v-store gate (full captivity, not just the stream)

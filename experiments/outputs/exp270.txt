@@ -1,0 +1,189 @@
+##############################################################################
+# Exp 270 — identity-ecological RUNG 1: the affordance gate
+#   (soft-attack escapability probe on mirro's real aliased body)
+##############################################################################
+KEY BARS:
+  PC-deficit (G_mirro, per color): f_passive(0.5)-f_passive(0.0) >= 0.10 AND
+    > 3*SE, in >=18/20 seeds. Else color is NO-VERDICT.
+  PC-instrument (G_segreg, per color): f_passive_seg(0.5)-f_avoid_seg(0.5) >= 0.30
+    AND f_passive_seg(0.5) >= 0.40, in >=18/20 seeds. Else G_mirro NO-VERDICT.
+  P-afford (POSITIVE): gap = f_passive-f_avoid >= 0.20 AND > 3*SE, >=18/20 seeds,
+    AND avoider homerange >= 6 AND most_visited_frac <= 0.50,
+    AND ESCAPE(alpha) = gap(alpha)-gap(0) > 0 (else downgraded to MIXED).
+  F-afford (NEGATIVE-gate): mean gap <= 0.10 AND gap <= 0.10 in >=18/20 seeds.
+  MIXED: gap in (0.10, 0.20) band, or P-afford fails a side-condition.
+  N_SEEDS=20  BURN=1000  MEAS=8000  GAMMA=0.999  LAMBDA=0.999
+  ALPHAS=[0.0, 0.25, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]  gates: a_low=0.5 a_high=0.8
+
+==============================================================================
+PREFLIGHT ASSERTIONS
+==============================================================================
+(1) color counts OK  mirro={0: 8, 1: 8, 2: 9}  segreg={0: 8, 1: 8, 2: 9}
+(2) G_mirro.cmap == committed manifest cmap  ([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 2, 2, 2, 1, 0, 2, 2, 2, 0, 1, 2, 2, 2, 1, 0])
+(3) G_segreg color 0: single refuge, size 17, maxdepth 5
+(3) G_segreg color 1: single refuge, size 17, maxdepth 4
+(3) G_segreg color 2: single refuge, size 16, maxdepth 4
+(4) optimal_avoid_policy is CERTIFIED Bellman-optimal (residual < 1e-7) for every (geom,color,alpha) [policy iteration + optimality-certificate assert]
+(5) BOTH-VERDICTS-REACHABLE: POSITIVE witness color=0 gap=0.406 (a=0.5); NEGATIVE-gate witness color=0 gap=0.071 (a=0.8)
+
+==============================================================================
+PRECONDITION: PC-deficit  (G_mirro per color; soft attack captures passive walker)
+==============================================================================
+  color 0: deficit mean=0.3077 SE=0.0019 3SE=0.0056 seeds>=0.10: 20/20  -> PASS
+  color 1: deficit mean=0.2900 SE=0.0023 3SE=0.0069 seeds>=0.10: 20/20  -> PASS
+  color 2: deficit mean=0.4597 SE=0.0050 3SE=0.0151 seeds>=0.10: 20/20  -> PASS
+
+==============================================================================
+PRECONDITION: PC-instrument  (G_segreg per color; optimal avoider escapes control)
+==============================================================================
+  color 0: seg gap mean=0.6147 SE=0.0028  f_passive_seg(0.5)=0.7840  seeds gap>=0.30: 20/20 -> PASS
+  color 1: seg gap mean=0.5682 SE=0.0023  f_passive_seg(0.5)=0.7706  seeds gap>=0.30: 20/20 -> PASS
+  color 2: seg gap mean=0.5867 SE=0.0028  f_passive_seg(0.5)=0.7881  seeds gap>=0.30: 20/20 -> PASS
+
+==============================================================================
+MAIN SWEEP TABLES
+==============================================================================
+--- G_mirro  color 0  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.3014 0.0023  0.0000 0.0000  0.3014 0.0023  0.0000   1.0  1.000     0  no-attack
+   0.25  0.4525 0.0014  0.0088 0.0003  0.4437 0.0015  0.1423  13.8  0.669    20      MIXED
+   0.50  0.6092 0.0013  0.2032 0.0022  0.4060 0.0019  0.1046  14.0  0.200    20   P-afford
+   0.60  0.6732 0.0009  0.3831 0.0022  0.2901 0.0021 -0.0113  14.0  0.183    20 MIXED(esc)
+   0.70  0.7444 0.0008  0.5776 0.0021  0.1667 0.0017 -0.1347  14.0  0.278     0      MIXED
+   0.80  0.8209 0.0008  0.7503 0.0018  0.0706 0.0014 -0.2309  13.4  0.371     0   F-afford
+   0.90  0.9052 0.0006  0.8885 0.0008  0.0167 0.0006 -0.2848   9.8  0.447     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.3014   1.0  1.000     0 analytic1.0
+
+--- G_mirro  color 1  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.3269 0.0024  0.0000 0.0000  0.3269 0.0024  0.0000   1.0  1.000     0  no-attack
+   0.25  0.4641 0.0019  0.0259 0.0005  0.4382 0.0019  0.1113  16.0  0.675    20      MIXED
+   0.50  0.6169 0.0016  0.2532 0.0024  0.3637 0.0024  0.0367  16.0  0.249    20   P-afford
+   0.60  0.6790 0.0011  0.4159 0.0022  0.2631 0.0021 -0.0638  16.0  0.142    20 MIXED(esc)
+   0.70  0.7481 0.0010  0.5905 0.0021  0.1575 0.0019 -0.1694  16.0  0.178     0      MIXED
+   0.80  0.8225 0.0006  0.7518 0.0015  0.0707 0.0014 -0.2563  16.0  0.243     0   F-afford
+   0.90  0.9062 0.0007  0.8887 0.0009  0.0175 0.0006 -0.3094  15.1  0.308     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.3269   1.0  1.000     0 analytic1.0
+
+--- G_mirro  color 2  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.3716 0.0047  0.0000 0.0000  0.3716 0.0047  0.0000   1.0  1.000     0  no-attack
+   0.25  0.6498 0.0036  0.0088 0.0004  0.6411 0.0036  0.2694   9.0  0.669    20      MIXED
+   0.50  0.8314 0.0023  0.2013 0.0024  0.6300 0.0034  0.2584   9.0  0.209    20   P-afford
+   0.60  0.8818 0.0014  0.3826 0.0024  0.4992 0.0030  0.1276   9.0  0.383    20   P-afford
+   0.70  0.9202 0.0013  0.5785 0.0024  0.3417 0.0030 -0.0299   9.0  0.579    20      MIXED
+   0.80  0.9520 0.0010  0.7501 0.0015  0.2019 0.0018 -0.1697   9.0  0.750    12      MIXED
+   0.90  0.9783 0.0005  0.8890 0.0008  0.0893 0.0010 -0.2823  10.6  0.749     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.3716   1.0  1.000     0 analytic1.0
+
+--- G_segreg  color 0  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.3181 0.0031  0.0000 0.0000  0.3181 0.0031  0.0000   1.0  1.000     0  no-attack
+   0.25  0.5851 0.0030  0.0030 0.0002  0.5821 0.0029  0.2640  13.9  0.667    20      MIXED
+   0.50  0.7840 0.0026  0.1692 0.0023  0.6147 0.0028  0.2966  14.0  0.166    20   P-afford
+   0.60  0.8428 0.0015  0.3629 0.0029  0.4799 0.0025  0.1618  14.0  0.276    20   P-afford
+   0.70  0.8916 0.0013  0.5733 0.0027  0.3184 0.0020  0.0002  14.0  0.479    20   P-afford
+   0.80  0.9330 0.0010  0.7490 0.0015  0.1840 0.0014 -0.1341  15.2  0.653     0      MIXED
+   0.90  0.9696 0.0006  0.8887 0.0009  0.0809 0.0009 -0.2372  13.7  0.473     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.3181   1.0  1.000     0 analytic1.0
+
+--- G_segreg  color 1  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.2986 0.0036  0.0000 0.0000  0.2986 0.0036  0.0000   1.0  1.000     0  no-attack
+   0.25  0.5663 0.0035  0.0090 0.0002  0.5573 0.0035  0.2587   9.0  0.669    20      MIXED
+   0.50  0.7706 0.0016  0.2024 0.0021  0.5682 0.0023  0.2696   9.0  0.201    20   P-afford
+   0.60  0.8289 0.0016  0.3829 0.0024  0.4460 0.0028  0.1474   9.0  0.239    20   P-afford
+   0.70  0.8799 0.0010  0.5774 0.0024  0.3025 0.0021  0.0039   9.0  0.337    20   P-afford
+   0.80  0.9249 0.0008  0.7503 0.0018  0.1746 0.0017 -0.1240   9.0  0.416     0      MIXED
+   0.90  0.9652 0.0006  0.8883 0.0008  0.0768 0.0007 -0.2218   7.9  0.462     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.2986   1.0  1.000     0 analytic1.0
+
+--- G_segreg  color 2  (PC-deficit=PASS, PC-instrument=PASS, usable=True) ---
+  alpha  f_pass   SE_p f_avoid   SE_a     gap SE_gap  ESCAPE  hrng mvfrac pass#    verdict
+   0.00  0.3833 0.0044  0.0000 0.0000  0.3833 0.0044  0.0000   1.0  1.000     0  no-attack
+   0.25  0.6120 0.0032  0.0089 0.0003  0.6031 0.0033  0.2199  11.0  0.669    20      MIXED
+   0.50  0.7881 0.0024  0.2014 0.0022  0.5867 0.0028  0.2034  11.0  0.203    20   P-afford
+   0.60  0.8424 0.0014  0.3829 0.0024  0.4594 0.0027  0.0762  11.0  0.360    20   P-afford
+   0.70  0.8896 0.0017  0.5777 0.0024  0.3119 0.0028 -0.0714  11.0  0.558    20      MIXED
+   0.80  0.9314 0.0012  0.7500 0.0015  0.1814 0.0017 -0.2019  10.7  0.740     0      MIXED
+   0.90  0.9688 0.0005  0.8890 0.0008  0.0798 0.0009 -0.3035   6.3  0.887     0   F-afford
+   1.00  1.0000 0.0000  1.0000 0.0000  0.0000 0.0000 -0.3833   1.0  1.000     0 analytic1.0
+
+==============================================================================
+REFUGE-DEPTH COVARIATE  (max BFS dist + largest connected refuge size)
+==============================================================================
+       geom color maxdepth largest_refuge            all_comps
+    G_mirro     0        4             13     [13, 1, 1, 1, 1]
+    G_mirro     1        3             11 [11, 1, 1, 1, 1, 1, 1]
+    G_mirro     2        4             16                 [16]
+   G_segreg     0        5             17                 [17]
+   G_segreg     1        4             17                 [17]
+   G_segreg     2        4             16                 [16]
+
+==============================================================================
+OPTIMAL-vs-GREEDY CONTRAST  (G_mirro, alpha=0.5; greedy fails scattered colors)
+==============================================================================
+  color f_passive   f_opt f_greedy opt_gap greedy_gap
+      0    0.6092  0.2032   0.5009  0.4060     0.1083
+      1    0.6169  0.2532   0.5009  0.3637     0.1161
+      2    0.8314  0.2013   0.3347  0.6300     0.4966
+
+==============================================================================
+LAMBDA-EWMA v-STORE FAITHFULNESS  (does v_attack_share track f? argmax flip?)
+==============================================================================
+       geom color alpha     kind       f  v_share argmaxV=atk
+    G_mirro     0  0.50  passive  0.6092   0.6114        1.00
+    G_mirro     0  0.50    avoid  0.2032   0.2095        0.00
+    G_mirro     0  0.80  passive  0.8209   0.8210        1.00
+    G_mirro     0  0.80    avoid  0.7503   0.7470        1.00
+    G_mirro     1  0.50  passive  0.6169   0.6195        1.00
+    G_mirro     1  0.50    avoid  0.2532   0.2562        0.00
+    G_mirro     1  0.80  passive  0.8225   0.8219        1.00
+    G_mirro     1  0.80    avoid  0.7518   0.7487        1.00
+    G_mirro     2  0.50  passive  0.8314   0.8335        1.00
+    G_mirro     2  0.50    avoid  0.2013   0.2069        0.00
+    G_mirro     2  0.80  passive  0.9520   0.9532        1.00
+    G_mirro     2  0.80    avoid  0.7501   0.7462        1.00
+   G_segreg     0  0.50  passive  0.7840   0.7763        1.00
+   G_segreg     0  0.50    avoid  0.1692   0.1733        0.00
+   G_segreg     0  0.80  passive  0.9330   0.9345        1.00
+   G_segreg     0  0.80    avoid  0.7490   0.7453        1.00
+   G_segreg     1  0.50  passive  0.7706   0.7712        1.00
+   G_segreg     1  0.50    avoid  0.2024   0.2056        0.00
+   G_segreg     1  0.80  passive  0.9249   0.9246        1.00
+   G_segreg     1  0.80    avoid  0.7503   0.7471        1.00
+   G_segreg     2  0.50  passive  0.7881   0.7895        1.00
+   G_segreg     2  0.50    avoid  0.2014   0.2076        0.00
+   G_segreg     2  0.80  passive  0.9314   0.9305        1.00
+   G_segreg     2  0.80    avoid  0.7500   0.7461        1.00
+
+==============================================================================
+MIXING ROBUSTNESS  (G_mirro, color 0, alpha=0.6; not a gate)
+==============================================================================
+  f(MEAS)=0.6732+-0.0009  f(MEAS/2)=0.6738  |diff|<=3SE: True
+  f over BURN in {500,1000,2000}: [0.673, 0.6732, 0.6736]  spread<=3SE: True
+  MIXING CHECK: PASS
+
+NOTE: alpha=0.0 is the no-attack baseline (no pull; pure policy/random walk).
+NOTE: alpha=1.0 stated ANALYTICALLY: pull every step -> absorbing into the
+      attack region, f=1.0 with zero policy DOF (not a free measurement).
+
+==============================================================================
+FINAL PER-COLOR VERDICT VECTOR
+==============================================================================
+  G_mirro color 0: a_low(0.5)=P-afford  a_high(0.8)=F-afford
+  G_mirro color 1: a_low(0.5)=P-afford  a_high(0.8)=F-afford
+  G_mirro color 2: a_low(0.5)=P-afford  a_high(0.8)=MIXED
+  G_segreg color 0: a_low(0.5)=P-afford  a_high(0.8)=MIXED
+  G_segreg color 1: a_low(0.5)=P-afford  a_high(0.8)=MIXED
+  G_segreg color 2: a_low(0.5)=P-afford  a_high(0.8)=MIXED
+
+DIRECTION-LEVEL STRUCTURAL CONCLUSION:
+  Escape is afforded iff a connected non-attack refuge of sufficient depth is
+  reachable under the pull, measured by the OPTIMAL avoider. Per (color,geom,
+  alpha) the bars above assign P-afford / F-afford / MIXED; gating is per-color
+  (never on a structurally-heterogeneous mean). G_segreg is the positive control
+  proving the instrument can detect escape when geometry permits it.
+
+PRINTED_VERDICT: per-(geom,color,alpha) vector above; this is the SCRIPT'S claim (not the adjudicated result). See FINAL PER-COLOR VERDICT VECTOR.
+WROTE experiments/outputs/exp270_results.json
