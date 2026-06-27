@@ -1,0 +1,2459 @@
+{
+  "artifact_confirmed": false,
+  "artifact_largest_N_gcov": 0.9545833333333333,
+  "cells": {
+    "10|0|far_cluster": {
+      "N": 10,
+      "color": 0,
+      "deg_curve": {
+        "16": {
+          "budget": 1600,
+          "free_closure": [
+            -0.026435831088110585,
+            0.9902366153599915,
+            1.0017606103449197,
+            1.0206471576813294,
+            -0.026435831088110585,
+            1.003521220689839
+          ],
+          "free_closure_mean": 0.6605489903166432,
+          "free_closure_sd": 0.5322248078353089,
+          "free_disp": false,
+          "free_gcov_mean": 0.9766666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9270833333333334,
+          "pull_closure_mean": -0.026435831088110585,
+          "pull_gcov_mean": 0.36333333333333334,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.198375,
+      "f_passive": 0.9793541666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.008002774295089,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.7809791666666667,
+      "knee": {
+        "budget": 1600,
+        "free_closure": [
+          -0.026435831088110585,
+          0.9902366153599915,
+          1.0017606103449197,
+          1.0206471576813294,
+          -0.026435831088110585,
+          1.003521220689839
+        ],
+        "free_closure_mean": 0.6605489903166432,
+        "free_closure_sd": 0.5322248078353089,
+        "free_disp": false,
+        "free_gcov": [
+          0.98,
+          1.0,
+          1.0,
+          0.93,
+          0.95,
+          1.0
+        ],
+        "free_gcov_mean": 0.9766666666666667,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          0.5625,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 0.9270833333333334,
+        "pull_closure_mean": -0.026435831088110585,
+        "pull_gcov_mean": 0.36333333333333334
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.008002774295089,
+      "mbtrue_closure_min": 0.9902366153599915,
+      "n_cells": 100,
+      "refuge_components": [
+        16
+      ],
+      "start_to_refuge_bfs": 12,
+      "support_size": 16,
+      "verdict": "WALL-not-survives"
+    },
+    "10|0|tiled_mirro": {
+      "N": 10,
+      "color": 0,
+      "deg_curve": {
+        "16": {
+          "budget": 1600,
+          "free_closure": [
+            1.0210409745293465,
+            1.017718715393134,
+            1.0131883620255713,
+            1.0382563173260848,
+            1.049129165408235,
+            1.017718715393134
+          ],
+          "free_closure_mean": 1.0261753750125842,
+          "free_closure_sd": 0.014218863662017429,
+          "free_disp": false,
+          "free_gcov_mean": 0.9766666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.26829759387898927,
+          "pull_gcov_mean": 0.44,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.20095833333333332,
+      "f_passive": 0.6148333333333333,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0261753750125842,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.413875,
+      "knee": {
+        "budget": 1600,
+        "free_closure": [
+          1.0210409745293465,
+          1.017718715393134,
+          1.0131883620255713,
+          1.0382563173260848,
+          1.049129165408235,
+          1.017718715393134
+        ],
+        "free_closure_mean": 1.0261753750125842,
+        "free_closure_sd": 0.014218863662017429,
+        "free_disp": false,
+        "free_gcov": [
+          0.98,
+          1.0,
+          1.0,
+          0.93,
+          0.95,
+          1.0
+        ],
+        "free_gcov_mean": 0.9766666666666667,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.26829759387898927,
+        "pull_gcov_mean": 0.44
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0261753750125842,
+      "mbtrue_closure_min": 1.0131883620255713,
+      "n_cells": 100,
+      "refuge_components": [
+        17,
+        15,
+        15,
+        13,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 1,
+      "support_size": 15,
+      "verdict": "SCALES"
+    },
+    "10|1|far_cluster": {
+      "N": 10,
+      "color": 1,
+      "deg_curve": {
+        "16": {
+          "budget": 1600,
+          "free_closure": [
+            1.020967268653133,
+            0.9902366153599915,
+            1.0017606103449197,
+            0.8551497852588897,
+            -0.026435831088110585,
+            1.003521220689839
+          ],
+          "free_closure_mean": 0.8075332782031105,
+          "free_closure_sd": 0.41299925298600065,
+          "free_disp": false,
+          "free_gcov_mean": 0.9766666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9270833333333334,
+          "pull_closure_mean": 0.18955904713634056,
+          "pull_gcov_mean": 0.4366666666666667,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.198375,
+      "f_passive": 0.9793541666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.008002774295089,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.7809791666666667,
+      "knee": {
+        "budget": 1600,
+        "free_closure": [
+          1.020967268653133,
+          0.9902366153599915,
+          1.0017606103449197,
+          0.8551497852588897,
+          -0.026435831088110585,
+          1.003521220689839
+        ],
+        "free_closure_mean": 0.8075332782031105,
+        "free_closure_sd": 0.41299925298600065,
+        "free_disp": false,
+        "free_gcov": [
+          0.98,
+          1.0,
+          1.0,
+          0.93,
+          0.95,
+          1.0
+        ],
+        "free_gcov_mean": 0.9766666666666667,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          0.5625,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 0.9270833333333334,
+        "pull_closure_mean": 0.18955904713634056,
+        "pull_gcov_mean": 0.4366666666666667
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.008002774295089,
+      "mbtrue_closure_min": 0.9902366153599915,
+      "n_cells": 100,
+      "refuge_components": [
+        16
+      ],
+      "start_to_refuge_bfs": 12,
+      "support_size": 16,
+      "verdict": "SCALES"
+    },
+    "10|1|tiled_mirro": {
+      "N": 10,
+      "color": 1,
+      "deg_curve": {
+        "16": {
+          "budget": 1600,
+          "free_closure": [
+            1.0311268490490606,
+            1.0277000399794392,
+            1.022217145468045,
+            1.074990005140214,
+            0.8303158375692501,
+            1.032497572676909
+          ],
+          "free_closure_mean": 1.003141241647153,
+          "free_closure_sd": 0.0867673650463864,
+          "free_disp": false,
+          "free_gcov_mean": 0.9766666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.8063281740819007,
+          "pull_gcov_mean": 0.4566666666666666,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.2549791666666667,
+      "f_passive": 0.6197499999999999,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0410074818664687,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.3647708333333332,
+      "knee": {
+        "budget": 1600,
+        "free_closure": [
+          1.0311268490490606,
+          1.0277000399794392,
+          1.022217145468045,
+          1.074990005140214,
+          0.8303158375692501,
+          1.032497572676909
+        ],
+        "free_closure_mean": 1.003141241647153,
+        "free_closure_sd": 0.0867673650463864,
+        "free_disp": false,
+        "free_gcov": [
+          0.98,
+          1.0,
+          1.0,
+          0.93,
+          0.95,
+          1.0
+        ],
+        "free_gcov_mean": 0.9766666666666667,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.8063281740819007,
+        "pull_gcov_mean": 0.4566666666666666
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0410074818664687,
+      "mbtrue_closure_min": 1.022217145468045,
+      "n_cells": 100,
+      "refuge_components": [
+        16,
+        13,
+        13,
+        11,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 0,
+      "support_size": 1,
+      "verdict": "SCALES"
+    },
+    "15|0|far_cluster": {
+      "N": 15,
+      "color": 0,
+      "deg_curve": {
+        "1": {
+          "budget": 225,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534
+          ],
+          "free_closure_mean": -0.01449239702770534,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.3414814814814815,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.2546296296296296,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.14592592592592593,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 450,
+          "free_closure": [
+            0.8915161655430343,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534
+          ],
+          "free_closure_mean": 0.13650903006741794,
+          "free_closure_sd": 0.3698764468151263,
+          "free_disp": true,
+          "free_gcov_mean": 0.5325925925925926,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.35648148148148145,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.18074074074074073,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 900,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            0.8774912651936421,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            0.8712907829339108
+          ],
+          "free_closure_mean": 0.2818020766694553,
+          "free_closure_sd": 0.4590216127181498,
+          "free_disp": true,
+          "free_gcov_mean": 0.7688888888888888,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.5972222222222222,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.22740740740740742,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 1800,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            1.0004674966783131,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            0.8712907829339108
+          ],
+          "free_closure_mean": 0.30229811525023376,
+          "free_closure_sd": 0.4924668629905428,
+          "free_disp": true,
+          "free_gcov_mean": 0.9,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8055555555555555,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.23703703703703705,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 3600,
+          "free_closure": [
+            1.0257123173072191,
+            0.9880665321588504,
+            1.0004674966783131,
+            1.025417056247232,
+            1.0081442842379806,
+            0.8712907829339108
+          ],
+          "free_closure_mean": 0.9865164115939176,
+          "free_closure_sd": 0.05829463989618414,
+          "free_disp": false,
+          "free_gcov_mean": 0.9962962962962963,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9953703703703703,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.3503703703703704,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 7200,
+          "free_closure": [
+            1.0257123173072191,
+            0.9880665321588504,
+            1.0004674966783131,
+            1.025417056247232,
+            1.0081442842379806,
+            1.001205649328281
+          ],
+          "free_closure_mean": 1.0081688893263125,
+          "free_closure_sd": 0.014947740006707292,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.36296296296296293,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.14102083333333335,
+      "f_passive": 0.9877291666666667,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0081688893263125,
+        "free_gcov_mean": 0.997037037037037,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.8467083333333333,
+      "knee": {
+        "budget": 3600,
+        "free_closure": [
+          1.0257123173072191,
+          0.9880665321588504,
+          1.0004674966783131,
+          1.025417056247232,
+          1.0081442842379806,
+          0.8712907829339108
+        ],
+        "free_closure_mean": 0.9865164115939176,
+        "free_closure_sd": 0.05829463989618414,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.9955555555555555,
+          0.9866666666666667,
+          1.0,
+          1.0,
+          0.9955555555555555
+        ],
+        "free_gcov_mean": 0.9962962962962963,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9722222222222222
+        ],
+        "free_rcov_mean": 0.9953703703703703,
+        "pull_closure_mean": -0.01449239702770534,
+        "pull_gcov_mean": 0.3503703703703704
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0081688893263125,
+      "mbtrue_closure_min": 0.9880665321588504,
+      "n_cells": 225,
+      "refuge_components": [
+        36
+      ],
+      "start_to_refuge_bfs": 18,
+      "support_size": 36,
+      "verdict": "SCALES"
+    },
+    "15|0|tiled_mirro": {
+      "N": 15,
+      "color": 0,
+      "deg_curve": {
+        "1": {
+          "budget": 225,
+          "free_closure": [
+            -0.9378536782538399,
+            0.2723322554567502,
+            0.6846200485044462,
+            0.3059822150363784,
+            0.710691188358933,
+            0.2753637833468068
+          ],
+          "free_closure_mean": 0.2185226354082458,
+          "free_closure_sd": 0.6017405472767687,
+          "free_disp": true,
+          "free_gcov_mean": 0.3414814814814815,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.6666666666666666,
+          "pull_closure_mean": -0.12616208569118836,
+          "pull_gcov_mean": 0.08370370370370371,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 450,
+          "free_closure": [
+            0.9095594179466452,
+            0.2723322554567502,
+            0.6846200485044462,
+            0.3059822150363784,
+            0.710691188358933,
+            0.9010711398544866
+          ],
+          "free_closure_mean": 0.6307093775262733,
+          "free_closure_sd": 0.2807269740379862,
+          "free_disp": false,
+          "free_gcov_mean": 0.5325925925925926,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8111111111111112,
+          "pull_closure_mean": -0.12272635408245754,
+          "pull_gcov_mean": 0.14444444444444446,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 900,
+          "free_closure": [
+            0.9095594179466452,
+            0.670675020210186,
+            0.6846200485044462,
+            0.3059822150363784,
+            0.710691188358933,
+            1.018088116410671
+          ],
+          "free_closure_mean": 0.7166026677445432,
+          "free_closure_sd": 0.24490901237735396,
+          "free_disp": false,
+          "free_gcov_mean": 0.7688888888888888,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9111111111111111,
+          "pull_closure_mean": -0.12272635408245754,
+          "pull_gcov_mean": 0.2362962962962963,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 1800,
+          "free_closure": [
+            1.0211196443007275,
+            0.6800727566693614,
+            0.6846200485044462,
+            0.3068916734033953,
+            0.710691188358933,
+            1.018088116410671
+          ],
+          "free_closure_mean": 0.7369139046079226,
+          "free_closure_sd": 0.2651053200220511,
+          "free_disp": false,
+          "free_gcov_mean": 0.9,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9444444444444443,
+          "pull_closure_mean": 0.07836499595796285,
+          "pull_gcov_mean": 0.30518518518518517,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 3600,
+          "free_closure": [
+            1.0211196443007275,
+            0.8813662085691188,
+            0.6846200485044462,
+            1.0383993532740503,
+            1.0490097008892483,
+            1.018088116410671
+          ],
+          "free_closure_mean": 0.9487671786580436,
+          "free_closure_sd": 0.14313585073101492,
+          "free_disp": false,
+          "free_gcov_mean": 0.9962962962962963,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.07836499595796285,
+          "pull_gcov_mean": 0.32740740740740737,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 7200,
+          "free_closure": [
+            1.0211196443007275,
+            1.0174818108326598,
+            1.0135408245755861,
+            1.0383993532740503,
+            1.0490097008892483,
+            1.018088116410671
+          ],
+          "free_closure_mean": 1.0262732417138236,
+          "free_closure_sd": 0.014120543212297184,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.3531729991915926,
+          "pull_gcov_mean": 0.34814814814814815,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.20095833333333332,
+      "f_passive": 0.6132916666666667,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 0.9487671786580436,
+        "free_gcov_mean": 0.997037037037037,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.41233333333333333,
+      "knee": {
+        "budget": 3600,
+        "free_closure": [
+          1.0211196443007275,
+          0.8813662085691188,
+          0.6846200485044462,
+          1.0383993532740503,
+          1.0490097008892483,
+          1.018088116410671
+        ],
+        "free_closure_mean": 0.9487671786580436,
+        "free_closure_sd": 0.14313585073101492,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.9955555555555555,
+          0.9866666666666667,
+          1.0,
+          1.0,
+          0.9955555555555555
+        ],
+        "free_gcov_mean": 0.9962962962962963,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.07836499595796285,
+        "pull_gcov_mean": 0.32740740740740737
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0262732417138236,
+      "mbtrue_closure_min": 1.0135408245755861,
+      "n_cells": 225,
+      "refuge_components": [
+        17,
+        17,
+        17,
+        17,
+        15,
+        15,
+        15,
+        15,
+        13,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 1,
+      "support_size": 15,
+      "verdict": "SCALES"
+    },
+    "15|1|far_cluster": {
+      "N": 15,
+      "color": 1,
+      "deg_curve": {
+        "1": {
+          "budget": 225,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534
+          ],
+          "free_closure_mean": -0.01449239702770534,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.3414814814814815,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.2546296296296296,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.12592592592592594,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 450,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534
+          ],
+          "free_closure_mean": -0.01449239702770534,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.5325925925925926,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.35648148148148145,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.18814814814814818,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 900,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            0.8715860439938979
+          ],
+          "free_closure_mean": 0.13318734314256186,
+          "free_closure_sd": 0.3617400087639544,
+          "free_disp": true,
+          "free_gcov_mean": 0.7688888888888888,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.5972222222222222,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.21185185185185187,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 1800,
+          "free_closure": [
+            -0.01449239702770534,
+            -0.01449239702770534,
+            1.0004674966783131,
+            -0.01449239702770534,
+            -0.01449239702770534,
+            -0.01449239702770534
+          ],
+          "free_closure_mean": 0.15466758525663107,
+          "free_closure_sd": 0.4143556414948662,
+          "free_disp": true,
+          "free_gcov_mean": 0.9,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8055555555555555,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.2859259259259259,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 3600,
+          "free_closure": [
+            1.0257123173072191,
+            0.9880665321588504,
+            1.0004674966783131,
+            1.025417056247232,
+            1.0081442842379806,
+            1.001205649328281
+          ],
+          "free_closure_mean": 1.0081688893263125,
+          "free_closure_sd": 0.014947740006707292,
+          "free_disp": false,
+          "free_gcov_mean": 0.9962962962962963,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9953703703703703,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.35555555555555557,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 7200,
+          "free_closure": [
+            1.0257123173072191,
+            0.9880665321588504,
+            1.0004674966783131,
+            1.025417056247232,
+            1.0081442842379806,
+            1.001205649328281
+          ],
+          "free_closure_mean": 1.0081688893263125,
+          "free_closure_sd": 0.014947740006707292,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.01449239702770534,
+          "pull_gcov_mean": 0.3718518518518518,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.14102083333333335,
+      "f_passive": 0.9877291666666667,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0081688893263125,
+        "free_gcov_mean": 0.997037037037037,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.8467083333333333,
+      "knee": {
+        "budget": 3600,
+        "free_closure": [
+          1.0257123173072191,
+          0.9880665321588504,
+          1.0004674966783131,
+          1.025417056247232,
+          1.0081442842379806,
+          1.001205649328281
+        ],
+        "free_closure_mean": 1.0081688893263125,
+        "free_closure_sd": 0.014947740006707292,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.9955555555555555,
+          0.9866666666666667,
+          1.0,
+          1.0,
+          0.9955555555555555
+        ],
+        "free_gcov_mean": 0.9962962962962963,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9722222222222222
+        ],
+        "free_rcov_mean": 0.9953703703703703,
+        "pull_closure_mean": -0.01449239702770534,
+        "pull_gcov_mean": 0.35555555555555557
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0081688893263125,
+      "mbtrue_closure_min": 0.9880665321588504,
+      "n_cells": 225,
+      "refuge_components": [
+        36
+      ],
+      "start_to_refuge_bfs": 18,
+      "support_size": 36,
+      "verdict": "SCALES"
+    },
+    "15|1|tiled_mirro": {
+      "N": 15,
+      "color": 1,
+      "deg_curve": {
+        "1": {
+          "budget": 225,
+          "free_closure": [
+            0.3474025974025973,
+            -1.0367395762132605,
+            0.33099794941900196,
+            0.8197197539302803,
+            0.8309979494190021,
+            0.7961380724538619
+          ],
+          "free_closure_mean": 0.34808612440191383,
+          "free_closure_sd": 0.7175552039270978,
+          "free_disp": true,
+          "free_gcov_mean": 0.3414814814814815,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.036967418546365906,
+          "pull_gcov_mean": 0.08740740740740742,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 450,
+          "free_closure": [
+            0.3474025974025973,
+            -1.0367395762132605,
+            0.3313397129186603,
+            0.8197197539302803,
+            0.3634654818865345,
+            0.7824675324675325
+          ],
+          "free_closure_mean": 0.2679425837320574,
+          "free_closure_sd": 0.6768821493784923,
+          "free_disp": true,
+          "free_gcov_mean": 0.5325925925925926,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.030701754385964914,
+          "pull_gcov_mean": 0.12888888888888886,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 900,
+          "free_closure": [
+            0.7981886534518114,
+            -1.0367395762132605,
+            0.7998974709501027,
+            1.0603212576896788,
+            0.8190362269309639,
+            1.0326384142173615
+          ],
+          "free_closure_mean": 0.5788904078377763,
+          "free_closure_sd": 0.8003160649081329,
+          "free_disp": true,
+          "free_gcov_mean": 0.7688888888888888,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.030701754385964914,
+          "pull_gcov_mean": 0.18074074074074076,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 1800,
+          "free_closure": [
+            1.031613123718387,
+            -1.0367395762132605,
+            0.794771018455229,
+            1.075017088174983,
+            0.8309979494190021,
+            1.0326384142173615
+          ],
+          "free_closure_mean": 0.6213830029619504,
+          "free_closure_sd": 0.820557854851845,
+          "free_disp": true,
+          "free_gcov_mean": 0.9,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.03195488721804509,
+          "pull_gcov_mean": 0.2548148148148148,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 3600,
+          "free_closure": [
+            1.031613123718387,
+            1.0278537252221462,
+            0.794771018455229,
+            1.075017088174983,
+            1.057587149692413,
+            1.0326384142173615
+          ],
+          "free_closure_mean": 1.0032467532467533,
+          "free_closure_sd": 0.1037689890445027,
+          "free_disp": false,
+          "free_gcov_mean": 0.9962962962962963,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.3431875142401459,
+          "pull_gcov_mean": 0.334074074074074,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 7200,
+          "free_closure": [
+            1.031613123718387,
+            1.0278537252221462,
+            1.0227272727272727,
+            1.075017088174983,
+            1.057587149692413,
+            1.0326384142173615
+          ],
+          "free_closure_mean": 1.0412394622920937,
+          "free_closure_sd": 0.020477785209011796,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.5734221918432445,
+          "pull_gcov_mean": 0.35777777777777775,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.2550625,
+      "f_passive": 0.6208125,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0032467532467533,
+        "free_gcov_mean": 0.997037037037037,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.36574999999999996,
+      "knee": {
+        "budget": 3600,
+        "free_closure": [
+          1.031613123718387,
+          1.0278537252221462,
+          0.794771018455229,
+          1.075017088174983,
+          1.057587149692413,
+          1.0326384142173615
+        ],
+        "free_closure_mean": 1.0032467532467533,
+        "free_closure_sd": 0.1037689890445027,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.9955555555555555,
+          0.9866666666666667,
+          1.0,
+          1.0,
+          0.9955555555555555
+        ],
+        "free_gcov_mean": 0.9962962962962963,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.3431875142401459,
+        "pull_gcov_mean": 0.334074074074074
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0412394622920937,
+      "mbtrue_closure_min": 1.0227272727272727,
+      "n_cells": 225,
+      "refuge_components": [
+        16,
+        16,
+        16,
+        16,
+        13,
+        13,
+        13,
+        13,
+        11,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 0,
+      "support_size": 1,
+      "verdict": "SCALES"
+    },
+    "20|0|far_cluster": {
+      "N": 20,
+      "color": 0,
+      "deg_curve": {
+        "1": {
+          "budget": 400,
+          "free_closure": [
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": -0.008357279693486723,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.31666666666666665,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.1598639455782313,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.11458333333333333,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 800,
+          "free_closure": [
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": -0.008357279693486723,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.5125000000000001,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.28571428571428575,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.1475,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 1600,
+          "free_closure": [
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": -0.008357279693486723,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.7062500000000002,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.5374149659863946,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.15625,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 3200,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": 0.32957375478927187,
+          "free_closure_sd": 0.523679504352772,
+          "free_disp": true,
+          "free_gcov_mean": 0.9266666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8401360544217686,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.20333333333333334,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 6400,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            1.0002634099616858,
+            1.0219588122605365,
+            1.0090277777777779,
+            0.8537116858237548
+          ],
+          "free_closure_mean": 0.9826388888888888,
+          "free_closure_sd": 0.06488017469045947,
+          "free_disp": false,
+          "free_gcov_mean": 0.9820833333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9421768707482993,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.24791666666666667,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 12800,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            1.0002634099616858,
+            1.0219588122605365,
+            1.0090277777777779,
+            1.0001197318007664
+          ],
+          "free_closure_mean": 1.0070402298850574,
+          "free_closure_sd": 0.015218336726241169,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.2570833333333333,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.12272916666666667,
+      "f_passive": 0.9927291666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 0.7994731800766283,
+        "free_gcov_mean": 0.9545833333333333,
+        "free_rcov_mean": 0.9081632653061225
+      },
+      "headroom": 0.8699999999999999,
+      "knee": {
+        "budget": 6400,
+        "free_closure": [
+          1.025838122605364,
+          0.9850335249042145,
+          1.0002634099616858,
+          1.0219588122605365,
+          1.0090277777777779,
+          0.8537116858237548
+        ],
+        "free_closure_mean": 0.9826388888888888,
+        "free_closure_sd": 0.06488017469045947,
+        "free_disp": false,
+        "free_gcov": [
+          0.9875,
+          0.9875,
+          0.975,
+          0.9975,
+          0.9925,
+          0.9525
+        ],
+        "free_gcov_mean": 0.9820833333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.6530612244897959
+        ],
+        "free_rcov_mean": 0.9421768707482993,
+        "pull_closure_mean": -0.008357279693486723,
+        "pull_gcov_mean": 0.24791666666666667
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0070402298850574,
+      "mbtrue_closure_min": 0.9850335249042145,
+      "n_cells": 400,
+      "refuge_components": [
+        49
+      ],
+      "start_to_refuge_bfs": 26,
+      "support_size": 49,
+      "verdict": "SCALES"
+    },
+    "20|0|tiled_mirro": {
+      "N": 20,
+      "color": 0,
+      "deg_curve": {
+        "1": {
+          "budget": 400,
+          "free_closure": [
+            0.6939137485430497,
+            0.6741499011807632,
+            0.2733998885116303,
+            0.3004611564384534,
+            0.7100288856230679,
+            0.27309582932144116
+          ],
+          "free_closure_mean": 0.4875082349364009,
+          "free_closure_sd": 0.22528003057203053,
+          "free_disp": false,
+          "free_gcov_mean": 0.31666666666666665,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.7333333333333334,
+          "pull_closure_mean": 0.28850149495768507,
+          "pull_gcov_mean": 0.07333333333333333,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 800,
+          "free_closure": [
+            0.6939137485430497,
+            0.6741499011807632,
+            0.2733998885116303,
+            0.3004611564384534,
+            0.7100288856230679,
+            -0.9437490498150305
+          ],
+          "free_closure_mean": 0.2847007550803223,
+          "free_closure_sd": 0.6339550383160747,
+          "free_disp": true,
+          "free_gcov_mean": 0.5125000000000001,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.7555555555555555,
+          "pull_closure_mean": 0.356205341306441,
+          "pull_gcov_mean": 0.10875000000000001,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 1600,
+          "free_closure": [
+            0.7136775959053362,
+            0.6741499011807632,
+            0.6905690974509704,
+            0.7021233466781532,
+            0.7100288856230679,
+            0.6747580195611412
+          ],
+          "free_closure_mean": 0.6942178077332386,
+          "free_closure_sd": 0.017238842197644443,
+          "free_disp": false,
+          "free_gcov_mean": 0.7062500000000002,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8444444444444444,
+          "pull_closure_mean": 0.356205341306441,
+          "pull_gcov_mean": 0.1775,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 3200,
+          "free_closure": [
+            0.7136775959053362,
+            0.2697511782293619,
+            0.6905690974509704,
+            0.9125323062889575,
+            1.049358941874018,
+            1.0183449044747377
+          ],
+          "free_closure_mean": 0.7757056707038968,
+          "free_closure_sd": 0.28967813359526007,
+          "free_disp": false,
+          "free_gcov_mean": 0.9266666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9888888888888889,
+          "pull_closure_mean": 0.356205341306441,
+          "pull_gcov_mean": 0.2325,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 6400,
+          "free_closure": [
+            0.6939137485430497,
+            0.2697511782293619,
+            0.2733998885116303,
+            1.0384128110272133,
+            1.049358941874018,
+            1.0183449044747377
+          ],
+          "free_closure_mean": 0.7238635787766684,
+          "free_closure_sd": 0.3746038715766913,
+          "free_disp": false,
+          "free_gcov_mean": 0.9820833333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.3570161658136117,
+          "pull_gcov_mean": 0.25166666666666665,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 12800,
+          "free_closure": [
+            1.0216895555668168,
+            1.0174327269041707,
+            1.0137840166219023,
+            1.0384128110272133,
+            1.049358941874018,
+            1.0183449044747377
+          ],
+          "free_closure_mean": 1.0265038260781432,
+          "free_closure_sd": 0.014128013559406584,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.5592662038210104,
+          "pull_gcov_mean": 0.26333333333333336,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.20091666666666666,
+      "f_passive": 0.6120208333333333,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 0.7724116961435158,
+        "free_gcov_mean": 0.9545833333333333,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.4111041666666667,
+      "knee": {
+        "budget": 6400,
+        "free_closure": [
+          0.6939137485430497,
+          0.2697511782293619,
+          0.2733998885116303,
+          1.0384128110272133,
+          1.049358941874018,
+          1.0183449044747377
+        ],
+        "free_closure_mean": 0.7238635787766684,
+        "free_closure_sd": 0.3746038715766913,
+        "free_disp": false,
+        "free_gcov": [
+          0.9875,
+          0.9875,
+          0.975,
+          0.9975,
+          0.9925,
+          0.9525
+        ],
+        "free_gcov_mean": 0.9820833333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.3570161658136117,
+        "pull_gcov_mean": 0.25166666666666665
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0265038260781432,
+      "mbtrue_closure_min": 1.0137840166219023,
+      "n_cells": 400,
+      "refuge_components": [
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        13,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 1,
+      "support_size": 15,
+      "verdict": "WALL-not-survives"
+    },
+    "20|1|far_cluster": {
+      "N": 20,
+      "color": 1,
+      "deg_curve": {
+        "1": {
+          "budget": 400,
+          "free_closure": [
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": -0.008357279693486723,
+          "free_closure_sd": 0.0,
+          "free_disp": false,
+          "free_gcov_mean": 0.31666666666666665,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.1598639455782313,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.125,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 800,
+          "free_closure": [
+            -0.008357279693486723,
+            0.9672174329501916,
+            0.9547174329501916,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": 0.31475095785440604,
+          "free_closure_sd": 0.5005727365839386,
+          "free_disp": true,
+          "free_gcov_mean": 0.5125000000000001,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.28571428571428575,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.13,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 1600,
+          "free_closure": [
+            1.025838122605364,
+            -0.008357279693486723,
+            1.0002634099616858,
+            -0.008357279693486723,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": 0.3321120689655171,
+          "free_closure_sd": 0.5275148455690777,
+          "free_disp": true,
+          "free_gcov_mean": 0.7062500000000002,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.5374149659863946,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.14125,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 3200,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            1.0002634099616858,
+            0.7731082375478927,
+            -0.008357279693486723,
+            -0.008357279693486723
+          ],
+          "free_closure_mean": 0.6279214559386972,
+          "free_closure_sd": 0.5010560237193079,
+          "free_disp": false,
+          "free_gcov_mean": 0.9266666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.8401360544217686,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.19583333333333333,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 6400,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            1.0002634099616858,
+            1.0219588122605365,
+            1.0090277777777779,
+            0.756441570881226
+          ],
+          "free_closure_mean": 0.966427203065134,
+          "free_closure_sd": 0.10393582229385145,
+          "free_disp": false,
+          "free_gcov_mean": 0.9820833333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 0.9421768707482993,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.22875,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 12800,
+          "free_closure": [
+            1.025838122605364,
+            0.9850335249042145,
+            1.0002634099616858,
+            1.0219588122605365,
+            1.0090277777777779,
+            1.0001197318007664
+          ],
+          "free_closure_mean": 1.0070402298850574,
+          "free_closure_sd": 0.015218336726241169,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.008357279693486723,
+          "pull_gcov_mean": 0.2575,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.12272916666666667,
+      "f_passive": 0.9927291666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 0.814918582375479,
+        "free_gcov_mean": 0.9545833333333333,
+        "free_rcov_mean": 0.9081632653061225
+      },
+      "headroom": 0.8699999999999999,
+      "knee": {
+        "budget": 6400,
+        "free_closure": [
+          1.025838122605364,
+          0.9850335249042145,
+          1.0002634099616858,
+          1.0219588122605365,
+          1.0090277777777779,
+          0.756441570881226
+        ],
+        "free_closure_mean": 0.966427203065134,
+        "free_closure_sd": 0.10393582229385145,
+        "free_disp": false,
+        "free_gcov": [
+          0.9875,
+          0.9875,
+          0.975,
+          0.9975,
+          0.9925,
+          0.9525
+        ],
+        "free_gcov_mean": 0.9820833333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.6530612244897959
+        ],
+        "free_rcov_mean": 0.9421768707482993,
+        "pull_closure_mean": -0.008357279693486723,
+        "pull_gcov_mean": 0.22875
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0070402298850574,
+      "mbtrue_closure_min": 0.9850335249042145,
+      "n_cells": 400,
+      "refuge_components": [
+        49
+      ],
+      "start_to_refuge_bfs": 26,
+      "support_size": 49,
+      "verdict": "SCALES"
+    },
+    "20|1|tiled_mirro": {
+      "N": 20,
+      "color": 1,
+      "deg_curve": {
+        "1": {
+          "budget": 400,
+          "free_closure": [
+            0.8278179353964309,
+            0.333465100519539,
+            0.801728032527671,
+            -1.0191438897673373,
+            0.8325615540998417,
+            0.7844477072509599
+          ],
+          "free_closure_mean": 0.42681274000451747,
+          "free_closure_sd": 0.7339490268696801,
+          "free_disp": true,
+          "free_gcov_mean": 0.31666666666666665,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.4898351027784056,
+          "pull_gcov_mean": 0.06166666666666667,
+          "pull_hold_count": 0
+        },
+        "2": {
+          "budget": 800,
+          "free_closure": [
+            -1.0191438897673373,
+            0.333465100519539,
+            0.3368533995934038,
+            0.36734809125818824,
+            0.8325615540998417,
+            0.7844477072509599
+          ],
+          "free_closure_mean": 0.2725886604924326,
+          "free_closure_sd": 0.6724518650558345,
+          "free_disp": true,
+          "free_gcov_mean": 0.5125000000000001,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.7930313982380849,
+          "pull_gcov_mean": 0.09749999999999999,
+          "pull_hold_count": 0
+        },
+        "4": {
+          "budget": 1600,
+          "free_closure": [
+            0.8278179353964309,
+            0.33143212107521997,
+            0.8020668624350574,
+            0.36734809125818824,
+            0.8325615540998417,
+            0.7980009035464196
+          ],
+          "free_closure_mean": 0.659871244635193,
+          "free_closure_sd": 0.2411511905255845,
+          "free_disp": false,
+          "free_gcov_mean": 0.7062500000000002,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -1.019143889767337,
+          "pull_gcov_mean": 0.12791666666666665,
+          "pull_hold_count": 0
+        },
+        "8": {
+          "budget": 3200,
+          "free_closure": [
+            0.8278179353964309,
+            0.7786875988253895,
+            0.8020668624350574,
+            0.8213801671560875,
+            0.8325615540998417,
+            1.032471199457872
+          ],
+          "free_closure_mean": 0.8491642195617798,
+          "free_closure_sd": 0.09196720058103373,
+          "free_disp": false,
+          "free_gcov_mean": 0.9266666666666667,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.7943302462163998,
+          "pull_gcov_mean": 0.19166666666666665,
+          "pull_hold_count": 0
+        },
+        "16": {
+          "budget": 6400,
+          "free_closure": [
+            0.8278179353964309,
+            0.7786875988253895,
+            1.0223063022362773,
+            1.0741472780664105,
+            1.0575446126044725,
+            1.032471199457872
+          ],
+          "free_closure_mean": 0.9654958210978087,
+          "free_closure_sd": 0.1279404262246131,
+          "free_disp": false,
+          "free_gcov_mean": 0.9820833333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.4872374068217758,
+          "pull_gcov_mean": 0.23958333333333334,
+          "pull_hold_count": 0
+        },
+        "32": {
+          "budget": 12800,
+          "free_closure": [
+            1.0314547097357125,
+            1.0273887508470747,
+            1.0226451321436638,
+            1.0741472780664105,
+            1.0575446126044725,
+            1.032471199457872
+          ],
+          "free_closure_mean": 1.0409419471425343,
+          "free_closure_sd": 0.020290225780320588,
+          "free_disp": false,
+          "free_gcov_mean": 1.0,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": -0.4872938784730069,
+          "pull_gcov_mean": 0.25708333333333333,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.25510416666666663,
+      "f_passive": 0.6240208333333332,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 0.891292071380167,
+        "free_gcov_mean": 0.9545833333333333,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.3689166666666666,
+      "knee": {
+        "budget": 6400,
+        "free_closure": [
+          0.8278179353964309,
+          0.7786875988253895,
+          1.0223063022362773,
+          1.0741472780664105,
+          1.0575446126044725,
+          1.032471199457872
+        ],
+        "free_closure_mean": 0.9654958210978087,
+        "free_closure_sd": 0.1279404262246131,
+        "free_disp": false,
+        "free_gcov": [
+          0.9875,
+          0.9875,
+          0.975,
+          0.9975,
+          0.9925,
+          0.9525
+        ],
+        "free_gcov_mean": 0.9820833333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": -0.4872374068217758,
+        "pull_gcov_mean": 0.23958333333333334
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0409419471425343,
+      "mbtrue_closure_min": 1.0226451321436638,
+      "n_cells": 400,
+      "refuge_components": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        13,
+        13,
+        13,
+        13,
+        13,
+        13,
+        11,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 0,
+      "support_size": 1,
+      "verdict": "SCALES"
+    },
+    "5|0|far_cluster": {
+      "N": 5,
+      "color": 0,
+      "deg_curve": {
+        "16": {
+          "budget": 400,
+          "free_closure": [
+            1.0280029242554274,
+            0.9940561329900514,
+            1.0098852547598616,
+            1.0337242935698168,
+            1.0232351164934363,
+            1.0018753377197165
+          ],
+          "free_closure_mean": 1.0151298432980516,
+          "free_closure_sd": 0.01564898808883608,
+          "free_disp": false,
+          "free_gcov_mean": 0.9933333333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.7571596579892567,
+          "pull_gcov_mean": 0.8066666666666666,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.25122916666666667,
+      "f_passive": 0.9066666666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0151298432980516,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.6554374999999999,
+      "knee": {
+        "budget": 400,
+        "free_closure": [
+          1.0280029242554274,
+          0.9940561329900514,
+          1.0098852547598616,
+          1.0337242935698168,
+          1.0232351164934363,
+          1.0018753377197165
+        ],
+        "free_closure_mean": 1.0151298432980516,
+        "free_closure_sd": 0.01564898808883608,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.96,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_gcov_mean": 0.9933333333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.7571596579892567,
+        "pull_gcov_mean": 0.8066666666666666
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0151298432980516,
+      "mbtrue_closure_min": 0.9940561329900514,
+      "n_cells": 25,
+      "refuge_components": [
+        9
+      ],
+      "start_to_refuge_bfs": 4,
+      "support_size": 9,
+      "verdict": "SCALES"
+    },
+    "5|0|tiled_mirro": {
+      "N": 5,
+      "color": 0,
+      "deg_curve": {
+        "16": {
+          "budget": 400,
+          "free_closure": [
+            1.0209740490579455,
+            1.0182316794474633,
+            1.0127469402264995,
+            1.0386470976588291,
+            1.0496165761007568,
+            1.0179269717129655
+          ],
+          "free_closure_mean": 1.0263572190340764,
+          "free_closure_sd": 0.014445417816367207,
+          "free_disp": false,
+          "free_gcov_mean": 0.9933333333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.4210553044538115,
+          "pull_gcov_mean": 0.6999999999999998,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.20097916666666668,
+      "f_passive": 0.6112083333333334,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0263572190340764,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.41022916666666664,
+      "knee": {
+        "budget": 400,
+        "free_closure": [
+          1.0209740490579455,
+          1.0182316794474633,
+          1.0127469402264995,
+          1.0386470976588291,
+          1.0496165761007568,
+          1.0179269717129655
+        ],
+        "free_closure_mean": 1.0263572190340764,
+        "free_closure_sd": 0.014445417816367207,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.96,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_gcov_mean": 0.9933333333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.4210553044538115,
+        "pull_gcov_mean": 0.6999999999999998
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0263572190340764,
+      "mbtrue_closure_min": 1.0127469402264995,
+      "n_cells": 25,
+      "refuge_components": [
+        13,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 1,
+      "support_size": 13,
+      "verdict": "SCALES"
+    },
+    "5|1|far_cluster": {
+      "N": 5,
+      "color": 1,
+      "deg_curve": {
+        "16": {
+          "budget": 400,
+          "free_closure": [
+            1.0280029242554274,
+            -0.1423985251581324,
+            1.0098852547598616,
+            1.0337242935698168,
+            1.0232351164934363,
+            1.0018753377197165
+          ],
+          "free_closure_mean": 0.8257207336066877,
+          "free_closure_sd": 0.4744254233599337,
+          "free_disp": false,
+          "free_gcov_mean": 0.9933333333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.5214710276214997,
+          "pull_gcov_mean": 0.7133333333333334,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.25122916666666667,
+      "f_passive": 0.9066666666666666,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0151298432980516,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.6554374999999999,
+      "knee": {
+        "budget": 400,
+        "free_closure": [
+          1.0280029242554274,
+          -0.1423985251581324,
+          1.0098852547598616,
+          1.0337242935698168,
+          1.0232351164934363,
+          1.0018753377197165
+        ],
+        "free_closure_mean": 0.8257207336066877,
+        "free_closure_sd": 0.4744254233599337,
+        "free_disp": false,
+        "free_gcov": [
+          1.0,
+          0.96,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_gcov_mean": 0.9933333333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.5214710276214997,
+        "pull_gcov_mean": 0.7133333333333334
+      },
+      "layout": "far_cluster",
+      "mbtrue_closure_mean": 1.0151298432980516,
+      "mbtrue_closure_min": 0.9940561329900514,
+      "n_cells": 25,
+      "refuge_components": [
+        9
+      ],
+      "start_to_refuge_bfs": 4,
+      "support_size": 9,
+      "verdict": "SCALES"
+    },
+    "5|1|tiled_mirro": {
+      "N": 5,
+      "color": 1,
+      "deg_curve": {
+        "16": {
+          "budget": 400,
+          "free_closure": [
+            1.0317259612621414,
+            -1.0552905339387317,
+            1.0217253865164662,
+            1.0755215817000976,
+            1.0579343640439105,
+            1.0327605034772112
+          ],
+          "free_closure_mean": 0.6940628771768491,
+          "free_closure_sd": 0.8572334244108013,
+          "free_disp": true,
+          "free_gcov_mean": 0.9933333333333333,
+          "free_hold_count": 0,
+          "free_rcov_mean": 1.0,
+          "pull_closure_mean": 0.8018851658141272,
+          "pull_gcov_mean": 0.7200000000000001,
+          "pull_hold_count": 0
+        }
+      },
+      "f_optimal": 0.25499999999999995,
+      "f_passive": 0.6174791666666667,
+      "fixed": {
+        "budget": 5000,
+        "free_closure_mean": 1.0412667394677857,
+        "free_gcov_mean": 1.0,
+        "free_rcov_mean": 1.0
+      },
+      "headroom": 0.36247916666666674,
+      "knee": {
+        "budget": 400,
+        "free_closure": [
+          1.0317259612621414,
+          -1.0552905339387317,
+          1.0217253865164662,
+          1.0755215817000976,
+          1.0579343640439105,
+          1.0327605034772112
+        ],
+        "free_closure_mean": 0.6940628771768491,
+        "free_closure_sd": 0.8572334244108013,
+        "free_disp": true,
+        "free_gcov": [
+          1.0,
+          0.96,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_gcov_mean": 0.9933333333333333,
+        "free_hold_count": 0,
+        "free_rcov": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "free_rcov_mean": 1.0,
+        "pull_closure_mean": 0.8018851658141272,
+        "pull_gcov_mean": 0.7200000000000001
+      },
+      "layout": "tiled_mirro",
+      "mbtrue_closure_mean": 1.0412667394677857,
+      "mbtrue_closure_min": 1.0217253865164662,
+      "n_cells": 25,
+      "refuge_components": [
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "start_to_refuge_bfs": 0,
+      "support_size": 1,
+      "verdict": "SCALES*disp"
+    }
+  },
+  "convention_bug_audit_init_acc": 0.36,
+  "cover_time_estimates": {
+    "10": 1498,
+    "15": 3071,
+    "20": 6215,
+    "5": 217
+  },
+  "equivalence_anchor": {
+    "N": 25,
+    "budget": 5000,
+    "color": 0,
+    "coverage_mean": 1.0,
+    "f_optimal": 0.20097916666666668,
+    "f_passive": 0.6112083333333334,
+    "mbfree_closure_mean": 1.0263572190340764,
+    "ok": true
+  },
+  "experiment": "Exp 273 \u2014 identity-ecological RUNG 1c-SCALE: MB-FREE learnability scaling",
+  "fixed_budget_artifact_table": {
+    "far_cluster|10": {
+      "N": 10,
+      "closure_mean": 1.008002774295089,
+      "gcov_mean": 1.0,
+      "n_cells": 100,
+      "rcov_mean": 1.0
+    },
+    "far_cluster|15": {
+      "N": 15,
+      "closure_mean": 1.0081688893263125,
+      "gcov_mean": 0.997037037037037,
+      "n_cells": 225,
+      "rcov_mean": 1.0
+    },
+    "far_cluster|20": {
+      "N": 20,
+      "closure_mean": 0.7994731800766283,
+      "gcov_mean": 0.9545833333333333,
+      "n_cells": 400,
+      "rcov_mean": 0.9081632653061225
+    },
+    "far_cluster|5": {
+      "N": 5,
+      "closure_mean": 1.0151298432980516,
+      "gcov_mean": 1.0,
+      "n_cells": 25,
+      "rcov_mean": 1.0
+    },
+    "tiled_mirro|10": {
+      "N": 10,
+      "closure_mean": 1.0261753750125842,
+      "gcov_mean": 1.0,
+      "n_cells": 100,
+      "rcov_mean": 1.0
+    },
+    "tiled_mirro|15": {
+      "N": 15,
+      "closure_mean": 0.9487671786580436,
+      "gcov_mean": 0.997037037037037,
+      "n_cells": 225,
+      "rcov_mean": 1.0
+    },
+    "tiled_mirro|20": {
+      "N": 20,
+      "closure_mean": 0.7724116961435158,
+      "gcov_mean": 0.9545833333333333,
+      "n_cells": 400,
+      "rcov_mean": 1.0
+    },
+    "tiled_mirro|5": {
+      "N": 5,
+      "closure_mean": 1.0263572190340764,
+      "gcov_mean": 1.0,
+      "n_cells": 25,
+      "rcov_mean": 1.0
+    }
+  },
+  "neg_witness": [
+    "15|0|tiled_mirro",
+    225,
+    0.2185226354082458,
+    0.3414814814814815
+  ],
+  "params": {
+    "ALPHA": 0.5,
+    "BUDGET_MULTS": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "BURN": 1000,
+    "CLOSURE_BAR": 0.8,
+    "COLORS": [
+      0,
+      1
+    ],
+    "COV_BAR": 0.95,
+    "EVAL_SEED_OFFSET": 1000,
+    "FIXED_BUDGET": 5000,
+    "FULL_SWEEP_SIZES": [
+      15,
+      20
+    ],
+    "HEADROOM_MIN": 0.2,
+    "LAYOUTS": [
+      "tiled_mirro",
+      "far_cluster"
+    ],
+    "LEARN_SEED_BASE": 0,
+    "MBTRUE_FLOOR": 0.95,
+    "MEAS": 8000,
+    "MIRRO_CMAP_5x5": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      2,
+      2,
+      2,
+      1,
+      0,
+      2,
+      2,
+      2,
+      0,
+      1,
+      2,
+      2,
+      2,
+      1,
+      0
+    ],
+    "NEG_SEED_BAR": 2,
+    "N_SEEDS": 6,
+    "SCALED_KNEE_MULT": 16,
+    "SEED_BAR": 5,
+    "SIZES": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "WALL_CLOCK_CAP": 180,
+    "requested_COLORS": [
+      0,
+      1
+    ],
+    "requested_LAYOUTS": [
+      "tiled_mirro",
+      "far_cluster"
+    ],
+    "requested_N_SEEDS": 6,
+    "requested_SIZES": [
+      5,
+      10,
+      15,
+      20
+    ]
+  },
+  "pos_witness": [
+    "5|0|tiled_mirro",
+    400,
+    1.0263572190340764,
+    0.9933333333333333
+  ],
+  "printed_verdict": "WALL (learnability does NOT survive scaling)",
+  "printed_verdict_basis": "MB-free caps even at the scaled knee on >=1 tiled_mirro size -> a deeper wall",
+  "smoke_t_cell_s": 0.8356859683990479,
+  "structure_blocked_hits": [
+    [
+      "10|0|far_cluster",
+      0.9766666666666667,
+      0.9270833333333334
+    ],
+    [
+      "10|1|far_cluster",
+      0.9766666666666667,
+      0.9270833333333334
+    ]
+  ],
+  "verdict_vector": {
+    "10|0|far_cluster": "WALL-not-survives",
+    "10|0|tiled_mirro": "SCALES",
+    "10|1|far_cluster": "SCALES",
+    "10|1|tiled_mirro": "SCALES",
+    "15|0|far_cluster": "SCALES",
+    "15|0|tiled_mirro": "SCALES",
+    "15|1|far_cluster": "SCALES",
+    "15|1|tiled_mirro": "SCALES",
+    "20|0|far_cluster": "SCALES",
+    "20|0|tiled_mirro": "WALL-not-survives",
+    "20|1|far_cluster": "SCALES",
+    "20|1|tiled_mirro": "SCALES",
+    "5|0|far_cluster": "SCALES",
+    "5|0|tiled_mirro": "SCALES",
+    "5|1|far_cluster": "SCALES",
+    "5|1|tiled_mirro": "SCALES*disp"
+  },
+  "wall_clock_s": 29.12796115875244
+}
