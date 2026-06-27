@@ -2,7 +2,7 @@
 Exp 273 — RUNG 1c-SCALE: does MB-free learnability survive scaling? (tiled-mirro worlds)
   alpha=0.5 seeds=8 knee=32xN_cells bars: closure>=0.8 cov>=0.95 in >=7/8
 ================================================================================
-L25 PREFLIGHT: worst-cell(N=400) 0.262s -> projected upper bound ~39s (cap 240s)
+L25 PREFLIGHT: worst-cell(N=400) 0.255s -> projected upper bound ~38s (cap 240s)
   L25 PREFLIGHT: PASS
 
 (C) ARTIFACT CONFIRMATION — free-walk coverage at FIXED budget=5000 vs size (need cov(N=900)<0.90):
