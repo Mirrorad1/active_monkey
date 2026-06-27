@@ -1,0 +1,56 @@
+##############################################################################
+# Exp 272 — identity-ecological RUNG 1c: is the affordance LEARNABLE?
+#   (observation-only learned actuator vs omniscient OPTIMAL / myopic GREEDY)
+##############################################################################
+WALL-CLOCK ESTIMATE (pre-run): ~10-25 min (MF snapshot sweep ~8min + MB sweep +
+  preflight PC/witnesses + robustness). Logged actual at end.
+PREDECLARED BARS (per color, per alpha; NEVER a mean over colors):
+  closure = (f_passive - f_learned)/(f_passive - f_optimal); passive=0 optimal=1
+  LEARNABLE iff closure>=0.8 AND f_learned<=f_passive-0.2
+    AND homerange>=6 AND most_visited_frac<=0.5, in >=18/20 seeds,
+    AND per-seed closure UNIMODAL (sd<=|mean|; else *disp).
+  NOT-LEARNABLE iff closure<=0.35 in >=18/20 seeds.
+  MIXED = (0.35,0.80) band OR side-condition violation OR *disp.
+  NO-VERDICT-no-headroom where (f_passive-f_optimal)<0.2; NO-VERDICT-budget-limited if plateau-convergence fails.
+  Verdict rendered at PLATEAU budget: largest B with |cl(B)-cl(B/2)|<=0.05 in >=18/20 seeds.
+  N_SEEDS=20 BURN=1000 MEAS=8000 GAMMA=0.999 ALPHAS=[0.5, 0.6]
+  BUDGET_GRID=[2000, 5000, 12000, 30000]
+  MF: lr=lr0/(1+visits) lr0=0.1; eps linear 0.2->0.02; learn_seed=s eval_seed=s+1000
+
+==============================================================================
+PREFLIGHT ASSERTIONS
+==============================================================================
+(1) PIN state_hash OK == 0f35f93115f4371f...
+(2) COUNTS OK  mirro={0: 8, 1: 8, 2: 9}  segreg={0: 8, 1: 8, 2: 9}; mirro cmap == manifest
+(3) EQUIVALENCE to exp270 (alpha=0.5, COPIED substrate):
+    color 0: passive 0.6092 (270 0.6092)  optimal 0.2032 (270 0.2032)  greedy 0.5009 (270 0.5009)  -> within 3*SE
+    color 1: passive 0.6169 (270 0.6169)  optimal 0.2532 (270 0.2532)  greedy 0.5009 (270 0.5009)  -> within 3*SE
+    color 2: passive 0.8314 (270 0.8314)  optimal 0.2013 (270 0.2013)  greedy 0.3347 (270 0.3347)  -> within 3*SE
+(4) INHERITED-pA AUDIT: argmax-vs-cmap accuracy=1.0000 (min conf 0.856); qs entropy=-0.0000 bits -> inherited-MB == OMNISCIENT (excluded from verdicts)
+(5) FROM-SCRATCH AUDIT: birth-prior init map accuracy=0.360 (~chance 0.333); cmap_hat is a distinct array; scramble-test PASS (output invariant to hidden GT perturb)
+    snapshot-Q at B=2000 == independent learn_mf to 2000 (learning-curve prefix faithful)
+(6) HEADROOM (f_passive - f_optimal >= 0.20):
+    color 0 alpha 0.5: fp=0.6092 fo=0.2032 headroom=0.4060 -> OK
+    color 0 alpha 0.6: fp=0.6732 fo=0.3831 headroom=0.2901 -> OK
+    color 1 alpha 0.5: fp=0.6169 fo=0.2532 headroom=0.3637 -> OK
+    color 1 alpha 0.6: fp=0.6790 fo=0.4159 headroom=0.2631 -> OK
+    color 2 alpha 0.5: fp=0.8314 fo=0.2013 headroom=0.6300 -> OK
+    color 2 alpha 0.6: fp=0.8818 fo=0.3826 headroom=0.4992 -> OK
+(7) DISJOINT-BARS (LEARNABLE f-ceiling < NOT-LEARNABLE f-floor, alpha=0.5):
+    color 0: LEARNABLE f-ceiling=0.284 < NOT-LEARN f-floor=0.467 OK
+    color 1: LEARNABLE f-ceiling=0.326 < NOT-LEARN f-floor=0.490 OK
+    color 2: LEARNABLE f-ceiling=0.327 < NOT-LEARN f-floor=0.611 OK
+(8) INSTRUMENT-PC (G_segreg) + BOTH-VERDICTS-REACHABLE:
+    G_segreg color 0: MF closure=-0.1758 MB closure=0.8782 (need >= 0.95)
+    G_segreg color 1: MF closure=0.7955 MB closure=0.9724 (need >= 0.95)
+    G_segreg color 2: MF closure=0.7272 MB closure=1.0032 (need >= 0.95)
+Traceback (most recent call last):
+  File "/Users/mirro/Projects/active-loop/experiments/exp272_learnable_actuator.py", line 1620, in <module>
+    main()
+  File "/Users/mirro/Projects/active-loop/experiments/exp272_learnable_actuator.py", line 1081, in main
+    pre = preflight(G_mirro, G_segreg, manifest, lines, p)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mirro/Projects/active-loop/experiments/exp272_learnable_actuator.py", line 953, in preflight
+    assert mb_pc_pass, ("MB INSTRUMENT-PC FAILED: the model-based learner cannot reach optimal "
+           ^^^^^^^^^^
+AssertionError: MB INSTRUMENT-PC FAILED: the model-based learner cannot reach optimal on the easy G_segreg geometry -> NOT a usable learnability instrument
