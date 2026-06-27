@@ -508,8 +508,17 @@ step 0.
   (baseline 8/8 fail) DISSOLVES the freeze surface (best fixed-H defense 0/8), so no defendable
   internal peer exists for movement to beat (POSABLE band empty in all 6 cells; alpha=1 equivalence
   gate PASS = faithful port → trustworthy boundary). The two surfaces are regime-incompatible (L45).
-  DECISION POINT (on a word): accept + BoundaryNote / reframe-on-necessity / learnable actuator /
-  redirect. Card: `loop/directions/identity-ecological.md`.
+  **Exp 272 (RUNG 1c, POSITIVE/LEARNABLE):** the surface is learnable observation-only — a MODEL-BASED
+  learner that maps its world via FREE/peacetime exploration then plans the refuge matches the optimal
+  (closure ~1.0, coverage 1.0); learning the map only under the attack is coverage-capped on trap
+  geometry, and naive model-free Q is trapped. Learnability is gated by the EXPLORATION REGIME, not the
+  attack (L46; isolated by MB-on-true-map ~1.0). **Exp 273 (RUNG 1c-SCALE, POSITIVE/SCALES):** that
+  learnability is BUDGET-PROPORTIONAL, not a 25-cell artifact — on tiled worlds to N=400 a free budget
+  ~32x N_cells restores optimal escape at every size; artifact gate fired (fixed-budget coverage 0.811
+  <0.90 at N=900); clean coverage→closure coupling, cover-time knee ~16x N_cells (L47). Arc: POSABLE +
+  CAN'T-POSE (kill test) + LEARNABLE + SCALES. DECISION POINT (on a word): accept + synthesis
+  BoundaryNote / the open-box move-graph-walls edge / repair model-free / redirect. Card:
+  `loop/directions/identity-ecological.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
