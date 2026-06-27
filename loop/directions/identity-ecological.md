@@ -175,4 +175,15 @@ experience. Honest scope: 25-cell substrate (free coverage trivial); model-based
 attack target given. So: POSABLE (rung1) + LEARNABLE-by-exploration-regime (rung1c); kill-test vs
 internal gating ILL-POSED (rung2).
 
-**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c LEARNABLE) · latest: Exp 272 — surface LEARNABLE via free/peacetime mapping (closure ~1.0 all colors); gated by exploration regime not the attack (L46) · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270/271/272 runners + L43-L46 · why: defend identity by acting — the lacuna opposite internal gating · next-falsifiable: ON A WORD — (a) ACCEPT + close with a synthesis BoundaryNote (posable+can't-pose+learnable arc); (b) SCALE the substrate (large world where free-exploration coverage is costly); (c) repair model-FREE learnability; (d) redirect
+**RUNG 1c-SCALE — SCALES (Exp 273, POSITIVE-SINGLE / NEW INSIGHT; controller fixed the prior
+under-ranged workflow attempt, ran deterministically + blind-verified AGREE; L25 preflight + artifact
+gate).** The Exp-272 learnability is ROBUST to scaling, not a 25-cell artifact: on tiled-mirro worlds
+up to N=400, a free-exploration budget ~32x N_cells restores MB-free escape to optimal (closure ~1.0,
+coverage 1.0, 8/8) at EVERY size + color; MB-on-true-map = MB-free (planner scales, not the gap). The
+ARTIFACT GATE fired (fixed-budget coverage drops to 0.811<0.90 at N=900 -> non-trivial regime), and a
+clean COVERAGE-COST COUPLING (closure tracks coverage; cover-time knee ~16x N_cells) shows "the map is
+the gap" persists at scale (L47). So learnability is BUDGET-PROPORTIONAL (~cover time). Bounds: tiled/
+periodic worlds, open-box move graph (a far target can't block a color-blind walk; a real block needs
+move-graph WALLS — the named edge), PI to N=400.
+
+**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c LEARNABLE + SCALES) · latest: Exp 273 — learnability SURVIVES SCALING, budget-proportional ~cover-time, coverage-cost coupling (L47); not a small-world artifact · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270/271/272/273 runners + L43-L47 · why: defend identity by acting — the lacuna opposite internal gating · next-falsifiable: ON A WORD — (a) ACCEPT + close with a synthesis BoundaryNote (posable+can't-pose+learnable+scales arc); (b) the OPEN-BOX edge — move-graph WALLS/corridors (a real exploration bottleneck, the only untested falsifier of "free exploration suffices"); (c) repair model-FREE learnability; (d) redirect
