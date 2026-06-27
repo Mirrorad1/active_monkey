@@ -161,4 +161,18 @@ hypothesis — it does NOT retract rung 1 (the environmental surface genuinely d
 escapable attack; it just does not compete head-to-head with internal gating, which solves the
 opposite hard/inescapable regime).
 
-**STATUS.** state: halted (decision-point; rung 1 POSITIVE, rung 2 CAN'T-POSE) · latest: Exp 271 — kill test ILL-POSED: freeze-crack (hard captivity) vs movement (soft attack) are regime-incompatible; equivalence gate PASS · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270 escapability probe + exp271 posability pre-flight (alpha=1 equivalence gate), L43+L44+L45 · why: defend identity by acting — the lacuna opposite internal gating; the two poles solve incompatible regimes · next-falsifiable: ON A WORD — (a) ACCEPT + BoundaryNote + close kill-test line; (b) REFRAME on proven necessity (one regime with both a deficit AND a defendable freeze peer); (c) LEARNABLE movement actuator (upgrade rung-1 upper bound); (d) redirect
+**RUNG 1c — LEARNABLE (Exp 272, POSITIVE-SINGLE / NEW INSIGHT; workflow-designed + root-caused
+by controlled diagnostics, controller ran + blind-verified AGREE; equivalence gate PASS).**
+Upgrades rung-1's optimal-planner upper bound to an OBSERVATION-ONLY learner. The surface is
+LEARNABLE — but gated by the EXPLORATION REGIME, not the attack: a MODEL-BASED learner that maps
+its world via FREE/peacetime (no-pull) exploration then plans the refuge matches the optimal on
+ALL colors (closure ~1.0, coverage 1.0, 20/20). Learning the map ONLY under the attack is
+COVERAGE-capped on trap geometry (the pull denies the refuge — coverage 0.874, refuge cells
+visited 0×), and a naive MODEL-FREE Q-learner gets TRAPPED (HOLDs on the attack color; lr-freeze).
+Mechanistically isolated: MB-on-TRUE-map closure ~1.0 proves the planner is correct, so the only
+gap is map ACQUISITION (L46). POSABLE != LEARNABLE exactly when the adversary biases the agent's
+experience. Honest scope: 25-cell substrate (free coverage trivial); model-based (not model-free);
+attack target given. So: POSABLE (rung1) + LEARNABLE-by-exploration-regime (rung1c); kill-test vs
+internal gating ILL-POSED (rung2).
+
+**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c LEARNABLE) · latest: Exp 272 — surface LEARNABLE via free/peacetime mapping (closure ~1.0 all colors); gated by exploration regime not the attack (L46) · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270/271/272 runners + L43-L46 · why: defend identity by acting — the lacuna opposite internal gating · next-falsifiable: ON A WORD — (a) ACCEPT + close with a synthesis BoundaryNote (posable+can't-pose+learnable arc); (b) SCALE the substrate (large world where free-exploration coverage is costly); (c) repair model-FREE learnability; (d) redirect

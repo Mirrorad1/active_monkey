@@ -1,4 +1,13 @@
 """
+[HELPER LIBRARY for Exp 272 — the LOGGED experiment + verdict is
+experiments/exp272_learnable_exploration.py, which imports the verified primitives below
+(soft pull, certified optimal policy iteration, learn_mb_from_scratch / optimal_on_estimated /
+eval_mb_policy, learn_mf / freeze_eval_mf — all COPIED from exp270, NO source-patching). This
+file's own all-colors-PC main() ABORTS by design on the trap color (its all-or-nothing gate is
+SUPERSEDED by the runner's per-color exploration-regime analysis); do not run it standalone for
+the verdict. The MF arm here carries a known lr-schedule trap (root-caused in the Exp 272 entry),
+so MF is a diagnostic, not the verdict arm.]
+
 Exp 272 — identity-ecological RUNG 1c: is the affordance LEARNABLE by an observation-only
 actuator? (standalone learnability probe; NO source-patching — exp270 primitives COPIED verbatim)
 
