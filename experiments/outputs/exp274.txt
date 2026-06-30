@@ -2,7 +2,7 @@
 Exp 274 — RUNG 1c-MF: can model-free learnability be REPAIRED (exploring starts vs lr-fix)?
   alpha=0.5 seeds=8 budget=50000 restart_K=100 bars: closure>=0.8 in >=7/8
 ==================================================================================
-L25 PREFLIGHT: per-seed MF-restart(N=25) 0.140s -> projected ~27s (cap 300s)
+L25 PREFLIGHT: per-seed MF-restart(N=25) 0.135s -> projected ~26s (cap 300s)
   L25 PREFLIGHT: PASS
 
 EQUIVALENCE GATE: MF-baseline G_segreg color 0 closure = -0.2434 (want < 0.0 = reproduces trap)
@@ -21,6 +21,14 @@ GEOMETRY: G_mirro
     0  0.61  0.20 |   0.61 |   0.459  1.00 |     0.618  1.00 |  1.030 | no (2/8)
     1  0.62  0.26 |   0.57 |   0.530  1.00 |     0.401  1.00 |  1.045 | no (3/8)
     2  0.83  0.20 |   0.80 |   0.641  1.00 |     0.481  1.00 |  1.014 | no (1/8)
+
+(D) BUDGET CONFIRM — MF-restart (lr-fix + exploring starts) on the trap color 0 vs budget:
+        geom  budget  covR  MFrestart_cl
+    G_segreg   50000  1.00        -0.280
+    G_segreg  200000  1.00        -0.027
+     G_mirro   50000  1.00         0.618
+     G_mirro  200000  1.00         0.782
+   4x-budget does NOT lift the trap color to the bar (convergence wall, not coverage/budget): True
 
 ==================================================================================
 ISOLATION (trap color 0): MFlrfix closure vs MFrestart closure:
