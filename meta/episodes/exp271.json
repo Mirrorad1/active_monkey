@@ -1,0 +1,41 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp271.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp271_rung2_posability.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0/1\" quoted in entry not found in experiments/outputs/exp271.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2/6\" quoted in entry not found in experiments/outputs/exp271.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3.5\" quoted in entry not found in experiments/outputs/exp271.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-26T23:16:33Z",
+  "commit_sha": "869bb5a48b8d2dd8e7c579ea8bfc7fc7e4535e8a",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "unknown"
+  },
+  "exp": 271,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

@@ -492,7 +492,7 @@ step 0.
   no acoustic refuge to flee to; fleeing only crowds prey. Clean asymmetry: gifted PREDATOR hearing DOES
   raise capture success (0.630 vs 0.579). Information present, advantage absent — the local-gradient
   wall's acoustic face. Do NOT run hearing evolution yet. Card: `loop/directions/acoustic-ecology.md`.
-- **The identity-ecological direction (Exp 270–271, /lab "identity", persona skeptic; on branch
+- **The identity-ecological direction (Exp 270–274, /lab "identity", persona skeptic; on branch
   `identity-ecological` off origin/main — NB the prior sparse-llm research arc that briefly held
   numbers 270–276 was removed from history per the human's decision, so these are the NEW 270/271):**
   the lacuna opposite the closed N4 internal-gating pole — can a creature defend identity by ACTING
@@ -515,10 +515,17 @@ step 0.
   attack (L46; isolated by MB-on-true-map ~1.0). **Exp 273 (RUNG 1c-SCALE, POSITIVE/SCALES):** that
   learnability is BUDGET-PROPORTIONAL, not a 25-cell artifact — on tiled worlds to N=400 a free budget
   ~32x N_cells restores optimal escape at every size; artifact gate fired (fixed-budget coverage 0.811
-  <0.90 at N=900); clean coverage→closure coupling, cover-time knee ~16x N_cells (L47). Arc: POSABLE +
-  CAN'T-POSE (kill test) + LEARNABLE + SCALES. DECISION POINT (on a word): accept + synthesis
-  BoundaryNote / the open-box move-graph-walls edge / repair model-free / redirect. Card:
-  `loop/directions/identity-ecological.md`.
+  <0.90 at N=900); clean coverage→closure coupling, cover-time knee ~16x N_cells (L47). **Exp 274 (RUNG
+  1c-MF, NEGATIVE / NEW INSIGHT — UNREPAIRED-CONVERGENCE):** the (c) "repair model-free" attempt FAILS —
+  EXPLORING STARTS give full state coverage (covL=covR=1.0) yet the trap color stays unlearned (MF-restart
+  closure −0.280, 0/8), and 4× budget doesn't lift it (−0.027), while the MODEL-BASED learner reaches
+  optimal (~1.0) on the same cells. So model-based learnability is COVERAGE-gated but model-free is
+  CONVERGENCE-gated (TD can't credit the long escape under the γ=0.999 pull kernel + absorbing HOLD-on-attack
+  trap; L48) — coverage was not the lever. Scoped to vanilla-Q + exploring-starts + ≤4× budget (trace/
+  lower-γ repairs untested). Arc: POSABLE + CAN'T-POSE (kill test) + LEARNABLE + SCALES (model-based) +
+  MF-CONVERGENCE-WALL (model-free). DECISION POINT (on a word): accept + synthesis BoundaryNote / a
+  convergence-oriented model-free repair (traces/lower-γ/Dyna) / the open-box move-graph-walls edge /
+  redirect. Card: `loop/directions/identity-ecological.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
