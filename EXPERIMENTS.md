@@ -10501,3 +10501,37 @@ Final tally: 40 MATCH, 0 QUALITATIVE-MATCH, 0 MISMATCH, 0 FAIL of 40.
 - Verifier: controller built the focused runner, ran it (deterministic: bit-identical reproduction), and applied the gate to raw numbers (verify-delegated-verdicts): equivalence gate PASS; MF-restart 0/8 on the trap color at covR=1.00; 4x budget confirm sub-bar; MB-free ~1.0. Independent blinded verifier (predeclaration + output only): AGREE — verdict UNREPAIRED-CONVERGENCE, "coverage was not the binding cause; TD-convergence is" (decisive: MF-restart G_segreg c0 = -0.280 at covR=1.00, 0/8). No degeneracy; target reachable (MB-free ~1.0).
 - Next (each needs a human word): (a) ACCEPT + CLOSE the identity-ecological direction with a synthesis BoundaryNote/MechanismCard (POSABLE rung1 + CAN'T-POSE kill-test rung2 + LEARNABLE rung1c + SCALES rung1c-scale + model-free CONVERGENCE-WALL rung1c-MF; L43-L48); (b) try a CONVERGENCE-oriented model-free repair (eligibility traces / lower gamma / Dyna) -- the only untested lever for model-free; (c) the open-box move-graph-walls edge (a structural free-exploration block, the untested falsifier of model-BASED learnability); (d) redirect.
 - trace: experiments/exp274_repair_modelfree.py -> experiments/outputs/exp274.txt ; imports verified exp272 helpers (NO source-patching; learn_mf not mutated -- new parameterized variant); MF-baseline/lrfix/restart + budget-confirm + MB-free reference; FIXED eval start, L25 preflight, MF-trap equivalence gate; controller built + ran (deterministic) + blind-verified AGREE; identity-ecological direction (/lab, persona skeptic)
+
+## Synthesis — identity-ecological direction CLOSED (closed-positive; Exp 270–274)
+
+Closes the `identity-ecological` direction (the lacuna opposite the closed N4 internal-gating
+pole: defend functional identity by ACTING on your own input stream — leaving what overwrites
+you — instead of freezing internal value updates). NOT a numbered experiment; a coalescence
+synthesis over Exp 270–274. Never edits the closed N4 verdicts.
+
+- Tiered verdict: **POSABLE** (rung1, Exp 270 — a certified-optimal refuge policy escapes a soft
+  resistible attack at low-moderate pull, all 3 colors; collapses when inescapable) → **CAN'T-POSE**
+  kill test (rung2, Exp 271 — movement vs internal freeze-gating is ill-posed: the freeze crack is a
+  hard-captivity phenomenon, the movement surface needs a soft attack; regime-incompatible, L45) →
+  **LEARNABLE** model-based (rung1c, Exp 272 — map the world in peacetime then plan; coverage-gated,
+  L46) → **SCALES** budget-proportional ~cover-time (rung1c-scale, Exp 273 — to ≥400 cells, artifact
+  gate fired, L47) → **MODEL-FREE CONVERGENCE-WALL** (rung1c-MF, Exp 274 — exploring-starts give full
+  coverage yet the trap stays unlearned; 4× budget doesn't lift it; the wall is TD-convergence, not
+  coverage; L48).
+- Honest classification: the card's binary taxonomy (POSITIVE = beats every internal constant in the
+  crack cells) did NOT cleanly apply — that kill-test was ill-posed (CAN'T-POSE), not won. The
+  substantive result is a genuine POSITIVE escape of the "no elsewhere" prior: an environmental
+  identity surface that is posable, model-based learnable, and scales — bounded by two honest walls
+  (regime-incompatibility with internal gating; model-free convergence). Recorded as **closed-positive**
+  with the boundaries explicit; the surface is NOT a rival to internal value-gating (opposite regimes),
+  and NOT model-free-learnable within tractable tabular RL here.
+- Reusable artifacts (coalescence library, schema-valid + idempotency-locked):
+  `mechanisms/identity-ecological-env-surface-v0/mechanism_card.json` (+ README; status=constrained),
+  `boundary_notes/identity-ecological-boundaries-v0.json`,
+  `geometry_maps/identity-ecological-escapability-v0.json`. Runners: exp270/272/273 (reused, no
+  source-patching). Lessons: L43 (affordance probe needs the resisted pressure), L44 (certify
+  optimality — myopic false negative), L45 (kill-test posability pre-flight), L46 (POSABLE≠LEARNABLE,
+  exploration-regime), L47 (coverage scaling + artifact gate), L48 (coverage-vs-convergence per method).
+- Re-opens only on a human word: (a) the open-box move-graph WALLS/corridors edge — the only untested
+  falsifier of model-BASED learnability; (b) a convergence-oriented model-free repair (eligibility
+  traces / lower γ / Dyna).

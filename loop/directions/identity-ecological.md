@@ -201,4 +201,16 @@ CONVERGENCE-oriented repairs (eligibility traces/TD-lambda, lower gamma, priorit
 — so "coverage isn't the lever, convergence is the wall", NOT "model-free impossible". Does not retract any
 prior rung (the surface is learnable model-BASED).
 
-**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c model-based LEARNABLE+SCALES, rung1c-MF model-free CONVERGENCE-WALL) · latest: Exp 274 — exploring-starts (coverage) does NOT repair model-free learning; covR=1.0 + 4x budget fail the trap color, model-based hits ~1.0 → coverage-vs-convergence (L48) · depends-on: identity-n4, identity-n4-crack, persistent-creature · reusable: exp270-274 runners + L43-L48 · why: defend identity by acting — the lacuna opposite internal gating · next: ON A WORD — (a) ACCEPT + close w/ a synthesis BoundaryNote (posable→can't-pose→learnable→scales→MF-wall arc); (b) a convergence-oriented model-free repair (traces/lower-gamma/Dyna); (c) the OPEN-BOX move-graph-walls edge; (d) redirect
+**DIRECTION CLOSED (closed-positive, Exp 270–274).** The lacuna is filled with a real,
+bounded POSITIVE: an environmental identity-control surface (defend identity by MOVING) is
+POSABLE on the real body, model-based LEARNABLE observation-only, and SCALES budget-proportionally
+— a genuine escape of the "no elsewhere" prior. Two honest boundaries bound it: the head-to-head
+kill test vs internal freeze-gating is CAN'T-POSE (regime-incompatible, L45), and model-free
+learnability hits a TD-CONVERGENCE wall coverage can't fix (L48). The card's binary verdict
+taxonomy didn't cleanly apply (the kill-test POSITIVE was ill-posed, not won) — the substantive
+result is the new mechanism + its mapped boundaries. Synthesis artifacts:
+`mechanisms/identity-ecological-env-surface-v0/` (MechanismCard, status constrained),
+`boundary_notes/identity-ecological-boundaries-v0.json`,
+`geometry_maps/identity-ecological-escapability-v0.json`. Re-opens only on a human word.
+
+**STATUS.** state: closed-positive (env identity surface POSABLE + model-based LEARNABLE + SCALES; kill-test vs internal gating CAN'T-POSE; model-free CONVERGENCE-WALL) · latest: CLOSED (Exp 270-274) — synthesis MechanismCard identity-ecological-env-surface-v0 + BoundaryNote + GeometryMap distil the arc (L43-L48) · depends-on: identity-n4, identity-n4-crack, persistent-creature · reusable: exp270-274 runners + mechanisms/identity-ecological-env-surface-v0 (+BoundaryNote/GeometryMap) + L43-L48 · why: defend identity by acting — lacuna opposite internal gating, now filled (bounded) · next: re-opens only on a human word — (a) the OPEN-BOX move-graph-walls edge (model-based falsifier); (b) a convergence-oriented model-free repair (traces/lower-gamma/Dyna)

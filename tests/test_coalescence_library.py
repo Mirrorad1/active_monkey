@@ -71,3 +71,46 @@ def test_seed_generator_importable():
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     assert len(mod.SEEDS) >= 10
+
+
+def test_seed_generator_is_idempotent_against_committed_library():
+    """Lock the committed library to its generator source so a re-run of
+    tools/seed_coalescence_cards.py can never SILENTLY REVERT a committed card.
+
+    Exactly one artifact is a KNOWN, DOCUMENTED drift:
+    local-gradient-wall-locomotion-v0 was hand-EXPANDED post-seed (Exp 235-237
+    -> 235-246) and its generator source was never updated, so the generator
+    would shrink it back. We tolerate that one LOUDLY (assert it stayed a
+    schema-valid SUPERSET — expansion, not corruption) and lock every other
+    card, including newly added ones, to byte-exact agreement. (Caught while
+    closing the identity-ecological direction: adding new SEEDS and running the
+    generator reverted the hand-expanded note.)
+    """
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "seed_coalescence_cards", ROOT / "tools" / "seed_coalescence_cards.py"
+    )
+    gen = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gen)
+
+    KNOWN_DRIFT = {"boundary_notes/local-gradient-wall-locomotion-v0.json"}
+    drifted = []
+    for rel, card in gen.SEEDS:
+        committed = load(ROOT / rel)
+        if rel in KNOWN_DRIFT:
+            gen_exps = set(card.to_dict().get("source_experiments", []))
+            committed_exps = set(committed.get("source_experiments", []))
+            assert gen_exps.issubset(committed_exps), (
+                f"{rel}: committed file is no longer a superset of the generator "
+                "source — the documented hand-expansion may have been corrupted"
+            )
+            continue
+        if card.to_dict() != committed:
+            drifted.append(rel)
+
+    assert not drifted, (
+        "committed coalescence artifacts diverge from "
+        "tools/seed_coalescence_cards.py (re-running the generator would silently "
+        "revert these):\n" + "\n".join(drifted)
+    )

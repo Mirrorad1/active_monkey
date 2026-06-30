@@ -525,7 +525,14 @@ step 0.
   lower-γ repairs untested). Arc: POSABLE + CAN'T-POSE (kill test) + LEARNABLE + SCALES (model-based) +
   MF-CONVERGENCE-WALL (model-free). DECISION POINT (on a word): accept + synthesis BoundaryNote / a
   convergence-oriented model-free repair (traces/lower-γ/Dyna) / the open-box move-graph-walls edge /
-  redirect. Card: `loop/directions/identity-ecological.md`.
+  redirect. **CLOSED (closed-positive, 2026-06-29):** the lacuna is filled with a real bounded
+  POSITIVE — an environmental identity surface that is POSABLE + model-based LEARNABLE + SCALES —
+  with two honest walls (kill-test vs internal gating CAN'T-POSE; model-free TD-convergence wall).
+  Synthesis distilled to `mechanisms/identity-ecological-env-surface-v0/` (MechanismCard,
+  status=constrained), `boundary_notes/identity-ecological-boundaries-v0.json`,
+  `geometry_maps/identity-ecological-escapability-v0.json` + an EXPERIMENTS.md synthesis section;
+  L43-L48. Re-opens only on a human word (move-graph-walls edge / convergence-oriented model-free
+  repair). Card: `loop/directions/identity-ecological.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
