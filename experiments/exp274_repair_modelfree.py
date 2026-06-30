@@ -178,6 +178,25 @@ def main():
               f"{np.mean(cr):>9.3f} {covR:>5.2f} | {np.mean(cmb):>6.3f} | {'REPAIRED' if repaired else 'no'} ({res_ok}/8)")
         p("")
 
+    # ---- (D) BUDGET CONFIRM: is the trap color failure under-budgeting, or a real convergence wall? ----
+    p("(D) BUDGET CONFIRM — MF-restart (lr-fix + exploring starts) on the trap color 0 vs budget:")
+    p(f"   {'geom':>9} {'budget':>7} {'covR':>5} {'MFrestart_cl':>13}")
+    budget_invariant = True
+    for gname, w in [("G_segreg", G_segreg), ("G_mirro", G_mirro)]:
+        fp = float(np.mean([L.walk(w, 0, ALPHA, "passive", s)["f"] for s in range(N_SEEDS)]))
+        fo = float(np.mean([L.walk(w, 0, ALPHA, "avoid", s)["f"] for s in range(N_SEEDS)]))
+        for B in [50000, 200000]:
+            cls, covs = [], []
+            for s in range(N_SEEDS):
+                Q, cov = learn_mf_variant(w, 0, ALPHA, L.LEARN_SEED_BASE + s, B, LRFIX_TAU, LRFIX_EPS0, RESTART_K)
+                cls.append(L.freeze_eval_mf(w, 0, ALPHA, Q, s + L.EVAL_SEED_OFFSET)["f"]); covs.append(cov)
+            m = float(np.mean(cl(fp, fo, np.array(cls))))
+            if m >= CLOSURE_BAR:
+                budget_invariant = False
+            p(f"   {gname:>9} {B:>7} {np.mean(covs):>5.2f} {m:>13.3f}")
+    p(f"   4x-budget does NOT lift the trap color to the bar (convergence wall, not coverage/budget): {budget_invariant}")
+    p("")
+
     # ---- VERDICT ----
     p("=" * 82)
     all_repaired = all(r[6] for r in verdict_rows)

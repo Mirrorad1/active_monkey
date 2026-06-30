@@ -1,0 +1,30 @@
+==================================================================================
+Exp 274 — RUNG 1c-MF: can model-free learnability be REPAIRED (exploring starts vs lr-fix)?
+  alpha=0.5 seeds=8 budget=50000 restart_K=100 bars: closure>=0.8 in >=7/8
+==================================================================================
+L25 PREFLIGHT: per-seed MF-restart(N=25) 0.140s -> projected ~27s (cap 300s)
+  L25 PREFLIGHT: PASS
+
+EQUIVALENCE GATE: MF-baseline G_segreg color 0 closure = -0.2434 (want < 0.0 = reproduces trap)
+  EQUIVALENCE GATE: PASS (faithful reuse; MF-baseline huddles on attack)
+
+----------------------------------------------------------------------------------
+GEOMETRY: G_segreg
+  col    fp    fo | MFbase | MFlrfix  covL | MFrestart  covR | MBfree | repaired?
+    0  0.79  0.17 |  -0.24 |  -0.347  1.00 |    -0.280  1.00 |  1.021 | no (0/8)
+    1  0.77  0.20 |   0.85 |   0.713  1.00 |     0.595  1.00 |  1.025 | no (4/8)
+    2  0.79  0.20 |   0.80 |   0.479  1.00 |     0.630  1.00 |  1.018 | no (4/8)
+
+----------------------------------------------------------------------------------
+GEOMETRY: G_mirro
+  col    fp    fo | MFbase | MFlrfix  covL | MFrestart  covR | MBfree | repaired?
+    0  0.61  0.20 |   0.61 |   0.459  1.00 |     0.618  1.00 |  1.030 | no (2/8)
+    1  0.62  0.26 |   0.57 |   0.530  1.00 |     0.401  1.00 |  1.045 | no (3/8)
+    2  0.83  0.20 |   0.80 |   0.641  1.00 |     0.481  1.00 |  1.014 | no (1/8)
+
+==================================================================================
+ISOLATION (trap color 0): MFlrfix closure vs MFrestart closure:
+  G_segreg c0: lrfix=-0.347  restart=-0.280  (exploring-starts effect=+0.067)
+  G_mirro c0: lrfix=0.459  restart=0.618  (exploring-starts effect=+0.159)
+  lr-fix-alone fails the trap color somewhere: True  | restart fixes the trap color: False
+PRINTED_VERDICT: UNREPAIRABLE-ON-TRAP (exploring starts do not fix color 0 -> a deeper model-free wall)
