@@ -186,4 +186,19 @@ the gap" persists at scale (L47). So learnability is BUDGET-PROPORTIONAL (~cover
 periodic worlds, open-box move graph (a far target can't block a color-blind walk; a real block needs
 move-graph WALLS — the named edge), PI to N=400.
 
-**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c LEARNABLE + SCALES) · latest: Exp 273 — learnability SURVIVES SCALING, budget-proportional ~cover-time, coverage-cost coupling (L47); not a small-world artifact · depends-on: identity-n4, identity-n4-crack, persistent-creature, environmental-complexity · reusable: exp270/271/272/273 runners + L43-L47 · why: defend identity by acting — the lacuna opposite internal gating · next-falsifiable: ON A WORD — (a) ACCEPT + close with a synthesis BoundaryNote (posable+can't-pose+learnable+scales arc); (b) the OPEN-BOX edge — move-graph WALLS/corridors (a real exploration bottleneck, the only untested falsifier of "free exploration suffices"); (c) repair model-FREE learnability; (d) redirect
+**RUNG 1c-MF — UNREPAIRED-CONVERGENCE (Exp 274, NEGATIVE / NEW INSIGHT; controller built the focused
+runner, ran deterministically + blind-verified AGREE; MF-trap equivalence gate PASS).** Tries to repair
+the Exp-272 MODEL-FREE trap (frozen greedy-Q HOLDs on an attack cell, closure<0). The natural fix —
+EXPLORING STARTS (random restart during Q-learning) to give full STATE COVERAGE — FAILS. With covL=covR=
+1.000 everywhere (full coverage during learning) the trap color stays unlearned (MF-restart closure -0.280,
+0/8 on G_segreg c0; none of the 6 cells reaches the 0.80 bar), and 4x budget (200k) does NOT lift it
+(-0.027; G_mirro c0 0.618->0.782, still <0.80) — a CONVERGENCE wall, not coverage/budget. Meanwhile the
+MODEL-BASED learner reaches optimal (~1.0) on the identical cells, so the target IS reachable and the gap
+is method-specific. INSIGHT: model-based learnability is COVERAGE-gated (rung1c/scale), model-FREE here is
+CONVERGENCE-gated — TD can't credit the long escape under the discounted (gamma=0.999) pull kernel + the
+absorbing HOLD-on-attack trap (L48). Scope: vanilla tabular-Q + exploring-starts + lr-fix + <=4x budget;
+CONVERGENCE-oriented repairs (eligibility traces/TD-lambda, lower gamma, prioritized sweeping/Dyna) UNTESTED
+— so "coverage isn't the lever, convergence is the wall", NOT "model-free impossible". Does not retract any
+prior rung (the surface is learnable model-BASED).
+
+**STATUS.** state: halted (decision-point; rung1 POSABLE, rung2 CAN'T-POSE, rung1c model-based LEARNABLE+SCALES, rung1c-MF model-free CONVERGENCE-WALL) · latest: Exp 274 — exploring-starts (coverage) does NOT repair model-free learning; covR=1.0 + 4x budget fail the trap color, model-based hits ~1.0 → coverage-vs-convergence (L48) · depends-on: identity-n4, identity-n4-crack, persistent-creature · reusable: exp270-274 runners + L43-L48 · why: defend identity by acting — the lacuna opposite internal gating · next: ON A WORD — (a) ACCEPT + close w/ a synthesis BoundaryNote (posable→can't-pose→learnable→scales→MF-wall arc); (b) a convergence-oriented model-free repair (traces/lower-gamma/Dyna); (c) the OPEN-BOX move-graph-walls edge; (d) redirect
