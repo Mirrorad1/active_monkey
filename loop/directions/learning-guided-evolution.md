@@ -57,22 +57,27 @@ innate `theta` vs merely-learned `theta`) so a shielding stall — good behavior
 misread as a climb; (3) the inherited substitution controls (CLAMPED_LR / freeze_lr / band free-read) so a
 map-memory free-ride is never misread as `theta` assimilation.
 
-**Experiment ladder.** (each one PROTOCOL iteration; each names its FAILURE; next number = Exp 275 — but
-re-confirm at launch; a live cron auto-syncs this shared checkout)
+**Experiment ladder.** (each one PROTOCOL iteration; each names its FAILURE; re-confirm the number at
+launch — a live cron auto-syncs this shared checkout.)
 
-1. **Exp 275 — a learnable AND heritable `theta`, separable from the caught confounds (plumbing/build).**
-   `theta` is reserved-but-unimplemented (`ecology/sense_axis.py:15`); build it behind `enable_learnable_use`:
-   a heritable `theta` prior + a within-life update of `theta` from the sensor channel (how to act on
-   thermosense cues), starting from the genetic prior. Verify: (a) OFF == prior ecology byte-identical
-   (golden-hash); (b) a creature gifted the *best* `theta` prior reaches the documented forced forage benefit
-   in-population (learning works here); (c) learnable-`theta` is provably SEPARABLE from the existing map
-   memory `m` and the band-staleness tracker — the CLAMPED_LR / freeze_lr / band free-read controls must move
-   the `theta` readout but not vice-versa (L38/L39 manipulation check + the substitution controls). **FAIL** =
-   learner inert even when gifted the best prior (substrate can't express learn-to-use); OR `theta` is
-   inseparable from map-memory substitution (the confound the whole direction must avoid) ⇒ fix the substrate
-   before any evolution batch; NOT a Baldwin result.
+**PROGRESS: Exp 275 DONE — POSABLE (POSITIVE / NEW INSIGHT, blind-verified AGREE, 2026-07-02).** Per
+L28/L45 the original "build theta" rung was SPLIT: Exp 275 became a CHEAP posability pre-flight (no engine
+surgery) and the theta BUILD moved to Exp 276. Result: the live-sensor channel IS separably load-bearing
+for band-tracking (in-band occupancy 0.48 GOOD vs 0.23 BLIND, ~2.0x; map can't substitute) AND theta (proxied
+by `band_responsiveness`, the faithful non-scale-invariant use-quality knob — `thermal_avoidance_weight`
+was an argmax-scale-invariant trap, L44) has a large bad→good range that GATES survival (worst theta 8/8
+extinct, good theta 0/8). So the theta-Baldwin test is posable; rung 2 (the build) is licensed. Instrument
+lessons: occupancy over intake when the substrate is demographically unstable; faithful vs scale-invariant
+proxy (L50).
 
-2. **Exp 276 — the binding test: same-axis assimilation vs substitution vs shielding.** In the Exp 205
+1. ~~**Exp 275 — posability pre-flight (was: build theta).**~~ DONE above (POSABLE). The BUILD it originally
+   described is folded into Exp 276.
+
+2. **Exp 276 — the binding test: same-axis assimilation vs substitution vs shielding.** FIRST build the
+   learnable+heritable `theta` behind `enable_learnable_use` (a within-life-learned tracking-use `theta`
+   from a heritable prior; byte-identical OFF + golden-hash; theta ≈ the `band_responsiveness` axis Exp 275
+   validated), keeping the theta gradient inside the STABLE band (Exp 275 caveat: extreme theta → extinction).
+   Then, in the Exp 205
    survivable-loss thermosense-forage regime (`ecology/sense_axis.py`; optimum functional & bulk-fitter,
    evolution stays primitive 0/5), run evolution of innate `theta` with learn-to-use ON vs OFF (OFF
    byte-reproduces the prior NEGATIVE), Preflight (`ecology/evolvability/`) measuring the binding LOCAL
@@ -127,4 +132,4 @@ BoundaryNote with the learning-escape result; if any FAIL branch, write the name
 genotype/phenotype + substitution-control evidence to EXPERIMENTS.md and close with a BoundaryNote. Either way
 the verdict + the learning-OFF control + the per-seed dispersion go to EXPERIMENTS.md.
 
-**STATUS.** state: proposed (not yet run; drafted 2026-07-02 from a cross-arc lacuna analysis, then revised after a repo audit found the ecology creature ALREADY has within-life EMA learning + the CLAMPED_LR substitution control, so the axis was retargeted from the hardware trait h to the reserved controller trait theta) · latest: none · depends-on: ecology/ population loop + a documented local-gradient-wall regime (Exp 205 thermosense-forage) + ecology/evolvability/ Preflight + the CLAMPED_LR/freeze_lr/band substitution controls + a NEW learn-to-use theta channel (reserved, unbuilt) + an EXTRACTED learner from Exp 272–273 (not a module) · reusable: TBD (target: a gated enable_learnable_use theta channel reusable across trait axes) · why: the wall is evolution-only, and the ecology arc coupled learning as SUBSTITUTION (201/202); the untested cell is same-axis Baldwin ASSIMILATION of a learnable+heritable theta · next-falsifiable: Exp 275 — a gifted-best-theta learner reaches the forced forage benefit in-population, byte-identical OFF, and learnable-theta is separable from the map-memory/band confounds.
+**STATUS.** state: active (rung 1 POSABLE) · latest: Exp 275 (POSITIVE / NEW INSIGHT, blind-verified AGREE, 2026-07-02) — the posability pre-flight: the live-sensor channel is separably load-bearing for band-tracking (occupancy ~2.0x sensor vs sensorless; map can't substitute) AND theta (band_responsiveness proxy) has a large bad→good range that GATES survival, so a same-axis theta-Baldwin test IS posable · depends-on: ecology/ population loop + Exp 205 thermosense-forage regime + ecology/evolvability/ Preflight + the CLAMPED_LR/freeze_lr/band substitution controls + a NEW learn-to-use theta channel (reserved, still unbuilt — Exp 276) + an EXTRACTED learner from Exp 272–273 (not a module) · reusable: TBD (target: a gated enable_learnable_use theta channel; Exp 275's in-band-occupancy instrument + faithful-proxy discipline, L50) · why: the wall is evolution-only, and the ecology arc coupled learning as SUBSTITUTION (201/202); the untested cell is same-axis Baldwin ASSIMILATION of a learnable+heritable theta · next-falsifiable: Exp 276 — BUILD the learnable+heritable theta (byte-identical OFF) then run the same-axis assimilation test (PASS-Baldwin / STALL / SHIELDING / SUBSTITUTION) in the stable theta band.
