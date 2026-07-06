@@ -1,0 +1,88 @@
+Exp 257 — Patch-mosaic predator-prey: discrete spatial coexistence posing preflight
+VERDICT: POSITIVE — CAN_POSE_GLOBAL_COHABITATION + PATCH_MOSAIC_RESCUE_SUPPORTED
+
+QUESTION
+Can a discrete patch mosaic (semi-isolated patches + local migration + per-patch
+asynchrony + refugia) achieve GLOBAL bounded predator-prey coexistence where a single
+homogeneous arena collapses — and which mechanism is load-bearing?
+
+PREDECLARED FALSIFIER
+If a scale-matched single patch persists (scale, not structure) OR the no-mechanism
+control persists (mosaic mechanism not necessary) OR no single mechanism flips
+collapse->persist -> NO_VERDICT/FAIL.
+
+SETUP
+experiments/exp257_patch_mosaic_predator_prey.py — mechanism-isolating factorial.
+Collapse-prone within-patch regime (attack_a=0.05, K_pred_local=40,
+pred_self_limit_hmax=0.05) calibrated on pilot seeds (exp257_pilot.py,
+exp257_recalibrate.py + a scale control).
+VERDICT on FRESH seeds 100-109.
+PASS = both species persist >=8/10 seeds, bounded, with local extinction + recolonization.
+n_patches=8 (ring), horizon=1200.
+Substrate commit bb6a908 (9 anti-cheat/determinism tests via tests/test_patchmosaic.py).
+
+FACTORIAL RESULTS (raw table: experiments/outputs/exp257_patch_mosaic_predator_prey.txt)
+Cell              persist   prey/10  pred/10  localext  recol   sync   cvP   cvQ
+BASELINE_1P        0/10       0       10        1         0     nan   0.70  0.20
+NEITHER            0/10       0       10        8         0    0.45   0.84  0.30
+REFUGE_ONLY       10/10      10       10       12         0    0.62   0.24  0.16
+MIG_ONLY_ASYNC    10/10      10       10      270       269   -0.08   0.31  0.13
+MIG_ONLY_SYNC      0/10       0       10       22        14    0.61   1.13  0.57
+BOTH              10/10      10       10      151       150   -0.09   0.15  0.07
+HIGH_MIG          10/10      10       10      102       102   -0.01   0.26  0.11
+STRONG_REFUGE     10/10      10       10       73        73   -0.09   0.02  0.14
+
+PREDECLARED CONTROL CHECKS (all passed)
+- BASELINE_1P (single patch, mosaic's TOTAL pop, 8x) COLLAPSES: 0/10
+  + Scale control 1x-16x all collapse (5 reps each) -> NOT a scale artifact
+- NEITHER (8p, no refuge, no migration) COLLAPSES: 0/10 -> mosaic mechanism NECESSARY
+- REFUGE load-bearing (REFUGE_ONLY 10/10): PASS
+- MIGRATION load-bearing (MIG_ONLY_ASYNC 10/10): PASS
+- ASYNCHRONY essential to migration rescue: MIG_ONLY_ASYNC 10/10 vs MIG_ONLY_SYNC 0/10
+  -> synchronized patches crash together; only out-of-phase patches reseed each other
+- HIGH_MIG persisted 10/10 (sync ~ -0.01): upper synchronization boundary not reached
+- STRONG_REFUGE did not starve predators (pred 10/10): upper refuge strength boundary not reached
+- BOTH (refuge+migration+async) persists: 10/10, most bounded (CV 0.15/0.07), localext=151/recol=150
+
+CLEAN MECHANISM ISOLATION SIGNALS
+- Refuge: shelters prey in place (recol=0); local extinction turnover is low (12 events)
+  compared to migration cells -> refuge works WITHOUT recolonization
+- Migration + asynchrony: HEAVY recolonization (270 local extinctions, 269 recolonizations)
+  with negative cross-patch synchrony (-0.08) -> genuine metapopulation rescue
+  (patches crash and are reseeded by out-of-phase survivors)
+- Asynchrony alone (NEITHER uses rotating phase but no migration): does NOT rescue -> 0/10
+
+VERDICT
+POSITIVE — CAN_POSE_GLOBAL_COHABITATION + PATCH_MOSAIC_RESCUE_SUPPORTED.
+Patch structure poses global discrete predator-prey coexistence where the homogeneous
+arena could not; refuge and migration+asynchrony are each independently load-bearing.
+Load-bearing mechanisms: (1) per-patch refuge gates; (2) local migration + asynchrony
+(recolonization of crashed patches by out-of-phase survivors).
+The Exp-248 CAN'T-POSE was specific to a single homogeneous arena.
+This RE-OPENS the path to a discrete Red Queen: with coexistence posed, a costed
+prey-escape/predator-attack trait-invasion test becomes possible on this substrate.
+
+HONEST SCOPE CAVEATS
+(1) Within-patch dynamics are MEAN-FIELD among individuals; the spatial/structural
+    element is at the PATCH (metapopulation) level, not within-patch. This is honest
+    metapopulation modeling, NOT the failed Exp-248 homogeneous spatial grid.
+(2) The within-patch regime was deliberately calibrated collapse-prone (so the single
+    arena fails and the rescue is meaningful). Claim: "in a regime where a single arena
+    collapses, patch structure rescues global coexistence."
+(3) The "high migration re-synchronizes -> collapse" prediction did NOT trigger in the
+    tested range (HIGH_MIG persisted 10/10, sync ~ -0.01); the upper migration boundary
+    was not reached.
+(4) STRONG_REFUGE did not starve predators in the tested range (pred 10/10); the upper
+    refuge-strength boundary was not reached.
+(5) This poses COEXISTENCE only — NOT a Red Queen / trait-evolution claim.
+    Self-grade: POSITIVE / NEW INSIGHT (substrate-posing).
+
+NEXT STEPS
+(a) Topology/scale robustness (ring -> 2D grid / small-world; 8->16->32 patches) to
+    confirm the rescue regime is not knife-edge.
+(b) Red Queen trait-invasion test (costed prey-escape vs co-evolving/static predator)
+    on the patch substrate, now that coexistence is posed.
+
+TRACE
+experiments/exp257_patch_mosaic_predator_prey.py -> experiments/outputs/exp257.txt
+(+ exp257_pilot.py, exp257_recalibrate.py; ecology/patchmosaic.py + tests/test_patchmosaic.py)
