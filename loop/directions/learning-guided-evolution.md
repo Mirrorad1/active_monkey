@@ -73,11 +73,32 @@ proxy (L50).
 1. ~~**Exp 275 — posability pre-flight (was: build theta).**~~ DONE above (POSABLE). The BUILD it originally
    described is folded into Exp 276.
 
-2. **Exp 276 — the binding test: same-axis assimilation vs substitution vs shielding.** FIRST build the
-   learnable+heritable `theta` behind `enable_learnable_use` (a within-life-learned tracking-use `theta`
-   from a heritable prior; byte-identical OFF + golden-hash; theta ≈ the `band_responsiveness` axis Exp 275
-   validated), keeping the theta gradient inside the STABLE band (Exp 275 caveat: extreme theta → extinction).
-   Then, in the Exp 205
+**RE-ANALYSIS NOTE (2026-07-06, adversarial re-read of Exp 275 + an L28 pre-flight).** Exp 275's occupancy
+and intake metrics are DENSITY-CONFOUNDED (better tracking → higher survival → crowding → per-capita intake
+INVERTS: cost-on, the worst theta 0.05 posts the HIGHEST intake because 7/8 of its populations go extinct and
+survivors gorge; Exp 202 live), and its S3 survival gradient is MONOMORPHIC, not invasion (L41). BUT the
+pessimistic reading (density competes the advantage away) was REFUTED by a cheap cost-on equilibrium pre-flight:
+R\* (mean standing resource; lower = better competitor, Tilman) drops MONOTONICALLY with theta
+(2.07→1.87→1.70→1.52→1.46 over theta 0.15→0.80) while N\* rises (82→90), STABLE (0/3 extinct) — a clean
+equilibrium competitive-dominance gradient WITH COST ON. Also confirmed: the sensor's occupancy separability
+(S1) survives cost-on (2.00x, ~unchanged from 2.07x). So the fitness-posability leans POSITIVE, but R\* is a
+PROXY, not the binding gate — hence the re-ordering below.
+
+2a. **Exp 276a — the gifted-theta invasion-from-rarity GATE (L41 binding; the decisive premise check).**
+   Build `theta` as a HERITABLE GENOTYPE TRAIT ONLY (no learner yet): promote `band_responsiveness` to a
+   mutable genotype field behind a gate, byte-identical OFF + golden-hash. Then run the Evolvability Preflight's
+   binding gate — a rare better-theta mutant vs a resident at COST-ON equilibrium (drift-robust selection slope
+   + non-flat monomorphic curve + invasion-from-rarity, per L29/L41). The R\* pre-flight above is encouraging
+   but NOT sufficient: Exp 237 showed a monomorphic/pairwise gradient can PASS while invasion-from-rarity FAILS
+   via frequency-dependence, so this gate is mandatory. **FAIL** (gifted theta doesn't invade from rarity) ⇒ the
+   Baldwin escape is FORECLOSED at the selection level — learning cannot guide evolution toward a gradient
+   selection does not reward — so the direction closes NEGATIVE without building the learner (the honest,
+   arc-consistent outcome; do not build). **PASS** ⇒ a real selection gradient on theta exists → proceed to 2b.
+
+2b. **Exp 276b — the binding Baldwin test: same-axis assimilation vs substitution vs shielding.** ONLY if 276a
+   PASSES. Build the learnable `theta` behind `enable_learnable_use` (a within-life-learned tracking-use `theta`
+   from the heritable prior of 276a; byte-identical OFF + golden-hash), keeping the theta gradient inside the
+   STABLE band. Then, in the Exp 205
    survivable-loss thermosense-forage regime (`ecology/sense_axis.py`; optimum functional & bulk-fitter,
    evolution stays primitive 0/5), run evolution of innate `theta` with learn-to-use ON vs OFF (OFF
    byte-reproduces the prior NEGATIVE), Preflight (`ecology/evolvability/`) measuring the binding LOCAL
@@ -132,4 +153,4 @@ BoundaryNote with the learning-escape result; if any FAIL branch, write the name
 genotype/phenotype + substitution-control evidence to EXPERIMENTS.md and close with a BoundaryNote. Either way
 the verdict + the learning-OFF control + the per-seed dispersion go to EXPERIMENTS.md.
 
-**STATUS.** state: active (rung 1 POSABLE) · latest: Exp 275 (POSITIVE / NEW INSIGHT, blind-verified, 2026-07-02) — posability pre-flight: the sensor channel is separably load-bearing for band-tracking (~2.0x sensor vs sensorless; map can't substitute) AND theta (band_responsiveness) has a bad→good range gating survival → a same-axis theta-Baldwin test IS posable · depends-on: ecology/ + Exp 205 forage regime + evolvability Preflight + CLAMPED_LR/band controls + an unbuilt theta channel (Exp 276) · reusable: Exp 275 occupancy instrument + faithful-proxy discipline (L50) · next-falsifiable: Exp 276 — build the learnable+heritable theta (byte-identical OFF), run the assimilation test (PASS/STALL/SHIELDING/SUBSTITUTION).
+**STATUS.** state: active (rung 1 POSABLE) · latest: Exp 275 (POSITIVE / NEW INSIGHT, blind-verified, 2026-07-02) — posability pre-flight: the sensor channel is separably load-bearing for band-tracking (~2.0x sensor vs sensorless; map can't substitute) AND theta (band_responsiveness) has a bad→good range gating survival → a same-axis theta-Baldwin test IS posable · depends-on: ecology/ + Exp 205 forage regime + evolvability Preflight + CLAMPED_LR/band controls + an unbuilt theta channel (Exp 276) · reusable: Exp 275 occupancy instrument + faithful-proxy discipline (L50) · next-falsifiable: Exp 276a — the L41 gifted-theta invasion-from-rarity gate (cost-on equilibrium; R* pre-flight encouraging but a proxy) before any learner build.
