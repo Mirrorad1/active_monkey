@@ -388,3 +388,18 @@ Ground rules for this file:
   arbiter is density-dependence of per-capita intake at FIXED density (Exp 240 fixed-N). Kin L28 (pre-flight
   the premise), L22/L41 (gifted/monomorphic != evolvable/invasion), L30 (calibrate cost to benefit ceiling),
   L50 (density-confounded metrics). [METHODOLOGY; PROTOCOL step 2/3; VALIDATION]
+- **L52 (Exp 277, Baldwin/plasticity-evolution, 2026-07-08).** Before running a multi-generation evolution
+  batch to test whether WITHIN-LIFE LEARNING guides evolution (the Baldwin effect / plasticity-first), do a
+  CHEAP precondition pre-flight (kin L28): with learning ON, measure LIFETIME FITNESS as a function of the
+  INNATE prior (pin the prior at a few values, monomorphic). If a good prior confers meaningfully higher
+  lifetime fitness than a bad one DESPITE learning, a Baldwin gradient EXISTS (assimilation is possible). If
+  learning ERASES the prior-fitness difference (the curve is ~flat), that is SHIELDING-BY-CONSTRUCTION — there
+  is NO gradient for selection to assimilate and the evolution batch will STALL by construction; report it,
+  don't run on faith. Exp 277: the fitness gap across priors {0.1..0.8} was 0.7% (flat, non-monotone) => the
+  full loop STALLED (learn-ON newborn innate 0.168 <= learn-OFF 0.212). Root cause of the flatness here: under
+  a fair L30 cost the benefit-saturating landscape has a shallow optimum near the founder, so there is barely
+  a wall (kin L22 no-Goldilocks-gradient). Also: when plasticity is COSTED, learning can mildly SUPPRESS the
+  innate trait (the learner raises the realized value, that costs energy => selection favors a lower innate
+  prior) — a documented Baldwin counter-case (ON<OFF). Report the genotype-vs-phenotype split so STALL (both
+  low) is not confused with SHIELDING (functional phenotype, unmoved genotype). Kin L28/L51 (pre-flight the
+  premise/wall), L22 (saturation), L30 (cost calibration). [METHODOLOGY; PROTOCOL step 2/3; VALIDATION]

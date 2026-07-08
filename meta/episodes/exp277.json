@@ -1,0 +1,53 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp277.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp277_theta_baldwin.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.021\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.212\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"10/24\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"19.4\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2.0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"20.4\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"25/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/8\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9389/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9418/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9448/0\" quoted in entry not found in experiments/outputs/exp277.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-07-08T16:18:02Z",
+  "commit_sha": "eac0d0058d5311ee17acb006c7d6522dc1a5c3b7",
+  "entry": {
+    "claimed_verdict": null,
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 277,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
