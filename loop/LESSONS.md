@@ -376,3 +376,15 @@ Ground rules for this file:
   actually MOVES the behavior across its range (use a non-scale-invariant knob). Kin L44 (mis-specified policy
   -> false negative), L42 (byte-identical == no-op), L21 (exclude NaN cells, don't score them as violations),
   L32 (works-when-imposed != has a benefit ceiling). [METHODOLOGY; PROTOCOL step 3/5; VALIDATION]
+- **L51 (learning-guided-evolution premise audit, 2026-07-07).** When you REFRAME a walled trait X onto a
+  NEW axis Y to "escape" the wall, first PROVE Y still HAS the wall. A smooth/monotone gifted (clamp /
+  monomorphic / between-world) gradient on Y is NOT evidence of escape — it is a YELLOW FLAG that Y is
+  DIRECTLY EVOLVABLE, which VOIDS the study (the escape mechanism — Baldwin/learning, plasticity, a costed
+  organ — only has something to do when the DIRECT gradient is flat/valleyed). Corollary (the trap that hid
+  it for 3 pre-flight rounds): after a reframe, RE-AUDIT whether the COST that made the original wall still
+  attaches to the new axis — the h→theta reframe left theta (`band_responsiveness`) UNCOSTED (a config scalar
+  scaling the tracker alpha only), so every pre-flight measured a FREE beneficial trait, which cannot be a
+  wall-trait. Also: a grid-mean AVAILABILITY proxy (R\*) is the wrong KIND of measure (Exp 244/247) — the
+  arbiter is density-dependence of per-capita intake at FIXED density (Exp 240 fixed-N). Kin L28 (pre-flight
+  the premise), L22/L41 (gifted/monomorphic != evolvable/invasion), L30 (calibrate cost to benefit ceiling),
+  L50 (density-confounded metrics). [METHODOLOGY; PROTOCOL step 2/3; VALIDATION]
