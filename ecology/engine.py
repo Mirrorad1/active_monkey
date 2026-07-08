@@ -210,6 +210,27 @@ class EcologyConfig:
     freeze_learning_rate: bool = False
 
     # ------------------------------------------------------------------
+    # Exp 276a: LEARNABLE-USE (theta) — band_responsiveness becomes a HERITABLE genotype
+    # trait (Genotype.band_responsiveness) instead of a fixed CONFIG scalar.  OFF by default;
+    # OFF (enable_learnable_use=False) is byte-identical to Exp 194-275:
+    #   - mutate() is called WITHOUT mutate_theta (no rng draw for band_responsiveness);
+    #   - creature.py reads the CONFIG world.band_responsiveness (not the genotype value);
+    #   - no theta upkeep is charged.
+    # When True:
+    #   - each child mutates band_responsiveness (mutate_theta=True);
+    #   - creature.py reads creature.genotype.band_responsiveness (per-individual theta);
+    #   - an L30 per-step upkeep = theta_upkeep_floor + theta_cost_slope * band_responsiveness
+    #     is charged (mirrors the memory_upkeep_floor / memory_cost_slope pattern).
+    # Both cost params default 0.0 ⇒ zero cost even when ON (the mechanism is still live via
+    # the heritable-theta percept channel; a nonzero slope makes the cost bite).
+    # ANTI-CHEAT: theta is NEVER a direct reward; it keys ONLY the band-tracker EMA rate and
+    # the upkeep — food intake falls out of the unchanged consume() depletion race.
+    # ------------------------------------------------------------------
+    enable_learnable_use: bool = False
+    theta_upkeep_floor: float = 0.0
+    theta_cost_slope: float = 0.0
+
+    # ------------------------------------------------------------------
     # Exp 202: interference-competition / frequency-dependence escape.
     # ALL defaults preserve Exp 194-201 byte-identical behaviour.
     #
@@ -667,6 +688,7 @@ class Ecology:
             food_concentration=cfg.food_concentration,
             enable_band_staleness=cfg.enable_band_staleness,
             band_responsiveness=cfg.band_responsiveness,
+            enable_learnable_use=cfg.enable_learnable_use,
             enable_hidden_mode=cfg.enable_hidden_mode,
             mode_switch_prob=cfg.mode_switch_prob,
             cue_noise=cfg.cue_noise,
@@ -1129,6 +1151,13 @@ class Ecology:
         if cfg.enable_hidden_mode and g.belief_persistence > 0.0:
             ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.belief_persistence
 
+        # Exp 276a: theta (learnable-use) upkeep — cost of USING the sensor well.
+        # Mirrors the memory upkeep exactly (floor + slope * genotype-trait).  OFF when
+        # enable_learnable_use=False ⇒ byte-identical.  Both floor=0 and slope=0 (defaults)
+        # ⇒ zero cost even when ON.  ANTI-CHEAT: charged on the genotype trait, never on intake.
+        if cfg.enable_learnable_use:
+            ph.energy -= cfg.theta_upkeep_floor + cfg.theta_cost_slope * g.band_responsiveness
+
         # Phase 4: active-sensing probe cost — charged when the creature probed this step.
         # OFF (enable_active_sensing=False) ⇒ probed_this_step never True ⇒ byte-identical.
         if cfg.enable_active_sensing and getattr(c.policy, "probed_this_step", False):
@@ -1295,7 +1324,8 @@ class Ecology:
                                         mutate_memory=cfg.enable_hidden_mode,
                                         mutate_active_sensing=cfg.enable_active_sensing,
                                         mutate_locomotion=cfg.enable_terrain,
-                                        mutate_continuous_locomotion=_mut_speed)
+                                        mutate_continuous_locomotion=_mut_speed,
+                                        mutate_theta=cfg.enable_learnable_use)
                     child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                     # Exp 238: set continuous pos for child near parent when ON.
                     if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
@@ -1368,7 +1398,8 @@ class Ecology:
                                          mutate_memory=cfg.enable_hidden_mode,
                                          mutate_active_sensing=cfg.enable_active_sensing,
                                          mutate_locomotion=cfg.enable_terrain,
-                                         mutate_continuous_locomotion=_dpb_mut_speed)
+                                         mutate_continuous_locomotion=_dpb_mut_speed,
+                                         mutate_theta=cfg.enable_learnable_use)
                 _dpb_child_ph = Phenotype(
                     energy=g.energy_capacity * 0.5,  # modest baseline; NOT from parent or resource
                     age=0,

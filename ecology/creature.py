@@ -586,7 +586,12 @@ class HomeostaticPolicy:
             # keyed to intensity; then an intensity-keyed EMA step toward it.
             noise_sd = max(0.0, world.thermosense_noise_base * (1.0 - intensity))
             noisy_center = world.current_food_optimal + rng.normal(0.0, noise_sd)
-            alpha = min(1.0, max(0.0, intensity * world.band_responsiveness))
+            # Exp 276a: theta (band_responsiveness) is per-individual (heritable) when
+            # enable_learnable_use is ON; otherwise it is the fixed CONFIG scalar (byte-
+            # identical to Exp 194-275).  theta keys the tracker EMA rate ONLY.
+            theta = (creature.genotype.band_responsiveness
+                     if world.enable_learnable_use else world.band_responsiveness)
+            alpha = min(1.0, max(0.0, intensity * theta))
             self.band_estimate += alpha * (noisy_center - self.band_estimate)
             est = self.band_estimate
 
