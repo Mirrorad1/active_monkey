@@ -21,8 +21,8 @@ RUNTIME PRE-FLIGHT: safe=True workers->11 proj~0.0 min  flags=[]
   theta= 0.8: B=0.41397  (n_valid=8/8, extinct=0)  per_seed=[0.409, 0.4139, 0.4119, 0.4061, 0.4122, 0.418, 0.4298, 0.4108]
   cost-ON curve argmax=0.8 argmin=0.05  gifted-best>worst=True
 
---- Step C: invasion-from-rarity  resident theta=0.1 -> mutant theta=0.8 (theta*=0.8), COST ON (slope=0.07212), 16 seeds ---
-  [INV] verdict=FLAT_OR_NOISY  increase=7/16  extinct_frac=0.0
+--- Step C: invasion-from-rarity  resident theta=0.1 -> mutant theta=0.8 (theta*=0.8), COST ON (slope=0.07212), 24 seeds ---
+  [INV] verdict=FLAT_OR_NOISY  increase=10/24  extinct_frac=0.0
     seed= 200 f_init=0.0471 f_final=0.3544 increased=True final_pop=79 extinct=False
     seed= 201 f_init=0.2439 f_final=0.1875 increased=False final_pop=112 extinct=False
     seed= 202 f_init=0.0759 f_final=0.2160 increased=True final_pop=125 extinct=False
@@ -39,14 +39,25 @@ RUNTIME PRE-FLIGHT: safe=True workers->11 proj~0.0 min  flags=[]
     seed= 213 f_init=0.3645 f_final=0.1341 increased=False final_pop=82 extinct=False
     seed= 214 f_init=0.0000 f_final=0.0000 increased=False final_pop=84 extinct=False
     seed= 215 f_init=0.0000 f_final=0.0000 increased=False final_pop=92 extinct=False
+    seed= 216 f_init=0.1170 f_final=0.1078 increased=False final_pop=102 extinct=False
+    seed= 217 f_init=0.1515 f_final=0.0000 increased=False final_pop=85 extinct=False
+    seed= 218 f_init=0.1800 f_final=0.2237 increased=True final_pop=76 extinct=False
+    seed= 219 f_init=0.1771 f_final=0.3030 increased=True final_pop=66 extinct=False
+    seed= 220 f_init=0.0000 f_final=0.0000 increased=False final_pop=102 extinct=False
+    seed= 221 f_init=0.0617 f_final=0.0000 increased=False final_pop=105 extinct=False
+    seed= 222 f_init=0.2024 f_final=0.2174 increased=True final_pop=115 extinct=False
+    seed= 223 f_init=0.0000 f_final=0.0000 increased=False final_pop=92 extinct=False
 
   [SLOPE] drift-robust selection slope (local pairwise gradient), cost ON:
-    INFO theta 0.1->0.8: verdict=NEGATIVE_LOCAL_GRADIENT wins=4/16 mean_s=+0.00802 inv=0.386 extinct_frac=0.0
-    CTRL pure-cost (tracker off): verdict=NEGATIVE_LOCAL_GRADIENT wins=4/16 mean_s=-0.00672 inv=0.329 extinct_frac=0.0
-    INFO per-seed (seed, inv_frac_final, s): [(200, 0.1667, -0.00662), (201, 0.25, 0.00046), (202, 0.1772, 0.00176), (203, 1.0, 0.04231), (204, 1.0, 0.02014), (205, 0.0741, -0.00323), (206, 0.0805, -0.00779), (207, 0.225, 0.00313), (208, 0.3519, -0.00236), (209, 0.0789, -0.01245), (210, 0.2368, 0.00022), (211, 1.0, 0.02716), (212, 0.2222, -0.00423), (213, 0.1339, -0.00408), (214, 1.0, 0.07745), (215, 0.1714, -0.00349)]
-    CTRL per-seed (seed, inv_frac_final, s): [(200, 0.7907, 0.00975), (201, 0.0, -0.02373), (202, 0.0667, -0.00744), (203, 0.256, -0.00349), (204, 0.0, -0.02291), (205, 0.0, -0.01074), (206, 0.0, -0.01398), (207, 0.3361, -0.00163), (208, 0.2946, 0.00293), (209, 0.0, -0.04399), (210, 0.4504, -0.00127), (211, 0.7554, 0.0049), (212, 0.405, -0.00147), (213, 0.0, -0.02416), (214, 1.0, 0.02503), (215, 0.9057, 0.0047)]
-    INFO vs CTRL: mean_s +0.00802 vs -0.00672 (delta=+0.01474); inv 0.386 vs 0.329
+    INFO theta 0.1->0.8: verdict=NEGATIVE_LOCAL_GRADIENT wins=7/24 mean_s=+0.00692 inv=0.417 extinct_frac=0.0
+    CTRL pure-cost (tracker off): verdict=NEGATIVE_LOCAL_GRADIENT wins=4/24 mean_s=-0.01045 inv=0.223 extinct_frac=0.0
+    INFO per-seed (seed, inv_frac_final, s): [(200, 0.1667, -0.00662), (201, 0.25, 0.00046), (202, 0.1772, 0.00176), (203, 1.0, 0.04231), (204, 1.0, 0.02014), (205, 0.0741, -0.00323), (206, 0.0805, -0.00779), (207, 0.225, 0.00313), (208, 0.3519, -0.00236), (209, 0.0789, -0.01245), (210, 0.2368, 0.00022), (211, 1.0, 0.02716), (212, 0.2222, -0.00423), (213, 0.1339, -0.00408), (214, 1.0, 0.07745), (215, 0.1714, -0.00349), (216, 0.1895, -0.00657), (217, 0.1308, -0.00243), (218, 0.125, -0.00365), (219, 0.1652, -0.00527), (220, 0.2277, -0.00107), (221, 1.0, 0.02012), (222, 1.0, 0.02638), (223, 1.0, 0.01021)]
+    CTRL per-seed (seed, inv_frac_final, s): [(200, 0.7907, 0.00975), (201, 0.0, -0.02373), (202, 0.0667, -0.00744), (203, 0.256, -0.00349), (204, 0.0, -0.02291), (205, 0.0, -0.01074), (206, 0.0, -0.01398), (207, 0.3361, -0.00163), (208, 0.2946, 0.00293), (209, 0.0, -0.04399), (210, 0.4504, -0.00127), (211, 0.7554, 0.0049), (212, 0.405, -0.00147), (213, 0.0, -0.02416), (214, 1.0, 0.02503), (215, 0.9057, 0.0047), (216, 0.0672, -0.00795), (217, 0.0177, -0.01437), (218, 0.0, -0.03089), (219, 0.0, -0.02851), (220, 0.018, -0.00699), (221, 0.0, -0.02015), (222, 0.0, -0.01986), (223, 0.0, -0.01469)]
+    INFO vs CTRL: mean_s +0.00692 vs -0.01045 (delta=+0.01738); inv 0.417 vs 0.223
+
+  [STEP D] competitive-equilibrium regime (regen=0.14, horizon=1500) — posable there?
+    [COMP-INV] verdict=NO_VERDICT increase=0/0 (NO_VERDICT here = competitive regime can't sustain a measurable population = CAN'T-POSE)
 
 [CLAIM] innate theta is WALLED (does not invade from rarity)
 [NOTE] the CONTROLLER applies verdict polarity: invades => VOID the wall framing; walled => proceed to the learnable (Baldwin) rung.  This script does NOT decide the verdict.
-[CAVEAT] cost-on; one theta parameterization (tracker EMA rate); edge-of-stability regime (extreme theta => extinction); INNATE (no within-life theta learner yet).
+[CAVEAT] cost-on; one theta parameterization (tracker EMA rate); the wall is posed only in a resource-RICH weak-competition regime (Step D: the competitive regime CAN'T-POSE); INNATE (no within-life theta learner yet).

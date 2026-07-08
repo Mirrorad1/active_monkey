@@ -64,7 +64,7 @@ from ecology import runtime_budget as RB
 HORIZON = 300
 WIN = (100, 300)
 CAL_SEEDS = tuple(range(101, 109))          # 8 seeds for the benefit curve
-INV_SEEDS = list(range(200, 216))           # 16 fresh seeds for the binding invasion arm
+INV_SEEDS = list(range(200, 224))           # 24 fresh seeds (16 gave a small-sample-fragile slope; controller re-ran at 24)
 THETA_PINS = (0.05, 0.10, 0.25, 0.50, 0.80)
 THETA_LOW = 0.10                            # low-theta resident (near bottom of the useful range)
 GOOD_H = 0.60                               # good sensor precision (organ gifted, cost off)
@@ -253,6 +253,21 @@ def main() -> None:
     print(f"    INFO vs CTRL: mean_s {info['s']:+.5f} vs {ctrl['s']:+.5f} (delta={info['s']-ctrl['s']:+.5f}); "
           f"inv {info['inv']:.3f} vs {ctrl['inv']:.3f}")
 
+    # --- Step D: CAN'T-POSE control — the competitive/equilibrium regime where a wall would be a
+    # STRONG test. The posable invasion above uses a resource-RICH short regime (regen=1.0, weak
+    # competition, saturating benefit). Re-run the invasion in the competitive Exp-275 regime
+    # (regen=0.14, horizon=1500): if it returns NO_VERDICT, the population collapses below the
+    # validity floor there (the Exp 242-247 stability-vs-competition boundary), so the wall can only
+    # be posed in a WEAK regime. ---
+    print("\n  [STEP D] competitive-equilibrium regime (regen=0.14, horizon=1500) — posable there?")
+    comp = D.replace(base_on, regen_rate=0.14, horizon=1500)
+    comp_inv = G.run_invasion_from_rarity(comp, axis, INV_SEEDS, win_threshold=win, lose_threshold=lose,
+                                          min_valid=max(4, 3 * len(INV_SEEDS) // 4),
+                                          window=(100, 1500), min_pop=30, max_workers=workers)
+    print(f"    [COMP-INV] verdict={comp_inv.verdict} "
+          f"increase={comp_inv.aggregate.get('increase_count')}/{comp_inv.aggregate.get('n_valid')} "
+          f"(NO_VERDICT here = competitive regime can't sustain a measurable population = CAN'T-POSE)")
+
     # --- CLAIM (polarity applied by the CONTROLLER, not here) ---
     invades = (inv.verdict == "INVADES" and info["s"] > 0.0
                and info["s"] > ctrl["s"] and info["wins"] > ctrl["wins"])
@@ -260,8 +275,9 @@ def main() -> None:
     print(f"\n[CLAIM] innate theta is {claim}")
     print("[NOTE] the CONTROLLER applies verdict polarity: invades => VOID the wall framing; "
           "walled => proceed to the learnable (Baldwin) rung.  This script does NOT decide the verdict.")
-    print("[CAVEAT] cost-on; one theta parameterization (tracker EMA rate); edge-of-stability regime "
-          "(extreme theta => extinction); INNATE (no within-life theta learner yet).")
+    print("[CAVEAT] cost-on; one theta parameterization (tracker EMA rate); the wall is posed only in a "
+          "resource-RICH weak-competition regime (Step D: the competitive regime CAN'T-POSE); INNATE "
+          "(no within-life theta learner yet).")
 
 
 if __name__ == "__main__":
