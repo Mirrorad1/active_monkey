@@ -533,6 +533,26 @@ step 0.
   `geometry_maps/identity-ecological-escapability-v0.json` + an EXPERIMENTS.md synthesis section;
   L43-L48. Re-opens only on a human word (move-graph-walls edge / convergence-oriented model-free
   repair). Card: `loop/directions/identity-ecological.md`.
+- **The learning-guided-evolution direction (Exp 275–277, CLOSED-NEGATIVE, 2026-07-08):** the cross-arc
+  lacuna — the local-gradient wall is an EVOLUTION-only wall, and lifetime learning (the Baldwin effect)
+  is the classical untested escape; the program's learning half and evolution half had never shared a
+  substrate. **Exp 275 (POSABLE):** the sensor-USE axis theta (= band_responsiveness) is separably
+  load-bearing for band-tracking (occupancy ~2.0x sensor vs sensorless; map can't substitute) with a
+  behavioral bad→good range that gates survival (instrument lessons L50: occupancy-over-intake on an
+  unstable substrate; faithful vs argmax-scale-invariant proxy). **Exp 276 (MIXED, a SOFT wall):** theta
+  made heritable + L30-costed does NOT robustly invade from rarity (10/24) — a wall exists — but posable
+  only in a resource-RICH regime (the competitive regime CAN'T-POSE, the Exp 242-247 stability-vs-competition
+  boundary), and the wall leaks via a priority tail (L51: a reframe to escape a wall must first PROVE the
+  wall exists on the new axis + re-audit the cost). **Exp 277 (STALL/NEGATIVE):** a within-life theta
+  LEARNER (hill-climb from the heritable prior, non-Lamarckian) does NOT assimilate innate theta (learn-ON
+  newborn 0.168 ≤ learn-OFF 0.212; realized stays weak ~0.19; Step-A precondition ~0.7% fitness gap =
+  learning SHIELDS the prior; not substitution). The Baldwin escape FAILS: under a fair cost the net-fitness
+  landscape saturates to a shallow optimum near the founder, so there's barely a wall and learning creates
+  no gradient. Closing answer: the true limiter is again the SUBSTRATE (benefit saturation + demographic
+  instability), not the trait/mechanism. Built the program's FIRST substrate coupling lifetime learning
+  with population evolution (`enable_learnable_use` + `enable_theta_learning`, byte-identical OFF).
+  Re-opens only on a NAMED lever (sharper cost building a real wall+gradient; stronger optimizer;
+  a NON-SATURATING-benefit trait). Card: `loop/directions/learning-guided-evolution.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
