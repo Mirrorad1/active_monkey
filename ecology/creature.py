@@ -137,6 +137,23 @@ class HomeostaticPolicy:
         # OFF path is byte-identical to exp194-200.  Lazily initialised to
         # world.food_optimal_base (a neutral start, not the moving true value).
         self.band_estimate: float | None = None
+        # Exp 277: per-life REALIZED theta (within-life learner) + its 1-D stochastic
+        # hill-climb bookkeeping.  ALL are plain attributes, NEVER in events_hash, lazily
+        # initialised inside the enable_theta_learning ON branch — so the OFF path (and the
+        # Exp 276 enable_learnable_use path) is byte-identical.
+        #   realized_theta   — the theta the tracker actually uses this life; starts at the
+        #                      INNATE genotype.band_responsiveness (the Baldwin prior).
+        #   _theta_trial     — the perturbed candidate currently on trial (None between trials).
+        #   _theta_win_eaten — cumulative resource_eaten at the START of the current window.
+        #   _theta_base_rate — intake rate (per-step) of the last KEPT config (the incumbent).
+        #   _theta_last_upd  — step index of the last hill-climb update (period gating).
+        self.realized_theta: "float | None" = None
+        self._theta_trial: "float | None" = None
+        self._theta_prev: float = 0.0        # incumbent value, restored on a failed trial
+        self._theta_win_eaten: float = 0.0
+        self._theta_base_rate: "float | None" = None
+        self._theta_last_upd: int = 0
+        self._theta_perturbed_this_step: bool = False   # set when a new trial opens (learn cost)
         # Exp 206: per-creature class-occupancy tally (modal niche occupied), lazily inited to
         # [0]*K by the engine eat step.  A plain attribute, NEVER in events_hash; KEPT through
         # release_maps() (only m/visit_t are dropped) so the post-hoc I(h;niche)/knockout analysis
@@ -178,6 +195,76 @@ class HomeostaticPolicy:
         buf = self.cue_buffer if self.cue_buffer is not None else []
         window = (buf + [cue])[-k:]
         return sum(window) / len(window)
+
+    def _theta_learn_step(self, creature: "Creature", world: "GridWorld",
+                          rng: np.random.Generator) -> None:
+        """Exp 277: one step of the WITHIN-LIFE 1-D stochastic hill-climb on realized_theta.
+
+        Called ONLY when world.enable_theta_learning is True (from the band-staleness branch),
+        so this method and its single rng draw are entirely inside the ON gate — the OFF path
+        makes NO extra draw and stays byte-identical.
+
+        Protocol (per creature, per life):
+          - Lazily init realized_theta to the INNATE genotype.band_responsiveness (the prior).
+          - Every world.theta_learn_period steps, evaluate the current window's intake RATE
+            (delta resource_eaten / steps in window):
+              * If a candidate perturbation was ON TRIAL, KEEP it iff its window rate >= the
+                incumbent base rate (improvement, ties kept), else REVERT to the incumbent.
+              * Then propose a NEW candidate = incumbent ± theta_learn_step (rng coin), clamped
+                to [0, 1], set it as realized_theta, and open a fresh window.
+          - NON-LAMARCKIAN: realized_theta is per-life ONLY; it is NEVER copied into any child
+            genotype (children inherit the MUTATED innate band_responsiveness — see mutate()).
+
+        realized_theta / the trial / window bookkeeping are plain attributes, NEVER in
+        events_hash.  Direction is the creature's own rng so the update is deterministic.
+        """
+        ph = creature.phenotype
+        # Lazy init to the innate prior on first use this life.
+        if self.realized_theta is None:
+            self.realized_theta = float(creature.genotype.band_responsiveness)
+            self._theta_win_eaten = float(ph.resource_eaten)
+            self._theta_last_upd = ph.age
+            self._theta_trial = None
+            self._theta_base_rate = None
+            return
+
+        period = max(1, int(getattr(world, "theta_learn_period", 20)))
+        if (ph.age - self._theta_last_upd) < period:
+            return
+
+        # Window intake RATE since the last update (cumulative delta / steps).
+        steps = max(1, ph.age - self._theta_last_upd)
+        win_rate = (float(ph.resource_eaten) - self._theta_win_eaten) / steps
+
+        if self._theta_trial is not None:
+            # A candidate was on trial this window: keep iff it did not do worse than the
+            # incumbent (>= tolerates ties so a neutral move can still drift).  On revert,
+            # restore the incumbent (the pre-trial realized_theta stored in _theta_prev).
+            base = self._theta_base_rate if self._theta_base_rate is not None else win_rate
+            if win_rate >= base:
+                # KEEP: the trial value becomes the new incumbent; its rate is the new base.
+                self.realized_theta = self._theta_trial
+                self._theta_base_rate = win_rate
+            else:
+                # REVERT to the incumbent (base rate unchanged).
+                self.realized_theta = self._theta_prev
+            self._theta_trial = None
+        else:
+            # First evaluated window (no trial yet): record its rate as the incumbent base.
+            self._theta_base_rate = win_rate
+
+        # Propose a NEW candidate: incumbent ± step (rng coin), clamped to [0, 1].
+        step = float(getattr(world, "theta_learn_step", 0.1))
+        direction = 1.0 if rng.random() < 0.5 else -1.0
+        self._theta_prev = float(self.realized_theta)      # incumbent, for revert
+        cand = self._theta_prev + direction * step
+        cand = min(1.0, max(0.0, cand))
+        self._theta_trial = cand
+        self.realized_theta = cand
+        self._theta_perturbed_this_step = True   # a perturbation fired → charge learn cost
+        # Open a fresh evaluation window for the candidate.
+        self._theta_win_eaten = float(ph.resource_eaten)
+        self._theta_last_upd = ph.age
 
     def update_belief(self, pos: int, observed: float, t: int) -> None:
         """Update learned map at pos with EMA; record visit time."""
@@ -582,11 +669,37 @@ class HomeostaticPolicy:
             if self.band_estimate is None:
                 self.band_estimate = world.food_optimal_base
 
+            # Exp 277: WITHIN-LIFE theta learner (1-D stochastic hill-climb).  Runs ONLY
+            # inside this gated ON branch, and ALL of its rng draws (the perturbation-
+            # direction coin) happen HERE, BEFORE the noisy-center draw below.  When
+            # enable_theta_learning is OFF (the byte-identical bar), this block never runs,
+            # so the noisy-center draw keeps its exact Exp 194-276 rng position and the whole
+            # OFF path (incl. the Exp 276 enable_learnable_use path) is byte-identical.
+            #
+            # Rule: realized_theta starts at the INNATE genotype.band_responsiveness (the
+            # Baldwin prior).  Every theta_learn_period steps, perturb it by ±theta_learn_step
+            # (direction from the creature's rng) and KEEP the perturbation iff the recent
+            # intake RATE improved vs the pre-perturbation incumbent (else revert).  Learning
+            # is imperfect/gradual, so a better innate prior confers a lifetime head-start.
+            if getattr(world, "enable_theta_learning", False):
+                self._theta_learn_step(creature, world, rng)
+            # Exp 276a/277: theta keys the tracker EMA rate ONLY.
+            #   - enable_theta_learning ON  → the per-life REALIZED theta (learned).
+            #   - else enable_learnable_use ON → the per-individual INNATE genotype theta.
+            #   - else → the fixed CONFIG scalar (byte-identical to Exp 194-275).
+            if getattr(world, "enable_theta_learning", False):
+                theta = self.realized_theta if self.realized_theta is not None \
+                    else creature.genotype.band_responsiveness
+            elif world.enable_learnable_use:
+                theta = creature.genotype.band_responsiveness
+            else:
+                theta = world.band_responsiveness
+
             # ONE rng draw: a noisy observation of the drifting TRUE center, quality
             # keyed to intensity; then an intensity-keyed EMA step toward it.
             noise_sd = max(0.0, world.thermosense_noise_base * (1.0 - intensity))
             noisy_center = world.current_food_optimal + rng.normal(0.0, noise_sd)
-            alpha = min(1.0, max(0.0, intensity * world.band_responsiveness))
+            alpha = min(1.0, max(0.0, intensity * theta))
             self.band_estimate += alpha * (noisy_center - self.band_estimate)
             est = self.band_estimate
 

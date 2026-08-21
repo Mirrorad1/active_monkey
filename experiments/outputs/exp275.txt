@@ -1,0 +1,107 @@
+=== CELL MEANS in-band occupancy (mean, sd, n_valid, n_extinct) ===
+  GOOD  ON  FAST: occ=0.4790 sd=0.0176 n=8 extinct=0
+  GOOD  ON  SLOW: occ=0.5132 sd=0.0317 n=8 extinct=0
+  GOOD  OFF FAST: occ=0.4843 sd=0.0050 n=8 extinct=0
+  GOOD  OFF SLOW: occ=0.4931 sd=0.0078 n=8 extinct=0
+  BLIND ON  FAST: occ=0.2511 sd=0.0257 n=8 extinct=0
+  BLIND ON  SLOW: occ=0.3050 sd=0.0452 n=6 extinct=2
+  BLIND OFF FAST: occ=0.2344 sd=0.0331 n=7 extinct=1
+  BLIND OFF SLOW: occ=0.3456 sd=0.0765 n=6 extinct=3
+
+=== THETA sweep (GOOD/OFF/FAST): band_responsiveness -> occupancy + extinction ===
+  resp=    0: occ=nan  extinct=8/8
+  resp= 0.02: occ=0.1119  extinct=7/8
+  resp= 0.05: occ=0.1635  extinct=3/8
+  resp=  0.1: occ=0.2347  extinct=0/8
+  resp= 0.25: occ=0.4764  extinct=0/8
+  resp=  0.5: occ=0.4843  extinct=0/8
+  resp=    1: occ=0.4268  extinct=2/8
+
+=== PREDECLARED SIGNATURES (script CLAIM — verifier recomputes) ===
+  S1 sensor-tracks    GOOD/OFF/FAST >= BLIND/OFF/FAST +0.10 & >=1.25x : {'n_ok': 7, 'n_valid': 7, 'per_seed_diff': {101: 0.2409, 102: None, 103: 0.1934, 104: 0.2425, 105: 0.2907, 106: 0.2879, 107: 0.2739, 108: 0.216}, 'median_ratio': 2.020833728976455} -> True
+  S2a map-no-subst    BLIND/ON/FAST <= BLIND/OFF/FAST +0.05           : {'n_ok': 6, 'n_valid': 7, 'per_seed_diff': {101: 0.0305, 102: None, 103: -0.04, 104: -0.0123, 105: 0.0826, 106: 0.0225, 107: 0.0324, 108: -0.0337}, 'median_ratio': 1.114692864575949} -> True
+  S2b sensor-not-lean GOOD/OFF/FAST >= GOOD/ON/FAST -0.05             : {'n_ok': 8, 'n_valid': 8, 'per_seed_diff': {101: 0.0064, 102: -0.0177, 103: -0.0135, 104: 0.0026, 105: 0.0003, 106: 0.0137, 107: 0.0369, 108: 0.0134}, 'median_ratio': 1.009287534018855} -> True
+  S3 theta-has-range  band_responsiveness occ spread >= 0.08          : spread=0.3724 -> True
+
+[CLAIM] VERDICT = POSABLE  (S1=True S2=True S3=True)
+[CAVEAT] behavioral+survival posability; cost-off; edge-of-stability; one theta parameterization.
+
+=== JSON ===
+{
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108
+  ],
+  "cell_occ": {
+    "GOOD/ON/FAST": 0.47898780597648416,
+    "GOOD/ON/SLOW": 0.5131820176959758,
+    "GOOD/OFF/FAST": 0.48425321874034244,
+    "GOOD/OFF/SLOW": 0.4931385193523362,
+    "BLIND/ON/FAST": 0.2510501156684911,
+    "BLIND/ON/SLOW": 0.30497811995710794,
+    "BLIND/OFF/FAST": 0.23438712928320662,
+    "BLIND/OFF/SLOW": 0.345616404121978
+  },
+  "theta_means": {
+    "r0": NaN,
+    "r0.02": 0.11185472714194014,
+    "r0.05": 0.16348376537984394,
+    "r0.1": 0.23471164015595813,
+    "r0.25": 0.4763879804636505,
+    "r0.5": 0.48425321874034244,
+    "r1": 0.42676585908294
+  },
+  "theta_spread": 0.3723984915984023,
+  "S1": {
+    "n_ok": 7,
+    "n_valid": 7,
+    "per_seed_diff": {
+      "101": 0.2409,
+      "102": null,
+      "103": 0.1934,
+      "104": 0.2425,
+      "105": 0.2907,
+      "106": 0.2879,
+      "107": 0.2739,
+      "108": 0.216
+    },
+    "median_ratio": 2.020833728976455
+  },
+  "S2a": {
+    "n_ok": 6,
+    "n_valid": 7,
+    "per_seed_diff": {
+      "101": 0.0305,
+      "102": null,
+      "103": -0.04,
+      "104": -0.0123,
+      "105": 0.0826,
+      "106": 0.0225,
+      "107": 0.0324,
+      "108": -0.0337
+    },
+    "median_ratio": 1.114692864575949
+  },
+  "S2b": {
+    "n_ok": 8,
+    "n_valid": 8,
+    "per_seed_diff": {
+      "101": 0.0064,
+      "102": -0.0177,
+      "103": -0.0135,
+      "104": 0.0026,
+      "105": 0.0003,
+      "106": 0.0137,
+      "107": 0.0369,
+      "108": 0.0134
+    },
+    "median_ratio": 1.009287534018855
+  },
+  "claim_verdict": "POSABLE"
+}

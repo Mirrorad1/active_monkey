@@ -285,6 +285,41 @@ LOCOMOTION_CONTINUOUS_AXIS = TraitAxis(
     },
 )
 
+# Exp 276a: BAND_RESPONSIVENESS_AXIS — the heritable "learnable use" (theta) trait.
+# theta = band_responsiveness = the Exp 201 band-tracker EMA rate; "how well the creature
+# USES the sensor to track the drifting food band".  Generic backend ("band_responsiveness"
+# != "thermosense") => gates dispatch through the generic _run_pairwise_generic / _run_invasion
+# path (freeze via mutation_rate=0; no engine freeze hook => freeze_flag=None).
+# No inefficiency companion trait (inefficiency_trait=None) — the L30 theta cost lives in the
+# engine (theta_upkeep_floor / theta_cost_slope), not an inefficiency multiplier.
+# disconnect_overrides enumerates EVERY channel theta feeds:
+#   enable_learnable_use=False: kills BOTH live reads of genotype.band_responsiveness —
+#     the L30 theta upkeep cost (engine) AND the per-individual tracker-rate percept read
+#     (creature.py, which falls back to the CONFIG scalar) — so a theta CHANGE is inert.
+#   enable_band_staleness=False: the tracker branch that reads theta is not even entered.
+# Both together make theta causally inert (byte-identical events across theta values).
+BAND_RESPONSIVENESS_AXIS = TraitAxis(
+    name="band_responsiveness",
+    resident_value=0.10,
+    mutant_value=0.50,
+    low_value=0.0,
+    high_value=1.0,
+    cost_enabled=True,
+    h_trait="band_responsiveness",
+    inefficiency_trait=None,
+    inefficiency_value=0.0,
+    freeze_flag=None,                       # freeze via mutation_rate=0 (no engine freeze hook)
+    enable_flag="enable_learnable_use",
+    active_threshold=0.0,
+    cost_floor=0.0,
+    cost_inefficiency=0.0,
+    backend="band_responsiveness",          # non-thermosense => generic gate path
+    disconnect_overrides={
+        "enable_learnable_use": False,
+        "enable_band_staleness": False,
+    },
+)
+
 BUILTIN_AXES: dict[str, TraitAxis] = {
     "thermosense": THERMOSENSE_AXIS,
     "memory_horizon": MEMORY_AXIS,
@@ -293,6 +328,7 @@ BUILTIN_AXES: dict[str, TraitAxis] = {
     "uncertainty_gated_gain": UNCERTAINTY_GATED_AXIS,
     "climb_ability": LOCOMOTION_AXIS,
     "locomotor_speed": LOCOMOTION_CONTINUOUS_AXIS,
+    "band_responsiveness": BAND_RESPONSIVENESS_AXIS,
 }
 
 

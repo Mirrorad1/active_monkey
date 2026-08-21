@@ -252,3 +252,41 @@ def test_preflight_prints_advisory_and_references_protocol_routing(tmp_path):
     assert "Recent repeated risks" in checklist
     assert "missing_output: 2" in checklist
     assert "does not choose the next experiment" in checklist
+
+
+def test_committed_meta_episodes_are_not_stale_or_orphaned():
+    """Guard (self-heal, Exp 274): every committed meta/episodes/expNN.json
+    must (a) name an experiment number present in EXPERIMENTS.md and (b) record
+    a ``script_path`` that still exists on disk.
+
+    These number-keyed derived artifacts silently carry the PRIOR occupant's
+    content when a research arc is renumbered or deleted: a stale expNN.json
+    keeps the old experiment's script_path/verdict under the reused slot, and
+    an orphaned expNN.json survives for a number that no longer has an entry.
+    Both get committed unless the collector is re-run. (Caught when the deleted
+    sparse-llm arc's exp274 'drift_discrimination' episode collided with the
+    renumbered identity-ecological exp274, and stale 275/276 lingered.)
+    """
+    from loop.check_iteration import find_entries
+
+    root = pathlib.Path(__file__).resolve().parents[1]
+    ep_dir = root / "meta" / "episodes"
+    if not ep_dir.exists():
+        return
+    entries = set(find_entries((root / "EXPERIMENTS.md").read_text(encoding="utf-8")))
+
+    problems: list[str] = []
+    for ep_path in sorted(ep_dir.glob("exp*.json")):
+        data = json.loads(ep_path.read_text(encoding="utf-8"))
+        n = data.get("exp")
+        if n not in entries:
+            problems.append(f"{ep_path.name}: exp {n} absent from EXPERIMENTS.md (orphaned)")
+            continue
+        script_path = (data.get("artifacts") or {}).get("script_path")
+        if script_path and not (root / script_path).exists():
+            problems.append(
+                f"{ep_path.name}: script_path {script_path!r} missing (stale -- "
+                "re-run `python -m meta_monkey.collect_iteration --exp N --write`)"
+            )
+
+    assert not problems, "stale/orphaned committed meta episodes:\n" + "\n".join(problems)

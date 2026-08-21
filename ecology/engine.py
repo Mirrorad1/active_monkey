@@ -210,6 +210,49 @@ class EcologyConfig:
     freeze_learning_rate: bool = False
 
     # ------------------------------------------------------------------
+    # Exp 276a: LEARNABLE-USE (theta) — band_responsiveness becomes a HERITABLE genotype
+    # trait (Genotype.band_responsiveness) instead of a fixed CONFIG scalar.  OFF by default;
+    # OFF (enable_learnable_use=False) is byte-identical to Exp 194-275:
+    #   - mutate() is called WITHOUT mutate_theta (no rng draw for band_responsiveness);
+    #   - creature.py reads the CONFIG world.band_responsiveness (not the genotype value);
+    #   - no theta upkeep is charged.
+    # When True:
+    #   - each child mutates band_responsiveness (mutate_theta=True);
+    #   - creature.py reads creature.genotype.band_responsiveness (per-individual theta);
+    #   - an L30 per-step upkeep = theta_upkeep_floor + theta_cost_slope * band_responsiveness
+    #     is charged (mirrors the memory_upkeep_floor / memory_cost_slope pattern).
+    # Both cost params default 0.0 ⇒ zero cost even when ON (the mechanism is still live via
+    # the heritable-theta percept channel; a nonzero slope makes the cost bite).
+    # ANTI-CHEAT: theta is NEVER a direct reward; it keys ONLY the band-tracker EMA rate and
+    # the upkeep — food intake falls out of the unchanged consume() depletion race.
+    # ------------------------------------------------------------------
+    enable_learnable_use: bool = False
+    theta_upkeep_floor: float = 0.0
+    theta_cost_slope: float = 0.0
+
+    # ------------------------------------------------------------------
+    # Exp 277: WITHIN-LIFE theta learner (Baldwin gradient).  A creature keeps its
+    # INNATE theta (heritable genotype.band_responsiveness) AND a per-life REALIZED
+    # theta that it LEARNS within its lifetime by a 1-D stochastic hill-climb starting
+    # from the innate prior.  OFF by default; OFF (enable_theta_learning=False) is
+    # byte-identical to Exp 276 (the tracker reads the innate theta when
+    # enable_learnable_use is on, or the CONFIG scalar otherwise — no within-life update,
+    # no extra rng draw).  When True:
+    #   - creature.py runs a per-life hill-climb (realized_theta) inside the gated ON
+    #     branch and the tracker EMA rate reads realized_theta;
+    #   - the L30 upkeep is charged on the REALIZED theta (the rate actually USED);
+    #   - NON-LAMARCKIAN: realized_theta is per-life ONLY; offspring inherit the mutated
+    #     INNATE band_responsiveness, never the parent's learned realized_theta.
+    # theta_learn_period : steps between hill-climb updates (window length).
+    # theta_learn_step   : ± perturbation magnitude of realized_theta per update.
+    # theta_learn_cost   : optional tiny per-perturbation learning cost (default 0 = off).
+    # ------------------------------------------------------------------
+    enable_theta_learning: bool = False
+    theta_learn_period: int = 20
+    theta_learn_step: float = 0.1
+    theta_learn_cost: float = 0.0
+
+    # ------------------------------------------------------------------
     # Exp 202: interference-competition / frequency-dependence escape.
     # ALL defaults preserve Exp 194-201 byte-identical behaviour.
     #
@@ -667,6 +710,10 @@ class Ecology:
             food_concentration=cfg.food_concentration,
             enable_band_staleness=cfg.enable_band_staleness,
             band_responsiveness=cfg.band_responsiveness,
+            enable_learnable_use=cfg.enable_learnable_use,
+            enable_theta_learning=cfg.enable_theta_learning,
+            theta_learn_period=cfg.theta_learn_period,
+            theta_learn_step=cfg.theta_learn_step,
             enable_hidden_mode=cfg.enable_hidden_mode,
             mode_switch_prob=cfg.mode_switch_prob,
             cue_noise=cfg.cue_noise,
@@ -1129,6 +1176,31 @@ class Ecology:
         if cfg.enable_hidden_mode and g.belief_persistence > 0.0:
             ph.energy -= cfg.memory_upkeep_floor + cfg.memory_cost_slope * g.belief_persistence
 
+        # Exp 276a/277: theta (learnable-use) upkeep — cost of USING the sensor well.
+        # Mirrors the memory upkeep exactly (floor + slope * theta).  OFF when
+        # enable_learnable_use=False ⇒ byte-identical.  Both floor=0 and slope=0 (defaults)
+        # ⇒ zero cost even when ON.  ANTI-CHEAT: charged on the theta value, never on intake.
+        #   Exp 277: when enable_theta_learning is on, the creature pays for the REALIZED
+        #   theta it actually USES (the learned per-life value), not the innate prior; before
+        #   the first hill-climb update realized_theta==innate so it degrades gracefully.
+        if cfg.enable_learnable_use:
+            theta_charged = g.band_responsiveness
+            if cfg.enable_theta_learning and c.policy is not None:
+                rt = getattr(c.policy, "realized_theta", None)
+                if rt is not None:
+                    theta_charged = rt
+            ph.energy -= cfg.theta_upkeep_floor + cfg.theta_cost_slope * theta_charged
+            # Exp 277: optional tiny per-perturbation learning cost (default 0 = off).
+            # Charged once each step the hill-climb opened a NEW trial (a perturbation).
+            if (cfg.enable_theta_learning and cfg.theta_learn_cost != 0.0
+                    and c.policy is not None
+                    and getattr(c.policy, "_theta_perturbed_this_step", False)):
+                ph.energy -= cfg.theta_learn_cost
+        # Clear the per-step perturbation flag (set by the policy's hill-climb) so it does
+        # not leak into the next step's charge.  Guard: only when learning is on.
+        if cfg.enable_theta_learning and c.policy is not None:
+            c.policy._theta_perturbed_this_step = False
+
         # Phase 4: active-sensing probe cost — charged when the creature probed this step.
         # OFF (enable_active_sensing=False) ⇒ probed_this_step never True ⇒ byte-identical.
         if cfg.enable_active_sensing and getattr(c.policy, "probed_this_step", False):
@@ -1295,7 +1367,8 @@ class Ecology:
                                         mutate_memory=cfg.enable_hidden_mode,
                                         mutate_active_sensing=cfg.enable_active_sensing,
                                         mutate_locomotion=cfg.enable_terrain,
-                                        mutate_continuous_locomotion=_mut_speed)
+                                        mutate_continuous_locomotion=_mut_speed,
+                                        mutate_theta=cfg.enable_learnable_use)
                     child_ph = Phenotype(energy=transfer, age=0, pos=child_pos, birth_t=self.t)
                     # Exp 238: set continuous pos for child near parent when ON.
                     if cfg.enable_continuous_locomotion and ph.pos_cont is not None:
@@ -1368,7 +1441,8 @@ class Ecology:
                                          mutate_memory=cfg.enable_hidden_mode,
                                          mutate_active_sensing=cfg.enable_active_sensing,
                                          mutate_locomotion=cfg.enable_terrain,
-                                         mutate_continuous_locomotion=_dpb_mut_speed)
+                                         mutate_continuous_locomotion=_dpb_mut_speed,
+                                         mutate_theta=cfg.enable_learnable_use)
                 _dpb_child_ph = Phenotype(
                     energy=g.energy_capacity * 0.5,  # modest baseline; NOT from parent or resource
                     age=0,

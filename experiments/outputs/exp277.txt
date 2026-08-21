@@ -1,0 +1,40 @@
+====================================================================================
+EXP 277 — WITHIN-LIFE theta learning: Baldwin assimilation of the WALLED innate prior?
+====================================================================================
+RUNTIME PRE-FLIGHT: safe=True workers->8 proj~0.1 min  flags=[]
+
+--- STEP A: Baldwin-gradient PRECONDITION (lifetime fitness vs INNATE prior, learn ON, cost_slope=0.072) ---
+  If a GOOD prior yields HIGHER lifetime fitness than a BAD one DESPITE learning, the
+  Baldwin gradient EXISTS.  If learning ERASES the prior gap (all ~equal), that is
+  SHIELDING-BY-CONSTRUCTION (no assimilation possible) — reported, not run on faith.
+  innate_prior= 0.1: mean_offspring=0.9389  mean_eaten=19.375  per_seed_off=[0.934, 0.943, 0.939, 0.939, 0.939, 0.938, 0.941, 0.938]
+  innate_prior=0.25: mean_offspring=0.9448  mean_eaten=19.748  per_seed_off=[0.948, 0.945, 0.949, 0.941, 0.94, 0.942, 0.947, 0.947]
+  innate_prior= 0.5: mean_offspring=0.9418  mean_eaten=20.246  per_seed_off=[0.935, 0.94, 0.942, 0.947, 0.943, 0.946, 0.939, 0.943]
+  innate_prior= 0.8: mean_offspring=0.9382  mean_eaten=20.352  per_seed_off=[0.93, 0.938, 0.934, 0.937, 0.938, 0.943, 0.944, 0.942]
+
+  [STEP A] best_prior=0.25 (off=0.9448)  worst_prior=0.8 (off=0.9382)  Baldwin fitness gap=0.0066 (0.7% of best)
+  [STEP A] gap>0 (a good prior beats a bad one DESPITE learning) = True — if ~0, learning SHIELDS the prior by construction (no gradient for Step B).
+
+--- STEP B: ASSIMILATION over generations (founder innate theta=0.1, mutation ON, horizon=1500, 8 seeds/arm) ---
+  ARM learn-OFF   = byte-reproduces the Exp 276 wall (innate theta should stay low).
+  ARM learn-ON    = assimilation arm (does newborn/gene-pool INNATE theta climb?).
+  ARM CLAMPED     = learn-ON + freeze_learning_rate (map free-ride removed).
+  seed=320: OFF innate=0.1860 real=nan (n_new=3218,alive=928) | ON innate=0.1068 real=0.1591 (n_new=2799,alive=917) | CLAMP innate=0.2080 real=0.2135 (n_new=3531,alive=967)
+  seed=321: OFF innate=0.1919 real=nan (n_new=3424,alive=987) | ON innate=0.2739 real=0.2609 (n_new=2831,alive=830) | CLAMP innate=0.1682 real=0.2067 (n_new=2912,alive=903)
+  seed=322: OFF innate=0.2199 real=nan (n_new=3085,alive=919) | ON innate=0.1756 real=0.1900 (n_new=3536,alive=912) | CLAMP innate=0.1253 real=0.1583 (n_new=3132,alive=998)
+  seed=323: OFF innate=0.2367 real=nan (n_new=2814,alive=891) | ON innate=0.2608 real=0.2363 (n_new=3708,alive=904) | CLAMP innate=0.1432 real=0.1746 (n_new=3188,alive=997)
+  seed=324: OFF innate=0.2269 real=nan (n_new=3436,alive=972) | ON innate=0.1715 real=0.1955 (n_new=2382,alive=810) | CLAMP innate=0.1876 real=0.2093 (n_new=2799,alive=805)
+  seed=325: OFF innate=0.1904 real=nan (n_new=3274,alive=1070) | ON innate=0.0838 real=0.1464 (n_new=3415,alive=1063) | CLAMP innate=0.0577 real=0.1275 (n_new=3256,alive=1112)
+  seed=326: OFF innate=0.2022 real=nan (n_new=2980,alive=933) | ON innate=0.1438 real=0.1806 (n_new=3599,alive=1073) | CLAMP innate=0.0862 real=0.1432 (n_new=3301,alive=1089)
+  seed=327: OFF innate=0.2413 real=nan (n_new=3110,alive=988) | ON innate=0.1284 real=0.1433 (n_new=3893,alive=1029) | CLAMP innate=0.2271 real=0.2262 (n_new=3011,alive=987)
+
+  [ARM OFF ]  newborn INNATE theta: mean=0.2119 sd=0.0206  | adult REALIZED: mean=nan sd=nan  (n=8)
+  [ARM ON  ]  newborn INNATE theta: mean=0.1681 sd=0.0641  | adult REALIZED: mean=0.1890 sd=0.0392  (n=8)
+  [ARM CLAMP] newborn INNATE theta: mean=0.1504 sd=0.0551  | adult REALIZED: mean=0.1824 sd=0.0343  (n=8)
+
+  [DISPERSION] per-seed (ON_innate - OFF_innate): mean=-0.0439 sd=0.0620  per_seed=[-0.0792, 0.082, -0.0443, 0.0241, -0.0554, -0.1066, -0.0584, -0.1129]
+  [DISPERSION] sd>>|mean|? False (if True the 'climb' may be a mean-of-opposites — check the per-seed split).
+
+[CLAIM] STALL (innate stays low, ON approx OFF)
+[NOTE] the CONTROLLER applies the 4-branch verdict conjunct-by-conjunct on the RAW per-seed numbers (check dispersion first).  This script does NOT decide the branch.
+[CAVEAT] cost-on; one theta parameterization (tracker EMA rate); one hill-climb (period=20/step=0.10); the wall is posed only in the resource-RICH weak-competition regime; NON-LAMARCKIAN by construction (children inherit mutated INNATE theta).

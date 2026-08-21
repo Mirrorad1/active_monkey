@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp270.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp270_ecological_affordance_gate.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0/16\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0/9\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0367/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0706/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0707/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1046/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1083/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1161/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"176/192\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"20/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"200/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2032/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"249/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2532/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"2900/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3077/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3637/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"4060/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5682/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6147/0\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"8/8\" quoted in entry not found in experiments/outputs/exp270.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-26T07:45:14Z",
+  "commit_sha": "619858ae82dfe3f4eecbe5a759da6debe16284b7",
+  "entry": {
+    "claimed_verdict": "MIXED",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "unknown"
+  },
+  "exp": 270,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

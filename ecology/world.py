@@ -82,6 +82,18 @@ class GridWorld:
     band_responsiveness: float = 1.0
     food_optimal_base: float = 0.5
 
+    # Exp 276a: learnable-use (theta) gate.  When True, creature.py reads its OWN
+    # genotype.band_responsiveness as the tracker EMA rate instead of the CONFIG scalar
+    # band_responsiveness above.  Default False ⇒ byte-identical to Exp 194-275.
+    enable_learnable_use: bool = False
+
+    # Exp 277: within-life theta learner gate + hill-climb hyper-params.  When True,
+    # creature.py runs a per-life 1-D stochastic hill-climb on realized_theta and the
+    # tracker EMA rate reads realized_theta.  Default False ⇒ byte-identical to Exp 276.
+    enable_theta_learning: bool = False
+    theta_learn_period: int = 20
+    theta_learn_step: float = 0.1
+
     # Exp 204: residue / false-positive discrimination — the field where eaten food
     # leaves a misleading trace.  None (default) ⇒ the residue mechanic is OFF and the
     # engine's eat step is byte-identical to exp194-203.  When enable_residue is True the
@@ -476,6 +488,12 @@ class GridWorld:
         # Exp 201: band-staleness parameters — all default to OFF (no-op).
         enable_band_staleness: bool = False,
         band_responsiveness: float = 1.0,
+        # Exp 276a: learnable-use (theta) gate — default OFF (byte-identical no-op).
+        enable_learnable_use: bool = False,
+        # Exp 277: within-life theta learner — default OFF (byte-identical no-op).
+        enable_theta_learning: bool = False,
+        theta_learn_period: int = 20,
+        theta_learn_step: float = 0.1,
         # Exp hidden-state-mode parameters — all default to OFF (no-op).
         enable_hidden_mode: bool = False,
         mode_switch_prob: float = 0.02,
@@ -600,6 +618,10 @@ class GridWorld:
             # Exp 201 band-staleness fields — defaults are no-ops.
             enable_band_staleness=enable_band_staleness,
             band_responsiveness=band_responsiveness,
+            enable_learnable_use=enable_learnable_use,
+            enable_theta_learning=enable_theta_learning,
+            theta_learn_period=theta_learn_period,
+            theta_learn_step=theta_learn_step,
             food_optimal_base=food_optimal_base,  # stored for neutral tracker init
             # Exp hidden-state-mode fields — defaults are no-ops.
             enable_hidden_mode=enable_hidden_mode,

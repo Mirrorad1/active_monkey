@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp272.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp272_learnable_actuator.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.116\" quoted in entry not found in experiments/outputs/exp272.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.131\" quoted in entry not found in experiments/outputs/exp272.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-06-27T03:34:13Z",
+  "commit_sha": "bf8cab6364dc9940c6cb2cf0107cfc73fcf72a16",
+  "entry": {
+    "claimed_verdict": null,
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 272,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

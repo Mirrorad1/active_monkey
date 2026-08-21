@@ -940,6 +940,217 @@ LOCAL_GRADIENT_WALL_LOCOMOTION = BoundaryNote(
 )
 
 
+# ── identity-ecological-env-surface-v0 (CONSTRAINED) ─────────────────────────
+# The closing synthesis of the identity-ecological direction (Exp 270-274): defend
+# functional identity by ACTING on your own input stream (move out of what overwrites you),
+# the unoccupied pole opposite the closed N4 internal-gating arc. POSABLE + model-based
+# LEARNABLE + SCALES; bounded by a model-free convergence wall and regime-incompatibility
+# with internal gating (see boundary note). "Identity" = value-vector ordering, functional.
+IDENTITY_ECOLOGICAL_ENV_SURFACE = MechanismCard(
+    mechanism_id="identity-ecological-env-surface-v0",
+    mechanism_type="environmental-identity-control",
+    claim=(
+        "An agent can defend its functional identity (value-vector ordering on a 3-color "
+        "simplex) by ACTING on its own input stream — retreating through space away from cells "
+        "that overwrite it — rather than by gating internal value updates (the closed N4 pole). "
+        "On mirro's real aliased 5x5 body a CERTIFIED-OPTIMAL refuge policy escapes a soft "
+        "(resistible) attack at low-moderate pull (attack-color diet ~0.20 vs ~0.61-0.83 "
+        "passive; gaps 0.41/0.36/0.63 at alpha=0.5, all 3 colors). The surface is LEARNABLE "
+        "observation-only by a MODEL-BASED learner that maps its world in PEACETIME (free, "
+        "no-pull exploration) then plans the refuge (closure ~1.0, coverage 1.0), and it SCALES "
+        "to >=400 cells with a free-exploration budget ~ the random-walk cover time "
+        "(~16-32x cells; budget-proportional). Functional stream-regulation, not selfhood."
+    ),
+    status="constrained",
+    source_experiments=[270, 271, 272, 273, 274],
+    works_when=[
+        "the attack is SOFT and resistible (a pull, not teleport-and-clamp) at low-moderate "
+        "strength (pull alpha <~0.6-0.7) — there is a connected refuge to retreat into "
+        "(home-range 9-16 cells, a genuine refuge not a 1-cell huddle)",
+        "the learner is MODEL-BASED and may map its world by FREE/peacetime (no-pull) "
+        "exploration before/around the attack (model-based-on-true-map closure ~1.0 proves the "
+        "planner is correct; the only gap is map acquisition)",
+        "the free-exploration budget scales ~ the random-walk cover time (closure clears 0.80 "
+        "by the ~16x-cells knee; survival at ~32x cells holds to >=400 cells, 8/8)",
+        "the avoider is CERTIFIED-OPTIMAL (policy iteration to a Bellman-residual certificate) "
+        "— a myopic greedy avoider manufactures a false negative on scattered colors (L44)",
+    ],
+    fails_when=[
+        "the attack is STRONG/inescapable (pull alpha >~0.8) — a changed world that cannot be "
+        "fled (ESCAPE collapses to gaps 0.07/0.07/0.20); revision is correctly forced (rung1)",
+        "the world can only be mapped UNDER the attack — the pull biases exploration away from "
+        "the refuge, coverage-capping the plan (coverage 0.874, refuge cells visited 0x; L46)",
+        "the learner is MODEL-FREE (tabular Q): even with FULL state coverage (exploring starts, "
+        "covR=1.00) and 4x budget the trap color stays unlearned (closure -0.280 -> -0.027, "
+        "0/8) — the wall is TD-CONVERGENCE under the discounted (gamma=0.999) pull kernel + the "
+        "absorbing HOLD-on-attack trap, NOT coverage (Exp 274, L48)",
+        "staged HEAD-TO-HEAD against internal freeze-gating: ILL-POSED — the freeze surface "
+        "needs hard captivity, the movement surface needs a soft attack; mutually exclusive "
+        "regimes (rung2 CAN'T-POSE, L45; see boundary note)",
+    ],
+    required_conditions=[
+        "a spatial body whose policy can move one cell/step relative to colored territory",
+        "an N4 mismatch trigger (provided FORM; identity-n4-monitor-v0) gating the avoid action; "
+        "value content and every move self-formed",
+        "the attack TARGET color is given (not inferred)",
+    ],
+    reusable_interface=(
+        "experiments/exp270_ecological_affordance_gate.py (soft pull + certified-optimal policy "
+        "iteration avoider) ; experiments/exp272_learnable_actuator.py (model-based/model-free "
+        "learners) ; experiments/exp273_learnability_scaling.py (tiled worlds + budget sweep)"
+    ),
+    inputs=[
+        "the creature's colored neighborhood / position on its world graph",
+        "the soft-pull attack schedule (target color given)",
+    ],
+    outputs=["avoid / re-occupy moves that lower the attack-color stream fraction"],
+    state_requirements=[
+        "a learned world-map (color per cell) for the model-based planner",
+        "the value-vector trajectory feeding the N4 mismatch trigger",
+    ],
+    costs=[
+        "free-exploration cost ~ the random-walk cover time (~16-32x cells) to map the world",
+    ],
+    metrics=[
+        "closure = (f_passive - f_learned) / (f_passive - f_optimal)",
+        "attack-color diet (stream) fraction",
+        "map coverage (fraction of cells mapped)",
+        "ESCAPE = passive - avoid attack-color gap",
+    ],
+    falsifiers=[
+        "if the certified-optimal avoider could NOT beat passive at low pull -> not posable "
+        "(it does: gaps 0.41/0.36/0.63, 20/20)",
+        "if model-based-on-true-map were sub-optimal -> the gap is planning not acquisition "
+        "(it is ~1.0 -> the gap is map acquisition, gated by the exploration regime)",
+        "if exploring-starts (full coverage) REPAIRED the model-free learner -> coverage was "
+        "the model-free lever (it did NOT: -0.280 at covR=1.00 -> convergence is the wall)",
+    ],
+    known_confounds=[
+        "the avoid FORM + trigger + attack target are provided; value content, mismatches, and "
+        "moves are self-formed",
+        "'identity' = value-vector ordering (functional policy-continuity), not selfhood",
+        "the 25-cell base substrate makes free coverage trivial — scaling tested to 400 cells "
+        "with a FIRED artifact gate (fixed-budget coverage 0.811<0.90 at 900 cells; L47)",
+        "an affordance probe is degenerate WITHOUT the resisted pressure (a gifted avoider "
+        "huddles to a trivial bound) — the soft attack is the discipline (L43)",
+    ],
+    next_compositions=[
+        "trigger composition: already gated by identity-n4-monitor-v0 (its FORM)",
+        "open-box move-graph WALLS/corridors edge — the untested structural exploration "
+        "bottleneck (the only falsifier of model-BASED learnability)",
+        "convergence-oriented model-free repair (eligibility traces / lower gamma / Dyna)",
+    ],
+)
+
+
+# ── identity-ecological-boundaries-v0 (the two closing boundaries) ────────────
+IDENTITY_ECOLOGICAL_BOUNDARIES = BoundaryNote(
+    boundary_id="identity-ecological-boundaries-v0",
+    source_experiments=[271, 274],
+    failed_mechanism=(
+        "the environmental identity-control surface (identity-ecological-env-surface-v0) as "
+        "(a) a HEAD-TO-HEAD competitor to internal freeze-gating, and (b) a MODEL-FREE-learnable "
+        "defense"
+    ),
+    observed_failure=(
+        "Two distinct boundaries close the direction. (1) RUNG-2 CAN'T-POSE (Exp 271, "
+        "equivalence-gate faithful): the kill test 'movement beats the internal freeze "
+        "constants where they fail' is ILL-POSED — the N4 freeze-vs-revise crack is a "
+        "HARD-CAPTIVITY phenomenon (freezing only defends when force-fed with no escape), but a "
+        "movement defense needs a SOFT attack; the soft pull that creates a real deficit "
+        "(baseline 8/8 fail) DISSOLVES the freeze surface (best fixed-H defense 0/8 at every "
+        "passive-displacing alpha 0.50-0.70). POSABLE band empty in all 6 cells "
+        "(4 CAN'T-POSE + 2 PRECONDITION-FAIL); the two surfaces are regime-incompatible (L45). "
+        "(2) RUNG-1c-MF CONVERGENCE WALL (Exp 274): the model-FREE learner is not repaired by "
+        "exploring starts — with FULL state coverage (covL=covR=1.00) the trap color stays "
+        "unlearned (closure -0.280, 0/8) and 4x budget does not lift it (-0.027), while the "
+        "MODEL-BASED learner reaches optimal (~1.0) on the same cells. Coverage is the "
+        "model-based lever but NOT the model-free one; the model-free wall is TD-convergence "
+        "under the discounted (gamma=0.999) pull kernel + the absorbing HOLD-on-attack trap (L48)."
+    ),
+    tested_conditions=[
+        "soft pull alpha 0.50-0.90 (escapability boundary ~0.6-0.7); 2 crack cells x 3 colors "
+        "x 8 seeds (rung2)",
+        "exploring-starts + lr-fix tabular Q, budget 50k and 200k (4x), 8 seeds, fixed eval "
+        "start pos=0 (rung1c-MF)",
+    ],
+    excluded_confounds=[
+        "rung2 equivalence gate PASS: the soft-attack port reproduces the committed crack at "
+        "alpha=1 (faithful port, not a coding artifact)",
+        "rung1c-MF: MF-baseline reproduces the Exp-272 trap (closure<0) AND MB-free reaches "
+        "~1.0 on the same cells -> the target is reachable; the failure is "
+        "model-free-method-specific, not a degenerate substrate",
+        "per-color / per-seed adjudication (mean-of-opposites guard)",
+    ],
+    implication=(
+        "The environmental identity surface is real and useful in its OWN regime (soft "
+        "escapable attack, model-based learner) — but it is NOT a rival to internal "
+        "value-gating (they solve opposite worlds: hard/inescapable vs soft/escapable) and it "
+        "is NOT model-free-learnable within tractable tabular RL here. The direction closes "
+        "with a complete tiered verdict: POSABLE -> CAN'T-POSE (kill test) -> LEARNABLE "
+        "(model-based) -> SCALES -> MODEL-FREE CONVERGENCE WALL. This is the verdict at THIS "
+        "body/richness, NOT a universal impossibility."
+    ),
+    next_safe_region_to_test=(
+        "the open-box move-graph WALLS/corridors edge (a structural exploration bottleneck — "
+        "the only untested falsifier of model-BASED learnability); and convergence-oriented "
+        "model-free repairs (eligibility traces / lower gamma / Dyna) — each re-opens only on a "
+        "human word"
+    ),
+)
+
+
+# ── identity-ecological-escapability-v0 (geometry) ───────────────────────────
+IDENTITY_ECOLOGICAL_ESCAPABILITY_GEOM = GeometryMap(
+    geometry_id="identity-ecological-escapability-v0",
+    source_experiments=[270, 272, 273, 274],
+    mechanism_id="identity-ecological-env-surface-v0",
+    swept_parameters={
+        "pull_alpha": [0.0, 0.25, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        "world_size_cells": [25, 100, 225, 400, 900],
+        "exploration_budget_x_cells": [1, 8, 16, 32],
+        "learner": ["model-based-free", "model-based-on-pull", "model-free-Q"],
+    },
+    fixed_parameters={
+        "body": "mirro real aliased 5x5 (tiled for scaling)",
+        "discount_gamma": 0.999,
+        "seeds": "8-20",
+    },
+    metrics=["closure", "attack-color diet fraction", "map coverage", "ESCAPE gap"],
+    outcome_regions=[
+        "pull alpha <~0.6: escapable (optimal avoider beats passive; model-based-free ~optimal)",
+        "pull alpha >~0.8: inescapable (ESCAPE collapses; revision forced)",
+        "budget >=16x cells: closure clears 0.80 (cover-time knee); model-free: never clears the "
+        "trap color at any tested coverage/budget",
+    ],
+    thresholds={
+        "escapability_pull_alpha": "~0.6-0.7",
+        "cover_time_knee_x_cells": "~16",
+        "survival_budget_x_cells": "~32",
+        "closure_bar": "0.80",
+    },
+    positive_regions=[
+        "alpha=0.5, model-based-free: closure ~1.0, coverage 1.0, all 3 colors, to >=400 cells",
+        "budget 16-32x cells: closure 0.92-1.03 at 225 cells (closure tracks coverage)",
+    ],
+    negative_regions=[
+        "alpha>=0.8: gaps 0.07/0.07/0.20 (inescapable)",
+        "map-under-attack: coverage-capped 0.874 on trap geometry",
+        "model-free at covR=1.00: trap color closure -0.280 (0/8); 4x budget -0.027 (convergence "
+        "wall, not coverage)",
+    ],
+    confounds_excluded=[
+        "myopic greedy avoider false negative excluded by certified-optimal policy iteration (L44)",
+        "artifact gate fired (fixed-budget coverage 0.811<0.90 at 900 cells) — left the trivial "
+        "small-world regime (L47)",
+    ],
+    next_experiment_suggestions=[
+        "move-graph walls / corridors (a structural exploration block — the model-based falsifier)",
+        "convergence-oriented model-free repair (traces / lower gamma / Dyna)",
+    ],
+)
+
+
 SEEDS = [
     ("mechanisms/functional-valence-dyad-v0/mechanism_card.json", FUNCTIONAL_VALENCE_DYAD),
     ("mechanisms/functional-valence-dyad-v0/adapters.json", DYAD_TO_ACTIVE_SENSING_ADAPTER),
@@ -961,6 +1172,9 @@ SEEDS = [
     ("boundary_notes/self-other-substrate-legibility-wall-v0.json", SELF_OTHER_LEGIBILITY_WALL),
     ("mechanisms/perception-enabled-locomotion-v0/mechanism_card.json", PERCEPTION_ENABLED_LOCOMOTION),
     ("boundary_notes/local-gradient-wall-locomotion-v0.json", LOCAL_GRADIENT_WALL_LOCOMOTION),
+    ("mechanisms/identity-ecological-env-surface-v0/mechanism_card.json", IDENTITY_ECOLOGICAL_ENV_SURFACE),
+    ("boundary_notes/identity-ecological-boundaries-v0.json", IDENTITY_ECOLOGICAL_BOUNDARIES),
+    ("geometry_maps/identity-ecological-escapability-v0.json", IDENTITY_ECOLOGICAL_ESCAPABILITY_GEOM),
 ]
 
 

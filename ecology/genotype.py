@@ -43,6 +43,9 @@ TRAIT_BOUNDS: dict[str, tuple[float, float]] = {
     "climb_ability":                    (0.0,  1.0),
     # Exp 238: continuous locomotion speed — LAST, WITH DEFAULT (regression-safe).
     "locomotor_speed":                  (0.25, 4.0),
+    # Exp 276a: heritable band-responsiveness (theta) — how well the creature USES the
+    # sensor to track the drifting food band.  LAST, WITH DEFAULT (regression-safe).
+    "band_responsiveness":              (0.0,  1.0),
 }
 
 INT_TRAITS: frozenset[str] = frozenset({"maturity_age", "memory_length", "memory_horizon"})
@@ -61,6 +64,9 @@ LOCOMOTION_TRAITS: frozenset[str] = frozenset({"climb_ability"})
 
 # Exp 238: continuous locomotion speed trait — skip rng draw when OFF (regression guard).
 LOCOMOTION_CONTINUOUS_TRAITS: frozenset[str] = frozenset({"locomotor_speed"})
+
+# Exp 276a: learnable-use (theta) trait — skip rng draw when OFF (regression guard).
+THETA_TRAITS: frozenset[str] = frozenset({"band_responsiveness"})
 
 
 def clamp_traits(d: dict[str, Any]) -> dict[str, Any]:
@@ -126,6 +132,12 @@ class Genotype:
     # Exp 238: continuous locomotion speed — LAST, WITH DEFAULT (regression-safe).
     # Default 1.0 = midpoint of [0.25, 4.0]; founders start at a neutral speed.
     locomotor_speed: float = 1.0
+    # Exp 276a: heritable "learnable use" trait (theta) — how well the creature USES the
+    # sensor to track the drifting food band (the Exp 201 tracker EMA rate).  Last NUMERIC
+    # field, WITH DEFAULT 1.0 (== the old CONFIG band_responsiveness default, so all existing
+    # constructions are byte-identical).  Mutated only under mutate_theta (skip-guard below).
+    # Placed BEFORE role so the sole non-numeric field `role` stays LAST (test_predation guard).
+    band_responsiveness: float = 1.0
     # Exp 248: predator-prey role — LAST field, default 'prey', NEVER mutated (copied verbatim),
     # NOT in TRAIT_BOUNDS, NOT emitted in _event() → byte-identical OFF.
     role: str = "prey"
@@ -157,6 +169,7 @@ def mutate(
     mutate_locomotion: bool = False,
     mutate_continuous_locomotion: bool = False,
     mutate_predator_speed: bool = False,
+    mutate_theta: bool = False,
 ) -> Genotype:
     """Return a new Genotype with each trait independently perturbed by
     N(0, rate*(hi-lo)) and clamped into valid range.  Deterministic given rng.
@@ -245,8 +258,15 @@ def mutate(
             new_d[k] = v
             continue
         # Exp 248: role is a non-numeric field — NEVER mutated, copied verbatim.
-        # role is LAST in field order so this never shifts any upstream rng draw.
+        # role is near-LAST in field order so this never shifts any upstream rng draw.
         if k == "role":
+            new_d[k] = v
+            continue
+        # Exp 276a: theta (band_responsiveness) — skip rng draw when mutation is disabled,
+        # mirroring the family skip-guards above.  band_responsiveness is the LAST field in
+        # field order so skipping its draw leaves the rng stream for all upstream traits
+        # byte-identical.  Default False ⇒ byte-identical to Exp 194-275.
+        if k in THETA_TRAITS and not mutate_theta:
             new_d[k] = v
             continue
         lo, hi = TRAIT_BOUNDS[k]
@@ -333,6 +353,9 @@ def founder() -> Genotype:
         "climb_ability": 0.05,
         # Exp 238: neutral starting speed; must evolve under enable_continuous_locomotion.
         "locomotor_speed": 1.0,
+        # Exp 276a: theta at 1.0 (== the old CONFIG band_responsiveness default) so the
+        # founder is byte-identical; evolves only under enable_learnable_use (mutate_theta).
+        "band_responsiveness": 1.0,
     }
     clamped = clamp_traits(d)
     g = Genotype(**clamped)

@@ -492,6 +492,78 @@ step 0.
   no acoustic refuge to flee to; fleeing only crowds prey. Clean asymmetry: gifted PREDATOR hearing DOES
   raise capture success (0.630 vs 0.579). Information present, advantage absent — the local-gradient
   wall's acoustic face. Do NOT run hearing evolution yet. Card: `loop/directions/acoustic-ecology.md`.
+- **The identity-ecological direction (Exp 270–274, /lab "identity", persona skeptic; on branch
+  `identity-ecological` off origin/main — NB the prior sparse-llm research arc that briefly held
+  numbers 270–276 was removed from history per the human's decision, so these are the NEW 270/271):**
+  the lacuna opposite the closed N4 internal-gating pole — can a creature defend identity by ACTING
+  (leaving the stream that overwrites it) rather than by freezing memory? **Exp 270 (RUNG 1, MIXED /
+  NEW INSIGHT — gate CLEARED):** under a soft, resistible spatial attack (a pull toward the attack
+  color; no teleport) a CERTIFIED-OPTIMAL refuge planner escapes all 3 colors at low-moderate pull
+  (gaps 0.41/0.36/0.63, home-range 9–16 = genuine refuge) and is overwhelmed at high pull (revision
+  stays forced) on mirro's real aliased body → the environmental surface is POSABLE (optimal-planner
+  upper bound; learnability is a later rung). A myopic avoider manufactures a false negative (L44).
+  **Exp 271 (RUNG 2, NEGATIVE / NEW INSIGHT — CAN'T-POSE):** the kill test (movement vs the internal
+  freeze-constants in the crack cells) is ILL-POSED — the freeze-vs-revise crack is a HARD-captivity
+  phenomenon, but movement needs a SOFT attack, and the soft pull that creates a real deficit
+  (baseline 8/8 fail) DISSOLVES the freeze surface (best fixed-H defense 0/8), so no defendable
+  internal peer exists for movement to beat (POSABLE band empty in all 6 cells; alpha=1 equivalence
+  gate PASS = faithful port → trustworthy boundary). The two surfaces are regime-incompatible (L45).
+  **Exp 272 (RUNG 1c, POSITIVE/LEARNABLE):** the surface is learnable observation-only — a MODEL-BASED
+  learner that maps its world via FREE/peacetime exploration then plans the refuge matches the optimal
+  (closure ~1.0, coverage 1.0); learning the map only under the attack is coverage-capped on trap
+  geometry, and naive model-free Q is trapped. Learnability is gated by the EXPLORATION REGIME, not the
+  attack (L46; isolated by MB-on-true-map ~1.0). **Exp 273 (RUNG 1c-SCALE, POSITIVE/SCALES):** that
+  learnability is BUDGET-PROPORTIONAL, not a 25-cell artifact — on tiled worlds to N=400 a free budget
+  ~32x N_cells restores optimal escape at every size; artifact gate fired (fixed-budget coverage 0.811
+  <0.90 at N=900); clean coverage→closure coupling, cover-time knee ~16x N_cells (L47). **Exp 274 (RUNG
+  1c-MF, NEGATIVE / NEW INSIGHT — UNREPAIRED-CONVERGENCE):** the (c) "repair model-free" attempt FAILS —
+  EXPLORING STARTS give full state coverage (covL=covR=1.0) yet the trap color stays unlearned (MF-restart
+  closure −0.280, 0/8), and 4× budget doesn't lift it (−0.027), while the MODEL-BASED learner reaches
+  optimal (~1.0) on the same cells. So model-based learnability is COVERAGE-gated but model-free is
+  CONVERGENCE-gated (TD can't credit the long escape under the γ=0.999 pull kernel + absorbing HOLD-on-attack
+  trap; L48) — coverage was not the lever. Scoped to vanilla-Q + exploring-starts + ≤4× budget (trace/
+  lower-γ repairs untested). Arc: POSABLE + CAN'T-POSE (kill test) + LEARNABLE + SCALES (model-based) +
+  MF-CONVERGENCE-WALL (model-free). DECISION POINT (on a word): accept + synthesis BoundaryNote / a
+  convergence-oriented model-free repair (traces/lower-γ/Dyna) / the open-box move-graph-walls edge /
+  redirect. **CLOSED (closed-positive, 2026-06-29):** the lacuna is filled with a real bounded
+  POSITIVE — an environmental identity surface that is POSABLE + model-based LEARNABLE + SCALES —
+  with two honest walls (kill-test vs internal gating CAN'T-POSE; model-free TD-convergence wall).
+  Synthesis distilled to `mechanisms/identity-ecological-env-surface-v0/` (MechanismCard,
+  status=constrained), `boundary_notes/identity-ecological-boundaries-v0.json`,
+  `geometry_maps/identity-ecological-escapability-v0.json` + an EXPERIMENTS.md synthesis section;
+  L43-L48. Re-opens only on a human word (move-graph-walls edge / convergence-oriented model-free
+  repair). Card: `loop/directions/identity-ecological.md`.
+- **The learning-guided-evolution direction (Exp 275–277, CLOSED-NEGATIVE, 2026-07-08):** the cross-arc
+  lacuna — the local-gradient wall is an EVOLUTION-only wall, and lifetime learning (the Baldwin effect)
+  is the classical untested escape; the program's learning half and evolution half had never shared a
+  substrate. **Exp 275 (POSABLE):** the sensor-USE axis theta (= band_responsiveness) is separably
+  load-bearing for band-tracking (occupancy ~2.0x sensor vs sensorless; map can't substitute) with a
+  behavioral bad→good range that gates survival (instrument lessons L50: occupancy-over-intake on an
+  unstable substrate; faithful vs argmax-scale-invariant proxy). **Exp 276 (MIXED, a SOFT wall):** theta
+  made heritable + L30-costed does NOT robustly invade from rarity (10/24) — a wall exists — but posable
+  only in a resource-RICH regime (the competitive regime CAN'T-POSE, the Exp 242-247 stability-vs-competition
+  boundary), and the wall leaks via a priority tail (L51: a reframe to escape a wall must first PROVE the
+  wall exists on the new axis + re-audit the cost). **Exp 277 (STALL/NEGATIVE):** a within-life theta
+  LEARNER (hill-climb from the heritable prior, non-Lamarckian) does NOT assimilate innate theta (learn-ON
+  newborn 0.168 ≤ learn-OFF 0.212; realized stays weak ~0.19; Step-A precondition ~0.7% fitness gap =
+  learning SHIELDS the prior; not substitution). The Baldwin escape FAILS: under a fair cost the net-fitness
+  landscape saturates to a shallow optimum near the founder, so there's barely a wall and learning creates
+  no gradient. Closing answer: the true limiter is again the SUBSTRATE (benefit saturation + demographic
+  instability), not the trait/mechanism. Built the program's FIRST substrate coupling lifetime learning
+  with population evolution (`enable_learnable_use` + `enable_theta_learning`, byte-identical OFF).
+  Re-opens only on a NAMED lever (sharper cost building a real wall+gradient; stronger optimizer;
+  a NON-SATURATING-benefit trait). Card: `loop/directions/learning-guided-evolution.md`.
+- **The emergent-communication direction (Exp 278, ACTIVE, 2026-08-19):** the most direct remaining
+  expression gap — can agents form a SHARED arbitrary signal↔meaning convention below the grammar ceiling?
+  **Exp 278 (POSABLE / POSITIVE-SINGLE, blind-verified)** clears the decisive task gate that killed both
+  prior social attempts: in a purpose-built eight-site moving-resource scout/forager game, literal trails
+  fail and the strongest history-only policy stays at its analytic ceiling (aggregate 0.1418), while a
+  gifted current-state oracle succeeds 1.0 and retains 0.95 shared/kin dyad payoff after a 0.05 signal cost;
+  the static-trail liveness control succeeds 1.0. All four predeclared gates pass on all eight fresh seeds.
+  This is NOT communication — the oracle mapping, finite channel capacity, and shared/kin incentive are
+  provided. It licenses Exp 279 Rung 2: initialize emit/receive mappings meaningless and require benefit
+  over no-signal + nonzero token↔private-state MI + collapse under receiver-side token relabeling. Card:
+  `loop/directions/emergent-communication.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

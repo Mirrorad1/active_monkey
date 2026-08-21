@@ -1,0 +1,36 @@
+==============================================================================
+Exp 272 — RUNG 1c: is the affordance LEARNABLE? (exploration-regime test)
+  alpha=0.5 N_SEEDS=20 BUDGET=50000  bars: closure>=0.8 cov>=0.95 in >=18/20
+==============================================================================
+EQUIVALENCE GATE (G_segreg color 0): f_optimal=0.1692 (want ~0.169) | MB-true closure=1.0088 (want >=0.97) | MB-on-pull closure=0.8782 (want in [0.80,0.93]) cov=0.874
+  EQUIVALENCE GATE: PASS (planner correct on true map; MB-on-pull gap is map-acquisition)
+
+------------------------------------------------------------------------------
+GEOMETRY: G_segreg
+  col     fp     fo |     MF |  MBpull  covP |  MBfree  covF |  MBtrue | verdict
+    0  0.784  0.169 | -0.193 |   0.878 0.874 |   1.009 1.000 |   1.009 | LEARNABLE-FREE/pull-capped (20/20)
+    1  0.771  0.202 |  0.843 |   0.972 0.868 |   1.008 1.000 |   1.008 | LEARNABLE-FREE/pull-capped (20/20)
+    2  0.788  0.201 |  0.802 |   1.003 0.966 |   1.003 1.000 |   1.003 | LEARNABLE-FREE/pull-ok (20/20)
+
+------------------------------------------------------------------------------
+GEOMETRY: G_mirro
+  col     fp     fo |     MF |  MBpull  covP |  MBfree  covF |  MBtrue | verdict
+    0  0.609  0.203 |  0.619 |   0.896 0.962 |   1.012 1.000 |   1.012 | LEARNABLE-FREE/pull-ok (20/20)
+    1  0.617  0.253 |  0.502 |   0.994 0.984 |   1.017 1.000 |   1.017 | LEARNABLE-FREE/pull-ok (20/20)
+    2  0.831  0.201 |  0.761 |   0.988 0.962 |   1.003 1.000 |   1.003 | LEARNABLE-FREE/pull-ok (20/20)
+
+==============================================================================
+FINAL PER-(geom,color) VERDICT VECTOR:
+  G_segreg c0: LEARNABLE-FREE (MBfree closure 1.009); on-pull CAPPED (MBpull 0.878)
+  G_segreg c1: LEARNABLE-FREE (MBfree closure 1.008); on-pull CAPPED (MBpull 0.972)
+  G_segreg c2: LEARNABLE-FREE (MBfree closure 1.003); on-pull ok (MBpull 1.003)
+  G_mirro c0: LEARNABLE-FREE (MBfree closure 1.012); on-pull ok (MBpull 0.896)
+  G_mirro c1: LEARNABLE-FREE (MBfree closure 1.017); on-pull ok (MBpull 0.994)
+  G_mirro c2: LEARNABLE-FREE (MBfree closure 1.003); on-pull ok (MBpull 0.988)
+
+STRUCTURAL CONCLUSION: learnability of the environmental surface is gated by the
+EXPLORATION REGIME, not the attack per se. Free/peacetime mapping -> learnable (plan
+the refuge); learning the map ONLY under the attack -> the pull denies the refuge
+knowledge on trap geometries (color 0). POSABLE always; LEARNABLE iff the agent can
+acquire its world model under exploration the attack does not bias.
+PRINTED_VERDICT: LEARNABLE-WITH-FREE-EXPLORATION (on-pull capped on trap geometry)
