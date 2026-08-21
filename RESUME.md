@@ -553,6 +553,17 @@ step 0.
   with population evolution (`enable_learnable_use` + `enable_theta_learning`, byte-identical OFF).
   Re-opens only on a NAMED lever (sharper cost building a real wall+gradient; stronger optimizer;
   a NON-SATURATING-benefit trait). Card: `loop/directions/learning-guided-evolution.md`.
+- **The emergent-communication direction (Exp 278, ACTIVE, 2026-08-19):** the most direct remaining
+  expression gap — can agents form a SHARED arbitrary signal↔meaning convention below the grammar ceiling?
+  **Exp 278 (POSABLE / POSITIVE-SINGLE, blind-verified)** clears the decisive task gate that killed both
+  prior social attempts: in a purpose-built eight-site moving-resource scout/forager game, literal trails
+  fail and the strongest history-only policy stays at its analytic ceiling (aggregate 0.1418), while a
+  gifted current-state oracle succeeds 1.0 and retains 0.95 shared/kin dyad payoff after a 0.05 signal cost;
+  the static-trail liveness control succeeds 1.0. All four predeclared gates pass on all eight fresh seeds.
+  This is NOT communication — the oracle mapping, finite channel capacity, and shared/kin incentive are
+  provided. It licenses Exp 279 Rung 2: initialize emit/receive mappings meaningless and require benefit
+  over no-signal + nonzero token↔private-state MI + collapse under receiver-side token relabeling. Card:
+  `loop/directions/emergent-communication.md`.
 
 ## 4. The two loops (IMPORTANT — don't confuse them)
 

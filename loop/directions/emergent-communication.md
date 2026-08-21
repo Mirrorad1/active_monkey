@@ -100,4 +100,13 @@ the emergent-convention finding with its shuffled-token + confound evidence, or 
 communication at this substrate because <stigmergy-solves-it / advantage-absent / no-convention>", and open
 the next substrate or stop.
 
-**STATUS.** state: exploratory (drafted 2026-07-08, not yet run) · latest: none · depends-on: a task where a stigmergic baseline PROVABLY fails + a gifted-oracle signaller PROVABLY pays (rung 1 posability, the 234/268 double-wall) · reusable: TBD (target: a gated emit/receive channel + a moving-resource referential substrate) · why: the two prior social attempts died at stigmergy-solves-it (234) and advantage-absent (268); this direction makes those the binding rung-1 gate, then asks whether an arbitrary token acquires SHARED actionable meaning (below the grammar ceiling) · next-falsifiable: rung 1 — a stigmergic/solo baseline fails AND a gifted-oracle signaller beats it, in a moving-resource referential game (else CAN'T-POSE).
+**Rung 1 verdict (Exp 278 — POSABLE / POSITIVE-SINGLE).** A purpose-built eight-site moving-resource
+referential task clears both binding preconditions. The resource never repeats its prior site; literal trails
+collapse, and even the strongest history-only policy stays at its analytic ceiling (aggregate 0.1418). A gifted
+current-state oracle succeeds 1.0 and retains 0.95 shared/kin dyad payoff after a 0.05 signal cost, versus a
+worst-seed strongest baseline of 0.1475; the same trail policy reaches 1.0 in the static positive control.
+All four predeclared gates pass on all eight fresh seeds and the blinded verifier agrees. This licenses the
+actual emergence test but is not itself communication: the oracle mapping, finite channel capacity, and
+shared/kin incentive are provided.
+
+**STATUS.** state: active (Rung 1 POSABLE; emergence untested) · latest: Exp 278 POSITIVE-SINGLE / NEW INSIGHT — moving resource defeats trail + strongest history-only baselines; costed gifted oracle retains a large advantage; all four gates pass, blind-verified · depends-on: Rung 1 cleared · reusable: `active_loop/benchmarks/emergent_comm_posability.py` + process/seed controls · why: the 234 stigmergy wall and 268 advantage-absent wall are jointly cleared at task level · next-falsifiable: Exp 279 Rung 2 — start emit/receive mappings meaningless; PASS only if coordination beats no-signal, token↔private-state MI rises, and receiver-side token relabeling destroys the benefit.

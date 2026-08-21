@@ -403,3 +403,15 @@ Ground rules for this file:
   prior) — a documented Baldwin counter-case (ON<OFF). Report the genotype-vs-phenotype split so STALL (both
   low) is not confused with SHIELDING (functional phenotype, unmoved genotype). Kin L28/L51 (pre-flight the
   premise/wall), L22 (saturation), L30 (cost calibration). [METHODOLOGY; PROTOCOL step 2/3; VALIDATION]
+- **L53 (Exp 278, 2026-08-19).** A COMMUNICATION POSABILITY gate needs both INFORMATION DESTRUCTION and
+  INCENTIVE OWNERSHIP. First, permuting the same finite signal sequence is not a strictly information-free
+  control: it retains its empirical token inventory and can preserve accidental dependence. When the claim
+  requires a zero-information channel, generate IID tokens independently of world state (or state the weaker
+  control honestly). Second, receiver benefit does not by itself make a COSTLY sender signal selectable:
+  predeclare who owns the payoff. Exp 278's oracle gate uses an explicit shared/kin-dyad payoff
+  (forager success minus scout signal cost); it does not establish selection between unrelated individuals.
+  RULE: every costed-signalling gate must name the information-null construction and the unit whose fitness
+  pays the cost and receives the benefit. Durable guards: the Exp 278 tests require an independent IID-token
+  baseline, strictly positive signal cost, and explicit shared-benefit ownership. Kin L15 (gates emit
+  evidence), L30 (cost must attach to the claimed trait), L40 (incidental correlations can game a metric).
+  [METHODOLOGY; VALIDATION; PROTOCOL step 3/4.5]

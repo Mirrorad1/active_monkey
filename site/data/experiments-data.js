@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:277, breakthrough:9, positive:121, wall:65, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:278, breakthrough:9, positive:122, wall:65, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -2973,7 +2973,17 @@ window.AM_EXPERIMENTS = [
     result:"Byte-identical-OFF verified. STEP A: lifetime fitness 0.939/0.945/0.942/0.938 across priors 0.1/0.25/0.5/0.8 -- a 0.7% gap (peak at 0.25) => the net-fitness optimum is a shallow ~0.25 near the founder, landscape nearly FLAT => learning SHIELDS the prior (no assimilation gradient). STEP B: ARM OFF newborn innate 0.2119; ARM ON 0.1681 (LOWER, not higher; 6/8 seeds negative, not mean-of-opposites); ARM ON realized 0.189 (weak, far below functional -- rules out SHIELDING); ARM CLAMP 0.150 approx ON (rules out SUBSTITUTION). All arms non-extinct. Blinded verifier AGREE (STALL / NEGATIVE).",
     implication:"The Baldwin escape FAILS: within-life theta learning does NOT assimilate innate theta (ON <= OFF; neither arm climbs to functional; both drift ~0.1->0.2 toward the shallow cost-optimum). Mechanism pinned: shielding-by-construction (under a fair L30 cost the fitness landscape saturates to a shallow optimum near the founder, ~0.7% spread, so barely a wall and no gradient), and the cost of plasticity mildly SUPPRESSES the innate prior (ON<OFF, a documented Baldwin counter-case). Arc-consistent: the true limiter is the SUBSTRATE (benefit saturation + demographic instability), not the trait or the mechanism. CLOSES the learning-guided-evolution direction negative.",
     caveat:"NEGATIVE / STALL, scoped.",
-    trace:{ script:"experiments/exp277_theta_baldwin.py", output:"experiments/outputs/exp277.txt" } }
+    trace:{ script:"experiments/exp277_theta_baldwin.py", output:"experiments/outputs/exp277.txt" } },
+  { n:278, kind:"positive", chapter:"frontier",
+    title:"Emergent-communication RUNG 1: the moving-resource referential task is POSABLE -- history-only and signal-free policies remain at their analytic ceiling while a costed gifted-oracle signal produces a large actionable advantage. No convention has emerged yet.",
+    one:"Before testing whether creatures invent a code, build a task where a code is both necessary and useful. Food moves among eight sites every round; a scout sees the current site and a forager does not. Trails and the strongest public-history strategy stay near chance, while a costly gifted oracle guides the forager perfectly. The task clears the gate; communication itself remains untested.",
+    plain:"Before asking whether creatures can invent signals, we first needed a world where signals would genuinely help. A scout sees which of eight sites has food, while a forager must choose a site without seeing it; the food moves every round so old trails become useless. Even the strongest strategy using all public history stayed near chance, while a scout handed a perfect costly signal guided the forager correctly every time. That means the task is suitable for the real next question, but nothing invented a code yet.",
+    metric:{ from:0.1475, to:0.95, unit:"worst strongest baseline success -> costed gifted-oracle shared payoff" },
+    setup:"Eight sites, 2,000 rounds, fresh seeds 401-408, signal cost 0.05. Moving resource never repeats its prior site. Same-path policies: random solo, literal previous-site trail, strongest history-only exclusion policy, IID information-free token control, and gifted current-state oracle; static repeated-resource trail-liveness control. Independent process-pool runs, serial-parallel equality guard. Oracle net is explicitly shared/kin dyad payoff, not unrelated-scout selection.",
+    result:"All four gates pass on every seed. Strongest baseline max 0.1475 <= analytic history ceiling 0.142857 + 0.03; aggregate history-optimal 0.1418125, solo 0.124875, IID token 0.121875, trail 0.0000625. Oracle success 1.0 and net 0.95 after cost, worst advantage 0.8025 >= 0.70. Static trail 1.0. Blinded verifier independently recomputed and agreed POSITIVE/POSABLE.",
+    implication:"The task jointly clears the prior stigmergy-solves-it and advantage-absent walls: public history cannot solve the moving target, but current private information has large cost-surviving value. Rung 2 is licensed: start sender and receiver mappings meaningless and require coordination above no-signal, token-state information, and destruction under receiver-side relabeling. This is task posability, not communication.",
+    caveat:"POSITIVE only for POSABILITY, not emergent communication.",
+    trace:{ script:"experiments/exp278_emergent_comm_posability.py", output:"experiments/outputs/exp278.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */
