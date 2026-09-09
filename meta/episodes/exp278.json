@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp278.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp278_verifier_moment_repair.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.026396\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.807335\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.818379\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.822395\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.830707\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.846854\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.851255\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0/8\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"000171/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/8\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"3/6\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"6/8\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"8/8\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"818379/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"826349/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"827025/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"838541/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"838713/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"838818/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"846854/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"865108/0\" quoted in entry not found in experiments/outputs/exp278.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-09-09T01:01:34Z",
+  "commit_sha": "c147f710f4471bb74a14708346236f489b12c2b6",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 278,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
