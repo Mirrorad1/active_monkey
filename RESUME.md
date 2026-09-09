@@ -554,6 +554,14 @@ step 0.
   Re-opens only on a NAMED lever (sharper cost building a real wall+gradient; stronger optimizer;
   a NON-SATURATING-benefit trait). Card: `loop/directions/learning-guided-evolution.md`.
 
+- **One-off LLM RL / RSI novelty audit (Exp 278, 2026-09-08, CLOSED-NEGATIVE):**
+  the user's research-engineer request produced a cited memo and cheap executable test of
+  verifier-revision repair of Adam moments. Fixed-path m/v replacement beats retaining stale
+  state but loses to a full reset in 8/8 seeds in both corruption regimes; predeclared screen
+  NEGATIVE, independently verified. Toy bandit only; novelty provisional, no LLM result.
+  Memo and conditional bridge plan: `docs/research/verifier-moment-repair-memo.md`.
+  Do not escalate this version on the strength of the keep-state comparison.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.
