@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 277, title: "learning-guided-evolution RUNG 2b (the BALDWIN test): within-life theta learning does NOT assimilate the walled innate prior — STALL.", tag: "NEGATIVE" },
-  tally: { total: 277, positive: 142, negative: 93, mixed: 38, breakthroughs: 15 },
+  latest_exp: { n: 278, title: "Verifier-revision repair of Adam moments loses to simple resets (NEGATIVE / NEW INSIGHT).", tag: "NEGATIVE" },
+  tally: { total: 278, positive: 142, negative: 94, mixed: 38, breakthroughs: 15 },
   directions: [
     { name: "acoustic-ecology", state: "active", latest: "Exp 268 (pending)", next: "does gifted hearing measurably help AND beat shuffled/silent controls without leaking position/identity (Exp 268)?" },
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
