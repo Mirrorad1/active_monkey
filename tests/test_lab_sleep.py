@@ -182,3 +182,24 @@ def test_compose_only_attaches_reviewed_cycle(tmp_path, monkeypatch):
     assert attached.startswith(original)
     assert '=== ADVISORY SLEEP BRIEF ===' in attached
     assert 'Replay failed on the toy.' in attached
+
+
+def test_actual_compose_script_attaches_brief_without_repo_on_pythonpath(tmp_path):
+    import os
+    import shutil
+    import subprocess
+    import sys
+    root = Path(__file__).parents[1]
+    for name in ('PREMISE.md', 'directions/demo.md', 'personas/default.md'):
+        path = tmp_path / 'loop' / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('fixture')
+    shutil.copyfile(root / 'loop/compose.py', tmp_path / 'loop/compose.py')
+    out = approved(tmp_path, fixture(tmp_path))
+    result = subprocess.run([sys.executable, str(tmp_path / 'loop/compose.py'),
+                             'demo', '--sleep-cycle', str(out)], cwd=tmp_path,
+                            env={**os.environ, 'PYTHONPATH': ''},
+                            capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert 'ADVISORY SLEEP BRIEF' in result.stdout
+    assert 'Replay failed on the toy.' in result.stdout

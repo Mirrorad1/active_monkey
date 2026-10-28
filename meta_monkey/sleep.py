@@ -14,7 +14,9 @@ import subprocess
 import sys
 
 from active_loop.sleep import canonical_hash, make_receipt
-from loop.check_iteration import find_entries
+# Reuse the collector's file-loader fallback: loop/ is not an installed package when
+# compose.py is executed as a script and the repository root is absent from sys.path.
+from meta_monkey.collect_iteration import find_entries
 
 
 def _inside(root: Path, path) -> Path:

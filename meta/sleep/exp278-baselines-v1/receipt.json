@@ -1,0 +1,35 @@
+{
+  "after_hash": "59ffc79f5840158df01101768219f287a0c63a80733bebc971884570c360d2f2",
+  "algorithm": "sleep-v1",
+  "before_hash": "7158ef3e0bb1de4bbac63a3b47a1aec47d42cfa54678c1ae7cbfaf884e14a159",
+  "budget": {
+    "max_bytes": 1500,
+    "max_sources": 8,
+    "used_bytes": 1155
+  },
+  "content_hash": "a1e425c4e32cc6ee057b108af091ce0c4d3b2bcfd66e7b2874f0bd97291aa5dc",
+  "decision": "pending_review",
+  "metrics": {
+    "evaluation": "source_fidelity_only",
+    "experiments": 1,
+    "generated": 1,
+    "rejected": []
+  },
+  "schema_version": 1,
+  "scope": "lab",
+  "sources": [
+    {
+      "experiment": 278,
+      "path": "EXPERIMENTS.md",
+      "sha256": "6a619533540c72ac60ae47f01c515823d14d6a3039d21e5908b1006e9251d0a7"
+    },
+    {
+      "path": "experiments/exp278_verifier_moment_repair.py",
+      "sha256": "c8a9d0155ebc91927248f7c3656fee8e20ab95a0147e27a91cef425d94509afb"
+    },
+    {
+      "path": "experiments/outputs/exp278.txt",
+      "sha256": "d157d2bdfb2c84485b6e9493ba190a9eeb23d02a2afbaad0494439c75c74f6e6"
+    }
+  ]
+}

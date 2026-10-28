@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "experiment": 278,
+      "script": "experiments/exp278_verifier_moment_repair.py",
+      "output": "experiments/outputs/exp278.txt"
+    }
+  ],
+  "items": [
+    {
+      "kind": "boundary",
+      "source": 278,
+      "excerpt": "The repair helps compared with keeping the old memory, but simply resetting the optimizer does better in every tested seed."
+    },
+    {
+      "kind": "rehearsal",
+      "origin": "generated",
+      "source": 278,
+      "text": "For the replay screen, test the gain against chronological refitting as well as idle, with equal fitting and monitoring work."
+    }
+  ]
+}
