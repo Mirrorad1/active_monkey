@@ -1,0 +1,550 @@
+{
+  "after_hash": "fa683a469ea15e8287dc54071407973740c686cb6cf6e9e78d914711c3b81334",
+  "algorithm": "sleep-v1",
+  "before_hash": "34eed8c9ceaecc48526ebb409c674bb2f8b93fa2f1e4e5e9e40c79c1ddd9b5b6",
+  "budget": {
+    "active_brief_limits_unchanged": true,
+    "automatic_prompt_attachment": false,
+    "max_sources": 30
+  },
+  "content_hash": "d4f7c212f263a95e9a581cf1dcf6dbf46d6cbd56f763e9fe228577e32e3971d7",
+  "decision": "pending_review",
+  "metrics": {
+    "archived_experiments": 30,
+    "evaluation": "retrospective_source_fidelity_only",
+    "first": 251,
+    "generated_rehearsals": 3,
+    "last": 280,
+    "new_experiment": false
+  },
+  "schema_version": 1,
+  "scope": "lab",
+  "sources": [
+    {
+      "experiment": 251,
+      "path": "EXPERIMENTS.md",
+      "sha256": "22305c9ce7ee2edb15f0b657ffb62e397173dcafee5feaaa6b7c7edd9840eacb"
+    },
+    {
+      "path": "experiments/exp251_latent_state.py",
+      "sha256": "761f22d9772c254e98035e12d7ed1e67433d2d47ebc11fe3f104c955e6de04a5"
+    },
+    {
+      "path": "experiments/outputs/exp251.txt",
+      "sha256": "bad7e38e43e9a726134886000fe6f2166c45be78423d60c8bf7daa1dee342456"
+    },
+    {
+      "path": "experiments/outputs/exp251_latent_state.txt",
+      "sha256": "b8a127700dbfa54c95edaebbe5727579322032f3f933a12d61b69231bbb5e90c"
+    },
+    {
+      "experiment": 252,
+      "path": "EXPERIMENTS.md",
+      "sha256": "55ff494bf8ef54ce8993c195108a9458c98059dd0ac56e53a0405da8876fd1f5"
+    },
+    {
+      "path": "experiments/exp252_type3_coexistence.py",
+      "sha256": "a661b9e4969781a44edecfa7a116a63a186e6c56bcca5fb5b337927c4acfacd4"
+    },
+    {
+      "path": "experiments/outputs/exp252.txt",
+      "sha256": "a676542dc4ad800c0099ce0874091a40f7d647a07a4005d63922c3af127c6e14"
+    },
+    {
+      "path": "experiments/outputs/exp252_type3_coexistence.txt",
+      "sha256": "56b82c7bf4004f42546d36f42c1f1ed538044c1c38c97391ae78f22aeba59892"
+    },
+    {
+      "experiment": 253,
+      "path": "EXPERIMENTS.md",
+      "sha256": "549ce30e20a3fbde6c8163aaa27bba711d412acaa5e2a76e36c5354f01c418ea"
+    },
+    {
+      "path": "experiments/exp253_full_combine.py",
+      "sha256": "b05f629770007513690e3c8ffe0f6ed5e468fece99281f119157e4014950b9fc"
+    },
+    {
+      "path": "experiments/outputs/exp253.txt",
+      "sha256": "33c849580fe99ab1b98b271f83ec88f2ea7c9af40be90bb5b378c93c7b156699"
+    },
+    {
+      "path": "experiments/outputs/exp253_full_combine.txt",
+      "sha256": "8148e625bbddde5e3d890380817a8bd33fb7f11a933c3241934006b442516434"
+    },
+    {
+      "path": "experiments/outputs/exp253b_robust_equilibrium.txt",
+      "sha256": "02730f671d28fbc7963c301461b4444c5679230688672a7190416aba63707c9b"
+    },
+    {
+      "path": "experiments/outputs/exp253c_scale_equilibrium.txt",
+      "sha256": "e7bad828aa31aa3fc0cb758af76e006fbef77fc2c982332081fb434c1f127ab9"
+    },
+    {
+      "path": "experiments/exp253b_robust_equilibrium.py",
+      "sha256": "57d13f03bbfe2d42f82f6ba9954e80c89d1647591a6d3aa3e96a799b29f8b05d"
+    },
+    {
+      "path": "experiments/exp253c_scale_equilibrium.py",
+      "sha256": "d065f37e1a211722c1b1c7826ecae87774a4def9ff0892461d4b724576ad9d48"
+    },
+    {
+      "experiment": 254,
+      "path": "EXPERIMENTS.md",
+      "sha256": "0b64e3f261b778de0ef568403a17c2bf10cf271016b8c892a3d49cef5c231f9f"
+    },
+    {
+      "path": "experiments/exp254_bazykin_equilibrium.py",
+      "sha256": "38a80aefe0f53cebc3f1439384daede37d368e0f1a9d820d46955aaaf28d1aba"
+    },
+    {
+      "path": "experiments/outputs/exp254.txt",
+      "sha256": "de2a4a9d6866bceda540c2c5df63ac002501acf946dc82b4905fa9a146b44813"
+    },
+    {
+      "path": "experiments/outputs/exp254_bazykin_equilibrium.txt",
+      "sha256": "189fc0cb1a4a20c9a5bb6dd6986670e1b177a144dc3ff295f5491a98d7db1260"
+    },
+    {
+      "path": "experiments/outputs/exp254b_stabilize.txt",
+      "sha256": "f674e11bf02e28019e5dcd139d78d394ddec35f2ca6c743ef5d56b3b83c3879d"
+    },
+    {
+      "path": "experiments/outputs/exp254c_scale_cycle.txt",
+      "sha256": "42a1b964b8f3595af65159bea6222def9c2ee06a6fc3e8734d2edf7737375e99"
+    },
+    {
+      "path": "experiments/exp254b_stabilize.py",
+      "sha256": "bd86967b286223eae120c2a71573b857007f04549b7e6567b19b89f731922937"
+    },
+    {
+      "path": "experiments/exp254c_scale_cycle.py",
+      "sha256": "2a3ae1d5a3820985774f5f6ecaffb823f7546558601c5580376a10c6cea36a6b"
+    },
+    {
+      "experiment": 255,
+      "path": "EXPERIMENTS.md",
+      "sha256": "62e4f6871c7fab4c64e0dc172a1ba19fc616a57876d0b3f70b8bd5958121514a"
+    },
+    {
+      "path": "experiments/exp255_wellmixed_coexistence.py",
+      "sha256": "491f80179297b7d1dbe6646fa130cc7ae09a6a62531b1c745d23e851724b3bb5"
+    },
+    {
+      "path": "experiments/outputs/exp255.txt",
+      "sha256": "c36fc0a8fc20d5c2e2196b106d822d7e7ade37cad79e2572ada385971b9a79b4"
+    },
+    {
+      "experiment": 256,
+      "path": "EXPERIMENTS.md",
+      "sha256": "e8bb06be4b798eaaf5f015203616e744d6cd982aaf926777f0fdea96390e1fcc"
+    },
+    {
+      "path": "experiments/exp256_redqueen_invasion.py",
+      "sha256": "2937d91c40695d09204011340db15077feb38eff0fb78fe65b818159e2675d7a"
+    },
+    {
+      "path": "experiments/outputs/exp256.txt",
+      "sha256": "336323e0fcf931603fd8e91276655f2cac1d35a47c9d776a64f890f43fa11790"
+    },
+    {
+      "path": "experiments/outputs/exp256_redqueen_invasion.txt",
+      "sha256": "889dbfa87d39b39668178d6d00c857df5fddb89c7e5ddf4ea45d9ea1cea16db4"
+    },
+    {
+      "path": "experiments/outputs/exp256b_cost_calibration.txt",
+      "sha256": "425ee75d0f39c9534cd7bf0c0dd914418f1c813233d70859ed949bab424bedb6"
+    },
+    {
+      "path": "experiments/exp256b_cost_calibration.py",
+      "sha256": "729518f35cd67c2d2393f0135ad6fcbd52c74f08b84506acd0485684c7fe4c9f"
+    },
+    {
+      "experiment": 257,
+      "path": "EXPERIMENTS.md",
+      "sha256": "5bf7f5348ce155d781504061f65ee6fef20c09213630a8ca05ef0e66fd70eb42"
+    },
+    {
+      "path": "experiments/exp257_patch_mosaic_predator_prey.py",
+      "sha256": "9fd79b34fec502705fb4287b438c39646a5b3eba1f94c512c4893bcd90fc0a9a"
+    },
+    {
+      "path": "experiments/outputs/exp257.txt",
+      "sha256": "6a5865afaa5aab16dc3e5e9ab09141b8427b0f88e88b58d7a696090caf2f23bd"
+    },
+    {
+      "path": "experiments/outputs/exp257_patch_mosaic_predator_prey.txt",
+      "sha256": "3eac26d801c7f0681084f7407cd3a0188d39acf500a34b8aefb213b3f309a388"
+    },
+    {
+      "path": "experiments/exp257_pilot.py",
+      "sha256": "fcfcb69c5ed742f2eed40f6c6b1a94defb96cc8fb8bcf5d10d9d4770a173184d"
+    },
+    {
+      "path": "experiments/exp257_recalibrate.py",
+      "sha256": "2a826d37cd89f7dab6418ec10725a6a283a24ae121273989549ac0986d4f5509"
+    },
+    {
+      "experiment": 258,
+      "path": "EXPERIMENTS.md",
+      "sha256": "08890d4fafc7fb7a782e6d3b101a200a3b8b19617fb09e23d7fd06c85254f6fc"
+    },
+    {
+      "path": "experiments/exp258_patch_topology_robustness.py",
+      "sha256": "20e6014f18927015546b4dfdad372484123840742c86f43858135fcdc230003f"
+    },
+    {
+      "path": "experiments/outputs/exp258.txt",
+      "sha256": "8958c7cb142d78fd285b5c8e5033de62663cd9ec5d3b9399e2138de68c8036ae"
+    },
+    {
+      "path": "experiments/outputs/exp258_patch_topology_robustness.txt",
+      "sha256": "4658787be3b973fe408f34400eacff6fd5407e507e4bc88bb13b7f8cda4d7d48"
+    },
+    {
+      "experiment": 259,
+      "path": "EXPERIMENTS.md",
+      "sha256": "6e433e9959b693ce1b28c12b358d18c5744833c88517fa15a49f501f9ed991c9"
+    },
+    {
+      "path": "experiments/exp259_patch_red_queen.py",
+      "sha256": "f657e2b8ca97950e60e7bfda201a0b3a6f2a6fbcfa6c667591c00a706de0f5fa"
+    },
+    {
+      "path": "experiments/outputs/exp259.txt",
+      "sha256": "f5aace04f569a1913844cac3164aa019b2240f6a47b8580c828226abf3dcc790"
+    },
+    {
+      "path": "experiments/outputs/exp259_patch_red_queen.txt",
+      "sha256": "085aa235dff0f2e8e6475e03ad9c402de4d30ec6b7a07f70be95e64d17be14fe"
+    },
+    {
+      "experiment": 260,
+      "path": "EXPERIMENTS.md",
+      "sha256": "b10fe1f89a9c88faf29e7e77054bedac3ed1d4db932323ac3ed972384fedddb8"
+    },
+    {
+      "path": "experiments/exp260_onesided_queen_preflight.py",
+      "sha256": "2e4460bdde52187b5e7050871e105683ab7ae2ca0fd7204520e3748fb05a89f8"
+    },
+    {
+      "path": "experiments/outputs/exp260.txt",
+      "sha256": "4469dd5fb2918cec203626c5ba67ab7719cd6e2a391ed7a397c5b9eca94d9953"
+    },
+    {
+      "path": "experiments/outputs/exp260_onesided_queen_preflight.txt",
+      "sha256": "4469dd5fb2918cec203626c5ba67ab7719cd6e2a391ed7a397c5b9eca94d9953"
+    },
+    {
+      "experiment": 261,
+      "path": "EXPERIMENTS.md",
+      "sha256": "02b43e417590eec31733cef35853e579bc60b04a82f6052f0d43066c781b1967"
+    },
+    {
+      "path": "experiments/exp261_costed_predator_attack.py",
+      "sha256": "5533db7e2a12a662597c91dda43e8828f825360d86698b40f3cbc7c75b54e0d6"
+    },
+    {
+      "path": "experiments/outputs/exp261.txt",
+      "sha256": "5140f480fb99ed709aa753b97dbd6e5f6147142a9f1907c5b423de9d065af097"
+    },
+    {
+      "path": "experiments/outputs/exp261_costed_predator_attack.txt",
+      "sha256": "efa0027eefb9f549c1b556ea6c1e47d6a9e7a212a903fd2ee1e72065bbe7bab7"
+    },
+    {
+      "path": "experiments/outputs/exp261_perseed.txt",
+      "sha256": "d3c05c4196ff8967bdfeee60ec423f877d6e446c2cb899a29d063a1d07537451"
+    },
+    {
+      "path": "experiments/outputs/exp261_plateau_check.txt",
+      "sha256": "c480ca8a9814fdb8422b91d00cf2e9f3e1c93d05f7a675b1adc0d1c21c654775"
+    },
+    {
+      "path": "experiments/exp261_perseed.py",
+      "sha256": "bcdb5fe26a084075967009110d260a2e08f197e67b18dd0eca51d5256dd89a89"
+    },
+    {
+      "experiment": 262,
+      "path": "EXPERIMENTS.md",
+      "sha256": "6cd2e31482757b1d55a427275d1fa162223748b9915587f02c0945fe74d11ba4"
+    },
+    {
+      "path": "experiments/exp262_bistability_characterization.py",
+      "sha256": "a30ffa7db754986238cd6ae99fe82395abee28630878f40fd58ca77db5f286dc"
+    },
+    {
+      "path": "experiments/outputs/exp262.txt",
+      "sha256": "c0a934264cbdd65fe9bf0b93633a6cedeb90e8d494a68e184c9d4b1b1ec9b309"
+    },
+    {
+      "path": "experiments/outputs/exp262_bistability_characterization.txt",
+      "sha256": "809d34cd05ee730244ed42dc691763fd95b0dacea9d22095b6e957a5c9b87400"
+    },
+    {
+      "experiment": 263,
+      "path": "EXPERIMENTS.md",
+      "sha256": "b0c22cdc3ad2ed50b1284d47c29e449521a860a922e894651b252be9196e64df"
+    },
+    {
+      "path": "experiments/exp263_intraspecific_contest_emergence.py",
+      "sha256": "97c30aa202a4a5ecd174c9a027e727edb7e55c9d42568e11519e68d5c1abd799"
+    },
+    {
+      "path": "experiments/outputs/exp263.txt",
+      "sha256": "62d2f1f940ded3594c277918f59b0cfe7c5a44d8fe73760bd4323c105722b6ba"
+    },
+    {
+      "experiment": 264,
+      "path": "EXPERIMENTS.md",
+      "sha256": "3be5ed725aed9575937b610c4431b8f1c242a6b6ddc32e64ca30d7277e6bea30"
+    },
+    {
+      "path": "experiments/exp264_contest_in_context.py",
+      "sha256": "7b134ad778b3ba2282acdc5749df4251cb2d6ef2539a818d691b001b05b14b7d"
+    },
+    {
+      "path": "experiments/outputs/exp264.txt",
+      "sha256": "64a85d5ab130b494407c2b57eb065f7f0488bba5558be17d406212a1ef88dfa0"
+    },
+    {
+      "experiment": 265,
+      "path": "EXPERIMENTS.md",
+      "sha256": "1e89c0e038c923c38c15093cf5686d5155c2da3510684485c7221eb2ec2dd6f6"
+    },
+    {
+      "path": "experiments/exp265_refuge_free_coupling.py",
+      "sha256": "739e18b48a8d4a4ca9fb9aea23b18bfbff9f61b3222a224209ed641310e3506e"
+    },
+    {
+      "path": "experiments/outputs/exp265.txt",
+      "sha256": "48785fda793c8d48dabada7829e9ac5e902e0912fe2f300e6fa4aaa9730595a8"
+    },
+    {
+      "experiment": 266,
+      "path": "EXPERIMENTS.md",
+      "sha256": "14ff9e8e35b0a9cb6ae71f9346b966c8560ffed02f2473d3b0de81828e2c7afa"
+    },
+    {
+      "path": "experiments/exp266_emergent_roles.py",
+      "sha256": "66142aa602f025716f578007bba913c86b6910db264a663d1b0a57fb46667f50"
+    },
+    {
+      "path": "experiments/outputs/exp266.txt",
+      "sha256": "abd369a58fd29ffec46d80e434f9ecf220d0a3d2206a5789680d8164f894e1ac"
+    },
+    {
+      "experiment": 267,
+      "path": "EXPERIMENTS.md",
+      "sha256": "f72cb711d2ea4e4a5f6cb688f28ee346a5776999ac30cda9677b5de2c5538926"
+    },
+    {
+      "path": "experiments/exp267_decoupled_roles.py",
+      "sha256": "58779359be0739bbcf313f1d959335ebc039b3391f06d785150aa322cc28dd99"
+    },
+    {
+      "path": "experiments/outputs/exp267.txt",
+      "sha256": "56086f987f3fa4b3b9fd4b2340adb277551ca7a68435ddfe66587158fdd6f6f6"
+    },
+    {
+      "experiment": 268,
+      "path": "EXPERIMENTS.md",
+      "sha256": "f007a67a4b54390568a1497ccd079922a05f5164c8f5b70d680a66f953c64508"
+    },
+    {
+      "path": "experiments/exp268_acoustic_eavesdropping.py",
+      "sha256": "48b03f104c303c33f7d687093f9ba3c6ec5b70f7b8a293a4edb1a96a6ff8d325"
+    },
+    {
+      "path": "experiments/outputs/exp268.txt",
+      "sha256": "ff794a814831f2712a6a69b915ad5c0fbf4fa2f26ea1ad3bf4704d69f1d3d42e"
+    },
+    {
+      "experiment": 269,
+      "path": "EXPERIMENTS.md",
+      "sha256": "a6ab089791d9b33fa36389aaed4c85a288c03dc972cc44b5cea36ae6ba42195c"
+    },
+    {
+      "path": "experiments/exp269_embodied_population_sweep.py",
+      "sha256": "c122442de43e56680efa1d2b5b7627f3cec975bd9bd8246f85033b211e8222e1"
+    },
+    {
+      "path": "experiments/outputs/exp269.txt",
+      "sha256": "bb8b8e691e68e95d724ec0e27b8468b5dc2c10d40c304528eabd7ef5f3223e78"
+    },
+    {
+      "experiment": 270,
+      "path": "EXPERIMENTS.md",
+      "sha256": "b6a93c940967b13906a199e382558069534f186b958dd96ce0f3ae0cedf97664"
+    },
+    {
+      "path": "experiments/exp270_ecological_affordance_gate.py",
+      "sha256": "238bec72c0296b74a08904e6fbf9b66ea280e75a69e401edf6a6a3fffe47df34"
+    },
+    {
+      "path": "experiments/outputs/exp270.txt",
+      "sha256": "58eec7542ab2fac71ddefa59ce3635949ee88a626d317059c8b90b9665fbdd4c"
+    },
+    {
+      "experiment": 271,
+      "path": "EXPERIMENTS.md",
+      "sha256": "e3e1c7f145f4b58d40b521a2823c96de82718aab282c83f4fe3e411f48da800e"
+    },
+    {
+      "path": "experiments/exp271_rung2_posability.py",
+      "sha256": "41788cc614d0053eefd5cfed72103b82dc35c4d6f0e9ae6e42ba6edc335b6242"
+    },
+    {
+      "path": "experiments/outputs/exp271.txt",
+      "sha256": "02aab2c53cab3782c165db6a1c4ea3fa86fdbf6865524b9d11b30faa31d5cd35"
+    },
+    {
+      "experiment": 272,
+      "path": "EXPERIMENTS.md",
+      "sha256": "99f53ee3eab060d00c97c5859a799753b941ceab9fd3f0eb99215eb7709333e8"
+    },
+    {
+      "path": "experiments/exp272_learnable_exploration.py",
+      "sha256": "64e54c5e762611acae1f7c48e7108003a1c675d4ae18f07e1ae8de603064d3d8"
+    },
+    {
+      "path": "experiments/outputs/exp272.txt",
+      "sha256": "289fb388e4d4033424e3a786e946feb1ea74ad0101571303ae85e464368ce073"
+    },
+    {
+      "path": "experiments/exp272_learnable_actuator.py",
+      "sha256": "6af75b14cb9de6a3d2320d3c21395f37f53a13d5e643577402fed94346df6ca9"
+    },
+    {
+      "experiment": 273,
+      "path": "EXPERIMENTS.md",
+      "sha256": "49c166dd25fa968ceac33aadd5b7b7ad9d16246a6f062eb33b7ca99c56e6fc86"
+    },
+    {
+      "path": "experiments/exp273_learnability_scaling.py",
+      "sha256": "3042fd1be7734a87fba5c16f49bf039d0cd0b97d43eaa96341872d002a9a0649"
+    },
+    {
+      "path": "experiments/outputs/exp273.txt",
+      "sha256": "fa8fc268869012b67546a449b315b931fda5690ef7cfe8b2f5d4c5f2776cfc13"
+    },
+    {
+      "experiment": 274,
+      "path": "EXPERIMENTS.md",
+      "sha256": "000f5c9e4cfdc8ac7b7c07061ade14d77cf1d221579c185cd2423a172431f6fd"
+    },
+    {
+      "path": "experiments/exp274_repair_modelfree.py",
+      "sha256": "a0260c2bde45c094e86c8634a2386725bafff90eddda2de8178a3b3586cd37f3"
+    },
+    {
+      "path": "experiments/outputs/exp274.txt",
+      "sha256": "f856f8b3807c39bcad044bcf82f5dc953c2a3619063f5db93cdce55d85231f53"
+    },
+    {
+      "experiment": 275,
+      "path": "EXPERIMENTS.md",
+      "sha256": "0cd513b5a78e026ddb19d6f346d113fb64ec09ee0ff2f483efcb4c8995cdb4f8"
+    },
+    {
+      "path": "experiments/exp275_learnable_use_posability.py",
+      "sha256": "8048b3a680968b113cd60b89f3c95eb9f44bea1d4f3e07f484d559215f734da7"
+    },
+    {
+      "path": "experiments/outputs/exp275.txt",
+      "sha256": "f28218b7643323ce3f2512678121367b07f7061d7d2678ae0906a93fe8618526"
+    },
+    {
+      "experiment": 276,
+      "path": "EXPERIMENTS.md",
+      "sha256": "98de626fc56a5ede54797797141add4ae7e523752a7d38282f751fca8e696089"
+    },
+    {
+      "path": "experiments/exp276_theta_wall.py",
+      "sha256": "8b38f43d736b74508c0af352b295d830dae9b91cf274885ee309b8cf0133eea3"
+    },
+    {
+      "path": "experiments/outputs/exp276.txt",
+      "sha256": "1ad51767e4a75a1f5b06830227df46641e6bad9d592cd06b9041ba74f066cf64"
+    },
+    {
+      "experiment": 277,
+      "path": "EXPERIMENTS.md",
+      "sha256": "477f76a11c59659d0e15959079cde77277ee3bbaae5e1ec86b52b4b890a8f519"
+    },
+    {
+      "path": "experiments/exp277_theta_baldwin.py",
+      "sha256": "6d24070e944ae2a39bf41528a2358ee7359668b0703b8038af3c5abf04ac1928"
+    },
+    {
+      "path": "experiments/outputs/exp277.txt",
+      "sha256": "e28ac6aa0ad92cbadf72ea6858275f75ef3f1dd8d714e741530af48cbe1a8322"
+    },
+    {
+      "experiment": 278,
+      "path": "EXPERIMENTS.md",
+      "sha256": "6a619533540c72ac60ae47f01c515823d14d6a3039d21e5908b1006e9251d0a7"
+    },
+    {
+      "path": "experiments/exp278_verifier_moment_repair.py",
+      "sha256": "c8a9d0155ebc91927248f7c3656fee8e20ab95a0147e27a91cef425d94509afb"
+    },
+    {
+      "path": "experiments/outputs/exp278.txt",
+      "sha256": "d157d2bdfb2c84485b6e9493ba190a9eeb23d02a2afbaad0494439c75c74f6e6"
+    },
+    {
+      "experiment": 279,
+      "path": "EXPERIMENTS.md",
+      "sha256": "c57b99a2bf72163c437ff23f6592c9ed367c0d1e556659589c5a3551a166e053"
+    },
+    {
+      "path": "experiments/exp279_sleep_replay.py",
+      "sha256": "732a42abe79b2ccf9c768e884ddc9747df17f06625ee9bab2c7b8cca0e1b7a3e"
+    },
+    {
+      "path": "experiments/outputs/exp279.txt",
+      "sha256": "155d0939573597430e25006a03eb25b2c2b94a29a28c30cec9772bae98447feb"
+    },
+    {
+      "path": "experiments/outputs/exp279.json",
+      "sha256": "bc3bf6de70e4753fbad7429104cbfaebca285cbe65b13c0666bb898e1a1c7981"
+    },
+    {
+      "path": "experiments/outputs/exp279_smoke.txt",
+      "sha256": "86af01706cddb72a3cf409488d9e221a240c988c1fd9c2a80629dfbde58b349a"
+    },
+    {
+      "path": "experiments/outputs/exp279_smoke_shape_failure.txt",
+      "sha256": "298a417c792613abd520a4aad10b8905a55a6b840dd1a578dfc4248eb3b54bcc"
+    },
+    {
+      "path": "experiments/outputs/exp279_smoke_v2.txt",
+      "sha256": "2d3c02c15cc7e3b00b39b02b95e266e157f18bd5eb795f07774f94a4f3710af1"
+    },
+    {
+      "path": "experiments/outputs/exp279_smoke_v3.txt",
+      "sha256": "d3107b5fe64088192ef60eb6e014c18d3cec4f1df1b9b38761f027fb4ecac998"
+    },
+    {
+      "experiment": 280,
+      "path": "EXPERIMENTS.md",
+      "sha256": "3c31ac4c9e1f63f6602b5aa7205bf71fb639fae63d6b9fc584c2d7697e4af6f5"
+    },
+    {
+      "path": "experiments/exp280_sleep_retention.py",
+      "sha256": "fa5b3666c1c87b893e7c38371a344b332e4c650b430ca57e1ad15143ad96286e"
+    },
+    {
+      "path": "experiments/outputs/exp280.txt",
+      "sha256": "d72e2f608696f21c531e2b69b25a4a9337f4584ce515d342b794df57a39b30d8"
+    },
+    {
+      "path": "experiments/outputs/exp280.json",
+      "sha256": "9ab1d33809052d9aee6afb9e3689738483463add6bdc9a5bddbb73758dc458f4"
+    },
+    {
+      "path": "experiments/outputs/exp280_smoke.txt",
+      "sha256": "727673c3801f51b4c3beadac1b4f045a6caea99ea857cd982410e81adc3e74af"
+    }
+  ]
+}

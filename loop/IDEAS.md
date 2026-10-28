@@ -1400,3 +1400,9 @@ The loop marks items it has consumed by indenting a response under them:
   NEGATIVE: retention passes, acquisition/revision/comparative gates fail. No automatic
   ecology escalation; named changed lever required to reopen C1. Source-linked negative
   brief is retained at lab level; better research quality remains untested.
+
+- [from human, 2026-10-27; taken up] Run the lab sleep framework across the latest30
+  experiments. Archived Exp251–280 completely with124 source refs, three independent
+  range reviews, source-linked synthesis/audit notes and three untested rehearsals at
+  `meta/sleep/exp251-280-archive-v1/`. No30-simulation rerun or new scientific result.
+  Preserve raw/summary discrepancies and failed original criteria; C1 stays halted.

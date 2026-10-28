@@ -600,6 +600,21 @@ C0's stationary gain remains narrowly valid; retained/revisable knowledge and su
 benefit are not established. C2/C3 ecology/inheritance and L1 prospective lab-quality are unrun.
 The reviewed Exp280 lab brief retains the failure; older reviewed briefs remain source-valid.
 
+### 3e. Latest30 lab sleep consolidation (2026-10-27, Exp251–280)
+
+Human requested applying the lab sleep framework across the last30 experiments. Completed
+as archival consolidation/source-fidelity review, without rerunning30 simulations or creating
+a numbered scientific experiment. `meta/sleep/exp251-280-archive-v1/` preserves all complete
+entries,124 source refs, generated synthesis/audit notes, three untested rehearsal proposals
+and independent range reviews. Read its README/synthesis before reusing these arcs.
+
+The review preserves summary/raw discrepancies (not silent re-grading), including original
+criterion failures/qualifications in Exp256/260/261/263/268 and numeric/prose errors in
+Exp254/262/269/271/272/276. Stronger claims need the stated qualifications or a fresh audit.
+C0 positive/C1 negative remain bounded; C1 remains halted. New `meta_monkey.sleep_archive`
+handles the archival store; active8-source/1500-byte briefs remain unchanged. No improved
+lab-quality, later online-life, or ecological sleep benefit is established by this review.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

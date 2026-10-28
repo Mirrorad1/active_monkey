@@ -93,3 +93,33 @@ Claudeception evaluation for C1: cached responsibility replacement is verified b
 helper's hand-derived tests and recorded in its docstring; acquisition-as-outcome already
 belongs to VALIDATION. Those durable guards cover the reusable knowledge, so no duplicate
 global skill was created and no negative toy result was promoted into a universal rule.
+
+## Thirty-experiment archival cycle
+
+`exp251-280-archive-v1` retains all30 complete historical records, source-linked retrospective
+synthesis, discrepancies between summaries and raw tables, and three generated untested
+rehearsals. It uses the separate `meta_monkey.sleep_archive` adapter because full caveats
+should not be dropped to fit an active brief. The original8-source/1500-byte prompt adapter
+is unchanged. See the archive README for retrieval and verification commands. No30-simulation
+rerun, scientific regrading, C1 reopening, ecological escalation or L1 efficacy test occurred.
+
+Archive packets specify count1..30, the exact latest-window sources at a full source_commit,
+and generated synthesis/audit/rehearsal items citing archived IDs. Optional supporting_scripts
+and supporting_outputs retain detailed tables/correction provenance. Build/review/inspect:
+
+```sh
+uv run --python .venv python -m meta_monkey.sleep_archive build --packet packet.json --out meta/sleep/archive-id
+uv run --python .venv python -m meta_monkey.sleep_archive review --archive meta/sleep/archive-id --review review.json
+uv run --python .venv python -m meta_monkey.sleep_archive inspect --archive meta/sleep/archive-id
+```
+
+Every source is checked against its pinned Git blob and hashed as bytes, with log-entry
+selection hashed separately. Review binds the complete report and source receipt; review
+metadata carries a self-hash for accidental-tamper detection, not reviewer authentication.
+
+Archive implementation review produced three durable provenance guards in
+`tests/test_sleep_archive.py`: committed post-pin rewrites are rejected; LF-to-CRLF
+changes invalidate byte hashes; changed reviewer/notes invalidate review metadata.
+Claudeception evaluated these verified pitfalls; executable guards and this operator
+documentation retain the reusable knowledge without a duplicate global skill. Scientific
+lessons remain retrospective and scoped, with original contradictory evidence preserved.

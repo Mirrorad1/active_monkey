@@ -1,0 +1,36 @@
+{
+  "accepted": true,
+  "content_hash": "d4f7c212f263a95e9a581cf1dcf6dbf46d6cbd56f763e9fe228577e32e3971d7",
+  "notes": "All three independent source-range reviews accepted without corrections; complete30 entries and caveats preserved. Each reviewed assigned raw/scripts and generated interpretations; final reviewer mechanically rechecked all30 records and124 refs at pinned commit. Audit discrepancies, original failed criteria and untested rehearsals retained. Archival fidelity, not scientific certification/regrading, replication or causal lab-quality improvement.",
+  "range_reviews": [
+    {
+      "accepted": true,
+      "notes": "All10 entries exact;51 applicable source refs checked; Exp254 numerical/divergence mismatch, Exp256 stronger slope failure, Exp258 scope and Exp260 ESS qualification preserved.",
+      "range": [
+        251,
+        260
+      ],
+      "reviewer": "/root/archive_review_251_260"
+    },
+    {
+      "accepted": true,
+      "notes": "All10 entries exact; original261/263 failed criteria,265 survivor conditioning,268 MI/criterion mismatch and269 stale headline preserved; assigned refs and receipt hashes checked.",
+      "range": [
+        261,
+        270
+      ],
+      "reviewer": "/root/archive_review_261_270"
+    },
+    {
+      "accepted": true,
+      "notes": "All10 entries exact; all30 entries and124 pinned refs mechanically checked;272 primary exploration runner correct; C0 bounded/C1 halted; no online/ecology/L1 claim.",
+      "range": [
+        271,
+        280
+      ],
+      "reviewer": "/root/archive_review_271_280"
+    }
+  ],
+  "review_hash": "534baefe724f8d624cb782fffcfe6799a17ea0b7ee4c5044f8bb1c8a02b37cea",
+  "reviewer": "independent range reviewers: /root/archive_review_251_260; /root/archive_review_261_270; /root/archive_review_271_280"
+}
