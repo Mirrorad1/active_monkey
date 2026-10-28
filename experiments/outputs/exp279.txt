@@ -1,0 +1,117 @@
+Exp 279: once-weighted sleep replay
+Smoke: False
+Elapsed seconds: 1091.069; peak RSS MB: 9478.6
+seed 9300 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.500000000 expected_pos=0.428799421 sampled_pos=0.483333333
+  chronological20: csel=0.333333333 expected_pos=0.255901247 sampled_pos=0.308333333
+  joint20: csel=0.666666667 expected_pos=0.621642828 sampled_pos=0.650000000
+  broken20: csel=0.166666667 expected_pos=0.169678703 sampled_pos=0.175000000
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.666666667 expected_pos=0.665934801 sampled_pos=0.666666667
+seed 9301 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.000413000 sampled_pos=0.000000000
+  chronological20: csel=0.000000000 expected_pos=0.000908482 sampled_pos=0.000000000
+  joint20: csel=0.333333333 expected_pos=0.333296150 sampled_pos=0.333333333
+  broken20: csel=0.666666667 expected_pos=0.516902626 sampled_pos=0.516666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.332584709 sampled_pos=0.333333333
+seed 9302 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.046779096 sampled_pos=0.033333333
+  chronological20: csel=0.000000000 expected_pos=0.025742441 sampled_pos=0.016666667
+  joint20: csel=0.666666667 expected_pos=0.702065647 sampled_pos=0.750000000
+  broken20: csel=0.166666667 expected_pos=0.166666672 sampled_pos=0.166666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.833333333 expected_pos=0.828463614 sampled_pos=0.833333333
+seed 9303 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.333333333 expected_pos=0.333351970 sampled_pos=0.333333333
+  chronological20: csel=0.333333333 expected_pos=0.321600258 sampled_pos=0.325000000
+  joint20: csel=0.333333333 expected_pos=0.333333701 sampled_pos=0.333333333
+  broken20: csel=0.000000000 expected_pos=0.002319801 sampled_pos=0.000000000
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333404779 sampled_pos=0.333333333
+seed 9304 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.333333333 expected_pos=0.330661148 sampled_pos=0.333333333
+  chronological20: csel=0.000000000 expected_pos=0.144128725 sampled_pos=0.108333333
+  joint20: csel=0.333333333 expected_pos=0.333510876 sampled_pos=0.333333333
+  broken20: csel=0.500000000 expected_pos=0.500001907 sampled_pos=0.500000000
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.341421932 sampled_pos=0.341666667
+seed 9305 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.166666667 expected_pos=0.178886846 sampled_pos=0.200000000
+  chronological20: csel=0.000000000 expected_pos=0.039251018 sampled_pos=0.033333333
+  joint20: csel=0.333333333 expected_pos=0.370673418 sampled_pos=0.358333333
+  broken20: csel=0.166666667 expected_pos=0.173200175 sampled_pos=0.175000000
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333269089 sampled_pos=0.333333333
+seed 9306 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.011792972 sampled_pos=0.000000000
+  chronological20: csel=0.000000000 expected_pos=0.021212967 sampled_pos=0.000000000
+  joint20: csel=0.333333333 expected_pos=0.332160920 sampled_pos=0.333333333
+  broken20: csel=0.333333333 expected_pos=0.334829539 sampled_pos=0.333333333
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333406806 sampled_pos=0.333333333
+seed 9307 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.000678383 sampled_pos=0.000000000
+  chronological20: csel=0.000000000 expected_pos=0.001772638 sampled_pos=0.000000000
+  joint20: csel=0.833333333 expected_pos=0.831857502 sampled_pos=0.833333333
+  broken20: csel=0.333333333 expected_pos=0.368522972 sampled_pos=0.366666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333327740 sampled_pos=0.333333333
+seed 9308 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.333333333 expected_pos=0.331869572 sampled_pos=0.308333333
+  chronological20: csel=0.333333333 expected_pos=0.238070771 sampled_pos=0.225000000
+  joint20: csel=0.666666667 expected_pos=0.661880314 sampled_pos=0.666666667
+  broken20: csel=0.500000000 expected_pos=0.427586675 sampled_pos=0.425000000
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.666666667 expected_pos=0.666595280 sampled_pos=0.666666667
+seed 9309 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.005892646 sampled_pos=0.008333333
+  chronological20: csel=0.000000000 expected_pos=0.002811918 sampled_pos=0.008333333
+  joint20: csel=0.666666667 expected_pos=0.664259851 sampled_pos=0.658333333
+  broken20: csel=0.333333333 expected_pos=0.391081899 sampled_pos=0.391666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.500000000 expected_pos=0.499817133 sampled_pos=0.500000000
+seed 9310 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.166666667 expected_pos=0.138269082 sampled_pos=0.133333333
+  chronological20: csel=0.000000000 expected_pos=0.034693804 sampled_pos=0.041666667
+  joint20: csel=0.500000000 expected_pos=0.580621660 sampled_pos=0.633333333
+  broken20: csel=0.333333333 expected_pos=0.333281606 sampled_pos=0.333333333
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.366450697 sampled_pos=0.350000000
+seed 9311 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.166666667 expected_pos=0.129267767 sampled_pos=0.150000000
+  chronological20: csel=0.000000000 expected_pos=0.012425295 sampled_pos=0.008333333
+  joint20: csel=0.833333333 expected_pos=0.810422182 sampled_pos=0.866666667
+  broken20: csel=0.166666667 expected_pos=0.102015831 sampled_pos=0.091666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333333880 sampled_pos=0.333333333
+seed 9312 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.333333333 expected_pos=0.450809330 sampled_pos=0.433333333
+  chronological20: csel=0.333333333 expected_pos=0.326779544 sampled_pos=0.308333333
+  joint20: csel=0.500000000 expected_pos=0.502428830 sampled_pos=0.508333333
+  broken20: csel=0.333333333 expected_pos=0.333350033 sampled_pos=0.333333333
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.500000000 expected_pos=0.485052824 sampled_pos=0.475000000
+seed 9313 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.333333333 expected_pos=0.356981039 sampled_pos=0.366666667
+  chronological20: csel=0.000000000 expected_pos=0.148653135 sampled_pos=0.116666667
+  joint20: csel=0.500000000 expected_pos=0.517466962 sampled_pos=0.508333333
+  broken20: csel=0.166666667 expected_pos=0.166666791 sampled_pos=0.166666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.666666667 expected_pos=0.665548384 sampled_pos=0.666666667
+seed 9314 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.020535568 sampled_pos=0.008333333
+  chronological20: csel=0.000000000 expected_pos=0.001887810 sampled_pos=0.000000000
+  joint20: csel=0.333333333 expected_pos=0.305645406 sampled_pos=0.266666667
+  broken20: csel=0.333333333 expected_pos=0.333333343 sampled_pos=0.333333333
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.500000000 expected_pos=0.496612191 sampled_pos=0.500000000
+seed 9315 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.000000000 expected_pos=0.001725136 sampled_pos=0.000000000
+  chronological20: csel=0.000000000 expected_pos=0.001246226 sampled_pos=0.000000000
+  joint20: csel=0.166666667 expected_pos=0.323168010 sampled_pos=0.308333333
+  broken20: csel=0.166666667 expected_pos=0.138793766 sampled_pos=0.166666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.333333333 expected_pos=0.333333343 sampled_pos=0.333333333
+Predeclared decision: {"comparisons": {"chronological20": {"mean_gap": 0.41666666666666663, "pass_count": true, "pass_effect": true, "positive_seeds": 15}, "idle": {"mean_gap": 0.33333333333333337, "pass_count": true, "pass_effect": true, "positive_seeds": 14}}, "verdict": "POSITIVE"}
+Raw: experiments/outputs/exp279.json

@@ -562,6 +562,28 @@ step 0.
   Memo and conditional bridge plan: `docs/research/verifier-moment-repair-memo.md`.
   Do not escalate this version on the strength of the keep-state comparison.
 
+### 3c. Sleep framework update (2026-10-27, Exp 279)
+
+The human approved a shared lifecycle for the lab and creatures: experience -> record ->
+consolidate -> rehearse -> test/select -> retain. Design and implementation plan are under
+`docs/superpowers/`; use `loop/directions/recursive-sleep.md` for the gated ladder.
+Lab adapter: `meta_monkey.sleep` builds bounded source-linked briefs from committed evidence,
+requires independent review, and attaches through `loop/compose.py --sleep-cycle`. This changes
+persistent context artifacts, not hosted-model weights; improved research quality is untested.
+Creature adapter: `active_loop.sleep_replay` refits unique observed encounters from an immutable
+anchor without counting replay as new evidence; model capacity and live belief/RNG are preserved.
+
+Exp 279 (seeded dyad cohort, no spine reset/advance) is POSITIVE / NEW INSIGHT / POSITIVE-SINGLE:
+joint20 csel .500 vs idle .167 and restarted chronology .083, beating both mean/count thresholds
+(14/16 and 15/16 positive). Only 9/16 reach half-correct. This is one provided optimizer package
+on a stationary toy mapping; retention, transfer, ecological selection and evolved sleep are
+unrun. Next is a new C1 predeclaration for retention/interference/changed-world revision;
+C2/C3 ecological costs and inheritance, and L1 prospective lab-quality evaluation, stay separate.
+Raw events/policies/receipts/source hashes and all checkpoints are retained in
+`experiments/outputs/exp279*`; see `experiment_bundles/exp279/` and the append-only log.
+The executed source is pinned by its raw SHA hashes and atomic experiment commit. A disclosed
+runtime projection metadata bug does not affect the pre-run gate or scientific result.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

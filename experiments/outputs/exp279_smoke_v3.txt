@@ -1,0 +1,12 @@
+Exp 279: once-weighted sleep replay
+Smoke: True
+Elapsed seconds: 83.938; peak RSS MB: 3901.6
+seed 9299 instruments={'mass': True, 'objective': True, 'state': True, 'evaluation': True}
+  idle: csel=0.166666667 expected_pos=0.147575706 sampled_pos=0.158333333
+  chronological20: csel=0.000000000 expected_pos=0.062237233 sampled_pos=0.075000000
+  joint20: csel=0.333333333 expected_pos=0.333333343 sampled_pos=0.333333333
+  broken20: csel=0.166666667 expected_pos=0.166641384 sampled_pos=0.166666667
+  constant: csel=0.333333333 expected_pos=0.333333333 sampled_pos=0.333333333
+  long300: csel=0.166666667 expected_pos=0.224658385 sampled_pos=0.258333333
+Predeclared decision: {"verdict": "SMOKE_ONLY"}
+Raw: experiments/outputs/exp279_smoke_v3.json

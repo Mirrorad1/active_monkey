@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:278, breakthrough:9, positive:121, wall:66, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:279, breakthrough:9, positive:122, wall:66, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -2982,7 +2982,17 @@ window.AM_EXPERIMENTS = [
     result:"Repair m/v recovery success is 0.838713/0.822139 (sparse/dense), versus 0.827025/0.798094 keeping state and 0.846854/0.830707 with full reset. Both reset baselines beat repair in 8/8 seeds in both regimes; current-weight refresh also has slightly higher means. Only 3/6 comparisons pass per regime. Moment-replay checks pass; no-change keep/repair trajectories match exactly. Main simulation took 3.010 seconds; no GPU or model API calls. Blinded raw-data verifier agrees: NEGATIVE.",
     implication:"A weak keep-state baseline would have supported an inflated novelty claim. Exact bookkeeping does not establish an optimization benefit. The narrow specialization remains provisionally novel at most; no LLM RL or autonomous self-improvement result is established. Stop this version rather than escalate to LLM training.",
     caveat:"Toy bandit only; no LLM improvement or established novelty.",
-    trace:{ script:"experiments/exp278_verifier_moment_repair.py", output:"experiments/outputs/exp278.txt" } }
+    trace:{ script:"experiments/exp278_verifier_moment_repair.py", output:"experiments/outputs/exp278.txt" } },
+  { n:279, kind:"positive", chapter:"frontier",
+    title:"Offline refitting improves short-session toy discrimination",
+    one:"Joint replay passes both declared baseline comparisons; lasting knowledge and ecology remain untested.",
+    plain:"Can a creature learn more from a short session by revisiting what already happened? Joint offline refitting improved its choices in this toy task, but it did not make learning reliable across all creatures.",
+    metric:{ from:0.166667, to:0.500000, unit:"correct-select: idle vs joint replay" },
+    setup:"16 seeds, 100 shared lived events; once-weighted joint20 vs idle and restarted chronological20. Replay arms each use 2000 fitting plus 2100 monitoring posterior evaluations; equal capacity, prior and evidence mass. Broken association, constant response and extra-data long300 references. Fixed read-only evaluation.",
+    result:"Mean csel joint 0.500 vs idle 0.167 and chronology 0.083; paired gains 1/3 and 5/12, positive in 14/16 and 15/16 respectively. Both mean >=1/6 and count >=12/16 gates pass; instrument checks pass. Only 9/16 seeds reach half-correct. Blinded raw-data verifier agrees.",
+    implication:"POSITIVE-SINGLE / NEW INSIGHT: parameter-level evidence for a provided global refitter on a stationary toy mapping. Both levels of the sleep framework are implemented; improved lab research quality is not established.",
+    caveat:"Toy stationary dyad; provided scaffold and optimizer.",
+    trace:{ script:"experiments/exp279_sleep_replay.py", output:"experiments/outputs/exp279.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

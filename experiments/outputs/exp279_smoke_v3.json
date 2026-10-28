@@ -1,0 +1,3848 @@
+{
+  "config": {
+    "alpha_eval": 4.0,
+    "gamma_eval": 4.0,
+    "long_wake": 300,
+    "passes": 20,
+    "wake": 100
+  },
+  "experiment": 279,
+  "preflight": {
+    "memory_safe": true,
+    "projected_seconds_2_workers": 671.5025900006294,
+    "ram_gb": 38.654705664,
+    "rss_mb": 3901.620224,
+    "seconds": 83.93782375007868
+  },
+  "result": {
+    "verdict": "SMOKE_ONLY"
+  },
+  "rows": [
+    {
+      "arms": {
+        "broken20": {
+          "action_probabilities": [
+            [
+              5.848463380253577e-10,
+              4.7632859434543207e-08,
+              0.9999905824661255,
+              8.785907823494199e-08,
+              9.3360104074236e-06
+            ],
+            [
+              4.8489136317275694e-11,
+              6.470967095495439e-10,
+              0.8887961506843567,
+              5.167948846640513e-10,
+              0.11120385676622391
+            ],
+            [
+              1.7944956631765763e-09,
+              6.300389654434468e-10,
+              0.9998477697372437,
+              1.8945158775096615e-09,
+              0.00015220302157104015
+            ],
+            [
+              3.326583175589093e-10,
+              0.00026187312323600054,
+              0.9974595904350281,
+              5.44172735317261e-07,
+              0.002278003841638565
+            ],
+            [
+              9.371923237466717e-10,
+              5.8713197859106e-08,
+              0.9999991655349731,
+              5.8160807725471386e-08,
+              6.806762939959299e-07
+            ],
+            [
+              9.552007185220646e-09,
+              1.5306117484570336e-10,
+              1.0,
+              9.17832920777073e-10,
+              7.365497968481183e-12
+            ]
+          ],
+          "csel": 0.16666666666666666,
+          "evaluation_state_unchanged": true,
+          "expected_pos": 0.16664138436317444,
+          "policy_probabilities": [
+            [
+              0.004502622876316309,
+              0.013526386581361294,
+              0.9155964851379395,
+              0.01576346904039383,
+              0.050611063838005066
+            ],
+            [
+              0.0016906035598367453,
+              0.0032312676776200533,
+              0.6220584511756897,
+              0.003054640954360366,
+              0.36996498703956604
+            ],
+            [
+              0.0057641309686005116,
+              0.004437007009983063,
+              0.8855879902839661,
+              0.005842823535203934,
+              0.0983680710196495
+            ],
+            [
+              0.0031026415526866913,
+              0.09241760522127151,
+              0.7260320782661438,
+              0.019731774926185608,
+              0.15871596336364746
+            ],
+            [
+              0.00519354734569788,
+              0.01461136806756258,
+              0.9386568069458008,
+              0.014576878398656845,
+              0.026961378753185272
+            ],
+            [
+              0.009686955250799656,
+              0.003446512622758746,
+              0.9798591136932373,
+              0.005393299739807844,
+              0.0016142253298312426
+            ]
+          ],
+          "sampled_pos": 0.16666666666666666
+        },
+        "chronological20": {
+          "action_probabilities": [
+            [
+              0.17467063665390015,
+              0.0012566900113597512,
+              0.02063281647861004,
+              4.0809568417898845e-06,
+              0.8034356832504272
+            ],
+            [
+              0.16554507613182068,
+              0.001243354519829154,
+              0.02009146846830845,
+              4.13167890656041e-06,
+              0.8131160140037537
+            ],
+            [
+              0.1763218343257904,
+              0.0012575527653098106,
+              0.020685754716396332,
+              4.073609943588963e-06,
+              0.8017308115959167
+            ],
+            [
+              0.16811123490333557,
+              0.0012194038135930896,
+              0.019519422203302383,
+              4.158505362283904e-06,
+              0.8111458420753479
+            ],
+            [
+              0.17556682229042053,
+              0.0012241705553606153,
+              0.01994030363857746,
+              4.133713900955627e-06,
+              0.8032646179199219
+            ],
+            [
+              0.17901568114757538,
+              0.0012526488862931728,
+              0.02056858129799366,
+              4.068671387358336e-06,
+              0.799159049987793
+            ]
+          ],
+          "csel": 0.0,
+          "evaluation_state_unchanged": true,
+          "expected_pos": 0.06223723292350769,
+          "policy_probabilities": [
+            [
+              0.29312658309936523,
+              0.08537039905786514,
+              0.1718461811542511,
+              0.02037937007844448,
+              0.4292774200439453
+            ],
+            [
+              0.2903593182563782,
+              0.08547823131084442,
+              0.17137980461120605,
+              0.020522883161902428,
+              0.43225979804992676
+            ],
+            [
+              0.2936471998691559,
+              0.08533571660518646,
+              0.17185698449611664,
+              0.020358426496386528,
+              0.42880168557167053
+            ],
+            [
+              0.2916991710662842,
+              0.08512809872627258,
+              0.1702757179737091,
+              0.02057170495390892,
+              0.4323253631591797
+            ],
+            [
+              0.29397228360176086,
+              0.08494862169027328,
+              0.17065881192684174,
+              0.02047768607735634,
+              0.4299425780773163
+            ],
+            [
+              0.2946334779262543,
+              0.08521512150764465,
+              0.17153802514076233,
+              0.020343350246548653,
+              0.42826998233795166
+            ]
+          ],
+          "sampled_pos": 0.075
+        },
+        "constant": {
+          "csel": 0.3333333333333333,
+          "expected_pos": 0.3333333333333333,
+          "sampled_pos": 0.3333333333333333
+        },
+        "idle": {
+          "action_probabilities": [
+            [
+              0.17284640669822693,
+              0.0008152129594236612,
+              0.02832064963877201,
+              2.4545222458982607e-06,
+              0.7980152368545532
+            ],
+            [
+              0.05866604298353195,
+              0.0007996710482984781,
+              0.014512314461171627,
+              3.0145815799187403e-06,
+              0.926019012928009
+            ],
+            [
+              0.2940937280654907,
+              0.0007459608023054898,
+              0.03279934450984001,
+              2.0690822566393763e-06,
+              0.6723589301109314
+            ],
+            [
+              0.17362356185913086,
+              0.0006671367445960641,
+              0.0053537762723863125,
+              3.38697896040685e-06,
+              0.8203520774841309
+            ],
+            [
+              0.6784806847572327,
+              0.0003139646432828158,
+              0.004928546957671642,
+              1.2929920103488257e-06,
+              0.31627538800239563
+            ],
+            [
+              0.501360297203064,
+              0.0005247532390058041,
+              0.016872458159923553,
+              1.6366823274438502e-06,
+              0.48124080896377563
+            ]
+          ],
+          "csel": 0.16666666666666666,
+          "evaluation_state_unchanged": true,
+          "expected_pos": 0.14757570624351501,
+          "policy_probabilities": [
+            [
+              0.2919267416000366,
+              0.07650266587734222,
+              0.18573108315467834,
+              0.017920516431331635,
+              0.4279190003871918
+            ],
+            [
+              0.24243421852588654,
+              0.08283714205026627,
+              0.1709745228290558,
+              0.020525984466075897,
+              0.4832281172275543
+            ],
+            [
+              0.32431188225746155,
+              0.07278140634298325,
+              0.1874164491891861,
+              0.016702663153409958,
+              0.39878764748573303
+            ],
+            [
+              0.311641126871109,
+              0.07759009301662445,
+              0.13059231638908386,
+              0.020711220800876617,
+              0.45946526527404785
+            ],
+            [
+              0.43439483642578125,
+              0.06371188908815384,
+              0.1268177330493927,
+              0.016139840707182884,
+              0.358935683965683
+            ],
+            [
+              0.3787168264389038,
+              0.0681186243891716,
+              0.16220779716968536,
+              0.016097858548164368,
+              0.3748588263988495
+            ]
+          ],
+          "sampled_pos": 0.15833333333333333
+        },
+        "joint20": {
+          "action_probabilities": [
+            [
+              1.0,
+              5.803272973281537e-09,
+              2.5458465557903764e-08,
+              4.547247143544652e-16,
+              1.0544498607600872e-10
+            ],
+            [
+              1.0,
+              3.1871327799137816e-09,
+              4.472668013733028e-09,
+              7.24218675616584e-15,
+              1.6648457057399924e-09
+            ],
+            [
+              0.9999998807907104,
+              9.306330817082653e-09,
+              9.591883554094238e-08,
+              5.522120788294574e-17,
+              1.282520097067863e-11
+            ],
+            [
+              1.0,
+              2.0040269443910574e-10,
+              1.5084575255563948e-10,
+              2.7927296722608146e-15,
+              6.242337757811356e-10
+            ],
+            [
+              1.0,
+              3.0848150422979614e-11,
+              1.7186232992294492e-10,
+              1.1885518339396814e-18,
+              2.688450861671604e-13
+            ],
+            [
+              0.9999998807907104,
+              4.434620226589914e-09,
+              6.406840213912801e-08,
+              9.422293589222106e-18,
+              2.1714930201199856e-12
+            ]
+          ],
+          "csel": 0.3333333333333333,
+          "evaluation_state_unchanged": true,
+          "expected_pos": 0.3333333432674408,
+          "policy_probabilities": [
+            [
+              0.975885808467865,
+              0.008517599664628506,
+              0.012326991185545921,
+              0.00014250697859097272,
+              0.003127198899164796
+            ],
+            [
+              0.9781185984611511,
+              0.007349225226789713,
+              0.007998953573405743,
+              0.00028533756267279387,
+              0.0062479134649038315
+            ],
+            [
+              0.9714405536651611,
+              0.009541376493871212,
+              0.017095910385251045,
+              8.374187746085227e-05,
+              0.001838367315940559
+            ],
+            [
+              0.9876589179039001,
+              0.003716061357408762,
+              0.003461308078840375,
+              0.00022704618459101766,
+              0.0049367803148925304
+            ],
+            [
+              0.9933144450187683,
+              0.002340960316359997,
+              0.0035965153947472572,
+              3.2797539461171255e-05,
+              0.0007152572507038713
+            ],
+            [
+              0.9752867221832275,
+              0.007958779111504555,
+              0.015516482293605804,
+              5.403454269981012e-05,
+              0.001183918910101056
+            ]
+          ],
+          "sampled_pos": 0.3333333333333333
+        },
+        "long300": {
+          "action_probabilities": [
+            [
+              0.28666380047798157,
+              0.123731330037117,
+              1.815142786654178e-05,
+              5.296773020191381e-10,
+              0.589586615562439
+            ],
+            [
+              0.00012857484398409724,
+              0.055979590862989426,
+              1.8076707419822924e-06,
+              2.4648632024337758e-09,
+              0.9438899755477905
+            ],
+            [
+              0.8686782717704773,
+              0.050470784306526184,
+              2.022411354118958e-05,
+              6.249726430818114e-11,
+              0.08083068579435349
+            ],
+            [
+              0.7620601058006287,
+              0.00023793593572918326,
+              2.6898337779357462e-08,
+              2.457496206531573e-09,
+              0.23770201206207275
+            ],
+            [
+              0.9999816417694092,
+              1.1496699414692557e-07,
+              3.747016585897711e-11,
+              6.624248269056568e-14,
+              1.8289214494870976e-05
+            ],
+            [
+              0.955092191696167,
+              0.005305048078298569,
+              2.11300130104064e-06,
+              3.697285186343713e-11,
+              0.03960064798593521
+            ]
+          ],
+          "csel": 0.16666666666666666,
+          "evaluation_state_unchanged": true,
+          "expected_pos": 0.22465838491916656,
+          "policy_probabilities": [
+            [
+              0.32218003273010254,
+              0.2611411511898041,
+              0.02873975783586502,
+              0.0021123127080500126,
+              0.3858267366886139
+            ],
+            [
+              0.06563913077116013,
+              0.2998342514038086,
+              0.022602353245019913,
+              0.004343322012573481,
+              0.6075809597969055
+            ],
+            [
+              0.4726702868938446,
+              0.23206175863742828,
+              0.032833028584718704,
+              0.00137660326436162,
+              0.26105836033821106
+            ],
+            [
+              0.5259010791778564,
+              0.06990718841552734,
+              0.007208387367427349,
+              0.003963053692132235,
+              0.39302030205726624
+            ],
+            [
+              0.9201397895812988,
+              0.016943342983722687,
+              0.0022765500470995903,
+              0.00046680981176905334,
+              0.0601734034717083
+            ],
+            [
+              0.5664737224578857,
+              0.15464673936367035,
+              0.021847080439329147,
+              0.0014129903865978122,
+              0.25561952590942383
+            ]
+          ],
+          "sampled_pos": 0.25833333333333336
+        }
+      },
+      "checkpoint_refs": {
+        "broken20": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/broken20.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/broken20.safetensors"
+          },
+          "hash": "bf360959375f6a204d81c816e33333d12af1b7ea4346f0b85fb195489d9684d1"
+        },
+        "chronological20": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/chronological20.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/chronological20.safetensors"
+          },
+          "hash": "0f9f330553877b565145333ade5c15238fcbd523f655f90240fc2214f4580751"
+        },
+        "idle": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/idle.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/idle.safetensors"
+          },
+          "hash": "107cd629cac0b06f7f983aa844aa4f608020546c8c83d2d0b25760eea39c8751"
+        },
+        "initial": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/initial.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/initial.safetensors"
+          },
+          "hash": "f2563120959c22028b7a32420a3116e9386a5a0f6f931c9b3ce636ba2635f2e1"
+        },
+        "joint20": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/joint20.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/joint20.safetensors"
+          },
+          "hash": "9375d182f4fa19dffeddcbde0743c30a68bf335490ef02f38d5537adaa8f83b6"
+        },
+        "live_after": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/live_after.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/live_after.safetensors"
+          },
+          "hash": "9751f7e77e47165ceca86855cad20e89a3a060faef93085f457e1a9d306dae59"
+        },
+        "live_before": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/live_before.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/live_before.safetensors"
+          },
+          "hash": "9751f7e77e47165ceca86855cad20e89a3a060faef93085f457e1a9d306dae59"
+        },
+        "long300": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long300.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long300.safetensors"
+          },
+          "hash": "e2609b8bf056a3ea9b52db63284bbb17f4833bcdc91a010316553f4f583b10ae"
+        },
+        "long_final": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long_final.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long_final.safetensors"
+          },
+          "hash": "10c3eae0a70af8033f25a1500aad33c711f75b1b790c71eaf7a09be427d6503d"
+        },
+        "long_initial": {
+          "files": {
+            "config": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long_initial.config.json",
+            "tensors": "experiments/outputs/exp279_smoke_v3_checkpoints/seed9299/long_initial.safetensors"
+          },
+          "hash": "dc195fa4cb67fae5013c911716c8a325f627c5338980c99add469ccfa6bbf84d"
+        }
+      },
+      "events": [
+        {
+          "code": 1,
+          "event_id": "9299:0",
+          "outcome": 0,
+          "response": 3,
+          "t": 0
+        },
+        {
+          "code": 3,
+          "event_id": "9299:1",
+          "outcome": 0,
+          "response": 1,
+          "t": 1
+        },
+        {
+          "code": 4,
+          "event_id": "9299:2",
+          "outcome": 1,
+          "response": 4,
+          "t": 2
+        },
+        {
+          "code": 0,
+          "event_id": "9299:3",
+          "outcome": 0,
+          "response": 1,
+          "t": 3
+        },
+        {
+          "code": 5,
+          "event_id": "9299:4",
+          "outcome": 0,
+          "response": 0,
+          "t": 4
+        },
+        {
+          "code": 2,
+          "event_id": "9299:5",
+          "outcome": 2,
+          "response": 2,
+          "t": 5
+        },
+        {
+          "code": 0,
+          "event_id": "9299:6",
+          "outcome": 2,
+          "response": 0,
+          "t": 6
+        },
+        {
+          "code": 3,
+          "event_id": "9299:7",
+          "outcome": 1,
+          "response": 4,
+          "t": 7
+        },
+        {
+          "code": 2,
+          "event_id": "9299:8",
+          "outcome": 2,
+          "response": 2,
+          "t": 8
+        },
+        {
+          "code": 5,
+          "event_id": "9299:9",
+          "outcome": 2,
+          "response": 1,
+          "t": 9
+        },
+        {
+          "code": 1,
+          "event_id": "9299:10",
+          "outcome": 0,
+          "response": 2,
+          "t": 10
+        },
+        {
+          "code": 4,
+          "event_id": "9299:11",
+          "outcome": 1,
+          "response": 4,
+          "t": 11
+        },
+        {
+          "code": 5,
+          "event_id": "9299:12",
+          "outcome": 0,
+          "response": 3,
+          "t": 12
+        },
+        {
+          "code": 1,
+          "event_id": "9299:13",
+          "outcome": 1,
+          "response": 4,
+          "t": 13
+        },
+        {
+          "code": 0,
+          "event_id": "9299:14",
+          "outcome": 0,
+          "response": 2,
+          "t": 14
+        },
+        {
+          "code": 3,
+          "event_id": "9299:15",
+          "outcome": 0,
+          "response": 2,
+          "t": 15
+        },
+        {
+          "code": 4,
+          "event_id": "9299:16",
+          "outcome": 0,
+          "response": 1,
+          "t": 16
+        },
+        {
+          "code": 2,
+          "event_id": "9299:17",
+          "outcome": 2,
+          "response": 2,
+          "t": 17
+        },
+        {
+          "code": 1,
+          "event_id": "9299:18",
+          "outcome": 0,
+          "response": 0,
+          "t": 18
+        },
+        {
+          "code": 5,
+          "event_id": "9299:19",
+          "outcome": 0,
+          "response": 2,
+          "t": 19
+        },
+        {
+          "code": 4,
+          "event_id": "9299:20",
+          "outcome": 2,
+          "response": 0,
+          "t": 20
+        },
+        {
+          "code": 3,
+          "event_id": "9299:21",
+          "outcome": 0,
+          "response": 2,
+          "t": 21
+        },
+        {
+          "code": 2,
+          "event_id": "9299:22",
+          "outcome": 0,
+          "response": 1,
+          "t": 22
+        },
+        {
+          "code": 0,
+          "event_id": "9299:23",
+          "outcome": 1,
+          "response": 4,
+          "t": 23
+        },
+        {
+          "code": 3,
+          "event_id": "9299:24",
+          "outcome": 0,
+          "response": 1,
+          "t": 24
+        },
+        {
+          "code": 2,
+          "event_id": "9299:25",
+          "outcome": 1,
+          "response": 4,
+          "t": 25
+        },
+        {
+          "code": 1,
+          "event_id": "9299:26",
+          "outcome": 0,
+          "response": 0,
+          "t": 26
+        },
+        {
+          "code": 4,
+          "event_id": "9299:27",
+          "outcome": 1,
+          "response": 4,
+          "t": 27
+        },
+        {
+          "code": 0,
+          "event_id": "9299:28",
+          "outcome": 2,
+          "response": 0,
+          "t": 28
+        },
+        {
+          "code": 5,
+          "event_id": "9299:29",
+          "outcome": 0,
+          "response": 2,
+          "t": 29
+        },
+        {
+          "code": 2,
+          "event_id": "9299:30",
+          "outcome": 1,
+          "response": 4,
+          "t": 30
+        },
+        {
+          "code": 1,
+          "event_id": "9299:31",
+          "outcome": 1,
+          "response": 4,
+          "t": 31
+        },
+        {
+          "code": 4,
+          "event_id": "9299:32",
+          "outcome": 0,
+          "response": 3,
+          "t": 32
+        },
+        {
+          "code": 5,
+          "event_id": "9299:33",
+          "outcome": 0,
+          "response": 0,
+          "t": 33
+        },
+        {
+          "code": 3,
+          "event_id": "9299:34",
+          "outcome": 0,
+          "response": 2,
+          "t": 34
+        },
+        {
+          "code": 0,
+          "event_id": "9299:35",
+          "outcome": 1,
+          "response": 4,
+          "t": 35
+        },
+        {
+          "code": 4,
+          "event_id": "9299:36",
+          "outcome": 2,
+          "response": 0,
+          "t": 36
+        },
+        {
+          "code": 3,
+          "event_id": "9299:37",
+          "outcome": 0,
+          "response": 0,
+          "t": 37
+        },
+        {
+          "code": 0,
+          "event_id": "9299:38",
+          "outcome": 2,
+          "response": 0,
+          "t": 38
+        },
+        {
+          "code": 1,
+          "event_id": "9299:39",
+          "outcome": 0,
+          "response": 3,
+          "t": 39
+        },
+        {
+          "code": 5,
+          "event_id": "9299:40",
+          "outcome": 0,
+          "response": 0,
+          "t": 40
+        },
+        {
+          "code": 2,
+          "event_id": "9299:41",
+          "outcome": 0,
+          "response": 0,
+          "t": 41
+        },
+        {
+          "code": 4,
+          "event_id": "9299:42",
+          "outcome": 0,
+          "response": 2,
+          "t": 42
+        },
+        {
+          "code": 1,
+          "event_id": "9299:43",
+          "outcome": 0,
+          "response": 0,
+          "t": 43
+        },
+        {
+          "code": 2,
+          "event_id": "9299:44",
+          "outcome": 1,
+          "response": 4,
+          "t": 44
+        },
+        {
+          "code": 3,
+          "event_id": "9299:45",
+          "outcome": 0,
+          "response": 2,
+          "t": 45
+        },
+        {
+          "code": 5,
+          "event_id": "9299:46",
+          "outcome": 1,
+          "response": 4,
+          "t": 46
+        },
+        {
+          "code": 0,
+          "event_id": "9299:47",
+          "outcome": 2,
+          "response": 0,
+          "t": 47
+        },
+        {
+          "code": 5,
+          "event_id": "9299:48",
+          "outcome": 1,
+          "response": 4,
+          "t": 48
+        },
+        {
+          "code": 4,
+          "event_id": "9299:49",
+          "outcome": 0,
+          "response": 2,
+          "t": 49
+        },
+        {
+          "code": 1,
+          "event_id": "9299:50",
+          "outcome": 0,
+          "response": 0,
+          "t": 50
+        },
+        {
+          "code": 2,
+          "event_id": "9299:51",
+          "outcome": 0,
+          "response": 0,
+          "t": 51
+        },
+        {
+          "code": 3,
+          "event_id": "9299:52",
+          "outcome": 0,
+          "response": 0,
+          "t": 52
+        },
+        {
+          "code": 0,
+          "event_id": "9299:53",
+          "outcome": 1,
+          "response": 4,
+          "t": 53
+        },
+        {
+          "code": 2,
+          "event_id": "9299:54",
+          "outcome": 1,
+          "response": 4,
+          "t": 54
+        },
+        {
+          "code": 3,
+          "event_id": "9299:55",
+          "outcome": 1,
+          "response": 4,
+          "t": 55
+        },
+        {
+          "code": 0,
+          "event_id": "9299:56",
+          "outcome": 1,
+          "response": 4,
+          "t": 56
+        },
+        {
+          "code": 5,
+          "event_id": "9299:57",
+          "outcome": 1,
+          "response": 4,
+          "t": 57
+        },
+        {
+          "code": 1,
+          "event_id": "9299:58",
+          "outcome": 0,
+          "response": 0,
+          "t": 58
+        },
+        {
+          "code": 4,
+          "event_id": "9299:59",
+          "outcome": 1,
+          "response": 4,
+          "t": 59
+        },
+        {
+          "code": 3,
+          "event_id": "9299:60",
+          "outcome": 1,
+          "response": 4,
+          "t": 60
+        },
+        {
+          "code": 2,
+          "event_id": "9299:61",
+          "outcome": 1,
+          "response": 4,
+          "t": 61
+        },
+        {
+          "code": 5,
+          "event_id": "9299:62",
+          "outcome": 0,
+          "response": 3,
+          "t": 62
+        },
+        {
+          "code": 1,
+          "event_id": "9299:63",
+          "outcome": 1,
+          "response": 4,
+          "t": 63
+        },
+        {
+          "code": 4,
+          "event_id": "9299:64",
+          "outcome": 2,
+          "response": 0,
+          "t": 64
+        },
+        {
+          "code": 0,
+          "event_id": "9299:65",
+          "outcome": 1,
+          "response": 4,
+          "t": 65
+        },
+        {
+          "code": 1,
+          "event_id": "9299:66",
+          "outcome": 1,
+          "response": 4,
+          "t": 66
+        },
+        {
+          "code": 5,
+          "event_id": "9299:67",
+          "outcome": 1,
+          "response": 4,
+          "t": 67
+        },
+        {
+          "code": 0,
+          "event_id": "9299:68",
+          "outcome": 1,
+          "response": 4,
+          "t": 68
+        },
+        {
+          "code": 4,
+          "event_id": "9299:69",
+          "outcome": 2,
+          "response": 0,
+          "t": 69
+        },
+        {
+          "code": 2,
+          "event_id": "9299:70",
+          "outcome": 0,
+          "response": 0,
+          "t": 70
+        },
+        {
+          "code": 3,
+          "event_id": "9299:71",
+          "outcome": 0,
+          "response": 0,
+          "t": 71
+        },
+        {
+          "code": 2,
+          "event_id": "9299:72",
+          "outcome": 1,
+          "response": 4,
+          "t": 72
+        },
+        {
+          "code": 5,
+          "event_id": "9299:73",
+          "outcome": 1,
+          "response": 4,
+          "t": 73
+        },
+        {
+          "code": 1,
+          "event_id": "9299:74",
+          "outcome": 0,
+          "response": 0,
+          "t": 74
+        },
+        {
+          "code": 3,
+          "event_id": "9299:75",
+          "outcome": 1,
+          "response": 4,
+          "t": 75
+        },
+        {
+          "code": 0,
+          "event_id": "9299:76",
+          "outcome": 0,
+          "response": 1,
+          "t": 76
+        },
+        {
+          "code": 4,
+          "event_id": "9299:77",
+          "outcome": 1,
+          "response": 4,
+          "t": 77
+        },
+        {
+          "code": 1,
+          "event_id": "9299:78",
+          "outcome": 1,
+          "response": 4,
+          "t": 78
+        },
+        {
+          "code": 2,
+          "event_id": "9299:79",
+          "outcome": 0,
+          "response": 0,
+          "t": 79
+        },
+        {
+          "code": 4,
+          "event_id": "9299:80",
+          "outcome": 1,
+          "response": 4,
+          "t": 80
+        },
+        {
+          "code": 5,
+          "event_id": "9299:81",
+          "outcome": 1,
+          "response": 4,
+          "t": 81
+        },
+        {
+          "code": 0,
+          "event_id": "9299:82",
+          "outcome": 0,
+          "response": 3,
+          "t": 82
+        },
+        {
+          "code": 3,
+          "event_id": "9299:83",
+          "outcome": 1,
+          "response": 4,
+          "t": 83
+        },
+        {
+          "code": 2,
+          "event_id": "9299:84",
+          "outcome": 2,
+          "response": 2,
+          "t": 84
+        },
+        {
+          "code": 4,
+          "event_id": "9299:85",
+          "outcome": 2,
+          "response": 0,
+          "t": 85
+        },
+        {
+          "code": 1,
+          "event_id": "9299:86",
+          "outcome": 1,
+          "response": 4,
+          "t": 86
+        },
+        {
+          "code": 3,
+          "event_id": "9299:87",
+          "outcome": 1,
+          "response": 4,
+          "t": 87
+        },
+        {
+          "code": 0,
+          "event_id": "9299:88",
+          "outcome": 2,
+          "response": 0,
+          "t": 88
+        },
+        {
+          "code": 5,
+          "event_id": "9299:89",
+          "outcome": 0,
+          "response": 0,
+          "t": 89
+        },
+        {
+          "code": 1,
+          "event_id": "9299:90",
+          "outcome": 0,
+          "response": 0,
+          "t": 90
+        },
+        {
+          "code": 2,
+          "event_id": "9299:91",
+          "outcome": 1,
+          "response": 4,
+          "t": 91
+        },
+        {
+          "code": 3,
+          "event_id": "9299:92",
+          "outcome": 1,
+          "response": 4,
+          "t": 92
+        },
+        {
+          "code": 5,
+          "event_id": "9299:93",
+          "outcome": 0,
+          "response": 0,
+          "t": 93
+        },
+        {
+          "code": 4,
+          "event_id": "9299:94",
+          "outcome": 2,
+          "response": 0,
+          "t": 94
+        },
+        {
+          "code": 0,
+          "event_id": "9299:95",
+          "outcome": 1,
+          "response": 4,
+          "t": 95
+        },
+        {
+          "code": 5,
+          "event_id": "9299:96",
+          "outcome": 1,
+          "response": 4,
+          "t": 96
+        },
+        {
+          "code": 4,
+          "event_id": "9299:97",
+          "outcome": 1,
+          "response": 4,
+          "t": 97
+        },
+        {
+          "code": 0,
+          "event_id": "9299:98",
+          "outcome": 1,
+          "response": 4,
+          "t": 98
+        },
+        {
+          "code": 3,
+          "event_id": "9299:99",
+          "outcome": 1,
+          "response": 4,
+          "t": 99
+        }
+      ],
+      "instruments": {
+        "evaluation": true,
+        "mass": true,
+        "objective": true,
+        "state": true
+      },
+      "long_events": [
+        {
+          "code": 1,
+          "event_id": "9299:0",
+          "outcome": 0,
+          "response": 3,
+          "t": 0
+        },
+        {
+          "code": 3,
+          "event_id": "9299:1",
+          "outcome": 0,
+          "response": 1,
+          "t": 1
+        },
+        {
+          "code": 4,
+          "event_id": "9299:2",
+          "outcome": 1,
+          "response": 4,
+          "t": 2
+        },
+        {
+          "code": 0,
+          "event_id": "9299:3",
+          "outcome": 0,
+          "response": 1,
+          "t": 3
+        },
+        {
+          "code": 5,
+          "event_id": "9299:4",
+          "outcome": 0,
+          "response": 0,
+          "t": 4
+        },
+        {
+          "code": 2,
+          "event_id": "9299:5",
+          "outcome": 2,
+          "response": 2,
+          "t": 5
+        },
+        {
+          "code": 0,
+          "event_id": "9299:6",
+          "outcome": 2,
+          "response": 0,
+          "t": 6
+        },
+        {
+          "code": 3,
+          "event_id": "9299:7",
+          "outcome": 1,
+          "response": 4,
+          "t": 7
+        },
+        {
+          "code": 2,
+          "event_id": "9299:8",
+          "outcome": 2,
+          "response": 2,
+          "t": 8
+        },
+        {
+          "code": 5,
+          "event_id": "9299:9",
+          "outcome": 2,
+          "response": 1,
+          "t": 9
+        },
+        {
+          "code": 1,
+          "event_id": "9299:10",
+          "outcome": 0,
+          "response": 2,
+          "t": 10
+        },
+        {
+          "code": 4,
+          "event_id": "9299:11",
+          "outcome": 1,
+          "response": 4,
+          "t": 11
+        },
+        {
+          "code": 5,
+          "event_id": "9299:12",
+          "outcome": 0,
+          "response": 3,
+          "t": 12
+        },
+        {
+          "code": 1,
+          "event_id": "9299:13",
+          "outcome": 1,
+          "response": 4,
+          "t": 13
+        },
+        {
+          "code": 0,
+          "event_id": "9299:14",
+          "outcome": 0,
+          "response": 2,
+          "t": 14
+        },
+        {
+          "code": 3,
+          "event_id": "9299:15",
+          "outcome": 0,
+          "response": 2,
+          "t": 15
+        },
+        {
+          "code": 4,
+          "event_id": "9299:16",
+          "outcome": 0,
+          "response": 1,
+          "t": 16
+        },
+        {
+          "code": 2,
+          "event_id": "9299:17",
+          "outcome": 2,
+          "response": 2,
+          "t": 17
+        },
+        {
+          "code": 1,
+          "event_id": "9299:18",
+          "outcome": 0,
+          "response": 0,
+          "t": 18
+        },
+        {
+          "code": 5,
+          "event_id": "9299:19",
+          "outcome": 0,
+          "response": 2,
+          "t": 19
+        },
+        {
+          "code": 4,
+          "event_id": "9299:20",
+          "outcome": 2,
+          "response": 0,
+          "t": 20
+        },
+        {
+          "code": 3,
+          "event_id": "9299:21",
+          "outcome": 0,
+          "response": 2,
+          "t": 21
+        },
+        {
+          "code": 2,
+          "event_id": "9299:22",
+          "outcome": 0,
+          "response": 1,
+          "t": 22
+        },
+        {
+          "code": 0,
+          "event_id": "9299:23",
+          "outcome": 1,
+          "response": 4,
+          "t": 23
+        },
+        {
+          "code": 3,
+          "event_id": "9299:24",
+          "outcome": 0,
+          "response": 1,
+          "t": 24
+        },
+        {
+          "code": 2,
+          "event_id": "9299:25",
+          "outcome": 1,
+          "response": 4,
+          "t": 25
+        },
+        {
+          "code": 1,
+          "event_id": "9299:26",
+          "outcome": 0,
+          "response": 0,
+          "t": 26
+        },
+        {
+          "code": 4,
+          "event_id": "9299:27",
+          "outcome": 1,
+          "response": 4,
+          "t": 27
+        },
+        {
+          "code": 0,
+          "event_id": "9299:28",
+          "outcome": 2,
+          "response": 0,
+          "t": 28
+        },
+        {
+          "code": 5,
+          "event_id": "9299:29",
+          "outcome": 0,
+          "response": 2,
+          "t": 29
+        },
+        {
+          "code": 2,
+          "event_id": "9299:30",
+          "outcome": 1,
+          "response": 4,
+          "t": 30
+        },
+        {
+          "code": 1,
+          "event_id": "9299:31",
+          "outcome": 1,
+          "response": 4,
+          "t": 31
+        },
+        {
+          "code": 4,
+          "event_id": "9299:32",
+          "outcome": 0,
+          "response": 3,
+          "t": 32
+        },
+        {
+          "code": 5,
+          "event_id": "9299:33",
+          "outcome": 1,
+          "response": 4,
+          "t": 33
+        },
+        {
+          "code": 3,
+          "event_id": "9299:34",
+          "outcome": 0,
+          "response": 2,
+          "t": 34
+        },
+        {
+          "code": 0,
+          "event_id": "9299:35",
+          "outcome": 1,
+          "response": 4,
+          "t": 35
+        },
+        {
+          "code": 4,
+          "event_id": "9299:36",
+          "outcome": 2,
+          "response": 0,
+          "t": 36
+        },
+        {
+          "code": 3,
+          "event_id": "9299:37",
+          "outcome": 0,
+          "response": 0,
+          "t": 37
+        },
+        {
+          "code": 0,
+          "event_id": "9299:38",
+          "outcome": 2,
+          "response": 0,
+          "t": 38
+        },
+        {
+          "code": 1,
+          "event_id": "9299:39",
+          "outcome": 0,
+          "response": 3,
+          "t": 39
+        },
+        {
+          "code": 5,
+          "event_id": "9299:40",
+          "outcome": 0,
+          "response": 0,
+          "t": 40
+        },
+        {
+          "code": 2,
+          "event_id": "9299:41",
+          "outcome": 0,
+          "response": 0,
+          "t": 41
+        },
+        {
+          "code": 4,
+          "event_id": "9299:42",
+          "outcome": 0,
+          "response": 2,
+          "t": 42
+        },
+        {
+          "code": 1,
+          "event_id": "9299:43",
+          "outcome": 0,
+          "response": 0,
+          "t": 43
+        },
+        {
+          "code": 2,
+          "event_id": "9299:44",
+          "outcome": 1,
+          "response": 4,
+          "t": 44
+        },
+        {
+          "code": 3,
+          "event_id": "9299:45",
+          "outcome": 0,
+          "response": 2,
+          "t": 45
+        },
+        {
+          "code": 5,
+          "event_id": "9299:46",
+          "outcome": 0,
+          "response": 3,
+          "t": 46
+        },
+        {
+          "code": 0,
+          "event_id": "9299:47",
+          "outcome": 2,
+          "response": 0,
+          "t": 47
+        },
+        {
+          "code": 5,
+          "event_id": "9299:48",
+          "outcome": 0,
+          "response": 3,
+          "t": 48
+        },
+        {
+          "code": 4,
+          "event_id": "9299:49",
+          "outcome": 0,
+          "response": 2,
+          "t": 49
+        },
+        {
+          "code": 1,
+          "event_id": "9299:50",
+          "outcome": 0,
+          "response": 0,
+          "t": 50
+        },
+        {
+          "code": 2,
+          "event_id": "9299:51",
+          "outcome": 2,
+          "response": 2,
+          "t": 51
+        },
+        {
+          "code": 3,
+          "event_id": "9299:52",
+          "outcome": 0,
+          "response": 0,
+          "t": 52
+        },
+        {
+          "code": 0,
+          "event_id": "9299:53",
+          "outcome": 0,
+          "response": 2,
+          "t": 53
+        },
+        {
+          "code": 2,
+          "event_id": "9299:54",
+          "outcome": 1,
+          "response": 4,
+          "t": 54
+        },
+        {
+          "code": 3,
+          "event_id": "9299:55",
+          "outcome": 0,
+          "response": 2,
+          "t": 55
+        },
+        {
+          "code": 0,
+          "event_id": "9299:56",
+          "outcome": 0,
+          "response": 1,
+          "t": 56
+        },
+        {
+          "code": 5,
+          "event_id": "9299:57",
+          "outcome": 2,
+          "response": 1,
+          "t": 57
+        },
+        {
+          "code": 1,
+          "event_id": "9299:58",
+          "outcome": 0,
+          "response": 0,
+          "t": 58
+        },
+        {
+          "code": 4,
+          "event_id": "9299:59",
+          "outcome": 1,
+          "response": 4,
+          "t": 59
+        },
+        {
+          "code": 3,
+          "event_id": "9299:60",
+          "outcome": 0,
+          "response": 0,
+          "t": 60
+        },
+        {
+          "code": 2,
+          "event_id": "9299:61",
+          "outcome": 0,
+          "response": 1,
+          "t": 61
+        },
+        {
+          "code": 5,
+          "event_id": "9299:62",
+          "outcome": 0,
+          "response": 3,
+          "t": 62
+        },
+        {
+          "code": 1,
+          "event_id": "9299:63",
+          "outcome": 0,
+          "response": 0,
+          "t": 63
+        },
+        {
+          "code": 4,
+          "event_id": "9299:64",
+          "outcome": 2,
+          "response": 0,
+          "t": 64
+        },
+        {
+          "code": 0,
+          "event_id": "9299:65",
+          "outcome": 1,
+          "response": 4,
+          "t": 65
+        },
+        {
+          "code": 1,
+          "event_id": "9299:66",
+          "outcome": 1,
+          "response": 4,
+          "t": 66
+        },
+        {
+          "code": 5,
+          "event_id": "9299:67",
+          "outcome": 1,
+          "response": 4,
+          "t": 67
+        },
+        {
+          "code": 0,
+          "event_id": "9299:68",
+          "outcome": 0,
+          "response": 2,
+          "t": 68
+        },
+        {
+          "code": 4,
+          "event_id": "9299:69",
+          "outcome": 2,
+          "response": 0,
+          "t": 69
+        },
+        {
+          "code": 2,
+          "event_id": "9299:70",
+          "outcome": 0,
+          "response": 1,
+          "t": 70
+        },
+        {
+          "code": 3,
+          "event_id": "9299:71",
+          "outcome": 0,
+          "response": 0,
+          "t": 71
+        },
+        {
+          "code": 2,
+          "event_id": "9299:72",
+          "outcome": 0,
+          "response": 0,
+          "t": 72
+        },
+        {
+          "code": 5,
+          "event_id": "9299:73",
+          "outcome": 1,
+          "response": 4,
+          "t": 73
+        },
+        {
+          "code": 1,
+          "event_id": "9299:74",
+          "outcome": 0,
+          "response": 0,
+          "t": 74
+        },
+        {
+          "code": 3,
+          "event_id": "9299:75",
+          "outcome": 1,
+          "response": 4,
+          "t": 75
+        },
+        {
+          "code": 0,
+          "event_id": "9299:76",
+          "outcome": 0,
+          "response": 1,
+          "t": 76
+        },
+        {
+          "code": 4,
+          "event_id": "9299:77",
+          "outcome": 1,
+          "response": 4,
+          "t": 77
+        },
+        {
+          "code": 1,
+          "event_id": "9299:78",
+          "outcome": 1,
+          "response": 4,
+          "t": 78
+        },
+        {
+          "code": 2,
+          "event_id": "9299:79",
+          "outcome": 0,
+          "response": 0,
+          "t": 79
+        },
+        {
+          "code": 4,
+          "event_id": "9299:80",
+          "outcome": 1,
+          "response": 4,
+          "t": 80
+        },
+        {
+          "code": 5,
+          "event_id": "9299:81",
+          "outcome": 1,
+          "response": 4,
+          "t": 81
+        },
+        {
+          "code": 0,
+          "event_id": "9299:82",
+          "outcome": 0,
+          "response": 3,
+          "t": 82
+        },
+        {
+          "code": 3,
+          "event_id": "9299:83",
+          "outcome": 1,
+          "response": 4,
+          "t": 83
+        },
+        {
+          "code": 2,
+          "event_id": "9299:84",
+          "outcome": 2,
+          "response": 2,
+          "t": 84
+        },
+        {
+          "code": 4,
+          "event_id": "9299:85",
+          "outcome": 2,
+          "response": 0,
+          "t": 85
+        },
+        {
+          "code": 1,
+          "event_id": "9299:86",
+          "outcome": 0,
+          "response": 2,
+          "t": 86
+        },
+        {
+          "code": 3,
+          "event_id": "9299:87",
+          "outcome": 0,
+          "response": 0,
+          "t": 87
+        },
+        {
+          "code": 0,
+          "event_id": "9299:88",
+          "outcome": 2,
+          "response": 0,
+          "t": 88
+        },
+        {
+          "code": 5,
+          "event_id": "9299:89",
+          "outcome": 2,
+          "response": 1,
+          "t": 89
+        },
+        {
+          "code": 1,
+          "event_id": "9299:90",
+          "outcome": 0,
+          "response": 0,
+          "t": 90
+        },
+        {
+          "code": 2,
+          "event_id": "9299:91",
+          "outcome": 1,
+          "response": 4,
+          "t": 91
+        },
+        {
+          "code": 3,
+          "event_id": "9299:92",
+          "outcome": 0,
+          "response": 2,
+          "t": 92
+        },
+        {
+          "code": 5,
+          "event_id": "9299:93",
+          "outcome": 0,
+          "response": 0,
+          "t": 93
+        },
+        {
+          "code": 4,
+          "event_id": "9299:94",
+          "outcome": 2,
+          "response": 0,
+          "t": 94
+        },
+        {
+          "code": 0,
+          "event_id": "9299:95",
+          "outcome": 1,
+          "response": 4,
+          "t": 95
+        },
+        {
+          "code": 5,
+          "event_id": "9299:96",
+          "outcome": 1,
+          "response": 4,
+          "t": 96
+        },
+        {
+          "code": 4,
+          "event_id": "9299:97",
+          "outcome": 1,
+          "response": 4,
+          "t": 97
+        },
+        {
+          "code": 0,
+          "event_id": "9299:98",
+          "outcome": 1,
+          "response": 4,
+          "t": 98
+        },
+        {
+          "code": 3,
+          "event_id": "9299:99",
+          "outcome": 1,
+          "response": 4,
+          "t": 99
+        },
+        {
+          "code": 1,
+          "event_id": "9299:100",
+          "outcome": 1,
+          "response": 4,
+          "t": 100
+        },
+        {
+          "code": 2,
+          "event_id": "9299:101",
+          "outcome": 1,
+          "response": 4,
+          "t": 101
+        },
+        {
+          "code": 5,
+          "event_id": "9299:102",
+          "outcome": 0,
+          "response": 0,
+          "t": 102
+        },
+        {
+          "code": 1,
+          "event_id": "9299:103",
+          "outcome": 1,
+          "response": 4,
+          "t": 103
+        },
+        {
+          "code": 0,
+          "event_id": "9299:104",
+          "outcome": 2,
+          "response": 0,
+          "t": 104
+        },
+        {
+          "code": 4,
+          "event_id": "9299:105",
+          "outcome": 0,
+          "response": 1,
+          "t": 105
+        },
+        {
+          "code": 3,
+          "event_id": "9299:106",
+          "outcome": 0,
+          "response": 1,
+          "t": 106
+        },
+        {
+          "code": 2,
+          "event_id": "9299:107",
+          "outcome": 2,
+          "response": 2,
+          "t": 107
+        },
+        {
+          "code": 3,
+          "event_id": "9299:108",
+          "outcome": 0,
+          "response": 0,
+          "t": 108
+        },
+        {
+          "code": 0,
+          "event_id": "9299:109",
+          "outcome": 0,
+          "response": 2,
+          "t": 109
+        },
+        {
+          "code": 1,
+          "event_id": "9299:110",
+          "outcome": 0,
+          "response": 0,
+          "t": 110
+        },
+        {
+          "code": 4,
+          "event_id": "9299:111",
+          "outcome": 0,
+          "response": 2,
+          "t": 111
+        },
+        {
+          "code": 5,
+          "event_id": "9299:112",
+          "outcome": 0,
+          "response": 0,
+          "t": 112
+        },
+        {
+          "code": 2,
+          "event_id": "9299:113",
+          "outcome": 2,
+          "response": 2,
+          "t": 113
+        },
+        {
+          "code": 3,
+          "event_id": "9299:114",
+          "outcome": 1,
+          "response": 4,
+          "t": 114
+        },
+        {
+          "code": 1,
+          "event_id": "9299:115",
+          "outcome": 1,
+          "response": 4,
+          "t": 115
+        },
+        {
+          "code": 2,
+          "event_id": "9299:116",
+          "outcome": 1,
+          "response": 4,
+          "t": 116
+        },
+        {
+          "code": 4,
+          "event_id": "9299:117",
+          "outcome": 2,
+          "response": 0,
+          "t": 117
+        },
+        {
+          "code": 0,
+          "event_id": "9299:118",
+          "outcome": 1,
+          "response": 4,
+          "t": 118
+        },
+        {
+          "code": 5,
+          "event_id": "9299:119",
+          "outcome": 2,
+          "response": 1,
+          "t": 119
+        },
+        {
+          "code": 1,
+          "event_id": "9299:120",
+          "outcome": 1,
+          "response": 4,
+          "t": 120
+        },
+        {
+          "code": 2,
+          "event_id": "9299:121",
+          "outcome": 1,
+          "response": 4,
+          "t": 121
+        },
+        {
+          "code": 5,
+          "event_id": "9299:122",
+          "outcome": 0,
+          "response": 0,
+          "t": 122
+        },
+        {
+          "code": 4,
+          "event_id": "9299:123",
+          "outcome": 1,
+          "response": 4,
+          "t": 123
+        },
+        {
+          "code": 0,
+          "event_id": "9299:124",
+          "outcome": 0,
+          "response": 2,
+          "t": 124
+        },
+        {
+          "code": 3,
+          "event_id": "9299:125",
+          "outcome": 0,
+          "response": 0,
+          "t": 125
+        },
+        {
+          "code": 0,
+          "event_id": "9299:126",
+          "outcome": 0,
+          "response": 1,
+          "t": 126
+        },
+        {
+          "code": 5,
+          "event_id": "9299:127",
+          "outcome": 1,
+          "response": 4,
+          "t": 127
+        },
+        {
+          "code": 4,
+          "event_id": "9299:128",
+          "outcome": 0,
+          "response": 2,
+          "t": 128
+        },
+        {
+          "code": 1,
+          "event_id": "9299:129",
+          "outcome": 1,
+          "response": 4,
+          "t": 129
+        },
+        {
+          "code": 3,
+          "event_id": "9299:130",
+          "outcome": 1,
+          "response": 4,
+          "t": 130
+        },
+        {
+          "code": 2,
+          "event_id": "9299:131",
+          "outcome": 1,
+          "response": 4,
+          "t": 131
+        },
+        {
+          "code": 1,
+          "event_id": "9299:132",
+          "outcome": 1,
+          "response": 4,
+          "t": 132
+        },
+        {
+          "code": 3,
+          "event_id": "9299:133",
+          "outcome": 1,
+          "response": 4,
+          "t": 133
+        },
+        {
+          "code": 2,
+          "event_id": "9299:134",
+          "outcome": 1,
+          "response": 4,
+          "t": 134
+        },
+        {
+          "code": 0,
+          "event_id": "9299:135",
+          "outcome": 1,
+          "response": 4,
+          "t": 135
+        },
+        {
+          "code": 4,
+          "event_id": "9299:136",
+          "outcome": 1,
+          "response": 4,
+          "t": 136
+        },
+        {
+          "code": 5,
+          "event_id": "9299:137",
+          "outcome": 1,
+          "response": 4,
+          "t": 137
+        },
+        {
+          "code": 4,
+          "event_id": "9299:138",
+          "outcome": 1,
+          "response": 4,
+          "t": 138
+        },
+        {
+          "code": 3,
+          "event_id": "9299:139",
+          "outcome": 0,
+          "response": 2,
+          "t": 139
+        },
+        {
+          "code": 2,
+          "event_id": "9299:140",
+          "outcome": 2,
+          "response": 2,
+          "t": 140
+        },
+        {
+          "code": 1,
+          "event_id": "9299:141",
+          "outcome": 1,
+          "response": 4,
+          "t": 141
+        },
+        {
+          "code": 0,
+          "event_id": "9299:142",
+          "outcome": 2,
+          "response": 0,
+          "t": 142
+        },
+        {
+          "code": 5,
+          "event_id": "9299:143",
+          "outcome": 1,
+          "response": 4,
+          "t": 143
+        },
+        {
+          "code": 2,
+          "event_id": "9299:144",
+          "outcome": 1,
+          "response": 4,
+          "t": 144
+        },
+        {
+          "code": 1,
+          "event_id": "9299:145",
+          "outcome": 1,
+          "response": 4,
+          "t": 145
+        },
+        {
+          "code": 0,
+          "event_id": "9299:146",
+          "outcome": 0,
+          "response": 3,
+          "t": 146
+        },
+        {
+          "code": 4,
+          "event_id": "9299:147",
+          "outcome": 2,
+          "response": 0,
+          "t": 147
+        },
+        {
+          "code": 5,
+          "event_id": "9299:148",
+          "outcome": 0,
+          "response": 0,
+          "t": 148
+        },
+        {
+          "code": 3,
+          "event_id": "9299:149",
+          "outcome": 1,
+          "response": 4,
+          "t": 149
+        },
+        {
+          "code": 3,
+          "event_id": "9299:150",
+          "outcome": 1,
+          "response": 4,
+          "t": 150
+        },
+        {
+          "code": 4,
+          "event_id": "9299:151",
+          "outcome": 1,
+          "response": 4,
+          "t": 151
+        },
+        {
+          "code": 0,
+          "event_id": "9299:152",
+          "outcome": 0,
+          "response": 2,
+          "t": 152
+        },
+        {
+          "code": 2,
+          "event_id": "9299:153",
+          "outcome": 1,
+          "response": 4,
+          "t": 153
+        },
+        {
+          "code": 1,
+          "event_id": "9299:154",
+          "outcome": 1,
+          "response": 4,
+          "t": 154
+        },
+        {
+          "code": 5,
+          "event_id": "9299:155",
+          "outcome": 1,
+          "response": 4,
+          "t": 155
+        },
+        {
+          "code": 1,
+          "event_id": "9299:156",
+          "outcome": 1,
+          "response": 4,
+          "t": 156
+        },
+        {
+          "code": 3,
+          "event_id": "9299:157",
+          "outcome": 1,
+          "response": 4,
+          "t": 157
+        },
+        {
+          "code": 5,
+          "event_id": "9299:158",
+          "outcome": 0,
+          "response": 0,
+          "t": 158
+        },
+        {
+          "code": 2,
+          "event_id": "9299:159",
+          "outcome": 1,
+          "response": 4,
+          "t": 159
+        },
+        {
+          "code": 0,
+          "event_id": "9299:160",
+          "outcome": 1,
+          "response": 4,
+          "t": 160
+        },
+        {
+          "code": 4,
+          "event_id": "9299:161",
+          "outcome": 0,
+          "response": 2,
+          "t": 161
+        },
+        {
+          "code": 3,
+          "event_id": "9299:162",
+          "outcome": 1,
+          "response": 4,
+          "t": 162
+        },
+        {
+          "code": 1,
+          "event_id": "9299:163",
+          "outcome": 1,
+          "response": 4,
+          "t": 163
+        },
+        {
+          "code": 2,
+          "event_id": "9299:164",
+          "outcome": 1,
+          "response": 4,
+          "t": 164
+        },
+        {
+          "code": 0,
+          "event_id": "9299:165",
+          "outcome": 1,
+          "response": 4,
+          "t": 165
+        },
+        {
+          "code": 5,
+          "event_id": "9299:166",
+          "outcome": 0,
+          "response": 0,
+          "t": 166
+        },
+        {
+          "code": 4,
+          "event_id": "9299:167",
+          "outcome": 2,
+          "response": 0,
+          "t": 167
+        },
+        {
+          "code": 4,
+          "event_id": "9299:168",
+          "outcome": 2,
+          "response": 0,
+          "t": 168
+        },
+        {
+          "code": 3,
+          "event_id": "9299:169",
+          "outcome": 1,
+          "response": 4,
+          "t": 169
+        },
+        {
+          "code": 0,
+          "event_id": "9299:170",
+          "outcome": 0,
+          "response": 2,
+          "t": 170
+        },
+        {
+          "code": 5,
+          "event_id": "9299:171",
+          "outcome": 0,
+          "response": 0,
+          "t": 171
+        },
+        {
+          "code": 1,
+          "event_id": "9299:172",
+          "outcome": 1,
+          "response": 4,
+          "t": 172
+        },
+        {
+          "code": 2,
+          "event_id": "9299:173",
+          "outcome": 0,
+          "response": 0,
+          "t": 173
+        },
+        {
+          "code": 4,
+          "event_id": "9299:174",
+          "outcome": 2,
+          "response": 0,
+          "t": 174
+        },
+        {
+          "code": 0,
+          "event_id": "9299:175",
+          "outcome": 0,
+          "response": 2,
+          "t": 175
+        },
+        {
+          "code": 1,
+          "event_id": "9299:176",
+          "outcome": 1,
+          "response": 4,
+          "t": 176
+        },
+        {
+          "code": 2,
+          "event_id": "9299:177",
+          "outcome": 0,
+          "response": 0,
+          "t": 177
+        },
+        {
+          "code": 3,
+          "event_id": "9299:178",
+          "outcome": 0,
+          "response": 1,
+          "t": 178
+        },
+        {
+          "code": 5,
+          "event_id": "9299:179",
+          "outcome": 1,
+          "response": 4,
+          "t": 179
+        },
+        {
+          "code": 4,
+          "event_id": "9299:180",
+          "outcome": 2,
+          "response": 0,
+          "t": 180
+        },
+        {
+          "code": 3,
+          "event_id": "9299:181",
+          "outcome": 1,
+          "response": 4,
+          "t": 181
+        },
+        {
+          "code": 0,
+          "event_id": "9299:182",
+          "outcome": 1,
+          "response": 4,
+          "t": 182
+        },
+        {
+          "code": 2,
+          "event_id": "9299:183",
+          "outcome": 1,
+          "response": 4,
+          "t": 183
+        },
+        {
+          "code": 1,
+          "event_id": "9299:184",
+          "outcome": 1,
+          "response": 4,
+          "t": 184
+        },
+        {
+          "code": 5,
+          "event_id": "9299:185",
+          "outcome": 0,
+          "response": 0,
+          "t": 185
+        },
+        {
+          "code": 4,
+          "event_id": "9299:186",
+          "outcome": 1,
+          "response": 4,
+          "t": 186
+        },
+        {
+          "code": 1,
+          "event_id": "9299:187",
+          "outcome": 1,
+          "response": 4,
+          "t": 187
+        },
+        {
+          "code": 0,
+          "event_id": "9299:188",
+          "outcome": 1,
+          "response": 4,
+          "t": 188
+        },
+        {
+          "code": 5,
+          "event_id": "9299:189",
+          "outcome": 0,
+          "response": 0,
+          "t": 189
+        },
+        {
+          "code": 3,
+          "event_id": "9299:190",
+          "outcome": 1,
+          "response": 4,
+          "t": 190
+        },
+        {
+          "code": 2,
+          "event_id": "9299:191",
+          "outcome": 0,
+          "response": 3,
+          "t": 191
+        },
+        {
+          "code": 3,
+          "event_id": "9299:192",
+          "outcome": 1,
+          "response": 4,
+          "t": 192
+        },
+        {
+          "code": 0,
+          "event_id": "9299:193",
+          "outcome": 1,
+          "response": 4,
+          "t": 193
+        },
+        {
+          "code": 1,
+          "event_id": "9299:194",
+          "outcome": 1,
+          "response": 4,
+          "t": 194
+        },
+        {
+          "code": 4,
+          "event_id": "9299:195",
+          "outcome": 2,
+          "response": 0,
+          "t": 195
+        },
+        {
+          "code": 5,
+          "event_id": "9299:196",
+          "outcome": 0,
+          "response": 0,
+          "t": 196
+        },
+        {
+          "code": 2,
+          "event_id": "9299:197",
+          "outcome": 1,
+          "response": 4,
+          "t": 197
+        },
+        {
+          "code": 2,
+          "event_id": "9299:198",
+          "outcome": 1,
+          "response": 4,
+          "t": 198
+        },
+        {
+          "code": 3,
+          "event_id": "9299:199",
+          "outcome": 0,
+          "response": 0,
+          "t": 199
+        },
+        {
+          "code": 5,
+          "event_id": "9299:200",
+          "outcome": 0,
+          "response": 0,
+          "t": 200
+        },
+        {
+          "code": 0,
+          "event_id": "9299:201",
+          "outcome": 1,
+          "response": 4,
+          "t": 201
+        },
+        {
+          "code": 4,
+          "event_id": "9299:202",
+          "outcome": 2,
+          "response": 0,
+          "t": 202
+        },
+        {
+          "code": 1,
+          "event_id": "9299:203",
+          "outcome": 1,
+          "response": 4,
+          "t": 203
+        },
+        {
+          "code": 2,
+          "event_id": "9299:204",
+          "outcome": 0,
+          "response": 0,
+          "t": 204
+        },
+        {
+          "code": 4,
+          "event_id": "9299:205",
+          "outcome": 1,
+          "response": 4,
+          "t": 205
+        },
+        {
+          "code": 1,
+          "event_id": "9299:206",
+          "outcome": 1,
+          "response": 4,
+          "t": 206
+        },
+        {
+          "code": 5,
+          "event_id": "9299:207",
+          "outcome": 0,
+          "response": 0,
+          "t": 207
+        },
+        {
+          "code": 0,
+          "event_id": "9299:208",
+          "outcome": 2,
+          "response": 0,
+          "t": 208
+        },
+        {
+          "code": 3,
+          "event_id": "9299:209",
+          "outcome": 1,
+          "response": 4,
+          "t": 209
+        },
+        {
+          "code": 5,
+          "event_id": "9299:210",
+          "outcome": 1,
+          "response": 4,
+          "t": 210
+        },
+        {
+          "code": 0,
+          "event_id": "9299:211",
+          "outcome": 1,
+          "response": 4,
+          "t": 211
+        },
+        {
+          "code": 3,
+          "event_id": "9299:212",
+          "outcome": 1,
+          "response": 4,
+          "t": 212
+        },
+        {
+          "code": 2,
+          "event_id": "9299:213",
+          "outcome": 0,
+          "response": 0,
+          "t": 213
+        },
+        {
+          "code": 1,
+          "event_id": "9299:214",
+          "outcome": 1,
+          "response": 4,
+          "t": 214
+        },
+        {
+          "code": 4,
+          "event_id": "9299:215",
+          "outcome": 1,
+          "response": 4,
+          "t": 215
+        },
+        {
+          "code": 2,
+          "event_id": "9299:216",
+          "outcome": 0,
+          "response": 0,
+          "t": 216
+        },
+        {
+          "code": 5,
+          "event_id": "9299:217",
+          "outcome": 0,
+          "response": 0,
+          "t": 217
+        },
+        {
+          "code": 3,
+          "event_id": "9299:218",
+          "outcome": 0,
+          "response": 0,
+          "t": 218
+        },
+        {
+          "code": 1,
+          "event_id": "9299:219",
+          "outcome": 1,
+          "response": 4,
+          "t": 219
+        },
+        {
+          "code": 4,
+          "event_id": "9299:220",
+          "outcome": 1,
+          "response": 4,
+          "t": 220
+        },
+        {
+          "code": 0,
+          "event_id": "9299:221",
+          "outcome": 2,
+          "response": 0,
+          "t": 221
+        },
+        {
+          "code": 2,
+          "event_id": "9299:222",
+          "outcome": 0,
+          "response": 0,
+          "t": 222
+        },
+        {
+          "code": 1,
+          "event_id": "9299:223",
+          "outcome": 1,
+          "response": 4,
+          "t": 223
+        },
+        {
+          "code": 3,
+          "event_id": "9299:224",
+          "outcome": 0,
+          "response": 1,
+          "t": 224
+        },
+        {
+          "code": 5,
+          "event_id": "9299:225",
+          "outcome": 1,
+          "response": 4,
+          "t": 225
+        },
+        {
+          "code": 0,
+          "event_id": "9299:226",
+          "outcome": 0,
+          "response": 1,
+          "t": 226
+        },
+        {
+          "code": 4,
+          "event_id": "9299:227",
+          "outcome": 1,
+          "response": 4,
+          "t": 227
+        },
+        {
+          "code": 0,
+          "event_id": "9299:228",
+          "outcome": 1,
+          "response": 4,
+          "t": 228
+        },
+        {
+          "code": 2,
+          "event_id": "9299:229",
+          "outcome": 0,
+          "response": 0,
+          "t": 229
+        },
+        {
+          "code": 4,
+          "event_id": "9299:230",
+          "outcome": 2,
+          "response": 0,
+          "t": 230
+        },
+        {
+          "code": 3,
+          "event_id": "9299:231",
+          "outcome": 1,
+          "response": 4,
+          "t": 231
+        },
+        {
+          "code": 1,
+          "event_id": "9299:232",
+          "outcome": 1,
+          "response": 4,
+          "t": 232
+        },
+        {
+          "code": 5,
+          "event_id": "9299:233",
+          "outcome": 0,
+          "response": 0,
+          "t": 233
+        },
+        {
+          "code": 5,
+          "event_id": "9299:234",
+          "outcome": 1,
+          "response": 4,
+          "t": 234
+        },
+        {
+          "code": 3,
+          "event_id": "9299:235",
+          "outcome": 0,
+          "response": 0,
+          "t": 235
+        },
+        {
+          "code": 0,
+          "event_id": "9299:236",
+          "outcome": 1,
+          "response": 4,
+          "t": 236
+        },
+        {
+          "code": 1,
+          "event_id": "9299:237",
+          "outcome": 1,
+          "response": 4,
+          "t": 237
+        },
+        {
+          "code": 2,
+          "event_id": "9299:238",
+          "outcome": 0,
+          "response": 0,
+          "t": 238
+        },
+        {
+          "code": 4,
+          "event_id": "9299:239",
+          "outcome": 2,
+          "response": 0,
+          "t": 239
+        },
+        {
+          "code": 1,
+          "event_id": "9299:240",
+          "outcome": 1,
+          "response": 4,
+          "t": 240
+        },
+        {
+          "code": 2,
+          "event_id": "9299:241",
+          "outcome": 0,
+          "response": 0,
+          "t": 241
+        },
+        {
+          "code": 3,
+          "event_id": "9299:242",
+          "outcome": 1,
+          "response": 4,
+          "t": 242
+        },
+        {
+          "code": 5,
+          "event_id": "9299:243",
+          "outcome": 0,
+          "response": 0,
+          "t": 243
+        },
+        {
+          "code": 0,
+          "event_id": "9299:244",
+          "outcome": 1,
+          "response": 4,
+          "t": 244
+        },
+        {
+          "code": 4,
+          "event_id": "9299:245",
+          "outcome": 2,
+          "response": 0,
+          "t": 245
+        },
+        {
+          "code": 4,
+          "event_id": "9299:246",
+          "outcome": 2,
+          "response": 0,
+          "t": 246
+        },
+        {
+          "code": 0,
+          "event_id": "9299:247",
+          "outcome": 1,
+          "response": 4,
+          "t": 247
+        },
+        {
+          "code": 1,
+          "event_id": "9299:248",
+          "outcome": 1,
+          "response": 4,
+          "t": 248
+        },
+        {
+          "code": 3,
+          "event_id": "9299:249",
+          "outcome": 1,
+          "response": 4,
+          "t": 249
+        },
+        {
+          "code": 2,
+          "event_id": "9299:250",
+          "outcome": 1,
+          "response": 4,
+          "t": 250
+        },
+        {
+          "code": 5,
+          "event_id": "9299:251",
+          "outcome": 0,
+          "response": 0,
+          "t": 251
+        },
+        {
+          "code": 3,
+          "event_id": "9299:252",
+          "outcome": 0,
+          "response": 0,
+          "t": 252
+        },
+        {
+          "code": 0,
+          "event_id": "9299:253",
+          "outcome": 0,
+          "response": 2,
+          "t": 253
+        },
+        {
+          "code": 4,
+          "event_id": "9299:254",
+          "outcome": 2,
+          "response": 0,
+          "t": 254
+        },
+        {
+          "code": 1,
+          "event_id": "9299:255",
+          "outcome": 1,
+          "response": 4,
+          "t": 255
+        },
+        {
+          "code": 2,
+          "event_id": "9299:256",
+          "outcome": 0,
+          "response": 0,
+          "t": 256
+        },
+        {
+          "code": 5,
+          "event_id": "9299:257",
+          "outcome": 0,
+          "response": 0,
+          "t": 257
+        },
+        {
+          "code": 1,
+          "event_id": "9299:258",
+          "outcome": 1,
+          "response": 4,
+          "t": 258
+        },
+        {
+          "code": 0,
+          "event_id": "9299:259",
+          "outcome": 2,
+          "response": 0,
+          "t": 259
+        },
+        {
+          "code": 5,
+          "event_id": "9299:260",
+          "outcome": 0,
+          "response": 0,
+          "t": 260
+        },
+        {
+          "code": 3,
+          "event_id": "9299:261",
+          "outcome": 1,
+          "response": 4,
+          "t": 261
+        },
+        {
+          "code": 2,
+          "event_id": "9299:262",
+          "outcome": 0,
+          "response": 0,
+          "t": 262
+        },
+        {
+          "code": 4,
+          "event_id": "9299:263",
+          "outcome": 2,
+          "response": 0,
+          "t": 263
+        },
+        {
+          "code": 4,
+          "event_id": "9299:264",
+          "outcome": 1,
+          "response": 4,
+          "t": 264
+        },
+        {
+          "code": 5,
+          "event_id": "9299:265",
+          "outcome": 2,
+          "response": 1,
+          "t": 265
+        },
+        {
+          "code": 2,
+          "event_id": "9299:266",
+          "outcome": 0,
+          "response": 0,
+          "t": 266
+        },
+        {
+          "code": 3,
+          "event_id": "9299:267",
+          "outcome": 1,
+          "response": 4,
+          "t": 267
+        },
+        {
+          "code": 0,
+          "event_id": "9299:268",
+          "outcome": 1,
+          "response": 4,
+          "t": 268
+        },
+        {
+          "code": 1,
+          "event_id": "9299:269",
+          "outcome": 1,
+          "response": 4,
+          "t": 269
+        },
+        {
+          "code": 1,
+          "event_id": "9299:270",
+          "outcome": 2,
+          "response": 1,
+          "t": 270
+        },
+        {
+          "code": 0,
+          "event_id": "9299:271",
+          "outcome": 1,
+          "response": 4,
+          "t": 271
+        },
+        {
+          "code": 4,
+          "event_id": "9299:272",
+          "outcome": 2,
+          "response": 0,
+          "t": 272
+        },
+        {
+          "code": 5,
+          "event_id": "9299:273",
+          "outcome": 1,
+          "response": 4,
+          "t": 273
+        },
+        {
+          "code": 2,
+          "event_id": "9299:274",
+          "outcome": 0,
+          "response": 0,
+          "t": 274
+        },
+        {
+          "code": 3,
+          "event_id": "9299:275",
+          "outcome": 1,
+          "response": 4,
+          "t": 275
+        },
+        {
+          "code": 1,
+          "event_id": "9299:276",
+          "outcome": 2,
+          "response": 1,
+          "t": 276
+        },
+        {
+          "code": 2,
+          "event_id": "9299:277",
+          "outcome": 0,
+          "response": 0,
+          "t": 277
+        },
+        {
+          "code": 0,
+          "event_id": "9299:278",
+          "outcome": 1,
+          "response": 4,
+          "t": 278
+        },
+        {
+          "code": 4,
+          "event_id": "9299:279",
+          "outcome": 2,
+          "response": 0,
+          "t": 279
+        },
+        {
+          "code": 5,
+          "event_id": "9299:280",
+          "outcome": 0,
+          "response": 2,
+          "t": 280
+        },
+        {
+          "code": 3,
+          "event_id": "9299:281",
+          "outcome": 1,
+          "response": 4,
+          "t": 281
+        },
+        {
+          "code": 4,
+          "event_id": "9299:282",
+          "outcome": 2,
+          "response": 0,
+          "t": 282
+        },
+        {
+          "code": 5,
+          "event_id": "9299:283",
+          "outcome": 0,
+          "response": 0,
+          "t": 283
+        },
+        {
+          "code": 1,
+          "event_id": "9299:284",
+          "outcome": 1,
+          "response": 4,
+          "t": 284
+        },
+        {
+          "code": 2,
+          "event_id": "9299:285",
+          "outcome": 1,
+          "response": 4,
+          "t": 285
+        },
+        {
+          "code": 3,
+          "event_id": "9299:286",
+          "outcome": 1,
+          "response": 4,
+          "t": 286
+        },
+        {
+          "code": 0,
+          "event_id": "9299:287",
+          "outcome": 2,
+          "response": 0,
+          "t": 287
+        },
+        {
+          "code": 1,
+          "event_id": "9299:288",
+          "outcome": 1,
+          "response": 4,
+          "t": 288
+        },
+        {
+          "code": 5,
+          "event_id": "9299:289",
+          "outcome": 0,
+          "response": 0,
+          "t": 289
+        },
+        {
+          "code": 3,
+          "event_id": "9299:290",
+          "outcome": 1,
+          "response": 4,
+          "t": 290
+        },
+        {
+          "code": 4,
+          "event_id": "9299:291",
+          "outcome": 2,
+          "response": 0,
+          "t": 291
+        },
+        {
+          "code": 0,
+          "event_id": "9299:292",
+          "outcome": 1,
+          "response": 4,
+          "t": 292
+        },
+        {
+          "code": 2,
+          "event_id": "9299:293",
+          "outcome": 0,
+          "response": 0,
+          "t": 293
+        },
+        {
+          "code": 2,
+          "event_id": "9299:294",
+          "outcome": 1,
+          "response": 4,
+          "t": 294
+        },
+        {
+          "code": 3,
+          "event_id": "9299:295",
+          "outcome": 0,
+          "response": 0,
+          "t": 295
+        },
+        {
+          "code": 0,
+          "event_id": "9299:296",
+          "outcome": 2,
+          "response": 0,
+          "t": 296
+        },
+        {
+          "code": 5,
+          "event_id": "9299:297",
+          "outcome": 0,
+          "response": 0,
+          "t": 297
+        },
+        {
+          "code": 1,
+          "event_id": "9299:298",
+          "outcome": 1,
+          "response": 4,
+          "t": 298
+        },
+        {
+          "code": 4,
+          "event_id": "9299:299",
+          "outcome": 2,
+          "response": 0,
+          "t": 299
+        }
+      ],
+      "receipts": {
+        "broken20": {
+          "after_hash": "cb3ba811dc1fc61c88a2e1e6aee5cf380956bb8a378e6c44a5885cde8e6991ef",
+          "algorithm": "sleep-v1",
+          "before_hash": "d971714d7bc84033173a94736c3bde5768cba76c85f842026d2b2c00eb6e8f91",
+          "budget": {
+            "decay": 0.999,
+            "learning_rate": 4.0,
+            "mode": "joint",
+            "passes": 20
+          },
+          "content_hash": "2c13fb211b47b2ef4214369f48fe340c88e1aa6055fd6031b71c8e9bf99fb765",
+          "decision": "candidate",
+          "metrics": {
+            "evidence_mass": 380.83141154516386,
+            "fit_posterior_evaluations": 2000,
+            "lived_steps": 100,
+            "objective": [
+              -1659.9176094073832,
+              -1171.4733984081638,
+              -1169.9850441056137,
+              -1167.9421069683312,
+              -1165.1676848696268,
+              -1161.790886264853,
+              -1158.0139798099337,
+              -1153.886323607451,
+              -1149.3650480823112,
+              -1144.6503889432772,
+              -1140.1524121447087,
+              -1136.0028510976938,
+              -1132.4464442077897,
+              -1129.7914569349075,
+              -1127.9853772265783,
+              -1126.8735462332265,
+              -1126.2418881556655,
+              -1125.8948872709832,
+              -1125.7032077558822,
+              -1125.5941077277246,
+              -1125.529156927859
+            ],
+            "objective_posterior_evaluations": 2100,
+            "posterior_evaluations": 4100,
+            "unique_encounters": 100
+          },
+          "origin_note": "GENERATED corrupted diagnostic; not actual experience",
+          "schema_version": 1,
+          "scope": "creature",
+          "sources": [
+            "generated:9299:0",
+            "generated:9299:1",
+            "generated:9299:2",
+            "generated:9299:3",
+            "generated:9299:4",
+            "generated:9299:5",
+            "generated:9299:6",
+            "generated:9299:7",
+            "generated:9299:8",
+            "generated:9299:9",
+            "generated:9299:10",
+            "generated:9299:11",
+            "generated:9299:12",
+            "generated:9299:13",
+            "generated:9299:14",
+            "generated:9299:15",
+            "generated:9299:16",
+            "generated:9299:17",
+            "generated:9299:18",
+            "generated:9299:19",
+            "generated:9299:20",
+            "generated:9299:21",
+            "generated:9299:22",
+            "generated:9299:23",
+            "generated:9299:24",
+            "generated:9299:25",
+            "generated:9299:26",
+            "generated:9299:27",
+            "generated:9299:28",
+            "generated:9299:29",
+            "generated:9299:30",
+            "generated:9299:31",
+            "generated:9299:32",
+            "generated:9299:33",
+            "generated:9299:34",
+            "generated:9299:35",
+            "generated:9299:36",
+            "generated:9299:37",
+            "generated:9299:38",
+            "generated:9299:39",
+            "generated:9299:40",
+            "generated:9299:41",
+            "generated:9299:42",
+            "generated:9299:43",
+            "generated:9299:44",
+            "generated:9299:45",
+            "generated:9299:46",
+            "generated:9299:47",
+            "generated:9299:48",
+            "generated:9299:49",
+            "generated:9299:50",
+            "generated:9299:51",
+            "generated:9299:52",
+            "generated:9299:53",
+            "generated:9299:54",
+            "generated:9299:55",
+            "generated:9299:56",
+            "generated:9299:57",
+            "generated:9299:58",
+            "generated:9299:59",
+            "generated:9299:60",
+            "generated:9299:61",
+            "generated:9299:62",
+            "generated:9299:63",
+            "generated:9299:64",
+            "generated:9299:65",
+            "generated:9299:66",
+            "generated:9299:67",
+            "generated:9299:68",
+            "generated:9299:69",
+            "generated:9299:70",
+            "generated:9299:71",
+            "generated:9299:72",
+            "generated:9299:73",
+            "generated:9299:74",
+            "generated:9299:75",
+            "generated:9299:76",
+            "generated:9299:77",
+            "generated:9299:78",
+            "generated:9299:79",
+            "generated:9299:80",
+            "generated:9299:81",
+            "generated:9299:82",
+            "generated:9299:83",
+            "generated:9299:84",
+            "generated:9299:85",
+            "generated:9299:86",
+            "generated:9299:87",
+            "generated:9299:88",
+            "generated:9299:89",
+            "generated:9299:90",
+            "generated:9299:91",
+            "generated:9299:92",
+            "generated:9299:93",
+            "generated:9299:94",
+            "generated:9299:95",
+            "generated:9299:96",
+            "generated:9299:97",
+            "generated:9299:98",
+            "generated:9299:99"
+          ]
+        },
+        "chronological20": {
+          "after_hash": "dca1247ae1db7c2c0f3b1f4fc6441124a0a5642a8429ed889f0f1407fee06472",
+          "algorithm": "sleep-v1",
+          "before_hash": "d971714d7bc84033173a94736c3bde5768cba76c85f842026d2b2c00eb6e8f91",
+          "budget": {
+            "decay": 0.999,
+            "learning_rate": 4.0,
+            "mode": "chronological",
+            "passes": 20
+          },
+          "content_hash": "18d86ef639d84a90e943ca17d89ebb9af25ecc1fd6174f184a3d361c5b88b257",
+          "decision": "candidate",
+          "metrics": {
+            "evidence_mass": 380.83141154516386,
+            "fit_posterior_evaluations": 2000,
+            "lived_steps": 100,
+            "objective": [
+              -948.5156324793768,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643,
+              -952.7540087770643
+            ],
+            "objective_posterior_evaluations": 2100,
+            "posterior_evaluations": 4100,
+            "unique_encounters": 100
+          },
+          "schema_version": 1,
+          "scope": "creature",
+          "sources": [
+            "9299:0",
+            "9299:1",
+            "9299:2",
+            "9299:3",
+            "9299:4",
+            "9299:5",
+            "9299:6",
+            "9299:7",
+            "9299:8",
+            "9299:9",
+            "9299:10",
+            "9299:11",
+            "9299:12",
+            "9299:13",
+            "9299:14",
+            "9299:15",
+            "9299:16",
+            "9299:17",
+            "9299:18",
+            "9299:19",
+            "9299:20",
+            "9299:21",
+            "9299:22",
+            "9299:23",
+            "9299:24",
+            "9299:25",
+            "9299:26",
+            "9299:27",
+            "9299:28",
+            "9299:29",
+            "9299:30",
+            "9299:31",
+            "9299:32",
+            "9299:33",
+            "9299:34",
+            "9299:35",
+            "9299:36",
+            "9299:37",
+            "9299:38",
+            "9299:39",
+            "9299:40",
+            "9299:41",
+            "9299:42",
+            "9299:43",
+            "9299:44",
+            "9299:45",
+            "9299:46",
+            "9299:47",
+            "9299:48",
+            "9299:49",
+            "9299:50",
+            "9299:51",
+            "9299:52",
+            "9299:53",
+            "9299:54",
+            "9299:55",
+            "9299:56",
+            "9299:57",
+            "9299:58",
+            "9299:59",
+            "9299:60",
+            "9299:61",
+            "9299:62",
+            "9299:63",
+            "9299:64",
+            "9299:65",
+            "9299:66",
+            "9299:67",
+            "9299:68",
+            "9299:69",
+            "9299:70",
+            "9299:71",
+            "9299:72",
+            "9299:73",
+            "9299:74",
+            "9299:75",
+            "9299:76",
+            "9299:77",
+            "9299:78",
+            "9299:79",
+            "9299:80",
+            "9299:81",
+            "9299:82",
+            "9299:83",
+            "9299:84",
+            "9299:85",
+            "9299:86",
+            "9299:87",
+            "9299:88",
+            "9299:89",
+            "9299:90",
+            "9299:91",
+            "9299:92",
+            "9299:93",
+            "9299:94",
+            "9299:95",
+            "9299:96",
+            "9299:97",
+            "9299:98",
+            "9299:99"
+          ]
+        },
+        "joint20": {
+          "after_hash": "37d88fcfee07d8918bf12e0940a283cfbe364f152f20ace56eb262b640fd8034",
+          "algorithm": "sleep-v1",
+          "before_hash": "d971714d7bc84033173a94736c3bde5768cba76c85f842026d2b2c00eb6e8f91",
+          "budget": {
+            "decay": 0.999,
+            "learning_rate": 4.0,
+            "mode": "joint",
+            "passes": 20
+          },
+          "content_hash": "a438f149300d26572d8495abf7605ea06ab17514fd664701c80a33fefcc732ae",
+          "decision": "candidate",
+          "metrics": {
+            "evidence_mass": 380.83141154516386,
+            "fit_posterior_evaluations": 2000,
+            "lived_steps": 100,
+            "objective": [
+              -948.5156324793768,
+              -940.1392881233777,
+              -924.8855260677694,
+              -908.2729306975025,
+              -898.1361567928715,
+              -893.1933207219411,
+              -890.8125331837531,
+              -890.1808272310748,
+              -889.8452195251595,
+              -889.3493869515611,
+              -888.5969217803647,
+              -887.5733140043436,
+              -886.4071534323551,
+              -885.4274940325939,
+              -884.9099728009157,
+              -884.742449748216,
+              -884.697537230071,
+              -884.6819129142339,
+              -884.6736215646092,
+              -884.6676581174811,
+              -884.6627450680718
+            ],
+            "objective_posterior_evaluations": 2100,
+            "posterior_evaluations": 4100,
+            "unique_encounters": 100
+          },
+          "schema_version": 1,
+          "scope": "creature",
+          "sources": [
+            "9299:0",
+            "9299:1",
+            "9299:2",
+            "9299:3",
+            "9299:4",
+            "9299:5",
+            "9299:6",
+            "9299:7",
+            "9299:8",
+            "9299:9",
+            "9299:10",
+            "9299:11",
+            "9299:12",
+            "9299:13",
+            "9299:14",
+            "9299:15",
+            "9299:16",
+            "9299:17",
+            "9299:18",
+            "9299:19",
+            "9299:20",
+            "9299:21",
+            "9299:22",
+            "9299:23",
+            "9299:24",
+            "9299:25",
+            "9299:26",
+            "9299:27",
+            "9299:28",
+            "9299:29",
+            "9299:30",
+            "9299:31",
+            "9299:32",
+            "9299:33",
+            "9299:34",
+            "9299:35",
+            "9299:36",
+            "9299:37",
+            "9299:38",
+            "9299:39",
+            "9299:40",
+            "9299:41",
+            "9299:42",
+            "9299:43",
+            "9299:44",
+            "9299:45",
+            "9299:46",
+            "9299:47",
+            "9299:48",
+            "9299:49",
+            "9299:50",
+            "9299:51",
+            "9299:52",
+            "9299:53",
+            "9299:54",
+            "9299:55",
+            "9299:56",
+            "9299:57",
+            "9299:58",
+            "9299:59",
+            "9299:60",
+            "9299:61",
+            "9299:62",
+            "9299:63",
+            "9299:64",
+            "9299:65",
+            "9299:66",
+            "9299:67",
+            "9299:68",
+            "9299:69",
+            "9299:70",
+            "9299:71",
+            "9299:72",
+            "9299:73",
+            "9299:74",
+            "9299:75",
+            "9299:76",
+            "9299:77",
+            "9299:78",
+            "9299:79",
+            "9299:80",
+            "9299:81",
+            "9299:82",
+            "9299:83",
+            "9299:84",
+            "9299:85",
+            "9299:86",
+            "9299:87",
+            "9299:88",
+            "9299:89",
+            "9299:90",
+            "9299:91",
+            "9299:92",
+            "9299:93",
+            "9299:94",
+            "9299:95",
+            "9299:96",
+            "9299:97",
+            "9299:98",
+            "9299:99"
+          ]
+        }
+      },
+      "replay_seconds": {
+        "chronological20": 0.11054829228669405,
+        "joint20": 0.006172874942421913
+      },
+      "seconds": 83.93750133318827,
+      "seed": 9299
+    }
+  ],
+  "schema_version": 1,
+  "seeds": [
+    9299
+  ],
+  "smoke": true,
+  "source_hashes": {
+    "active_loop/affect_agent.py": "9c5d39178a4528e8d6b4793e71d67818f5b92dd44075d86e1effda7f1d4da1f6",
+    "active_loop/affect_spec.py": "a261b9a2bcded8154243647d923c85d46ed0136c1e41a6dba8db1fe63cd5c188",
+    "active_loop/sleep_replay.py": "39c095f16436b1517e0feb6674001ef1f88a25f6536dd2f66e7bff0209d8942a",
+    "experiments/exp279_sleep_replay.py": "cde83979bf6f8b66537bb00922e7a2d19e87d844186a4d22aa19fee6589e6e98"
+  },
+  "workers": 2
+}

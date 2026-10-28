@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_type": "experiment_bundle",
+  "experiment_id": "exp279",
+  "direction": "recursive-sleep",
+  "question": "Does once-weighted joint offline refitting improve discrimination from a short lived history?",
+  "hypothesis": "Joint20 beats each of idle and chronological20 by mean csel >=1/6 and positive gains in >=12/16 seeds.",
+  "status": "completed",
+  "verdict": "POSITIVE",
+  "repo_commit": "f387c2ca5510dcff2ef5b6a4adbc534a6bc2a792",
+  "created_at": "2026-10-27",
+  "confidence": "high",
+  "backfill_level": "trajectory_bundle",
+  "source_files": [
+    "experiments/exp279_sleep_replay.py",
+    "active_loop/sleep_replay.py"
+  ],
+  "raw_data_refs": [
+    "experiments/outputs/exp279.txt",
+    "experiments/outputs/exp279.json",
+    "experiments/outputs/exp279_metadata.md"
+  ],
+  "metrics_refs": [
+    "experiments/outputs/exp279.json",
+    "experiments/outputs/exp279_verification.md"
+  ],
+  "state_refs": [
+    "experiments/outputs/exp279_checkpoints"
+  ],
+  "mechanism_refs": [],
+  "geometry_refs": [],
+  "scorer_refs": [],
+  "reproduction_command": "Use the enclosing atomic experiment commit; run excluded smoke at a fresh output path, then run experiments/exp279_sleep_replay.py --preflight <fresh-smoke.json> --out <fresh-report.txt> via uv run --python .venv.",
+  "caveats": [
+    "repo_commit denotes the pre-run framework base; the enclosing atomic experiment commit and raw source_hashes pin the executed runner.",
+    "Toy stationary mapping, provided optimizer/scaffold; no retention, transfer, ecological/evolved sleep or improved lab research established.",
+    "Warm-start joint versus restarted chronological optimizer package; posterior counts not FLOPs.",
+    "Known runtime metadata field error disclosed without modifying raw; see exp279_metadata.md."
+  ]
+}

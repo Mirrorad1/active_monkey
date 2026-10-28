@@ -1388,3 +1388,10 @@ The loop marks items it has consumed by indenting a response under them:
   experiments-data.js / lab-status.js. When writing curated entries, do NOT assemble
   the JS via single-quoted sed/perl/echo — write through Python (pathlib/json, or the
   site_data helpers), which needs no apostrophe escaping in double-quoted JS strings.
+
+- [from human, 2026-10-27; taken up] Apply Google SLEEP-inspired learning/knowledge/selection
+  both to research practice and to the creature experiment; short-session offline replay first.
+  Human approved the two-level design and continued execution. Implemented L0 reviewed briefs
+  and C0 once-weighted replay; Exp 279 POSITIVE-SINGLE with narrow stationary-toy scope.
+  C1 retention/revision requires a fresh predeclaration; C2/C3 ecology and L1 lab-quality
+  benefit remain untested. See `loop/directions/recursive-sleep.md` and approved design.
