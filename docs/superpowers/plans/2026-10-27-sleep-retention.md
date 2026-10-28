@@ -31,19 +31,19 @@ Instrument gates: source hashes, unique ordered events0..199, once-weighted coun
 Old evidence must not be inherited in the anchor and re-added through the full history. Incremental updates must subtract cached contributions. World-change labels cannot enter helper inference. Failed initial acquisition must be NEGATIVE, not invalid/excluded. Warm replay must leave donor belief/RNG/age intact.
 
 ### Task1 — stronger ordinary sequential replay baseline
-- [ ] Add `mode='incremental'` in active_loop/sleep_replay.py and meaningful tests in tests/test_sleep_replay.py. Coder owns only these files.
-- [ ] RED->GREEN hand-counted mass, one-pass equivalence to joint, repeated passes conserve mass, deterministic sources unchanged, exact work accounting; existing tests remain green.
-- [ ] Review and commit helper separately before science.
+- [x] Add `mode='incremental'` in active_loop/sleep_replay.py and meaningful tests in tests/test_sleep_replay.py. Coder owns only these files.
+- [x] RED->GREEN hand-counted mass, one-pass equivalence to joint, repeated passes conserve mass, deterministic sources unchanged, exact work accounting; existing tests remain green.
+- [x] Review and commit helper separately before science.
 
 ### Task2 — C1 instrument and controlled run
-- [ ] Implement experiments/exp280_sleep_retention.py; tests/test_sleep_retention.py pins scientific conjunctions, no exclusion on acquisition, phase mapping partition, source-preserving install/continuation, preflight source matching, no output overwrite.
-- [ ] Review design/instrument independently, then source-frozen excluded smoke followed by one confirmatory run if resource-safe.
-- [ ] Independent blinded verifier recomputes each conjunct from docstring and raw outputs only.
+- [x] Implement experiments/exp280_sleep_retention.py; tests/test_sleep_retention.py pins scientific conjunctions, no exclusion on acquisition, phase mapping partition, source-preserving install/continuation, preflight source matching, no output overwrite.
+- [x] Review design/instrument independently, then source-frozen excluded smoke followed by one confirmatory run if resource-safe.
+- [x] Independent blinded verifier recomputes each conjunct from docstring and raw outputs only.
 
 ### Task3 — evidence retention at lab level
-- [ ] Append honest Exp280 log, raw/checkpoints, bundle, site; rubric and affected tests; commit atomic science record. Update direction: NEGATIVE halts C1 advancement; positive still does not establish ecology.
-- [ ] Collect passive meta episode; build and independently review bounded Exp280 lab brief; demonstrate compose attachment. Keep old brief source hashes valid.
-- [ ] Evaluate claudeception; add guard for any noteworthy implementation issue. Record measured verification, limits, commit IDs and next permitted work.
+- [x] Append honest Exp280 log, raw/checkpoints, bundle, site; rubric and affected tests; commit atomic science record. Update direction: NEGATIVE halts C1 advancement; positive still does not establish ecology.
+- [x] Collect passive meta episode; build and independently review bounded Exp280 lab brief; demonstrate compose attachment. Keep old brief source hashes valid.
+- [x] Evaluate claudeception; add guard for any noteworthy implementation issue. Record measured verification, limits, commit IDs and next permitted work.
 
 ## Builder check disposition
 
@@ -52,3 +52,18 @@ alpha1; stage2 disables the schedule and sets agent gamma4. Its code stream is e
 separate, seed+400000. Incremental responsibilities use the full current model before
 count replacement. Scope is read-only retained/revised discrimination after continued
 wake, not a causal stage3 online-life advantage. These choices are in the runner docstring.
+
+## Completion evidence
+
+Helper/preregistration commit2c8e39b; atomic science commitfd43f52. Scientific verdict
+NEGATIVE independently blind-verified; C1 advancement halted. All176 checkpoint hashes
+and64 fitted mass calculations audited; raw JSON hash
+9ab1d33809052d9aee6afb9e3689738483463add6bdc9a5bddbb73758dc458f4 unchanged.
+Source-matched pilot46.681554sec; full525.884678sec, peak9389.096960MB. All122 affected
+checks pass;65 lab/compose/meta/site checks rechecked after passive episode and brief.
+Iteration rubric passes; nine rounded/derived/preregistration warnings checked against raw.
+Exp280-boundary-v1 independently source-reviewed,974bytes; actual compose CLI includes it.
+Old278/279briefs remain source-valid. No ecology/inheritance/L1 or later online-life test run.
+Claudeception evaluated: incremental math is already captured by helper/docstring/hand-derived
+regressions; acquisition-as-outcome is already bound by VALIDATION. No duplicate global
+skill or untested scientific generalization extracted.

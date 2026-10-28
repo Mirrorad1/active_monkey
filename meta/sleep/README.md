@@ -66,3 +66,30 @@ monitoring work accounting, preflight completeness, raw-output collisions and pi
 runtime reporting. See `tests/test_lab_sleep.py`, `test_sleep_replay.py` and
 `test_sleep_experiment.py`. A claudeception review found these already covered by repo-local
 guards/documentation; no duplicate global skill or untested research rule was extracted.
+
+## C1 continuation: retained negative boundary (Exp280)
+
+The next wake used the reviewed Exp279 rehearsal to design separate retention/revision
+metrics and a stronger ordinary sequential refitter. Exp280 is NEGATIVE: acquisition
+.4375<.5, retention meets its declared criterion, revision gains only1/12 with5/16 positive,
+and current-world gains over idle/incremental are only1/48 (positive4/16,3/16). All16
+seeds remain in the analysis. No later online-life benefit or ecology is established.
+
+The lab retains this result in `exp280-boundary-v1`; the earlier positive brief remains
+source-valid. C1 advancement is halted pending a named changed lever and fresh
+predeclaration. This is evidence retention, not demonstrated causal improvement of research.
+
+```sh
+uv run --python .venv python loop/compose.py recursive-sleep \
+  --sleep-cycle meta/sleep/exp280-boundary-v1
+```
+
+Reproduction: `experiment_bundles/exp280/manifest.json` pins the executed commit and raw
+source hashes. Scientific source remains unchanged after the source-matched pilot.
+The incremental refitter replaces cached weighted responsibilities rather than adding
+them repeatedly; hand-derived tests pin counts and actual fitting/monitoring work.
+
+Claudeception evaluation for C1: cached responsibility replacement is verified by the
+helper's hand-derived tests and recorded in its docstring; acquisition-as-outcome already
+belongs to VALIDATION. Those durable guards cover the reusable knowledge, so no duplicate
+global skill was created and no negative toy result was promoted into a universal rule.

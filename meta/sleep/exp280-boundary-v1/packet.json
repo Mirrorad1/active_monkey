@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "excerpt": "Retention alone did not satisfy C1: acquisition, revision and both comparative gates failed.",
+      "kind": "boundary",
+      "source": 280
+    },
+    {
+      "kind": "rehearsal",
+      "origin": "generated",
+      "source": 280,
+      "text": "If C1 is reopened, name an acquisition or nonstationarity repair and preregister all old/new metrics and both controls; retention alone cannot justify ecology."
+    }
+  ],
+  "sources": [
+    {
+      "experiment": 280,
+      "output": "experiments/outputs/exp280.txt",
+      "script": "experiments/exp280_sleep_retention.py"
+    }
+  ]
+}

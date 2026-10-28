@@ -286,3 +286,11 @@ The approved first slice L0/C0 is implemented; see the execution plan completion
 `meta/sleep/README.md`, Exp279 and its bundle. C0 is POSITIVE-SINGLE at the stated toy scope;
 L0 demonstrates reviewed evidence fidelity/integration, not improved lab research quality.
 C1 retention/revision, C2/C3 costed ecology/inheritance, and L1 prospective quality are unrun.
+
+## C1 continuation outcome (2026-10-27)
+
+Exp280 is NEGATIVE / NEW INSIGHT under its independently verified all-conjunct rule.
+Unchanged-code retention passes; acquisition, revision and both baseline comparisons fail.
+Direction halts at C1; no automatic ecology escalation. Reusable stronger incremental
+refitting and a source-linked negative brief are retained; online-life, ecology and lab-quality
+benefits remain unestablished. See Exp280 raw/audit/verifier/bundle and continuation plan.
