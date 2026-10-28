@@ -403,3 +403,9 @@ Ground rules for this file:
   prior) — a documented Baldwin counter-case (ON<OFF). Report the genotype-vs-phenotype split so STALL (both
   low) is not confused with SHIELDING (functional phenotype, unmoved genotype). Kin L28/L51 (pre-flight the
   premise/wall), L22 (saturation), L30 (cost calibration). [METHODOLOGY; PROTOCOL step 2/3; VALIDATION]
+
+- **L53 (Exp281 retrospective audit,2026-10-27).** Repository bootstrap can unblind a
+  verifier: the parent bootstraps, then supplies a detached restricted criteria/raw packet.
+  A verifier that read RESUME/archive/parent claims must disclose exposure and cannot be
+  called strictly blinded. Report excerpt/necessary-check limits; do not certify omitted
+  conjuncts. [PROTOCOL step4.5; exp281_verification.md]

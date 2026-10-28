@@ -615,6 +615,22 @@ C0 positive/C1 negative remain bounded; C1 remains halted. New `meta_monkey.slee
 handles the archival store; active8-source/1500-byte briefs remain unchanged. No improved
 lab-quality, later online-life, or ecological sleep benefit is established by this review.
 
+### 3f. Formal criterion corrections (2026-10-27, Exp281)
+
+Exp281 is retrospective NEGATIVE / CONSOLIDATION, using stored pinned inputs only.
+Exp261 cost/D rises+.080 across .10->.15, failing monotonicity even with .05 tolerance;
+its MIXED/non-symmetry result and descriptive cost lever remain. Exp263's original resident0
+abundance7/8 triggers the scarcity-specific falsifier: its later recorded positive must be
+qualified as followup/invasion evidence, not an all-original-gate pass. The9/10 vs0/10
+rare-invasion contrast is retained. Exp268 main negative persists; frequency dispensability
+is unestablished because scalar MI is below banded and best single-band MI, and behavior
+~= lacks a declared tolerance. See new correction entry/raw and reviewed correction brief.
+
+Historical log/raw and old reviewed archives remain intact/source-valid. Future retrieval
+must include these corrections, not only the older recorded verdict. Independent source
+review and detached numeric verification have distinct disclosed scopes; L53 prevents
+claiming strict blinding after bootstrap exposure. No simulation/C1 reopening/L1 claim.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

@@ -1,0 +1,307 @@
+{
+  "checks": {
+    "261": {
+      "adjacent_rises": [
+        -0.556,
+        -0.635,
+        0.08,
+        -0.893,
+        -0.822
+      ],
+      "failed_transitions": [
+        [
+          0.1,
+          0.15
+        ]
+      ],
+      "full_symmetry": "NOT_SUPPORTED",
+      "max_adjacent_rise": 0.08,
+      "necessary_pass": false,
+      "preserved": "Descriptive cost lever / later MIXED interpretation; no new plateau threshold.",
+      "tolerance": 0.05
+    },
+    "263": {
+      "abundance_not_pos": false,
+      "drift_not_pos": true,
+      "necessary_pass": false,
+      "original_scarcity_specific": "NOT_SUPPORTED",
+      "preserved": "Later invasion and four-seed higher-resident diagnostics are distinct evidence.",
+      "resident_aggression": 0,
+      "scarce_pos": true,
+      "threshold_wins": 7
+    },
+    "268": {
+      "best_single_band_mi": 0.8349757920958069,
+      "cnull_delta": 0.0002064980733039179,
+      "cnull_pass": true,
+      "frequency_dispensability": "UNESTABLISHED",
+      "fscalar_behavior": "UNSPECIFIED_TOLERANCE_NOT_GRADED",
+      "fscalar_mi_pass": false,
+      "fscalar_mi_threshold": 0.8342743768350626,
+      "main_numeric_pass": false,
+      "means": {
+        "hazard_baseline": 0.37862198983887096,
+        "hazard_hearing": 0.4023615132160292,
+        "hazard_scalar": 0.4037703425908558,
+        "hazard_shuffle": 0.3153353251632608,
+        "hazard_silent": 0.37841549176556705,
+        "mi_banded": 0.8542743768350626,
+        "mi_high": 0.6434623578075503,
+        "mi_low": 0.8349757920958069,
+        "mi_mid": 0.6893180820133253,
+        "mi_null": 0.00042568760637766515,
+        "mi_scalar": 0.7684749935750784
+      },
+      "necessary_pass": false,
+      "p2_by_seed": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "p2_count": 8,
+      "p2_pass": true,
+      "p3_by_seed": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "p3_count": 0,
+      "p3_pass": false,
+      "preserved": "Main hearing-benefit negative persists; failing MI antecedent does not prove frequency usefulness.",
+      "scalar_ge_best_single_band": false,
+      "scalar_minus_banded": -0.08579938325998415,
+      "scalar_minus_best_single_band": -0.06650079852072843
+    }
+  },
+  "classification": "CONSOLIDATION",
+  "content_hash": "138fc5f992bf0a870892c94224bb6640101e2ff76c28c2ff492de4afade173ca",
+  "evaluation": "retrospective_original_criterion_reconciliation",
+  "experiment": 281,
+  "historical_scientific_eligibility": {
+    "261_full_symmetrization": "NOT_SUPPORTED",
+    "263_original_scarcity_specific": "NOT_SUPPORTED",
+    "268_frequency_dispensability": "UNESTABLISHED",
+    "268_hearing_benefit_numeric": "NOT_SUPPORTED"
+  },
+  "inputs": {
+    "261": [
+      [
+        0.0,
+        0.917
+      ],
+      [
+        0.05,
+        0.361
+      ],
+      [
+        0.1,
+        -0.274
+      ],
+      [
+        0.15,
+        -0.194
+      ],
+      [
+        0.25,
+        -1.087
+      ],
+      [
+        0.4,
+        -1.909
+      ]
+    ],
+    "263": {
+      "abundant": [
+        7,
+        8
+      ],
+      "drift": [
+        4,
+        8
+      ],
+      "scarce": [
+        8,
+        8
+      ]
+    },
+    "268": {
+      "hazard_baseline": [
+        0.37809461323934446,
+        0.3788273553522736,
+        0.3786171443838948,
+        0.37720009839274404,
+        0.37912867518225607,
+        0.3795376840377171,
+        0.379385215310671,
+        0.3781851328120668
+      ],
+      "hazard_hearing": [
+        0.4027660723933009,
+        0.4034571160692206,
+        0.4036062467200063,
+        0.4011024140909536,
+        0.4011759344795976,
+        0.40327151823338014,
+        0.4012106911813567,
+        0.40230211256041754
+      ],
+      "hazard_scalar": [
+        0.40343969126951856,
+        0.40529242939143845,
+        0.4028326763335669,
+        0.4027401058644949,
+        0.40399229388638824,
+        0.4035363626290751,
+        0.4047565883607562,
+        0.4035725929916081
+      ],
+      "hazard_shuffle": [
+        0.2747444376373471,
+        0.27077394798054555,
+        0.37459047350569136,
+        0.34698653047024147,
+        0.3586515541970199,
+        0.2707331934195383,
+        0.2833680181007048,
+        0.34283444599499785
+      ],
+      "hazard_silent": [
+        0.37813395895727037,
+        0.37894768063675843,
+        0.377869903439931,
+        0.37866501509098205,
+        0.37972749664827116,
+        0.379001222830082,
+        0.37821685212645756,
+        0.3767618043947838
+      ],
+      "mi_banded": [
+        0.836254347036554,
+        0.889768109868718,
+        0.8609165394184897,
+        0.8689033211900437,
+        0.8173618941903461,
+        0.8640182575618649,
+        0.8274571007290521,
+        0.8695154446854325
+      ],
+      "mi_high": [
+        0.6303181365482962,
+        0.6733110390098109,
+        0.635714752190617,
+        0.6477567918554725,
+        0.6201166722152585,
+        0.651037531295664,
+        0.6392535170048215,
+        0.6501904223404622
+      ],
+      "mi_low": [
+        0.8207796965252094,
+        0.8690712616708285,
+        0.8439743775524601,
+        0.8506429182208394,
+        0.7938167172035688,
+        0.8409565932470755,
+        0.8108445695859261,
+        0.8497202027605473
+      ],
+      "mi_mid": [
+        0.680312313727079,
+        0.7264514751615825,
+        0.6841966827665438,
+        0.6944570496458151,
+        0.6583608684156053,
+        0.6894909416229225,
+        0.684434065804482,
+        0.696841258962573
+      ],
+      "mi_null": [
+        0.00013792112276889102,
+        0.00016238568213465597,
+        0.0003402392018636031,
+        0.0002919428647316334,
+        9.450003665841152e-05,
+        0.0009265307263684112,
+        0.0003616331859894738,
+        0.0010903480305062413
+      ],
+      "mi_scalar": [
+        0.758166473461992,
+        0.801171153287869,
+        0.7746246456648307,
+        0.772970195602954,
+        0.7311964749660708,
+        0.7786505187248343,
+        0.757540198590189,
+        0.7734802883018878
+      ]
+    }
+  },
+  "instrument_valid": true,
+  "limits": [
+    "Cases/outcomes known before this retrospective audit; no prospective prediction.",
+    "No new worlds, weight updates, persistent-state advance, or causal L1 evaluation.",
+    "Necessary checks cannot establish omitted historical conjuncts.",
+    "No fabricated plateau or behavior-equivalence tolerance; no all-arm determinism claim.",
+    "268 full-precision MI/hazards use committed row JSON; canonical printed summary is separately pinned.",
+    "268 no-field unavailable acoustic NaNs are excluded from selected inputs.",
+    "Later 261 MIXED/cost-lever and 263 invasion/higher-resident observations remain distinct."
+  ],
+  "source_commit": "824ec190fbac8dacdb87680dd838c2644cf8679d",
+  "sources": [
+    {
+      "path": "experiments/exp261_costed_predator_attack.py",
+      "sha256": "5533db7e2a12a662597c91dda43e8828f825360d86698b40f3cbc7c75b54e0d6"
+    },
+    {
+      "path": "experiments/exp263_intraspecific_contest_emergence.py",
+      "sha256": "97c30aa202a4a5ecd174c9a027e727edb7e55c9d42568e11519e68d5c1abd799"
+    },
+    {
+      "path": "experiments/exp268_acoustic_eavesdropping.py",
+      "sha256": "48b03f104c303c33f7d687093f9ba3c6ec5b70f7b8a293a4edb1a96a6ff8d325"
+    },
+    {
+      "path": "experiments/outputs/exp261.txt",
+      "sha256": "5140f480fb99ed709aa753b97dbd6e5f6147142a9f1907c5b423de9d065af097"
+    },
+    {
+      "path": "experiments/outputs/exp263.txt",
+      "sha256": "62d2f1f940ded3594c277918f59b0cfe7c5a44d8fe73760bd4323c105722b6ba"
+    },
+    {
+      "path": "experiments/outputs/exp268.txt",
+      "sha256": "ff794a814831f2712a6a69b915ad5c0fbf4fa2f26ea1ad3bf4704d69f1d3d42e"
+    },
+    {
+      "path": "experiments/outputs/exp268_rows.json",
+      "sha256": "a1f1bf86696dcf8b5840fe7e168f3cfd6de965a79247378523f8bf88f15bf3f5"
+    },
+    {
+      "experiment": 261,
+      "path": "EXPERIMENTS.md",
+      "sha256": "02b43e417590eec31733cef35853e579bc60b04a82f6052f0d43066c781b1967"
+    },
+    {
+      "experiment": 263,
+      "path": "EXPERIMENTS.md",
+      "sha256": "b0c22cdc3ad2ed50b1284d47c29e449521a860a922e894651b252be9196e64df"
+    },
+    {
+      "experiment": 268,
+      "path": "EXPERIMENTS.md",
+      "sha256": "f007a67a4b54390568a1497ccd079922a05f5164c8f5b70d680a66f953c64508"
+    }
+  ],
+  "verdict": "NEGATIVE"
+}

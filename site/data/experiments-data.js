@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:280, breakthrough:9, positive:122, wall:67, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:281, breakthrough:9, positive:122, wall:68, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -3002,7 +3002,16 @@ window.AM_EXPERIMENTS = [
     result:"NEGATIVE. Acquisition .4375<.5. Unchanged retention mean gap0 with13/16 no loss passes. Changed-answer gain1/12<1/3, positive5/16 fails. Current-world joint .40625 vs idle/incremental .385416667 each; gain1/48<1/6, positive4/16 and3/16 fails. All instruments pass; blinded verifier agrees.",
     implication:"Retention alone does not meet C1. No license to advance toward ecological sleep; weak acquisition and model nonstationarity remain candidate explanations rather than isolated causes. The lab retains this negative boundary.",
     caveat:"Toy partial world change; provided learner, optimizer and schedule.",
-    trace:{ script:"experiments/exp280_sleep_retention.py", output:"experiments/outputs/exp280.txt" } }
+    trace:{ script:"experiments/exp280_sleep_retention.py", output:"experiments/outputs/exp280.txt" } },
+  { n:281, kind:"wall", chapter:"frontier",
+    title:"Original-criterion audit corrects three historical claim boundaries",
+    one:"Retrospective consolidation: original necessary criteria fail; narrower observations are retained.",
+    plain:"We checked whether claims from three older studies matched their original rules. Some stronger claims did not; the narrower measured observations remain useful.",
+    setup:"Deterministic recheck of pinned Exp261/263/268 scripts, raw tables and original log sections. Six cost/D rows, original resident-zero gradients and56 acoustic arm/seed cells; no new simulations or creature changes. Cases were known before the audit.",
+    result:"261: D rises .080 where tolerance is .05, defeating monotone symmetry.263: abundant7/8 triggers the original scarcity-specific falsifier; separate9/10 vs0/10 invasion remains.268: main negative persists, but scalar MI .7685 is below banded .8543 and best single-band .8350; frequency dispensability is unestablished.",
+    implication:"NEGATIVE / CONSOLIDATION on selected historical eligibility claims. These corrections constrain reuse of older wording without deleting original observations. No new scientific or lab-quality efficacy result; C1 remains halted.",
+    caveat:"Retrospective known cases, not a prospective test or replication.",
+    trace:{ script:"experiments/exp281_criterion_audit.py", output:"experiments/outputs/exp281.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

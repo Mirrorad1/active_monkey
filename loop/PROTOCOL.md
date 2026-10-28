@@ -100,6 +100,14 @@ not permission to weaken `loop/VALIDATION.md`.
    independent verification beats self-critique on exactly the failure class this
    loop has logged repeatedly (L1/L2/L9 in `loop/LESSONS.md`).
 
+   **Blinding-input guard (L53):** the parent performs repository bootstrap before
+   preparing the verifier's restricted input packet. A worker that reads RESUME.md,
+   an archive interpretation, or a parent verdict must disclose that exposure and
+   cannot be described as strictly blinded. Use a detached text-only context for a
+   blinded numerical recheck; state exactly which original criteria/raw values it
+   received. Excerpted necessary-condition checks cannot certify omitted conjuncts.
+   Keep original-source fidelity review separate from that limited numerical check.
+
 5. **Log.** Append one honest entry to `EXPERIMENTS.md` in the established format
    (Plain / Setup / Result / Implication / Honest caveat / Verdict / Verifier / Next),
    explicitly tagged:

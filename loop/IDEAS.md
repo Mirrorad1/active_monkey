@@ -1406,3 +1406,8 @@ The loop marks items it has consumed by indenting a response under them:
   range reviews, source-linked synthesis/audit notes and three untested rehearsals at
   `meta/sleep/exp251-280-archive-v1/`. No30-simulation rerun or new scientific result.
   Preserve raw/summary discrepancies and failed original criteria; C1 stays halted.
+
+  -> [2026-10-27 continuation] Exp281 formalizes criterion corrections from the archive:
+  original261 monotonicity fails;263 abundance falsifier fires;268 frequency comparator
+  subclaim is unestablished. Retrospective CONSOLIDATION, no new worlds. Retain narrower
+  observations, preserve historical entries, retrieve corrections alongside older claims.

@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_type": "experiment_bundle",
+  "experiment_id": "exp281",
+  "direction": "recursive-sleep",
+  "question": "Do selected original necessary criteria in261/263/268 survive their stored numeric evidence?",
+  "hypothesis": "Retrospective all-selected-necessary-check audit, cases known; no fresh prospective claim.",
+  "status": "completed",
+  "verdict": "NEGATIVE",
+  "repo_commit": "824ec190fbac8dacdb87680dd838c2644cf8679d",
+  "created_at": "2026-10-27",
+  "confidence": "high",
+  "backfill_level": "metrics_bundle",
+  "source_files": [
+    "experiments/exp281_criterion_audit.py"
+  ],
+  "raw_data_refs": [
+    "experiments/outputs/exp281.txt",
+    "experiments/outputs/exp281.json"
+  ],
+  "metrics_refs": [
+    "experiments/outputs/exp281_verification.md"
+  ],
+  "state_refs": [],
+  "mechanism_refs": [],
+  "geometry_refs": [],
+  "scorer_refs": [],
+  "reproduction_command": "uv run --python .venv python experiments/exp281_criterion_audit.py --out experiments/outputs/exp281_repro.txt (fresh path).",
+  "caveats": [
+    "repo_commit initially pins input/base; enclosing atomic experiment commit pins executed audit script.",
+    "Retrospective deterministic necessary-condition reconciliation, no simulation or prospective efficacy test.",
+    "Source-limited unblinded original review and detached blinded excerpt arithmetic have separately disclosed limits.",
+    "Later narrower observations retained; no universal ecological/learning claim or C1 reopening."
+  ]
+}
