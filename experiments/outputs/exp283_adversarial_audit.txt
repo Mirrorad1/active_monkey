@@ -1,0 +1,177 @@
+MATCH NEUTRAL 9500 rows=3000 births=4024
+MATCH NEUTRAL 9501 rows=3000 births=4663
+MATCH NEUTRAL 9502 rows=3000 births=3345
+MATCH NEUTRAL 9503 rows=3000 births=2999
+MATCH NEUTRAL 9504 rows=3000 births=4347
+MATCH NEUTRAL 9505 rows=3000 births=8808
+MATCH NEUTRAL 9506 rows=3000 births=4419
+MATCH NEUTRAL 9507 rows=3000 births=5919
+MATCH NEUTRAL 9508 rows=3000 births=4909
+MATCH NEUTRAL 9509 rows=3000 births=5477
+MATCH NEUTRAL 9510 rows=3000 births=3760
+MATCH NEUTRAL 9511 rows=3000 births=3170
+MATCH NEUTRAL 9512 rows=3000 births=5806
+MATCH NEUTRAL 9513 rows=3000 births=4025
+MATCH NEUTRAL 9514 rows=3000 births=4095
+MATCH NEUTRAL 9515 rows=3000 births=3343
+MATCH COST_ONLY 9500 rows=3000 births=4172
+MATCH COST_ONLY 9501 rows=3000 births=3718
+MATCH COST_ONLY 9502 rows=3000 births=3712
+MATCH COST_ONLY 9503 rows=3000 births=3291
+MATCH COST_ONLY 9504 rows=3000 births=4509
+MATCH COST_ONLY 9505 rows=3000 births=2912
+MATCH COST_ONLY 9506 rows=3000 births=5753
+MATCH COST_ONLY 9507 rows=3000 births=3826
+MATCH COST_ONLY 9508 rows=3000 births=5422
+MATCH COST_ONLY 9509 rows=3000 births=4156
+MATCH COST_ONLY 9510 rows=3000 births=3439
+MATCH COST_ONLY 9511 rows=3000 births=1942
+MATCH COST_ONLY 9512 rows=3000 births=2336
+MATCH COST_ONLY 9513 rows=3000 births=3754
+MATCH COST_ONLY 9514 rows=3000 births=4426
+MATCH COST_ONLY 9515 rows=3000 births=6423
+MATCH THERMAL 9500 rows=3000 births=2175
+MATCH THERMAL 9501 rows=3000 births=3116
+MATCH THERMAL 9502 rows=3000 births=1374
+MATCH THERMAL 9503 rows=3000 births=2900
+MATCH THERMAL 9504 rows=3000 births=1616
+MATCH THERMAL 9505 rows=3000 births=1646
+MATCH THERMAL 9506 rows=3000 births=1549
+MATCH THERMAL 9507 rows=3000 births=2127
+MATCH THERMAL 9508 rows=3000 births=2070
+MATCH THERMAL 9509 rows=3000 births=1437
+MATCH THERMAL 9510 rows=3000 births=1491
+MATCH THERMAL 9511 rows=3000 births=1842
+MATCH THERMAL 9512 rows=3000 births=1689
+MATCH THERMAL 9513 rows=3000 births=2930
+MATCH THERMAL 9514 rows=3000 births=1741
+MATCH THERMAL 9515 rows=3000 births=2047
+{
+  "scope": "Post-hoc additive same-seed reproduction; not new confirmation",
+  "original_raw_sha256": "3fa2c80847925d1c33dc022cc6dfa7c26f6cf15985a84c9def58b43e771d8fb2",
+  "original_source_hashes": {
+    "ecology/transmission.py": "f3682c7dd12cad467162e040d33073dd5a63b3b22ba2cc01d591c47926157542",
+    "experiments/exp283_boundary_transmission.py": "3c2fd0082c1bfd0157e775cfd12fffac7ac3f38b224f1c5b259f92dba8c6047b",
+    "tests/test_transmission.py": "bac0e32b719f8d49cad1acfbfa4968710adfe648827870927643f698e4a3f83f",
+    "ecology/engine.py": "7d903493a32114a4d49714a9ad1dfa36b406f2e226f7f3e0dc51a4e5eb87718c",
+    "ecology/genotype.py": "faed250c02c21b975ef73ba31f60f23aebf722251f930c14ef0613fbf1d36278",
+    "ecology/scenarios.py": "2cf3611b08813a9ea5937fd4ff7560a3ee430fde33fa46e2e37697f572dbcfaa",
+    "ecology/creature.py": "3b1103e824ff272a4389ff043e3e8fc00927ff6c87cc5cff4c25629d4e77351b",
+    "ecology/world.py": "4728f5f6fbaa96b9013938e398835f05bb12c82a5ed90904d88596765b051800",
+    "ecology/runtime_budget.py": "19e578c00679861125bbff6b590d059a1baa718d7c144aef8e0234a28db9677c",
+    "experiments/exp198_n5_thermosense_attractor.py": "0339f7336736cfe28bc89d44c6aa527291b6ae360b321aada79809a07c7071d4",
+    "docs/superpowers/plans/2026-10-27-boundary-transmission-paper.md": "abb5da578877b2d00becb00e5bff718bc80176b57849ab0d0bbb6c4a50a9b389"
+  },
+  "audit_source_sha256": "bbc25b1ada16240074ec63ae9c6a393076cdb2eb34904adc2d69d7bed31b0cce",
+  "audit_tests_sha256": "fa63fb9a288e49eed3301548ad6e0e697a0c0e171ae0296fa7ccb92482fe525e",
+  "versions": {
+    "python": "3.12.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "observer_checks": [
+    {
+      "arm": "NEUTRAL",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "1f0d3ed6f10f380605d9711dfc04dfe25da5e79169a69a82bee3071ec652cc7e",
+        "genotypes": "06f5eba27d09b380f52c6c6e2ebaa354d8766da600f5dcfa84d4f17989930769",
+        "rng": "d983e8e52489c1588dc9afccfa1b292e033ebdc0681ac282a87fd92317bf93ff",
+        "creatures": 101
+      },
+      "bare": {
+        "events": "1f0d3ed6f10f380605d9711dfc04dfe25da5e79169a69a82bee3071ec652cc7e",
+        "genotypes": "06f5eba27d09b380f52c6c6e2ebaa354d8766da600f5dcfa84d4f17989930769",
+        "rng": "d983e8e52489c1588dc9afccfa1b292e033ebdc0681ac282a87fd92317bf93ff",
+        "creatures": 101
+      },
+      "equal": true,
+      "focal_corruption_rejected_despite_equal_event_hash": true
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "29f7772d2afa956d2a257735aa57a0159e334ba1aa2a27d607cf6f49725e9f13",
+        "genotypes": "760a4c135ae0f5cef4a772d6b00e4ce9165b9f1e7a3e777a3d73f9c3a5f7bccb",
+        "rng": "98e25ab100bd236762451fb2550fe95f1d010e8727e20d3581a1c7e2e2841d67",
+        "creatures": 82
+      },
+      "bare": {
+        "events": "29f7772d2afa956d2a257735aa57a0159e334ba1aa2a27d607cf6f49725e9f13",
+        "genotypes": "760a4c135ae0f5cef4a772d6b00e4ce9165b9f1e7a3e777a3d73f9c3a5f7bccb",
+        "rng": "98e25ab100bd236762451fb2550fe95f1d010e8727e20d3581a1c7e2e2841d67",
+        "creatures": 82
+      },
+      "equal": true
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "80a222a630fe73b26f4c787baeb8e7a37f9227cdad369b392688445bc4240b62",
+        "genotypes": "e4f168ed4eb890d2beb0c899bd360ee98058a6ea3871e474f21764a6840b5401",
+        "rng": "807f54c7331513202da4e406dda0df0916af7f2c689a7104f496f302c6a50691",
+        "creatures": 88
+      },
+      "bare": {
+        "events": "80a222a630fe73b26f4c787baeb8e7a37f9227cdad369b392688445bc4240b62",
+        "genotypes": "e4f168ed4eb890d2beb0c899bd360ee98058a6ea3871e474f21764a6840b5401",
+        "rng": "807f54c7331513202da4e406dda0df0916af7f2c689a7104f496f302c6a50691",
+        "creatures": 88
+      },
+      "equal": true
+    }
+  ],
+  "arms": {
+    "NEUTRAL": {
+      "newborn_mean": {
+        "mean": 0.08851018993889889,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.0863564204431352,
+        "above_002": 16
+      },
+      "birth_weighted_living": {
+        "mean": 0.08635934507075105,
+        "above_002": 16
+      }
+    },
+    "COST_ONLY": {
+      "newborn_mean": {
+        "mean": 0.029582535099237885,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.01611020254009093,
+        "above_002": 1
+      },
+      "birth_weighted_living": {
+        "mean": 0.01612748848031839,
+        "above_002": 1
+      }
+    },
+    "THERMAL": {
+      "newborn_mean": {
+        "mean": 0.043914211808021644,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.04258669493701956,
+        "above_002": 16
+      },
+      "birth_weighted_living": {
+        "mean": 0.04260251710211418,
+        "above_002": 16
+      }
+    }
+  },
+  "rows_checked": 144000,
+  "births_retained": 168650,
+  "runtime_s": 37.53122341725975,
+  "status": "PASS"
+}

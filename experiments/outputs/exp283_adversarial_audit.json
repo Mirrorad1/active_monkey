@@ -1,0 +1,1091 @@
+{
+  "scope": "Post-hoc additive same-seed reproduction; not new confirmation",
+  "original_raw_sha256": "3fa2c80847925d1c33dc022cc6dfa7c26f6cf15985a84c9def58b43e771d8fb2",
+  "original_source_hashes": {
+    "ecology/transmission.py": "f3682c7dd12cad467162e040d33073dd5a63b3b22ba2cc01d591c47926157542",
+    "experiments/exp283_boundary_transmission.py": "3c2fd0082c1bfd0157e775cfd12fffac7ac3f38b224f1c5b259f92dba8c6047b",
+    "tests/test_transmission.py": "bac0e32b719f8d49cad1acfbfa4968710adfe648827870927643f698e4a3f83f",
+    "ecology/engine.py": "7d903493a32114a4d49714a9ad1dfa36b406f2e226f7f3e0dc51a4e5eb87718c",
+    "ecology/genotype.py": "faed250c02c21b975ef73ba31f60f23aebf722251f930c14ef0613fbf1d36278",
+    "ecology/scenarios.py": "2cf3611b08813a9ea5937fd4ff7560a3ee430fde33fa46e2e37697f572dbcfaa",
+    "ecology/creature.py": "3b1103e824ff272a4389ff043e3e8fc00927ff6c87cc5cff4c25629d4e77351b",
+    "ecology/world.py": "4728f5f6fbaa96b9013938e398835f05bb12c82a5ed90904d88596765b051800",
+    "ecology/runtime_budget.py": "19e578c00679861125bbff6b590d059a1baa718d7c144aef8e0234a28db9677c",
+    "experiments/exp198_n5_thermosense_attractor.py": "0339f7336736cfe28bc89d44c6aa527291b6ae360b321aada79809a07c7071d4",
+    "docs/superpowers/plans/2026-10-27-boundary-transmission-paper.md": "abb5da578877b2d00becb00e5bff718bc80176b57849ab0d0bbb6c4a50a9b389"
+  },
+  "audit_source_sha256": "bbc25b1ada16240074ec63ae9c6a393076cdb2eb34904adc2d69d7bed31b0cce",
+  "audit_tests_sha256": "fa63fb9a288e49eed3301548ad6e0e697a0c0e171ae0296fa7ccb92482fe525e",
+  "versions": {
+    "python": "3.12.9",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "observer_checks": [
+    {
+      "arm": "NEUTRAL",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "1f0d3ed6f10f380605d9711dfc04dfe25da5e79169a69a82bee3071ec652cc7e",
+        "genotypes": "06f5eba27d09b380f52c6c6e2ebaa354d8766da600f5dcfa84d4f17989930769",
+        "rng": "d983e8e52489c1588dc9afccfa1b292e033ebdc0681ac282a87fd92317bf93ff",
+        "creatures": 101
+      },
+      "bare": {
+        "events": "1f0d3ed6f10f380605d9711dfc04dfe25da5e79169a69a82bee3071ec652cc7e",
+        "genotypes": "06f5eba27d09b380f52c6c6e2ebaa354d8766da600f5dcfa84d4f17989930769",
+        "rng": "d983e8e52489c1588dc9afccfa1b292e033ebdc0681ac282a87fd92317bf93ff",
+        "creatures": 101
+      },
+      "equal": true,
+      "focal_corruption_rejected_despite_equal_event_hash": true
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "29f7772d2afa956d2a257735aa57a0159e334ba1aa2a27d607cf6f49725e9f13",
+        "genotypes": "760a4c135ae0f5cef4a772d6b00e4ce9165b9f1e7a3e777a3d73f9c3a5f7bccb",
+        "rng": "98e25ab100bd236762451fb2550fe95f1d010e8727e20d3581a1c7e2e2841d67",
+        "creatures": 82
+      },
+      "bare": {
+        "events": "29f7772d2afa956d2a257735aa57a0159e334ba1aa2a27d607cf6f49725e9f13",
+        "genotypes": "760a4c135ae0f5cef4a772d6b00e4ce9165b9f1e7a3e777a3d73f9c3a5f7bccb",
+        "rng": "98e25ab100bd236762451fb2550fe95f1d010e8727e20d3581a1c7e2e2841d67",
+        "creatures": 82
+      },
+      "equal": true
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9499,
+      "steps": 120,
+      "watched": {
+        "events": "80a222a630fe73b26f4c787baeb8e7a37f9227cdad369b392688445bc4240b62",
+        "genotypes": "e4f168ed4eb890d2beb0c899bd360ee98058a6ea3871e474f21764a6840b5401",
+        "rng": "807f54c7331513202da4e406dda0df0916af7f2c689a7104f496f302c6a50691",
+        "creatures": 88
+      },
+      "bare": {
+        "events": "80a222a630fe73b26f4c787baeb8e7a37f9227cdad369b392688445bc4240b62",
+        "genotypes": "e4f168ed4eb890d2beb0c899bd360ee98058a6ea3871e474f21764a6840b5401",
+        "rng": "807f54c7331513202da4e406dda0df0916af7f2c689a7104f496f302c6a50691",
+        "creatures": 88
+      },
+      "equal": true
+    }
+  ],
+  "runs": [
+    {
+      "arm": "NEUTRAL",
+      "seed": 9500,
+      "original_trajectory_sha256": "c6eb556279b76fe3fc69682b5e5ecd6da2cc08376ca9af802095163e50058359",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 765,
+        "newborn_mean": 0.07179158992451933,
+        "time_mean_living": 0.06752544139525295,
+        "birth_weighted_living": 0.06755894286917387
+      },
+      "terminal_living": 0.07042958948210164,
+      "cumulative_selection": -0.1398180220771729,
+      "events_hash": "6fdbfbcd562ca858d8b490556a7e0c78482dd0f4bfba66297658f450e29200b8",
+      "birth_count": 4024,
+      "birth_file": "neutral_seed9500.json.gz",
+      "birth_sha256": "b46b19fcf7bfa7858585c171752c7dccc05172c9671cde2727ca15e6f6dfe341"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9501,
+      "original_trajectory_sha256": "765a6b1974e3da4ac2d9f6bdbaa0eb9f45a95142a65516dad80bf6bde60bc2e7",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 939,
+        "newborn_mean": 0.13043160097486978,
+        "time_mean_living": 0.13079302051601874,
+        "birth_weighted_living": 0.13074983364589352
+      },
+      "terminal_living": 0.13146385706718405,
+      "cumulative_selection": 0.003197024208182178,
+      "events_hash": "448edb7857bf1b4bcfa486c8b87d2655fbbbbd8735873019ea7e751bc6a5a500",
+      "birth_count": 4663,
+      "birth_file": "neutral_seed9501.json.gz",
+      "birth_sha256": "ceeeb84e21514731cf1414786e1921b1497861c4651e0281b70f1bd0875e35e9"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9502,
+      "original_trajectory_sha256": "41fbf1c3f3176355c1193e73a2c92fa2fcf4400800d91fd54ceb8f712a5ced92",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 610,
+        "newborn_mean": 0.1712745398009999,
+        "time_mean_living": 0.17249163623579333,
+        "birth_weighted_living": 0.1725078690713694
+      },
+      "terminal_living": 0.17242695212085246,
+      "cumulative_selection": -0.028512073244830453,
+      "events_hash": "e147cf88244b8c7a8b90c7790c9215c148d7589b4eeef60701bd6f0fc8d0a5b2",
+      "birth_count": 3345,
+      "birth_file": "neutral_seed9502.json.gz",
+      "birth_sha256": "2189f44632fe323492fec35ba5c02f3366f9f248a6929f15c8483a6a4152d3a8"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9503,
+      "original_trajectory_sha256": "8ce4702c48f627f605209118cefbf09b2fcc789a2a4996be2bbccf1bccebd108",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 581,
+        "newborn_mean": 0.06494357549449786,
+        "time_mean_living": 0.06232999857826943,
+        "birth_weighted_living": 0.06222854470513029
+      },
+      "terminal_living": 0.06284637895723,
+      "cumulative_selection": -0.1528136751112628,
+      "events_hash": "d6fc117d26b638285c49a51a3b2a621dbec2a66d46da34b8056f59ce11982715",
+      "birth_count": 2999,
+      "birth_file": "neutral_seed9503.json.gz",
+      "birth_sha256": "cee79a2b0cf63d5c21e528e1a728d0149ffa909406e5c603099c68c1de42fa9b"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9504,
+      "original_trajectory_sha256": "08a3c2205accbc2a22872798beb2490636a83e8fb0161ebbb9bb71ffc4a0cad3",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 928,
+        "newborn_mean": 0.06800878285631227,
+        "time_mean_living": 0.06202471158753672,
+        "birth_weighted_living": 0.062031494466456845
+      },
+      "terminal_living": 0.06247929595269532,
+      "cumulative_selection": -0.22238150019349956,
+      "events_hash": "34e7eead191966deb6e92639d765c4ad9c87a3f187dbe146a2201578cba20d89",
+      "birth_count": 4347,
+      "birth_file": "neutral_seed9504.json.gz",
+      "birth_sha256": "c6e6c427bd1ab16b73af77a05164ce5ada45a3dfc246ef9f17334887086687ce"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9505,
+      "original_trajectory_sha256": "75a4ed447bbbe07e51d3ce226d7b46cbd103b1650530f9fbf21e5585bb5e10db",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1901,
+        "newborn_mean": 0.0755454029199041,
+        "time_mean_living": 0.07939511636040847,
+        "birth_weighted_living": 0.07938413718900479
+      },
+      "terminal_living": 0.08055772966174744,
+      "cumulative_selection": -0.20940033904944974,
+      "events_hash": "1457ca785422dd135174a3366d20d6efbba650050af3855d3894087db194f4dd",
+      "birth_count": 8808,
+      "birth_file": "neutral_seed9505.json.gz",
+      "birth_sha256": "bc6e0bcfe0b62cb28b0a17fc4dd26cb381c20de78b6fc12cd56cecb8c0a42eff"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9506,
+      "original_trajectory_sha256": "b333dc1d81a417487af4ef66a39f79bfe4f7ee2f292f42ed9389a28998c0d0a9",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 818,
+        "newborn_mean": 0.10445318363040967,
+        "time_mean_living": 0.10591960679287646,
+        "birth_weighted_living": 0.1059737005205291
+      },
+      "terminal_living": 0.10533538543224377,
+      "cumulative_selection": -0.0964206673487009,
+      "events_hash": "affb0ad1862cf834b111bd9b60fc945d75acd43ada06999851b16b1efbd46829",
+      "birth_count": 4419,
+      "birth_file": "neutral_seed9506.json.gz",
+      "birth_sha256": "eca63b937b3920d082b5d76402cf9decd34707203ac9c8f9afdb75f4caf1f1bb"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9507,
+      "original_trajectory_sha256": "1ebc99aaeb58315cf07a1d02a62c2f276af5b17e28eed00a836f98f3e1bd7a97",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1164,
+        "newborn_mean": 0.09966092466629181,
+        "time_mean_living": 0.089448535448608,
+        "birth_weighted_living": 0.08947243915668827
+      },
+      "terminal_living": 0.09003124236754594,
+      "cumulative_selection": -0.08236398361092512,
+      "events_hash": "38ca6696d1452d29471f44f428534468f4b278861ff6ef8a381caf597a9d93a4",
+      "birth_count": 5919,
+      "birth_file": "neutral_seed9507.json.gz",
+      "birth_sha256": "31908ce41073b141c462c378e2b2c3dbea899b01cccad1f095dd0d809cb7c11c"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9508,
+      "original_trajectory_sha256": "1c167c9aac6d3c8802946ac4a557dd4e455d9b3aa2a52f1da5553d23e7726c09",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 881,
+        "newborn_mean": 0.06982518158966582,
+        "time_mean_living": 0.06685773139627663,
+        "birth_weighted_living": 0.0668410398831599
+      },
+      "terminal_living": 0.06566895544309845,
+      "cumulative_selection": -0.12029945766675636,
+      "events_hash": "baa276ff54ad54e780a168340096057b01e661d96bb027c66f0ba20b2ed7257f",
+      "birth_count": 4909,
+      "birth_file": "neutral_seed9508.json.gz",
+      "birth_sha256": "1050102a17339de698abb106c4bfa67782f3344ba583945a9918a112485bb455"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9509,
+      "original_trajectory_sha256": "d75ba917db4fbd7ef88275251d59561f014a695933b943a9011ad1a4ee9c4b99",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1055,
+        "newborn_mean": 0.047113692613197825,
+        "time_mean_living": 0.04629547800438557,
+        "birth_weighted_living": 0.04630232594712773
+      },
+      "terminal_living": 0.04661410338892505,
+      "cumulative_selection": -0.22130680012947754,
+      "events_hash": "75c3ffd2221a12bf4ed74a6410f73d9bd5c713c04cdce921b10bfcb5ab8ee925",
+      "birth_count": 5477,
+      "birth_file": "neutral_seed9509.json.gz",
+      "birth_sha256": "a39a56480aa82e5dd291cb19fe22eef4d53126658ed646db692cd87d23db92c3"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9510,
+      "original_trajectory_sha256": "5c222a4cdd9ff4b8bb9d2a6f923d38047e19d41a7d7070a60bcbdecf52f89faf",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 697,
+        "newborn_mean": 0.06334377288792424,
+        "time_mean_living": 0.06038762619908823,
+        "birth_weighted_living": 0.06040202000727114
+      },
+      "terminal_living": 0.06303897968248491,
+      "cumulative_selection": -0.15876856430252456,
+      "events_hash": "88299ce579b314882d800d910dd754a4145d0e8944f29e96629e388b970d23c4",
+      "birth_count": 3760,
+      "birth_file": "neutral_seed9510.json.gz",
+      "birth_sha256": "4d485d32eb01b9f263cc04f62e6e9faf5e5df02362dcae53b809927e2596af0c"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9511,
+      "original_trajectory_sha256": "e8d4779f27b39588fa989897aa209fa74c24582294eb1a831156df58a4801f20",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 605,
+        "newborn_mean": 0.14068171128237564,
+        "time_mean_living": 0.13801024707101323,
+        "birth_weighted_living": 0.13804514627472006
+      },
+      "terminal_living": 0.13891811277482555,
+      "cumulative_selection": 0.027318923873797057,
+      "events_hash": "d47861f5e00d1e5d8ea7dab14c80ad178613c0ce340e0d4a628e0643219c077d",
+      "birth_count": 3170,
+      "birth_file": "neutral_seed9511.json.gz",
+      "birth_sha256": "df86d5068ca52ebc285703def239394d103f0d0c502cf5046d77021a6e5d694f"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9512,
+      "original_trajectory_sha256": "826174f8a22604a5eadca381e43a51301d4d3fc5264b6f6400682eb505a999dc",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1070,
+        "newborn_mean": 0.07737841551771807,
+        "time_mean_living": 0.07056029897471401,
+        "birth_weighted_living": 0.07061265422481386
+      },
+      "terminal_living": 0.07397251534244237,
+      "cumulative_selection": -0.13081222414272478,
+      "events_hash": "1387ed4dae51f215c536d6662eac37825a140c6304fc915acb4b783f150800d9",
+      "birth_count": 5806,
+      "birth_file": "neutral_seed9512.json.gz",
+      "birth_sha256": "053ed2498f1bc7f4849fa04d28d53a4fda8366ef79dd43e5ae73fd308169a682"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9513,
+      "original_trajectory_sha256": "ca8fe64d26941e7f1ff1380f51fd11991b34c81efee2afa5303a460111afb306",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 746,
+        "newborn_mean": 0.06034482526583783,
+        "time_mean_living": 0.05723809132006448,
+        "birth_weighted_living": 0.05723315189184189
+      },
+      "terminal_living": 0.057087908304716994,
+      "cumulative_selection": -0.21614648156217953,
+      "events_hash": "962d7c1d3d6f701737a06b4c693820528d1e2c0dd8e120db2ed2d89b0df59e09",
+      "birth_count": 4025,
+      "birth_file": "neutral_seed9513.json.gz",
+      "birth_sha256": "17d2b886623ed73358076d413149c6f9222a541c8b7e9dcd4826f34d99654495"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9514,
+      "original_trajectory_sha256": "002ed1f92551d6d6b0fa8de96f74e3aad15e9a864ff2d39df9f05c0ca0be75e7",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 794,
+        "newborn_mean": 0.043282969123295,
+        "time_mean_living": 0.03807582894898677,
+        "birth_weighted_living": 0.03806515870927692
+      },
+      "terminal_living": 0.03746801869831033,
+      "cumulative_selection": -0.28835320040521994,
+      "events_hash": "b47510d9147706d87afce49ebe1a70e53150e343ae893bdef60d0f1e5df3c238",
+      "birth_count": 4095,
+      "birth_file": "neutral_seed9514.json.gz",
+      "birth_sha256": "55c1d2f137b2f49e603cecc4c8defadbd4981da18a3b0a2d5e6fd0bac5851876"
+    },
+    {
+      "arm": "NEUTRAL",
+      "seed": 9515,
+      "original_trajectory_sha256": "a50bae1e3e91d2b3d0d6dd09bc994e386bae2913a6c28722d5cfee34291e27ab",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 640,
+        "newborn_mean": 0.1280828704745632,
+        "time_mean_living": 0.13434935826087008,
+        "birth_weighted_living": 0.13434106256955927
+      },
+      "terminal_living": 0.13293940719326172,
+      "cumulative_selection": -0.0631610623012057,
+      "events_hash": "4d4da4af1004448fee591fe043d32818edb0432b8646324cba6f13e81f6430c1",
+      "birth_count": 3343,
+      "birth_file": "neutral_seed9515.json.gz",
+      "birth_sha256": "e74f2bc5e12c60db4777e0783a95b09d69f6de715d564b976484f8213a8f42c2"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9500,
+      "original_trajectory_sha256": "c10d816c0f8fb54f477f924075c337c816f079930db02ee8f1295eb4a11d8490",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 824,
+        "newborn_mean": 0.03111890834817871,
+        "time_mean_living": 0.015044683657009757,
+        "birth_weighted_living": 0.0150950214806106
+      },
+      "terminal_living": 0.014690690714177442,
+      "cumulative_selection": -0.4375179137291388,
+      "events_hash": "ebd827cd137bace33d8b8efd2ed9cdf131661dd7ed2cab7ebddffdf533a75665",
+      "birth_count": 4172,
+      "birth_file": "cost_only_seed9500.json.gz",
+      "birth_sha256": "2355bbf3e1c933dde2c968cefd2eb23d9bcf2a26012692fa1e6c249b7be6e489"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9501,
+      "original_trajectory_sha256": "d5c4d94ca967798d8031796e85fe63692e38e724c8aad454bbfe4e9e01c1cc03",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 754,
+        "newborn_mean": 0.030590604394488987,
+        "time_mean_living": 0.017429102553051714,
+        "birth_weighted_living": 0.01742753402783936
+      },
+      "terminal_living": 0.016678620872691112,
+      "cumulative_selection": -0.29006312235725656,
+      "events_hash": "3b974f3c0768b3824dfb1a73eb174bc9b351f6488146115bbcb27df9a2d7f98d",
+      "birth_count": 3718,
+      "birth_file": "cost_only_seed9501.json.gz",
+      "birth_sha256": "673237574d043acaa2960250816b0d57fce397b3c8ba1364ff1b788e368eaa70"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9502,
+      "original_trajectory_sha256": "7097721ebd20b7da935b0ec76e497b782cf67e5ca9ba753577584144bf08b80d",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 805,
+        "newborn_mean": 0.030750606219118255,
+        "time_mean_living": 0.017051120175477864,
+        "birth_weighted_living": 0.01707808911733365
+      },
+      "terminal_living": 0.017421828000923335,
+      "cumulative_selection": -0.3243992202272177,
+      "events_hash": "f8d884f919c64cdb804a8862cbbe9b5879c994bc10cd73e8ce5c0981876166ab",
+      "birth_count": 3712,
+      "birth_file": "cost_only_seed9502.json.gz",
+      "birth_sha256": "466c9bf2e60cda52f7689339861967437eee54259c0aeeda9fe5897333f45234"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9503,
+      "original_trajectory_sha256": "5dc14e9f5b950c4fa451a537720581659005254992d34078fc1de6ba97ad4ce3",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 622,
+        "newborn_mean": 0.025965420585718515,
+        "time_mean_living": 0.01395945940402191,
+        "birth_weighted_living": 0.014011583702973045
+      },
+      "terminal_living": 0.013026695038626548,
+      "cumulative_selection": -0.26736720401059977,
+      "events_hash": "7e23207306b261294501a4d0418f1148a4acaaab6a8c58809e25ec7ca835c82b",
+      "birth_count": 3291,
+      "birth_file": "cost_only_seed9503.json.gz",
+      "birth_sha256": "55ec69d37c3b1780e179afb251982be6d36f91757c601513af1d9de5d4a33fc1"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9504,
+      "original_trajectory_sha256": "bbc0f48a46cb326334620330a4edcb0099e033bacb47166b42cf41a311f83655",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 863,
+        "newborn_mean": 0.027243150517730304,
+        "time_mean_living": 0.01431870036289449,
+        "birth_weighted_living": 0.014348596785847531
+      },
+      "terminal_living": 0.013241377854893356,
+      "cumulative_selection": -0.33322406341944355,
+      "events_hash": "eed2da33224a14868b5eac2c5e178ed4146026ed0d0f268633c3eac706774880",
+      "birth_count": 4509,
+      "birth_file": "cost_only_seed9504.json.gz",
+      "birth_sha256": "0db2fbf02861a04819019022aec80cbabf95ab8ba361e3ce68e347ec775c13f2"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9505,
+      "original_trajectory_sha256": "4c6d0c8b256ae369a61c486ed23557b9dfbac5043be32c1d70c04a685614672b",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 678,
+        "newborn_mean": 0.031238365873437302,
+        "time_mean_living": 0.01890099919679258,
+        "birth_weighted_living": 0.018918168254923828
+      },
+      "terminal_living": 0.01802046834928398,
+      "cumulative_selection": -0.31135204957843365,
+      "events_hash": "74ec0e7651c34ea9319b4a376a3a364042273ce8f3ac98d77ea02a6e84fdb483",
+      "birth_count": 2912,
+      "birth_file": "cost_only_seed9505.json.gz",
+      "birth_sha256": "84ccf2cf034bf78d49a652b40c07c9a1a1c3d702c1bb07b96a151d295b94722a"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9506,
+      "original_trajectory_sha256": "42fe7dbff52e7c06ed0b9c8c0af6809d9946d9afba245c91584f930034aa706c",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1137,
+        "newborn_mean": 0.03016542202432752,
+        "time_mean_living": 0.015757797351443833,
+        "birth_weighted_living": 0.015789052497082623
+      },
+      "terminal_living": 0.016837919428045387,
+      "cumulative_selection": -0.4033447298787771,
+      "events_hash": "a9ac924c0d10b756c465cb282ab5e9dc6b9587aee3694e0fdd2c3ea21348bd81",
+      "birth_count": 5753,
+      "birth_file": "cost_only_seed9506.json.gz",
+      "birth_sha256": "f90b890e5bfa9bb886fda66689bbb9e9fbc0f968cbe8ebf39f90ceb322411428"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9507,
+      "original_trajectory_sha256": "183544fc37dac22b97eddfe1d4c871e06c5436f2c0667f3affbede0b07721724",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 728,
+        "newborn_mean": 0.027395007080073423,
+        "time_mean_living": 0.014923597350926616,
+        "birth_weighted_living": 0.014909513191537724
+      },
+      "terminal_living": 0.014604438181733449,
+      "cumulative_selection": -0.32638718018309626,
+      "events_hash": "fdce5f2723137f754f24914f67a147ebc8cd16549f818a1123cb6d5844274649",
+      "birth_count": 3826,
+      "birth_file": "cost_only_seed9507.json.gz",
+      "birth_sha256": "8ba9f30fec076a49f1e74e64c8965079488a3feebcb7433df3f66316b1bd3825"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9508,
+      "original_trajectory_sha256": "bf45a443b21d8fc58677b7b54e4592ffa592b6130d961a08b6995109f06d1393",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1043,
+        "newborn_mean": 0.0312989812107345,
+        "time_mean_living": 0.013810447768687822,
+        "birth_weighted_living": 0.013833428100630922
+      },
+      "terminal_living": 0.012525790738868307,
+      "cumulative_selection": -0.3764609433435423,
+      "events_hash": "fa6ddb9cc7cd3708d6577e86b0a5638ed989e269dd3702c7b6e3271f02bed2fa",
+      "birth_count": 5422,
+      "birth_file": "cost_only_seed9508.json.gz",
+      "birth_sha256": "fdc429b24645bfabe40834eece2d13d29a533c34ef72fb0e911f98e08f2cb574"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9509,
+      "original_trajectory_sha256": "d4bd6d216719ead178e2a402003e7bdd83525f5a2a4e7fdb94fb0e436430220a",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 822,
+        "newborn_mean": 0.031079981360103523,
+        "time_mean_living": 0.015924630209971206,
+        "birth_weighted_living": 0.015942640696851428
+      },
+      "terminal_living": 0.015373469050638057,
+      "cumulative_selection": -0.31928890851429154,
+      "events_hash": "84de6cfee755dbb1eaf0c55e5d18f8968335ad43978ad17a6f003bc926e0414d",
+      "birth_count": 4156,
+      "birth_file": "cost_only_seed9509.json.gz",
+      "birth_sha256": "02f1605e8b792855cd9b66bf018f9bdf0511d27a9351165bbf5a7f04f134a61f"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9510,
+      "original_trajectory_sha256": "3cdf75dd9b4276a0516e9a16c80438127fd761667b2a2acdd03a8fc697f4b5b0",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 622,
+        "newborn_mean": 0.027393093983328627,
+        "time_mean_living": 0.013970238860550578,
+        "birth_weighted_living": 0.014000126262686065
+      },
+      "terminal_living": 0.014242389554026366,
+      "cumulative_selection": -0.4183906359370215,
+      "events_hash": "1d4309b1fd1650d9e572f569b3b73558e86dacaef906f55ad3959fde1f3021d7",
+      "birth_count": 3439,
+      "birth_file": "cost_only_seed9510.json.gz",
+      "birth_sha256": "333e406f628c7570e16f8b52adfae2b6fa7402e6bb731c079057ea4790bb628b"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9511,
+      "original_trajectory_sha256": "21f90227303af0599e3af4de869c68c56daf57c273896236d8718a5aea1b32ca",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 390,
+        "newborn_mean": 0.028067677231123557,
+        "time_mean_living": 0.019143435806434572,
+        "birth_weighted_living": 0.019079672570011606
+      },
+      "terminal_living": 0.019037105658418492,
+      "cumulative_selection": -0.26975789603616124,
+      "events_hash": "262738b00a02cd78ecb4cd8ebc829c71639314d0a6ee491e9b0eafcae2c53af5",
+      "birth_count": 1942,
+      "birth_file": "cost_only_seed9511.json.gz",
+      "birth_sha256": "7e999e1bb590387c266177852f78205a459e345246fe6ef3cd242c5cc95331d9"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9512,
+      "original_trajectory_sha256": "4db9da71267daf2aa3097fcd22561b035a8181010796b595a52961e3bf1519cc",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 463,
+        "newborn_mean": 0.030973555470566766,
+        "time_mean_living": 0.020977874392941298,
+        "birth_weighted_living": 0.020974910047297735
+      },
+      "terminal_living": 0.02189454178854684,
+      "cumulative_selection": -0.2504511547380311,
+      "events_hash": "a8a3451b7acbb59e802193a8ce64b15b094d826fcecad270bb823b57fbec1802",
+      "birth_count": 2336,
+      "birth_file": "cost_only_seed9512.json.gz",
+      "birth_sha256": "4c4c629077dae83865edc202cfa1db689455d80bc65769064f8257d069024375"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9513,
+      "original_trajectory_sha256": "63aa7c9dd7943ca9bd39ac40c638069a90697b175dbedda8e0f2e10c7c24a619",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 766,
+        "newborn_mean": 0.029693533448720732,
+        "time_mean_living": 0.01629199781032082,
+        "birth_weighted_living": 0.01631038207929924
+      },
+      "terminal_living": 0.015930432346953835,
+      "cumulative_selection": -0.30606229382857586,
+      "events_hash": "c37551b711d147af5066f66dd1ec4c7ecb345ce0f3490977111ddcee5b4ab465",
+      "birth_count": 3754,
+      "birth_file": "cost_only_seed9513.json.gz",
+      "birth_sha256": "556efcdb303bf093f280514d5eeec44ffe923c6b03eaf69b1a217b87f2b7ad04"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9514,
+      "original_trajectory_sha256": "edb284bc772ff7982fc256907368f7542674b5d122ebbd9d7c2165fad52ab910",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 883,
+        "newborn_mean": 0.03258850068654046,
+        "time_mean_living": 0.01655149748228416,
+        "birth_weighted_living": 0.01659120686994782
+      },
+      "terminal_living": 0.01689075135227521,
+      "cumulative_selection": -0.3002544676897447,
+      "events_hash": "73468faa28e791c5f919ab75294e5960ca7e7c294c5e84da918d61190022c75b",
+      "birth_count": 4426,
+      "birth_file": "cost_only_seed9514.json.gz",
+      "birth_sha256": "3fa3b6fa4b7ff109f8deb12361085ffd2d4ab3c44d6875c33382786622716d06"
+    },
+    {
+      "arm": "COST_ONLY",
+      "seed": 9515,
+      "original_trajectory_sha256": "6d42d893ba811232f23d0f4125d561885b6936b496dafd31a0a908f04c2a4b66",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 1213,
+        "newborn_mean": 0.027757753153614975,
+        "time_mean_living": 0.013707658258645675,
+        "birth_weighted_living": 0.013729890000221113
+      },
+      "terminal_living": 0.014137578111869246,
+      "cumulative_selection": -0.37459836793343215,
+      "events_hash": "88ee1176477ed838273751e4da96f550405962eb35fc3bfe688f3cb9a274307d",
+      "birth_count": 6423,
+      "birth_file": "cost_only_seed9515.json.gz",
+      "birth_sha256": "5e81d795059c446ee7e6416766b1c8fb4fa2cb8628c344ad86dfc9a8c6d16428"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9500,
+      "original_trajectory_sha256": "39aad101fc398858ca1e90407ec77398c8e35d8977f21d6d807647d3fa7d3276",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 332,
+        "newborn_mean": 0.05532092909187671,
+        "time_mean_living": 0.0476548876578203,
+        "birth_weighted_living": 0.0476237780410872
+      },
+      "terminal_living": 0.041986337362376995,
+      "cumulative_selection": -0.31686141958463704,
+      "events_hash": "a4a7cae139bf790dac49005d91f8006949e279389e5417be07fbcefd1d8923b3",
+      "birth_count": 2175,
+      "birth_file": "thermal_seed9500.json.gz",
+      "birth_sha256": "890b12b37fdfbec5aaebdca625cb66e9913f68f7527cb3737f9ea9c658c8341f"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9501,
+      "original_trajectory_sha256": "78d1f3eb61edb1d6de07546616197ea51fd089f8e54474e357b6e75123cf7a86",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 528,
+        "newborn_mean": 0.03942720945709907,
+        "time_mean_living": 0.037782450926815585,
+        "birth_weighted_living": 0.03775799211683158
+      },
+      "terminal_living": 0.03804196635910632,
+      "cumulative_selection": -0.44988565339999675,
+      "events_hash": "f9f84400e03b2ca1c9eeefbb1dad8f8ed776784c3b41ecca02f75034852d0e1c",
+      "birth_count": 3116,
+      "birth_file": "thermal_seed9501.json.gz",
+      "birth_sha256": "0c14293b52dcdf2dcd5ba81d383a0e228fdea25cb5678592b53d9e1a19d15f9c"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9502,
+      "original_trajectory_sha256": "797ae1078331932e7d0347656c04a35d7aa10590ac4728c6e10312b641d036dd",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 180,
+        "newborn_mean": 0.04219180170659815,
+        "time_mean_living": 0.041709029720562445,
+        "birth_weighted_living": 0.04143743620864569
+      },
+      "terminal_living": 0.038861011146307974,
+      "cumulative_selection": -0.27518833639402673,
+      "events_hash": "5178c2cc9b1ae75e05ac9f4784eb5e7d90881b59988650fc411f8eb8603bd9eb",
+      "birth_count": 1374,
+      "birth_file": "thermal_seed9502.json.gz",
+      "birth_sha256": "ac84e51699081207c729a382cc1e4b3d19b70f25c1280b94c476217648a1356e"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9503,
+      "original_trajectory_sha256": "d4abc7b026f0cb86137542cd6e698532c8d5689b8d0b0bb4b48620c8bb1c80d0",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 386,
+        "newborn_mean": 0.04510289524710576,
+        "time_mean_living": 0.03748338140967546,
+        "birth_weighted_living": 0.03754773848566701
+      },
+      "terminal_living": 0.036802791130175115,
+      "cumulative_selection": -0.4321877898933155,
+      "events_hash": "88f87487a2320d6e80fb5c0bd59ca73544bc1e9ac4328bab7a8d5fb2f649589c",
+      "birth_count": 2900,
+      "birth_file": "thermal_seed9503.json.gz",
+      "birth_sha256": "2b4ae40c741e720d68db93b538fe285b58eb8202064e1b21cb24734bcdfba0f4"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9504,
+      "original_trajectory_sha256": "e8779867a9cf6888bf219545d9565192e94e737e9509c69f110576dd952fe872",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 265,
+        "newborn_mean": 0.045222838934499875,
+        "time_mean_living": 0.04600547505695501,
+        "birth_weighted_living": 0.04651380200299893
+      },
+      "terminal_living": 0.04750258817611894,
+      "cumulative_selection": -0.31209185624115665,
+      "events_hash": "9a687604665985f7a07154bbc5138d64cafcaa45e9d779a41b7a942ed3fd2afc",
+      "birth_count": 1616,
+      "birth_file": "thermal_seed9504.json.gz",
+      "birth_sha256": "d8a461a982d37fc4745bf1433339a6471c2edc3b896aec0c21f4ba2dc5021214"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9505,
+      "original_trajectory_sha256": "7394306e500f7e878fda3657c1ecc5ad2a2a60f62afb418b0a2a9c7623b46801",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 244,
+        "newborn_mean": 0.04041424639450458,
+        "time_mean_living": 0.0376345756088221,
+        "birth_weighted_living": 0.037780963960869586
+      },
+      "terminal_living": 0.03770751764174138,
+      "cumulative_selection": -0.3239551782053482,
+      "events_hash": "e11b04f49b4668d830edb50026046fdc0d82c8af7171c5085ac0bd15cd56659e",
+      "birth_count": 1646,
+      "birth_file": "thermal_seed9505.json.gz",
+      "birth_sha256": "313dd7edbf756dceceee1d0a6d86619d25572f244e2c94d6a276fcdc9a719ba4"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9506,
+      "original_trajectory_sha256": "37d7be70aae89188b43c711d4605ed7457617ce3e61c838c90877dc218cf87aa",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 224,
+        "newborn_mean": 0.037411682694685484,
+        "time_mean_living": 0.040882441908092836,
+        "birth_weighted_living": 0.04128260104615052
+      },
+      "terminal_living": 0.03782338728920867,
+      "cumulative_selection": -0.4153150431304204,
+      "events_hash": "b61fee139d0bda69a8543d53773d8712ff93edf675a64c4325d9ac54c5296e40",
+      "birth_count": 1549,
+      "birth_file": "thermal_seed9506.json.gz",
+      "birth_sha256": "23bf6245d7902630411159c54e5c6f645e72438406d4d521857b0b2140b54478"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9507,
+      "original_trajectory_sha256": "3338ec3c8ac4ecc8b7d02933fc110e9a79363716e1c76f8e8f2f0d21a9239646",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 326,
+        "newborn_mean": 0.041341825789820486,
+        "time_mean_living": 0.04329082780269683,
+        "birth_weighted_living": 0.043212897194357974
+      },
+      "terminal_living": 0.037266009480804774,
+      "cumulative_selection": -0.5038520875373947,
+      "events_hash": "02cd1f8ccbc12c980b7a2d8a2d4f807f581f96e28da2080238f7f493118c4c03",
+      "birth_count": 2127,
+      "birth_file": "thermal_seed9507.json.gz",
+      "birth_sha256": "cf6b9a933e7f2fe924f9a5ab845c4db1f44dd65ea8656d566db833bdb9dac1ea"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9508,
+      "original_trajectory_sha256": "b9696d91b90c039d6a3bbb61d526817f3a334da9f2b17e1109b1c0420c2cff72",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 344,
+        "newborn_mean": 0.048756899020218014,
+        "time_mean_living": 0.045785991521441256,
+        "birth_weighted_living": 0.04561326535182723
+      },
+      "terminal_living": 0.04109200123725598,
+      "cumulative_selection": -0.3156890889416536,
+      "events_hash": "dc5f5a4b0c3d1cacd35f638890c013720e3c51b11a7757ff9722ec47627c02b1",
+      "birth_count": 2070,
+      "birth_file": "thermal_seed9508.json.gz",
+      "birth_sha256": "24ec62dfbcef7edfc42bd03a2d7e24e5bebfe8e3f1a4f7fb81d6b91b850dbd5b"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9509,
+      "original_trajectory_sha256": "1795986a83483a9fd8a87c29ed5114debdc6a14404f6da93e761e092a48120e8",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 183,
+        "newborn_mean": 0.04832273731221648,
+        "time_mean_living": 0.05226582761864325,
+        "birth_weighted_living": 0.05207567913471076
+      },
+      "terminal_living": 0.04878699004602491,
+      "cumulative_selection": -0.1882139366059834,
+      "events_hash": "46c3c4e9cf6dd31c3992c1019757dcd039951a92353eaf8a39c11c92afb67fcf",
+      "birth_count": 1437,
+      "birth_file": "thermal_seed9509.json.gz",
+      "birth_sha256": "37ba9cf6d56c389cfa551e148e7155c2e8e3c143c5ad8084ab6d97c476d7318a"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9510,
+      "original_trajectory_sha256": "e91093739319481880a38d624042688d3918d45859353fd6a8bc1cbf4664b18f",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 219,
+        "newborn_mean": 0.041378969229305736,
+        "time_mean_living": 0.038791380655706975,
+        "birth_weighted_living": 0.038784629682044304
+      },
+      "terminal_living": 0.04234694460030223,
+      "cumulative_selection": -0.31108723074000216,
+      "events_hash": "5d722dab674ef01ec07fdae048c877b038ca07b878f59f71c420e60b96384b7c",
+      "birth_count": 1491,
+      "birth_file": "thermal_seed9510.json.gz",
+      "birth_sha256": "a756e9b8b59fe3b69dc551a2424d16c55daa8607225673aa373445052c176fdd"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9511,
+      "original_trajectory_sha256": "3ba98eb96bfad6f120ec8ddbd6993db91470d2da00a501ebd29e2d9c8e298510",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 312,
+        "newborn_mean": 0.04516051985113751,
+        "time_mean_living": 0.046943313094898804,
+        "birth_weighted_living": 0.046719375394709196
+      },
+      "terminal_living": 0.04153880438115519,
+      "cumulative_selection": -0.5041979315402864,
+      "events_hash": "45b3e71d125cfb5457a25e477e325444adc905ec8f009212e99cd4c0b2e0ef9c",
+      "birth_count": 1842,
+      "birth_file": "thermal_seed9511.json.gz",
+      "birth_sha256": "276a5419fa8bd31091d0e4ae831e1e1600f0e1bb435fa07f178f6bff2db3f255"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9512,
+      "original_trajectory_sha256": "ed026d7cfe2d6feff23346adb875faf6e5d3e6e12494a21a5ebcf724a5d5ad51",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 281,
+        "newborn_mean": 0.04264485804464923,
+        "time_mean_living": 0.04321696656007065,
+        "birth_weighted_living": 0.04311897462835874
+      },
+      "terminal_living": 0.044054932913523845,
+      "cumulative_selection": -0.4232675911149735,
+      "events_hash": "1e30018d2ebcf622beeb4d967e6734d8e284c143358ae2f6718a1de1a0efcb1c",
+      "birth_count": 1689,
+      "birth_file": "thermal_seed9512.json.gz",
+      "birth_sha256": "17fd7fbe2b58f5f6cffe593318dce3257847b408190755c874f2b0d275338023"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9513,
+      "original_trajectory_sha256": "4e963ebe6b3d5f4ca019921a9fbdac9f5ebad32b46685d46b5d54a751736952d",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 445,
+        "newborn_mean": 0.04315462200936402,
+        "time_mean_living": 0.03972928356240975,
+        "birth_weighted_living": 0.039797634799857616
+      },
+      "terminal_living": 0.040681099993642715,
+      "cumulative_selection": -0.48705007621240404,
+      "events_hash": "d4cc8d4aa3430d54ee5d10cfe0265e43529b21b9f977af849aee548e43c03fe8",
+      "birth_count": 2930,
+      "birth_file": "thermal_seed9513.json.gz",
+      "birth_sha256": "bc913aee24208bba9c6effb9d98405660ed54c2a2a7181cdc1ce3dbb88ee0053"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9514,
+      "original_trajectory_sha256": "22584a787927ea3169fd6320ccf7fd663a643e857e8f5aaf7a11a830c8635112",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 225,
+        "newborn_mean": 0.04305446142781032,
+        "time_mean_living": 0.04176165225673089,
+        "birth_weighted_living": 0.041764123089679174
+      },
+      "terminal_living": 0.04088562921853787,
+      "cumulative_selection": -0.37159730479764236,
+      "events_hash": "2e8dc4fe9199674e15d8da9a4ba4f54e19bf7af58db7df97e0ce053982001368",
+      "birth_count": 1741,
+      "birth_file": "thermal_seed9514.json.gz",
+      "birth_sha256": "536f4f7c1ce098c49778758dea5c10dbaf16ed56890223a529ab0608ee5da635"
+    },
+    {
+      "arm": "THERMAL",
+      "seed": 9515,
+      "original_trajectory_sha256": "da36765c1c8f8dcc7071008489d5172b06bad9a8529125df0a9d5b08c2f09e9e",
+      "all_original_rows_exact": true,
+      "all_original_summary_fields_except_runtime_exact": true,
+      "rows_checked": 3000,
+      "window": {
+        "newborn_count": 369,
+        "newborn_mean": 0.0437208927174549,
+        "time_mean_living": 0.04044963363097084,
+        "birth_weighted_living": 0.040609382496031285
+      },
+      "terminal_living": 0.03850772125999208,
+      "cumulative_selection": -0.3635357710053285,
+      "events_hash": "eeb72cb58d6fca7ac6622b6e97bbf4c866d89685f61400617a7f20656a22e45f",
+      "birth_count": 2047,
+      "birth_file": "thermal_seed9515.json.gz",
+      "birth_sha256": "ce43cb2109d31d6922a56efc46de0cb35b7bee8e71f1fd4d33e5c9550d7f2c53"
+    }
+  ],
+  "arms": {
+    "NEUTRAL": {
+      "newborn_mean": {
+        "mean": 0.08851018993889889,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.0863564204431352,
+        "above_002": 16
+      },
+      "birth_weighted_living": {
+        "mean": 0.08635934507075105,
+        "above_002": 16
+      }
+    },
+    "COST_ONLY": {
+      "newborn_mean": {
+        "mean": 0.029582535099237885,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.01611020254009093,
+        "above_002": 1
+      },
+      "birth_weighted_living": {
+        "mean": 0.01612748848031839,
+        "above_002": 1
+      }
+    },
+    "THERMAL": {
+      "newborn_mean": {
+        "mean": 0.043914211808021644,
+        "above_002": 16
+      },
+      "time_mean_living": {
+        "mean": 0.04258669493701956,
+        "above_002": 16
+      },
+      "birth_weighted_living": {
+        "mean": 0.04260251710211418,
+        "above_002": 16
+      }
+    }
+  },
+  "rows_checked": 144000,
+  "births_retained": 168650,
+  "runtime_s": 37.53122341725975,
+  "status": "PASS"
+}
