@@ -8,7 +8,7 @@ from active_loop.state import AgentState
 
 def model(k=1):
     rng = np.random.default_rng(1)
-    p0 = 1 + rng.random((2, k)) if k > 1 else np.ones((2, 1))
+    p0 = 1 + rng.random((2, k, 2)) if k > 1 else np.ones((2, 1, 2))
     p1 = 1 + rng.random((3, k, 2)) if k > 1 else np.ones((3, 1, 2))
     return ReplayModel(p0 / p0.sum(0), p1 / p1.sum(0), p0, p1, np.ones(k) / k)
 
@@ -19,14 +19,16 @@ EVENTS = (Encounter('a', 0, 0, 0, 2), Encounter('b', 1, 1, 1, 0))
 def test_hand_computed_counts_use_lived_time_and_unique_evidence():
     anchor = model()
     fitted, receipt = refit(anchor, anchor, EVENTS, passes=4, decay=.5, learning_rate=2.)
-    np.testing.assert_allclose(fitted.p0[:, 0], [1.25, 2.25])
+    np.testing.assert_allclose(fitted.p0[:, 0, :], [[1.25, .25], [.25, 2.25]])
     expected = np.full((3, 1, 2), .25)
     expected[2, 0, 0] += 1
     expected[0, 0, 1] += 2
     np.testing.assert_allclose(fitted.p1, expected)
     assert receipt['metrics']['unique_encounters'] == 2
     assert receipt['metrics']['evidence_mass'] == pytest.approx(3.)
-    assert receipt['metrics']['posterior_evaluations'] == 8
+    assert receipt['metrics']['fit_posterior_evaluations'] == 8
+    assert receipt['metrics']['objective_posterior_evaluations'] == 10
+    assert receipt['metrics']['posterior_evaluations'] == 18
     assert receipt['scope'] == 'creature'
 
 

@@ -88,7 +88,7 @@ Compose adds optional `--sleep-cycle PATH`; no option means identical old prompt
 events, *, passes=20, mode='joint', decay=.999, learning_rate=4.) -> (model, receipt)`.
 `objective(model, anchor, events, decay, learning_rate) -> float`.
 
-Model: `P(code,outcome|response)=sum_z prior[z]*A0[code,z]*A1[outcome,z,response]`.
+Model: `P(code,outcome|response)=sum_z prior[z]*A0[code,z,response]*A1[outcome,z,response]`.
 Joint E-step: posterior proportional to that product. M-step: counts = decayed immutable
 anchor counts + sum of unique responsibilities weighted by `learning_rate*decay**(T-1-t)`.
 Regularized log objective includes decayed anchor counts times log probabilities. Recompute

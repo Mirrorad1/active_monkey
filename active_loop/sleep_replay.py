@@ -33,9 +33,10 @@ class ReplayModel:
     def __post_init__(self):
         for name in ('a0', 'a1', 'p0', 'p1', 'prior'):
             setattr(self, name, np.array(getattr(self, name), dtype=np.float64, copy=True))
-        if (self.a0.ndim != 2 or self.a1.ndim != 3 or self.prior.ndim != 1 or
+        if (self.a0.ndim != 3 or self.a1.ndim != 3 or self.prior.ndim != 1 or
             self.p0.shape != self.a0.shape or self.p1.shape != self.a1.shape or
-            self.a0.shape[1] != len(self.prior) or self.a1.shape[1] != len(self.prior)):
+            self.a0.shape[1] != len(self.prior) or self.a1.shape[1] != len(self.prior) or
+            self.a0.shape[2] != self.a1.shape[2]):
             raise ValueError('incompatible direct-head model shapes')
         for array in (self.a0, self.a1, self.p0, self.p1, self.prior):
             if not array.size or not np.all(np.isfinite(array)) or np.any(array <= 0):
@@ -84,7 +85,7 @@ def _posterior(model, events):
     code = np.array([e.code for e in events])
     response = np.array([e.response for e in events])
     outcome = np.array([e.outcome for e in events])
-    joint = model.a0[code] * model.a1[outcome, :, response] * model.prior
+    joint = model.a0[code, :, response] * model.a1[outcome, :, response] * model.prior
     return joint / joint.sum(axis=1, keepdims=True), joint.sum(axis=1)
 
 
@@ -125,7 +126,7 @@ def refit(anchor, start, events, *, passes=20, mode='joint', decay=.999, learnin
                 q, _ = _posterior(fitted, events)
                 p0, p1 = anchor.p0 * decay ** horizon, anchor.p1 * decay ** horizon
                 for event, responsibility, weight in zip(events, q, weights):
-                    p0[event.code] += weight * responsibility
+                    p0[event.code, :, event.response] += weight * responsibility
                     p1[event.outcome, :, event.response] += weight * responsibility
                 fitted = _counts_model(p0, p1, anchor.prior)
             else:
@@ -134,7 +135,7 @@ def refit(anchor, start, events, *, passes=20, mode='joint', decay=.999, learnin
                     q, _ = _posterior(fitted, (event,))
                     factor = decay ** (event.t - previous_t)
                     p0, p1 = fitted.p0 * factor, fitted.p1 * factor
-                    p0[event.code] += learning_rate * q[0]
+                    p0[event.code, :, event.response] += learning_rate * q[0]
                     p1[event.outcome, :, event.response] += learning_rate * q[0]
                     fitted = _counts_model(p0, p1, anchor.prior)
                     previous_t = event.t
@@ -144,5 +145,7 @@ def refit(anchor, start, events, *, passes=20, mode='joint', decay=.999, learnin
         fitted.to_state().content_hash(), [e.event_id for e in events],
         dict(passes=used_passes, mode=mode, decay=decay, learning_rate=learning_rate),
         dict(unique_encounters=len(events), lived_steps=horizon, evidence_mass=float(weights.sum()),
-             posterior_evaluations=used_passes * len(events), objective=values), 'candidate')
+             fit_posterior_evaluations=used_passes * len(events),
+             objective_posterior_evaluations=len(values) * len(events),
+             posterior_evaluations=(used_passes + len(values)) * len(events), objective=values), 'candidate')
     return fitted, receipt
