@@ -1,0 +1,26 @@
+{
+  "machine": "Apple M3 Pro / arm64 macOS",
+  "configuration": ".NET 8 Release; 200 one-step trials per population; snapshot restoration excluded",
+  "results": [
+    {
+      "workload": "one-step snapshot replay; restore excluded; not a sustained ecology benchmark",
+      "initialPopulation": 1000,
+      "minPopulationAfterStep": 994,
+      "maxPopulationAfterStep": 994,
+      "measuredSteps": 200,
+      "medianMs": 0.0808,
+      "p95Ms": 0.2752,
+      "maxMs": 0.4747
+    },
+    {
+      "workload": "one-step snapshot replay; restore excluded; not a sustained ecology benchmark",
+      "initialPopulation": 3000,
+      "minPopulationAfterStep": 2961,
+      "maxPopulationAfterStep": 2961,
+      "measuredSteps": 200,
+      "medianMs": 0.4713,
+      "p95Ms": 0.7562,
+      "maxMs": 2.4294
+    }
+  ]
+}

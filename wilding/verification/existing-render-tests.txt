@@ -1,0 +1,11 @@
+..                                                                       [100%]
+=============================== warnings summary ===============================
+tests/test_embodied.py::test_render_writes_two_videos
+  /Users/mirro/Projects/active-loop/.venv/lib/python3.12/site-packages/jaxopt/__init__.py:59: DeprecationWarning: JAXopt is no longer maintained. See https://docs.jax.dev/en/latest/ for alternatives.
+    warnings.warn(
+
+tests/test_embodied.py::test_render_writes_two_videos
+  /Users/mirro/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/lib/python3.12/subprocess.py:1893: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.
+    self.pid = _fork_exec(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html

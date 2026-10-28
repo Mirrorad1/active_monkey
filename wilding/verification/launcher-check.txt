@@ -1,0 +1,15 @@
+CSSM_ModuleLoad(): One or more parameters passed to a function were not valid.
+PASS seeded world is reproducible
+PASS grazing depletes resources and starvation removes creatures
+PASS regeneration respects finite resource capacity
+PASS birth conserves energy with positive reproduction cost
+PASS water painting evacuates creatures and rejects invalid introductions
+PASS snapshot preserves exact continuation and fork independence
+PASS empty population reports no trait observation
+PASS cap is explicit and births do not exceed it
+PASS mutation disabled yields exact inherited traits
+PASS long run has finite bounded traits and actual telemetry
+PASS spatial queries detect creatures crossing a bucket boundary this tick
+PASS invalid snapshot state is rejected before it can reach the renderer
+PASS forest painting is idempotent across repeated drag events
+All simulation checks passed.

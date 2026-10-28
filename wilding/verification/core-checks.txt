@@ -1,0 +1,36 @@
+PASS seeded world is reproducible
+PASS grazing depletes resources and starvation removes creatures
+PASS regeneration respects finite resource capacity
+PASS birth conserves energy with positive reproduction cost
+PASS water painting evacuates creatures and rejects invalid introductions
+PASS snapshot preserves exact continuation and fork independence
+PASS empty population reports no trait observation
+PASS cap is explicit and births do not exceed it
+PASS mutation disabled yields exact inherited traits
+PASS long run has finite bounded traits and actual telemetry
+PASS spatial queries detect creatures crossing a bucket boundary this tick
+PASS invalid snapshot state is rejected before it can reach the renderer
+PASS forest painting is idempotent across repeated drag events
+[
+  {
+    "workload": "one-step snapshot replay; restore excluded; not a sustained ecology benchmark",
+    "initialPopulation": 1000,
+    "minPopulationAfterStep": 994,
+    "maxPopulationAfterStep": 994,
+    "measuredSteps": 200,
+    "medianMs": 0.0808,
+    "p95Ms": 0.2752,
+    "maxMs": 0.4747
+  },
+  {
+    "workload": "one-step snapshot replay; restore excluded; not a sustained ecology benchmark",
+    "initialPopulation": 3000,
+    "minPopulationAfterStep": 2961,
+    "maxPopulationAfterStep": 2961,
+    "measuredSteps": 200,
+    "medianMs": 0.4713,
+    "p95Ms": 0.7562,
+    "maxMs": 2.4294
+  }
+]
+All simulation checks passed.
