@@ -7,7 +7,7 @@
   "hypothesis": "Joint20 beats each of idle and chronological20 by mean csel >=1/6 and positive gains in >=12/16 seeds.",
   "status": "completed",
   "verdict": "POSITIVE",
-  "repo_commit": "f387c2ca5510dcff2ef5b6a4adbc534a6bc2a792",
+  "repo_commit": "eb26ff5aa6e5bd705e97ac82f58978bf0753b15f",
   "created_at": "2026-10-27",
   "confidence": "high",
   "backfill_level": "trajectory_bundle",
@@ -30,9 +30,9 @@
   "mechanism_refs": [],
   "geometry_refs": [],
   "scorer_refs": [],
-  "reproduction_command": "Use the enclosing atomic experiment commit; run excluded smoke at a fresh output path, then run experiments/exp279_sleep_replay.py --preflight <fresh-smoke.json> --out <fresh-report.txt> via uv run --python .venv.",
+  "reproduction_command": "At commit eb26ff5aa6e5bd705e97ac82f58978bf0753b15f, use uv run --python .venv python experiments/exp279_sleep_replay.py --smoke --out experiments/outputs/exp279_repro_smoke.txt, then the same runner with --preflight experiments/outputs/exp279_repro_smoke.json --out experiments/outputs/exp279_repro.txt. Fresh paths required.",
   "caveats": [
-    "repo_commit denotes the pre-run framework base; the enclosing atomic experiment commit and raw source_hashes pin the executed runner.",
+    "repo_commit pins the executed version, matching all raw source_hashes. A later reporting-only fix changes the current runner; use this commit to reproduce historical output.",
     "Toy stationary mapping, provided optimizer/scaffold; no retention, transfer, ecological/evolved sleep or improved lab research established.",
     "Warm-start joint versus restarted chronological optimizer package; posterior counts not FLOPs.",
     "Known runtime metadata field error disclosed without modifying raw; see exp279_metadata.md."

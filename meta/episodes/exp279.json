@@ -1,0 +1,54 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp279.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp279_sleep_replay.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.083333\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.166667\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.291667\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"0.458333\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/3\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"1/6\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"12/16\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"14/16\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"15/16\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"16/16\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"38.655\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"380.831411545164\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"5/12\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"671.503\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9/16\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"9478.603\" quoted in entry not found in experiments/outputs/exp279.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-10-28T01:00:51Z",
+  "commit_sha": "eb26ff5aa6e5bd705e97ac82f58978bf0753b15f",
+  "entry": {
+    "claimed_verdict": "POSITIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "NEW INSIGHT",
+    "verifier_status": "agree"
+  },
+  "exp": 279,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

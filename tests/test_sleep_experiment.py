@@ -101,3 +101,17 @@ def test_preflight_requires_real_excluded_seed_and_complete_evidence(damage):
     else:
         with pytest.raises(ValueError):
             check_preflight(smoke, hashes, 2)
+
+
+def test_runtime_projection_uses_one_seed_pilot_not_completed_batch_elapsed():
+    from experiments.exp279_sleep_replay import runtime_metadata
+    pilot = runtime_metadata(80., 100., 16., smoke=True, workers=2)
+    full = runtime_metadata(1091., 200., 16., smoke=False, workers=2, pilot_seconds=80.)
+    assert pilot['projected_seconds_2_workers'] == full['projected_seconds_2_workers'] == 640.
+    assert full['seconds'] == 1091.
+    assert full['pilot_seconds'] == 80.
+    assert full['projection_basis'] == 'excluded_single_seed_pilot'
+    assert runtime_metadata(1091., 200., 16., smoke=False, workers=1,
+                            pilot_seconds=80.)['projected_seconds_at_requested_workers'] == 1280.
+    with pytest.raises(ValueError, match='pilot'):
+        runtime_metadata(1091., 200., 16., smoke=False, workers=2)

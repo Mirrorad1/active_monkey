@@ -20,3 +20,13 @@ First smoke failed on adapter shape before any encounter. Three successful exclu
 smokes retain engineering versions and hashes. Only v3 is source-matched preflight for the
 confirmation. Earlier transient smoke source versions were not committed; those are retained
 diagnostics, not exact replayable scientific evidence. No outcome-driven tuning occurred.
+
+## Reporting-only follow-up
+
+Executed source commit: eb26ff5aa6e5bd705e97ac82f58978bf0753b15f. It matches every raw source hash.
+A later commit adds `runtime_metadata` and a regression test distinguishing pilot time
+from full-batch time. Future full reports use the supplied excluded-seed pilot for
+forecast fields and retain actual elapsed separately. No scientific functions, seeds,
+thresholds, raw data or historical receipts change. The old pilot becomes source-stale
+for the new runner; any new scientific execution must obtain a fresh pilot. This metadata
+fix was unit-tested without repeating the completed scientific batch.

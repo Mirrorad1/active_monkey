@@ -274,6 +274,18 @@ def check_preflight(smoke, expected_hashes, workers):
         raise ValueError('preflight incomplete, stale or over runtime/memory budget; run a fresh excluded-seed smoke')
 
 
+def runtime_metadata(seconds, rss_mb, ram_gb, *, smoke, workers, pilot_seconds=None):
+    """Keep actual batch elapsed separate from the single-seed planning forecast."""
+    pilot = seconds if smoke else pilot_seconds
+    if pilot is None or not np.isfinite(pilot) or pilot <= 0:
+        raise ValueError('a positive single-seed pilot runtime is required')
+    return dict(seconds=seconds, rss_mb=rss_mb, ram_gb=ram_gb,
+                pilot_seconds=pilot, projection_basis='excluded_single_seed_pilot',
+                projected_seconds_2_workers=pilot * len(SEEDS) / 2,
+                projected_seconds_at_requested_workers=pilot * len(SEEDS) / workers,
+                memory_safe=bool(rss_mb * 2 / 1000 < .6 * ram_gb))
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('--smoke', action='store_true')
@@ -313,9 +325,9 @@ def main(argv=None):
     raw = dict(schema_version=1, experiment=279, smoke=args.smoke, seeds=list(seeds),
         workers=args.workers, source_hashes=source_hashes,
         config=dict(wake=100, long_wake=300, passes=20, gamma_eval=4., alpha_eval=4.),
-        preflight=dict(seconds=elapsed, rss_mb=rss_mb, ram_gb=total_ram_gb(),
-                       projected_seconds_2_workers=elapsed * 16 / 2,
-                       memory_safe=bool(rss_mb * 2 / 1000 < .6 * total_ram_gb())),
+        preflight=runtime_metadata(elapsed, rss_mb, total_ram_gb(), smoke=args.smoke,
+                                   workers=args.workers,
+                                   pilot_seconds=None if args.smoke else smoke['preflight']['seconds']),
         result=summary, rows=rows)
     _dump(output.with_suffix('.json'), raw)
     lines = ['Exp 279: once-weighted sleep replay', f'Smoke: {args.smoke}',
