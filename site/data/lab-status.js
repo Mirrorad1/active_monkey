@@ -1,7 +1,7 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 282, title: "finite-flux conformal-entropy duration bound and conditional QNEC-gap diagnostic", tag: "POSITIVE" },
-  tally: { total: 282, positive: 144, negative: 96, mixed: 38, breakthroughs: 15 },
+  latest_exp: { n: 283, title: "bounded mutation and lineage accounting: the substantial cost-only growth prediction FAILS (1/16, required 12/16); living/newborn endpoint sensitivity exposes an attribution trap.", tag: "NEGATIVE" },
+  tally: { total: 283, positive: 144, negative: 97, mixed: 38, breakthroughs: 15 },
   directions: [
     { name: "acoustic-ecology", state: "active", latest: "Exp 268 (pending)", next: "does gifted hearing measurably help AND beat shuffled/silent controls without leaking position/identity (Exp 268)?" },
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
