@@ -69,6 +69,16 @@ def test_symlink_source_escape_is_rejected(tmp_path):
         build_cycle(tmp_path, packet)
 
 
+@pytest.mark.parametrize('key,wrong', [('script', 'experiments/exp2_toy.py'),
+                                     ('output', 'experiments/outputs/exp2.txt')])
+def test_existing_but_misattributed_experiment_files_are_rejected(tmp_path, key, wrong):
+    packet = fixture(tmp_path)
+    (tmp_path / wrong).write_text('another experiment')
+    packet['sources'][0][key] = wrong
+    with pytest.raises(ValueError, match='belong'):
+        build_cycle(tmp_path, packet)
+
+
 def test_budget_and_source_caps_fail_without_dropping_evidence(tmp_path):
     packet = fixture(tmp_path)
     with pytest.raises(ValueError, match='budget'):
@@ -133,6 +143,19 @@ def test_conflicting_evidence_is_retained_and_not_resolved_by_summary(tmp_path):
     brief, _ = build_cycle(tmp_path, packet)
     assert 'Replay failed' in brief and 'Replay helped' in brief
     assert 'Different condition.' in brief and 'One toy only.' in brief
+
+
+def test_wrapped_verdicts_and_caveats_cannot_be_silently_truncated(tmp_path):
+    packet = fixture(tmp_path)
+    log = tmp_path / 'EXPERIMENTS.md'
+    log.write_text('## Exp 1 — toy\n- Plain: Replay failed on the toy.\n'
+                   '- Verdict: NEGATIVE\n  Limited to the tested regime.\n'
+                   '- Honest caveat: One toy only.\n  No evidence of ecological benefit.\n'
+                   '- Next: A separate test.\n')
+    brief, _ = build_cycle(tmp_path, packet)
+    assert 'Limited to the tested regime.' in brief
+    assert 'No evidence of ecological benefit.' in brief
+    assert '- Next:' not in brief
 
 
 def test_compose_only_attaches_reviewed_cycle(tmp_path, monkeypatch):

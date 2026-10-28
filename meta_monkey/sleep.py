@@ -52,6 +52,14 @@ def _read(root, name, *, selector=None):
     return text, ref
 
 
+def _field(entry, label):
+    # Markdown fields can wrap across physical lines. Stop at the next top-level field
+    # or heading, never silently discard qualifications on continuation lines.
+    match = re.search(rf'^- {re.escape(label)}[^:\n]*:[ \t]*(.*(?:\n(?!- [^\n]*:|## )[^\n]*)*)',
+                      entry, re.M)
+    return match[1].strip() if match else None
+
+
 def build_cycle(root: Path, packet: dict, max_bytes: int = 1500) -> tuple[str, dict]:
     root = root.resolve()
     sources = packet['sources']
@@ -66,17 +74,22 @@ def build_cycle(root: Path, packet: dict, max_bytes: int = 1500) -> tuple[str, d
         entry, ref = _read(root, 'EXPERIMENTS.md', selector=n)
         refs.append(ref)
         for key in ('script', 'output'):
+            actual = _inside(root, source[key]).relative_to(root).as_posix()
+            belongs = (actual == f'experiments/outputs/exp{n}.txt' if key == 'output' else
+                       re.fullmatch(rf'experiments/exp{n}_[^/]+\.py', actual) is not None)
+            if not belongs:
+                raise ValueError(f'{key} must belong to exp{n} under the current experiment protocol')
             _, ref = _read(root, source[key])
             refs.append(ref)
-        verdict = re.search(r'^- Verdict: (.+)$', entry, re.M)
-        caveat = re.search(r'^- Honest caveat[^:]*: (.+)$', entry, re.M)
+        verdict = _field(entry, 'Verdict')
+        caveat = _field(entry, 'Honest caveat')
         if not verdict or not caveat:
             raise ValueError(f'exp{n} lacks a recorded verdict or honest caveat')
         entries[n] = entry
         # Include the complete recorded verdict/caveat; fail rather than truncate evidence.
-        lines += [f'Exp {n}: {verdict[1]}', f'Caveat: {caveat[1]}',
+        lines += [f'Exp {n}: {verdict}', f'Caveat: {caveat}',
                   f'Raw: {source["output"]}']
-        if ('NEGATIVE' in verdict[1] or 'MIXED' in verdict[1]) and not any(
+        if ('NEGATIVE' in verdict or 'MIXED' in verdict) and not any(
             item.get('source') == n and item.get('kind') == 'boundary'
             for item in packet['items']
         ):
