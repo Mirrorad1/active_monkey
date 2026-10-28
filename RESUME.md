@@ -647,6 +647,24 @@ The CFT application and gap diagnostic have provisional novelty/significance, no
 certified publication result. L54 preserves the cross-field prior-art lesson. This is
 separate from the creature program; sleep C1 stays halted and L1 remains untested.
 
+### 3h. One-off evolutionary-computation methods note (2026-10-27, Exp283)
+
+The human delegated an independently chosen question, analysis, and a paper of at
+most five pages. `docs/research/boundary-transmission/` holds the manuscript and
+reproduction guide; its five-page PDF is under `output/pdf/boundary-transmission/`.
+The new observation-only `ecology/transmission.py` audits clipped mutation and the
+standard Price selection/transmission decomposition without changing the engine.
+
+Exp283 is **NEGATIVE / NEW INSIGHT (limited methodological application)**: only
+1/16 cost-only seeds meet the registered living-mean >=.02 and cumulative-selection
+<=-.02 conjunction, versus 12/16 required. All 48 runs complete. Cost-only living
+mean .015910 versus newborn mean .029583 exposes endpoint sensitivity; changing
+the endpoint post hoc would give 16/16 but cannot rescue the verdict. Realized
+selection is not a causal trait effect. Raw ledgers, an exact same-seed rerun,
+source review and detached numeric verification are retained. The theory is known;
+publication significance is provisional. This does not reopen sleep C1, alter the
+creature spine, or regrade prior sensing experiments.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

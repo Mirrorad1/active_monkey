@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:282, breakthrough:9, positive:123, wall:68, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:283, breakthrough:9, positive:123, wall:69, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -3020,7 +3020,16 @@ window.AM_EXPERIMENTS = [
     result:"All declared numerical checks pass. Largest energy-identity error2.805e-11; duration-quadrature error1.878e-15; minimum baseline T/Tmin1.077433. For R=e and unit K-scaled caps, duration3.5 requires peak gap D/K>=3.853457. Detached raw recomputation and separate mathematical review agree within their disclosed scopes.",
     implication:"POSITIVE-SINGLE / CONSOLIDATION for formula checks. The equal-cap theorem is known quantum-piston control; candidate contribution is its CFT application and a conditional QNEC diagnostic. Publication significance and novelty remain unestablished; no sleep or ecological improvement claim.",
     caveat:"Known equal-cap control theorem; application novelty and publication significance remain provisional.",
-    trace:{ script:"experiments/exp282_finite_flux_page.py", output:"experiments/outputs/exp282.txt" } }
+    trace:{ script:"experiments/exp282_finite_flux_page.py", output:"experiments/outputs/exp282.txt" } },
+  { n:283, kind:"wall", chapter:"frontier",
+    title:"Small trait growth persists against selection; the registered size prediction fails",
+    one:"A lineage audit separates bounded mutation from the realized selection differential and exposes sensitivity to newborn-only measurement.",
+    plain:"A gene can become more common in small amounts because mutation keeps introducing it, even when the population tends to remove it. Our stronger prediction failed: only one of sixteen cost-only populations reached the promised size. Measuring newborns instead would make all sixteen pass, which is why we preserve the original test.",
+    setup:"Three conditions from the existing zero-founder ecology: neutral, cost-only and thermal. Sixteen fresh seeds per condition, 3000 steps, fixed clipped Gaussian mutation. The observation-only Price ledger preserves the engine and counts survivors as their own descendants.",
+    result:"NEGATIVE: cost-only joint criterion 1/16 against required 12/16; neutral 16/16. All 48 runs complete. Cost-only living mean .015910, newborn .029583, cumulative selection -.331808 and transmission +.347717. Detached verification checks all 144000 transitions; identical-seed rerun matches every numeric row and event hash.",
+    implication:"NEW INSIGHT in this lab's measurement practice, using established theory: report living and newborn endpoints separately, account for transmission, and use causal assays for fitness claims. Five-page methods draft; no new selection theorem, prior-result regrading or certified publication novelty.",
+    caveat:"Primary prediction failed; newborn and thermal contrasts are descriptive.",
+    trace:{ script:"experiments/exp283_boundary_transmission.py", output:"experiments/outputs/exp283.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

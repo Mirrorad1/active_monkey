@@ -76,10 +76,10 @@ Cumulative quantities were recomputed with `math.fsum`; endpoint comparisons use
 | Mean continuity between adjacent rows | 0.0 |
 | Cumulative population balance | 0.0 |
 | Endpoint change minus cumulative delta | 1.734723475976807e−18 |
-| Endpoint change minus cumulative S plus cumulative T | 5.551115123125783e−17 |
+| Endpoint change − (cumulative S + cumulative T) | 5.551115123125783e−17 |
 | Cumulative delta minus cumulative S minus cumulative T | 1.1102230246251565e−16 |
 | Sum of recomputed per-step identity residuals | 1.734723475976807e−18 |
-| Reported transmission-minus-expected diagnostic minus recomputed T minus recorded expected transmission | 5.0306980803327406e−17 |
+| Reported transmission-minus-expected diagnostic − (recomputed T − recorded expected transmission) | 5.0306980803327406e−17 |
 | Sum of per-step T-minus-expected diagnostics minus difference of cumulative T and cumulative recorded expected transmission | 7.28583859910259e−17 |
 
 The transmission-minus-expected diagnostic was checked only for arithmetic consistency with the recorded expected-transmission values. It was not a verdict gate, and the expected-transmission benchmark itself was not independently regenerated from parent traits.
