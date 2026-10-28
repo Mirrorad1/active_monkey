@@ -1,0 +1,167 @@
+{
+  "scope": "Frozen criterion recomputation plus explicitly post-hoc descriptive sensitivity; not a new confirmation",
+  "rows_checked": 144000,
+  "max_identity_error": 5.0306980803327406e-17,
+  "rerun_exact_numeric_match": true,
+  "rerun_excludes": [
+    "runtime",
+    "source_hashes",
+    "gzip_header"
+  ],
+  "final_run_runtime_s": 34.832754832692444,
+  "first_run_runtime_s": 35.60830970807001,
+  "arms": {
+    "NEUTRAL": {
+      "final_living_mean": {
+        "mean": 0.08695490199185413,
+        "min": 0.03746801869831033,
+        "max": 0.17242695212085246
+      },
+      "final_newborn_mean_last500": {
+        "mean": 0.08851018993889889,
+        "min": 0.043282969123295,
+        "max": 0.1712745398009999
+      },
+      "cumulative_selection": {
+        "mean": -0.1312526314414969,
+        "min": -0.28835320040521994,
+        "max": 0.027318923873797057
+      },
+      "cumulative_transmission": {
+        "mean": 0.21820753343335098,
+        "min": 0.1115991889010282,
+        "max": 0.3258212191035301
+      },
+      "cumulative_expected_transmission": {
+        "mean": 0.2173019201814612,
+        "min": 0.08215765487778459,
+        "max": 0.31559894513082043
+      },
+      "cumulative_transmission_minus_expected": {
+        "mean": 0.000905613251889776,
+        "min": -0.047678041612418176,
+        "max": 0.07764897398725741
+      },
+      "births": {
+        "mean": 4569.3125,
+        "min": 2999,
+        "max": 8808
+      },
+      "final_population": {
+        "mean": 520.125,
+        "min": 484,
+        "max": 567
+      },
+      "completes": 16,
+      "living_above_bar": 16,
+      "newborn_above_bar_posthoc": 16,
+      "negative_differential": 14,
+      "differential_below_bar": 14
+    },
+    "COST_ONLY": {
+      "final_living_mean": {
+        "mean": 0.015909631065123185,
+        "min": 0.012525790738868307,
+        "max": 0.02189454178854684
+      },
+      "final_newborn_mean_last500": {
+        "mean": 0.029582535099237885,
+        "min": 0.025965420585718515,
+        "max": 0.03258850068654046
+      },
+      "cumulative_selection": {
+        "mean": -0.33180750946279775,
+        "min": -0.4375179137291388,
+        "max": -0.2504511547380311
+      },
+      "cumulative_transmission": {
+        "mean": 0.34771714052792096,
+        "min": 0.2723456965265779,
+        "max": 0.45220860444331645
+      },
+      "cumulative_expected_transmission": {
+        "mean": 0.3416640205629579,
+        "min": 0.25906206608722815,
+        "max": 0.42883837433598404
+      },
+      "cumulative_transmission_minus_expected": {
+        "mean": 0.006053119964963025,
+        "min": -0.035615241968732,
+        "max": 0.07336830304564068
+      },
+      "births": {
+        "mean": 3986.9375,
+        "min": 1942,
+        "max": 6423
+      },
+      "final_population": {
+        "mean": 453.75,
+        "min": 309,
+        "max": 514
+      },
+      "completes": 16,
+      "living_above_bar": 1,
+      "newborn_above_bar_posthoc": 16,
+      "negative_differential": 16,
+      "differential_below_bar": 16
+    },
+    "THERMAL": {
+      "final_living_mean": {
+        "mean": 0.04086785826476719,
+        "min": 0.036802791130175115,
+        "max": 0.04878699004602491
+      },
+      "final_newborn_mean_last500": {
+        "mean": 0.043914211808021644,
+        "min": 0.037411682694685484,
+        "max": 0.05532092909187671
+      },
+      "cumulative_selection": {
+        "mean": -0.37462351845903563,
+        "min": -0.5041979315402864,
+        "max": -0.1882139366059834
+      },
+      "cumulative_transmission": {
+        "mean": 0.4154913767238028,
+        "min": 0.23700092665200845,
+        "max": 0.5457367359214418
+      },
+      "cumulative_expected_transmission": {
+        "mean": 0.3974971012150877,
+        "min": 0.20577777610128267,
+        "max": 0.5158219682757784
+      },
+      "cumulative_transmission_minus_expected": {
+        "mean": 0.01799427550871514,
+        "min": -0.04652904661892476,
+        "max": 0.07223922596917931
+      },
+      "births": {
+        "mean": 1984.375,
+        "min": 1374,
+        "max": 3116
+      },
+      "final_population": {
+        "mean": 81.875,
+        "min": 74,
+        "max": 89
+      },
+      "completes": 16,
+      "living_above_bar": 16,
+      "newborn_above_bar_posthoc": 16,
+      "negative_differential": 16,
+      "differential_below_bar": 16
+    }
+  },
+  "frozen_counts": {
+    "cost_joint": 1,
+    "neutral": 16,
+    "required": 12,
+    "verdict": "NEGATIVE"
+  },
+  "thermal_minus_cost_posthoc": {
+    "final_living_mean": 0.024958227199644002,
+    "cumulative_selection": -0.042816008996237886,
+    "cumulative_transmission": 0.06777423619588185
+  }
+}

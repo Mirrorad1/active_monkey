@@ -226,8 +226,11 @@ def main(argv: list[str] | None = None) -> None:
     prefix = args.output_prefix or _REPO / "experiments" / "outputs" / ("exp283" if args.full else "exp283_smoke")
     if not prefix.is_absolute():
         prefix = _REPO / prefix
-    prefix.parent.mkdir(parents=True, exist_ok=True)
     trajectory_dir = prefix.parent / (prefix.name + "_trajectories")
+    for artifact in (prefix.with_suffix(".txt"), prefix.with_suffix(".json"), trajectory_dir):
+        if artifact.exists() or artifact.is_symlink():
+            raise FileExistsError(f"Refusing to overwrite {artifact}; choose a fresh --output-prefix")
+    prefix.parent.mkdir(parents=True, exist_ok=True)
     trajectory_dir.mkdir(parents=True, exist_ok=True)
     source_hashes = {name: hashlib.sha256((_REPO / name).read_bytes()).hexdigest() for name in SOURCE_PATHS}
     metadata: dict[str, Any] = {
