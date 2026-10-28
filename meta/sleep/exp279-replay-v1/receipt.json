@@ -1,0 +1,35 @@
+{
+  "after_hash": "866dd44cca379d0bb21d85cda143b705331e3234f2dbf895563715973fa1d39b",
+  "algorithm": "sleep-v1",
+  "before_hash": "4a0ea5cc06e9b66adfa332d596b3d07779fd687707e6bfc4debf9a331f85452f",
+  "budget": {
+    "max_bytes": 1500,
+    "max_sources": 8,
+    "used_bytes": 1034
+  },
+  "content_hash": "9257338c3bbc976cafd8227649836324afe9763aca4b516c42f371791609bf83",
+  "decision": "pending_review",
+  "metrics": {
+    "evaluation": "source_fidelity_only",
+    "experiments": 1,
+    "generated": 1,
+    "rejected": []
+  },
+  "schema_version": 1,
+  "scope": "lab",
+  "sources": [
+    {
+      "experiment": 279,
+      "path": "EXPERIMENTS.md",
+      "sha256": "c57b99a2bf72163c437ff23f6592c9ed367c0d1e556659589c5a3551a166e053"
+    },
+    {
+      "path": "experiments/exp279_sleep_replay.py",
+      "sha256": "732a42abe79b2ccf9c768e884ddc9747df17f06625ee9bab2c7b8cca0e1b7a3e"
+    },
+    {
+      "path": "experiments/outputs/exp279.txt",
+      "sha256": "155d0939573597430e25006a03eb25b2c2b94a29a28c30cec9772bae98447feb"
+    }
+  ]
+}

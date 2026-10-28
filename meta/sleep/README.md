@@ -30,3 +30,39 @@ The complete brief has a conservative 1,500 UTF-8-byte ceiling; this is not an e
 token count. Oversized packets fail without dropping evidence. Narrow the retrieval window
 explicitly. The compiler extracts/carries knowledge; an independent prospective experiment
 is needed before claiming it improves the lab's research.
+
+## Implemented first slice (2026-10-27)
+
+Shared lifecycle: experience -> record -> consolidate -> rehearse -> test/select -> retain.
+Lab adapter: this directory plus `meta_monkey.sleep`. Creature adapter:
+`active_loop.sleep_replay` (regularized refitting of unique observed encounters). Both emit
+receipts through `active_loop.sleep`; correct-world answers never cross into creature replay.
+Memory curation, model/procedure testing, and ecological reproduction are separate selection
+mechanisms. Only the first two are exercised here; birth/death selection remains future work.
+
+Two retained lab cycles demonstrate negative and positive evidence handling:
+`exp278-baselines-v1` preserves the optimizer-repair failure; `exp279-replay-v1` preserves
+the bounded C0 replay result. The complete experiment and reusable bundle are under
+`experiments/outputs/exp279*` and `experiment_bundles/exp279/`. Historical executed source
+is pinned by that bundle's repo_commit, with a later reporting-only correction disclosed
+in `experiments/outputs/exp279_metadata.md`.
+
+To prepare the next research session with the reviewed result:
+
+```sh
+uv run --python .venv python loop/compose.py recursive-sleep \
+  --sleep-cycle meta/sleep/exp279-replay-v1
+```
+
+C0 result: joint refitting mean discrimination .500 vs idle .167 and restarted chronology
+.083; both predeclared mean/count comparisons pass. Only 9/16 reach half-correct.
+C1 retention/interference/revision needs a new preregistration. C2/C3 ecological costs
+and inherited capacity, and L1 prospective research-quality benefit, are untested.
+
+Operator safeguards learned in this implementation are executable tests, rather than
+additional scientific claims: complete multiline caveats, source-to-experiment attribution,
+actual compose CLI import context, response-conditioned model shapes, once-weighted evidence,
+monitoring work accounting, preflight completeness, raw-output collisions and pilot-vs-batch
+runtime reporting. See `tests/test_lab_sleep.py`, `test_sleep_replay.py` and
+`test_sleep_experiment.py`. A claudeception review found these already covered by repo-local
+guards/documentation; no duplicate global skill or untested research rule was extracted.

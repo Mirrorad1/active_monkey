@@ -1,6 +1,6 @@
 # Recursive Sleep Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Ship an advisory lab sleep brief and run one once-weighted creature replay screen.
 
@@ -67,17 +67,17 @@ CLI: `python -m meta_monkey.sleep build --packet PATH --out meta/sleep/RUN`,
 `review --cycle PATH --review PATH`, `inspect --cycle PATH`.
 Compose adds optional `--sleep-cycle PATH`; no option means identical old prompt.
 
-- [ ] Write meaningful tests: negative excerpt preserved; unsupported/missing/escaping/symlink
+- [x] Write meaningful tests: negative excerpt preserved; unsupported/missing/escaping/symlink
   source rejected; conflicting findings both retained; source hashes checked; proposal cannot
   be classified as observed; eight-bundle/byte cap enforced; no source writes; reviewed brief
   load fails after source/brief/packet mutation or negative review; CLI refuses overwrites.
-- [ ] Run `uv run --python .venv python -m pytest tests/test_lab_sleep.py -q`; expect missing module.
-- [ ] Implement canonical receipts and source-excerpt assembly. Bundle IDs must resolve to
+- [x] Run `uv run --python .venv python -m pytest tests/test_lab_sleep.py -q`; expect missing module.
+- [x] Implement canonical receipts and source-excerpt assembly. Bundle IDs must resolve to
   existing committed records; all claimed output refs resolve to files. Review binds the
   content hash, not a mutable filename. Output restricted to `meta/sleep/`.
-- [ ] Add attachment tests and CLI integration; run focused suite including existing compose
+- [x] Add attachment tests and CLI integration; run focused suite including existing compose
   and meta-memory tests. Default compose/preflight behavior remains unchanged.
-- [ ] Commit implementation and tests separately from any scientific result.
+- [x] Commit implementation and tests separately from any scientific result.
 
 ### Task 2: Once-weighted offline refitting instrument
 
@@ -95,12 +95,12 @@ Regularized log objective includes decayed anchor counts times log probabilities
 all counts on every pass; retain no additive replay evidence. Chronological control starts
 from the same anchor each pass, sequentially re-estimating and adding each event once.
 
-- [ ] Test hand-computed K=1 counts and physical-time decay, duplicate IDs/time rejection,
+- [x] Test hand-computed K=1 counts and physical-time decay, duplicate IDs/time rejection,
   invalid shapes/indices/nonfinite values, conserved evidence mass across pass counts,
   joint objective monotonicity, source arrays unchanged, deterministic independent repeats,
   empty/zero-pass sleep no-op, and chronological repeated-pass equivalence.
-- [ ] Run tests RED, implement, run GREEN. No changes to `DirectHeadAgent` or frozen scorers.
-- [ ] Check export via existing `AgentState`/safetensors and shared receipt; commit helper/tests.
+- [x] Run tests RED, implement, run GREEN. No changes to `DirectHeadAgent` or frozen scorers.
+- [x] Check export via existing `AgentState`/safetensors and shared receipt; commit helper/tests.
 
 ### Task 3: One preregistered dyad experiment and lab-cycle example
 
@@ -113,33 +113,46 @@ and `site/data/experiments-data.js`. Add an evidence-backed bundle and lab packe
 `assess(rows, *, confirmatory: bool) -> dict`; command `--smoke` (excluded seed 9299),
 default confirmatory seeds 9300..9315, `--workers 2`. All arms reported.
 
-- [ ] Write preregistration in runner docstring BEFORE scientific execution. Primary C0 pass:
+- [x] Write preregistration in runner docstring BEFORE scientific execution. Primary C0 pass:
   joint-refit minus chronological-refit `correct_select` mean >= 1/6 and positive on >=12/16
   seeds; joint minus idle mean >=1/6 and positive on >=12/16. Fixed evaluation gamma=4, no
   learning during evaluation. All instrument invariants must pass. Otherwise NEGATIVE;
   instrument failures INVALID. No claim of reliable short-session rescue from a small gain.
-- [ ] Compare idle; chronological20; joint20; broken-association joint20; constant-response;
+- [x] Compare idle; chronological20; joint20; broken-association joint20; constant-response;
   longer-wake300 extra-data reference. Log held-out expected and sampled POS on 120 balanced
   codes, csel, raw observations, all input/output model tensors, live before/after belief/RNG
   hashes, evidence mass, objective curves, pass/work/runtime counts. Correct mappings live
   only in harness/evaluator. Sleep doesn't consume new world observations.
-- [ ] Test verdict conjunctions/counts/missing rows, smoke non-promotion and state preservation.
+- [x] Test verdict conjunctions/counts/missing rows, smoke non-promotion and state preservation.
   RED -> implement -> GREEN. Parallelize independent seeds with bounded processes and JAX
   thread/RSS budget; smoke-time before full batch, no hyperparameter tuning on smoke results.
-- [ ] Independently review scientific preregistration/implementation before the full run.
-- [ ] Run full batch once. Dispatch a blinded verifier with docstring and raw output only;
+- [x] Independently review scientific preregistration/implementation before the full run.
+- [x] Run full batch once. Dispatch a blinded verifier with docstring and raw output only;
   recompute all scientific conjunctions. If negative, stop the experimental ladder and log it.
-- [ ] Append honest log/site entry plus snapshot refs and seed-level evidence. Run rubric,
+- [x] Append honest log/site entry plus snapshot refs and seed-level evidence. Run rubric,
   focused tests and full fast suite; distinguish existing baseline failures. Commit atomic
   experiment record and collect passive meta episode. No persistent spine reset/advance:
   this is a seeded dyad cohort, not a biography experiment.
-- [ ] Build a lab brief from committed evidence, independently review its fidelity, record
+- [x] Build a lab brief from committed evidence, independently review its fidelity, record
   review, and demonstrate optional prompt attachment. Report instrument validation separately
   from any untested claim of better research practice.
-- [ ] Fresh whole-branch review; fix important findings with regression tests; final verification.
+- [x] Fresh whole-branch review; fix important findings with regression tests; final verification.
 
 ## Self-review
 
 The initial slice covers L0 and C0; C1–C3 and L1 deliberately remain gated follow-ups.
 Tasks 1/2 share only receipt construction; Task 3 consumes both. Generated material never
 crosses into observed evidence. No gate depends on a desired scientific effect.
+
+## Completion evidence (2026-10-27)
+
+First slice L0/C0 implemented. Task1 example is exp278-baselines-v1 rather than the
+placeholder initial/; Task3 cycle is exp279-replay-v1. Full fast suite: 1026 passed,
+1 skipped. Final affected suite after records/reporting fix: 95 passed. Bundle validated;
+iteration rubric PASS (16 warnings checked as derived/rounded, not stale). Source-frozen
+confirmation at eb26ff5: POSITIVE-SINGLE, independently blind-verified; all160 checkpoint
+hashes checked. The current runner's later reporting fix is regression-guarded and does not
+alter historical raw; its bundle pins executed source. Use two bounded threads (not the
+plan's initial process wording); work is 2000 fitting +2100 monitoring =4100 per replay arm.
+Both lab examples require independent fidelity reviews; actual compose CLI integration tested.
+C1/C2/C3/L1 are out of this completed slice and remain unrun.

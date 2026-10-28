@@ -279,3 +279,10 @@ are needed for the design. Any later dependency is an explicit implementation-pl
 The useful end state is a lab that carries justified knowledge forward while studying
 creatures that do the same. Whether either improves, and whether selection favors the
 machinery, remain three independently testable questions.
+
+## Implementation status (2026-10-27)
+
+The approved first slice L0/C0 is implemented; see the execution plan completion evidence,
+`meta/sleep/README.md`, Exp279 and its bundle. C0 is POSITIVE-SINGLE at the stated toy scope;
+L0 demonstrates reviewed evidence fidelity/integration, not improved lab research quality.
+C1 retention/revision, C2/C3 costed ecology/inheritance, and L1 prospective quality are unrun.

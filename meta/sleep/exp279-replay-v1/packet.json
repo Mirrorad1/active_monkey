@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "excerpt": "Joint-minus-idle mean 1/3 with 14/16 positive seeds; joint-minus-chronology mean 5/12 with 15/16 positive seeds; no losses to either, two/one ties respectively.",
+      "kind": "finding",
+      "source": 279
+    },
+    {
+      "kind": "rehearsal",
+      "origin": "generated",
+      "source": 279,
+      "text": "Next test retention and changed-world revision against idle and a stronger sequential optimizer, with separate old/new-task metrics and matched learning budgets."
+    }
+  ],
+  "sources": [
+    {
+      "experiment": 279,
+      "output": "experiments/outputs/exp279.txt",
+      "script": "experiments/exp279_sleep_replay.py"
+    }
+  ]
+}
