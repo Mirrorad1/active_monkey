@@ -665,6 +665,14 @@ source review and detached numeric verification are retained. The theory is know
 publication significance is provisional. This does not reopen sleep C1, alter the
 creature spine, or regrade prior sensing experiments.
 
+The later Lean supplement and adversarial audit retain this NEGATIVE verdict.
+The additive audit reproduces all144000 rows and retains168650 individual births,
+repairs observer genotype/RNG coverage, and clarifies16 shared seed blocks.
+`docs/research/boundary-transmission/adversarial-review.md` records findings and
+limits; `submission-plan.md` recommends GitHub/Zenodo plus arXiv cs.NE, with
+Artificial Life as the preferred journal audience after human review. No submission
+or release has been made; the open TeX is current and the earlier exported PDF is stale.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

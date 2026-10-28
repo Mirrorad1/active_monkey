@@ -1,5 +1,7 @@
 Lean 4.19.0 / mathlib v4.19.0
 lake build: PASS
-Axiom audit passed for 47 theorem declarations (including generated helpers); only propext, Classical.choice, Quot.sound allowed.
-Negative audit controls: extra local axiom rejected; admitted proof (sorryAx) rejected.
+Axiom audit passed for 60 safe package declarations, including 47 theorem declarations and generated helpers; 16 unsafe runtime declarations excluded; only propext, Classical.choice, Quot.sound allowed.
+check_audit.py: PASS — outside-namespace local axiom, proof-valued definition, opaque proof, and theorem rejected.
+Ownership: defining module in BoundaryTransmission, not declaration namespace.
+Scope: imported safe logical declarations; unsafe compiler runtime specializations excluded.
 No theorem proves empirical outcomes or Python implementation correctness.

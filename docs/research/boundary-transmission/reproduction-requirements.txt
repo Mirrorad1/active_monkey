@@ -1,0 +1,5 @@
+# Versions used by the additive audit (Python 3.12.9).
+# Minimal scientific dependencies for this study; the full lab uses pyproject.toml/uv.lock.
+numpy==2.4.6
+scipy==1.17.1
+pytest>=8,<10

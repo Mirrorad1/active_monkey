@@ -13,6 +13,9 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\Sterm}{S}
 \newcommand{\Tterm}{T}
+% After the final shipout, page is one greater than the physical page count.
+\AtEndDocument{\clearpage\ifnum\value{page}>6
+  \PackageError{Manuscript}{The five-page limit was exceeded}{Shorten the manuscript.}\fi}
 \title{Trait Growth against the Selection Differential: A Lineage Audit of Bounded Mutation}
 \author{}
 \date{October 27, 2026 \quad---\quad Research draft}
@@ -84,12 +87,12 @@ Thermal & On & $0.05$ & Upkeep and thermal sensing\\
 \end{center}
 
 \paragraph{Fixed design and decision rule.}
-Before simulation, the design was committed as \texttt{32f2c19}. Confirmation uses seeds $9500,\ldots,9515$, a horizon of $H=3000$ steps, and an emergency population ceiling of $5000$. Excluded seed $9499$ is reserved for timing and instrument checks. No equilibrium or long-term stationarity is assumed. The primary prediction requires at least $12/16$ cost-only runs to satisfy \emph{all three} conditions: completion without extinction or explosion, final living mean $\bar h_H\ge .02$, and cumulative differential $\sum_tS_t\le-.02$. A second conjunct requires neutral final living mean at least $.02$ in at least $12/16$ runs. Thermal outcomes are descriptive; no directional thermal comparison is preregistered.
+Before simulation, the design was committed as \texttt{32f2c19}. Confirmation uses sixteen seed blocks, $9500,\ldots,9515$, shared across conditions; their random streams can subsequently diverge. The horizon is $H=3000$, with population ceiling $5000$. Excluded seed $9499$ is reserved for instrument checks. No stationarity is assumed. The primary prediction requires at least $12/16$ cost-only runs to satisfy \emph{all three} conditions: completion without extinction or explosion, final living mean $\bar h_H\ge .02$, and cumulative differential $\sum_tS_t\le-.02$. A second conjunct requires neutral final living mean at least $.02$ in at least $12/16$ runs. Thermal outcomes are descriptive; no directional thermal comparison is preregistered.
 
 Failure of either scientific conjunct makes the experiment negative. Extinct and interrupted runs remain in the denominator. Missing ancestry or a Price-identity error greater than $10^{-10}$ is an instrument failure. Thresholds are decision rules for this case study, not universal definitions of adaptation. We also report the mean trait of all births in the final $500$ steps; this is a separate diagnostic and does not replace the living-census endpoint.
 
 \paragraph{Implementation and verification.}
-The observer reads the before/after living populations and parent IDs; it draws no random numbers and changes no organism. Newborns are added only after existing creatures act, making the ancestry map in Eqs.~\eqref{eq:selection}--\eqref{eq:transmission} valid. A parent may die after reproducing and still contributes descendants. The ledger takes $O(N_t+N_{t+1})$ work per step, rather than rescanning all historical births. Hand-calculated pedigree tests, missing-parent checks, analytic mutation checks, and observed-versus-unobserved event hashes guard the instrument. Independent seed/condition runs execute in parallel after a runtime and memory preflight.
+The observer reads the before/after living populations and parent IDs; it draws no random numbers and changes no organism. Newborns are added after existing creatures act, making the ancestry map in Eqs.~\eqref{eq:selection}--\eqref{eq:transmission} valid. A parent may die after reproducing and still contributes descendants. The ledger takes $O(N_t+N_{t+1})$ work per step. Pedigree and analytic mutation tests guard the instrument. A subsequent audit strengthened the pilot event-hash comparison to include every organism's genotype and the engine RNG state: all three conditions matched. Runs execute in parallel after a runtime and memory preflight.
 
 \newpage
 \section{Results}
@@ -132,11 +135,11 @@ legend cell align=left]
 \end{axis}
 \end{tikzpicture}
 % END GENERATED SCATTER
-\caption{All forty-eight seeds: the living trait endpoint against its cumulative realized selection differential. The dashed line is the fixed $.02$ size bar. Fifteen cost-only points lie below it despite positive trait values. Thermal results are descriptive, not a replacement confirmatory test.}
+\caption{Forty-eight runs across sixteen shared seed blocks: the living endpoint against its cumulative selection differential. The dashed line is the fixed $.02$ size bar. Fifteen cost-only points lie below it despite positive trait values. Thermal results are descriptive.}
 \end{figure}
 
 \paragraph{Endpoint sensitivity is substantial, but post hoc.}
-Cost-only living means span $.012526$--$.021895$; newborn means span $.025965$--$.032589$. Substituting newborn mean for the registered living endpoint would make all $16$ size checks pass. That is an exploratory sensitivity result, not a revised verdict. A weaker rule that merely equates positive trait growth with adaptation would also label every cost-only run, despite a negative differential in all sixteen.
+Cost-only living means span $.012526$--$.021895$; newborn means span $.025965$--$.032589$. Substituting newborn mean would make all $16$ size checks pass. Post hoc, averaging living censuses over the same $500$ steps gives $.016110$ ($.016127$ weighted by births), still only $1/16$ above $.02$. The comparison changes population sampling and temporal aggregation; neither version isolates a causal survival effect or revises the verdict.
 
 \paragraph{A common mutation rule does not cancel its accumulated contribution.}
 Descriptively, thermal-minus-cost living mean is $+.024958$, while the corresponding difference in $\sum S$ is $-.042816$ and in $\sum T$ is $+.067774$. Thus the positive endpoint contrast does not equal a positive contrast in the selection differential. Different demography and parental distributions enter both terms. These are accounting contrasts, not causal mediation estimates.
@@ -155,12 +158,15 @@ For future experiments, report the endpoint together with cumulative $S$, cumula
 The present scope is deliberately limited: one trait, one simulator, one mutation scale, and a finite horizon. The architecture, cost function, policy, and sensor are provided; this is not evidence for open-ended complexity or spontaneously designed organs. The ledger is descriptive, and a negative $S$ does not by itself establish a direct harmful effect of $h$. We do not regrade previous thermal treatment contrasts or claim that mutation explains every earlier ceiling. The failed primary prediction, the newborn sensitivity, and the thermal accounting contrast have different evidential status. The contribution is a checked empirical case and reusable instrument; novelty beyond that methodological application remains modest.
 
 \paragraph{Reproducibility.}
-The accompanying \texttt{lean/} project proves the Gaussian formula, boundary-innovation claim, and finite-census Price identities in Lean~4/mathlib. Its axiom audit excludes admitted proofs; simulation outcomes and numerical approximations remain outside the formal proof.
-The development repository, \href{https://github.com/Mirrorad1/active_monkey}{\texttt{Mirrorad1/active\_monkey}}, identifies this study as Experiment~283. Its companion files contain the observer, the runner listed below, full per-step ledgers, all seeds, source hashes, and excluded pilot records. A post-run safeguard prevents overwriting existing evidence. An identical-seed rerun after this output-only change matched all $144{,}000$ numerical rows and all $48$ event hashes exactly; it is a reproducibility check, not a fresh confirmation. Both runs are retained. To reproduce into a new prefix, run from the repository root:\par
+The accompanying \texttt{lean/} project proves the Gaussian formula, boundary innovation, and finite-census Price identities in Lean~4/mathlib. Its audit checks all safe package declarations for unapproved axioms; simulations and decimal approximations remain outside the proof.
+The repository, \href{https://github.com/Mirrorad1/active_monkey}{\texttt{Mirrorad1/active\_monkey}}, identifies this study as Experiment~283. Companion files retain the runner, per-step ledgers, seeds, source hashes, and pilots. An output safeguard prevents overwriting evidence. Same-seed reproductions matched all $144{,}000$ rows and $48$ event hashes. The additive adversarial audit also retains $168{,}650$ individual birth records and independently reconstructs every newborn mean. These are reproducibility checks, not fresh confirmation. Original evidence is retained. Run from the repository root into a new prefix:\par
 \noindent\small\texttt{uv run --python .venv python \textbackslash}\par
 \noindent\small\texttt{experiments/exp283\_boundary\_transmission.py \textbackslash}\par
 \noindent\small\texttt{--full --output-prefix experiments/outputs/exp283-reproduction}\par
 \normalsize
+
+\paragraph{AI-use disclosure.}
+OpenAI Codex selected the question and generated the experiment and analysis code, Lean proofs, and manuscript; separate AI agents supplied adversarial reviews. Human author review and submission approval remain pending.
 
 \begingroup\small
 \begin{thebibliography}{9}

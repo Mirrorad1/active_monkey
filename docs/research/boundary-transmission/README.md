@@ -5,6 +5,12 @@ PDF: `output/pdf/boundary-transmission/trait-growth-selection.pdf` from the repo
 The author field is intentionally empty; supply the human authorship and a public
 repository/release URL before submitting. No submission has been made.
 
+The [adversarial review and repairs](adversarial-review.md) preserve the negative
+verdict and document stronger raw-data and proof checks. The
+[submission plan](submission-plan.md) recommends a GitHub/Zenodo artifact and
+arXiv cs.NE, with Artificial Life as the first journal audience to approach after
+human review. Current journal format and fee details remain unverified.
+
 The [Lean supplement](lean/README.md) now provides checked proofs of the exact
 Gaussian formula, boundary innovation, and Price accounting, with pinned
 dependencies and an axiom audit. The open `.tex` references it and makes the
@@ -52,6 +58,17 @@ one finite horizon do not establish a universal failure or a stationary equilibr
 - `experiments/outputs/exp283_verification.md`: detached numeric verification,
   with its input restrictions and limits. The verifier packet contains local
   absolute paths; rerun the analysis to regenerate it in another checkout.
+- `experiments/exp283_adversarial_audit.py` and
+  `experiments/outputs/exp283_adversarial_audit.*`: additive same-seed reproduction,
+  stronger observer comparisons, and post-hoc time-window alignment.
+- `experiments/outputs/exp283_adversarial_audit_births/*.json.gz`: 168,650 individual
+  child/parent/birth-time/trait records; these reconstruct all newborn means exactly.
+
+For a new full-lab environment, use Python 3.12 and `uv sync --frozen --group dev`
+with the committed lockfile before the commands below. The additive audit records
+Python 3.12.9, NumPy 2.4.6, and SciPy 1.17.1. `reproduction-requirements.txt` makes
+the study's smaller NumPy/SciPy/pytest dependency set explicit; it does not alter
+the original environment or claim a separately tested clean installation.
 
 Run from the repository root with the established `.venv`:
 
@@ -60,6 +77,9 @@ uv run --python .venv python experiments/exp283_boundary_transmission.py \
   --full --output-prefix experiments/outputs/exp283-reproduction
 uv run --python .venv python experiments/exp283_analyze.py
 uv run --python .venv pytest -q tests/test_transmission.py
+uv run --python .venv python experiments/exp283_adversarial_audit.py \
+  --output-prefix experiments/outputs/exp283-audit-reproduction
+uv run --python .venv pytest -q tests/test_exp283_adversarial_audit.py
 ```
 
 The analysis checks the committed canonical run against its archived first run;
@@ -93,6 +113,12 @@ different scopes. The latter independently recomputes the frozen counts from
 aggregate raw rows; it cannot reconstruct individual pedigrees or independently
 certify the simulation implementation. Source review, meaningful unit tests, and
 excluded-pilot observed/unobserved event-hash checks address those separate issues.
+The original tables alone also lack the child traits needed to independently
+reconstruct newborn means. The later additive audit repairs that omission while
+preserving those tables. Its 48 same-seed runs match every original numerical row
+and summary field except runtime. All three excluded pilots also match full
+genotypes for all creatures and engine RNG state. The event hash alone omits the
+focal trait; a deliberate corruption now verifies that the stronger guard catches it.
 
 Final validation: all tests in `test_transmission.py`, `test_site_data.py`,
 `test_meta_monkey.py` and `test_check_iteration.py` passed. The iteration rubric
@@ -101,6 +127,9 @@ rounded first/final runtimes. The whole repository suite was started but interru
 while unrelated simulation tests were still running; it is not reported as passed.
 Both LaTeX compilers succeeded, the exported PDF has five pages, and all pages were
 visually inspected. The final compile reports no overfull/underfull boxes.
+Those PDF/render statements describe the original export. The later adversarial
+revision was checked only with the built-in editor compiler, including an explicit
+five-page-limit assertion; no replacement PDF or new tab was created.
 
 Claudeception review: the reusable knowledge is the census ancestry invariant,
 endpoint separation, and immutable evidence workflow described below. The helper,
@@ -122,7 +151,11 @@ transmission contribution cancel: parental distributions and birth rates differ.
 For operator comparisons, preserve the original run and predeclare a new test.
 Reflection or rejection is not a mean-unbiased escape at an exact nonnegative
 boundary if positive innovation remains possible. Source hashes, immutable output
-paths and before/after event hashes protect this observational interpretation.
+paths and before/after comparisons protect this observational interpretation.
+Audit what a hash actually serializes: focal genotypes and RNG state need direct
+coverage if the event schema omits them. Retain the raw inputs needed for every
+headline statistic, including birth traits for newborn endpoints. Shared seed
+values across conditions form seed blocks, not additional independent seeds.
 
 ## Primary literature
 

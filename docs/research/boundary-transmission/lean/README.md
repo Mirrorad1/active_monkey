@@ -69,15 +69,29 @@ closed-form expectation as a premise.
 
 ## Trust and coverage
 
-There are no admitted proofs or new axioms in the proof modules. `Audit.lean`
-inspects kernel-checked theorem dependencies and rejects anything outside the
-standard `propext`, `Classical.choice`, and `Quot.sound` allowlist. It also rejects
-local axioms and an empty audit. Generated helper theorem declarations are counted
-alongside the named theorems, so the audit count is not a count of scientific claims.
+There are no admitted proofs or new logical axioms in the proof modules.
+`Audit.lean` checks all **safe declarations defined by package modules**, regardless
+of declaration namespace or whether they are theorems, definitions, or opaque
+constants. Dependencies must use only `propext`, `Classical.choice`, and `Quot.sound`.
+Local safe axioms and an empty theorem audit are rejected. The current build checks
+60 safe declarations, including 47 theorem declarations and generated helpers.
+These are not counts of distinct scientific claims.
 
-The audit was also tested against two temporary negative controls: an extra local
-axiom and an admitted theorem. Both failed with the expected diagnostic; the real
-package passed. See `verification.txt` for the executed check summary.
+Defining-module ownership also exposes 16 unsafe compiler runtime specializations.
+Those are explicitly excluded; Lean forbids unsafe declarations in safe proofs.
+The audit covers the imported proof modules, not arbitrary files left unimported.
+It is a logical dependency audit, not a verifier of generated executable code.
+
+`check_audit.py` exercises four negative controls in ignored temporary modules:
+an extra axiom, an admitted proof-valued definition, an admitted opaque proof, and
+an admitted theorem, all outside the `BoundaryTransmission` declaration namespace.
+All four were rejected, and the real package passed. From the repository root:
+
+```sh
+uv run --python .venv python docs/research/boundary-transmission/lean/check_audit.py
+```
+
+Use the pinned `lake` on PATH. See `verification.txt` for the executed check summary.
 
 These results concern exact real-number mathematics. They do **not** prove:
 
@@ -91,9 +105,11 @@ Gaussian formula assumes positive mutation scale; the zero-scale special case is
 not part of that theorem. General boundary innovation does not require Gaussian
 mutation at all.
 
-Independent source review found no actionable mismatch between these statements
-and the paper. That review did not independently run Lean; the recorded build and
-axiom checks are the implementing agent's executed verification.
+The initial independent source review found no mismatch with the paper. A later
+fresh adversarial reviewer independently ran Lean and found no mathematical error,
+but identified the original theorem-only audit's narrower coverage. The expanded
+audit and negative controls above fix that issue; their execution was checked by
+the implementing agent after the reviewer reached a service usage limit.
 
 Claudeception retrospective: the macOS native-cache failure and interpreter
 workaround were non-obvious and reusable. Their exact symptom, verified command,
