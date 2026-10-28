@@ -1,0 +1,35 @@
+{
+  "after_hash": "f173686b9b968618f70ffd2e99880ddca8adf6129d607a41ec76a7ef780f13ba",
+  "algorithm": "sleep-v1",
+  "before_hash": "ea982d62edabfb41b055efb7ba511aec518eb1b23a27678b2c92d1e55c2d5d76",
+  "budget": {
+    "max_bytes": 1500,
+    "max_sources": 8,
+    "used_bytes": 1179
+  },
+  "content_hash": "4cbaa90992c309abe978c98baa4212e14f7c1ea9eb39ddaa10d351eb423f7387",
+  "decision": "pending_review",
+  "metrics": {
+    "evaluation": "source_fidelity_only",
+    "experiments": 1,
+    "generated": 1,
+    "rejected": []
+  },
+  "schema_version": 1,
+  "scope": "lab",
+  "sources": [
+    {
+      "experiment": 281,
+      "path": "EXPERIMENTS.md",
+      "sha256": "2dc2e5709375cc1fd731bff60917fb710e8e1354cd8124caf997a3402b6b5d85"
+    },
+    {
+      "path": "experiments/exp281_criterion_audit.py",
+      "sha256": "c9dea64930bf6bbc3b93a988cbdefef093621ce2761bb0c57940b3379ad38e25"
+    },
+    {
+      "path": "experiments/outputs/exp281.txt",
+      "sha256": "c90601e01181137e0a56ce9bb86068d76b110b3306519e26f97b2a5dca6990d8"
+    }
+  ]
+}

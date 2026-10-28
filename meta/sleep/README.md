@@ -123,3 +123,25 @@ changes invalidate byte hashes; changed reviewer/notes invalidate review metadat
 Claudeception evaluated these verified pitfalls; executable guards and this operator
 documentation retain the reusable knowledge without a duplicate global skill. Scientific
 lessons remain retrospective and scoped, with original contradictory evidence preserved.
+
+## Formal correction overlay (Exp281)
+
+When retrieving the30-record archive or historical Exp261/263/268, also retrieve
+`exp281-corrections-v1`. The earlier record remains immutable; the correction brief carries
+its updated eligibility/scope. Exp261's monotone symmetry criterion fails; Exp263's original
+resident-zero abundance falsifier fires; Exp268's frequency dispensability is unestablished.
+Their narrower observations remain, including the invasion contrast and main hearing negative.
+This is retrospective consolidation, not a new simulation or a causal L1 result.
+
+```sh
+uv run --python .venv python loop/compose.py recursive-sleep \
+  --sleep-cycle meta/sleep/exp281-corrections-v1
+```
+
+Verification scope is explicit: an original-source reviewer exposed to bootstrap is not
+strictly blinded; a detached anonymous numeric check verifies only supplied criteria/raw
+excerpts. PROTOCOL/LESSONS L53 retains this input-boundary guard.
+
+Claudeception evaluation for this audit retained the verified bootstrap/blinding trap in
+PROTOCOL and LESSONS L53, and original-criterion boundary checks in executable regressions.
+No duplicate global skill or unreplicated universal research rule was extracted.

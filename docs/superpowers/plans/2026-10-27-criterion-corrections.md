@@ -3,17 +3,17 @@
 User authorized continuing after the30-experiment archive. First repair consequential
 source/criterion mismatches before proposing new science; C1 stays halted.
 
-- [ ] Exp281 deterministic retrospective recheck of Exp261/263/268 original necessary criteria.
+- [x] Exp281 deterministic retrospective recheck of Exp261/263/268 original necessary criteria.
   Explicit CONSOLIDATION: cases/outcomes were exposed by archive, not a fresh prediction.
   Never rerun worlds, change original files, or erase later narrower observations.
-- [ ] Pin input original scripts/raw/log sections to current full commit; hash bytes. Parse
+- [x] Pin input original scripts/raw/log sections to current full commit; hash bytes. Parse
   raw numeric rows independently of printed verdicts. Refuse missing/duplicate/nonfinite
   values and altered input. Output report+JSON fresh paths only under experiments/outputs.
-- [ ] Tests first. Independent blinded original-docstring/raw verifier; fresh code review.
-- [ ] Append correction Exp281 with script/raw/site/bundle atomically, preserve old entry
+- [x] Tests first. Independent blinded original-docstring/raw verifier; fresh code review.
+- [x] Append correction Exp281 with script/raw/site/bundle atomically, preserve old entry
   bytes and all old reviewed archives/briefs. Mark historical scientific eligibility separately
   from procedural audit validity. Update durable knowledge through a reviewed lab brief.
-- [ ] Add mechanical regressions for each criterion; review claudeception at completion.
+- [x] Add mechanical regressions for each criterion; review claudeception at completion.
 
 ## Exact scope and rules
 
@@ -40,3 +40,20 @@ This audit is evidence reconciliation, not an L1 causal process-improvement expe
 Deliverables: experiments/exp281_criterion_audit.py, tests/test_criterion_audit.py,
 experiments/outputs/exp281.{txt,json}, verification.md; new log/site/bundle; knowledge brief.
 Existing site cards remain historical records; a new correction card points back to261/263/268.
+
+## Completion evidence
+
+Audit commit bde7bf768bd9c0ddefc20ccee8882bcda8757cf7 pins script/raw/log/site.
+Source inputs pin824ec190fbac8dacdb87680dd838c2644cf8679d. Report instrument_valid=true,
+NEGATIVE/CONSOLIDATION; no world rerun.10refs checked;10original sources/sections retained.
+121affected checks pass before/after passiveepisode and reviewedbrief. Rubric PASS2warnings:
+0.146 is rounded host executionwalltime (verification note);263/268 is ID syntax, not ratio.
+Original source review exposed tobootstrap is notstrictlyblind; detached text-only anonymous
+necessary arithmetic and fresh code/fullprecision review agree. Scope limits explicit.
+Reviewaccepted correctionbrief1179bytes hash
+4cbaa90992c309abe978c98baa4212e14f7c1ea9eb39ddaa10d351eb423f7387; actualcomposeCLI works.
+Old reviewedbriefs/30recordarchive and original logprefix preserve exact source bytes.
+Claudeception evaluated: bootstrap exposure is a verified reusable procedural trap, retained
+in bindingPROTOCOL plusLESSONS L53; threshold/provenance pitfalls have fasttests. A global
+skill would duplicate those repo-local guards, so none created. No universal scientific
+conclusion extracted from this retrospective set.

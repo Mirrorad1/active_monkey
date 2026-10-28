@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp281.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp281_criterion_audit.py",
+    "site_data_references_output": true,
+    "site_data_references_script": true
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"0.146\" quoted in entry not found in experiments/outputs/exp281.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"263/268\" quoted in entry not found in experiments/outputs/exp281.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-10-28T02:17:28Z",
+  "commit_sha": "bde7bf768bd9c0ddefc20ccee8882bcda8757cf7",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "CONSOLIDATION",
+    "verifier_status": "agree"
+  },
+  "exp": 281,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning"
+    ],
+    "notes": [],
+    "process_failure": false
+  },
+  "schema_version": 1
+}

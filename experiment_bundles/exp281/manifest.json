@@ -7,7 +7,7 @@
   "hypothesis": "Retrospective all-selected-necessary-check audit, cases known; no fresh prospective claim.",
   "status": "completed",
   "verdict": "NEGATIVE",
-  "repo_commit": "824ec190fbac8dacdb87680dd838c2644cf8679d",
+  "repo_commit": "bde7bf768bd9c0ddefc20ccee8882bcda8757cf7",
   "created_at": "2026-10-27",
   "confidence": "high",
   "backfill_level": "metrics_bundle",
@@ -27,7 +27,7 @@
   "scorer_refs": [],
   "reproduction_command": "uv run --python .venv python experiments/exp281_criterion_audit.py --out experiments/outputs/exp281_repro.txt (fresh path).",
   "caveats": [
-    "repo_commit initially pins input/base; enclosing atomic experiment commit pins executed audit script.",
+    "repo_commit pins the executed audit script/raw/log/site commit; input original evidence separately pins824ec190fbac8dacdb87680dd838c2644cf8679d.",
     "Retrospective deterministic necessary-condition reconciliation, no simulation or prospective efficacy test.",
     "Source-limited unblinded original review and detached blinded excerpt arithmetic have separately disclosed limits.",
     "Later narrower observations retained; no universal ecological/learning claim or C1 reopening."

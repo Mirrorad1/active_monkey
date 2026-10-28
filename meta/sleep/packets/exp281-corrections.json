@@ -1,0 +1,32 @@
+{
+  "sources": [
+    {
+      "experiment": 281,
+      "script": "experiments/exp281_criterion_audit.py",
+      "output": "experiments/outputs/exp281.txt"
+    }
+  ],
+  "items": [
+    {
+      "kind": "boundary",
+      "source": 281,
+      "excerpt": "Original-criterion failure must remain distinct from later narrower evidence."
+    },
+    {
+      "kind": "finding",
+      "source": 281,
+      "excerpt": "The original scarcity-specific conjunction FAILS because abundance is selected too."
+    },
+    {
+      "kind": "finding",
+      "source": 281,
+      "excerpt": "Frequency dispensability is UNESTABLISHED; its failure does not prove frequency usefulness."
+    },
+    {
+      "kind": "rehearsal",
+      "origin": "generated",
+      "source": 281,
+      "text": "When citing261/263/268, retrieve281 and grade original criteria separately from followups. Prepare restricted criteria/raw packets after parent bootstrap; disclose any verifier exposure."
+    }
+  ]
+}
