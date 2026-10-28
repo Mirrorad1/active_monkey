@@ -409,3 +409,11 @@ Ground rules for this file:
   A verifier that read RESUME/archive/parent claims must disclose exposure and cannot be
   called strictly blinded. Report excerpt/necessary-check limits; do not certify omitted
   conjuncts. [PROTOCOL step4.5; exp281_verification.md]
+
+- **L54 (Exp282 hep-th note,2026-10-27).** A change of physical variables can hide
+  an exact known theorem: the finite-flux CFT bound maps to Stefanatos's quantum-piston
+  control problem. Search the transformed equations across fields, record the mapping,
+  and separate correctness, theorem novelty, application novelty, and significance.
+  Passing numerical checks or finding no further search hit proves neither priority
+  nor publishability. Narrow and credit a rediscovery rather than relabeling it new.
+  [PROTOCOL step2; docs/research/hep-th-finite-flux/README.md]

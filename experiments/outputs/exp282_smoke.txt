@@ -1,0 +1,59 @@
+Exp 282 — deterministic analytic verification
+conformal-vacuum calculation; no proof of novelty, general QNEC states, gravitational islands, or four-dimensional backreaction
+PASS is a statement about listed checks, not a publication or novelty verdict.
+
+experiment:
+282
+
+kind:
+"deterministic analytic verification"
+
+smoke:
+true
+
+scope:
+"conformal-vacuum calculation; no proof of novelty, general QNEC states, gravitational islands, or four-dimensional backreaction"
+
+predeclaration:
+"Exp 282: deterministic verification of a finite-flux entropy-excursion bound.\n\nHYPOTHESIS: for 1<=w<=R, w(0)=w(T)=1, stationary endpoints, max(w)=R>1,\nand -b^2 <= w''/w <= a^2, the proposed minimum duration is\n2[acosh(y)/a + acos(y/R)/b], y^2=(b^2 R^2+a^2)/(a^2+b^2).\nPREDICTION: symbolic identities vanish; independent ODE endpoint/apex/matching\nresiduals and the integrated-flux identity are <=2e-7 after the declared\nnormalizations; endpoint-regularized quadrature agrees within 2e-8; every\ntested regular bounded-flux profile satisfies T/Tmin >=1-2e-7 under its actual caps.\nFALSIFIER: a valid counterexample, symbolic error, or numerical discrepancy\nbeyond its declared tolerance defeats the corresponding claim. All records,\nincluding failed checks, are retained. These checks are analytic verification,\nnot a proof of optimality, a blind discovery experiment, or a novelty claim.\nThe baseline examples with constant continuation are C1 and W^{2,infinity},\npiecewise smooth, not globally C-infinity. Smooth sharpness is a separate\nmollification argument; these numerical examples do not establish it.\n\nThe separate QNEC-gap inverse is an analytic follow-up chosen before its\nnumerical check. The parent derived it independently and a reviewer supplied\nnumeric values: its prediction is not blind. It asserts no state realizability.\nThe equal-cap formula has prior art in Stefanatos, arXiv:1301.5137.\n\nRun from the repository root with uv run --no-sync --python .venv python\nexperiments/exp282_finite_flux_page.py --smoke. No files are written unless\n--output-prefix is supplied; that option creates PREFIX.json and PREFIX.txt\nwithout overwriting earlier evidence. The full batch contains 30 ODE cases.\n"
+
+parameters:
+{"a": 1.0, "executor": "ThreadPoolExecutor", "heights": [0.5], "max_workers": 1, "normalization": "position/velocity: max(1,R,aR,bR); energy/time: max(1,abs(left),abs(right))", "ode_atol": 2e-13, "ode_cases": 1, "ode_rtol": 2e-12, "quadrature_tolerance": 2e-08, "ratios": [0.3], "residual_tolerance": 2e-07}
+
+versions:
+{"numpy": "2.4.6", "python": "3.12.9", "scipy": "1.17.1", "sympy_installed": null}
+
+source_sha256:
+{"docs/research/hep-th-finite-flux/analysis-plan.md": "9ceba4cac937f9a212291913071c7b6a47b9abb41b48a87550e63621b772cfe6", "experiments/exp282_finite_flux_page.py": "8c0f81a1c962e78d03c7fb87d19912a558186e179a3543d7a612934b755d1d16", "tests/test_exp282_finite_flux.py": "d58222f0cac69d64f65f5f4ab2dfcff47bfe5428b935e502045ac6b0d2b64f64"}
+
+symbolic:
+{"backend": "exact rational-coefficient formal polynomial algebra (stdlib fractions)", "checks": {"acceleration_displacement_identity": true, "braking_displacement_identity": true, "equal_cap_braking_tangent_squared": true, "equal_cap_cosh_double_angle": true, "minus_c_over_24pi_schwarzian_equals_K_wpp_over_w": true, "schwarzian_equals_minus_two_wpp_over_w": true, "switch_velocities_squared_match": true}, "definitions": "A=a^2, B=b^2, U=R^2, y^2=(BU+A)/(A+B), rho=w'/w, sigma=w''/w", "derivation": "p'=w^-2 => L=-2rho; rho'=sigma-rho^2; {p,u}=L'-L^2/2=-2sigma; F=-c{p,u}/(24pi)=c sigma/(12pi)", "residuals": {"acceleration_displacement_identity": "0", "braking_displacement_identity": "0", "equal_cap_braking_tangent_squared": "0", "equal_cap_cosh_double_angle": "0", "minus_c_over_24pi_schwarzian_equals_K_wpp_over_w": "0", "schwarzian_equals_minus_two_wpp_over_w": "0", "switch_velocities_squared_match": "0"}}
+
+ode_cases:
+{"R": 1.6487212707001282, "a": 1.0, "apex_residual": 5.670994031029542e-17, "b": 0.3, "b_over_a": 0.3, "checks": {"apex": true, "endpoint": true, "energy": true, "envelope_quadrature": true, "matching": true, "ode_succeeded": true, "profile": true}, "duration": 6.507697280360866, "endpoint_residual": 6.733843035540515e-17, "energy_formula": 0.2171644339817882, "energy_ode": 0.21716443398180704, "energy_residual": 1.8846035843012032e-14, "envelope_quadrature": {"duration": 6.5076972803608655, "estimated_error": 7.224995357947146e-14, "rising_acceleration": 0.36828311431847066, "rising_braking": 2.885565525861962, "substitutions": ["w=1+(y-1)s^2", "w=R-(R-y)s^2"]}, "envelope_residual": 1.3648121315976052e-16, "log_R": 0.5, "matching_residual": 0.0, "normalization": 1.6487212707001282, "ode": {"nfev": 1043, "runtime_seconds": 0.004549209028482437, "sample_count": 260, "segment_profile_residuals": [1.346768607108103e-16, 1.346768607108103e-16, 4.040305821324309e-16, 6.060458731986463e-16], "states": [[1.0, 0.0, 0.0], [1.068586206746518, 0.37666494560671837, 0.015794056132388556], [1.6487212707001282, 9.349888484971869e-17, 0.1085822169909033], [1.068586206746518, -0.37666494560671826, 0.20137037784941855], [0.9999999999999999, 7.546047120499111e-17, 0.21716443398180704]], "success": true}, "parameters": {"R": 1.6487212707001282, "a": 1.0, "b": 0.3, "t1": 0.3682831143184707, "t2": 2.8855655258619626, "y": 1.068586206746518}}
+
+sinusoidal_baselines:
+{"R": 1.6487212707001282, "cap_method": "analytic extrema of q as a concave quadratic in cos(2 n pi t)", "checks": {"duration_bound": true}, "duration": 1.0, "duration_over_minimum": 1.101724360259726, "log_R": 0.5, "minimum_duration": 0.9076680484438548, "negative_cap": 9.869604401089358, "peaks": 1, "positive_cap": 9.869604401089358, "profile": "w=exp(x sin^2(n pi t))", "regularity": "C1 and W^{2,infinity} with constant continuation; piecewise smooth, not globally C-infinity"}
+{"R": 1.6487212707001282, "cap_method": "analytic extrema of q as a concave quadratic in cos(2 n pi t)", "checks": {"duration_bound": true}, "duration": 1.0, "duration_over_minimum": 2.203448720519452, "log_R": 0.5, "minimum_duration": 0.4538340242219274, "negative_cap": 39.47841760435743, "peaks": 2, "positive_cap": 39.47841760435743, "profile": "w=exp(x sin^2(n pi t))", "regularity": "C1 and W^{2,infinity} with constant continuation; piecewise smooth, not globally C-infinity"}
+{"R": 1.6487212707001282, "cap_method": "analytic extrema of q as a concave quadratic in cos(2 n pi t)", "checks": {"duration_bound": true}, "duration": 1.0, "duration_over_minimum": 3.3051730807791784, "log_R": 0.5, "minimum_duration": 0.3025560161479516, "negative_cap": 88.82643960980423, "peaks": 3, "positive_cap": 88.82643960980423, "profile": "w=exp(x sin^2(n pi t))", "regularity": "C1 and W^{2,infinity} with constant continuation; piecewise smooth, not globally C-infinity"}
+
+polynomial_baselines:
+{"R": 1.6487212707001282, "cap_method": "all real derivative-polynomial roots plus endpoints, evaluated in float64", "checks": {"duration_bound": true}, "critical_flux_values": [45.5625, -14.304714113667508, 6.441459324749026, 1.3564260825660313e-11, 0.0], "critical_points": [0.0, 0.2953660707120164, 0.6927428634516197, 0.9999999999931051, 1.0], "derivative_roots": [[0.027420095459356728, -0.11561852091689254], [0.027420095459356728, 0.11561852091689254], [0.2953660707120164, 0.0], [0.6927428634516197, 0.0], [0.7506053178042951, -0.301699634274064], [0.7506053178042951, 0.301699634274064], [0.9999999999931051, 0.0], [1.227920119657978, -0.2000337408772229], [1.227920119657978, 0.2000337408772229]], "duration": 1.0, "duration_over_minimum": 1.7119975797017837, "log_R": 0.5, "minimum_duration": 0.5841129753081731, "negative_cap": 14.304714113667508, "peak_time": 0.3333333333333333, "positive_cap": 45.5625, "profile": "w=exp(x (729/16)t^2(1-t)^4)", "q_coefficients": [45.5625, -546.75, 3716.19140625, -26733.796875, 125239.921875, -340454.390625, 560504.1796875, -572959.828125, 357061.921875, -124556.484375, 18683.47265625], "regularity": "C1 and W^{2,infinity} with constant continuation; piecewise smooth, not globally C-infinity"}
+
+equal_cap:
+{"R": 1.6487212707001282, "checks": {"inverse": true, "sinusoidal_comparison": true}, "inverse_duration": 0.9999999999999998, "large_height_asymptotic": 10.653327219203828, "large_height_ratio": 0.7632530953496378, "log_R": 0.5, "optimal_peak": 8.131184975829871, "sinusoidal_over_optimal": 1.2137965659897023, "sinusoidal_peak": 9.869604401089358, "small_height_leading": 8.0, "small_height_ratio": 1.016398121978734}
+
+qnec_gap_followup:
+{"D_over_K": 3.8534573218480777, "R": 2.718281828459045, "a": 1.0, "asymptotic_status": "diagnostic only; no post-hoc acceptance threshold", "b0": 1.0, "bcrit": 2.203056359208288, "checks": {"derivative": true, "larger_required_cap": true, "one_sided_limit": true, "preconditions": true, "root": true}, "derivative_analytic": -0.1625623750641722, "derivative_finite_difference": -0.16256237509393506, "derivative_residual": 2.9762858844151197e-11, "difference_step": 2.2030563592082882e-05, "initial_duration": 4.1235809729173845, "inverse_asymptotic_diagnostic": [{"b": 10.0, "b_squared_duration_excess": 0.9282254610233576, "difference": -0.0016480340088361745, "predicted_coefficient": 0.9298734950321937}, {"b": 20.0, "b_squared_duration_excess": 0.9294602458671974, "difference": -0.0004132491649962988, "predicted_coefficient": 0.9298734950321937}, {"b": 50.0, "b_squared_duration_excess": 0.9298073192987033, "difference": -6.61757334904367e-05, "predicted_coefficient": 0.9298734950321937}], "large_b_limit": 3.3149089083061543, "limit_samples": [{"b": 10.0, "duration": 3.324191162916388, "excess_above_limit": 0.009282254610233576}, {"b": 100.0, "duration": 3.315001894001065, "excess_above_limit": 9.298569491056341e-05}, {"b": 1000.0, "duration": 3.3149098381794837, "excess_above_limit": 9.298733294471617e-07}], "provenance": "analytic follow-up chosen before numerical execution; independently derived by parent, reviewer supplied numbers; not blind", "root_bracket": [1.0, 4.0], "root_residual": 4.440892098500626e-16, "scope": "inverse cap bound only; no state-realizability claim", "target_duration": 3.5}
+
+runtime_seconds:
+0.005736624822020531
+
+projected_serial_30_ode_seconds:
+0.13647627085447311
+
+checks:
+{"equal_cap": true, "ode_and_quadrature": true, "polynomial_baselines": true, "qnec_gap_followup": true, "sinusoidal_baselines": true, "symbolic": true}
+
+all_checks_pass:
+true

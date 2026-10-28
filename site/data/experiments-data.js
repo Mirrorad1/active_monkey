@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:281, breakthrough:9, positive:122, wall:68, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:282, breakthrough:9, positive:123, wall:68, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -3011,7 +3011,16 @@ window.AM_EXPERIMENTS = [
     result:"261: D rises .080 where tolerance is .05, defeating monotone symmetry.263: abundant7/8 triggers the original scarcity-specific falsifier; separate9/10 vs0/10 invasion remains.268: main negative persists, but scalar MI .7685 is below banded .8543 and best single-band .8350; frequency dispensability is unestablished.",
     implication:"NEGATIVE / CONSOLIDATION on selected historical eligibility claims. These corrections constrain reuse of older wording without deleting original observations. No new scientific or lab-quality efficacy result; C1 remains halted.",
     caveat:"Retrospective known cases, not a prospective test or replication.",
-    trace:{ script:"experiments/exp281_criterion_audit.py", output:"experiments/outputs/exp281.txt" } }
+    trace:{ script:"experiments/exp281_criterion_audit.py", output:"experiments/outputs/exp281.txt" } },
+  { n:282, kind:"positive", chapter:"frontier",
+    title:"Finite-flux entropy formulas verified; publication novelty provisional",
+    one:"A four-page CFT research note applies known control mathematics and derives a conditional peak-QNEC-gap diagnostic.",
+    plain:"How quickly can radiation entropy rise and return if the energy flow is capped? The formulas pass the checks and give a precise speed limit in a restricted field-theory setting; their publication novelty remains provisional.",
+    setup:"Deterministic analytic verification:30 ODE cases over six entropy heights and five cap ratios, independent quadrature, seven rational-algebra identities and24 nonoptimal profiles. Fixed boundary conditions and separately bounded positive/negative flux; no creature changes or learning.",
+    result:"All declared numerical checks pass. Largest energy-identity error2.805e-11; duration-quadrature error1.878e-15; minimum baseline T/Tmin1.077433. For R=e and unit K-scaled caps, duration3.5 requires peak gap D/K>=3.853457. Detached raw recomputation and separate mathematical review agree within their disclosed scopes.",
+    implication:"POSITIVE-SINGLE / CONSOLIDATION for formula checks. The equal-cap theorem is known quantum-piston control; candidate contribution is its CFT application and a conditional QNEC diagnostic. Publication significance and novelty remain unestablished; no sleep or ecological improvement claim.",
+    caveat:"Known equal-cap control theorem; application novelty and publication significance remain provisional.",
+    trace:{ script:"experiments/exp282_finite_flux_page.py", output:"experiments/outputs/exp282.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

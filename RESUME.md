@@ -631,6 +631,22 @@ must include these corrections, not only the older recorded verdict. Independent
 review and detached numeric verification have distinct disclosed scopes; L53 prevents
 claiming strict blinding after bootstrap exposure. No simulation/C1 reopening/L1 claim.
 
+### 3g. One-off hep-th research note (2026-10-27, Exp282)
+
+The human explicitly requested an independently chosen hep-th question and an article
+of at most five pages. Four-page draft: `docs/research/hep-th-finite-flux/` (PDF/TeX,
+literature and verification record). It applies bounded-control mathematics to complete
+nonnegative entropy excursions in two-dimensional conformal vacua, states the unequal
+positive/negative flux-cap duration formula, proves smooth sharpness, and derives a
+conditional peak-QNEC-gap diagnostic. No backreaction or nonsaturating-state construction.
+
+Exp282 is POSITIVE / CONSOLIDATION / POSITIVE-SINGLE for deterministic analytic/numerical
+verification only (30 ODE cases,24 nonoptimal profiles). The equal-cap theorem is already
+Stefanatos's quantum-piston result; integrated-energy optima are Karmoudi--Daoud prior art.
+The CFT application and gap diagnostic have provisional novelty/significance, not a
+certified publication result. L54 preserves the cross-field prior-art lesson. This is
+separate from the creature program; sleep C1 stays halted and L1 remains untested.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.

@@ -29,6 +29,12 @@ not permission to weaken `loop/VALIDATION.md`.
    Design-time pass (advisory, `loop/METHODOLOGY.md` Part 1): mechanism vs outcome,
    specific null, confound list, strongest-version comparison, one independent variable
    (or a declared sweep with a shape-level falsifier), and name the bridge domain.
+   **Publication/novelty claims (L54):** search primary literature for the transformed
+   equations and optimization problem, including other fields, before calling a
+   theorem new. Record exact antecedents and changes of variables. Separately grade
+   correctness, theorem novelty, application novelty, and significance; numerical
+   verification or a search without a hit cannot establish the latter three.
+   If an antecedent is found, narrow the claim and preserve that disclosure.
 
 3. **Build small.** Smallest script that tests the hypothesis. Reuse verified patterns
    (Exp 21/26/30/34/35). Repo root or `PYTHONPATH=.`; run via `uv run --python .venv`.

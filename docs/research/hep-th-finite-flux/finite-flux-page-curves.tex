@@ -1,0 +1,321 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newcommand{\arcosh}{\operatorname{arcosh}}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+\newcommand{\R}{\mathbb R}
+\title{A finite-flux speed limit for Page-like entropy excursions}
+\author{}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\vspace{-1.7em}
+\begin{abstract}
+How rapidly can a complete entropy excursion occur if the outgoing null-energy
+flux is bounded in magnitude? For two-dimensional conformal vacua, we give the
+sharp duration bound at fixed entropy height and independent positive and
+negative flux caps. Its optimizer has two positive-flux intervals enclosing one
+negative-flux interval, with no distributional energy pulses. The equal-cap
+problem is an application of the known minimum-time quantum-piston control
+problem; we make that connection explicit and give a direct proof covering
+arbitrary additional turnovers. The bound is sharp as an infimum over smooth
+conformal vacua with the same height and caps. We also derive a necessary lower
+bound on peak quantum-null-energy-condition nonsaturation from an entropy
+excursion faster than the conformal-vacuum limit. The result concerns a specified
+null entropy and affine-time normalization, rather than a general bound on
+black-hole evaporation.
+\end{abstract}
+
+\section{Question and setting}
+
+In two-dimensional conformal vacua, the outgoing energy flux and renormalized
+radiation entropy obey an exact differential relation \cite{BS}. This permits
+entropy histories to constrain energy emission without specifying a bulk
+evaporation model. Integrated-energy costs of complete Page-like excursions,
+including their tradeoffs, have recently been optimized \cite{KD}; earlier
+work discussed the energy--entropy relation in evaporation \cite{AP}. Here the
+constraint is instead on the \emph{instantaneous} positive and negative flux.
+An optimum involving delta-function pulses cannot satisfy such a constraint.
+
+We develop the conformal-field-theory application, state the unequal-cap
+extension, and derive a nonsaturation diagnostic. The equal-cap control problem was
+solved by Stefanatos for a quantum piston \cite{Stefanatos}. Hyperbolic and
+trigonometric matching of square energy pulses also occurs in quantum-interest
+analysis \cite{TW}. We do not claim a new optimal-control principle or a new
+derivation of the conformal anomaly.
+
+Set $\hbar=1$ and let $c>0$ denote the central charge. For an asymptotically
+affine ray-tracing map $p(u)$, with $p'>0$ and $p'=1$ initially, use
+\begin{equation}
+ S(u)=-\frac{c}{12}\log p'(u),\qquad
+ F(u)=-\frac{c}{24\pi}\{p,u\}
+ =\frac1{2\pi}\left(S''+\frac6c S'^2\right).
+ \label{eq:BS}
+\end{equation}
+Here $u$ is an affinely normalized outgoing null coordinate, primes denote
+$u$ derivatives, and $S$ is vacuum-subtracted entropy, not an absolute entropy.
+Defining
+\begin{equation}
+ K=\frac{c}{12\pi},\quad w=e^{6S/c},\quad R=e^{6S_{\max}/c}>1,
+ \qquad F=K\frac{w''}{w},\quad p'=w^{-2},
+ \label{eq:w}
+\end{equation}
+consider a complete excursion with $w=1$ outside $[0,T]$, $1\le w\le R$,
+and $\max w=R$. Nonnegative entropy relative to the endpoint value is an
+explicit assumption. Allow $w\in W^{2,\infty}(\R)$, so $w,w'$ are continuous
+and the flux is essentially bounded. Impose
+\begin{equation}
+ -\mathcal F_-\le F\le\mathcal F_+,\qquad
+ a=\sqrt{\mathcal F_+/K}>0,\quad b=\sqrt{\mathcal F_-/K}>0.
+ \label{eq:caps}
+\end{equation}
+These are externally specified caps, not pointwise energy conditions of QFT.
+
+\section{Exact duration bound}
+
+\begin{proposition}
+Every excursion satisfying the above assumptions obeys
+\begin{equation}
+ \boxed{\ T\ge\mathcal T(a,b;R)
+ =2\left[\frac{\arcosh y}{a}+\frac{\arccos(y/R)}{b}\right],\qquad
+ y^2=\frac{b^2R^2+a^2}{a^2+b^2}.\ }
+ \label{eq:bound}
+\end{equation}
+The bound is attained in the stated weak class and is the infimum over smooth
+conformal-vacuum excursions with the same height and caps. Extra turnovers
+cannot lower it.
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:caps} is equivalent to $-b^2w\le w''\le a^2w$.
+On a connected component $(\alpha,\beta)$ of $\{w'>0\}$, the endpoint
+velocities vanish. Put $m=w(\alpha)\ge1$ and $M=w(\beta)\le R$.
+Integrating the two acceleration inequalities, respectively from $\alpha$
+and backwards from $\beta$, gives
+\begin{equation}
+ w'^2\le a^2(w^2-m^2),\qquad
+ w'^2\le b^2(M^2-w^2).
+\end{equation}
+Time reversal gives the same estimates on decreasing components. Thus,
+everywhere by continuity,
+\begin{equation}
+ |w'|\le V(w),\qquad
+ V(x)=\min\{a\sqrt{x^2-1},\ b\sqrt{R^2-x^2}\}.
+ \label{eq:envelope}
+\end{equation}
+Set $H(x)=\int_1^x ds/V(s)$. Its endpoint singularities are integrable.
+The composition $H(w(u))$ is 1-Lipschitz: this follows first with $V$ replaced
+by $\max(V,\epsilon)$, using the chain rule, and then by taking
+$\epsilon\downarrow0$. If $w(u_*)=R$, then $H(R)\le u_*$ and
+$H(R)\le T-u_*$. Consequently $T\ge2H(R)$, regardless of the number of
+stationary points. The branches of \eqref{eq:envelope} cross at $y$, and
+\begin{equation}
+ H(R)=\int_1^y\frac{dx}{a\sqrt{x^2-1}}
+      +\int_y^R\frac{dx}{b\sqrt{R^2-x^2}}
+ =\frac{\arcosh y}{a}+\frac{\arccos(y/R)}b.
+\end{equation}
+This proves \eqref{eq:bound}.
+\end{proof}
+
+For attainment, write $t_+=\arcosh(y)/a$, $t_-=\arccos(y/R)/b$,
+$\tau=t_++t_-$, and $T_*=2\tau$. The complete optimizer is
+\begin{equation}
+ w_*(u)=
+ \begin{cases}
+  1,&u\notin[0,T_*],\\
+  \cosh(au),&0\le u\le t_+,\\
+  R\cos[b(u-\tau)],&t_+\le u\le T_*-t_+,\\
+  \cosh[a(T_*-u)],&T_*-t_+\le u\le T_*.
+ \end{cases}
+ \label{eq:optimizer}
+\end{equation}
+The identity $a\sqrt{y^2-1}=b\sqrt{R^2-y^2}$ ensures continuity of $w_*'$.
+Its flux is $+\mathcal F_+$ on both outer intervals and $-\mathcal F_-$
+on the central interval of length $2t_-$. Jumps of $w_*''$ produce finite
+flux steps, not impulses. Equality in the Lipschitz argument forces
+$H(w(u))=\min(u,T_*-u)$; hence the optimizer is unique on its support.
+The net emitted energy satisfies
+\begin{equation}
+ E_{\rm net}=2\mathcal F_+t_+-2\mathcal F_-t_-
+ =K\int_0^{T_*}(w_*'/w_*)^2\,du>0.
+ \label{eq:energy}
+\end{equation}
+
+Smooth sharpness needs care because smoothing lowers the peak. Let
+$z_\delta=\rho_\delta*w_*$, with a nonnegative smooth mollifier supported
+in $[-\delta,\delta]$, and set
+\begin{equation}
+ \lambda_\delta=\frac{R-1}{\max z_\delta-1},\qquad
+ w_\delta(u)=1+\lambda_\delta
+ \left[z_\delta\left(u/\sqrt{\lambda_\delta}-\delta\right)-1\right].
+ \label{eq:smooth}
+\end{equation}
+Convolution preserves $-b^2z_\delta\le z_\delta''\le a^2z_\delta$.
+Here $\lambda_\delta\ge1$, $w_\delta\ge z_\delta$ at corresponding
+arguments, and $w_\delta''=z_\delta''$. Both original caps therefore hold
+exactly, while $\max w_\delta=R$. Its duration is
+$\sqrt{\lambda_\delta}(T_*+2\delta)\to T_*$. Each $p_\delta'=w_\delta^{-2}$
+defines a smooth, timelike moving mirror, asymptotically at rest. The final
+affine intercept of $p_\delta$ may differ from the initial one. No globally
+$C^2$ excursion attains $T_*$ because \eqref{eq:optimizer} has jumps of $w''$;
+any duration strictly above $T_*$ is achievable by smoothing and dilation.
+
+\section{Peak flux and the size of an excursion}
+
+For equal caps $\mathcal F_+=\mathcal F_-=\mathcal F$, put $x=6S_{\max}/c$.
+Equation \eqref{eq:bound} becomes the sharp peak-flux inequality
+\begin{equation}
+ \boxed{\ \mathcal F\ge\frac{c}{3\pi T^2}h(x)^2,\qquad
+ h(x)=\frac12\arcosh(e^{2x})+\arctan\sqrt{\tanh x}.\ }
+ \label{eq:peak}
+\end{equation}
+The two terms are the acceleration and braking times of the quantum-piston
+solution \cite{Stefanatos}, after translating piston expansion into
+exponentiated conformal entropy. In particular,
+\begin{align}
+ h(x)&=2\sqrt{x}+\tfrac1{15}x^{5/2}+O(x^{9/2}),&&x\downarrow0,\\
+ h(x)&=x+\tfrac12\log2+\tfrac\pi4+O(e^{-2x}),&&x\to\infty.
+\end{align}
+Thus small excursions require
+$\mathcal F_{\min}\sim8S_{\max}/(\pi T^2)$, whereas large excursions have
+$\mathcal F_{\min}\sim12S_{\max}^2/(\pi cT^2)$.
+The change from linear to quadratic dependence distinguishes a finite peak
+constraint from merely bounding total emitted energy.
+
+As a nonoptimal comparison, take $S=(c/6)x\sin^2(\pi u/T)$ on $[0,T]$,
+with constant continuation. Its flux is
+\begin{equation}
+ \frac{F}{K}=\frac{\pi^2}{T^2}
+ \left[2x\cos(2\pi u/T)+x^2\sin^2(2\pi u/T)\right].
+\end{equation}
+Its largest absolute flux, divided by the optimum \eqref{eq:peak}, is
+\begin{equation}
+ \frac{\mathcal F_{\sin^2}}{\mathcal F_{\min}}
+ =\frac{\pi^2}{4h(x)^2}
+ \begin{cases}2x,&0<x\le1,\\x^2+1,&x\ge1.\end{cases}
+ \label{eq:sin}
+\end{equation}
+The ratio tends to $\pi^2/8$ for small excursions and $\pi^2/4$ for large
+ones. This comparison concerns peak flux; it is different from the
+integrated-energy sinusoidal comparison in Ref.~\cite{KD}.
+
+Unequal caps expose two complementary obstructions:
+\begin{equation}
+ \lim_{b\to\infty}\mathcal T=\frac{2\arcosh R}{a},\qquad
+ \lim_{a\to\infty}\mathcal T=\frac{2\arccos(1/R)}{b}.
+ \label{eq:limits}
+\end{equation}
+At fixed positive cap, vanishing negative cap sends the duration to infinity.
+At fixed negative cap, allowing arbitrarily intense positive pulses leaves
+a nonzero braking time. The one-sided limits admit impulses of the unconstrained
+sign and should be interpreted as limits, not finite-cap optimizers.
+
+\section{A diagnostic for QNEC nonsaturation}
+
+For a state and null deformation obeying the strengthened two-dimensional
+quantum null energy condition (QNEC), write
+\begin{equation}
+ F=F_S+\Delta_Q,\qquad
+ F_S=\frac1{2\pi}\left(S''+\frac6c S'^2\right),\qquad
+ 0\le\Delta_Q\le D.
+ \label{eq:gap}
+\end{equation}
+Here the condition must hold for the same entropy $S$ used above, for example
+in a half-line limit where the reference entropy has vanishing deformation
+derivatives. Generic finite-interval vacuum subtraction cannot be inserted
+into this nonlinear condition without justification.
+Saturation and nonsaturation of this condition distinguish physically different
+classes of two-dimensional states \cite{Ecker}. With the same entropy
+boundary conditions and measured flux caps, \eqref{eq:gap} implies
+\begin{equation}
+ -(\mathcal F_-+D)\le F_S\le\mathcal F_+.
+\end{equation}
+The mathematical proposition therefore gives the necessary condition
+\begin{equation}
+ T\ge\mathcal T\left(\sqrt{\mathcal F_+/K},
+                     \sqrt{(\mathcal F_-+D)/K};R\right).
+ \label{eq:gapbound}
+\end{equation}
+For fixed $a,R$, $\mathcal T(a,b;R)$ is strictly decreasing in $b$:
+in \eqref{eq:envelope} the braking envelope increases on a nonempty interval.
+If
+$2\arcosh(R)/a<T<\mathcal T(a,\sqrt{\mathcal F_-/K};R)$,
+there is a unique $b_{\rm crit}>\sqrt{\mathcal F_-/K}$ solving
+$\mathcal T(a,b_{\rm crit};R)=T$. Consequently
+\begin{equation}
+ \esssup\Delta_Q\ \ge\ Kb_{\rm crit}^{2}-\mathcal F_->0.
+ \label{eq:witness}
+\end{equation}
+An excursion at or below the positive-cap floor $2\arcosh(R)/a$ is incompatible
+with a regular profile under these assumptions: equality would require an
+instantaneous reversal of nonzero $w'$ at the maximum. For durations at or above the zero-gap bound this
+diagnostic supplies no positive lower bound. Equation \eqref{eq:witness} is
+a necessary witness, not a claim that every pair $(S,F)$ obeying QNEC is
+realized by a quantum state, nor a claim of sharpness in the nonsaturating sector.
+For a smooth profile a positive threshold in \eqref{eq:witness} is a strict
+inequality, since equality would force \eqref{eq:optimizer}.
+
+The diagnostic becomes strong near the positive-cap floor
+$T_{\rm f}=2\arcosh(R)/a$. Expanding \eqref{eq:bound} at large $b$ gives
+\begin{equation}
+ \mathcal T=T_{\rm f}+\frac{a\sqrt{1-R^{-2}}}{b^2}+O(b^{-4}),\qquad
+ D_{\rm crit}\sim\frac{Ka\sqrt{1-R^{-2}}}{T-T_{\rm f}}.
+ \label{eq:divergence}
+\end{equation}
+For example, $R=e$ and $\mathcal F_+=\mathcal F_-=K$ give
+$T_{\rm f}=3.314909$ and a zero-gap duration $4.123581$. An excursion of
+duration $3.5$ requires $D\ge3.853457K$. This is a conditional diagnostic,
+not an example of a constructed nonsaturating state.
+
+\section{Scope and interpretation}
+
+The result supplies a benchmark for conformal-vacuum Page-like pulses with
+finite stress: it fixes the optimal duration, the switch locations, and the
+minimum peak magnitude. Its possible use beyond that sector is the conditional
+QNEC-gap diagnostic. The formulas refer to the same affine null coordinate
+throughout. Under $\widetilde u=\lambda u$,
+$\widetilde T=\lambda T$ and $\widetilde{\mathcal F}_{\pm}=
+\mathcal F_{\pm}/\lambda^2$, so the bound is covariant under this rescaling.
+
+The flux caps are assumptions on expectation values and do not follow from
+quantum energy inequalities, which constrain smeared energy \cite{FH}.
+Neither entropy undershoots below the endpoint value nor thermal backgrounds
+are covered. The constructed mirror is a prescribed boundary, not a solution
+of gravitational backreaction. In particular, an island formula for black-hole
+entropy cannot simply be substituted into \eqref{eq:BS}. These restrictions
+leave a concrete CFT optimization and diagnostic; they do not establish a
+universal evaporation-time bound.
+
+\begin{thebibliography}{9}
+\bibitem{BS} E.~Bianchi and M.~Smerlak,
+``Entanglement entropy and negative energy in two dimensions,''
+Phys. Rev. D \textbf{90}, 041904 (2014),
+\href{https://arxiv.org/abs/1404.0602}{arXiv:1404.0602}.
+\bibitem{KD} S.~Karmoudi and M.~Daoud,
+``Sharp null-energy lower bounds for Page-like entropy excursions in
+two-dimensional conformal field theory,''
+\href{https://arxiv.org/abs/2610.03576v2}{arXiv:2610.03576v2} (2026).
+\bibitem{AP} S.~Abdolrahimi and D.~N.~Page,
+``Hawking radiation energy and entropy from a Bianchi--Smerlak semiclassical
+black hole,'' Phys. Rev. D \textbf{92}, 083005 (2015),
+\href{https://arxiv.org/abs/1506.01018}{arXiv:1506.01018}.
+\bibitem{Stefanatos} D.~Stefanatos,
+``Optimal shortcuts to adiabaticity for a quantum piston,''
+Automatica \textbf{49}, 3079--3083 (2013),
+\href{https://arxiv.org/abs/1301.5137}{arXiv:1301.5137}.
+\bibitem{TW} E.~Teo and K.~F.~Wong,
+``Quantum interest in two dimensions,'' Phys. Rev. D \textbf{66}, 064007 (2002),
+\href{https://arxiv.org/abs/gr-qc/0206066}{arXiv:gr-qc/0206066}.
+\bibitem{Ecker} C.~Ecker, D.~Grumiller, W.~van der Schee,
+M.~M.~Sheikh-Jabbari, and P.~Stanzer,
+``Quantum null energy condition and its (non)saturation in 2d CFTs,''
+SciPost Phys. \textbf{6}, 036 (2019),
+\href{https://arxiv.org/abs/1901.04499}{arXiv:1901.04499}.
+\bibitem{FH} C.~J.~Fewster and S.~Hollands,
+``Quantum energy inequalities in two-dimensional conformal field theory,''
+Rev. Math. Phys. \textbf{17}, 577--612 (2005),
+\href{https://arxiv.org/abs/math-ph/0412028}{arXiv:math-ph/0412028}.
+\end{thebibliography}
+\end{document}

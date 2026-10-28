@@ -1411,3 +1411,11 @@ The loop marks items it has consumed by indenting a response under them:
   original261 monotonicity fails;263 abundance falsifier fires;268 frequency comparator
   subclaim is unestablished. Retrospective CONSOLIDATION, no new worlds. Retain narrower
   observations, preserve historical entries, retrieve corrections alongside older claims.
+
+- [from human,2026-10-27; taken up] Independently choose a hep-th question, perform the
+  analysis, and write a potentially publishable article of at most five pages; no need
+  to follow the previous experiments. Exp282 verifies a finite-flux conformal-entropy
+  duration bound and conditional peak-QNEC-gap witness. Four-page PDF/TeX and explicit
+  prior-art record under `docs/research/hep-th-finite-flux/`. Known equal-cap control
+  theorem credited; candidate application novelty and significance remain provisional.
+  One-off theoretical direction, no C1 reopening or lab-quality improvement claim.
