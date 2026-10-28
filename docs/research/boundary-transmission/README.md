@@ -5,6 +5,12 @@ PDF: `output/pdf/boundary-transmission/trait-growth-selection.pdf` from the repo
 The author field is intentionally empty; supply the human authorship and a public
 repository/release URL before submitting. No submission has been made.
 
+The [Lean supplement](lean/README.md) now provides checked proofs of the exact
+Gaussian formula, boundary innovation, and Price accounting, with pinned
+dependencies and an axiom audit. The open `.tex` references it and makes the
+nonempty-census and positive-scale assumptions explicit. The earlier standalone
+PDF has not been regenerated; the document editor previews the current source.
+
 ## Question and result
 
 Can a bounded heritable capability grow from zero while its realized selection

@@ -1,0 +1,5 @@
+Lean 4.19.0 / mathlib v4.19.0
+lake build: PASS
+Axiom audit passed for 47 theorem declarations (including generated helpers); only propext, Classical.choice, Quot.sound allowed.
+Negative audit controls: extra local axiom rejected; admitted proof (sorryAx) rejected.
+No theorem proves empirical outcomes or Python implementation correctness.

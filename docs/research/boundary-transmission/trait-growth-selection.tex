@@ -35,7 +35,7 @@ Our contribution is a reproducible audit of a particular costed-capability exper
 \newpage
 \section{Boundary drift and exact lineage accounting}
 \subsection{The mutation operator is not mean-preserving near a boundary}
-Let an offspring value be
+For $L\le U$ and $\sigma>0$, let an offspring value be
 \begin{equation}
  h'=\min\{U,\max\{L,h+\sigma Z\}\},\qquad Z\sim\mathcal N(0,1).
 \end{equation}
@@ -50,7 +50,7 @@ The interior contribution is $\sigma\int_a^b z\phi(z)\,dz=\sigma[\phi(a)-\phi(b)
 More generally, let an offspring trait $X\in[0,U]$ descend from $h=0$. If $\Pr(X>0)>0$, then $\E[X]>0$: a nonnegative random variable has zero expectation only if it is zero almost surely. Consequently, reflection, rejection, or another bounded mutation rule cannot simultaneously preserve the mean at zero and permit positive innovation there. This elementary observation argues for measuring transmission, rather than searching for a boundary convention that removes this distinction.
 
 \subsection{A census-to-census Price ledger}
-At step $t$, let $P_t$ contain $N_t>0$ individuals with traits $h_i$. For each $j\in P_{t+1}$, let $a(j)\in P_t$ be its ancestor: itself if it survived, or its recorded parent if it was born. Define
+At step $t$, let $P_t$ contain $N_t>0$ individuals with traits $h_i$, and assume $N_{t+1}>0$. For each $j\in P_{t+1}$, let $a(j)\in P_t$ be its ancestor: itself if it survived, or its recorded parent if it was born. Define
 \begin{align}
  S_t&=\frac{1}{N_{t+1}}\sum_{j\in P_{t+1}} h_{a(j)}-\bar h_t,\label{eq:selection}\\
  T_t&=\frac{1}{N_{t+1}}\sum_{j\in P_{t+1}}(h_j-h_{a(j)}).\label{eq:transmission}
@@ -155,6 +155,7 @@ For future experiments, report the endpoint together with cumulative $S$, cumula
 The present scope is deliberately limited: one trait, one simulator, one mutation scale, and a finite horizon. The architecture, cost function, policy, and sensor are provided; this is not evidence for open-ended complexity or spontaneously designed organs. The ledger is descriptive, and a negative $S$ does not by itself establish a direct harmful effect of $h$. We do not regrade previous thermal treatment contrasts or claim that mutation explains every earlier ceiling. The failed primary prediction, the newborn sensitivity, and the thermal accounting contrast have different evidential status. The contribution is a checked empirical case and reusable instrument; novelty beyond that methodological application remains modest.
 
 \paragraph{Reproducibility.}
+The accompanying \texttt{lean/} project proves the Gaussian formula, boundary-innovation claim, and finite-census Price identities in Lean~4/mathlib. Its axiom audit excludes admitted proofs; simulation outcomes and numerical approximations remain outside the formal proof.
 The development repository, \href{https://github.com/Mirrorad1/active_monkey}{\texttt{Mirrorad1/active\_monkey}}, identifies this study as Experiment~283. Its companion files contain the observer, the runner listed below, full per-step ledgers, all seeds, source hashes, and excluded pilot records. A post-run safeguard prevents overwriting existing evidence. An identical-seed rerun after this output-only change matched all $144{,}000$ numerical rows and all $48$ event hashes exactly; it is a reproducibility check, not a fresh confirmation. Both runs are retained. To reproduce into a new prefix, run from the repository root:\par
 \noindent\small\texttt{uv run --python .venv python \textbackslash}\par
 \noindent\small\texttt{experiments/exp283\_boundary\_transmission.py \textbackslash}\par
