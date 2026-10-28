@@ -18,7 +18,7 @@ window.AM_CHAPTERS = [
   { id:"growth",     act:"VI",  label:"Growth",     question:"Can it notice its worldview is too small?", color:"wall" }
 ];
 
-window.AM_TALLY = { total:279, breakthrough:9, positive:122, wall:66, partial:82, from:4.81, to:4.00 };
+window.AM_TALLY = { total:280, breakthrough:9, positive:122, wall:67, partial:82, from:4.81, to:4.00 };
 
 /* Hero surprise series — logged readings from EXPERIMENTS.md only.
    Exp 1 (held-out English corpus): uniform 4.81 → learned 4.00 bits/char.
@@ -2992,7 +2992,17 @@ window.AM_EXPERIMENTS = [
     result:"Mean csel joint 0.500 vs idle 0.167 and chronology 0.083; paired gains 1/3 and 5/12, positive in 14/16 and 15/16 respectively. Both mean >=1/6 and count >=12/16 gates pass; instrument checks pass. Only 9/16 seeds reach half-correct. Blinded raw-data verifier agrees.",
     implication:"POSITIVE-SINGLE / NEW INSIGHT: parameter-level evidence for a provided global refitter on a stationary toy mapping. Both levels of the sleep framework are implemented; improved lab research quality is not established.",
     caveat:"Toy stationary dyad; provided scaffold and optimizer.",
-    trace:{ script:"experiments/exp279_sleep_replay.py", output:"experiments/outputs/exp279.txt" } }
+    trace:{ script:"experiments/exp279_sleep_replay.py", output:"experiments/outputs/exp279.txt" } },
+  { n:280, kind:"wall", chapter:"frontier",
+    title:"Sleep retention passes narrowly, but revision and comparative benefit fail",
+    one:"The stricter C1 screen is negative; the stationary gain does not establish retained, revisable knowledge.",
+    plain:"Can replay preserve earlier learning while updating answers after the world changes? It preserved unchanged answers on average, but learned the changed answers too weakly and offered little advantage over ordinary learning or stronger replay.",
+    metric:{ from:0.385416667, to:0.40625, unit:"current-world correct-select: idle vs joint" },
+    setup:"16 fresh seeds,100 initial encounters plus common consolidation,100 continued encounters with half the codes remapped. All refits use200 unique encounters and the original anchor. Joint20 compared with idle, restarted chronology and stronger sequential responsibility refresh; fixed read-only evaluation. No seed exclusions.",
+    result:"NEGATIVE. Acquisition .4375<.5. Unchanged retention mean gap0 with13/16 no loss passes. Changed-answer gain1/12<1/3, positive5/16 fails. Current-world joint .40625 vs idle/incremental .385416667 each; gain1/48<1/6, positive4/16 and3/16 fails. All instruments pass; blinded verifier agrees.",
+    implication:"Retention alone does not meet C1. No license to advance toward ecological sleep; weak acquisition and model nonstationarity remain candidate explanations rather than isolated causes. The lab retains this negative boundary.",
+    caveat:"Toy partial world change; provided learner, optimizer and schedule.",
+    trace:{ script:"experiments/exp280_sleep_retention.py", output:"experiments/outputs/exp280.txt" } }
 ];
 
 /* Narrative beats that sit BETWEEN experiments on the timeline. */

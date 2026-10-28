@@ -35,8 +35,9 @@ inherit capacity/priors, not a parent's acquired beliefs, absent a separately na
 with the same source fidelity as a positive. Lab-instrument correctness, creature-learning
 benefit, and evolved sleep are independently evaluated. No extrapolation between those claims.
 
-**STATUS.** state: active · latest: Exp 279 C0 POSITIVE-SINGLE / NEW INSIGHT (both
-mean/count gates pass; joint csel .500 vs idle .167/chronology .083; 9/16 reach half-correct)
-· reusable: `meta_monkey.sleep`, `active_loop.sleep_replay`, `experiment_bundles/exp279`
-· next-falsifiable: C1 needs a fresh declared retention/interference/revision comparison.
-L0 source fidelity/integration exercised; L1 research-quality benefit and C2/C3 ecology untested.
+**STATUS.** state: halted (C1 negative; named changed lever required before another rung)
+· latest: Exp 280 NEGATIVE / NEW INSIGHT — retention passes, acquisition/revision/comparative gates fail
+· reusable: `meta_monkey.sleep`, `active_loop.sleep_replay`, `experiment_bundles/exp279`, `experiment_bundles/exp280`
+· next-falsifiable: a separately declared acquisition or nonstationarity repair; no automatic C2/C3 advancement.
+C0 stationary gain remains bounded; L0 source fidelity/integration exercised. C1 full claim failed;
+L1 research-quality benefit and C2/C3 ecology untested. Any repair preserves the negative record.

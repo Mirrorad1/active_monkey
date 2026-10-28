@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_type": "experiment_bundle",
+  "experiment_id": "exp280",
+  "direction": "recursive-sleep",
+  "question": "Does joint offline replay retain unchanged knowledge and revise changed associations beyond idle and stronger sequential replay?",
+  "hypothesis": "All preregistered acquisition, retention, revision and both comparative effect/count gates pass.",
+  "status": "completed",
+  "verdict": "NEGATIVE",
+  "repo_commit": "2c8e39b236d681624dd02eb168de16bfe6d9b892",
+  "created_at": "2026-10-27",
+  "confidence": "high",
+  "backfill_level": "trajectory_bundle",
+  "source_files": [
+    "experiments/exp280_sleep_retention.py",
+    "experiments/exp279_sleep_replay.py",
+    "active_loop/sleep_replay.py"
+  ],
+  "raw_data_refs": [
+    "experiments/outputs/exp280.txt",
+    "experiments/outputs/exp280.json"
+  ],
+  "metrics_refs": [
+    "experiments/outputs/exp280_audit.md",
+    "experiments/outputs/exp280_verification.md",
+    "experiments/outputs/exp280_review.md"
+  ],
+  "state_refs": [
+    "experiments/outputs/exp280_checkpoints"
+  ],
+  "mechanism_refs": [],
+  "geometry_refs": [],
+  "scorer_refs": [],
+  "reproduction_command": "uv run --python .venv python experiments/exp280_sleep_retention.py --smoke --out experiments/outputs/exp280_repro_smoke.txt; then same runner --preflight experiments/outputs/exp280_repro_smoke.json --out experiments/outputs/exp280_repro.txt. Fresh paths required.",
+  "caveats": [
+    "repo_commit initially denotes helper/preregistration base; the enclosing atomic experiment commit and six raw source_hashes pin executed sources.",
+    "Negative C1 despite retention pass; weak acquisition limits retention interpretation.",
+    "Shared donor and read-only evaluation do not establish later online-life benefit; one optimizer/history/schedule.",
+    "No ecology/inheritance/evolved sleep or improved research quality demonstrated."
+  ]
+}

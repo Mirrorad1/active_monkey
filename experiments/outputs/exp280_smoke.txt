@@ -1,0 +1,12 @@
+Exp280: sleep retention and revision
+Smoke: True
+Elapsed seconds: 46.681554; peak RSS MB: 2375.516160
+seed 9399 instruments={'mass': True, 'phase': True, 'checkpoints': True, 'state': True, 'evaluation': True, 'objective': True}
+  s0: {"current_all": 0.3333333333333333, "expected_pos": 0.33333526018817744, "new_changed": 0.3333333333333333, "old_all": 0.3333333333333333, "sampled_pos": 0.3333333333333333, "unchanged": 0.3333333333333333}
+  idle: {"current_all": 0.6666666666666666, "expected_pos": 0.6362745837818657, "new_changed": 0.6666666666666666, "old_all": 0.5, "sampled_pos": 0.6166666666666667, "unchanged": 0.6666666666666666}
+  joint20: {"current_all": 0.6666666666666666, "expected_pos": 0.6530096034921636, "new_changed": 0.6666666666666666, "old_all": 0.5, "sampled_pos": 0.65, "unchanged": 0.6666666666666666}
+  chronological20: {"current_all": 0.3333333333333333, "expected_pos": 0.33333305251702866, "new_changed": 0.3333333333333333, "old_all": 0.16666666666666666, "sampled_pos": 0.3333333333333333, "unchanged": 0.3333333333333333}
+  incremental20: {"current_all": 0.6666666666666666, "expected_pos": 0.6502126654954644, "new_changed": 0.6666666666666666, "old_all": 0.5, "sampled_pos": 0.65, "unchanged": 0.6666666666666666}
+  constant: {"current_all": 0.3333333333333333, "expected_pos": 0.3333333333333333, "new_changed": 0.3333333333333333, "old_all": 0.3333333333333333, "sampled_pos": 0.3333333333333333, "unchanged": 0.3333333333333333}
+Predeclared decision: {"n": 1, "verdict": "SMOKE_ONLY"}
+Raw: experiments/outputs/exp280_smoke.json

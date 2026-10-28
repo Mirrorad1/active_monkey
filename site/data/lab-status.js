@@ -1,15 +1,15 @@
 /* GENERATED — do not hand-edit. Regenerate: uv run --python .venv python -m active_loop.site_data --lab-status */
 window.AM_LAB_STATUS = {
-  latest_exp: { n: 279, title: "recursive sleep C0: once-weighted joint refitting improves short-session toy discrimination beyond idle and chronological reprocessing", tag: "POSITIVE" },
-  tally: { total: 279, positive: 143, negative: 94, mixed: 38, breakthroughs: 15 },
+  latest_exp: { n: 280, title: "recursive sleep C1 retention/revision screen fails: unchanged-code retention passes, but acquisition, revision and both comparative gates fail", tag: "NEGATIVE" },
+  tally: { total: 280, positive: 143, negative: 95, mixed: 38, breakthroughs: 15 },
   directions: [
     { name: "acoustic-ecology", state: "active", latest: "Exp 268 (pending)", next: "does gifted hearing measurably help AND beat shuffled/silent controls without leaking position/identity (Exp 268)?" },
     { name: "active-monkey-mechanisms", state: "active", latest: "suite scaffold", next: "run suite as a numbered Loop B experiment with raw output and append-only verdict" },
     { name: "environmental-complexity", state: "active", latest: "Exp 237 (MIXED — food-gradient PERCEPTION solves reach+survive (plateau intake 1%->62%); but climb_ability does NOT evolve: flat monomorphic benefit + invasion_from_rarity DOES_NOT_INVADE; the pairwise PASS is frequency-dependence, a caught false-positive; blind-verified)", next: "distil to coalescence cards, then CLOSE (gridworld answered) or — on a human word — a continuous-space mover." },
-    { name: "recursive-sleep", state: "active", latest: "Exp 279 C0 POSITIVE-SINGLE / NEW INSIGHT (both mean/count gates pass; joint csel .500 vs idle .167/chronology .083; 9/16 reach half-correct)", next: "C1 needs a fresh declared retention/interference/revision comparison." },
     { name: "red-team", state: "active", latest: "TBD-human", next: "pick 3 strongest claims (Exp 20/26/34 candidates) and run the trivial baseline each lacked (random policy, shuffled history, shuffled labels)" },
     { name: "meta-calibration-n3", state: "halted (K chapter closed, fully graded; next move awaits a word)", latest: "Exp 173", next: "on a word — synthesis fold-in then N4 / M4a-1c / nira switch / cloud merge, or a named crack" },
     { name: "n4-crack-edges", state: "halted (PAUSED on human's word after Exp 193; CONSULT in loop/IDEAS.md)", latest: "Exp 193 — position null; locality re-named stream composition; falsifier fires vacuous", next: "ON A WORD — (a) quiet-chamber stream intervention [RECOMMENDED]; (b) stream-conditioned scoring; (c) accept + rung 2; (d) redirect" },
+    { name: "recursive-sleep", state: "halted (C1 negative; named changed lever required before another rung)", latest: "Exp 280 NEGATIVE / NEW INSIGHT — retention passes, acquisition/revision/comparative gates fail", next: "a separately declared acquisition or nonstationarity repair; no automatic C2/C3 advancement." },
     { name: "continuous-creature", state: "flagship-candidate", latest: "Exp 154", next: "full-scale worldview bench under predeclared bars.json (experiments/bench_worldview/), and the standing consult on applying the normalized-predictive switch to nira" },
     { name: "emergent-communication", state: "exploratory (drafted 2026-07-08, not yet run)", latest: "none", next: "rung 1 — a stigmergic/solo baseline fails AND a gifted-oracle signaller beats it, in a moving-resource referential game (else CAN'T-POSE)." },
     { name: "functional-emergence", state: "exploratory", latest: "TBD-human", next: "build and validate surprise-ledger instrument on baseline epoch and planted-anomaly control" },

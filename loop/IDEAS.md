@@ -1395,3 +1395,8 @@ The loop marks items it has consumed by indenting a response under them:
   and C0 once-weighted replay; Exp 279 POSITIVE-SINGLE with narrow stationary-toy scope.
   C1 retention/revision requires a fresh predeclaration; C2/C3 ecology and L1 lab-quality
   benefit remain untested. See `loop/directions/recursive-sleep.md` and approved design.
+
+  -> [2026-10-27 continuation] Exp280 tests C1 on fresh seeds after partial world change.
+  NEGATIVE: retention passes, acquisition/revision/comparative gates fail. No automatic
+  ecology escalation; named changed lever required to reopen C1. Source-linked negative
+  brief is retained at lab level; better research quality remains untested.

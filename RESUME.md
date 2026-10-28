@@ -584,6 +584,22 @@ Raw events/policies/receipts/source hashes and all checkpoints are retained in
 The executed source is pinned by its raw SHA hashes and atomic experiment commit. A disclosed
 runtime projection metadata bug does not affect the pre-run gate or scientific result.
 
+### 3d. Sleep C1 continuation (2026-10-27, Exp 280)
+
+C1 is NEGATIVE / NEW INSIGHT, blind-verified. Fresh16-seed cohort,100 encounters plus
+common consolidation, then100 more with half the mappings changed. All refits use original
+anchor and200 unique events; stronger incremental responsibility-refresh baseline added.
+Initial acquisition .4375<.5. Unchanged-code retention passes (mean0 loss,13/16 no loss),
+but changed-answer gain1/12<1/3 (positive5/16) and current-world advantage over each
+idle/incremental is only1/48<1/6 (positive4/16,3/16). Current scores joint .40625 vs both .385416667.
+All instruments pass; all176 state hashes and64 fitted mass calculations independently checked.
+No persistent spine changes. Raw and script are committed atomically with log/site.
+
+Direction HALTED at C1: named changed lever and a fresh predeclaration required for any repair.
+C0's stationary gain remains narrowly valid; retained/revisable knowledge and subsequent online
+benefit are not established. C2/C3 ecology/inheritance and L1 prospective lab-quality are unrun.
+The reviewed Exp280 lab brief retains the failure; older reviewed briefs remain source-valid.
+
 ## 4. The two loops (IMPORTANT — don't confuse them)
 
 This repo contains **two different "loops."** "Continue the moonshot" means loop B.
