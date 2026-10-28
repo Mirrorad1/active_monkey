@@ -71,7 +71,7 @@ def load_card(kind: str, name: str) -> str:
     return path.read_text().strip()
 
 
-def compose(direction: str, persona: str, idea: str | None) -> str:
+def compose(direction: str, persona: str, idea: str | None, sleep_cycle: str | None = None) -> str:
     premise = (LOOP_DIR / "PREMISE.md").read_text().strip()
     parts = [
         "/loop Keep running the moonshot active-inference experiments until I stop you.",
@@ -125,6 +125,11 @@ def compose(direction: str, persona: str, idea: str | None) -> str:
         " reusable insight, institutionalize a durable guard (test / loop-module rule / skill"
         " via /claudeception) — don't just patch the instance.",
     ]
+    if sleep_cycle is not None:
+        # Lazy import preserves the stdlib-only default compose path.
+        from meta_monkey.sleep import load_reviewed_brief
+        parts += ["", "=== ADVISORY SLEEP BRIEF ===",
+                  load_reviewed_brief(LOOP_DIR.parent, Path(sleep_cycle))]
     return "\n".join(parts)
 
 
@@ -140,6 +145,7 @@ def main() -> None:
     )
     ap.add_argument("--persona", default="default", help="persona card name")
     ap.add_argument("--idea", default=None, help="one-off human idea to inject")
+    ap.add_argument("--sleep-cycle", default=None, help="reviewed meta/sleep cycle to attach")
     ap.add_argument("--list", action="store_true", help="list available modules")
     args = ap.parse_args()
 
@@ -159,7 +165,10 @@ def main() -> None:
             + NEW_DIRECTION_HINT
         )
     direction = resolve_direction(requested)
-    print(compose(direction, args.persona, args.idea))
+    try:
+        print(compose(direction, args.persona, args.idea, args.sleep_cycle))
+    except (OSError, ValueError) as exc:
+        sys.exit(f"error: {exc}")
 
 
 if __name__ == "__main__":
