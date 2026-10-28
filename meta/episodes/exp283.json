@@ -1,0 +1,44 @@
+{
+  "artifacts": {
+    "output_exists": true,
+    "output_path": "experiments/outputs/exp283.txt",
+    "script_exists": true,
+    "script_path": "experiments/exp283_analyze.py",
+    "site_data_references_output": true,
+    "site_data_references_script": false
+  },
+  "checks": {
+    "hard_failures": [],
+    "passed": true,
+    "warnings": [
+      "number \"1/16\" quoted in entry not found in experiments/outputs/exp283.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"34.832755\" quoted in entry not found in experiments/outputs/exp283.txt (derived numbers are fine \u2014 confirm it is derived, not stale)",
+      "number \"35.608310\" quoted in entry not found in experiments/outputs/exp283.txt (derived numbers are fine \u2014 confirm it is derived, not stale)"
+    ]
+  },
+  "collected_at_utc": "2026-10-28T03:34:20Z",
+  "commit_sha": "72be47202e87298adc9e4d514fcf57336060c0b2",
+  "entry": {
+    "claimed_verdict": "NEGATIVE",
+    "entry_exists": true,
+    "has_honest_caveat": true,
+    "has_plain": true,
+    "has_verdict": true,
+    "has_verifier": true,
+    "insight_tag": "BOTH",
+    "verifier_status": "agree"
+  },
+  "exp": 283,
+  "future_policy_hint": "audit quoted numbers and derived values before reuse",
+  "process": {
+    "likely_risks": [
+      "check_iteration_warning",
+      "site_data_missing_script_reference"
+    ],
+    "notes": [
+      "script docstring lacks hypothesis/prediction/falsifier predeclaration terms"
+    ],
+    "process_failure": false
+  },
+  "schema_version": 1
+}
