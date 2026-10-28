@@ -63,7 +63,7 @@ class ReplayModel:
 def _validate(anchor, start, events, passes, decay, learning_rate, mode):
     if (type(passes) is not int or passes < 0 or not np.isfinite(decay) or not 0 < decay <= 1 or
         not np.isfinite(learning_rate) or learning_rate <= 0 or
-        mode not in ('joint', 'chronological')):
+        mode not in ('joint', 'chronological', 'incremental')):
         raise ValueError('invalid replay configuration')
     if anchor.a0.shape != start.a0.shape or anchor.a1.shape != start.a1.shape:
         raise ValueError('anchor/start dimensions differ')
@@ -112,8 +112,10 @@ def refit(anchor, start, events, *, passes=20, mode='joint', decay=.999, learnin
     """Re-estimate assignments; never accumulate replay passes as independent observations.
 
     Anchor is the immutable checkpoint BEFORE the recorded window. Start is the model after
-    wake (used to initialize joint inference). The chronological control deliberately repeats
-    identical, restarted passes; its redundant passes match posterior-evaluation work.
+    wake (used to initialize joint and incremental inference). The chronological control
+    deliberately repeats identical, restarted passes. Incremental inference starts with one
+    joint E/M step, then sequentially refreshes cached assignments using the latest model.
+    Each refresh replaces its event's old weighted contribution; it adds no new evidence.
     """
     events = tuple(events)
     _validate(anchor, start, events, passes, decay, learning_rate, mode)
@@ -121,14 +123,25 @@ def refit(anchor, start, events, *, passes=20, mode='joint', decay=.999, learnin
     horizon, weights = _weights(events, decay, learning_rate)
     values = [objective(fitted, anchor, events, decay, learning_rate)]
     if events:
-        for _ in range(passes):
-            if mode == 'joint':
+        for pass_index in range(passes):
+            if mode == 'joint' or (mode == 'incremental' and pass_index == 0):
                 q, _ = _posterior(fitted, events)
                 p0, p1 = anchor.p0 * decay ** horizon, anchor.p1 * decay ** horizon
                 for event, responsibility, weight in zip(events, q, weights):
                     p0[event.code, :, event.response] += weight * responsibility
                     p1[event.outcome, :, event.response] += weight * responsibility
                 fitted = _counts_model(p0, p1, anchor.prior)
+                if mode == 'incremental':
+                    cached_q = q.copy()
+            elif mode == 'incremental':
+                p0, p1 = fitted.p0.copy(), fitted.p1.copy()
+                for index, (event, weight) in enumerate(zip(events, weights)):
+                    q, _ = _posterior(fitted, (event,))
+                    delta = weight * (q[0] - cached_q[index])
+                    p0[event.code, :, event.response] += delta
+                    p1[event.outcome, :, event.response] += delta
+                    cached_q[index] = q[0]
+                    fitted = _counts_model(p0, p1, anchor.prior)
             else:
                 fitted, previous_t = anchor.copy(), -1
                 for event in events:
