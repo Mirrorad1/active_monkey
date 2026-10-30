@@ -1,7 +1,8 @@
 # A small local world model with selective replay
 
 Status: implementation specification and proposed research protocol; unimplemented,
-unrun, 2026-10-30. The user requested a plan for later subagent dispatch. This document
+unrun, 2026-10-30. Updated after the user's storage and observatory mockup requests.
+The user requested a plan for later subagent dispatch. This document
 does not authorize an unattended campaign or report a scientific result.
 
 ## Question and scope
@@ -156,7 +157,82 @@ next free experiment number at execution time, not in this planning document.
 A local training command; a resume command; saved model/checkpoint and configuration;
 raw per-probe probabilities and targets; learning curves; per-seed comparison; an
 honest result. Implementation and results live under experiments/, with focused
-tests. No website/dashboard or extra model family is needed for the first study.
+tests. The requested local observatory below is part of delivery. It observes the
+same experiment; it does not introduce another model family or change its rules.
+
+## Model files and complete continuation state
+
+Use the existing safetensors dependency for model weights. Each immutable checkpoint
+directory contains:
+
+```text
+weights.safetensors    # named GRU/head tensors; no executable objects
+config.json            # architecture, encodings, hyperparameters, schema version
+metadata.json          # code/data hashes, arm, seed, step, package versions
+optimizer.npz          # optimizer array leaves
+replay.npz             # retained clips, IDs, scores, tie keys, selector counters
+hidden-state.npz       # streaming recurrent state
+run-state.json         # stream cursor, update count, RNG/tree reconstruction schema
+rng-state.npz          # any RNG array leaves needed for exact continuation
+manifest.json          # required filenames, sizes, SHA-256 hashes, complete marker
+```
+
+Use explicit typed schemas and NumPy loads with allow_pickle=False. Validate schema,
+tensor names/shapes/dtypes, architecture and hashes before loading. Write into a
+temporary sibling directory, then atomically rename it into place after validation;
+never overwrite a checkpoint. A latest.json pointer may update atomically only
+after a complete checkpoint exists. Inference requires the matching model code,
+weights and config; loading weights alone does not resume training.
+
+Provide export_model(checkpoint_dir, export_dir) for a portable weights/config/
+metadata/manifest subset and load_model(export_dir) for inference. Test identical
+predictions after export/load, and identical subsequent CPU training after full
+checkpoint/resume. Report cross-device tolerance separately from exact CPU replay.
+Retain phase-boundary/final checkpoints and one rolling recovery checkpoint; do not
+save a full replay buffer at every UI refresh. Committed scientific outputs follow
+the repo's artifact rules. Keep development, confirmation and UI fixtures separate.
+
+## Local observatory
+
+Reference: docs/superpowers/mockups/recall-observatory.html. It is the approved-style
+interactive HTML fragment from this conversation, with illustrative data. Reuse its
+world-first layout, small isometric chamber, mint/teal palette, restrained inspector,
+memory tiles and comparison curves. The scene is an illustration of a sequence task,
+not a claim that the model learns navigation. Do not copy hard-coded measurements
+or the mockup's fabricated memory records into the real viewer.
+
+Build a small local browser UI with plain HTML/CSS/JavaScript and Python's standard
+library HTTP server, bound to 127.0.0.1. No new frontend framework, hosted service,
+API credentials, accounts, or network assets. Serve only UI assets and allowlisted
+artifacts beneath the selected experiments/outputs run directory. Reject traversal
+and paths escaping through symlinks. No arbitrary filesystem browser or execution
+endpoint. UI controls replay recorded events; they do not pause or modify training.
+
+Required interactions:
+
+- Select a run and replay arm; distinguish smoke/development/confirmation status.
+- Play/pause/step recorded encounters; scrub by training step and A/B/A phase.
+  Show the recorded cue/action/forecast and reveal the outcome at the correct time.
+- Inspect an actual retained clip and its recorded admission score/selection reason.
+- Compare measured per-arm Brier curves with labeled axes and missing-data states.
+- List completed checkpoints, export files and full-resume contents; display real
+  sizes/hashes and a copyable documented resume command. Never imply a save occurred
+  from merely opening this panel. Export itself remains a CLI operation initially.
+
+The runner writes schema-versioned telemetry.json by atomic replacement at most
+once per 512 transitions and at completion/error: run ID, stage, arm, seed, step,
+phase, status, latest completed encounter, recorded per-head forecasts with their
+prediction timestamps, sampled memory IDs/scores, measured curve points and completed
+checkpoint manifest paths. Bound telemetry size independently of the raw archive.
+Keep raw probabilities/targets for independent grading in separate scientific outputs.
+An observer may poll every two seconds without advancing the simulation/model RNG.
+
+Always label whether playback is live-tail, historical, incomplete or demo fixture.
+With no output, show 'No training run loaded'; with stale/partial output preserve the
+last valid sample and its timestamp. Never fall back to invented curves. Render the
+mockup's demo only when explicitly selected and retain its simulated-data badge.
+UI verification uses a known fixture plus an actual smoke artifact, checks keyboard
+controls, 320px/1024px layouts, and confirms repeated reads leave training state unchanged.
 
 ## Prior art and provenance
 

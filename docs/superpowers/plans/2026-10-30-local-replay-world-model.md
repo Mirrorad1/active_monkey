@@ -2,11 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Train and compare a small local recurrent predictor using three bounded replay selectors, with reproducible data and honest verification.
+**Goal:** Train and compare a small local recurrent predictor using three bounded replay selectors, save portable weights and resumable state, and observe recorded experience in a local UI.
 
-**Architecture:** A synthetic delayed-cue stream feeds an identical GRU and three prediction heads in every arm. Only replay admission differs. A local runner writes checkpoints and raw evaluation records; independent verification consumes the frozen criteria and raw data.
+**Architecture:** A synthetic delayed-cue stream feeds an identical GRU and three prediction heads in every arm. Only replay admission differs. A local runner writes checkpoints, raw evaluation records and read-only telemetry; an observatory displays those records. Independent verification consumes the frozen criteria and raw data.
 
-**Tech Stack:** Existing Python, JAX, Equinox, NumPy, pytest, Matplotlib; CPU reference execution; no LLM API calls in training.
+**Tech Stack:** Existing Python, JAX, Equinox, NumPy, safetensors, pytest, Matplotlib; plain local HTML/CSS/JavaScript; CPU reference execution; no LLM API calls in training.
 
 **Spec:** `docs/superpowers/specs/2026-10-30-local-replay-world-model.md` (read alongside this plan).
 
@@ -30,16 +30,23 @@
 
 ## Usage policy and dispatch order
 
-Use this chat as coordinator. Do not create separate user-visible chats. Default:
-**three worker launches total**, with at most two implementation workers concurrently.
+Use the implementing chat as coordinator. Do not create additional user-visible chats.
+Default: **three worker launches total**, with at most two implementation workers concurrently.
 Parallelism reduces elapsed time; it is not itself a token saving.
 
 | Role | Model / effort | Scope | Launch |
 |---|---|---|---|
 | Coordinator | Current lead; Sol Medium is a suitable future coordinator | Contracts, integration, pilot, runs, documentation | Existing chat |
-| Worker A | `gpt-6-luna`, high | Simulator, tape contract, replay selectors, focused tests | After Task 0 |
-| Worker B | `gpt-6.1-sol`, medium | GRU, training/checkpoints, metrics, runner, focused tests | After Task 0; parallel with A |
+| Worker A | `gpt-6-luna`, high | Simulator/replay first; then UI/server in one follow-up | After Task 0; UI after telemetry contract freezes |
+| Worker B | `gpt-6.1-sol`, medium | GRU, training/checkpoints/export, metrics, telemetry, runner | After Task 0; parallel with A |
 | Verifier C | `gpt-6-luna`, high | Independent recomputation from frozen criteria/raw output; read-only | After confirmation |
+
+**Lowest-overhead option (recommended for a Sol Medium implementation chat):** the
+lead implements Worker B's scope directly. Launch only Worker A and fresh Verifier C
+(two distinct subagents); reuse A for Task 2b. This reduces duplicated context at
+the cost of less parallelism. Keep the same focused tests and lead review of A.
+Do not spawn a second Sol just to coordinate another Sol. If Luna cannot complete
+the scoped UI after one repair, the lead finishes it; no automatic replacement swarm.
 
 Use `fork_turns="none"` and an explicit compact packet. Mandatory repository bootstrap
 still applies; do not inherit the whole conversation, old reports, or other agents'
@@ -133,7 +140,8 @@ remain coordinator-owned later. All paths below are relative to repository root.
 ## Task 2 — Worker B: neural predictor, training, evaluation
 
 **Files owned:** `experiments/local_replay/model.py`, `training.py`, `metrics.py`,
-`run.py`, `tests/test_local_replay_model.py`, `tests/test_local_replay_training.py`.
+`artifacts.py`, `telemetry.py`, `run.py`, `tests/test_local_replay_model.py`,
+`tests/test_local_replay_training.py`, `tests/test_local_replay_artifacts.py`.
 
 **Interfaces:** `init_model(seed: int) -> Model`;
 `predict(model: Model, clip: Clip) -> Predictions` (probabilities [3,32,2,6] for
@@ -160,12 +168,46 @@ locally in the owned modules; a model must not accept Audit or an environment ob
 - [ ] Implement train/resume/checkpoint and CLI stages `smoke`, `dev`, `confirm`.
   Test uninterrupted vs checkpoint/resume equality on CPU, including optimizer,
   selected IDs, predictions, RNGs, streaming state, and counters. No swallowed NaNs.
+- [ ] Implement the spec's exact safetensors/NPZ/JSON layout in artifacts.py,
+  including `export_model(checkpoint_dir: Path, export_dir: Path) -> Path` and
+  `load_model(export_dir: Path) -> Model`. Test prediction parity, corrupted hashes,
+  incompatible config, missing arrays, incomplete checkpoints and overwrite refusal.
+  Reconstruct optimizer/RNG structures using explicit schema; never pickle objects.
+- [ ] Freeze telemetry.json version 1 with the lead and Worker A before Task 2b.
+  Implement `write_telemetry(path: Path, snapshot: dict) -> None` with atomic writes,
+  bounded records and read-only snapshots. Serialize already-recorded predictions;
+  do not recompute later with changed weights and label them historical forecasts.
 - [ ] Add wall-time limits with checkpoint and an explicit incomplete marker.
   Write all outputs below the user-supplied experiments/ output directory. Refuse
   accidental overwrite. Hash config, sources, data, and versions. Refuse confirm
   without frozen config and disjoint development/confirmation seed namespaces.
-- [ ] Run `uv run --python .venv pytest tests/test_local_replay_model.py tests/test_local_replay_training.py -q`.
+- [ ] Run `uv run --python .venv pytest tests/test_local_replay_model.py tests/test_local_replay_training.py tests/test_local_replay_artifacts.py -q`.
   Return <=400 words plus commands/output. Training on final seeds is outside this task.
+
+## Task 2b — reuse Worker A: observation UI
+
+**Files owned:** `experiments/local_replay/ui/{index.html,app.js,styles.css}`,
+`experiments/local_replay/serve.py`, `tests/test_local_replay_viewer.py`, and explicitly
+labeled fixture files in `tests/fixtures/local_replay/`. No training/model edits.
+
+**Inputs:** frozen telemetry v1, checkpoint manifests, and the reference fragment
+`docs/superpowers/mockups/recall-observatory.html`. Treat its data as fictional.
+**Command:** `uv run --python .venv python -m experiments.local_replay.serve --run experiments/outputs/local_replay/smoke --port 8768`.
+
+- [ ] Write failing tests for telemetry reading, stale/partial output and rejection
+  of paths outside the selected run directory, including symlink escapes. Implement
+  a localhost-only server with read-only endpoints `/api/telemetry` and
+  `/api/checkpoints`; define the allowlist explicitly. Serve no arbitrary repo files.
+- [ ] Rebuild the mockup as standalone local assets without host-specific Tweak,
+  window.openai calls, CDN dependencies or synthetic production measurements.
+  Bind the world, inspector, playback, method selector, memory tiles, curves and
+  checkpoint panel to recorded data. Keep timestamps and observed-vs-predicted
+  distinctions visible. Empty/stale/incomplete data must remain honest.
+- [ ] Test repeated observation requests preserve model/RNG/state hashes. Verify
+  playback controls move through records without modifying the training stream.
+- [ ] Run `uv run --python .venv pytest tests/test_local_replay_viewer.py -q`;
+  inspect 320px and 1024px screenshots and exercise controls with the fixture and
+  actual smoke output. Return evidence and paths; do not run confirmation or grade it.
 
 ## Task 3 — coordinator: integration and bounded local runs
 
@@ -182,6 +224,9 @@ under `experiments/outputs/local_replay/`, and `experiments/outputs/expNN.txt`.
   `--resume CHECKPOINT` semantics and the exact seed/config manifest.
 - [ ] Run smoke; inspect output schema, finite loss, real parameter changes, and
   normalized probabilities. A pass is engineering evidence, not scientific support.
+- [ ] Check export/load parity and full resume, then open the observatory against
+  this smoke run. Deliver usable model files and a working viewer even if the
+  later scientific hypothesis fails. A working UI is not evidence for the method.
 - [ ] Run the two development seeds within 60 minutes at full horizon. Record
   first-phase learning and all failures. Estimate 24-run confirmation time from
   measured steady-state timings separately from compilation. Report the estimate
@@ -208,15 +253,17 @@ repository bootstrap. May use shell calculations but must not modify outputs/log
   config, compact checkpoints and log/site together. Use allowlisted paths only.
   Run `uv run --python .venv python loop/check_iteration.py` and required checks
   before committing; then collect passive process memory per PROTOCOL.md.
-- [ ] Deliver training/resume commands, trained checkpoint, learning-curve file,
+- [ ] Deliver training/resume/export/viewer commands, trained checkpoint, portable
+  safetensors bundle, learning-curve file,
   seed table and honest limitations. If NEGATIVE, stop this hypothesis; a changed
   selector or world needs a fresh explicitly named hypothesis and predeclaration.
 
 ## Copyable execution handoff
 
 > Implement docs/superpowers/plans/2026-10-30-local-replay-world-model.md and its
-> linked spec. Start with Task 0. Use detached, tightly scoped Luna High for Worker A
-> and Sol Medium for Worker B; no child agents. The lead integrates and runs local
+> linked spec, including model storage and the observatory. Start with Task 0. In a
+> Sol Medium chat, have the lead own Worker B's scope and delegate Worker A to Luna
+> High, reusing A for Task 2b; no child agents. The lead integrates and runs local
 > jobs, then launches one fresh Luna High verifier with raw data and frozen criteria.
 > Preserve the research-conductor boundary in loop/ROUTING.md and all honesty rules.
 > Reuse suitable isolated worktrees; protect unrelated changes and FROZEN files.
@@ -225,6 +272,8 @@ repository bootstrap. May use shell calculations but must not modify outputs/log
 
 ## Plan self-review
 
-The spec maps to Tasks 0–4; shared Clip layout is fixed before parallel dispatch;
+The spec maps to Tasks 0–4 including 2b; shared Clip layout is fixed before parallel dispatch;
 every review-focus item has an owning test; compute limits and partial failures have
-explicit outcomes. No implementation, model training, or findings are claimed here.
+explicit outcomes. Storage round-trips and UI state isolation have specific tests.
+No implementation, model training, or findings are claimed here. The saved UI reference
+is an interactive mockup, not the implemented viewer or a trained model.
